@@ -41,7 +41,9 @@ export function themeLinkMatch(el: Element, t: ThemeItem) {
 }
 export function themeGetCurrent() {
 	const allLinkCss = [...document.querySelectorAll(themeCssSel)]
-	return themeList.find(t => allLinkCss.some(el => themeLinkMatch(el, t)))
+	const found = themeList.find(t => allLinkCss.some(el => themeLinkMatch(el, t)))
+	console.log(`logic/themes: find current theme`, allLinkCss, found)
+	return found
 }
 function getCssLink() {
 	return document.querySelector(themeCssSel)
