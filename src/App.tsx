@@ -1,5 +1,6 @@
 import { onCleanup, onMount } from 'solid-js';
 import ThemeList from './components/ThemeList';
+import TipoLocalListing from './components/db-tables/tipo-local/Listing';
 import type { Component } from 'solid-js';
 import * as bootstrap from 'bootstrap';
 
@@ -347,7 +348,7 @@ const App: Component = () => {
           </ul>
         </nav>
       </aside>
-      <div class="bd-cheatsheet container-fluid bg-body">
+      <div class="bd-cheatsheet container-fluid REM_bg-body">
         <section id="content">
           <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">
             Contents
@@ -365,6 +366,8 @@ const App: Component = () => {
             </div>
 
             <div>
+              <TipoLocalListing />
+
               <div class="bd-example">
                 <p class="display-1">Display 1</p>
                 <p class="display-2">Display 2</p>
@@ -1176,7 +1179,7 @@ const App: Component = () => {
                     <label for="validationServerUsername" class="form-label">
                       Username
                     </label>
-                    <div class="input-group has-validation">
+                    <div class="input-group has-validation is-invalid">
                       <span class="input-group-text" id="inputGroupPrepend3">
                         @
                       </span>
@@ -1187,9 +1190,9 @@ const App: Component = () => {
                         aria-describedby="inputGroupPrepend3"
                         required
                       />
-                      <div class="invalid-feedback">
-                        Please choose a username.
-                      </div>
+                    </div>
+                    <div class="invalid-feedback">
+                      Please choose a username.
                     </div>
                   </div>
                   <div class="col-md-6">
