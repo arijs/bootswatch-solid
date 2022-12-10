@@ -3,6 +3,7 @@ import ThemeList from './components/ThemeList';
 import TipoLocalListing from './components/db-tables/tipo-local/Listing';
 import type { Component } from 'solid-js';
 import * as bootstrap from 'bootstrap';
+import ThemeDropdown from './components/ThemeDropdown';
 
 const App: Component = () => {
   /**
@@ -60,6 +61,9 @@ const App: Component = () => {
         </div>
       </header>
       <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+        <article class="my-3" id="bsthemesdrop">
+          <ThemeDropdown />
+        </article>
         <article class="my-3" id="bsthemes">
           <ThemeList />
         </article>

@@ -1,5 +1,7 @@
 // crossorigin="anonymous"
 
+import { createSignal } from 'solid-js';
+
 export interface ThemeItem {
 	name: string,
 	href: string,
@@ -43,6 +45,9 @@ export function themeGetCurrent() {
 	const allLinkCss = [...document.querySelectorAll(themeCssSel)]
 	const found = themeList.find(t => allLinkCss.some(el => themeLinkMatch(el, t)))
 	console.log(`logic/themes: find current theme`, allLinkCss, found)
+	if (!found) {
+		throw new Error(`Current theme not found`)
+	}
 	return found
 }
 function getCssLink() {
@@ -53,3 +58,5 @@ export function themeSetActive(t: ThemeItem) {
 	l.setAttribute(`integrity`, t.integrity)
 	l.setAttribute(`href`, t.href)
 }
+
+export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent());
