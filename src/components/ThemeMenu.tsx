@@ -29,7 +29,7 @@ const ThemeMenu: Component<{ 'class'?: ClassArg }> = (props) => {
 		<For each={tlist()}>
 			{t => <>
 				<Show when={t.href === ctMemo()?.href}>
-					<li><span class="dropdown-item-text active">{t.name}</span></li>
+					<li><span class="dropdown-item active">{t.name}</span></li>
 				</Show>
 				<Show when={t.href !== ctMemo()?.href}>
 					<li><a

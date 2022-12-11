@@ -64,9 +64,9 @@ const App: Component = () => {
         <article class="my-3" id="bsthemesdrop">
           <ThemeDropdown />
         </article>
-        <article class="my-3" id="bsthemes">
+        {/* <article class="my-3" id="bsthemes">
           <ThemeList />
-        </article>
+        </article> */}
         <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">On this page</h2>
         <nav class="small" id="toc">
           <ul class="list-unstyled">
