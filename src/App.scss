@@ -1,0 +1,9 @@
+
+#root {
+	scroll-behavior: smooth;
+}
+
+#bsthemesdrop .dropdown-menu {
+	max-height: calc(100vh - 10em);
+	overflow: auto;
+}

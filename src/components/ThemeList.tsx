@@ -1,4 +1,3 @@
-
 import { For, createSignal, createMemo } from 'solid-js';
 import { themeList, themeGetCurrent, themeSetActive } from '../logic/themes';
 import type { Component } from 'solid-js';
