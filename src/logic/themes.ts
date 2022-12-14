@@ -1,12 +1,15 @@
 // crossorigin="anonymous"
 
 import { createSignal } from 'solid-js';
+import storageAsync from '@arijs/frontend/client/storage/async/localstore'
 
 export interface ThemeItem {
 	name: string,
 	href: string,
 	integrity: string,
 }
+
+const stTheme = storageAsync.promise.key('77r]ABmBUztIY j')
 
 export const themeList: ThemeItem[] = [
 	{ name: `Bootstrap`, href: "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.css", integrity: "sha256-o+AsfCHj7A1M5Xgm1kJmZiGEIvMQEzQqrXz2072Gkkg=" },
@@ -55,8 +58,29 @@ function getCssLink() {
 }
 export function themeSetActive(t: ThemeItem) {
 	const l = getCssLink()
-	l.setAttribute(`integrity`, t.integrity)
-	l.setAttribute(`href`, t.href)
+	l?.setAttribute(`integrity`, t.integrity)
+	l?.setAttribute(`href`, t.href)
 }
 
-export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent());
+const [signalTheme, _setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent());
+
+const setSignalTheme = (t: ThemeItem) => {
+	_setSignalTheme(t)
+	stTheme.set(t.href).then(
+		(v: any) => {},
+		(e: any) => console.warn(`Error saving theme to localstorage`, e)
+	)
+}
+
+export { signalTheme, setSignalTheme }
+
+stTheme.get().then(
+	(v: any) => {
+		const t = themeList.find(t => v === t.href)
+		if (t) {
+			setSignalTheme(t)
+			themeSetActive(t)
+		}
+	},
+	(e: any) => console.warn(`Error loading saved theme from localstorage`, e)
+)

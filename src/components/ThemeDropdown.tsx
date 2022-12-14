@@ -1,39 +1,38 @@
-
-import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
-import isChildOf from '@arijs/frontend/client/dom/is-child-of';
+import { createMemo } from 'solid-js';
 import {
 	themeList,
 	signalTheme,
+	ThemeItem,
+	setSignalTheme,
+	themeSetActive,
 } from '../logic/themes';
-import ThemeMenu from './ThemeMenu';
-import { classes } from '../logic/classes';
+import Dropdown from './Dropdown';
 import type { Component } from 'solid-js';
-import Spinner from './Spinner';
+import type { DropdownProps } from './Dropdown';
+import type { MenuItem } from './Menu';
 
-const ThemeDropdown: Component = () => {
-	let elButton: any
-	const ctSelected = createMemo(() => themeList.find(t => t.href === signalTheme().href))
-	const [dropOpen, setDropOpen] = createSignal(false)
-
-	createEffect(() => {
-		const docClick = (e: Event) => {
-			const isButton = isChildOf(e.target, elButton)
-			// console.log(`ThemeDropdown: doc click`, { isButton })
-			setDropOpen(isButton ? !dropOpen() : false)
-		}
-		window.document.documentElement.addEventListener('click', docClick, false)
-		onCleanup(() => window.document.documentElement.removeEventListener('click', docClick, false))
+const ThemeDropdown: Component<DropdownProps> = (props) => {
+	const tlist = createMemo(() => themeList)
+	const ctMemo = createMemo(() => {
+		const ct = signalTheme()
+		console.log(`ctMemo`, ct)
+		return ct
 	})
 
-	return <div class="dropdown">
-		<button ref={elButton} class={classes("btn btn-outline-light dropdown-toggle d-flex flex-row justify-content-center align-items-center", { show: dropOpen() })} type="button" aria-expanded="false">
-			{/* <Spinner /> class="ms-3" */}
-			<span>{ctSelected()?.name || '-- nenhum tema selecionado --'}</span>
-		</button>
-		<div class="position-relative">
-			<ThemeMenu class={classes("position-absolute top-0 end-0 w-100", { show: dropOpen() })} />
-		</div>
-	</div>
+	const onClickItem = (item: MenuItem<ThemeItem>, ev: Event) => {
+		ev.preventDefault()
+		setSignalTheme(item.value)
+		themeSetActive(item.value)
+	}
+
+	return <Dropdown
+		class={props['class']}
+		classMenuButton={props.classMenuButton}
+		classMenuList={props.classMenuList}
+		items={tlist().map(t => ({ label: t.name, value: t }))}
+		selectedValue={ctMemo()}
+		onClickItem={onClickItem}
+	/>
 
 }
 

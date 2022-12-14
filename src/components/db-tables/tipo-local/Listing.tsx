@@ -5,10 +5,12 @@ import Paginate from '../../common/Paginate'
 import Spinner from '../../Spinner'
 import type { Component } from 'solid-js'
 import type { OrcamentoPage } from '../../../types'
+import Wrapper from '../../common/Wrapper'
+import { wrapperBgColor, wrapperStyle, wrapperTextColor } from '../../../logic/wrapperStyle'
 
 
 const fetchPage = async (pg: number): Promise<OrcamentoPage> =>
-	(await fetch(`http://localhost:6650/api/orcamentos-vendedores?pg=${pg}`)).json();
+	(await fetch(`/api/orcamentos-vendedores?pg=${pg}`)).json();
 
 const Listing: Component = () => {
 	const [rowCount, setRowCount] = createSignal(0)
@@ -25,16 +27,21 @@ const Listing: Component = () => {
 		if (result) setRowCount(result.count)
 	})
 
-	return <div class="db-listing">
+	// headerText="Orçamentos e vendedores"
+	return <Wrapper
+		style={wrapperStyle()}
+		bgColor={wrapperBgColor()}
+		textColor={wrapperTextColor()}
+	>
 		<ErrorBoundary fallback={(error: any) => <div class="alert alert-danger" role="alert">
 			<h4 class="alert-heading">Erro ao carregar os dados</h4>
 			<pre>{JSON.stringify(inspectObj(error, 1, 64))}</pre>
 		</div>}>
 			{page.loading && <Spinner />}
-			{page.latest && <Table page={page()} />}
+			{page.latest && <Table page={page()} style={wrapperStyle()} bgColor={wrapperBgColor()} />}
 			<Paginate current={current()} last={last()} onPageClick={onPageClick} />
 		</ErrorBoundary>
-	</div>
+	</Wrapper>
 
 }
 

@@ -1,6 +1,9 @@
 
 import type { Component } from 'solid-js';
 import ThemeDropdown from '../ThemeDropdown';
+import WrapperBgColorDropdown from './WrapperBgColorDropdown';
+import WrapperStyleDropdown from './WrapperStyleDropdown';
+import WrapperTextColorDropdown from './WrapperTextColorDropdown';
 
 const Header: Component = () => {
 
@@ -47,7 +50,12 @@ const Header: Component = () => {
 						</a>
 					</li>
 				</ul>
-				<ThemeDropdown />
+				<div class="d-flex flex-row">
+					<WrapperStyleDropdown />
+					<WrapperBgColorDropdown />
+					{/* <WrapperTextColorDropdown /> */}
+					<ThemeDropdown />
+				</div>
 			</div>
 		</div>
 	</nav>

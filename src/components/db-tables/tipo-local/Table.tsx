@@ -1,12 +1,17 @@
 
 import { For } from 'solid-js';
 import TableRow from './TableRow';
+import { classes } from '../../../logic/classes';
+import { wrapperTextColor } from '../../../logic/wrapperStyle';
 import type { Component } from 'solid-js';
 import type { OrcamentoPage } from '../../../types';
+import type { WrapperBgColor, WrapperStyle } from '../../common/Wrapper';
 // import type { ThemeItem } from '../logic/themes';
 
 const Table: Component<{
 	page: OrcamentoPage
+	style?: WrapperStyle | undefined
+	bgColor?: WrapperBgColor | undefined
 }> = (props) => {
 	// const [currentTheme, setCurrentTheme] = createSignal<ThemeItem>(themeGetCurrent());
 	// const tlist = createMemo(() => themeList)
@@ -45,7 +50,7 @@ const Table: Component<{
 		console.log(`db-tables/tipo-local onClickItem`, tipoLocal, ev)
 	}
 
-	return <table class="table table-striped">
+	return <table class={classes("table table-striped", props.style === 'card-fill' && props.bgColor ? `table-${props.bgColor}` : undefined, { 'table-dark': wrapperTextColor() === 'white' })}>
 		<thead>
 			<tr>
 				<th>Orçamento</th>

@@ -1,5 +1,5 @@
 
-import { For, Show, createMemo } from 'solid-js';
+import { createMemo } from 'solid-js';
 import {
 	themeList,
 	signalTheme,
@@ -7,9 +7,10 @@ import {
 	themeSetActive,
 } from '../logic/themes';
 import { classes } from '../logic/classes';
+import Menu from './Menu';
 import type { Component } from 'solid-js';
-import type { ThemeItem } from '../logic/themes';
 import type { ClassArg } from '../logic/classes';
+import type { MenuItem } from './Menu';
 
 const ThemeMenu: Component<{ 'class'?: ClassArg }> = (props) => {
 	const tlist = createMemo(() => themeList)
@@ -19,30 +20,18 @@ const ThemeMenu: Component<{ 'class'?: ClassArg }> = (props) => {
 		return ct
 	})
 
-	const onClickItem = (data: ThemeItem, ev: Event) => {
+	const onClickItem = (item: MenuItem, ev: Event) => {
 		ev.preventDefault()
-		setSignalTheme(data)
-		themeSetActive(data)
+		setSignalTheme(item.value)
+		themeSetActive(item.value)
 	}
 
-	return <ul class={classes("dropdown-menu", props['class'])}>
-		<For each={tlist()}>
-			{t => <>
-				<Show when={t.href === ctMemo()?.href}>
-					<li><span class="dropdown-item active">{t.name}</span></li>
-				</Show>
-				<Show when={t.href !== ctMemo()?.href}>
-					<li><a
-						href="#"
-						onClick={[onClickItem, t]}
-						class="dropdown-item"
-					>
-						{t.name}
-					</a></li>
-				</Show>
-			</>}
-		</For>
-	</ul>
+	return <Menu
+		class={classes("dropdown-menu", props['class'])}
+		items={tlist().map(t => ({ label: t.name, value: t }))}
+		selectedValue={ctMemo()}
+		onClickItem={onClickItem}
+	/>
 
 }
 
