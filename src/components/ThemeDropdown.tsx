@@ -1,5 +1,5 @@
 
-import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
+import { onSettled, createMemo, createSignal } from 'solid-js';
 import isChildOf from '@arijs/frontend/client/dom/is-child-of';
 import {
 	themeList,
@@ -15,23 +15,23 @@ const ThemeDropdown: Component = () => {
 	const ctSelected = createMemo(() => themeList.find(t => t.href === signalTheme().href))
 	const [dropOpen, setDropOpen] = createSignal(false)
 
-	createEffect(() => {
+	onSettled(() => {
 		const docClick = (e: Event) => {
 			const isButton = isChildOf(e.target, elButton)
 			console.log(`ThemeDropdown: doc click`, { isButton })
 			setDropOpen(isButton ? !dropOpen() : false)
 		}
 		window.document.documentElement.addEventListener('click', docClick, false)
-		onCleanup(() => window.document.documentElement.removeEventListener('click', docClick, false))
+		return () => window.document.documentElement.removeEventListener('click', docClick, false)
 	})
 
 	return <div class="dropdown">
 		<button ref={elButton} class={classes("btn btn-secondary dropdown-toggle d-flex flex-row justify-content-center align-items-center", { show: dropOpen() })} type="button" aria-expanded="false">
-			<Spinner />
+			{/* <Spinner /> */}
 			<span class="ms-3">{ctSelected()?.name || '-- nenhum tema selecionado --'}</span>
 		</button>
 		<div class="position-relative">
-			<ThemeMenu class={classes("position-absolute top-0 start-0 w-100", { show: dropOpen() })} />
+			<ThemeMenu class={classes("position-absolute top-0 end-0 w-100", { show: dropOpen() })} />
 		</div>
 	</div>
 

@@ -1,4 +1,4 @@
-import { mergeProps, createMemo } from 'solid-js';
+import { merge, createMemo } from 'solid-js';
 import './Spinner.css';
 import type { Component } from 'solid-js';
 
@@ -9,7 +9,7 @@ const Spinner: Component<{
 	stroke?: string
 }> = (props) => {
 
-	const merged = mergeProps({ scale: 1, radius: 100, strokeWidth: 28 }, props)
+	const merged = merge({ scale: 1, radius: 100, strokeWidth: 28 }, props)
 	const scaledRadius = createMemo(() => merged.radius / merged.scale)
 
 	return <div class={`spinner-container`}>

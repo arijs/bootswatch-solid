@@ -1,7 +1,7 @@
 /* @refresh reload */
 // import 'bootstrap/scss/bootstrap.scss';
 
-import { render } from 'solid-js/web';
+import { render } from '@solidjs/web';
 
 /**
  * This file was taken from the cheatsheet example of bootstrap.

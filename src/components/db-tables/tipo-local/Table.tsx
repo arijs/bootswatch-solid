@@ -1,5 +1,5 @@
 
-import { For, createSignal, createMemo } from 'solid-js';
+import { For } from 'solid-js';
 import TableRow from './TableRow';
 import type { Component } from 'solid-js';
 // import type { ThemeItem } from '../logic/themes';
@@ -49,7 +49,7 @@ const Table: Component = () => {
 		</thead>
 		<tbody class="table-group-divider">
 			<For each={list}>
-				{item => <TableRow tipoLocal={item} onClick={onClickItem} />}
+				{item => <TableRow tipoLocal={item()} onClick={onClickItem} />}
 			</For>
 		</tbody>
 	</table>

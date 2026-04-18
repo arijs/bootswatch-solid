@@ -9,32 +9,33 @@ export interface ThemeItem {
 }
 
 export const themeList: ThemeItem[] = [
-	{ name: `Bootstrap`, href: "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.css", integrity: "sha256-o+AsfCHj7A1M5Xgm1kJmZiGEIvMQEzQqrXz2072Gkkg=" },
-	{ name: `Cerulean`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/cerulean/bootstrap.css", integrity: "sha256-9Ci/bTcLoqDai8cKGICDQhBD8MJUicGIjKv8NbmPTTg=" },
-	{ name: `Cosmo`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/cosmo/bootstrap.css", integrity: "sha256-KaCoLbwsFR/dFQSuOrToyI+kcmNbb4zBHYpNPiZ8Gco=" },
-	{ name: `Cyborg`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/cyborg/bootstrap.css", integrity: "sha256-+iGROJm/iBVga3IRfTKJCoG3m9MCKNj/EtYDu2K179M=" },
-	{ name: `Darkly`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/darkly/bootstrap.css", integrity: "sha256-7C3Rf8s+M1gwnFt5Y/qNDYf7SVJLyNvS4x8lxb2BSVI=" },
-	{ name: `Flatly`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/flatly/bootstrap.css", integrity: "sha256-ZMColkLaMHOtjTIduPRy2wxmTFU4JXKtB3cbLiI+Y6I=" },
-	{ name: `Journal`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/journal/bootstrap.css", integrity: "sha256-r6gSCxAJ2CS0zdUZBEsqDNycpkKJK0pYPeViCi8tiJ0=" },
-	{ name: `Litera`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/litera/bootstrap.css", integrity: "sha256-CID83h9kyOy4kLQZAfDArNWg71faKFcawG+PHELzweY=" },
-	{ name: `Lumen`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lumen/bootstrap.css", integrity: "sha256-mYtsejkiXZxQVGLjdbWV7ZkTBXkTRB2/ik4W0qC5xUM=" },
-	{ name: `Lux`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lux/bootstrap.css", integrity: "sha256-J+KZ/BTRlKV7yuf44aId3DLC8x+yuVZsh50Lf3yQmQc=" },
-	{ name: `Materia`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/materia/bootstrap.css", integrity: "sha256-SxMJMwBzwF/Qu6NHZsLj0/dGthZqdUE09UuRf7WIqRo=" },
-	{ name: `Minty`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/minty/bootstrap.css", integrity: "sha256-oZyJEA0xdNqqSgL/aMoPAAJluSatWmKXYYxnxuLspeg=" },
-	{ name: `Morph`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/morph/bootstrap.css", integrity: "sha256-D/4ufkOismvjU9BlcB+0GPx2jhY4O5SF3qG9NUHMODU=" },
-	{ name: `Pulse`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/pulse/bootstrap.css", integrity: "sha256-1NxuO+mIoTMYzhDG/VBLHTpzeZCFeE9n5aURtqFdvFQ=" },
-	{ name: `Quartz`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/quartz/bootstrap.css", integrity: "sha256-TxG31rgdJnPkfhcxZ2V0L8LVurP9pIHq94QjVrXx1bs=" },
-	{ name: `Sandstone`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/sandstone/bootstrap.css", integrity: "sha256-VwEw2Etv40ZfUJZbtiCvQF1XCNB9D4t+gT+U8sffxAs=" },
-	{ name: `Simplex`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/simplex/bootstrap.css", integrity: "sha256-D+lP5ONuztYjX3EgaZ5YzDngDZ68PYs5Ech7O0MGuxA=" },
-	{ name: `Sketchy`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/sketchy/bootstrap.css", integrity: "sha256-VWZOku2D9QoSaPAUH5CpXtvXLKkASil8wPMjw5xuL+s=" },
-	{ name: `Slate`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.css", integrity: "sha256-NQ08LfRGH2KHlNkNv1YCz8TGoW5et9FWHvCbmv39Tbs=" },
-	{ name: `Solar`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/solar/bootstrap.css", integrity: "sha256-H7Cmwo7Mta6SG+Mu8oJ2NfTaIh7EYlE8jZqp77O65hI=" },
-	{ name: `Spacelab`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/spacelab/bootstrap.css", integrity: "sha256-4mL8WbsCDoO7o5eWG0K5WUOOzuYk0wAA/gbxrP/sYBU=" },
-	{ name: `Superhero`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/superhero/bootstrap.css", integrity: "sha256-Hm8kUc3J1BOBmOqN0zh5avEF0KRvLj1sucyPnF72ctU=" },
-	{ name: `United`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/united/bootstrap.css", integrity: "sha256-C+HA4+HUcMm3druig/qcy3Z3Ltw028ziw/kINKLboNE=" },
-	{ name: `Vapor`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/vapor/bootstrap.css", integrity: "sha256-bTo36IR5h/Ww7PAd93HYL0DdoW64Q8wyYM1sE96RQi0=" },
-	{ name: `Yeti`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/yeti/bootstrap.css", integrity: "sha256-FdaJQZWkR5XccHvcs59ABu6jozHVKC9tFAgBC07Zt98=" },
-	{ name: `Zephyr`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/zephyr/bootstrap.css", integrity: "sha256-3sN9G4oO+DxxzY/NZU8PTkOXStMl9GnFT5dvZfT3nuE=" },
+	{ name: `Bootstrap`, href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.css", integrity: "sha256-SlAge5VqSrlDZA7pkxGLVUo06WojJhz+WLmqGAenhJs=" },
+	{ name: `Brite`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/brite/bootstrap.css", integrity: "sha256-6IcDJPqcF/l84bTC99wHd7HrIC+RGvyGd57tINx6Px0=" },
+	{ name: `Cerulean`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/cerulean/bootstrap.css", integrity: "sha256-Smxq4Z4y+nJBQGfYf834+X7GA41QKFHyhOyHYm0soVU=" },
+	{ name: `Cosmo`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/cosmo/bootstrap.css", integrity: "sha256-lO3nQyO8EYDYhUJQxYQG/NqELg7AlmoMxR7BMY19jGo=" },
+	{ name: `Cyborg`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/cyborg/bootstrap.css", integrity: "sha256-b/a2A+XEGikx12PtD73EatxxBOZDvdy4HdT7pDnD1uE=" },
+	{ name: `Darkly`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/darkly/bootstrap.css", integrity: "sha256-dcn7fleT63N5viz59vpz3tg64RuljK/OTG5B3v0tQ+s=" },
+	{ name: `Flatly`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/flatly/bootstrap.css", integrity: "sha256-/n+mew/ya3NYxGXLZcKh+htsbhUolsR/Qnwn1CN5Ae4=" },
+	{ name: `Journal`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/journal/bootstrap.css", integrity: "sha256-/E/3RvBwtrd85n3A6sqEvve4hGKc1Hd/inGOwceVzsg=" },
+	{ name: `Litera`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/litera/bootstrap.css", integrity: "sha256-pQvEtIM89mCsIfTj3tlaIALU50nQCt7/RpKFT5zq78A=" },
+	{ name: `Lumen`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/lumen/bootstrap.css", integrity: "sha256-ZnMIcRjmiz3wJsR1hDl+HcCvu+ixIYRg2DxdWZj/uqs=" },
+	{ name: `Lux`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/lux/bootstrap.css", integrity: "sha256-7hxA4k68sT9qElr+Hd32oU3UXDBIFBSOUD/tq4EK3gk=" },
+	{ name: `Materia`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/materia/bootstrap.css", integrity: "sha256-S0mQl4WupRSlItJ0Y9sO3BRc4lP/mYFnPSl7i8HK1Mc=" },
+	{ name: `Minty`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/minty/bootstrap.css", integrity: "sha256-WSA+8CNeYzZcQO8H+FBwmF2eTZFayjiroUOsTPygPKE=" },
+	{ name: `Morph`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/morph/bootstrap.css", integrity: "sha256-55hFxhc/ItQYE6ueE4ADGt2RJVu0sEh1CbkLaa2fpRY=" },
+	{ name: `Pulse`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/pulse/bootstrap.css", integrity: "sha256-Ly+CGKera8tEM1Sy0m7eln/XgJxLv77nmzTcGccSokI=" },
+	{ name: `Quartz`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/quartz/bootstrap.css", integrity: "sha256-fVvD9e+jH4I+0kjjyZ9HNNBjZ+KNkkQ11SczQJsVRQg=" },
+	{ name: `Sandstone`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/sandstone/bootstrap.css", integrity: "sha256-WO5jquBOsBifQk0y7noGyh/flCbJt0g/V3LM+o6UOnI=" },
+	{ name: `Simplex`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/simplex/bootstrap.css", integrity: "sha256-96e7r/vV3pLNg+cMhoejX2A4SxQelK2MwGkjj3wazL4=" },
+	{ name: `Sketchy`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/sketchy/bootstrap.css", integrity: "sha256-PoYo9znbQR4P+tsM0v+2CAD2BBfYCIffNIBMn/l0t6Q=" },
+	{ name: `Slate`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/slate/bootstrap.css", integrity: "sha256-jBIWUDmoEQPxIpHopQM3JWxJPUlk5ycK+xlOT6lY6hk=" },
+	{ name: `Solar`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/solar/bootstrap.css", integrity: "sha256-qO2/vxE5tZkoR9nIPJHHY/RyYOwlczqEyWufN/utmeI=" },
+	{ name: `Spacelab`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/spacelab/bootstrap.css", integrity: "sha256-tdyezeAoGf8cVEru7OJeCY8jmTAqh312k83/8XlvkFE=" },
+	{ name: `Superhero`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/superhero/bootstrap.css", integrity: "sha256-Zi1L8B8/FVineXT0/F/RaiRyctuykV3VXBpYwqfL6L4=" },
+	{ name: `United`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/united/bootstrap.css", integrity: "sha256-TTMvxOQsmsao2kC8ixqT4sJesDeSzdWC0tQKYyPbsjQ=" },
+	{ name: `Vapor`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/vapor/bootstrap.css", integrity: "sha256-/MlXJOt7rlF2nqoY/t6Tf7WrJDStkc5r4arRepm1wnc=" },
+	{ name: `Yeti`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/yeti/bootstrap.css", integrity: "sha256-uAJqAWJ8++xwt6Q5nIRwbGCpKkLXDrc/W01N3oH3jRE=" },
+	{ name: `Zephyr`, href: "https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/zephyr/bootstrap.css", integrity: "sha256-xjgjsiPfTVwAiqTOOGYyIzytmZjdw0xu3CvmT5IclAE=" },
 ]
 
 const themeCssSel = `html > head > link[rel=stylesheet][href^="https://cdn.jsdelivr.net/"]`
@@ -55,8 +56,8 @@ function getCssLink() {
 }
 export function themeSetActive(t: ThemeItem) {
 	const l = getCssLink()
-	l.setAttribute(`integrity`, t.integrity)
-	l.setAttribute(`href`, t.href)
+	l?.setAttribute(`integrity`, t.integrity)
+	l?.setAttribute(`href`, t.href)
 }
 
 export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent());

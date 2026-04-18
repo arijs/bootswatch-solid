@@ -28,16 +28,16 @@ const ThemeMenu: Component<{ 'class'?: ClassArg }> = (props) => {
 	return <ul class={classes("dropdown-menu", props['class'])}>
 		<For each={tlist()}>
 			{t => <>
-				<Show when={t.href === ctMemo()?.href}>
-					<li><span class="dropdown-item active">{t.name}</span></li>
+				<Show when={t().href === ctMemo()?.href}>
+					<li><span class="dropdown-item active">{t().name}</span></li>
 				</Show>
-				<Show when={t.href !== ctMemo()?.href}>
+				<Show when={t().href !== ctMemo()?.href}>
 					<li><a
 						href="#"
-						onClick={[onClickItem, t]}
+						onClick={[onClickItem, t()]}
 						class="dropdown-item"
 					>
-						{t.name}
+						{t().name}
 					</a></li>
 				</Show>
 			</>}
