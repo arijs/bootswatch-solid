@@ -1,12 +1,17 @@
 import { onSettled } from 'solid-js';
 import type { Component } from 'solid-js';
-import ThemeDropdown from './components/ThemeDropdown';
-import ContentsSection from './components/contents/ContentsSection';
-import FormsSection from './components/forms/FormsSection';
-import UiSection from './components/ui/UiSection';
-import ModalDialogs from './components/ui/ModalDialogs';
+import ThemeDropdown from './ThemeDropdown';
+import ContentsSection from './contents/ContentsSection';
+import FormsSection from './forms/FormsSection';
+import UiSection from './ui/UiSection';
+import ModalDialogs from './ui/ModalDialogs';
 
-const App: Component = () => {
+/**
+ * This file was taken from the cheatsheet example of bootstrap.
+ * You will most likely remove it if using this template.
+ */
+
+const HomePage: Component = () => {
   /**
    * This function was taken from the cheatsheet example of bootstrap.
    * You will most likely remove it if using this template.
@@ -121,6 +126,7 @@ const App: Component = () => {
                 <li><a class="d-inline-flex align-items-center rounded" href="#buttons">Buttons</a></li>
                 <li><a class="d-inline-flex align-items-center rounded" href="#button-group">Button group</a></li>
                 <li><a class="d-inline-flex align-items-center rounded" href="#card">Card</a></li>
+                <li><a class="d-inline-flex align-items-center rounded" href="#card-tabs">Card Tabs</a></li>
                 <li><a class="d-inline-flex align-items-center rounded" href="#carousel">Carousel</a></li>
                 <li><a class="d-inline-flex align-items-center rounded" href="#dropdowns">Dropdowns</a></li>
                 <li><a class="d-inline-flex align-items-center rounded" href="#list-group">List group</a></li>
@@ -149,4 +155,4 @@ const App: Component = () => {
   );
 };
 
-export default App;
+export default HomePage;

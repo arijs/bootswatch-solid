@@ -6,6 +6,7 @@ import Breadcrumb from './Breadcrumb';
 import Buttons from './Buttons';
 import ButtonGroup from './ButtonGroup';
 import Card from './Card';
+import CardTabs from './CardTabs';
 import Carousel from './Carousel';
 import Dropdowns from './Dropdowns';
 import ListGroup from './ListGroup';
@@ -32,6 +33,7 @@ const UiSection: Component = () => (
       <Buttons />
       <ButtonGroup />
       <Card />
+      <CardTabs />
       <Carousel />
       <Dropdowns />
       <ListGroup />

@@ -14,6 +14,9 @@ importers:
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
+      '@solidjs/router':
+        specifier: 0.17.0-next.2
+        version: 0.17.0-next.2(@solidjs/web@2.0.0-beta.7(@solidjs/signals@2.0.0-beta.7)(solid-js@2.0.0-beta.7))(solid-js@2.0.0-beta.7)
       '@solidjs/web':
         specifier: 2.0.0-beta.7
         version: 2.0.0-beta.7(@solidjs/signals@2.0.0-beta.7)(solid-js@2.0.0-beta.7)
@@ -358,6 +361,12 @@ packages:
 
   '@rolldown/pluginutils@1.0.0-rc.15':
     resolution: {integrity: sha512-UromN0peaE53IaBRe9W7CjrZgXl90fqGpK+mIZbA3qSTeYqg3pqpROBdIPvOG3F5ereDHNwoHBI2e50n1BDr1g==}
+
+  '@solidjs/router@0.17.0-next.2':
+    resolution: {integrity: sha512-CtzkzF+B/D/wD5U7gUfhG+qLSSyY3CqvrkeODZ1YivgPW/AynnRha98QaqRSt6/8ymMqBQ7aPt8CmxmFDZG1CQ==}
+    peerDependencies:
+      '@solidjs/web': '>=2.0.0-beta.7 <2.0.0-experimental.0'
+      solid-js: '>=2.0.0-beta.7 <2.0.0-experimental.0'
 
   '@solidjs/signals@2.0.0-beta.7':
     resolution: {integrity: sha512-SgK6oQlQZofz82LiEJ2RzT3sbs1lWTqFEtLoWjLsUo/dk1v9EoIFpJJlmvgkXvNugASWG+l1yOHa1a8lPamxug==}
@@ -1034,6 +1043,11 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.0.0-rc.15': {}
+
+  '@solidjs/router@0.17.0-next.2(@solidjs/web@2.0.0-beta.7(@solidjs/signals@2.0.0-beta.7)(solid-js@2.0.0-beta.7))(solid-js@2.0.0-beta.7)':
+    dependencies:
+      '@solidjs/web': 2.0.0-beta.7(@solidjs/signals@2.0.0-beta.7)(solid-js@2.0.0-beta.7)
+      solid-js: 2.0.0-beta.7
 
   '@solidjs/signals@2.0.0-beta.7': {}
 

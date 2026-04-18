@@ -1,0 +1,14 @@
+import type { Component } from 'solid-js';
+
+const Display: Component = () => (
+  <div class="bd-example">
+    <p class="display-1">Display 1</p>
+    <p class="display-2">Display 2</p>
+    <p class="display-3">Display 3</p>
+    <p class="display-4">Display 4</p>
+    <p class="display-5">Display 5</p>
+    <p class="display-6">Display 6</p>
+  </div>
+);
+
+export default Display;
