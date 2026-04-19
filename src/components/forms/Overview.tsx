@@ -1,102 +1,32 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import BasicForm from './overview/BasicForm'
+import Checkbox from './overview/Checkbox'
+import FileInput from './overview/FileInput'
+import RadioButtons from './overview/RadioButtons'
+import RangeInput from './overview/RangeInput'
+import SwitchCheckbox from './overview/SwitchCheckbox'
 
 const Overview: Component = () => (
 	<article class="my-3" id="overview">
 		<div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
 			<h3>Overview</h3>
 			<DocLink href="/forms/overview" />
+			<DocLink href="/forms/overview/basic-form">Basic Form</DocLink>
+			<DocLink href="/forms/overview/checkbox">Checkbox</DocLink>
+			<DocLink href="/forms/overview/radio-buttons">Radio Buttons</DocLink>
+			<DocLink href="/forms/overview/switch-checkbox">Switch Checkbox</DocLink>
+			<DocLink href="/forms/overview/file-input">File Input</DocLink>
+			<DocLink href="/forms/overview/range-input">Range Input</DocLink>
 		</div>
 
 		<div>
-			<div class="bd-example container-fluid">
-				<form>
-					<div class="mb-3">
-						<label for="exampleInputEmail1" class="form-label">
-							Email address
-						</label>
-						<input
-							type="email"
-							class="form-control"
-							id="exampleInputEmail1"
-							aria-describedby="emailHelp"
-						/>
-						<div id="emailHelp" class="form-text">
-							We'll never share your email with anyone else.
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="exampleInputPassword1" class="form-label">
-							Password
-						</label>
-						<input type="password" class="form-control" id="exampleInputPassword1" />
-					</div>
-					<div class="mb-3 form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" />
-						<label class="form-check-label" for="exampleCheck1">
-							Check me out
-						</label>
-					</div>
-					<fieldset class="mb-3">
-						<legend>Radios buttons</legend>
-						<div class="form-check">
-							<input
-								type="radio"
-								name="radios"
-								class="form-check-input"
-								id="exampleRadio1"
-							/>
-							<label class="form-check-label" for="exampleRadio1">
-								Default radio
-							</label>
-						</div>
-						<div class="mb-3 form-check">
-							<input
-								type="radio"
-								name="radios"
-								class="form-check-input"
-								id="exampleRadio2"
-							/>
-							<label class="form-check-label" for="exampleRadio2">
-								Another radio
-							</label>
-						</div>
-					</fieldset>
-					<div class="mb-3">
-						<label class="form-label" for="customFile">
-							Upload
-						</label>
-						<input type="file" class="form-control" id="customFile" />
-					</div>
-					<div class="mb-3 form-check form-switch">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="flexSwitchCheckChecked"
-							checked
-						/>
-						<label class="form-check-label" for="flexSwitchCheckChecked">
-							Checked switch checkbox input
-						</label>
-					</div>
-					<div class="mb-3">
-						<label for="customRange3" class="form-label">
-							Example range
-						</label>
-						<input
-							type="range"
-							class="form-range"
-							min="0"
-							max="5"
-							step="0.5"
-							id="customRange3"
-						/>
-					</div>
-					<button type="submit" class="btn btn-primary">
-						Submit
-					</button>
-				</form>
-			</div>
+			<BasicForm />
+			<Checkbox />
+			<RadioButtons />
+			<SwitchCheckbox />
+			<FileInput />
+			<RangeInput />
 		</div>
 	</article>
 )

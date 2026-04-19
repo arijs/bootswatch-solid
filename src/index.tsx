@@ -15,7 +15,16 @@ import Thumbnail from './components/contents/images/Thumbnail'
 import Tables from './components/contents/Tables'
 import Typography from './components/contents/Typography'
 import DarkBorderless from './components/contents/tables/DarkBorderless'
+import HoverDangerVariant from './components/contents/tables/HoverDangerVariant'
+import HoverDarkVariant from './components/contents/tables/HoverDarkVariant'
+import HoverDefaultVariant from './components/contents/tables/HoverDefaultVariant'
+import HoverInfoVariant from './components/contents/tables/HoverInfoVariant'
+import HoverLightVariant from './components/contents/tables/HoverLightVariant'
+import HoverPrimaryVariant from './components/contents/tables/HoverPrimaryVariant'
+import HoverSecondaryVariant from './components/contents/tables/HoverSecondaryVariant'
+import HoverSuccessVariant from './components/contents/tables/HoverSuccessVariant'
 import HoverVariants from './components/contents/tables/HoverVariants'
+import HoverWarningVariant from './components/contents/tables/HoverWarningVariant'
 import SmallBordered from './components/contents/tables/SmallBordered'
 import Striped from './components/contents/tables/Striped'
 import Blockquote from './components/contents/typography/Blockquote'
@@ -27,21 +36,51 @@ import TextElements from './components/contents/typography/TextElements'
 import UnstyledList from './components/contents/typography/UnstyledList'
 // Forms components
 import DisabledForms from './components/forms/DisabledForms'
+import DisabledCheckbox from './components/forms/disabled/DisabledCheckbox'
+import DisabledFieldset from './components/forms/disabled/DisabledFieldset'
+import DisabledFileRange from './components/forms/disabled/DisabledFileRange'
+import DisabledRadioButtons from './components/forms/disabled/DisabledRadioButtons'
+import DisabledSwitchCheckbox from './components/forms/disabled/DisabledSwitchCheckbox'
 import FloatingLabels from './components/forms/FloatingLabels'
 import FormsSection from './components/forms/FormsSection'
 import InputGroup from './components/forms/InputGroup'
+import CurrencyAddon from './components/forms/input-group/CurrencyAddon'
+import PrefixAddon from './components/forms/input-group/PrefixAddon'
+import SuffixAddon from './components/forms/input-group/SuffixAddon'
+import TextareaAddon from './components/forms/input-group/TextareaAddon'
+import UrlAddon from './components/forms/input-group/UrlAddon'
 import Overview from './components/forms/Overview'
+import BasicForm from './components/forms/overview/BasicForm'
+import Checkbox from './components/forms/overview/Checkbox'
+import FileInput from './components/forms/overview/FileInput'
+import RadioButtons from './components/forms/overview/RadioButtons'
+import RangeInput from './components/forms/overview/RangeInput'
+import SwitchCheckbox from './components/forms/overview/SwitchCheckbox'
 import Sizing from './components/forms/Sizing'
 import LargeControls from './components/forms/sizing/LargeControls'
 import SmallControls from './components/forms/sizing/SmallControls'
 import Validation from './components/forms/Validation'
+import InvalidCheckboxes from './components/forms/validation/InvalidCheckboxes'
+import InvalidRadios from './components/forms/validation/InvalidRadios'
+import InvalidStateZip from './components/forms/validation/InvalidStateZip'
+import InvalidUsernameCity from './components/forms/validation/InvalidUsernameCity'
+import ValidCheckboxes from './components/forms/validation/ValidCheckboxes'
+import ValidNames from './components/forms/validation/ValidNames'
+import ValidRadios from './components/forms/validation/ValidRadios'
 import Home from './components/HomePage'
 
 // UI components
 import Accordion from './components/ui/Accordion'
 import Alerts from './components/ui/Alerts'
-import DismissibleAlerts from './components/ui/alerts/DismissibleAlerts'
+import DangerAlert from './components/ui/alerts/DangerAlert'
+import DarkAlert from './components/ui/alerts/DarkAlert'
 import HeadingAlert from './components/ui/alerts/HeadingAlert'
+import InfoAlert from './components/ui/alerts/InfoAlert'
+import LightAlert from './components/ui/alerts/LightAlert'
+import PrimaryAlert from './components/ui/alerts/PrimaryAlert'
+import SecondaryAlert from './components/ui/alerts/SecondaryAlert'
+import SuccessAlert from './components/ui/alerts/SuccessAlert'
+import WarningAlert from './components/ui/alerts/WarningAlert'
 import Badge from './components/ui/Badge'
 import Breadcrumb from './components/ui/Breadcrumb'
 import ButtonGroup from './components/ui/ButtonGroup'
@@ -52,23 +91,46 @@ import ButtonSizes from './components/ui/buttons/ButtonSizes'
 import OutlineButtons from './components/ui/buttons/OutlineButtons'
 import SolidButtons from './components/ui/buttons/SolidButtons'
 import Card from './components/ui/Card'
+import CardTabs from './components/ui/CardTabs'
+import Carousel from './components/ui/Carousel'
 import FeaturedCard from './components/ui/card/FeaturedCard'
 import HorizontalCard from './components/ui/card/HorizontalCard'
 import ImageTopCard from './components/ui/card/ImageTopCard'
 import ListCard from './components/ui/card/ListCard'
-import CardTabs from './components/ui/CardTabs'
-import Carousel from './components/ui/Carousel'
 import Dropdowns from './components/ui/Dropdowns'
 import AlignedDropdown from './components/ui/dropdowns/AlignedDropdown'
-import DirectionalDropdowns from './components/ui/dropdowns/DirectionalDropdowns'
-import SizesDropdowns from './components/ui/dropdowns/SizesDropdowns'
-import SplitDropdowns from './components/ui/dropdowns/SplitDropdowns'
+import EndDropdown from './components/ui/dropdowns/EndDropdown'
+import LargeDropdown from './components/ui/dropdowns/LargeDropdown'
+import NormalDropdown from './components/ui/dropdowns/NormalDropdown'
+import SmallDropdown from './components/ui/dropdowns/SmallDropdown'
+import SplitDangerDropdown from './components/ui/dropdowns/SplitDangerDropdown'
+import SplitDarkDropdown from './components/ui/dropdowns/SplitDarkDropdown'
+import SplitInfoDropdown from './components/ui/dropdowns/SplitInfoDropdown'
+import SplitLightDropdown from './components/ui/dropdowns/SplitLightDropdown'
+import SplitPrimaryDropdown from './components/ui/dropdowns/SplitPrimaryDropdown'
+import SplitSecondaryDropdown from './components/ui/dropdowns/SplitSecondaryDropdown'
+import SplitSuccessDropdown from './components/ui/dropdowns/SplitSuccessDropdown'
+import SplitWarningDropdown from './components/ui/dropdowns/SplitWarningDropdown'
+import StartDropdown from './components/ui/dropdowns/StartDropdown'
+import UpDropdown from './components/ui/dropdowns/UpDropdown'
 import ListGroup from './components/ui/ListGroup'
+import ContextualDangerListGroup from './components/ui/list-group/ContextualDangerListGroup'
+import ContextualDarkListGroup from './components/ui/list-group/ContextualDarkListGroup'
+import ContextualDefaultListGroup from './components/ui/list-group/ContextualDefaultListGroup'
+import ContextualInfoListGroup from './components/ui/list-group/ContextualInfoListGroup'
+import ContextualLightListGroup from './components/ui/list-group/ContextualLightListGroup'
 import ContextualListGroup from './components/ui/list-group/ContextualListGroup'
+import ContextualPrimaryListGroup from './components/ui/list-group/ContextualPrimaryListGroup'
+import ContextualSecondaryListGroup from './components/ui/list-group/ContextualSecondaryListGroup'
+import ContextualSuccessListGroup from './components/ui/list-group/ContextualSuccessListGroup'
+import ContextualWarningListGroup from './components/ui/list-group/ContextualWarningListGroup'
 import DefaultListGroup from './components/ui/list-group/DefaultListGroup'
 import FlushListGroup from './components/ui/list-group/FlushListGroup'
 import Modal from './components/ui/Modal'
-import ModalDialogs from './components/ui/ModalDialogs'
+import CenteredScrollableModal from './components/ui/modal/CenteredScrollableModal'
+import DefaultModal from './components/ui/modal/DefaultModal'
+import FullscreenModal from './components/ui/modal/FullscreenModal'
+import StaticBackdropModal from './components/ui/modal/StaticBackdropModal'
 import Navbar from './components/ui/Navbar'
 import Navs from './components/ui/Navs'
 import BasicNav from './components/ui/navs/BasicNav'
@@ -81,15 +143,41 @@ import LargePagination from './components/ui/pagination/LargePagination'
 import SmallPagination from './components/ui/pagination/SmallPagination'
 import StandardPagination from './components/ui/pagination/StandardPagination'
 import BasicPopover from './components/ui/popovers/BasicPopover'
-import PositionedPopovers from './components/ui/popovers/PositionedPopovers'
-import BasicProgress from './components/ui/progress/BasicProgress'
+import BottomPopover from './components/ui/popovers/BottomPopover'
+import EndPopover from './components/ui/popovers/EndPopover'
+import StartPopover from './components/ui/popovers/StartPopover'
+import TopPopover from './components/ui/popovers/TopPopover'
+import Progress0 from './components/ui/progress/Progress0'
+import Progress25 from './components/ui/progress/Progress25'
+import Progress50 from './components/ui/progress/Progress50'
+import Progress75 from './components/ui/progress/Progress75'
+import Progress100 from './components/ui/progress/Progress100'
 import StripedProgress from './components/ui/progress/StripedProgress'
 import Scrollspy from './components/ui/Scrollspy'
 import Spinners from './components/ui/Spinners'
-import BorderSpinners from './components/ui/spinners/BorderSpinners'
-import GrowSpinners from './components/ui/spinners/GrowSpinners'
+import BorderDangerSpinner from './components/ui/spinners/BorderDangerSpinner'
+import BorderDarkSpinner from './components/ui/spinners/BorderDarkSpinner'
+import BorderInfoSpinner from './components/ui/spinners/BorderInfoSpinner'
+import BorderLightSpinner from './components/ui/spinners/BorderLightSpinner'
+import BorderPrimarySpinner from './components/ui/spinners/BorderPrimarySpinner'
+import BorderSecondarySpinner from './components/ui/spinners/BorderSecondarySpinner'
+import BorderSuccessSpinner from './components/ui/spinners/BorderSuccessSpinner'
+import BorderWarningSpinner from './components/ui/spinners/BorderWarningSpinner'
+import GrowDangerSpinner from './components/ui/spinners/GrowDangerSpinner'
+import GrowDarkSpinner from './components/ui/spinners/GrowDarkSpinner'
+import GrowInfoSpinner from './components/ui/spinners/GrowInfoSpinner'
+import GrowLightSpinner from './components/ui/spinners/GrowLightSpinner'
+import GrowPrimarySpinner from './components/ui/spinners/GrowPrimarySpinner'
+import GrowSecondarySpinner from './components/ui/spinners/GrowSecondarySpinner'
+import GrowSuccessSpinner from './components/ui/spinners/GrowSuccessSpinner'
+import GrowWarningSpinner from './components/ui/spinners/GrowWarningSpinner'
 import Toasts from './components/ui/Toasts'
 import Tooltips from './components/ui/Tooltips'
+import BottomTooltip from './components/ui/tooltips/BottomTooltip'
+import EndTooltip from './components/ui/tooltips/EndTooltip'
+import HtmlTooltip from './components/ui/tooltips/HtmlTooltip'
+import StartTooltip from './components/ui/tooltips/StartTooltip'
+import TopTooltip from './components/ui/tooltips/TopTooltip'
 import UiSection from './components/ui/UiSection'
 
 render(
@@ -107,6 +195,18 @@ render(
 			<Route path="/contents/tables/striped" component={Striped} />
 			<Route path="/contents/tables/dark-borderless" component={DarkBorderless} />
 			<Route path="/contents/tables/hover-variants" component={HoverVariants} />
+			<Route path="/contents/tables/hover-default-variant" component={HoverDefaultVariant} />
+			<Route path="/contents/tables/hover-primary-variant" component={HoverPrimaryVariant} />
+			<Route
+				path="/contents/tables/hover-secondary-variant"
+				component={HoverSecondaryVariant}
+			/>
+			<Route path="/contents/tables/hover-success-variant" component={HoverSuccessVariant} />
+			<Route path="/contents/tables/hover-danger-variant" component={HoverDangerVariant} />
+			<Route path="/contents/tables/hover-warning-variant" component={HoverWarningVariant} />
+			<Route path="/contents/tables/hover-info-variant" component={HoverInfoVariant} />
+			<Route path="/contents/tables/hover-light-variant" component={HoverLightVariant} />
+			<Route path="/contents/tables/hover-dark-variant" component={HoverDarkVariant} />
 			<Route path="/contents/tables/small-bordered" component={SmallBordered} />
 			<Route path="/contents/typography" component={Typography} />
 			<Route path="/contents/typography/blockquote" component={Blockquote} />
@@ -120,19 +220,52 @@ render(
 			{/* Forms routes */}
 			<Route path="/forms" component={FormsSection} />
 			<Route path="/forms/overview" component={Overview} />
+			<Route path="/forms/overview/basic-form" component={BasicForm} />
+			<Route path="/forms/overview/checkbox" component={Checkbox} />
+			<Route path="/forms/overview/radio-buttons" component={RadioButtons} />
+			<Route path="/forms/overview/switch-checkbox" component={SwitchCheckbox} />
+			<Route path="/forms/overview/file-input" component={FileInput} />
+			<Route path="/forms/overview/range-input" component={RangeInput} />
 			<Route path="/forms/sizing" component={Sizing} />
 			<Route path="/forms/sizing/large-controls" component={LargeControls} />
 			<Route path="/forms/sizing/small-controls" component={SmallControls} />
 			<Route path="/forms/disabled" component={DisabledForms} />
+			<Route path="/forms/disabled/disabled-fieldset" component={DisabledFieldset} />
+			<Route path="/forms/disabled/disabled-checkbox" component={DisabledCheckbox} />
+			<Route path="/forms/disabled/disabled-radio-buttons" component={DisabledRadioButtons} />
+			<Route
+				path="/forms/disabled/disabled-switch-checkbox"
+				component={DisabledSwitchCheckbox}
+			/>
+			<Route path="/forms/disabled/disabled-file-range" component={DisabledFileRange} />
 			<Route path="/forms/floating-labels" component={FloatingLabels} />
 			<Route path="/forms/input-group" component={InputGroup} />
+			<Route path="/forms/input-group/prefix-addon" component={PrefixAddon} />
+			<Route path="/forms/input-group/suffix-addon" component={SuffixAddon} />
+			<Route path="/forms/input-group/url-addon" component={UrlAddon} />
+			<Route path="/forms/input-group/currency-addon" component={CurrencyAddon} />
+			<Route path="/forms/input-group/textarea-addon" component={TextareaAddon} />
 			<Route path="/forms/validation" component={Validation} />
+			<Route path="/forms/validation/valid-names" component={ValidNames} />
+			<Route path="/forms/validation/invalid-username-city" component={InvalidUsernameCity} />
+			<Route path="/forms/validation/invalid-state-zip" component={InvalidStateZip} />
+			<Route path="/forms/validation/invalid-checkboxes" component={InvalidCheckboxes} />
+			<Route path="/forms/validation/invalid-radios" component={InvalidRadios} />
+			<Route path="/forms/validation/valid-checkboxes" component={ValidCheckboxes} />
+			<Route path="/forms/validation/valid-radios" component={ValidRadios} />
 
 			{/* UI routes */}
 			<Route path="/ui" component={UiSection} />
 			<Route path="/ui/accordion" component={Accordion} />
 			<Route path="/ui/alerts" component={Alerts} />
-			<Route path="/ui/alerts/dismissible-alerts" component={DismissibleAlerts} />
+			<Route path="/ui/alerts/primary-alert" component={PrimaryAlert} />
+			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
+			<Route path="/ui/alerts/success-alert" component={SuccessAlert} />
+			<Route path="/ui/alerts/danger-alert" component={DangerAlert} />
+			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
+			<Route path="/ui/alerts/info-alert" component={InfoAlert} />
+			<Route path="/ui/alerts/light-alert" component={LightAlert} />
+			<Route path="/ui/alerts/dark-alert" component={DarkAlert} />
 			<Route path="/ui/alerts/heading-alert" component={HeadingAlert} />
 			<Route path="/ui/badge" component={Badge} />
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
@@ -151,16 +284,69 @@ render(
 			<Route path="/ui/card-tabs" component={CardTabs} />
 			<Route path="/ui/carousel" component={Carousel} />
 			<Route path="/ui/dropdowns" component={Dropdowns} />
-			<Route path="/ui/dropdowns/sizes-dropdowns" component={SizesDropdowns} />
-			<Route path="/ui/dropdowns/split-dropdowns" component={SplitDropdowns} />
-			<Route path="/ui/dropdowns/directional-dropdowns" component={DirectionalDropdowns} />
+			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
+			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
+			<Route path="/ui/dropdowns/large-dropdown" component={LargeDropdown} />
+			<Route path="/ui/dropdowns/split-primary-dropdown" component={SplitPrimaryDropdown} />
+			<Route
+				path="/ui/dropdowns/split-secondary-dropdown"
+				component={SplitSecondaryDropdown}
+			/>
+			<Route path="/ui/dropdowns/split-success-dropdown" component={SplitSuccessDropdown} />
+			<Route path="/ui/dropdowns/split-info-dropdown" component={SplitInfoDropdown} />
+			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
+			<Route path="/ui/dropdowns/split-danger-dropdown" component={SplitDangerDropdown} />
+			<Route path="/ui/dropdowns/split-light-dropdown" component={SplitLightDropdown} />
+			<Route path="/ui/dropdowns/split-dark-dropdown" component={SplitDarkDropdown} />
+			<Route path="/ui/dropdowns/end-dropdown" component={EndDropdown} />
+			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
+			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
 			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
 			<Route path="/ui/list-group" component={ListGroup} />
 			<Route path="/ui/list-group/default-list-group" component={DefaultListGroup} />
 			<Route path="/ui/list-group/flush-list-group" component={FlushListGroup} />
 			<Route path="/ui/list-group/contextual-list-group" component={ContextualListGroup} />
+			<Route
+				path="/ui/list-group/contextual-default-list-group"
+				component={ContextualDefaultListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-primary-list-group"
+				component={ContextualPrimaryListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-secondary-list-group"
+				component={ContextualSecondaryListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-success-list-group"
+				component={ContextualSuccessListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-danger-list-group"
+				component={ContextualDangerListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-warning-list-group"
+				component={ContextualWarningListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-info-list-group"
+				component={ContextualInfoListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-light-list-group"
+				component={ContextualLightListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-dark-list-group"
+				component={ContextualDarkListGroup}
+			/>
 			<Route path="/ui/modal" component={Modal} />
-			<Route path="/ui/modal-dialogs" component={ModalDialogs} />
+			<Route path="/ui/modal/default-modal" component={DefaultModal} />
+			<Route path="/ui/modal/static-backdrop-modal" component={StaticBackdropModal} />
+			<Route path="/ui/modal/centered-scrollable-modal" component={CenteredScrollableModal} />
+			<Route path="/ui/modal/fullscreen-modal" component={FullscreenModal} />
 			<Route path="/ui/navbar" component={Navbar} />
 			<Route path="/ui/navs" component={Navs} />
 			<Route path="/ui/navs/basic-nav" component={BasicNav} />
@@ -172,16 +358,45 @@ render(
 			<Route path="/ui/pagination/large-pagination" component={LargePagination} />
 			<Route path="/ui/popovers" component={Popovers} />
 			<Route path="/ui/popovers/basic-popover" component={BasicPopover} />
-			<Route path="/ui/popovers/positioned-popovers" component={PositionedPopovers} />
+			<Route path="/ui/popovers/top-popover" component={TopPopover} />
+			<Route path="/ui/popovers/end-popover" component={EndPopover} />
+			<Route path="/ui/popovers/bottom-popover" component={BottomPopover} />
+			<Route path="/ui/popovers/start-popover" component={StartPopover} />
 			<Route path="/ui/progress" component={Progress} />
-			<Route path="/ui/progress/basic-progress" component={BasicProgress} />
+			<Route path="/ui/progress/progress-0" component={Progress0} />
+			<Route path="/ui/progress/progress-25" component={Progress25} />
+			<Route path="/ui/progress/progress-50" component={Progress50} />
+			<Route path="/ui/progress/progress-75" component={Progress75} />
+			<Route path="/ui/progress/progress-100" component={Progress100} />
 			<Route path="/ui/progress/striped-progress" component={StripedProgress} />
 			<Route path="/ui/scrollspy" component={Scrollspy} />
 			<Route path="/ui/spinners" component={Spinners} />
-			<Route path="/ui/spinners/border-spinners" component={BorderSpinners} />
-			<Route path="/ui/spinners/grow-spinners" component={GrowSpinners} />
+			<Route path="/ui/spinners/border-primary-spinner" component={BorderPrimarySpinner} />
+			<Route
+				path="/ui/spinners/border-secondary-spinner"
+				component={BorderSecondarySpinner}
+			/>
+			<Route path="/ui/spinners/border-success-spinner" component={BorderSuccessSpinner} />
+			<Route path="/ui/spinners/border-danger-spinner" component={BorderDangerSpinner} />
+			<Route path="/ui/spinners/border-warning-spinner" component={BorderWarningSpinner} />
+			<Route path="/ui/spinners/border-info-spinner" component={BorderInfoSpinner} />
+			<Route path="/ui/spinners/border-light-spinner" component={BorderLightSpinner} />
+			<Route path="/ui/spinners/border-dark-spinner" component={BorderDarkSpinner} />
+			<Route path="/ui/spinners/grow-primary-spinner" component={GrowPrimarySpinner} />
+			<Route path="/ui/spinners/grow-secondary-spinner" component={GrowSecondarySpinner} />
+			<Route path="/ui/spinners/grow-success-spinner" component={GrowSuccessSpinner} />
+			<Route path="/ui/spinners/grow-danger-spinner" component={GrowDangerSpinner} />
+			<Route path="/ui/spinners/grow-warning-spinner" component={GrowWarningSpinner} />
+			<Route path="/ui/spinners/grow-info-spinner" component={GrowInfoSpinner} />
+			<Route path="/ui/spinners/grow-light-spinner" component={GrowLightSpinner} />
+			<Route path="/ui/spinners/grow-dark-spinner" component={GrowDarkSpinner} />
 			<Route path="/ui/toasts" component={Toasts} />
 			<Route path="/ui/tooltips" component={Tooltips} />
+			<Route path="/ui/tooltips/top-tooltip" component={TopTooltip} />
+			<Route path="/ui/tooltips/end-tooltip" component={EndTooltip} />
+			<Route path="/ui/tooltips/bottom-tooltip" component={BottomTooltip} />
+			<Route path="/ui/tooltips/start-tooltip" component={StartTooltip} />
+			<Route path="/ui/tooltips/html-tooltip" component={HtmlTooltip} />
 		</Router>
 	),
 	document.getElementById('root') ??

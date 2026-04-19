@@ -1,0 +1,24 @@
+import type { Component } from 'solid-js'
+
+const HoverDefaultVariant: Component = () => (
+	<div class="bd-example container-fluid">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Default</th>
+					<th>Heading</th>
+					<th>Heading</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Default</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+)
+
+export default HoverDefaultVariant
