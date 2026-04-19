@@ -2,22 +2,28 @@
 	"formatter": {
 		"enabled": true,
 		"formatWithErrors": false,
-		"ignore": [],
 		"attributePosition": "auto",
 		"indentStyle": "tab",
 		"indentWidth": 4,
 		"lineWidth": 100,
 		"lineEnding": "crlf"
 	},
+	"linter": {
+		"rules": {
+			"suspicious": {
+				"useIterableCallbackReturn": "off"
+			}
+		}
+	},
 	"javascript": {
 		"formatter": {
-			"arrowParentheses":"always",
+			"arrowParentheses": "always",
 			"bracketSameLine": false,
 			"bracketSpacing": true,
 			"jsxQuoteStyle": "double",
 			"quoteProperties": "asNeeded",
-		"quoteStyle": "single",
-			"semicolons": "never",
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
 			"trailingCommas": "all"
 		}
 	},

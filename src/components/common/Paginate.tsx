@@ -1,27 +1,33 @@
 // import { pagesCurrent } from '@arijs/frontend/isomorphic/utils/pages'
 import { pagesCurrent } from '../../logic/pages'
+
 // https://github.com/arijs/front-end/blob/master/src/isomorphic/utils/pages.mjs
 
-import { For, Switch, Match, createSignal, createMemo } from 'solid-js';
-import type { Component, JSX } from 'solid-js';
+import type { Component, JSX } from 'solid-js'
+import { For, Match, Switch } from 'solid-js'
+
 // import type { ThemeItem } from '../logic/themes';
 
-const PageLink: Component<{ href?: string, children: JSX.Element }> = (props) => {
+const PageLink: Component<{ href?: string; children: JSX.Element }> = (props) => {
 	const href = () => props.href
 	const c = () => props.children
 
-	return <Switch>
-		<Match when={href()}>
-			<li class="page-item">
-				<a class="page-link" href={href()}>{c()}</a>
-			</li>
-		</Match>
-		<Match when={true}>
-			<li class="page-item active" aria-current="page">
-				<span class="page-link">{c()}</span>
-			</li>
-		</Match>
-	</Switch>
+	return (
+		<Switch>
+			<Match when={href()}>
+				<li class="page-item">
+					<a class="page-link" href={href()}>
+						{c()}
+					</a>
+				</li>
+			</Match>
+			<Match when={true}>
+				<li class="page-item active" aria-current="page">
+					<span class="page-link">{c()}</span>
+				</li>
+			</Match>
+		</Switch>
+	)
 }
 
 const PageLinkNum: Component<{
@@ -31,7 +37,7 @@ const PageLinkNum: Component<{
 }> = (props) => {
 	const linkNum = () => props.linkNum
 	const currentNum = () => props.currentNum
-	const href = () => linkNum() === currentNum() ? undefined : `pg/${linkNum()}`
+	const href = () => (linkNum() === currentNum() ? undefined : `pg/${linkNum()}`)
 	const c = () => props.children
 
 	return <PageLink href={href()}>{c()}</PageLink>
@@ -45,46 +51,47 @@ const PageItem: Component<{
 	const linkNum = () => props.linkNum
 	const currentNum = () => props.currentNum
 	const lastNum = () => props.lastNum
-	const disabled = () => linkNum() === currentNum()
 
-	return <Switch>
-		<Match when={lastNum() === 1}>
-			<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
-				Página única
-			</PageLinkNum>
-		</Match>
-		<Match when={linkNum() === 1}>
-			<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
-				1 |&lt; Primeira
-			</PageLinkNum>
-		</Match>
-		<Match when={linkNum() === lastNum()}>
-			<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
-				Última &gt;| {linkNum()}
-			</PageLinkNum>
-		</Match>
-		<Match when={linkNum() + 1 === currentNum()}>
-			<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
-				{linkNum()} &lt; Anterior
-			</PageLinkNum>
-		</Match>
-		<Match when={linkNum() - 1 === currentNum()}>
-			<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
-				Próxima &gt; {linkNum()}
-			</PageLinkNum>
-		</Match>
-		<Match when={true}>
-			<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
-				{linkNum()}
-			</PageLinkNum>
-		</Match>
-	</Switch>
+	return (
+		<Switch>
+			<Match when={lastNum() === 1}>
+				<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
+					Página única
+				</PageLinkNum>
+			</Match>
+			<Match when={linkNum() === 1}>
+				<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
+					1 |&lt; Primeira
+				</PageLinkNum>
+			</Match>
+			<Match when={linkNum() === lastNum()}>
+				<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
+					Última &gt;| {linkNum()}
+				</PageLinkNum>
+			</Match>
+			<Match when={linkNum() + 1 === currentNum()}>
+				<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
+					{linkNum()} &lt; Anterior
+				</PageLinkNum>
+			</Match>
+			<Match when={linkNum() - 1 === currentNum()}>
+				<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
+					Próxima &gt; {linkNum()}
+				</PageLinkNum>
+			</Match>
+			<Match when={true}>
+				<PageLinkNum linkNum={linkNum()} currentNum={currentNum()}>
+					{linkNum()}
+				</PageLinkNum>
+			</Match>
+		</Switch>
+	)
 }
 
 const Paginate: Component<{
 	current: number
 	last: number
-	onClick?: (data: any, ev: Event) => void
+	// onClick?: (data: any, ev: Event) => void
 }> = (props) => {
 	const current = () => props.current
 	const last = () => props.last
@@ -96,17 +103,21 @@ const Paginate: Component<{
 		return pl
 	}
 
-	const onClickItem = (data: any, ev: Event) => { //data: ThemeItem, 
-		// ev.preventDefault()
-		props.onClick?.(data, ev)
-	}
+	// const _onClickItem = (data: any, ev: Event) => {
+	// 	//data: ThemeItem,
+	// 	// ev.preventDefault()
+	// 	props.onClick?.(data, ev)
+	// }
 
-	return <nav aria-label="Paginação da lista">
-		<ul class="pagination flex-wrap">
-			<For each={pageList()}>
-				{linkNum => <PageItem linkNum={linkNum()} currentNum={current()} lastNum={last()} />}
-			</For>
-			{/* <li class="page-item disabled" classList={{ disabled: current() === 1 }}>
+	return (
+		<nav aria-label="Paginação da lista">
+			<ul class="pagination flex-wrap">
+				<For each={pageList()}>
+					{(linkNum) => (
+						<PageItem linkNum={linkNum()} currentNum={current()} lastNum={last()} />
+					)}
+				</For>
+				{/* <li class="page-item disabled" classList={{ disabled: current() === 1 }}>
 				<PageLinkNum currentNum={current()} linkNum={1}>|&lt; Primeira</span>
 			</li>
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -117,9 +128,9 @@ const Paginate: Component<{
 			<li class="page-item">
 				<a class="page-link" href="#">Next</a>
 			</li> */}
-		</ul>
-	</nav>
-
+			</ul>
+		</nav>
+	)
 }
 
 export default Paginate

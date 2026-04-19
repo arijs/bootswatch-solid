@@ -1,18 +1,13 @@
-
-import { onSettled, createMemo, createSignal } from 'solid-js';
-import isChildOf from '@arijs/frontend/client/dom/is-child-of';
-import {
-	themeList,
-	signalTheme,
-} from '../logic/themes';
-import ThemeMenu from './ThemeMenu';
-import { classes } from '../logic/classes';
-import type { Component } from 'solid-js';
-import Spinner from './Spinner';
+import isChildOf from '@arijs/frontend/client/dom/is-child-of'
+import type { Component } from 'solid-js'
+import { createMemo, createSignal, onSettled } from 'solid-js'
+import { classes } from '../logic/classes'
+import { signalTheme, themeList } from '../logic/themes'
+import ThemeMenu from './ThemeMenu'
 
 const ThemeDropdown: Component = () => {
-	let elButton: any
-	const ctSelected = createMemo(() => themeList.find(t => t.href === signalTheme().href))
+	let elButton: HTMLButtonElement | undefined
+	const ctSelected = createMemo(() => themeList.find((t) => t.href === signalTheme().href))
 	const [dropOpen, setDropOpen] = createSignal(false)
 
 	onSettled(() => {
@@ -25,16 +20,27 @@ const ThemeDropdown: Component = () => {
 		return () => window.document.documentElement.removeEventListener('click', docClick, false)
 	})
 
-	return <div class="dropdown">
-		<button ref={elButton} class={classes("btn btn-secondary dropdown-toggle d-flex flex-row justify-content-center align-items-center", { show: dropOpen() })} type="button" aria-expanded="false">
-			{/* <Spinner /> */}
-			<span class="ms-3">{ctSelected()?.name || '-- nenhum tema selecionado --'}</span>
-		</button>
-		<div class="position-relative">
-			<ThemeMenu class={classes("position-absolute top-0 end-0 w-100", { show: dropOpen() })} />
+	return (
+		<div class="dropdown">
+			<button
+				ref={elButton}
+				class={classes(
+					'btn btn-secondary dropdown-toggle d-flex flex-row justify-content-center align-items-center',
+					{ show: dropOpen() },
+				)}
+				type="button"
+				aria-expanded="false"
+			>
+				{/* <Spinner /> */}
+				<span class="ms-3">{ctSelected()?.name || '-- nenhum tema selecionado --'}</span>
+			</button>
+			<div class="position-relative">
+				<ThemeMenu
+					class={classes('position-absolute top-0 end-0 w-100', { show: dropOpen() })}
+				/>
+			</div>
 		</div>
-	</div>
-
+	)
 }
 
 export default ThemeDropdown

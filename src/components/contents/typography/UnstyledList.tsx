@@ -1,26 +1,23 @@
-import type { Component } from 'solid-js';
+import type { Component } from 'solid-js'
 
 const UnstyledList: Component = () => (
-  <div class="bd-example">
-    <ul class="list-unstyled">
-      <li>This is a list.</li>
-      <li>It appears completely unstyled.</li>
-      <li>Structurally, it's still a list.</li>
-      <li>
-        However, this style only applies to immediate child
-        elements.
-      </li>
-      <li>
-        Nested lists:
-        <ul>
-          <li>are unaffected by this style</li>
-          <li>will still show a bullet</li>
-          <li>and have appropriate left margin</li>
-        </ul>
-      </li>
-      <li>This may still come in handy in some situations.</li>
-    </ul>
-  </div>
-);
+	<div class="bd-example">
+		<ul class="list-unstyled">
+			<li>This is a list.</li>
+			<li>It appears completely unstyled.</li>
+			<li>Structurally, it's still a list.</li>
+			<li>However, this style only applies to immediate child elements.</li>
+			<li>
+				Nested lists:
+				<ul>
+					<li>are unaffected by this style</li>
+					<li>will still show a bullet</li>
+					<li>and have appropriate left margin</li>
+				</ul>
+			</li>
+			<li>This may still come in handy in some situations.</li>
+		</ul>
+	</div>
+)
 
-export default UnstyledList;
+export default UnstyledList

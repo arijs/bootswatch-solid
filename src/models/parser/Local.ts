@@ -1,7 +1,6 @@
-import { z } from "zod"
-import { idParser, getConnectionParser, getEntityParser } from "./_common"
-import { tipoLocalParser } from "./TipoLocal"
-import type { TipoLocal } from "./TipoLocal"
+import { z } from 'zod'
+import { getEntityParser, idParser } from './_common'
+import { tipoLocalParser } from './TipoLocal'
 
 // Automatic
 
@@ -34,7 +33,9 @@ export type LocalRawConnectionPartial = z.output<typeof localParser.rawConnectio
 
 export type LocalPartialConnectionRaw = z.output<typeof localParser.partialConnectionRawParser>
 
-export type LocalPartialConnectionPartial = z.output<typeof localParser.partialConnectionPartialParser>
+export type LocalPartialConnectionPartial = z.output<
+	typeof localParser.partialConnectionPartialParser
+>
 
 export type Local = z.output<typeof localParser.parser>
 // export interface Local extends LocalPartial {

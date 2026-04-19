@@ -1,7 +1,6 @@
-import { z } from "zod"
-import { idParser, getConnectionParser, getEntityParser } from "./_common"
-import { localParser } from "./Local"
-import type { LocalConnectionPartial } from "./Local"
+import { z } from 'zod'
+import { getEntityParser, idParser } from './_common'
+import { localParser } from './Local'
 
 // Manual
 /*
@@ -61,11 +60,17 @@ export type TipoLocalPartialList = z.output<typeof tipoLocalParser.partialListPa
 
 export type TipoLocalRawConnectionRaw = z.output<typeof tipoLocalParser.rawConnectionRawParser>
 
-export type TipoLocalRawConnectionPartial = z.output<typeof tipoLocalParser.rawConnectionPartialParser>
+export type TipoLocalRawConnectionPartial = z.output<
+	typeof tipoLocalParser.rawConnectionPartialParser
+>
 
-export type TipoLocalPartialConnectionRaw = z.output<typeof tipoLocalParser.partialConnectionRawParser>
+export type TipoLocalPartialConnectionRaw = z.output<
+	typeof tipoLocalParser.partialConnectionRawParser
+>
 
-export type TipoLocalPartialConnectionPartial = z.output<typeof tipoLocalParser.partialConnectionPartialParser>
+export type TipoLocalPartialConnectionPartial = z.output<
+	typeof tipoLocalParser.partialConnectionPartialParser
+>
 
 export type TipoLocal = z.output<typeof tipoLocalParser.parser>
 // export interface TipoLocal extends TipoLocalPartial {

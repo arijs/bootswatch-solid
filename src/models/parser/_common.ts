@@ -1,6 +1,6 @@
-import { z } from "zod"
+import { z } from 'zod'
 
-export const idParser = z.union([z.string(), z.number()]).transform(x => String(x))
+export const idParser = z.union([z.string(), z.number()]).transform((x) => String(x))
 
 export type Id = z.output<typeof idParser>
 
@@ -13,14 +13,10 @@ export function getConnectionParser<T extends z.ZodTypeAny>(schema: T) {
 	return { raw, partial }
 }
 
-export function getEntityParser<
-	RawParser extends z.ZodTypeAny,
-	RefsParser extends z.ZodTypeAny,
->(
+export function getEntityParser<RawParser extends z.ZodTypeAny, RefsParser extends z.ZodTypeAny>(
 	rawParser: RawParser,
 	refsParser: RefsParser,
 ) {
-
 	type RawNode = z.output<RawParser>
 	type RefsNode = z.output<RefsParser>
 	type Node = RawNode & RefsNode
@@ -41,22 +37,16 @@ export function getEntityParser<
 
 	const partialListParser: PartialRawListParser = z.array(partialParser)
 
-	const {
-		raw: rawConnectionRawParser,
-		partial: rawConnectionPartialParser,
-	} = getConnectionParser(rawParser)
+	const { raw: rawConnectionRawParser, partial: rawConnectionPartialParser } =
+		getConnectionParser(rawParser)
 
-	const {
-		raw: partialConnectionRawParser,
-		partial: partialConnectionPartialParser,
-	} = getConnectionParser(partialParser)
+	const { raw: partialConnectionRawParser, partial: partialConnectionPartialParser } =
+		getConnectionParser(partialParser)
 
 	const parser: PartialParser = z.lazy(() => partialParser.merge(refsParser.partial()))
 
-	const {
-		raw: connectionRawParser,
-		partial: connectionPartialParser,
-	} = getConnectionParser(parser)
+	const { raw: connectionRawParser, partial: connectionPartialParser } =
+		getConnectionParser(parser)
 
 	return {
 		rawParser,

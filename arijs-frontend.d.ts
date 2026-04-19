@@ -21,5 +21,3 @@ declare module '@arijs/frontend/isomorphic/utils/query-string'
 declare module '@arijs/frontend/isomorphic/utils/promise'
 declare module '@arijs/frontend/server/loaders/ajax-fs'
 declare module '@arijs/frontend/server/loaders/ajax-net'
-declare module 'vue-imask'
-declare var Twilio: any

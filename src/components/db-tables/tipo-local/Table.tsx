@@ -1,8 +1,13 @@
+import type { Component } from 'solid-js'
+import { For } from 'solid-js'
+import TableRow from './TableRow'
 
-import { For } from 'solid-js';
-import TableRow from './TableRow';
-import type { Component } from 'solid-js';
 // import type { ThemeItem } from '../logic/themes';
+
+interface TipoLocal {
+	id: number
+	nome: string
+}
 
 const Table: Component = () => {
 	// const [currentTheme, setCurrentTheme] = createSignal<ThemeItem>(themeGetCurrent());
@@ -12,7 +17,7 @@ const Table: Component = () => {
 	// 	console.log(`ctMemo`, ct)
 	// 	return ct
 	// })
-	const list: { id: number, nome: string }[] = [
+	const list: TipoLocal[] = [
 		{
 			id: 1,
 			nome: 'Planeta',
@@ -35,25 +40,27 @@ const Table: Component = () => {
 		},
 	]
 
-	const onClickItem = (tipoLocal: any, ev: Event) => { //data: ThemeItem, 
+	const onClickItem = (tipoLocal: TipoLocal, ev: Event) => {
+		//data: ThemeItem,
 		// ev.preventDefault()
 		console.log(`db-tables/tipo-local onClickItem`, tipoLocal, ev)
 	}
 
-	return <table class="table table-striped">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-			</tr>
-		</thead>
-		<tbody class="table-group-divider">
-			<For each={list}>
-				{item => <TableRow tipoLocal={item()} onClick={onClickItem} />}
-			</For>
-		</tbody>
-	</table>
-
+	return (
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				<For each={list}>
+					{(item) => <TableRow tipoLocal={item()} onClick={onClickItem} />}
+				</For>
+			</tbody>
+		</table>
+	)
 }
 
 export default Table
