@@ -9,7 +9,7 @@ const DisabledForms: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<form>
 					<fieldset disabled aria-label="Disabled fieldset example">
 						<div class="mb-3">

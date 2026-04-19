@@ -9,7 +9,7 @@ const Figures: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<figure class="figure">
 					<svg
 						class="bd-placeholder-img figure-img img-fluid rounded"

@@ -9,7 +9,7 @@ const Breadcrumb: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">

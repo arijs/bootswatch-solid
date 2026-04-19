@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 
 const UnstyledList: Component = () => (
-	<div class="bd-example">
+	<div class="bd-example container-fluid">
 		<ul class="list-unstyled">
 			<li>This is a list.</li>
 			<li>It appears completely unstyled.</li>

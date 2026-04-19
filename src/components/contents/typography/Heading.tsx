@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 
 const Heading: Component = () => (
-	<div class="bd-example">
+	<div class="bd-example container-fluid">
 		<p class="h1">Heading 1</p>
 		<p class="h2">Heading 2</p>
 		<p class="h3">Heading 3</p>

@@ -9,7 +9,7 @@ const Carousel: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-indicators">
 						<button

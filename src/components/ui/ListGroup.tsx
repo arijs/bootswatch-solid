@@ -1,113 +1,23 @@
-﻿import type { Component } from 'solid-js'
+import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import ContextualListGroup from './list-group/ContextualListGroup'
+import DefaultListGroup from './list-group/DefaultListGroup'
+import FlushListGroup from './list-group/FlushListGroup'
 
 const ListGroup: Component = () => (
 	<article class="my-3" id="list-group">
 		<div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
 			<h3>List group</h3>
 			<DocLink href="/ui/list-group" />
+			<DocLink href="/ui/list-group/default-list-group">Default List Group</DocLink>
+			<DocLink href="/ui/list-group/flush-list-group">Flush List Group</DocLink>
+			<DocLink href="/ui/list-group/contextual-list-group">Contextual List Group</DocLink>
 		</div>
 
 		<div>
-			<div class="bd-example">
-				<ul class="list-group">
-					<li class="list-group-item disabled" aria-disabled="true">
-						A disabled item
-					</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
-				</ul>
-			</div>
-
-			<div class="bd-example">
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">An item</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
-				</ul>
-			</div>
-
-			<div class="bd-example">
-				<div class="list-group">
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action"
-					>
-						A simple default list group item
-					</a>
-
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-primary"
-					>
-						A simple primary list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-secondary"
-					>
-						A simple secondary list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-success"
-					>
-						A simple success list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-danger"
-					>
-						A simple danger list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-warning"
-					>
-						A simple warning list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-info"
-					>
-						A simple info list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-light"
-					>
-						A simple light list group item
-					</a>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a
-						href="#"
-						onClick={(e) => e.preventDefault()}
-						class="list-group-item list-group-item-action list-group-item-dark"
-					>
-						A simple dark list group item
-					</a>
-				</div>
-			</div>
+			<DefaultListGroup />
+			<FlushListGroup />
+			<ContextualListGroup />
 		</div>
 	</article>
 )

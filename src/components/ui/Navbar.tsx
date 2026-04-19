@@ -9,7 +9,7 @@ const Navbar: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="container-fluid">
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}

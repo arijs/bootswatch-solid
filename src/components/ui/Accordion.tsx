@@ -9,7 +9,7 @@ const Accordion: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<div class="accordion" id="accordionExample">
 					<div class="accordion-item">
 						<h4 class="accordion-header" id="headingOne">

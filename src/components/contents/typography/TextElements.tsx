@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 
 const TextElements: Component = () => (
-	<div class="bd-example">
+	<div class="bd-example container-fluid">
 		<p>
 			You can use the mark tag to <mark>highlight</mark> text.
 		</p>

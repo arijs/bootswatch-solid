@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 
 const Display: Component = () => (
-	<div class="bd-example">
+	<div class="bd-example container-fluid">
 		<p class="display-1">Display 1</p>
 		<p class="display-2">Display 2</p>
 		<p class="display-3">Display 3</p>

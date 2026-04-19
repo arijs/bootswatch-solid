@@ -1,51 +1,20 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import HeadingBadges from './badge/HeadingBadges'
+import PillBadges from './badge/PillBadges'
 
 const Badge: Component = () => (
 	<article class="my-3" id="badge">
 		<div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
 			<h3>Badge</h3>
 			<DocLink href="/ui/badge" />
+			<DocLink href="/ui/badge/heading-badges">Heading Badges</DocLink>
+			<DocLink href="/ui/badge/pill-badges">Pill Badges</DocLink>
 		</div>
 
 		<div>
-			<div class="bd-example">
-				<p class="h1">
-					Example heading <span class="badge bg-primary">New</span>
-				</p>
-				<p class="h2">
-					Example heading <span class="badge bg-secondary">New</span>
-				</p>
-				<p class="h3">
-					Example heading <span class="badge bg-success">New</span>
-				</p>
-				<p class="h4">
-					Example heading <span class="badge bg-danger">New</span>
-				</p>
-				<p class="h5">
-					Example heading <span class="badge bg-warning text-dark">New</span>
-				</p>
-				<p class="h6">
-					Example heading <span class="badge bg-info text-dark">New</span>
-				</p>
-				<p class="h6">
-					Example heading <span class="badge bg-light text-dark">New</span>
-				</p>
-				<p class="h6">
-					Example heading <span class="badge bg-dark">New</span>
-				</p>
-			</div>
-
-			<div class="bd-example">
-				<span class="badge rounded-pill bg-primary">Primary</span>
-				<span class="badge rounded-pill bg-secondary">Secondary</span>
-				<span class="badge rounded-pill bg-success">Success</span>
-				<span class="badge rounded-pill bg-danger">Danger</span>
-				<span class="badge rounded-pill bg-warning text-dark">Warning</span>
-				<span class="badge rounded-pill bg-info text-dark">Info</span>
-				<span class="badge rounded-pill bg-light text-dark">Light</span>
-				<span class="badge rounded-pill bg-dark">Dark</span>
-			</div>
+			<HeadingBadges />
+			<PillBadges />
 		</div>
 	</article>
 )

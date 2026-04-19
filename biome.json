@@ -1,4 +1,7 @@
 {
+	"files": {
+		"includes": ["src/**/*.ts", "src/**/*.tsx"]
+	},
 	"formatter": {
 		"enabled": true,
 		"formatWithErrors": false,

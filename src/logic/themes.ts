@@ -176,4 +176,13 @@ export function themeSetActive(t: ThemeItem) {
 	l?.setAttribute(`integrity`, t.integrity)
 	l?.setAttribute(`href`, t.href)
 }
-export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent(themeList[0]))
+function getDefaultTheme() {
+	const name = new URLSearchParams(window.location.search).get(`theme`)
+	const found = name
+		? themeList.find((t) => t.name.toLowerCase() === name.toLowerCase())
+		: undefined
+	return found ?? themeList[0]
+}
+export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(
+	themeGetCurrent(getDefaultTheme()),
+)

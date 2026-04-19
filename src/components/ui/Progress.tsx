@@ -1,41 +1,20 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import BasicProgress from './progress/BasicProgress'
+import StripedProgress from './progress/StripedProgress'
 
 const Progress: Component = () => (
 	<article class="my-3" id="progress">
 		<div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
 			<h3>Progress</h3>
 			<DocLink href="/ui/progress" />
+			<DocLink href="/ui/progress/basic-progress">Basic Progress</DocLink>
+			<DocLink href="/ui/progress/striped-progress">Striped Progress</DocLink>
 		</div>
 
 		<div>
-			<div class="bd-example">
-				<div class="progress mb-3">
-					<div class="progress-bar">0%</div>
-				</div>
-				<div class="progress mb-3">
-					<div class="progress-bar bg-success w-25">25%</div>
-				</div>
-				<div class="progress mb-3">
-					<div class="progress-bar bg-info text-dark w-50">50%</div>
-				</div>
-				<div class="progress mb-3">
-					<div class="progress-bar bg-warning text-dark w-75">75%</div>
-				</div>
-				<div class="progress">
-					<div class="progress-bar bg-danger w-100">100%</div>
-				</div>
-			</div>
-
-			<div class="bd-example">
-				<div class="progress">
-					<div class="progress-bar" style="width: 15%"></div>
-					<div
-						class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-						style="width: 40%"
-					></div>
-				</div>
-			</div>
+			<BasicProgress />
+			<StripedProgress />
 		</div>
 	</article>
 )

@@ -9,7 +9,7 @@ const Validation: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<form class="row g-3">
 					<div class="col-md-4">
 						<label for="validationServer01" class="form-label">

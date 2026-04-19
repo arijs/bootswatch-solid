@@ -1,68 +1,20 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import LargeControls from './sizing/LargeControls'
+import SmallControls from './sizing/SmallControls'
 
 const Sizing: Component = () => (
 	<article class="my-3" id="sizing">
 		<div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
 			<h3>Sizing</h3>
 			<DocLink href="/forms/sizing" />
+			<DocLink href="/forms/sizing/large-controls">Large Controls</DocLink>
+			<DocLink href="/forms/sizing/small-controls">Small Controls</DocLink>
 		</div>
 
 		<div>
-			<div class="bd-example">
-				<div class="mb-3">
-					<input
-						class="form-control form-control-lg"
-						type="text"
-						placeholder=".form-control-lg"
-						aria-label=".form-control-lg example"
-					/>
-				</div>
-				<div class="mb-3">
-					<select
-						class="form-select form-select-lg mb-3"
-						aria-label=".form-select-lg example"
-					>
-						<option selected>Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
-					</select>
-				</div>
-				<div class="mb-3">
-					<input
-						type="file"
-						class="form-control form-control-lg"
-						aria-label="Large file input example"
-					/>
-				</div>
-			</div>
-
-			<div class="bd-example">
-				<div class="mb-3">
-					<input
-						class="form-control form-control-sm"
-						type="text"
-						placeholder=".form-control-sm"
-						aria-label=".form-control-sm example"
-					/>
-				</div>
-				<div class="mb-3">
-					<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-						<option selected>Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
-					</select>
-				</div>
-				<div class="mb-3">
-					<input
-						type="file"
-						class="form-control form-control-sm"
-						aria-label="Small file input example"
-					/>
-				</div>
-			</div>
+			<LargeControls />
+			<SmallControls />
 		</div>
 	</article>
 )

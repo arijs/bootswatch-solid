@@ -9,8 +9,8 @@ const CardTabs: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
-				<div class="row  row-cols-1 row-cols-md-2 g-4">
+			<div class="bd-example container-fluid">
+				<div class="row g-4">
 					<div class="col">
 						<div class="card text-center">
 							<div class="card-header">

@@ -3,7 +3,6 @@ import { onSettled } from 'solid-js'
 import ContentsSection from './contents/ContentsSection'
 import FormsSection from './forms/FormsSection'
 import ThemeDropdown from './ThemeDropdown'
-import ModalDialogs from './ui/ModalDialogs'
 import UiSection from './ui/UiSection'
 
 /**
@@ -57,7 +56,7 @@ const HomePage: Component = () => {
 	})
 
 	return (
-		<div class="bd-cheatsheet-root container-fluid">
+		<div class="bd-cheatsheet-root">
 			<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
 				<div class="container-fluid d-flex align-items-center">
 					<h1 class="d-flex align-items-center fs-4 text-white mb-0">
@@ -370,7 +369,6 @@ const HomePage: Component = () => {
 				<FormsSection />
 				<UiSection />
 			</div>
-			<ModalDialogs />
 		</div>
 	)
 }

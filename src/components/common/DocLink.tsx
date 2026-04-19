@@ -1,8 +1,13 @@
-import type { Component } from 'solid-js'
+import type { Component, JSX } from 'solid-js'
 
-const DocLink: Component<{ href: string }> = (props) => (
+type DocLinkProps = {
+	href: string
+	children?: JSX.Element
+}
+
+const DocLink: Component<DocLinkProps> = (props) => (
 	<a class="d-flex align-items-center" href={props.href}>
-		Documentation
+		{props.children ?? 'Documentation'}
 	</a>
 )
 

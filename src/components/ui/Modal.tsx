@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import ModalDialogs from './ModalDialogs'
 
 const Modal: Component = () => (
 	<article class="my-3" id="modal">
@@ -9,7 +10,7 @@ const Modal: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<div class="d-flex justify-content-between flex-wrap">
 					<button
 						type="button"
@@ -46,6 +47,7 @@ const Modal: Component = () => (
 				</div>
 			</div>
 		</div>
+		<ModalDialogs />
 	</article>
 )
 

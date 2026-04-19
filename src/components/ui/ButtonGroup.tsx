@@ -9,7 +9,7 @@ const ButtonGroup: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 					<fieldset class="btn-group me-2" aria-label="First group">
 						<button type="button" class="btn btn-secondary">

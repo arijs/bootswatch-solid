@@ -9,7 +9,7 @@ const FloatingLabels: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<form>
 					<div class="form-floating mb-3">
 						<input

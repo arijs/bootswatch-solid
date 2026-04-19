@@ -9,7 +9,7 @@ const InputGroup: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">
 						@

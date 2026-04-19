@@ -9,7 +9,7 @@ const Scrollspy: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
 					<a class="navbar-brand" href="#" onClick={(e) => e.preventDefault()}>

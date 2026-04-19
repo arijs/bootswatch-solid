@@ -9,7 +9,7 @@ const Overview: Component = () => (
 		</div>
 
 		<div>
-			<div class="bd-example">
+			<div class="bd-example container-fluid">
 				<form>
 					<div class="mb-3">
 						<label for="exampleInputEmail1" class="form-label">
