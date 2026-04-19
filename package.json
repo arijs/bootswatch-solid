@@ -6,6 +6,7 @@
 		"dev": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
+		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
 		"check": "biome check --write"
@@ -14,6 +15,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
 		"@types/bootstrap": "^5.2.10",
+		"playwright": "^1.59.1",
 		"sass": "^1.99.0",
 		"typescript": "^6.0.3",
 		"vite": "^8.0.8",
