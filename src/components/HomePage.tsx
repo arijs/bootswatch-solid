@@ -57,7 +57,7 @@ const HomePage: Component = () => {
   });
 
   return (
-    <>
+    <div class="bd-cheatsheet-root container-fluid">
       <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
         <div class="container-fluid d-flex align-items-center">
           <h1 class="d-flex align-items-center fs-4 text-white mb-0">
@@ -151,7 +151,7 @@ const HomePage: Component = () => {
         <UiSection />
       </div>
       <ModalDialogs />
-    </>
+    </div>
   );
 };
 

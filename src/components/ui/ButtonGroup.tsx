@@ -1,15 +1,11 @@
 import type { Component } from 'solid-js';
+import DocLink from '../common/DocLink';
 
 const ButtonGroup: Component = () => (
   <article class="my-3" id="button-group">
               <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                 <h3>Button group</h3>
-                <a
-                  class="d-flex align-items-center"
-                  href="../components/button-group/"
-                >
-                  Documentation
-                </a>
+                <DocLink href="/ui/button-group" />
               </div>
 
               <div>

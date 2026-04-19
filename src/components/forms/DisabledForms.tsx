@@ -1,15 +1,11 @@
 import type { Component } from 'solid-js';
+import DocLink from '../common/DocLink';
 
 const DisabledForms: Component = () => (
   <article class="my-3" id="disabled-forms">
               <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                 <h3>Disabled forms</h3>
-                <a
-                  class="d-flex align-items-center"
-                  href="../forms/overview/#disabled-forms"
-                >
-                  Documentation
-                </a>
+                <DocLink href="/forms/disabled" />
               </div>
 
               <div>

@@ -1,15 +1,11 @@
 import type { Component } from 'solid-js';
+import DocLink from '../common/DocLink';
 
 const Spinners: Component = () => (
   <article class="my-3" id="spinners">
               <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                 <h3>Spinners</h3>
-                <a
-                  class="d-flex align-items-center"
-                  href="../components/spinners/"
-                >
-                  Documentation
-                </a>
+                <DocLink href="/ui/spinners" />
               </div>
 
               <div>

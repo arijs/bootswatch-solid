@@ -60,7 +60,7 @@ render(
       <Route path="/" component={Home} />
       
       {/* Contents routes */}
-      <Route path="/contents/section" component={ContentsSection} />
+      <Route path="/contents" component={ContentsSection} />
       <Route path="/contents/figures" component={Figures} />
       <Route path="/contents/images" component={Images} />
       <Route path="/contents/tables" component={Tables} />
@@ -74,7 +74,7 @@ render(
       <Route path="/contents/typography/unstyled-list" component={UnstyledList} />
       
       {/* Forms routes */}
-      <Route path="/forms/section" component={FormsSection} />
+      <Route path="/forms" component={FormsSection} />
       <Route path="/forms/overview" component={Overview} />
       <Route path="/forms/sizing" component={Sizing} />
       <Route path="/forms/disabled" component={DisabledForms} />
@@ -83,7 +83,7 @@ render(
       <Route path="/forms/validation" component={Validation} />
       
       {/* UI routes */}
-      <Route path="/ui/section" component={UiSection} />
+      <Route path="/ui" component={UiSection} />
       <Route path="/ui/accordion" component={Accordion} />
       <Route path="/ui/alerts" component={Alerts} />
       <Route path="/ui/badge" component={Badge} />

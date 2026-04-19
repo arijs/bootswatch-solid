@@ -121,7 +121,7 @@
 
 /* Layout */
 @media (min-width: 1200px) {
-  #root {
+  .bd-cheatsheet-root {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr 4fr 1fr;

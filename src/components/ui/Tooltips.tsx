@@ -1,16 +1,12 @@
 import type { Component } from 'solid-js';
+import DocLink from '../common/DocLink';
 import * as bootstrap from 'bootstrap';
 
 const Tooltips: Component = () => (
   <article class="mt-3 mb-5 pb-5" id="tooltips">
               <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                 <h3>Tooltips</h3>
-                <a
-                  class="d-flex align-items-center"
-                  href="../components/tooltips/"
-                >
-                  Documentation
-                </a>
+                <DocLink href="/ui/tooltips" />
               </div>
 
               <div>

@@ -1,15 +1,11 @@
 import type { Component } from 'solid-js';
+import DocLink from '../common/DocLink';
 
 const Sizing: Component = () => (
   <article class="my-3" id="sizing">
               <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                 <h3>Sizing</h3>
-                <a
-                  class="d-flex align-items-center"
-                  href="../forms/form-control/#sizing"
-                >
-                  Documentation
-                </a>
+                <DocLink href="/forms/sizing" />
               </div>
 
               <div>

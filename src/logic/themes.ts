@@ -42,12 +42,21 @@ const themeCssSel = `html > head > link[rel=stylesheet][href^="https://cdn.jsdel
 export function themeLinkMatch(el: Element, t: ThemeItem) {
 	return el.matches(themeCssSel) && el.getAttribute(`href`) === t.href
 }
-export function themeGetCurrent() {
+export function themeBuildCssLink(t: ThemeItem) {
+	const link = document.createElement(`link`)
+	link.setAttribute(`rel`, `stylesheet`)
+	link.setAttribute(`crossorigin`, `anonymous`)
+	link.setAttribute(`integrity`, t.integrity)
+	link.setAttribute(`href`, t.href)
+	return link
+}
+export function themeGetCurrent(defaultTheme: ThemeItem) {
 	const allLinkCss = [...document.querySelectorAll(themeCssSel)]
 	const found = themeList.find(t => allLinkCss.some(el => themeLinkMatch(el, t)))
 	console.log(`logic/themes: find current theme`, allLinkCss, found)
 	if (!found) {
-		throw new Error(`Current theme not found`)
+		document.head.appendChild(themeBuildCssLink(defaultTheme))
+		return defaultTheme
 	}
 	return found
 }
@@ -59,5 +68,4 @@ export function themeSetActive(t: ThemeItem) {
 	l?.setAttribute(`integrity`, t.integrity)
 	l?.setAttribute(`href`, t.href)
 }
-
-export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent());
+export const [signalTheme, setSignalTheme] = createSignal<ThemeItem>(themeGetCurrent(themeList[0]));
