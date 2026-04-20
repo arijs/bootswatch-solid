@@ -1,57 +1,19 @@
-import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
+import ToastExample from './toasts/ToastExample'
 
 const Toasts: Component = () => (
 	<article class="my-3" id="toasts">
 		<div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
 			<h3>Toasts</h3>
 			<DocLink href="/ui/toasts" />
+			<DocLink href="/ui/toasts/toast-example">Toast</DocLink>
 		</div>
 
 		<div>
-			<div class="bd-example bg-dark p-5 align-items-center">
-				<div
-					class="toast"
-					ref={(toastNode) => {
-						const toast = new bootstrap.Toast(toastNode, {
-							autohide: false,
-						})
-
-						toast.show()
-					}}
-					aria-live="assertive"
-					aria-atomic="true"
-				>
-					<div class="toast-header">
-						<svg
-							class="bd-placeholder-img rounded me-2"
-							width="20"
-							height="20"
-							xmlns="http://www.w3.org/2000/svg"
-							aria-hidden="true"
-							preserveAspectRatio="xMidYMid slice"
-							tabindex="0"
-						>
-							<rect width="100%" height="100%" fill="#007aff" />
-						</svg>
-
-						<strong class="me-auto">Bootstrap</strong>
-						<small class="text-muted">11 mins ago</small>
-						<button
-							type="button"
-							class="btn-close"
-							data-bs-dismiss="toast"
-							aria-label="Close"
-						></button>
-					</div>
-					<div class="toast-body">Hello, world! This is a toast message.</div>
-				</div>
-			</div>
+			<ToastExample />
 		</div>
 	</article>
 )
 
 export default Toasts
-
-// @screenshot bootstrap: 360x257 257

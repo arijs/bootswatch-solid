@@ -9,6 +9,7 @@ import './cheatsheet.scss'
 // Contents components
 import ContentsSection from './components/contents/ContentsSection'
 import Figures from './components/contents/Figures'
+import FigureExample from './components/contents/figures/FigureExample'
 import Images from './components/contents/Images'
 import Responsive from './components/contents/images/Responsive'
 import Thumbnail from './components/contents/images/Thumbnail'
@@ -42,6 +43,7 @@ import DisabledFileRange from './components/forms/disabled/DisabledFileRange'
 import DisabledRadioButtons from './components/forms/disabled/DisabledRadioButtons'
 import DisabledSwitchCheckbox from './components/forms/disabled/DisabledSwitchCheckbox'
 import FloatingLabels from './components/forms/FloatingLabels'
+import FloatingLabelsExample from './components/forms/floating-labels/FloatingLabelsExample'
 import FormsSection from './components/forms/FormsSection'
 import InputGroup from './components/forms/InputGroup'
 import CurrencyAddon from './components/forms/input-group/CurrencyAddon'
@@ -71,6 +73,7 @@ import Home from './components/HomePage'
 
 // UI components
 import Accordion from './components/ui/Accordion'
+import AccordionExample from './components/ui/accordion/AccordionExample'
 import Alerts from './components/ui/Alerts'
 import DangerAlert from './components/ui/alerts/DangerAlert'
 import DarkAlert from './components/ui/alerts/DarkAlert'
@@ -83,7 +86,9 @@ import SuccessAlert from './components/ui/alerts/SuccessAlert'
 import WarningAlert from './components/ui/alerts/WarningAlert'
 import Badge from './components/ui/Badge'
 import Breadcrumb from './components/ui/Breadcrumb'
+import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
 import ButtonGroup from './components/ui/ButtonGroup'
+import ButtonGroupExample from './components/ui/button-group/ButtonGroupExample'
 import Buttons from './components/ui/Buttons'
 import HeadingBadges from './components/ui/badge/HeadingBadges'
 import PillBadges from './components/ui/badge/PillBadges'
@@ -107,8 +112,11 @@ import SolidSecondaryButton from './components/ui/buttons/SolidSecondaryButton'
 import SolidSuccessButton from './components/ui/buttons/SolidSuccessButton'
 import SolidWarningButton from './components/ui/buttons/SolidWarningButton'
 import Card from './components/ui/Card'
+import CardsGrid from './components/ui/card/CardsGrid'
 import CardTabs from './components/ui/CardTabs'
+import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
 import Carousel from './components/ui/Carousel'
+import CarouselExample from './components/ui/carousel/CarouselExample'
 import FeaturedCard from './components/ui/card/FeaturedCard'
 import HorizontalCard from './components/ui/card/HorizontalCard'
 import ImageTopCard from './components/ui/card/ImageTopCard'
@@ -148,6 +156,7 @@ import DefaultModal from './components/ui/modal/DefaultModal'
 import FullscreenModal from './components/ui/modal/FullscreenModal'
 import StaticBackdropModal from './components/ui/modal/StaticBackdropModal'
 import Navbar from './components/ui/Navbar'
+import NavbarExample from './components/ui/navbar/NavbarExample'
 import Navs from './components/ui/Navs'
 import BasicNav from './components/ui/navs/BasicNav'
 import PillNav from './components/ui/navs/PillNav'
@@ -170,6 +179,7 @@ import Progress75 from './components/ui/progress/Progress75'
 import Progress100 from './components/ui/progress/Progress100'
 import StripedProgress from './components/ui/progress/StripedProgress'
 import Scrollspy from './components/ui/Scrollspy'
+import ScrollspyExample from './components/ui/scrollspy/ScrollspyExample'
 import Spinners from './components/ui/Spinners'
 import BorderDangerSpinner from './components/ui/spinners/BorderDangerSpinner'
 import BorderDarkSpinner from './components/ui/spinners/BorderDarkSpinner'
@@ -188,6 +198,7 @@ import GrowSecondarySpinner from './components/ui/spinners/GrowSecondarySpinner'
 import GrowSuccessSpinner from './components/ui/spinners/GrowSuccessSpinner'
 import GrowWarningSpinner from './components/ui/spinners/GrowWarningSpinner'
 import Toasts from './components/ui/Toasts'
+import ToastExample from './components/ui/toasts/ToastExample'
 import Tooltips from './components/ui/Tooltips'
 import BottomTooltip from './components/ui/tooltips/BottomTooltip'
 import EndTooltip from './components/ui/tooltips/EndTooltip'
@@ -204,6 +215,7 @@ render(
 			{/* Contents routes */}
 			<Route path="/contents" component={ContentsSection} />
 			<Route path="/contents/figures" component={Figures} />
+			<Route path="/contents/figures/figure-example" component={FigureExample} />
 			<Route path="/contents/images" component={Images} />
 			<Route path="/contents/images/responsive" component={Responsive} />
 			<Route path="/contents/images/thumbnail" component={Thumbnail} />
@@ -255,6 +267,7 @@ render(
 			/>
 			<Route path="/forms/disabled/disabled-file-range" component={DisabledFileRange} />
 			<Route path="/forms/floating-labels" component={FloatingLabels} />
+			<Route path="/forms/floating-labels/floating-labels-example" component={FloatingLabelsExample} />
 			<Route path="/forms/input-group" component={InputGroup} />
 			<Route path="/forms/input-group/prefix-addon" component={PrefixAddon} />
 			<Route path="/forms/input-group/suffix-addon" component={SuffixAddon} />
@@ -273,6 +286,7 @@ render(
 			{/* UI routes */}
 			<Route path="/ui" component={UiSection} />
 			<Route path="/ui/accordion" component={Accordion} />
+			<Route path="/ui/accordion/accordion-example" component={AccordionExample} />
 			<Route path="/ui/alerts" component={Alerts} />
 			<Route path="/ui/alerts/primary-alert" component={PrimaryAlert} />
 			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
@@ -287,7 +301,9 @@ render(
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />
 			<Route path="/ui/breadcrumb" component={Breadcrumb} />
+			<Route path="/ui/breadcrumb/breadcrumb-example" component={BreadcrumbExample} />
 			<Route path="/ui/button-group" component={ButtonGroup} />
+			<Route path="/ui/button-group/button-group-example" component={ButtonGroupExample} />
 			<Route path="/ui/buttons" component={Buttons} />
 			<Route path="/ui/buttons/solid-primary-button" component={SolidPrimaryButton} />
 			<Route path="/ui/buttons/solid-secondary-button" component={SolidSecondaryButton} />
@@ -312,12 +328,15 @@ render(
 			<Route path="/ui/buttons/small-button" component={SmallButton} />
 			<Route path="/ui/buttons/large-button" component={LargeButton} />
 			<Route path="/ui/card" component={Card} />
+			<Route path="/ui/card/cards-grid" component={CardsGrid} />
 			<Route path="/ui/card/image-top-card" component={ImageTopCard} />
 			<Route path="/ui/card/featured-card" component={FeaturedCard} />
 			<Route path="/ui/card/list-card" component={ListCard} />
 			<Route path="/ui/card/horizontal-card" component={HorizontalCard} />
 			<Route path="/ui/card-tabs" component={CardTabs} />
+			<Route path="/ui/card-tabs/card-tabs-example" component={CardTabsExample} />
 			<Route path="/ui/carousel" component={Carousel} />
+			<Route path="/ui/carousel/carousel-example" component={CarouselExample} />
 			<Route path="/ui/dropdowns" component={Dropdowns} />
 			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
 			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
@@ -383,6 +402,7 @@ render(
 			<Route path="/ui/modal/centered-scrollable-modal" component={CenteredScrollableModal} />
 			<Route path="/ui/modal/fullscreen-modal" component={FullscreenModal} />
 			<Route path="/ui/navbar" component={Navbar} />
+			<Route path="/ui/navbar/navbar-example" component={NavbarExample} />
 			<Route path="/ui/navs" component={Navs} />
 			<Route path="/ui/navs/basic-nav" component={BasicNav} />
 			<Route path="/ui/navs/tabbed-nav" component={TabbedNav} />
@@ -405,6 +425,7 @@ render(
 			<Route path="/ui/progress/progress-100" component={Progress100} />
 			<Route path="/ui/progress/striped-progress" component={StripedProgress} />
 			<Route path="/ui/scrollspy" component={Scrollspy} />
+			<Route path="/ui/scrollspy/scrollspy-example" component={ScrollspyExample} />
 			<Route path="/ui/spinners" component={Spinners} />
 			<Route path="/ui/spinners/border-primary-spinner" component={BorderPrimarySpinner} />
 			<Route
@@ -426,6 +447,7 @@ render(
 			<Route path="/ui/spinners/grow-light-spinner" component={GrowLightSpinner} />
 			<Route path="/ui/spinners/grow-dark-spinner" component={GrowDarkSpinner} />
 			<Route path="/ui/toasts" component={Toasts} />
+			<Route path="/ui/toasts/toast-example" component={ToastExample} />
 			<Route path="/ui/tooltips" component={Tooltips} />
 			<Route path="/ui/tooltips/top-tooltip" component={TopTooltip} />
 			<Route path="/ui/tooltips/end-tooltip" component={EndTooltip} />
