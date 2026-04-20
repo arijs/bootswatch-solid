@@ -101,6 +101,23 @@ state folder and deletes any existing PNG files whose width matches
 `REQUESTED_WIDTH` but whose height differs from the current measured height.
 This keeps one canonical file per requested width in each route/state folder.
 
+Additionally, before processing captures for a theme, the script performs an
+aggressive prune of `screenshots/{theme-slug}`:
+
+- It computes the mapped destination folders for that run from
+  `{route}/{state}` pairs.
+- It recursively deletes any file or directory that is not inside one of those
+  mapped folders.
+
+This keeps each theme folder aligned to the current scenario catalog and
+active filters.
+
+During processing, progress logs are emitted as:
+
+- `Theme {current}/{total}: {theme-slug}` at the start of each theme.
+- `[current/total] Saved ...` for successful captures.
+- `[current/total] Skipped ...` when `--skip-existing` skips an existing file.
+
 ### 8. Height writeback
 
 After all captures finish, measured heights are persisted back to the route
@@ -279,6 +296,9 @@ pnpm screenshots:capture --skip-existing
 
 Even in `--skip-existing` mode, stale same-width files with different heights
 in the target folder are still cleaned up.
+
+Theme-level pruning still runs in `--skip-existing` mode, removing any
+out-of-map files/folders inside each `screenshots/{theme}` directory.
 
 Capture a single theme, preview writeback without touching files:
 

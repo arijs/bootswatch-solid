@@ -1,6 +1,6 @@
 import { execSync, spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
-import { mkdir, readFile, readdir, stat, unlink, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, readdir, rm, stat, unlink, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { setTimeout as delay } from 'node:timers/promises'
@@ -520,6 +520,68 @@ async function removeScreenshotsForWidthWithDifferentHeight(folderPath, width, k
 	return deletedCount
 }
 
+function normalizeRelativePath(relPath) {
+	if (!relPath) return ''
+	return relPath.split(path.sep).join('/')
+}
+
+function isWithinMappedFolder(relativePath, mappedFolders) {
+	if (mappedFolders.size === 0) return false
+	const normalized = normalizeRelativePath(relativePath)
+	return [...mappedFolders].some(
+		(folder) => normalized === folder || normalized.startsWith(`${folder}/`),
+	)
+}
+
+function shouldKeepDirectory(relativeDirPath, mappedFolders) {
+	if (mappedFolders.size === 0) return false
+	const normalized = normalizeRelativePath(relativeDirPath)
+	return [...mappedFolders].some(
+		(folder) =>
+			normalized === folder ||
+			folder.startsWith(`${normalized}/`) ||
+			normalized.startsWith(`${folder}/`),
+	)
+}
+
+async function pruneThemeFolder(themeRootPath, mappedFolders) {
+	if (!(await pathExists(themeRootPath))) {
+		return { deletedFiles: 0, deletedDirs: 0 }
+	}
+
+	let deletedFiles = 0
+	let deletedDirs = 0
+
+	async function walk(currentAbsolutePath, currentRelativePath = '') {
+		const entries = await readdir(currentAbsolutePath, { withFileTypes: true })
+
+		for (const entry of entries) {
+			const absolutePath = path.join(currentAbsolutePath, entry.name)
+			const relativePath = currentRelativePath
+				? path.join(currentRelativePath, entry.name)
+				: entry.name
+
+			if (entry.isDirectory()) {
+				if (!shouldKeepDirectory(relativePath, mappedFolders)) {
+					await rm(absolutePath, { recursive: true, force: true })
+					deletedDirs += 1
+					continue
+				}
+				await walk(absolutePath, relativePath)
+				continue
+			}
+
+			if (!isWithinMappedFolder(relativePath, mappedFolders)) {
+				await unlink(absolutePath)
+				deletedFiles += 1
+			}
+		}
+	}
+
+	await walk(themeRootPath)
+	return { deletedFiles, deletedDirs }
+}
+
 function clampHeight(height) {
 	if (!Number.isFinite(height)) return DEFAULT_VIEWPORT.height
 	return Math.max(MIN_HEIGHT, Math.min(MAX_HEIGHT, Math.ceil(height)))
@@ -1025,6 +1087,7 @@ async function main() {
 	assertCuratedScenarioRoutes(leafRoutes)
 	const themes = filterThemes(parseThemeNames(themeSource))
 	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes))
+	const totalCapturesPlanned = themes.length * scenarios.length
 
 	if (leafRoutes.length === 0) {
 		throw new Error('No leaf routes found in src/index.tsx for /contents, /forms, /ui')
@@ -1044,7 +1107,7 @@ async function main() {
 	console.log(`Found ${leafRoutes.length} leaf routes across target sections.`)
 	console.log(`Found ${themes.length} themes.`)
 	console.log(`Planned scenarios per theme: ${scenarios.length}`)
-	console.log(`Total captures planned: ${themes.length * scenarios.length}`)
+	console.log(`Total captures planned: ${totalCapturesPlanned}`)
 	if (SKIP_EXISTING) {
 		console.log('Mode: skipping screenshots that already exist (--skip-existing).')
 	}
@@ -1090,13 +1153,33 @@ async function main() {
 		const failed = []
 		let savedCount = 0
 		let skippedCount = 0
+		let processedScenarioIndex = 0
+		let processedThemeIndex = 0
 		let shotsSinceRestart = 0
 		const scenarioSummary = new Map()
 
 		for (const themeName of themes) {
+			processedThemeIndex += 1
 			const themeSlug = slugifyTheme(themeName)
+			console.log(`Theme ${processedThemeIndex}/${themes.length}: ${themeSlug}`)
+
+			const mappedFolders = new Set(
+				scenarios.map((scenario) => {
+					const routePath = scenario.route.replace(/^\//, '')
+					const stateFolder = getScenarioStateFolder(scenario.state)
+					return normalizeRelativePath(path.join(routePath, stateFolder))
+				}),
+			)
+			const themeRootPath = path.join(ROOT, 'screenshots', themeSlug)
+			const pruneResult = await pruneThemeFolder(themeRootPath, mappedFolders)
+			if (pruneResult.deletedDirs > 0 || pruneResult.deletedFiles > 0) {
+				console.log(
+					`Pruned ${themeSlug}: deleted ${pruneResult.deletedDirs} folder(s), ${pruneResult.deletedFiles} file(s) outside mapped route/state folders.`,
+				)
+			}
 
 			for (const scenario of scenarios) {
+				processedScenarioIndex += 1
 				const route = scenario.route
 				const componentFile = routeToComponentFile.get(route)
 				if (!componentFile) {
@@ -1183,6 +1266,9 @@ async function main() {
 							skippedCount += 1
 							scenarioSummary.get(summaryKey).skipped += 1
 							captured = true
+							console.log(
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
+							)
 							break
 						}
 
@@ -1192,7 +1278,7 @@ async function main() {
 						shotsSinceRestart += 1
 						captured = true
 						console.log(
-							`Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
+							`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
 						)
 						break
 					} catch (err) {
