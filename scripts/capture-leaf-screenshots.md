@@ -76,7 +76,7 @@ Math.max(
 )
 ```
 
-The result is clamped to the range **220–1800 px**.
+The result is clamped to the range **120–1800 px**.
 
 The viewport is then resized to the measured height and the screenshot is taken
 at that exact size (`fullPage: false`), so the image contains only the content
@@ -96,6 +96,11 @@ screenshots/{theme-slug}/{route-path}/{state-folder}/{width}x{height}.png
   interactive captures, e.g. `hover-buttons`, `opened-modal`.
 - **filename** — `{REQUESTED_WIDTH}x{measuredHeight}.png`.
 
+Before writing (or skipping) the target file, the script scans the target
+state folder and deletes any existing PNG files whose width matches
+`REQUESTED_WIDTH` but whose height differs from the current measured height.
+This keeps one canonical file per requested width in each route/state folder.
+
 ### 8. Height writeback
 
 After all captures finish, measured heights are persisted back to the route
@@ -110,9 +115,19 @@ fully recreated every 120 successful captures (`RESTART_BROWSER_EVERY`) to
 prevent memory accumulation. On any capture failure the browser is also
 immediately recreated before the retry attempt (up to 3 attempts per capture).
 
-The script starts and manages its own Vite preview server (`pnpm dev`) on
+The script starts and manages its own Vite preview server (`pnpm serve`) on
 `http://127.0.0.1:4173`. Any existing process on port 4173 is killed before
 starting. The server is shut down when the script exits.
+
+By default, the script **reuses existing build output** from `dist/`.
+If `dist/index.html` is missing, the run fails fast with an instruction to run
+with `--build` (or run `pnpm build`) first.
+
+When `--build` is provided, the script runs `pnpm build` before starting
+preview.
+
+On Windows, preview startup is invoked through the shell to avoid
+`spawn EINVAL` issues with direct `pnpm.cmd` spawning.
 
 ---
 
@@ -239,6 +254,7 @@ states do not bleed across captures.
 | `--theme=a,b` | all themes | Comma-separated list of theme slugs or exact names to include. |
 | `--route=/a,/b` | all leaf routes | Comma-separated list of route paths to include. |
 | `--state=a,b` | all states | Comma-separated list of state names to include (`static` for plain captures). |
+| `--build` | off | Rebuild the project (`pnpm build`) before capture. Default behavior reuses existing `dist/`. |
 | `--skip-existing` | off | Skip captures whose output file already exists on disk. |
 | `--no-writeback` | off | Do not modify any component source files after capturing. |
 | `--dry-run-writeback` | off | Compute and log writeback changes but do not write them to disk. |
@@ -257,6 +273,9 @@ Re-capture only missing images (fast incremental update):
 pnpm screenshots:capture --skip-existing
 ```
 
+Even in `--skip-existing` mode, stale same-width files with different heights
+in the target folder are still cleaned up.
+
 Capture a single theme, preview writeback without touching files:
 
 ```
@@ -273,6 +292,12 @@ Capture at a wider viewport:
 
 ```
 node scripts/capture-leaf-screenshots.mjs --width=720
+```
+
+Force a rebuild before capture:
+
+```
+node scripts/capture-leaf-screenshots.mjs --build
 ```
 
 Capture without updating component directives:
@@ -357,9 +382,9 @@ These values are defined at the top of the script and can be adjusted there:
 
 | Constant | Value | Description |
 |---|---|---|
-| `BASE_URL` | `http://127.0.0.1:4173` | URL of the managed Vite dev server. |
+| `BASE_URL` | `http://127.0.0.1:4173` | URL of the managed Vite preview server. |
 | `DEFAULT_VIEWPORT` | `360×576` | Width and initial height used when no directive is found. |
-| `MIN_HEIGHT` | `220` | Minimum clamped screenshot height in pixels. |
+| `MIN_HEIGHT` | `120` | Minimum clamped screenshot height in pixels. |
 | `MAX_HEIGHT` | `1800` | Maximum clamped screenshot height in pixels. |
 | `TARGET_PREFIXES` | `/contents`, `/forms`, `/ui` | Route path prefixes included in the capture set. |
 | `MAX_ATTEMPTS_PER_SCREENSHOT` | `3` | Retry limit per individual capture before marking it failed. |

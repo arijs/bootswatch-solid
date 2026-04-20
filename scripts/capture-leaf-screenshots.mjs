@@ -1,6 +1,6 @@
 import { execSync, spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, readdir, stat, unlink, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { setTimeout as delay } from 'node:timers/promises'
@@ -19,6 +19,7 @@ const RESTART_BROWSER_EVERY = 120
 
 const args = process.argv.slice(2)
 const SKIP_EXISTING = args.includes('--skip-existing')
+const BUILD_BEFORE_CAPTURE = args.includes('--build')
 const WRITEBACK_ENABLED = !args.includes('--no-writeback')
 const DRY_RUN_WRITEBACK = args.includes('--dry-run-writeback')
 const STRICT_SCENARIO_ASSERT = args.includes('--strict-scenarios')
@@ -421,13 +422,60 @@ function killPortWindows(port) {
 	}
 }
 
-function startViteServer() {
+function getPnpmCommand() {
+	return process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'
+}
+
+function buildProject() {
+	execSync(`${getPnpmCommand()} build`, {
+		cwd: ROOT,
+		env: process.env,
+		stdio: 'inherit',
+	})
+}
+
+function assertBuildOutputExists() {
+	const distIndex = path.join(ROOT, 'dist', 'index.html')
+	if (existsSync(distIndex)) return
+	throw new Error(
+		'Missing build output at dist/index.html. Run with --build (or run "pnpm build") before screenshot capture.',
+	)
+}
+
+function startPreviewServer() {
 	killPortWindows(4173)
-	return spawn('pnpm', ['dev', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], {
+	const command = `${getPnpmCommand()} serve --host 127.0.0.1 --port 4173 --strictPort`
+	return spawn(command, {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',
 		shell: true,
+	})
+}
+
+async function stopServer(serverProcess) {
+	if (!serverProcess || serverProcess.killed) return
+
+	if (process.platform === 'win32') {
+		const pid = serverProcess.pid
+		if (pid && Number.isInteger(pid)) {
+			try {
+				execSync(`taskkill /PID ${pid} /T /F 2>nul`, { stdio: 'ignore' })
+			} catch {
+				// ignore cleanup failures
+			}
+		}
+	} else {
+		serverProcess.kill('SIGTERM')
+	}
+
+	await new Promise((resolve) => {
+		if (serverProcess.exitCode !== null) {
+			resolve()
+			return
+		}
+		serverProcess.once('exit', () => resolve())
+		serverProcess.once('error', () => resolve())
 	})
 }
 
@@ -438,6 +486,29 @@ async function pathExists(filePath) {
 	} catch {
 		return false
 	}
+}
+
+async function removeScreenshotsForWidthWithDifferentHeight(folderPath, width, keepHeight) {
+	if (!(await pathExists(folderPath))) {
+		return 0
+	}
+
+	let deletedCount = 0
+	const entries = await readdir(folderPath, { withFileTypes: true })
+	for (const entry of entries) {
+		if (!entry.isFile()) continue
+		const match = entry.name.match(/^(\d+)x(\d+)\.png$/)
+		if (!match) continue
+
+		const entryWidth = Number.parseInt(match[1], 10)
+		const entryHeight = Number.parseInt(match[2], 10)
+		if (entryWidth !== width || entryHeight === keepHeight) continue
+
+		await unlink(path.join(folderPath, entry.name))
+		deletedCount += 1
+	}
+
+	return deletedCount
 }
 
 function clampHeight(height) {
@@ -938,8 +1009,19 @@ async function main() {
 	if (STRICT_SCENARIO_ASSERT) {
 		console.log('Mode: strict scenario assertions enabled (--strict-scenarios).')
 	}
+	if (BUILD_BEFORE_CAPTURE) {
+		console.log('Mode: build enabled (--build).')
+	} else {
+		console.log('Mode: reusing existing build output (default).')
+	}
 
-	const vite = startViteServer()
+	if (BUILD_BEFORE_CAPTURE) {
+		console.log('Building project for screenshot capture...')
+		buildProject()
+	} else {
+		assertBuildOutputExists()
+	}
+	const previewServer = startPreviewServer()
 
 	async function freshBrowser(initialHeight = DEFAULT_VIEWPORT.height) {
 		const browser = await chromium.launch({ headless: true })
@@ -1034,6 +1116,20 @@ async function main() {
 							stateFolder,
 							`${REQUESTED_WIDTH}x${measuredHeight}.png`,
 						)
+						const outputDir = path.dirname(outputPath)
+
+						await mkdir(outputDir, { recursive: true })
+						const deletedStaleCount =
+							await removeScreenshotsForWidthWithDifferentHeight(
+								outputDir,
+								REQUESTED_WIDTH,
+								measuredHeight,
+							)
+						if (deletedStaleCount > 0) {
+							console.log(
+								`Removed ${deletedStaleCount} stale screenshot(s) from ${path.relative(ROOT, outputDir)} for width ${REQUESTED_WIDTH}`,
+							)
+						}
 
 						if (SKIP_EXISTING && (await pathExists(outputPath))) {
 							skippedCount += 1
@@ -1042,7 +1138,6 @@ async function main() {
 							break
 						}
 
-						await mkdir(path.dirname(outputPath), { recursive: true })
 						await page.screenshot({ path: outputPath, fullPage: false, timeout: 20000 })
 						savedCount += 1
 						scenarioSummary.get(summaryKey).saved += 1
@@ -1146,7 +1241,7 @@ async function main() {
 			console.log('\nAll captures completed successfully.')
 		}
 	} finally {
-		vite.kill('SIGTERM')
+		await stopServer(previewServer)
 	}
 }
 
