@@ -133,19 +133,33 @@ const INTERACTIVE_SCENARIOS = [
 		route: '/forms/overview/checkbox',
 		state: 'focus-checkbox',
 		kind: 'focus-check',
-		selector: 'input[type="checkbox"]',
+		// For the Sketchy theme, the checkbox has width and height zero,
+		// and the box is drawn using ::before and ::after pseudo-elements
+		// on the input, so we target the label text instead.
+		selector: (page, theme) => theme === 'sketchy'
+			? page.getByText('Check me out')
+			: 'input[type="checkbox"]',
 	},
 	{
 		route: '/forms/overview/radio-buttons',
 		state: 'focus-radio',
 		kind: 'focus-check',
-		selector: 'input[type="radio"]',
+		// For the Sketchy theme, the radio button has width and height zero,
+		// and the box is drawn using ::before and ::after pseudo-elements
+		// on the input, so we target the label text instead.
+		selector: (page, theme) => theme === 'sketchy'
+			? page.getByText('Default radio')
+			: 'input[type="radio"]',
 	},
 	{
 		route: '/forms/overview/switch-checkbox',
 		state: 'focus-switch',
 		kind: 'focus-check',
 		selector: 'input[type="checkbox"]',
+		// For the Sketchy theme, the checkbox has zero width and height,
+		// so we wait for it to be "attached" to the DOM instead of "visible"
+		// https://playwright.dev/docs/actionability#visible
+		locatorState: (theme) => theme === 'sketchy' ? 'attached' : undefined,
 	},
 	{
 		route: '/forms/overview/file-input',
@@ -654,11 +668,16 @@ function ensureSelector(locator, selector) {
 	}
 }
 
-async function performScenarioAction(page, scenario) {
+async function performScenarioAction(page, scenario, themeSlug) {
 	if (scenario.kind === 'static') return
 
-	const locator = page.locator(scenario.selector).first()
-	await locator.waitFor({ state: 'visible', timeout: 5000 })
+	const scenarioLocator = scenario.selector instanceof Function
+		? scenario.selector(page, themeSlug)
+		: scenario.selector
+	const locator = 'string' === typeof scenarioLocator
+		? page.locator(scenarioLocator).first()
+		: scenarioLocator.first()
+	await locator.waitFor({ state: scenario.locatorState?.(themeSlug) ?? 'visible', timeout: 5000 })
 	ensureSelector(locator, scenario.selector)
 
 	switch (scenario.kind) {
@@ -1249,7 +1268,7 @@ async function main() {
 						const url = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}`
 						await page.goto(url, { waitUntil: 'networkidle', timeout: 15000 })
 						await delay(150)
-						await performScenarioAction(page, scenario)
+						await performScenarioAction(page, scenario, themeSlug)
 						const measuredHeight = await measureContentHeight(page)
 						await page.setViewportSize({
 							width: REQUESTED_WIDTH,
