@@ -16,4 +16,5 @@ const PrimaryAlert: Component = () => (
 
 export default PrimaryAlert
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

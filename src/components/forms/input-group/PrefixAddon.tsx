@@ -19,4 +19,5 @@ const PrefixAddon: Component = () => (
 
 export default PrefixAddon
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

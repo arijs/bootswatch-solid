@@ -24,3 +24,5 @@ const CardsGrid: Component = () => (
 )
 
 export default CardsGrid
+
+// @screenshot *: 360x1488 1488

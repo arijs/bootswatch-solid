@@ -20,4 +20,5 @@ const FeaturedCard: Component = () => (
 
 export default FeaturedCard
 
-// @screenshot bootstrap: 360x274 274
+// @screenshot *: 360x274 274
+

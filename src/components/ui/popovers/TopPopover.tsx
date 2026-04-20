@@ -22,5 +22,5 @@ const TopPopover: Component = () => (
 
 export default TopPopover
 
-// @screenshot bootstrap: 360x256 256
-// @screenshot bootstrap/opened-popover: 360x256 256
+// @screenshot *: 360x256 256
+

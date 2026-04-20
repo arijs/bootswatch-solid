@@ -15,5 +15,5 @@ const Checkbox: Component = () => (
 
 export default Checkbox
 
-// @screenshot bootstrap: 360x120 120
-// @screenshot bootstrap/focus-checkbox: 360x120 120
+// @screenshot *: 360x120 120
+

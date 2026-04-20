@@ -24,5 +24,5 @@ const RadioButtons: Component = () => (
 
 export default RadioButtons
 
-// @screenshot bootstrap: 360x120 120
-// @screenshot bootstrap/focus-radio: 360x120 120
+// @screenshot *: 360x120 120
+

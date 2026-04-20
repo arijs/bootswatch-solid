@@ -10,4 +10,5 @@ const Progress75: Component = () => (
 
 export default Progress75
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

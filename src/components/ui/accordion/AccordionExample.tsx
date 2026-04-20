@@ -102,4 +102,5 @@ const AccordionExample: Component = () => (
 
 export default AccordionExample
 
-// @screenshot bootstrap: 360x556 556
+// @screenshot bootstrap: 360x480 556
+

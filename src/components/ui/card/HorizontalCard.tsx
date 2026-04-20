@@ -38,4 +38,5 @@ const HorizontalCard: Component = () => (
 
 export default HorizontalCard
 
-// @screenshot bootstrap: 360x428 428
+// @screenshot *: 360x428 428
+

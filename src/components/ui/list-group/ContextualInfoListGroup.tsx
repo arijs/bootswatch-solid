@@ -17,5 +17,5 @@ const ContextualInfoListGroup: Component = () => (
 
 export default ContextualInfoListGroup
 
-// @screenshot bootstrap: 360x120 120
-// @screenshot bootstrap/hover-list-group: 360x120 120
+// @screenshot *: 360x120 120
+

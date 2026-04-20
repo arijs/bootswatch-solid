@@ -10,4 +10,5 @@ const BorderSuccessSpinner: Component = () => (
 
 export default BorderSuccessSpinner
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

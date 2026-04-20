@@ -36,4 +36,5 @@ const DisabledRadioButtons: Component = () => (
 
 export default DisabledRadioButtons
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

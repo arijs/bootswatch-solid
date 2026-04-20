@@ -16,4 +16,5 @@ const LightAlert: Component = () => (
 
 export default LightAlert
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

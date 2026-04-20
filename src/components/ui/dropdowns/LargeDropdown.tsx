@@ -50,4 +50,5 @@ const LargeDropdown: Component = () => (
 
 export default LargeDropdown
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

@@ -22,4 +22,5 @@ const UnstyledList: Component = () => (
 
 export default UnstyledList
 
-// @screenshot bootstrap: 360x240 240
+// @screenshot *: 360x240 240
+

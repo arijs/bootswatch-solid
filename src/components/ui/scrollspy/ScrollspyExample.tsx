@@ -111,4 +111,5 @@ const ScrollspyExample: Component = () => (
 
 export default ScrollspyExample
 
-// @screenshot bootstrap: 360x1629 1629
+// @screenshot bootstrap: 360x1553 1629
+

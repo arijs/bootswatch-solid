@@ -27,4 +27,5 @@ const FloatingLabelsExample: Component = () => (
 
 export default FloatingLabelsExample
 
-// @screenshot bootstrap: 360x208 208
+// @screenshot bootstrap: 360x132 208
+

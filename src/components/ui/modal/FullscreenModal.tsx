@@ -117,5 +117,6 @@ const FullscreenModal: Component = () => (
 
 export default FullscreenModal
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
 // @screenshot bootstrap/opened-modal: 360x1800 1800
+

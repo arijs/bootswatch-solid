@@ -10,4 +10,5 @@ const BorderLightSpinner: Component = () => (
 
 export default BorderLightSpinner
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

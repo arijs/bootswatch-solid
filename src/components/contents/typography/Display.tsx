@@ -13,4 +13,5 @@ const Display: Component = () => (
 
 export default Display
 
-// @screenshot bootstrap: 360x331 331
+// @screenshot *: 360x331 331
+

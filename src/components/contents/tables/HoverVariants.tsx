@@ -64,4 +64,5 @@ const HoverVariants: Component = () => (
 
 export default HoverVariants
 
-// @screenshot bootstrap: 360x410 410
+// @screenshot *: 360x410 410
+

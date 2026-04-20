@@ -10,4 +10,5 @@ const BorderPrimarySpinner: Component = () => (
 
 export default BorderPrimarySpinner
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

@@ -13,3 +13,7 @@ export default SolidPrimaryButton
 // @screenshot *: 360x120 120
 
 
+
+// @screenshot bootstrap: 360x120 120
+
+

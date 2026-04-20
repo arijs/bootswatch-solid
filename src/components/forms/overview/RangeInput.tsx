@@ -22,4 +22,5 @@ const RangeInput: Component = () => (
 
 export default RangeInput
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

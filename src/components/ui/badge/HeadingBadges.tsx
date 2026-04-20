@@ -31,4 +31,5 @@ const HeadingBadges: Component = () => (
 
 export default HeadingBadges
 
-// @screenshot bootstrap: 360x276 276
+// @screenshot *: 360x276 276
+

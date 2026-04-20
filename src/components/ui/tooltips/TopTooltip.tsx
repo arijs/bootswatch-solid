@@ -21,5 +21,5 @@ const TopTooltip: Component = () => (
 
 export default TopTooltip
 
-// @screenshot bootstrap: 360x256 256
-// @screenshot bootstrap/opened-tooltip: 360x256 256
+// @screenshot *: 360x256 256
+

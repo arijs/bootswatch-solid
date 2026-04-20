@@ -10,4 +10,5 @@ const GrowSuccessSpinner: Component = () => (
 
 export default GrowSuccessSpinner
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

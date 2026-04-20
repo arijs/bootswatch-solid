@@ -21,5 +21,5 @@ const StartTooltip: Component = () => (
 
 export default StartTooltip
 
-// @screenshot bootstrap: 360x256 256
-// @screenshot bootstrap/opened-tooltip: 360x256 256
+// @screenshot *: 360x256 256
+

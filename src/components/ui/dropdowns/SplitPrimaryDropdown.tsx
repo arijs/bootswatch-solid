@@ -40,4 +40,5 @@ const SplitPrimaryDropdown: Component = () => (
 
 export default SplitPrimaryDropdown
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

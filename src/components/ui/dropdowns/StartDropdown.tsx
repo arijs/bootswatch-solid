@@ -50,4 +50,5 @@ const StartDropdown: Component = () => (
 
 export default StartDropdown
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

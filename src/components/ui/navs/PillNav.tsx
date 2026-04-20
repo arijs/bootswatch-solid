@@ -44,4 +44,5 @@ const PillNav: Component = () => (
 
 export default PillNav
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

@@ -22,4 +22,5 @@ const Responsive: Component = () => (
 
 export default Responsive
 
-// @screenshot bootstrap: 360x250 250
+// @screenshot *: 360x250 250
+

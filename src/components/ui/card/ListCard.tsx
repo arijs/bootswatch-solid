@@ -29,4 +29,5 @@ const ListCard: Component = () => (
 
 export default ListCard
 
-// @screenshot bootstrap: 360x318 318
+// @screenshot *: 360x318 318
+

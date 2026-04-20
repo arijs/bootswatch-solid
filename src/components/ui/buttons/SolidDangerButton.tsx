@@ -10,5 +10,5 @@ const SolidDangerButton: Component = () => (
 
 export default SolidDangerButton
 
-// @screenshot bootstrap: 360x120 120
-// @screenshot bootstrap/hover-buttons: 360x120 120
+// @screenshot *: 360x120 120
+

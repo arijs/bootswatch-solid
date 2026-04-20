@@ -40,4 +40,5 @@ const SplitDangerDropdown: Component = () => (
 
 export default SplitDangerDropdown
 
-// @screenshot bootstrap: 360x120 120
+// @screenshot *: 360x120 120
+

@@ -23,5 +23,5 @@ const HoverSuccessVariant: Component = () => (
 
 export default HoverSuccessVariant
 
-// @screenshot bootstrap: 360x120 120
-// @screenshot bootstrap/hover-table-row: 360x120 120
+// @screenshot *: 360x120 120
+
