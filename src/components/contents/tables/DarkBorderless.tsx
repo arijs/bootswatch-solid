@@ -37,3 +37,9 @@ const DarkBorderless: Component = () => (
 export default DarkBorderless
 
 // @screenshot *: 360x160 160
+// @screenshot brite: 360x184 184
+// @screenshot litera: 360x157 157
+// @screenshot lux: 360x285 285
+// @screenshot superhero: 360x148 148
+// @screenshot yeti: 360x148 148
+// @screenshot zephyr: 360x212 212

@@ -37,3 +37,12 @@ const SmallBordered: Component = () => (
 export default SmallBordered
 
 // @screenshot *: 360x133 133
+// @screenshot brite: 360x123 123
+// @screenshot litera: 360x130 130
+// @screenshot lux: 360x189 189
+// @screenshot morph: 360x128 128
+// @screenshot sketchy: 360x128 128
+// @screenshot superhero: 360x121 121
+// @screenshot vapor: 360x128 128
+// @screenshot yeti: 360x121 121
+// @screenshot zephyr: 360x153 153

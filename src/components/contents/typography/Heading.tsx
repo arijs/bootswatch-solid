@@ -14,3 +14,11 @@ const Heading: Component = () => (
 export default Heading
 
 // @screenshot *: 360x199 199
+// @screenshot brite: 360x187 187
+// @screenshot cyborg: 360x228 228
+// @screenshot darkly: 360x208 208
+// @screenshot flatly: 360x208 208
+// @screenshot journal: 360x186 186
+// @screenshot litera: 360x208 208
+// @screenshot lux: 360x181 181
+// @screenshot quartz: 360x239 239

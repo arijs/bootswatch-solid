@@ -23,3 +23,5 @@ const BottomPopover: Component = () => (
 export default BottomPopover
 
 // @screenshot *: 360x256 256
+// @screenshot brite: 360x224 224
+// @screenshot litera: 360x282 282

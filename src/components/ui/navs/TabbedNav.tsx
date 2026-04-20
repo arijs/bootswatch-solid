@@ -96,3 +96,23 @@ const TabbedNav: Component = () => (
 export default TabbedNav
 
 // @screenshot *: 360x322 322
+// @screenshot brite: 360x357 357
+// @screenshot cosmo: 360x298 298
+// @screenshot darkly: 360x363 363
+// @screenshot flatly: 360x363 363
+// @screenshot litera: 360x374 374
+// @screenshot lumen: 360x304 304
+// @screenshot lux: 360x368 368
+// @screenshot materia: 360x344 344
+// @screenshot morph: 360x320 320
+// @screenshot pulse: 360x321 321
+// @screenshot quartz: 360x336 336
+// @screenshot sandstone: 360x320 320
+// @screenshot simplex: 360x359 359
+// @screenshot sketchy: 360x276 276
+// @screenshot solar: 360x298 298
+// @screenshot spacelab: 360x346 346
+// @screenshot united: 360x346 346
+// @screenshot vapor: 360x320 320
+// @screenshot yeti: 360x346 346
+// @screenshot zephyr: 360x361 361

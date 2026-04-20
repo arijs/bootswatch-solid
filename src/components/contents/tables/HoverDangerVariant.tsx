@@ -24,3 +24,4 @@ const HoverDangerVariant: Component = () => (
 export default HoverDangerVariant
 
 // @screenshot *: 360x120 120
+// @screenshot lux: 360x141 141

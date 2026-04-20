@@ -50,3 +50,20 @@ const CardTabsExample: Component = () => (
 export default CardTabsExample
 
 // @screenshot *: 360x242 294
+// @screenshot brite: 360x259 259
+// @screenshot cyborg: 360x244 244
+// @screenshot darkly: 360x283 283
+// @screenshot flatly: 360x283 283
+// @screenshot journal: 360x240 240
+// @screenshot litera: 360x248 248
+// @screenshot lumen: 360x250 250
+// @screenshot lux: 360x284 284
+// @screenshot materia: 360x249 249
+// @screenshot morph: 360x277 277
+// @screenshot pulse: 360x241 241
+// @screenshot quartz: 360x313 313
+// @screenshot sandstone: 360x238 238
+// @screenshot simplex: 360x255 255
+// @screenshot sketchy: 360x248 248
+// @screenshot slate: 360x254 254
+// @screenshot zephyr: 360x266 266

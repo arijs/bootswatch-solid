@@ -35,3 +35,18 @@ const ImageTopCard: Component = () => (
 export default ImageTopCard
 
 // @screenshot *: 360x372 372
+// @screenshot brite: 360x347 347
+// @screenshot cosmo: 360x348 348
+// @screenshot cyborg: 360x374 374
+// @screenshot journal: 360x370 370
+// @screenshot litera: 360x382 382
+// @screenshot lumen: 360x350 350
+// @screenshot lux: 360x376 376
+// @screenshot materia: 360x382 382
+// @screenshot morph: 360x404 404
+// @screenshot quartz: 360x414 414
+// @screenshot sandstone: 360x370 370
+// @screenshot sketchy: 360x352 352
+// @screenshot slate: 360x384 384
+// @screenshot solar: 360x348 348
+// @screenshot zephyr: 360x373 373

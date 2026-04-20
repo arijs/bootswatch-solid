@@ -254,3 +254,18 @@ const NavbarExample: Component = () => (
 export default NavbarExample
 
 // @screenshot *: 360x160 236
+// @screenshot brite: 360x186 186
+// @screenshot cyborg: 360x162 162
+// @screenshot darkly: 360x192 192
+// @screenshot flatly: 360x192 192
+// @screenshot journal: 360x166 166
+// @screenshot litera: 360x166 166
+// @screenshot lumen: 360x168 168
+// @screenshot lux: 360x226 226
+// @screenshot materia: 360x204 204
+// @screenshot pulse: 360x205 205
+// @screenshot quartz: 360x240 240
+// @screenshot simplex: 360x190 190
+// @screenshot sketchy: 360x172 172
+// @screenshot spacelab: 360x164 164
+// @screenshot zephyr: 360x183 183

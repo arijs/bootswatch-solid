@@ -103,3 +103,18 @@ const AccordionExample: Component = () => (
 export default AccordionExample
 
 // @screenshot *: 360x480 556
+// @screenshot brite: 360x428 428
+// @screenshot cosmo: 360x456 456
+// @screenshot litera: 360x566 566
+// @screenshot lumen: 360x456 456
+// @screenshot lux: 360x524 524
+// @screenshot morph: 360x476 476
+// @screenshot quartz: 360x476 476
+// @screenshot simplex: 360x504 504
+// @screenshot sketchy: 360x437 437
+// @screenshot solar: 360x456 456
+// @screenshot spacelab: 360x504 504
+// @screenshot superhero: 360x452 452
+// @screenshot vapor: 360x452 452
+// @screenshot yeti: 360x504 504
+// @screenshot zephyr: 360x504 504

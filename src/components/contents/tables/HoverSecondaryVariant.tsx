@@ -24,3 +24,4 @@ const HoverSecondaryVariant: Component = () => (
 export default HoverSecondaryVariant
 
 // @screenshot *: 360x120 120
+// @screenshot lux: 360x141 141

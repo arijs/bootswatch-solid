@@ -37,3 +37,4 @@ const DisabledRadioButtons: Component = () => (
 export default DisabledRadioButtons
 
 // @screenshot *: 360x120 120
+// @screenshot quartz: 360x123 123

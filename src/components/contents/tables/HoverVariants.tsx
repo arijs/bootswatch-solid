@@ -65,3 +65,12 @@ const HoverVariants: Component = () => (
 export default HoverVariants
 
 // @screenshot *: 360x410 410
+// @screenshot brite: 360x463 463
+// @screenshot litera: 360x402 402
+// @screenshot lux: 360x717 717
+// @screenshot morph: 360x400 400
+// @screenshot sketchy: 360x420 420
+// @screenshot superhero: 360x380 380
+// @screenshot vapor: 360x400 400
+// @screenshot yeti: 360x380 380
+// @screenshot zephyr: 360x540 540

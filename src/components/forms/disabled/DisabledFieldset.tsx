@@ -31,3 +31,15 @@ const DisabledFieldset: Component = () => (
 export default DisabledFieldset
 
 // @screenshot *: 360x172 172
+// @screenshot cyborg: 360x168 168
+// @screenshot litera: 360x190 190
+// @screenshot lux: 360x192 192
+// @screenshot materia: 360x208 208
+// @screenshot morph: 360x208 208
+// @screenshot quartz: 360x228 228
+// @screenshot sketchy: 360x176 176
+// @screenshot slate: 360x196 196
+// @screenshot superhero: 360x170 170
+// @screenshot vapor: 360x168 168
+// @screenshot yeti: 360x170 170
+// @screenshot zephyr: 360x174 174

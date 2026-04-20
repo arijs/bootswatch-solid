@@ -37,3 +37,12 @@ const Striped: Component = () => (
 export default Striped
 
 // @screenshot *: 360x164 164
+// @screenshot brite: 360x187 187
+// @screenshot litera: 360x161 161
+// @screenshot lux: 360x285 285
+// @screenshot morph: 360x160 160
+// @screenshot sketchy: 360x168 168
+// @screenshot superhero: 360x152 152
+// @screenshot vapor: 360x160 160
+// @screenshot yeti: 360x152 152
+// @screenshot zephyr: 360x216 216

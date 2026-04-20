@@ -30,3 +30,16 @@ const BasicForm: Component = () => (
 export default BasicForm
 
 // @screenshot *: 360x181 181
+// @screenshot brite: 360x179 179
+// @screenshot cyborg: 360x177 177
+// @screenshot litera: 360x201 201
+// @screenshot lux: 360x201 201
+// @screenshot materia: 360x217 217
+// @screenshot morph: 360x217 217
+// @screenshot quartz: 360x221 221
+// @screenshot sketchy: 360x185 185
+// @screenshot slate: 360x205 205
+// @screenshot superhero: 360x179 179
+// @screenshot vapor: 360x177 177
+// @screenshot yeti: 360x179 179
+// @screenshot zephyr: 360x183 183

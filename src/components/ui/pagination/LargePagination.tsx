@@ -48,3 +48,4 @@ const LargePagination: Component = () => (
 export default LargePagination
 
 // @screenshot *: 360x120 120
+// @screenshot morph: 360x156 156

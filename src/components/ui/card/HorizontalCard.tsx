@@ -39,3 +39,13 @@ const HorizontalCard: Component = () => (
 export default HorizontalCard
 
 // @screenshot *: 360x428 428
+// @screenshot brite: 360x415 415
+// @screenshot cyborg: 360x430 430
+// @screenshot journal: 360x426 426
+// @screenshot litera: 360x439 439
+// @screenshot lux: 360x446 446
+// @screenshot materia: 360x426 426
+// @screenshot morph: 360x442 442
+// @screenshot quartz: 360x458 458
+// @screenshot sketchy: 360x430 430
+// @screenshot vapor: 360x430 430

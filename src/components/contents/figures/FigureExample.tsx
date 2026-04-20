@@ -27,3 +27,6 @@ const FigureExample: Component = () => (
 export default FigureExample
 
 // @screenshot *: 360x297 373
+// @screenshot brite: 360x295 295
+// @screenshot litera: 360x300 300
+// @screenshot quartz: 360x305 305

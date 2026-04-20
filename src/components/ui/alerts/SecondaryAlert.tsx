@@ -17,3 +17,4 @@ const SecondaryAlert: Component = () => (
 export default SecondaryAlert
 
 // @screenshot *: 360x120 120
+// @screenshot quartz: 360x136 136

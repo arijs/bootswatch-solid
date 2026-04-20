@@ -112,3 +112,27 @@ const ScrollspyExample: Component = () => (
 export default ScrollspyExample
 
 // @screenshot *: 360x1553 1629
+// @screenshot brite: 360x1336 1336
+// @screenshot cosmo: 360x1481 1481
+// @screenshot cyborg: 360x1547 1547
+// @screenshot darkly: 360x1561 1561
+// @screenshot flatly: 360x1561 1561
+// @screenshot journal: 360x1546 1546
+// @screenshot litera: 360x1800 1800
+// @screenshot lumen: 360x1485 1485
+// @screenshot lux: 360x1756 1756
+// @screenshot materia: 360x1575 1575
+// @screenshot morph: 360x1585 1585
+// @screenshot pulse: 360x1576 1576
+// @screenshot quartz: 360x1609 1609
+// @screenshot sandstone: 360x1529 1529
+// @screenshot simplex: 360x1677 1677
+// @screenshot sketchy: 360x1317 1317
+// @screenshot slate: 360x1571 1571
+// @screenshot solar: 360x1481 1481
+// @screenshot spacelab: 360x1651 1651
+// @screenshot superhero: 360x1505 1505
+// @screenshot united: 360x1601 1601
+// @screenshot vapor: 360x1505 1505
+// @screenshot yeti: 360x1651 1651
+// @screenshot zephyr: 360x1682 1682

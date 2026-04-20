@@ -28,3 +28,11 @@ const FloatingLabelsExample: Component = () => (
 export default FloatingLabelsExample
 
 // @screenshot *: 360x132 208
+// @screenshot brite: 360x136 136
+// @screenshot cyborg: 360x128 128
+// @screenshot lux: 360x120 120
+// @screenshot materia: 360x128 128
+// @screenshot morph: 360x120 120
+// @screenshot quartz: 360x148 148
+// @screenshot sketchy: 360x136 136
+// @screenshot vapor: 360x120 120

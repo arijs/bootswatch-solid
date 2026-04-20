@@ -45,3 +45,13 @@ const ToastExample: Component = () => (
 export default ToastExample
 
 // @screenshot *: 360x181 257
+// @screenshot brite: 360x184 184
+// @screenshot lux: 360x199 199
+// @screenshot morph: 360x178 178
+// @screenshot quartz: 360x331 331
+// @screenshot simplex: 360x202 202
+// @screenshot sketchy: 360x184 184
+// @screenshot spacelab: 360x202 202
+// @screenshot vapor: 360x178 178
+// @screenshot yeti: 360x202 202
+// @screenshot zephyr: 360x202 202

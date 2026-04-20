@@ -31,3 +31,12 @@ const LargeControls: Component = () => (
 export default LargeControls
 
 // @screenshot *: 360x176 176
+// @screenshot brite: 360x179 179
+// @screenshot cyborg: 360x170 170
+// @screenshot litera: 360x180 180
+// @screenshot lux: 360x314 314
+// @screenshot materia: 360x242 242
+// @screenshot morph: 360x170 170
+// @screenshot quartz: 360x208 208
+// @screenshot sketchy: 360x182 182
+// @screenshot vapor: 360x170 170
