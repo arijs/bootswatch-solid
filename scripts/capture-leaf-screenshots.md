@@ -13,6 +13,64 @@ node scripts/capture-leaf-screenshots.mjs [flags]
 
 ---
 
+## Pending changes (April 2026)
+
+The screenshot script was refactored from one large file into focused modules.
+Behavior is intended to remain the same unless explicitly noted below.
+
+### Module index
+
+| Module | Primary responsibility | Motivation |
+|---|---|---|
+| `scripts/capture-leaf-screenshots.mjs` | Thin entrypoint: discovery, preflight, server lifecycle, workflow call | Keep orchestration readable and reduce blast radius for changes |
+| `scripts/capture-leaf-screenshots/cli.mjs` | Parse all CLI flags and normalize filter/width values | Centralize argument semantics and avoid duplicated parsing logic |
+| `scripts/capture-leaf-screenshots/constants.mjs` | Global constants and script root paths | Single source of truth for runtime constants |
+| `scripts/capture-leaf-screenshots/route-constants.mjs` | Curated route groups used by interactive scenarios | Keep long static route lists isolated from runtime logic |
+| `scripts/capture-leaf-screenshots/interactive-scenarios.mjs` | Interactive scenario definitions and selectors | Separate data-heavy state definitions from scenario processing |
+| `scripts/capture-leaf-screenshots/scenarios.mjs` | Build/filter scenario catalog and curated-route assertions | Isolate scenario composition and filter behavior |
+| `scripts/capture-leaf-screenshots/discovery.mjs` | Parse routes/components/themes from app source files | Keep source-discovery parsing testable and independent |
+| `scripts/capture-leaf-screenshots/directives.mjs` | Parse/format/resolve `@screenshot` directives | Encapsulate directive grammar and lookup precedence |
+| `scripts/capture-leaf-screenshots/preview-server.mjs` | Build check, preview startup, readiness wait, teardown | Isolate server lifecycle, including Windows-specific handling |
+| `scripts/capture-leaf-screenshots/folder-pruning.mjs` | Theme/route/state pruning and stale file cleanup helpers | Keep destructive filesystem logic in one module for safer review |
+| `scripts/capture-leaf-screenshots/measurements.mjs` | Content-height measurement, retry, and clamping | Isolate viewport sizing logic and rendering heuristics |
+| `scripts/capture-leaf-screenshots/playwright-actions.mjs` | Scenario interaction actions (hover/focus/click/type/visible) | Keep Playwright action logic focused and reusable |
+| `scripts/capture-leaf-screenshots/persistence.mjs` | Component model cache loading, writeback queue recording, file persistence | Separate file I/O concerns from directive decision logic |
+| `scripts/capture-leaf-screenshots/writeback.mjs` | Directive upsert/canonicalization/promotion/redundancy removal | Isolate highest-complexity writeback behavior |
+| `scripts/capture-leaf-screenshots/workflow.mjs` | Main capture workflow loop and summary reporting | Keep runtime capture pipeline modular and maintainable |
+
+### State filter pruning fix
+
+Fixed a destructive edge case where state-filtered runs could prune legitimate
+state folders not currently selected by `--state`.
+
+#### Repro command
+
+```
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --route=/ui/buttons/solid-primary-button --state=static --skip-existing --no-writeback
+```
+
+#### Previous incorrect behavior
+
+- Route-scoped pruning computed keep-folders only from filtered scenarios.
+- With `--state=static`, non-selected sibling states (for example
+  `hover-buttons`) could be treated as orphaned and removed.
+
+#### New behavior
+
+- If a state filter is active, folder pruning is skipped for the current theme.
+- This preserves all existing state folders, including unknown or currently
+  unselected states.
+- Target-state capture output and stale width/height cleanup inside the active
+  destination state folder still proceed as before.
+
+#### Why this policy
+
+State-filtered runs are usually selective or iterative operations. During those
+runs, preserving previously captured states is safer than aggressive cleanup.
+Aggressive pruning remains available when no `--state` filter is active.
+
+---
+
 ## How it works
 
 ### 1. Route and theme discovery
