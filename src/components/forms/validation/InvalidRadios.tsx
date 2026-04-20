@@ -43,4 +43,3 @@ const InvalidRadios: Component = () => (
 export default InvalidRadios
 
 // @screenshot *: 360x134 134
-

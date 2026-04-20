@@ -40,4 +40,3 @@ const InvalidUsernameCity: Component = () => (
 export default InvalidUsernameCity
 
 // @screenshot *: 360x222 222
-

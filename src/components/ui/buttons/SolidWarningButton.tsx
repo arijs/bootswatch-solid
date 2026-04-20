@@ -11,4 +11,3 @@ const SolidWarningButton: Component = () => (
 export default SolidWarningButton
 
 // @screenshot *: 360x120 120
-

@@ -17,4 +17,3 @@ const WarningAlert: Component = () => (
 export default WarningAlert
 
 // @screenshot *: 360x120 120
-

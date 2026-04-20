@@ -11,4 +11,3 @@ const BorderDarkSpinner: Component = () => (
 export default BorderDarkSpinner
 
 // @screenshot *: 360x120 120
-

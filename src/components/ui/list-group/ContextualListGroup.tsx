@@ -83,4 +83,3 @@ const ContextualListGroup: Component = () => (
 export default ContextualListGroup
 
 // @screenshot *: 360x370 370
-

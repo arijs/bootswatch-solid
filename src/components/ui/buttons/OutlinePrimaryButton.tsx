@@ -11,4 +11,3 @@ const OutlinePrimaryButton: Component = () => (
 export default OutlinePrimaryButton
 
 // @screenshot *: 360x120 120
-

@@ -23,4 +23,3 @@ const DisabledCheckbox: Component = () => (
 export default DisabledCheckbox
 
 // @screenshot *: 360x120 120
-

@@ -23,5 +23,6 @@ const EndPopover: Component = () => (
 export default EndPopover
 
 // @screenshot *: 360x120 120
-// @screenshot bootstrap/opened-popover: 360x256 256
 
+
+// @screenshot bootstrap: 360x256 256

@@ -14,4 +14,3 @@ const Display: Component = () => (
 export default Display
 
 // @screenshot *: 360x331 331
-

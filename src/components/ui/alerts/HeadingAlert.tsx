@@ -20,4 +20,3 @@ const HeadingAlert: Component = () => (
 export default HeadingAlert
 
 // @screenshot *: 360x293 293
-

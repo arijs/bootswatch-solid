@@ -44,5 +44,4 @@ const ToastExample: Component = () => (
 
 export default ToastExample
 
-// @screenshot bootstrap: 360x181 257
-
+// @screenshot *: 360x181 257

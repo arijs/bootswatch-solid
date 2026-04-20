@@ -41,4 +41,3 @@ const SplitWarningDropdown: Component = () => (
 export default SplitWarningDropdown
 
 // @screenshot *: 360x120 120
-

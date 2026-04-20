@@ -96,4 +96,3 @@ const TabbedNav: Component = () => (
 export default TabbedNav
 
 // @screenshot *: 360x322 322
-

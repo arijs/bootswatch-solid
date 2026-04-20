@@ -11,4 +11,3 @@ const SmallButton: Component = () => (
 export default SmallButton
 
 // @screenshot *: 360x120 120
-

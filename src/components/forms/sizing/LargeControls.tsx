@@ -31,4 +31,3 @@ const LargeControls: Component = () => (
 export default LargeControls
 
 // @screenshot *: 360x176 176
-

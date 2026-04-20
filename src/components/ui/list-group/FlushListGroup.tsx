@@ -15,4 +15,3 @@ const FlushListGroup: Component = () => (
 export default FlushListGroup
 
 // @screenshot *: 360x204 204
-

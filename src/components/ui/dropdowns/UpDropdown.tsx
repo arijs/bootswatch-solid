@@ -51,4 +51,3 @@ const UpDropdown: Component = () => (
 export default UpDropdown
 
 // @screenshot *: 360x120 120
-

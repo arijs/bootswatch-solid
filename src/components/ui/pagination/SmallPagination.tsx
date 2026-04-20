@@ -30,4 +30,3 @@ const SmallPagination: Component = () => (
 export default SmallPagination
 
 // @screenshot *: 360x120 120
-

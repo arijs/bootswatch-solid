@@ -37,4 +37,3 @@ const BasicNav: Component = () => (
 export default BasicNav
 
 // @screenshot *: 360x120 120
-

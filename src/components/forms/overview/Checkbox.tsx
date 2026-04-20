@@ -16,4 +16,3 @@ const Checkbox: Component = () => (
 export default Checkbox
 
 // @screenshot *: 360x120 120
-

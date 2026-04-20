@@ -18,4 +18,3 @@ const ContextualDangerListGroup: Component = () => (
 export default ContextualDangerListGroup
 
 // @screenshot *: 360x120 120
-

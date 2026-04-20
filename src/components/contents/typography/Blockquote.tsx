@@ -14,4 +14,3 @@ const Blockquote: Component = () => (
 export default Blockquote
 
 // @screenshot *: 360x120 120
-

@@ -30,4 +30,3 @@ const BasicForm: Component = () => (
 export default BasicForm
 
 // @screenshot *: 360x181 181
-

@@ -22,4 +22,3 @@ const StartTooltip: Component = () => (
 export default StartTooltip
 
 // @screenshot *: 360x256 256
-

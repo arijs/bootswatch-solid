@@ -17,4 +17,3 @@ const InfoAlert: Component = () => (
 export default InfoAlert
 
 // @screenshot *: 360x120 120
-

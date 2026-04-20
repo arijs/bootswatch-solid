@@ -23,4 +23,3 @@ const StartPopover: Component = () => (
 export default StartPopover
 
 // @screenshot *: 360x256 256
-

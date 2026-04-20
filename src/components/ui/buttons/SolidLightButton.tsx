@@ -11,4 +11,3 @@ const SolidLightButton: Component = () => (
 export default SolidLightButton
 
 // @screenshot *: 360x120 120
-

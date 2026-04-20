@@ -24,4 +24,3 @@ const HoverDefaultVariant: Component = () => (
 export default HoverDefaultVariant
 
 // @screenshot *: 360x120 120
-

@@ -11,4 +11,3 @@ const SolidSuccessButton: Component = () => (
 export default SolidSuccessButton
 
 // @screenshot *: 360x120 120
-

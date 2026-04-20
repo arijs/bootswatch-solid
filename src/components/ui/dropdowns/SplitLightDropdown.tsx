@@ -41,4 +41,3 @@ const SplitLightDropdown: Component = () => (
 export default SplitLightDropdown
 
 // @screenshot *: 360x120 120
-

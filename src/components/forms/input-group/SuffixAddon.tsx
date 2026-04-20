@@ -20,4 +20,3 @@ const SuffixAddon: Component = () => (
 export default SuffixAddon
 
 // @screenshot *: 360x120 120
-

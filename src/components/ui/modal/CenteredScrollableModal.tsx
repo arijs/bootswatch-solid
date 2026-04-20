@@ -78,5 +78,4 @@ const CenteredScrollableModal: Component = () => (
 export default CenteredScrollableModal
 
 // @screenshot *: 360x120 120
-// @screenshot bootstrap/opened-modal: 360x687 687
-
+// @screenshot */opened-modal: 360x687 687

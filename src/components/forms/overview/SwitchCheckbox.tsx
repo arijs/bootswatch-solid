@@ -21,4 +21,3 @@ const SwitchCheckbox: Component = () => (
 export default SwitchCheckbox
 
 // @screenshot *: 360x120 120
-

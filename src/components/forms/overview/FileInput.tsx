@@ -16,4 +16,3 @@ const FileInput: Component = () => (
 export default FileInput
 
 // @screenshot *: 360x120 120
-

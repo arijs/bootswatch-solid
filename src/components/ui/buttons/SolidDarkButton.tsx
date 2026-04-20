@@ -11,4 +11,3 @@ const SolidDarkButton: Component = () => (
 export default SolidDarkButton
 
 // @screenshot *: 360x120 120
-

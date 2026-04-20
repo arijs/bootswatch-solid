@@ -31,4 +31,3 @@ const DisabledFieldset: Component = () => (
 export default DisabledFieldset
 
 // @screenshot *: 360x172 172
-

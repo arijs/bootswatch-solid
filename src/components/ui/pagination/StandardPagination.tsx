@@ -52,4 +52,3 @@ const StandardPagination: Component = () => (
 export default StandardPagination
 
 // @screenshot *: 360x120 120
-

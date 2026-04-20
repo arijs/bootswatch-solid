@@ -37,4 +37,3 @@ const SmallBordered: Component = () => (
 export default SmallBordered
 
 // @screenshot *: 360x133 133
-

@@ -30,4 +30,3 @@ const ListCard: Component = () => (
 export default ListCard
 
 // @screenshot *: 360x318 318
-

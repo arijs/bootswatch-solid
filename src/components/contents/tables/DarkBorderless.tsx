@@ -37,4 +37,3 @@ const DarkBorderless: Component = () => (
 export default DarkBorderless
 
 // @screenshot *: 360x160 160
-

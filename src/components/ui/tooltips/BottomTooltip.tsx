@@ -22,4 +22,3 @@ const BottomTooltip: Component = () => (
 export default BottomTooltip
 
 // @screenshot *: 360x256 256
-

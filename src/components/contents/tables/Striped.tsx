@@ -37,4 +37,3 @@ const Striped: Component = () => (
 export default Striped
 
 // @screenshot *: 360x164 164
-

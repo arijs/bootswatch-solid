@@ -40,4 +40,3 @@ const ButtonGroupExample: Component = () => (
 export default ButtonGroupExample
 
 // @screenshot *: 360x120 120
-

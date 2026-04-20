@@ -26,5 +26,4 @@ const FigureExample: Component = () => (
 
 export default FigureExample
 
-// @screenshot bootstrap: 360x297 373
-
+// @screenshot *: 360x297 373

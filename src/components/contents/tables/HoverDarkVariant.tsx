@@ -24,4 +24,3 @@ const HoverDarkVariant: Component = () => (
 export default HoverDarkVariant
 
 // @screenshot *: 360x120 120
-

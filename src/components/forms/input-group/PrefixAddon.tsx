@@ -20,4 +20,3 @@ const PrefixAddon: Component = () => (
 export default PrefixAddon
 
 // @screenshot *: 360x120 120
-

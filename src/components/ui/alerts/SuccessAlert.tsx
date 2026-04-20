@@ -17,4 +17,3 @@ const SuccessAlert: Component = () => (
 export default SuccessAlert
 
 // @screenshot *: 360x120 120
-

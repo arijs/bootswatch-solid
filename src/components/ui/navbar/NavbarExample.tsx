@@ -253,5 +253,4 @@ const NavbarExample: Component = () => (
 
 export default NavbarExample
 
-// @screenshot bootstrap: 360x160 236
-
+// @screenshot *: 360x160 236

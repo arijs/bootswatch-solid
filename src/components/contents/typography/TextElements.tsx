@@ -31,5 +31,4 @@ const TextElements: Component = () => (
 
 export default TextElements
 
-// @screenshot bootstrap: 360x120 378
-
+// @screenshot *: 360x378 378

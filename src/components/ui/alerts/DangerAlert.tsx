@@ -17,4 +17,3 @@ const DangerAlert: Component = () => (
 export default DangerAlert
 
 // @screenshot *: 360x120 120
-

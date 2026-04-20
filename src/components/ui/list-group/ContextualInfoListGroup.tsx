@@ -18,4 +18,3 @@ const ContextualInfoListGroup: Component = () => (
 export default ContextualInfoListGroup
 
 // @screenshot *: 360x120 120
-

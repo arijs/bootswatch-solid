@@ -24,4 +24,3 @@ const HoverInfoVariant: Component = () => (
 export default HoverInfoVariant
 
 // @screenshot *: 360x120 120
-

@@ -11,4 +11,3 @@ const GrowInfoSpinner: Component = () => (
 export default GrowInfoSpinner
 
 // @screenshot *: 360x120 120
-

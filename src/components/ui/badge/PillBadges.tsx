@@ -16,4 +16,3 @@ const PillBadges: Component = () => (
 export default PillBadges
 
 // @screenshot *: 360x120 120
-

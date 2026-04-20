@@ -22,4 +22,3 @@ const HtmlTooltip: Component = () => (
 export default HtmlTooltip
 
 // @screenshot *: 360x256 256
-

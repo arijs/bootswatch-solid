@@ -51,4 +51,3 @@ const EndDropdown: Component = () => (
 export default EndDropdown
 
 // @screenshot *: 360x120 120
-

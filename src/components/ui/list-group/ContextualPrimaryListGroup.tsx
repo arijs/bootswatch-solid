@@ -18,4 +18,3 @@ const ContextualPrimaryListGroup: Component = () => (
 export default ContextualPrimaryListGroup
 
 // @screenshot *: 360x120 120
-

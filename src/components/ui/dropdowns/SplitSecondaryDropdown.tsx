@@ -41,4 +41,3 @@ const SplitSecondaryDropdown: Component = () => (
 export default SplitSecondaryDropdown
 
 // @screenshot *: 360x120 120
-

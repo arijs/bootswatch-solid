@@ -17,4 +17,3 @@ const DarkAlert: Component = () => (
 export default DarkAlert
 
 // @screenshot *: 360x120 120
-

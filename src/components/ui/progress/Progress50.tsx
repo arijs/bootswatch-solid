@@ -11,4 +11,3 @@ const Progress50: Component = () => (
 export default Progress50
 
 // @screenshot *: 360x120 120
-

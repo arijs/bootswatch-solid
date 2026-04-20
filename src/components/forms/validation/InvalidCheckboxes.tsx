@@ -41,4 +41,3 @@ const InvalidCheckboxes: Component = () => (
 export default InvalidCheckboxes
 
 // @screenshot *: 360x134 134
-

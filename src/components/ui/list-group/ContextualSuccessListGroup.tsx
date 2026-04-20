@@ -18,4 +18,3 @@ const ContextualSuccessListGroup: Component = () => (
 export default ContextualSuccessListGroup
 
 // @screenshot *: 360x120 120
-

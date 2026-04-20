@@ -11,4 +11,3 @@ const OutlineSuccessButton: Component = () => (
 export default OutlineSuccessButton
 
 // @screenshot *: 360x120 120
-

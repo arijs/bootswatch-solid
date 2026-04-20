@@ -35,4 +35,3 @@ const ImageTopCard: Component = () => (
 export default ImageTopCard
 
 // @screenshot *: 360x372 372
-

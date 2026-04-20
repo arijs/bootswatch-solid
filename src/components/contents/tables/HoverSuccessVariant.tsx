@@ -24,4 +24,3 @@ const HoverSuccessVariant: Component = () => (
 export default HoverSuccessVariant
 
 // @screenshot *: 360x120 120
-

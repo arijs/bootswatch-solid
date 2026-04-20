@@ -13,4 +13,3 @@ const InlineList: Component = () => (
 export default InlineList
 
 // @screenshot *: 360x120 120
-

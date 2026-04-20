@@ -11,4 +11,3 @@ const OutlineWarningButton: Component = () => (
 export default OutlineWarningButton
 
 // @screenshot *: 360x120 120
-

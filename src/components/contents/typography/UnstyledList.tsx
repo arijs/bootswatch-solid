@@ -23,4 +23,3 @@ const UnstyledList: Component = () => (
 export default UnstyledList
 
 // @screenshot *: 360x240 240
-

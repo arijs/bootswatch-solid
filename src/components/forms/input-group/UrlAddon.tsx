@@ -22,4 +22,3 @@ const UrlAddon: Component = () => (
 export default UrlAddon
 
 // @screenshot *: 360x120 120
-

@@ -18,4 +18,3 @@ const ContextualLightListGroup: Component = () => (
 export default ContextualLightListGroup
 
 // @screenshot *: 360x120 120
-

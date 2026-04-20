@@ -61,5 +61,4 @@ const StaticBackdropModal: Component = () => (
 export default StaticBackdropModal
 
 // @screenshot *: 360x120 120
-// @screenshot bootstrap/opened-modal: 360x576 576
-
+// @screenshot */opened-modal: 360x576 576

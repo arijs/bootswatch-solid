@@ -12,4 +12,3 @@ const TextareaAddon: Component = () => (
 export default TextareaAddon
 
 // @screenshot *: 360x120 120
-

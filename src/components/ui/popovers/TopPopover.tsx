@@ -23,4 +23,3 @@ const TopPopover: Component = () => (
 export default TopPopover
 
 // @screenshot *: 360x256 256
-

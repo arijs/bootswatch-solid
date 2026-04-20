@@ -36,4 +36,3 @@ const ValidNames: Component = () => (
 export default ValidNames
 
 // @screenshot *: 360x222 222
-

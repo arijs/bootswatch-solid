@@ -11,4 +11,3 @@ const OutlineLightButton: Component = () => (
 export default OutlineLightButton
 
 // @screenshot *: 360x120 120
-

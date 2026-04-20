@@ -11,4 +11,3 @@ const SolidDangerButton: Component = () => (
 export default SolidDangerButton
 
 // @screenshot *: 360x120 120
-

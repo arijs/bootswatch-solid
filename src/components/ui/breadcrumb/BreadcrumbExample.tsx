@@ -27,4 +27,3 @@ const BreadcrumbExample: Component = () => (
 export default BreadcrumbExample
 
 // @screenshot *: 360x120 120
-

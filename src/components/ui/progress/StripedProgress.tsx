@@ -15,4 +15,3 @@ const StripedProgress: Component = () => (
 export default StripedProgress
 
 // @screenshot *: 360x120 120
-

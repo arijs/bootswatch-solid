@@ -11,4 +11,3 @@ const SolidLinkButton: Component = () => (
 export default SolidLinkButton
 
 // @screenshot *: 360x120 120
-

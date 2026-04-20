@@ -11,4 +11,3 @@ const SolidInfoButton: Component = () => (
 export default SolidInfoButton
 
 // @screenshot *: 360x120 120
-

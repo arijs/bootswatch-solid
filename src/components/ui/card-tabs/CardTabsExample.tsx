@@ -49,5 +49,4 @@ const CardTabsExample: Component = () => (
 
 export default CardTabsExample
 
-// @screenshot bootstrap: 360x242 294
-
+// @screenshot *: 360x242 294

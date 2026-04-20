@@ -45,4 +45,3 @@ const PillNav: Component = () => (
 export default PillNav
 
 // @screenshot *: 360x120 120
-

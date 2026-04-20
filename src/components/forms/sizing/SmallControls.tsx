@@ -31,4 +31,3 @@ const SmallControls: Component = () => (
 export default SmallControls
 
 // @screenshot *: 360x125 125
-

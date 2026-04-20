@@ -11,4 +11,3 @@ const LargeButton: Component = () => (
 export default LargeButton
 
 // @screenshot *: 360x120 120
-

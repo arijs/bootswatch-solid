@@ -13,4 +13,3 @@ const CurrencyAddon: Component = () => (
 export default CurrencyAddon
 
 // @screenshot *: 360x120 120
-

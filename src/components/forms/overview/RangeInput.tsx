@@ -23,4 +23,3 @@ const RangeInput: Component = () => (
 export default RangeInput
 
 // @screenshot *: 360x120 120
-

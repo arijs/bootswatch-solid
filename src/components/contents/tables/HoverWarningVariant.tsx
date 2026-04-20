@@ -24,4 +24,3 @@ const HoverWarningVariant: Component = () => (
 export default HoverWarningVariant
 
 // @screenshot *: 360x120 120
-

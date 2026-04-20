@@ -11,4 +11,3 @@ const OutlineDarkButton: Component = () => (
 export default OutlineDarkButton
 
 // @screenshot *: 360x120 120
-

@@ -48,4 +48,3 @@ const LargePagination: Component = () => (
 export default LargePagination
 
 // @screenshot *: 360x120 120
-

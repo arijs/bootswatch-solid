@@ -11,4 +11,3 @@ const GrowDarkSpinner: Component = () => (
 export default GrowDarkSpinner
 
 // @screenshot *: 360x120 120
-

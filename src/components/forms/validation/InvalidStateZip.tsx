@@ -34,4 +34,3 @@ const InvalidStateZip: Component = () => (
 export default InvalidStateZip
 
 // @screenshot *: 360x222 222
-

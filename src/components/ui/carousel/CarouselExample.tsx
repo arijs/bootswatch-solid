@@ -117,5 +117,4 @@ const CarouselExample: Component = () => (
 
 export default CarouselExample
 
-// @screenshot bootstrap: 360x400 476
-
+// @screenshot *: 360x400 476

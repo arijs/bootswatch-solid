@@ -19,4 +19,3 @@ const BasicPopover: Component = () => (
 export default BasicPopover
 
 // @screenshot *: 360x120 120
-

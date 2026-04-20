@@ -40,5 +40,4 @@ const ValidCheckboxes: Component = () => (
 
 export default ValidCheckboxes
 
-// @screenshot bootstrap: 360x120 134
-
+// @screenshot *: 360x134 134

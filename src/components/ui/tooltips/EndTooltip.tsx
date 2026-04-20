@@ -22,4 +22,3 @@ const EndTooltip: Component = () => (
 export default EndTooltip
 
 // @screenshot *: 360x256 256
-

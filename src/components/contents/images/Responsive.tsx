@@ -23,4 +23,3 @@ const Responsive: Component = () => (
 export default Responsive
 
 // @screenshot *: 360x250 250
-

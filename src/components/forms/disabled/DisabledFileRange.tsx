@@ -30,4 +30,3 @@ const DisabledFileRange: Component = () => (
 export default DisabledFileRange
 
 // @screenshot *: 360x148 148
-

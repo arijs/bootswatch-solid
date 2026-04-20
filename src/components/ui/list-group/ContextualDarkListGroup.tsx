@@ -18,4 +18,3 @@ const ContextualDarkListGroup: Component = () => (
 export default ContextualDarkListGroup
 
 // @screenshot *: 360x120 120
-

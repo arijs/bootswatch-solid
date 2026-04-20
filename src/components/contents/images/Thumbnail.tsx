@@ -26,4 +26,3 @@ const Thumbnail: Component = () => (
 export default Thumbnail
 
 // @screenshot *: 360x200 200
-

@@ -17,4 +17,3 @@ const DefaultListGroup: Component = () => (
 export default DefaultListGroup
 
 // @screenshot *: 360x206 206
-

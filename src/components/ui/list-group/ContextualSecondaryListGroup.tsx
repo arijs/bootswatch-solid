@@ -18,4 +18,3 @@ const ContextualSecondaryListGroup: Component = () => (
 export default ContextualSecondaryListGroup
 
 // @screenshot *: 360x120 120
-

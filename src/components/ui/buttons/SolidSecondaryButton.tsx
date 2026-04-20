@@ -11,4 +11,3 @@ const SolidSecondaryButton: Component = () => (
 export default SolidSecondaryButton
 
 // @screenshot *: 360x120 120
-

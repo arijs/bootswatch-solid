@@ -11,4 +11,3 @@ const OutlineInfoButton: Component = () => (
 export default OutlineInfoButton
 
 // @screenshot *: 360x120 120
-

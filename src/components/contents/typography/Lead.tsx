@@ -9,4 +9,3 @@ const Lead: Component = () => (
 export default Lead
 
 // @screenshot *: 360x120 120
-

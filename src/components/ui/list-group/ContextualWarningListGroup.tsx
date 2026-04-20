@@ -18,4 +18,3 @@ const ContextualWarningListGroup: Component = () => (
 export default ContextualWarningListGroup
 
 // @screenshot *: 360x120 120
-
