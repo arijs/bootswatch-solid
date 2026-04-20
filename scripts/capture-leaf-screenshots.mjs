@@ -16,6 +16,7 @@ const MAX_HEIGHT = 1800
 const TARGET_PREFIXES = ['/contents', '/forms', '/ui']
 const MAX_ATTEMPTS_PER_SCREENSHOT = 3
 const RESTART_BROWSER_EVERY = 120
+const ZERO_HEIGHT_RETRY_DELAY = 2000
 
 const args = process.argv.slice(2)
 const SKIP_EXISTING = args.includes('--skip-existing')
@@ -350,6 +351,14 @@ function parseDirectivesFromLines(lines) {
 	return directives
 }
 
+function stripTrailingBlankLines(lines) {
+	const normalized = [...lines]
+	while (normalized.length > 0 && normalized[normalized.length - 1].trim() === '') {
+		normalized.pop()
+	}
+	return normalized
+}
+
 function selectHeightFromDirective(directive, requestedWidth) {
 	const sortedMappings = [...directive.widthMappings].sort((a, b) => a.width - b.width)
 	const selected = sortedMappings.find((mapping) => mapping.width >= requestedWidth)
@@ -516,8 +525,8 @@ function clampHeight(height) {
 	return Math.max(MIN_HEIGHT, Math.min(MAX_HEIGHT, Math.ceil(height)))
 }
 
-async function measureContentHeight(page) {
-	const measured = await page.evaluate(() => {
+async function measureRawContentHeight(page) {
+	return page.evaluate(() => {
 		const root = document.querySelector('#root')
 		if (!root) return 0
 
@@ -547,7 +556,22 @@ async function measureContentHeight(page) {
 		const contentHeight = Math.ceil(maxBottom - minTop)
 		return Math.max(0, contentHeight)
 	})
-	return clampHeight(measured)
+}
+
+async function measureContentHeight(page) {
+	let rawHeight = await measureRawContentHeight(page)
+
+	if (rawHeight <= 0) {
+		console.warn(`Content height is zero — waiting ${ZERO_HEIGHT_RETRY_DELAY}ms and retrying...`)
+		await delay(ZERO_HEIGHT_RETRY_DELAY)
+		rawHeight = await measureRawContentHeight(page)
+	}
+
+	if (rawHeight <= 0) {
+		throw new Error('Content height is zero after retry: no visible content was rendered')
+	}
+
+	return clampHeight(rawHeight)
 }
 
 function buildStaticScenarios(leafRoutes) {
@@ -672,7 +696,7 @@ async function loadComponentModel(filePath, cache) {
 	if (cache.has(filePath)) return cache.get(filePath)
 	const source = await readFile(filePath, 'utf8')
 	const newline = source.includes('\r\n') ? '\r\n' : '\n'
-	const lines = source.split(/\r?\n/)
+	const lines = stripTrailingBlankLines(source.split(/\r?\n/))
 	const directives = parseDirectivesFromLines(lines)
 	const model = {
 		filePath,
@@ -794,9 +818,13 @@ function canonicalizeWritebackTheme(model, update) {
 		return { theme: '*', promoted: false, reason: 'empty-component' }
 	}
 
-	const hasWildcardDirective = model.directives.some((directive) => directive.theme === '*')
-	if (hasWildcardDirective) {
-		return { theme: update.theme, promoted: false, reason: 'wildcard-exists' }
+	const wildcardForState = findDirective(model, '*', update.state)
+	if (wildcardForState) {
+		const wildcardHeight = selectHeightFromDirective(wildcardForState, update.width)
+		if (wildcardHeight === null || wildcardHeight === update.height) {
+			return { theme: '*', promoted: false, reason: 'wildcard-covers-state' }
+		}
+		return { theme: update.theme, promoted: false, reason: 'wildcard-state-override' }
 	}
 
 	const targetDirective =
@@ -885,7 +913,8 @@ async function persistComponentModels(cache) {
 	const modified = []
 	for (const model of cache.values()) {
 		if (!model.dirty) continue
-		const output = `${model.lines.join(model.newline)}${model.newline}`
+		const normalizedLines = stripTrailingBlankLines(model.lines)
+		const output = `${normalizedLines.join(model.newline)}${model.newline}`
 		await writeFile(model.filePath, output, 'utf8')
 		modified.push(model.filePath)
 	}
@@ -954,6 +983,25 @@ async function applyWritebackQueue(writebackQueue, componentCache) {
 				update.width,
 				update.height,
 			)
+
+			if (canonical.theme === '*' && update.theme !== '*') {
+				const wildcardDirective = findDirective(model, '*', update.state)
+				const themeDirective = findDirective(model, update.theme, update.state)
+				if (wildcardDirective && themeDirective) {
+					const wildcardSignature = directiveValuesSignature(
+						wildcardDirective.widthMappings,
+						wildcardDirective.fallbacks,
+					)
+					const themeSignature = directiveValuesSignature(
+						themeDirective.widthMappings,
+						themeDirective.fallbacks,
+					)
+					if (wildcardSignature === themeSignature) {
+						removeDirective(model, themeDirective)
+					}
+				}
+			}
+
 			results.push({
 				filePath,
 				theme: canonical.theme,

@@ -220,6 +220,10 @@ separate state directive. If one already exists, it is removed.
 Writeback preserves the file's original line endings (`\r\n` or `\n`).
 Non-directive lines are never modified.
 
+On every writeback pass, trailing blank lines are stripped from the file and
+exactly one final newline is written, preventing blank-line accumulation across
+repeated runs.
+
 ---
 
 ## Interactive states
