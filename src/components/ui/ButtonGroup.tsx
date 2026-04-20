@@ -48,3 +48,5 @@ const ButtonGroup: Component = () => (
 )
 
 export default ButtonGroup
+
+// @screenshot bootstrap: 360x120 120

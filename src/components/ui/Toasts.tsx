@@ -53,3 +53,5 @@ const Toasts: Component = () => (
 )
 
 export default Toasts
+
+// @screenshot bootstrap: 360x257 257

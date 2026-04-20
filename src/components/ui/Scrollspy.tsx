@@ -120,3 +120,5 @@ const Scrollspy: Component = () => (
 )
 
 export default Scrollspy
+
+// @screenshot bootstrap: 360x1629 1629

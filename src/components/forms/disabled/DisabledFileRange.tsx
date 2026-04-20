@@ -28,3 +28,5 @@ const DisabledFileRange: Component = () => (
 )
 
 export default DisabledFileRange
+
+// @screenshot bootstrap: 360x148 148

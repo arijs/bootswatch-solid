@@ -29,3 +29,5 @@ const DisabledFieldset: Component = () => (
 )
 
 export default DisabledFieldset
+
+// @screenshot bootstrap: 360x172 172

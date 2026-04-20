@@ -35,3 +35,5 @@ const SmallBordered: Component = () => (
 )
 
 export default SmallBordered
+
+// @screenshot bootstrap: 360x133 133

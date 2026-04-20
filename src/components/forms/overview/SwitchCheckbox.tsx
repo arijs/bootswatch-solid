@@ -19,3 +19,6 @@ const SwitchCheckbox: Component = () => (
 )
 
 export default SwitchCheckbox
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/focus-switch: 360x120 120

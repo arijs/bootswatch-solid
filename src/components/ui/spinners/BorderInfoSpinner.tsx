@@ -9,3 +9,5 @@ const BorderInfoSpinner: Component = () => (
 )
 
 export default BorderInfoSpinner
+
+// @screenshot bootstrap: 360x120 120

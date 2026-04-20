@@ -49,3 +49,5 @@ const EndDropdown: Component = () => (
 )
 
 export default EndDropdown
+
+// @screenshot bootstrap: 360x120 120

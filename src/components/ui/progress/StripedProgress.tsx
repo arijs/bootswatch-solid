@@ -13,3 +13,5 @@ const StripedProgress: Component = () => (
 )
 
 export default StripedProgress
+
+// @screenshot bootstrap: 360x120 120

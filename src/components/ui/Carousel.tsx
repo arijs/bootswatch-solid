@@ -126,3 +126,5 @@ const Carousel: Component = () => (
 )
 
 export default Carousel
+
+// @screenshot bootstrap: 360x476 476

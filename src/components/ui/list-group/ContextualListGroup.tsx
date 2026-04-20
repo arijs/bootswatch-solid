@@ -81,3 +81,5 @@ const ContextualListGroup: Component = () => (
 )
 
 export default ContextualListGroup
+
+// @screenshot bootstrap: 360x370 370

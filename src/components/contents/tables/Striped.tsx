@@ -35,3 +35,5 @@ const Striped: Component = () => (
 )
 
 export default Striped
+
+// @screenshot bootstrap: 360x164 164

@@ -15,3 +15,5 @@ const SecondaryAlert: Component = () => (
 )
 
 export default SecondaryAlert
+
+// @screenshot bootstrap: 360x120 120

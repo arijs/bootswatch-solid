@@ -87,9 +87,25 @@ import ButtonGroup from './components/ui/ButtonGroup'
 import Buttons from './components/ui/Buttons'
 import HeadingBadges from './components/ui/badge/HeadingBadges'
 import PillBadges from './components/ui/badge/PillBadges'
-import ButtonSizes from './components/ui/buttons/ButtonSizes'
-import OutlineButtons from './components/ui/buttons/OutlineButtons'
-import SolidButtons from './components/ui/buttons/SolidButtons'
+import LargeButton from './components/ui/buttons/LargeButton'
+import OutlineDangerButton from './components/ui/buttons/OutlineDangerButton'
+import OutlineDarkButton from './components/ui/buttons/OutlineDarkButton'
+import OutlineInfoButton from './components/ui/buttons/OutlineInfoButton'
+import OutlineLightButton from './components/ui/buttons/OutlineLightButton'
+import OutlinePrimaryButton from './components/ui/buttons/OutlinePrimaryButton'
+import OutlineSecondaryButton from './components/ui/buttons/OutlineSecondaryButton'
+import OutlineSuccessButton from './components/ui/buttons/OutlineSuccessButton'
+import OutlineWarningButton from './components/ui/buttons/OutlineWarningButton'
+import SmallButton from './components/ui/buttons/SmallButton'
+import SolidDangerButton from './components/ui/buttons/SolidDangerButton'
+import SolidDarkButton from './components/ui/buttons/SolidDarkButton'
+import SolidInfoButton from './components/ui/buttons/SolidInfoButton'
+import SolidLightButton from './components/ui/buttons/SolidLightButton'
+import SolidLinkButton from './components/ui/buttons/SolidLinkButton'
+import SolidPrimaryButton from './components/ui/buttons/SolidPrimaryButton'
+import SolidSecondaryButton from './components/ui/buttons/SolidSecondaryButton'
+import SolidSuccessButton from './components/ui/buttons/SolidSuccessButton'
+import SolidWarningButton from './components/ui/buttons/SolidWarningButton'
 import Card from './components/ui/Card'
 import CardTabs from './components/ui/CardTabs'
 import Carousel from './components/ui/Carousel'
@@ -273,9 +289,28 @@ render(
 			<Route path="/ui/breadcrumb" component={Breadcrumb} />
 			<Route path="/ui/button-group" component={ButtonGroup} />
 			<Route path="/ui/buttons" component={Buttons} />
-			<Route path="/ui/buttons/solid-buttons" component={SolidButtons} />
-			<Route path="/ui/buttons/outline-buttons" component={OutlineButtons} />
-			<Route path="/ui/buttons/button-sizes" component={ButtonSizes} />
+			<Route path="/ui/buttons/solid-primary-button" component={SolidPrimaryButton} />
+			<Route path="/ui/buttons/solid-secondary-button" component={SolidSecondaryButton} />
+			<Route path="/ui/buttons/solid-success-button" component={SolidSuccessButton} />
+			<Route path="/ui/buttons/solid-danger-button" component={SolidDangerButton} />
+			<Route path="/ui/buttons/solid-warning-button" component={SolidWarningButton} />
+			<Route path="/ui/buttons/solid-info-button" component={SolidInfoButton} />
+			<Route path="/ui/buttons/solid-light-button" component={SolidLightButton} />
+			<Route path="/ui/buttons/solid-dark-button" component={SolidDarkButton} />
+			<Route path="/ui/buttons/solid-link-button" component={SolidLinkButton} />
+			<Route path="/ui/buttons/outline-primary-button" component={OutlinePrimaryButton} />
+			<Route
+				path="/ui/buttons/outline-secondary-button"
+				component={OutlineSecondaryButton}
+			/>
+			<Route path="/ui/buttons/outline-success-button" component={OutlineSuccessButton} />
+			<Route path="/ui/buttons/outline-danger-button" component={OutlineDangerButton} />
+			<Route path="/ui/buttons/outline-warning-button" component={OutlineWarningButton} />
+			<Route path="/ui/buttons/outline-info-button" component={OutlineInfoButton} />
+			<Route path="/ui/buttons/outline-light-button" component={OutlineLightButton} />
+			<Route path="/ui/buttons/outline-dark-button" component={OutlineDarkButton} />
+			<Route path="/ui/buttons/small-button" component={SmallButton} />
+			<Route path="/ui/buttons/large-button" component={LargeButton} />
 			<Route path="/ui/card" component={Card} />
 			<Route path="/ui/card/image-top-card" component={ImageTopCard} />
 			<Route path="/ui/card/featured-card" component={FeaturedCard} />

@@ -39,3 +39,5 @@ const SplitWarningDropdown: Component = () => (
 )
 
 export default SplitWarningDropdown
+
+// @screenshot bootstrap: 360x120 120

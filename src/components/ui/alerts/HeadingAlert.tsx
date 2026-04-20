@@ -18,3 +18,5 @@ const HeadingAlert: Component = () => (
 )
 
 export default HeadingAlert
+
+// @screenshot bootstrap: 360x293 293

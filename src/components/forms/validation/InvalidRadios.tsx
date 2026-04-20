@@ -41,3 +41,5 @@ const InvalidRadios: Component = () => (
 )
 
 export default InvalidRadios
+
+// @screenshot bootstrap: 360x134 134

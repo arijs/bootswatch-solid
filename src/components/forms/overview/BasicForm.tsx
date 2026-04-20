@@ -28,3 +28,7 @@ const BasicForm: Component = () => (
 )
 
 export default BasicForm
+
+// @screenshot bootstrap: 360x181 181
+// @screenshot bootstrap/focus-text-input: 360x181 181
+// @screenshot bootstrap/typed-text-input: 360x181 181

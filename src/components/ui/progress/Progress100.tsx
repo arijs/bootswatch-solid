@@ -9,3 +9,5 @@ const Progress100: Component = () => (
 )
 
 export default Progress100
+
+// @screenshot bootstrap: 360x120 120

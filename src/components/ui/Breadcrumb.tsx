@@ -35,3 +35,5 @@ const Breadcrumb: Component = () => (
 )
 
 export default Breadcrumb
+
+// @screenshot bootstrap: 360x120 120

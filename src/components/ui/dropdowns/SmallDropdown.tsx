@@ -49,3 +49,5 @@ const SmallDropdown: Component = () => (
 )
 
 export default SmallDropdown
+
+// @screenshot bootstrap: 360x120 120

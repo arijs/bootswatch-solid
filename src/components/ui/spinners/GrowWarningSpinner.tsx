@@ -9,3 +9,5 @@ const GrowWarningSpinner: Component = () => (
 )
 
 export default GrowWarningSpinner
+
+// @screenshot bootstrap: 360x120 120

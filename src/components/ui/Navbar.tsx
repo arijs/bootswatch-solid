@@ -262,3 +262,5 @@ const Navbar: Component = () => (
 )
 
 export default Navbar
+
+// @screenshot bootstrap: 360x236 236

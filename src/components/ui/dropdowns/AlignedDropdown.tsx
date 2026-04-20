@@ -48,3 +48,5 @@ const AlignedDropdown: Component = () => (
 )
 
 export default AlignedDropdown
+
+// @screenshot bootstrap: 360x120 120

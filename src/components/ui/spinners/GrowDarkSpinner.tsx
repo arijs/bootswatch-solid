@@ -9,3 +9,5 @@ const GrowDarkSpinner: Component = () => (
 )
 
 export default GrowDarkSpinner
+
+// @screenshot bootstrap: 360x120 120

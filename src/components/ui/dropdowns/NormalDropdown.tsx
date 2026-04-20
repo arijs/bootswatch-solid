@@ -49,3 +49,6 @@ const NormalDropdown: Component = () => (
 )
 
 export default NormalDropdown
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/hover-dropdown: 360x120 120

@@ -38,3 +38,5 @@ const InvalidUsernameCity: Component = () => (
 )
 
 export default InvalidUsernameCity
+
+// @screenshot bootstrap: 360x222 222

@@ -52,3 +52,6 @@ const DefaultModal: Component = () => (
 )
 
 export default DefaultModal
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/opened-modal: 360x576 576

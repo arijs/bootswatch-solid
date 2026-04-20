@@ -16,3 +16,6 @@ const ContextualDarkListGroup: Component = () => (
 )
 
 export default ContextualDarkListGroup
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/hover-list-group: 360x120 120

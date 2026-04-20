@@ -15,3 +15,5 @@ const DefaultListGroup: Component = () => (
 )
 
 export default DefaultListGroup
+
+// @screenshot bootstrap: 360x206 206

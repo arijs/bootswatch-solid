@@ -9,3 +9,5 @@ const GrowSecondarySpinner: Component = () => (
 )
 
 export default GrowSecondarySpinner
+
+// @screenshot bootstrap: 360x120 120

@@ -35,3 +35,5 @@ const Figures: Component = () => (
 )
 
 export default Figures
+
+// @screenshot bootstrap: 360x373 373

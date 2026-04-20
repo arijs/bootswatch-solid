@@ -20,3 +20,6 @@ const HtmlTooltip: Component = () => (
 )
 
 export default HtmlTooltip
+
+// @screenshot bootstrap: 360x256 256
+// @screenshot bootstrap/opened-tooltip: 360x256 256

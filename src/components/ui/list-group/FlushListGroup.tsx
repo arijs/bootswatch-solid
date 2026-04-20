@@ -13,3 +13,5 @@ const FlushListGroup: Component = () => (
 )
 
 export default FlushListGroup
+
+// @screenshot bootstrap: 360x204 204

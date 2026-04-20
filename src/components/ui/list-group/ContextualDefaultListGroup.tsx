@@ -16,3 +16,6 @@ const ContextualDefaultListGroup: Component = () => (
 )
 
 export default ContextualDefaultListGroup
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/hover-list-group: 360x120 120

@@ -22,3 +22,6 @@ const HoverWarningVariant: Component = () => (
 )
 
 export default HoverWarningVariant
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/hover-table-row: 360x120 120

@@ -12,3 +12,5 @@ const Heading: Component = () => (
 )
 
 export default Heading
+
+// @screenshot bootstrap: 360x199 199

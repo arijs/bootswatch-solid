@@ -17,3 +17,6 @@ const BasicPopover: Component = () => (
 )
 
 export default BasicPopover
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/opened-popover: 360x120 120

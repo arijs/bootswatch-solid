@@ -12,3 +12,5 @@ const Blockquote: Component = () => (
 )
 
 export default Blockquote
+
+// @screenshot bootstrap: 360x120 120

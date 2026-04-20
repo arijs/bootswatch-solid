@@ -35,3 +35,5 @@ const DarkBorderless: Component = () => (
 )
 
 export default DarkBorderless
+
+// @screenshot bootstrap: 360x160 160

@@ -7,3 +7,5 @@ const Lead: Component = () => (
 )
 
 export default Lead
+
+// @screenshot bootstrap: 360x120 120

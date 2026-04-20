@@ -46,3 +46,5 @@ const LargePagination: Component = () => (
 )
 
 export default LargePagination
+
+// @screenshot bootstrap: 360x120 120

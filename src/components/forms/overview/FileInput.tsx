@@ -14,3 +14,6 @@ const FileInput: Component = () => (
 )
 
 export default FileInput
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/focus-file-input: 360x120 120

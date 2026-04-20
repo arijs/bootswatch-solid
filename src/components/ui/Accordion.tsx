@@ -111,3 +111,5 @@ const Accordion: Component = () => (
 )
 
 export default Accordion
+
+// @screenshot bootstrap: 360x556 556

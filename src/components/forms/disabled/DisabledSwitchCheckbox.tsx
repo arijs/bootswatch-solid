@@ -20,3 +20,5 @@ const DisabledSwitchCheckbox: Component = () => (
 )
 
 export default DisabledSwitchCheckbox
+
+// @screenshot bootstrap: 360x120 120

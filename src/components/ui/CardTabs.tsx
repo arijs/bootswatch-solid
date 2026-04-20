@@ -58,3 +58,5 @@ const CardTabs: Component = () => (
 )
 
 export default CardTabs
+
+// @screenshot bootstrap: 360x294 294

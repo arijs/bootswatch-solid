@@ -32,3 +32,5 @@ const InvalidStateZip: Component = () => (
 )
 
 export default InvalidStateZip
+
+// @screenshot bootstrap: 360x222 222

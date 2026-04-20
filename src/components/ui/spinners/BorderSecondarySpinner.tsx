@@ -9,3 +9,5 @@ const BorderSecondarySpinner: Component = () => (
 )
 
 export default BorderSecondarySpinner
+
+// @screenshot bootstrap: 360x120 120

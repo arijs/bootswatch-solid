@@ -22,3 +22,6 @@ const HoverInfoVariant: Component = () => (
 )
 
 export default HoverInfoVariant
+
+// @screenshot bootstrap: 360x120 120
+// @screenshot bootstrap/hover-table-row: 360x120 120
