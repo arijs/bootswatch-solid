@@ -624,7 +624,12 @@ function formatDirective(theme, state, widthMappings, fallbacks) {
 	return `// @screenshot ${key}: ${values}`
 }
 
-function applyMeasurementToDirectiveValues(widthMappings, fallbacks, requestedWidth, measuredHeight) {
+function applyMeasurementToDirectiveValues(
+	widthMappings,
+	fallbacks,
+	requestedWidth,
+	measuredHeight,
+) {
 	const mappings = [...widthMappings].map((entry) => ({ ...entry }))
 	const fallbackValues = [...fallbacks]
 	const existingWidthIndex = mappings.findIndex((entry) => entry.width === requestedWidth)
@@ -696,9 +701,7 @@ function resolveStaticDirectiveForTheme(model, theme) {
 
 function removeDirective(model, targetDirective) {
 	if (!targetDirective) return false
-	const directiveIndex = model.directives.findIndex(
-		(directive) => directive === targetDirective,
-	)
+	const directiveIndex = model.directives.indexOf(targetDirective)
 	if (directiveIndex === -1) return false
 
 	const removedLineIndex = targetDirective.lineIndex
