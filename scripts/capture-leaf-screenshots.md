@@ -101,16 +101,17 @@ state folder and deletes any existing PNG files whose width matches
 `REQUESTED_WIDTH` but whose height differs from the current measured height.
 This keeps one canonical file per requested width in each route/state folder.
 
-Additionally, before processing captures for a theme, the script performs an
-aggressive prune of `screenshots/{theme-slug}`:
+Additionally, before processing captures for a theme, the script prunes
+orphaned files/folders according to the active filters:
 
-- It computes the mapped destination folders for that run from
-  `{route}/{state}` pairs.
-- It recursively deletes any file or directory that is not inside one of those
-  mapped folders.
-
-This keeps each theme folder aligned to the current scenario catalog and
-active filters.
+- Without `--route`, it performs an aggressive prune of
+  `screenshots/{theme-slug}`. It computes mapped destination folders from
+  `{route}/{state}` pairs and recursively deletes any file or directory not
+  inside those mapped folders.
+- With `--route`, pruning is **route-scoped**. Only the selected route folders
+  under `screenshots/{theme-slug}` are pruned, and only against the mapped
+  state folders for those selected routes. Other route folders in the same
+  theme are left untouched.
 
 During processing, progress logs are emitted as:
 
@@ -297,8 +298,8 @@ pnpm screenshots:capture --skip-existing
 Even in `--skip-existing` mode, stale same-width files with different heights
 in the target folder are still cleaned up.
 
-Theme-level pruning still runs in `--skip-existing` mode, removing any
-out-of-map files/folders inside each `screenshots/{theme}` directory.
+Pruning still runs in `--skip-existing` mode. With `--route`, it is limited to
+the selected route folders; otherwise it applies to the whole theme folder.
 
 Capture a single theme, preview writeback without touching files:
 

@@ -1171,11 +1171,38 @@ async function main() {
 				}),
 			)
 			const themeRootPath = path.join(ROOT, 'screenshots', themeSlug)
-			const pruneResult = await pruneThemeFolder(themeRootPath, mappedFolders)
-			if (pruneResult.deletedDirs > 0 || pruneResult.deletedFiles > 0) {
-				console.log(
-					`Pruned ${themeSlug}: deleted ${pruneResult.deletedDirs} folder(s), ${pruneResult.deletedFiles} file(s) outside mapped route/state folders.`,
-				)
+
+			if (ROUTE_FILTER) {
+				let totalDeletedDirs = 0
+				let totalDeletedFiles = 0
+				const filteredRoutePaths = [
+					...new Set(scenarios.map((scenario) => scenario.route.replace(/^\//, ''))),
+				]
+
+				for (const routePath of filteredRoutePaths) {
+					const routeRootPath = path.join(themeRootPath, routePath)
+					const mappedStatesForRoute = new Set(
+						scenarios
+							.filter((scenario) => scenario.route.replace(/^\//, '') === routePath)
+							.map((scenario) => getScenarioStateFolder(scenario.state)),
+					)
+					const pruneResult = await pruneThemeFolder(routeRootPath, mappedStatesForRoute)
+					totalDeletedDirs += pruneResult.deletedDirs
+					totalDeletedFiles += pruneResult.deletedFiles
+				}
+
+				if (totalDeletedDirs > 0 || totalDeletedFiles > 0) {
+					console.log(
+						`Pruned ${themeSlug} (route-scoped): deleted ${totalDeletedDirs} folder(s), ${totalDeletedFiles} file(s) outside mapped state folders for selected routes.`,
+					)
+				}
+			} else {
+				const pruneResult = await pruneThemeFolder(themeRootPath, mappedFolders)
+				if (pruneResult.deletedDirs > 0 || pruneResult.deletedFiles > 0) {
+					console.log(
+						`Pruned ${themeSlug}: deleted ${pruneResult.deletedDirs} folder(s), ${pruneResult.deletedFiles} file(s) outside mapped route/state folders.`,
+					)
+				}
 			}
 
 			for (const scenario of scenarios) {
