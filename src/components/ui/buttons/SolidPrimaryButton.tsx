@@ -11,5 +11,5 @@ const SolidPrimaryButton: Component = () => (
 export default SolidPrimaryButton
 
 // @screenshot *: 360x120 120
-// @screenshot bootstrap/hover-buttons: 360x120 120
+
 

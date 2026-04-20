@@ -145,6 +145,10 @@ Width mappings are evaluated in ascending order. The first mapping whose
 match, the first fallback is used. If no fallback exists either, the height
 falls through to runtime measurement.
 
+When rendering an interactive state, if no explicit `{theme}/{state}` directive
+matches, runtime resolution falls back to the static directive (`{theme}` or
+`*`) using the normal precedence rules.
+
 ### Examples
 
 ```ts
@@ -163,13 +167,25 @@ falls through to runtime measurement.
 
 ### Writeback rules
 
+Before applying any create/update action, writeback first **canonicalizes** the
+theme key:
+
+- If the component file has no `@screenshot` directives yet, writeback uses
+  `*` as the theme key for the new directive.
+- If the component file has no wildcard (`*`) directives, and at least one
+  named-theme directive for the same state already has directive values exactly
+  equal to the post-update values (same width mappings and fallbacks), that
+  matching directive is promoted to `*` and writeback targets `*`.
+
+After canonicalization, the standard create/update rules are applied:
+
 At the end of each run, for every (component file, theme, state) combination
 that was measured:
 
 **Directive missing** — a new directive is appended at the end of the file:
 
 ```
-// @screenshot {theme}[/{state}]: {width}x{measuredHeight} {measuredHeight}
+// @screenshot {canonical-theme}[/{state}]: {width}x{measuredHeight} {measuredHeight}
 ```
 
 **Directive exists, exact width already present** — the height for that width
@@ -180,6 +196,11 @@ is inserted in ascending width order, before any fallback tokens. If the
 inserted width is now the largest width in the directive, the first fallback
 value is also updated to the measured height. If no fallback existed, one is
 appended.
+
+**Redundant state directive** — when writing a non-static state, if the
+resulting state directive values would be exactly equal to the resolved static
+directive values (same width mappings and fallbacks), writeback does not keep a
+separate state directive. If one already exists, it is removed.
 
 Writeback preserves the file's original line endings (`\r\n` or `\n`).
 Non-directive lines are never modified.

@@ -624,6 +624,140 @@ function formatDirective(theme, state, widthMappings, fallbacks) {
 	return `// @screenshot ${key}: ${values}`
 }
 
+function applyMeasurementToDirectiveValues(widthMappings, fallbacks, requestedWidth, measuredHeight) {
+	const mappings = [...widthMappings].map((entry) => ({ ...entry }))
+	const fallbackValues = [...fallbacks]
+	const existingWidthIndex = mappings.findIndex((entry) => entry.width === requestedWidth)
+
+	if (existingWidthIndex >= 0) {
+		mappings[existingWidthIndex] = { width: requestedWidth, height: measuredHeight }
+		return {
+			widthMappings: mappings,
+			fallbacks: fallbackValues,
+			action: 'updated-width',
+		}
+	}
+
+	mappings.push({ width: requestedWidth, height: measuredHeight })
+	mappings.sort((a, b) => a.width - b.width)
+	const insertedIsLargest =
+		mappings.length === 1 || requestedWidth >= mappings[mappings.length - 1].width
+	if (insertedIsLargest) {
+		if (fallbackValues.length > 0) {
+			fallbackValues[0] = measuredHeight
+		} else {
+			fallbackValues.push(measuredHeight)
+		}
+	}
+
+	return {
+		widthMappings: mappings,
+		fallbacks: fallbackValues,
+		action: 'inserted-width',
+	}
+}
+
+function directiveValuesSignature(widthMappings, fallbacks) {
+	const sortedMappings = [...widthMappings]
+		.sort((a, b) => a.width - b.width)
+		.map((entry) => `${entry.width}x${entry.height}`)
+		.join('|')
+	const fallbackSignature = [...fallbacks].map((value) => String(value)).join('|')
+	return `${sortedMappings}::${fallbackSignature}`
+}
+
+function computeNextDirectiveValues(directive, requestedWidth, measuredHeight) {
+	if (!directive) {
+		return applyMeasurementToDirectiveValues([], [], requestedWidth, measuredHeight)
+	}
+
+	return applyMeasurementToDirectiveValues(
+		directive.widthMappings,
+		directive.fallbacks,
+		requestedWidth,
+		measuredHeight,
+	)
+}
+
+function findDirective(model, theme, state) {
+	return (
+		model.directives.find(
+			(directive) => directive.theme === theme && directive.state === state,
+		) ?? null
+	)
+}
+
+function resolveStaticDirectiveForTheme(model, theme) {
+	const exact = findDirective(model, theme, null)
+	if (exact) return exact
+	if (theme !== '*') return findDirective(model, '*', null)
+	return null
+}
+
+function removeDirective(model, targetDirective) {
+	if (!targetDirective) return false
+	const directiveIndex = model.directives.findIndex(
+		(directive) => directive === targetDirective,
+	)
+	if (directiveIndex === -1) return false
+
+	const removedLineIndex = targetDirective.lineIndex
+	model.directives.splice(directiveIndex, 1)
+	model.lines.splice(removedLineIndex, 1)
+
+	for (const directive of model.directives) {
+		if (directive.lineIndex > removedLineIndex) {
+			directive.lineIndex -= 1
+		}
+	}
+
+	model.dirty = true
+	return true
+}
+
+function canonicalizeWritebackTheme(model, update) {
+	if (model.directives.length === 0) {
+		return { theme: '*', promoted: false, reason: 'empty-component' }
+	}
+
+	const hasWildcardDirective = model.directives.some((directive) => directive.theme === '*')
+	if (hasWildcardDirective) {
+		return { theme: update.theme, promoted: false, reason: 'wildcard-exists' }
+	}
+
+	const targetDirective =
+		model.directives.find(
+			(directive) => directive.theme === update.theme && directive.state === update.state,
+		) ?? null
+	const nextValues = computeNextDirectiveValues(targetDirective, update.width, update.height)
+	const nextSignature = directiveValuesSignature(nextValues.widthMappings, nextValues.fallbacks)
+
+	const matchingDirective = model.directives.find((directive) => {
+		if (directive.theme === '*') return false
+		if (directive.state !== update.state) return false
+		const signature = directiveValuesSignature(directive.widthMappings, directive.fallbacks)
+		return signature === nextSignature
+	})
+
+	if (!matchingDirective) {
+		return { theme: update.theme, promoted: false, reason: 'no-matching-values' }
+	}
+
+	if (matchingDirective.theme !== '*') {
+		matchingDirective.theme = '*'
+		model.lines[matchingDirective.lineIndex] = formatDirective(
+			matchingDirective.theme,
+			matchingDirective.state,
+			matchingDirective.widthMappings,
+			matchingDirective.fallbacks,
+		)
+		model.dirty = true
+		return { theme: '*', promoted: true, reason: 'promoted-matching-directive' }
+	}
+
+	return { theme: '*', promoted: false, reason: 'already-wildcard' }
+}
+
 function upsertDirectiveWithMeasurement(model, theme, state, requestedWidth, measuredHeight) {
 	const key = directiveKey(theme, state)
 	const directives = model.directives
@@ -653,32 +787,24 @@ function upsertDirectiveWithMeasurement(model, theme, state, requestedWidth, mea
 	}
 
 	const directive = directives[existingIndex]
-	const mappings = [...directive.widthMappings]
-	const fallbacks = [...directive.fallbacks]
-	const existingWidthIndex = mappings.findIndex((entry) => entry.width === requestedWidth)
+	const nextValues = applyMeasurementToDirectiveValues(
+		directive.widthMappings,
+		directive.fallbacks,
+		requestedWidth,
+		measuredHeight,
+	)
 
-	if (existingWidthIndex >= 0) {
-		mappings[existingWidthIndex] = { width: requestedWidth, height: measuredHeight }
-	} else {
-		mappings.push({ width: requestedWidth, height: measuredHeight })
-		mappings.sort((a, b) => a.width - b.width)
-		const insertedIsLargest =
-			mappings.length === 1 || requestedWidth >= mappings[mappings.length - 1].width
-		if (insertedIsLargest) {
-			if (fallbacks.length > 0) {
-				fallbacks[0] = measuredHeight
-			} else {
-				fallbacks.push(measuredHeight)
-			}
-		}
-	}
-
-	directive.widthMappings = mappings
-	directive.fallbacks = fallbacks
-	const formatted = formatDirective(directive.theme, directive.state, mappings, fallbacks)
+	directive.widthMappings = nextValues.widthMappings
+	directive.fallbacks = nextValues.fallbacks
+	const formatted = formatDirective(
+		directive.theme,
+		directive.state,
+		nextValues.widthMappings,
+		nextValues.fallbacks,
+	)
 	model.lines[directive.lineIndex] = formatted
 	model.dirty = true
-	return { action: existingWidthIndex >= 0 ? 'updated-width' : 'inserted-width' }
+	return { action: nextValues.action }
 }
 
 async function persistComponentModels(cache) {
@@ -711,17 +837,56 @@ async function applyWritebackQueue(writebackQueue, componentCache) {
 	for (const [filePath, updates] of writebackQueue.entries()) {
 		const model = await loadComponentModel(filePath, componentCache)
 		for (const update of updates.values()) {
+			const canonical = canonicalizeWritebackTheme(model, update)
+
+			if (update.state !== null) {
+				const stateDirective = findDirective(model, canonical.theme, update.state)
+				const nextStateValues = computeNextDirectiveValues(
+					stateDirective,
+					update.width,
+					update.height,
+				)
+				const staticDirective = resolveStaticDirectiveForTheme(model, canonical.theme)
+				const isRedundantToStatic =
+					staticDirective !== null &&
+					directiveValuesSignature(
+						nextStateValues.widthMappings,
+						nextStateValues.fallbacks,
+					) ===
+						directiveValuesSignature(
+							staticDirective.widthMappings,
+							staticDirective.fallbacks,
+						)
+
+				if (isRedundantToStatic) {
+					const removed = removeDirective(model, stateDirective)
+					results.push({
+						filePath,
+						theme: canonical.theme,
+						originalTheme: update.theme,
+						state: update.state,
+						canonicalReason: canonical.reason,
+						promoted: canonical.promoted,
+						action: removed ? 'removed-redundant-state' : 'skipped-redundant-state',
+					})
+					continue
+				}
+			}
+
 			const result = upsertDirectiveWithMeasurement(
 				model,
-				update.theme,
+				canonical.theme,
 				update.state,
 				update.width,
 				update.height,
 			)
 			results.push({
 				filePath,
-				theme: update.theme,
+				theme: canonical.theme,
+				originalTheme: update.theme,
 				state: update.state,
+				canonicalReason: canonical.reason,
+				promoted: canonical.promoted,
 				action: result.action,
 			})
 		}
