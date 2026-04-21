@@ -287,23 +287,39 @@ export async function extractScenarioCssArtifacts(page) {
 			return selectors
 		}
 
-		function selectorMatchesRoot(selector) {
+		function collectScenarioContainers() {
+			const containers = [root]
+			for (const forcedSelector of forcedScenarioSelectors) {
+				try {
+					for (const node of document.querySelectorAll(forcedSelector)) {
+						containers.push(node)
+					}
+				} catch {
+					// Ignore invalid selectors and continue extracting what we can.
+				}
+			}
+			return containers
+		}
+
+		const scenarioContainers = collectScenarioContainers()
+
+		function nodeIsInsideScenario(node) {
+			for (const container of scenarioContainers) {
+				if (node === container || container.contains(node)) return true
+			}
+			return false
+		}
+
+		function selectorMatchesScenario(selector) {
 			try {
 				const nodes = document.querySelectorAll(selector)
 				for (const node of nodes) {
-					if (node === root || root.contains(node)) return true
+					if (nodeIsInsideScenario(node)) return true
 				}
 				return false
 			} catch {
 				return false
 			}
-		}
-
-		function selectorMatchesForcedScenario(selector) {
-			for (const forcedSelector of forcedScenarioSelectors) {
-				if (selector.includes(forcedSelector)) return true
-			}
-			return false
 		}
 
 		function stripPseudoParts(selector) {
@@ -321,7 +337,7 @@ export async function extractScenarioCssArtifacts(page) {
 			if (!selectorHasPseudo(selector)) return false
 			const base = stripPseudoParts(selector)
 			if (!base || base === ',') return false
-			return selectorMatchesRoot(base)
+			return selectorMatchesScenario(base)
 		}
 
 		function extractAnimationNames(styleDeclaration) {
@@ -373,7 +389,7 @@ export async function extractScenarioCssArtifacts(page) {
 		function addUniqueRule(targetList, targetSet, cssText) {
 			const normalized = cssText
 				.trim()
-				.replace(/\{([^{}]*)\}/g, (match, body) => {
+				.replace(/\{([^{}]*)\}/g, (_, body) => {
 					const cleanedDeclarations = body
 						.split(';')
 						.map((declaration) => declaration.trim())
@@ -455,11 +471,7 @@ export async function extractScenarioCssArtifacts(page) {
 							includeGlobal = true
 							continue
 						}
-						if (selectorMatchesForcedScenario(selector)) {
-							includeScenario = true
-							continue
-						}
-						if (selectorMatchesRoot(selector) || selectorMatchesRelatedPseudo(selector)) {
+						if (selectorMatchesScenario(selector) || selectorMatchesRelatedPseudo(selector)) {
 							includeScenario = true
 						}
 					}

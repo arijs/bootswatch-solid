@@ -38,6 +38,11 @@ export function normalizeRelativePath(relPath) {
 	return relPath.split(path.sep).join('/')
 }
 
+function shouldPreserveThemeRootFile(relativePath) {
+	const normalized = normalizeRelativePath(relativePath)
+	return normalized === 'theme.css'
+}
+
 function isWithinMappedFolder(relativePath, mappedFolders) {
 	if (mappedFolders.size === 0) return false
 	const normalized = normalizeRelativePath(relativePath)
@@ -85,6 +90,9 @@ export async function pruneThemeFolder(themeRootPath, mappedFolders) {
 			}
 
 			if (!isWithinMappedFolder(relativePath, mappedFolders)) {
+				if (shouldPreserveThemeRootFile(relativePath)) {
+					continue
+				}
 				await unlink(absolutePath)
 				deletedFiles += 1
 			}

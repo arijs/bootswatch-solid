@@ -5,7 +5,7 @@ import { createSignal } from 'solid-js'
 export interface ThemeItem {
 	name: string
 	href: string
-	integrity: string
+	integrity: string | undefined
 }
 
 export const themeList: ThemeItem[] = [
@@ -146,35 +146,113 @@ export const themeList: ThemeItem[] = [
 	},
 ]
 
-const themeCssSel = `html > head > link[rel=stylesheet][href^="https://cdn.jsdelivr.net/"]`
-export function themeLinkMatch(el: Element, t: ThemeItem) {
-	return el.matches(themeCssSel) && el.getAttribute(`href`) === t.href
+type CssMode = 'cdn' | 'local'
+
+const globalThemeCssSel = `html > head > link[data-theme-css="global"]`
+const componentThemeCssSel = `html > head > link[data-theme-css="component"]`
+
+function slugifyThemeName(name: string) {
+	return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-')
 }
-export function themeBuildCssLink(t: ThemeItem) {
-	const link = document.createElement(`link`)
-	link.setAttribute(`rel`, `stylesheet`)
-	link.setAttribute(`crossorigin`, `anonymous`)
-	link.setAttribute(`integrity`, t.integrity)
-	link.setAttribute(`href`, t.href)
+
+function getCssMode(): CssMode {
+	const css = new URLSearchParams(window.location.search).get('css')
+	return css === 'local' ? 'local' : 'cdn'
+}
+
+function getLocalStateParam() {
+	const state = new URLSearchParams(window.location.search).get('state')?.trim()
+	return state || 'static'
+}
+
+function getLocalRoutePath() {
+	const raw = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '')
+	return raw
+}
+
+function resolveThemeHref(theme: ThemeItem, mode: CssMode) {
+	if (mode === 'cdn') return theme.href
+	return `/theme/${slugifyThemeName(theme.name)}/theme.css`
+}
+
+function resolveComponentHref(theme: ThemeItem) {
+	const routePath = getLocalRoutePath()
+	if (!routePath) return null
+	return `/theme/${slugifyThemeName(theme.name)}/${routePath}/${getLocalStateParam()}/style.css`
+}
+
+function removeComponentCssLink() {
+	const existing = document.querySelector(componentThemeCssSel)
+	existing?.parentElement?.removeChild(existing)
+}
+
+function ensureThemeCssLink(kind: 'global' | 'component') {
+	const selector = kind === 'global' ? globalThemeCssSel : componentThemeCssSel
+	const existing = document.querySelector(selector)
+	if (existing) return existing as HTMLLinkElement
+	const link = document.createElement('link')
+	link.setAttribute('rel', 'stylesheet')
+	link.setAttribute('data-theme-css', kind)
+	document.head.appendChild(link)
 	return link
 }
-export function themeGetCurrent(defaultTheme: ThemeItem) {
-	const allLinkCss = [...document.querySelectorAll(themeCssSel)]
-	const found = themeList.find((t) => allLinkCss.some((el) => themeLinkMatch(el, t)))
-	console.log(`logic/themes: find current theme`, allLinkCss, found)
-	if (!found) {
-		document.head.appendChild(themeBuildCssLink(defaultTheme))
-		return defaultTheme
+
+export function themeLinkMatch(el: Element, t: ThemeItem) {
+	const mode = getCssMode()
+	return el.matches(globalThemeCssSel) && el.getAttribute('href') === resolveThemeHref(t, mode)
+}
+
+export function themeBuildCssLink(t: ThemeItem) {
+	const link = document.createElement(`link`)
+	link.setAttribute('rel', 'stylesheet')
+	link.setAttribute('data-theme-css', 'global')
+	themeApplyGlobalLink(link, t)
+	return link
+}
+
+function themeApplyGlobalLink(link: HTMLLinkElement, theme: ThemeItem) {
+	const mode = getCssMode()
+	if (mode === 'cdn') {
+		link.setAttribute('crossorigin', 'anonymous')
+		if (theme.integrity) {
+			link.setAttribute('integrity', theme.integrity)
+		} else {
+			link.removeAttribute('integrity')
+		}
+	} else {
+		link.removeAttribute('crossorigin')
+		link.removeAttribute('integrity')
 	}
-	return found
+	link.setAttribute('href', resolveThemeHref(theme, mode))
 }
-function getCssLink() {
-	return document.querySelector(themeCssSel)
+
+export function themeGetCurrent(defaultTheme: ThemeItem) {
+	themeSetActive(defaultTheme)
+	return defaultTheme
 }
+
+function getGlobalCssLink() {
+	return document.querySelector(globalThemeCssSel) as HTMLLinkElement | null
+}
+
 export function themeSetActive(t: ThemeItem) {
-	const l = getCssLink()
-	l?.setAttribute(`integrity`, t.integrity)
-	l?.setAttribute(`href`, t.href)
+	const globalLink = getGlobalCssLink() ?? ensureThemeCssLink('global')
+	themeApplyGlobalLink(globalLink, t)
+
+	if (getCssMode() === 'local') {
+		const componentHref = resolveComponentHref(t)
+		if (!componentHref) {
+			removeComponentCssLink()
+			return
+		}
+		const componentLink = ensureThemeCssLink('component')
+		componentLink.removeAttribute('crossorigin')
+		componentLink.removeAttribute('integrity')
+		componentLink.setAttribute('href', componentHref)
+		return
+	}
+
+	removeComponentCssLink()
 }
 function getDefaultTheme() {
 	const name = new URLSearchParams(window.location.search).get(`theme`)

@@ -71,6 +71,30 @@ export function startPreviewServer() {
 	})
 }
 
+export function startDevServer() {
+	ensureScreenshotsJunction()
+	killPortWindows(4173)
+	const command = `${getPnpmCommand()} dev --host 127.0.0.1 --port 4173 --strictPort`
+	return spawn(command, {
+		cwd: ROOT,
+		env: process.env,
+		stdio: 'inherit',
+		shell: true,
+	})
+}
+
+function ensureScreenshotsJunction() {
+	const junctionTarget = path.join(ROOT, 'screenshots')
+	const junctionLink = path.join(ROOT, 'public', 'theme')
+	if (!existsSync(junctionLink)) {
+		try {
+			execSync(`mklink /J "${junctionLink}" "${junctionTarget}"`, { stdio: 'ignore', shell: true })
+		} catch {
+			// ignore if already exists
+		}
+	}
+}
+
 export async function stopServer(serverProcess) {
 	if (!serverProcess || serverProcess.killed) return
 

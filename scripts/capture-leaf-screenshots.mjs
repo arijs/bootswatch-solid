@@ -8,6 +8,7 @@ import {
 import {
 	assertBuildOutputExists,
 	buildProject,
+	startDevServer,
 	startPreviewServer,
 	stopServer,
 	waitForServer,
@@ -31,6 +32,9 @@ const {
 	buildBeforeCapture,
 	writebackEnabled,
 	dryRunWriteback,
+	cssExtractionEnabled,
+	verificationEnabled,
+	verificationMaxDiffRatio,
 	strictScenarioAssert,
 	routeFilter,
 	themeFilter,
@@ -77,6 +81,14 @@ async function main() {
 	if (dryRunWriteback) {
 		console.log('Mode: dry-run writeback enabled (--dry-run-writeback).')
 	}
+	if (!cssExtractionEnabled) {
+		console.log('Mode: CSS extraction disabled (--no-css-extraction).')
+	}
+	if (verificationEnabled) {
+		console.log(
+			`Mode: CSS verification enabled (--verify-css-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
+		)
+	}
 	if (strictScenarioAssert) {
 		console.log('Mode: strict scenario assertions enabled (--strict-scenarios).')
 	}
@@ -85,14 +97,19 @@ async function main() {
 	} else {
 		console.log('Mode: reusing existing build output (default).')
 	}
-
-	if (buildBeforeCapture) {
-		console.log('Building project for screenshot capture...')
-		buildProject()
-	} else {
-		assertBuildOutputExists()
+	if (verificationEnabled) {
+		console.log('Mode: using dev server for verification to serve live local CSS artifacts.')
 	}
-	const previewServer = startPreviewServer()
+
+	if (!verificationEnabled) {
+		if (buildBeforeCapture) {
+			console.log('Building project for screenshot capture...')
+			buildProject()
+		} else {
+			assertBuildOutputExists()
+		}
+	}
+	const previewServer = verificationEnabled ? startDevServer() : startPreviewServer()
 
 	try {
 		await waitForServer(BASE_URL)
@@ -106,6 +123,9 @@ async function main() {
 			skipExisting,
 			writebackEnabled,
 			dryRunWriteback,
+			cssExtractionEnabled,
+			verificationEnabled,
+			verificationMaxDiffRatio,
 		})
 	} finally {
 		await stopServer(previewServer)

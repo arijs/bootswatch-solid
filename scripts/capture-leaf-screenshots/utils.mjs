@@ -18,6 +18,14 @@ export function parseIntArg(argv, name, fallback) {
 	return Number.isFinite(value) && value > 0 ? value : fallback
 }
 
+export function parseFloatArg(argv, name, fallback, min = 0) {
+	const prefix = `${name}=`
+	const raw = argv.find((arg) => arg.startsWith(prefix))
+	if (!raw) return fallback
+	const value = Number.parseFloat(raw.slice(prefix.length))
+	return Number.isFinite(value) && value >= min ? value : fallback
+}
+
 export function slugifyTheme(name) {
 	return name
 		.trim()
