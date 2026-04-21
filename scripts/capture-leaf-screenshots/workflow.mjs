@@ -196,6 +196,7 @@ export async function executeCaptureWorkflow({
 								stateFolder,
 								scenarioRules: cssArtifacts.scenarioRules,
 								globalRules: cssArtifacts.globalRules,
+								hasFileInput: cssArtifacts.hasFileInput,
 								accumulator: cssAccumulator,
 							})
 							cssScenarioCount += 1

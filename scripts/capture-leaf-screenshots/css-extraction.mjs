@@ -226,6 +226,7 @@ async function getThemeSourceStyleRules(themeSlug) {
 
 function restoreRulesFromSource(ruleList, sourceStyleRules) {
 	if (!sourceStyleRules) return ruleList
+	const selectorUseCount = new Map()
 	return ruleList.map((ruleText) => {
 		const openBraceIndex = ruleText.indexOf('{')
 		if (openBraceIndex <= 0) return ruleText
@@ -234,6 +235,13 @@ function restoreRulesFromSource(ruleList, sourceStyleRules) {
 		const selectorText = ruleText.slice(0, openBraceIndex).trim()
 		const normalizedSelector = normalizeSelectorForLookup(selectorText)
 		const sourceCandidates = sourceStyleRules.get(normalizedSelector)
+		const useIndex = selectorUseCount.get(normalizedSelector) ?? 0
+		selectorUseCount.set(normalizedSelector, useIndex + 1)
+
+		if (Array.isArray(sourceCandidates) && sourceCandidates[useIndex]) {
+			return sourceCandidates[useIndex]
+		}
+
 		const sourceRule = findBestSourceRule(ruleText, sourceCandidates)
 		return sourceRule ?? ruleText
 	})
@@ -312,6 +320,13 @@ export async function extractScenarioCssArtifacts(page) {
 			const scenarioHasCarouselItem = scenarioContainers.some((container) => {
 				try {
 					return container.matches?.('.carousel-item') || container.querySelector?.('.carousel-item')
+				} catch {
+					return false
+				}
+			})
+			const scenarioHasFileInput = scenarioContainers.some((container) => {
+				try {
+					return container.matches?.('input[type="file"]') || container.querySelector?.('input[type="file"]')
 				} catch {
 					return false
 				}
@@ -602,6 +617,7 @@ export async function extractScenarioCssArtifacts(page) {
 			return {
 				scenarioRules: collected.scenario,
 				globalRules: collected.global,
+				hasFileInput: scenarioHasFileInput,
 			}
 		},
 		{
@@ -618,6 +634,7 @@ export async function writeScenarioCssArtifact({
 	scenarioRules,
 	accumulator,
 	globalRules,
+	hasFileInput,
 }) {
 	const sourceStyleRules = await getThemeSourceStyleRules(themeSlug)
 	const restoredScenarioRules = restoreRulesFromSource(scenarioRules, sourceStyleRules)
@@ -628,8 +645,16 @@ export async function writeScenarioCssArtifact({
 		routePath,
 		stateFolder,
 	)
+
+	const preamble = hasFileInput
+		? [
+				'::file-selector-button { font: inherit; appearance: button; }',
+				'::-webkit-file-upload-button { font: inherit; -webkit-appearance: button; }',
+			]
+		: []
 	await mkdir(scenarioDir, { recursive: true })
-	await writeFile(scenarioCssPath, formatCss(restoredScenarioRules), 'utf8')
+	const scenarioContent = formatCss([...preamble, ...restoredScenarioRules])
+	await writeFile(scenarioCssPath, scenarioContent, 'utf8')
 	accumulator.writes += 1
 	mergeThemeGlobalRules(accumulator, themeSlug, restoredGlobalRules)
 }

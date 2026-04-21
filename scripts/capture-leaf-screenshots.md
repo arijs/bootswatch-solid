@@ -29,6 +29,41 @@ The script now enforces a two-phase workflow when working with CSS extraction an
 
 **Error on simultaneous execution:** If you accidentally run with both `--no-css-extraction` is not set (extraction enabled) AND `--verify-css-rendering` is set, the script will fail immediately with a helpful error message.
 
+### Quartz duplicate-selector restoration fix (`forms/sizing/large-controls`)
+
+Root cause found in April 2026:
+
+- Quartz CDN CSS defines duplicate selectors like `.form-control::-webkit-file-upload-button` and `.form-control::file-selector-button` more than once, where later occurrences intentionally override only a subset of properties.
+- The extractor restore pass previously matched by "best declaration overlap" only, which could remap a later occurrence back to the first (full) declaration block.
+- That caused extracted scenario CSS to re-inject padding/margin in later override rules, producing file-input sizing drift in local CSS verification.
+
+Fix implemented:
+
+- `restoreRulesFromSource` in `scripts/capture-leaf-screenshots/css-extraction.mjs` now tracks per-selector occurrence order.
+- For each selector, the Nth extracted occurrence maps to the Nth source occurrence.
+- Fallback to best-match is still used only when the indexed source occurrence does not exist.
+
+Additional stabilization for native file inputs:
+
+- When a scenario contains `input[type="file"]`, the generated scenario `style.css` now prepends:
+
+```css
+::file-selector-button { font: inherit; appearance: button; }
+::-webkit-file-upload-button { font: inherit; -webkit-appearance: button; }
+```
+
+This keeps local-mode native button rendering aligned with CDN mode.
+
+Validation command used for the specific case:
+
+```
+node scripts/capture-leaf-screenshots.mjs --theme=quartz --no-css-extraction --verify-css-rendering "--route=/forms/sizing/large-controls"
+```
+
+Expected result after the fix:
+
+- `css OK 0.000000 - 0/74880` for `/forms/sizing/large-controls`.
+
 ### Theme safety limit (`--max-themes`)
 
 A new `--max-themes=N` flag limits the number of themes processed in a single run:
