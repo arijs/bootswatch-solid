@@ -32,6 +32,10 @@ import {
 } from './persistence.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
 import { getScenarioStateFolder } from './scenarios.mjs'
+import {
+	resolveInitialNavigationWarmupDelayMs,
+	resolveScreenshotSettleDelayMs,
+} from './timing.mjs'
 import { slugifyTheme } from './utils.mjs'
 import { verifyScenarioCssRendering } from './verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
@@ -210,6 +214,12 @@ export async function executeCaptureWorkflow({
 								routePath,
 								scenario,
 								stateFolder,
+								settleDelayMs: resolveScreenshotSettleDelayMs({
+									themeSlug,
+									route,
+									stateFolder,
+									scenario,
+								}),
 								requestedWidth,
 								measuredHeight,
 								outputPath,
@@ -235,6 +245,17 @@ export async function executeCaptureWorkflow({
 						const url = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}`
 						await page.goto(url, { waitUntil: 'load', timeout: 60000 })
 						await delay(150)
+						if (shotsSinceRestart === 0) {
+							const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
+								themeSlug,
+								route,
+								stateFolder,
+							})
+							if (warmupDelayMs > 0) {
+								await stabilizeForScreenshot(page)
+								await delay(warmupDelayMs)
+							}
+						}
 						await performScenarioAction(page, scenario, themeSlug)
 						await stabilizeForScreenshot(page)
 						const measuredHeight = await measureContentHeight(page)
@@ -243,7 +264,15 @@ export async function executeCaptureWorkflow({
 							height: measuredHeight,
 						})
 						await stabilizeForScreenshot(page)
-						await delay(80)
+						await delay(
+							resolveScreenshotSettleDelayMs({
+								themeSlug,
+								route,
+								stateFolder,
+								scenario,
+							}),
+						)
+						await stabilizeForScreenshot(page)
 
 						const outputPath = path.join(
 							ROOT,
@@ -452,6 +481,7 @@ async function runVerificationIfEnabled({
 	routePath,
 	scenario,
 	stateFolder,
+	settleDelayMs,
 	requestedWidth,
 	measuredHeight,
 	outputPath,
@@ -468,6 +498,7 @@ async function runVerificationIfEnabled({
 		routePath,
 		scenario,
 		stateFolder,
+		settleDelayMs,
 		requestedWidth,
 		measuredHeight,
 		baselinePath: outputPath,

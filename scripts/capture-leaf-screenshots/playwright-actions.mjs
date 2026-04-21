@@ -57,6 +57,49 @@ export async function stabilizeForScreenshot(page) {
 			// Ignore if Bootstrap JS is unavailable for this route.
 		}
 
+		// Carousels can transiently mark multiple indicators as active during hydration/ride init.
+		// Force a single stable active item/indicator pair before capture.
+		for (const carousel of document.querySelectorAll('.carousel')) {
+			try {
+				const items = [...carousel.querySelectorAll('.carousel-item')]
+				if (items.length === 0) continue
+
+				const activeIndex = 0
+
+				for (let index = 0; index < items.length; index += 1) {
+					const item = items[index]
+					item.classList.remove(
+						'carousel-item-next',
+						'carousel-item-prev',
+						'carousel-item-start',
+						'carousel-item-end',
+					)
+					if (index === activeIndex) {
+						item.classList.add('active')
+					} else {
+						item.classList.remove('active')
+					}
+				}
+
+				const indicators = [...carousel.querySelectorAll('.carousel-indicators > *')]
+				for (let index = 0; index < indicators.length; index += 1) {
+					const indicator = indicators[index]
+					indicator.style.setProperty('transition', 'none', 'important')
+					if (index === activeIndex) {
+						indicator.classList.add('active')
+						indicator.setAttribute('aria-current', 'true')
+						indicator.style.setProperty('opacity', '1', 'important')
+					} else {
+						indicator.classList.remove('active')
+						indicator.removeAttribute('aria-current')
+						indicator.style.setProperty('opacity', '0.5', 'important')
+					}
+				}
+			} catch {
+				// Continue stabilization even if one carousel cannot be normalized.
+			}
+		}
+
 		try {
 			const bootstrap = window.bootstrap
 			if (bootstrap?.ScrollSpy) {
@@ -70,8 +113,20 @@ export async function stabilizeForScreenshot(page) {
 
 		window.scrollTo(0, 0)
 
-		// Freeze CSS/Web Animations at a fixed timeline position for deterministic captures.
+		// Freeze animations deterministically without trapping transition-driven styles
+		// in their initial (pre-transition) state.
 		for (const animation of document.getAnimations()) {
+			const isTransition =
+				typeof CSSTransition !== 'undefined' && animation instanceof CSSTransition
+			if (isTransition) {
+				try {
+					animation.finish()
+				} catch {
+					// Ignore unfinishable transitions.
+				}
+				continue
+			}
+
 			try {
 				animation.currentTime = 0
 			} catch {

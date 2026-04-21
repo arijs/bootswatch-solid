@@ -8,6 +8,7 @@ import { PNG } from 'pngjs'
 import { BASE_URL, ROOT } from './constants.mjs'
 import { pathExists } from './folder-pruning.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
+import { resolveInitialNavigationWarmupDelayMs } from './timing.mjs'
 
 function toBufferPng(png) {
 	return PNG.sync.write(png)
@@ -61,6 +62,7 @@ export async function verifyScenarioCssRendering({
 	routePath,
 	scenario,
 	stateFolder,
+	settleDelayMs,
 	requestedWidth,
 	measuredHeight,
 	baselinePath,
@@ -118,11 +120,21 @@ export async function verifyScenarioCssRendering({
 		const localUrl = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}&css=local&state=${encodeURIComponent(stateFolder)}`
 		await page.goto(localUrl, { waitUntil: 'load', timeout: 60000 })
 		await delay(150)
+		const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
+			themeSlug,
+			route,
+			stateFolder,
+		})
+		if (warmupDelayMs > 0) {
+			await stabilizeForScreenshot(page)
+			await delay(warmupDelayMs)
+		}
 		await performScenarioAction(page, scenario, themeSlug)
 		await stabilizeForScreenshot(page)
 		await page.setViewportSize({ width: requestedWidth, height: measuredHeight })
 		await stabilizeForScreenshot(page)
-		await delay(120)
+		await delay(Math.max(0, Number.isFinite(settleDelayMs) ? settleDelayMs : 120))
+		await stabilizeForScreenshot(page)
 		await page.screenshot({ path: verifyPath, fullPage: false, timeout: 20000 })
 
 		const compared = await comparePngFiles(baselinePath, verifyPath, diffPath)
