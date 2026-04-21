@@ -1,0 +1,27 @@
+.progress, .progress-stacked { --bs-progress-height: 1rem; --bs-progress-font-size: 0.75rem; --bs-progress-bg: #250d49; --bs-progress-border-radius: var(--bs-border-radius); --bs-progress-box-shadow: var(--bs-box-shadow-inset); --bs-progress-bar-color: #fff; --bs-progress-bar-bg: #6f42c1; --bs-progress-bar-transition: width 0.6s ease; display: flex; height: var(--bs-progress-height); overflow: hidden; font-size: var(--bs-progress-font-size); background-color: var(--bs-progress-bg); border-radius: var(--bs-progress-border-radius); }
+
+.progress-bar { display: flex; flex-direction: column; justify-content: center; overflow: hidden; color: var(--bs-progress-bar-color); text-align: center; white-space: nowrap; background-color: var(--bs-progress-bar-bg); transition: var(--bs-progress-bar-transition); }
+
+@media (prefers-reduced-motion: reduce) {
+.progress-bar { transition: none; }
+}
+
+.progress-bar-striped { background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); background-size: var(--bs-progress-height) var(--bs-progress-height); }
+
+.progress-bar-animated { animation: 1s linear infinite progress-bar-stripes; }
+
+@media (prefers-reduced-motion: reduce) {
+.progress-bar-animated { animation: auto ease 0s 1 normal none running none; }
+}
+
+.bg-success { --bs-bg-opacity: 1; background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important; }
+
+.progress { overflow: visible; }
+
+.progress-bar { box-shadow: 0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1); }
+
+.progress-bar.bg-success { box-shadow: 0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1); }
+
+@keyframes progress-bar-stripes { 
+  0% { background-position-x: var(--bs-progress-height); }
+}
