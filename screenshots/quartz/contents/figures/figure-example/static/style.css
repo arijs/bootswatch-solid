@@ -1,0 +1,13 @@
+figure { margin: 0 0 1rem; }
+
+img, svg { vertical-align: middle; }
+
+.img-fluid { max-width: 100%; height: auto; }
+
+.figure { display: inline-block; }
+
+.figure-img { margin-bottom: 1rem; line-height: 1; }
+
+.figure-caption { font-size: 0.875em; color: var(--bs-secondary-color); }
+
+.rounded { border-radius: var(--bs-border-radius) !important; }

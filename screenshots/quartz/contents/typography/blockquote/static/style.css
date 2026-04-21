@@ -1,0 +1,11 @@
+p { margin-top: 0; margin-bottom: 1rem; }
+
+blockquote { margin: 0 0 1rem; }
+
+.blockquote { margin-bottom: 2rem; font-size: 1.25rem; }
+
+.blockquote > :last-child { margin-bottom: 0; }
+
+.blockquote-footer { margin-top: -2rem; margin-bottom: 2rem; font-size: 0.875em; color: rgba(255, 255, 255, 0.7); }
+
+.blockquote-footer::before { content: "— "; }
