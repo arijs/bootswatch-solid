@@ -83,7 +83,7 @@ export default CenteredScrollableModal
 // @screenshot lux/opened-modal: 360x774 774
 // @screenshot materia/opened-modal: 360x710 710
 // @screenshot morph/opened-modal: 360x707 707
-// @screenshot quartz/opened-modal: 360x780 780
+// @screenshot quartz/opened-modal: 360x783 780
 // @screenshot simplex/opened-modal: 360x709 709
 // @screenshot spacelab/opened-modal: 360x709 709
 // @screenshot united/opened-modal: 360x709 709
