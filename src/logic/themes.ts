@@ -152,7 +152,10 @@ const globalThemeCssSel = `html > head > link[data-theme-css="global"]`
 const componentThemeCssSel = `html > head > link[data-theme-css="component"]`
 
 function slugifyThemeName(name: string) {
-	return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-')
+	return name
+		.trim()
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
 }
 
 function getCssMode(): CssMode {

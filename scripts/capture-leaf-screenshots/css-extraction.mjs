@@ -67,11 +67,17 @@ function formatCss(rules) {
 }
 
 function normalizeSelectorForLookup(selectorText) {
-	return selectorText.replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim()
+	return selectorText
+		.replace(/\s+/g, ' ')
+		.replace(/\s*,\s*/g, ', ')
+		.trim()
 }
 
 function slugifyThemeName(name) {
-	return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-')
+	return name
+		.trim()
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
 }
 
 function parseThemeHrefMap(themesSource) {
@@ -234,162 +240,161 @@ function restoreRulesFromSource(ruleList, sourceStyleRules) {
 }
 
 export async function extractScenarioCssArtifacts(page) {
-	return page.evaluate(({ globalSelectorExclusions, forcedScenarioSelectorInclusions }) => {
-		const globalExclusions = new Set(globalSelectorExclusions)
-		const forcedScenarioSelectors = [...forcedScenarioSelectorInclusions]
-		const root = document.querySelector('#root')
-		if (!root) {
-			return {
-				scenarioRules: [],
-				globalRules: [],
-				themeStylesheetHref: null,
+	return page.evaluate(
+		({ globalSelectorExclusions, forcedScenarioSelectorInclusions }) => {
+			const globalExclusions = new Set(globalSelectorExclusions)
+			const forcedScenarioSelectors = [...forcedScenarioSelectorInclusions]
+			const root = document.querySelector('#root')
+			if (!root) {
+				return {
+					scenarioRules: [],
+					globalRules: [],
+					themeStylesheetHref: null,
+				}
 			}
-		}
 
-		function splitSelectorList(selectorText) {
-			const selectors = []
-			let current = ''
-			let inSquare = 0
-			let inRound = 0
-			let quote = ''
+			function splitSelectorList(selectorText) {
+				const selectors = []
+				let current = ''
+				let inSquare = 0
+				let inRound = 0
+				let quote = ''
 
-			for (let index = 0; index < selectorText.length; index += 1) {
-				const char = selectorText[index]
-				if (quote) {
-					current += char
-					if (char === quote && selectorText[index - 1] !== '\\') {
-						quote = ''
+				for (let index = 0; index < selectorText.length; index += 1) {
+					const char = selectorText[index]
+					if (quote) {
+						current += char
+						if (char === quote && selectorText[index - 1] !== '\\') {
+							quote = ''
+						}
+						continue
 					}
-					continue
-				}
 
-				if (char === '"' || char === "'") {
-					quote = char
+					if (char === '"' || char === "'") {
+						quote = char
+						current += char
+						continue
+					}
+					if (char === '[') inSquare += 1
+					if (char === ']') inSquare = Math.max(0, inSquare - 1)
+					if (char === '(') inRound += 1
+					if (char === ')') inRound = Math.max(0, inRound - 1)
+
+					if (char === ',' && inSquare === 0 && inRound === 0) {
+						const trimmed = current.trim()
+						if (trimmed) selectors.push(trimmed)
+						current = ''
+						continue
+					}
 					current += char
-					continue
 				}
-				if (char === '[') inSquare += 1
-				if (char === ']') inSquare = Math.max(0, inSquare - 1)
-				if (char === '(') inRound += 1
-				if (char === ')') inRound = Math.max(0, inRound - 1)
 
-				if (char === ',' && inSquare === 0 && inRound === 0) {
-					const trimmed = current.trim()
-					if (trimmed) selectors.push(trimmed)
-					current = ''
-					continue
-				}
-				current += char
+				const trailing = current.trim()
+				if (trailing) selectors.push(trailing)
+				return selectors
 			}
 
-			const trailing = current.trim()
-			if (trailing) selectors.push(trailing)
-			return selectors
-		}
+			function collectScenarioContainers() {
+				const containers = [root]
+				for (const forcedSelector of forcedScenarioSelectors) {
+					try {
+						for (const node of document.querySelectorAll(forcedSelector)) {
+							containers.push(node)
+						}
+					} catch {
+						// Ignore invalid selectors and continue extracting what we can.
+					}
+				}
+				return containers
+			}
 
-		function collectScenarioContainers() {
-			const containers = [root]
-			for (const forcedSelector of forcedScenarioSelectors) {
+			const scenarioContainers = collectScenarioContainers()
+
+			function nodeIsInsideScenario(node) {
+				for (const container of scenarioContainers) {
+					if (node === container || container.contains(node)) return true
+				}
+				return false
+			}
+
+			function selectorMatchesScenario(selector) {
 				try {
-					for (const node of document.querySelectorAll(forcedSelector)) {
-						containers.push(node)
+					const nodes = document.querySelectorAll(selector)
+					for (const node of nodes) {
+						if (nodeIsInsideScenario(node)) return true
 					}
+					return false
 				} catch {
-					// Ignore invalid selectors and continue extracting what we can.
-				}
-			}
-			return containers
-		}
-
-		const scenarioContainers = collectScenarioContainers()
-
-		function nodeIsInsideScenario(node) {
-			for (const container of scenarioContainers) {
-				if (node === container || container.contains(node)) return true
-			}
-			return false
-		}
-
-		function selectorMatchesScenario(selector) {
-			try {
-				const nodes = document.querySelectorAll(selector)
-				for (const node of nodes) {
-					if (nodeIsInsideScenario(node)) return true
-				}
-				return false
-			} catch {
-				return false
-			}
-		}
-
-		function stripPseudoParts(selector) {
-			return selector
-				.replace(/::?[a-zA-Z-]+(?:\([^)]*\))?/g, '')
-				.replace(/\s+/g, ' ')
-				.trim()
-		}
-
-		function selectorHasPseudo(selector) {
-			return /::?[a-zA-Z-]+(?:\([^)]*\))?/.test(selector)
-		}
-
-		function selectorMatchesRelatedPseudo(selector) {
-			if (!selectorHasPseudo(selector)) return false
-			const base = stripPseudoParts(selector)
-			if (!base || base === ',') return false
-			return selectorMatchesScenario(base)
-		}
-
-		function extractAnimationNames(styleDeclaration) {
-			const names = new Set()
-			const animationName = styleDeclaration.animationName
-			if (animationName && animationName !== 'none') {
-				for (const part of animationName.split(',')) {
-					const name = part.trim()
-					if (name && name !== 'none') names.add(name)
+					return false
 				}
 			}
 
-			const animation = styleDeclaration.animation
-			if (animation && animation !== 'none') {
-				const reserved = new Set([
-					'normal',
-					'reverse',
-					'alternate',
-					'alternate-reverse',
-					'ease',
-					'ease-in',
-					'ease-out',
-					'ease-in-out',
-					'linear',
-					'step-start',
-					'step-end',
-					'running',
-					'paused',
-					'infinite',
-					'forwards',
-					'backwards',
-					'both',
-				])
-				for (const animationValue of animation.split(',')) {
-					for (const token of animationValue.trim().split(/\s+/)) {
-						if (!token) continue
-						if (reserved.has(token)) continue
-						if (/^[\d.]+m?s$/.test(token)) continue
-						if (/^[\d.]+$/.test(token)) continue
-						names.add(token)
-						break
+			function stripPseudoParts(selector) {
+				return selector
+					.replace(/::?[a-zA-Z-]+(?:\([^)]*\))?/g, '')
+					.replace(/\s+/g, ' ')
+					.trim()
+			}
+
+			function selectorHasPseudo(selector) {
+				return /::?[a-zA-Z-]+(?:\([^)]*\))?/.test(selector)
+			}
+
+			function selectorMatchesRelatedPseudo(selector) {
+				if (!selectorHasPseudo(selector)) return false
+				const base = stripPseudoParts(selector)
+				if (!base || base === ',') return false
+				return selectorMatchesScenario(base)
+			}
+
+			function extractAnimationNames(styleDeclaration) {
+				const names = new Set()
+				const animationName = styleDeclaration.animationName
+				if (animationName && animationName !== 'none') {
+					for (const part of animationName.split(',')) {
+						const name = part.trim()
+						if (name && name !== 'none') names.add(name)
 					}
 				}
+
+				const animation = styleDeclaration.animation
+				if (animation && animation !== 'none') {
+					const reserved = new Set([
+						'normal',
+						'reverse',
+						'alternate',
+						'alternate-reverse',
+						'ease',
+						'ease-in',
+						'ease-out',
+						'ease-in-out',
+						'linear',
+						'step-start',
+						'step-end',
+						'running',
+						'paused',
+						'infinite',
+						'forwards',
+						'backwards',
+						'both',
+					])
+					for (const animationValue of animation.split(',')) {
+						for (const token of animationValue.trim().split(/\s+/)) {
+							if (!token) continue
+							if (reserved.has(token)) continue
+							if (/^[\d.]+m?s$/.test(token)) continue
+							if (/^[\d.]+$/.test(token)) continue
+							names.add(token)
+							break
+						}
+					}
+				}
+
+				return names
 			}
 
-			return names
-		}
-
-		function addUniqueRule(targetList, targetSet, cssText) {
-			const normalized = cssText
-				.trim()
-				.replace(/\{([^{}]*)\}/g, (_, body) => {
+			function addUniqueRule(targetList, targetSet, cssText) {
+				const normalized = cssText.trim().replace(/\{([^{}]*)\}/g, (_, body) => {
 					const cleanedDeclarations = body
 						.split(';')
 						.map((declaration) => declaration.trim())
@@ -406,172 +411,179 @@ export async function extractScenarioCssArtifacts(page) {
 					if (!cleanedDeclarations) return '{}'
 					return `{ ${cleanedDeclarations} }`
 				})
-			if (!normalized) return
-			if (/\{\s*\}/.test(normalized)) return
-			if (targetSet.has(normalized)) return
-			targetSet.add(normalized)
-			targetList.push(normalized)
-		}
-
-		function serializeStyleRule(rule) {
-			const styleText = rule.style.cssText?.trim()
-			if (styleText) {
-				return `${rule.selectorText} { ${styleText} }`
+				if (!normalized) return
+				if (/\{\s*\}/.test(normalized)) return
+				if (targetSet.has(normalized)) return
+				targetSet.add(normalized)
+				targetList.push(normalized)
 			}
 
-			const declarations = []
-			for (const propertyName of rule.style) {
-				const value = rule.style.getPropertyValue(propertyName).trim()
-				if (!value) continue
-				const priority = rule.style.getPropertyPriority(propertyName)
-				declarations.push(
-					`${propertyName}: ${value}${priority ? ` !${priority}` : ''};`,
+			function serializeStyleRule(rule) {
+				const styleText = rule.style.cssText?.trim()
+				if (styleText) {
+					return `${rule.selectorText} { ${styleText} }`
+				}
+
+				const declarations = []
+				for (const propertyName of rule.style) {
+					const value = rule.style.getPropertyValue(propertyName).trim()
+					if (!value) continue
+					const priority = rule.style.getPropertyPriority(propertyName)
+					declarations.push(
+						`${propertyName}: ${value}${priority ? ` !${priority}` : ''};`,
+					)
+				}
+
+				if (declarations.length === 0) return null
+				return `${rule.selectorText} { ${declarations.join(' ')} }`
+			}
+
+			const scenarioRuleSet = new Set()
+			const globalRuleSet = new Set()
+			const scenarioAnimationNames = new Set()
+			const globalAnimationNames = new Set()
+			const keyframes = new Map()
+
+			function wrapRule(rule, childRules) {
+				const body = childRules.join('\n')
+				if (rule.type === CSSRule.MEDIA_RULE) {
+					return `@media ${rule.conditionText} {\n${body}\n}`
+				}
+				if (rule.type === CSSRule.SUPPORTS_RULE) {
+					return `@supports ${rule.conditionText} {\n${body}\n}`
+				}
+				if (rule.type === CSSRule.LAYER_BLOCK_RULE) {
+					const name = rule.name ? ` ${rule.name}` : ''
+					return `@layer${name} {\n${body}\n}`
+				}
+				return null
+			}
+
+			function evaluateRuleList(ruleList) {
+				const scenarioChildren = []
+				const globalChildren = []
+
+				for (const rule of ruleList) {
+					if (rule.type === CSSRule.STYLE_RULE) {
+						const serializedRule = serializeStyleRule(rule)
+						if (!serializedRule) continue
+						const selectors = splitSelectorList(rule.selectorText)
+						let includeScenario = false
+						let includeGlobal = false
+
+						for (const selector of selectors) {
+							if (globalExclusions.has(selector)) {
+								includeGlobal = true
+								continue
+							}
+							if (
+								selectorMatchesScenario(selector) ||
+								selectorMatchesRelatedPseudo(selector)
+							) {
+								includeScenario = true
+							}
+						}
+
+						if (includeGlobal) {
+							addUniqueRule(globalChildren, globalRuleSet, serializedRule)
+							const names = extractAnimationNames(rule.style)
+							for (const name of names) globalAnimationNames.add(name)
+						}
+						if (includeScenario) {
+							addUniqueRule(scenarioChildren, scenarioRuleSet, serializedRule)
+							const names = extractAnimationNames(rule.style)
+							for (const name of names) scenarioAnimationNames.add(name)
+						}
+						continue
+					}
+
+					if (rule.type === CSSRule.IMPORT_RULE) {
+						addUniqueRule(globalChildren, globalRuleSet, rule.cssText)
+						continue
+					}
+
+					if (rule.type === CSSRule.FONT_FACE_RULE) {
+						addUniqueRule(globalChildren, globalRuleSet, rule.cssText)
+						continue
+					}
+
+					if (rule.type === CSSRule.KEYFRAMES_RULE) {
+						keyframes.set(rule.name, rule.cssText.trim())
+						continue
+					}
+
+					if ('cssRules' in rule && rule.cssRules) {
+						const nested = evaluateRuleList(rule.cssRules)
+						if (nested.global.length > 0) {
+							const wrappedGlobal = wrapRule(rule, nested.global)
+							if (wrappedGlobal) {
+								addUniqueRule(globalChildren, globalRuleSet, wrappedGlobal)
+							} else {
+								addUniqueRule(globalChildren, globalRuleSet, rule.cssText)
+							}
+						}
+						if (nested.scenario.length > 0) {
+							const wrappedScenario = wrapRule(rule, nested.scenario)
+							if (wrappedScenario) {
+								addUniqueRule(scenarioChildren, scenarioRuleSet, wrappedScenario)
+							} else {
+								addUniqueRule(scenarioChildren, scenarioRuleSet, rule.cssText)
+							}
+						}
+					}
+				}
+
+				return { scenario: scenarioChildren, global: globalChildren }
+			}
+
+			const stylesheet = [...document.styleSheets].find((sheet) => {
+				const href = sheet.href ?? ''
+				return href.includes('cdn.jsdelivr.net/npm/') && href.endsWith('/bootstrap.css')
+			})
+
+			if (!stylesheet) {
+				throw new Error(
+					'Unable to find active CDN theme stylesheet in document.styleSheets',
 				)
 			}
 
-			if (declarations.length === 0) return null
-			return `${rule.selectorText} { ${declarations.join(' ')} }`
-		}
-
-		const scenarioRuleSet = new Set()
-		const globalRuleSet = new Set()
-		const scenarioAnimationNames = new Set()
-		const globalAnimationNames = new Set()
-		const keyframes = new Map()
-
-		function wrapRule(rule, childRules) {
-			const body = childRules.join('\n')
-			if (rule.type === CSSRule.MEDIA_RULE) {
-				return `@media ${rule.conditionText} {\n${body}\n}`
-			}
-			if (rule.type === CSSRule.SUPPORTS_RULE) {
-				return `@supports ${rule.conditionText} {\n${body}\n}`
-			}
-			if (rule.type === CSSRule.LAYER_BLOCK_RULE) {
-				const name = rule.name ? ` ${rule.name}` : ''
-				return `@layer${name} {\n${body}\n}`
-			}
-			return null
-		}
-
-		function evaluateRuleList(ruleList) {
-			const scenarioChildren = []
-			const globalChildren = []
-
-			for (const rule of ruleList) {
-				if (rule.type === CSSRule.STYLE_RULE) {
-					const serializedRule = serializeStyleRule(rule)
-					if (!serializedRule) continue
-					const selectors = splitSelectorList(rule.selectorText)
-					let includeScenario = false
-					let includeGlobal = false
-
-					for (const selector of selectors) {
-						if (globalExclusions.has(selector)) {
-							includeGlobal = true
-							continue
-						}
-						if (selectorMatchesScenario(selector) || selectorMatchesRelatedPseudo(selector)) {
-							includeScenario = true
-						}
-					}
-
-					if (includeGlobal) {
-						addUniqueRule(globalChildren, globalRuleSet, serializedRule)
-						const names = extractAnimationNames(rule.style)
-						for (const name of names) globalAnimationNames.add(name)
-					}
-					if (includeScenario) {
-						addUniqueRule(scenarioChildren, scenarioRuleSet, serializedRule)
-						const names = extractAnimationNames(rule.style)
-						for (const name of names) scenarioAnimationNames.add(name)
-					}
-					continue
-				}
-
-				if (rule.type === CSSRule.IMPORT_RULE) {
-					addUniqueRule(globalChildren, globalRuleSet, rule.cssText)
-					continue
-				}
-
-				if (rule.type === CSSRule.FONT_FACE_RULE) {
-					addUniqueRule(globalChildren, globalRuleSet, rule.cssText)
-					continue
-				}
-
-				if (rule.type === CSSRule.KEYFRAMES_RULE) {
-					keyframes.set(rule.name, rule.cssText.trim())
-					continue
-				}
-
-				if ('cssRules' in rule && rule.cssRules) {
-					const nested = evaluateRuleList(rule.cssRules)
-					if (nested.global.length > 0) {
-						const wrappedGlobal = wrapRule(rule, nested.global)
-						if (wrappedGlobal) {
-							addUniqueRule(globalChildren, globalRuleSet, wrappedGlobal)
-						} else {
-							addUniqueRule(globalChildren, globalRuleSet, rule.cssText)
-						}
-					}
-					if (nested.scenario.length > 0) {
-						const wrappedScenario = wrapRule(rule, nested.scenario)
-						if (wrappedScenario) {
-							addUniqueRule(scenarioChildren, scenarioRuleSet, wrappedScenario)
-						} else {
-							addUniqueRule(scenarioChildren, scenarioRuleSet, rule.cssText)
-						}
-					}
-				}
+			let collected
+			try {
+				collected = evaluateRuleList(stylesheet.cssRules)
+			} catch (error) {
+				throw new Error(
+					`Unable to read theme stylesheet CSS rules (${String(error?.message ?? error)})`,
+				)
 			}
 
-			return { scenario: scenarioChildren, global: globalChildren }
-		}
+			for (const name of scenarioAnimationNames) {
+				const keyframe = keyframes.get(name)
+				if (!keyframe) continue
+				addUniqueRule(collected.scenario, scenarioRuleSet, keyframe)
+				addUniqueRule(collected.global, globalRuleSet, keyframe)
+			}
+			for (const name of globalAnimationNames) {
+				const keyframe = keyframes.get(name)
+				if (keyframe) addUniqueRule(collected.global, globalRuleSet, keyframe)
+			}
 
-		const stylesheet = [...document.styleSheets].find((sheet) => {
-			const href = sheet.href ?? ''
-			return href.includes('cdn.jsdelivr.net/npm/') && href.endsWith('/bootstrap.css')
-		})
+			// Some components (like spinners) route animation names through CSS variables,
+			// so include discovered keyframes globally even when the name cannot be
+			// resolved from an animation shorthand token.
+			for (const keyframe of keyframes.values()) {
+				addUniqueRule(collected.global, globalRuleSet, keyframe)
+			}
 
-		if (!stylesheet) {
-			throw new Error('Unable to find active CDN theme stylesheet in document.styleSheets')
-		}
-
-		let collected
-		try {
-			collected = evaluateRuleList(stylesheet.cssRules)
-		} catch (error) {
-			throw new Error(
-				`Unable to read theme stylesheet CSS rules (${String(error?.message ?? error)})`,
-			)
-		}
-
-		for (const name of scenarioAnimationNames) {
-			const keyframe = keyframes.get(name)
-			if (!keyframe) continue
-			addUniqueRule(collected.scenario, scenarioRuleSet, keyframe)
-			addUniqueRule(collected.global, globalRuleSet, keyframe)
-		}
-		for (const name of globalAnimationNames) {
-			const keyframe = keyframes.get(name)
-			if (keyframe) addUniqueRule(collected.global, globalRuleSet, keyframe)
-		}
-
-		// Some components (like spinners) route animation names through CSS variables,
-		// so include discovered keyframes globally even when the name cannot be
-		// resolved from an animation shorthand token.
-		for (const keyframe of keyframes.values()) {
-			addUniqueRule(collected.global, globalRuleSet, keyframe)
-		}
-
-		return {
-			scenarioRules: collected.scenario,
-			globalRules: collected.global,
-		}
-	}, {
-		globalSelectorExclusions: [...GLOBAL_SELECTOR_EXCLUSIONS],
+			return {
+				scenarioRules: collected.scenario,
+				globalRules: collected.global,
+			}
+		},
+		{
+			globalSelectorExclusions: [...GLOBAL_SELECTOR_EXCLUSIONS],
 			forcedScenarioSelectorInclusions: [...FORCE_SCENARIO_SELECTOR_INCLUSIONS],
-	})
+		},
+	)
 }
 
 export async function writeScenarioCssArtifact({

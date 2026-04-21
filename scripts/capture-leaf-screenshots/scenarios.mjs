@@ -15,9 +15,7 @@ export function getScenarioStateFolder(state) {
 
 export function filterThemes(themes, themeFilter) {
 	if (!themeFilter) return themes
-	return themes.filter(
-		(theme) => themeFilter.has(slugifyTheme(theme)) || themeFilter.has(theme),
-	)
+	return themes.filter((theme) => themeFilter.has(slugifyTheme(theme)) || themeFilter.has(theme))
 }
 
 export function filterScenarios(scenarios, routeFilter, stateFilter) {
@@ -32,7 +30,9 @@ export function filterScenarios(scenarios, routeFilter, stateFilter) {
 export function createScenarioCatalog(leafRoutes) {
 	const staticScenarios = buildStaticScenarios(leafRoutes)
 	const routeSet = new Set(leafRoutes)
-	const curatedScenarios = INTERACTIVE_SCENARIOS.filter((scenario) => routeSet.has(scenario.route))
+	const curatedScenarios = INTERACTIVE_SCENARIOS.filter((scenario) =>
+		routeSet.has(scenario.route),
+	)
 	return [...staticScenarios, ...curatedScenarios]
 }
 

@@ -42,24 +42,22 @@ export const INTERACTIVE_SCENARIOS = [
 		route: '/forms/overview/checkbox',
 		state: 'focus-checkbox',
 		kind: 'focus-check',
-		selector: (page, theme) => theme === 'sketchy'
-			? page.getByText('Check me out')
-			: 'input[type="checkbox"]',
+		selector: (page, theme) =>
+			theme === 'sketchy' ? page.getByText('Check me out') : 'input[type="checkbox"]',
 	},
 	{
 		route: '/forms/overview/radio-buttons',
 		state: 'focus-radio',
 		kind: 'focus-check',
-		selector: (page, theme) => theme === 'sketchy'
-			? page.getByText('Default radio')
-			: 'input[type="radio"]',
+		selector: (page, theme) =>
+			theme === 'sketchy' ? page.getByText('Default radio') : 'input[type="radio"]',
 	},
 	{
 		route: '/forms/overview/switch-checkbox',
 		state: 'focus-switch',
 		kind: 'focus-check',
 		selector: 'input[type="checkbox"]',
-		locatorState: (theme) => theme === 'sketchy' ? 'attached' : undefined,
+		locatorState: (theme) => (theme === 'sketchy' ? 'attached' : undefined),
 	},
 	{
 		route: '/forms/overview/file-input',

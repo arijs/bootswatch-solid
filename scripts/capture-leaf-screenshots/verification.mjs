@@ -118,7 +118,7 @@ export async function verifyScenarioCssRendering({
 		const localUrl = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}&css=local&state=${encodeURIComponent(stateFolder)}`
 		await page.goto(localUrl, { waitUntil: 'load', timeout: 60000 })
 		await delay(150)
-		await page.evaluate(() => document.getAnimations().forEach(a => a.pause()))
+		await page.evaluate(() => document.getAnimations().forEach((a) => a.pause()))
 		await performScenarioAction(page, scenario, themeSlug)
 		await page.setViewportSize({ width: requestedWidth, height: measuredHeight })
 		await delay(120)
@@ -145,7 +145,9 @@ export async function verifyScenarioCssRendering({
 			diffPixels: compared.diffPixels,
 			diffRatio: compared.diffRatio,
 			totalPixels: compared.totalPixels,
-			reason: matched ? null : `Diff ratio ${compared.diffRatio.toFixed(6)} exceeds max ${maxDiffRatio.toFixed(6)}`,
+			reason: matched
+				? null
+				: `Diff ratio ${compared.diffRatio.toFixed(6)} exceeds max ${maxDiffRatio.toFixed(6)}`,
 			verifyPath,
 			diffPath,
 		}

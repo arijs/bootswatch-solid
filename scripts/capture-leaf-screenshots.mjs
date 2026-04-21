@@ -1,30 +1,24 @@
 import { readFile } from 'node:fs/promises'
-
+import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
+import { BASE_URL, INDEX_FILE, THEMES_FILE } from './capture-leaf-screenshots/constants.mjs'
 import {
-	BASE_URL,
-	INDEX_FILE,
-	THEMES_FILE,
-} from './capture-leaf-screenshots/constants.mjs'
+	getLeafRoutes,
+	parseRoutesAndComponents,
+	parseThemeNames,
+} from './capture-leaf-screenshots/discovery.mjs'
 import {
 	assertBuildOutputExists,
 	buildProject,
-	startDevServer,
 	startPreviewServer,
 	stopServer,
 	waitForServer,
 } from './capture-leaf-screenshots/preview-server.mjs'
-import {
-	parseThemeNames,
-	getLeafRoutes,
-	parseRoutesAndComponents,
-} from './capture-leaf-screenshots/discovery.mjs'
 import {
 	assertCuratedScenarioRoutes,
 	createScenarioCatalog,
 	filterScenarios,
 	filterThemes,
 } from './capture-leaf-screenshots/scenarios.mjs'
-import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
 import { executeCaptureWorkflow } from './capture-leaf-screenshots/workflow.mjs'
 
 const {
@@ -52,11 +46,11 @@ async function main() {
 	assertCuratedScenarioRoutes(leafRoutes, strictScenarioAssert)
 	let themes = filterThemes(parseThemeNames(themeSource), themeFilter)
 	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
-	
+
 	// Apply max-themes limit for safety
 	const themesBeforeLimit = themes.length
 	themes = themes.slice(0, maxThemes)
-	
+
 	const totalCapturesPlanned = themes.length * scenarios.length
 
 	if (leafRoutes.length === 0) {
@@ -75,7 +69,9 @@ async function main() {
 	}
 
 	console.log(`Found ${leafRoutes.length} leaf routes across target sections.`)
-	console.log(`Found ${themes.length} themes${themesBeforeLimit > themes.length ? ` (limited to ${maxThemes} of ${themesBeforeLimit})` : ''}.`)
+	console.log(
+		`Found ${themes.length} themes${themesBeforeLimit > themes.length ? ` (limited to ${maxThemes} of ${themesBeforeLimit})` : ''}.`,
+	)
 	console.log(`Planned scenarios per theme: ${scenarios.length}`)
 	console.log(`Total captures planned: ${totalCapturesPlanned}`)
 	console.log(`Mode: max-themes=${maxThemes}.`)

@@ -41,7 +41,9 @@ export async function measureContentHeight(page) {
 	let rawHeight = await measureRawContentHeight(page)
 
 	if (rawHeight <= 0) {
-		console.warn(`Content height is zero - waiting ${ZERO_HEIGHT_RETRY_DELAY}ms and retrying...`)
+		console.warn(
+			`Content height is zero - waiting ${ZERO_HEIGHT_RETRY_DELAY}ms and retrying...`,
+		)
 		await delay(ZERO_HEIGHT_RETRY_DELAY)
 		rawHeight = await measureRawContentHeight(page)
 	}

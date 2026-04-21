@@ -9,12 +9,14 @@ function ensureSelector(locator, selector) {
 export async function performScenarioAction(page, scenario, themeSlug) {
 	if (scenario.kind === 'static') return
 
-	const scenarioLocator = scenario.selector instanceof Function
-		? scenario.selector(page, themeSlug)
-		: scenario.selector
-	const locator = typeof scenarioLocator === 'string'
-		? page.locator(scenarioLocator).first()
-		: scenarioLocator.first()
+	const scenarioLocator =
+		scenario.selector instanceof Function
+			? scenario.selector(page, themeSlug)
+			: scenario.selector
+	const locator =
+		typeof scenarioLocator === 'string'
+			? page.locator(scenarioLocator).first()
+			: scenarioLocator.first()
 	await locator.waitFor({ state: scenario.locatorState?.(themeSlug) ?? 'visible', timeout: 5000 })
 	ensureSelector(locator, scenario.selector)
 

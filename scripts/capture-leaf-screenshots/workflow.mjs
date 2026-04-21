@@ -12,28 +12,28 @@ import {
 	ROOT,
 } from './constants.mjs'
 import {
-	normalizeRelativePath,
-	pathExists,
-	pruneThemeFolder,
-	removeScreenshotsForWidthWithDifferentHeight,
-} from './folder-pruning.mjs'
-import { resolveConfiguredHeight } from './directives.mjs'
-import { clampHeight, measureContentHeight } from './measurements.mjs'
-import { performScenarioAction } from './playwright-actions.mjs'
-import {
 	createThemeCssAccumulator,
 	extractScenarioCssArtifacts,
 	writeScenarioCssArtifact,
 	writeThemeCssArtifact,
 } from './css-extraction.mjs'
-import { verifyScenarioCssRendering } from './verification.mjs'
+import { resolveConfiguredHeight } from './directives.mjs'
+import {
+	normalizeRelativePath,
+	pathExists,
+	pruneThemeFolder,
+	removeScreenshotsForWidthWithDifferentHeight,
+} from './folder-pruning.mjs'
+import { clampHeight, measureContentHeight } from './measurements.mjs'
 import {
 	loadComponentModel,
 	persistComponentModels,
 	recordWritebackMeasure,
 } from './persistence.mjs'
+import { performScenarioAction } from './playwright-actions.mjs'
 import { getScenarioStateFolder } from './scenarios.mjs'
 import { slugifyTheme } from './utils.mjs'
+import { verifyScenarioCssRendering } from './verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
 
 export async function executeCaptureWorkflow({
@@ -166,7 +166,9 @@ export async function executeCaptureWorkflow({
 							requestedWidth,
 						)
 
-						const initialHeight = clampHeight(configured.height ?? DEFAULT_VIEWPORT.height)
+						const initialHeight = clampHeight(
+							configured.height ?? DEFAULT_VIEWPORT.height,
+						)
 						await page.setViewportSize({
 							width: requestedWidth,
 							height: initialHeight,
@@ -195,7 +197,10 @@ export async function executeCaptureWorkflow({
 							})
 							cssScenarioCount += 1
 							if (verificationEnabled) {
-								await writeThemeCssArtifact({ themeSlug, accumulator: cssAccumulator })
+								await writeThemeCssArtifact({
+									themeSlug,
+									accumulator: cssAccumulator,
+								})
 							}
 						}
 
@@ -262,20 +267,23 @@ export async function executeCaptureWorkflow({
 
 						function getVerificationLogInfo(verification) {
 							return verification
-								? ` css ${verification.matched
-									? `OK ${verification.diffRatio.toFixed(6)} - ${verification.diffPixels}/${verification.totalPixels}`
-									: verification.skipped
-									? '-'
-									: `ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`}`
+								? ` css ${
+										verification.matched
+											? `OK ${verification.diffRatio.toFixed(6)} - ${verification.diffPixels}/${verification.totalPixels}`
+											: verification.skipped
+												? '-'
+												: `ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`
+									}`
 								: ''
 						}
 
 						await mkdir(outputDir, { recursive: true })
-						const deletedStaleCount = await removeScreenshotsForWidthWithDifferentHeight(
-							outputDir,
-							requestedWidth,
-							measuredHeight,
-						)
+						const deletedStaleCount =
+							await removeScreenshotsForWidthWithDifferentHeight(
+								outputDir,
+								requestedWidth,
+								measuredHeight,
+							)
 						if (deletedStaleCount > 0) {
 							console.log(
 								`Removed ${deletedStaleCount} stale screenshot(s) from ${path.relative(ROOT, outputDir)} for width ${requestedWidth}`,
@@ -308,7 +316,9 @@ export async function executeCaptureWorkflow({
 							? String(err.message).split('\n')[0]
 							: String(err)
 						if (attempt === MAX_ATTEMPTS_PER_SCREENSHOT) {
-							console.error(`FAILED ${themeSlug} ${route} [${stateFolder}]: ${reason}`)
+							console.error(
+								`FAILED ${themeSlug} ${route} [${stateFolder}]: ${reason}`,
+							)
 							failed.push({ theme: themeSlug, route, state: scenario.state, reason })
 							scenarioSummary.get(summaryKey).failed += 1
 						}

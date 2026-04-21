@@ -88,7 +88,10 @@ function ensureScreenshotsJunction() {
 	const junctionLink = path.join(ROOT, 'public', 'theme')
 	if (!existsSync(junctionLink)) {
 		try {
-			execSync(`mklink /J "${junctionLink}" "${junctionTarget}"`, { stdio: 'ignore', shell: true })
+			execSync(`mklink /J "${junctionLink}" "${junctionTarget}"`, {
+				stdio: 'ignore',
+				shell: true,
+			})
 		} catch {
 			// ignore if already exists
 		}
