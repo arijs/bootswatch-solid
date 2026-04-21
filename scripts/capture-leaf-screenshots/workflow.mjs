@@ -30,7 +30,7 @@ import {
 	persistComponentModels,
 	recordWritebackMeasure,
 } from './persistence.mjs'
-import { performScenarioAction } from './playwright-actions.mjs'
+import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
 import { getScenarioStateFolder } from './scenarios.mjs'
 import { slugifyTheme } from './utils.mjs'
 import { verifyScenarioCssRendering } from './verification.mjs'
@@ -75,6 +75,7 @@ export async function executeCaptureWorkflow({
 	let verificationMismatched = 0
 	let verificationSkipped = 0
 	let verificationRan = 0
+		const verificationMismatches = []
 	let processedScenarioIndex = 0
 	let processedThemeIndex = 0
 	let shotsSinceRestart = 0
@@ -178,11 +179,13 @@ export async function executeCaptureWorkflow({
 						await page.goto(url, { waitUntil: 'load', timeout: 60000 })
 						await delay(150)
 						await performScenarioAction(page, scenario, themeSlug)
+						await stabilizeForScreenshot(page)
 						const measuredHeight = await measureContentHeight(page)
 						await page.setViewportSize({
 							width: requestedWidth,
 							height: measuredHeight,
 						})
+						await stabilizeForScreenshot(page)
 						await delay(80)
 
 						if (cssExtractionEnabled) {
@@ -254,14 +257,15 @@ export async function executeCaptureWorkflow({
 							}
 
 							verificationMismatched += 1
-							console.warn(
-								`Verification mismatch for ${path.relative(ROOT, outputPath)}: ${verification.reason}`,
-							)
-							if (verification.verifyPath && verification.diffPath) {
-								console.warn(
-									`  verify=${path.relative(ROOT, verification.verifyPath)} diff=${path.relative(ROOT, verification.diffPath)} ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`,
-								)
-							}
+							verificationMismatches.push({
+								outputPath,
+								diffRatio: verification.diffRatio,
+								diffPixels: verification.diffPixels,
+								totalPixels: verification.totalPixels,
+								verifyPath: verification.verifyPath,
+								diffPath: verification.diffPath,
+								reason: verification.reason,
+							})
 							return verification
 						}
 
@@ -272,7 +276,7 @@ export async function executeCaptureWorkflow({
 											? `OK ${verification.diffRatio.toFixed(6)} - ${verification.diffPixels}/${verification.totalPixels}`
 											: verification.skipped
 												? '-'
-												: `ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`
+												: `MISMATCH ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`
 									}`
 								: ''
 						}
@@ -385,6 +389,17 @@ export async function executeCaptureWorkflow({
 		console.log(
 			`CSS verification: ran=${verificationRan}, matched=${verificationMatched}, mismatched=${verificationMismatched}, skipped=${verificationSkipped}, maxDiffRatio=${verificationMaxDiffRatio}`,
 		)
+		if (verificationMismatches.length > 0) {
+			console.warn(`\nCSS verification mismatches (${verificationMismatches.length}):`)
+			for (const m of verificationMismatches) {
+				console.warn(`  ${path.relative(ROOT, m.outputPath)}: ${m.reason}`)
+				if (m.verifyPath && m.diffPath) {
+					console.warn(
+						`    verify=${path.relative(ROOT, m.verifyPath)} diff=${path.relative(ROOT, m.diffPath)} ratio=${m.diffRatio.toFixed(6)} pixels=${m.diffPixels}/${m.totalPixels}`,
+					)
+				}
+			}
+		}
 	}
 
 	let writebackResults = []

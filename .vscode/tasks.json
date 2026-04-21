@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "refresh-mismatched-baselines",
+			"type": "shell",
+			"command": "node scripts/capture-leaf-screenshots.mjs --theme=sketchy --no-writeback \"--route=/forms/validation/invalid-username-city,/ui/button-group/button-group-example,/ui/buttons/outline-secondary-button,/ui/buttons/solid-danger-button,/ui/buttons/solid-dark-button,/ui/buttons/solid-success-button,/ui/carousel/carousel-example,/ui/modal/static-backdrop-modal,/ui/pagination/small-pagination,/ui/pagination/standard-pagination,/ui/scrollspy/scrollspy-example,/ui/modal/default-modal,/ui/modal/centered-scrollable-modal\" > verify-sketchy-fix-pass9-refresh.txt 2>&1",
+			"isBackground": false
+		}
+	]
+}

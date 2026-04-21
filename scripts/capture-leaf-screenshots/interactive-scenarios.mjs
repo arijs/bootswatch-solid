@@ -92,5 +92,6 @@ export const INTERACTIVE_SCENARIOS = [
 		kind: 'click-visible',
 		selector: '[data-bs-toggle="modal"]',
 		visibleSelector: '.modal.show',
+		settleDelayMs: 450,
 	})),
 ]

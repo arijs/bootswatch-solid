@@ -3,23 +3,58 @@ import process from 'node:process'
 import { DEFAULT_VIEWPORT } from './constants.mjs'
 import { parseCsvArg, parseFloatArg, parseIntArg } from './utils.mjs'
 
-export function parseCaptureCli(argv = process.argv.slice(2)) {
-	const cssExtractionEnabled = !argv.includes('--no-css-extraction')
-	const verificationEnabled = argv.includes('--verify-css-rendering')
+const BOOLEAN_FLAGS = new Set([
+	'--skip-existing',
+	'--build',
+	'--no-writeback',
+	'--dry-run-writeback',
+	'--no-css-extraction',
+	'--verify-css-rendering',
+	'--strict-scenarios',
+])
 
-	// Enforce two-phase execution: CSS extraction and verification cannot run together
-	if (cssExtractionEnabled && verificationEnabled) {
-		throw new Error(
-			'CSS extraction and verification cannot run in the same execution. Run in two phases: (1) with CSS extraction enabled to generate CSS files, (2) with verification enabled (use --no-css-extraction --verify-css-rendering). When verification runs, it will automatically trigger a rebuild.',
-		)
+const VALUE_FLAG_PREFIXES = [
+	'--max-themes=',
+	'--verify-max-diff-ratio=',
+	'--route=',
+	'--theme=',
+	'--state=',
+	'--width=',
+]
+
+function assertKnownArgs(argv) {
+	const unknownArgs = argv.filter((arg) => {
+		if (BOOLEAN_FLAGS.has(arg)) return false
+		if (VALUE_FLAG_PREFIXES.some((prefix) => arg.startsWith(prefix))) return false
+		return true
+	})
+
+	if (unknownArgs.length === 0) {
+		return
 	}
+
+	const allowed = [
+		...Array.from(BOOLEAN_FLAGS),
+		...VALUE_FLAG_PREFIXES.map((prefix) => `${prefix}<value>`),
+	]
+	throw new Error(
+		`Unknown CLI argument(s): ${unknownArgs.join(', ')}. Allowed arguments: ${allowed.join(', ')}`,
+	)
+}
+
+export function parseCaptureCli(argv = process.argv.slice(2)) {
+	assertKnownArgs(argv)
+
+	const verificationEnabled = argv.includes('--verify-css-rendering')
+	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
+	const cssExtractionEnabled = !verificationEnabled && !argv.includes('--no-css-extraction')
 
 	const maxThemes = parseIntArg(argv, '--max-themes', 1)
 
 	return {
 		skipExisting: argv.includes('--skip-existing'),
 		buildBeforeCapture: argv.includes('--build'),
-		writebackEnabled: !argv.includes('--no-writeback'),
+		writebackEnabled: !verificationEnabled && !argv.includes('--no-writeback'),
 		dryRunWriteback: argv.includes('--dry-run-writeback'),
 		cssExtractionEnabled,
 		verificationEnabled,

@@ -7,7 +7,7 @@ import { PNG } from 'pngjs'
 
 import { BASE_URL, ROOT } from './constants.mjs'
 import { pathExists } from './folder-pruning.mjs'
-import { performScenarioAction } from './playwright-actions.mjs'
+import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
 
 function toBufferPng(png) {
 	return PNG.sync.write(png)
@@ -118,9 +118,10 @@ export async function verifyScenarioCssRendering({
 		const localUrl = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}&css=local&state=${encodeURIComponent(stateFolder)}`
 		await page.goto(localUrl, { waitUntil: 'load', timeout: 60000 })
 		await delay(150)
-		await page.evaluate(() => document.getAnimations().forEach((a) => a.pause()))
 		await performScenarioAction(page, scenario, themeSlug)
+		await stabilizeForScreenshot(page)
 		await page.setViewportSize({ width: requestedWidth, height: measuredHeight })
+		await stabilizeForScreenshot(page)
 		await delay(120)
 		await page.screenshot({ path: verifyPath, fullPage: false, timeout: 20000 })
 

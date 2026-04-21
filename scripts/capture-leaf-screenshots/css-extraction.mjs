@@ -476,6 +476,11 @@ export async function extractScenarioCssArtifacts(page) {
 								includeGlobal = true
 								continue
 							}
+							// body with qualifier classes (e.g. body.modal-open) should be captured as scenario rules
+							if (/^body\.[a-zA-Z]/.test(selector) && document.body.matches(selector)) {
+								includeScenario = true
+								continue
+							}
 							if (
 								selectorMatchesScenario(selector) ||
 								selectorMatchesRelatedPseudo(selector)

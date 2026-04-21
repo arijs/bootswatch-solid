@@ -21,6 +21,17 @@
   scroll-behavior: smooth;
 }
 
+/*
+ * Chromium can render file input button text with UA defaults in some local CSS flows.
+ * Force inherited typography so baseline (cdn) and local CSS verification are consistent.
+ */
+input[type='file']::-webkit-file-upload-button,
+input[type='file']::file-selector-button {
+  font: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
 /**
  * Bootstrap "Journal code" icon
  * @link https://icons.getbootstrap.com/icons/journal-code/
