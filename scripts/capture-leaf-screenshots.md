@@ -13,7 +13,33 @@ node scripts/capture-leaf-screenshots.mjs [flags]
 
 ---
 
-## Pending changes (April 2026)
+## Recent changes (April 2026)
+
+### Two-phase CSS extraction and verification
+
+The script now enforces a two-phase workflow when working with CSS extraction and verification:
+
+- **Phase 1: CSS Extraction** — Run with CSS extraction enabled (default) to generate/update CSS artifacts
+- **Phase 2: CSS Verification** — Run with `--no-css-extraction --verify-css-rendering` to verify CSS rendering against baseline screenshots
+
+**Why two phases?** The dev server was previously used during verification to serve live CSS, but CSS extraction and verification cannot reliably run in the same pass. The two-phase approach ensures:
+- CSS files are fully extracted and written before verification starts
+- Verification always triggers a rebuild to ensure it uses the latest extracted CSS
+- The Vite preview server is always used (more stable than dev server for screenshot capture)
+
+**Error on simultaneous execution:** If you accidentally run with both `--no-css-extraction` is not set (extraction enabled) AND `--verify-css-rendering` is set, the script will fail immediately with a helpful error message.
+
+### Theme safety limit (`--max-themes`)
+
+A new `--max-themes=N` flag limits the number of themes processed in a single run:
+
+- **Default: 1** — Prevents accidental long runs when theme filtering is forgotten
+- **To process all themes:** Explicitly set `--max-themes=27` (or higher)
+- **Logging:** When themes are limited, output shows `(limited to N of TOTAL)` to indicate the active limit
+
+This guard helps prevent hours-long unintended runs when the `--theme` flag is omitted or mistyped.
+
+### Module refactoring
 
 The screenshot script was refactored from one large file into focused modules.
 Behavior is intended to remain the same unless explicitly noted below.
@@ -73,7 +99,30 @@ Aggressive pruning remains available when no `--state` filter is active.
 
 ## How it works
 
-### 1. Route and theme discovery
+### Execution phases
+
+The script supports two execution phases when working with CSS verification:
+
+**Phase 1: Screenshot capture and CSS extraction (default)**
+- Captures screenshots for all selected routes and themes
+- Extracts CSS artifacts for each scenario
+- Generates/updates `@screenshot` directives in component files
+- Uses Vite preview server with built/existing code
+
+**Phase 2: CSS verification (optional)**
+- Runs verification against baseline screenshots using extracted CSS
+- Cannot be combined with Phase 1 in a single execution
+- Automatically triggers a rebuild to ensure latest CSS is used
+- Requires Phase 1 to have completed first
+
+**Why separate phases?** CSS extraction and verification have conflicting requirements:
+- Extraction needs to write CSS files first
+- Verification needs those files to be static and finalized
+- Combining them causes race conditions and inconsistent results
+
+Use `--no-css-extraction --verify-css-rendering` to run Phase 2. Running with both flags enabled in Phase 1 will error immediately.
+
+### Step-by-step breakdown
 
 Routes are parsed from `src/index.tsx` by scanning every
 `<Route path="..." component={...} />` element. Only routes whose paths begin
@@ -191,7 +240,7 @@ fully recreated every 120 successful captures (`RESTART_BROWSER_EVERY`) to
 prevent memory accumulation. On any capture failure the browser is also
 immediately recreated before the retry attempt (up to 3 attempts per capture).
 
-The script starts and manages its own Vite preview server (`pnpm serve`) on
+The script always starts and manages its own **Vite preview server** (`pnpm serve`) on
 `http://127.0.0.1:4173`. Any existing process on port 4173 is killed before
 starting. The server is shut down when the script exits.
 
@@ -201,6 +250,9 @@ with `--build` (or run `pnpm build`) first.
 
 When `--build` is provided, the script runs `pnpm build` before starting
 preview.
+
+When `--verify-css-rendering` is provided (Phase 2), a rebuild is automatically
+triggered to ensure the latest extracted CSS artifacts are used for verification.
 
 On Windows, preview startup is invoked through the shell to avoid
 `spawn EINVAL` issues with direct `pnpm.cmd` spawning.
@@ -331,6 +383,7 @@ states do not bleed across captures.
 | Flag | Default | Description |
 |---|---|---|
 | `--width=N` | `360` | Viewport width in pixels for all captures. |
+| `--max-themes=N` | `1` | Maximum number of themes to process. Set to `27` to process all themes. Prevents accidental long runs. |
 | `--theme=a,b` | all themes | Comma-separated list of theme slugs or exact names to include. |
 | `--route=/a,/b` | all leaf routes | Comma-separated list of route paths to include. |
 | `--state=a,b` | all states | Comma-separated list of state names to include (`static` for plain captures). |
@@ -338,19 +391,25 @@ states do not bleed across captures.
 | `--skip-existing` | off | Skip captures whose output file already exists on disk. |
 | `--no-writeback` | off | Do not modify any component source files after capturing. |
 | `--dry-run-writeback` | off | Compute and log writeback changes but do not write them to disk. |
+| `--no-css-extraction` | off | Disable CSS extraction. Use in Phase 2 verification runs: `--no-css-extraction --verify-css-rendering`. |
+| `--verify-css-rendering` | off | Enable CSS rendering verification against baseline screenshots. Requires Phase 2 execution (use with `--no-css-extraction`). Automatically triggers a rebuild to ensure CSS artifacts are current. |
+| `--verify-max-diff-ratio=N` | `0.001` | Maximum allowed pixel difference ratio for CSS verification (0.0–1.0). Only applies when `--verify-css-rendering` is set. |
+| `--strict-scenarios` | off | Fail fast if any leaf route is missing from curated scenario routes. |
 
 ### Common invocation patterns
 
-Full run across all themes, all routes, all states:
+**Full run across all themes, all routes, all states:**
 
 ```
-pnpm screenshots:capture
+pnpm screenshots:capture --max-themes=27
 ```
 
-Re-capture only missing images (fast incremental update):
+(Default `--max-themes=1` processes only the first theme; use `--max-themes=27` to include all themes.)
+
+**Re-capture only missing images (fast incremental update):**
 
 ```
-pnpm screenshots:capture --skip-existing
+pnpm screenshots:capture --max-themes=27 --skip-existing
 ```
 
 Even in `--skip-existing` mode, stale same-width files with different heights
@@ -359,34 +418,48 @@ in the target folder are still cleaned up.
 Pruning still runs in `--skip-existing` mode. With `--route`, it is limited to
 the selected route folders; otherwise it applies to the whole theme folder.
 
-Capture a single theme, preview writeback without touching files:
+**Two-phase CSS extraction and verification:**
 
+Phase 1 — Extract/update CSS files:
 ```
-node scripts/capture-leaf-screenshots.mjs --theme=darkly --dry-run-writeback
-```
-
-Capture one route at two states for quick iteration:
-
-```
-node scripts/capture-leaf-screenshots.mjs --route=/ui/buttons/solid-primary-button --state=static,hover-buttons
+node scripts/capture-leaf-screenshots.mjs --max-themes=27
 ```
 
-Capture at a wider viewport:
-
+Phase 2 — Verify CSS rendering against baselines:
 ```
-node scripts/capture-leaf-screenshots.mjs --width=720
-```
-
-Force a rebuild before capture:
-
-```
-node scripts/capture-leaf-screenshots.mjs --build
+node scripts/capture-leaf-screenshots.mjs --max-themes=27 --no-css-extraction --verify-css-rendering
 ```
 
-Capture without updating component directives:
+(Phase 2 automatically triggers a rebuild to ensure the latest CSS is used for verification.)
+
+**Capture a single theme, preview writeback without touching files:**
 
 ```
-node scripts/capture-leaf-screenshots.mjs --no-writeback
+node scripts/capture-leaf-screenshots.mjs --theme=darkly --max-themes=1 --dry-run-writeback
+```
+
+**Capture one route at two states for quick iteration:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --max-themes=27 --route=/ui/buttons/solid-primary-button --state=static,hover-buttons
+```
+
+**Capture at a wider viewport:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --max-themes=27 --width=720
+```
+
+**Force a rebuild before capture:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --max-themes=27 --build
+```
+
+**Capture without updating component directives:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --max-themes=27 --no-writeback
 ```
 
 ---
