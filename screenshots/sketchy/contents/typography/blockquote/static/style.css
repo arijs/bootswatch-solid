@@ -1,0 +1,13 @@
+p { margin-top: 0; margin-bottom: 1rem; }
+
+blockquote { margin: 0 0 1rem; }
+
+.blockquote { margin-bottom: 1rem; font-size: 1.25rem; }
+
+.blockquote > :last-child { margin-bottom: 0; }
+
+.blockquote-footer { margin-top: -1rem; margin-bottom: 1rem; font-size: 0.875em; color: #868e96; }
+
+.blockquote-footer::before { content: "— "; }
+
+blockquote { border-radius: 15px 27px 25px 25px/25px 25px 305px 635px; }

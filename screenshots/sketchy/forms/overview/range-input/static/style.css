@@ -1,0 +1,31 @@
+label { display: inline-block; }
+
+input, button, select, optgroup, textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+
+.form-label { margin-bottom: 0.5rem; }
+
+.form-range { width: 100%; height: 1.5rem; padding: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: transparent; }
+
+.form-range:focus { outline: 0; }
+
+.form-range:focus::-webkit-slider-thumb { box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(51, 51, 51, 0.25); }
+
+.form-range::-webkit-slider-thumb { width: 1rem; height: 1rem; margin-top: -0.25rem; -webkit-appearance: none; appearance: none; background-color: #333; border: 0; border-radius: 1rem; -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+
+@media (prefers-reduced-motion: reduce) {
+.form-range::-webkit-slider-thumb { transition: none; }
+}
+
+.form-range::-webkit-slider-thumb:active { background-color: #c2c2c2; }
+
+.form-range::-webkit-slider-runnable-track { width: 100%; height: 0.5rem; color: transparent; cursor: pointer; background-color: var(--bs-secondary-bg); border-color: transparent; border-radius: 1rem; }
+
+.form-range:disabled { pointer-events: none; }
+
+.form-range:disabled::-webkit-slider-thumb { background-color: var(--bs-secondary-color); }
+
+.mb-3 { margin-bottom: 1rem !important; }
+
+button, input, optgroup, select, textarea { font-family: Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+
+input, .form-control, .input-group-text { border-radius: 255px 25px 225px 25px/25px 225px 25px 255px; }

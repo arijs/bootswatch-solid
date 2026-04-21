@@ -1,0 +1,13 @@
+.progress, .progress-stacked { --bs-progress-height: 1rem; --bs-progress-font-size: 0.75rem; --bs-progress-bg: #fff; --bs-progress-border-radius: var(--bs-border-radius); --bs-progress-box-shadow: var(--bs-box-shadow-inset); --bs-progress-bar-color: #fff; --bs-progress-bar-bg: #ccc; --bs-progress-bar-transition: width 0.6s ease; display: flex; height: var(--bs-progress-height); overflow: hidden; font-size: var(--bs-progress-font-size); background-color: var(--bs-progress-bg); border-radius: var(--bs-progress-border-radius); }
+
+.progress-bar { display: flex; flex-direction: column; justify-content: center; overflow: hidden; color: var(--bs-progress-bar-color); text-align: center; white-space: nowrap; background-color: var(--bs-progress-bar-bg); transition: var(--bs-progress-bar-transition); }
+
+@media (prefers-reduced-motion: reduce) {
+.progress-bar { transition: none; }
+}
+
+.w-25 { width: 25% !important; }
+
+.bg-success { --bs-bg-opacity: 1; background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important; }
+
+.progress { border: 2px solid #333; border-radius: 255px 25px 225px 25px/25px 225px 25px 255px; }

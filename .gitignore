@@ -1,2 +1,6 @@
 node_modules
 dist
+/public/theme
+/screenshots/**/*.verify.png
+/screenshots/**/*.verify.diff.png
+/verify-*.txt
