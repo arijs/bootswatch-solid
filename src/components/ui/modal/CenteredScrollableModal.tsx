@@ -89,3 +89,4 @@ export default CenteredScrollableModal
 // @screenshot united/opened-modal: 360x709 709
 // @screenshot yeti/opened-modal: 360x709 709
 // @screenshot zephyr/opened-modal: 360x733 733
+// @screenshot bootstrap/opened-modal: 360x688 688
