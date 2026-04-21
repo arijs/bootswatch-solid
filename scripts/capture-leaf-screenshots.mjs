@@ -39,6 +39,7 @@ const {
 	routeFilter,
 	themeFilter,
 	stateFilter,
+	maxThemes,
 	requestedWidth,
 } = parseCaptureCli()
 
@@ -49,8 +50,13 @@ async function main() {
 	const { routes, routeToComponentFile } = parseRoutesAndComponents(indexSource, INDEX_FILE)
 	const leafRoutes = getLeafRoutes(routes)
 	assertCuratedScenarioRoutes(leafRoutes, strictScenarioAssert)
-	const themes = filterThemes(parseThemeNames(themeSource), themeFilter)
+	let themes = filterThemes(parseThemeNames(themeSource), themeFilter)
 	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
+	
+	// Apply max-themes limit for safety
+	const themesBeforeLimit = themes.length
+	themes = themes.slice(0, maxThemes)
+	
 	const totalCapturesPlanned = themes.length * scenarios.length
 
 	if (leafRoutes.length === 0) {
@@ -69,9 +75,10 @@ async function main() {
 	}
 
 	console.log(`Found ${leafRoutes.length} leaf routes across target sections.`)
-	console.log(`Found ${themes.length} themes.`)
+	console.log(`Found ${themes.length} themes${themesBeforeLimit > themes.length ? ` (limited to ${maxThemes} of ${themesBeforeLimit})` : ''}.`)
 	console.log(`Planned scenarios per theme: ${scenarios.length}`)
 	console.log(`Total captures planned: ${totalCapturesPlanned}`)
+	console.log(`Mode: max-themes=${maxThemes}.`)
 	if (skipExisting) {
 		console.log('Mode: skipping screenshots that already exist (--skip-existing).')
 	}
@@ -84,32 +91,27 @@ async function main() {
 	if (!cssExtractionEnabled) {
 		console.log('Mode: CSS extraction disabled (--no-css-extraction).')
 	}
+	if (strictScenarioAssert) {
+		console.log('Mode: strict scenario assertions enabled (--strict-scenarios).')
+	}
+	// Verification always requires a fresh build to ensure CSS files are up-to-date
 	if (verificationEnabled) {
 		console.log(
 			`Mode: CSS verification enabled (--verify-css-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
 		)
-	}
-	if (strictScenarioAssert) {
-		console.log('Mode: strict scenario assertions enabled (--strict-scenarios).')
-	}
-	if (buildBeforeCapture) {
+		console.log('Mode: Forcing rebuild to ensure CSS artifacts are current.')
+		buildProject()
+	} else if (buildBeforeCapture) {
 		console.log('Mode: build enabled (--build).')
+		console.log('Building project for screenshot capture...')
+		buildProject()
 	} else {
 		console.log('Mode: reusing existing build output (default).')
-	}
-	if (verificationEnabled) {
-		console.log('Mode: using dev server for verification to serve live local CSS artifacts.')
+		assertBuildOutputExists()
 	}
 
-	if (!verificationEnabled) {
-		if (buildBeforeCapture) {
-			console.log('Building project for screenshot capture...')
-			buildProject()
-		} else {
-			assertBuildOutputExists()
-		}
-	}
-	const previewServer = verificationEnabled ? startDevServer() : startPreviewServer()
+	console.log('Mode: using Vite preview server for screenshot capture.')
+	const previewServer = startPreviewServer()
 
 	try {
 		await waitForServer(BASE_URL)
