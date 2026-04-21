@@ -19,7 +19,7 @@ export async function removeScreenshotsForWidthWithDifferentHeight(folderPath, w
 	const entries = await readdir(folderPath, { withFileTypes: true })
 	for (const entry of entries) {
 		if (!entry.isFile()) continue
-		const match = entry.name.match(/^(\d+)x(\d+)\.png$/)
+		const match = entry.name.match(/^(\d+)x(\d+)(?:\.verify(?:\.diff)?)?\.png$/)
 		if (!match) continue
 
 		const entryWidth = Number.parseInt(match[1], 10)
