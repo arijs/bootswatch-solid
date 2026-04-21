@@ -76,6 +76,20 @@ export async function executeCaptureWorkflow({
 	let verificationSkipped = 0
 	let verificationRan = 0
 		const verificationMismatches = []
+	const verificationStats = {
+		ran: () => {
+			verificationRan += 1
+		},
+		matched: () => {
+			verificationMatched += 1
+		},
+		mismatched: () => {
+			verificationMismatched += 1
+		},
+		skipped: () => {
+			verificationSkipped += 1
+		},
+	}
 	let processedScenarioIndex = 0
 	let processedThemeIndex = 0
 	let shotsSinceRestart = 0
@@ -86,6 +100,7 @@ export async function executeCaptureWorkflow({
 		for (const themeName of themes) {
 			processedThemeIndex += 1
 			const themeSlug = slugifyTheme(themeName)
+			let themeHasScenarioCss = false
 			console.log(`Theme ${processedThemeIndex}/${themes.length}: ${themeSlug}`)
 
 			const mappedFolders = new Set(
@@ -167,6 +182,48 @@ export async function executeCaptureWorkflow({
 							requestedWidth,
 						)
 
+						if (verificationEnabled) {
+							if (configured.source !== 'directive' || configured.height == null) {
+								throw new Error(
+									`Missing @screenshot directive height for theme=${themeSlug} state=${stateFolder} width=${requestedWidth} in ${path.relative(ROOT, componentFile)}`,
+								)
+							}
+
+							const measuredHeight = configured.height
+							const outputPath = path.join(
+								ROOT,
+								'screenshots',
+								themeSlug,
+								routePath,
+								stateFolder,
+								`${requestedWidth}x${measuredHeight}.png`,
+							)
+
+							const verification = await runVerificationIfEnabled({
+								verificationEnabled,
+								verificationStats,
+								verificationMismatches,
+								browser,
+								themeName,
+								themeSlug,
+								route,
+								routePath,
+								scenario,
+								stateFolder,
+								requestedWidth,
+								measuredHeight,
+								outputPath,
+								verificationMaxDiffRatio,
+							})
+							skippedCount += 1
+							scenarioSummary.get(summaryKey).skipped += 1
+							captured = true
+							console.log(
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${getVerificationLogInfo(verification)}`,
+							)
+							break
+						}
+
 						const initialHeight = clampHeight(
 							configured.height ?? DEFAULT_VIEWPORT.height,
 						)
@@ -188,6 +245,15 @@ export async function executeCaptureWorkflow({
 						await stabilizeForScreenshot(page)
 						await delay(80)
 
+						const outputPath = path.join(
+							ROOT,
+							'screenshots',
+							themeSlug,
+							routePath,
+							stateFolder,
+							`${requestedWidth}x${measuredHeight}.png`,
+						)
+
 						if (cssExtractionEnabled) {
 							const cssArtifacts = await extractScenarioCssArtifacts(page)
 							await writeScenarioCssArtifact({
@@ -199,6 +265,7 @@ export async function executeCaptureWorkflow({
 								hasFileInput: cssArtifacts.hasFileInput,
 								accumulator: cssAccumulator,
 							})
+							themeHasScenarioCss = true
 							cssScenarioCount += 1
 						}
 
@@ -211,70 +278,7 @@ export async function executeCaptureWorkflow({
 							measuredHeight,
 						)
 
-						const outputPath = path.join(
-							ROOT,
-							'screenshots',
-							themeSlug,
-							routePath,
-							stateFolder,
-							`${requestedWidth}x${measuredHeight}.png`,
-						)
 						const outputDir = path.dirname(outputPath)
-
-						async function runVerificationIfEnabled() {
-							if (!verificationEnabled) return null
-							verificationRan += 1
-							const verification = await verifyScenarioCssRendering({
-								browser,
-								themeName,
-								themeSlug,
-								route,
-								routePath,
-								scenario,
-								stateFolder,
-								requestedWidth,
-								measuredHeight,
-								baselinePath: outputPath,
-								maxDiffRatio: verificationMaxDiffRatio,
-							})
-
-							if (verification.skipped) {
-								verificationSkipped += 1
-								console.warn(
-									`Verification skipped for ${path.relative(ROOT, outputPath)}: ${verification.reason}`,
-								)
-								return verification
-							}
-
-							if (verification.matched) {
-								verificationMatched += 1
-								return verification
-							}
-
-							verificationMismatched += 1
-							verificationMismatches.push({
-								outputPath,
-								diffRatio: verification.diffRatio,
-								diffPixels: verification.diffPixels,
-								totalPixels: verification.totalPixels,
-								verifyPath: verification.verifyPath,
-								diffPath: verification.diffPath,
-								reason: verification.reason,
-							})
-							return verification
-						}
-
-						function getVerificationLogInfo(verification) {
-							return verification
-								? ` css ${
-										verification.matched
-											? `OK ${verification.diffRatio.toFixed(6)} - ${verification.diffPixels}/${verification.totalPixels}`
-											: verification.skipped
-												? '-'
-												: `MISMATCH ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`
-									}`
-								: ''
-						}
 
 						await mkdir(outputDir, { recursive: true })
 						const deletedStaleCount =
@@ -290,24 +294,22 @@ export async function executeCaptureWorkflow({
 						}
 
 						if (skipExisting && (await pathExists(outputPath))) {
-							const verification = await runVerificationIfEnabled()
 							skippedCount += 1
 							scenarioSummary.get(summaryKey).skipped += 1
 							captured = true
 							console.log(
-								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${getVerificationLogInfo(verification)}`,
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
 							)
 							break
 						}
 
 						await page.screenshot({ path: outputPath, fullPage: false, timeout: 20000 })
-						const verification = await runVerificationIfEnabled()
 						savedCount += 1
 						scenarioSummary.get(summaryKey).saved += 1
 						shotsSinceRestart += 1
 						captured = true
 						console.log(
-							`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${getVerificationLogInfo(verification)}`,
+							`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
 						)
 						break
 					} catch (err) {
@@ -356,7 +358,7 @@ export async function executeCaptureWorkflow({
 				}
 			}
 
-			if (cssExtractionEnabled) {
+			if (cssExtractionEnabled && themeHasScenarioCss) {
 				// Write once per theme after all selected scenarios have contributed global rules.
 				await writeThemeCssArtifact({ themeSlug, accumulator: cssAccumulator })
 				cssThemeCount += 1
@@ -437,4 +439,76 @@ export async function executeCaptureWorkflow({
 	} else {
 		console.log('\nAll captures completed successfully.')
 	}
+}
+
+async function runVerificationIfEnabled({
+	verificationEnabled,
+	verificationStats,
+	verificationMismatches,
+	browser,
+	themeName,
+	themeSlug,
+	route,
+	routePath,
+	scenario,
+	stateFolder,
+	requestedWidth,
+	measuredHeight,
+	outputPath,
+	verificationMaxDiffRatio,
+}) {
+	if (!verificationEnabled) return null
+	verificationStats.ran()
+
+	const verification = await verifyScenarioCssRendering({
+		browser,
+		themeName,
+		themeSlug,
+		route,
+		routePath,
+		scenario,
+		stateFolder,
+		requestedWidth,
+		measuredHeight,
+		baselinePath: outputPath,
+		maxDiffRatio: verificationMaxDiffRatio,
+	})
+
+	if (verification.skipped) {
+		verificationStats.skipped()
+		console.warn(
+			`Verification skipped for ${path.relative(ROOT, outputPath)}: ${verification.reason}`,
+		)
+		return verification
+	}
+
+	if (verification.matched) {
+		verificationStats.matched()
+		return verification
+	}
+
+	verificationStats.mismatched()
+	verificationMismatches.push({
+		outputPath,
+		diffRatio: verification.diffRatio,
+		diffPixels: verification.diffPixels,
+		totalPixels: verification.totalPixels,
+		verifyPath: verification.verifyPath,
+		diffPath: verification.diffPath,
+		reason: verification.reason,
+	})
+
+	return verification
+}
+
+function getVerificationLogInfo(verification) {
+	return verification
+		? ` css ${
+				verification.matched
+					? `OK ${verification.diffRatio.toFixed(6)} - ${verification.diffPixels}/${verification.totalPixels}`
+					: verification.skipped
+						? '-'
+						: `MISMATCH ratio=${verification.diffRatio.toFixed(6)} pixels=${verification.diffPixels}/${verification.totalPixels}`
+			}`
+		: ''
 }
