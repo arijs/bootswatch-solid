@@ -662,6 +662,7 @@ export async function writeScenarioCssArtifact({
 export async function writeThemeCssArtifact({ themeSlug, accumulator }) {
 	const { themeCssPath } = resolveThemeArtifactPaths(themeSlug, '', 'static')
 	const globalRules = accumulator.themeGlobalRules.get(themeSlug) ?? []
+
 	await mkdir(path.dirname(themeCssPath), { recursive: true })
 	await writeFile(themeCssPath, formatCss(globalRules), 'utf8')
 	accumulator.writes += 1

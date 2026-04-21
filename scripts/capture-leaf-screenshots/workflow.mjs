@@ -200,12 +200,6 @@ export async function executeCaptureWorkflow({
 								accumulator: cssAccumulator,
 							})
 							cssScenarioCount += 1
-							if (verificationEnabled) {
-								await writeThemeCssArtifact({
-									themeSlug,
-									accumulator: cssAccumulator,
-								})
-							}
 						}
 
 						recordWritebackMeasure(
@@ -363,6 +357,7 @@ export async function executeCaptureWorkflow({
 			}
 
 			if (cssExtractionEnabled) {
+				// Write once per theme after all selected scenarios have contributed global rules.
 				await writeThemeCssArtifact({ themeSlug, accumulator: cssAccumulator })
 				cssThemeCount += 1
 			}
