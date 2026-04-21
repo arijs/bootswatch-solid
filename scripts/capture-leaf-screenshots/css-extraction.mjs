@@ -309,6 +309,22 @@ export async function extractScenarioCssArtifacts(page) {
 			}
 
 			const scenarioContainers = collectScenarioContainers()
+			const scenarioHasCarouselItem = scenarioContainers.some((container) => {
+				try {
+					return container.matches?.('.carousel-item') || container.querySelector?.('.carousel-item')
+				} catch {
+					return false
+				}
+			})
+
+			function selectorTargetsTransientCarouselFrame(selector) {
+				if (!scenarioHasCarouselItem) return false
+				return (
+					selector.includes('.carousel-item-next') ||
+					selector.includes('.carousel-item-start') ||
+					selector.includes('.carousel-item-end')
+				)
+			}
 
 			function nodeIsInsideScenario(node) {
 				for (const container of scenarioContainers) {
@@ -474,6 +490,10 @@ export async function extractScenarioCssArtifacts(page) {
 						for (const selector of selectors) {
 							if (globalExclusions.has(selector)) {
 								includeGlobal = true
+								continue
+							}
+							if (selectorTargetsTransientCarouselFrame(selector)) {
+								includeScenario = true
 								continue
 							}
 							// body with qualifier classes (e.g. body.modal-open) should be captured as scenario rules
