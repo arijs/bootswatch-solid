@@ -50,3 +50,6 @@ const AlignedDropdown: Component = () => (
 export default AlignedDropdown
 
 // @screenshot *: 360x120 120
+// @screenshot */opened-dropdown: 360x204 204
+// @screenshot quartz/opened-dropdown: 360x252 252
+// @screenshot vapor/opened-dropdown: 360x200 200

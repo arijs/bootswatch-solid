@@ -51,3 +51,6 @@ const SmallDropdown: Component = () => (
 export default SmallDropdown
 
 // @screenshot *: 360x120 120
+// @screenshot */opened-dropdown: 360x229 229
+// @screenshot quartz/opened-dropdown: 360x273 273
+// @screenshot vapor/opened-dropdown: 360x225 225

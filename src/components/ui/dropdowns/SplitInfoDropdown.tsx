@@ -41,3 +41,6 @@ const SplitInfoDropdown: Component = () => (
 export default SplitInfoDropdown
 
 // @screenshot *: 360x120 120
+// @screenshot */opened-dropdown: 360x154 154
+// @screenshot quartz/opened-dropdown: 360x188 188
+// @screenshot vapor/opened-dropdown: 360x150 150

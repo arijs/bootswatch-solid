@@ -51,3 +51,6 @@ const NormalDropdown: Component = () => (
 export default NormalDropdown
 
 // @screenshot *: 360x120 120
+// @screenshot */opened-dropdown: 360x236 236
+// @screenshot quartz/opened-dropdown: 360x292 292
+// @screenshot vapor/opened-dropdown: 360x232 232
