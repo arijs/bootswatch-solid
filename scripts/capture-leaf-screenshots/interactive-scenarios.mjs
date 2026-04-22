@@ -1,6 +1,7 @@
 import {
 	BUTTON_HOVER_ROUTES,
 	CONTEXTUAL_LIST_GROUP_COLOR_ROUTES,
+	DROPDOWN_ROUTES,
 	MODAL_ROUTES,
 	POPOVER_ROUTES,
 	TABLE_HOVER_COLOR_ROUTES,
@@ -14,12 +15,20 @@ export const INTERACTIVE_SCENARIOS = [
 		kind: 'hover',
 		selector: '.btn',
 	})),
-	{
-		route: '/ui/dropdowns/normal-dropdown',
+	...DROPDOWN_ROUTES.map((route) => ({
+		route,
 		state: 'hover-dropdown',
 		kind: 'hover',
-		selector: '[data-bs-toggle="dropdown"]',
-	},
+		selector: '.dropdown-toggle',
+	})),
+	...DROPDOWN_ROUTES.map((route) => ({
+		route,
+		state: 'opened-dropdown',
+		kind: 'click-visible',
+		selector: '.dropdown-toggle',
+		visibleSelector: '.dropdown-menu.show',
+		resetMouseToCornerAfterAction: true,
+	})),
 	...TABLE_HOVER_COLOR_ROUTES.map((route) => ({
 		route,
 		state: 'hover-table-row',

@@ -140,7 +140,11 @@ export async function stabilizeForScreenshot(page) {
 }
 
 export async function performScenarioAction(page, scenario, themeSlug) {
-	if (scenario.kind === 'static') return
+	if (scenario.kind === 'static') {
+		// Keep hover interactions untouched, but normalize pointer position for static captures.
+		await page.mouse.move(0, 0)
+		return
+	}
 
 	const scenarioLocator =
 		scenario.selector instanceof Function
@@ -195,6 +199,10 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		default:
 			throw new Error(`Unknown scenario kind: ${scenario.kind}`)
 	}
+
+		if (scenario.resetMouseToCornerAfterAction) {
+			await page.mouse.move(0, 0)
+		}
 
 	await delay(scenario.settleDelayMs ?? 180)
 }

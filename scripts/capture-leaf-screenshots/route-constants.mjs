@@ -20,6 +20,24 @@ export const BUTTON_HOVER_ROUTES = [
 	'/ui/buttons/large-button',
 ]
 
+export const DROPDOWN_ROUTES = [
+	'/ui/dropdowns/small-dropdown',
+	'/ui/dropdowns/normal-dropdown',
+	'/ui/dropdowns/large-dropdown',
+	'/ui/dropdowns/split-primary-dropdown',
+	'/ui/dropdowns/split-secondary-dropdown',
+	'/ui/dropdowns/split-success-dropdown',
+	'/ui/dropdowns/split-info-dropdown',
+	'/ui/dropdowns/split-warning-dropdown',
+	'/ui/dropdowns/split-danger-dropdown',
+	'/ui/dropdowns/split-light-dropdown',
+	'/ui/dropdowns/split-dark-dropdown',
+	'/ui/dropdowns/end-dropdown',
+	'/ui/dropdowns/up-dropdown',
+	'/ui/dropdowns/start-dropdown',
+	'/ui/dropdowns/aligned-dropdown',
+]
+
 export const TABLE_HOVER_COLOR_ROUTES = [
 	'/contents/tables/hover-default-variant',
 	'/contents/tables/hover-primary-variant',
