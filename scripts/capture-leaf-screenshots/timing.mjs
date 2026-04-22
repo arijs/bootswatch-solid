@@ -10,7 +10,7 @@ const SETTLE_DELAY_OVERRIDES = [
 	},
 	{
 		theme: 'vapor',
-		route: '/ui/buttons/outline-danger-button',
+		route: '/ui/buttons/outline/danger-button',
 		state: 'static',
 		delayMs: 450,
 	},

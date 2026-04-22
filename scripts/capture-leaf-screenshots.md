@@ -107,7 +107,7 @@ state folders not currently selected by `--state`.
 #### Repro command
 
 ```
-node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --route=/ui/buttons/solid-primary-button --state=static --skip-existing --no-writeback
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --route=/ui/buttons/solid/primary-button --state=static --skip-existing --no-writeback
 ```
 
 #### Previous incorrect behavior
@@ -233,7 +233,7 @@ screenshots/{theme-slug}/{route-path}/{state-folder}/{width}x{height}.png
 - **theme-slug** — theme name lowercased and hyphenated, e.g. `bootstrap`,
   `dark-ly`.
 - **route-path** — the route without the leading `/`, e.g.
-  `ui/buttons/solid-primary-button`.
+  `ui/buttons/solid/primary-button`.
 - **state-folder** — `static` for plain captures, or the state name for
   interactive captures, e.g. `hover-buttons`, `opened-modal`.
 - **filename** — `{REQUESTED_WIDTH}x{measuredHeight}.png`.
@@ -397,7 +397,7 @@ states do not bleed across captures.
 
 | State name | Route | Interaction |
 |---|---|---|
-| `hover-buttons` | `/ui/buttons/solid-primary-button` | Mouse hover on `.btn-primary` |
+| `hover-buttons` | `/ui/buttons/solid/primary-button` | Mouse hover on `.btn-primary` |
 | `hover-dropdown` | `/ui/dropdowns/normal-dropdown` | Mouse hover on `[data-bs-toggle="dropdown"]` |
 | `hover-table-row` | `/contents/tables/hover-variants` | Mouse hover on first `tbody tr` in `.table-hover` |
 | `hover-list-group` | `/ui/list-group/contextual-list-group` | Mouse hover on `.list-group-item-action` |
@@ -476,7 +476,7 @@ node scripts/capture-leaf-screenshots.mjs --theme=darkly --max-themes=1 --dry-ru
 **Capture one route at two states for quick iteration:**
 
 ```
-node scripts/capture-leaf-screenshots.mjs --max-themes=27 --route=/ui/buttons/solid-primary-button --state=static,hover-buttons
+node scripts/capture-leaf-screenshots.mjs --max-themes=27 --route=/ui/buttons/solid/primary-button --state=static,hover-buttons
 ```
 
 **Capture at a wider viewport:**
@@ -516,7 +516,7 @@ Example:
 ```
 screenshots/
   bootstrap/
-    ui/buttons/solid-primary-button/
+    ui/buttons/solid/primary-button/
       static/
         360x576.png
       hover-buttons/
