@@ -32,10 +32,7 @@ import {
 } from './persistence.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
 import { getScenarioStateFolder } from './scenarios.mjs'
-import {
-	resolveInitialNavigationWarmupDelayMs,
-	resolveScreenshotSettleDelayMs,
-} from './timing.mjs'
+import { resolveInitialNavigationWarmupDelayMs, resolveScreenshotSettleDelayMs } from './timing.mjs'
 import { slugifyTheme } from './utils.mjs'
 import { verifyScenarioCssRendering } from './verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
@@ -79,7 +76,7 @@ export async function executeCaptureWorkflow({
 	let verificationMismatched = 0
 	let verificationSkipped = 0
 	let verificationRan = 0
-		const verificationMismatches = []
+	const verificationMismatches = []
 	const verificationStats = {
 		ran: () => {
 			verificationRan += 1

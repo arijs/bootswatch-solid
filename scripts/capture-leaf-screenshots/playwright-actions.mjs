@@ -200,9 +200,9 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 			throw new Error(`Unknown scenario kind: ${scenario.kind}`)
 	}
 
-		if (scenario.resetMouseToCornerAfterAction) {
-			await page.mouse.move(0, 0)
-		}
+	if (scenario.resetMouseToCornerAfterAction) {
+		await page.mouse.move(0, 0)
+	}
 
 	await delay(scenario.settleDelayMs ?? 180)
 }

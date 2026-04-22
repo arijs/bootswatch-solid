@@ -319,14 +319,20 @@ export async function extractScenarioCssArtifacts(page) {
 			const scenarioContainers = collectScenarioContainers()
 			const scenarioHasCarouselItem = scenarioContainers.some((container) => {
 				try {
-					return container.matches?.('.carousel-item') || container.querySelector?.('.carousel-item')
+					return (
+						container.matches?.('.carousel-item') ||
+						container.querySelector?.('.carousel-item')
+					)
 				} catch {
 					return false
 				}
 			})
 			const scenarioHasFileInput = scenarioContainers.some((container) => {
 				try {
-					return container.matches?.('input[type="file"]') || container.querySelector?.('input[type="file"]')
+					return (
+						container.matches?.('input[type="file"]') ||
+						container.querySelector?.('input[type="file"]')
+					)
 				} catch {
 					return false
 				}
@@ -512,7 +518,10 @@ export async function extractScenarioCssArtifacts(page) {
 								continue
 							}
 							// body with qualifier classes (e.g. body.modal-open) should be captured as scenario rules
-							if (/^body\.[a-zA-Z]/.test(selector) && document.body.matches(selector)) {
+							if (
+								/^body\.[a-zA-Z]/.test(selector) &&
+								document.body.matches(selector)
+							) {
 								includeScenario = true
 								continue
 							}

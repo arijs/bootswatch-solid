@@ -1,4 +1,5 @@
 export const BUTTON_HOVER_ROUTES = [
+	'/ui/buttons/solid/base-button',
 	'/ui/buttons/solid/primary-button',
 	'/ui/buttons/solid/secondary-button',
 	'/ui/buttons/solid/success-button',
