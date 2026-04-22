@@ -2,8 +2,8 @@ import type { Component } from 'solid-js'
 
 const OutlineToggleDisabledSuccessButton: Component = () => (
 	<div class="bd-example container-fluid">
-		<input disabled type="checkbox" class="btn-check" id="id-btn-outline-toggle-success" autocomplete="off"  />
-		<label class="btn btn-outline-success" for="id-btn-outline-toggle-success">Toggle Success</label>
+		<input disabled type="checkbox" class="btn-check" id="id-btn-outline-toggle-disabled-success" autocomplete="off"  />
+		<label class="btn btn-outline-success" for="id-btn-outline-toggle-disabled-success">Toggle Success</label>
 	</div>
 )
 
