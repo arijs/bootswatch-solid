@@ -7,8 +7,9 @@ function ensureSelector(locator, selector) {
 }
 
 export async function stabilizeForScreenshot(page) {
-	// Keep hover-driven styles deterministic across scenarios.
-	await page.mouse.move(0, 0)
+	// Important: Do not move the mouse before stabilization, as some pages
+	// have hover-triggered styles that should be captured in the screenshot.
+	// await page.mouse.move(0, 0) don't do this
 	await page.evaluate(async () => {
 		// Ensure local/global theme stylesheets are fully loaded before freezing state.
 		const themeLinks = [...document.querySelectorAll('link[data-theme-css]')]
