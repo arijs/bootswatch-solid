@@ -74,6 +74,17 @@ A dedicated capture mode (`--verify-ve-rendering`) is introduced in the capture 
 - Skip unimplemented VE routes with warnings rather than failing full runs.
 - Avoid broad refactors while parity work is ongoing.
 
+## Component Mapping Rule (Static 1:1)
+
+VE component implementation must mirror the main app component structure exactly for each migrated family.
+
+- Do not programmatically generate VE components from route maps or config objects.
+- Do not collapse multiple Bootstrap component examples into a single route-switch component.
+- Create the same component files in `ve-project/src/components` that exist in `src/components` for the migrated area.
+- Keep a direct route-to-component mapping in `ve-project/src/index.tsx` for those files.
+
+This rule is intentional: migration examples should stay explicit and easy to inspect per component case/state.
+
 ## Recent Findings (April 2026)
 
 ### Cross-Class Selector Rule in Vanilla Extract

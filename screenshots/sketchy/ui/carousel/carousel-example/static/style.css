@@ -32,6 +32,18 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev { display: block; }
 
+.carousel-item-next:not(.carousel-item-start), .active.carousel-item-end { transform: translateX(100%); }
+
+.carousel-item-prev:not(.carousel-item-end), .active.carousel-item-start { transform: translateX(-100%); }
+
+.carousel-fade .carousel-item.active, .carousel-fade .carousel-item-next.carousel-item-start, .carousel-fade .carousel-item-prev.carousel-item-end { z-index: 1; opacity: 1; }
+
+.carousel-fade .active.carousel-item-start, .carousel-fade .active.carousel-item-end { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+.carousel-fade .active.carousel-item-start, .carousel-fade .active.carousel-item-end { transition: none; }
+}
+
 .carousel-control-prev, .carousel-control-next { position: absolute; top: 0; bottom: 0; z-index: 1; display: flex; align-items: center; justify-content: center; width: 15%; padding: 0; color: #fff; text-align: center; background: none; filter: var(--bs-carousel-control-icon-filter); border: 0; opacity: 0.5; transition: opacity 0.15s ease; }
 
 @media (prefers-reduced-motion: reduce) {

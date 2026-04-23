@@ -1,7 +1,26 @@
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import Home from './components/HomePage'
+import BadgePage from './components/ui/BadgePage'
 import ButtonsPage from './components/ui/ButtonsPage'
+import Dropdowns from './components/ui/Dropdowns'
+import AlignedDropdown from './components/ui/dropdowns/AlignedDropdown'
+import EndDropdown from './components/ui/dropdowns/EndDropdown'
+import LargeDropdown from './components/ui/dropdowns/LargeDropdown'
+import NormalDropdown from './components/ui/dropdowns/NormalDropdown'
+import SmallDropdown from './components/ui/dropdowns/SmallDropdown'
+import SplitDangerDropdown from './components/ui/dropdowns/SplitDangerDropdown'
+import SplitDarkDropdown from './components/ui/dropdowns/SplitDarkDropdown'
+import SplitInfoDropdown from './components/ui/dropdowns/SplitInfoDropdown'
+import SplitLightDropdown from './components/ui/dropdowns/SplitLightDropdown'
+import SplitPrimaryDropdown from './components/ui/dropdowns/SplitPrimaryDropdown'
+import SplitSecondaryDropdown from './components/ui/dropdowns/SplitSecondaryDropdown'
+import SplitSuccessDropdown from './components/ui/dropdowns/SplitSuccessDropdown'
+import SplitWarningDropdown from './components/ui/dropdowns/SplitWarningDropdown'
+import StartDropdown from './components/ui/dropdowns/StartDropdown'
+import UpDropdown from './components/ui/dropdowns/UpDropdown'
+import HeadingBadges from './components/ui/badge/HeadingBadges'
+import PillBadges from './components/ui/badge/PillBadges'
 import OutlineCheckActiveDangerButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'
 import OutlineCheckActiveDarkButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDarkButton'
 import OutlineCheckActiveDisabledDangerButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDangerButton'
@@ -264,6 +283,25 @@ render(
 			<Route path="/contents/typography/lead" component={Lead} />
 			<Route path="/contents/typography/text-elements" component={TextElements} />
 			<Route path="/contents/typography/unstyled-list" component={UnstyledList} />
+			<Route path="/ui/badge" component={BadgePage} />
+			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
+			<Route path="/ui/badge/pill-badges" component={PillBadges} />
+			<Route path="/ui/dropdowns" component={Dropdowns} />
+			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
+			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
+			<Route path="/ui/dropdowns/large-dropdown" component={LargeDropdown} />
+			<Route path="/ui/dropdowns/split-primary-dropdown" component={SplitPrimaryDropdown} />
+			<Route path="/ui/dropdowns/split-secondary-dropdown" component={SplitSecondaryDropdown} />
+			<Route path="/ui/dropdowns/split-success-dropdown" component={SplitSuccessDropdown} />
+			<Route path="/ui/dropdowns/split-info-dropdown" component={SplitInfoDropdown} />
+			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
+			<Route path="/ui/dropdowns/split-danger-dropdown" component={SplitDangerDropdown} />
+			<Route path="/ui/dropdowns/split-light-dropdown" component={SplitLightDropdown} />
+			<Route path="/ui/dropdowns/split-dark-dropdown" component={SplitDarkDropdown} />
+			<Route path="/ui/dropdowns/end-dropdown" component={EndDropdown} />
+			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
+			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
+			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
 			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
 			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
