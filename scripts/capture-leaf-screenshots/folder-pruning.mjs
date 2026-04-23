@@ -40,7 +40,7 @@ export function normalizeRelativePath(relPath) {
 
 function shouldPreserveThemeRootFile(relativePath) {
 	const normalized = normalizeRelativePath(relativePath)
-	return normalized === 'theme.css'
+	return ['theme.css', 'bootstrap.css'].includes(normalized)
 }
 
 function isWithinMappedFolder(relativePath, mappedFolders) {
