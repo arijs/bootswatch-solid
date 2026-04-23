@@ -2,8 +2,10 @@ import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import Home from './components/HomePage'
 import BadgePage from './components/ui/BadgePage'
+import ButtonGroupPage from './components/ui/ButtonGroupPage'
 import ButtonsPage from './components/ui/ButtonsPage'
 import Dropdowns from './components/ui/Dropdowns'
+import ButtonGroupExample from './components/ui/button-group/ButtonGroupExample'
 import AlignedDropdown from './components/ui/dropdowns/AlignedDropdown'
 import EndDropdown from './components/ui/dropdowns/EndDropdown'
 import LargeDropdown from './components/ui/dropdowns/LargeDropdown'
@@ -286,6 +288,8 @@ render(
 			<Route path="/ui/badge" component={BadgePage} />
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />
+			<Route path="/ui/button-group" component={ButtonGroupPage} />
+			<Route path="/ui/button-group/button-group-example" component={ButtonGroupExample} />
 			<Route path="/ui/dropdowns" component={Dropdowns} />
 			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
 			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
