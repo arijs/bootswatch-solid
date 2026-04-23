@@ -1,0 +1,16 @@
+import { createVar } from '@vanilla-extract/css'
+
+export const varBsTableColorType = createVar()
+export const varBsTableBgType = createVar()
+export const varBsTableColorState = createVar()
+export const varBsTableBgState = createVar()
+export const varBsTableColor = createVar()
+export const varBsTableBg = createVar()
+export const varBsTableBorderColor = createVar()
+export const varBsTableAccentBg = createVar()
+export const varBsTableStripedColor = createVar()
+export const varBsTableStripedBg = createVar()
+export const varBsTableActiveColor = createVar()
+export const varBsTableActiveBg = createVar()
+export const varBsTableHoverColor = createVar()
+export const varBsTableHoverBg = createVar()

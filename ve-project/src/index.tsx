@@ -1,5 +1,3 @@
-/* @refresh reload */
-
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import Home from './components/HomePage'
@@ -205,11 +203,67 @@ import SolidToggleSuccessButton from './components/ui/buttons/solid/toggle/Solid
 import SolidToggleWarningButton from './components/ui/buttons/solid/toggle/SolidToggleWarningButton'
 import SolidWarningButton from './components/ui/buttons/solid/SolidWarningButton'
 import './reset.css'
+import ContentsSection from './components/contents/ContentsSection'
+import Figures from './components/contents/Figures'
+import FigureExample from './components/contents/figures/FigureExample'
+import Images from './components/contents/Images'
+import Responsive from './components/contents/images/Responsive'
+import Thumbnail from './components/contents/images/Thumbnail'
+import Tables from './components/contents/Tables'
+import Striped from './components/contents/tables/Striped'
+import DarkBorderless from './components/contents/tables/DarkBorderless'
+import HoverVariants from './components/contents/tables/HoverVariants'
+import HoverDefaultVariant from './components/contents/tables/HoverDefaultVariant'
+import HoverPrimaryVariant from './components/contents/tables/HoverPrimaryVariant'
+import HoverSecondaryVariant from './components/contents/tables/HoverSecondaryVariant'
+import HoverSuccessVariant from './components/contents/tables/HoverSuccessVariant'
+import HoverDangerVariant from './components/contents/tables/HoverDangerVariant'
+import HoverWarningVariant from './components/contents/tables/HoverWarningVariant'
+import HoverInfoVariant from './components/contents/tables/HoverInfoVariant'
+import HoverLightVariant from './components/contents/tables/HoverLightVariant'
+import HoverDarkVariant from './components/contents/tables/HoverDarkVariant'
+import SmallBordered from './components/contents/tables/SmallBordered'
+import Typography from './components/contents/Typography'
+import Blockquote from './components/contents/typography/Blockquote'
+import Display from './components/contents/typography/Display'
+import Heading from './components/contents/typography/Heading'
+import InlineList from './components/contents/typography/InlineList'
+import Lead from './components/contents/typography/Lead'
+import TextElements from './components/contents/typography/TextElements'
+import UnstyledList from './components/contents/typography/UnstyledList'
 
 render(
 	() => (
 		<Router>
 			<Route path="/" component={Home} />
+			<Route path="/contents" component={ContentsSection} />
+			<Route path="/contents/figures" component={Figures} />
+			<Route path="/contents/figures/figure-example" component={FigureExample} />
+			<Route path="/contents/images" component={Images} />
+			<Route path="/contents/images/responsive" component={Responsive} />
+			<Route path="/contents/images/thumbnail" component={Thumbnail} />
+			<Route path="/contents/tables" component={Tables} />
+			<Route path="/contents/tables/dark-borderless" component={DarkBorderless} />
+			<Route path="/contents/tables/hover-danger-variant" component={HoverDangerVariant} />
+			<Route path="/contents/tables/hover-dark-variant" component={HoverDarkVariant} />
+			<Route path="/contents/tables/hover-default-variant" component={HoverDefaultVariant} />
+			<Route path="/contents/tables/hover-info-variant" component={HoverInfoVariant} />
+			<Route path="/contents/tables/hover-light-variant" component={HoverLightVariant} />
+			<Route path="/contents/tables/hover-primary-variant" component={HoverPrimaryVariant} />
+			<Route path="/contents/tables/hover-secondary-variant" component={HoverSecondaryVariant} />
+			<Route path="/contents/tables/hover-success-variant" component={HoverSuccessVariant} />
+			<Route path="/contents/tables/hover-variants" component={HoverVariants} />
+			<Route path="/contents/tables/hover-warning-variant" component={HoverWarningVariant} />
+			<Route path="/contents/tables/small-bordered" component={SmallBordered} />
+			<Route path="/contents/tables/striped" component={Striped} />
+			<Route path="/contents/typography" component={Typography} />
+			<Route path="/contents/typography/blockquote" component={Blockquote} />
+			<Route path="/contents/typography/display" component={Display} />
+			<Route path="/contents/typography/heading" component={Heading} />
+			<Route path="/contents/typography/inline-list" component={InlineList} />
+			<Route path="/contents/typography/lead" component={Lead} />
+			<Route path="/contents/typography/text-elements" component={TextElements} />
+			<Route path="/contents/typography/unstyled-list" component={UnstyledList} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
 			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
 			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
