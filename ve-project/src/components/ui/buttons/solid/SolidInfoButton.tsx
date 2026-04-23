@@ -7,7 +7,7 @@ import { btnInfo } from '../../../../themes/bootstrap/ui/buttons/generated.css'
 
 const SolidInfoButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-info ${btnInfo} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnInfo} pwhook-btn`}>
 			Info
 		</button>
 	</div>

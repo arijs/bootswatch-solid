@@ -7,8 +7,8 @@ import { btnCheck, btnSecondary } from '../../../../../themes/bootstrap/ui/butto
 
 const SolidToggleSecondaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-secondary" autocomplete="off" />
-		<label class={`btn ${btn} btn-secondary ${btnSecondary}`} for="id-btn-solid-toggle-secondary">Toggle Secondary</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-secondary" autocomplete="off" />
+		<label class={`${btn} ${btnSecondary}`} for="id-btn-solid-toggle-secondary">Toggle Secondary</label>
 	</div>
 )
 

@@ -7,7 +7,7 @@ import { btnOutlineDanger } from '../../../../../themes/bootstrap/ui/buttons/gen
 
 const OutlineDisabledDangerButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-outline-danger ${btnOutlineDanger}`}>
+		<button disabled type="button" class={`${btn} ${btnOutlineDanger} pwhook-btn`}>
 			Danger
 		</button>
 	</div>

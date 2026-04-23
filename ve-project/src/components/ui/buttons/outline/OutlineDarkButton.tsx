@@ -7,7 +7,7 @@ import { btnOutlineDark } from '../../../../themes/bootstrap/ui/buttons/generate
 
 const OutlineDarkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-dark ${btnOutlineDark} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnOutlineDark} pwhook-btn`}>
 			Dark
 		</button>
 	</div>

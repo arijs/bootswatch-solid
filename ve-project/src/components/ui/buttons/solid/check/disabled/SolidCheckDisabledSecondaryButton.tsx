@@ -7,7 +7,7 @@ import { btnSecondary } from '../../../../../../themes/bootstrap/ui/buttons/gene
 
 const SolidCheckDisabledSecondaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-secondary ${btnSecondary}`} data-bs-toggle="button">
+		<button disabled type="button" class={`${btn} ${btnSecondary} pwhook-btn`} data-bs-toggle="button">
 			Secondary
 		</button>
 	</div>

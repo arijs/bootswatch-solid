@@ -7,7 +7,7 @@ import { btnPrimary } from '../../../../../themes/bootstrap/ui/buttons/generated
 
 const SolidCheckPrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-primary ${btnPrimary}`} data-bs-toggle="button">
+		<button type="button" class={`${btn} ${btnPrimary} pwhook-btn`} data-bs-toggle="button">
 			Primary
 		</button>
 	</div>

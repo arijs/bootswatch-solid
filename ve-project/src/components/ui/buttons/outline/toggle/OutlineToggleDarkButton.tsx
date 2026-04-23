@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineDark } from '../../../../../themes/bootstrap/ui/but
 
 const OutlineToggleDarkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-dark" autocomplete="off" />
-		<label class={`btn ${btn} btn-outline-dark ${btnOutlineDark}`} for="id-btn-outline-toggle-dark">Toggle Dark</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-dark" autocomplete="off" />
+		<label class={`${btn} ${btnOutlineDark}`} for="id-btn-outline-toggle-dark">Toggle Dark</label>
 	</div>
 )
 

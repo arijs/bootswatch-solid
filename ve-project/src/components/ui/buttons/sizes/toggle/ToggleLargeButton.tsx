@@ -7,8 +7,8 @@ import { btnCheck, btnLg, btnPrimary } from '../../../../../themes/bootstrap/ui/
 
 const ToggleLargeButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-sizes-toggle-large" autocomplete="off" />
-		<label class={`btn ${btn} btn-primary ${btnPrimary} btn-lg ${btnLg}`} for="id-btn-sizes-toggle-large">Toggle Large button</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-sizes-toggle-large" autocomplete="off" />
+		<label class={`${btn} ${btnPrimary} ${btnLg}`} for="id-btn-sizes-toggle-large">Toggle Large button</label>
 	</div>
 )
 

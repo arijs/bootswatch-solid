@@ -7,7 +7,7 @@ import { btnPrimary } from '../../../../../themes/bootstrap/ui/buttons/generated
 
 const SolidDisabledPrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-primary ${btnPrimary}`}>
+		<button disabled type="button" class={`${btn} ${btnPrimary} pwhook-btn`}>
 			Primary
 		</button>
 	</div>

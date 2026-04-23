@@ -5,13 +5,13 @@ import { body } from '../../../themes/bootstrap/body.css'
 import { bdExample, h1, h2, h3, h4, h5, h6 } from '../../../themes/bootstrap/contents/generated.css'
 
 const Heading: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<p class={`h1 ${h1}`}>Heading 1</p>
-		<p class={`h2 ${h2}`}>Heading 2</p>
-		<p class={`h3 ${h3}`}>Heading 3</p>
-		<p class={`h4 ${h4}`}>Heading 4</p>
-		<p class={`h5 ${h5}`}>Heading 5</p>
-		<p class={`h6 ${h6}`}>Heading 6</p>
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<p class={`${h1}`}>Heading 1</p>
+		<p class={`${h2}`}>Heading 2</p>
+		<p class={`${h3}`}>Heading 3</p>
+		<p class={`${h4}`}>Heading 4</p>
+		<p class={`${h5}`}>Heading 5</p>
+		<p class={`${h6}`}>Heading 6</p>
 	</div>
 )
 

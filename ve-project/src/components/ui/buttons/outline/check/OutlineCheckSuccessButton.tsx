@@ -7,7 +7,7 @@ import { btnOutlineSuccess } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const OutlineCheckSuccessButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-success ${btnOutlineSuccess}`} data-bs-toggle="button">
+		<button type="button" class={`${btn} ${btnOutlineSuccess} pwhook-btn`} data-bs-toggle="button">
 			Success
 		</button>
 	</div>

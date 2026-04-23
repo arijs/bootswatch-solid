@@ -6,7 +6,7 @@ import { btn } from '../../../../../themes/bootstrap/ui/buttons/base.css'
 
 const SolidDisabledBaseButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn}`}>
+		<button disabled type="button" class={`${btn} pwhook-btn`}>
 			Button
 		</button>
 	</div>

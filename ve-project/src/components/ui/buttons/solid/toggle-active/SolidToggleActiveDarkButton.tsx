@@ -7,8 +7,8 @@ import { btnCheck, btnDark } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const SolidToggleActiveDarkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-active-dark" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-dark ${btnDark}`} for="id-btn-solid-toggle-active-dark">Checked Toggle Dark</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-active-dark" checked autocomplete="off" />
+		<label class={`${btn} ${btnDark}`} for="id-btn-solid-toggle-active-dark">Checked Toggle Dark</label>
 	</div>
 )
 

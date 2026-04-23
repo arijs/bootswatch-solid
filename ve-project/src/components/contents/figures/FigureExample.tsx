@@ -2,13 +2,12 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, bdPlaceholderImg, figure, figureCaption, figureImg, imgFluid, rounded } from '../../../themes/bootstrap/contents/generated.css'
+import { bdExample, bdPlaceholderImg, figure, figureCaption, figureImg, imgFluid, mediaMiddle, rounded } from '../../../themes/bootstrap/contents/generated.css'
 
 const FigureExample: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<figure class={`figure ${figure}`}>
-			<svg
-				class={`bd-placeholder-img ${bdPlaceholderImg} figure-img ${figureImg} img-fluid ${imgFluid} rounded ${rounded}`}
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<figure class={`${figure}`}>
+			<svg class={`${bdPlaceholderImg} ${figureImg} ${imgFluid} ${mediaMiddle} ${rounded}`}
 				width="400"
 				height="300"
 				xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +22,7 @@ const FigureExample: Component = () => (
 				</text>
 			</svg>
 
-			<figcaption class={`figure-caption ${figureCaption}`}>A caption for the above image.</figcaption>
+			<figcaption class={`${figureCaption}`}>A caption for the above image.</figcaption>
 		</figure>
 	</div>
 )

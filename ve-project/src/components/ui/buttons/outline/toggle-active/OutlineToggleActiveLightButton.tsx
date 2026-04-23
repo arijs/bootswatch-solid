@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineLight } from '../../../../../themes/bootstrap/ui/bu
 
 const OutlineToggleActiveLightButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-active-light" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-outline-light ${btnOutlineLight}`} for="id-btn-outline-toggle-active-light">Checked Toggle Light</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-active-light" checked autocomplete="off" />
+		<label class={`${btn} ${btnOutlineLight}`} for="id-btn-outline-toggle-active-light">Checked Toggle Light</label>
 	</div>
 )
 

@@ -31,6 +31,11 @@ import {
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
 
+export const btnCheckHook = style({})
+export const btnActiveHook = style({})
+export const btnShowHook = style({})
+export const btnDisabledHook = style({})
+
 export const btn = style({
 	vars: {
 		[varBsBtnPaddingX]: '0.75em',
@@ -88,17 +93,17 @@ export const btn = style({
 		boxShadow: varBsBtnFocusBoxShadow,
 	},
 	selectors: {
-		'.btn-check:checked + &, :not(.btn-check) + &:active, &:first-child:active, &.active, &.show':
+		[`${btnCheckHook}:checked + &, :not(${btnCheckHook}) + &:active, &:first-child:active, &${btnActiveHook}, &${btnShowHook}`]:
 			{
 				color: varBsBtnActiveColor,
 				backgroundColor: varBsBtnActiveBg,
 				borderColor: varBsBtnActiveBorderColor,
 			},
-		'.btn-check:checked + &:focus-visible, :not(.btn-check) + &:active:focus-visible, &:first-child:active:focus-visible, &.active:focus-visible, &.show:focus-visible':
+		[`${btnCheckHook}:checked + &:focus-visible, :not(${btnCheckHook}) + &:active:focus-visible, &:first-child:active:focus-visible, &${btnActiveHook}:focus-visible, &${btnShowHook}:focus-visible`]:
 			{
 				boxShadow: varBsBtnFocusBoxShadow,
 			},
-		'&:disabled, &.disabled, fieldset:disabled &': {
+		[`&:disabled, &${btnDisabledHook}, fieldset:disabled &`]: {
 			color: varBsBtnDisabledColor,
 			pointerEvents: 'none',
 			backgroundColor: varBsBtnDisabledBg,

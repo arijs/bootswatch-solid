@@ -7,7 +7,7 @@ import { btnLg, btnPrimary } from '../../../../../../themes/bootstrap/ui/buttons
 
 const CheckDisabledLargeButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-primary ${btnPrimary} btn-lg ${btnLg}`} data-bs-toggle="button">
+		<button disabled type="button" class={`${btn} ${btnPrimary} ${btnLg} pwhook-btn`} data-bs-toggle="button">
 			Large button
 		</button>
 	</div>

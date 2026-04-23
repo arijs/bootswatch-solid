@@ -7,7 +7,7 @@ import { btnLight } from '../../../../themes/bootstrap/ui/buttons/generated.css'
 
 const SolidLightButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-light ${btnLight} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnLight} pwhook-btn`}>
 			Light
 		</button>
 	</div>

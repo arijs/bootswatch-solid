@@ -7,8 +7,8 @@ import { btnCheck, btnOutlinePrimary } from '../../../../../themes/bootstrap/ui/
 
 const OutlineToggleActivePrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-active-primary" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-outline-primary ${btnOutlinePrimary}`} for="id-btn-outline-toggle-active-primary">Checked Toggle Primary</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-active-primary" checked autocomplete="off" />
+		<label class={`${btn} ${btnOutlinePrimary}`} for="id-btn-outline-toggle-active-primary">Checked Toggle Primary</label>
 	</div>
 )
 

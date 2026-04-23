@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineSecondary } from '../../../../../themes/bootstrap/u
 
 const OutlineToggleActiveSecondaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-active-secondary" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-outline-secondary ${btnOutlineSecondary}`} for="id-btn-outline-toggle-active-secondary">Checked Toggle Secondary</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-active-secondary" checked autocomplete="off" />
+		<label class={`${btn} ${btnOutlineSecondary}`} for="id-btn-outline-toggle-active-secondary">Checked Toggle Secondary</label>
 	</div>
 )
 

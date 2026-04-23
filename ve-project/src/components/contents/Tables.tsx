@@ -16,8 +16,8 @@ import SmallBordered from './tables/SmallBordered'
 import Striped from './tables/Striped'
 
 const Tables: Component = () => (
-	<article class={`my-3 ${my3}`} id="tables">
-		<div class={`bd-heading ${bdHeading} sticky-xl-top ${stickyXlTop} align-self-start ${alignSelfStart} mt-5 ${mt5} mb-3 ${mb3} mt-xl-0 ${mtXl0} mb-xl-2 ${mbXl2}`}>
+	<article class={`${my3}`} id="tables">
+		<div class={`${bdHeading} ${stickyXlTop} ${alignSelfStart} ${mt5} ${mb3} ${mtXl0} ${mbXl2}`}>
 			<h3>Tables</h3>
 			<DocLink href="/contents/tables" />
 			<DocLink href="/contents/tables/striped">Striped</DocLink>

@@ -5,9 +5,8 @@ import { body } from '../../../themes/bootstrap/body.css'
 import { bdExample, bdPlaceholderImg, imgThumbnail } from '../../../themes/bootstrap/contents/generated.css'
 
 const Thumbnail: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<svg
-			class={`bd-placeholder-img ${bdPlaceholderImg} img-thumbnail ${imgThumbnail}`}
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<svg class={`${bdPlaceholderImg} ${imgThumbnail}`}
 			width="200"
 			height="200"
 			xmlns="http://www.w3.org/2000/svg"

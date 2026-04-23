@@ -7,7 +7,7 @@ import { btnOutlineLight } from '../../../../../themes/bootstrap/ui/buttons/gene
 
 const OutlineDisabledLightButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-outline-light ${btnOutlineLight}`}>
+		<button disabled type="button" class={`${btn} ${btnOutlineLight} pwhook-btn`}>
 			Light
 		</button>
 	</div>

@@ -7,7 +7,7 @@ import { btnOutlineInfo } from '../../../../themes/bootstrap/ui/buttons/generate
 
 const OutlineInfoButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-info ${btnOutlineInfo} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnOutlineInfo} pwhook-btn`}>
 			Info
 		</button>
 	</div>

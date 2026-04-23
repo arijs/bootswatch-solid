@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineInfo } from '../../../../../themes/bootstrap/ui/but
 
 const OutlineToggleInfoButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-info" autocomplete="off" />
-		<label class={`btn ${btn} btn-outline-info ${btnOutlineInfo}`} for="id-btn-outline-toggle-info">Toggle Info</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-info" autocomplete="off" />
+		<label class={`${btn} ${btnOutlineInfo}`} for="id-btn-outline-toggle-info">Toggle Info</label>
 	</div>
 )
 

@@ -7,7 +7,7 @@ import { btnOutlinePrimary } from '../../../../themes/bootstrap/ui/buttons/gener
 
 const OutlinePrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-primary ${btnOutlinePrimary} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnOutlinePrimary} pwhook-btn`}>
 			Primary
 		</button>
 	</div>

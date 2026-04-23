@@ -7,7 +7,7 @@ import { btnOutlineWarning } from '../../../../themes/bootstrap/ui/buttons/gener
 
 const OutlineWarningButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-warning ${btnOutlineWarning} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnOutlineWarning} pwhook-btn`}>
 			Warning
 		</button>
 	</div>

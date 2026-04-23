@@ -7,7 +7,7 @@ import { btnLg, btnPrimary } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const CheckLargeButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-primary ${btnPrimary} btn-lg ${btnLg}`} data-bs-toggle="button">
+		<button type="button" class={`${btn} ${btnPrimary} ${btnLg} pwhook-btn`} data-bs-toggle="button">
 			Large button
 		</button>
 	</div>

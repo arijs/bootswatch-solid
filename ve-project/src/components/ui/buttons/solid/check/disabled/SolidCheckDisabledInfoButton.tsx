@@ -7,7 +7,7 @@ import { btnInfo } from '../../../../../../themes/bootstrap/ui/buttons/generated
 
 const SolidCheckDisabledInfoButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-info ${btnInfo}`} data-bs-toggle="button">
+		<button disabled type="button" class={`${btn} ${btnInfo} pwhook-btn`} data-bs-toggle="button">
 			Info
 		</button>
 	</div>

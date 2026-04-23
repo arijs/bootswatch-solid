@@ -7,8 +7,8 @@ import { btnCheck, btnSecondary } from '../../../../../../themes/bootstrap/ui/bu
 
 const SolidToggleDisabledSecondaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input disabled type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-disabled-secondary" autocomplete="off"  />
-		<label class={`btn ${btn} btn-secondary ${btnSecondary}`} for="id-btn-solid-toggle-disabled-secondary">Toggle Secondary</label>
+		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-disabled-secondary" autocomplete="off"  />
+		<label class={`${btn} ${btnSecondary}`} for="id-btn-solid-toggle-disabled-secondary">Toggle Secondary</label>
 	</div>
 )
 

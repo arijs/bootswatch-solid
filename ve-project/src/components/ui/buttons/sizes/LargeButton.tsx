@@ -7,7 +7,7 @@ import { btnLg, btnPrimary } from '../../../../themes/bootstrap/ui/buttons/gener
 
 const LargeButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-primary ${btnPrimary} btn-lg ${btnLg} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnPrimary} ${btnLg} pwhook-btn`}>
 			Large button
 		</button>
 	</div>

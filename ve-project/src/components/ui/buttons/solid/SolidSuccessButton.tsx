@@ -7,7 +7,7 @@ import { btnSuccess } from '../../../../themes/bootstrap/ui/buttons/generated.cs
 
 const SolidSuccessButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-success ${btnSuccess} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnSuccess} pwhook-btn`}>
 			Success
 		</button>
 	</div>

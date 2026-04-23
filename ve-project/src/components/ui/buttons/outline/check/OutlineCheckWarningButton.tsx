@@ -7,7 +7,7 @@ import { btnOutlineWarning } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const OutlineCheckWarningButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-warning ${btnOutlineWarning}`} data-bs-toggle="button">
+		<button type="button" class={`${btn} ${btnOutlineWarning} pwhook-btn`} data-bs-toggle="button">
 			Warning
 		</button>
 	</div>

@@ -7,7 +7,7 @@ import { btnWarning } from '../../../../../themes/bootstrap/ui/buttons/generated
 
 const SolidDisabledWarningButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-warning ${btnWarning}`}>
+		<button disabled type="button" class={`${btn} ${btnWarning} pwhook-btn`}>
 			Warning
 		</button>
 	</div>

@@ -7,7 +7,7 @@ import { btnPrimary, btnSm } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const DisabledSmallButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-primary ${btnPrimary} btn-sm ${btnSm}`}>
+		<button disabled type="button" class={`${btn} ${btnPrimary} ${btnSm} pwhook-btn`}>
 			Small button
 		</button>
 	</div>

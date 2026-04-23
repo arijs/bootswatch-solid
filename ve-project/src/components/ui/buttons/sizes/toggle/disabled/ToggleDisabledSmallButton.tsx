@@ -7,8 +7,8 @@ import { btnCheck, btnPrimary, btnSm } from '../../../../../../themes/bootstrap/
 
 const ToggleDisabledSmallButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input disabled type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-sizes-toggle-disabled-small" autocomplete="off"  />
-		<label class={`btn ${btn} btn-primary ${btnPrimary} btn-sm ${btnSm}`} for="id-btn-sizes-toggle-disabled-small">Toggle Small button</label>
+		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-sizes-toggle-disabled-small" autocomplete="off"  />
+		<label class={`${btn} ${btnPrimary} ${btnSm}`} for="id-btn-sizes-toggle-disabled-small">Toggle Small button</label>
 	</div>
 )
 

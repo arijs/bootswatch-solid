@@ -5,8 +5,8 @@ import { body } from '../../../themes/bootstrap/body.css'
 import { bdExample, lead } from '../../../themes/bootstrap/contents/generated.css'
 
 const Lead: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<p class={`lead ${lead}`}>This is a lead paragraph. It stands out from regular paragraphs.</p>
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<p class={`${lead}`}>This is a lead paragraph. It stands out from regular paragraphs.</p>
 	</div>
 )
 

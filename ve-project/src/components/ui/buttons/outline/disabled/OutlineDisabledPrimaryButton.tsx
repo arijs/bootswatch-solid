@@ -7,7 +7,7 @@ import { btnOutlinePrimary } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const OutlineDisabledPrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-outline-primary ${btnOutlinePrimary}`}>
+		<button disabled type="button" class={`${btn} ${btnOutlinePrimary} pwhook-btn`}>
 			Primary
 		</button>
 	</div>

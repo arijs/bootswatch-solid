@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineSecondary } from '../../../../../../themes/bootstra
 
 const OutlineToggleDisabledSecondaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input disabled type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-disabled-secondary" autocomplete="off"  />
-		<label class={`btn ${btn} btn-outline-secondary ${btnOutlineSecondary}`} for="id-btn-outline-toggle-disabled-secondary">Toggle Secondary</label>
+		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-disabled-secondary" autocomplete="off"  />
+		<label class={`${btn} ${btnOutlineSecondary}`} for="id-btn-outline-toggle-disabled-secondary">Toggle Secondary</label>
 	</div>
 )
 

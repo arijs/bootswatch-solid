@@ -7,8 +7,8 @@ import { btnCheck, btnSuccess } from '../../../../../../themes/bootstrap/ui/butt
 
 const SolidToggleActiveDisabledSuccessButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input disabled type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-active-disabled-success" checked autocomplete="off"  />
-		<label class={`btn ${btn} btn-success ${btnSuccess}`} for="id-btn-solid-toggle-active-disabled-success">Checked Toggle Success</label>
+		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-active-disabled-success" checked autocomplete="off"  />
+		<label class={`${btn} ${btnSuccess}`} for="id-btn-solid-toggle-active-disabled-success">Checked Toggle Success</label>
 	</div>
 )
 

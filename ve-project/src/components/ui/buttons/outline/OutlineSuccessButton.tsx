@@ -7,7 +7,7 @@ import { btnOutlineSuccess } from '../../../../themes/bootstrap/ui/buttons/gener
 
 const OutlineSuccessButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-success ${btnOutlineSuccess} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnOutlineSuccess} pwhook-btn`}>
 			Success
 		</button>
 	</div>

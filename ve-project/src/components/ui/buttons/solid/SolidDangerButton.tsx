@@ -7,7 +7,7 @@ import { btnDanger } from '../../../../themes/bootstrap/ui/buttons/generated.css
 
 const SolidDangerButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-danger ${btnDanger} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnDanger} pwhook-btn`}>
 			Danger
 		</button>
 	</div>

@@ -25,7 +25,7 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
-import { btn } from './base.css'
+import { btn, btnCheckHook, btnDisabledHook } from './base.css'
 
 type VariantPalette = {
 	color: string
@@ -53,11 +53,11 @@ type OutlinePalette = {
 
 const activeInsetShadow = 'inset 0 3px 5px rgba(0, 0, 0, 0.125)'
 
-export const btnCheck = style({
+export const btnCheck = style([btnCheckHook, {
 	position: 'absolute',
 	clip: 'rect(0, 0, 0, 0)',
 	pointerEvents: 'none',
-})
+}])
 
 globalStyle(`${btnCheck}[disabled] + ${btn}, ${btnCheck}:disabled + ${btn}`, {
 	pointerEvents: 'none',
@@ -270,7 +270,7 @@ export const solidVariantStyles = {
 			textDecoration: varBsLinkDecoration,
 		},
 		selectors: {
-			'&:disabled, &.disabled, fieldset:disabled &': {
+			[`&:disabled, &${btnDisabledHook}, fieldset:disabled &`]: {
 				textDecoration: 'none',
 			},
 		},

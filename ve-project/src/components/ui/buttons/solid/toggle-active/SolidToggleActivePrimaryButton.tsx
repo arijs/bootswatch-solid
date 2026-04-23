@@ -7,8 +7,8 @@ import { btnCheck, btnPrimary } from '../../../../../themes/bootstrap/ui/buttons
 
 const SolidToggleActivePrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-active-primary" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-primary ${btnPrimary}`} for="id-btn-solid-toggle-active-primary">Checked Toggle Primary</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-active-primary" checked autocomplete="off" />
+		<label class={`${btn} ${btnPrimary}`} for="id-btn-solid-toggle-active-primary">Checked Toggle Primary</label>
 	</div>
 )
 

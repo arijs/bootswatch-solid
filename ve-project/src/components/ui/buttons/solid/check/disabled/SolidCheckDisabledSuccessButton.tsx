@@ -7,7 +7,7 @@ import { btnSuccess } from '../../../../../../themes/bootstrap/ui/buttons/genera
 
 const SolidCheckDisabledSuccessButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-success ${btnSuccess}`} data-bs-toggle="button">
+		<button disabled type="button" class={`${btn} ${btnSuccess} pwhook-btn`} data-bs-toggle="button">
 			Success
 		</button>
 	</div>

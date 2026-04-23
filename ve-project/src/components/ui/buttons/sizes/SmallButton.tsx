@@ -7,7 +7,7 @@ import { btnPrimary, btnSm } from '../../../../themes/bootstrap/ui/buttons/gener
 
 const SmallButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-primary ${btnPrimary} btn-sm ${btnSm} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnPrimary} ${btnSm} pwhook-btn`}>
 			Small button
 		</button>
 	</div>

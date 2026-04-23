@@ -10,8 +10,8 @@ import TextElements from './typography/TextElements'
 import UnstyledList from './typography/UnstyledList'
 
 const Typography: Component = () => (
-	<article class={`my-3 ${my3}`} id="typography">
-		<div class={`bd-heading ${bdHeading} sticky-xl-top ${stickyXlTop} align-self-start ${alignSelfStart} mt-5 ${mt5} mb-3 ${mb3} mt-xl-0 ${mtXl0} mb-xl-2 ${mbXl2}`}>
+	<article class={`${my3}`} id="typography">
+		<div class={`${bdHeading} ${stickyXlTop} ${alignSelfStart} ${mt5} ${mb3} ${mtXl0} ${mbXl2}`}>
 			<h3>Typography</h3>
 			<DocLink href="/contents/typography" />
 			<DocLink href="/contents/typography/display">Display</DocLink>

@@ -7,8 +7,8 @@ import { btnCheck, btnInfo } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const SolidToggleActiveInfoButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-active-info" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-info ${btnInfo}`} for="id-btn-solid-toggle-active-info">Checked Toggle Info</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-active-info" checked autocomplete="off" />
+		<label class={`${btn} ${btnInfo}`} for="id-btn-solid-toggle-active-info">Checked Toggle Info</label>
 	</div>
 )
 

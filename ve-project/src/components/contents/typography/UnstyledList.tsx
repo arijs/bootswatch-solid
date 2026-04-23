@@ -2,18 +2,18 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, listUnstyled } from '../../../themes/bootstrap/contents/generated.css'
+import { bdExample, listBase, listIndented, listNested, listUnstyled } from '../../../themes/bootstrap/contents/generated.css'
 
 const UnstyledList: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<ul class={`list-unstyled ${listUnstyled}`}>
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<ul class={`${listUnstyled} ${listBase}`}>
 			<li>This is a list.</li>
 			<li>It appears completely unstyled.</li>
 			<li>Structurally, it's still a list.</li>
 			<li>However, this style only applies to immediate child elements.</li>
 			<li>
 				Nested lists:
-				<ul>
+				<ul class={`${listBase} ${listNested} ${listIndented}`}>
 					<li>are unaffected by this style</li>
 					<li>will still show a bullet</li>
 					<li>and have appropriate left margin</li>

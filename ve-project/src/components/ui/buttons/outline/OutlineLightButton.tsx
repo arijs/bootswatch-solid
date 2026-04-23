@@ -7,7 +7,7 @@ import { btnOutlineLight } from '../../../../themes/bootstrap/ui/buttons/generat
 
 const OutlineLightButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-outline-light ${btnOutlineLight} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnOutlineLight} pwhook-btn`}>
 			Light
 		</button>
 	</div>

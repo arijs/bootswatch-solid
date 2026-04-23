@@ -2,32 +2,32 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample } from '../../../themes/bootstrap/contents/generated.css'
+import { bdExample, markText, paragraph, smallText } from '../../../themes/bootstrap/contents/generated.css'
 
 const TextElements: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<p>
-			You can use the mark tag to <mark>highlight</mark> text.
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<p class={paragraph}>
+			You can use the mark tag to <mark class={markText}>highlight</mark> text.
 		</p>
-		<p>
+		<p class={paragraph}>
 			<del>This line of text is meant to be treated as deleted text.</del>
 		</p>
-		<p>
+		<p class={paragraph}>
 			<s>This line of text is meant to be treated as no longer accurate.</s>
 		</p>
-		<p>
+		<p class={paragraph}>
 			<ins>This line of text is meant to be treated as an addition to the document.</ins>
 		</p>
-		<p>
+		<p class={paragraph}>
 			<u>This line of text will render as underlined.</u>
 		</p>
-		<p>
-			<small>This line of text is meant to be treated as fine print.</small>
+		<p class={paragraph}>
+			<small class={smallText}>This line of text is meant to be treated as fine print.</small>
 		</p>
-		<p>
+		<p class={paragraph}>
 			<strong>This line rendered as bold text.</strong>
 		</p>
-		<p>
+		<p class={paragraph}>
 			<em>This line rendered as italicized text.</em>
 		</p>
 	</div>

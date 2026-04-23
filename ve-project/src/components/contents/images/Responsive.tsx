@@ -5,9 +5,8 @@ import { body } from '../../../themes/bootstrap/body.css'
 import { bdExample, bdPlaceholderImg, bdPlaceholderImgLg, imgFluid } from '../../../themes/bootstrap/contents/generated.css'
 
 const Responsive: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<svg
-			class={`bd-placeholder-img ${bdPlaceholderImg} bd-placeholder-img-lg ${bdPlaceholderImgLg} img-fluid ${imgFluid}`}
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<svg class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${imgFluid}`}
 			width="100%"
 			height="250"
 			xmlns="http://www.w3.org/2000/svg"

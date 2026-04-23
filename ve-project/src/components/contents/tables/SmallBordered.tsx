@@ -2,36 +2,36 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, table, tableBordered, tableSm } from '../../../themes/bootstrap/contents/generated.css'
+import { bdExample, table, tableBordered, tableSm, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
 
 const SmallBordered: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<table class={`table ${table} table-sm ${tableSm} table-bordered ${tableBordered}`}>
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>First</th>
-					<th>Last</th>
-					<th>Handle</th>
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<table class={`${table} ${tableElement} ${tableSm} ${tableBordered}`}>
+			<thead class={tableSection}>
+				<tr class={tableRow}>
+					<th class={tableHeaderCell}>#</th>
+					<th class={tableHeaderCell}>First</th>
+					<th class={tableHeaderCell}>Last</th>
+					<th class={tableHeaderCell}>Handle</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<th>1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+			<tbody class={tableSection}>
+				<tr class={tableRow}>
+					<th class={tableHeaderCell}>1</th>
+					<td class={tableCell}>Mark</td>
+					<td class={tableCell}>Otto</td>
+					<td class={tableCell}>@mdo</td>
 				</tr>
-				<tr>
-					<th>2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
+				<tr class={tableRow}>
+					<th class={tableHeaderCell}>2</th>
+					<td class={tableCell}>Jacob</td>
+					<td class={tableCell}>Thornton</td>
+					<td class={tableCell}>@fat</td>
 				</tr>
-				<tr>
-					<th>3</th>
-					<td colspan="2">Larry the Bird</td>
-					<td>@twitter</td>
+				<tr class={tableRow}>
+					<th class={tableHeaderCell}>3</th>
+					<td class={tableCell} colspan="2">Larry the Bird</td>
+					<td class={tableCell}>@twitter</td>
 				</tr>
 			</tbody>
 		</table>
@@ -50,3 +50,5 @@ export default SmallBordered
 // @screenshot vapor: 360x128 128
 // @screenshot yeti: 360x121 121
 // @screenshot zephyr: 360x153 153
+
+

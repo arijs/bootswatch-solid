@@ -7,8 +7,8 @@ import { btnCheck, btnLink } from '../../../../../themes/bootstrap/ui/buttons/ge
 
 const SolidToggleLinkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-solid-toggle-link" autocomplete="off" />
-		<label class={`btn ${btn} btn-link ${btnLink}`} for="id-btn-solid-toggle-link">Toggle Link</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-solid-toggle-link" autocomplete="off" />
+		<label class={`${btn} ${btnLink}`} for="id-btn-solid-toggle-link">Toggle Link</label>
 	</div>
 )
 

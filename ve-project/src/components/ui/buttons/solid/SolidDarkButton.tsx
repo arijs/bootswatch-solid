@@ -7,7 +7,7 @@ import { btnDark } from '../../../../themes/bootstrap/ui/buttons/generated.css'
 
 const SolidDarkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-dark ${btnDark} pwhook-btn`}>
+		<button type="button" class={`${btn} ${btnDark} pwhook-btn`}>
 			Dark
 		</button>
 	</div>

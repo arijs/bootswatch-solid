@@ -7,7 +7,7 @@ import { btnWarning } from '../../../../../themes/bootstrap/ui/buttons/generated
 
 const SolidCheckWarningButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`btn ${btn} btn-warning ${btnWarning}`} data-bs-toggle="button">
+		<button type="button" class={`${btn} ${btnWarning} pwhook-btn`} data-bs-toggle="button">
 			Warning
 		</button>
 	</div>

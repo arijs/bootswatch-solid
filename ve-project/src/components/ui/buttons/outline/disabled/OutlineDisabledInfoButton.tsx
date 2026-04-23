@@ -7,7 +7,7 @@ import { btnOutlineInfo } from '../../../../../themes/bootstrap/ui/buttons/gener
 
 const OutlineDisabledInfoButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-outline-info ${btnOutlineInfo}`}>
+		<button disabled type="button" class={`${btn} ${btnOutlineInfo} pwhook-btn`}>
 			Info
 		</button>
 	</div>

@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineDanger } from '../../../../../../themes/bootstrap/u
 
 const OutlineToggleDisabledDangerButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input disabled type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-disabled-danger" autocomplete="off"  />
-		<label class={`btn ${btn} btn-outline-danger ${btnOutlineDanger}`} for="id-btn-outline-toggle-disabled-danger">Toggle Danger</label>
+		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-disabled-danger" autocomplete="off"  />
+		<label class={`${btn} ${btnOutlineDanger}`} for="id-btn-outline-toggle-disabled-danger">Toggle Danger</label>
 	</div>
 )
 

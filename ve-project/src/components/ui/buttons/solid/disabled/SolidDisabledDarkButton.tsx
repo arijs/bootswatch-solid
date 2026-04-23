@@ -7,7 +7,7 @@ import { btnDark } from '../../../../../themes/bootstrap/ui/buttons/generated.cs
 
 const SolidDisabledDarkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-dark ${btnDark}`}>
+		<button disabled type="button" class={`${btn} ${btnDark} pwhook-btn`}>
 			Dark
 		</button>
 	</div>

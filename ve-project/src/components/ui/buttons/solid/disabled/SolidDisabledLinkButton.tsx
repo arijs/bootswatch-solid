@@ -7,7 +7,7 @@ import { btnLink } from '../../../../../themes/bootstrap/ui/buttons/generated.cs
 
 const SolidDisabledLinkButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-link ${btnLink}`}>
+		<button disabled type="button" class={`${btn} ${btnLink} pwhook-btn`}>
 			Link
 		</button>
 	</div>

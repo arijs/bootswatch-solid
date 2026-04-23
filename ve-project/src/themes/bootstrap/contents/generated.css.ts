@@ -144,6 +144,7 @@ export const display6 = style({
 
 export const figure = style({
 	display: 'inline-block',
+	margin: '0 0 1rem',
 })
 
 export const figureCaption = style({
@@ -227,6 +228,38 @@ export const imgThumbnail = style({
 export const lead = style({
 	fontSize: '1.25rem',
 	fontWeight: '300',
+})
+
+export const paragraph = style({
+	marginTop: 0,
+	marginBottom: '1rem',
+})
+
+export const markText = style({
+	padding: '0.1875em',
+	color: '#212529',
+	backgroundColor: '#fff3cd',
+})
+
+export const smallText = style({
+	fontSize: '0.875em',
+})
+
+export const listBase = style({
+	marginTop: 0,
+	marginBottom: '1rem',
+})
+
+export const listNested = style({
+	marginBottom: 0,
+})
+
+export const listIndented = style({
+	paddingLeft: '2rem',
+})
+
+export const mediaMiddle = style({
+	verticalAlign: 'middle',
 })
 
 export const listInline = style({
@@ -314,6 +347,36 @@ export const stickyXlTop = style({
 		},
 	},
 })
+
+export const tableElement = style({
+	captionSide: 'bottom',
+	borderCollapse: 'collapse',
+})
+
+export const tableSection = style({
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+})
+
+export const tableRow = style({
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+})
+
+export const tableCell = style({
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+})
+
+export const tableHeaderCell = style([
+	tableCell,
+	{
+		textAlign: 'inherit',
+	},
+])
 
 export const table = style({
 	vars: {

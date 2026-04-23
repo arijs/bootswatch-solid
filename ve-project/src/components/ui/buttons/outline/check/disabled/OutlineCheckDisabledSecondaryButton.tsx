@@ -7,7 +7,7 @@ import { btnOutlineSecondary } from '../../../../../../themes/bootstrap/ui/butto
 
 const OutlineCheckDisabledSecondaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button disabled type="button" class={`btn ${btn} btn-outline-secondary ${btnOutlineSecondary}`} data-bs-toggle="button">
+		<button disabled type="button" class={`${btn} ${btnOutlineSecondary} pwhook-btn`} data-bs-toggle="button">
 			Secondary
 		</button>
 	</div>

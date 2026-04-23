@@ -7,8 +7,8 @@ import { btnCheck, btnOutlineSuccess } from '../../../../../themes/bootstrap/ui/
 
 const OutlineToggleActiveSuccessButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-outline-toggle-active-success" checked autocomplete="off" />
-		<label class={`btn ${btn} btn-outline-success ${btnOutlineSuccess}`} for="id-btn-outline-toggle-active-success">Checked Toggle Success</label>
+		<input type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-active-success" checked autocomplete="off" />
+		<label class={`${btn} ${btnOutlineSuccess}`} for="id-btn-outline-toggle-active-success">Checked Toggle Success</label>
 	</div>
 )
 

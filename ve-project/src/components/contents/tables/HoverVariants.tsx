@@ -2,64 +2,64 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, table, tableDanger, tableDark, tableHover, tableInfo, tableLight, tablePrimary, tableSecondary, tableSuccess, tableWarning } from '../../../themes/bootstrap/contents/generated.css'
+import { bdExample, table, tableDanger, tableDark, tableHover, tableInfo, tableLight, tablePrimary, tableSecondary, tableSuccess, tableWarning, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
 
 const HoverVariants: Component = () => (
-	<div class={`bd-example ${bdExample} container-fluid ${containerFluid} ${bsTheme} ${body}`}>
-		<table class={`table ${table} table-hover ${tableHover}`}>
-			<thead>
-				<tr>
-					<th>Class</th>
-					<th>Heading</th>
-					<th>Heading</th>
+	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+		<table class={`${table} ${tableElement} ${tableHover}`}>
+			<thead class={tableSection}>
+				<tr class={tableRow}>
+					<th class={tableHeaderCell}>Class</th>
+					<th class={tableHeaderCell}>Heading</th>
+					<th class={tableHeaderCell}>Heading</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<th>Default</th>
-					<td>Cell</td>
-					<td>Cell</td>
+			<tbody class={tableSection}>
+				<tr class={tableRow}>
+					<th class={tableHeaderCell}>Default</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
 
-				<tr class={`table-primary ${tablePrimary}`}>
-					<th>Primary</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tablePrimary} ${tableRow}`}>
+					<th class={tableHeaderCell}>Primary</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-secondary ${tableSecondary}`}>
-					<th>Secondary</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableSecondary} ${tableRow}`}>
+					<th class={tableHeaderCell}>Secondary</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-success ${tableSuccess}`}>
-					<th>Success</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableSuccess} ${tableRow}`}>
+					<th class={tableHeaderCell}>Success</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-danger ${tableDanger}`}>
-					<th>Danger</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableDanger} ${tableRow}`}>
+					<th class={tableHeaderCell}>Danger</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-warning ${tableWarning}`}>
-					<th>Warning</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableWarning} ${tableRow}`}>
+					<th class={tableHeaderCell}>Warning</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-info ${tableInfo}`}>
-					<th>Info</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableInfo} ${tableRow}`}>
+					<th class={tableHeaderCell}>Info</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-light ${tableLight}`}>
-					<th>Light</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableLight} ${tableRow}`}>
+					<th class={tableHeaderCell}>Light</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
-				<tr class={`table-dark ${tableDark}`}>
-					<th>Dark</th>
-					<td>Cell</td>
-					<td>Cell</td>
+				<tr class={`${tableDark} ${tableRow}`}>
+					<th class={tableHeaderCell}>Dark</th>
+					<td class={tableCell}>Cell</td>
+					<td class={tableCell}>Cell</td>
 				</tr>
 			</tbody>
 		</table>
@@ -78,3 +78,5 @@ export default HoverVariants
 // @screenshot vapor: 360x400 400
 // @screenshot yeti: 360x380 380
 // @screenshot zephyr: 360x540 540
+
+
