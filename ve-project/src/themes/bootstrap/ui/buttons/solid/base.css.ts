@@ -26,7 +26,7 @@ import {
 	varBsBtnLineHeight,
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
-} from '../_vars.css'
+} from '../../../../../theme-contract/ui/buttons/_vars.css'
 
 export const btn = style({
 	vars: {
