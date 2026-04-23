@@ -3,4 +3,5 @@ dist
 /public/theme
 /screenshots/**/*.verify.png
 /screenshots/**/*.verify.diff.png
+/screenshots/**/ve-*.png
 /verify-*.txt

@@ -174,7 +174,11 @@ function getLocalRoutePath() {
 }
 
 function resolveThemeHref(theme: ThemeItem, mode: CssMode) {
-	if (mode === 'cdn') return theme.href
+	if (mode === 'cdn') {
+		// if (theme.name === 'Bootstrap') {}
+		return `/theme/${slugifyThemeName(theme.name)}/bootstrap.css`
+		// return theme.href
+	}
 	return `/theme/${slugifyThemeName(theme.name)}/theme.css`
 }
 
