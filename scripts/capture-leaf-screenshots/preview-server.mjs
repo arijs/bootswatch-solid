@@ -4,7 +4,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { setTimeout as delay } from 'node:timers/promises'
 
-import { ROOT } from './constants.mjs'
+import { ROOT, VE_ROOT } from './constants.mjs'
 
 export async function waitForServer(url, timeoutMs = 45000) {
 	const started = Date.now()
@@ -52,6 +52,14 @@ export function buildProject() {
 	})
 }
 
+export function buildVeProject() {
+	execSync(`${process.execPath} scripts/run-ve-vite.mjs build`, {
+		cwd: ROOT,
+		env: process.env,
+		stdio: 'inherit',
+	})
+}
+
 export function assertBuildOutputExists() {
 	const distIndex = path.join(ROOT, 'dist', 'index.html')
 	if (existsSync(distIndex)) return
@@ -62,13 +70,30 @@ export function assertBuildOutputExists() {
 
 export function startPreviewServer() {
 	killPortWindows(4173)
-	const command = `${getPnpmCommand()} serve --host 127.0.0.1 --port 4173 --strictPort`
+	const command = `${getPnpmCommand()} preview --host 127.0.0.1 --port 4173 --strictPort`
 	return spawn(command, {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',
 		shell: true,
 	})
+}
+
+export function startVePreviewServer() {
+	killPortWindows(4174)
+	return spawn(process.execPath, ['scripts/run-ve-vite.mjs', 'preview'], {
+		cwd: ROOT,
+		env: process.env,
+		stdio: 'inherit',
+	})
+}
+
+export function assertVeBuildOutputExists() {
+	const distIndex = path.join(VE_ROOT, 'dist', 'index.html')
+	if (existsSync(distIndex)) return
+	throw new Error(
+		'Missing VE build output at ve-project/dist/index.html. Run VE verification mode (auto-build) or run "node scripts/run-ve-vite.mjs build".',
+	)
 }
 
 export function startDevServer() {

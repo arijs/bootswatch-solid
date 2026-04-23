@@ -1,6 +1,12 @@
 import { readFile } from 'node:fs/promises'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
-import { BASE_URL, INDEX_FILE, THEMES_FILE } from './capture-leaf-screenshots/constants.mjs'
+import {
+	BASE_URL,
+	INDEX_FILE,
+	THEMES_FILE,
+	VE_BASE_URL,
+	VE_INDEX_FILE,
+} from './capture-leaf-screenshots/constants.mjs'
 import {
 	getLeafRoutes,
 	parseRoutesAndComponents,
@@ -8,8 +14,11 @@ import {
 } from './capture-leaf-screenshots/discovery.mjs'
 import {
 	assertBuildOutputExists,
+	assertVeBuildOutputExists,
 	buildProject,
+	buildVeProject,
 	startPreviewServer,
+	startVePreviewServer,
 	stopServer,
 	waitForServer,
 } from './capture-leaf-screenshots/preview-server.mjs'
@@ -28,6 +37,7 @@ const {
 	dryRunWriteback,
 	cssExtractionEnabled,
 	verificationEnabled,
+	veVerificationEnabled,
 	verificationMaxDiffRatio,
 	strictScenarioAssert,
 	routeFilter,
@@ -40,9 +50,14 @@ const {
 async function main() {
 	const indexSource = await readFile(INDEX_FILE, 'utf8')
 	const themeSource = await readFile(THEMES_FILE, 'utf8')
+	const veIndexSource = veVerificationEnabled ? await readFile(VE_INDEX_FILE, 'utf8') : null
 
 	const { routes, routeToComponentFile } = parseRoutesAndComponents(indexSource, INDEX_FILE)
 	const leafRoutes = getLeafRoutes(routes)
+	const veLeafRoutes = veIndexSource
+		? getLeafRoutes(parseRoutesAndComponents(veIndexSource, VE_INDEX_FILE).routes)
+		: []
+	const veRouteSet = new Set(veLeafRoutes)
 	assertCuratedScenarioRoutes(leafRoutes, strictScenarioAssert)
 	let themes = filterThemes(parseThemeNames(themeSource), themeFilter)
 	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
@@ -87,6 +102,12 @@ async function main() {
 	if (!cssExtractionEnabled) {
 		console.log('Mode: CSS extraction disabled (--no-css-extraction).')
 	}
+	if (veVerificationEnabled) {
+		console.log(
+			`Mode: VE verification enabled (--verify-ve-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
+		)
+		console.log(`Mode: VE route coverage available for ${veLeafRoutes.length} leaf route(s).`)
+	}
 	if (strictScenarioAssert) {
 		console.log('Mode: strict scenario assertions enabled (--strict-scenarios).')
 	}
@@ -97,6 +118,10 @@ async function main() {
 		)
 		console.log('Mode: Forcing rebuild to ensure CSS artifacts are current.')
 		buildProject()
+	} else if (veVerificationEnabled) {
+		console.log('Mode: Forcing VE rebuild to ensure Vanilla Extract artifacts are current.')
+		buildVeProject()
+		assertVeBuildOutputExists()
 	} else if (buildBeforeCapture) {
 		console.log('Mode: build enabled (--build).')
 		console.log('Building project for screenshot capture...')
@@ -106,14 +131,27 @@ async function main() {
 		assertBuildOutputExists()
 	}
 
-	console.log('Mode: using Vite preview server for screenshot capture.')
-	const previewServer = startPreviewServer()
+	let previewServer = null
+	let vePreviewServer = null
+
+	if (veVerificationEnabled) {
+		console.log('Mode: using VE Vite preview server for screenshot verification.')
+		vePreviewServer = startVePreviewServer()
+	} else {
+		console.log('Mode: using Vite preview server for screenshot capture.')
+		previewServer = startPreviewServer()
+	}
 
 	try {
-		await waitForServer(BASE_URL)
+		if (veVerificationEnabled) {
+			await waitForServer(VE_BASE_URL)
+		} else {
+			await waitForServer(BASE_URL)
+		}
 		await executeCaptureWorkflow({
 			themes,
 			scenarios,
+			veRouteSet,
 			routeToComponentFile,
 			requestedWidth,
 			routeFilter,
@@ -123,10 +161,11 @@ async function main() {
 			dryRunWriteback,
 			cssExtractionEnabled,
 			verificationEnabled,
+			veVerificationEnabled,
 			verificationMaxDiffRatio,
 		})
 	} finally {
-		await stopServer(previewServer)
+		await Promise.all([stopServer(previewServer), stopServer(vePreviewServer)])
 	}
 }
 

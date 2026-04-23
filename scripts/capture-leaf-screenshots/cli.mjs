@@ -10,6 +10,7 @@ const BOOLEAN_FLAGS = new Set([
 	'--dry-run-writeback',
 	'--no-css-extraction',
 	'--verify-css-rendering',
+	'--verify-ve-rendering',
 	'--strict-scenarios',
 ])
 
@@ -46,18 +47,26 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	assertKnownArgs(argv)
 
 	const verificationEnabled = argv.includes('--verify-css-rendering')
+	const veVerificationEnabled = argv.includes('--verify-ve-rendering')
+	if (verificationEnabled && veVerificationEnabled) {
+		throw new Error(
+			'--verify-css-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
+		)
+	}
+	const anyVerificationEnabled = verificationEnabled || veVerificationEnabled
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
-	const cssExtractionEnabled = !verificationEnabled && !argv.includes('--no-css-extraction')
+	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 
 	const maxThemes = parseIntArg(argv, '--max-themes', 1)
 
 	return {
 		skipExisting: argv.includes('--skip-existing'),
 		buildBeforeCapture: argv.includes('--build'),
-		writebackEnabled: !verificationEnabled && !argv.includes('--no-writeback'),
+		writebackEnabled: !anyVerificationEnabled && !argv.includes('--no-writeback'),
 		dryRunWriteback: argv.includes('--dry-run-writeback'),
 		cssExtractionEnabled,
 		verificationEnabled,
+		veVerificationEnabled,
 		verificationMaxDiffRatio: parseFloatArg(argv, '--verify-max-diff-ratio', 0.001, 0),
 		strictScenarioAssert: argv.includes('--strict-scenarios'),
 		routeFilter: parseCsvArg(argv, '--route'),

@@ -11,9 +11,33 @@ pnpm screenshots:capture [flags]
 node scripts/capture-leaf-screenshots.mjs [flags]
 ```
 
+Related architecture notes:
+
+- [docs/ve-architecture.md](../docs/ve-architecture.md)
+
 ---
 
 ## Recent changes (April 2026)
+
+### Vanilla Extract verification mode (`--verify-ve-rendering`)
+
+A new verification mode was added to compare `ve-project` rendering against
+existing baseline screenshots while preserving dimensions from the original
+component `@screenshot` directives.
+
+Key behavior:
+
+- New flag: `--verify-ve-rendering`
+- Mutually exclusive with `--verify-css-rendering`
+- Uses `ve-project` preview server for render capture
+- Skips routes that are not implemented in `ve-project` with a warning
+- Keeps directive source in original component files resolved from
+  `src/index.tsx` (not from `ve-project` components)
+
+VE artifacts are written beside baseline images:
+
+- `ve-{width}x{height}.png` - captured Vanilla Extract rendering
+- `ve-{width}x{height}.verify.png` - pixelmatch comparison image
 
 ### Two-phase CSS extraction and verification
 

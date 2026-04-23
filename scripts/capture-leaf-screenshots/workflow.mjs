@@ -35,11 +35,13 @@ import { getScenarioStateFolder } from './scenarios.mjs'
 import { resolveInitialNavigationWarmupDelayMs, resolveScreenshotSettleDelayMs } from './timing.mjs'
 import { slugifyTheme } from './utils.mjs'
 import { verifyScenarioCssRendering } from './verification.mjs'
+import { verifyScenarioVeRendering } from './ve-verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
 
 export async function executeCaptureWorkflow({
 	themes,
 	scenarios,
+	veRouteSet,
 	routeToComponentFile,
 	requestedWidth,
 	routeFilter,
@@ -49,6 +51,7 @@ export async function executeCaptureWorkflow({
 	dryRunWriteback,
 	cssExtractionEnabled,
 	verificationEnabled,
+	veVerificationEnabled,
 	verificationMaxDiffRatio,
 }) {
 	async function freshBrowser(initialHeight = DEFAULT_VIEWPORT.height) {
@@ -183,7 +186,7 @@ export async function executeCaptureWorkflow({
 							requestedWidth,
 						)
 
-						if (verificationEnabled) {
+						if (verificationEnabled || veVerificationEnabled) {
 							if (configured.source !== 'directive' || configured.height == null) {
 								throw new Error(
 									`Missing @screenshot directive height for theme=${themeSlug} state=${stateFolder} width=${requestedWidth} in ${path.relative(ROOT, componentFile)}`,
@@ -202,8 +205,10 @@ export async function executeCaptureWorkflow({
 
 							const verification = await runVerificationIfEnabled({
 								verificationEnabled,
+								veVerificationEnabled,
 								verificationStats,
 								verificationMismatches,
+								veRouteSet,
 								browser,
 								themeName,
 								themeSlug,
@@ -409,17 +414,22 @@ export async function executeCaptureWorkflow({
 		)
 	}
 
-	if (verificationEnabled) {
+	if (verificationEnabled || veVerificationEnabled) {
+		const verificationLabel = verificationEnabled ? 'CSS' : 'VE'
 		console.log(
-			`CSS verification: ran=${verificationRan}, matched=${verificationMatched}, mismatched=${verificationMismatched}, skipped=${verificationSkipped}, maxDiffRatio=${verificationMaxDiffRatio}`,
+			`${verificationLabel} verification: ran=${verificationRan}, matched=${verificationMatched}, mismatched=${verificationMismatched}, skipped=${verificationSkipped}, maxDiffRatio=${verificationMaxDiffRatio}`,
 		)
 		if (verificationMismatches.length > 0) {
-			console.warn(`\nCSS verification mismatches (${verificationMismatches.length}):`)
+			console.warn(`\n${verificationLabel} verification mismatches (${verificationMismatches.length}):`)
 			for (const m of verificationMismatches) {
 				console.warn(`  ${path.relative(ROOT, m.outputPath)}: ${m.reason}`)
 				if (m.verifyPath && m.diffPath) {
 					console.warn(
 						`    verify=${path.relative(ROOT, m.verifyPath)} diff=${path.relative(ROOT, m.diffPath)} ratio=${m.diffRatio.toFixed(6)} pixels=${m.diffPixels}/${m.totalPixels}`,
+					)
+				} else if (m.vePath && m.verifyPath) {
+					console.warn(
+						`    ve=${path.relative(ROOT, m.vePath)} diff=${path.relative(ROOT, m.verifyPath)} ratio=${m.diffRatio.toFixed(6)} pixels=${m.diffPixels}/${m.totalPixels}`,
 					)
 				}
 			}
@@ -469,8 +479,10 @@ export async function executeCaptureWorkflow({
 
 async function runVerificationIfEnabled({
 	verificationEnabled,
+	veVerificationEnabled,
 	verificationStats,
 	verificationMismatches,
+	veRouteSet,
 	browser,
 	themeName,
 	themeSlug,
@@ -484,23 +496,48 @@ async function runVerificationIfEnabled({
 	outputPath,
 	verificationMaxDiffRatio,
 }) {
-	if (!verificationEnabled) return null
+	if (!verificationEnabled && !veVerificationEnabled) return null
+	const isCssVerification = verificationEnabled
 	verificationStats.ran()
 
-	const verification = await verifyScenarioCssRendering({
-		browser,
-		themeName,
-		themeSlug,
-		route,
-		routePath,
-		scenario,
-		stateFolder,
-		settleDelayMs,
-		requestedWidth,
-		measuredHeight,
-		baselinePath: outputPath,
-		maxDiffRatio: verificationMaxDiffRatio,
-	})
+	if (veVerificationEnabled && !veRouteSet.has(route)) {
+		const reason = 'Route not implemented in ve-project; skipping VE verification'
+		verificationStats.skipped()
+		console.warn(`VE verification skipped for ${route}: ${reason}`)
+		return {
+			skipped: true,
+			matched: false,
+			reason,
+		}
+	}
+
+	const verification = isCssVerification
+		? await verifyScenarioCssRendering({
+				browser,
+				themeName,
+				themeSlug,
+				route,
+				routePath,
+				scenario,
+				stateFolder,
+				settleDelayMs,
+				requestedWidth,
+				measuredHeight,
+				baselinePath: outputPath,
+				maxDiffRatio: verificationMaxDiffRatio,
+		  })
+		: await verifyScenarioVeRendering({
+				browser,
+				themeSlug,
+				route,
+				stateFolder,
+				scenario,
+				settleDelayMs,
+				requestedWidth,
+				measuredHeight,
+				baselinePath: outputPath,
+				maxDiffRatio: verificationMaxDiffRatio,
+		  })
 
 	if (verification.skipped) {
 		verificationStats.skipped()
@@ -516,22 +553,28 @@ async function runVerificationIfEnabled({
 	}
 
 	verificationStats.mismatched()
-	verificationMismatches.push({
+	const mismatchRecord = {
 		outputPath,
 		diffRatio: verification.diffRatio,
 		diffPixels: verification.diffPixels,
 		totalPixels: verification.totalPixels,
-		verifyPath: verification.verifyPath,
-		diffPath: verification.diffPath,
 		reason: verification.reason,
-	})
+	}
+	if (isCssVerification) {
+		mismatchRecord.verifyPath = verification.verifyPath
+		mismatchRecord.diffPath = verification.diffPath
+	} else {
+		mismatchRecord.vePath = verification.vePath
+		mismatchRecord.verifyPath = verification.verifyPath
+	}
+	verificationMismatches.push(mismatchRecord)
 
 	return verification
 }
 
 function getVerificationLogInfo(verification) {
 	return verification
-		? ` css ${
+		? ` verification ${
 				verification.matched
 					? `OK ${verification.diffRatio.toFixed(6)} - ${verification.diffPixels}/${verification.totalPixels}`
 					: verification.skipped
