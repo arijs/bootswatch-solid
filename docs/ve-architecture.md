@@ -73,3 +73,34 @@ A dedicated capture mode (`--verify-ve-rendering`) is introduced in the capture 
 - Prefer route/theme filters when verifying work-in-progress.
 - Skip unimplemented VE routes with warnings rather than failing full runs.
 - Avoid broad refactors while parity work is ongoing.
+
+## Recent Findings (April 2026)
+
+### Cross-Class Selector Rule in Vanilla Extract
+
+When migrating Bootstrap patterns that depend on sibling selectors, avoid raw framework selectors and avoid cross-class selectors inside a `style({ selectors: ... })` block.
+
+- Do not use raw selectors like `.btn` in VE theme code.
+- In `selectors`, Vanilla Extract requires selectors to target the current class (`&`) shape only.
+- Patterns like `&[disabled] + ${otherClass}` fail VE compilation when `otherClass` is a different generated class.
+
+For cross-class relationships (for example, disabled `.btn-check` affecting adjacent button label styling), use `globalStyle` with generated class references.
+
+Example pattern:
+
+- define class: `export const btnCheck = style({ ... })`
+- define adjacent rule with generated classes:
+  - `globalStyle(`${btnCheck}[disabled] + ${btn}, ${btnCheck}:disabled + ${btn}`, { ... })`
+
+This preserves the class-only architecture while keeping the behavior aligned with Bootstrap.
+
+### Verified Bootstrap Mismatch Fix
+
+The first Bootstrap VE mismatch in this area was:
+
+- route: `/ui/buttons/outline/toggle-active/disabled/danger-button`
+
+After applying the VE-safe selector strategy above, focused verification passed:
+
+- command: `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering "--route=/ui/buttons/outline/toggle-active/disabled/danger-button"`
+- result: `verification OK 0.000000 - 0/43200`

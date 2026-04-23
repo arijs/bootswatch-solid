@@ -3,7 +3,7 @@ import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-} from '../../../../../theme-contract/_vars.css'
+} from '../../../../theme-contract/_vars.css'
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
@@ -26,7 +26,7 @@ import {
 	varBsBtnLineHeight,
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
-} from '../../../../../theme-contract/ui/buttons/_vars.css'
+} from '../../../../theme-contract/ui/buttons/_vars.css'
 
 export const btn = style({
 	vars: {

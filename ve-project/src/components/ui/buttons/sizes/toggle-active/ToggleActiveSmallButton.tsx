@@ -1,0 +1,17 @@
+import type { Component } from 'solid-js'
+import { containerFluid } from '../../../../../themes/bootstrap/container.css'
+import { bsTheme } from '../../../../../themes/bootstrap/_vars.css'
+import { body } from '../../../../../themes/bootstrap/body.css'
+import { btn } from '../../../../../themes/bootstrap/ui/buttons/base.css'
+import { btnCheck, btnPrimary, btnSm } from '../../../../../themes/bootstrap/ui/buttons/generated.css'
+
+const ToggleActiveSmallButton: Component = () => (
+	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+		<input type="checkbox" class={`btn-check ${btnCheck}`} id="id-btn-sizes-toggle-active-small" checked autocomplete="off" />
+		<label class={`btn ${btn} btn-primary ${btnPrimary} btn-sm ${btnSm}`} for="id-btn-sizes-toggle-active-small">Checked Toggle Small button</label>
+	</div>
+)
+
+export default ToggleActiveSmallButton
+
+// @screenshot *: 360x120 120
