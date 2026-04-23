@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 
 const SolidBaseButton: Component = () => (
 	<div class="bd-example container-fluid">
-		<button type="button" class="btn">
+		<button type="button" class="btn pwhook-btn">
 			Button
 		</button>
 	</div>

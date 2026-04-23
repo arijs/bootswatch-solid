@@ -7,7 +7,7 @@ const ContextualDangerListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class="list-group-item list-group-item-action list-group-item-danger"
+				class="list-group-item list-group-item-action list-group-item-danger pwhook-list-group-item"
 			>
 				A simple danger list group item
 			</a>

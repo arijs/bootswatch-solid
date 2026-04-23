@@ -4,7 +4,7 @@ const EndDropdown: Component = () => (
 	<div class="bd-example container-fluid">
 		<div class="dropend">
 			<button
-				class="btn btn-secondary dropdown-toggle"
+				class="btn btn-secondary dropdown-toggle pwhook-dropdown-toggle"
 				type="button"
 				id="dropendMenuButton"
 				data-bs-toggle="dropdown"
@@ -12,7 +12,7 @@ const EndDropdown: Component = () => (
 			>
 				Dropend button
 			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropendMenuButton">
+			<ul class="dropdown-menu pwhook-dropdown-menu" aria-labelledby="dropendMenuButton">
 				<li>
 					<h6 class="dropdown-header">Dropdown header</h6>
 				</li>

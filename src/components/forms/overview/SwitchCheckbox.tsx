@@ -5,7 +5,7 @@ const SwitchCheckbox: Component = () => (
 		<form>
 			<div class="mb-3 form-check form-switch">
 				<input
-					class="form-check-input"
+					class="form-check-input pwhook-checkbox"
 					type="checkbox"
 					id="flexSwitchCheckChecked"
 					checked

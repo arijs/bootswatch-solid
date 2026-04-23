@@ -5,7 +5,7 @@ const AlignedDropdown: Component = () => (
 		<div class="btn-group">
 			<div class="dropdown">
 				<button
-					class="btn btn-secondary dropdown-toggle"
+					class="btn btn-secondary dropdown-toggle pwhook-dropdown-toggle"
 					type="button"
 					id="dropdownRightMenuButton"
 					data-bs-toggle="dropdown"
@@ -14,7 +14,7 @@ const AlignedDropdown: Component = () => (
 					End-aligned menu
 				</button>
 				<ul
-					class="dropdown-menu dropdown-menu-end"
+					class="dropdown-menu dropdown-menu-end pwhook-dropdown-menu"
 					aria-labelledby="dropdownRightMenuButton"
 				>
 					<li>

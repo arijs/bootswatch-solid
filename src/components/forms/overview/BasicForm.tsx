@@ -9,7 +9,7 @@ const BasicForm: Component = () => (
 				</label>
 				<input
 					type="email"
-					class="form-control"
+					class="form-control pwhook-form-control"
 					id="exampleInputEmail1"
 					aria-describedby="emailHelp"
 				/>
@@ -21,7 +21,7 @@ const BasicForm: Component = () => (
 				<label for="exampleInputPassword1" class="form-label">
 					Password
 				</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" />
+				<input type="password" class="form-control pwhook-form-control" id="exampleInputPassword1" />
 			</div>
 		</form>
 	</div>

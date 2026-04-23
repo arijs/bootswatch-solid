@@ -8,13 +8,13 @@ const SplitInfoDropdown: Component = () => (
 			</button>
 			<button
 				type="button"
-				class="btn btn-info dropdown-toggle dropdown-toggle-split"
+				class="btn btn-info dropdown-toggle dropdown-toggle-split pwhook-dropdown-toggle"
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
 			>
 				<span class="visually-hidden">Toggle Dropdown</span>
 			</button>
-			<ul class="dropdown-menu">
+			<ul class="dropdown-menu pwhook-dropdown-menu">
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
 					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>

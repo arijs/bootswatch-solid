@@ -7,7 +7,7 @@ const ContextualSuccessListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class="list-group-item list-group-item-action list-group-item-success"
+				class="list-group-item list-group-item-action list-group-item-success pwhook-list-group-item"
 			>
 				A simple success list group item
 			</a>

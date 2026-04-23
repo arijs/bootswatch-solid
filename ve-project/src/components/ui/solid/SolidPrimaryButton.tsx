@@ -7,7 +7,7 @@ import { body } from '../../../themes/bootstrap/body.css'
 
 const SolidPrimaryButton: Component = () => (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`${btn} ${btnPrimary}`}>
+		<button type="button" class={`pwhook-btn ${btn} ${btnPrimary}`}>
 			Primary
 		</button>
 	</div>

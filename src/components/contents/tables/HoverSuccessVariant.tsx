@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 
 const HoverSuccessVariant: Component = () => (
 	<div class="bd-example container-fluid">
-		<table class="table table-hover">
+		<table class="table table-hover pwhook-table-hover">
 			<thead>
 				<tr class="table-success">
 					<th>Success</th>

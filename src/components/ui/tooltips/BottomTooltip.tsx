@@ -8,8 +8,9 @@ const BottomTooltip: Component = () => (
 	>
 		<button
 			type="button"
-			class="btn btn-secondary"
+			class="btn btn-secondary pwhook-tooltip-trigger"
 			data-bs-toggle="tooltip"
+			data-bs-custom-class="pwhook-tooltip"
 			ref={(tooltip) => new bootstrap.Tooltip(tooltip)}
 			data-bs-placement="bottom"
 			title="Tooltip on bottom"

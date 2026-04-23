@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 
 const HoverDarkVariant: Component = () => (
 	<div class="bd-example container-fluid">
-		<table class="table table-hover">
+		<table class="table table-hover pwhook-table-hover">
 			<thead>
 				<tr class="table-dark">
 					<th>Dark</th>

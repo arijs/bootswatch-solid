@@ -8,8 +8,9 @@ const TopPopover: Component = () => (
 	>
 		<button
 			type="button"
-			class="btn btn-secondary"
+			class="btn btn-secondary pwhook-popover-trigger"
 			data-bs-container="body"
+			data-bs-custom-class="pwhook-popover"
 			data-bs-toggle="popover"
 			ref={(popover) => new bootstrap.Popover(popover)}
 			data-bs-placement="top"

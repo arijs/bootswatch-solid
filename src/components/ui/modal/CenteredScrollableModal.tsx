@@ -6,7 +6,7 @@ const CenteredScrollableModal: Component = () => (
 			<div class="d-flex justify-content-between flex-wrap">
 				<button
 					type="button"
-					class="btn btn-primary"
+					class="btn btn-primary pwhook-modal-trigger"
 					data-bs-toggle="modal"
 					data-bs-target="#exampleModalCenteredScrollable"
 				>
@@ -15,7 +15,7 @@ const CenteredScrollableModal: Component = () => (
 			</div>
 		</div>
 		<div
-			class="modal fade"
+			class="modal fade pwhook-modal"
 			id="exampleModalCenteredScrollable"
 			tabindex="-1"
 			role="dialog"

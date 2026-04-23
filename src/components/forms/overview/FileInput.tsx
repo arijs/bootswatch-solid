@@ -7,7 +7,7 @@ const FileInput: Component = () => (
 				<label class="form-label" for="customFile">
 					Upload
 				</label>
-				<input type="file" class="form-control" id="customFile" />
+				<input type="file" class="form-control pwhook-file-input" id="customFile" />
 			</div>
 		</form>
 	</div>

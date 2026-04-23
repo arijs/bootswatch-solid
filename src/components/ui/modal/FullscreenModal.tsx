@@ -6,7 +6,7 @@ const FullscreenModal: Component = () => (
 			<div class="d-flex justify-content-between flex-wrap">
 				<button
 					type="button"
-					class="btn btn-primary"
+					class="btn btn-primary pwhook-modal-trigger"
 					data-bs-toggle="modal"
 					data-bs-target="#exampleModalFullscreen"
 				>
@@ -15,7 +15,7 @@ const FullscreenModal: Component = () => (
 			</div>
 		</div>
 		<div
-			class="modal fade"
+			class="modal fade pwhook-modal"
 			id="exampleModalFullscreen"
 			tabindex="-1"
 			role="dialog"

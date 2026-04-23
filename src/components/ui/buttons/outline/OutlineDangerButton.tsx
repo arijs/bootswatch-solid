@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 
 const OutlineDangerButton: Component = () => (
 	<div class="bd-example container-fluid">
-		<button type="button" class="btn btn-outline-danger">
+		<button type="button" class="btn btn-outline-danger pwhook-btn">
 			Danger
 		</button>
 	</div>
