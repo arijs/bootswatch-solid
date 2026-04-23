@@ -1,6 +1,6 @@
 {
 	"files": {
-		"includes": ["src/**/*.{ts, tsx}", "scripts/**/*.{js,mjs}", "biome.json"]
+		"includes": ["{src,ve-project}/**/*.{ts, tsx}", "scripts/**/*.{js,mjs}", "biome.json"]
 	},
 	"formatter": {
 		"enabled": true,
