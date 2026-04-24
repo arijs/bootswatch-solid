@@ -4,6 +4,7 @@ import ButtonGroup from './ButtonGroup'
 import Buttons from './Buttons'
 import Dropdowns from './Dropdowns'
 import Popovers from './Popovers'
+import Tooltips from './Tooltips'
 
 const UiSection: Component = () => (
 	<section id="ui">
@@ -13,6 +14,7 @@ const UiSection: Component = () => (
 		<Buttons />
 		<Dropdowns />
 		<Popovers />
+		<Tooltips />
 	</section>
 )
 

@@ -22,11 +22,17 @@ import SplitWarningDropdown from './components/ui/dropdowns/SplitWarningDropdown
 import StartDropdown from './components/ui/dropdowns/StartDropdown'
 import UpDropdown from './components/ui/dropdowns/UpDropdown'
 import Popovers from './components/ui/Popovers'
+import Tooltips from './components/ui/Tooltips'
 import BasicPopover from './components/ui/popovers/BasicPopover'
 import BottomPopover from './components/ui/popovers/BottomPopover'
 import EndPopover from './components/ui/popovers/EndPopover'
 import StartPopover from './components/ui/popovers/StartPopover'
 import TopPopover from './components/ui/popovers/TopPopover'
+import BottomTooltip from './components/ui/tooltips/BottomTooltip'
+import EndTooltip from './components/ui/tooltips/EndTooltip'
+import HtmlTooltip from './components/ui/tooltips/HtmlTooltip'
+import StartTooltip from './components/ui/tooltips/StartTooltip'
+import TopTooltip from './components/ui/tooltips/TopTooltip'
 import HeadingBadges from './components/ui/badge/HeadingBadges'
 import PillBadges from './components/ui/badge/PillBadges'
 import OutlineCheckActiveDangerButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'
@@ -318,6 +324,12 @@ render(
 			<Route path="/ui/popovers/end-popover" component={EndPopover} />
 			<Route path="/ui/popovers/bottom-popover" component={BottomPopover} />
 			<Route path="/ui/popovers/start-popover" component={StartPopover} />
+			<Route path="/ui/tooltips" component={Tooltips} />
+			<Route path="/ui/tooltips/top-tooltip" component={TopTooltip} />
+			<Route path="/ui/tooltips/end-tooltip" component={EndTooltip} />
+			<Route path="/ui/tooltips/bottom-tooltip" component={BottomTooltip} />
+			<Route path="/ui/tooltips/start-tooltip" component={StartTooltip} />
+			<Route path="/ui/tooltips/html-tooltip" component={HtmlTooltip} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
 			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
 			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
