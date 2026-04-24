@@ -215,13 +215,14 @@ Rule for VE integration:
 Popover-specific example from this migration:
 
 - Working VE example: `ve-project/src/components/ui/popovers/BasicPopover.tsx`
-- In that file, `bsTheme` is added directly on the generated popover root inside the `template` option passed to `new VePopover(...)`:
+- In that file, both `bsTheme` and `body` are added directly on the generated popover root inside the `template` option passed to `new VePopover(...)`:
 
 ```ts
-template: `<div class="${popoverClass} ${bsTheme} pwhook-popover" role="tooltip"> ... </div>`
+template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"> ... </div>`
 ```
 
 - The critical placement is on the root `.popover` element that Bootstrap creates and appends outside the local `.bd-example` subtree.
+- `bsTheme` covers theme-scoped variables; `body` covers Bootstrap body-level typography/reset styles used by popover content.
 
 ### Bootstrap Fork Source vs Loaded Asset
 
