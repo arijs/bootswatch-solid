@@ -198,6 +198,42 @@ border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
 
 This applies equally to `vars: {}` initialisation keys and to string-interpolated values inside template literals.
 
+### Overlay Elements Created Outside Theme Scope
+
+Some Bootstrap components render their visible UI outside the VE component subtree where `bsTheme` is applied.
+
+Examples include popovers/tooltips/modals and related overlay/backdrop elements when Bootstrap appends nodes to `document.body` or another external container.
+
+Because VE variables are scoped by class, those out-of-tree nodes will not inherit required CSS custom properties unless the theme scope is re-applied.
+
+Rule for VE integration:
+
+1. Identify whether the Bootstrap component renders or appends overlay DOM outside the local wrapper.
+2. Ensure the created element receives the theme scope class (for example `bsTheme`) via template/custom class mechanisms.
+3. Verify both static and interactive screenshot states after wiring this.
+
+Popover-specific example from this migration:
+
+- Working VE example: `ve-project/src/components/ui/popovers/BasicPopover.tsx`
+- In that file, `bsTheme` is added directly on the generated popover root inside the `template` option passed to `new VePopover(...)`:
+
+```ts
+template: `<div class="${popoverClass} ${bsTheme} pwhook-popover" role="tooltip"> ... </div>`
+```
+
+- The critical placement is on the root `.popover` element that Bootstrap creates and appends outside the local `.bd-example` subtree.
+
+### Bootstrap Fork Source vs Loaded Asset
+
+When changing Bootstrap fork source code (for example `bootstrap-fork/js/src/*.js`), the app still runs the compiled dist asset from the linked package (`bootstrap-fork/dist/js/bootstrap.esm.js`).
+
+Rule:
+
+1. After JS source edits in `bootstrap-fork/js/src`, rebuild the dist artifact that the app imports.
+2. Re-run focused screenshot verification after rebuild.
+
+If this step is skipped, runtime behavior can still reflect stale logic even when source files look correct.
+
 ## Bootstrap JS Custom-Class Override Layer (April 2026)
 
 In parallel with VE migration, the local Bootstrap JS fork was modified to support class and selector overrides without patching component internals.
