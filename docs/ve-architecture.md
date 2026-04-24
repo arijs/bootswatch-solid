@@ -171,6 +171,33 @@ After applying the VE-safe selector strategy above, focused verification passed:
 - command: `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering "--route=/ui/buttons/outline/toggle-active/disabled/danger-button"`
 - result: `verification OK 0.000000 - 0/43200`
 
+### No Static CSS Variable Name Strings in VE Theme Files
+
+When writing `style()` or `globalStyle()` blocks, **never use raw `'var(--bs-*)'` strings** as property values or as keys in the `vars: {}` map.
+
+Every Bootstrap CSS variable that is referenced in a theme file must:
+
+1. Have a corresponding `createVar()` export in the appropriate `theme-contract` file:
+   - Component-scoped vars → `ve-project/src/theme-contract/ui/{family}/_vars.css.ts`
+   - Root/global Bootstrap vars (body, border, shadow, typography, …) → `ve-project/src/theme-contract/_vars.css`
+2. Be imported into the theme file and used directly as the TypeScript identifier.
+
+**Wrong:**
+```ts
+fontFamily: 'var(--bs-font-sans-serif)',
+border: 'var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)',
+```
+
+**Correct:**
+```ts
+import { varBsFontSansSerif, varBsBorderWidth, varBsBorderStyle, varBsBorderColor } from '../../../../theme-contract/_vars.css'
+
+fontFamily: varBsFontSansSerif,
+border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
+```
+
+This applies equally to `vars: {}` initialisation keys and to string-interpolated values inside template literals.
+
 ## Bootstrap JS Custom-Class Override Layer (April 2026)
 
 In parallel with VE migration, the local Bootstrap JS fork was modified to support class and selector overrides without patching component internals.
@@ -201,6 +228,9 @@ In parallel with VE migration, the local Bootstrap JS fork was modified to suppo
 - Offcanvas
 - ScrollSpy
 - Tab
+- Tooltip
+- Popover
+- Toast
 
 ### Important Usage Rule for Data API Components
 
@@ -432,30 +462,48 @@ const AppTab = Tab.extendDefaultConfig({
 AppTab.init()
 ```
 
-### Remaining Bootstrap JS Components (Current Status)
-
-The following components are still close to upstream behavior and do not currently expose `ConfigConstants` override APIs:
-
-- Tooltip
-- Popover
-- Toast
-
-You can still apply custom classes through supported configuration surfaces.
-
 #### 10) Tooltip
 
 Common keys to override:
+
+- `CLASS_NAME_SHOW`
+- `CLASS_NAME_FADE`
+- `SELECTOR_TOOLTIP_INNER`
+- `EVENT_SHOW`
+- `EVENT_HIDE`
+
+```js
+import { Tooltip } from 'bootstrap'
+
+const AppTooltip = Tooltip.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-open',
+  CLASS_NAME_FADE: 'is-fading',
+  SELECTOR_TOOLTIP_INNER: '.app-tooltip-inner'
+})
+
+const tooltip = new AppTooltip(document.querySelector('[data-app-tooltip]'), {
+  title: 'Custom tooltip'
+})
+
+tooltip.show()
+```
+
+Instance options (also supported):
 
 - `customClass`
 - `placement`
 - `template`
 - `trigger`
+- `title`
 
 ```js
 import { Tooltip } from 'bootstrap'
 
 new Tooltip(document.querySelector('[data-app-tooltip]'), {
   customClass: 'app-tooltip',
+  placement: 'bottom',
+  trigger: 'hover focus',
+  title: 'Custom tooltip title',
   template: '<div class="tooltip app-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
 })
 ```
@@ -464,24 +512,80 @@ new Tooltip(document.querySelector('[data-app-tooltip]'), {
 
 Common keys to override:
 
+- `CLASS_NAME_SHOW`
+- `CLASS_NAME_FADE`
+- `SELECTOR_TITLE`
+- `SELECTOR_CONTENT`
+
+```js
+import { Popover } from 'bootstrap'
+
+const AppPopover = Popover.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-open',
+  SELECTOR_TITLE: '.app-popover-header',
+  SELECTOR_CONTENT: '.app-popover-content'
+})
+
+const popover = new AppPopover(document.querySelector('[data-app-popover]'), {
+  title: 'Header',
+  content: 'Body'
+})
+
+popover.show()
+```
+
+Instance options (also supported):
+
 - `customClass`
-- `content`
 - `placement`
 - `template`
 - `trigger`
+- `title`
+- `content`
 
 ```js
 import { Popover } from 'bootstrap'
 
 new Popover(document.querySelector('[data-app-popover]'), {
   customClass: 'app-popover',
+  placement: 'right',
+  trigger: 'click',
+  title: 'Popover heading',
+  content: 'Popover body',
   template: '<div class="popover app-popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
 })
 ```
 
+`Popover` extends `Tooltip` and must merge `...super.getConfigConstants()` when defining defaults, so inherited tooltip constants (for example placement and attachment mappings) are preserved.
+
 #### 12) Toast
 
 Common keys to override:
+
+- `CLASS_NAME_SHOW`
+- `CLASS_NAME_SHOWING`
+- `CLASS_NAME_FADE`
+- `EVENT_SHOW`
+- `EVENT_HIDE`
+
+```js
+import { Toast } from 'bootstrap'
+
+const AppToast = Toast.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-open',
+  CLASS_NAME_SHOWING: 'is-transitioning',
+  EVENT_SHOW: 'show.bs.app-toast'
+})
+
+const toast = new AppToast(document.querySelector('[data-app-toast]'), {
+  autohide: false,
+  delay: 8000
+})
+
+toast.show()
+```
+
+Instance options (also supported):
 
 - `animation`
 - `autohide`
@@ -495,6 +599,7 @@ const toastEl = document.querySelector('[data-app-toast]')
 toastEl.classList.add('app-toast')
 
 const toast = Toast.getOrCreateInstance(toastEl, {
+  animation: true,
   autohide: false,
   delay: 8000
 })
@@ -504,6 +609,7 @@ toast.show()
 
 ### Summary
 
-- Use `extendDefaultConfig()` for structural class/selector overrides on the 9 upgraded components.
+- Use `extendDefaultConfig()` for structural class/selector overrides on all 12 upgraded components.
 - For Data API components, use `Base.destroy()` -> `Sub = Base.extendDefaultConfig(...)` -> `Sub.init()`.
-- Use `customClass` / `template` / wrapper classes for Tooltip, Popover, and Toast until they are migrated to `ConfigConstants`.
+- For Tooltip, Popover, and Toast, create instances from the returned subclass directly (no Data API lifecycle rebinding is needed).
+- For Tooltip, Popover, and Toast, instance options (`customClass`, `placement`, `template`, `trigger`, `title`, `content`, `animation`, `autohide`, `delay`) remain fully supported and can be mixed with subclass-based structural overrides.
