@@ -11,26 +11,34 @@ import {
 	varBsInfo,
 	varBsLight,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../../theme-contract/ui/badge/_vars.css'
 
 export const badge = style({
 	vars: {
-		'--bs-badge-padding-x': '0.65em',
-		'--bs-badge-padding-y': '0.35em',
-		'--bs-badge-font-size': '0.75em',
-		'--bs-badge-font-weight': '700',
-		'--bs-badge-color': '#fff',
-		'--bs-badge-border-radius': varBsBorderRadius,
+		[varBsBadgePaddingX]: '0.65em',
+		[varBsBadgePaddingY]: '0.35em',
+		[varBsBadgeFontSize]: '0.75em',
+		[varBsBadgeFontWeight]: '700',
+		[varBsBadgeColor]: '#fff',
+		[varBsBadgeBorderRadius]: varBsBorderRadius,
 	},
 	display: 'inline-block',
-	padding: 'var(--bs-badge-padding-y) var(--bs-badge-padding-x)',
-	fontSize: 'var(--bs-badge-font-size)',
-	fontWeight: 'var(--bs-badge-font-weight)',
+	padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
+	fontSize: varBsBadgeFontSize,
+	fontWeight: varBsBadgeFontWeight,
 	lineHeight: 1,
-	color: 'var(--bs-badge-color)',
+	color: varBsBadgeColor,
 	textAlign: 'center',
 	whiteSpace: 'nowrap',
 	verticalAlign: 'baseline',
-	borderRadius: 'var(--bs-badge-border-radius)',
+	borderRadius: varBsBadgeBorderRadius,
 	selectors: {
 		'&:empty': {
 			display: 'none',
