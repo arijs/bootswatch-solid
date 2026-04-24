@@ -9,6 +9,7 @@
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
+		"ve:dev": "node scripts/run-ve-vite.mjs dev",
 		"ve:build": "node scripts/run-ve-vite.mjs build",
 		"ve:preview": "node scripts/run-ve-vite.mjs preview",
 		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",
