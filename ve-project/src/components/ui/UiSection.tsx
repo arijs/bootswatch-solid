@@ -3,6 +3,7 @@ import Badge from './Badge'
 import ButtonGroup from './ButtonGroup'
 import Buttons from './Buttons'
 import Dropdowns from './Dropdowns'
+import Popovers from './Popovers'
 
 const UiSection: Component = () => (
 	<section id="ui">
@@ -11,6 +12,7 @@ const UiSection: Component = () => (
 		<ButtonGroup />
 		<Buttons />
 		<Dropdowns />
+		<Popovers />
 	</section>
 )
 

@@ -21,6 +21,12 @@ import SplitSuccessDropdown from './components/ui/dropdowns/SplitSuccessDropdown
 import SplitWarningDropdown from './components/ui/dropdowns/SplitWarningDropdown'
 import StartDropdown from './components/ui/dropdowns/StartDropdown'
 import UpDropdown from './components/ui/dropdowns/UpDropdown'
+import Popovers from './components/ui/Popovers'
+import BasicPopover from './components/ui/popovers/BasicPopover'
+import BottomPopover from './components/ui/popovers/BottomPopover'
+import EndPopover from './components/ui/popovers/EndPopover'
+import StartPopover from './components/ui/popovers/StartPopover'
+import TopPopover from './components/ui/popovers/TopPopover'
 import HeadingBadges from './components/ui/badge/HeadingBadges'
 import PillBadges from './components/ui/badge/PillBadges'
 import OutlineCheckActiveDangerButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'
@@ -306,6 +312,12 @@ render(
 			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
 			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
 			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
+			<Route path="/ui/popovers" component={Popovers} />
+			<Route path="/ui/popovers/basic-popover" component={BasicPopover} />
+			<Route path="/ui/popovers/top-popover" component={TopPopover} />
+			<Route path="/ui/popovers/end-popover" component={EndPopover} />
+			<Route path="/ui/popovers/bottom-popover" component={BottomPopover} />
+			<Route path="/ui/popovers/start-popover" component={StartPopover} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
 			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
 			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
