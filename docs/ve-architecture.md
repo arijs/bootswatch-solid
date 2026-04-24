@@ -224,6 +224,22 @@ template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="
 - The critical placement is on the root `.popover` element that Bootstrap creates and appends outside the local `.bd-example` subtree.
 - `bsTheme` covers theme-scoped variables; `body` covers Bootstrap body-level typography/reset styles used by popover content.
 
+### Element-Level Bootstrap Defaults Must Be Re-Expressed as Explicit VE Classes
+
+Bootstrap CSS includes global element styling (for example heading defaults on `h1`-`h6`). In VE, those styles are not applied unless the corresponding VE class is explicitly attached.
+
+Popover-specific lesson from `BasicPopover`:
+
+- To match Bootstrap parity for the popover title element, the template `h3` needed the VE heading class from `ve-project/src/themes/bootstrap/contents/generated.css.ts`.
+- The working markup pattern is:
+
+```ts
+<h3 class="${popoverHeader} ${h3}"></h3>
+```
+
+- If a component uses semantic elements that rely on Bootstrap global defaults (especially headings, paragraphs, list elements), verify that VE equivalents are explicitly composed in markup.
+- Future screenshot mismatches can come from this same gap: missing VE classes that represent Bootstrap's global element rules.
+
 ### Bootstrap Fork Source vs Loaded Asset
 
 When changing Bootstrap fork source code (for example `bootstrap-fork/js/src/*.js`), the app still runs the compiled dist asset from the linked package (`bootstrap-fork/dist/js/bootstrap.esm.js`).
