@@ -1,11 +1,22 @@
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import Home from './components/HomePage'
+import AccordionPage from './components/ui/AccordionPage'
+import AlertsPage from './components/ui/AlertsPage'
 import BadgePage from './components/ui/BadgePage'
 import ButtonGroupPage from './components/ui/ButtonGroupPage'
 import ButtonsPage from './components/ui/ButtonsPage'
 import Dropdowns from './components/ui/Dropdowns'
 import ButtonGroupExample from './components/ui/button-group/ButtonGroupExample'
+import DangerAlert from './components/ui/alerts/DangerAlert'
+import DarkAlert from './components/ui/alerts/DarkAlert'
+import HeadingAlert from './components/ui/alerts/HeadingAlert'
+import InfoAlert from './components/ui/alerts/InfoAlert'
+import LightAlert from './components/ui/alerts/LightAlert'
+import PrimaryAlert from './components/ui/alerts/PrimaryAlert'
+import SecondaryAlert from './components/ui/alerts/SecondaryAlert'
+import SuccessAlert from './components/ui/alerts/SuccessAlert'
+import WarningAlert from './components/ui/alerts/WarningAlert'
 import AlignedDropdown from './components/ui/dropdowns/AlignedDropdown'
 import EndDropdown from './components/ui/dropdowns/EndDropdown'
 import LargeDropdown from './components/ui/dropdowns/LargeDropdown'
@@ -23,6 +34,7 @@ import StartDropdown from './components/ui/dropdowns/StartDropdown'
 import UpDropdown from './components/ui/dropdowns/UpDropdown'
 import Popovers from './components/ui/Popovers'
 import Tooltips from './components/ui/Tooltips'
+import AccordionExample from './components/ui/accordion/AccordionExample'
 import BasicPopover from './components/ui/popovers/BasicPopover'
 import BottomPopover from './components/ui/popovers/BottomPopover'
 import EndPopover from './components/ui/popovers/EndPopover'
@@ -297,6 +309,18 @@ render(
 			<Route path="/contents/typography/lead" component={Lead} />
 			<Route path="/contents/typography/text-elements" component={TextElements} />
 			<Route path="/contents/typography/unstyled-list" component={UnstyledList} />
+			<Route path="/ui/accordion" component={AccordionPage} />
+			<Route path="/ui/accordion/accordion-example" component={AccordionExample} />
+			<Route path="/ui/alerts" component={AlertsPage} />
+			<Route path="/ui/alerts/primary-alert" component={PrimaryAlert} />
+			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
+			<Route path="/ui/alerts/success-alert" component={SuccessAlert} />
+			<Route path="/ui/alerts/danger-alert" component={DangerAlert} />
+			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
+			<Route path="/ui/alerts/info-alert" component={InfoAlert} />
+			<Route path="/ui/alerts/light-alert" component={LightAlert} />
+			<Route path="/ui/alerts/dark-alert" component={DarkAlert} />
+			<Route path="/ui/alerts/heading-alert" component={HeadingAlert} />
 			<Route path="/ui/badge" component={BadgePage} />
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />

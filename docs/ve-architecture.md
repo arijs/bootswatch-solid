@@ -28,6 +28,17 @@ The Vanilla Extract implementation lives in `ve-project`.
 - `ve-project/src/theme-contract`: shared `createVar()` contracts used by all themes.
 - `ve-project/src/themes/{themeName}`: theme-specific style implementation, split by logical groupings.
 
+## Critical Blocker: Contract-Only CSS Variables
+
+This is a hard migration rule and a release blocker.
+
+- Do not add or keep raw Bootstrap CSS variable strings in VE theme files (for example `var(--bs-...)` literals in values or keys).
+- Every Bootstrap variable used by VE styles must be declared via Vanilla Extract `createVar()` in `ve-project/src/theme-contract` first.
+- Then import those contract vars into theme files and compose styles with the imported identifiers.
+- If a required var is missing from contract files, add it there before continuing component migration.
+
+No exceptions for temporary parity fixes: contract vars must be created first, then used in theme files.
+
 ## Styling Constraint: Class-Only Application
 
 A strict constraint for this migration is to avoid implicit global element styling.
@@ -98,6 +109,11 @@ Only these static classes are allowed in VE component markup:
 - `bd-example`
 - `pwhook-*` classes used for screenshot state hooks
 
+Exception for Bootstrap runtime wiring:
+
+- When a Bootstrap JS plugin requires specific runtime state/selectors (for example `collapse`, `show`, `collapsed`), those exact static classes are allowed until the component is migrated to a custom `extendDefaultConfig()` selector/class mapping.
+- Keep this exception minimal and documented in the component migration notes.
+
 All other styling classes must come from Vanilla Extract imports.
 
 Examples:
@@ -139,6 +155,66 @@ VE component implementation must mirror the main app component structure exactly
 - Keep a direct route-to-component mapping in `ve-project/src/index.tsx` for those files.
 
 This rule is intentional: migration examples should stay explicit and easy to inspect per component case/state.
+
+## Component CSS Variable Conversion Pattern
+
+When converting a Bootstrap component's `style.css` into a VE theme file, the `style()` block for the component root must be a **full, literal conversion** of the original CSS rule — not a simplified version with hardcoded values.
+
+### Rule: Declare All Component-Scoped Vars in theme-contract
+
+Every CSS custom property introduced by the component itself (for example `--bs-alert-bg`, `--bs-alert-color`, `--bs-alert-border`) must be declared via `createVar()` in:
+
+```
+ve-project/src/theme-contract/ui/{family}/_vars.css.ts
+```
+
+Do **not** declare these vars locally in the theme file. They must be exported from the contract file and imported into the theme.
+
+### Rule: Initialize Vars in the Root Style Block
+
+The root component class (for example `alert`, `btn`) must include a `vars: {}` block that sets the default values for all component-scoped vars, exactly as Bootstrap does in its CSS rule. Subsequent variant classes then override only the vars they change.
+
+**Wrong** (simplified, no var initialization):
+```ts
+export const alert = style({
+  position: 'relative',
+  padding: '1rem',
+  color: `var(${varAlertColor})`,
+  border: `1px solid var(${varAlertBorderColor})`,
+})
+```
+
+**Correct** (full literal conversion with vars block):
+```ts
+export const alert = style({
+  vars: {
+    [varAlertBg]: 'transparent',
+    [varAlertPaddingX]: '1rem',
+    [varAlertPaddingY]: '1rem',
+    [varAlertMarginBottom]: '1rem',
+    [varAlertColor]: 'inherit',
+    [varAlertBorderColor]: 'transparent',
+    [varAlertBorder]: `${varBsBorderWidth} solid ${varAlertBorderColor}`,
+    [varAlertBorderRadius]: varBsBorderRadius,
+    [varAlertLinkColor]: 'inherit',
+  },
+  position: 'relative',
+  padding: `${varAlertPaddingY} ${varAlertPaddingX}`,
+  marginBottom: varAlertMarginBottom,
+  color: varAlertColor,
+  backgroundColor: varAlertBg,
+  border: varAlertBorder,
+  borderRadius: varAlertBorderRadius,
+})
+```
+
+Compound vars (like `--bs-alert-border` which combines border-width and border-color) must also be constructed from contract var references — never from string literals.
+
+### Reference Files
+
+- Contract: `ve-project/src/theme-contract/ui/alerts/_vars.css.ts`
+- Theme: `ve-project/src/themes/bootstrap/ui/alerts/base.css.ts`
+- Canonical button pattern: `ve-project/src/theme-contract/ui/buttons/_vars.css.ts` + `ve-project/src/themes/bootstrap/ui/buttons/base.css.ts`
 
 ## Recent Findings (April 2026)
 
