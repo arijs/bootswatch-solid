@@ -23,6 +23,7 @@
 		"@types/bootstrap": "^5.2.10",
 		"@vanilla-extract/css": "^1.20.1",
 		"@vanilla-extract/vite-plugin": "^5.2.2",
+		"bootstrap": "link:bootstrap-fork",
 		"pixelmatch": "^7.1.0",
 		"playwright": "^1.59.1",
 		"pngjs": "^7.0.0",
@@ -31,12 +32,13 @@
 		"vite": "^8.0.8",
 		"vite-plugin-solid": "3.0.0-next.5"
 	},
+	"remDependencies": {
+		"@popperjs/core": "^2.11.8"
+	},
 	"dependencies": {
 		"@arijs/frontend": "^0.3.1",
-		"@popperjs/core": "^2.11.8",
 		"@solidjs/router": "0.17.0-next.2",
 		"@solidjs/web": "2.0.0-beta.7",
-		"bootstrap": "^5.3.8",
 		"bootswatch": "^5.3.8",
 		"solid-js": "2.0.0-beta.7",
 		"zod": "^4.3.6"

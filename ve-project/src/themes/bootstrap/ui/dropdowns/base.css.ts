@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css'
+import { globalStyle, style } from '@vanilla-extract/css'
 
 export const dropdown = style({
 	position: 'relative',
@@ -70,6 +70,10 @@ export const dropdownMenu = style({
 })
 
 export const dropdownMenuShow = style({
+	display: 'block',
+})
+
+globalStyle(`${dropdownMenu}.show`, {
 	display: 'block',
 })
 

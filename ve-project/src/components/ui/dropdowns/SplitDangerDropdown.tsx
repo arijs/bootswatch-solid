@@ -1,35 +1,48 @@
 import type { Component } from 'solid-js'
+import { bsTheme } from '../../../themes/bootstrap/_vars.css'
+import { body } from '../../../themes/bootstrap/body.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
+import { btnDanger } from '../../../themes/bootstrap/ui/buttons/generated.css'
+import {
+	btnGroup,
+	dropdownItem,
+	dropdownMenu,
+	dropdownToggle,
+	dropdownToggleSplit,
+	visuallyHidden,
+} from '../../../themes/bootstrap/ui/dropdowns/base.css'
 
 const SplitDangerDropdown: Component = () => (
-	<div class="bd-example container-fluid">
-		<div class="btn-group">
-			<button type="button" class="btn btn-danger">
+	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+		<div class={btnGroup}>
+			<button type="button" class={`${btn} ${btnDanger}`}>
 				Danger
 			</button>
 			<button
 				type="button"
-				class="btn btn-danger dropdown-toggle dropdown-toggle-split pwhook-dropdown-toggle"
+				class={`${btn} ${btnDanger} ${dropdownToggle} ${dropdownToggleSplit} pwhook-dropdown-toggle`}
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
 			>
-				<span class="visually-hidden">Toggle Dropdown</span>
+				<span class={visuallyHidden}>Toggle Dropdown</span>
 			</button>
-			<ul class="dropdown-menu pwhook-dropdown-menu">
+			<ul class={`${dropdownMenu} pwhook-dropdown-menu`}>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Action
 					</a>
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Another action
 					</a>
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Something else here
 					</a>
 				</li>

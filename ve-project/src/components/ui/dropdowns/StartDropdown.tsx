@@ -1,10 +1,25 @@
 import type { Component } from 'solid-js'
+import { bsTheme } from '../../../themes/bootstrap/_vars.css'
+import { body } from '../../../themes/bootstrap/body.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
+import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
+import {
+	dropdownDivider,
+	dropdownHeader,
+	dropdownItem,
+	dropdownMenu,
+	dropdownToggle,
+	dropstart,
+	dropstartMenu,
+	dropstartToggle,
+} from '../../../themes/bootstrap/ui/dropdowns/base.css'
 
 const StartDropdown: Component = () => (
-	<div class="bd-example container-fluid">
-		<div class="dropstart">
+	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+		<div class={dropstart}>
 			<button
-				class="btn btn-secondary dropdown-toggle pwhook-dropdown-toggle"
+				class={`${btn} ${btnSecondary} ${dropdownToggle} ${dropstartToggle} pwhook-dropdown-toggle`}
 				type="button"
 				id="dropstartMenuButton"
 				data-bs-toggle="dropdown"
@@ -12,34 +27,34 @@ const StartDropdown: Component = () => (
 			>
 				Dropstart button
 			</button>
-			<ul class="dropdown-menu pwhook-dropdown-menu" aria-labelledby="dropstartMenuButton">
+			<ul class={`${dropdownMenu} ${dropstartMenu} pwhook-dropdown-menu`} aria-labelledby="dropstartMenuButton">
 				<li>
-					<h6 class="dropdown-header">Dropdown header</h6>
+					<h6 class={dropdownHeader}>Dropdown header</h6>
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Action
 					</a>
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Another action
 					</a>
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Something else here
 					</a>
 				</li>
 				<li>
-					<hr class="dropdown-divider" />
+					<hr class={dropdownDivider} />
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class="dropdown-item" href="#" onClick={(e) => e.preventDefault()}>
+					<a class={dropdownItem} href="#" onClick={(e) => e.preventDefault()}>
 						Separated link
 					</a>
 				</li>

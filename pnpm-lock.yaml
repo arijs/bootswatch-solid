@@ -11,18 +11,12 @@ importers:
       '@arijs/frontend':
         specifier: ^0.3.1
         version: 0.3.1
-      '@popperjs/core':
-        specifier: ^2.11.8
-        version: 2.11.8
       '@solidjs/router':
         specifier: 0.17.0-next.2
         version: 0.17.0-next.2(@solidjs/web@2.0.0-beta.7(@solidjs/signals@2.0.0-beta.7)(solid-js@2.0.0-beta.7))(solid-js@2.0.0-beta.7)
       '@solidjs/web':
         specifier: 2.0.0-beta.7
         version: 2.0.0-beta.7(@solidjs/signals@2.0.0-beta.7)(solid-js@2.0.0-beta.7)
-      bootstrap:
-        specifier: ^5.3.8
-        version: 5.3.8(@popperjs/core@2.11.8)
       bootswatch:
         specifier: ^5.3.8
         version: 5.3.8
@@ -48,6 +42,9 @@ importers:
       '@vanilla-extract/vite-plugin':
         specifier: ^5.2.2
         version: 5.2.2(@types/node@25.6.0)(esbuild@0.28.0)(sass@1.99.0)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.28.0)(sass@1.99.0))
+      bootstrap:
+        specifier: link:bootstrap-fork
+        version: link:bootstrap-fork
       pixelmatch:
         specifier: ^7.1.0
         version: 7.1.0
@@ -690,11 +687,6 @@ packages:
     resolution: {integrity: sha512-1AaXxEPfXT+GvTBJFuy4yXVHWJBXa4OdbIebGN/wX5DlsIkU0+wzGnd2lOzokSk51d5LUmqjgBLRLlypLUqInQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
-
-  bootstrap@5.3.8:
-    resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.8
 
   bootswatch@5.3.8:
     resolution: {integrity: sha512-88mnH9tv+x6DV+scBxYFOpM4YSDVhyfEgbhqaEfvkHNctKI9qRcACxIP9nmBZ5mSeLXtsgax1VsRkUs1eWjlAQ==}
@@ -1716,10 +1708,6 @@ snapshots:
   balanced-match@1.0.2: {}
 
   baseline-browser-mapping@2.10.20: {}
-
-  bootstrap@5.3.8(@popperjs/core@2.11.8):
-    dependencies:
-      '@popperjs/core': 2.11.8
 
   bootswatch@5.3.8: {}
 

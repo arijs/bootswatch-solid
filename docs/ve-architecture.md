@@ -170,3 +170,340 @@ After applying the VE-safe selector strategy above, focused verification passed:
 
 - command: `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering "--route=/ui/buttons/outline/toggle-active/disabled/danger-button"`
 - result: `verification OK 0.000000 - 0/43200`
+
+## Bootstrap JS Custom-Class Override Layer (April 2026)
+
+In parallel with VE migration, the local Bootstrap JS fork was modified to support class and selector overrides without patching component internals.
+
+### What Was Added
+
+- `BaseComponent` now exposes:
+  - `static getConfigConstants(overrides = {})`
+  - `static get ConfigConstants()`
+  - `static extendDefaultConfig(overrides = {})`
+- `extendDefaultConfig()` returns a subclass that cleanly separates overrides into:
+  - instance options (`Default` / `DefaultType`)
+  - structural constants (`ConfigConstants`, for class names, selectors, event constants)
+- Parent classes are not mutated; overrides are additive and chainable.
+- Data-API-heavy components were updated with explicit lifecycle methods:
+  - `static init()`
+  - `static destroy()`
+  - browser-only auto-init guards (`if (typeof document !== 'undefined') { ... }`) where applicable
+
+### Components With Full `ConfigConstants` Override Support
+
+- Alert
+- Button
+- Carousel
+- Collapse
+- Dropdown
+- Modal
+- Offcanvas
+- ScrollSpy
+- Tab
+
+### Important Usage Rule for Data API Components
+
+When you override selectors (for example `SELECTOR_DATA_TOGGLE` or `SELECTOR_DATA_SPY`), tear down listeners on the base class first, then initialize the subclass:
+
+```js
+SomeComponent.destroy()
+
+const CustomX = SomeComponent.extendDefaultConfig({
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="x"]'
+})
+
+CustomX.init()
+```
+
+This is especially important for components that are commonly used without manually creating instances.
+
+### Per-Component Custom-Class Examples
+
+#### 1) Alert
+
+Common keys to override:
+
+- `CLASS_NAME_SHOW`
+- `CLASS_NAME_FADE`
+- `EVENT_CLOSE`
+- `EVENT_CLOSED`
+
+```js
+import { Alert } from 'bootstrap'
+
+const AppAlert = Alert.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-open',
+  CLASS_NAME_FADE: 'is-fading'
+})
+
+const el = document.querySelector('[data-app-alert]')
+const instance = AppAlert.getOrCreateInstance(el)
+instance.close()
+```
+
+#### 2) Button (no manual instance required)
+
+Common keys to override:
+
+- `CLASS_NAME_ACTIVE`
+- `DATA_API_KEY`
+- `SELECTOR_DATA_TOGGLE`
+
+```js
+import { Button } from 'bootstrap'
+
+// Rebind delegated Data API to the custom selector
+Button.destroy()
+
+const AppButton = Button.extendDefaultConfig({
+  CLASS_NAME_ACTIVE: 'is-active',
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="button"]'
+})
+
+AppButton.init()
+
+// Markup example:
+// <button data-app-toggle="button" aria-pressed="false" class="btn">Toggle</button>
+```
+
+#### 3) Carousel
+
+Common keys to override:
+
+- `CLASS_NAME_ACTIVE`
+- `CLASS_NAME_SLIDE`
+- `SELECTOR_DATA_RIDE`
+- `SELECTOR_DATA_SLIDE`
+
+```js
+import { Carousel } from 'bootstrap'
+
+Carousel.destroy()
+
+const AppCarousel = Carousel.extendDefaultConfig({
+  CLASS_NAME_ACTIVE: 'is-active',
+  SELECTOR_DATA_RIDE: '[data-app-ride="carousel"]'
+})
+
+AppCarousel.init()
+
+const el = document.querySelector('#heroCarousel')
+AppCarousel.getOrCreateInstance(el, { interval: 3000 })
+```
+
+#### 4) Collapse
+
+Common keys to override:
+
+- `CLASS_NAME_SHOW`
+- `CLASS_NAME_COLLAPSE`
+- `CLASS_NAME_COLLAPSED`
+- `SELECTOR_DATA_TOGGLE`
+
+```js
+import { Collapse } from 'bootstrap'
+
+Collapse.destroy()
+
+const AppCollapse = Collapse.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-open',
+  CLASS_NAME_COLLAPSE: 'collapse-panel',
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="collapse"]'
+})
+
+AppCollapse.init()
+```
+
+#### 5) Dropdown
+
+Common keys to override:
+
+- `CLASS_NAME_SHOW`
+- `SELECTOR_MENU`
+- `SELECTOR_DATA_TOGGLE`
+- `SELECTOR_VISIBLE_ITEMS`
+
+```js
+import { Dropdown } from 'bootstrap'
+
+Dropdown.destroy()
+
+const AppDropdown = Dropdown.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-open',
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="dropdown"]',
+  SELECTOR_MENU: '.app-dropdown-menu'
+})
+
+AppDropdown.init()
+```
+
+#### 6) Modal
+
+Common keys to override:
+
+- `CLASS_NAME_OPEN`
+- `CLASS_NAME_SHOW`
+- `OPEN_SELECTOR`
+- `SELECTOR_DATA_TOGGLE`
+
+```js
+import { Modal } from 'bootstrap'
+
+Modal.destroy()
+
+const AppModal = Modal.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-visible',
+  CLASS_NAME_OPEN: 'app-modal-open',
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="modal"]'
+})
+
+AppModal.init()
+
+const modal = AppModal.getOrCreateInstance(document.querySelector('#settingsModal'))
+modal.show()
+```
+
+#### 7) Offcanvas
+
+Common keys to override:
+
+- `CLASS_NAME_BACKDROP`
+- `CLASS_NAME_SHOW`
+- `OPEN_SELECTOR`
+- `SELECTOR_DATA_TOGGLE`
+
+```js
+import { Offcanvas } from 'bootstrap'
+
+Offcanvas.destroy()
+
+const AppOffcanvas = Offcanvas.extendDefaultConfig({
+  CLASS_NAME_SHOW: 'is-visible',
+  CLASS_NAME_BACKDROP: 'app-offcanvas-backdrop',
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="offcanvas"]'
+})
+
+AppOffcanvas.init()
+```
+
+#### 8) ScrollSpy
+
+Common keys to override:
+
+- `CLASS_NAME_ACTIVE`
+- `SELECTOR_LINK_ITEMS`
+- `SELECTOR_DATA_SPY`
+- `SELECTOR_TARGET_LINKS`
+
+```js
+import { ScrollSpy } from 'bootstrap'
+
+ScrollSpy.destroy()
+
+const AppScrollSpy = ScrollSpy.extendDefaultConfig({
+  CLASS_NAME_ACTIVE: 'is-current',
+  SELECTOR_DATA_SPY: '[data-app-spy="scroll"]'
+})
+
+AppScrollSpy.init()
+```
+
+#### 9) Tab
+
+Common keys to override:
+
+- `CLASS_NAME_ACTIVE`
+- `CLASS_NAME_SHOW`
+- `SELECTOR_DATA_TOGGLE_ACTIVE`
+- `SELECTOR_DATA_TOGGLE`
+
+```js
+import { Tab } from 'bootstrap'
+
+Tab.destroy()
+
+const AppTab = Tab.extendDefaultConfig({
+  CLASS_NAME_ACTIVE: 'is-active',
+  CLASS_NAME_SHOW: 'is-visible',
+  SELECTOR_DATA_TOGGLE: '[data-app-toggle="tab"], [data-app-toggle="pill"]'
+})
+
+AppTab.init()
+```
+
+### Remaining Bootstrap JS Components (Current Status)
+
+The following components are still close to upstream behavior and do not currently expose `ConfigConstants` override APIs:
+
+- Tooltip
+- Popover
+- Toast
+
+You can still apply custom classes through supported configuration surfaces.
+
+#### 10) Tooltip
+
+Common keys to override:
+
+- `customClass`
+- `placement`
+- `template`
+- `trigger`
+
+```js
+import { Tooltip } from 'bootstrap'
+
+new Tooltip(document.querySelector('[data-app-tooltip]'), {
+  customClass: 'app-tooltip',
+  template: '<div class="tooltip app-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+})
+```
+
+#### 11) Popover
+
+Common keys to override:
+
+- `customClass`
+- `content`
+- `placement`
+- `template`
+- `trigger`
+
+```js
+import { Popover } from 'bootstrap'
+
+new Popover(document.querySelector('[data-app-popover]'), {
+  customClass: 'app-popover',
+  template: '<div class="popover app-popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
+})
+```
+
+#### 12) Toast
+
+Common keys to override:
+
+- `animation`
+- `autohide`
+- `delay`
+- wrapper class on the toast element (for example `app-toast`)
+
+```js
+import { Toast } from 'bootstrap'
+
+const toastEl = document.querySelector('[data-app-toast]')
+toastEl.classList.add('app-toast')
+
+const toast = Toast.getOrCreateInstance(toastEl, {
+  autohide: false,
+  delay: 8000
+})
+
+toast.show()
+```
+
+### Summary
+
+- Use `extendDefaultConfig()` for structural class/selector overrides on the 9 upgraded components.
+- For Data API components, use `Base.destroy()` -> `Sub = Base.extendDefaultConfig(...)` -> `Sub.init()`.
+- Use `customClass` / `template` / wrapper classes for Tooltip, Popover, and Toast until they are migrated to `ConfigConstants`.

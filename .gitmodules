@@ -1,0 +1,4 @@
+[submodule "bootstrap-fork"]
+	path = bootstrap-fork
+	url = git@github.com:arijs/bootstrap.git
+	branch = bsve-fully-extensible
