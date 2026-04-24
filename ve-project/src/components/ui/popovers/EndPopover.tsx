@@ -17,6 +17,7 @@ import {
 } from '../../../themes/bootstrap/ui/popovers/base.css'
 
 const VePopover = (bootstrap.Popover as any).extendDefaultConfig({
+	SELECTOR_ARROW: `.${popoverArrow}`,
 	SELECTOR_TITLE: `.${popoverHeader}`,
 	SELECTOR_CONTENT: `.${popoverBody}`,
 }) as typeof bootstrap.Popover
@@ -30,7 +31,7 @@ const EndPopover: Component = () => (
 			data-bs-toggle="popover"
 			ref={(popover) =>
 				new VePopover(popover, {
-					template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow} popover-arrow"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
+					template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow}"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
 				})}
 			data-bs-placement="right"
 			data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."

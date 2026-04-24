@@ -14,6 +14,7 @@ import {
 } from '../../../themes/bootstrap/ui/popovers/base.css'
 
 const VePopover = (bootstrap.Popover as any).extendDefaultConfig({
+	SELECTOR_ARROW: `.${popoverArrow}`,
 	SELECTOR_TITLE: `.${popoverHeader}`,
 	SELECTOR_CONTENT: `.${popoverBody}`,
 }) as typeof bootstrap.Popover
@@ -25,7 +26,7 @@ const BasicPopover: Component = () => (
 			class={`${btn} ${btnLg} ${btnDanger} pwhook-popover-trigger`}
 			ref={(popover) =>
 				new VePopover(popover, {
-					template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow} popover-arrow"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
+					template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow}"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
 				})}
 			title="Popover title"
 			data-bs-content="And here's some amazing content. It's very engaging. Right?"
