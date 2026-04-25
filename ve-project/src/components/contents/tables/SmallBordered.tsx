@@ -2,10 +2,10 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, table, tableBordered, tableSm, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
+import { table, tableBordered, tableSm, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
 
 const SmallBordered: Component = () => (
-	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
 		<table class={`${table} ${tableElement} ${tableSm} ${tableBordered}`}>
 			<thead class={tableSection}>
 				<tr class={tableRow}>

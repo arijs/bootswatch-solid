@@ -6,6 +6,8 @@ import AlertsPage from './components/ui/AlertsPage'
 import BadgePage from './components/ui/BadgePage'
 import ButtonGroupPage from './components/ui/ButtonGroupPage'
 import ButtonsPage from './components/ui/ButtonsPage'
+import Breadcrumb from './components/ui/Breadcrumb'
+import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
 import Dropdowns from './components/ui/Dropdowns'
 import ButtonGroupExample from './components/ui/button-group/ButtonGroupExample'
 import DangerAlert from './components/ui/alerts/DangerAlert'
@@ -391,6 +393,8 @@ render(
 			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
 			<Route path="/ui/alerts/success-alert" component={SuccessAlert} />
 			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
+			<Route path="/ui/breadcrumb" component={Breadcrumb} />
+			<Route path="/ui/breadcrumb/breadcrumb-example" component={BreadcrumbExample} />
 			<Route path="/ui/badge" component={BadgePage} />
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />

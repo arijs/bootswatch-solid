@@ -2,10 +2,10 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, listInline, listInlineItem } from '../../../themes/bootstrap/contents/generated.css'
+import { listInline, listInlineItem } from '../../../themes/bootstrap/contents/generated.css'
 
 const InlineList: Component = () => (
-	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
 		<ul class={`${listInline}`}>
 			<li class={`${listInlineItem}`}>This is a list item.</li>
 			<li class={`${listInlineItem}`}>And another one.</li>

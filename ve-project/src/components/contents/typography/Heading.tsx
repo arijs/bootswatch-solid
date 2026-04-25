@@ -2,10 +2,10 @@ import type { Component } from 'solid-js'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdExample, h1, h2, h3, h4, h5, h6 } from '../../../themes/bootstrap/contents/generated.css'
+import { h1, h2, h3, h4, h5, h6 } from '../../../themes/bootstrap/contents/generated.css'
 
 const Heading: Component = () => (
-	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
 		<p class={`${h1}`}>Heading 1</p>
 		<p class={`${h2}`}>Heading 2</p>
 		<p class={`${h3}`}>Heading 3</p>

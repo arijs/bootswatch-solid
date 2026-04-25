@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { bdExample, h1, h2, h3, h4, h5, h6 } from '../../../themes/bootstrap/contents/generated.css'
+import { h1, h2, h3, h4, h5, h6 } from '../../../themes/bootstrap/contents/generated.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import {
 	badge,
@@ -17,7 +17,7 @@ import {
 } from '../../../themes/bootstrap/ui/badge/base.css'
 
 const HeadingBadges: Component = () => (
-	<div class={`bd-example ${bdExample} ${containerFluid} ${bsTheme} ${body}`}>
+	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
 		<p class={h1}>
 			Example heading <span class={`${badge} ${bgPrimary}`}>New</span>
 		</p>

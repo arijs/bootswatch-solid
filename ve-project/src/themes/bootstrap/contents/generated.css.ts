@@ -45,7 +45,6 @@ export const alignSelfStart = style({
 	alignSelf: 'flex-start !important',
 })
 
-export const bdExample = style({})
 export const bdHeading = style({})
 
 export const bdPlaceholderImg = style({
