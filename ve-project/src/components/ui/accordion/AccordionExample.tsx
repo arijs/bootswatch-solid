@@ -1,5 +1,6 @@
 import * as bootstrap from 'bootstrap'
 import { onSettled, type Component } from 'solid-js'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
@@ -16,7 +17,7 @@ import {
 	accordionItem,
 } from '../../../themes/bootstrap/ui/accordion/base.css'
 
-const VeCollapse = (bootstrap.Collapse as any).extendDefaultConfig({
+const VeCollapse = (bootstrap.Collapse as unknown as BootstrapWithDefaults<typeof bootstrap.Collapse>).extendDefaultConfig({
 	CLASS_NAME_COLLAPSE: accordionCollapse,
 	CLASS_NAME_COLLAPSED: accordionButtonCollapsed,
 	CLASS_NAME_COLLAPSING: accordionCollapsing,

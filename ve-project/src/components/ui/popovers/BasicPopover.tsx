@@ -1,5 +1,6 @@
 import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
@@ -13,7 +14,7 @@ import {
 	popoverHeader,
 } from '../../../themes/bootstrap/ui/popovers/base.css'
 
-const VePopover = (bootstrap.Popover as any).extendDefaultConfig({
+const VePopover = (bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>).extendDefaultConfig({
 	SELECTOR_ARROW: `.${popoverArrow}`,
 	SELECTOR_TITLE: `.${popoverHeader}`,
 	SELECTOR_CONTENT: `.${popoverBody}`,

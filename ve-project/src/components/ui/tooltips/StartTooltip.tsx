@@ -1,5 +1,6 @@
 import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
@@ -14,7 +15,7 @@ import {
 	tooltipInner,
 } from '../../../themes/bootstrap/ui/tooltips/base.css'
 
-const VeTooltip = (bootstrap.Tooltip as any).extendDefaultConfig({
+const VeTooltip = (bootstrap.Tooltip as unknown as BootstrapWithDefaults<typeof bootstrap.Tooltip>).extendDefaultConfig({
 	SELECTOR_ARROW: `.${tooltipArrow}`,
 	SELECTOR_TOOLTIP_INNER: `.${tooltipInner}`,
 }) as typeof bootstrap.Tooltip

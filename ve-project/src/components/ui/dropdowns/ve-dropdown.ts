@@ -7,11 +7,12 @@ import {
 	dropstart,
 	dropup,
 } from '../../../themes/bootstrap/ui/dropdowns/base.css'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 import { btnShowHook } from '../../../themes/bootstrap/ui/buttons/base.css'
 import { varBsDropdownPosition } from '../../../theme-contract/ui/dropdowns/_vars.css'
 import { getVarName } from '../../../logic/veGetVarName'
 
-const VeDropdown = (bootstrap.Dropdown as any).extendDefaultConfig({
+const VeDropdown = (bootstrap.Dropdown as unknown as BootstrapWithDefaults<typeof bootstrap.Dropdown>).extendDefaultConfig({
 	CLASS_NAME_SHOW_TRIGGER: btnShowHook,
 	CLASS_NAME_SHOW_MENU: dropdownMenuShow,
 	CLASS_NAME_DROPUP: dropup,

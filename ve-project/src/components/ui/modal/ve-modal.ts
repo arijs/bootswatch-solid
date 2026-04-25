@@ -1,4 +1,5 @@
 import * as bootstrap from 'bootstrap'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 import {
 	fade,
 	modalBody,
@@ -7,13 +8,7 @@ import {
 	modalShowHook,
 } from '../../../themes/bootstrap/ui/modal/base.css'
 
-type ModalWithDefaults = typeof bootstrap.Modal & {
-	extendDefaultConfig: (config: Record<string, string>) => typeof bootstrap.Modal
-	destroy: () => void
-	init: () => void
-}
-
-const VeModal = (bootstrap.Modal as unknown as ModalWithDefaults).extendDefaultConfig({
+const VeModal = (bootstrap.Modal as unknown as BootstrapWithDefaults<typeof bootstrap.Modal>).extendDefaultConfig({
 	CLASS_NAME_FADE: fade,
 	CLASS_NAME_OPEN: modalOpenHook,
 	CLASS_NAME_SHOW: modalShowHook,
