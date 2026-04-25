@@ -1,4 +1,5 @@
 import type { Component } from 'solid-js'
+import './ve-dropdown'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'

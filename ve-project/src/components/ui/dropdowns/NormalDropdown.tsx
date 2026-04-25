@@ -1,7 +1,9 @@
 import type { Component } from 'solid-js'
+import './ve-dropdown'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
+import { h6 } from '../../../themes/bootstrap/contents/generated.css'
 import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
 import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
 import {
@@ -27,7 +29,7 @@ const NormalDropdown: Component = () => (
 			</button>
 			<ul class={`${dropdownMenu} pwhook-dropdown-menu`} aria-labelledby="dropdownMenuButton">
 				<li>
-					<h6 class={dropdownHeader}>Dropdown header</h6>
+					<h6 class={`${h6} ${dropdownHeader}`}>Dropdown header</h6>
 				</li>
 				<li>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}

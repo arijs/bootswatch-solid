@@ -1,4 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css'
+import { varBsBorderWidth } from '../../../../theme-contract/_vars.css'
+import { varBsDropdownPosition } from '../../../../theme-contract/ui/dropdowns/_vars.css'
+import { btn, btnActiveHook, btnCheckHook } from '../buttons/base.css'
 
 export const dropdown = style({
 	position: 'relative',
@@ -26,6 +29,20 @@ export const btnGroup = style({
 	verticalAlign: 'middle',
 })
 
+globalStyle(
+	`${btnGroup} > ${btnCheckHook}:checked + ${btn}, ${btnGroup} > ${btnCheckHook}:focus + ${btn}, ${btnGroup} > ${btn}:hover, ${btnGroup} > ${btn}:focus, ${btnGroup} > ${btn}:active, ${btnGroup} > ${btn}${btnActiveHook}`,
+	{
+		zIndex: 1,
+	},
+)
+
+globalStyle(
+	`${btnGroup} > :not(${btnCheckHook}:first-child) + ${btn}, ${btnGroup} > ${btnGroup}:not(:first-child)`,
+	{
+		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+	},
+)
+
 export const dropdownToggle = style({
 	selectors: {
 		'&::after': {
@@ -49,22 +66,44 @@ export const dropdownToggleSplit = style({
 	paddingLeft: '0.5625em',
 })
 
+globalStyle(
+	`${dropdownToggleSplit}::after, ${dropup} ${dropdownToggleSplit}::after, ${dropend} ${dropdownToggleSplit}::after`,
+	{
+		marginLeft: 0,
+	},
+)
+
+globalStyle(
+	`${btnGroup} > ${btn}:not(:last-child):not(${dropdownToggle}), ${btnGroup} > ${btn}${dropdownToggleSplit}:first-child, ${btnGroup} > ${btnGroup}:not(:last-child) > ${btn}`,
+	{
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	},
+)
+
+globalStyle(
+	`${btnGroup} > ${btn}:nth-child(n+3), ${btnGroup} > :not(${btnCheckHook}) + ${btn}, ${btnGroup} > ${btnGroup}:not(:first-child) > ${btn}`,
+	{
+		borderTopLeftRadius: 0,
+		borderBottomLeftRadius: 0,
+	},
+)
+
 export const dropdownMenu = style({
 	position: 'absolute',
 	zIndex: 1000,
 	display: 'none',
-	minWidth: '10em',
-	padding: '0.5em 0',
+	minWidth: '10rem',
+	padding: '0.5rem 0',
 	margin: 0,
-	marginTop: '0.125em',
-	fontSize: '1em',
+	fontSize: '1rem',
 	color: '#212529',
 	textAlign: 'left',
 	listStyle: 'none',
 	backgroundColor: '#fff',
 	backgroundClip: 'padding-box',
 	border: '1px solid rgba(0, 0, 0, 0.175)',
-	borderRadius: '0.375em',
+	borderRadius: '0.375rem',
 	left: 0,
 	top: '100%',
 })
@@ -73,19 +112,16 @@ export const dropdownMenuShow = style({
 	display: 'block',
 })
 
-globalStyle(`${dropdownMenu}.show`, {
-	display: 'block',
-})
-
 export const dropdownMenuEnd = style({
-	left: 'auto',
-	right: 0,
+	vars: {
+		[varBsDropdownPosition]: 'end',
+	},
 })
 
 export const dropdownItem = style({
 	display: 'block',
 	width: '100%',
-	padding: '0.25em 1em',
+	padding: '0.25rem 1rem',
 	clear: 'both',
 	fontWeight: 400,
 	color: '#212529',
@@ -104,18 +140,20 @@ export const dropdownItem = style({
 
 export const dropdownHeader = style({
 	display: 'block',
-	padding: '0.5em 1em',
+	padding: '0.5rem 1rem',
 	marginBottom: 0,
-	fontSize: '0.875em',
+	fontSize: '0.875rem',
 	color: '#6c757d',
 	whiteSpace: 'nowrap',
 })
 
 export const dropdownDivider = style({
 	height: 0,
-	margin: '0.5em 0',
+	margin: '0.5rem 0',
 	overflow: 'hidden',
+	border: 0,
 	borderTop: '1px solid rgba(0, 0, 0, 0.175)',
+	opacity: 1,
 })
 
 export const visuallyHidden = style({
