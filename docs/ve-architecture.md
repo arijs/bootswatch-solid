@@ -98,9 +98,10 @@ Use this workflow for every new VE UI family (for example, button-group, paginat
 5. Map Bootstrap CSS variables used by that route into theme-contract vars when needed:
   - `ve-project/src/theme-contract/ui/{family}/_vars.css.ts`
   - If a route reuses existing contract vars (for example, button-group reusing button vars), do not duplicate them.
-6. Apply VE classes in TSX and remove static Bootstrap class names.
-7. Keep screenshot hooks unchanged for verification.
-8. Run focused VE verification on the route, then broad verification if needed.
+6. Checklist before TSX wiring: if the component class/element rule in `style.css` defines component-scoped `--bs-*` vars, initialize those defaults in the VE class/element rule `vars: {}` block (do not rely only on global `bsTheme` defaults).
+7. Apply VE classes in TSX and remove static Bootstrap class names.
+8. Keep screenshot hooks unchanged for verification.
+9. Run focused VE verification on the route, then broad verification if needed.
 
 ## Class Usage Rule (VE TSX)
 
@@ -326,6 +327,61 @@ Rule:
 2. Re-run focused screenshot verification after rebuild.
 
 If this step is skipped, runtime behavior can still reflect stale logic even when source files look correct.
+
+### Component Root Must Initialize Its Own Bootstrap-Scoped Vars
+
+Breadcrumb parity exposed a recurring migration pitfall: the component style consumed `varBsBreadcrumb*` tokens but did not initialize the corresponding defaults in the component root class.
+
+Bootstrap defines these values on `.breadcrumb` itself (component scope), not only as global theme defaults. In VE, if the root class does not initialize component-scoped vars, rendering can drift even when global defaults exist.
+
+Rule for component conversion:
+
+1. When a Bootstrap component root rule defines `--bs-*` properties, mirror those defaults in the VE root class `vars: {}` block.
+2. Keep those vars declared in theme-contract (`createVar()`), then assign defaults in the component root style.
+3. Do not rely on `bsTheme` global defaults alone for component-local variables.
+
+Breadcrumb-specific reference:
+
+- Theme contract: `ve-project/src/theme-contract/ui/breadcrumb/_vars.css.ts`
+- Root var initialization: `ve-project/src/themes/bootstrap/ui/breadcrumb/base.css.ts` (`breadcrumb` class `vars` block)
+
+Concrete source-to-VE example:
+
+```css
+/* screenshots/.../style.css */
+.breadcrumb {
+  --bs-breadcrumb-padding-x: 0;
+  --bs-breadcrumb-padding-y: 0;
+  --bs-breadcrumb-margin-bottom: 1rem;
+  --bs-breadcrumb-bg: ;
+  --bs-breadcrumb-border-radius: ;
+  --bs-breadcrumb-divider-color: var(--bs-secondary-color);
+  --bs-breadcrumb-item-padding-x: 0.5rem;
+  --bs-breadcrumb-item-active-color: var(--bs-secondary-color);
+}
+```
+
+```ts
+// ve-project/src/themes/bootstrap/ui/breadcrumb/base.css.ts
+export const breadcrumb = style({
+  vars: {
+    [varBsBreadcrumbPaddingX]: '0',
+    [varBsBreadcrumbPaddingY]: '0',
+    [varBsBreadcrumbMarginBottom]: '1rem',
+    [varBsBreadcrumbBg]: '',
+    [varBsBreadcrumbBorderRadius]: '',
+    [varBsBreadcrumbDividerColor]: varBsSecondaryColor,
+    [varBsBreadcrumbItemPaddingX]: '0.5rem',
+    [varBsBreadcrumbItemActivColor]: varBsSecondaryColor,
+  },
+  // ...component declarations that consume those vars
+})
+```
+
+Verification reminder:
+
+- Re-run focused VE parity after root-var initialization changes:
+  - `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering "--route=/ui/breadcrumb/breadcrumb-example"`
 
 ## Bootstrap JS Custom-Class Override Layer (April 2026)
 

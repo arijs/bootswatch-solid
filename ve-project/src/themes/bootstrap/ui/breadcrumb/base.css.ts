@@ -1,4 +1,5 @@
-import { globalStyle, style } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
+import { varBsSecondaryColor } from '../../../../theme-contract/_vars.css'
 import { varBsBreadcrumbBg } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 import { varBsBreadcrumbBorderRadius } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 import { varBsBreadcrumbDividerColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
@@ -11,6 +12,16 @@ import { varBsBreadcrumbPaddingX } from '../../../../theme-contract/ui/breadcrum
 import { varBsBreadcrumbPaddingY } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 
 export const breadcrumb = style({
+	vars: {
+		[varBsBreadcrumbPaddingX]: '0',
+		[varBsBreadcrumbPaddingY]: '0',
+		[varBsBreadcrumbMarginBottom]: '1rem',
+		[varBsBreadcrumbBg]: '',
+		[varBsBreadcrumbBorderRadius]: '',
+		[varBsBreadcrumbDividerColor]: varBsSecondaryColor,
+		[varBsBreadcrumbItemPaddingX]: '0.5rem',
+		[varBsBreadcrumbItemActivColor]: varBsSecondaryColor,
+	},
 	display: 'flex',
 	flexWrap: 'wrap',
 	padding: `${varBsBreadcrumbPaddingY} ${varBsBreadcrumbPaddingX}`,

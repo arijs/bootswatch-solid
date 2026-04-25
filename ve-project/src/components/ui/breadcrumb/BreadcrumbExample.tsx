@@ -2,21 +2,22 @@ import type { Component } from 'solid-js'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
+import { link, listBase } from '../../../themes/bootstrap/contents/generated.css'
 import { breadcrumb, breadcrumbItem, breadcrumbItemActive } from '../../../themes/bootstrap/ui/breadcrumb/base.css'
 
 const BreadcrumbExample: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
 		<nav aria-label="breadcrumb">
-			<ol class={breadcrumb}>
+			<ol class={`${listBase} ${breadcrumb}`}>
 				<li class={breadcrumbItem}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a href="#" onClick={(e) => e.preventDefault()}>
+					<a class={link} href="#" onClick={(e) => e.preventDefault()}>
 						Home
 					</a>
 				</li>
 				<li class={breadcrumbItem}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a href="#" onClick={(e) => e.preventDefault()}>
+					<a class={link} href="#" onClick={(e) => e.preventDefault()}>
 						Library
 					</a>
 				</li>

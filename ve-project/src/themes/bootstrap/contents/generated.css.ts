@@ -7,6 +7,8 @@ import {
 	varBsEmphasisColor,
 	varBsEmphasisColorRgb,
 	varBsHeadingColor,
+	varBsLinkColorRgb,
+	varBsLinkHoverColorRgb,
 	varBsSecondaryColor,
 } from '../../../theme-contract/_vars.css'
 import {
@@ -227,6 +229,21 @@ export const imgThumbnail = style({
 export const lead = style({
 	fontSize: '1.25rem',
 	fontWeight: '300',
+})
+
+export const link = style({
+	color: `rgba(${varBsLinkColorRgb}, var(--bs-link-opacity, 1))`,
+	textDecoration: 'underline',
+	selectors: {
+		'&:hover': {
+			color: `rgba(${varBsLinkHoverColorRgb}, var(--bs-link-opacity, 1))`,
+		},
+	},
+})
+
+export const linkUnlinked = style({
+	color: 'inherit',
+	textDecoration: 'none',
 })
 
 export const paragraph = style({
