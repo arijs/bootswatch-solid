@@ -1,4 +1,5 @@
 import { INTERACTIVE_SCENARIOS } from './interactive-scenarios.mjs'
+import micromatch from 'micromatch'
 import { slugifyTheme } from './utils.mjs'
 
 export function buildStaticScenarios(leafRoutes) {
@@ -19,8 +20,9 @@ export function filterThemes(themes, themeFilter) {
 }
 
 export function filterScenarios(scenarios, routeFilter, stateFilter) {
+	const routePatterns = routeFilter ? [...routeFilter] : null
 	return scenarios.filter((scenario) => {
-		if (routeFilter && !routeFilter.has(scenario.route)) return false
+		if (routePatterns && !micromatch.isMatch(scenario.route, routePatterns)) return false
 		const stateName = scenario.state ?? 'static'
 		if (stateFilter && !stateFilter.has(stateName)) return false
 		return true

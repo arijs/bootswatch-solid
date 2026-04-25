@@ -276,6 +276,39 @@ import InlineList from './components/contents/typography/InlineList'
 import Lead from './components/contents/typography/Lead'
 import TextElements from './components/contents/typography/TextElements'
 import UnstyledList from './components/contents/typography/UnstyledList'
+import FormsPage from './components/forms/FormsPage'
+import Overview from './components/forms/Overview'
+import BasicForm from './components/forms/overview/BasicForm'
+import Checkbox from './components/forms/overview/Checkbox'
+import RadioButtons from './components/forms/overview/RadioButtons'
+import SwitchCheckbox from './components/forms/overview/SwitchCheckbox'
+import FileInput from './components/forms/overview/FileInput'
+import RangeInput from './components/forms/overview/RangeInput'
+import Sizing from './components/forms/Sizing'
+import LargeControls from './components/forms/sizing/LargeControls'
+import SmallControls from './components/forms/sizing/SmallControls'
+import DisabledForms from './components/forms/DisabledForms'
+import DisabledFieldset from './components/forms/disabled/DisabledFieldset'
+import DisabledCheckbox from './components/forms/disabled/DisabledCheckbox'
+import DisabledRadioButtons from './components/forms/disabled/DisabledRadioButtons'
+import DisabledSwitchCheckbox from './components/forms/disabled/DisabledSwitchCheckbox'
+import DisabledFileRange from './components/forms/disabled/DisabledFileRange'
+import FloatingLabels from './components/forms/FloatingLabels'
+import FloatingLabelsExample from './components/forms/floating-labels/FloatingLabelsExample'
+import InputGroup from './components/forms/InputGroup'
+import PrefixAddon from './components/forms/input-group/PrefixAddon'
+import SuffixAddon from './components/forms/input-group/SuffixAddon'
+import UrlAddon from './components/forms/input-group/UrlAddon'
+import CurrencyAddon from './components/forms/input-group/CurrencyAddon'
+import TextareaAddon from './components/forms/input-group/TextareaAddon'
+import Validation from './components/forms/Validation'
+import ValidNames from './components/forms/validation/ValidNames'
+import InvalidUsernameCity from './components/forms/validation/InvalidUsernameCity'
+import InvalidStateZip from './components/forms/validation/InvalidStateZip'
+import InvalidCheckboxes from './components/forms/validation/InvalidCheckboxes'
+import InvalidRadios from './components/forms/validation/InvalidRadios'
+import ValidCheckboxes from './components/forms/validation/ValidCheckboxes'
+import ValidRadios from './components/forms/validation/ValidRadios'
 
 render(
 	() => (
@@ -309,51 +342,56 @@ render(
 			<Route path="/contents/typography/lead" component={Lead} />
 			<Route path="/contents/typography/text-elements" component={TextElements} />
 			<Route path="/contents/typography/unstyled-list" component={UnstyledList} />
+			<Route path="/forms" component={FormsPage} />
+			<Route path="/forms/disabled" component={DisabledForms} />
+			<Route path="/forms/disabled/disabled-checkbox" component={DisabledCheckbox} />
+			<Route path="/forms/disabled/disabled-fieldset" component={DisabledFieldset} />
+			<Route path="/forms/disabled/disabled-file-range" component={DisabledFileRange} />
+			<Route path="/forms/disabled/disabled-radio-buttons" component={DisabledRadioButtons} />
+			<Route path="/forms/disabled/disabled-switch-checkbox" component={DisabledSwitchCheckbox} />
+			<Route path="/forms/floating-labels" component={FloatingLabels} />
+			<Route path="/forms/floating-labels/floating-labels-example" component={FloatingLabelsExample} />
+			<Route path="/forms/input-group" component={InputGroup} />
+			<Route path="/forms/input-group/currency-addon" component={CurrencyAddon} />
+			<Route path="/forms/input-group/prefix-addon" component={PrefixAddon} />
+			<Route path="/forms/input-group/suffix-addon" component={SuffixAddon} />
+			<Route path="/forms/input-group/textarea-addon" component={TextareaAddon} />
+			<Route path="/forms/input-group/url-addon" component={UrlAddon} />
+			<Route path="/forms/overview" component={Overview} />
+			<Route path="/forms/overview/basic-form" component={BasicForm} />
+			<Route path="/forms/overview/checkbox" component={Checkbox} />
+			<Route path="/forms/overview/file-input" component={FileInput} />
+			<Route path="/forms/overview/radio-buttons" component={RadioButtons} />
+			<Route path="/forms/overview/range-input" component={RangeInput} />
+			<Route path="/forms/overview/switch-checkbox" component={SwitchCheckbox} />
+			<Route path="/forms/sizing" component={Sizing} />
+			<Route path="/forms/sizing/large-controls" component={LargeControls} />
+			<Route path="/forms/sizing/small-controls" component={SmallControls} />
+			<Route path="/forms/validation" component={Validation} />
+			<Route path="/forms/validation/invalid-checkboxes" component={InvalidCheckboxes} />
+			<Route path="/forms/validation/invalid-radios" component={InvalidRadios} />
+			<Route path="/forms/validation/invalid-state-zip" component={InvalidStateZip} />
+			<Route path="/forms/validation/invalid-username-city" component={InvalidUsernameCity} />
+			<Route path="/forms/validation/valid-checkboxes" component={ValidCheckboxes} />
+			<Route path="/forms/validation/valid-names" component={ValidNames} />
+			<Route path="/forms/validation/valid-radios" component={ValidRadios} />
 			<Route path="/ui/accordion" component={AccordionPage} />
 			<Route path="/ui/accordion/accordion-example" component={AccordionExample} />
 			<Route path="/ui/alerts" component={AlertsPage} />
+			<Route path="/ui/alerts/danger-alert" component={DangerAlert} />
+			<Route path="/ui/alerts/dark-alert" component={DarkAlert} />
+			<Route path="/ui/alerts/heading-alert" component={HeadingAlert} />
+			<Route path="/ui/alerts/info-alert" component={InfoAlert} />
+			<Route path="/ui/alerts/light-alert" component={LightAlert} />
 			<Route path="/ui/alerts/primary-alert" component={PrimaryAlert} />
 			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
 			<Route path="/ui/alerts/success-alert" component={SuccessAlert} />
-			<Route path="/ui/alerts/danger-alert" component={DangerAlert} />
 			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
-			<Route path="/ui/alerts/info-alert" component={InfoAlert} />
-			<Route path="/ui/alerts/light-alert" component={LightAlert} />
-			<Route path="/ui/alerts/dark-alert" component={DarkAlert} />
-			<Route path="/ui/alerts/heading-alert" component={HeadingAlert} />
 			<Route path="/ui/badge" component={BadgePage} />
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />
 			<Route path="/ui/button-group" component={ButtonGroupPage} />
 			<Route path="/ui/button-group/button-group-example" component={ButtonGroupExample} />
-			<Route path="/ui/dropdowns" component={Dropdowns} />
-			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
-			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
-			<Route path="/ui/dropdowns/large-dropdown" component={LargeDropdown} />
-			<Route path="/ui/dropdowns/split-primary-dropdown" component={SplitPrimaryDropdown} />
-			<Route path="/ui/dropdowns/split-secondary-dropdown" component={SplitSecondaryDropdown} />
-			<Route path="/ui/dropdowns/split-success-dropdown" component={SplitSuccessDropdown} />
-			<Route path="/ui/dropdowns/split-info-dropdown" component={SplitInfoDropdown} />
-			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
-			<Route path="/ui/dropdowns/split-danger-dropdown" component={SplitDangerDropdown} />
-			<Route path="/ui/dropdowns/split-light-dropdown" component={SplitLightDropdown} />
-			<Route path="/ui/dropdowns/split-dark-dropdown" component={SplitDarkDropdown} />
-			<Route path="/ui/dropdowns/end-dropdown" component={EndDropdown} />
-			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
-			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
-			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
-			<Route path="/ui/popovers" component={Popovers} />
-			<Route path="/ui/popovers/basic-popover" component={BasicPopover} />
-			<Route path="/ui/popovers/top-popover" component={TopPopover} />
-			<Route path="/ui/popovers/end-popover" component={EndPopover} />
-			<Route path="/ui/popovers/bottom-popover" component={BottomPopover} />
-			<Route path="/ui/popovers/start-popover" component={StartPopover} />
-			<Route path="/ui/tooltips" component={Tooltips} />
-			<Route path="/ui/tooltips/top-tooltip" component={TopTooltip} />
-			<Route path="/ui/tooltips/end-tooltip" component={EndTooltip} />
-			<Route path="/ui/tooltips/bottom-tooltip" component={BottomTooltip} />
-			<Route path="/ui/tooltips/start-tooltip" component={StartTooltip} />
-			<Route path="/ui/tooltips/html-tooltip" component={HtmlTooltip} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
 			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
 			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
@@ -555,6 +593,34 @@ render(
 			<Route path="/ui/buttons/solid/toggle/success-button" component={SolidToggleSuccessButton} />
 			<Route path="/ui/buttons/solid/toggle/warning-button" component={SolidToggleWarningButton} />
 			<Route path="/ui/buttons/solid/warning-button" component={SolidWarningButton} />
+			<Route path="/ui/dropdowns" component={Dropdowns} />
+			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
+			<Route path="/ui/dropdowns/end-dropdown" component={EndDropdown} />
+			<Route path="/ui/dropdowns/large-dropdown" component={LargeDropdown} />
+			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
+			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
+			<Route path="/ui/dropdowns/split-danger-dropdown" component={SplitDangerDropdown} />
+			<Route path="/ui/dropdowns/split-dark-dropdown" component={SplitDarkDropdown} />
+			<Route path="/ui/dropdowns/split-info-dropdown" component={SplitInfoDropdown} />
+			<Route path="/ui/dropdowns/split-light-dropdown" component={SplitLightDropdown} />
+			<Route path="/ui/dropdowns/split-primary-dropdown" component={SplitPrimaryDropdown} />
+			<Route path="/ui/dropdowns/split-secondary-dropdown" component={SplitSecondaryDropdown} />
+			<Route path="/ui/dropdowns/split-success-dropdown" component={SplitSuccessDropdown} />
+			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
+			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
+			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
+			<Route path="/ui/popovers" component={Popovers} />
+			<Route path="/ui/popovers/basic-popover" component={BasicPopover} />
+			<Route path="/ui/popovers/bottom-popover" component={BottomPopover} />
+			<Route path="/ui/popovers/end-popover" component={EndPopover} />
+			<Route path="/ui/popovers/start-popover" component={StartPopover} />
+			<Route path="/ui/popovers/top-popover" component={TopPopover} />
+			<Route path="/ui/tooltips" component={Tooltips} />
+			<Route path="/ui/tooltips/bottom-tooltip" component={BottomTooltip} />
+			<Route path="/ui/tooltips/end-tooltip" component={EndTooltip} />
+			<Route path="/ui/tooltips/html-tooltip" component={HtmlTooltip} />
+			<Route path="/ui/tooltips/start-tooltip" component={StartTooltip} />
+			<Route path="/ui/tooltips/top-tooltip" component={TopTooltip} />
 		</Router>
 	),
 	document.getElementById('root') ??

@@ -444,7 +444,7 @@ states do not bleed across captures.
 | `--width=N` | `360` | Viewport width in pixels for all captures. |
 | `--max-themes=N` | `1` | Maximum number of themes to process. Set to `27` to process all themes. Prevents accidental long runs. |
 | `--theme=a,b` | all themes | Comma-separated list of theme slugs or exact names to include. |
-| `--route=/a,/b` | all leaf routes | Comma-separated list of route paths to include. |
+| `--route=/a,/b` | all leaf routes | Comma-separated list of route filters to include; supports exact paths and glob patterns (for example, `/ui/buttons/**`). |
 | `--state=a,b` | all states | Comma-separated list of state names to include (`static` for plain captures). |
 | `--build` | off | Rebuild the project (`pnpm build`) before capture. Default behavior reuses existing `dist/`. |
 | `--skip-existing` | off | Skip captures whose output file already exists on disk. |

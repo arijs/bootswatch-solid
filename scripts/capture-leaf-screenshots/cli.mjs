@@ -69,6 +69,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		veVerificationEnabled,
 		verificationMaxDiffRatio: parseFloatArg(argv, '--verify-max-diff-ratio', 0.001, 0),
 		strictScenarioAssert: argv.includes('--strict-scenarios'),
+		// Route filters accept exact paths and glob patterns (matched via micromatch).
 		routeFilter: parseCsvArg(argv, '--route'),
 		themeFilter: parseCsvArg(argv, '--theme'),
 		stateFilter: parseCsvArg(argv, '--state'),
