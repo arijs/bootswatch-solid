@@ -34,6 +34,10 @@ import StartDropdown from './components/ui/dropdowns/StartDropdown'
 import UpDropdown from './components/ui/dropdowns/UpDropdown'
 import Popovers from './components/ui/Popovers'
 import Tooltips from './components/ui/Tooltips'
+import CenteredScrollableModal from './components/ui/modal/CenteredScrollableModal'
+import DefaultModal from './components/ui/modal/DefaultModal'
+import FullscreenModal from './components/ui/modal/FullscreenModal'
+import StaticBackdropModal from './components/ui/modal/StaticBackdropModal'
 import AccordionExample from './components/ui/accordion/AccordionExample'
 import BasicPopover from './components/ui/popovers/BasicPopover'
 import BottomPopover from './components/ui/popovers/BottomPopover'
@@ -609,6 +613,10 @@ render(
 			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
 			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
 			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
+			<Route path="/ui/modal/centered-scrollable-modal" component={CenteredScrollableModal} />
+			<Route path="/ui/modal/default-modal" component={DefaultModal} />
+			<Route path="/ui/modal/fullscreen-modal" component={FullscreenModal} />
+			<Route path="/ui/modal/static-backdrop-modal" component={StaticBackdropModal} />
 			<Route path="/ui/popovers" component={Popovers} />
 			<Route path="/ui/popovers/basic-popover" component={BasicPopover} />
 			<Route path="/ui/popovers/bottom-popover" component={BottomPopover} />
