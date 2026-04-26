@@ -1,6 +1,6 @@
-import { createSignal, type Component } from 'solid-js'
+import type { Component } from 'solid-js'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
+import { body, bodyText } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { h4 } from '../../../themes/bootstrap/contents/generated.css'
 import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
@@ -15,7 +15,6 @@ import {
 	flexWrap,
 	justifyContentBetween,
 	modal,
-	modalBackdrop,
 	modalBody,
 	modalContent,
 	modalDialog,
@@ -23,34 +22,32 @@ import {
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../themes/bootstrap/ui/modal/base.css'
+import './ve-modal'
 
-const FullscreenModal: Component = () => {
-	const [isOpen, setIsOpen] = createSignal(false)
-
-	return (
+const FullscreenModal: Component = () => (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 				<div class={`${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
 					<button
 						type="button"
 						class={`${btn} ${btnPrimary} pwhook-modal-trigger`}
-						onClick={() => setIsOpen(true)}
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModalFullscreen"
 					>
 						Full screen
 					</button>
 				</div>
 			</div>
 			<div
-				class={`${bsTheme} ${modal} ${modalFade} ${fade} pwhook-modal${isOpen() ? ` ${modalShowHook}` : ''}`}
+				class={`${bsTheme} ${bodyText} ${modal} ${modalFade} ${fade} pwhook-modal`}
 				id="exampleModalFullscreen"
 				tabindex="-1"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="exampleModalFullscreenLabel"
-				aria-hidden={isOpen() ? 'false' : 'true'}
+				aria-hidden="true"
 			>
 				<div class={`${modalDialog} ${modalFullscreen}`}>
 					<div class={modalContent}>
@@ -61,7 +58,7 @@ const FullscreenModal: Component = () => {
 							<button
 								type="button"
 								class={btnClose}
-								onClick={() => setIsOpen(false)}
+								data-bs-dismiss="modal"
 								aria-label="Close"
 							></button>
 						</div>
@@ -134,21 +131,15 @@ const FullscreenModal: Component = () => {
 							</p>
 						</div>
 						<div class={modalFooter}>
-							<button
-								type="button"
-								class={`${btn} ${btnSecondary}`}
-								onClick={() => setIsOpen(false)}
-							>
+							<button type="button" class={`${btn} ${btnSecondary}`} data-bs-dismiss="modal">
 								Close
 							</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			{isOpen() ? <div class={`${modalBackdrop} ${fade} ${modalShowHook}`}></div> : null}
 		</>
 	)
-}
 
 export default FullscreenModal
 

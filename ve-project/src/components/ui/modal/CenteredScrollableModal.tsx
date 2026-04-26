@@ -1,6 +1,6 @@
-import { createSignal, type Component } from 'solid-js'
+import type { Component } from 'solid-js'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
+import { body, bodyText } from '../../../themes/bootstrap/body.css'
 import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { h5 } from '../../../themes/bootstrap/contents/generated.css'
 import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
@@ -15,7 +15,6 @@ import {
 	flexWrap,
 	justifyContentBetween,
 	modal,
-	modalBackdrop,
 	modalBody,
 	modalContent,
 	modalDialog,
@@ -24,34 +23,32 @@ import {
 	modalFade,
 	modalFooter,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../themes/bootstrap/ui/modal/base.css'
+import './ve-modal'
 
-const CenteredScrollableModal: Component = () => {
-	const [isOpen, setIsOpen] = createSignal(false)
-
-	return (
+const CenteredScrollableModal: Component = () => (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 				<div class={`${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
 					<button
 						type="button"
 						class={`${btn} ${btnPrimary} pwhook-modal-trigger`}
-						onClick={() => setIsOpen(true)}
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModalCenteredScrollable"
 					>
 						Vertically centered scrollable modal
 					</button>
 				</div>
 			</div>
 			<div
-				class={`${bsTheme} ${modal} ${modalFade} ${fade} pwhook-modal${isOpen() ? ` ${modalShowHook}` : ''}`}
+				class={`${bsTheme} ${bodyText} ${modal} ${modalFade} ${fade} pwhook-modal`}
 				id="exampleModalCenteredScrollable"
 				tabindex="-1"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="exampleModalCenteredScrollableTitle"
-				aria-hidden={isOpen() ? 'false' : 'true'}
+				aria-hidden="true"
 			>
 				<div class={`${modalDialog} ${modalDialogCentered} ${modalDialogScrollable}`}>
 					<div class={modalContent}>
@@ -62,7 +59,7 @@ const CenteredScrollableModal: Component = () => {
 							<button
 								type="button"
 								class={btnClose}
-								onClick={() => setIsOpen(false)}
+								data-bs-dismiss="modal"
 								aria-label="Close"
 							></button>
 						</div>
@@ -92,11 +89,7 @@ const CenteredScrollableModal: Component = () => {
 							</p>
 						</div>
 						<div class={modalFooter}>
-							<button
-								type="button"
-								class={`${btn} ${btnSecondary}`}
-								onClick={() => setIsOpen(false)}
-							>
+							<button type="button" class={`${btn} ${btnSecondary}`} data-bs-dismiss="modal">
 								Close
 							</button>
 							<button type="button" class={`${btn} ${btnPrimary}`}>
@@ -106,10 +99,8 @@ const CenteredScrollableModal: Component = () => {
 					</div>
 				</div>
 			</div>
-			{isOpen() ? <div class={`${modalBackdrop} ${fade} ${modalShowHook}`}></div> : null}
 		</>
 	)
-}
 
 export default CenteredScrollableModal
 

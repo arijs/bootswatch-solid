@@ -100,7 +100,7 @@ export const INTERACTIVE_SCENARIOS = [
 		state: 'opened-modal',
 		kind: 'click-visible',
 		selector: '.pwhook-modal-trigger',
-		visibleSelector: '.pwhook-modal[aria-hidden="false"]',
+		visibleSelector: '.pwhook-modal:not([aria-hidden="true"])',
 		settleDelayMs: 450,
 	})),
 ]

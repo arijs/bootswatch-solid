@@ -2,11 +2,6 @@ import { globalStyle, style } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
 	varBsBodyColor,
-	varBsBodyFontFamily,
-	varBsBodyFontSize,
-	varBsBodyFontWeight,
-	varBsBodyLineHeight,
-	varBsBodyTextAlign,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
@@ -97,15 +92,6 @@ export const modal = style({
 	height: '100%',
 	overflowX: 'hidden',
 	overflowY: 'auto',
-	fontFamily: varBsBodyFontFamily,
-	fontSize: varBsBodyFontSize,
-	fontWeight: varBsBodyFontWeight,
-	lineHeight: varBsBodyLineHeight,
-	color: varBsBodyColor,
-	textAlign: varBsBodyTextAlign,
-	backgroundColor: varBsBodyBg,
-	WebkitTextSizeAdjust: '100%',
-	WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
 	outline: 0,
 })
 
@@ -146,7 +132,6 @@ export const modalContent = style({
 	backgroundClip: 'padding-box',
 	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
-	boxShadow: varBsModalBoxShadow,
 	outline: 0,
 })
 
@@ -260,6 +245,10 @@ globalStyle(`${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
+globalStyle(`${modalBackdrop}.${fade}`, {
+	opacity: 0,
+})
+
 globalStyle(`${modalBackdrop}.${modalShowHook}`, {
 	opacity: varBsBackdropOpacity,
 })
@@ -298,6 +287,14 @@ globalStyle(`${modalDialog}`, {
 			maxWidth: varBsModalWidth,
 			marginRight: 'auto',
 			marginLeft: 'auto',
+		},
+	},
+})
+
+globalStyle(`${modalFullscreen}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			maxWidth: 'unset',
 		},
 	},
 })

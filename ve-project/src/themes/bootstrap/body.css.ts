@@ -9,18 +9,21 @@ import {
 	varBsBodyTextAlign,
 } from '../../theme-contract/_vars.css'
 
-export const body = style({
-	margin: 0,
+export const bodyText = style({
 	fontFamily: varBsBodyFontFamily,
 	fontSize: varBsBodyFontSize,
 	fontWeight: varBsBodyFontWeight,
 	lineHeight: varBsBodyLineHeight,
-	color: varBsBodyColor,
-	textAlign: varBsBodyTextAlign,
-	backgroundColor: varBsBodyBg,
 	WebkitTextSizeAdjust: '100%',
 	WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
 })
+
+export const body = style([bodyText, {
+	margin: 0,
+	color: varBsBodyColor,
+	textAlign: varBsBodyTextAlign,
+	backgroundColor: varBsBodyBg,
+}])
 
 /*
 

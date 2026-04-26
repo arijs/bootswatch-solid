@@ -301,6 +301,23 @@ template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="
 - The critical placement is on the root `.popover` element that Bootstrap creates and appends outside the local `.bd-example` subtree.
 - `bsTheme` covers theme-scoped variables; `body` covers Bootstrap body-level typography/reset styles used by popover content.
 
+### Modal Root Body-Style Gotcha (DefaultModal)
+
+`DefaultModal` surfaced a specific migration edge case tied to class-scoped body styling.
+
+- In VE, Bootstrap `body` styles are not global and must be applied by class.
+- The modal root (`.modal`) lives outside the trigger wrapper (`.bd-example`) in component structure, so modal content did not inherit body typography unless body-related styles were applied on the modal root itself.
+- Applying the full `body` class to the modal root also applies Bootstrap body background color.
+- Bootstrap JS creates the modal backdrop directly under the real `<body>`, and the injected background styling caused the area behind the modal to render with the body background color (white in Bootstrap), interfering with expected backdrop appearance.
+
+Resolution used in this repo:
+
+1. Extract body typography/text-only declarations into a dedicated class `bodyText`.
+2. Apply `bodyText` on modal roots (for example in `DefaultModal`) instead of full `body`.
+3. Keep background painting (`background-color`) out of modal root class composition.
+
+This keeps Bootstrap text rendering parity for modal content while avoiding body-background bleed that visually fights the backdrop.
+
 ### Element-Level Bootstrap Defaults Must Be Re-Expressed as Explicit VE Classes
 
 Bootstrap CSS includes global element styling (for example heading defaults on `h1`-`h6`). In VE, those styles are not applied unless the corresponding VE class is explicitly attached.
