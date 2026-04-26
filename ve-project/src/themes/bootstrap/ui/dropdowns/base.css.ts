@@ -222,7 +222,7 @@ export const dropstartToggle = style({
 		'&::before': {
 			display: 'inline-block',
 			marginRight: '0.255em',
-			verticalAlign: '0.255em',
+			verticalAlign: 0,
 			content: "''",
 			borderTop: '0.3em solid transparent',
 			borderRight: '0.3em solid',
