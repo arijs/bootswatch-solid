@@ -47,6 +47,10 @@ import SplitSuccessDropdown from './components/ui/dropdowns/SplitSuccessDropdown
 import SplitWarningDropdown from './components/ui/dropdowns/SplitWarningDropdown'
 import StartDropdown from './components/ui/dropdowns/StartDropdown'
 import UpDropdown from './components/ui/dropdowns/UpDropdown'
+import SmallPagination from './components/ui/pagination/SmallPagination'
+import StandardPagination from './components/ui/pagination/StandardPagination'
+import LargePagination from './components/ui/pagination/LargePagination'
+import Pagination from './components/ui/Pagination'
 import Popovers from './components/ui/Popovers'
 import Tooltips from './components/ui/Tooltips'
 import CenteredScrollableModal from './components/ui/modal/CenteredScrollableModal'
@@ -643,6 +647,10 @@ render(
 			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
 			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
 			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
+			<Route path="/ui/pagination" component={Pagination} />
+			<Route path="/ui/pagination/small-pagination" component={SmallPagination} />
+			<Route path="/ui/pagination/standard-pagination" component={StandardPagination} />
+			<Route path="/ui/pagination/large-pagination" component={LargePagination} />
 			<Route path="/ui/modal/centered-scrollable-modal" component={CenteredScrollableModal} />
 			<Route path="/ui/modal/default-modal" component={DefaultModal} />
 			<Route path="/ui/modal/fullscreen-modal" component={FullscreenModal} />

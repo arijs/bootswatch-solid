@@ -5,6 +5,7 @@ import Badge from './Badge'
 import ButtonGroup from './ButtonGroup'
 import Buttons from './Buttons'
 import Dropdowns from './Dropdowns'
+import Pagination from './Pagination'
 import Popovers from './Popovers'
 import Tooltips from './Tooltips'
 
@@ -17,6 +18,7 @@ const UiSection: Component = () => (
 		<ButtonGroup />
 		<Buttons />
 		<Dropdowns />
+		<Pagination />
 		<Popovers />
 		<Tooltips />
 	</section>
