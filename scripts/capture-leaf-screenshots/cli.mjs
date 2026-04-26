@@ -11,6 +11,7 @@ const BOOLEAN_FLAGS = new Set([
 	'--no-css-extraction',
 	'--verify-css-rendering',
 	'--verify-ve-rendering',
+	'--ve-missing-only',
 	'--strict-scenarios',
 ])
 
@@ -47,7 +48,8 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	assertKnownArgs(argv)
 
 	const verificationEnabled = argv.includes('--verify-css-rendering')
-	const veVerificationEnabled = argv.includes('--verify-ve-rendering')
+	const veMissingOnly = argv.includes('--ve-missing-only')
+	const veVerificationEnabled = argv.includes('--verify-ve-rendering') || veMissingOnly
 	if (verificationEnabled && veVerificationEnabled) {
 		throw new Error(
 			'--verify-css-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
@@ -67,6 +69,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		cssExtractionEnabled,
 		verificationEnabled,
 		veVerificationEnabled,
+		veMissingOnly,
 		verificationMaxDiffRatio: parseFloatArg(argv, '--verify-max-diff-ratio', 0.001, 0),
 		strictScenarioAssert: argv.includes('--strict-scenarios'),
 		// Route filters accept exact paths and glob patterns (matched via micromatch).

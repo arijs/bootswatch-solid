@@ -1,4 +1,6 @@
 import { readFile } from 'node:fs/promises'
+import path from 'node:path'
+import micromatch from 'micromatch'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
 import {
 	BASE_URL,
@@ -38,6 +40,7 @@ const {
 	cssExtractionEnabled,
 	verificationEnabled,
 	veVerificationEnabled,
+	veMissingOnly,
 	verificationMaxDiffRatio,
 	strictScenarioAssert,
 	routeFilter,
@@ -49,7 +52,7 @@ const {
 
 async function main() {
 	const indexSource = await readFile(INDEX_FILE, 'utf8')
-	const themeSource = await readFile(THEMES_FILE, 'utf8')
+	const themeSource = veMissingOnly ? null : await readFile(THEMES_FILE, 'utf8')
 	const veIndexSource = veVerificationEnabled ? await readFile(VE_INDEX_FILE, 'utf8') : null
 
 	const { routes, routeToComponentFile } = parseRoutesAndComponents(indexSource, INDEX_FILE)
@@ -59,7 +62,50 @@ async function main() {
 		: []
 	const veRouteSet = new Set(veLeafRoutes)
 	assertCuratedScenarioRoutes(leafRoutes, strictScenarioAssert)
-	let themes = filterThemes(parseThemeNames(themeSource), themeFilter)
+
+	if (leafRoutes.length === 0) {
+		throw new Error('No leaf routes found in src/index.tsx for /contents, /forms, /ui')
+	}
+
+	const unresolvedRoutes = leafRoutes.filter((route) => !routeToComponentFile.has(route))
+	if (unresolvedRoutes.length > 0) {
+		console.warn(`Warning: ${unresolvedRoutes.length} leaf route(s) missing component mapping.`)
+	}
+
+	if (veMissingOnly) {
+		const routePatterns = routeFilter ? [...routeFilter] : null
+		const selectedLeafRoutes = routePatterns
+			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
+			: leafRoutes
+		if (selectedLeafRoutes.length === 0) {
+			throw new Error('No leaf routes selected for --ve-missing-only after applying --route filters.')
+		}
+
+		const missingRoutes = selectedLeafRoutes.filter((route) => !veRouteSet.has(route))
+		const convertedCount = selectedLeafRoutes.length - missingRoutes.length
+
+		console.log('Mode: VE missing-only enabled (--ve-missing-only).')
+		console.log(`Selected leaf routes: ${selectedLeafRoutes.length}.`)
+		console.log(`VE migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`)
+
+		if (missingRoutes.length === 0) {
+			console.log('All selected leaf routes are already migrated to VE.')
+			return
+		}
+
+		console.warn(`\nComponents still missing VE migration (${missingRoutes.length}):`)
+		for (const route of missingRoutes) {
+			const componentFile = routeToComponentFile.get(route)
+			const componentRef = componentFile
+				? path.relative(process.cwd(), componentFile)
+				: '[component-file-unresolved]'
+			console.warn(`  ${route} -> ${componentRef}`)
+		}
+		return
+	}
+
+	const themeNames = parseThemeNames(themeSource)
+	let themes = filterThemes(themeNames, themeFilter)
 	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
 
 	// Apply max-themes limit for safety
@@ -68,19 +114,11 @@ async function main() {
 
 	const totalCapturesPlanned = themes.length * scenarios.length
 
-	if (leafRoutes.length === 0) {
-		throw new Error('No leaf routes found in src/index.tsx for /contents, /forms, /ui')
-	}
 	if (themes.length === 0) {
 		throw new Error('No themes selected after filter')
 	}
 	if (scenarios.length === 0) {
 		throw new Error('No scenarios selected after filter')
-	}
-
-	const unresolvedRoutes = leafRoutes.filter((route) => !routeToComponentFile.has(route))
-	if (unresolvedRoutes.length > 0) {
-		console.warn(`Warning: ${unresolvedRoutes.length} leaf route(s) missing component mapping.`)
 	}
 
 	console.log(`Found ${leafRoutes.length} leaf routes across target sections.`)

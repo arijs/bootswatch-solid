@@ -28,11 +28,19 @@ component `@screenshot` directives.
 Key behavior:
 
 - New flag: `--verify-ve-rendering`
+- Optional fast flag: `--ve-missing-only` (automatically enables `--verify-ve-rendering`)
 - Mutually exclusive with `--verify-css-rendering`
 - Uses `ve-project` preview server for render capture
 - Skips routes that are not implemented in `ve-project` with a warning
 - Keeps directive source in original component files resolved from
   `src/index.tsx` (not from `ve-project` components)
+
+`--ve-missing-only` is a migration-status pass:
+
+- Does not build or run Playwright verification
+- Skips routes already implemented in `ve-project`
+- Logs only routes/components still missing VE migration
+- Supports route narrowing via `--route=...`
 
 VE artifacts are written beside baseline images:
 
