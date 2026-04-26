@@ -2,6 +2,10 @@
 
 This document defines the current Vanilla Extract migration direction for this repository.
 
+Companion strategy document:
+
+- `docs/ve-theme-selection-strategy.md` - URL-driven VE theme selection, typed theme registries, and skip-with-warning behavior for partial theme coverage.
+
 ## Goals
 
 - Convert Bootstrap and Bootswatch styling into Vanilla Extract styles in small, verifiable steps.
