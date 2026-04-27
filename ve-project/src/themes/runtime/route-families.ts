@@ -19,6 +19,8 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/dropdowns/split-warning-dropdown': dropdownRouteFamilies,
 	'/ui/dropdowns/start-dropdown': dropdownRouteFamilies,
 	'/ui/dropdowns/up-dropdown': dropdownRouteFamilies,
+	'/ui/navbar': ['global', 'navbar'],
+	'/ui/navbar/navbar-example': ['global', 'navbar'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

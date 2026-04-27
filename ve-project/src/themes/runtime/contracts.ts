@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -71,10 +71,26 @@ export interface VeButtonThemeContract {
 	btnWarning: string
 }
 
+export interface VeNavbarThemeContract {
+	mt5: string
+	alignTop: string
+	bgLight: string
+	bgPrimary: string
+	dInlineBlock: string
+	navbar: string
+	navbarBrand: string
+	navbarDark: string
+	navbarInner: string
+	navbarLogoMuted: string
+	navbarToggler: string
+	navbarTogglerIcon: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	dropdowns: VeDropdownThemeContract
 	buttons: VeButtonThemeContract
+	navbar: VeNavbarThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -83,4 +99,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar']

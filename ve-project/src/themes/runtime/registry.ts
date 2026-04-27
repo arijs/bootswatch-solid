@@ -2,6 +2,7 @@ import { body } from '../bootstrap/body.css'
 import { containerFluid } from '../bootstrap/container.css'
 import { bsTheme } from '../bootstrap/_vars.css'
 import { h6 } from '../bootstrap/contents/generated.css'
+import { mt5 } from '../bootstrap/contents/generated.css'
 import { btn, btnActiveHook, btnShowHook } from '../bootstrap/ui/buttons/base.css'
 import {
 	btnCheck,
@@ -47,6 +48,19 @@ import {
 	dropupToggle,
 	visuallyHidden,
 } from '../bootstrap/ui/dropdowns/base.css'
+import {
+	alignTop,
+	bgLight,
+	bgPrimary,
+	dInlineBlock,
+	navbar,
+	navbarBrand,
+	navbarDark,
+	navbarInner,
+	navbarLogoMuted,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../bootstrap/ui/navbar/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -73,6 +87,21 @@ const bootstrapButtonRuntimeClasses = {
 	btnSm,
 	btnSuccess,
 	btnWarning,
+} as const
+
+const bootstrapNavbarRuntimeClasses = {
+	mt5,
+	alignTop,
+	bgLight,
+	bgPrimary,
+	dInlineBlock,
+	navbar,
+	navbarBrand,
+	navbarDark,
+	navbarInner,
+	navbarLogoMuted,
+	navbarToggler,
+	navbarTogglerIcon,
 } as const
 
 const bootstrapThemeDefinition: VeThemeDefinition = {
@@ -119,13 +148,15 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 			visuallyHidden,
 		},
 		buttons: bootstrapButtonRuntimeClasses,
+		navbar: bootstrapNavbarRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
 export const bootstrapGlobalRuntimeClasses = bootstrapThemeDefinition.contracts.global
 export { bootstrapButtonRuntimeClasses }
+export { bootstrapNavbarRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

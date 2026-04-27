@@ -15,6 +15,7 @@ This section records what has already been implemented in `ve-project` and what 
 - global contract
 - dropdown family contract
 - buttons family contract
+- navbar family contract
 3. Central runtime resolver exists and returns structured support state with reasons:
 - `unknown-theme`
 - `missing-family-contract`
@@ -22,13 +23,14 @@ This section records what has already been implemented in `ve-project` and what 
 5. Explicit route-to-family mapping exists for dropdown routes (`global` + `dropdowns`).
 6. Dropdown component routes now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
 7. Button component routes now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
-8. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-9. Structured warning emission is implemented for theme skips with route/family metadata.
-10. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+8. Navbar example route now consumes typed runtime contract APIs instead of direct Bootstrap theme imports.
+9. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+10. Structured warning emission is implemented for theme skips with route/family metadata.
+11. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns and buttons are on runtime contracts; many families still directly import Bootstrap VE theme classes.
+1. Family migration breadth is still partial: dropdowns, buttons, and navbar are on runtime contracts; many families still directly import Bootstrap VE theme classes.
 
 ### Pending
 

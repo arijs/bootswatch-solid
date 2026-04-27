@@ -1,25 +1,28 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { mt5 } from '../../../themes/bootstrap/contents/generated.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import {
-	alignTop,
-	bgLight,
-	bgPrimary,
-	dInlineBlock,
-	navbar,
-	navbarBrand,
-	navbarDark,
-	navbarInner,
-	navbarLogoMuted,
-	navbarToggler,
-	navbarTogglerIcon,
-} from '../../../themes/bootstrap/ui/navbar/base.css'
+import { useVeNavbarThemeClasses } from '../../../themes/runtime/hooks'
 
 const brandSrc = '/assets/brand/bootstrap-logo-white.svg'
 
-const NavbarExample: Component = () => (
+const NavbarExample: Component = () => {
+	const {
+		alignTop,
+		bgLight,
+		bgPrimary,
+		body,
+		bsTheme,
+		containerFluid,
+		dInlineBlock,
+		mt5,
+		navbar,
+		navbarBrand,
+		navbarDark,
+		navbarInner,
+		navbarLogoMuted,
+		navbarToggler,
+		navbarTogglerIcon,
+	} = useVeNavbarThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<nav class={`${navbar} ${bgLight}`}>
 			<div class={`${containerFluid} ${navbarInner}`}>
@@ -59,7 +62,8 @@ const NavbarExample: Component = () => (
 			</div>
 		</nav>
 	</div>
-)
+	)
+}
 
 export default NavbarExample
 
