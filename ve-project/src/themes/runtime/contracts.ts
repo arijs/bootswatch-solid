@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -195,6 +195,19 @@ export interface VeTooltipThemeContract {
 	tooltipInner: string
 }
 
+export interface VeAccordionThemeContract {
+	accordion: string
+	accordionBody: string
+	accordionButton: string
+	accordionButtonCollapsed: string
+	accordionCollapse: string
+	accordionCollapseShow: string
+	accordionCollapsing: string
+	accordionHeader: string
+	accordionItem: string
+	h4: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	dropdowns: VeDropdownThemeContract
@@ -206,6 +219,7 @@ export interface VeThemeContracts {
 	badge: VeBadgeThemeContract
 	popovers: VePopoverThemeContract
 	tooltips: VeTooltipThemeContract
+	accordion: VeAccordionThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -214,4 +228,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion']

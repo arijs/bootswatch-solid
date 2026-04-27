@@ -1,4 +1,5 @@
 import type {
+	VeAccordionThemeContract,
 	VeBadgeThemeContract,
 	VeButtonThemeContract,
 	VeCardThemeContract,
@@ -11,6 +12,7 @@ import type {
 	VeTooltipThemeContract,
 } from './contracts'
 import {
+	bootstrapAccordionRuntimeClasses,
 	bootstrapBadgeRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCardRuntimeClasses,
@@ -121,5 +123,14 @@ export function useVeTooltipThemeClasses(): VeGlobalThemeContract & VeButtonThem
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapButtonRuntimeClasses,
 		...bootstrapTooltipRuntimeClasses,
+	}
+}
+
+export function useVeAccordionThemeClasses(): VeGlobalThemeContract & VeAccordionThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapAccordionRuntimeClasses,
 	}
 }

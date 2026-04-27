@@ -22,6 +22,7 @@ This section records what has already been implemented in `ve-project` and what 
 - badge family contract
 - popovers family contract
 - tooltips family contract
+- accordion family contract
 3. Central runtime resolver exists and returns structured support state with reasons:
 - `unknown-theme`
 - `missing-family-contract`
@@ -39,17 +40,18 @@ This section records what has already been implemented in `ve-project` and what 
 13. Badge routes now consume runtime contracts (`/ui/badge/*`).
 14. Popover routes now consume runtime contracts (`/ui/popovers/*`).
 15. Tooltip routes now consume runtime contracts (`/ui/tooltips/*`).
-16. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-17. Structured warning emission is implemented for theme skips with route/family metadata.
-18. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+16. Accordion routes now consume runtime contracts (`/ui/accordion/*`).
+17. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+18. Structured warning emission is implemented for theme skips with route/family metadata.
+19. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns, buttons, navbar, nav, modal, card, badge, popovers, and tooltips are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
+1. Family migration breadth is still partial: dropdowns, buttons, navbar, nav, modal, card, badge, popovers, tooltips, and accordion are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
 
 ### Pending
 
-1. Continue family migrations from direct Bootstrap imports to runtime contracts (accordion, forms, scrollspy, carousel, pagination, and other remaining `ui` routes).
+1. Continue family migrations from direct Bootstrap imports to runtime contracts (forms, scrollspy, carousel, pagination, and other remaining `ui` routes).
 2. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
 3. Mark family availability per theme explicitly as each family is added.
 4. Harden verification matrix by theme/family and track skip-count reduction milestones.

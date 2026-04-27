@@ -55,6 +55,8 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/tooltips/html-tooltip': ['global', 'buttons', 'tooltips'],
 	'/ui/tooltips/start-tooltip': ['global', 'buttons', 'tooltips'],
 	'/ui/tooltips/top-tooltip': ['global', 'buttons', 'tooltips'],
+	'/ui/accordion': ['global', 'accordion'],
+	'/ui/accordion/accordion-example': ['global', 'accordion'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

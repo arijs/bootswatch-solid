@@ -147,6 +147,17 @@ import {
 	tooltipClass,
 	tooltipInner,
 } from '../bootstrap/ui/tooltips/base.css'
+import {
+	accordion,
+	accordionBody,
+	accordionButton,
+	accordionButtonCollapsed,
+	accordionCollapse,
+	accordionCollapseShow,
+	accordionCollapsing,
+	accordionHeader,
+	accordionItem,
+} from '../bootstrap/ui/accordion/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -299,6 +310,19 @@ const bootstrapTooltipRuntimeClasses = {
 	tooltipInner,
 } as const
 
+const bootstrapAccordionRuntimeClasses = {
+	accordion,
+	accordionBody,
+	accordionButton,
+	accordionButtonCollapsed,
+	accordionCollapse,
+	accordionCollapseShow,
+	accordionCollapsing,
+	accordionHeader,
+	accordionItem,
+	h4,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -350,8 +374,9 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		badge: bootstrapBadgeRuntimeClasses,
 		popovers: bootstrapPopoverRuntimeClasses,
 		tooltips: bootstrapTooltipRuntimeClasses,
+		accordion: bootstrapAccordionRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
@@ -364,6 +389,7 @@ export { bootstrapCardRuntimeClasses }
 export { bootstrapBadgeRuntimeClasses }
 export { bootstrapPopoverRuntimeClasses }
 export { bootstrapTooltipRuntimeClasses }
+export { bootstrapAccordionRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

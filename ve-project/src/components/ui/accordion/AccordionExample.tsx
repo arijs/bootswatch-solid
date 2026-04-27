@@ -1,36 +1,37 @@
 import * as bootstrap from 'bootstrap'
-import { onSettled, type Component } from 'solid-js'
+import type { Component } from 'solid-js'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { h4 } from '../../../themes/bootstrap/contents/generated.css'
-import {
-	accordion,
-	accordionBody,
-	accordionButton,
-	accordionButtonCollapsed,
-	accordionCollapse,
-	accordionCollapseShow,
-	accordionCollapsing,
-	accordionHeader,
-	accordionItem,
-} from '../../../themes/bootstrap/ui/accordion/base.css'
-
-const VeCollapse = (bootstrap.Collapse as unknown as BootstrapWithDefaults<typeof bootstrap.Collapse>).extendDefaultConfig({
-	CLASS_NAME_COLLAPSE: accordionCollapse,
-	CLASS_NAME_COLLAPSED: accordionButtonCollapsed,
-	CLASS_NAME_COLLAPSING: accordionCollapsing,
-	CLASS_NAME_SHOW: accordionCollapseShow,
-	SELECTOR_DATA_TOGGLE: '[data-ve-toggle="collapse"]',
-}) as typeof bootstrap.Collapse
-
-// @ts-expect-error this does exist, but the types are wrong
-VeCollapse.destroy()
-// @ts-expect-error
-VeCollapse.init()
+import { useVeAccordionThemeClasses } from '../../../themes/runtime/hooks'
 
 const AccordionExample: Component = () => {
+	const {
+		accordion,
+		accordionBody,
+		accordionButton,
+		accordionButtonCollapsed,
+		accordionCollapse,
+		accordionCollapseShow,
+		accordionCollapsing,
+		accordionHeader,
+		accordionItem,
+		body,
+		bsTheme,
+		containerFluid,
+		h4,
+	} = useVeAccordionThemeClasses()
+	const VeCollapse = (bootstrap.Collapse as unknown as BootstrapWithDefaults<typeof bootstrap.Collapse>).extendDefaultConfig({
+		CLASS_NAME_COLLAPSE: accordionCollapse,
+		CLASS_NAME_COLLAPSED: accordionButtonCollapsed,
+		CLASS_NAME_COLLAPSING: accordionCollapsing,
+		CLASS_NAME_SHOW: accordionCollapseShow,
+		SELECTOR_DATA_TOGGLE: '[data-ve-toggle="collapse"]',
+	}) as typeof bootstrap.Collapse
+
+	// @ts-expect-error this does exist, but the types are wrong
+	VeCollapse.destroy()
+	// @ts-expect-error
+	VeCollapse.init()
+
 	// let collapseOneRef: HTMLElement | undefined
 	// let collapseTwoRef: HTMLElement | undefined
 	// let collapseThreeRef: HTMLElement | undefined
