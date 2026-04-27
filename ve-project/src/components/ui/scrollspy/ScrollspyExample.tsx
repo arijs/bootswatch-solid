@@ -1,12 +1,18 @@
 import type { Component } from 'solid-js'
-import { h4, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { useVeDropdownThemeClasses, useVeNavThemeClasses, useVeNavbarThemeClasses } from '../../../themes/runtime/hooks'
-import { px3, scrollspyExample } from '../../../themes/bootstrap/ui/scrollspy/base.css'
+import {
+	useVeContentsThemeClasses,
+	useVeDropdownThemeClasses,
+	useVeNavThemeClasses,
+	useVeNavbarThemeClasses,
+	useVeScrollspyThemeClasses,
+} from '../../../themes/runtime/hooks'
 
 const ScrollspyExample: Component = () => {
 	const { bsTheme, body, containerFluid, dropdown, dropdownDivider, dropdownItem, dropdownMenu, dropdownToggle } = useVeDropdownThemeClasses()
 	const { nav, navItem, navLink, navLinkActive, navPills } = useVeNavThemeClasses()
 	const { bgLight, navbar, navbarBrand } = useVeNavbarThemeClasses()
+	const { h4, paragraph, px3 } = useVeContentsThemeClasses()
+	const { scrollspyExample } = useVeScrollspyThemeClasses()
 
 	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>

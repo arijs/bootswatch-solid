@@ -3,12 +3,14 @@ import type {
 	VeBadgeThemeContract,
 	VeButtonThemeContract,
 	VeCardThemeContract,
+	VeContentsThemeContract,
 	VeDropdownThemeContract,
 	VeGlobalThemeContract,
 	VeModalThemeContract,
 	VeNavThemeContract,
 	VeNavbarThemeContract,
 	VePopoverThemeContract,
+	VeScrollspyThemeContract,
 	VeTooltipThemeContract,
 } from './contracts'
 import {
@@ -16,12 +18,14 @@ import {
 	bootstrapBadgeRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCardRuntimeClasses,
+	bootstrapContentsRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
 	bootstrapGlobalRuntimeClasses,
 	bootstrapModalRuntimeClasses,
 	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
 	bootstrapPopoverRuntimeClasses,
+	bootstrapScrollspyRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
 	type VeThemeResolution,
 } from './registry'
@@ -47,6 +51,12 @@ export function useVeGlobalThemeClasses(): VeGlobalThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return bootstrapGlobalRuntimeClasses
+}
+
+export function useVeContentsThemeClasses(): VeContentsThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return bootstrapContentsRuntimeClasses
 }
 
 export function useVeDropdownThemeClasses(): VeGlobalThemeContract & VeDropdownThemeContract {
@@ -133,4 +143,10 @@ export function useVeAccordionThemeClasses(): VeGlobalThemeContract & VeAccordio
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapAccordionRuntimeClasses,
 	}
+}
+
+export function useVeScrollspyThemeClasses(): VeScrollspyThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return bootstrapScrollspyRuntimeClasses
 }

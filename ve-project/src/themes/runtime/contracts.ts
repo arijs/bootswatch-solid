@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -8,6 +8,12 @@ export interface VeGlobalThemeContract {
 	bsTheme: string
 	body: string
 	containerFluid: string
+}
+
+export interface VeContentsThemeContract {
+	h4: string
+	paragraph: string
+	px3: string
 }
 
 export interface VeDropdownThemeContract {
@@ -208,8 +214,13 @@ export interface VeAccordionThemeContract {
 	h4: string
 }
 
+export interface VeScrollspyThemeContract {
+	scrollspyExample: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
+	contents: VeContentsThemeContract
 	dropdowns: VeDropdownThemeContract
 	buttons: VeButtonThemeContract
 	navbar: VeNavbarThemeContract
@@ -220,6 +231,7 @@ export interface VeThemeContracts {
 	popovers: VePopoverThemeContract
 	tooltips: VeTooltipThemeContract
 	accordion: VeAccordionThemeContract
+	scrollspy: VeScrollspyThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -228,4 +240,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy']

@@ -1,6 +1,7 @@
 import { body } from '../bootstrap/body.css'
 import { containerFluid } from '../bootstrap/container.css'
 import { bsTheme } from '../bootstrap/_vars.css'
+import { px3 } from '../bootstrap/contents/base.css'
 import { h6 } from '../bootstrap/contents/generated.css'
 import { mt5 } from '../bootstrap/contents/generated.css'
 import { btn, btnActiveHook, btnShowHook } from '../bootstrap/ui/buttons/base.css'
@@ -158,6 +159,7 @@ import {
 	accordionHeader,
 	accordionItem,
 } from '../bootstrap/ui/accordion/base.css'
+import { scrollspyExample } from '../bootstrap/ui/scrollspy/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -184,6 +186,12 @@ const bootstrapButtonRuntimeClasses = {
 	btnSm,
 	btnSuccess,
 	btnWarning,
+} as const
+
+const bootstrapContentsRuntimeClasses = {
+	h4,
+	paragraph,
+	px3,
 } as const
 
 const bootstrapNavbarRuntimeClasses = {
@@ -323,6 +331,10 @@ const bootstrapAccordionRuntimeClasses = {
 	h4,
 } as const
 
+const bootstrapScrollspyRuntimeClasses = {
+	scrollspyExample,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -331,6 +343,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 			body,
 			containerFluid,
 		},
+		contents: bootstrapContentsRuntimeClasses,
 		dropdowns: {
 			h6,
 			btn,
@@ -375,12 +388,14 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		popovers: bootstrapPopoverRuntimeClasses,
 		tooltips: bootstrapTooltipRuntimeClasses,
 		accordion: bootstrapAccordionRuntimeClasses,
+		scrollspy: bootstrapScrollspyRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
 export const bootstrapGlobalRuntimeClasses = bootstrapThemeDefinition.contracts.global
+export { bootstrapContentsRuntimeClasses }
 export { bootstrapButtonRuntimeClasses }
 export { bootstrapNavbarRuntimeClasses }
 export { bootstrapNavRuntimeClasses }
@@ -390,6 +405,7 @@ export { bootstrapBadgeRuntimeClasses }
 export { bootstrapPopoverRuntimeClasses }
 export { bootstrapTooltipRuntimeClasses }
 export { bootstrapAccordionRuntimeClasses }
+export { bootstrapScrollspyRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,
