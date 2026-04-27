@@ -5,3 +5,4 @@ dist
 /screenshots/**/*.verify.diff.png
 /screenshots/**/ve-*.png
 /verify-*.txt
+/ve-project/verify-*.txt
