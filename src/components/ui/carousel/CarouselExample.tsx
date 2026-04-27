@@ -2,13 +2,13 @@ import type { Component } from 'solid-js'
 
 const CarouselExample: Component = () => (
 	<div class="bd-example container-fluid">
-		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-indicators">
+		<div id="carouselExampleCaptions" class="carousel slide pwhook-carousel" data-bs-ride="carousel">
+			<div class="carousel-indicators pwhook-carousel-indicators">
 				<button
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="0"
-					class="active"
+					class="active pwhook-carousel-indicator"
 					aria-current="true"
 					aria-label="Slide 1"
 				></button>
@@ -16,17 +16,19 @@ const CarouselExample: Component = () => (
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="1"
+					class="pwhook-carousel-indicator"
 					aria-label="Slide 2"
 				></button>
 				<button
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="2"
+					class="pwhook-carousel-indicator"
 					aria-label="Slide 3"
 				></button>
 			</div>
 			<div class="carousel-inner">
-				<div class="carousel-item active">
+				<div class="carousel-item active pwhook-carousel-item">
 					<svg
 						class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
 						width="800"
@@ -48,7 +50,7 @@ const CarouselExample: Component = () => (
 						<p>Some representative placeholder content for the first slide.</p>
 					</div>
 				</div>
-				<div class="carousel-item">
+				<div class="carousel-item pwhook-carousel-item">
 					<svg
 						class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
 						width="800"
@@ -70,7 +72,7 @@ const CarouselExample: Component = () => (
 						<p>Some representative placeholder content for the second slide.</p>
 					</div>
 				</div>
-				<div class="carousel-item">
+				<div class="carousel-item pwhook-carousel-item">
 					<svg
 						class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
 						width="800"
@@ -94,7 +96,7 @@ const CarouselExample: Component = () => (
 				</div>
 			</div>
 			<button
-				class="carousel-control-prev"
+				class="carousel-control-prev pwhook-carousel-control pwhook-carousel-control-prev"
 				type="button"
 				data-bs-target="#carouselExampleCaptions"
 				data-bs-slide="prev"
@@ -103,7 +105,7 @@ const CarouselExample: Component = () => (
 				<span class="visually-hidden">Previous</span>
 			</button>
 			<button
-				class="carousel-control-next"
+				class="carousel-control-next pwhook-carousel-control pwhook-carousel-control-next"
 				type="button"
 				data-bs-target="#carouselExampleCaptions"
 				data-bs-slide="next"

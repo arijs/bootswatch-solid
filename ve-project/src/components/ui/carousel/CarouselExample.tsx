@@ -1,4 +1,5 @@
 import type { Component } from 'solid-js'
+import { onSettled } from 'solid-js'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
 import {
@@ -27,15 +28,24 @@ import {
 } from '../../../themes/bootstrap/ui/carousel/base.css'
 import './ve-carousel'
 
-const CarouselExample: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div id="carouselExampleCaptions" class={`${carousel} ${carouselSlide}`} data-bs-ride="carousel">
-			<div class={carouselIndicators}>
+const CarouselExample: Component = () => {
+	onSettled(() => {
+		// Ensure carousel is initialized with VeCarousel configuration
+		const carouselElement = document.getElementById('carouselExampleCaptions')
+		if (carouselElement && (window as any).VeCarousel) {
+			;(window as any).VeCarousel.getOrCreateInstance(carouselElement)
+		}
+	})
+
+	return (
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<div id="carouselExampleCaptions" class={`${carousel} ${carouselSlide} pwhook-carousel`} data-bs-ride="carousel">
+			<div class={`${carouselIndicators} pwhook-carousel-indicators`}>
 				<button
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="0"
-					class={`${carouselIndicatorsTarget} ${carouselActive}`}
+					class={`${carouselIndicatorsTarget} ${carouselActive} pwhook-carousel-indicator pwhook-carousel-active`}
 					aria-current="true"
 					aria-label="Slide 1"
 				></button>
@@ -43,19 +53,19 @@ const CarouselExample: Component = () => (
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="1"
-					class={carouselIndicatorsTarget}
+					class={`${carouselIndicatorsTarget} pwhook-carousel-indicator`}
 					aria-label="Slide 2"
 				></button>
 				<button
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="2"
-					class={carouselIndicatorsTarget}
+					class={`${carouselIndicatorsTarget} pwhook-carousel-indicator`}
 					aria-label="Slide 3"
 				></button>
 			</div>
 			<div class={carouselInner}>
-				<div class={`${carouselItem} ${carouselActive}`}>
+				<div class={`${carouselItem} ${carouselActive} pwhook-carousel-item pwhook-carousel-active`}>
 					<svg
 						class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${carouselSlideImage}`}
 						width="800"
@@ -77,7 +87,7 @@ const CarouselExample: Component = () => (
 						<p class={paragraph}>Some representative placeholder content for the first slide.</p>
 					</div>
 				</div>
-				<div class={carouselItem}>
+				<div class={`${carouselItem} pwhook-carousel-item`}>
 					<svg
 						class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${carouselSlideImage}`}
 						width="800"
@@ -99,7 +109,7 @@ const CarouselExample: Component = () => (
 						<p class={paragraph}>Some representative placeholder content for the second slide.</p>
 					</div>
 				</div>
-				<div class={carouselItem}>
+				<div class={`${carouselItem} pwhook-carousel-item`}>
 					<svg
 						class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${carouselSlideImage}`}
 						width="800"
@@ -123,7 +133,7 @@ const CarouselExample: Component = () => (
 				</div>
 			</div>
 			<button
-				class={carouselControlPrev}
+				class={`${carouselControlPrev} pwhook-carousel-control pwhook-carousel-control-prev`}
 				type="button"
 				data-bs-target="#carouselExampleCaptions"
 				data-bs-slide="prev"
@@ -132,7 +142,7 @@ const CarouselExample: Component = () => (
 				<span class={visuallyHidden}>Previous</span>
 			</button>
 			<button
-				class={carouselControlNext}
+				class={`${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
 				type="button"
 				data-bs-target="#carouselExampleCaptions"
 				data-bs-slide="next"
@@ -140,9 +150,10 @@ const CarouselExample: Component = () => (
 				<span class={carouselControlNextIcon} aria-hidden="true"></span>
 				<span class={visuallyHidden}>Next</span>
 			</button>
+			</div>
 		</div>
-	</div>
-)
+	)
+}
 
 export default CarouselExample
 

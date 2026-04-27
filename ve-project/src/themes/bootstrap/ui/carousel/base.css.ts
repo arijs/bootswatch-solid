@@ -48,15 +48,17 @@ export const carouselItemStart = style({})
 
 export const carouselItemEnd = style({})
 
-globalStyle(`${carouselItem}.${carouselActive}, ${carouselItem}.${carouselItemNext}, ${carouselItem}.${carouselItemPrev}`, {
+const carouselHookActive = 'pwhook-carousel-active'
+
+globalStyle(`${carouselItem}.${carouselActive}, ${carouselItem}.${carouselHookActive}, ${carouselItem}.${carouselItemNext}, ${carouselItem}.${carouselItemPrev}`, {
 	display: 'block',
 })
 
-globalStyle(`${carouselItem}.${carouselItemNext}:not(.${carouselItemStart}), .${carouselActive}.${carouselItemEnd}`, {
+globalStyle(`${carouselItem}.${carouselItemNext}:not(.${carouselItemStart}), .${carouselActive}.${carouselItemEnd}, .${carouselHookActive}.${carouselItemEnd}`, {
 	transform: 'translateX(100%)',
 })
 
-globalStyle(`${carouselItem}.${carouselItemPrev}:not(.${carouselItemEnd}), .${carouselActive}.${carouselItemStart}`, {
+globalStyle(`${carouselItem}.${carouselItemPrev}:not(.${carouselItemEnd}), .${carouselActive}.${carouselItemStart}, .${carouselHookActive}.${carouselItemStart}`, {
 	transform: 'translateX(-100%)',
 })
 
@@ -160,7 +162,7 @@ export const carouselIndicatorsTarget = style({
 	},
 })
 
-globalStyle(`${carouselIndicatorsTarget}.${carouselActive}`, {
+globalStyle(`${carouselIndicatorsTarget}.${carouselActive}, ${carouselIndicatorsTarget}.${carouselHookActive}`, {
 	opacity: 1,
 })
 

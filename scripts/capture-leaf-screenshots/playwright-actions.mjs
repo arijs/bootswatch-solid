@@ -71,32 +71,47 @@ async function slideCarouselToIndex(locator, {
 }) {
 	await locator.evaluate(
 		async (carouselElement, config) => {
-			const getActiveIndex = (items) =>
-				items.findIndex((item) => item.classList.contains('active'))
-
-			const bootstrap = window.bootstrap
-			if (!bootstrap?.Carousel) {
-				throw new Error('Bootstrap Carousel API is unavailable on this route')
+			const getActiveClassTokens = (CarouselClass) => {
+				const configured = CarouselClass.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
+				const tokens = configured.split(/\s+/).filter(Boolean)
+				return tokens.length > 0 ? tokens : ['active']
 			}
 
-			const items = [...carouselElement.querySelectorAll('.carousel-item')]
-			if (items.length === 0) {
-				throw new Error('No .carousel-item elements found')
-			}
+			const hasAnyToken = (element, tokens) =>
+				tokens.some((token) => element.classList.contains(token))
 
-			if (config.targetIndex >= items.length) {
-				throw new Error(
-					`Target index ${config.targetIndex} is out of bounds for ${items.length} slide(s)`,
+			const getActiveIndex = (items, indicators) => {
+				const indicatorIndex = indicators.findIndex(
+					(indicator) => indicator.getAttribute('aria-current') === 'true',
+				)
+				if (indicatorIndex >= 0) {
+					return indicatorIndex
+				}
+
+				return items.findIndex(
+					(item) => hasAnyToken(item, activeClassTokens),
 				)
 			}
 
-			const instance = bootstrap.Carousel.getOrCreateInstance(carouselElement)
-			instance.pause()
+			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
+			if (!CarouselClass) {
+				throw new Error('Carousel API is unavailable on this route')
+			}
+			const activeClassTokens = getActiveClassTokens(CarouselClass)
 
-			const activeIndex = getActiveIndex(items)
+			const items = [...carouselElement.querySelectorAll('.pwhook-carousel-item')]
+			if (items.length === 0) {
+				throw new Error('No .pwhook-carousel-item elements found')
+			}
+			const indicators = [...carouselElement.querySelectorAll('.pwhook-carousel-indicator')]
+
+			const activeIndex = getActiveIndex(items, indicators)
 			if (activeIndex === config.targetIndex) {
 				return
 			}
+
+			const instance = CarouselClass.getOrCreateInstance(carouselElement)
+			instance.pause()
 
 			await new Promise((resolve, reject) => {
 				const timeoutId = window.setTimeout(() => {
@@ -114,7 +129,7 @@ async function slideCarouselToIndex(locator, {
 						return
 					}
 
-					const settledIndex = getActiveIndex(items)
+					const settledIndex = getActiveIndex(items, indicators)
 					if (settledIndex !== config.targetIndex) {
 						return
 					}
@@ -128,7 +143,7 @@ async function slideCarouselToIndex(locator, {
 				instance.to(config.targetIndex)
 			})
 
-			const settledIndex = getActiveIndex(items)
+			const settledIndex = getActiveIndex(items, indicators)
 			if (settledIndex !== config.targetIndex) {
 				throw new Error(
 					`Carousel settled at index ${settledIndex}, expected ${config.targetIndex}`,
@@ -157,8 +172,40 @@ async function clickCarouselControl(locator, {
 }) {
 	await locator.evaluate(
 		async (carouselElement, config) => {
-			const getActiveIndex = (items) =>
-				items.findIndex((item) => item.classList.contains('active'))
+			const getActiveClassTokens = (CarouselClass) => {
+				const configured = CarouselClass.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
+				const tokens = configured.split(/\s+/).filter(Boolean)
+				return tokens.length > 0 ? tokens : ['active']
+			}
+
+			const hasAnyToken = (element, tokens) =>
+				tokens.some((token) => element.classList.contains(token))
+
+			const getActiveIndex = (items, indicators) => {
+				const indicatorIndex = indicators.findIndex(
+					(indicator) => indicator.getAttribute('aria-current') === 'true',
+				)
+				if (indicatorIndex >= 0) {
+					return indicatorIndex
+				}
+
+				return items.findIndex(
+					(item) => hasAnyToken(item, activeClassTokens),
+				)
+			}
+
+			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
+			if (!CarouselClass) {
+				throw new Error('Carousel API is unavailable on this route')
+			}
+			const activeClassTokens = getActiveClassTokens(CarouselClass)
+
+			const items = [...carouselElement.querySelectorAll('.pwhook-carousel-item')]
+			if (items.length === 0) {
+				throw new Error('No .pwhook-carousel-item elements found')
+			}
+			const indicators = [...carouselElement.querySelectorAll('.pwhook-carousel-indicator')]
+
 			const waitForSlidToIndex = (targetIndex) =>
 				new Promise((resolve, reject) => {
 					const timeoutId = window.setTimeout(() => {
@@ -176,7 +223,7 @@ async function clickCarouselControl(locator, {
 							return
 						}
 
-						const settledIndex = getActiveIndex(items)
+						const settledIndex = getActiveIndex(items, indicators)
 						if (settledIndex !== targetIndex) {
 							return
 						}
@@ -189,17 +236,7 @@ async function clickCarouselControl(locator, {
 					carouselElement.addEventListener('slid.bs.carousel', onSlid)
 				})
 
-			const bootstrap = window.bootstrap
-			if (!bootstrap?.Carousel) {
-				throw new Error('Bootstrap Carousel API is unavailable on this route')
-			}
-
-			const items = [...carouselElement.querySelectorAll('.carousel-item')]
-			if (items.length === 0) {
-				throw new Error('No .carousel-item elements found')
-			}
-
-			const instance = bootstrap.Carousel.getOrCreateInstance(carouselElement)
+			const instance = CarouselClass.getOrCreateInstance(carouselElement)
 			instance.pause()
 
 			if (config.startIndex !== null) {
@@ -209,7 +246,7 @@ async function clickCarouselControl(locator, {
 					)
 				}
 
-				const activeIndex = getActiveIndex(items)
+				const activeIndex = getActiveIndex(items, indicators)
 				if (activeIndex !== config.startIndex) {
 					const waitPromise = waitForSlidToIndex(config.startIndex)
 					instance.to(config.startIndex)
@@ -217,7 +254,7 @@ async function clickCarouselControl(locator, {
 				}
 			}
 
-			const currentIndex = getActiveIndex(items)
+			const currentIndex = getActiveIndex(items, indicators)
 			if (currentIndex < 0) {
 				throw new Error('Carousel has no active item before control click')
 			}
@@ -245,7 +282,7 @@ async function clickCarouselControl(locator, {
 			control.click()
 			await waitPromise
 
-			const settledIndex = getActiveIndex(items)
+			const settledIndex = getActiveIndex(items, indicators)
 			if (settledIndex !== targetIndex) {
 				throw new Error(`Carousel settled at index ${settledIndex}, expected ${targetIndex}`)
 			}
@@ -305,10 +342,10 @@ export async function stabilizeForScreenshot(page) {
 
 		// Stop auto-cycling carousels so static captures keep the same active slide.
 		try {
-			const bootstrap = window.bootstrap
-			if (bootstrap?.Carousel) {
-				for (const element of document.querySelectorAll('.carousel')) {
-					bootstrap.Carousel.getOrCreateInstance(element).pause()
+			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
+			if (CarouselClass) {
+				for (const element of document.querySelectorAll('.pwhook-carousel')) {
+					CarouselClass.getOrCreateInstance(element).pause()
 				}
 			}
 		} catch {
@@ -318,15 +355,36 @@ export async function stabilizeForScreenshot(page) {
 		// Carousels can transiently mark multiple indicators as active during hydration/ride init.
 		// Force a single stable active item/indicator pair before capture while
 		// preserving the currently active slide selected by an interactive scenario.
-		for (const carousel of document.querySelectorAll('.carousel')) {
+		const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
+		const activeClassTokens = (
+			CarouselClass?.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
+		)
+			.split(/\s+/)
+			.filter(Boolean)
+		const effectiveActiveClassTokens =
+			activeClassTokens.length > 0 ? activeClassTokens : ['active']
+		const hasAnyToken = (element, tokens) =>
+			tokens.some((token) => element.classList.contains(token))
+		const addTokens = (element, tokens) => {
+			tokens.forEach((token) => element.classList.add(token))
+		}
+		const removeTokens = (element, tokens) => {
+			tokens.forEach((token) => element.classList.remove(token))
+		}
+
+		for (const carousel of document.querySelectorAll('.pwhook-carousel')) {
 			try {
-				const items = [...carousel.querySelectorAll('.carousel-item')]
+				const items = [...carousel.querySelectorAll('.pwhook-carousel-item')]
 				if (items.length === 0) continue
 
-				const indicators = [...carousel.querySelectorAll('.carousel-indicators > *')]
-				const activeItemIndex = items.findIndex((item) => item.classList.contains('active'))
-				const activeIndicatorIndex = indicators.findIndex((indicator) =>
-					indicator.classList.contains('active'),
+				const indicators = [...carousel.querySelectorAll('.pwhook-carousel-indicator')]
+				const activeItemIndex = items.findIndex(
+					(item) => hasAnyToken(item, effectiveActiveClassTokens),
+				)
+				const activeIndicatorIndex = indicators.findIndex(
+					(indicator) =>
+						indicator.getAttribute('aria-current') === 'true' ||
+						hasAnyToken(indicator, effectiveActiveClassTokens),
 				)
 				const activeIndex =
 					activeItemIndex >= 0
@@ -344,20 +402,20 @@ export async function stabilizeForScreenshot(page) {
 						'carousel-item-end',
 					)
 					if (index === activeIndex) {
-						item.classList.add('active')
+						addTokens(item, effectiveActiveClassTokens)
 					} else {
-						item.classList.remove('active')
+						removeTokens(item, effectiveActiveClassTokens)
 					}
 				}
 				for (let index = 0; index < indicators.length; index += 1) {
 					const indicator = indicators[index]
 					indicator.style.setProperty('transition', 'none', 'important')
 					if (index === activeIndex) {
-						indicator.classList.add('active')
+						addTokens(indicator, effectiveActiveClassTokens)
 						indicator.setAttribute('aria-current', 'true')
 						indicator.style.setProperty('opacity', '1', 'important')
 					} else {
-						indicator.classList.remove('active')
+						removeTokens(indicator, effectiveActiveClassTokens)
 						indicator.removeAttribute('aria-current')
 						indicator.style.setProperty('opacity', '0.5', 'important')
 					}
