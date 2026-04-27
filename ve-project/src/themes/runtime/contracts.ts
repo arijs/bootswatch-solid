@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -11,7 +11,10 @@ export interface VeGlobalThemeContract {
 }
 
 export interface VeContentsThemeContract {
+	bdPlaceholderImg: string
+	bdPlaceholderImgLg: string
 	h4: string
+	h5: string
 	paragraph: string
 	px3: string
 }
@@ -266,10 +269,29 @@ export interface VePaginationThemeContract {
 	pageLink: string
 }
 
+export interface VeCarouselThemeContract {
+	carousel: string
+	carouselActive: string
+	carouselCaption: string
+	carouselCaptionResponsive: string
+	carouselControlNext: string
+	carouselControlNextIcon: string
+	carouselControlPrev: string
+	carouselControlPrevIcon: string
+	carouselIndicators: string
+	carouselIndicatorsTarget: string
+	carouselInner: string
+	carouselItem: string
+	carouselSlide: string
+	carouselSlideImage: string
+	visuallyHidden: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	contents: VeContentsThemeContract
 	forms: VeFormsThemeContract
+	carousel: VeCarouselThemeContract
 	dropdowns: VeDropdownThemeContract
 	buttons: VeButtonThemeContract
 	navbar: VeNavbarThemeContract
@@ -290,4 +312,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']

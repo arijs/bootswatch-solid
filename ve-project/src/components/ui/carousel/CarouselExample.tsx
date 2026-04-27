@@ -1,34 +1,10 @@
 import type { Component } from 'solid-js'
 import { onSettled } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import {
-	bdPlaceholderImg,
-	bdPlaceholderImgLg,
-	h5,
-	paragraph,
-} from '../../../themes/bootstrap/contents/generated.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { visuallyHidden } from '../../../themes/bootstrap/ui/dropdowns/base.css'
-import {
-	carousel,
-	carouselActive,
-	carouselCaption,
-	carouselCaptionResponsive,
-	carouselControlNext,
-	carouselControlNextIcon,
-	carouselControlPrev,
-	carouselControlPrevIcon,
-	carouselIndicators,
-	carouselIndicatorsTarget,
-	carouselInner,
-	carouselItem,
-	carouselSlide,
-	carouselSlideImage,
-} from '../../../themes/bootstrap/ui/carousel/base.css'
+import { useVeCarouselThemeClasses } from '../../../themes/runtime/hooks'
 import './ve-carousel'
 
 const CarouselExample: Component = () => {
+	const cls = useVeCarouselThemeClasses()
 	onSettled(() => {
 		// Ensure carousel is initialized with VeCarousel configuration
 		const carouselElement = document.getElementById('carouselExampleCaptions')
@@ -38,14 +14,14 @@ const CarouselExample: Component = () => {
 	})
 
 	return (
-		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-			<div id="carouselExampleCaptions" class={`${carousel} ${carouselSlide} pwhook-carousel`} data-bs-ride="carousel">
-			<div class={`${carouselIndicators} pwhook-carousel-indicators`}>
+		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+			<div id="carouselExampleCaptions" class={`${cls.carousel} ${cls.carouselSlide} pwhook-carousel`} data-bs-ride="carousel">
+			<div class={`${cls.carouselIndicators} pwhook-carousel-indicators`}>
 				<button
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="0"
-					class={`${carouselIndicatorsTarget} ${carouselActive} pwhook-carousel-indicator pwhook-carousel-active`}
+					class={`${cls.carouselIndicatorsTarget} ${cls.carouselActive} pwhook-carousel-indicator pwhook-carousel-active`}
 					aria-current="true"
 					aria-label="Slide 1"
 				></button>
@@ -53,21 +29,21 @@ const CarouselExample: Component = () => {
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="1"
-					class={`${carouselIndicatorsTarget} pwhook-carousel-indicator`}
+					class={`${cls.carouselIndicatorsTarget} pwhook-carousel-indicator`}
 					aria-label="Slide 2"
 				></button>
 				<button
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="2"
-					class={`${carouselIndicatorsTarget} pwhook-carousel-indicator`}
+					class={`${cls.carouselIndicatorsTarget} pwhook-carousel-indicator`}
 					aria-label="Slide 3"
 				></button>
 			</div>
-			<div class={carouselInner}>
-				<div class={`${carouselItem} ${carouselActive} pwhook-carousel-item pwhook-carousel-active`}>
+			<div class={cls.carouselInner}>
+				<div class={`${cls.carouselItem} ${cls.carouselActive} pwhook-carousel-item pwhook-carousel-active`}>
 					<svg
-						class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${carouselSlideImage}`}
+						class={`${cls.bdPlaceholderImg} ${cls.bdPlaceholderImgLg} ${cls.carouselSlideImage}`}
 						width="800"
 						height="400"
 						xmlns="http://www.w3.org/2000/svg"
@@ -82,14 +58,14 @@ const CarouselExample: Component = () => {
 						</text>
 					</svg>
 
-					<div class={`${carouselCaption} ${carouselCaptionResponsive}`}>
-						<h5 class={h5}>First slide label</h5>
-						<p class={paragraph}>Some representative placeholder content for the first slide.</p>
+					<div class={`${cls.carouselCaption} ${cls.carouselCaptionResponsive}`}>
+						<h5 class={cls.h5}>First slide label</h5>
+						<p class={cls.paragraph}>Some representative placeholder content for the first slide.</p>
 					</div>
 				</div>
-				<div class={`${carouselItem} pwhook-carousel-item`}>
+				<div class={`${cls.carouselItem} pwhook-carousel-item`}>
 					<svg
-						class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${carouselSlideImage}`}
+						class={`${cls.bdPlaceholderImg} ${cls.bdPlaceholderImgLg} ${cls.carouselSlideImage}`}
 						width="800"
 						height="400"
 						xmlns="http://www.w3.org/2000/svg"
@@ -104,14 +80,14 @@ const CarouselExample: Component = () => {
 						</text>
 					</svg>
 
-					<div class={`${carouselCaption} ${carouselCaptionResponsive}`}>
-						<h5 class={h5}>Second slide label</h5>
-						<p class={paragraph}>Some representative placeholder content for the second slide.</p>
+					<div class={`${cls.carouselCaption} ${cls.carouselCaptionResponsive}`}>
+						<h5 class={cls.h5}>Second slide label</h5>
+						<p class={cls.paragraph}>Some representative placeholder content for the second slide.</p>
 					</div>
 				</div>
-				<div class={`${carouselItem} pwhook-carousel-item`}>
+				<div class={`${cls.carouselItem} pwhook-carousel-item`}>
 					<svg
-						class={`${bdPlaceholderImg} ${bdPlaceholderImgLg} ${carouselSlideImage}`}
+						class={`${cls.bdPlaceholderImg} ${cls.bdPlaceholderImgLg} ${cls.carouselSlideImage}`}
 						width="800"
 						height="400"
 						xmlns="http://www.w3.org/2000/svg"
@@ -126,29 +102,29 @@ const CarouselExample: Component = () => {
 						</text>
 					</svg>
 
-					<div class={`${carouselCaption} ${carouselCaptionResponsive}`}>
-						<h5 class={h5}>Third slide label</h5>
-						<p class={paragraph}>Some representative placeholder content for the third slide.</p>
+					<div class={`${cls.carouselCaption} ${cls.carouselCaptionResponsive}`}>
+						<h5 class={cls.h5}>Third slide label</h5>
+						<p class={cls.paragraph}>Some representative placeholder content for the third slide.</p>
 					</div>
 				</div>
 			</div>
 			<button
-				class={`${carouselControlPrev} pwhook-carousel-control pwhook-carousel-control-prev`}
+				class={`${cls.carouselControlPrev} pwhook-carousel-control pwhook-carousel-control-prev`}
 				type="button"
 				data-bs-target="#carouselExampleCaptions"
 				data-bs-slide="prev"
 			>
-				<span class={carouselControlPrevIcon} aria-hidden="true"></span>
-				<span class={visuallyHidden}>Previous</span>
+				<span class={cls.carouselControlPrevIcon} aria-hidden="true"></span>
+				<span class={cls.visuallyHidden}>Previous</span>
 			</button>
 			<button
-				class={`${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
+				class={`${cls.carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
 				type="button"
 				data-bs-target="#carouselExampleCaptions"
 				data-bs-slide="next"
 			>
-				<span class={carouselControlNextIcon} aria-hidden="true"></span>
-				<span class={visuallyHidden}>Next</span>
+				<span class={cls.carouselControlNextIcon} aria-hidden="true"></span>
+				<span class={cls.visuallyHidden}>Next</span>
 			</button>
 			</div>
 		</div>

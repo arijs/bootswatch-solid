@@ -78,7 +78,7 @@ import {
 	tabPaneActive,
 } from '../bootstrap/ui/nav/base.css'
 import { bodyText } from '../bootstrap/body.css'
-import { h1, h2, h3, h4, h5, paragraph, bdPlaceholderImg, smallText } from '../bootstrap/contents/generated.css'
+import { h1, h2, h3, h4, h5, paragraph, bdPlaceholderImg, bdPlaceholderImgLg, smallText } from '../bootstrap/contents/generated.css'
 import { btnClose } from '../bootstrap/ui/alerts/base.css'
 import {
 	actionsRow,
@@ -171,6 +171,22 @@ import {
 	pageLink,
 } from '../bootstrap/ui/pagination/base.css'
 import {
+	carousel,
+	carouselActive,
+	carouselCaption,
+	carouselCaptionResponsive,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselIndicators,
+	carouselIndicatorsTarget,
+	carouselInner,
+	carouselItem,
+	carouselSlide,
+	carouselSlideImage,
+} from '../bootstrap/ui/carousel/base.css'
+import {
 	fieldset,
 	floatingLabel,
 	form,
@@ -221,7 +237,10 @@ const bootstrapButtonRuntimeClasses = {
 } as const
 
 const bootstrapContentsRuntimeClasses = {
+	bdPlaceholderImg,
+	bdPlaceholderImgLg,
 	h4,
+	h5,
 	paragraph,
 	px3,
 } as const
@@ -415,6 +434,24 @@ const bootstrapPaginationRuntimeClasses = {
 	pageLink,
 } as const
 
+const bootstrapCarouselRuntimeClasses = {
+	carousel,
+	carouselActive,
+	carouselCaption,
+	carouselCaptionResponsive,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselIndicators,
+	carouselIndicatorsTarget,
+	carouselInner,
+	carouselItem,
+	carouselSlide,
+	carouselSlideImage,
+	visuallyHidden,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -471,8 +508,9 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		accordion: bootstrapAccordionRuntimeClasses,
 		scrollspy: bootstrapScrollspyRuntimeClasses,
 		pagination: bootstrapPaginationRuntimeClasses,
+		carousel: bootstrapCarouselRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
@@ -490,6 +528,7 @@ export { bootstrapTooltipRuntimeClasses }
 export { bootstrapAccordionRuntimeClasses }
 export { bootstrapScrollspyRuntimeClasses }
 export { bootstrapPaginationRuntimeClasses }
+export { bootstrapCarouselRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

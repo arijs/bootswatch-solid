@@ -2,6 +2,7 @@ import type {
 	VeAccordionThemeContract,
 	VeBadgeThemeContract,
 	VeButtonThemeContract,
+	VeCarouselThemeContract,
 	VeCardThemeContract,
 	VeContentsThemeContract,
 	VeDropdownThemeContract,
@@ -19,6 +20,7 @@ import {
 	bootstrapAccordionRuntimeClasses,
 	bootstrapBadgeRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
+	bootstrapCarouselRuntimeClasses,
 	bootstrapCardRuntimeClasses,
 	bootstrapContentsRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
@@ -170,5 +172,15 @@ export function useVePaginationThemeClasses(): VeGlobalThemeContract & VePaginat
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapPaginationRuntimeClasses,
+	}
+}
+
+export function useVeCarouselThemeClasses(): VeGlobalThemeContract & VeContentsThemeContract & VeCarouselThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapContentsRuntimeClasses,
+		...bootstrapCarouselRuntimeClasses,
 	}
 }

@@ -61,6 +61,8 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/pagination/small-pagination': ['global', 'pagination'],
 	'/ui/pagination/standard-pagination': ['global', 'pagination'],
 	'/ui/pagination/large-pagination': ['global', 'pagination'],
+	'/ui/carousel': ['global', 'contents', 'carousel'],
+	'/ui/carousel/carousel-example': ['global', 'contents', 'carousel'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {
