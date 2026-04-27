@@ -1,16 +1,23 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../../../../themes/bootstrap/_vars.css'
-import { body } from '../../../../../../themes/bootstrap/body.css'
-import { btn } from '../../../../../../themes/bootstrap/ui/buttons/base.css'
-import { btnCheck, btnOutlineInfo } from '../../../../../../themes/bootstrap/ui/buttons/generated.css'
+import { useVeButtonThemeClasses } from '../../../../../../themes/runtime/hooks'
 
-const OutlineToggleActiveDisabledInfoButton: Component = () => (
+const OutlineToggleActiveDisabledInfoButton: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		btn,
+		btnCheck,
+		btnOutlineInfo,
+	} = useVeButtonThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-active-disabled-info" checked autocomplete="off"  />
 		<label class={`${btn} ${btnOutlineInfo}`} for="id-btn-outline-toggle-active-disabled-info">Checked Toggle Info</label>
 	</div>
-)
+	)
+}
 
 export default OutlineToggleActiveDisabledInfoButton
 

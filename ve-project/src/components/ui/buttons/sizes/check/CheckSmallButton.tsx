@@ -1,17 +1,24 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../../../themes/bootstrap/_vars.css'
-import { body } from '../../../../../themes/bootstrap/body.css'
-import { btn } from '../../../../../themes/bootstrap/ui/buttons/base.css'
-import { btnPrimary, btnSm } from '../../../../../themes/bootstrap/ui/buttons/generated.css'
+import { useVeButtonThemeClasses } from '../../../../../themes/runtime/hooks'
 
-const CheckSmallButton: Component = () => (
+const CheckSmallButton: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		btn,
+		btnPrimary,
+		btnSm,
+	} = useVeButtonThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<button type="button" class={`${btn} ${btnPrimary} ${btnSm} pwhook-btn`} data-bs-toggle="button">
 			Small button
 		</button>
 	</div>
-)
+	)
+}
 
 export default CheckSmallButton
 

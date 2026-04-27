@@ -1,6 +1,6 @@
-import type { VeDropdownThemeContract, VeGlobalThemeContract } from './contracts'
+import type { VeButtonThemeContract, VeDropdownThemeContract, VeGlobalThemeContract } from './contracts'
 import { getRequiredFamiliesForPath } from './route-families'
-import { bootstrapDropdownRuntimeClasses, bootstrapGlobalRuntimeClasses, resolveVeThemeForRoute } from './registry'
+import { bootstrapButtonRuntimeClasses, bootstrapDropdownRuntimeClasses, bootstrapGlobalRuntimeClasses, resolveVeThemeForRoute } from './registry'
 
 const emittedWarnings = new Set<string>()
 
@@ -34,5 +34,13 @@ export function useVeDropdownThemeClasses(): VeGlobalThemeContract & VeDropdownT
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapDropdownRuntimeClasses,
+	}
+}
+
+export function useVeButtonThemeClasses(): VeGlobalThemeContract & VeButtonThemeContract {
+	warnUnsupportedIfNeeded(window.location.pathname)
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapButtonRuntimeClasses,
 	}
 }

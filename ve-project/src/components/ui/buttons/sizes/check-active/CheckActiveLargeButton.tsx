@@ -1,17 +1,25 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../../../themes/bootstrap/_vars.css'
-import { body } from '../../../../../themes/bootstrap/body.css'
-import { btn, btnActiveHook } from '../../../../../themes/bootstrap/ui/buttons/base.css'
-import { btnLg, btnPrimary } from '../../../../../themes/bootstrap/ui/buttons/generated.css'
+import { useVeButtonThemeClasses } from '../../../../../themes/runtime/hooks'
 
-const CheckActiveLargeButton: Component = () => (
+const CheckActiveLargeButton: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		btn,
+		btnActiveHook,
+		btnLg,
+		btnPrimary,
+	} = useVeButtonThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<button type="button" class={`${btn} ${btnPrimary} ${btnLg} ${btnActiveHook} pwhook-btn`} data-bs-toggle="button" aria-pressed="true">
 			Large button
 		</button>
 	</div>
-)
+	)
+}
 
 export default CheckActiveLargeButton
 

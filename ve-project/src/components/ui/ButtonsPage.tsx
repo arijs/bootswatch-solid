@@ -1,13 +1,15 @@
 import type { Component } from 'solid-js'
-import { body } from '../../themes/bootstrap/body.css'
-import { containerFluid } from '../../themes/bootstrap/container.css'
-import { bsTheme } from '../../themes/bootstrap/_vars.css'
+import { useVeButtonThemeClasses } from '../../themes/runtime/hooks'
 import Buttons from './Buttons'
 
-const ButtonsPage: Component = () => (
-	<div class={`${bsTheme} ${body} ${containerFluid}`}>
-		<Buttons />
-	</div>
-)
+const ButtonsPage: Component = () => {
+	const { bsTheme, body, containerFluid } = useVeButtonThemeClasses()
+
+	return (
+		<div class={`${bsTheme} ${body} ${containerFluid}`}>
+			<Buttons />
+		</div>
+	)
+}
 
 export default ButtonsPage

@@ -13,20 +13,22 @@ This section records what has already been implemented in `ve-project` and what 
 1. Theme slug source-of-truth and normalization utility exist.
 2. Typed runtime contract definitions exist for:
 - global contract
-- dropdown family contract (first migrated family)
+- dropdown family contract
+- buttons family contract
 3. Central runtime resolver exists and returns structured support state with reasons:
 - `unknown-theme`
 - `missing-family-contract`
 4. Bootstrap theme is registered as the only implemented VE theme.
 5. Explicit route-to-family mapping exists for dropdown routes (`global` + `dropdowns`).
 6. Dropdown component routes now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
-7. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-8. Structured warning emission is implemented for theme skips with route/family metadata.
-9. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+7. Button component routes now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
+8. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+9. Structured warning emission is implemented for theme skips with route/family metadata.
+10. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns are on runtime contracts; many families still directly import Bootstrap VE theme classes.
+1. Family migration breadth is still partial: dropdowns and buttons are on runtime contracts; many families still directly import Bootstrap VE theme classes.
 
 ### Pending
 
@@ -351,6 +353,8 @@ Behavior Changes:
 5. Added strict skip-with-warning behavior for dropdown routes when selected theme coverage is missing.
 6. Wired a single app-root `VeThemeRuntimeProvider` + `ThemeSupportGate` path and removed temporary per-route dropdown gate wrappers.
 7. Made theme gate rendering reactive and Solid 2.0 compatible; warning payload now includes required family metadata.
+8. Added `buttons` family contract, registry slice, and runtime hook.
+9. Migrated `/ui/buttons/**` components and `ButtonsPage` wrapper from direct Bootstrap theme imports to runtime hook consumption.
 
 Validation:
 1. Bootstrap dropdown route renders normally.
@@ -358,6 +362,8 @@ Validation:
 3. `pnpm ve:build` passes.
 4. Bootstrap navbar route renders normally in VE preview.
 5. Sketchy navbar route renders global skip-safe output in VE preview with `[ve-theme-skip]` warning.
+6. Bootstrap button route (`/ui/buttons/solid/primary-button`) renders normally in VE preview.
+7. Sketchy button route (`/ui/buttons/solid/primary-button`) renders global skip-safe output with `[ve-theme-skip]` warning.
 
 Risks / Pending:
 1. Global gate is now stable, but most non-dropdown families are still pending contract migration.

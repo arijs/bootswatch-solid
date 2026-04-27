@@ -1,16 +1,23 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../../../../themes/bootstrap/_vars.css'
-import { body } from '../../../../../../themes/bootstrap/body.css'
-import { btn } from '../../../../../../themes/bootstrap/ui/buttons/base.css'
-import { btnCheck, btnOutlineLight } from '../../../../../../themes/bootstrap/ui/buttons/generated.css'
+import { useVeButtonThemeClasses } from '../../../../../../themes/runtime/hooks'
 
-const OutlineToggleDisabledLightButton: Component = () => (
+const OutlineToggleDisabledLightButton: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		btn,
+		btnCheck,
+		btnOutlineLight,
+	} = useVeButtonThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-disabled-light" autocomplete="off"  />
 		<label class={`${btn} ${btnOutlineLight}`} for="id-btn-outline-toggle-disabled-light">Toggle Light</label>
 	</div>
-)
+	)
+}
 
 export default OutlineToggleDisabledLightButton
 

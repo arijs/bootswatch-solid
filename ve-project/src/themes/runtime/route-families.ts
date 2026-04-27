@@ -24,6 +24,7 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {
 	const explicit = explicitRouteFamilies[pathname]
 	if (explicit) return explicit
+	if (pathname.startsWith('/ui/buttons')) return ['global', 'buttons']
 	if (pathname.startsWith('/forms')) return ['global', 'forms']
 	if (pathname.startsWith('/ui')) return ['global', 'ui']
 	if (pathname.startsWith('/contents')) return ['global', 'contents']

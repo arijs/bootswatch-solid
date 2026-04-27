@@ -2,13 +2,23 @@ import { body } from '../bootstrap/body.css'
 import { containerFluid } from '../bootstrap/container.css'
 import { bsTheme } from '../bootstrap/_vars.css'
 import { h6 } from '../bootstrap/contents/generated.css'
-import { btn, btnShowHook } from '../bootstrap/ui/buttons/base.css'
+import { btn, btnActiveHook, btnShowHook } from '../bootstrap/ui/buttons/base.css'
 import {
+	btnCheck,
 	btnDanger,
 	btnDark,
 	btnInfo,
 	btnLg,
 	btnLight,
+	btnLink,
+	btnOutlineDanger,
+	btnOutlineDark,
+	btnOutlineInfo,
+	btnOutlineLight,
+	btnOutlinePrimary,
+	btnOutlineSecondary,
+	btnOutlineSuccess,
+	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
 	btnSm,
@@ -39,6 +49,31 @@ import {
 } from '../bootstrap/ui/dropdowns/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
+
+const bootstrapButtonRuntimeClasses = {
+	btn,
+	btnActiveHook,
+	btnCheck,
+	btnDanger,
+	btnDark,
+	btnInfo,
+	btnLg,
+	btnLight,
+	btnLink,
+	btnOutlineDanger,
+	btnOutlineDark,
+	btnOutlineInfo,
+	btnOutlineLight,
+	btnOutlinePrimary,
+	btnOutlineSecondary,
+	btnOutlineSuccess,
+	btnOutlineWarning,
+	btnPrimary,
+	btnSecondary,
+	btnSm,
+	btnSuccess,
+	btnWarning,
+} as const
 
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
@@ -83,12 +118,14 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 			dropstartToggle,
 			visuallyHidden,
 		},
+		buttons: bootstrapButtonRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
 export const bootstrapGlobalRuntimeClasses = bootstrapThemeDefinition.contracts.global
+export { bootstrapButtonRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

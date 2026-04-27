@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -46,9 +46,35 @@ export interface VeDropdownThemeContract {
 	visuallyHidden: string
 }
 
+export interface VeButtonThemeContract {
+	btn: string
+	btnActiveHook: string
+	btnCheck: string
+	btnDanger: string
+	btnDark: string
+	btnInfo: string
+	btnLg: string
+	btnLight: string
+	btnLink: string
+	btnOutlineDanger: string
+	btnOutlineDark: string
+	btnOutlineInfo: string
+	btnOutlineLight: string
+	btnOutlinePrimary: string
+	btnOutlineSecondary: string
+	btnOutlineSuccess: string
+	btnOutlineWarning: string
+	btnPrimary: string
+	btnSecondary: string
+	btnSm: string
+	btnSuccess: string
+	btnWarning: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	dropdowns: VeDropdownThemeContract
+	buttons: VeButtonThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -57,4 +83,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons']
