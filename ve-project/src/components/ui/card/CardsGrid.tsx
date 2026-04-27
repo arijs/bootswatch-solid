@@ -1,14 +1,14 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { cardExample, cardGridRow } from '../../../themes/bootstrap/ui/card/base.css'
+import { useVeCardThemeClasses, useVeGlobalThemeClasses } from '../../../themes/runtime/hooks'
 import FeaturedCard from './FeaturedCard'
 import HorizontalCard from './HorizontalCard'
 import ImageTopCard from './ImageTopCard'
 import ListCard from './ListCard'
 
-const CardsGrid: Component = () => (
+const CardsGrid: Component = () => {
+	const { bsTheme, body, containerFluid } = useVeGlobalThemeClasses()
+	const { cardExample, cardGridRow } = useVeCardThemeClasses()
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid} ${cardExample}`}>
 		<div class={cardGridRow}>
 			<ImageTopCard />
@@ -17,7 +17,8 @@ const CardsGrid: Component = () => (
 			<HorizontalCard />
 		</div>
 	</div>
-)
+	)
+}
 
 export default CardsGrid
 

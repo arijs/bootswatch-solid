@@ -1,11 +1,9 @@
 import type { Component } from 'solid-js'
-import { card, cardBody, cardHeader, cardRow, cardText, cardTitle } from '../../../themes/bootstrap/ui/card/base.css'
-import { h5, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { useVeButtonThemeClasses, useVeNavThemeClasses } from '../../../themes/runtime/hooks'
-import { cardHeaderTabs, col, rowG4, textCenter } from '../../../themes/bootstrap/ui/card-tabs/base.css'
+import { useVeButtonThemeClasses, useVeCardThemeClasses, useVeNavThemeClasses } from '../../../themes/runtime/hooks'
 
 const CardTabsExample: Component = () => {
 	const { bsTheme, body, containerFluid, btn, btnPrimary } = useVeButtonThemeClasses()
+	const { card, cardBody, cardHeader, cardRow, cardText, cardTitle, cardHeaderTabs, col, rowG4, textCenter, h5, paragraph } = useVeCardThemeClasses()
 	const { nav, navButtonReset, navLink, navLinkActive, navLinkDisabled } = useVeNavThemeClasses()
 
 	return (

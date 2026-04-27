@@ -25,10 +25,21 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/navs/basic-nav': ['global', 'nav'],
 	'/ui/navs/pill-nav': ['global', 'nav'],
 	'/ui/navs/tabbed-nav': ['global', 'nav'],
-	'/ui/card-tabs': ['global', 'buttons', 'nav', 'ui'],
-	'/ui/card-tabs/card-tabs-example': ['global', 'buttons', 'nav', 'ui'],
+	'/ui/card-tabs': ['global', 'buttons', 'nav', 'card'],
+	'/ui/card-tabs/card-tabs-example': ['global', 'buttons', 'nav', 'card'],
 	'/ui/scrollspy': ['global', 'dropdowns', 'nav', 'navbar', 'ui'],
 	'/ui/scrollspy/scrollspy-example': ['global', 'dropdowns', 'nav', 'navbar', 'ui'],
+	'/ui/modal': ['global', 'buttons', 'modal'],
+	'/ui/modal/centered-scrollable-modal': ['global', 'buttons', 'modal'],
+	'/ui/modal/default-modal': ['global', 'buttons', 'modal'],
+	'/ui/modal/fullscreen-modal': ['global', 'buttons', 'modal'],
+	'/ui/modal/static-backdrop-modal': ['global', 'buttons', 'modal'],
+	'/ui/card': ['global', 'buttons', 'card'],
+	'/ui/card/featured-card': ['card', 'buttons'],
+	'/ui/card/horizontal-card': ['card'],
+	'/ui/card/image-top-card': ['card', 'buttons'],
+	'/ui/card/list-card': ['card'],
+	'/ui/card/cards-grid': ['global', 'buttons', 'card'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

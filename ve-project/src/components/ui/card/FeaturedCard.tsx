@@ -1,18 +1,10 @@
 import type { Component } from 'solid-js'
-import { h5, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnPrimary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import {
-	card,
-	cardBody,
-	cardFooter,
-	cardHeader,
-	cardText,
-	cardTitle,
-	textMuted,
-} from '../../../themes/bootstrap/ui/card/base.css'
+import { useVeButtonThemeClasses, useVeCardThemeClasses } from '../../../themes/runtime/hooks'
 
-const FeaturedCard: Component = () => (
+const FeaturedCard: Component = () => {
+	const { btn, btnPrimary } = useVeButtonThemeClasses()
+	const { card, cardBody, cardFooter, cardHeader, cardText, cardTitle, h5, paragraph, textMuted } = useVeCardThemeClasses()
+	return (
 	<div class={card}>
 		<div class={cardHeader}>Featured</div>
 		<div class={cardBody}>
@@ -28,7 +20,8 @@ const FeaturedCard: Component = () => (
 		</div>
 		<div class={`${cardFooter} ${textMuted}`}>2 days ago</div>
 	</div>
-)
+	)
+}
 
 export default FeaturedCard
 

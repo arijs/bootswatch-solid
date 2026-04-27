@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
-import { bdPlaceholderImg, h5, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnPrimary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import { card, cardBody, cardImgTop, cardText, cardTitle } from '../../../themes/bootstrap/ui/card/base.css'
+import { useVeButtonThemeClasses, useVeCardThemeClasses } from '../../../themes/runtime/hooks'
 
-const ImageTopCard: Component = () => (
+const ImageTopCard: Component = () => {
+	const { btn, btnPrimary } = useVeButtonThemeClasses()
+	const { bdPlaceholderImg, card, cardBody, cardImgTop, cardText, cardTitle, h5, paragraph } = useVeCardThemeClasses()
+	return (
 	<div class={card}>
 		<svg
 			class={`${bdPlaceholderImg} ${cardImgTop}`}
@@ -34,7 +34,8 @@ const ImageTopCard: Component = () => (
 			</a>
 		</div>
 	</div>
-)
+	)
+}
 
 export default ImageTopCard
 

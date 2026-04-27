@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -102,12 +102,62 @@ export interface VeNavThemeContract {
 	tabPaneActive: string
 }
 
+export interface VeModalThemeContract {
+	actionsRow: string
+	bodyText: string
+	btnClose: string
+	fade: string
+	flexWrap: string
+	h4: string
+	h5: string
+	justifyContentBetween: string
+	modal: string
+	modalBody: string
+	modalContent: string
+	modalDialog: string
+	modalDialogCentered: string
+	modalDialogScrollable: string
+	modalFade: string
+	modalFooter: string
+	modalFullscreen: string
+	modalHeader: string
+	modalTitle: string
+}
+
+export interface VeCardThemeContract {
+	bdPlaceholderImg: string
+	card: string
+	cardBody: string
+	cardExample: string
+	cardFooter: string
+	cardGridRow: string
+	cardHeader: string
+	cardHeaderTabs: string
+	cardImgTop: string
+	cardLink: string
+	cardRow: string
+	cardText: string
+	cardTitle: string
+	col: string
+	h5: string
+	listGroup: string
+	listGroupFlush: string
+	listGroupItem: string
+	paragraph: string
+	rowG4: string
+	smallText: string
+	textCenter: string
+	textMuted: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	dropdowns: VeDropdownThemeContract
 	buttons: VeButtonThemeContract
 	navbar: VeNavbarThemeContract
 	nav: VeNavThemeContract
+	modal: VeModalThemeContract
+	card: VeCardThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -116,4 +166,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card']

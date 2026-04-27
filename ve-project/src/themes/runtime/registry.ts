@@ -76,6 +76,42 @@ import {
 	tabPane,
 	tabPaneActive,
 } from '../bootstrap/ui/nav/base.css'
+import { bodyText } from '../bootstrap/body.css'
+import { h4, h5, paragraph, bdPlaceholderImg, smallText } from '../bootstrap/contents/generated.css'
+import { btnClose } from '../bootstrap/ui/alerts/base.css'
+import {
+	actionsRow,
+	flexWrap,
+	justifyContentBetween,
+	modal,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalTitle,
+	fade as modalFadeClass,
+} from '../bootstrap/ui/modal/base.css'
+import {
+	card,
+	cardBody,
+	cardExample,
+	cardFooter,
+	cardGridRow,
+	cardHeader,
+	cardImgTop,
+	cardLink,
+	cardRow,
+	cardText,
+	cardTitle,
+	textMuted,
+} from '../bootstrap/ui/card/base.css'
+import { cardHeaderTabs, col, rowG4, textCenter } from '../bootstrap/ui/card-tabs/base.css'
+import { listGroup, listGroupFlush, listGroupItem } from '../bootstrap/ui/list-group/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -135,6 +171,54 @@ const bootstrapNavRuntimeClasses = {
 	tabPaneActive,
 } as const
 
+const bootstrapModalRuntimeClasses = {
+	actionsRow,
+	bodyText,
+	btnClose,
+	fade: modalFadeClass,
+	flexWrap,
+	h4,
+	h5,
+	justifyContentBetween,
+	modal,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalTitle,
+} as const
+
+const bootstrapCardRuntimeClasses = {
+	bdPlaceholderImg,
+	card,
+	cardBody,
+	cardExample,
+	cardFooter,
+	cardGridRow,
+	cardHeader,
+	cardHeaderTabs,
+	cardImgTop,
+	cardLink,
+	cardRow,
+	cardText,
+	cardTitle,
+	col,
+	h5,
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	paragraph,
+	rowG4,
+	smallText,
+	textCenter,
+	textMuted,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -181,8 +265,10 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		buttons: bootstrapButtonRuntimeClasses,
 		navbar: bootstrapNavbarRuntimeClasses,
 		nav: bootstrapNavRuntimeClasses,
+		modal: bootstrapModalRuntimeClasses,
+		card: bootstrapCardRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
@@ -190,6 +276,8 @@ export const bootstrapGlobalRuntimeClasses = bootstrapThemeDefinition.contracts.
 export { bootstrapButtonRuntimeClasses }
 export { bootstrapNavbarRuntimeClasses }
 export { bootstrapNavRuntimeClasses }
+export { bootstrapModalRuntimeClasses }
+export { bootstrapCardRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

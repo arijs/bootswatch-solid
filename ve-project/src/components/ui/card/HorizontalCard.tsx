@@ -1,14 +1,9 @@
 import type { Component } from 'solid-js'
-import { bdPlaceholderImg, h5, paragraph, smallText } from '../../../themes/bootstrap/contents/generated.css'
-import {
-	card,
-	cardBody,
-	cardText,
-	cardTitle,
-	textMuted,
-} from '../../../themes/bootstrap/ui/card/base.css'
+import { useVeCardThemeClasses } from '../../../themes/runtime/hooks'
 
-const HorizontalCard: Component = () => (
+const HorizontalCard: Component = () => {
+	const { bdPlaceholderImg, card, cardBody, cardText, cardTitle, h5, paragraph, smallText, textMuted } = useVeCardThemeClasses()
+	return (
 	<div class={card}>
 		<svg
 			class={bdPlaceholderImg}
@@ -36,7 +31,8 @@ const HorizontalCard: Component = () => (
 			</p>
 		</div>
 	</div>
-)
+	)
+}
 
 export default HorizontalCard
 

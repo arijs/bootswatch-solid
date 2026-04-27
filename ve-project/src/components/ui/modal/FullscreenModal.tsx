@@ -1,32 +1,11 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body, bodyText } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { h4 } from '../../../themes/bootstrap/contents/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import {
-	btnPrimary,
-	btnSecondary,
-} from '../../../themes/bootstrap/ui/buttons/generated.css'
-import { btnClose } from '../../../themes/bootstrap/ui/alerts/base.css'
-import {
-	actionsRow,
-	fade,
-	flexWrap,
-	justifyContentBetween,
-	modal,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalFade,
-	modalFooter,
-	modalFullscreen,
-	modalHeader,
-	modalTitle,
-} from '../../../themes/bootstrap/ui/modal/base.css'
+import { useVeButtonThemeClasses, useVeModalThemeClasses } from '../../../themes/runtime/hooks'
 import './ve-modal'
 
-const FullscreenModal: Component = () => (
+const FullscreenModal: Component = () => {
+	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } = useVeButtonThemeClasses()
+	const { actionsRow, bodyText, btnClose, fade, flexWrap, h4, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalFade, modalFooter, modalFullscreen, modalHeader, modalTitle } = useVeModalThemeClasses()
+	return (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 				<div class={`${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
@@ -140,6 +119,7 @@ const FullscreenModal: Component = () => (
 			</div>
 		</>
 	)
+}
 
 export default FullscreenModal
 

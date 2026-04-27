@@ -1,15 +1,9 @@
 import type { Component } from 'solid-js'
-import { h5, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import {
-	card,
-	cardBody,
-	cardLink,
-	cardText,
-	cardTitle,
-} from '../../../themes/bootstrap/ui/card/base.css'
-import { listGroup, listGroupFlush, listGroupItem } from '../../../themes/bootstrap/ui/list-group/base.css'
+import { useVeCardThemeClasses } from '../../../themes/runtime/hooks'
 
-const ListCard: Component = () => (
+const ListCard: Component = () => {
+	const { card, cardBody, cardLink, cardText, cardTitle, h5, listGroup, listGroupFlush, listGroupItem, paragraph } = useVeCardThemeClasses()
+	return (
 	<div class={card}>
 		<div class={cardBody}>
 			<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
@@ -34,7 +28,8 @@ const ListCard: Component = () => (
 			</a>
 		</div>
 	</div>
-)
+	)
+}
 
 export default ListCard
 
