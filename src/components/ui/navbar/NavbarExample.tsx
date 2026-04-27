@@ -7,7 +7,7 @@ const NavbarExample: Component = () => (
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
 				<a class="navbar-brand" href="#" onClick={(e) => e.preventDefault()}>
 					<img
-						src="../assets/brand/bootstrap-logo-white.svg"
+						src="/assets/brand/bootstrap-logo-white.svg"
 						width="38"
 						height="30"
 						class="d-inline-block align-top"
@@ -131,7 +131,7 @@ const NavbarExample: Component = () => (
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
 				<a class="navbar-brand" href="#" onClick={(e) => e.preventDefault()}>
 					<img
-						src="../assets/brand/bootstrap-logo-white.svg"
+						src="/assets/brand/bootstrap-logo-white.svg"
 						width="38"
 						height="30"
 						class="d-inline-block align-top"

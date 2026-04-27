@@ -13,9 +13,19 @@ import BadgePage from './components/ui/BadgePage'
 import ButtonGroupPage from './components/ui/ButtonGroupPage'
 import ButtonsPage from './components/ui/ButtonsPage'
 import Card from './components/ui/Card'
+import CardTabs from './components/ui/CardTabs'
+import Navbar from './components/ui/Navbar'
+import Navs from './components/ui/Navs'
 import Breadcrumb from './components/ui/Breadcrumb'
+import Scrollspy from './components/ui/Scrollspy'
 import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
 import CardsGrid from './components/ui/card/CardsGrid'
+import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
+import NavbarExample from './components/ui/navbar/NavbarExample'
+import BasicNav from './components/ui/navs/BasicNav'
+import PillNav from './components/ui/navs/PillNav'
+import TabbedNav from './components/ui/navs/TabbedNav'
+import ScrollspyExample from './components/ui/scrollspy/ScrollspyExample'
 import Carousel from './components/ui/Carousel'
 import CarouselExample from './components/ui/carousel/CarouselExample'
 import FeaturedCardExample from './components/ui/card/FeaturedCardExample'
@@ -476,6 +486,16 @@ render(
 			<Route path="/ui/card/featured-card" component={FeaturedCardExample} />
 			<Route path="/ui/card/list-card" component={ListCardExample} />
 			<Route path="/ui/card/horizontal-card" component={HorizontalCardExample} />
+			<Route path="/ui/card-tabs" component={CardTabs} />
+			<Route path="/ui/card-tabs/card-tabs-example" component={CardTabsExample} />
+			<Route path="/ui/navbar" component={Navbar} />
+			<Route path="/ui/navbar/navbar-example" component={NavbarExample} />
+			<Route path="/ui/navs" component={Navs} />
+			<Route path="/ui/navs/basic-nav" component={BasicNav} />
+			<Route path="/ui/navs/pill-nav" component={PillNav} />
+			<Route path="/ui/navs/tabbed-nav" component={TabbedNav} />
+			<Route path="/ui/scrollspy" component={Scrollspy} />
+			<Route path="/ui/scrollspy/scrollspy-example" component={ScrollspyExample} />
 			<Route path="/ui/carousel" component={Carousel} />
 			<Route path="/ui/carousel/carousel-example" component={CarouselExample} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
