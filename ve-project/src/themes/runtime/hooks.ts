@@ -1,9 +1,10 @@
-import type { VeButtonThemeContract, VeDropdownThemeContract, VeGlobalThemeContract, VeNavbarThemeContract } from './contracts'
+import type { VeButtonThemeContract, VeDropdownThemeContract, VeGlobalThemeContract, VeNavThemeContract, VeNavbarThemeContract } from './contracts'
 import { getRequiredFamiliesForPath } from './route-families'
 import {
 	bootstrapButtonRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
 	bootstrapGlobalRuntimeClasses,
+	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
 	resolveVeThemeForRoute,
 } from './registry'
@@ -56,5 +57,13 @@ export function useVeNavbarThemeClasses(): VeGlobalThemeContract & VeNavbarTheme
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapNavbarRuntimeClasses,
+	}
+}
+
+export function useVeNavThemeClasses(): VeGlobalThemeContract & VeNavThemeContract {
+	warnUnsupportedIfNeeded(window.location.pathname)
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapNavRuntimeClasses,
 	}
 }

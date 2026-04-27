@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { nav, navLink, navLinkActive, navLinkDisabled } from '../../../themes/bootstrap/ui/nav/base.css'
+import { useVeNavThemeClasses } from '../../../themes/runtime/hooks'
 
-const BasicNav: Component = () => (
+const BasicNav: Component = () => {
+	const { bsTheme, body, containerFluid, nav, navLink, navLinkActive, navLinkDisabled } = useVeNavThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<nav class={nav}>
 			{/* biome-ignore lint: <a> is used for demonstration purposes */}
@@ -36,7 +36,8 @@ const BasicNav: Component = () => (
 			</a>
 		</nav>
 	</div>
-)
+	)
+}
 
 export default BasicNav
 

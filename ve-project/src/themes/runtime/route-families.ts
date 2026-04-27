@@ -21,6 +21,10 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/dropdowns/up-dropdown': dropdownRouteFamilies,
 	'/ui/navbar': ['global', 'navbar'],
 	'/ui/navbar/navbar-example': ['global', 'navbar'],
+	'/ui/navs': ['global', 'nav'],
+	'/ui/navs/basic-nav': ['global', 'nav'],
+	'/ui/navs/pill-nav': ['global', 'nav'],
+	'/ui/navs/tabbed-nav': ['global', 'nav'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

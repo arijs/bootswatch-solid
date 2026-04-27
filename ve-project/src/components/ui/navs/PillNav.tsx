@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { nav, navItem, navLink, navLinkActive, navLinkDisabled, navPills } from '../../../themes/bootstrap/ui/nav/base.css'
+import { useVeNavThemeClasses } from '../../../themes/runtime/hooks'
 
-const PillNav: Component = () => (
+const PillNav: Component = () => {
+	const { bsTheme, body, containerFluid, nav, navItem, navLink, navLinkActive, navLinkDisabled, navPills } = useVeNavThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<ul class={`${nav} ${navPills}`}>
 			<li class={navItem}>
@@ -44,7 +44,8 @@ const PillNav: Component = () => (
 			</li>
 		</ul>
 	</div>
-)
+	)
+}
 
 export default PillNav
 

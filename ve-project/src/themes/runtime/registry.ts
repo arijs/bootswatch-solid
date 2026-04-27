@@ -61,6 +61,21 @@ import {
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../bootstrap/ui/navbar/base.css'
+import {
+	fade,
+	nav,
+	navButtonReset,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
+} from '../bootstrap/ui/nav/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -102,6 +117,22 @@ const bootstrapNavbarRuntimeClasses = {
 	navbarLogoMuted,
 	navbarToggler,
 	navbarTogglerIcon,
+} as const
+
+const bootstrapNavRuntimeClasses = {
+	fade,
+	nav,
+	navButtonReset,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
 } as const
 
 const bootstrapThemeDefinition: VeThemeDefinition = {
@@ -149,14 +180,16 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		},
 		buttons: bootstrapButtonRuntimeClasses,
 		navbar: bootstrapNavbarRuntimeClasses,
+		nav: bootstrapNavRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
 export const bootstrapGlobalRuntimeClasses = bootstrapThemeDefinition.contracts.global
 export { bootstrapButtonRuntimeClasses }
 export { bootstrapNavbarRuntimeClasses }
+export { bootstrapNavRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

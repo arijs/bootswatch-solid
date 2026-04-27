@@ -1,22 +1,25 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
 import { mb3, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import {
-	fade,
-	nav,
-	navButtonReset,
-	navLink,
-	navLinkActive,
-	navTabs,
-	show,
-	tabContent,
-	tabPane,
-	tabPaneActive,
-} from '../../../themes/bootstrap/ui/nav/base.css'
+import { useVeNavThemeClasses } from '../../../themes/runtime/hooks'
 
-const TabbedNav: Component = () => (
+const TabbedNav: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		fade,
+		nav,
+		navButtonReset,
+		navLink,
+		navLinkActive,
+		navTabs,
+		show,
+		tabContent,
+		tabPane,
+		tabPaneActive,
+	} = useVeNavThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<nav>
 			<div class={`${nav} ${navTabs} ${mb3}`} role="tablist" aria-label="Example tabs">
@@ -39,7 +42,8 @@ const TabbedNav: Component = () => (
 			</div>
 		</div>
 	</div>
-)
+	)
+}
 
 export default TabbedNav
 
