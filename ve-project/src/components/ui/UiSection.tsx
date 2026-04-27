@@ -4,9 +4,13 @@ import Alerts from './Alerts'
 import Badge from './Badge'
 import ButtonGroup from './ButtonGroup'
 import Buttons from './Buttons'
+import Card from './Card'
+import Carousel from './Carousel'
 import Dropdowns from './Dropdowns'
 import Pagination from './Pagination'
 import Popovers from './Popovers'
+import Progress from './Progress'
+import Toasts from './Toasts'
 import Tooltips from './Tooltips'
 
 const UiSection: Component = () => (
@@ -17,9 +21,13 @@ const UiSection: Component = () => (
 		<Badge />
 		<ButtonGroup />
 		<Buttons />
+		<Card />
+		<Carousel />
 		<Dropdowns />
 		<Pagination />
 		<Popovers />
+		<Progress />
+		<Toasts />
 		<Tooltips />
 	</section>
 )

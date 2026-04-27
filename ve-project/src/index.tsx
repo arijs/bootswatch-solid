@@ -6,8 +6,16 @@ import AlertsPage from './components/ui/AlertsPage'
 import BadgePage from './components/ui/BadgePage'
 import ButtonGroupPage from './components/ui/ButtonGroupPage'
 import ButtonsPage from './components/ui/ButtonsPage'
+import Card from './components/ui/Card'
 import Breadcrumb from './components/ui/Breadcrumb'
 import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
+import CardsGrid from './components/ui/card/CardsGrid'
+import Carousel from './components/ui/Carousel'
+import CarouselExample from './components/ui/carousel/CarouselExample'
+import FeaturedCardExample from './components/ui/card/FeaturedCardExample'
+import HorizontalCardExample from './components/ui/card/HorizontalCardExample'
+import ImageTopCardExample from './components/ui/card/ImageTopCardExample'
+import ListCardExample from './components/ui/card/ListCardExample'
 import ContextualDefaultListGroup from './components/ui/list-group/ContextualDefaultListGroup'
 import ContextualDangerListGroup from './components/ui/list-group/ContextualDangerListGroup'
 import ContextualDarkListGroup from './components/ui/list-group/ContextualDarkListGroup'
@@ -51,7 +59,16 @@ import SmallPagination from './components/ui/pagination/SmallPagination'
 import StandardPagination from './components/ui/pagination/StandardPagination'
 import LargePagination from './components/ui/pagination/LargePagination'
 import Pagination from './components/ui/Pagination'
+import Progress from './components/ui/Progress'
+import Progress100 from './components/ui/progress/Progress100'
+import Progress0 from './components/ui/progress/Progress0'
+import Progress25 from './components/ui/progress/Progress25'
+import Progress50 from './components/ui/progress/Progress50'
+import Progress75 from './components/ui/progress/Progress75'
+import StripedProgress from './components/ui/progress/StripedProgress'
 import Popovers from './components/ui/Popovers'
+import Toasts from './components/ui/Toasts'
+import ToastExample from './components/ui/toasts/ToastExample'
 import Tooltips from './components/ui/Tooltips'
 import CenteredScrollableModal from './components/ui/modal/CenteredScrollableModal'
 import DefaultModal from './components/ui/modal/DefaultModal'
@@ -430,6 +447,14 @@ render(
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />
 			<Route path="/ui/button-group" component={ButtonGroupPage} />
 			<Route path="/ui/button-group/button-group-example" component={ButtonGroupExample} />
+			<Route path="/ui/card" component={Card} />
+			<Route path="/ui/card/cards-grid" component={CardsGrid} />
+			<Route path="/ui/card/image-top-card" component={ImageTopCardExample} />
+			<Route path="/ui/card/featured-card" component={FeaturedCardExample} />
+			<Route path="/ui/card/list-card" component={ListCardExample} />
+			<Route path="/ui/card/horizontal-card" component={HorizontalCardExample} />
+			<Route path="/ui/carousel" component={Carousel} />
+			<Route path="/ui/carousel/carousel-example" component={CarouselExample} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
 			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
 			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
@@ -651,6 +676,13 @@ render(
 			<Route path="/ui/pagination/small-pagination" component={SmallPagination} />
 			<Route path="/ui/pagination/standard-pagination" component={StandardPagination} />
 			<Route path="/ui/pagination/large-pagination" component={LargePagination} />
+			<Route path="/ui/progress" component={Progress} />
+			<Route path="/ui/progress/progress-0" component={Progress0} />
+			<Route path="/ui/progress/progress-25" component={Progress25} />
+			<Route path="/ui/progress/progress-50" component={Progress50} />
+			<Route path="/ui/progress/progress-75" component={Progress75} />
+			<Route path="/ui/progress/progress-100" component={Progress100} />
+			<Route path="/ui/progress/striped-progress" component={StripedProgress} />
 			<Route path="/ui/modal/centered-scrollable-modal" component={CenteredScrollableModal} />
 			<Route path="/ui/modal/default-modal" component={DefaultModal} />
 			<Route path="/ui/modal/fullscreen-modal" component={FullscreenModal} />
@@ -661,6 +693,8 @@ render(
 			<Route path="/ui/popovers/end-popover" component={EndPopover} />
 			<Route path="/ui/popovers/start-popover" component={StartPopover} />
 			<Route path="/ui/popovers/top-popover" component={TopPopover} />
+			<Route path="/ui/toasts" component={Toasts} />
+			<Route path="/ui/toasts/toast-example" component={ToastExample} />
 			<Route path="/ui/tooltips" component={Tooltips} />
 			<Route path="/ui/tooltips/bottom-tooltip" component={BottomTooltip} />
 			<Route path="/ui/tooltips/end-tooltip" component={EndTooltip} />
