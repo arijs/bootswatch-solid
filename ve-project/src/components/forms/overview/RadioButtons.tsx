@@ -1,15 +1,10 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { fieldset, form, legend, legendClear, mb3 } from '../../../themes/bootstrap/forms/sizing/controls.css'
-import {
-	formCheck,
-	formCheckInput,
-	formCheckLabel,
-} from '../../../themes/bootstrap/forms/overview/form-check.css'
+import { useVeFormsThemeClasses } from '../../../themes/runtime/hooks'
 
-const RadioButtons: Component = () => (
+const RadioButtons: Component = () => {
+	const { bsTheme, body, containerFluid, colMd3, colMd6, colSm6, fieldset, floatingLabel, form, formCheck, formCheckInput, formCheckLabel, formControl, formControlFloating, formControlLg, formControlSm, formFloating, formLabel, formRange, formSelect, formSelectLg, formSelectSm, formSwitch, formText, g3, hasValidation, inputGroup, inputGroupText, invalidFeedback, isInvalid, isValid, legend, legendClear, mb3, row, rowCol, validFeedback } = useVeFormsThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<form class={form}>
 			<fieldset class={`${mb3} ${fieldset}`}>
@@ -39,7 +34,8 @@ const RadioButtons: Component = () => (
 			</fieldset>
 		</form>
 	</div>
-)
+	)
+}
 
 export default RadioButtons
 

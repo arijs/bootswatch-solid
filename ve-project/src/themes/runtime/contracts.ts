@@ -16,6 +16,43 @@ export interface VeContentsThemeContract {
 	px3: string
 }
 
+export interface VeFormsThemeContract {
+	colMd3: string
+	colMd6: string
+	colSm6: string
+	fieldset: string
+	floatingLabel: string
+	form: string
+	formCheck: string
+	formCheckInput: string
+	formCheckLabel: string
+	formControl: string
+	formControlFloating: string
+	formControlLg: string
+	formControlSm: string
+	formFloating: string
+	formLabel: string
+	formRange: string
+	formSelect: string
+	formSelectLg: string
+	formSelectSm: string
+	formSwitch: string
+	formText: string
+	g3: string
+	hasValidation: string
+	inputGroup: string
+	inputGroupText: string
+	invalidFeedback: string
+	isInvalid: string
+	isValid: string
+	legend: string
+	legendClear: string
+	mb3: string
+	row: string
+	rowCol: string
+	validFeedback: string
+}
+
 export interface VeDropdownThemeContract {
 	h6: string
 	btn: string
@@ -232,6 +269,7 @@ export interface VePaginationThemeContract {
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	contents: VeContentsThemeContract
+	forms: VeFormsThemeContract
 	dropdowns: VeDropdownThemeContract
 	buttons: VeButtonThemeContract
 	navbar: VeNavbarThemeContract

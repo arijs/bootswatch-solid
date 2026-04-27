@@ -5,6 +5,7 @@ import type {
 	VeCardThemeContract,
 	VeContentsThemeContract,
 	VeDropdownThemeContract,
+	VeFormsThemeContract,
 	VeGlobalThemeContract,
 	VeModalThemeContract,
 	VeNavThemeContract,
@@ -21,6 +22,7 @@ import {
 	bootstrapCardRuntimeClasses,
 	bootstrapContentsRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
+	bootstrapFormsRuntimeClasses,
 	bootstrapGlobalRuntimeClasses,
 	bootstrapModalRuntimeClasses,
 	bootstrapNavRuntimeClasses,
@@ -59,6 +61,15 @@ export function useVeContentsThemeClasses(): VeContentsThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return bootstrapContentsRuntimeClasses
+}
+
+export function useVeFormsThemeClasses(): VeGlobalThemeContract & VeFormsThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapFormsRuntimeClasses,
+	}
 }
 
 export function useVeDropdownThemeClasses(): VeGlobalThemeContract & VeDropdownThemeContract {

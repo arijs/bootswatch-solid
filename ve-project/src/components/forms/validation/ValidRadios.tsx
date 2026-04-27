@@ -1,18 +1,10 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { formCheck, formCheckInput, formCheckLabel } from '../../../themes/bootstrap/forms/overview/form-check.css'
-import {
-	colMd6,
-	g3,
-	isValid,
-	row,
-	rowCol,
-	validFeedback,
-} from '../../../themes/bootstrap/forms/validation/base.css'
+import { useVeFormsThemeClasses } from '../../../themes/runtime/hooks'
 
-const ValidRadios: Component = () => (
+const ValidRadios: Component = () => {
+	const { bsTheme, body, containerFluid, colMd3, colMd6, colSm6, fieldset, floatingLabel, form, formCheck, formCheckInput, formCheckLabel, formControl, formControlFloating, formControlLg, formControlSm, formFloating, formLabel, formRange, formSelect, formSelectLg, formSelectSm, formSwitch, formText, g3, hasValidation, inputGroup, inputGroupText, invalidFeedback, isInvalid, isValid, legend, legendClear, mb3, row, rowCol, validFeedback } = useVeFormsThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<form class={`${row} ${g3}`}>
 			<div class={`${rowCol} ${colMd6}`}>
@@ -50,7 +42,8 @@ const ValidRadios: Component = () => (
 			</div>
 		</form>
 	</div>
-)
+	)
+}
 
 export default ValidRadios
 

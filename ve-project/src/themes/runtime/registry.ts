@@ -170,6 +170,28 @@ import {
 	pageItemDisabled,
 	pageLink,
 } from '../bootstrap/ui/pagination/base.css'
+import {
+	fieldset,
+	floatingLabel,
+	form,
+	formControl,
+	formControlFloating,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formText,
+	legend,
+	legendClear,
+	mb3,
+} from '../bootstrap/forms/sizing/controls.css'
+import { formCheck, formCheckInput, formCheckLabel, formSwitch } from '../bootstrap/forms/overview/form-check.css'
+import { inputGroup, inputGroupText } from '../bootstrap/forms/input-group/base.css'
+import { colMd3, colMd6, colSm6, g3, hasValidation, invalidFeedback, isInvalid, isValid, row, rowCol, validFeedback } from '../bootstrap/forms/validation/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -202,6 +224,43 @@ const bootstrapContentsRuntimeClasses = {
 	h4,
 	paragraph,
 	px3,
+} as const
+
+const bootstrapFormsRuntimeClasses = {
+	colMd3,
+	colMd6,
+	colSm6,
+	fieldset,
+	floatingLabel,
+	form,
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlFloating,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	g3,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	mb3,
+	row,
+	rowCol,
+	validFeedback,
 } as const
 
 const bootstrapNavbarRuntimeClasses = {
@@ -365,6 +424,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 			containerFluid,
 		},
 		contents: bootstrapContentsRuntimeClasses,
+		forms: bootstrapFormsRuntimeClasses,
 		dropdowns: {
 			h6,
 			btn,
@@ -418,6 +478,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
 export const bootstrapGlobalRuntimeClasses = bootstrapThemeDefinition.contracts.global
 export { bootstrapContentsRuntimeClasses }
+export { bootstrapFormsRuntimeClasses }
 export { bootstrapButtonRuntimeClasses }
 export { bootstrapNavbarRuntimeClasses }
 export { bootstrapNavRuntimeClasses }
