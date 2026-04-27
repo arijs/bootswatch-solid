@@ -10,6 +10,7 @@ import type {
 	VeNavThemeContract,
 	VeNavbarThemeContract,
 	VePopoverThemeContract,
+	VePaginationThemeContract,
 	VeScrollspyThemeContract,
 	VeTooltipThemeContract,
 } from './contracts'
@@ -24,6 +25,7 @@ import {
 	bootstrapModalRuntimeClasses,
 	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
+	bootstrapPaginationRuntimeClasses,
 	bootstrapPopoverRuntimeClasses,
 	bootstrapScrollspyRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
@@ -149,4 +151,13 @@ export function useVeScrollspyThemeClasses(): VeScrollspyThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return bootstrapScrollspyRuntimeClasses
+}
+
+export function useVePaginationThemeClasses(): VeGlobalThemeContract & VePaginationThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapPaginationRuntimeClasses,
+	}
 }

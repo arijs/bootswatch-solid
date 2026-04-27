@@ -160,6 +160,16 @@ import {
 	accordionItem,
 } from '../bootstrap/ui/accordion/base.css'
 import { scrollspyExample } from '../bootstrap/ui/scrollspy/base.css'
+import {
+	flexWrap as paginationFlexWrap,
+	pagination,
+	paginationLarge,
+	paginationSmall,
+	pageItem,
+	pageItemActive,
+	pageItemDisabled,
+	pageLink,
+} from '../bootstrap/ui/pagination/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -335,6 +345,17 @@ const bootstrapScrollspyRuntimeClasses = {
 	scrollspyExample,
 } as const
 
+const bootstrapPaginationRuntimeClasses = {
+	flexWrap: paginationFlexWrap,
+	pagination,
+	paginationLarge,
+	paginationSmall,
+	pageItem,
+	pageItemActive,
+	pageItemDisabled,
+	pageLink,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -389,8 +410,9 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		tooltips: bootstrapTooltipRuntimeClasses,
 		accordion: bootstrapAccordionRuntimeClasses,
 		scrollspy: bootstrapScrollspyRuntimeClasses,
+		pagination: bootstrapPaginationRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
@@ -406,6 +428,7 @@ export { bootstrapPopoverRuntimeClasses }
 export { bootstrapTooltipRuntimeClasses }
 export { bootstrapAccordionRuntimeClasses }
 export { bootstrapScrollspyRuntimeClasses }
+export { bootstrapPaginationRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

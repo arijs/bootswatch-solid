@@ -57,6 +57,10 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/tooltips/top-tooltip': ['global', 'buttons', 'tooltips'],
 	'/ui/accordion': ['global', 'accordion'],
 	'/ui/accordion/accordion-example': ['global', 'accordion'],
+	'/ui/pagination': ['global', 'pagination'],
+	'/ui/pagination/small-pagination': ['global', 'pagination'],
+	'/ui/pagination/standard-pagination': ['global', 'pagination'],
+	'/ui/pagination/large-pagination': ['global', 'pagination'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

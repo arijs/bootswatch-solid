@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -218,6 +218,17 @@ export interface VeScrollspyThemeContract {
 	scrollspyExample: string
 }
 
+export interface VePaginationThemeContract {
+	flexWrap: string
+	pagination: string
+	paginationLarge: string
+	paginationSmall: string
+	pageItem: string
+	pageItemActive: string
+	pageItemDisabled: string
+	pageLink: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	contents: VeContentsThemeContract
@@ -232,6 +243,7 @@ export interface VeThemeContracts {
 	tooltips: VeTooltipThemeContract
 	accordion: VeAccordionThemeContract
 	scrollspy: VeScrollspyThemeContract
+	pagination: VePaginationThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -240,4 +252,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination']
