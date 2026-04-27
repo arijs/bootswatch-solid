@@ -10,6 +10,7 @@ import Dropdowns from './Dropdowns'
 import Pagination from './Pagination'
 import Popovers from './Popovers'
 import Progress from './Progress'
+import Spinners from './Spinners'
 import Toasts from './Toasts'
 import Tooltips from './Tooltips'
 
@@ -27,6 +28,7 @@ const UiSection: Component = () => (
 		<Pagination />
 		<Popovers />
 		<Progress />
+		<Spinners />
 		<Toasts />
 		<Tooltips />
 	</section>

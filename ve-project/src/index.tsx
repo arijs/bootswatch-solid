@@ -72,6 +72,23 @@ import Progress25 from './components/ui/progress/Progress25'
 import Progress50 from './components/ui/progress/Progress50'
 import Progress75 from './components/ui/progress/Progress75'
 import StripedProgress from './components/ui/progress/StripedProgress'
+import Spinners from './components/ui/Spinners'
+import BorderDangerSpinner from './components/ui/spinners/BorderDangerSpinner'
+import BorderDarkSpinner from './components/ui/spinners/BorderDarkSpinner'
+import BorderInfoSpinner from './components/ui/spinners/BorderInfoSpinner'
+import BorderLightSpinner from './components/ui/spinners/BorderLightSpinner'
+import BorderPrimarySpinner from './components/ui/spinners/BorderPrimarySpinner'
+import BorderSecondarySpinner from './components/ui/spinners/BorderSecondarySpinner'
+import BorderSuccessSpinner from './components/ui/spinners/BorderSuccessSpinner'
+import BorderWarningSpinner from './components/ui/spinners/BorderWarningSpinner'
+import GrowDangerSpinner from './components/ui/spinners/GrowDangerSpinner'
+import GrowDarkSpinner from './components/ui/spinners/GrowDarkSpinner'
+import GrowInfoSpinner from './components/ui/spinners/GrowInfoSpinner'
+import GrowLightSpinner from './components/ui/spinners/GrowLightSpinner'
+import GrowPrimarySpinner from './components/ui/spinners/GrowPrimarySpinner'
+import GrowSecondarySpinner from './components/ui/spinners/GrowSecondarySpinner'
+import GrowSuccessSpinner from './components/ui/spinners/GrowSuccessSpinner'
+import GrowWarningSpinner from './components/ui/spinners/GrowWarningSpinner'
 import Popovers from './components/ui/Popovers'
 import Toasts from './components/ui/Toasts'
 import ToastExample from './components/ui/toasts/ToastExample'
@@ -689,6 +706,23 @@ render(
 			<Route path="/ui/progress/progress-75" component={Progress75} />
 			<Route path="/ui/progress/progress-100" component={Progress100} />
 			<Route path="/ui/progress/striped-progress" component={StripedProgress} />
+			<Route path="/ui/spinners" component={Spinners} />
+			<Route path="/ui/spinners/border-primary-spinner" component={BorderPrimarySpinner} />
+			<Route path="/ui/spinners/border-secondary-spinner" component={BorderSecondarySpinner} />
+			<Route path="/ui/spinners/border-success-spinner" component={BorderSuccessSpinner} />
+			<Route path="/ui/spinners/border-danger-spinner" component={BorderDangerSpinner} />
+			<Route path="/ui/spinners/border-warning-spinner" component={BorderWarningSpinner} />
+			<Route path="/ui/spinners/border-info-spinner" component={BorderInfoSpinner} />
+			<Route path="/ui/spinners/border-light-spinner" component={BorderLightSpinner} />
+			<Route path="/ui/spinners/border-dark-spinner" component={BorderDarkSpinner} />
+			<Route path="/ui/spinners/grow-primary-spinner" component={GrowPrimarySpinner} />
+			<Route path="/ui/spinners/grow-secondary-spinner" component={GrowSecondarySpinner} />
+			<Route path="/ui/spinners/grow-success-spinner" component={GrowSuccessSpinner} />
+			<Route path="/ui/spinners/grow-danger-spinner" component={GrowDangerSpinner} />
+			<Route path="/ui/spinners/grow-warning-spinner" component={GrowWarningSpinner} />
+			<Route path="/ui/spinners/grow-info-spinner" component={GrowInfoSpinner} />
+			<Route path="/ui/spinners/grow-light-spinner" component={GrowLightSpinner} />
+			<Route path="/ui/spinners/grow-dark-spinner" component={GrowDarkSpinner} />
 			<Route path="/ui/modal/centered-scrollable-modal" component={CenteredScrollableModal} />
 			<Route path="/ui/modal/default-modal" component={DefaultModal} />
 			<Route path="/ui/modal/fullscreen-modal" component={FullscreenModal} />
