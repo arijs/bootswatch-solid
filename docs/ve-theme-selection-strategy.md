@@ -26,17 +26,20 @@ This section records what has already been implemented in `ve-project` and what 
 7. Button component routes now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
 8. Navbar example route now consumes typed runtime contract APIs instead of direct Bootstrap theme imports.
 9. Nav showcase routes (`/ui/navs`, `/ui/navs/basic-nav`, `/ui/navs/pill-nav`, `/ui/navs/tabbed-nav`) now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
-10. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-11. Structured warning emission is implemented for theme skips with route/family metadata.
-12. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+10. Mixed consumers now use runtime hooks where families are migrated:
+- `CardTabsExample` consumes nav + button runtime hooks
+- `ScrollspyExample` consumes navbar + nav + dropdown runtime hooks
+11. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+12. Structured warning emission is implemented for theme skips with route/family metadata.
+13. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns, buttons, navbar, and nav are on runtime contracts; many families still directly import Bootstrap VE theme classes.
+1. Family migration breadth is still partial: dropdowns, buttons, navbar, and nav are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
 
 ### Pending
 
-1. Continue family migrations from direct Bootstrap imports to runtime contracts (buttons, nav, navbar, modal, forms, etc.).
+1. Continue family migrations from direct Bootstrap imports to runtime contracts (modal, forms, card, card-tabs, scrollspy, popovers, tooltips, etc.).
 2. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
 3. Mark family availability per theme explicitly as each family is added.
 4. Harden verification matrix by theme/family and track skip-count reduction milestones.
@@ -359,6 +362,9 @@ Behavior Changes:
 7. Made theme gate rendering reactive and Solid 2.0 compatible; warning payload now includes required family metadata.
 8. Added `buttons` family contract, registry slice, and runtime hook.
 9. Migrated `/ui/buttons/**` components and `ButtonsPage` wrapper from direct Bootstrap theme imports to runtime hook consumption.
+10. Added `navbar` and `nav` family contracts, registry slices, hooks, and explicit route-family mappings.
+11. Migrated navbar and nav showcase routes to runtime hook consumption.
+12. Migrated mixed consumers (`CardTabsExample`, `ScrollspyExample`) to runtime hooks for already-migrated families and added explicit mixed-family route requirements.
 
 Validation:
 1. Bootstrap dropdown route renders normally.
@@ -368,6 +374,10 @@ Validation:
 5. Sketchy navbar route renders global skip-safe output in VE preview with `[ve-theme-skip]` warning.
 6. Bootstrap button route (`/ui/buttons/solid/primary-button`) renders normally in VE preview.
 7. Sketchy button route (`/ui/buttons/solid/primary-button`) renders global skip-safe output with `[ve-theme-skip]` warning.
+8. Bootstrap nav route (`/ui/navs/tabbed-nav`) renders normally in VE preview.
+9. Sketchy nav route (`/ui/navs/tabbed-nav`) renders global skip-safe output with `[ve-theme-skip]` warning.
+10. Bootstrap scrollspy/card-tabs routes render normally in VE preview after mixed-hook migration.
+11. Sketchy scrollspy/card-tabs routes render global skip-safe output with `[ve-theme-skip]` warnings and explicit multi-family metadata.
 
 Risks / Pending:
 1. Global gate is now stable, but most non-dropdown families are still pending contract migration.

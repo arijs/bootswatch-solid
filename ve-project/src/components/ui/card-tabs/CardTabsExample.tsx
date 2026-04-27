@@ -1,15 +1,14 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { card, cardBody, cardHeader, cardRow, cardText, cardTitle } from '../../../themes/bootstrap/ui/card/base.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnPrimary } from '../../../themes/bootstrap/ui/buttons/generated.css'
 import { h5, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { nav, navButtonReset, navLink, navLinkActive, navLinkDisabled } from '../../../themes/bootstrap/ui/nav/base.css'
+import { useVeButtonThemeClasses, useVeNavThemeClasses } from '../../../themes/runtime/hooks'
 import { cardHeaderTabs, col, rowG4, textCenter } from '../../../themes/bootstrap/ui/card-tabs/base.css'
 
-const CardTabsExample: Component = () => (
+const CardTabsExample: Component = () => {
+	const { bsTheme, body, containerFluid, btn, btnPrimary } = useVeButtonThemeClasses()
+	const { nav, navButtonReset, navLink, navLinkActive, navLinkDisabled } = useVeNavThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<div class={`${cardRow} ${rowG4}`}>
 			<div class={col}>
@@ -49,7 +48,8 @@ const CardTabsExample: Component = () => (
 			</div>
 		</div>
 	</div>
-)
+	)
+}
 
 export default CardTabsExample
 

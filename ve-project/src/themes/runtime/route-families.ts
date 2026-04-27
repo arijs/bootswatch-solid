@@ -25,6 +25,10 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/navs/basic-nav': ['global', 'nav'],
 	'/ui/navs/pill-nav': ['global', 'nav'],
 	'/ui/navs/tabbed-nav': ['global', 'nav'],
+	'/ui/card-tabs': ['global', 'buttons', 'nav', 'ui'],
+	'/ui/card-tabs/card-tabs-example': ['global', 'buttons', 'nav', 'ui'],
+	'/ui/scrollspy': ['global', 'dropdowns', 'nav', 'navbar', 'ui'],
+	'/ui/scrollspy/scrollspy-example': ['global', 'dropdowns', 'nav', 'navbar', 'ui'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

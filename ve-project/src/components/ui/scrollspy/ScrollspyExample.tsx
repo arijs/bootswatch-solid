@@ -1,14 +1,14 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
 import { h4, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { dropdown, dropdownDivider, dropdownItem, dropdownMenu, dropdownToggle } from '../../../themes/bootstrap/ui/dropdowns/base.css'
-import { nav, navItem, navLink, navLinkActive, navPills } from '../../../themes/bootstrap/ui/nav/base.css'
-import { bgLight, navbar, navbarBrand } from '../../../themes/bootstrap/ui/navbar/base.css'
+import { useVeDropdownThemeClasses, useVeNavThemeClasses, useVeNavbarThemeClasses } from '../../../themes/runtime/hooks'
 import { px3, scrollspyExample } from '../../../themes/bootstrap/ui/scrollspy/base.css'
 
-const ScrollspyExample: Component = () => (
+const ScrollspyExample: Component = () => {
+	const { bsTheme, body, containerFluid, dropdown, dropdownDivider, dropdownItem, dropdownMenu, dropdownToggle } = useVeDropdownThemeClasses()
+	const { nav, navItem, navLink, navLinkActive, navPills } = useVeNavThemeClasses()
+	const { bgLight, navbar, navbarBrand } = useVeNavbarThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<nav class={`${navbar} ${bgLight} ${px3}`}>
 			{/* biome-ignore lint: <a> is used for demonstration purposes */}
@@ -93,7 +93,8 @@ const ScrollspyExample: Component = () => (
 			<p class={paragraph}>And some more placeholder content, for good measure.</p>
 		</div>
 	</div>
-)
+	)
+}
 
 export default ScrollspyExample
 
