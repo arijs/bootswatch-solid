@@ -4,6 +4,44 @@ Status: Approved for implementation planning
 Date: 2026-04-26
 Owner: VE migration track
 
+## Implementation Status (2026-04-27)
+
+This section records what has already been implemented in `ve-project` and what is still pending.
+
+### Implemented
+
+1. Theme slug source-of-truth and normalization utility exist.
+2. Typed runtime contract definitions exist for:
+- global contract
+- dropdown family contract (first migrated family)
+3. Central runtime resolver exists and returns structured support state with reasons:
+- `unknown-theme`
+- `missing-family-contract`
+4. Bootstrap theme is registered as the only implemented VE theme.
+5. Explicit route-to-family mapping exists for dropdown routes (`global` + `dropdowns`).
+6. Dropdown component routes now consume typed runtime contract APIs instead of direct Bootstrap theme imports.
+7. Dropdown runtime behavior is strict skip-with-warning for unsupported theme coverage (no fallback rendering for those routes).
+8. Structured warning emission is implemented for dropdown route skips.
+
+### Partially Implemented / In Progress
+
+1. Provider/context scaffolding has been added (`provider.tsx`, `ThemeSupportGate.tsx`), but is not currently wired at app root.
+2. Current strict skip wiring is route-level for dropdown routes via `withDropdownThemeGate(...)` wrappers in `ve-project/src/index.tsx`.
+
+### Pending
+
+1. Stabilize and wire a single global provider/context path at app root for all VE routes.
+2. Expand strict skip-with-warning behavior from dropdown-only to all migrated families/routes.
+3. Continue family migrations from direct Bootstrap imports to runtime contracts (buttons, nav, navbar, modal, forms, etc.).
+4. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
+5. Mark family availability per theme explicitly as each family is added.
+6. Harden verification matrix by theme/family and track skip-count reduction milestones.
+
+### Notes
+
+1. Current behavior intentionally supports incremental rollout: only families migrated to runtime contracts are enforced through strict skip behavior.
+2. Bootstrap remains the only fully implemented VE contract source at this stage.
+
 ## 1. Purpose
 
 Define a single implementation strategy for applying Vanilla Extract (VE) theme classes from URL search parameters in `ve-project`, without duplicating HTML components per theme.
@@ -275,3 +313,50 @@ Excluded:
 1. Direct implementation changes in this document phase.
 2. Automatic conversion tooling commitments.
 3. Per-theme/per-route migration scheduling beyond architecture guidance.
+
+## Change Log
+
+### Entry Template
+
+Use this structure for each future changelog entry:
+
+```markdown
+### YYYY-MM-DD
+
+Scope:
+1. ...
+
+Behavior Changes:
+1. ...
+
+Validation:
+1. ...
+
+Risks / Pending:
+1. ...
+```
+
+### 2026-04-27
+
+Scope:
+1. Theme-selection implementation status and progress documentation.
+2. Runtime theme foundation and first-family migration (dropdowns).
+
+Behavior Changes:
+1. Added implementation status snapshot section (implemented, partial, pending).
+2. Added typed runtime theme foundation in `ve-project`:
+- theme slug normalization/source-of-truth
+- typed contracts (global + dropdown family)
+- central resolver with support reasons (`unknown-theme`, `missing-family-contract`)
+3. Added explicit dropdown route-family mapping (`global` + `dropdowns`).
+4. Migrated dropdown route components from direct Bootstrap theme imports to runtime contract hooks.
+5. Added strict skip-with-warning behavior for dropdown routes when selected theme coverage is missing.
+
+Validation:
+1. Bootstrap dropdown route renders normally.
+2. Sketchy dropdown route renders skip-safe output.
+3. `pnpm ve:build` passes.
+
+Risks / Pending:
+1. Provider/gate scaffolding exists but root wiring is pending due to runtime stability concerns.
+2. Route-level dropdown gating is currently the active enforcement path.

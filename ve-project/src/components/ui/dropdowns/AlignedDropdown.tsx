@@ -1,23 +1,26 @@
 import type { Component } from 'solid-js'
 import './ve-dropdown'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { h6 } from '../../../themes/bootstrap/contents/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import {
-	btnGroup,
-	dropdown,
-	dropdownDivider,
-	dropdownHeader,
-	dropdownItem,
-	dropdownMenu,
-	dropdownMenuEnd,
-	dropdownToggle,
-} from '../../../themes/bootstrap/ui/dropdowns/base.css'
+import { useVeDropdownThemeClasses } from '../../../themes/runtime/hooks'
 
-const AlignedDropdown: Component = () => (
+const AlignedDropdown: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		h6,
+		btn,
+		btnSecondary,
+		btnGroup,
+		dropdown,
+		dropdownDivider,
+		dropdownHeader,
+		dropdownItem,
+		dropdownMenu,
+		dropdownMenuEnd,
+		dropdownToggle,
+	} = useVeDropdownThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<div class={btnGroup}>
 			<div class={dropdown}>
@@ -62,7 +65,8 @@ const AlignedDropdown: Component = () => (
 			</div>
 		</div>
 	</div>
-)
+	)
+}
 
 export default AlignedDropdown
 

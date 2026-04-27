@@ -1,21 +1,24 @@
 import type { Component } from 'solid-js'
 import './ve-dropdown'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { h6 } from '../../../themes/bootstrap/contents/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import {
-	dropdown,
-	dropdownDivider,
-	dropdownHeader,
-	dropdownItem,
-	dropdownMenu,
-	dropdownToggle,
-} from '../../../themes/bootstrap/ui/dropdowns/base.css'
+import { useVeDropdownThemeClasses } from '../../../themes/runtime/hooks'
 
-const NormalDropdown: Component = () => (
+const NormalDropdown: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		h6,
+		btn,
+		btnSecondary,
+		dropdown,
+		dropdownDivider,
+		dropdownHeader,
+		dropdownItem,
+		dropdownMenu,
+		dropdownToggle,
+	} = useVeDropdownThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<div class={dropdown}>
 			<button
@@ -61,7 +64,8 @@ const NormalDropdown: Component = () => (
 			</ul>
 		</div>
 	</div>
-)
+	)
+}
 
 export default NormalDropdown
 

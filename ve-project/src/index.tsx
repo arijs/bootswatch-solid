@@ -382,6 +382,24 @@ import InvalidCheckboxes from './components/forms/validation/InvalidCheckboxes'
 import InvalidRadios from './components/forms/validation/InvalidRadios'
 import ValidCheckboxes from './components/forms/validation/ValidCheckboxes'
 import ValidRadios from './components/forms/validation/ValidRadios'
+import { withDropdownThemeGate } from './themes/runtime/DropdownRouteGate'
+
+const GatedDropdowns = withDropdownThemeGate(Dropdowns, '/ui/dropdowns')
+const GatedAlignedDropdown = withDropdownThemeGate(AlignedDropdown, '/ui/dropdowns/aligned-dropdown')
+const GatedEndDropdown = withDropdownThemeGate(EndDropdown, '/ui/dropdowns/end-dropdown')
+const GatedLargeDropdown = withDropdownThemeGate(LargeDropdown, '/ui/dropdowns/large-dropdown')
+const GatedNormalDropdown = withDropdownThemeGate(NormalDropdown, '/ui/dropdowns/normal-dropdown')
+const GatedSmallDropdown = withDropdownThemeGate(SmallDropdown, '/ui/dropdowns/small-dropdown')
+const GatedSplitDangerDropdown = withDropdownThemeGate(SplitDangerDropdown, '/ui/dropdowns/split-danger-dropdown')
+const GatedSplitDarkDropdown = withDropdownThemeGate(SplitDarkDropdown, '/ui/dropdowns/split-dark-dropdown')
+const GatedSplitInfoDropdown = withDropdownThemeGate(SplitInfoDropdown, '/ui/dropdowns/split-info-dropdown')
+const GatedSplitLightDropdown = withDropdownThemeGate(SplitLightDropdown, '/ui/dropdowns/split-light-dropdown')
+const GatedSplitPrimaryDropdown = withDropdownThemeGate(SplitPrimaryDropdown, '/ui/dropdowns/split-primary-dropdown')
+const GatedSplitSecondaryDropdown = withDropdownThemeGate(SplitSecondaryDropdown, '/ui/dropdowns/split-secondary-dropdown')
+const GatedSplitSuccessDropdown = withDropdownThemeGate(SplitSuccessDropdown, '/ui/dropdowns/split-success-dropdown')
+const GatedSplitWarningDropdown = withDropdownThemeGate(SplitWarningDropdown, '/ui/dropdowns/split-warning-dropdown')
+const GatedStartDropdown = withDropdownThemeGate(StartDropdown, '/ui/dropdowns/start-dropdown')
+const GatedUpDropdown = withDropdownThemeGate(UpDropdown, '/ui/dropdowns/up-dropdown')
 
 render(
 	() => (
@@ -699,22 +717,22 @@ render(
 			<Route path="/ui/buttons/solid/toggle/success-button" component={SolidToggleSuccessButton} />
 			<Route path="/ui/buttons/solid/toggle/warning-button" component={SolidToggleWarningButton} />
 			<Route path="/ui/buttons/solid/warning-button" component={SolidWarningButton} />
-			<Route path="/ui/dropdowns" component={Dropdowns} />
-			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
-			<Route path="/ui/dropdowns/end-dropdown" component={EndDropdown} />
-			<Route path="/ui/dropdowns/large-dropdown" component={LargeDropdown} />
-			<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
-			<Route path="/ui/dropdowns/small-dropdown" component={SmallDropdown} />
-			<Route path="/ui/dropdowns/split-danger-dropdown" component={SplitDangerDropdown} />
-			<Route path="/ui/dropdowns/split-dark-dropdown" component={SplitDarkDropdown} />
-			<Route path="/ui/dropdowns/split-info-dropdown" component={SplitInfoDropdown} />
-			<Route path="/ui/dropdowns/split-light-dropdown" component={SplitLightDropdown} />
-			<Route path="/ui/dropdowns/split-primary-dropdown" component={SplitPrimaryDropdown} />
-			<Route path="/ui/dropdowns/split-secondary-dropdown" component={SplitSecondaryDropdown} />
-			<Route path="/ui/dropdowns/split-success-dropdown" component={SplitSuccessDropdown} />
-			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
-			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
-			<Route path="/ui/dropdowns/up-dropdown" component={UpDropdown} />
+			<Route path="/ui/dropdowns" component={GatedDropdowns} />
+			<Route path="/ui/dropdowns/aligned-dropdown" component={GatedAlignedDropdown} />
+			<Route path="/ui/dropdowns/end-dropdown" component={GatedEndDropdown} />
+			<Route path="/ui/dropdowns/large-dropdown" component={GatedLargeDropdown} />
+			<Route path="/ui/dropdowns/normal-dropdown" component={GatedNormalDropdown} />
+			<Route path="/ui/dropdowns/small-dropdown" component={GatedSmallDropdown} />
+			<Route path="/ui/dropdowns/split-danger-dropdown" component={GatedSplitDangerDropdown} />
+			<Route path="/ui/dropdowns/split-dark-dropdown" component={GatedSplitDarkDropdown} />
+			<Route path="/ui/dropdowns/split-info-dropdown" component={GatedSplitInfoDropdown} />
+			<Route path="/ui/dropdowns/split-light-dropdown" component={GatedSplitLightDropdown} />
+			<Route path="/ui/dropdowns/split-primary-dropdown" component={GatedSplitPrimaryDropdown} />
+			<Route path="/ui/dropdowns/split-secondary-dropdown" component={GatedSplitSecondaryDropdown} />
+			<Route path="/ui/dropdowns/split-success-dropdown" component={GatedSplitSuccessDropdown} />
+			<Route path="/ui/dropdowns/split-warning-dropdown" component={GatedSplitWarningDropdown} />
+			<Route path="/ui/dropdowns/start-dropdown" component={GatedStartDropdown} />
+			<Route path="/ui/dropdowns/up-dropdown" component={GatedUpDropdown} />
 			<Route path="/ui/pagination" component={Pagination} />
 			<Route path="/ui/pagination/small-pagination" component={SmallPagination} />
 			<Route path="/ui/pagination/standard-pagination" component={StandardPagination} />

@@ -1,20 +1,23 @@
 import type { Component } from 'solid-js'
 import './ve-dropdown'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import {
-	btnGroup,
-	dropdownItem,
-	dropdownMenu,
-	dropdownToggle,
-	dropdownToggleSplit,
-	visuallyHidden,
-} from '../../../themes/bootstrap/ui/dropdowns/base.css'
+import { useVeDropdownThemeClasses } from '../../../themes/runtime/hooks'
 
-const SplitSecondaryDropdown: Component = () => (
+const SplitSecondaryDropdown: Component = () => {
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		btn,
+		btnSecondary,
+		btnGroup,
+		dropdownItem,
+		dropdownMenu,
+		dropdownToggle,
+		dropdownToggleSplit,
+		visuallyHidden,
+	} = useVeDropdownThemeClasses()
+
+	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
 		<div class={btnGroup}>
 			<button type="button" class={`${btn} ${btnSecondary}`}>
@@ -50,7 +53,8 @@ const SplitSecondaryDropdown: Component = () => (
 			</ul>
 		</div>
 	</div>
-)
+	)
+}
 
 export default SplitSecondaryDropdown
 

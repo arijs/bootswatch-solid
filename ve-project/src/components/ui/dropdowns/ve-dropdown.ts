@@ -1,16 +1,18 @@
 import * as bootstrap from 'bootstrap'
-import {
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
+import { bootstrapDropdownRuntimeClasses } from '../../../themes/runtime/registry'
+import { varBsDropdownPosition } from '../../../theme-contract/ui/dropdowns/_vars.css'
+import { getVarName } from '../../../logic/veGetVarName'
+
+const {
+	btnShowHook,
 	dropdownItem,
 	dropdownMenu,
 	dropdownMenuShow,
 	dropend,
 	dropstart,
 	dropup,
-} from '../../../themes/bootstrap/ui/dropdowns/base.css'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
-import { btnShowHook } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { varBsDropdownPosition } from '../../../theme-contract/ui/dropdowns/_vars.css'
-import { getVarName } from '../../../logic/veGetVarName'
+} = bootstrapDropdownRuntimeClasses
 
 const VeDropdown = (bootstrap.Dropdown as unknown as BootstrapWithDefaults<typeof bootstrap.Dropdown>).extendDefaultConfig({
 	CLASS_NAME_SHOW_TRIGGER: btnShowHook,
