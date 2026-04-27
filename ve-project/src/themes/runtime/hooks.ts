@@ -1,23 +1,17 @@
 import type { VeButtonThemeContract, VeDropdownThemeContract, VeGlobalThemeContract, VeNavThemeContract, VeNavbarThemeContract } from './contracts'
-import { getRequiredFamiliesForPath } from './route-families'
 import {
 	bootstrapButtonRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
 	bootstrapGlobalRuntimeClasses,
 	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
-	resolveVeThemeForRoute,
+	type VeThemeResolution,
 } from './registry'
+import { useVeThemeRuntime } from './provider'
 
 const emittedWarnings = new Set<string>()
 
-function warnUnsupportedIfNeeded(requiredFamilyPath: string) {
-	const resolution = resolveVeThemeForRoute(
-		window.location.search,
-		window.location.pathname,
-		getRequiredFamiliesForPath(requiredFamilyPath),
-	)
-
+function warnUnsupportedIfNeeded(resolution: VeThemeResolution) {
 	if (resolution.supported) return
 	const warningKey = [resolution.selectedThemeSlug, resolution.routePath, resolution.reason].join('|')
 	if (emittedWarnings.has(warningKey)) return
@@ -32,12 +26,14 @@ function warnUnsupportedIfNeeded(requiredFamilyPath: string) {
 }
 
 export function useVeGlobalThemeClasses(): VeGlobalThemeContract {
-	warnUnsupportedIfNeeded(window.location.pathname)
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
 	return bootstrapGlobalRuntimeClasses
 }
 
 export function useVeDropdownThemeClasses(): VeGlobalThemeContract & VeDropdownThemeContract {
-	warnUnsupportedIfNeeded(window.location.pathname)
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapDropdownRuntimeClasses,
@@ -45,7 +41,8 @@ export function useVeDropdownThemeClasses(): VeGlobalThemeContract & VeDropdownT
 }
 
 export function useVeButtonThemeClasses(): VeGlobalThemeContract & VeButtonThemeContract {
-	warnUnsupportedIfNeeded(window.location.pathname)
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapButtonRuntimeClasses,
@@ -53,7 +50,8 @@ export function useVeButtonThemeClasses(): VeGlobalThemeContract & VeButtonTheme
 }
 
 export function useVeNavbarThemeClasses(): VeGlobalThemeContract & VeNavbarThemeContract {
-	warnUnsupportedIfNeeded(window.location.pathname)
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapNavbarRuntimeClasses,
@@ -61,7 +59,8 @@ export function useVeNavbarThemeClasses(): VeGlobalThemeContract & VeNavbarTheme
 }
 
 export function useVeNavThemeClasses(): VeGlobalThemeContract & VeNavThemeContract {
-	warnUnsupportedIfNeeded(window.location.pathname)
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapNavRuntimeClasses,

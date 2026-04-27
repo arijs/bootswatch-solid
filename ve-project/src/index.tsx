@@ -1,4 +1,5 @@
 import { Route, Router } from '@solidjs/router'
+import type { JSX } from 'solid-js'
 import { render } from '@solidjs/web'
 import * as bootstrap from 'bootstrap'
 import Home from './components/HomePage'
@@ -385,11 +386,17 @@ import ValidRadios from './components/forms/validation/ValidRadios'
 import ThemeSupportGate from './themes/runtime/ThemeSupportGate'
 import { VeThemeRuntimeProvider } from './themes/runtime/provider'
 
+function RouterRoot(props: { children: JSX.Element }) {
+	return (
+		<VeThemeRuntimeProvider>
+			<ThemeSupportGate>{props.children}</ThemeSupportGate>
+		</VeThemeRuntimeProvider>
+	)
+}
+
 render(
 	() => (
-		<VeThemeRuntimeProvider>
-			<ThemeSupportGate>
-				<Router>
+		<Router root={RouterRoot}>
 			<Route path="/" component={Home} />
 			<Route path="/contents" component={ContentsSection} />
 			<Route path="/contents/figures" component={Figures} />
@@ -765,9 +772,7 @@ render(
 			<Route path="/ui/tooltips/html-tooltip" component={HtmlTooltip} />
 			<Route path="/ui/tooltips/start-tooltip" component={StartTooltip} />
 			<Route path="/ui/tooltips/top-tooltip" component={TopTooltip} />
-				</Router>
-			</ThemeSupportGate>
-		</VeThemeRuntimeProvider>
+		</Router>
 	),
 	document.getElementById('root') ??
 		(() => {
