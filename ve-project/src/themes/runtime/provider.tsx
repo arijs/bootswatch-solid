@@ -49,7 +49,7 @@ export function VeThemeRuntimeProvider(props: { children: JSX.Element }) {
 		}
 	}
 
-	return <VeThemeRuntimeContext.Provider value={resolution}>{props.children}</VeThemeRuntimeContext.Provider>
+	return <VeThemeRuntimeContext value={resolution}>{props.children}</VeThemeRuntimeContext>
 }
 
 export function useVeThemeRuntime(): Accessor<VeThemeResolution> {
