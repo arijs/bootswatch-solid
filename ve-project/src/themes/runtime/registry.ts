@@ -77,7 +77,7 @@ import {
 	tabPaneActive,
 } from '../bootstrap/ui/nav/base.css'
 import { bodyText } from '../bootstrap/body.css'
-import { h4, h5, paragraph, bdPlaceholderImg, smallText } from '../bootstrap/contents/generated.css'
+import { h1, h2, h3, h4, h5, paragraph, bdPlaceholderImg, smallText } from '../bootstrap/contents/generated.css'
 import { btnClose } from '../bootstrap/ui/alerts/base.css'
 import {
 	actionsRow,
@@ -112,6 +112,19 @@ import {
 } from '../bootstrap/ui/card/base.css'
 import { cardHeaderTabs, col, rowG4, textCenter } from '../bootstrap/ui/card-tabs/base.css'
 import { listGroup, listGroupFlush, listGroupItem } from '../bootstrap/ui/list-group/base.css'
+import {
+	badge,
+	bgDark,
+	bgDanger,
+	bgInfo,
+	bgLight as badgeBgLight,
+	bgPrimary as badgeBgPrimary,
+	bgSecondary,
+	bgSuccess,
+	bgWarning,
+	roundedPill,
+	textDark,
+} from '../bootstrap/ui/badge/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -219,6 +232,26 @@ const bootstrapCardRuntimeClasses = {
 	textMuted,
 } as const
 
+const bootstrapBadgeRuntimeClasses = {
+	badge,
+	bgDark,
+	bgDanger,
+	bgInfo,
+	bgLight: badgeBgLight,
+	bgPrimary: badgeBgPrimary,
+	bgSecondary,
+	bgSuccess,
+	bgWarning,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	roundedPill,
+	textDark,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -267,8 +300,9 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		nav: bootstrapNavRuntimeClasses,
 		modal: bootstrapModalRuntimeClasses,
 		card: bootstrapCardRuntimeClasses,
+		badge: bootstrapBadgeRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
@@ -278,6 +312,7 @@ export { bootstrapNavbarRuntimeClasses }
 export { bootstrapNavRuntimeClasses }
 export { bootstrapModalRuntimeClasses }
 export { bootstrapCardRuntimeClasses }
+export { bootstrapBadgeRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

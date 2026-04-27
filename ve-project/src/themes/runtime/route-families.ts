@@ -40,6 +40,9 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/card/image-top-card': ['card', 'buttons'],
 	'/ui/card/list-card': ['card'],
 	'/ui/card/cards-grid': ['global', 'buttons', 'card'],
+	'/ui/badge': ['global', 'badge'],
+	'/ui/badge/heading-badges': ['global', 'badge'],
+	'/ui/badge/pill-badges': ['global', 'badge'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

@@ -1,5 +1,6 @@
-import type { VeButtonThemeContract, VeCardThemeContract, VeDropdownThemeContract, VeGlobalThemeContract, VeModalThemeContract, VeNavThemeContract, VeNavbarThemeContract } from './contracts'
+import type { VeBadgeThemeContract, VeButtonThemeContract, VeCardThemeContract, VeDropdownThemeContract, VeGlobalThemeContract, VeModalThemeContract, VeNavThemeContract, VeNavbarThemeContract } from './contracts'
 import {
+	bootstrapBadgeRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCardRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
@@ -79,4 +80,13 @@ export function useVeCardThemeClasses(): VeCardThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return bootstrapCardRuntimeClasses
+}
+
+export function useVeBadgeThemeClasses(): VeGlobalThemeContract & VeBadgeThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapBadgeRuntimeClasses,
+	}
 }

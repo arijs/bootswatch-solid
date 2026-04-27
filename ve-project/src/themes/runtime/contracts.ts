@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -150,6 +150,26 @@ export interface VeCardThemeContract {
 	textMuted: string
 }
 
+export interface VeBadgeThemeContract {
+	badge: string
+	bgDark: string
+	bgDanger: string
+	bgInfo: string
+	bgLight: string
+	bgPrimary: string
+	bgSecondary: string
+	bgSuccess: string
+	bgWarning: string
+	h1: string
+	h2: string
+	h3: string
+	h4: string
+	h5: string
+	h6: string
+	roundedPill: string
+	textDark: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	dropdowns: VeDropdownThemeContract
@@ -158,6 +178,7 @@ export interface VeThemeContracts {
 	nav: VeNavThemeContract
 	modal: VeModalThemeContract
 	card: VeCardThemeContract
+	badge: VeBadgeThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -166,4 +187,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge']
