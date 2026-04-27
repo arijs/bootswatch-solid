@@ -125,6 +125,28 @@ import {
 	roundedPill,
 	textDark,
 } from '../bootstrap/ui/badge/base.css'
+import {
+	frame as popoverFrame,
+	frameColumn as popoverFrameColumn,
+	frameRow as popoverFrameRow,
+	justifyEnd as popoverJustifyEnd,
+	justifyStart as popoverJustifyStart,
+	popoverArrow,
+	popoverBody,
+	popoverClass,
+	popoverHeader,
+} from '../bootstrap/ui/popovers/base.css'
+import {
+	frame as tooltipFrame,
+	frameColumn as tooltipFrameColumn,
+	frameRow as tooltipFrameRow,
+	justifyCenter,
+	justifyEnd as tooltipJustifyEnd,
+	justifyStart as tooltipJustifyStart,
+	tooltipArrow,
+	tooltipClass,
+	tooltipInner,
+} from '../bootstrap/ui/tooltips/base.css'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -252,6 +274,31 @@ const bootstrapBadgeRuntimeClasses = {
 	textDark,
 } as const
 
+const bootstrapPopoverRuntimeClasses = {
+	frame: popoverFrame,
+	frameColumn: popoverFrameColumn,
+	frameRow: popoverFrameRow,
+	h3,
+	justifyEnd: popoverJustifyEnd,
+	justifyStart: popoverJustifyStart,
+	popoverArrow,
+	popoverBody,
+	popoverClass,
+	popoverHeader,
+} as const
+
+const bootstrapTooltipRuntimeClasses = {
+	frame: tooltipFrame,
+	frameColumn: tooltipFrameColumn,
+	frameRow: tooltipFrameRow,
+	justifyCenter,
+	justifyEnd: tooltipJustifyEnd,
+	justifyStart: tooltipJustifyStart,
+	tooltipArrow,
+	tooltipClass,
+	tooltipInner,
+} as const
+
 const bootstrapThemeDefinition: VeThemeDefinition = {
 	slug: 'bootstrap',
 	contracts: {
@@ -301,8 +348,10 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		modal: bootstrapModalRuntimeClasses,
 		card: bootstrapCardRuntimeClasses,
 		badge: bootstrapBadgeRuntimeClasses,
+		popovers: bootstrapPopoverRuntimeClasses,
+		tooltips: bootstrapTooltipRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips']),
 }
 
 export const bootstrapDropdownRuntimeClasses = bootstrapThemeDefinition.contracts.dropdowns
@@ -313,6 +362,8 @@ export { bootstrapNavRuntimeClasses }
 export { bootstrapModalRuntimeClasses }
 export { bootstrapCardRuntimeClasses }
 export { bootstrapBadgeRuntimeClasses }
+export { bootstrapPopoverRuntimeClasses }
+export { bootstrapTooltipRuntimeClasses }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

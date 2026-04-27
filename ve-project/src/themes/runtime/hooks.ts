@@ -1,4 +1,15 @@
-import type { VeBadgeThemeContract, VeButtonThemeContract, VeCardThemeContract, VeDropdownThemeContract, VeGlobalThemeContract, VeModalThemeContract, VeNavThemeContract, VeNavbarThemeContract } from './contracts'
+import type {
+	VeBadgeThemeContract,
+	VeButtonThemeContract,
+	VeCardThemeContract,
+	VeDropdownThemeContract,
+	VeGlobalThemeContract,
+	VeModalThemeContract,
+	VeNavThemeContract,
+	VeNavbarThemeContract,
+	VePopoverThemeContract,
+	VeTooltipThemeContract,
+} from './contracts'
 import {
 	bootstrapBadgeRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
@@ -8,6 +19,8 @@ import {
 	bootstrapModalRuntimeClasses,
 	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
+	bootstrapPopoverRuntimeClasses,
+	bootstrapTooltipRuntimeClasses,
 	type VeThemeResolution,
 } from './registry'
 import { useVeThemeRuntime } from './provider'
@@ -88,5 +101,25 @@ export function useVeBadgeThemeClasses(): VeGlobalThemeContract & VeBadgeThemeCo
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapBadgeRuntimeClasses,
+	}
+}
+
+export function useVePopoverThemeClasses(): VeGlobalThemeContract & VeButtonThemeContract & VePopoverThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapButtonRuntimeClasses,
+		...bootstrapPopoverRuntimeClasses,
+	}
+}
+
+export function useVeTooltipThemeClasses(): VeGlobalThemeContract & VeButtonThemeContract & VeTooltipThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapButtonRuntimeClasses,
+		...bootstrapTooltipRuntimeClasses,
 	}
 }

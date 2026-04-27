@@ -1,46 +1,35 @@
 import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { h3 } from '../../../themes/bootstrap/contents/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import {
-	frame,
-	frameRow,
-	justifyStart,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
-	popoverClass,
-} from '../../../themes/bootstrap/ui/popovers/base.css'
+import { useVePopoverThemeClasses } from '../../../themes/runtime/hooks'
 
-const VePopover = (bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>).extendDefaultConfig({
-	SELECTOR_ARROW: `.${popoverArrow}`,
-	SELECTOR_TITLE: `.${popoverHeader}`,
-	SELECTOR_CONTENT: `.${popoverBody}`,
-}) as typeof bootstrap.Popover
+const EndPopover: Component = () => {
+	const { bsTheme, body, containerFluid, btn, btnSecondary, frame, frameRow, h3, justifyStart, popoverArrow, popoverBody, popoverClass, popoverHeader } = useVePopoverThemeClasses()
+	const VePopover = (bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>).extendDefaultConfig({
+		SELECTOR_ARROW: `.${popoverArrow}`,
+		SELECTOR_TITLE: `.${popoverHeader}`,
+		SELECTOR_CONTENT: `.${popoverBody}`,
+	}) as typeof bootstrap.Popover
 
-const EndPopover: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid} ${frame} ${frameRow} ${justifyStart}`}>
-		<button
-			type="button"
-			class={`${btn} ${btnSecondary} pwhook-popover-trigger`}
-			data-bs-container="body"
-			data-bs-toggle="popover"
-			ref={(popover) =>
-				new VePopover(popover, {
-					template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow}"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
-				})}
-			data-bs-placement="right"
-			data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-		>
-			Popover on end
-		</button>
-	</div>
-)
+	return (
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid} ${frame} ${frameRow} ${justifyStart}`}>
+			<button
+				type="button"
+				class={`${btn} ${btnSecondary} pwhook-popover-trigger`}
+				data-bs-container="body"
+				data-bs-toggle="popover"
+				ref={(popover) =>
+					new VePopover(popover, {
+						template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow}"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
+					})}
+				data-bs-placement="right"
+				data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+			>
+				Popover on end
+			</button>
+		</div>
+	)
+}
 
 export default EndPopover
 

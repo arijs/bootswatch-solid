@@ -43,6 +43,18 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/badge': ['global', 'badge'],
 	'/ui/badge/heading-badges': ['global', 'badge'],
 	'/ui/badge/pill-badges': ['global', 'badge'],
+	'/ui/popovers': ['global', 'buttons', 'popovers'],
+	'/ui/popovers/basic-popover': ['global', 'buttons', 'popovers'],
+	'/ui/popovers/bottom-popover': ['global', 'buttons', 'popovers'],
+	'/ui/popovers/end-popover': ['global', 'buttons', 'popovers'],
+	'/ui/popovers/start-popover': ['global', 'buttons', 'popovers'],
+	'/ui/popovers/top-popover': ['global', 'buttons', 'popovers'],
+	'/ui/tooltips': ['global', 'buttons', 'tooltips'],
+	'/ui/tooltips/bottom-tooltip': ['global', 'buttons', 'tooltips'],
+	'/ui/tooltips/end-tooltip': ['global', 'buttons', 'tooltips'],
+	'/ui/tooltips/html-tooltip': ['global', 'buttons', 'tooltips'],
+	'/ui/tooltips/start-tooltip': ['global', 'buttons', 'tooltips'],
+	'/ui/tooltips/top-tooltip': ['global', 'buttons', 'tooltips'],
 }
 
 export function getRequiredFamiliesForPath(pathname: string): readonly VeThemeFamily[] {

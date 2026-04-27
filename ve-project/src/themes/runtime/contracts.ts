@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -170,6 +170,31 @@ export interface VeBadgeThemeContract {
 	textDark: string
 }
 
+export interface VePopoverThemeContract {
+	frame: string
+	frameColumn: string
+	frameRow: string
+	h3: string
+	justifyEnd: string
+	justifyStart: string
+	popoverArrow: string
+	popoverBody: string
+	popoverClass: string
+	popoverHeader: string
+}
+
+export interface VeTooltipThemeContract {
+	frame: string
+	frameColumn: string
+	frameRow: string
+	justifyCenter: string
+	justifyEnd: string
+	justifyStart: string
+	tooltipArrow: string
+	tooltipClass: string
+	tooltipInner: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	dropdowns: VeDropdownThemeContract
@@ -179,6 +204,8 @@ export interface VeThemeContracts {
 	modal: VeModalThemeContract
 	card: VeCardThemeContract
 	badge: VeBadgeThemeContract
+	popovers: VePopoverThemeContract
+	tooltips: VeTooltipThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -187,4 +214,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips']
