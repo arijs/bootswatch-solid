@@ -6,6 +6,30 @@ function ensureSelector(locator, selector) {
 	}
 }
 
+function resolveCarouselTimeoutMs(rawTimeoutMs) {
+	if (rawTimeoutMs === undefined) {
+		return 2000
+	}
+
+	if (!Number.isFinite(rawTimeoutMs) || rawTimeoutMs <= 0) {
+		throw new Error(`Invalid carousel timeout: ${rawTimeoutMs}`)
+	}
+
+	return Math.floor(rawTimeoutMs)
+}
+
+function assertCarouselIndex(rawIndex, label) {
+	if (!Number.isInteger(rawIndex) || rawIndex < 0) {
+		throw new Error(`Invalid ${label}: ${rawIndex}`)
+	}
+}
+
+function assertCarouselDirection(rawDirection) {
+	if (rawDirection !== 'next' && rawDirection !== 'prev') {
+		throw new Error(`Invalid carousel direction: ${rawDirection}`)
+	}
+}
+
 async function forceOpenDropdownMenu(locator) {
 	return locator.evaluate((toggle) => {
 		const toggleElement = toggle
@@ -36,6 +60,207 @@ async function forceOpenDropdownMenu(locator) {
 
 		return true
 	})
+}
+
+async function slideCarouselToIndex(locator, {
+	targetIndex,
+	timeoutMs,
+	scenarioKind,
+	state,
+	route,
+}) {
+	await locator.evaluate(
+		async (carouselElement, config) => {
+			const getActiveIndex = (items) =>
+				items.findIndex((item) => item.classList.contains('active'))
+
+			const bootstrap = window.bootstrap
+			if (!bootstrap?.Carousel) {
+				throw new Error('Bootstrap Carousel API is unavailable on this route')
+			}
+
+			const items = [...carouselElement.querySelectorAll('.carousel-item')]
+			if (items.length === 0) {
+				throw new Error('No .carousel-item elements found')
+			}
+
+			if (config.targetIndex >= items.length) {
+				throw new Error(
+					`Target index ${config.targetIndex} is out of bounds for ${items.length} slide(s)`,
+				)
+			}
+
+			const instance = bootstrap.Carousel.getOrCreateInstance(carouselElement)
+			instance.pause()
+
+			const activeIndex = getActiveIndex(items)
+			if (activeIndex === config.targetIndex) {
+				return
+			}
+
+			await new Promise((resolve, reject) => {
+				const timeoutId = window.setTimeout(() => {
+					carouselElement.removeEventListener('slid.bs.carousel', onSlid)
+					reject(
+						new Error(
+							`${config.scenarioKind} timed out after ${config.timeoutMs}ms (route=${config.route}, state=${config.state}, targetIndex=${config.targetIndex})`,
+						),
+					)
+				}, config.timeoutMs)
+
+				const onSlid = (event) => {
+					const eventTargetIndex = event?.to ?? event?.detail?.to
+					if (eventTargetIndex !== undefined && eventTargetIndex !== config.targetIndex) {
+						return
+					}
+
+					const settledIndex = getActiveIndex(items)
+					if (settledIndex !== config.targetIndex) {
+						return
+					}
+
+					window.clearTimeout(timeoutId)
+					carouselElement.removeEventListener('slid.bs.carousel', onSlid)
+					resolve()
+				}
+
+				carouselElement.addEventListener('slid.bs.carousel', onSlid)
+				instance.to(config.targetIndex)
+			})
+
+			const settledIndex = getActiveIndex(items)
+			if (settledIndex !== config.targetIndex) {
+				throw new Error(
+					`Carousel settled at index ${settledIndex}, expected ${config.targetIndex}`,
+				)
+			}
+		},
+		{
+			targetIndex,
+			timeoutMs,
+			scenarioKind,
+			state,
+			route,
+		},
+	)
+}
+
+async function clickCarouselControl(locator, {
+	startIndex,
+	direction,
+	expectedIndex,
+	timeoutMs,
+	controlSelector,
+	scenarioKind,
+	state,
+	route,
+}) {
+	await locator.evaluate(
+		async (carouselElement, config) => {
+			const getActiveIndex = (items) =>
+				items.findIndex((item) => item.classList.contains('active'))
+			const waitForSlidToIndex = (targetIndex) =>
+				new Promise((resolve, reject) => {
+					const timeoutId = window.setTimeout(() => {
+						carouselElement.removeEventListener('slid.bs.carousel', onSlid)
+						reject(
+							new Error(
+								`${config.scenarioKind} timed out after ${config.timeoutMs}ms (route=${config.route}, state=${config.state}, targetIndex=${targetIndex}, direction=${config.direction})`,
+							),
+						)
+					}, config.timeoutMs)
+
+					const onSlid = (event) => {
+						const eventTargetIndex = event?.to ?? event?.detail?.to
+						if (eventTargetIndex !== undefined && eventTargetIndex !== targetIndex) {
+							return
+						}
+
+						const settledIndex = getActiveIndex(items)
+						if (settledIndex !== targetIndex) {
+							return
+						}
+
+						window.clearTimeout(timeoutId)
+						carouselElement.removeEventListener('slid.bs.carousel', onSlid)
+						resolve()
+					}
+
+					carouselElement.addEventListener('slid.bs.carousel', onSlid)
+				})
+
+			const bootstrap = window.bootstrap
+			if (!bootstrap?.Carousel) {
+				throw new Error('Bootstrap Carousel API is unavailable on this route')
+			}
+
+			const items = [...carouselElement.querySelectorAll('.carousel-item')]
+			if (items.length === 0) {
+				throw new Error('No .carousel-item elements found')
+			}
+
+			const instance = bootstrap.Carousel.getOrCreateInstance(carouselElement)
+			instance.pause()
+
+			if (config.startIndex !== null) {
+				if (config.startIndex >= items.length) {
+					throw new Error(
+						`Start index ${config.startIndex} is out of bounds for ${items.length} slide(s)`,
+					)
+				}
+
+				const activeIndex = getActiveIndex(items)
+				if (activeIndex !== config.startIndex) {
+					const waitPromise = waitForSlidToIndex(config.startIndex)
+					instance.to(config.startIndex)
+					await waitPromise
+				}
+			}
+
+			const currentIndex = getActiveIndex(items)
+			if (currentIndex < 0) {
+				throw new Error('Carousel has no active item before control click')
+			}
+
+			const derivedExpectedIndex =
+				config.direction === 'next'
+					? (currentIndex + 1) % items.length
+					: (currentIndex - 1 + items.length) % items.length
+			const targetIndex = config.expectedIndex ?? derivedExpectedIndex
+
+			if (targetIndex >= items.length) {
+				throw new Error(
+					`Expected index ${targetIndex} is out of bounds for ${items.length} slide(s)`,
+				)
+			}
+
+			const control =
+				carouselElement.querySelector(config.controlSelector) ??
+				document.querySelector(config.controlSelector)
+			if (!control) {
+				throw new Error(`Carousel control not found: ${config.controlSelector}`)
+			}
+
+			const waitPromise = waitForSlidToIndex(targetIndex)
+			control.click()
+			await waitPromise
+
+			const settledIndex = getActiveIndex(items)
+			if (settledIndex !== targetIndex) {
+				throw new Error(`Carousel settled at index ${settledIndex}, expected ${targetIndex}`)
+			}
+		},
+		{
+			startIndex,
+			direction,
+			expectedIndex,
+			timeoutMs,
+			controlSelector,
+			scenarioKind,
+			state,
+			route,
+		},
+	)
 }
 
 export async function stabilizeForScreenshot(page) {
@@ -91,13 +316,24 @@ export async function stabilizeForScreenshot(page) {
 		}
 
 		// Carousels can transiently mark multiple indicators as active during hydration/ride init.
-		// Force a single stable active item/indicator pair before capture.
+		// Force a single stable active item/indicator pair before capture while
+		// preserving the currently active slide selected by an interactive scenario.
 		for (const carousel of document.querySelectorAll('.carousel')) {
 			try {
 				const items = [...carousel.querySelectorAll('.carousel-item')]
 				if (items.length === 0) continue
 
-				const activeIndex = 0
+				const indicators = [...carousel.querySelectorAll('.carousel-indicators > *')]
+				const activeItemIndex = items.findIndex((item) => item.classList.contains('active'))
+				const activeIndicatorIndex = indicators.findIndex((indicator) =>
+					indicator.classList.contains('active'),
+				)
+				const activeIndex =
+					activeItemIndex >= 0
+						? activeItemIndex
+						: activeIndicatorIndex >= 0
+							? activeIndicatorIndex
+							: 0
 
 				for (let index = 0; index < items.length; index += 1) {
 					const item = items[index]
@@ -113,8 +349,6 @@ export async function stabilizeForScreenshot(page) {
 						item.classList.remove('active')
 					}
 				}
-
-				const indicators = [...carousel.querySelectorAll('.carousel-indicators > *')]
 				for (let index = 0; index < indicators.length; index += 1) {
 					const indicator = indicators[index]
 					indicator.style.setProperty('transition', 'none', 'important')
@@ -245,6 +479,57 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 					timeout: 1500,
 				})
 			}
+			break
+		}
+		case 'carousel-to-index': {
+			assertCarouselIndex(scenario.targetIndex, 'targetIndex')
+			const timeoutMs = resolveCarouselTimeoutMs(scenario.transitionTimeoutMs)
+			const carouselSelector = scenario.carouselSelector ?? scenario.selector
+			const carouselLocator = page.locator(carouselSelector).first()
+			await carouselLocator.waitFor({
+				state: scenario.locatorState?.(themeSlug) ?? 'visible',
+				timeout: 5000,
+			})
+
+			await slideCarouselToIndex(carouselLocator, {
+				targetIndex: scenario.targetIndex,
+				timeoutMs,
+				scenarioKind: scenario.kind,
+				state: scenario.state ?? 'unknown',
+				route: scenario.route ?? 'unknown',
+			})
+			break
+		}
+		case 'carousel-click-control': {
+			assertCarouselDirection(scenario.direction)
+			const timeoutMs = resolveCarouselTimeoutMs(scenario.transitionTimeoutMs)
+			const carouselSelector = scenario.carouselSelector ?? scenario.selector
+			const controlSelector =
+				scenario.controlSelector ?? `[data-bs-slide="${scenario.direction}"]`
+
+			if (scenario.startIndex !== undefined) {
+				assertCarouselIndex(scenario.startIndex, 'startIndex')
+			}
+			if (scenario.expectedIndex !== undefined) {
+				assertCarouselIndex(scenario.expectedIndex, 'expectedIndex')
+			}
+
+			const carouselLocator = page.locator(carouselSelector).first()
+			await carouselLocator.waitFor({
+				state: scenario.locatorState?.(themeSlug) ?? 'visible',
+				timeout: 5000,
+			})
+
+			await clickCarouselControl(carouselLocator, {
+				startIndex: scenario.startIndex ?? null,
+				direction: scenario.direction,
+				expectedIndex: scenario.expectedIndex,
+				timeoutMs,
+				controlSelector,
+				scenarioKind: scenario.kind,
+				state: scenario.state ?? 'unknown',
+				route: scenario.route ?? 'unknown',
+			})
 			break
 		}
 		default:

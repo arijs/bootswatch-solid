@@ -2,7 +2,12 @@
 
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
+import * as bootstrap from 'bootstrap'
 import './cheatsheet.scss'
+
+if (typeof window !== 'undefined') {
+	;(window as Window & { bootstrap?: typeof bootstrap }).bootstrap = bootstrap
+}
 
 // import 'bootstrap/scss/bootstrap.scss';
 

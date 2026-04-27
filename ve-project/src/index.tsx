@@ -1,6 +1,12 @@
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
+import * as bootstrap from 'bootstrap'
 import Home from './components/HomePage'
+
+if (typeof window !== 'undefined') {
+	;(window as Window & { bootstrap?: typeof bootstrap }).bootstrap = bootstrap
+}
+
 import AccordionPage from './components/ui/AccordionPage'
 import AlertsPage from './components/ui/AlertsPage'
 import BadgePage from './components/ui/BadgePage'
