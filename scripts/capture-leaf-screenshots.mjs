@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import micromatch from 'micromatch'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
+import { reportVeRuntimeCoverageGaps } from './capture-leaf-screenshots/ve-runtime-coverage.mjs'
 import {
 	BASE_URL,
 	INDEX_FILE,
@@ -41,12 +42,15 @@ const {
 	verificationEnabled,
 	veVerificationEnabled,
 	veMissingOnly,
+	veRuntimeMissingOnly,
+	veRuntimeMissingLeafs,
 	verificationMaxDiffRatio,
 	strictScenarioAssert,
 	routeFilter,
 	themeFilter,
 	stateFilter,
 	maxThemes,
+	maxThemesSpecified,
 	requestedWidth,
 } = parseCaptureCli()
 
@@ -101,6 +105,43 @@ async function main() {
 				: '[component-file-unresolved]'
 			console.warn(`  ${route} -> ${componentRef}`)
 		}
+		return
+	}
+
+	if (veRuntimeMissingOnly) {
+		if (!themeSource) {
+			throw new Error('Theme source unavailable for --ve-runtime-missing-only mode.')
+		}
+
+		const routePatterns = routeFilter ? [...routeFilter] : null
+		const selectedLeafRoutes = routePatterns
+			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
+			: leafRoutes
+		if (selectedLeafRoutes.length === 0) {
+			throw new Error(
+				'No leaf routes selected for --ve-runtime-missing-only after applying --route filters.',
+			)
+		}
+
+		const themeNames = parseThemeNames(themeSource)
+		let selectedThemes = filterThemes(themeNames, themeFilter)
+		const themesBeforeLimit = selectedThemes.length
+		if (maxThemesSpecified) {
+			selectedThemes = selectedThemes.slice(0, maxThemes)
+		}
+
+		if (selectedThemes.length === 0) {
+			throw new Error('No themes selected for --ve-runtime-missing-only after applying filters.')
+		}
+
+		reportVeRuntimeCoverageGaps({
+			selectedLeafRoutes,
+			selectedThemes,
+			themesBeforeLimit,
+			maxThemes,
+			maxThemesSpecified,
+			includeLeafRoutes: veRuntimeMissingLeafs,
+		})
 		return
 	}
 

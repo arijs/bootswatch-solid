@@ -12,6 +12,8 @@ const BOOLEAN_FLAGS = new Set([
 	'--verify-css-rendering',
 	'--verify-ve-rendering',
 	'--ve-missing-only',
+	'--ve-runtime-missing-only',
+	'--ve-runtime-missing-leafs',
 	'--strict-scenarios',
 ])
 
@@ -49,7 +51,19 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 
 	const verificationEnabled = argv.includes('--verify-css-rendering')
 	const veMissingOnly = argv.includes('--ve-missing-only')
+	const veRuntimeMissingLeafs = argv.includes('--ve-runtime-missing-leafs')
+	const veRuntimeMissingOnly = argv.includes('--ve-runtime-missing-only') || veRuntimeMissingLeafs
 	const veVerificationEnabled = argv.includes('--verify-ve-rendering') || veMissingOnly
+	if (veRuntimeMissingOnly && veMissingOnly) {
+		throw new Error(
+			'--ve-missing-only and --ve-runtime-missing-only are mutually exclusive. Choose one fast-report mode per run.',
+		)
+	}
+	if (veRuntimeMissingOnly && (verificationEnabled || veVerificationEnabled)) {
+		throw new Error(
+			'--ve-runtime-missing-only is mutually exclusive with verification modes. Remove --verify-css-rendering/--verify-ve-rendering/--ve-missing-only.',
+		)
+	}
 	if (verificationEnabled && veVerificationEnabled) {
 		throw new Error(
 			'--verify-css-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
@@ -59,6 +73,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 
+	const maxThemesSpecified = argv.some((arg) => arg.startsWith('--max-themes='))
 	const maxThemes = parseIntArg(argv, '--max-themes', 1)
 
 	return {
@@ -70,8 +85,11 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		verificationEnabled,
 		veVerificationEnabled,
 		veMissingOnly,
+		veRuntimeMissingOnly,
+		veRuntimeMissingLeafs,
 		verificationMaxDiffRatio: parseFloatArg(argv, '--verify-max-diff-ratio', 0.001, 0),
 		strictScenarioAssert: argv.includes('--strict-scenarios'),
+		maxThemesSpecified,
 		// Route filters accept exact paths and glob patterns (matched via micromatch).
 		routeFilter: parseCsvArg(argv, '--route'),
 		themeFilter: parseCsvArg(argv, '--theme'),

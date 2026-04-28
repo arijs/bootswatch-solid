@@ -47,6 +47,23 @@ VE artifacts are written beside baseline images:
 - `ve-{width}x{height}.png` - captured Vanilla Extract rendering
 - `ve-{width}x{height}.verify.png` - pixelmatch comparison image
 
+### VE runtime coverage report mode (`--ve-runtime-missing-only`)
+
+A new fast report mode shows remaining VE runtime family coverage gaps per
+theme and route.
+
+Key behavior:
+
+- New flag: `--ve-runtime-missing-only`
+- Optional detail flag: `--ve-runtime-missing-leafs`
+- Does not build, start preview servers, or run Playwright
+- Reports missing runtime families as `theme -> family`
+- Route-level output is hidden by default and enabled with `--ve-runtime-missing-leafs`
+- Uses route requirements from `ve-project/src/themes/runtime/route-families.ts`
+- Uses implemented family availability from `ve-project/src/themes/runtime/registry.ts`
+- Supports route narrowing via `--route=...`
+- Supports theme narrowing via `--theme=...`
+
 ### Two-phase CSS extraction and verification
 
 The script now enforces a two-phase workflow when working with CSS extraction and verification:
@@ -460,6 +477,8 @@ states do not bleed across captures.
 | `--dry-run-writeback` | off | Compute and log writeback changes but do not write them to disk. |
 | `--no-css-extraction` | off | Disable CSS extraction. Use in Phase 2 verification runs: `--no-css-extraction --verify-css-rendering`. |
 | `--verify-css-rendering` | off | Enable CSS rendering verification against baseline screenshots. Requires Phase 2 execution (use with `--no-css-extraction`). Automatically triggers a rebuild to ensure CSS artifacts are current. |
+| `--ve-runtime-missing-only` | off | Fast report-only mode that lists missing VE runtime families per selected theme and route. No build/server/Playwright. |
+| `--ve-runtime-missing-leafs` | off | Route-detail toggle for runtime gap reporting; automatically enables `--ve-runtime-missing-only` and prints affected leaf routes under each missing family. |
 | `--verify-max-diff-ratio=N` | `0.001` | Maximum allowed pixel difference ratio for CSS verification (0.0–1.0). Only applies when `--verify-css-rendering` is set. |
 | `--strict-scenarios` | off | Fail fast if any leaf route is missing from curated scenario routes. |
 
@@ -503,6 +522,24 @@ node scripts/capture-leaf-screenshots.mjs --max-themes=27 --no-css-extraction --
 
 ```
 node scripts/capture-leaf-screenshots.mjs --theme=darkly --max-themes=1 --dry-run-writeback
+```
+
+**Fast VE runtime gap report for all themes:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only
+```
+
+**Fast VE runtime gap report for selected themes/routes:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy,quartz --route=/ui/buttons/**,/forms/**
+```
+
+**Fast VE runtime gap report with affected leaf routes shown:**
+
+```
+node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --ve-runtime-missing-leafs --theme=sketchy --route=/ui/buttons/**
 ```
 
 **Capture one route at two states for quick iteration:**
