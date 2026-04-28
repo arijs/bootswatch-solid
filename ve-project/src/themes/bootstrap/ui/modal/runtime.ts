@@ -1,0 +1,42 @@
+import { bodyText } from '../../body.css'
+import { h4, h5 } from '../../contents/generated.css'
+import { btnClose } from '../alerts/base.css'
+import {
+	actionsRow,
+	flexWrap,
+	justifyContentBetween,
+	modal,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalTitle,
+	fade as modalFadeClass,
+} from './base.css'
+
+export const bootstrapModalRuntimeClasses = {
+	actionsRow,
+	bodyText,
+	btnClose,
+	fade: modalFadeClass,
+	flexWrap,
+	h4,
+	h5,
+	justifyContentBetween,
+	modal,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalTitle,
+} as const

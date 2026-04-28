@@ -1,0 +1,31 @@
+import {
+	fade,
+	nav,
+	navButtonReset,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
+} from './base.css'
+
+export const bootstrapNavRuntimeClasses = {
+	fade,
+	nav,
+	navButtonReset,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
+} as const

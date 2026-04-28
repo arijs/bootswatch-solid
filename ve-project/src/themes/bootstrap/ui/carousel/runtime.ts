@@ -1,0 +1,35 @@
+import { visuallyHidden } from '../dropdowns/base.css'
+import {
+	carousel,
+	carouselActive,
+	carouselCaption,
+	carouselCaptionResponsive,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselIndicators,
+	carouselIndicatorsTarget,
+	carouselInner,
+	carouselItem,
+	carouselSlide,
+	carouselSlideImage,
+} from './base.css'
+
+export const bootstrapCarouselRuntimeClasses = {
+	carousel,
+	carouselActive,
+	carouselCaption,
+	carouselCaptionResponsive,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselIndicators,
+	carouselIndicatorsTarget,
+	carouselInner,
+	carouselItem,
+	carouselSlide,
+	carouselSlideImage,
+	visuallyHidden,
+} as const
