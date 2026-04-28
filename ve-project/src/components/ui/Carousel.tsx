@@ -1,30 +1,24 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
-import {
-	alignSelfStart,
-	bdHeading,
-	h3,
-	mb3,
-	mbXl2,
-	mt5,
-	mtXl0,
-	my3,
-	stickyXlTop,
-} from '../../themes/bootstrap/contents/generated.css'
+import { useVeContentsThemeClasses } from '../../themes/runtime/hooks'
 import CarouselExample from './carousel/CarouselExample'
 
-const Carousel: Component = () => (
-	<article class={my3} id="carousel">
-		<div class={`${bdHeading} ${stickyXlTop} ${alignSelfStart} ${mt5} ${mb3} ${mtXl0} ${mbXl2}`}>
-			<h3 class={h3}>Carousel</h3>
-			<DocLink href="/ui/carousel" />
-			<DocLink href="/ui/carousel/carousel-example">Carousel</DocLink>
-		</div>
+const Carousel: Component = () => {
+	const cls = useVeContentsThemeClasses()
 
-		<div>
-			<CarouselExample />
-		</div>
-	</article>
-)
+	return (
+		<article class={cls.my3} id="carousel">
+			<div class={`${cls.bdHeading} ${cls.stickyXlTop} ${cls.alignSelfStart} ${cls.mt5} ${cls.mb3} ${cls.mtXl0} ${cls.mbXl2}`}>
+				<h3 class={cls.h3}>Carousel</h3>
+				<DocLink href="/ui/carousel" />
+				<DocLink href="/ui/carousel/carousel-example">Carousel</DocLink>
+			</div>
+
+			<div>
+				<CarouselExample />
+			</div>
+		</article>
+	)
+}
 
 export default Carousel

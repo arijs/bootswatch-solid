@@ -11,12 +11,21 @@ export interface VeGlobalThemeContract {
 }
 
 export interface VeContentsThemeContract {
+	alignSelfStart: string
+	bdHeading: string
 	bdPlaceholderImg: string
 	bdPlaceholderImgLg: string
+	h3: string
 	h4: string
 	h5: string
+	mb3: string
+	mbXl2: string
+	mt5: string
+	mtXl0: string
+	my3: string
 	paragraph: string
 	px3: string
+	stickyXlTop: string
 }
 
 export interface VeFormsThemeContract {

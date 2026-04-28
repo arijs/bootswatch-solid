@@ -1,11 +1,35 @@
 import { px3 } from './base.css'
-import { bdPlaceholderImg, bdPlaceholderImgLg, h4, h5, paragraph } from './generated.css'
-
-export const bootstrapContentsRuntimeClasses = {
+import {
+	alignSelfStart,
+	bdHeading,
 	bdPlaceholderImg,
 	bdPlaceholderImgLg,
+	h3,
 	h4,
 	h5,
+	mb3,
+	mbXl2,
+	mt5,
+	mtXl0,
+	my3,
+	paragraph,
+	stickyXlTop,
+} from './generated.css'
+
+export const bootstrapContentsRuntimeClasses = {
+	alignSelfStart,
+	bdHeading,
+	bdPlaceholderImg,
+	bdPlaceholderImgLg,
+	h3,
+	h4,
+	h5,
+	mb3,
+	mbXl2,
+	mt5,
+	mtXl0,
+	my3,
 	paragraph,
 	px3,
+	stickyXlTop,
 } as const

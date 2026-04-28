@@ -48,13 +48,14 @@ This section records what has already been implemented in `ve-project` and what 
 17. Scrollspy routes now consume runtime contracts (`/ui/scrollspy/*`).
 18. Pagination routes now consume runtime contracts (`/ui/pagination/*`).
 19. Forms routes now consume runtime contracts (`/forms/*`).
-20. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-21. Structured warning emission is implemented for theme skips with route/family metadata.
-22. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+20. Carousel routes now consume runtime contracts (`/ui/carousel/*`).
+21. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+22. Structured warning emission is implemented for theme skips with route/family metadata.
+23. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns, buttons, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, and forms are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
+1. Family migration breadth is still partial: dropdowns, buttons, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, and carousel are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
 
 ### Pending
 
@@ -384,6 +385,9 @@ Behavior Changes:
 10. Added `navbar` and `nav` family contracts, registry slices, hooks, and explicit route-family mappings.
 11. Migrated navbar and nav showcase routes to runtime hook consumption.
 12. Migrated mixed consumers (`CardTabsExample`, `ScrollspyExample`) to runtime hooks for already-migrated families and added explicit mixed-family route requirements.
+13. Expanded the `contents` runtime contract with heading/spacing utility tokens used by carousel section wrappers.
+14. Migrated `Carousel` route wrapper from direct Bootstrap imports to runtime hook consumption.
+15. Marked carousel route family migration complete in the implementation status section.
 
 Validation:
 1. Bootstrap dropdown route renders normally.
@@ -397,7 +401,10 @@ Validation:
 9. Sketchy nav route (`/ui/navs/tabbed-nav`) renders global skip-safe output with `[ve-theme-skip]` warning.
 10. Bootstrap scrollspy/card-tabs routes render normally in VE preview after mixed-hook migration.
 11. Sketchy scrollspy/card-tabs routes render global skip-safe output with `[ve-theme-skip]` warnings and explicit multi-family metadata.
+12. `pnpm ve:build` passes after carousel wrapper runtime migration.
+13. Bootstrap carousel route (`/ui/carousel/carousel-example`) capture run completes with all expected states saved and zero failures.
+14. Sketchy carousel route (`/ui/carousel/carousel-example`) capture run completes with all expected states saved and zero failures.
 
 Risks / Pending:
-1. Global gate is now stable, but most non-dropdown families are still pending contract migration.
+1. Global gate is now stable, and core migrated families include dropdowns, buttons, navbar/nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, and carousel; remaining `ui` families are still pending contract migration.
 2. Non-Bootstrap contract implementations are still pending.
