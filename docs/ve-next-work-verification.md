@@ -53,6 +53,92 @@ Expected result: missing family count decreases (or impacted route count decreas
 6. Record the decision and result in:
 - `docs/ve-theme-selection-changelog.md`
 
+## Family Conversion Workflow (Bootstrap CSS -> VE + Runtime)
+
+Use this section after you choose `<chosen-theme>` and `<chosen-family>` from the runtime report.
+
+### What "family converted" means
+
+A family is considered converted for a theme only when all of the following are true:
+
+1. VE classes exist for that family under the theme (or a temporary adapter is explicitly created).
+2. A runtime contract file exports the family runtime classes for that theme.
+3. `ve-project/src/themes/runtime/registry.ts` includes the family in both:
+- `contracts` for the theme definition
+- `availableFamilies` for the theme definition
+4. Runtime coverage (`--ve-runtime-missing-only`) no longer reports that family as missing for the theme.
+
+### Inputs to gather before editing
+
+1. Baseline family implementation in Bootstrap VE theme:
+- `ve-project/src/themes/bootstrap/**`
+2. Route-level extracted CSS from screenshots for target theme/family:
+- `screenshots/<chosen-theme>/<route>/<state>/style.css`
+3. Runtime requirements:
+- `ve-project/src/themes/runtime/route-families.ts`
+
+### Minimal implementation checklist
+
+1. Choose strategy for `<chosen-family>`:
+- Adapter strategy (fast contract coverage): re-export Bootstrap runtime classes.
+- Full strategy (visual parity): create/adjust theme-specific VE class files and expose them via runtime.
+
+2. Create or update family VE class files for `<chosen-theme>`.
+- Typical location pattern:
+- `ve-project/src/themes/<chosen-theme>/ui/<family>/*.css.ts`
+- For non-`ui` families:
+- `ve-project/src/themes/<chosen-theme>/<family>/*.css.ts`
+- Translate needed selectors and declarations from extracted CSS into VE class exports used by runtime.
+
+3. Create family runtime file for `<chosen-theme>`.
+- Typical location pattern:
+- `ve-project/src/themes/<chosen-theme>/ui/<family>/runtime.ts`
+- Or:
+- `ve-project/src/themes/<chosen-theme>/<family>/runtime.ts`
+- Export a `<theme><Family>RuntimeClasses` object matching the family contract shape.
+
+4. Register the family in runtime registry.
+- Update `ve-project/src/themes/runtime/registry.ts`:
+- Import `<theme><Family>RuntimeClasses`.
+- Add family under `<theme>ThemeDefinition.contracts`.
+- Add family string to `<theme>ThemeDefinition.availableFamilies`.
+
+5. Keep VE architecture constraints intact.
+- In `*.css.ts`, do not use quoted raw custom-property keys like `'--bs-*'`.
+- Use `createVar()` contract vars from `ve-project/src/theme-contract/**` and reference imported vars.
+- In route TSX, keep static classes limited to `bd-example` and `pwhook-*`; move other styling into VE classes.
+
+6. Validate compile and runtime coverage.
+
+```powershell
+pnpm ve:build
+node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=<chosen-theme>
+```
+
+7. Confirm expected delta.
+- Family count should decrease by at least 1, or impacted routes for the targeted family should decrease.
+
+8. Record result in changelog.
+- `docs/ve-theme-selection-changelog.md`
+
+### Optional scoping command (when family spans many routes)
+
+Use this only when you need leaf-route detail to stage implementation order:
+
+```powershell
+node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --theme=<chosen-theme>
+```
+
+### Definition of done per family
+
+1. Build passes.
+2. Runtime report no longer lists `<chosen-family>` as missing for `<chosen-theme>`.
+3. Changelog entry includes:
+- chosen theme/family
+- strategy used (adapter or full)
+- verification command output summary
+- remaining risk/pending work
+
 ## Next Themes After Initial Trio
 
 After `sketchy`, `cerulean`, and `quartz` are fully converted (no missing families for selected routes), continue verification with the remaining known theme slugs:
