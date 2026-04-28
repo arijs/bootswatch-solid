@@ -6,6 +6,7 @@ import { bootstrapFormsRuntimeClasses } from '../bootstrap/forms/runtime'
 import { bootstrapAccordionRuntimeClasses } from '../bootstrap/ui/accordion/runtime'
 import { bootstrapAlertRuntimeClasses } from '../bootstrap/ui/alerts/runtime'
 import { bootstrapBadgeRuntimeClasses } from '../bootstrap/ui/badge/runtime'
+import { bootstrapBreadcrumbRuntimeClasses } from '../bootstrap/ui/breadcrumb/runtime'
 import { bootstrapButtonRuntimeClasses } from '../bootstrap/ui/buttons/runtime'
 import { bootstrapCardRuntimeClasses } from '../bootstrap/ui/card/runtime'
 import { bootstrapCarouselRuntimeClasses } from '../bootstrap/ui/carousel/runtime'
@@ -35,6 +36,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		dropdowns: bootstrapDropdownRuntimeClasses,
 		buttons: bootstrapButtonRuntimeClasses,
 		alerts: bootstrapAlertRuntimeClasses,
+		breadcrumb: bootstrapBreadcrumbRuntimeClasses,
 		navbar: bootstrapNavbarRuntimeClasses,
 		nav: bootstrapNavRuntimeClasses,
 		modal: bootstrapModalRuntimeClasses,
@@ -47,7 +49,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		pagination: bootstrapPaginationRuntimeClasses,
 		carousel: bootstrapCarouselRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']),
 }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
@@ -127,6 +129,7 @@ export {
 	bootstrapAccordionRuntimeClasses,
 	bootstrapAlertRuntimeClasses,
 	bootstrapBadgeRuntimeClasses,
+	bootstrapBreadcrumbRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCardRuntimeClasses,
 	bootstrapCarouselRuntimeClasses,

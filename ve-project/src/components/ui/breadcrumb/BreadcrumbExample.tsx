@@ -1,33 +1,33 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { link, listBase } from '../../../themes/bootstrap/contents/generated.css'
-import { breadcrumb, breadcrumbItem, breadcrumbItemActive } from '../../../themes/bootstrap/ui/breadcrumb/base.css'
+import { useVeBreadcrumbThemeClasses } from '../../../themes/runtime/hooks'
 
-const BreadcrumbExample: Component = () => (
-	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
-		<nav aria-label="breadcrumb">
-			<ol class={`${listBase} ${breadcrumb}`}>
-				<li class={breadcrumbItem}>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class={link} href="#" onClick={(e) => e.preventDefault()}>
-						Home
-					</a>
-				</li>
-				<li class={breadcrumbItem}>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class={link} href="#" onClick={(e) => e.preventDefault()}>
-						Library
-					</a>
-				</li>
-				<li class={`${breadcrumbItem} ${breadcrumbItemActive}`} aria-current="page">
-					Data
-				</li>
-			</ol>
-		</nav>
-	</div>
-)
+const BreadcrumbExample: Component = () => {
+	const cls = useVeBreadcrumbThemeClasses()
+
+	return (
+		<div class={`bd-example ${cls.containerFluid} ${cls.bsTheme} ${cls.body}`}>
+			<nav aria-label="breadcrumb">
+				<ol class={`${cls.listBase} ${cls.breadcrumb}`}>
+					<li class={cls.breadcrumbItem}>
+						{/* biome-ignore lint: <a> is used for demonstration purposes */}
+						<a class={cls.link} href="#" onClick={(e) => e.preventDefault()}>
+							Home
+						</a>
+					</li>
+					<li class={cls.breadcrumbItem}>
+						{/* biome-ignore lint: <a> is used for demonstration purposes */}
+						<a class={cls.link} href="#" onClick={(e) => e.preventDefault()}>
+							Library
+						</a>
+					</li>
+					<li class={`${cls.breadcrumbItem} ${cls.breadcrumbItemActive}`} aria-current="page">
+						Data
+					</li>
+				</ol>
+			</nav>
+		</div>
+	)
+}
 
 export default BreadcrumbExample
 

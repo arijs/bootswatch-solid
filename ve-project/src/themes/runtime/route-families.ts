@@ -29,6 +29,8 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/alerts/secondary-alert': ['global', 'alerts'],
 	'/ui/alerts/success-alert': ['global', 'alerts'],
 	'/ui/alerts/warning-alert': ['global', 'alerts'],
+	'/ui/breadcrumb': ['global', 'breadcrumb'],
+	'/ui/breadcrumb/breadcrumb-example': ['global', 'breadcrumb'],
 	'/ui/navbar': ['global', 'navbar'],
 	'/ui/navbar/navbar-example': ['global', 'navbar'],
 	'/ui/navs': ['global', 'nav'],

@@ -2,6 +2,7 @@ import type {
 	VeAccordionThemeContract,
 	VeAlertThemeContract,
 	VeBadgeThemeContract,
+	VeBreadcrumbThemeContract,
 	VeButtonThemeContract,
 	VeCarouselThemeContract,
 	VeCardThemeContract,
@@ -21,6 +22,7 @@ import {
 	bootstrapAccordionRuntimeClasses,
 	bootstrapAlertRuntimeClasses,
 	bootstrapBadgeRuntimeClasses,
+	bootstrapBreadcrumbRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCarouselRuntimeClasses,
 	bootstrapCardRuntimeClasses,
@@ -100,6 +102,15 @@ export function useVeAlertThemeClasses(): VeGlobalThemeContract & VeAlertThemeCo
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapAlertRuntimeClasses,
+	}
+}
+
+export function useVeBreadcrumbThemeClasses(): VeGlobalThemeContract & VeBreadcrumbThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapBreadcrumbRuntimeClasses,
 	}
 }
 
