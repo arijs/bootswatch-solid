@@ -24,6 +24,7 @@ import { bootstrapSpinnerRuntimeClasses } from '../bootstrap/ui/spinners/runtime
 import { bootstrapToastRuntimeClasses } from '../bootstrap/ui/toasts/runtime'
 import { bootstrapTooltipRuntimeClasses } from '../bootstrap/ui/tooltips/runtime'
 import { sketchyButtonRuntimeClasses } from '../sketchy/ui/buttons/runtime'
+import { sketchyGlobalRuntimeClasses } from '../sketchy/global/runtime'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -33,9 +34,16 @@ export const bootstrapGlobalRuntimeClasses = {
 	containerFluid,
 } as const
 
-const bootstrapThemeDefinition: VeThemeDefinition = {
-	slug: 'bootstrap',
-	contracts: {
+function buildThemeDefinition(slug: VeThemeDefinition['slug'], contracts: VeThemeDefinition['contracts'], extras: readonly VeThemeFamily[] = []): VeThemeDefinition {
+	const contractFamilies = Object.keys(contracts) as VeThemeFamily[]
+	return {
+		slug,
+		contracts,
+		availableFamilies: new Set<VeThemeFamily>([...contractFamilies, ...extras]),
+	}
+}
+
+const bootstrapThemeDefinition = buildThemeDefinition('bootstrap', {
 		global: bootstrapGlobalRuntimeClasses,
 		contents: bootstrapContentsRuntimeClasses,
 		forms: bootstrapFormsRuntimeClasses,
@@ -59,17 +67,12 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		spinners: bootstrapSpinnerRuntimeClasses,
 		toasts: bootstrapToastRuntimeClasses,
 		listGroup: bootstrapListGroupRuntimeClasses,
-	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup']),
-}
+}, ['ui'])
 
-const sketchyThemeDefinition: VeThemeDefinition = {
-	slug: 'sketchy',
-	contracts: {
+const sketchyThemeDefinition = buildThemeDefinition('sketchy', {
+		global: sketchyGlobalRuntimeClasses,
 		buttons: sketchyButtonRuntimeClasses,
-	},
-	availableFamilies: new Set<VeThemeFamily>(['buttons']),
-}
+})
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,

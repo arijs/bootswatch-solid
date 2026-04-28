@@ -425,7 +425,7 @@ export interface VeThemeContracts {
 
 export interface VeThemeDefinition {
 	slug: VeThemeSlug
-	contracts: VeThemeContracts
+	contracts: Partial<VeThemeContracts>
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 

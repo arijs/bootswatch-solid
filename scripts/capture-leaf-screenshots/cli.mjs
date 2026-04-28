@@ -69,6 +69,9 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 			'--verify-css-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
 		)
 	}
+	if (veRuntimeMissingLeafs) {
+		throw new Error('--ve-runtime-missing-leafs: Sorry my brotha, this is too verbose and you don\'t need it. Use --ve-runtime-missing-only instead to get a concise report of missing routes for each theme.')
+	}
 	const anyVerificationEnabled = verificationEnabled || veVerificationEnabled
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')

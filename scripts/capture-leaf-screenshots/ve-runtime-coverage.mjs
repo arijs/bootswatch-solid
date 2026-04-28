@@ -76,13 +76,43 @@ function parseRouteFamilyResolver(routeFamiliesSource) {
 
 function parseImplementedThemeFamilies(registrySource) {
 	const themeDefinitions = new Map()
-	const definitionRegex =
+
+	// Legacy shape:
+	// const fooThemeDefinition: VeThemeDefinition = { slug: 'foo', ..., availableFamilies: new Set<VeThemeFamily>(['...']) }
+	const legacyDefinitionRegex =
 		/const\s+(\w+ThemeDefinition)\s*:\s*VeThemeDefinition\s*=\s*{[\s\S]*?slug:\s*'([^']+)'[\s\S]*?availableFamilies:\s*new Set<VeThemeFamily>\(\[([\s\S]*?)\]\),[\s\S]*?}\s*/g
 
-	for (const match of registrySource.matchAll(definitionRegex)) {
+	for (const match of registrySource.matchAll(legacyDefinitionRegex)) {
 		themeDefinitions.set(match[1], {
 			slug: match[2],
 			families: parseStringArrayLiteral(match[3]),
+		})
+	}
+
+	// Current shape:
+	// const fooThemeDefinition = buildThemeDefinition('foo', { contracts... }, ['optionalExtraFamilies'])
+	const builderDefinitionRegex =
+		/const\s+(\w+ThemeDefinition)\s*=\s*buildThemeDefinition\(\s*'([^']+)'\s*,\s*{([\s\S]*?)}\s*(?:,\s*\[([\s\S]*?)\])?\s*\)/g
+
+	for (const match of registrySource.matchAll(builderDefinitionRegex)) {
+		const definitionKey = match[1]
+		const slug = match[2]
+		const contractsObjectSource = match[3]
+		const extrasSource = match[4] ?? ''
+
+		const contractFamilies = []
+		for (const line of contractsObjectSource.split('\n')) {
+			const contractMatch = line.match(/^\s*(\w+)\s*:\s*/)
+			if (!contractMatch) continue
+			contractFamilies.push(contractMatch[1])
+		}
+
+		const extras = parseStringArrayLiteral(extrasSource)
+		const dedupedFamilies = [...new Set([...contractFamilies, ...extras])]
+
+		themeDefinitions.set(definitionKey, {
+			slug,
+			families: dedupedFamilies,
 		})
 	}
 

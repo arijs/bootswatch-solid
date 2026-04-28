@@ -4,6 +4,12 @@ Status: Approved for implementation planning
 Date: 2026-04-26
 Owner: VE migration track
 
+Agent start here:
+
+1. `docs/ve-next-work-verification.md`
+
+Reason: this playbook provides the shortest repeatable steps to pick the next highest-priority theme/family slice using runtime coverage output, so agents avoid re-researching priority order each run.
+
 ## Implementation Status (2026-04-28)
 
 This section records what has already been implemented in `ve-project` and what is still pending.
