@@ -1,27 +1,24 @@
 import type { Component } from 'solid-js'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import {
-	listGroup,
-	listGroupItem,
-	listGroupItemAction,
-} from '../../../themes/bootstrap/ui/list-group/base.css'
+import { useVeListGroupThemeClasses } from '../../../themes/runtime/hooks'
 
-const ContextualDefaultListGroup: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={listGroup}>
+const ContextualDefaultListGroup: Component = () => {
+	const cls = useVeListGroupThemeClasses()
+
+	return (
+	<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+		<div class={cls.listGroup}>
 			{/* biome-ignore lint: <a> is used for demonstration purposes */}
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} pwhook-list-group-item`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} pwhook-list-group-item`}
 			>
 				A simple default list group item
 			</a>
 		</div>
 	</div>
-)
+	)
+}
 
 export default ContextualDefaultListGroup
 

@@ -1,26 +1,23 @@
 import type { Component } from 'solid-js'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import {
-	listGroup,
-	listGroupItem,
-	listGroupItemDisabled,
-} from '../../../themes/bootstrap/ui/list-group/base.css'
+import { useVeListGroupThemeClasses } from '../../../themes/runtime/hooks'
 
-const DefaultListGroup: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<ul class={`${listGroup} pwhook-list-group`}>
-			<li class={`${listGroupItem} ${listGroupItemDisabled}`} aria-disabled="true">
+const DefaultListGroup: Component = () => {
+	const cls = useVeListGroupThemeClasses()
+
+	return (
+	<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+		<ul class={`${cls.listGroup} pwhook-list-group`}>
+			<li class={`${cls.listGroupItem} ${cls.listGroupItemDisabled}`} aria-disabled="true">
 				A disabled item
 			</li>
-			<li class={listGroupItem}>A second item</li>
-			<li class={listGroupItem}>A third item</li>
-			<li class={listGroupItem}>A fourth item</li>
-			<li class={listGroupItem}>And a fifth one</li>
+			<li class={cls.listGroupItem}>A second item</li>
+			<li class={cls.listGroupItem}>A third item</li>
+			<li class={cls.listGroupItem}>A fourth item</li>
+			<li class={cls.listGroupItem}>And a fifth one</li>
 		</ul>
 	</div>
-)
+	)
+}
 
 export default DefaultListGroup
 

@@ -12,6 +12,7 @@ import { bootstrapButtonRuntimeClasses } from '../bootstrap/ui/buttons/runtime'
 import { bootstrapCardRuntimeClasses } from '../bootstrap/ui/card/runtime'
 import { bootstrapCarouselRuntimeClasses } from '../bootstrap/ui/carousel/runtime'
 import { bootstrapDropdownRuntimeClasses } from '../bootstrap/ui/dropdowns/runtime'
+import { bootstrapListGroupRuntimeClasses } from '../bootstrap/ui/list-group/runtime'
 import { bootstrapModalRuntimeClasses } from '../bootstrap/ui/modal/runtime'
 import { bootstrapNavRuntimeClasses } from '../bootstrap/ui/nav/runtime'
 import { bootstrapNavbarRuntimeClasses } from '../bootstrap/ui/navbar/runtime'
@@ -56,8 +57,9 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		progress: bootstrapProgressRuntimeClasses,
 		spinners: bootstrapSpinnerRuntimeClasses,
 		toasts: bootstrapToastRuntimeClasses,
+		listGroup: bootstrapListGroupRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup']),
 }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
@@ -154,5 +156,6 @@ export {
 	bootstrapScrollspyRuntimeClasses,
 	bootstrapSpinnerRuntimeClasses,
 	bootstrapToastRuntimeClasses,
+	bootstrapListGroupRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
 }

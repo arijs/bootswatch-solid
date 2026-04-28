@@ -1,29 +1,17 @@
 import type { Component } from 'solid-js'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import {
-	listGroup,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
-} from '../../../themes/bootstrap/ui/list-group/base.css'
+import { useVeListGroupThemeClasses } from '../../../themes/runtime/hooks'
 
-const ContextualListGroup: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={`${listGroup} pwhook-list-group`}>
+const ContextualListGroup: Component = () => {
+	const cls = useVeListGroupThemeClasses()
+
+	return (
+	<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+		<div class={`${cls.listGroup} pwhook-list-group`}>
 			{/* biome-ignore lint: <a> is used for demonstration purposes */}
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction}`}
 			>
 				A simple default list group item
 			</a>
@@ -32,7 +20,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemPrimary}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemPrimary}`}
 			>
 				A simple primary list group item
 			</a>
@@ -40,7 +28,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemSecondary}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemSecondary}`}
 			>
 				A simple secondary list group item
 			</a>
@@ -48,7 +36,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemSuccess}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemSuccess}`}
 			>
 				A simple success list group item
 			</a>
@@ -56,7 +44,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemDanger}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemDanger}`}
 			>
 				A simple danger list group item
 			</a>
@@ -64,7 +52,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemWarning}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemWarning}`}
 			>
 				A simple warning list group item
 			</a>
@@ -72,7 +60,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemInfo}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemInfo}`}
 			>
 				A simple info list group item
 			</a>
@@ -80,7 +68,7 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemLight}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemLight}`}
 			>
 				A simple light list group item
 			</a>
@@ -88,13 +76,14 @@ const ContextualListGroup: Component = () => (
 			<a
 				href="#"
 				onClick={(e) => e.preventDefault()}
-				class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemDark}`}
+				class={`${cls.listGroupItem} ${cls.listGroupItemAction} ${cls.listGroupItemDark}`}
 			>
 				A simple dark list group item
 			</a>
 		</div>
 	</div>
-)
+	)
+}
 
 export default ContextualListGroup
 

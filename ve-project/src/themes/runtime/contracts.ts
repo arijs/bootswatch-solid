@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -374,6 +374,22 @@ export interface VeToastThemeContract {
 	toastTimestamp: string
 }
 
+export interface VeListGroupThemeContract {
+	listGroup: string
+	listGroupFlush: string
+	listGroupItem: string
+	listGroupItemAction: string
+	listGroupItemDanger: string
+	listGroupItemDark: string
+	listGroupItemDisabled: string
+	listGroupItemInfo: string
+	listGroupItemLight: string
+	listGroupItemPrimary: string
+	listGroupItemSecondary: string
+	listGroupItemSuccess: string
+	listGroupItemWarning: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	contents: VeContentsThemeContract
@@ -397,6 +413,7 @@ export interface VeThemeContracts {
 	progress: VeProgressThemeContract
 	spinners: VeSpinnerThemeContract
 	toasts: VeToastThemeContract
+	listGroup: VeListGroupThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -405,4 +422,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup']

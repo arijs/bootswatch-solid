@@ -11,6 +11,7 @@ import type {
 	VeDropdownThemeContract,
 	VeFormsThemeContract,
 	VeGlobalThemeContract,
+	VeListGroupThemeContract,
 	VeModalThemeContract,
 	VeNavThemeContract,
 	VeNavbarThemeContract,
@@ -35,6 +36,7 @@ import {
 	bootstrapDropdownRuntimeClasses,
 	bootstrapFormsRuntimeClasses,
 	bootstrapGlobalRuntimeClasses,
+	bootstrapListGroupRuntimeClasses,
 	bootstrapModalRuntimeClasses,
 	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
@@ -245,5 +247,14 @@ export function useVeToastThemeClasses(): VeGlobalThemeContract & VeToastThemeCo
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapToastRuntimeClasses,
+	}
+}
+
+export function useVeListGroupThemeClasses(): VeGlobalThemeContract & VeListGroupThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapListGroupRuntimeClasses,
 	}
 }
