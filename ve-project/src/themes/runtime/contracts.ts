@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -124,6 +124,26 @@ export interface VeButtonThemeContract {
 	btnSm: string
 	btnSuccess: string
 	btnWarning: string
+}
+
+export interface VeAlertThemeContract {
+	alert: string
+	alertDanger: string
+	alertDark: string
+	alertDismissible: string
+	alertHeading: string
+	alertHr: string
+	alertInfo: string
+	alertLight: string
+	alertLink: string
+	alertPrimary: string
+	alertSecondary: string
+	alertSuccess: string
+	alertWarning: string
+	btnClose: string
+	fade: string
+	mb0: string
+	show: string
 }
 
 export interface VeNavbarThemeContract {
@@ -303,6 +323,7 @@ export interface VeThemeContracts {
 	carousel: VeCarouselThemeContract
 	dropdowns: VeDropdownThemeContract
 	buttons: VeButtonThemeContract
+	alerts: VeAlertThemeContract
 	navbar: VeNavbarThemeContract
 	nav: VeNavThemeContract
 	modal: VeModalThemeContract
@@ -321,4 +342,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']

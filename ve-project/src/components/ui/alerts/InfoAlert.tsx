@@ -1,30 +1,23 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import {
-	alert,
-	alertDismissible,
-	alertInfo,
-	alertLink,
-	btnClose,
-	fade,
-	show,
-} from '../../../themes/bootstrap/ui/alerts/base.css'
+import { useVeAlertThemeClasses } from '../../../themes/runtime/hooks'
 
-const InfoAlert: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={`${alert} ${alertInfo} ${alertDismissible} ${fade} ${show}`}>
-			A simple info alert with{' '}
-			{/* biome-ignore lint: <a> is used for demonstration purposes */}
-			<a href="#" onClick={(e) => e.preventDefault()} class={alertLink}>
-				an example link
-			</a>
-			. Give it a click if you like.
-			<button type="button" class={btnClose} data-bs-dismiss="alert" data-bs-target={`.${alert}`} aria-label="Close" />
+const InfoAlert: Component = () => {
+	const cls = useVeAlertThemeClasses()
+
+	return (
+		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+			<div class={`${cls.alert} ${cls.alertInfo} ${cls.alertDismissible} ${cls.fade} ${cls.show}`}>
+				A simple info alert with{' '}
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a href="#" onClick={(e) => e.preventDefault()} class={cls.alertLink}>
+					an example link
+				</a>
+				. Give it a click if you like.
+				<button type="button" class={cls.btnClose} data-bs-dismiss="alert" data-bs-target={`.${cls.alert}`} aria-label="Close" />
+			</div>
 		</div>
-	</div>
-)
+	)
+}
 
 export default InfoAlert
 

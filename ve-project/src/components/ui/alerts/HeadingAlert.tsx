@@ -1,32 +1,27 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { h4 } from '../../../themes/bootstrap/contents/generated.css'
-import {
-	alert,
-	alertHeading,
-	alertHr,
-	alertSuccess,
-	mb0,
-} from '../../../themes/bootstrap/ui/alerts/base.css'
+import { useVeAlertThemeClasses, useVeContentsThemeClasses } from '../../../themes/runtime/hooks'
 
-const HeadingAlert: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={`${alert} ${alertSuccess}`}>
-			<h4 class={`${h4} ${alertHeading}`}>Well done!</h4>
-			<p>
-				Aww yeah, you successfully read this important alert message. This example text is
-				going to run a bit longer so that you can see how spacing within an alert works with
-				this kind of content.
-			</p>
-			<hr class={alertHr} />
-			<p class={mb0}>
-				Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
-			</p>
+const HeadingAlert: Component = () => {
+	const cls = useVeAlertThemeClasses()
+	const contents = useVeContentsThemeClasses()
+
+	return (
+		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+			<div class={`${cls.alert} ${cls.alertSuccess}`}>
+				<h4 class={`${contents.h4} ${cls.alertHeading}`}>Well done!</h4>
+				<p>
+					Aww yeah, you successfully read this important alert message. This example text is
+					going to run a bit longer so that you can see how spacing within an alert works with
+					this kind of content.
+				</p>
+				<hr class={cls.alertHr} />
+				<p class={cls.mb0}>
+					Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+				</p>
+			</div>
 		</div>
-	</div>
-)
+	)
+}
 
 export default HeadingAlert
 

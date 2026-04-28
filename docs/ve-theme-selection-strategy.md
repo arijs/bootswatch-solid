@@ -27,6 +27,7 @@ This section records what has already been implemented in `ve-project` and what 
 - scrollspy family contract
 - pagination family contract
 - forms family contract
+- alerts family contract
 3. Central runtime resolver exists and returns structured support state with reasons:
 - `unknown-theme`
 - `missing-family-contract`
@@ -49,17 +50,18 @@ This section records what has already been implemented in `ve-project` and what 
 18. Pagination routes now consume runtime contracts (`/ui/pagination/*`).
 19. Forms routes now consume runtime contracts (`/forms/*`).
 20. Carousel routes now consume runtime contracts (`/ui/carousel/*`).
-21. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-22. Structured warning emission is implemented for theme skips with route/family metadata.
-23. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+21. Alerts routes now consume runtime contracts (`/ui/alerts/*`).
+22. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+23. Structured warning emission is implemented for theme skips with route/family metadata.
+24. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns, buttons, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, and carousel are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
+1. Family migration breadth is still partial: dropdowns, buttons, alerts, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, and carousel are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
 
 ### Pending
 
-1. Continue family migrations from direct Bootstrap imports to runtime contracts (carousel and other remaining `ui` routes beyond migrated scrollspy content/spacing tokens).
+1. Continue family migrations from direct Bootstrap imports to runtime contracts (other remaining `ui` routes beyond migrated scrollspy, carousel, and alerts coverage).
 2. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
 3. Mark family availability per theme explicitly as each family is added.
 4. Harden verification matrix by theme/family and track skip-count reduction milestones.
@@ -388,6 +390,8 @@ Behavior Changes:
 13. Expanded the `contents` runtime contract with heading/spacing utility tokens used by carousel section wrappers.
 14. Migrated `Carousel` route wrapper from direct Bootstrap imports to runtime hook consumption.
 15. Marked carousel route family migration complete in the implementation status section.
+16. Added `alerts` family contract, bootstrap alerts runtime slice, registry wiring, runtime hook, and explicit alerts route-family mappings.
+17. Migrated `AlertsPage` and `/ui/alerts/*` leaf components from direct Bootstrap imports to runtime hook consumption.
 
 Validation:
 1. Bootstrap dropdown route renders normally.
@@ -404,7 +408,10 @@ Validation:
 12. `pnpm ve:build` passes after carousel wrapper runtime migration.
 13. Bootstrap carousel route (`/ui/carousel/carousel-example`) capture run completes with all expected states saved and zero failures.
 14. Sketchy carousel route (`/ui/carousel/carousel-example`) capture run completes with all expected states saved and zero failures.
+15. `pnpm ve:build` passes after alerts family runtime migration.
+16. Bootstrap alerts routes (`/ui/alerts/primary-alert`, `/ui/alerts/heading-alert`) capture run completes with zero failures.
+17. Sketchy alerts routes (`/ui/alerts/primary-alert`, `/ui/alerts/heading-alert`) capture run completes with zero failures.
 
 Risks / Pending:
-1. Global gate is now stable, and core migrated families include dropdowns, buttons, navbar/nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, and carousel; remaining `ui` families are still pending contract migration.
+1. Global gate is now stable, and core migrated families include dropdowns, buttons, alerts, navbar/nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, and carousel; remaining `ui` families are still pending contract migration.
 2. Non-Bootstrap contract implementations are still pending.
