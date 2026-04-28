@@ -23,6 +23,7 @@ import { bootstrapScrollspyRuntimeClasses } from '../bootstrap/ui/scrollspy/runt
 import { bootstrapSpinnerRuntimeClasses } from '../bootstrap/ui/spinners/runtime'
 import { bootstrapToastRuntimeClasses } from '../bootstrap/ui/toasts/runtime'
 import { bootstrapTooltipRuntimeClasses } from '../bootstrap/ui/tooltips/runtime'
+import { sketchyButtonRuntimeClasses } from '../sketchy/ui/buttons/runtime'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -62,8 +63,17 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup']),
 }
 
+const sketchyThemeDefinition: VeThemeDefinition = {
+	slug: 'sketchy',
+	contracts: {
+		buttons: sketchyButtonRuntimeClasses,
+	},
+	availableFamilies: new Set<VeThemeFamily>(['buttons']),
+}
+
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,
+	sketchy: sketchyThemeDefinition,
 }
 
 export type VeThemeResolutionReason = 'unknown-theme' | 'missing-family-contract'
