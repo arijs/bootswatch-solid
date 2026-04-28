@@ -5,17 +5,17 @@ import './ve-carousel'
 
 const CarouselExample: Component = () => {
 	const cls = useVeCarouselThemeClasses()
+	let carouselRef: HTMLDivElement | undefined
 	onSettled(() => {
 		// Ensure carousel is initialized with VeCarousel configuration
-		const carouselElement = document.getElementById('carouselExampleCaptions')
-		if (carouselElement && (window as any).VeCarousel) {
-			;(window as any).VeCarousel.getOrCreateInstance(carouselElement)
+		if (carouselRef && (window as any).VeCarousel) {
+			;(window as any).VeCarousel.getOrCreateInstance(carouselRef)
 		}
 	})
 
 	return (
 		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
-			<div id="carouselExampleCaptions" class={`${cls.carousel} ${cls.carouselSlide} pwhook-carousel`} data-bs-ride="carousel">
+			<div ref={carouselRef} id="carouselExampleCaptions" class={`${cls.carousel} ${cls.carouselSlide} pwhook-carousel`} data-bs-ride="carousel">
 			<div class={`${cls.carouselIndicators} pwhook-carousel-indicators`}>
 				<button
 					type="button"
