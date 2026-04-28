@@ -380,6 +380,32 @@ Risks / Pending:
 1. ...
 ```
 
+### 2026-04-28 (Runtime Coverage Reporting)
+
+Scope:
+1. Added a fast runtime-coverage reporting mode to screenshot tooling for VE migration planning.
+2. Added optional leaf-route detail output control for runtime-coverage reporting.
+3. Updated tooling documentation to describe runtime-coverage usage and filtering behavior.
+
+Behavior Changes:
+1. Added `--ve-runtime-missing-only` to `scripts/capture-leaf-screenshots.mjs` for fast reporting without build, preview-server startup, or Playwright execution.
+2. Added runtime-family gap output at theme/family granularity using runtime metadata from:
+- `ve-project/src/themes/runtime/registry.ts` (implemented families)
+- `ve-project/src/themes/runtime/route-families.ts` (required families per route)
+3. Changed default runtime report output to hide leaf routes.
+4. Added `--ve-runtime-missing-leafs` to print affected leaf routes under each missing family.
+5. `--ve-runtime-missing-leafs` now implicitly enables `--ve-runtime-missing-only`.
+
+Validation:
+1. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=bootstrap --route=/ui/buttons/solid/primary-button` reports no missing families for selected Bootstrap route.
+2. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy --route=/ui/buttons/solid/primary-button` reports expected missing families for selected Sketchy route.
+3. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --theme=sketchy --route=/ui/buttons/solid/primary-button` prints affected leaf routes and confirms implicit enablement.
+4. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --verify-ve-rendering` fails fast with expected mutual-exclusion error.
+
+Risks / Pending:
+1. Runtime report currently parses runtime metadata from source files; consider exporting a small script-safe metadata surface to reduce parsing-coupling risk.
+2. Non-Bootstrap family implementations remain the primary migration gap; report output should be used to prioritize per-theme family rollout.
+
 ### 2026-04-28
 
 Scope:
