@@ -17,6 +17,7 @@ import type {
 	VeProgressThemeContract,
 	VePaginationThemeContract,
 	VeScrollspyThemeContract,
+	VeSpinnerThemeContract,
 	VeTooltipThemeContract,
 } from './contracts'
 import {
@@ -38,6 +39,7 @@ import {
 	bootstrapPopoverRuntimeClasses,
 	bootstrapProgressRuntimeClasses,
 	bootstrapScrollspyRuntimeClasses,
+	bootstrapSpinnerRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
 	type VeThemeResolution,
 } from './registry'
@@ -205,6 +207,15 @@ export function useVeProgressThemeClasses(): VeGlobalThemeContract & VeProgressT
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapProgressRuntimeClasses,
+	}
+}
+
+export function useVeSpinnerThemeClasses(): VeGlobalThemeContract & VeSpinnerThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapSpinnerRuntimeClasses,
 	}
 }
 

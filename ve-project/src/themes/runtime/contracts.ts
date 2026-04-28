@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -335,6 +335,20 @@ export interface VeProgressThemeContract {
 	progressBarTextDark: string
 }
 
+export interface VeSpinnerThemeContract {
+	spinnerBorder: string
+	spinnerGrow: string
+	textDanger: string
+	textDark: string
+	textInfo: string
+	textLight: string
+	textPrimary: string
+	textSecondary: string
+	textSuccess: string
+	textWarning: string
+	visuallyHidden: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	contents: VeContentsThemeContract
@@ -355,6 +369,7 @@ export interface VeThemeContracts {
 	scrollspy: VeScrollspyThemeContract
 	pagination: VePaginationThemeContract
 	progress: VeProgressThemeContract
+	spinners: VeSpinnerThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -363,4 +378,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners']

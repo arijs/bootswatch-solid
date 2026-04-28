@@ -30,6 +30,7 @@ This section records what has already been implemented in `ve-project` and what 
 - alerts family contract
 - breadcrumb family contract
 - progress family contract
+- spinners family contract
 3. Central runtime resolver exists and returns structured support state with reasons:
 - `unknown-theme`
 - `missing-family-contract`
@@ -55,17 +56,18 @@ This section records what has already been implemented in `ve-project` and what 
 21. Alerts routes now consume runtime contracts (`/ui/alerts/*`).
 22. Breadcrumb routes now consume runtime contracts (`/ui/breadcrumb/*`).
 23. Progress routes now consume runtime contracts (`/ui/progress/*`).
-24. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-25. Structured warning emission is implemented for theme skips with route/family metadata.
-26. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+24. Spinners routes now consume runtime contracts (`/ui/spinners/*`).
+25. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+26. Structured warning emission is implemented for theme skips with route/family metadata.
+27. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns, buttons, alerts, breadcrumb, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, carousel, and progress are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
+1. Family migration breadth is still partial: dropdowns, buttons, alerts, breadcrumb, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, carousel, progress, and spinners are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
 
 ### Pending
 
-1. Continue family migrations from direct Bootstrap imports to runtime contracts (other remaining `ui` routes beyond migrated scrollspy, carousel, alerts, breadcrumb, and progress coverage).
+1. Continue family migrations from direct Bootstrap imports to runtime contracts (other remaining `ui` routes beyond migrated scrollspy, carousel, alerts, breadcrumb, progress, and spinners coverage).
 2. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
 3. Mark family availability per theme explicitly as each family is added.
 4. Harden verification matrix by theme/family and track skip-count reduction milestones.
@@ -400,6 +402,8 @@ Behavior Changes:
 19. Migrated `/ui/breadcrumb/breadcrumb-example` from direct Bootstrap imports to runtime hook consumption.
 20. Added `progress` family contract, bootstrap progress runtime slice, registry wiring, runtime hook, and explicit progress route-family mappings.
 21. Migrated `/ui/progress/*` leaf components from direct Bootstrap imports to runtime hook consumption.
+22. Added `spinners` family contract, bootstrap spinners runtime slice, registry wiring, runtime hook, and explicit spinners route-family mappings.
+23. Migrated `/ui/spinners/*` leaf components from direct Bootstrap imports to runtime hook consumption.
 
 Validation:
 1. Bootstrap dropdown route renders normally.
@@ -425,7 +429,10 @@ Validation:
 21. `pnpm ve:build` passes after progress family runtime migration.
 22. Bootstrap progress routes (`/ui/progress/progress-50`, `/ui/progress/striped-progress`) capture runs complete with zero failures.
 23. Sketchy progress routes (`/ui/progress/progress-50`, `/ui/progress/striped-progress`) capture runs complete with zero failures.
+24. `pnpm ve:build` passes after spinners family runtime migration.
+25. Bootstrap spinner routes (`/ui/spinners/border-primary-spinner`, `/ui/spinners/grow-dark-spinner`) capture runs complete with zero failures.
+26. Sketchy spinner routes (`/ui/spinners/border-primary-spinner`, `/ui/spinners/grow-dark-spinner`) capture runs complete with zero failures.
 
 Risks / Pending:
-1. Global gate is now stable, and core migrated families include dropdowns, buttons, alerts, breadcrumb, navbar/nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, carousel, and progress; remaining `ui` families are still pending contract migration.
+1. Global gate is now stable, and core migrated families include dropdowns, buttons, alerts, breadcrumb, navbar/nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, carousel, progress, and spinners; remaining `ui` families are still pending contract migration.
 2. Non-Bootstrap contract implementations are still pending.
