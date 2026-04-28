@@ -16,6 +16,7 @@ import { bootstrapNavRuntimeClasses } from '../bootstrap/ui/nav/runtime'
 import { bootstrapNavbarRuntimeClasses } from '../bootstrap/ui/navbar/runtime'
 import { bootstrapPaginationRuntimeClasses } from '../bootstrap/ui/pagination/runtime'
 import { bootstrapPopoverRuntimeClasses } from '../bootstrap/ui/popovers/runtime'
+import { bootstrapProgressRuntimeClasses } from '../bootstrap/ui/progress/runtime'
 import { bootstrapScrollspyRuntimeClasses } from '../bootstrap/ui/scrollspy/runtime'
 import { bootstrapTooltipRuntimeClasses } from '../bootstrap/ui/tooltips/runtime'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
@@ -48,8 +49,9 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		scrollspy: bootstrapScrollspyRuntimeClasses,
 		pagination: bootstrapPaginationRuntimeClasses,
 		carousel: bootstrapCarouselRuntimeClasses,
+		progress: bootstrapProgressRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress']),
 }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
@@ -141,6 +143,7 @@ export {
 	bootstrapNavbarRuntimeClasses,
 	bootstrapPaginationRuntimeClasses,
 	bootstrapPopoverRuntimeClasses,
+	bootstrapProgressRuntimeClasses,
 	bootstrapScrollspyRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
 }

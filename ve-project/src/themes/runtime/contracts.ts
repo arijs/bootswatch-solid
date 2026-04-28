@@ -1,6 +1,6 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel'] as const
+export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress'] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -324,6 +324,17 @@ export interface VeCarouselThemeContract {
 	visuallyHidden: string
 }
 
+export interface VeProgressThemeContract {
+	progress: string
+	progressBar: string
+	progressBarAnimated: string
+	progressBarDanger: string
+	progressBarInfo: string
+	progressBarStriped: string
+	progressBarSuccess: string
+	progressBarTextDark: string
+}
+
 export interface VeThemeContracts {
 	global: VeGlobalThemeContract
 	contents: VeContentsThemeContract
@@ -343,6 +354,7 @@ export interface VeThemeContracts {
 	accordion: VeAccordionThemeContract
 	scrollspy: VeScrollspyThemeContract
 	pagination: VePaginationThemeContract
+	progress: VeProgressThemeContract
 }
 
 export interface VeThemeDefinition {
@@ -351,4 +363,4 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress']

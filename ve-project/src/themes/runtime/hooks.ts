@@ -14,6 +14,7 @@ import type {
 	VeNavThemeContract,
 	VeNavbarThemeContract,
 	VePopoverThemeContract,
+	VeProgressThemeContract,
 	VePaginationThemeContract,
 	VeScrollspyThemeContract,
 	VeTooltipThemeContract,
@@ -35,6 +36,7 @@ import {
 	bootstrapNavbarRuntimeClasses,
 	bootstrapPaginationRuntimeClasses,
 	bootstrapPopoverRuntimeClasses,
+	bootstrapProgressRuntimeClasses,
 	bootstrapScrollspyRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
 	type VeThemeResolution,
@@ -194,6 +196,15 @@ export function useVePaginationThemeClasses(): VeGlobalThemeContract & VePaginat
 	return {
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapPaginationRuntimeClasses,
+	}
+}
+
+export function useVeProgressThemeClasses(): VeGlobalThemeContract & VeProgressThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return {
+		...bootstrapGlobalRuntimeClasses,
+		...bootstrapProgressRuntimeClasses,
 	}
 }
 

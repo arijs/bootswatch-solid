@@ -73,6 +73,13 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/pagination/small-pagination': ['global', 'pagination'],
 	'/ui/pagination/standard-pagination': ['global', 'pagination'],
 	'/ui/pagination/large-pagination': ['global', 'pagination'],
+	'/ui/progress': ['global', 'progress'],
+	'/ui/progress/progress-0': ['global', 'progress'],
+	'/ui/progress/progress-25': ['global', 'progress'],
+	'/ui/progress/progress-50': ['global', 'progress'],
+	'/ui/progress/progress-75': ['global', 'progress'],
+	'/ui/progress/progress-100': ['global', 'progress'],
+	'/ui/progress/striped-progress': ['global', 'progress'],
 	'/ui/carousel': ['global', 'contents', 'carousel'],
 	'/ui/carousel/carousel-example': ['global', 'contents', 'carousel'],
 }

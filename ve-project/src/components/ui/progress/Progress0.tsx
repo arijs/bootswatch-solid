@@ -1,18 +1,19 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { progress, progressBar } from '../../../themes/bootstrap/ui/progress/base.css'
+import { useVeProgressThemeClasses } from '../../../themes/runtime/hooks'
 
-const Progress0: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={progress}>
-			<div class={progressBar} style={{ width: '0' }}>
-				0%
+const Progress0: Component = () => {
+	const cls = useVeProgressThemeClasses()
+
+	return (
+		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+			<div class={cls.progress}>
+				<div class={cls.progressBar} style={{ width: '0' }}>
+					0%
+				</div>
 			</div>
 		</div>
-	</div>
-)
+	)
+}
 
 export default Progress0
 
