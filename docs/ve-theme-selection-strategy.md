@@ -4,7 +4,7 @@ Status: Approved for implementation planning
 Date: 2026-04-26
 Owner: VE migration track
 
-## Implementation Status (2026-04-27)
+## Implementation Status (2026-04-28)
 
 This section records what has already been implemented in `ve-project` and what is still pending.
 
@@ -32,6 +32,8 @@ This section records what has already been implemented in `ve-project` and what 
 - breadcrumb family contract
 - progress family contract
 - spinners family contract
+- toasts family contract
+- list-group family contract
 3. Central runtime resolver exists and returns structured support state with reasons:
 - `unknown-theme`
 - `missing-family-contract`
@@ -59,20 +61,25 @@ This section records what has already been implemented in `ve-project` and what 
 23. Progress routes now consume runtime contracts (`/ui/progress/*`).
 24. Spinners routes now consume runtime contracts (`/ui/spinners/*`).
 25. Button-group routes now consume runtime contracts (`/ui/button-group/*`).
-26. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
-27. Structured warning emission is implemented for theme skips with route/family metadata.
-28. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
+26. Toast routes now consume runtime contracts (`/ui/toasts/*`).
+27. List-group routes now consume runtime contracts (`/ui/list-group/*`).
+28. VE Bootstrap JS subclass modules isolated under `ve-project/src/components/ui/**/ve-*.ts` now use factory APIs that accept runtime family classes and return configured subclasses.
+29. Subclass consumers now configure dropdown, modal, and carousel behavior from runtime family hooks (no side-effect bootstrap-theme subclass module usage).
+30. Direct imports from `ve-project/src/themes/bootstrap/**` have been removed from `ve-project/src/components/ui/**`.
+31. Runtime behavior is strict skip-with-warning for unsupported theme coverage through the app-root theme gate (no fallback rendering).
+32. Structured warning emission is implemented for theme skips with route/family metadata.
+33. App root is wired with `VeThemeRuntimeProvider` and `ThemeSupportGate` in `ve-project/src/index.tsx`.
 
 ### Partially Implemented / In Progress
 
-1. Family migration breadth is still partial: dropdowns, buttons, button-group, alerts, breadcrumb, navbar, nav, modal, card, badge, popovers, tooltips, accordion, scrollspy, pagination, forms, carousel, progress, and spinners are on runtime contracts; several routes still depend on unmigrated `ui` family classes.
+1. Theme implementation breadth is still partial by slug: Bootstrap contract coverage is now broad across current VE UI families, while non-Bootstrap theme contract implementations are still pending.
 
 ### Pending
 
-1. Continue family migrations from direct Bootstrap imports to runtime contracts (other remaining `ui` routes beyond migrated scrollspy, carousel, alerts, breadcrumb, progress, spinners, and button-group coverage).
-2. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
-3. Mark family availability per theme explicitly as each family is added.
-4. Harden verification matrix by theme/family and track skip-count reduction milestones.
+1. Add non-Bootstrap theme implementations per family (cerulean, sketchy, quartz, others).
+2. Mark family availability per theme explicitly as each family is added.
+3. Harden verification matrix by theme/family and track skip-count reduction milestones.
+4. Continue broadening runtime-contract adoption outside the current UI migration surface where direct Bootstrap imports may still exist.
 
 ### Notes
 
@@ -372,6 +379,33 @@ Validation:
 Risks / Pending:
 1. ...
 ```
+
+### 2026-04-28
+
+Scope:
+1. Runtime contract migration completion for additional UI families (`toasts`, `list-group`).
+2. VE Bootstrap JS subclass refactor (`dropdown`, `modal`, `carousel`) to runtime-class factory pattern.
+3. Cleanup of remaining direct Bootstrap imports in `ve-project/src/components/ui/**` wrappers/components.
+
+Behavior Changes:
+1. Added `toasts` and `listGroup` runtime contracts, registry availability metadata, route-family mappings, and runtime hooks.
+2. Migrated `/ui/toasts/*` and `/ui/list-group/*` components from direct Bootstrap imports to runtime hook consumption.
+3. Replaced isolated subclass modules with factories that accept runtime family classes and return configured subclasses:
+- `createVeDropdown` / `configureVeDropdown`
+- `createVeModal` / `configureVeModal`
+- `createVeCarousel` / `configureVeCarousel`
+4. Updated dropdown, modal, and carousel consumers to configure subclass behavior from runtime family hook values.
+5. Removed remaining direct `themes/bootstrap/**` imports in UI wrappers/components (`AccordionPage`, `BadgePage`, `TabbedNav` updates included).
+
+Validation:
+1. `pnpm ve:build` passes after `toasts` runtime migration.
+2. `pnpm ve:build` passes after `list-group` runtime migration.
+3. `pnpm ve:build` passes after subclass-factory refactor and remaining UI import cleanup.
+4. Workspace diagnostics report no errors in touched runtime contracts, subclass modules, and updated consumers.
+
+Risks / Pending:
+1. Bootstrap remains the only fully implemented VE contract source; non-Bootstrap family implementations are still pending.
+2. Verification hardening by theme/family (including skip-count tracking) remains in progress.
 
 ### 2026-04-27
 
