@@ -19,6 +19,8 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/dropdowns/split-warning-dropdown': dropdownRouteFamilies,
 	'/ui/dropdowns/start-dropdown': dropdownRouteFamilies,
 	'/ui/dropdowns/up-dropdown': dropdownRouteFamilies,
+	'/ui/button-group': ['global', 'buttons', 'buttonGroup'],
+	'/ui/button-group/button-group-example': ['global', 'buttons', 'buttonGroup'],
 	'/ui/alerts': ['global', 'alerts', 'contents'],
 	'/ui/alerts/danger-alert': ['global', 'alerts'],
 	'/ui/alerts/dark-alert': ['global', 'alerts'],

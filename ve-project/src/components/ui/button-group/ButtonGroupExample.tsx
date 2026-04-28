@@ -1,53 +1,47 @@
 import type { Component } from 'solid-js'
-import { body } from '../../../themes/bootstrap/body.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { btnSecondary } from '../../../themes/bootstrap/ui/buttons/generated.css'
-import { btn } from '../../../themes/bootstrap/ui/buttons/base.css'
-import {
-	btnGroup,
-	btnGroupButton,
-	btnToolbar,
-	marginEnd2,
-	btnGroupInteractive,
-} from '../../../themes/bootstrap/ui/button-group/base.css'
+import { useVeButtonGroupThemeClasses, useVeButtonThemeClasses } from '../../../themes/runtime/hooks'
 
-const ButtonGroupExample: Component = () => (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={btnToolbar} role="toolbar" aria-label="Toolbar with button groups">
-			<fieldset class={`${btnGroup} ${marginEnd2}`} aria-label="First group">
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					1
-				</button>
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					2
-				</button>
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					3
-				</button>
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					4
-				</button>
-			</fieldset>
-			<fieldset class={`${btnGroup} ${marginEnd2}`} aria-label="Second group">
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					5
-				</button>
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					6
-				</button>
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					7
-				</button>
-			</fieldset>
-			<fieldset class={btnGroup} aria-label="Third group">
-				<button type="button" class={`${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}>
-					8
-				</button>
-			</fieldset>
+const ButtonGroupExample: Component = () => {
+	const buttonCls = useVeButtonThemeClasses()
+	const groupCls = useVeButtonGroupThemeClasses()
+
+	return (
+		<div class={`bd-example ${buttonCls.bsTheme} ${buttonCls.body} ${buttonCls.containerFluid}`}>
+			<div class={groupCls.btnToolbar} role="toolbar" aria-label="Toolbar with button groups">
+				<fieldset class={`${groupCls.btnGroup} ${groupCls.marginEnd2}`} aria-label="First group">
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						1
+					</button>
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						2
+					</button>
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						3
+					</button>
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						4
+					</button>
+				</fieldset>
+				<fieldset class={`${groupCls.btnGroup} ${groupCls.marginEnd2}`} aria-label="Second group">
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						5
+					</button>
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						6
+					</button>
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						7
+					</button>
+				</fieldset>
+				<fieldset class={groupCls.btnGroup} aria-label="Third group">
+					<button type="button" class={`${buttonCls.btn} ${buttonCls.btnSecondary} ${groupCls.btnGroupButton} ${groupCls.btnGroupInteractive}`}>
+						8
+					</button>
+				</fieldset>
+			</div>
 		</div>
-	</div>
-)
+	)
+}
 
 export default ButtonGroupExample
 

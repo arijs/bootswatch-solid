@@ -7,6 +7,7 @@ import { bootstrapAccordionRuntimeClasses } from '../bootstrap/ui/accordion/runt
 import { bootstrapAlertRuntimeClasses } from '../bootstrap/ui/alerts/runtime'
 import { bootstrapBadgeRuntimeClasses } from '../bootstrap/ui/badge/runtime'
 import { bootstrapBreadcrumbRuntimeClasses } from '../bootstrap/ui/breadcrumb/runtime'
+import { bootstrapButtonGroupRuntimeClasses } from '../bootstrap/ui/button-group/runtime'
 import { bootstrapButtonRuntimeClasses } from '../bootstrap/ui/buttons/runtime'
 import { bootstrapCardRuntimeClasses } from '../bootstrap/ui/card/runtime'
 import { bootstrapCarouselRuntimeClasses } from '../bootstrap/ui/carousel/runtime'
@@ -37,6 +38,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		forms: bootstrapFormsRuntimeClasses,
 		dropdowns: bootstrapDropdownRuntimeClasses,
 		buttons: bootstrapButtonRuntimeClasses,
+		buttonGroup: bootstrapButtonGroupRuntimeClasses,
 		alerts: bootstrapAlertRuntimeClasses,
 		breadcrumb: bootstrapBreadcrumbRuntimeClasses,
 		navbar: bootstrapNavbarRuntimeClasses,
@@ -53,7 +55,7 @@ const bootstrapThemeDefinition: VeThemeDefinition = {
 		progress: bootstrapProgressRuntimeClasses,
 		spinners: bootstrapSpinnerRuntimeClasses,
 	},
-	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners']),
+	availableFamilies: new Set<VeThemeFamily>(['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners']),
 }
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
@@ -134,6 +136,7 @@ export {
 	bootstrapAlertRuntimeClasses,
 	bootstrapBadgeRuntimeClasses,
 	bootstrapBreadcrumbRuntimeClasses,
+	bootstrapButtonGroupRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCardRuntimeClasses,
 	bootstrapCarouselRuntimeClasses,

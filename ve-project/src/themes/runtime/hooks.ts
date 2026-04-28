@@ -3,6 +3,7 @@ import type {
 	VeAlertThemeContract,
 	VeBadgeThemeContract,
 	VeBreadcrumbThemeContract,
+	VeButtonGroupThemeContract,
 	VeButtonThemeContract,
 	VeCarouselThemeContract,
 	VeCardThemeContract,
@@ -25,6 +26,7 @@ import {
 	bootstrapAlertRuntimeClasses,
 	bootstrapBadgeRuntimeClasses,
 	bootstrapBreadcrumbRuntimeClasses,
+	bootstrapButtonGroupRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
 	bootstrapCarouselRuntimeClasses,
 	bootstrapCardRuntimeClasses,
@@ -98,6 +100,12 @@ export function useVeButtonThemeClasses(): VeGlobalThemeContract & VeButtonTheme
 		...bootstrapGlobalRuntimeClasses,
 		...bootstrapButtonRuntimeClasses,
 	}
+}
+
+export function useVeButtonGroupThemeClasses(): VeButtonGroupThemeContract {
+	const runtime = useVeThemeRuntime()
+	warnUnsupportedIfNeeded(runtime())
+	return bootstrapButtonGroupRuntimeClasses
 }
 
 export function useVeAlertThemeClasses(): VeGlobalThemeContract & VeAlertThemeContract {
