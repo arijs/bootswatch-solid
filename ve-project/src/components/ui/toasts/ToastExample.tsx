@@ -1,22 +1,10 @@
 import { onSettled, type Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
-import { bdPlaceholderImg } from '../../../themes/bootstrap/contents/generated.css'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
-import { btnClose } from '../../../themes/bootstrap/ui/alerts/base.css'
-import {
-	placeholderIcon,
-	toast,
-	toastBody,
-	toastBrand,
-	toastExample,
-	toastHeader,
-	toastRuntime,
-	toastTimestamp,
-} from '../../../themes/bootstrap/ui/toasts/base.css'
-import { VeToast } from './ve-toast'
+import { useVeToastThemeClasses } from '../../../themes/runtime/hooks'
+import { createVeToast } from './ve-toast'
 
 const ToastExample: Component = () => {
+	const cls = useVeToastThemeClasses()
+	const VeToast = createVeToast(cls)
 	let toastNode!: HTMLDivElement
 
 	onSettled(() => {
@@ -32,16 +20,16 @@ const ToastExample: Component = () => {
 	})
 
 	return (
-		<div class={`bd-example ${bsTheme} ${body} ${containerFluid} ${toastExample}`}>
+		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid} ${cls.toastExample}`}>
 			<div
-				class={`${toast} ${toastRuntime} pwhook-toast`}
+				class={`${cls.toast} ${cls.toastRuntime} pwhook-toast`}
 				ref={toastNode}
 				aria-live="assertive"
 				aria-atomic="true"
 			>
-				<div class={toastHeader}>
+				<div class={cls.toastHeader}>
 					<svg
-						class={`${bdPlaceholderImg} ${placeholderIcon}`}
+						class={`${cls.bdPlaceholderImg} ${cls.placeholderIcon}`}
 						width="20"
 						height="20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -51,16 +39,16 @@ const ToastExample: Component = () => {
 					>
 						<rect width="100%" height="100%" fill="#007aff" />
 					</svg>
-					<strong class={toastBrand}>Bootstrap</strong>
-					<small class={toastTimestamp}>11 mins ago</small>
+					<strong class={cls.toastBrand}>Bootstrap</strong>
+					<small class={cls.toastTimestamp}>11 mins ago</small>
 					<button
 						type="button"
-						class={btnClose}
+						class={cls.btnClose}
 						data-bs-dismiss="toast"
 						aria-label="Close"
 					></button>
 				</div>
-				<div class={toastBody}>Hello, world! This is a toast message.</div>
+				<div class={cls.toastBody}>Hello, world! This is a toast message.</div>
 			</div>
 		</div>
 	)

@@ -99,6 +99,8 @@ const explicitRouteFamilies: Record<string, readonly VeThemeFamily[]> = {
 	'/ui/spinners/grow-info-spinner': ['global', 'spinners'],
 	'/ui/spinners/grow-light-spinner': ['global', 'spinners'],
 	'/ui/spinners/grow-dark-spinner': ['global', 'spinners'],
+	'/ui/toasts': ['global', 'toasts'],
+	'/ui/toasts/toast-example': ['global', 'toasts'],
 	'/ui/carousel': ['global', 'contents', 'carousel'],
 	'/ui/carousel/carousel-example': ['global', 'contents', 'carousel'],
 }
