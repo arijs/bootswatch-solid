@@ -1,12 +1,15 @@
 import type { Component } from 'solid-js'
-import { bsTheme } from '../../../themes/bootstrap/_vars.css'
-import { body } from '../../../themes/bootstrap/body.css'
+import { useVeGlobalThemeClasses } from '../../../themes/runtime/hooks'
 import ImageTopCard from './ImageTopCard'
 
-const ImageTopCardExample: Component = () => (
-	<div class={`${bsTheme} ${body}`}>
-		<ImageTopCard />
-	</div>
-)
+const ImageTopCardExample: Component = () => {
+	const cls = useVeGlobalThemeClasses()
+
+	return (
+		<div class={`${cls.bsTheme} ${cls.body}`}>
+			<ImageTopCard />
+		</div>
+	)
+}
 
 export default ImageTopCardExample
