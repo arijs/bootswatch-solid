@@ -6,6 +6,7 @@ import {
 	flexWrap,
 	justifyContentBetween,
 	modal,
+	modalBackdrop,
 	modalBody,
 	modalContent,
 	modalDialog,
@@ -15,6 +16,8 @@ import {
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
+	modalOpenHook,
+	modalShowHook,
 	modalTitle,
 	fade as modalFadeClass,
 } from './base.css'
@@ -29,6 +32,7 @@ export const bootstrapModalRuntimeClasses = {
 	h5,
 	justifyContentBetween,
 	modal,
+	modalBackdrop,
 	modalBody,
 	modalContent,
 	modalDialog,
@@ -38,5 +42,7 @@ export const bootstrapModalRuntimeClasses = {
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
+	modalOpenHook,
+	modalShowHook,
 	modalTitle,
 } as const

@@ -1,15 +1,15 @@
 import type { Component } from 'solid-js'
 import { onSettled } from 'solid-js'
 import { useVeCarouselThemeClasses } from '../../../themes/runtime/hooks'
-import './ve-carousel'
+import { configureVeCarousel } from './ve-carousel'
 
 const CarouselExample: Component = () => {
 	const cls = useVeCarouselThemeClasses()
+	const VeCarousel = configureVeCarousel(cls)
 	let carouselRef: HTMLDivElement | undefined
 	onSettled(() => {
-		// Ensure carousel is initialized with VeCarousel configuration
-		if (carouselRef && (window as any).VeCarousel) {
-			;(window as any).VeCarousel.getOrCreateInstance(carouselRef)
+		if (carouselRef) {
+			VeCarousel.getOrCreateInstance(carouselRef)
 		}
 	})
 

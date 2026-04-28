@@ -1,10 +1,12 @@
 import type { Component } from 'solid-js'
 import { useVeButtonThemeClasses, useVeModalThemeClasses } from '../../../themes/runtime/hooks'
-import './ve-modal'
+import { configureVeModal } from './ve-modal'
 
 const FullscreenModal: Component = () => {
 	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } = useVeButtonThemeClasses()
-	const { actionsRow, bodyText, btnClose, fade, flexWrap, h4, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalFade, modalFooter, modalFullscreen, modalHeader, modalTitle } = useVeModalThemeClasses()
+	const modalThemeClasses = useVeModalThemeClasses()
+	configureVeModal(modalThemeClasses)
+	const { actionsRow, bodyText, btnClose, fade, flexWrap, h4, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalFade, modalFooter, modalFullscreen, modalHeader, modalTitle } = modalThemeClasses
 	return (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>

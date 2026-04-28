@@ -1,6 +1,5 @@
 import type { Component } from 'solid-js'
-import { mb3, paragraph } from '../../../themes/bootstrap/contents/generated.css'
-import { useVeNavThemeClasses } from '../../../themes/runtime/hooks'
+import { useVeContentsThemeClasses, useVeNavThemeClasses } from '../../../themes/runtime/hooks'
 
 const TabbedNav: Component = () => {
 	const {
@@ -18,6 +17,7 @@ const TabbedNav: Component = () => {
 		tabPane,
 		tabPaneActive,
 	} = useVeNavThemeClasses()
+	const { mb3, paragraph } = useVeContentsThemeClasses()
 
 	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>

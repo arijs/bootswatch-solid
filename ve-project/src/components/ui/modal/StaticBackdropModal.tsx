@@ -1,10 +1,12 @@
 import type { Component } from 'solid-js'
 import { useVeButtonThemeClasses, useVeModalThemeClasses } from '../../../themes/runtime/hooks'
-import './ve-modal'
+import { configureVeModal } from './ve-modal'
 
 const StaticBackdropModal: Component = () => {
 	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } = useVeButtonThemeClasses()
-	const { actionsRow, bodyText, btnClose, fade, flexWrap, h5, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalFade, modalFooter, modalHeader, modalTitle } = useVeModalThemeClasses()
+	const modalThemeClasses = useVeModalThemeClasses()
+	configureVeModal(modalThemeClasses)
+	const { actionsRow, bodyText, btnClose, fade, flexWrap, h5, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalFade, modalFooter, modalHeader, modalTitle } = modalThemeClasses
 	return (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>

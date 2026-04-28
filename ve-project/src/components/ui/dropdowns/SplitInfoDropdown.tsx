@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import './ve-dropdown'
+import { configureVeDropdown } from './ve-dropdown'
 import { useVeDropdownThemeClasses } from '../../../themes/runtime/hooks'
 
 const SplitInfoDropdown: Component = () => {
@@ -16,6 +16,7 @@ const SplitInfoDropdown: Component = () => {
 		dropdownToggleSplit,
 		visuallyHidden,
 	} = useVeDropdownThemeClasses()
+	configureVeDropdown(useVeDropdownThemeClasses())
 
 	return (
 	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>

@@ -203,6 +203,7 @@ export interface VeModalThemeContract {
 	h5: string
 	justifyContentBetween: string
 	modal: string
+	modalBackdrop: string
 	modalBody: string
 	modalContent: string
 	modalDialog: string
@@ -212,6 +213,8 @@ export interface VeModalThemeContract {
 	modalFooter: string
 	modalFullscreen: string
 	modalHeader: string
+	modalOpenHook: string
+	modalShowHook: string
 	modalTitle: string
 }
 
@@ -327,6 +330,10 @@ export interface VeCarouselThemeContract {
 	carouselIndicatorsTarget: string
 	carouselInner: string
 	carouselItem: string
+	carouselItemEnd: string
+	carouselItemNext: string
+	carouselItemPrev: string
+	carouselItemStart: string
 	carouselSlide: string
 	carouselSlideImage: string
 	visuallyHidden: string
