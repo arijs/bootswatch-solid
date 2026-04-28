@@ -57,11 +57,26 @@ Expected result: missing family count decreases (or impacted route count decreas
 
 Use this section after you choose `<chosen-theme>` and `<chosen-family>` from the runtime report.
 
+### Hard Rule: No Cross-Theme Bootstrap Re-Exports
+
+For any non-Bootstrap theme (`sketchy`, `cerulean`, `quartz`, etc.), do not satisfy family conversion by re-exporting Bootstrap runtime classes or Bootstrap theme style modules.
+
+Allowed sharing:
+- Shared contract variable names and types from `ve-project/src/theme-contract/**`.
+
+Not allowed:
+- `export const <themeX>... = bootstrap...` runtime re-exports.
+- Importing Bootstrap theme family runtime objects as the non-Bootstrap family implementation.
+
+Required approach:
+- Implement theme-local VE classes under `ve-project/src/themes/<chosen-theme>/**` using extracted CSS from `screenshots/<chosen-theme>/**/style.css`.
+- Export runtime classes from those theme-local files.
+
 ### What "family converted" means
 
 A family is considered converted for a theme only when all of the following are true:
 
-1. VE classes exist for that family under the theme (or a temporary adapter is explicitly created).
+1. VE classes exist for that family under the theme with visual-parity intent.
 2. A runtime contract file exports the family runtime classes for that theme.
 3. `ve-project/src/themes/runtime/registry.ts` includes the family in both:
 - `contracts` for the theme definition
@@ -79,9 +94,9 @@ A family is considered converted for a theme only when all of the following are 
 
 ### Minimal implementation checklist
 
-1. Choose strategy for `<chosen-family>`:
-- Adapter strategy (fast contract coverage): re-export Bootstrap runtime classes.
-- Full strategy (visual parity): create/adjust theme-specific VE class files and expose them via runtime.
+1. Visual parity strategy (required): complete theme-specific VE classes for the full family behavior and expose them via runtime.
+
+Important: implementation must target visual parity using theme-local files. Bootstrap family runtime/style re-exports are not permitted.
 
 2. Create or update family VE class files for `<chosen-theme>`.
 - Typical location pattern:
@@ -135,7 +150,7 @@ node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --theme=<ch
 2. Runtime report no longer lists `<chosen-family>` as missing for `<chosen-theme>`.
 3. Changelog entry includes:
 - chosen theme/family
-- strategy used (adapter or full)
+- visual parity implementation summary
 - verification command output summary
 - remaining risk/pending work
 

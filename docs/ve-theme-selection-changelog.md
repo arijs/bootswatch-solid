@@ -24,6 +24,25 @@ Risks / Pending:
 1. ...
 ```
 
+### 2026-04-28 (Correction: Removed Sketchy Cross-Theme Bootstrap Re-Exports)
+
+Scope:
+1. Reverted the temporary Sketchy `contents`/`forms` runtime adapters that re-exported Bootstrap runtime classes.
+2. Restored runtime coverage accounting so Sketchy gaps reflect real theme-local implementation status.
+3. Updated the verification playbook with an explicit no-cross-theme-re-export policy.
+
+Behavior Changes:
+1. Removed `ve-project/src/themes/sketchy/contents/runtime.ts` and `ve-project/src/themes/sketchy/forms/runtime.ts`.
+2. Updated `ve-project/src/themes/runtime/registry.ts` to remove Sketchy `contents` and `forms` contract registration/imports.
+3. Updated `docs/ve-next-work-verification.md` with a hard rule that non-Bootstrap themes must not re-export Bootstrap runtime/style implementations.
+
+Validation:
+1. `pnpm ve:build` passes after rollback.
+2. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy` reports `missing 21 family/families across 142/342 selected routes`, confirming `contents` and `forms` are again tracked as pending.
+
+Risks / Pending:
+1. Sketchy still requires theme-local implementation for `contents`, `forms`, and remaining families from extracted Sketchy `style.css` artifacts.
+
 ### 2026-04-28 (Runtime Registry Family-Derivation + Coverage Parser Compatibility)
 
 Scope:
