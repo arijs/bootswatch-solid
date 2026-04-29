@@ -1,4 +1,15 @@
-# VE Theme Selection Changelog
+# VE Theme Selection Changelog (ve-project v1 — Historical)
+
+> **Historical Context — ve-project (v1)**
+>
+> This changelog records implementation milestones for the **first** Vanilla Extract sub-project (`ve-project`).
+> It is preserved here for historical context.
+>
+> The current preferred approach is described in [`docs/ve-architecture.md`](./ve-architecture.md)
+> and is implemented in [`ve-project2/`](../ve-project2).
+> See [`docs/ve-project1-docs-index.md`](./ve-project1-docs-index.md) for an index of all v1 historical docs.
+
+---
 
 This changelog was extracted from `docs/ve-theme-selection-strategy.md`.
 

@@ -1,6 +1,17 @@
-# VE Theme Selection Strategy
+# VE Theme Selection Strategy (ve-project v1 — Historical)
 
-Status: Approved for implementation planning
+> **Historical Context — ve-project (v1)**
+>
+> This document describes the theme selection strategy for the **first** Vanilla Extract sub-project (`ve-project`).
+> It is preserved here for historical context.
+>
+> The current preferred approach is described in [`docs/ve-architecture.md`](./ve-architecture.md)
+> and is implemented in [`ve-project2/`](../ve-project2).
+> See [`docs/ve-project1-docs-index.md`](./ve-project1-docs-index.md) for an index of all v1 historical docs.
+
+---
+
+Status: Approved for implementation planning (ve-project v1)
 Date: 2026-04-26
 Owner: VE migration track
 
