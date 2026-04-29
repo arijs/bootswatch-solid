@@ -4,7 +4,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { setTimeout as delay } from 'node:timers/promises'
 
-import { ROOT, VE_ROOT } from './constants.mjs'
+import { ROOT, VE_ROOT, VE2_ROOT } from './constants.mjs'
 
 export async function waitForServer(url, timeoutMs = 45000) {
 	const started = Date.now()
@@ -82,6 +82,31 @@ export function startPreviewServer() {
 export function startVePreviewServer() {
 	killPortWindows(4174)
 	return spawn(process.execPath, ['scripts/run-ve-vite.mjs', 'preview'], {
+		cwd: ROOT,
+		env: process.env,
+		stdio: 'inherit',
+	})
+}
+
+export function buildVe2Project() {
+	execSync(`${process.execPath} scripts/run-ve-vite.mjs build ve-project2`, {
+		cwd: ROOT,
+		env: process.env,
+		stdio: 'inherit',
+	})
+}
+
+export function assertVe2BuildOutputExists() {
+	const distIndex = path.join(VE2_ROOT, 'dist', 'index.html')
+	if (existsSync(distIndex)) return
+	throw new Error(
+		'Missing VE2 build output at ve-project2/dist/index.html. Run VE2 verification mode (auto-build) or run "node scripts/run-ve-vite.mjs build ve-project2".',
+	)
+}
+
+export function startVe2PreviewServer() {
+	killPortWindows(4175)
+	return spawn(process.execPath, ['scripts/run-ve-vite.mjs', 'preview', 've-project2'], {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',

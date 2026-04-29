@@ -36,12 +36,14 @@ import { resolveInitialNavigationWarmupDelayMs, resolveScreenshotSettleDelayMs }
 import { slugifyTheme } from './utils.mjs'
 import { verifyScenarioCssRendering } from './verification.mjs'
 import { verifyScenarioVeRendering } from './ve-verification.mjs'
+import { verifyScenarioVe2Rendering } from './ve2-verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
 
 export async function executeCaptureWorkflow({
 	themes,
 	scenarios,
 	veRouteSet,
+	ve2RouteSet,
 	routeToComponentFile,
 	requestedWidth,
 	routeFilter,
@@ -52,6 +54,7 @@ export async function executeCaptureWorkflow({
 	cssExtractionEnabled,
 	verificationEnabled,
 	veVerificationEnabled,
+	ve2VerificationEnabled,
 	verificationMaxDiffRatio,
 }) {
 	async function freshBrowser(initialHeight = DEFAULT_VIEWPORT.height) {
@@ -186,7 +189,7 @@ export async function executeCaptureWorkflow({
 							requestedWidth,
 						)
 
-						if (verificationEnabled || veVerificationEnabled) {
+						if (verificationEnabled || veVerificationEnabled || ve2VerificationEnabled) {
 							if (configured.source !== 'directive' || configured.height == null) {
 								throw new Error(
 									`Missing @screenshot directive height for theme=${themeSlug} state=${stateFolder} width=${requestedWidth} in ${path.relative(ROOT, componentFile)}`,
@@ -206,9 +209,11 @@ export async function executeCaptureWorkflow({
 							const verification = await runVerificationIfEnabled({
 								verificationEnabled,
 								veVerificationEnabled,
+								ve2VerificationEnabled,
 								verificationStats,
 								verificationMismatches,
 								veRouteSet,
+								ve2RouteSet,
 								browser,
 								themeName,
 								themeSlug,
@@ -480,9 +485,11 @@ export async function executeCaptureWorkflow({
 async function runVerificationIfEnabled({
 	verificationEnabled,
 	veVerificationEnabled,
+	ve2VerificationEnabled,
 	verificationStats,
 	verificationMismatches,
 	veRouteSet,
+	ve2RouteSet,
 	browser,
 	themeName,
 	themeSlug,
@@ -496,8 +503,9 @@ async function runVerificationIfEnabled({
 	outputPath,
 	verificationMaxDiffRatio,
 }) {
-	if (!verificationEnabled && !veVerificationEnabled) return null
+	if (!verificationEnabled && !veVerificationEnabled && !ve2VerificationEnabled) return null
 	const isCssVerification = verificationEnabled
+	const isVe2Verification = ve2VerificationEnabled
 	verificationStats.ran()
 
 	if (veVerificationEnabled && !veRouteSet.has(route)) {
@@ -511,7 +519,31 @@ async function runVerificationIfEnabled({
 		}
 	}
 
-	const verification = isCssVerification
+	if (ve2VerificationEnabled && !ve2RouteSet.has(route)) {
+		const reason = "Route not implemented in ve-project2; skipping VE2 verification"
+		verificationStats.skipped()
+		console.warn(`VE2 verification skipped for ${route}: ${reason}`)
+		return {
+			skipped: true,
+			matched: false,
+			reason,
+		}
+	}
+
+	const verification = isVe2Verification
+		? await verifyScenarioVe2Rendering({
+				browser,
+				themeSlug,
+				route,
+				stateFolder,
+				scenario,
+				settleDelayMs,
+				requestedWidth,
+				measuredHeight,
+				baselinePath: outputPath,
+				maxDiffRatio: verificationMaxDiffRatio,
+		  })
+		: isCssVerification
 		? await verifyScenarioCssRendering({
 				browser,
 				themeName,
@@ -563,8 +595,11 @@ async function runVerificationIfEnabled({
 	if (isCssVerification) {
 		mismatchRecord.verifyPath = verification.verifyPath
 		mismatchRecord.diffPath = verification.diffPath
-	} else {
+	} else if (veVerificationEnabled) {
 		mismatchRecord.vePath = verification.vePath
+		mismatchRecord.verifyPath = verification.verifyPath
+	} else {
+		mismatchRecord.ve2Path = verification.ve2Path
 		mismatchRecord.verifyPath = verification.verifyPath
 	}
 	verificationMismatches.push(mismatchRecord)

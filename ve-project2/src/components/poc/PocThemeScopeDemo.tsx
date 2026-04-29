@@ -1,4 +1,4 @@
-import { type Component, createContext, useContext } from 'solid-js'
+import { type Component, useContext } from 'solid-js'
 // Contract classes — stable identifiers shared by all themes, applied to elements.
 // No runtime resolution required: every component always uses these same names.
 import {
@@ -23,7 +23,7 @@ import '../../themes/sketchy/ui/buttons/styles.css'
 
 // ThemeContext — propagates the active scope class down to every component so
 // each element can stamp it onto itself without prop-drilling.
-const ThemeContext = createContext<string>('')
+import { ThemeContext } from '../../context/ThemeContext'
 
 // Buttons reads the current theme class from context and applies it directly to
 // every button element alongside the contract classes.  No container needed.

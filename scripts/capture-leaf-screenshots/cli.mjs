@@ -11,6 +11,7 @@ const BOOLEAN_FLAGS = new Set([
 	'--no-css-extraction',
 	'--verify-css-rendering',
 	'--verify-ve-rendering',
+	'--verify-ve2-rendering',
 	'--ve-missing-only',
 	'--ve-runtime-missing-only',
 	'--ve-runtime-missing-leafs',
@@ -54,6 +55,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	const veRuntimeMissingLeafs = argv.includes('--ve-runtime-missing-leafs')
 	const veRuntimeMissingOnly = argv.includes('--ve-runtime-missing-only') || veRuntimeMissingLeafs
 	const veVerificationEnabled = argv.includes('--verify-ve-rendering') || veMissingOnly
+	const ve2VerificationEnabled = argv.includes('--verify-ve2-rendering')
 	if (veRuntimeMissingOnly && veMissingOnly) {
 		throw new Error(
 			'--ve-missing-only and --ve-runtime-missing-only are mutually exclusive. Choose one fast-report mode per run.',
@@ -69,10 +71,20 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 			'--verify-css-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
 		)
 	}
+	if (verificationEnabled && ve2VerificationEnabled) {
+		throw new Error(
+			'--verify-css-rendering and --verify-ve2-rendering are mutually exclusive. Choose one verification mode per run.',
+		)
+	}
+	if (veVerificationEnabled && ve2VerificationEnabled) {
+		throw new Error(
+			'--verify-ve-rendering and --verify-ve2-rendering are mutually exclusive. Choose one verification mode per run.',
+		)
+	}
 	if (veRuntimeMissingLeafs) {
 		throw new Error('--ve-runtime-missing-leafs: Sorry my brotha, this is too verbose and you don\'t need it. Use --ve-runtime-missing-only instead to get a concise report of missing routes for each theme.')
 	}
-	const anyVerificationEnabled = verificationEnabled || veVerificationEnabled
+	const anyVerificationEnabled = verificationEnabled || veVerificationEnabled || ve2VerificationEnabled
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 
@@ -87,6 +99,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		cssExtractionEnabled,
 		verificationEnabled,
 		veVerificationEnabled,
+		ve2VerificationEnabled,
 		veMissingOnly,
 		veRuntimeMissingOnly,
 		veRuntimeMissingLeafs,

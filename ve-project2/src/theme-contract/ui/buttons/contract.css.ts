@@ -13,3 +13,24 @@ export const btnWarning = style({})
 export const btnInfo = style({})
 export const btnLight = style({})
 export const btnDark = style({})
+export const btnLink = style({})
+
+// Size modifiers
+export const btnLg = style({})
+export const btnSm = style({})
+
+// State hooks
+export const btnActiveHook = style({})
+
+// Hidden checkbox for toggle-button pattern
+export const btnCheck = style({})
+
+// Outline variants
+export const btnOutlinePrimary = style({})
+export const btnOutlineSecondary = style({})
+export const btnOutlineSuccess = style({})
+export const btnOutlineDanger = style({})
+export const btnOutlineWarning = style({})
+export const btnOutlineInfo = style({})
+export const btnOutlineLight = style({})
+export const btnOutlineDark = style({})

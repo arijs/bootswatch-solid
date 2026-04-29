@@ -1,0 +1,10 @@
+/* Layout container for ve-project2 screenshot demos.
+   Provides white background, padding, and inline display so screenshots
+   capture just the component with minimal surrounding space. */
+.bd-example-ve2 {
+	padding: 1rem;
+	border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+	background-color: #fff;
+	display: inline-block;
+}
