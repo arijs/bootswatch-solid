@@ -5,17 +5,20 @@ const DefaultListGroup: Component = () => {
 	const cls = useVeListGroupThemeClasses()
 
 	return (
-	<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
-		<ul class={`${cls.listGroup} pwhook-list-group`}>
-			<li class={`${cls.listGroupItem} ${cls.listGroupItemDisabled}`} aria-disabled="true">
-				A disabled item
-			</li>
-			<li class={cls.listGroupItem}>A second item</li>
-			<li class={cls.listGroupItem}>A third item</li>
-			<li class={cls.listGroupItem}>A fourth item</li>
-			<li class={cls.listGroupItem}>And a fifth one</li>
-		</ul>
-	</div>
+		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
+			<ul class={`${cls.listGroup} pwhook-list-group`}>
+				<li
+					class={`${cls.listGroupItem} ${cls.listGroupItemDisabled}`}
+					aria-disabled="true"
+				>
+					A disabled item
+				</li>
+				<li class={cls.listGroupItem}>A second item</li>
+				<li class={cls.listGroupItem}>A third item</li>
+				<li class={cls.listGroupItem}>A fourth item</li>
+				<li class={cls.listGroupItem}>And a fifth one</li>
+			</ul>
+		</div>
 	)
 }
 

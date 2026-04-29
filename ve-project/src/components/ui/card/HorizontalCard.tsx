@@ -2,35 +2,45 @@ import type { Component } from 'solid-js'
 import { useVeCardThemeClasses } from '../../../themes/runtime/hooks'
 
 const HorizontalCard: Component = () => {
-	const { bdPlaceholderImg, card, cardBody, cardText, cardTitle, h5, paragraph, smallText, textMuted } = useVeCardThemeClasses()
+	const {
+		bdPlaceholderImg,
+		card,
+		cardBody,
+		cardText,
+		cardTitle,
+		h5,
+		paragraph,
+		smallText,
+		textMuted,
+	} = useVeCardThemeClasses()
 	return (
-	<div class={card}>
-		<svg
-			class={bdPlaceholderImg}
-			width="100%"
-			height="250"
-			xmlns="http://www.w3.org/2000/svg"
-			aria-label="Placeholder: Image"
-			preserveAspectRatio="xMidYMid slice"
-			tabindex="0"
-		>
-			<title>Placeholder</title>
-			<rect width="100%" height="100%" fill="#868e96" />
-			<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
-				Image
-			</text>
-		</svg>
-		<div class={cardBody}>
-			<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
-			<p class={`${paragraph} ${cardText}`}>
-				This is a wider card with supporting text below as a natural lead-in to
-				additional content. This content is a little bit longer.
-			</p>
-			<p class={`${paragraph} ${cardText}`}>
-				<small class={`${smallText} ${textMuted}`}>Last updated 3 mins ago</small>
-			</p>
+		<div class={card}>
+			<svg
+				class={bdPlaceholderImg}
+				width="100%"
+				height="250"
+				xmlns="http://www.w3.org/2000/svg"
+				aria-label="Placeholder: Image"
+				preserveAspectRatio="xMidYMid slice"
+				tabindex="0"
+			>
+				<title>Placeholder</title>
+				<rect width="100%" height="100%" fill="#868e96" />
+				<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+					Image
+				</text>
+			</svg>
+			<div class={cardBody}>
+				<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
+				<p class={`${paragraph} ${cardText}`}>
+					This is a wider card with supporting text below as a natural lead-in to
+					additional content. This content is a little bit longer.
+				</p>
+				<p class={`${paragraph} ${cardText}`}>
+					<small class={`${smallText} ${textMuted}`}>Last updated 3 mins ago</small>
+				</p>
+			</div>
 		</div>
-	</div>
 	)
 }
 

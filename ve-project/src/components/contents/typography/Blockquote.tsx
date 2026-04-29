@@ -1,8 +1,12 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { blockquote, blockquoteFooter, paragraph } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	blockquote,
+	blockquoteFooter,
+	paragraph,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const Blockquote: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>

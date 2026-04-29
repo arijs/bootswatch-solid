@@ -1,8 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	btnGroup,
-	btnToolbar,
-} from '../../../../theme-contract/ui/button-group/contract.css'
+import { btnGroup, btnToolbar } from '../../../../theme-contract/ui/button-group/contract.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { bootstrapScope } from '../../scope.css'
 

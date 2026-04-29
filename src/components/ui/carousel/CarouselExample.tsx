@@ -2,7 +2,11 @@ import type { Component } from 'solid-js'
 
 const CarouselExample: Component = () => (
 	<div class="bd-example container-fluid">
-		<div id="carouselExampleCaptions" class="carousel slide pwhook-carousel" data-bs-ride="carousel">
+		<div
+			id="carouselExampleCaptions"
+			class="carousel slide pwhook-carousel"
+			data-bs-ride="carousel"
+		>
 			<div class="carousel-indicators pwhook-carousel-indicators">
 				<button
 					type="button"

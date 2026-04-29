@@ -89,11 +89,15 @@ export function startVePreviewServer() {
 }
 
 export function buildVe2Project() {
-	const result = spawnSync(process.execPath, ['scripts/run-ve-vite.mjs', 'build', 've-project2'], {
-		cwd: ROOT,
-		env: process.env,
-		stdio: 'inherit',
-	})
+	const result = spawnSync(
+		process.execPath,
+		['scripts/run-ve-vite.mjs', 'build', 've-project2'],
+		{
+			cwd: ROOT,
+			env: process.env,
+			stdio: 'inherit',
+		},
+	)
 	if (result.status !== 0) {
 		throw new Error('VE2 build failed')
 	}

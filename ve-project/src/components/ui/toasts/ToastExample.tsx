@@ -1,4 +1,4 @@
-import { onSettled, type Component } from 'solid-js'
+import { type Component, onSettled } from 'solid-js'
 import { useVeToastThemeClasses } from '../../../themes/runtime/hooks'
 import { createVeToast } from './ve-toast'
 
@@ -20,7 +20,9 @@ const ToastExample: Component = () => {
 	})
 
 	return (
-		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid} ${cls.toastExample}`}>
+		<div
+			class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid} ${cls.toastExample}`}
+		>
 			<div
 				class={`${cls.toast} ${cls.toastRuntime} pwhook-toast`}
 				ref={toastNode}

@@ -54,7 +54,8 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	const verificationEnabled = argv.includes('--verify-css-rendering')
 	const ve1MissingOnly = argv.includes('--ve1-missing-only')
 	const ve1RuntimeMissingLeafs = argv.includes('--ve1-runtime-missing-leafs')
-	const ve1RuntimeMissingOnly = argv.includes('--ve1-runtime-missing-only') || ve1RuntimeMissingLeafs
+	const ve1RuntimeMissingOnly =
+		argv.includes('--ve1-runtime-missing-only') || ve1RuntimeMissingLeafs
 	const ve1VerificationEnabled = argv.includes('--verify-ve1-rendering') || ve1MissingOnly
 	const veMissingOnly = argv.includes('--ve-missing-only')
 	const veVerificationEnabled = argv.includes('--verify-ve-rendering') || veMissingOnly
@@ -89,9 +90,12 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		)
 	}
 	if (ve1RuntimeMissingLeafs) {
-		throw new Error('--ve1-runtime-missing-leafs: Sorry my brotha, this is too verbose and you don\'t need it. Use --ve1-runtime-missing-only instead to get a concise report of missing routes for each theme.')
+		throw new Error(
+			"--ve1-runtime-missing-leafs: Sorry my brotha, this is too verbose and you don't need it. Use --ve1-runtime-missing-only instead to get a concise report of missing routes for each theme.",
+		)
 	}
-	const anyVerificationEnabled = verificationEnabled || ve1VerificationEnabled || veVerificationEnabled
+	const anyVerificationEnabled =
+		verificationEnabled || ve1VerificationEnabled || veVerificationEnabled
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 

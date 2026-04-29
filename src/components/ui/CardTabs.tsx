@@ -17,4 +17,3 @@ const CardTabs: Component = () => (
 )
 
 export default CardTabs
-

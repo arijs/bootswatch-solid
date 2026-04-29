@@ -62,17 +62,15 @@ async function forceOpenDropdownMenu(locator) {
 	})
 }
 
-async function slideCarouselToIndex(locator, {
-	targetIndex,
-	timeoutMs,
-	scenarioKind,
-	state,
-	route,
-}) {
+async function slideCarouselToIndex(
+	locator,
+	{ targetIndex, timeoutMs, scenarioKind, state, route },
+) {
 	await locator.evaluate(
 		async (carouselElement, config) => {
 			const getActiveClassTokens = (CarouselClass) => {
-				const configured = CarouselClass.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
+				const configured =
+					CarouselClass.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
 				const tokens = configured.split(/\s+/).filter(Boolean)
 				return tokens.length > 0 ? tokens : ['active']
 			}
@@ -88,9 +86,7 @@ async function slideCarouselToIndex(locator, {
 					return indicatorIndex
 				}
 
-				return items.findIndex(
-					(item) => hasAnyToken(item, activeClassTokens),
-				)
+				return items.findIndex((item) => hasAnyToken(item, activeClassTokens))
 			}
 
 			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
@@ -160,20 +156,24 @@ async function slideCarouselToIndex(locator, {
 	)
 }
 
-async function clickCarouselControl(locator, {
-	startIndex,
-	direction,
-	expectedIndex,
-	timeoutMs,
-	controlSelector,
-	scenarioKind,
-	state,
-	route,
-}) {
+async function clickCarouselControl(
+	locator,
+	{
+		startIndex,
+		direction,
+		expectedIndex,
+		timeoutMs,
+		controlSelector,
+		scenarioKind,
+		state,
+		route,
+	},
+) {
 	await locator.evaluate(
 		async (carouselElement, config) => {
 			const getActiveClassTokens = (CarouselClass) => {
-				const configured = CarouselClass.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
+				const configured =
+					CarouselClass.getConfigConstants?.().CLASS_NAME_ACTIVE ?? 'active'
 				const tokens = configured.split(/\s+/).filter(Boolean)
 				return tokens.length > 0 ? tokens : ['active']
 			}
@@ -189,9 +189,7 @@ async function clickCarouselControl(locator, {
 					return indicatorIndex
 				}
 
-				return items.findIndex(
-					(item) => hasAnyToken(item, activeClassTokens),
-				)
+				return items.findIndex((item) => hasAnyToken(item, activeClassTokens))
 			}
 
 			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
@@ -284,7 +282,9 @@ async function clickCarouselControl(locator, {
 
 			const settledIndex = getActiveIndex(items, indicators)
 			if (settledIndex !== targetIndex) {
-				throw new Error(`Carousel settled at index ${settledIndex}, expected ${targetIndex}`)
+				throw new Error(
+					`Carousel settled at index ${settledIndex}, expected ${targetIndex}`,
+				)
 			}
 		},
 		{
@@ -378,8 +378,8 @@ export async function stabilizeForScreenshot(page) {
 				if (items.length === 0) continue
 
 				const indicators = [...carousel.querySelectorAll('.pwhook-carousel-indicator')]
-				const activeItemIndex = items.findIndex(
-					(item) => hasAnyToken(item, effectiveActiveClassTokens),
+				const activeItemIndex = items.findIndex((item) =>
+					hasAnyToken(item, effectiveActiveClassTokens),
 				)
 				const activeIndicatorIndex = indicators.findIndex(
 					(indicator) =>

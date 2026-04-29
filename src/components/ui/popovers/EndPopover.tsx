@@ -25,7 +25,6 @@ export default EndPopover
 
 // @screenshot *: 360x120 120
 
-
 // @screenshot bootstrap: 360x256 256
 // @screenshot brite: 360x224 224
 // @screenshot cerulean: 360x256 256

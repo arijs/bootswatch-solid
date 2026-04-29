@@ -2,7 +2,6 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import micromatch from 'micromatch'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
-import { reportVeRuntimeCoverageGaps } from './capture-leaf-screenshots/ve-runtime-coverage.mjs'
 import {
 	BASE_URL,
 	INDEX_FILE,
@@ -19,14 +18,14 @@ import {
 } from './capture-leaf-screenshots/discovery.mjs'
 import {
 	assertBuildOutputExists,
-	assertVeBuildOutputExists,
 	assertVe2BuildOutputExists,
+	assertVeBuildOutputExists,
 	buildProject,
-	buildVeProject,
 	buildVe2Project,
+	buildVeProject,
 	startPreviewServer,
-	startVePreviewServer,
 	startVe2PreviewServer,
+	startVePreviewServer,
 	stopServer,
 	waitForServer,
 } from './capture-leaf-screenshots/preview-server.mjs'
@@ -36,6 +35,7 @@ import {
 	filterScenarios,
 	filterThemes,
 } from './capture-leaf-screenshots/scenarios.mjs'
+import { reportVeRuntimeCoverageGaps } from './capture-leaf-screenshots/ve-runtime-coverage.mjs'
 import { executeCaptureWorkflow } from './capture-leaf-screenshots/workflow.mjs'
 
 const {
@@ -94,7 +94,9 @@ async function main() {
 			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
-			throw new Error('No leaf routes selected for --ve1-missing-only after applying --route filters.')
+			throw new Error(
+				'No leaf routes selected for --ve1-missing-only after applying --route filters.',
+			)
 		}
 
 		const missingRoutes = selectedLeafRoutes.filter((route) => !ve1RouteSet.has(route))
@@ -102,7 +104,9 @@ async function main() {
 
 		console.log('Mode: VE1 missing-only enabled (--ve1-missing-only).')
 		console.log(`Selected leaf routes: ${selectedLeafRoutes.length}.`)
-		console.log(`VE1 migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`)
+		console.log(
+			`VE1 migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`,
+		)
 
 		if (missingRoutes.length === 0) {
 			console.log('All selected leaf routes are already migrated to VE1.')
@@ -126,7 +130,9 @@ async function main() {
 			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
-			throw new Error('No leaf routes selected for --ve-missing-only after applying --route filters.')
+			throw new Error(
+				'No leaf routes selected for --ve-missing-only after applying --route filters.',
+			)
 		}
 
 		const missingRoutes = selectedLeafRoutes.filter((route) => !ve2RouteSet.has(route))
@@ -134,14 +140,18 @@ async function main() {
 
 		console.log('Mode: VE missing-only enabled (--ve-missing-only).')
 		console.log(`Selected leaf routes: ${selectedLeafRoutes.length}.`)
-		console.log(`VE migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`)
+		console.log(
+			`VE migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`,
+		)
 
 		if (missingRoutes.length === 0) {
 			console.log('All selected leaf routes are already migrated to VE (ve-project2).')
 			return
 		}
 
-		console.warn(`\nComponents still missing VE migration in ve-project2 (${missingRoutes.length}):`)
+		console.warn(
+			`\nComponents still missing VE migration in ve-project2 (${missingRoutes.length}):`,
+		)
 		for (const route of missingRoutes) {
 			const componentFile = routeToComponentFile.get(route)
 			const componentRef = componentFile
@@ -175,7 +185,9 @@ async function main() {
 		}
 
 		if (selectedThemes.length === 0) {
-			throw new Error('No themes selected for --ve1-runtime-missing-only after applying filters.')
+			throw new Error(
+				'No themes selected for --ve1-runtime-missing-only after applying filters.',
+			)
 		}
 
 		reportVeRuntimeCoverageGaps({

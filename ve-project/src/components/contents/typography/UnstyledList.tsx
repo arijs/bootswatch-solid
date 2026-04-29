@@ -1,8 +1,13 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { listBase, listIndented, listNested, listUnstyled } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	listBase,
+	listIndented,
+	listNested,
+	listUnstyled,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const UnstyledList: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>

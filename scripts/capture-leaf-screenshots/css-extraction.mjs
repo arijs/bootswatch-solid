@@ -588,7 +588,8 @@ export async function extractScenarioCssArtifacts(page) {
 			const stylesheet = [...document.styleSheets].find((sheet) => {
 				const href = sheet.href ?? ''
 				const owner = sheet.ownerNode
-				const themeKind = owner instanceof Element ? owner.getAttribute('data-theme-css') : null
+				const themeKind =
+					owner instanceof Element ? owner.getAttribute('data-theme-css') : null
 				return (
 					themeKind === 'global' ||
 					(href.includes('cdn.jsdelivr.net/npm/') && href.endsWith('/bootstrap.css')) ||
@@ -597,9 +598,7 @@ export async function extractScenarioCssArtifacts(page) {
 			})
 
 			if (!stylesheet) {
-				throw new Error(
-					'Unable to find active theme stylesheet in document.styleSheets',
-				)
+				throw new Error('Unable to find active theme stylesheet in document.styleSheets')
 			}
 
 			let collected

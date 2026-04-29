@@ -28,15 +28,12 @@ globalStyle(`${sketchyScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}`
 	paddingLeft: '0.5rem',
 })
 
-globalStyle(
-	`${sketchyScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}::before`,
-	{
-		float: 'left',
-		paddingRight: '0.5rem',
-		color: '#333',
-		content: '"/"',
-	},
-)
+globalStyle(`${sketchyScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}::before`, {
+	float: 'left',
+	paddingRight: '0.5rem',
+	color: '#333',
+	content: '"/"',
+})
 
 // ── Active item ───────────────────────────────────────────────────────────────
 

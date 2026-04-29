@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
 import DocLink from '../common/DocLink'
-import Progress100 from './progress/Progress100'
 import Progress0 from './progress/Progress0'
 import Progress25 from './progress/Progress25'
 import Progress50 from './progress/Progress50'
 import Progress75 from './progress/Progress75'
+import Progress100 from './progress/Progress100'
 import StripedProgress from './progress/StripedProgress'
 
 const Progress: Component = () => (

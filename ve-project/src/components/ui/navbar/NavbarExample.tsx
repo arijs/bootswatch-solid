@@ -23,45 +23,45 @@ const NavbarExample: Component = () => {
 	} = useVeNavbarThemeClasses()
 
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<nav class={`${navbar} ${bgLight}`}>
-			<div class={`${containerFluid} ${navbarInner}`}>
-				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a class={navbarBrand} href="#" onClick={(event) => event.preventDefault()}>
-					<img
-						src={brandSrc}
-						width="38"
-						height="30"
-						class={`${dInlineBlock} ${alignTop} ${navbarLogoMuted}`}
-						alt="Bootstrap"
-						loading="lazy"
-					/>
-				</a>
-				<button class={navbarToggler} type="button" aria-label="Toggle navigation">
-					<span class={navbarTogglerIcon}></span>
-				</button>
-			</div>
-		</nav>
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<nav class={`${navbar} ${bgLight}`}>
+				<div class={`${containerFluid} ${navbarInner}`}>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a class={navbarBrand} href="#" onClick={(event) => event.preventDefault()}>
+						<img
+							src={brandSrc}
+							width="38"
+							height="30"
+							class={`${dInlineBlock} ${alignTop} ${navbarLogoMuted}`}
+							alt="Bootstrap"
+							loading="lazy"
+						/>
+					</a>
+					<button class={navbarToggler} type="button" aria-label="Toggle navigation">
+						<span class={navbarTogglerIcon}></span>
+					</button>
+				</div>
+			</nav>
 
-		<nav class={`${navbar} ${navbarDark} ${bgPrimary} ${mt5}`}>
-			<div class={`${containerFluid} ${navbarInner}`}>
-				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a class={navbarBrand} href="#" onClick={(event) => event.preventDefault()}>
-					<img
-						src={brandSrc}
-						width="38"
-						height="30"
-						class={`${dInlineBlock} ${alignTop}`}
-						alt="Bootstrap"
-						loading="lazy"
-					/>
-				</a>
-				<button class={navbarToggler} type="button" aria-label="Toggle navigation">
-					<span class={navbarTogglerIcon}></span>
-				</button>
-			</div>
-		</nav>
-	</div>
+			<nav class={`${navbar} ${navbarDark} ${bgPrimary} ${mt5}`}>
+				<div class={`${containerFluid} ${navbarInner}`}>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a class={navbarBrand} href="#" onClick={(event) => event.preventDefault()}>
+						<img
+							src={brandSrc}
+							width="38"
+							height="30"
+							class={`${dInlineBlock} ${alignTop}`}
+							alt="Bootstrap"
+							loading="lazy"
+						/>
+					</a>
+					<button class={navbarToggler} type="button" aria-label="Toggle navigation">
+						<span class={navbarTogglerIcon}></span>
+					</button>
+				</div>
+			</nav>
+		</div>
 	)
 }
 

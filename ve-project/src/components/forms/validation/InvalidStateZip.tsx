@@ -2,37 +2,75 @@ import type { Component } from 'solid-js'
 import { useVeFormsThemeClasses } from '../../../themes/runtime/hooks'
 
 const InvalidStateZip: Component = () => {
-	const { bsTheme, body, containerFluid, colMd3, colMd6, colSm6, fieldset, floatingLabel, form, formCheck, formCheckInput, formCheckLabel, formControl, formControlFloating, formControlLg, formControlSm, formFloating, formLabel, formRange, formSelect, formSelectLg, formSelectSm, formSwitch, formText, g3, hasValidation, inputGroup, inputGroupText, invalidFeedback, isInvalid, isValid, legend, legendClear, mb3, row, rowCol, validFeedback } = useVeFormsThemeClasses()
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		colMd3,
+		colMd6,
+		colSm6,
+		fieldset,
+		floatingLabel,
+		form,
+		formCheck,
+		formCheckInput,
+		formCheckLabel,
+		formControl,
+		formControlFloating,
+		formControlLg,
+		formControlSm,
+		formFloating,
+		formLabel,
+		formRange,
+		formSelect,
+		formSelectLg,
+		formSelectSm,
+		formSwitch,
+		formText,
+		g3,
+		hasValidation,
+		inputGroup,
+		inputGroupText,
+		invalidFeedback,
+		isInvalid,
+		isValid,
+		legend,
+		legendClear,
+		mb3,
+		row,
+		rowCol,
+		validFeedback,
+	} = useVeFormsThemeClasses()
 
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<form class={`${row} ${g3}`}>
-			<div class={`${rowCol} ${colMd3} ${colSm6}`}>
-				<label for="validationServer04" class={formLabel}>
-					State
-				</label>
-				<select class={`${formSelect} ${isInvalid}`} id="validationServer04" required>
-					<option selected disabled value="">
-						Choose...
-					</option>
-					<option>...</option>
-				</select>
-				<div class={invalidFeedback}>Please select a valid state.</div>
-			</div>
-			<div class={`${rowCol} ${colMd3} ${colSm6}`}>
-				<label for="validationServer05" class={formLabel}>
-					Zip
-				</label>
-				<input
-					type="text"
-					class={`${formControl} ${isInvalid}`}
-					id="validationServer05"
-					required
-				/>
-				<div class={invalidFeedback}>Please provide a valid zip.</div>
-			</div>
-		</form>
-	</div>
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<form class={`${row} ${g3}`}>
+				<div class={`${rowCol} ${colMd3} ${colSm6}`}>
+					<label for="validationServer04" class={formLabel}>
+						State
+					</label>
+					<select class={`${formSelect} ${isInvalid}`} id="validationServer04" required>
+						<option selected disabled value="">
+							Choose...
+						</option>
+						<option>...</option>
+					</select>
+					<div class={invalidFeedback}>Please select a valid state.</div>
+				</div>
+				<div class={`${rowCol} ${colMd3} ${colSm6}`}>
+					<label for="validationServer05" class={formLabel}>
+						Zip
+					</label>
+					<input
+						type="text"
+						class={`${formControl} ${isInvalid}`}
+						id="validationServer05"
+						required
+					/>
+					<div class={invalidFeedback}>Please provide a valid zip.</div>
+				</div>
+			</form>
+		</div>
 	)
 }
 

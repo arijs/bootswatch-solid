@@ -25,15 +25,12 @@ globalStyle(`${bootstrapScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem
 	paddingLeft: '0.5rem',
 })
 
-globalStyle(
-	`${bootstrapScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}::before`,
-	{
-		float: 'left',
-		paddingRight: '0.5rem',
-		color: 'rgba(33, 37, 41, 0.75)',
-		content: '"/"',
-	},
-)
+globalStyle(`${bootstrapScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}::before`, {
+	float: 'left',
+	paddingRight: '0.5rem',
+	color: 'rgba(33, 37, 41, 0.75)',
+	content: '"/"',
+})
 
 // ── Active item ───────────────────────────────────────────────────────────────
 

@@ -30,9 +30,10 @@ export const marginEnd2 = style({
 
 export const btnGroupInteractive = style({
 	selectors: {
-		[`${btnGroup} > ${btnCheckHook}:checked + &, ${btnGroup} > ${btnCheckHook}:focus + &, ${btnGroup} > &:hover, ${btnGroup} > &:focus, ${btnGroup} > &:active, ${btnGroup} > &${btnActiveHook}`]: {
-			zIndex: 1,
-		},
+		[`${btnGroup} > ${btnCheckHook}:checked + &, ${btnGroup} > ${btnCheckHook}:focus + &, ${btnGroup} > &:hover, ${btnGroup} > &:focus, ${btnGroup} > &:active, ${btnGroup} > &${btnActiveHook}`]:
+			{
+				zIndex: 1,
+			},
 		[`${btnGroup} > ${btnGroupButton} + &`]: {
 			marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 		},

@@ -3,23 +3,33 @@ import { useVeButtonThemeClasses, useVeCardThemeClasses } from '../../../themes/
 
 const FeaturedCard: Component = () => {
 	const { btn, btnPrimary } = useVeButtonThemeClasses()
-	const { card, cardBody, cardFooter, cardHeader, cardText, cardTitle, h5, paragraph, textMuted } = useVeCardThemeClasses()
+	const {
+		card,
+		cardBody,
+		cardFooter,
+		cardHeader,
+		cardText,
+		cardTitle,
+		h5,
+		paragraph,
+		textMuted,
+	} = useVeCardThemeClasses()
 	return (
-	<div class={card}>
-		<div class={cardHeader}>Featured</div>
-		<div class={cardBody}>
-			<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
-			<p class={`${paragraph} ${cardText}`}>
-				Some quick example text to build on the card title and make up the bulk of the
-				card's content.
-			</p>
-			{/* biome-ignore lint: <a> is used for demonstration purposes */}
-			<a href="#" onClick={(e) => e.preventDefault()} class={`${btn} ${btnPrimary}`}>
-				Go somewhere
-			</a>
+		<div class={card}>
+			<div class={cardHeader}>Featured</div>
+			<div class={cardBody}>
+				<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
+				<p class={`${paragraph} ${cardText}`}>
+					Some quick example text to build on the card title and make up the bulk of the
+					card's content.
+				</p>
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a href="#" onClick={(e) => e.preventDefault()} class={`${btn} ${btnPrimary}`}>
+					Go somewhere
+				</a>
+			</div>
+			<div class={`${cardFooter} ${textMuted}`}>2 days ago</div>
 		</div>
-		<div class={`${cardFooter} ${textMuted}`}>2 days ago</div>
-	</div>
 	)
 }
 

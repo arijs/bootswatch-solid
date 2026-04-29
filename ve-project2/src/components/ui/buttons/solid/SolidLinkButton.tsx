@@ -7,11 +7,11 @@ const SolidLinkButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button type="button" class={`${theme} ${btn} ${btnLink} pwhook-btn`}>
-			Link
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button type="button" class={`${theme} ${btn} ${btnLink} pwhook-btn`}>
+				Link
+			</button>
+		</div>
 	)
 }
 

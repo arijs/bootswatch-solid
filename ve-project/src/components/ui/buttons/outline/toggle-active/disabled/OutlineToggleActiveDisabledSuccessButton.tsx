@@ -2,20 +2,26 @@ import type { Component } from 'solid-js'
 import { useVeButtonThemeClasses } from '../../../../../../themes/runtime/hooks'
 
 const OutlineToggleActiveDisabledSuccessButton: Component = () => {
-	const {
-		bsTheme,
-		body,
-		containerFluid,
-		btn,
-		btnCheck,
-		btnOutlineSuccess,
-	} = useVeButtonThemeClasses()
+	const { bsTheme, body, containerFluid, btn, btnCheck, btnOutlineSuccess } =
+		useVeButtonThemeClasses()
 
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<input disabled type="checkbox" class={`${btnCheck}`} id="id-btn-outline-toggle-active-disabled-success" checked autocomplete="off"  />
-		<label class={`${btn} ${btnOutlineSuccess}`} for="id-btn-outline-toggle-active-disabled-success">Checked Toggle Success</label>
-	</div>
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<input
+				disabled
+				type="checkbox"
+				class={`${btnCheck}`}
+				id="id-btn-outline-toggle-active-disabled-success"
+				checked
+				autocomplete="off"
+			/>
+			<label
+				class={`${btn} ${btnOutlineSuccess}`}
+				for="id-btn-outline-toggle-active-disabled-success"
+			>
+				Checked Toggle Success
+			</label>
+		</div>
 	)
 }
 

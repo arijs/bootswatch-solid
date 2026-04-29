@@ -1,6 +1,10 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import {
+	varBsCardBg,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+} from '../../../../theme-contract/ui/card/_vars.css'
 import { navLink, navLinkActive, navTabs } from '../nav/base.css'
 
 export const rowG4 = style({

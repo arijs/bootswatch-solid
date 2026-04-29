@@ -1,8 +1,17 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { table, tableBordered, tableSm, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	table,
+	tableBordered,
+	tableCell,
+	tableElement,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+	tableSm,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const SmallBordered: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
@@ -30,7 +39,9 @@ const SmallBordered: Component = () => (
 				</tr>
 				<tr class={tableRow}>
 					<th class={tableHeaderCell}>3</th>
-					<td class={tableCell} colspan="2">Larry the Bird</td>
+					<td class={tableCell} colspan="2">
+						Larry the Bird
+					</td>
 					<td class={tableCell}>@twitter</td>
 				</tr>
 			</tbody>
@@ -50,5 +61,3 @@ export default SmallBordered
 // @screenshot vapor: 360x128 128
 // @screenshot yeti: 360x121 121
 // @screenshot zephyr: 360x153 153
-
-

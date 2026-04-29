@@ -1,11 +1,11 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 	varBsSecondaryBg,

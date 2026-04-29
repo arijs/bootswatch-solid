@@ -1,12 +1,13 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bdPlaceholderImg, imgThumbnail } from '../../../themes/bootstrap/contents/generated.css'
 
 const Thumbnail: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
-		<svg class={`${bdPlaceholderImg} ${imgThumbnail}`}
+		<svg
+			class={`${bdPlaceholderImg} ${imgThumbnail}`}
 			width="200"
 			height="200"
 			xmlns="http://www.w3.org/2000/svg"

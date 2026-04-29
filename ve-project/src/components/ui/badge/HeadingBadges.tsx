@@ -2,7 +2,27 @@ import type { Component } from 'solid-js'
 import { useVeBadgeThemeClasses } from '../../../themes/runtime/hooks'
 
 const HeadingBadges: Component = () => {
-	const { body, containerFluid, bsTheme, h1, h2, h3, h4, h5, h6, badge, bgDark, bgDanger, bgInfo, bgLight, bgPrimary, bgSecondary, bgSuccess, bgWarning, textDark } = useVeBadgeThemeClasses()
+	const {
+		body,
+		containerFluid,
+		bsTheme,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		badge,
+		bgDark,
+		bgDanger,
+		bgInfo,
+		bgLight,
+		bgPrimary,
+		bgSecondary,
+		bgSuccess,
+		bgWarning,
+		textDark,
+	} = useVeBadgeThemeClasses()
 
 	return (
 		<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>

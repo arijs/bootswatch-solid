@@ -42,11 +42,7 @@ const NavbarExample: Component = () => (
 						</li>
 						<li class="nav-item">
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a
-								class="nav-link"
-								href="#"
-								onClick={(e) => e.preventDefault()}
-							>
+							<a class="nav-link" href="#" onClick={(e) => e.preventDefault()}>
 								Link
 							</a>
 						</li>
@@ -165,11 +161,7 @@ const NavbarExample: Component = () => (
 						</li>
 						<li class="nav-item">
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a
-								class="nav-link"
-								href="#"
-								onClick={(e) => e.preventDefault()}
-							>
+							<a class="nav-link" href="#" onClick={(e) => e.preventDefault()}>
 								Link
 							</a>
 						</li>

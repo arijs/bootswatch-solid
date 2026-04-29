@@ -2,43 +2,81 @@ import type { Component } from 'solid-js'
 import { useVeFormsThemeClasses } from '../../../themes/runtime/hooks'
 
 const InvalidUsernameCity: Component = () => {
-	const { bsTheme, body, containerFluid, colMd3, colMd6, colSm6, fieldset, floatingLabel, form, formCheck, formCheckInput, formCheckLabel, formControl, formControlFloating, formControlLg, formControlSm, formFloating, formLabel, formRange, formSelect, formSelectLg, formSelectSm, formSwitch, formText, g3, hasValidation, inputGroup, inputGroupText, invalidFeedback, isInvalid, isValid, legend, legendClear, mb3, row, rowCol, validFeedback } = useVeFormsThemeClasses()
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		colMd3,
+		colMd6,
+		colSm6,
+		fieldset,
+		floatingLabel,
+		form,
+		formCheck,
+		formCheckInput,
+		formCheckLabel,
+		formControl,
+		formControlFloating,
+		formControlLg,
+		formControlSm,
+		formFloating,
+		formLabel,
+		formRange,
+		formSelect,
+		formSelectLg,
+		formSelectSm,
+		formSwitch,
+		formText,
+		g3,
+		hasValidation,
+		inputGroup,
+		inputGroupText,
+		invalidFeedback,
+		isInvalid,
+		isValid,
+		legend,
+		legendClear,
+		mb3,
+		row,
+		rowCol,
+		validFeedback,
+	} = useVeFormsThemeClasses()
 
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<form class={`${row} ${g3}`}>
-			<div class={`${rowCol} ${colMd6}`}>
-				<label for="validationServerUsername" class={formLabel}>
-					Username
-				</label>
-				<div class={`${inputGroup} ${hasValidation} ${isInvalid}`}>
-					<span class={inputGroupText} id="inputGroupPrepend3">
-						@
-					</span>
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<form class={`${row} ${g3}`}>
+				<div class={`${rowCol} ${colMd6}`}>
+					<label for="validationServerUsername" class={formLabel}>
+						Username
+					</label>
+					<div class={`${inputGroup} ${hasValidation} ${isInvalid}`}>
+						<span class={inputGroupText} id="inputGroupPrepend3">
+							@
+						</span>
+						<input
+							type="text"
+							class={`${formControl} ${isInvalid}`}
+							id="validationServerUsername"
+							aria-describedby="inputGroupPrepend3"
+							required
+						/>
+					</div>
+					<div class={invalidFeedback}>Please choose a username.</div>
+				</div>
+				<div class={`${rowCol} ${colMd6}`}>
+					<label for="validationServer03" class={formLabel}>
+						City
+					</label>
 					<input
 						type="text"
 						class={`${formControl} ${isInvalid}`}
-						id="validationServerUsername"
-						aria-describedby="inputGroupPrepend3"
+						id="validationServer03"
 						required
 					/>
+					<div class={invalidFeedback}>Please provide a valid city.</div>
 				</div>
-				<div class={invalidFeedback}>Please choose a username.</div>
-			</div>
-			<div class={`${rowCol} ${colMd6}`}>
-				<label for="validationServer03" class={formLabel}>
-					City
-				</label>
-				<input
-					type="text"
-					class={`${formControl} ${isInvalid}`}
-					id="validationServer03"
-					required
-				/>
-				<div class={invalidFeedback}>Please provide a valid city.</div>
-			</div>
-		</form>
-	</div>
+			</form>
+		</div>
 	)
 }
 

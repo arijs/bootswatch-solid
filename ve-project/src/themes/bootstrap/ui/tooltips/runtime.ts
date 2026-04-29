@@ -1,13 +1,13 @@
 import {
+	justifyCenter,
+	tooltipArrow,
+	tooltipClass,
 	frame as tooltipFrame,
 	frameColumn as tooltipFrameColumn,
 	frameRow as tooltipFrameRow,
-	justifyCenter,
+	tooltipInner,
 	justifyEnd as tooltipJustifyEnd,
 	justifyStart as tooltipJustifyStart,
-	tooltipArrow,
-	tooltipClass,
-	tooltipInner,
 } from './base.css'
 
 export const bootstrapTooltipRuntimeClasses = {

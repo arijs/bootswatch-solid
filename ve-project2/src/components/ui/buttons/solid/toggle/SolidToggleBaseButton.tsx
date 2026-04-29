@@ -7,10 +7,17 @@ const SolidToggleBaseButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<input type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-solid-toggle-base" autocomplete="off" />
-		<label class={`${theme} ${btn}`} for="id-btn-solid-toggle-base">Toggle Button</label>
-	</div>
+		<div class="bd-example-ve2">
+			<input
+				type="checkbox"
+				class={`${theme} ${btnCheck}`}
+				id="id-btn-solid-toggle-base"
+				autocomplete="off"
+			/>
+			<label class={`${theme} ${btn}`} for="id-btn-solid-toggle-base">
+				Toggle Button
+			</label>
+		</div>
 	)
 }
 

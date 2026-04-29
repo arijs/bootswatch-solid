@@ -73,7 +73,10 @@ export async function verifyScenarioVeRendering({
 		}
 	}
 
-	const vePath = baselinePath.replace(/\d+x\d+\.png$/i, `ve1-${requestedWidth}x${measuredHeight}.png`)
+	const vePath = baselinePath.replace(
+		/\d+x\d+\.png$/i,
+		`ve1-${requestedWidth}x${measuredHeight}.png`,
+	)
 	const verifyPath = baselinePath.replace(
 		/\d+x\d+\.png$/i,
 		`ve1-${requestedWidth}x${measuredHeight}.verify.png`,

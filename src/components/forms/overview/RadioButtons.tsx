@@ -6,13 +6,23 @@ const RadioButtons: Component = () => (
 			<fieldset class="mb-3">
 				<legend>Radios buttons</legend>
 				<div class="form-check">
-					<input type="radio" name="radios" class="form-check-input pwhook-radio" id="exampleRadio1" />
+					<input
+						type="radio"
+						name="radios"
+						class="form-check-input pwhook-radio"
+						id="exampleRadio1"
+					/>
 					<label class="form-check-label" for="exampleRadio1">
 						Default radio
 					</label>
 				</div>
 				<div class="mb-3 form-check">
-					<input type="radio" name="radios" class="form-check-input pwhook-radio" id="exampleRadio2" />
+					<input
+						type="radio"
+						name="radios"
+						class="form-check-input pwhook-radio"
+						id="exampleRadio2"
+					/>
 					<label class="form-check-label" for="exampleRadio2">
 						Another radio
 					</label>

@@ -3,10 +3,29 @@ import { useVeButtonThemeClasses, useVeModalThemeClasses } from '../../../themes
 import { configureVeModal } from './ve-modal'
 
 const CenteredScrollableModal: Component = () => {
-	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } = useVeButtonThemeClasses()
+	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } =
+		useVeButtonThemeClasses()
 	const modalThemeClasses = useVeModalThemeClasses()
 	configureVeModal(modalThemeClasses)
-	const { actionsRow, bodyText, btnClose, fade, flexWrap, h5, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalDialogCentered, modalDialogScrollable, modalFade, modalFooter, modalHeader, modalTitle } = modalThemeClasses
+	const {
+		actionsRow,
+		bodyText,
+		btnClose,
+		fade,
+		flexWrap,
+		h5,
+		justifyContentBetween,
+		modal,
+		modalBody,
+		modalContent,
+		modalDialog,
+		modalDialogCentered,
+		modalDialogScrollable,
+		modalFade,
+		modalFooter,
+		modalHeader,
+		modalTitle,
+	} = modalThemeClasses
 	return (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
@@ -33,7 +52,10 @@ const CenteredScrollableModal: Component = () => {
 				<div class={`${modalDialog} ${modalDialogCentered} ${modalDialogScrollable}`}>
 					<div class={modalContent}>
 						<div class={modalHeader}>
-							<h5 class={`${h5} ${modalTitle}`} id="exampleModalCenteredScrollableTitle">
+							<h5
+								class={`${h5} ${modalTitle}`}
+								id="exampleModalCenteredScrollableTitle"
+							>
 								Modal title
 							</h5>
 							<button
@@ -45,8 +67,8 @@ const CenteredScrollableModal: Component = () => {
 						</div>
 						<div class={modalBody}>
 							<p>
-								Placeholder text for this demonstration of a vertically centered modal
-								dialog.
+								Placeholder text for this demonstration of a vertically centered
+								modal dialog.
 							</p>
 							<p>
 								In this case, the dialog has a bit more content, just to show how
@@ -54,22 +76,27 @@ const CenteredScrollableModal: Component = () => {
 							</p>
 							<p>
 								What follows is just some placeholder text for this modal dialog.
-								Sipping on Rose, Silver Lake sun, coming up all lazy. It's in the palm
-								of your hand now baby. So we hit the boulevard. So make a wish, I'll
-								make it like your birthday everyday. Do you ever feel already buried
-								deep six feet under? It's time to bring out the big balloons. You
-								could've been the greatest. Passport stamps, she's cosmopolitan. Your
-								kiss is cosmic, every move is magic.
+								Sipping on Rose, Silver Lake sun, coming up all lazy. It's in the
+								palm of your hand now baby. So we hit the boulevard. So make a wish,
+								I'll make it like your birthday everyday. Do you ever feel already
+								buried deep six feet under? It's time to bring out the big balloons.
+								You could've been the greatest. Passport stamps, she's cosmopolitan.
+								Your kiss is cosmic, every move is magic.
 							</p>
 							<p>
-								We're living the life. We're doing it right. Open up your heart. I was
-								tryna hit it and quit it. Her love is like a drug. Always leaves a trail
-								of stardust. The girl's a freak, she drive a jeep in Laguna Beach. Fine,
-								fresh, fierce, we got it on lock. All my girls vintage Chanel baby.
+								We're living the life. We're doing it right. Open up your heart. I
+								was tryna hit it and quit it. Her love is like a drug. Always leaves
+								a trail of stardust. The girl's a freak, she drive a jeep in Laguna
+								Beach. Fine, fresh, fierce, we got it on lock. All my girls vintage
+								Chanel baby.
 							</p>
 						</div>
 						<div class={modalFooter}>
-							<button type="button" class={`${btn} ${btnSecondary}`} data-bs-dismiss="modal">
+							<button
+								type="button"
+								class={`${btn} ${btnSecondary}`}
+								data-bs-dismiss="modal"
+							>
 								Close
 							</button>
 							<button type="button" class={`${btn} ${btnPrimary}`}>

@@ -2,7 +2,8 @@ import type { Component } from 'solid-js'
 import { useVePaginationThemeClasses } from '../../../themes/runtime/hooks'
 
 const StandardPagination: Component = () => {
-	const { body, containerFluid, bsTheme, pagination, pageItem, pageLink } = useVePaginationThemeClasses()
+	const { body, containerFluid, bsTheme, pagination, pageItem, pageLink } =
+		useVePaginationThemeClasses()
 
 	return (
 		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
@@ -10,7 +11,12 @@ const StandardPagination: Component = () => {
 				<ul class={`${pagination} pwhook-pagination`}>
 					<li class={pageItem}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a class={pageLink} href="#" onClick={(e) => e.preventDefault()} aria-label="Previous">
+						<a
+							class={pageLink}
+							href="#"
+							onClick={(e) => e.preventDefault()}
+							aria-label="Previous"
+						>
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
@@ -34,7 +40,12 @@ const StandardPagination: Component = () => {
 					</li>
 					<li class={pageItem}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a class={pageLink} href="#" onClick={(e) => e.preventDefault()} aria-label="Next">
+						<a
+							class={pageLink}
+							href="#"
+							onClick={(e) => e.preventDefault()}
+							aria-label="Next"
+						>
 							<span aria-hidden="true">&raquo;</span>
 						</a>
 					</li>

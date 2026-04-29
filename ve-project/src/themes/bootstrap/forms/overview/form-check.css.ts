@@ -130,10 +130,13 @@ globalStyle(`${formSwitch} ${formCheckInput}:checked`, {
 	},
 })
 
-globalStyle(`${formCheckInput}[disabled] ~ ${formCheckLabel}, ${formCheckInput}:disabled ~ ${formCheckLabel}`, {
-	cursor: 'default',
-	opacity: 0.5,
-})
+globalStyle(
+	`${formCheckInput}[disabled] ~ ${formCheckLabel}, ${formCheckInput}:disabled ~ ${formCheckLabel}`,
+	{
+		cursor: 'default',
+		opacity: 0.5,
+	},
+)
 
 globalStyle(`${formSwitch} ${formCheckInput}`, {
 	'@media': {

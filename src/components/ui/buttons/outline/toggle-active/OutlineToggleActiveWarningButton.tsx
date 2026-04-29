@@ -2,8 +2,16 @@ import type { Component } from 'solid-js'
 
 const OutlineToggleActiveWarningButton: Component = () => (
 	<div class="bd-example container-fluid">
-		<input type="checkbox" class="btn-check" id="id-btn-outline-toggle-active-warning" checked autocomplete="off" />
-		<label class="btn btn-outline-warning" for="id-btn-outline-toggle-active-warning">Checked Toggle Warning</label>
+		<input
+			type="checkbox"
+			class="btn-check"
+			id="id-btn-outline-toggle-active-warning"
+			checked
+			autocomplete="off"
+		/>
+		<label class="btn btn-outline-warning" for="id-btn-outline-toggle-active-warning">
+			Checked Toggle Warning
+		</label>
 	</div>
 )
 

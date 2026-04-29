@@ -1,16 +1,27 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
-import { btn, btnSuccess, btnCheck } from '../../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnCheck, btnSuccess } from '../../../../../../theme-contract/ui/buttons/contract.css'
 
 const SolidToggleDisabledSuccessButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-solid-toggle-disabled-success" autocomplete="off" />
-		<label class={`${theme} ${btn} ${btnSuccess}`} for="id-btn-solid-toggle-disabled-success">Toggle Success</label>
-	</div>
+		<div class="bd-example-ve2">
+			<input
+				disabled
+				type="checkbox"
+				class={`${theme} ${btnCheck}`}
+				id="id-btn-solid-toggle-disabled-success"
+				autocomplete="off"
+			/>
+			<label
+				class={`${theme} ${btn} ${btnSuccess}`}
+				for="id-btn-solid-toggle-disabled-success"
+			>
+				Toggle Success
+			</label>
+		</div>
 	)
 }
 

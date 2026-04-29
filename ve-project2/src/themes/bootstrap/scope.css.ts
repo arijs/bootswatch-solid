@@ -1,6 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css'
-import { body, bodyText } from '../../theme-contract/theme-contract.css'
 import {
+	varBsBodyBg,
+	varBsBodyColor,
+	varBsBodyColorRgb,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
@@ -12,8 +14,6 @@ import {
 	varBsBorderRadiusXxl,
 	varBsBorderStyle,
 	varBsBorderWidth,
-	varBsBodyBg,
-	varBsBodyColor,
 	varBsBoxShadow,
 	varBsBoxShadowInset,
 	varBsBoxShadowLg,
@@ -62,6 +62,7 @@ import {
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
 } from '../../theme-contract/_vars.css'
+import { body, bodyText } from '../../theme-contract/theme-contract.css'
 
 // Bootstrap theme scope class.
 // Zero-style identifier — just a stable hashed class name used as a selector
@@ -138,6 +139,7 @@ globalStyle(`${bootstrapScope}${body}`, {
 		[varBsDarkBorderSubtle]: '#adb5bd',
 		// Body defaults
 		[varBsBodyColor]: '#212529',
+		[varBsBodyColorRgb]: '33, 37, 41',
 		[varBsBodyBg]: '#fff',
 		// Borders
 		[varBsBorderWidth]: '1px',
@@ -166,4 +168,3 @@ globalStyle(`${bootstrapScope}${body}`, {
 	padding: '1rem',
 	display: 'block',
 })
-

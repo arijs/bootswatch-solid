@@ -1,0 +1,60 @@
+import { style } from '@vanilla-extract/css'
+import type { Component } from 'solid-js'
+import { useContext } from 'solid-js'
+import { ThemeContext } from '../../../context/ThemeContext'
+import FeaturedCard from './FeaturedCard'
+import HorizontalCard from './HorizontalCard'
+import ImageTopCard from './ImageTopCard'
+import ListCard from './ListCard'
+
+// Simple single-column grid that stacks cards vertically (matches the 360px
+// screenshot viewport used in the harness, which is narrower than Bootstrap's
+// md breakpoint where the two-column layout would activate).
+const cardsGrid = style({
+	display: 'grid',
+	gridTemplateColumns: '1fr',
+	gap: '1.5rem',
+})
+
+const CardsGrid: Component = () => {
+	const theme = useContext(ThemeContext)
+	return (
+		<div class="bd-example-ve2">
+			<div class={cardsGrid}>
+				<div>
+					<ImageTopCard />
+				</div>
+				<div>
+					<FeaturedCard />
+				</div>
+				<div>
+					<ListCard />
+				</div>
+				<div>
+					<HorizontalCard />
+				</div>
+			</div>
+		</div>
+	)
+}
+
+export default CardsGrid
+
+// @screenshot *: 360x1488 1488
+// @screenshot brite: 360x1382 1382
+// @screenshot cyborg: 360x1496 1496
+// @screenshot journal: 360x1480 1480
+// @screenshot litera: 360x1556 1556
+// @screenshot lumen: 360x1492 1492
+// @screenshot lux: 360x1499 1499
+// @screenshot materia: 360x1500 1500
+// @screenshot morph: 360x1631 1631
+// @screenshot quartz: 360x1800 1800
+// @screenshot sandstone: 360x1484 1484
+// @screenshot simplex: 360x1512 1512
+// @screenshot sketchy: 360x1434 1434
+// @screenshot slate: 360x1512 1512
+// @screenshot spacelab: 360x1512 1512
+// @screenshot vapor: 360x1494 1494
+// @screenshot yeti: 360x1503 1503
+// @screenshot zephyr: 360x1594 1594

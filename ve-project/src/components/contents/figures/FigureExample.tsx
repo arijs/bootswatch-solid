@@ -1,13 +1,22 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { bdPlaceholderImg, figure, figureCaption, figureImg, imgFluid, mediaMiddle, rounded } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	bdPlaceholderImg,
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	mediaMiddle,
+	rounded,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const FigureExample: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
 		<figure class={`${figure}`}>
-			<svg class={`${bdPlaceholderImg} ${figureImg} ${imgFluid} ${mediaMiddle} ${rounded}`}
+			<svg
+				class={`${bdPlaceholderImg} ${figureImg} ${imgFluid} ${mediaMiddle} ${rounded}`}
 				width="400"
 				height="300"
 				xmlns="http://www.w3.org/2000/svg"

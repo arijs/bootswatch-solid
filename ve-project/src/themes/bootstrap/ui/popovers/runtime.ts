@@ -1,14 +1,14 @@
 import { h3 } from '../../contents/generated.css'
 import {
-	frame as popoverFrame,
-	frameColumn as popoverFrameColumn,
-	frameRow as popoverFrameRow,
-	justifyEnd as popoverJustifyEnd,
-	justifyStart as popoverJustifyStart,
 	popoverArrow,
 	popoverBody,
 	popoverClass,
+	frame as popoverFrame,
+	frameColumn as popoverFrameColumn,
+	frameRow as popoverFrameRow,
 	popoverHeader,
+	justifyEnd as popoverJustifyEnd,
+	justifyStart as popoverJustifyStart,
 } from './base.css'
 
 export const bootstrapPopoverRuntimeClasses = {

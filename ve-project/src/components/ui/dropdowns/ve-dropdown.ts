@@ -1,16 +1,27 @@
 import * as bootstrap from 'bootstrap'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
-import type { VeDropdownThemeContract } from '../../../themes/runtime/contracts'
-import { varBsDropdownPosition } from '../../../theme-contract/ui/dropdowns/_vars.css'
 import { getVarName } from '../../../logic/veGetVarName'
+import { varBsDropdownPosition } from '../../../theme-contract/ui/dropdowns/_vars.css'
+import type { VeDropdownThemeContract } from '../../../themes/runtime/contracts'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
-interface VeDropdownRuntimeClasses extends Pick<
-	VeDropdownThemeContract,
-	'btnShowHook' | 'dropdownItem' | 'dropdownMenu' | 'dropdownMenuShow' | 'dropend' | 'dropstart' | 'dropup'
-> {}
+interface VeDropdownRuntimeClasses
+	extends Pick<
+		VeDropdownThemeContract,
+		| 'btnShowHook'
+		| 'dropdownItem'
+		| 'dropdownMenu'
+		| 'dropdownMenuShow'
+		| 'dropend'
+		| 'dropstart'
+		| 'dropup'
+	> {}
 
-export function createVeDropdown(runtimeClasses: VeDropdownRuntimeClasses): typeof bootstrap.Dropdown {
-	return (bootstrap.Dropdown as unknown as BootstrapWithDefaults<typeof bootstrap.Dropdown>).extendDefaultConfig({
+export function createVeDropdown(
+	runtimeClasses: VeDropdownRuntimeClasses,
+): typeof bootstrap.Dropdown {
+	return (
+		bootstrap.Dropdown as unknown as BootstrapWithDefaults<typeof bootstrap.Dropdown>
+	).extendDefaultConfig({
 		CLASS_NAME_SHOW_TRIGGER: runtimeClasses.btnShowHook,
 		CLASS_NAME_SHOW_MENU: runtimeClasses.dropdownMenuShow,
 		CLASS_NAME_DROPUP: runtimeClasses.dropup,
@@ -22,7 +33,9 @@ export function createVeDropdown(runtimeClasses: VeDropdownRuntimeClasses): type
 	}) as typeof bootstrap.Dropdown
 }
 
-export function configureVeDropdown(runtimeClasses: VeDropdownRuntimeClasses): typeof bootstrap.Dropdown {
+export function configureVeDropdown(
+	runtimeClasses: VeDropdownRuntimeClasses,
+): typeof bootstrap.Dropdown {
 	const VeDropdown = createVeDropdown(runtimeClasses)
 
 	// Re-register data API handlers so dropdown toggles use VE class selectors.

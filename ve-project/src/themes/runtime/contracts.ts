@@ -1,6 +1,31 @@
 import type { VeThemeSlug } from './theme-slugs'
 
-export const VE_THEME_FAMILIES = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup'] as const
+export const VE_THEME_FAMILIES = [
+	'global',
+	'contents',
+	'forms',
+	'ui',
+	'dropdowns',
+	'buttons',
+	'buttonGroup',
+	'alerts',
+	'breadcrumb',
+	'navbar',
+	'nav',
+	'modal',
+	'card',
+	'badge',
+	'popovers',
+	'tooltips',
+	'accordion',
+	'scrollspy',
+	'pagination',
+	'carousel',
+	'progress',
+	'spinners',
+	'toasts',
+	'listGroup',
+] as const
 
 export type VeThemeFamily = (typeof VE_THEME_FAMILIES)[number]
 
@@ -429,4 +454,29 @@ export interface VeThemeDefinition {
 	availableFamilies: ReadonlySet<VeThemeFamily>
 }
 
-export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = ['global', 'contents', 'forms', 'ui', 'dropdowns', 'buttons', 'buttonGroup', 'alerts', 'breadcrumb', 'navbar', 'nav', 'modal', 'card', 'badge', 'popovers', 'tooltips', 'accordion', 'scrollspy', 'pagination', 'carousel', 'progress', 'spinners', 'toasts', 'listGroup']
+export const VE_ALL_ROUTE_FAMILIES: readonly VeThemeFamily[] = [
+	'global',
+	'contents',
+	'forms',
+	'ui',
+	'dropdowns',
+	'buttons',
+	'buttonGroup',
+	'alerts',
+	'breadcrumb',
+	'navbar',
+	'nav',
+	'modal',
+	'card',
+	'badge',
+	'popovers',
+	'tooltips',
+	'accordion',
+	'scrollspy',
+	'pagination',
+	'carousel',
+	'progress',
+	'spinners',
+	'toasts',
+	'listGroup',
+]

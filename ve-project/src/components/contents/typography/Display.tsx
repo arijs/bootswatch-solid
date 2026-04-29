@@ -1,8 +1,16 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { display1, display2, display3, display4, display5, display6, paragraph } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+	paragraph,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const Display: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>

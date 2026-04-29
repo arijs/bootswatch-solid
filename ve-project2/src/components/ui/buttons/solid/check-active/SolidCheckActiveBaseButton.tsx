@@ -7,11 +7,16 @@ const SolidCheckActiveBaseButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button type="button" class={`${theme} ${btn} ${btnActiveHook} pwhook-btn`} data-bs-toggle="button" aria-pressed="true">
-			Button
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button
+				type="button"
+				class={`${theme} ${btn} ${btnActiveHook} pwhook-btn`}
+				data-bs-toggle="button"
+				aria-pressed="true"
+			>
+				Button
+			</button>
+		</div>
 	)
 }
 

@@ -7,8 +7,20 @@ export const THEMES_FILE = path.join(ROOT, 'src', 'logic', 'themes.ts')
 export const BASE_URL = 'http://127.0.0.1:4173'
 export const VE_ROOT = path.join(ROOT, 've-project')
 export const VE_INDEX_FILE = path.join(VE_ROOT, 'src', 'index.tsx')
-export const VE_RUNTIME_REGISTRY_FILE = path.join(VE_ROOT, 'src', 'themes', 'runtime', 'registry.ts')
-export const VE_RUNTIME_ROUTE_FAMILIES_FILE = path.join(VE_ROOT, 'src', 'themes', 'runtime', 'route-families.ts')
+export const VE_RUNTIME_REGISTRY_FILE = path.join(
+	VE_ROOT,
+	'src',
+	'themes',
+	'runtime',
+	'registry.ts',
+)
+export const VE_RUNTIME_ROUTE_FAMILIES_FILE = path.join(
+	VE_ROOT,
+	'src',
+	'themes',
+	'runtime',
+	'route-families.ts',
+)
 export const VE_BASE_URL = 'http://127.0.0.1:4174'
 export const VE2_ROOT = path.join(ROOT, 've-project2')
 export const VE2_INDEX_FILE = path.join(VE2_ROOT, 'src', 'index.tsx')

@@ -3,10 +3,27 @@ import { useVeButtonThemeClasses, useVeModalThemeClasses } from '../../../themes
 import { configureVeModal } from './ve-modal'
 
 const StaticBackdropModal: Component = () => {
-	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } = useVeButtonThemeClasses()
+	const { bsTheme, body, containerFluid, btn, btnPrimary, btnSecondary } =
+		useVeButtonThemeClasses()
 	const modalThemeClasses = useVeModalThemeClasses()
 	configureVeModal(modalThemeClasses)
-	const { actionsRow, bodyText, btnClose, fade, flexWrap, h5, justifyContentBetween, modal, modalBody, modalContent, modalDialog, modalFade, modalFooter, modalHeader, modalTitle } = modalThemeClasses
+	const {
+		actionsRow,
+		bodyText,
+		btnClose,
+		fade,
+		flexWrap,
+		h5,
+		justifyContentBetween,
+		modal,
+		modalBody,
+		modalContent,
+		modalDialog,
+		modalFade,
+		modalFooter,
+		modalHeader,
+		modalTitle,
+	} = modalThemeClasses
 	return (
 		<>
 			<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
@@ -47,12 +64,16 @@ const StaticBackdropModal: Component = () => {
 						</div>
 						<div class={modalBody}>
 							<p>
-								I will not close if you click outside me. Don't even try to press escape
-								key.
+								I will not close if you click outside me. Don't even try to press
+								escape key.
 							</p>
 						</div>
 						<div class={modalFooter}>
-							<button type="button" class={`${btn} ${btnSecondary}`} data-bs-dismiss="modal">
+							<button
+								type="button"
+								class={`${btn} ${btnSecondary}`}
+								data-bs-dismiss="modal"
+							>
 								Close
 							</button>
 							<button type="button" class={`${btn} ${btnPrimary}`}>

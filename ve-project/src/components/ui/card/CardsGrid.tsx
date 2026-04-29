@@ -9,14 +9,14 @@ const CardsGrid: Component = () => {
 	const { bsTheme, body, containerFluid } = useVeGlobalThemeClasses()
 	const { cardExample, cardGridRow } = useVeCardThemeClasses()
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid} ${cardExample}`}>
-		<div class={cardGridRow}>
-			<ImageTopCard />
-			<FeaturedCard />
-			<ListCard />
-			<HorizontalCard />
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid} ${cardExample}`}>
+			<div class={cardGridRow}>
+				<ImageTopCard />
+				<FeaturedCard />
+				<ListCard />
+				<HorizontalCard />
+			</div>
 		</div>
-	</div>
 	)
 }
 

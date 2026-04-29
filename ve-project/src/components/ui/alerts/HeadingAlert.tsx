@@ -10,13 +10,14 @@ const HeadingAlert: Component = () => {
 			<div class={`${cls.alert} ${cls.alertSuccess}`}>
 				<h4 class={`${contents.h4} ${cls.alertHeading}`}>Well done!</h4>
 				<p>
-					Aww yeah, you successfully read this important alert message. This example text is
-					going to run a bit longer so that you can see how spacing within an alert works with
-					this kind of content.
+					Aww yeah, you successfully read this important alert message. This example text
+					is going to run a bit longer so that you can see how spacing within an alert
+					works with this kind of content.
 				</p>
 				<hr class={cls.alertHr} />
 				<p class={cls.mb0}>
-					Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+					Whenever you need to, be sure to use margin utilities to keep things nice and
+					tidy.
 				</p>
 			</div>
 		</div>

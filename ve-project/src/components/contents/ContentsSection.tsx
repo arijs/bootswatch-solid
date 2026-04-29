@@ -1,5 +1,12 @@
 import type { Component } from 'solid-js'
-import { fwBold, pb2, pbXl3, pt3, ptXl5, stickyXlTop } from '../../themes/bootstrap/contents/generated.css'
+import {
+	fwBold,
+	pb2,
+	pbXl3,
+	pt3,
+	ptXl5,
+	stickyXlTop,
+} from '../../themes/bootstrap/contents/generated.css'
 import Figures from './Figures'
 import Images from './Images'
 import Tables from './Tables'

@@ -1,8 +1,16 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { table, tableStriped, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	table,
+	tableCell,
+	tableElement,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+	tableStriped,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const Striped: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
@@ -30,7 +38,9 @@ const Striped: Component = () => (
 				</tr>
 				<tr class={tableRow}>
 					<th class={tableHeaderCell}>3</th>
-					<td class={tableCell} colspan="2">Larry the Bird</td>
+					<td class={tableCell} colspan="2">
+						Larry the Bird
+					</td>
 					<td class={tableCell}>@twitter</td>
 				</tr>
 			</tbody>
@@ -50,5 +60,3 @@ export default Striped
 // @screenshot vapor: 360x160 160
 // @screenshot yeti: 360x152 152
 // @screenshot zephyr: 360x216 216
-
-

@@ -1,7 +1,7 @@
 import { Route, Router } from '@solidjs/router'
-import type { JSX } from 'solid-js'
 import { render } from '@solidjs/web'
 import * as bootstrap from 'bootstrap'
+import type { JSX } from 'solid-js'
 import Home from './components/HomePage'
 
 if (typeof window !== 'undefined') {
@@ -10,44 +10,7 @@ if (typeof window !== 'undefined') {
 
 import AccordionPage from './components/ui/AccordionPage'
 import AlertsPage from './components/ui/AlertsPage'
-import BadgePage from './components/ui/BadgePage'
-import ButtonGroupPage from './components/ui/ButtonGroupPage'
-import ButtonsPage from './components/ui/ButtonsPage'
-import Card from './components/ui/Card'
-import CardTabs from './components/ui/CardTabs'
-import Navbar from './components/ui/Navbar'
-import Navs from './components/ui/Navs'
-import Breadcrumb from './components/ui/Breadcrumb'
-import Scrollspy from './components/ui/Scrollspy'
-import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
-import CardsGrid from './components/ui/card/CardsGrid'
-import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
-import NavbarExample from './components/ui/navbar/NavbarExample'
-import BasicNav from './components/ui/navs/BasicNav'
-import PillNav from './components/ui/navs/PillNav'
-import TabbedNav from './components/ui/navs/TabbedNav'
-import ScrollspyExample from './components/ui/scrollspy/ScrollspyExample'
-import Carousel from './components/ui/Carousel'
-import CarouselExample from './components/ui/carousel/CarouselExample'
-import FeaturedCardExample from './components/ui/card/FeaturedCardExample'
-import HorizontalCardExample from './components/ui/card/HorizontalCardExample'
-import ImageTopCardExample from './components/ui/card/ImageTopCardExample'
-import ListCardExample from './components/ui/card/ListCardExample'
-import ContextualDefaultListGroup from './components/ui/list-group/ContextualDefaultListGroup'
-import ContextualDangerListGroup from './components/ui/list-group/ContextualDangerListGroup'
-import ContextualDarkListGroup from './components/ui/list-group/ContextualDarkListGroup'
-import ContextualListGroup from './components/ui/list-group/ContextualListGroup'
-import ContextualInfoListGroup from './components/ui/list-group/ContextualInfoListGroup'
-import ContextualLightListGroup from './components/ui/list-group/ContextualLightListGroup'
-import ContextualPrimaryListGroup from './components/ui/list-group/ContextualPrimaryListGroup'
-import ContextualSecondaryListGroup from './components/ui/list-group/ContextualSecondaryListGroup'
-import ContextualSuccessListGroup from './components/ui/list-group/ContextualSuccessListGroup'
-import ContextualWarningListGroup from './components/ui/list-group/ContextualWarningListGroup'
-import DefaultListGroup from './components/ui/list-group/DefaultListGroup'
-import FlushListGroup from './components/ui/list-group/FlushListGroup'
-import ListGroup from './components/ui/ListGroup'
-import Dropdowns from './components/ui/Dropdowns'
-import ButtonGroupExample from './components/ui/button-group/ButtonGroupExample'
+import AccordionExample from './components/ui/accordion/AccordionExample'
 import DangerAlert from './components/ui/alerts/DangerAlert'
 import DarkAlert from './components/ui/alerts/DarkAlert'
 import HeadingAlert from './components/ui/alerts/HeadingAlert'
@@ -57,6 +20,225 @@ import PrimaryAlert from './components/ui/alerts/PrimaryAlert'
 import SecondaryAlert from './components/ui/alerts/SecondaryAlert'
 import SuccessAlert from './components/ui/alerts/SuccessAlert'
 import WarningAlert from './components/ui/alerts/WarningAlert'
+import BadgePage from './components/ui/BadgePage'
+import Breadcrumb from './components/ui/Breadcrumb'
+import ButtonGroupPage from './components/ui/ButtonGroupPage'
+import ButtonsPage from './components/ui/ButtonsPage'
+import HeadingBadges from './components/ui/badge/HeadingBadges'
+import PillBadges from './components/ui/badge/PillBadges'
+import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
+import ButtonGroupExample from './components/ui/button-group/ButtonGroupExample'
+import OutlineCheckDisabledDangerButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDangerButton'
+import OutlineCheckDisabledDarkButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDarkButton'
+import OutlineCheckDisabledInfoButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledInfoButton'
+import OutlineCheckDisabledLightButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledLightButton'
+import OutlineCheckDisabledPrimaryButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledPrimaryButton'
+import OutlineCheckDisabledSecondaryButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSecondaryButton'
+import OutlineCheckDisabledSuccessButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSuccessButton'
+import OutlineCheckDisabledWarningButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledWarningButton'
+import OutlineCheckDangerButton from './components/ui/buttons/outline/check/OutlineCheckDangerButton'
+import OutlineCheckDarkButton from './components/ui/buttons/outline/check/OutlineCheckDarkButton'
+import OutlineCheckInfoButton from './components/ui/buttons/outline/check/OutlineCheckInfoButton'
+import OutlineCheckLightButton from './components/ui/buttons/outline/check/OutlineCheckLightButton'
+import OutlineCheckPrimaryButton from './components/ui/buttons/outline/check/OutlineCheckPrimaryButton'
+import OutlineCheckSecondaryButton from './components/ui/buttons/outline/check/OutlineCheckSecondaryButton'
+import OutlineCheckSuccessButton from './components/ui/buttons/outline/check/OutlineCheckSuccessButton'
+import OutlineCheckWarningButton from './components/ui/buttons/outline/check/OutlineCheckWarningButton'
+import OutlineCheckActiveDisabledDangerButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDangerButton'
+import OutlineCheckActiveDisabledDarkButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDarkButton'
+import OutlineCheckActiveDisabledInfoButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledInfoButton'
+import OutlineCheckActiveDisabledLightButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledLightButton'
+import OutlineCheckActiveDisabledPrimaryButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledPrimaryButton'
+import OutlineCheckActiveDisabledSecondaryButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSecondaryButton'
+import OutlineCheckActiveDisabledSuccessButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSuccessButton'
+import OutlineCheckActiveDisabledWarningButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledWarningButton'
+import OutlineCheckActiveDangerButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'
+import OutlineCheckActiveDarkButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDarkButton'
+import OutlineCheckActiveInfoButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveInfoButton'
+import OutlineCheckActiveLightButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveLightButton'
+import OutlineCheckActivePrimaryButton from './components/ui/buttons/outline/check-active/OutlineCheckActivePrimaryButton'
+import OutlineCheckActiveSecondaryButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveSecondaryButton'
+import OutlineCheckActiveSuccessButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveSuccessButton'
+import OutlineCheckActiveWarningButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveWarningButton'
+import OutlineDisabledDangerButton from './components/ui/buttons/outline/disabled/OutlineDisabledDangerButton'
+import OutlineDisabledDarkButton from './components/ui/buttons/outline/disabled/OutlineDisabledDarkButton'
+import OutlineDisabledInfoButton from './components/ui/buttons/outline/disabled/OutlineDisabledInfoButton'
+import OutlineDisabledLightButton from './components/ui/buttons/outline/disabled/OutlineDisabledLightButton'
+import OutlineDisabledPrimaryButton from './components/ui/buttons/outline/disabled/OutlineDisabledPrimaryButton'
+import OutlineDisabledSecondaryButton from './components/ui/buttons/outline/disabled/OutlineDisabledSecondaryButton'
+import OutlineDisabledSuccessButton from './components/ui/buttons/outline/disabled/OutlineDisabledSuccessButton'
+import OutlineDisabledWarningButton from './components/ui/buttons/outline/disabled/OutlineDisabledWarningButton'
+import OutlineDangerButton from './components/ui/buttons/outline/OutlineDangerButton'
+import OutlineDarkButton from './components/ui/buttons/outline/OutlineDarkButton'
+import OutlineInfoButton from './components/ui/buttons/outline/OutlineInfoButton'
+import OutlineLightButton from './components/ui/buttons/outline/OutlineLightButton'
+import OutlinePrimaryButton from './components/ui/buttons/outline/OutlinePrimaryButton'
+import OutlineSecondaryButton from './components/ui/buttons/outline/OutlineSecondaryButton'
+import OutlineSuccessButton from './components/ui/buttons/outline/OutlineSuccessButton'
+import OutlineWarningButton from './components/ui/buttons/outline/OutlineWarningButton'
+import OutlineToggleDisabledDangerButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDangerButton'
+import OutlineToggleDisabledDarkButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDarkButton'
+import OutlineToggleDisabledInfoButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledInfoButton'
+import OutlineToggleDisabledLightButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledLightButton'
+import OutlineToggleDisabledPrimaryButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledPrimaryButton'
+import OutlineToggleDisabledSecondaryButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSecondaryButton'
+import OutlineToggleDisabledSuccessButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSuccessButton'
+import OutlineToggleDisabledWarningButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledWarningButton'
+import OutlineToggleDangerButton from './components/ui/buttons/outline/toggle/OutlineToggleDangerButton'
+import OutlineToggleDarkButton from './components/ui/buttons/outline/toggle/OutlineToggleDarkButton'
+import OutlineToggleInfoButton from './components/ui/buttons/outline/toggle/OutlineToggleInfoButton'
+import OutlineToggleLightButton from './components/ui/buttons/outline/toggle/OutlineToggleLightButton'
+import OutlineTogglePrimaryButton from './components/ui/buttons/outline/toggle/OutlineTogglePrimaryButton'
+import OutlineToggleSecondaryButton from './components/ui/buttons/outline/toggle/OutlineToggleSecondaryButton'
+import OutlineToggleSuccessButton from './components/ui/buttons/outline/toggle/OutlineToggleSuccessButton'
+import OutlineToggleWarningButton from './components/ui/buttons/outline/toggle/OutlineToggleWarningButton'
+import OutlineToggleActiveDisabledDangerButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDangerButton'
+import OutlineToggleActiveDisabledDarkButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDarkButton'
+import OutlineToggleActiveDisabledInfoButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledInfoButton'
+import OutlineToggleActiveDisabledLightButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledLightButton'
+import OutlineToggleActiveDisabledPrimaryButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledPrimaryButton'
+import OutlineToggleActiveDisabledSecondaryButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSecondaryButton'
+import OutlineToggleActiveDisabledSuccessButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSuccessButton'
+import OutlineToggleActiveDisabledWarningButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledWarningButton'
+import OutlineToggleActiveDangerButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveDangerButton'
+import OutlineToggleActiveDarkButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveDarkButton'
+import OutlineToggleActiveInfoButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveInfoButton'
+import OutlineToggleActiveLightButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveLightButton'
+import OutlineToggleActivePrimaryButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActivePrimaryButton'
+import OutlineToggleActiveSecondaryButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveSecondaryButton'
+import OutlineToggleActiveSuccessButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveSuccessButton'
+import OutlineToggleActiveWarningButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveWarningButton'
+import CheckLargeButton from './components/ui/buttons/sizes/check/CheckLargeButton'
+import CheckSmallButton from './components/ui/buttons/sizes/check/CheckSmallButton'
+import CheckDisabledLargeButton from './components/ui/buttons/sizes/check/disabled/CheckDisabledLargeButton'
+import CheckDisabledSmallButton from './components/ui/buttons/sizes/check/disabled/CheckDisabledSmallButton'
+import CheckActiveLargeButton from './components/ui/buttons/sizes/check-active/CheckActiveLargeButton'
+import CheckActiveSmallButton from './components/ui/buttons/sizes/check-active/CheckActiveSmallButton'
+import CheckActiveDisabledLargeButton from './components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledLargeButton'
+import CheckActiveDisabledSmallButton from './components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledSmallButton'
+import DisabledLargeButton from './components/ui/buttons/sizes/disabled/DisabledLargeButton'
+import DisabledSmallButton from './components/ui/buttons/sizes/disabled/DisabledSmallButton'
+import LargeButton from './components/ui/buttons/sizes/LargeButton'
+import SmallButton from './components/ui/buttons/sizes/SmallButton'
+import ToggleDisabledLargeButton from './components/ui/buttons/sizes/toggle/disabled/ToggleDisabledLargeButton'
+import ToggleDisabledSmallButton from './components/ui/buttons/sizes/toggle/disabled/ToggleDisabledSmallButton'
+import ToggleLargeButton from './components/ui/buttons/sizes/toggle/ToggleLargeButton'
+import ToggleSmallButton from './components/ui/buttons/sizes/toggle/ToggleSmallButton'
+import ToggleActiveDisabledLargeButton from './components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledLargeButton'
+import ToggleActiveDisabledSmallButton from './components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledSmallButton'
+import ToggleActiveLargeButton from './components/ui/buttons/sizes/toggle-active/ToggleActiveLargeButton'
+import ToggleActiveSmallButton from './components/ui/buttons/sizes/toggle-active/ToggleActiveSmallButton'
+import SolidCheckDisabledBaseButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledBaseButton'
+import SolidCheckDisabledDangerButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledDangerButton'
+import SolidCheckDisabledDarkButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledDarkButton'
+import SolidCheckDisabledInfoButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledInfoButton'
+import SolidCheckDisabledLightButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledLightButton'
+import SolidCheckDisabledLinkButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledLinkButton'
+import SolidCheckDisabledPrimaryButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledPrimaryButton'
+import SolidCheckDisabledSecondaryButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledSecondaryButton'
+import SolidCheckDisabledSuccessButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledSuccessButton'
+import SolidCheckDisabledWarningButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledWarningButton'
+import SolidCheckBaseButton from './components/ui/buttons/solid/check/SolidCheckBaseButton'
+import SolidCheckDangerButton from './components/ui/buttons/solid/check/SolidCheckDangerButton'
+import SolidCheckDarkButton from './components/ui/buttons/solid/check/SolidCheckDarkButton'
+import SolidCheckInfoButton from './components/ui/buttons/solid/check/SolidCheckInfoButton'
+import SolidCheckLightButton from './components/ui/buttons/solid/check/SolidCheckLightButton'
+import SolidCheckLinkButton from './components/ui/buttons/solid/check/SolidCheckLinkButton'
+import SolidCheckPrimaryButton from './components/ui/buttons/solid/check/SolidCheckPrimaryButton'
+import SolidCheckSecondaryButton from './components/ui/buttons/solid/check/SolidCheckSecondaryButton'
+import SolidCheckSuccessButton from './components/ui/buttons/solid/check/SolidCheckSuccessButton'
+import SolidCheckWarningButton from './components/ui/buttons/solid/check/SolidCheckWarningButton'
+import SolidCheckActiveDisabledBaseButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledBaseButton'
+import SolidCheckActiveDisabledDangerButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDangerButton'
+import SolidCheckActiveDisabledDarkButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDarkButton'
+import SolidCheckActiveDisabledInfoButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledInfoButton'
+import SolidCheckActiveDisabledLightButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLightButton'
+import SolidCheckActiveDisabledLinkButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLinkButton'
+import SolidCheckActiveDisabledPrimaryButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledPrimaryButton'
+import SolidCheckActiveDisabledSecondaryButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSecondaryButton'
+import SolidCheckActiveDisabledSuccessButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSuccessButton'
+import SolidCheckActiveDisabledWarningButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledWarningButton'
+import SolidCheckActiveBaseButton from './components/ui/buttons/solid/check-active/SolidCheckActiveBaseButton'
+import SolidCheckActiveDangerButton from './components/ui/buttons/solid/check-active/SolidCheckActiveDangerButton'
+import SolidCheckActiveDarkButton from './components/ui/buttons/solid/check-active/SolidCheckActiveDarkButton'
+import SolidCheckActiveInfoButton from './components/ui/buttons/solid/check-active/SolidCheckActiveInfoButton'
+import SolidCheckActiveLightButton from './components/ui/buttons/solid/check-active/SolidCheckActiveLightButton'
+import SolidCheckActiveLinkButton from './components/ui/buttons/solid/check-active/SolidCheckActiveLinkButton'
+import SolidCheckActivePrimaryButton from './components/ui/buttons/solid/check-active/SolidCheckActivePrimaryButton'
+import SolidCheckActiveSecondaryButton from './components/ui/buttons/solid/check-active/SolidCheckActiveSecondaryButton'
+import SolidCheckActiveSuccessButton from './components/ui/buttons/solid/check-active/SolidCheckActiveSuccessButton'
+import SolidCheckActiveWarningButton from './components/ui/buttons/solid/check-active/SolidCheckActiveWarningButton'
+import SolidDisabledBaseButton from './components/ui/buttons/solid/disabled/SolidDisabledBaseButton'
+import SolidDisabledDangerButton from './components/ui/buttons/solid/disabled/SolidDisabledDangerButton'
+import SolidDisabledDarkButton from './components/ui/buttons/solid/disabled/SolidDisabledDarkButton'
+import SolidDisabledInfoButton from './components/ui/buttons/solid/disabled/SolidDisabledInfoButton'
+import SolidDisabledLightButton from './components/ui/buttons/solid/disabled/SolidDisabledLightButton'
+import SolidDisabledLinkButton from './components/ui/buttons/solid/disabled/SolidDisabledLinkButton'
+import SolidDisabledPrimaryButton from './components/ui/buttons/solid/disabled/SolidDisabledPrimaryButton'
+import SolidDisabledSecondaryButton from './components/ui/buttons/solid/disabled/SolidDisabledSecondaryButton'
+import SolidDisabledSuccessButton from './components/ui/buttons/solid/disabled/SolidDisabledSuccessButton'
+import SolidDisabledWarningButton from './components/ui/buttons/solid/disabled/SolidDisabledWarningButton'
+import SolidBaseButton from './components/ui/buttons/solid/SolidBaseButton'
+import SolidDangerButton from './components/ui/buttons/solid/SolidDangerButton'
+import SolidDarkButton from './components/ui/buttons/solid/SolidDarkButton'
+import SolidInfoButton from './components/ui/buttons/solid/SolidInfoButton'
+import SolidLightButton from './components/ui/buttons/solid/SolidLightButton'
+import SolidLinkButton from './components/ui/buttons/solid/SolidLinkButton'
+import SolidPrimaryButton from './components/ui/buttons/solid/SolidPrimaryButton'
+import SolidSecondaryButton from './components/ui/buttons/solid/SolidSecondaryButton'
+import SolidSuccessButton from './components/ui/buttons/solid/SolidSuccessButton'
+import SolidWarningButton from './components/ui/buttons/solid/SolidWarningButton'
+import SolidToggleDisabledBaseButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledBaseButton'
+import SolidToggleDisabledDangerButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDangerButton'
+import SolidToggleDisabledDarkButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDarkButton'
+import SolidToggleDisabledInfoButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledInfoButton'
+import SolidToggleDisabledLightButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLightButton'
+import SolidToggleDisabledLinkButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLinkButton'
+import SolidToggleDisabledPrimaryButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledPrimaryButton'
+import SolidToggleDisabledSecondaryButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSecondaryButton'
+import SolidToggleDisabledSuccessButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSuccessButton'
+import SolidToggleDisabledWarningButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledWarningButton'
+import SolidToggleBaseButton from './components/ui/buttons/solid/toggle/SolidToggleBaseButton'
+import SolidToggleDangerButton from './components/ui/buttons/solid/toggle/SolidToggleDangerButton'
+import SolidToggleDarkButton from './components/ui/buttons/solid/toggle/SolidToggleDarkButton'
+import SolidToggleInfoButton from './components/ui/buttons/solid/toggle/SolidToggleInfoButton'
+import SolidToggleLightButton from './components/ui/buttons/solid/toggle/SolidToggleLightButton'
+import SolidToggleLinkButton from './components/ui/buttons/solid/toggle/SolidToggleLinkButton'
+import SolidTogglePrimaryButton from './components/ui/buttons/solid/toggle/SolidTogglePrimaryButton'
+import SolidToggleSecondaryButton from './components/ui/buttons/solid/toggle/SolidToggleSecondaryButton'
+import SolidToggleSuccessButton from './components/ui/buttons/solid/toggle/SolidToggleSuccessButton'
+import SolidToggleWarningButton from './components/ui/buttons/solid/toggle/SolidToggleWarningButton'
+import SolidToggleActiveDisabledBaseButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledBaseButton'
+import SolidToggleActiveDisabledDangerButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDangerButton'
+import SolidToggleActiveDisabledDarkButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDarkButton'
+import SolidToggleActiveDisabledInfoButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledInfoButton'
+import SolidToggleActiveDisabledLightButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLightButton'
+import SolidToggleActiveDisabledLinkButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLinkButton'
+import SolidToggleActiveDisabledPrimaryButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledPrimaryButton'
+import SolidToggleActiveDisabledSecondaryButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSecondaryButton'
+import SolidToggleActiveDisabledSuccessButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSuccessButton'
+import SolidToggleActiveDisabledWarningButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledWarningButton'
+import SolidToggleActiveBaseButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveBaseButton'
+import SolidToggleActiveDangerButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveDangerButton'
+import SolidToggleActiveDarkButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveDarkButton'
+import SolidToggleActiveInfoButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveInfoButton'
+import SolidToggleActiveLightButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveLightButton'
+import SolidToggleActiveLinkButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveLinkButton'
+import SolidToggleActivePrimaryButton from './components/ui/buttons/solid/toggle-active/SolidToggleActivePrimaryButton'
+import SolidToggleActiveSecondaryButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveSecondaryButton'
+import SolidToggleActiveSuccessButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveSuccessButton'
+import SolidToggleActiveWarningButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveWarningButton'
+import Card from './components/ui/Card'
+import CardTabs from './components/ui/CardTabs'
+import Carousel from './components/ui/Carousel'
+import CardsGrid from './components/ui/card/CardsGrid'
+import FeaturedCardExample from './components/ui/card/FeaturedCardExample'
+import HorizontalCardExample from './components/ui/card/HorizontalCardExample'
+import ImageTopCardExample from './components/ui/card/ImageTopCardExample'
+import ListCardExample from './components/ui/card/ListCardExample'
+import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
+import CarouselExample from './components/ui/carousel/CarouselExample'
+import Dropdowns from './components/ui/Dropdowns'
 import AlignedDropdown from './components/ui/dropdowns/AlignedDropdown'
 import EndDropdown from './components/ui/dropdowns/EndDropdown'
 import LargeDropdown from './components/ui/dropdowns/LargeDropdown'
@@ -72,18 +254,49 @@ import SplitSuccessDropdown from './components/ui/dropdowns/SplitSuccessDropdown
 import SplitWarningDropdown from './components/ui/dropdowns/SplitWarningDropdown'
 import StartDropdown from './components/ui/dropdowns/StartDropdown'
 import UpDropdown from './components/ui/dropdowns/UpDropdown'
+import ListGroup from './components/ui/ListGroup'
+import ContextualDangerListGroup from './components/ui/list-group/ContextualDangerListGroup'
+import ContextualDarkListGroup from './components/ui/list-group/ContextualDarkListGroup'
+import ContextualDefaultListGroup from './components/ui/list-group/ContextualDefaultListGroup'
+import ContextualInfoListGroup from './components/ui/list-group/ContextualInfoListGroup'
+import ContextualLightListGroup from './components/ui/list-group/ContextualLightListGroup'
+import ContextualListGroup from './components/ui/list-group/ContextualListGroup'
+import ContextualPrimaryListGroup from './components/ui/list-group/ContextualPrimaryListGroup'
+import ContextualSecondaryListGroup from './components/ui/list-group/ContextualSecondaryListGroup'
+import ContextualSuccessListGroup from './components/ui/list-group/ContextualSuccessListGroup'
+import ContextualWarningListGroup from './components/ui/list-group/ContextualWarningListGroup'
+import DefaultListGroup from './components/ui/list-group/DefaultListGroup'
+import FlushListGroup from './components/ui/list-group/FlushListGroup'
+import CenteredScrollableModal from './components/ui/modal/CenteredScrollableModal'
+import DefaultModal from './components/ui/modal/DefaultModal'
+import FullscreenModal from './components/ui/modal/FullscreenModal'
+import StaticBackdropModal from './components/ui/modal/StaticBackdropModal'
+import Navbar from './components/ui/Navbar'
+import Navs from './components/ui/Navs'
+import NavbarExample from './components/ui/navbar/NavbarExample'
+import BasicNav from './components/ui/navs/BasicNav'
+import PillNav from './components/ui/navs/PillNav'
+import TabbedNav from './components/ui/navs/TabbedNav'
+import Pagination from './components/ui/Pagination'
+import Popovers from './components/ui/Popovers'
+import Progress from './components/ui/Progress'
+import LargePagination from './components/ui/pagination/LargePagination'
 import SmallPagination from './components/ui/pagination/SmallPagination'
 import StandardPagination from './components/ui/pagination/StandardPagination'
-import LargePagination from './components/ui/pagination/LargePagination'
-import Pagination from './components/ui/Pagination'
-import Progress from './components/ui/Progress'
-import Progress100 from './components/ui/progress/Progress100'
+import BasicPopover from './components/ui/popovers/BasicPopover'
+import BottomPopover from './components/ui/popovers/BottomPopover'
+import EndPopover from './components/ui/popovers/EndPopover'
+import StartPopover from './components/ui/popovers/StartPopover'
+import TopPopover from './components/ui/popovers/TopPopover'
 import Progress0 from './components/ui/progress/Progress0'
 import Progress25 from './components/ui/progress/Progress25'
 import Progress50 from './components/ui/progress/Progress50'
 import Progress75 from './components/ui/progress/Progress75'
+import Progress100 from './components/ui/progress/Progress100'
 import StripedProgress from './components/ui/progress/StripedProgress'
+import Scrollspy from './components/ui/Scrollspy'
 import Spinners from './components/ui/Spinners'
+import ScrollspyExample from './components/ui/scrollspy/ScrollspyExample'
 import BorderDangerSpinner from './components/ui/spinners/BorderDangerSpinner'
 import BorderDarkSpinner from './components/ui/spinners/BorderDarkSpinner'
 import BorderInfoSpinner from './components/ui/spinners/BorderInfoSpinner'
@@ -100,227 +313,14 @@ import GrowPrimarySpinner from './components/ui/spinners/GrowPrimarySpinner'
 import GrowSecondarySpinner from './components/ui/spinners/GrowSecondarySpinner'
 import GrowSuccessSpinner from './components/ui/spinners/GrowSuccessSpinner'
 import GrowWarningSpinner from './components/ui/spinners/GrowWarningSpinner'
-import Popovers from './components/ui/Popovers'
 import Toasts from './components/ui/Toasts'
-import ToastExample from './components/ui/toasts/ToastExample'
 import Tooltips from './components/ui/Tooltips'
-import CenteredScrollableModal from './components/ui/modal/CenteredScrollableModal'
-import DefaultModal from './components/ui/modal/DefaultModal'
-import FullscreenModal from './components/ui/modal/FullscreenModal'
-import StaticBackdropModal from './components/ui/modal/StaticBackdropModal'
-import AccordionExample from './components/ui/accordion/AccordionExample'
-import BasicPopover from './components/ui/popovers/BasicPopover'
-import BottomPopover from './components/ui/popovers/BottomPopover'
-import EndPopover from './components/ui/popovers/EndPopover'
-import StartPopover from './components/ui/popovers/StartPopover'
-import TopPopover from './components/ui/popovers/TopPopover'
+import ToastExample from './components/ui/toasts/ToastExample'
 import BottomTooltip from './components/ui/tooltips/BottomTooltip'
 import EndTooltip from './components/ui/tooltips/EndTooltip'
 import HtmlTooltip from './components/ui/tooltips/HtmlTooltip'
 import StartTooltip from './components/ui/tooltips/StartTooltip'
 import TopTooltip from './components/ui/tooltips/TopTooltip'
-import HeadingBadges from './components/ui/badge/HeadingBadges'
-import PillBadges from './components/ui/badge/PillBadges'
-import OutlineCheckActiveDangerButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'
-import OutlineCheckActiveDarkButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveDarkButton'
-import OutlineCheckActiveDisabledDangerButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDangerButton'
-import OutlineCheckActiveDisabledDarkButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDarkButton'
-import OutlineCheckActiveDisabledInfoButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledInfoButton'
-import OutlineCheckActiveDisabledLightButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledLightButton'
-import OutlineCheckActiveDisabledPrimaryButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledPrimaryButton'
-import OutlineCheckActiveDisabledSecondaryButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSecondaryButton'
-import OutlineCheckActiveDisabledSuccessButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSuccessButton'
-import OutlineCheckActiveDisabledWarningButton from './components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledWarningButton'
-import OutlineCheckActiveInfoButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveInfoButton'
-import OutlineCheckActiveLightButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveLightButton'
-import OutlineCheckActivePrimaryButton from './components/ui/buttons/outline/check-active/OutlineCheckActivePrimaryButton'
-import OutlineCheckActiveSecondaryButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveSecondaryButton'
-import OutlineCheckActiveSuccessButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveSuccessButton'
-import OutlineCheckActiveWarningButton from './components/ui/buttons/outline/check-active/OutlineCheckActiveWarningButton'
-import OutlineCheckDangerButton from './components/ui/buttons/outline/check/OutlineCheckDangerButton'
-import OutlineCheckDarkButton from './components/ui/buttons/outline/check/OutlineCheckDarkButton'
-import OutlineCheckDisabledDangerButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDangerButton'
-import OutlineCheckDisabledDarkButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDarkButton'
-import OutlineCheckDisabledInfoButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledInfoButton'
-import OutlineCheckDisabledLightButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledLightButton'
-import OutlineCheckDisabledPrimaryButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledPrimaryButton'
-import OutlineCheckDisabledSecondaryButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSecondaryButton'
-import OutlineCheckDisabledSuccessButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSuccessButton'
-import OutlineCheckDisabledWarningButton from './components/ui/buttons/outline/check/disabled/OutlineCheckDisabledWarningButton'
-import OutlineCheckInfoButton from './components/ui/buttons/outline/check/OutlineCheckInfoButton'
-import OutlineCheckLightButton from './components/ui/buttons/outline/check/OutlineCheckLightButton'
-import OutlineCheckPrimaryButton from './components/ui/buttons/outline/check/OutlineCheckPrimaryButton'
-import OutlineCheckSecondaryButton from './components/ui/buttons/outline/check/OutlineCheckSecondaryButton'
-import OutlineCheckSuccessButton from './components/ui/buttons/outline/check/OutlineCheckSuccessButton'
-import OutlineCheckWarningButton from './components/ui/buttons/outline/check/OutlineCheckWarningButton'
-import OutlineDangerButton from './components/ui/buttons/outline/OutlineDangerButton'
-import OutlineDarkButton from './components/ui/buttons/outline/OutlineDarkButton'
-import OutlineDisabledDangerButton from './components/ui/buttons/outline/disabled/OutlineDisabledDangerButton'
-import OutlineDisabledDarkButton from './components/ui/buttons/outline/disabled/OutlineDisabledDarkButton'
-import OutlineDisabledInfoButton from './components/ui/buttons/outline/disabled/OutlineDisabledInfoButton'
-import OutlineDisabledLightButton from './components/ui/buttons/outline/disabled/OutlineDisabledLightButton'
-import OutlineDisabledPrimaryButton from './components/ui/buttons/outline/disabled/OutlineDisabledPrimaryButton'
-import OutlineDisabledSecondaryButton from './components/ui/buttons/outline/disabled/OutlineDisabledSecondaryButton'
-import OutlineDisabledSuccessButton from './components/ui/buttons/outline/disabled/OutlineDisabledSuccessButton'
-import OutlineDisabledWarningButton from './components/ui/buttons/outline/disabled/OutlineDisabledWarningButton'
-import OutlineInfoButton from './components/ui/buttons/outline/OutlineInfoButton'
-import OutlineLightButton from './components/ui/buttons/outline/OutlineLightButton'
-import OutlinePrimaryButton from './components/ui/buttons/outline/OutlinePrimaryButton'
-import OutlineSecondaryButton from './components/ui/buttons/outline/OutlineSecondaryButton'
-import OutlineSuccessButton from './components/ui/buttons/outline/OutlineSuccessButton'
-import OutlineToggleActiveDangerButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveDangerButton'
-import OutlineToggleActiveDarkButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveDarkButton'
-import OutlineToggleActiveDisabledDangerButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDangerButton'
-import OutlineToggleActiveDisabledDarkButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDarkButton'
-import OutlineToggleActiveDisabledInfoButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledInfoButton'
-import OutlineToggleActiveDisabledLightButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledLightButton'
-import OutlineToggleActiveDisabledPrimaryButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledPrimaryButton'
-import OutlineToggleActiveDisabledSecondaryButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSecondaryButton'
-import OutlineToggleActiveDisabledSuccessButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSuccessButton'
-import OutlineToggleActiveDisabledWarningButton from './components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledWarningButton'
-import OutlineToggleActiveInfoButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveInfoButton'
-import OutlineToggleActiveLightButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveLightButton'
-import OutlineToggleActivePrimaryButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActivePrimaryButton'
-import OutlineToggleActiveSecondaryButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveSecondaryButton'
-import OutlineToggleActiveSuccessButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveSuccessButton'
-import OutlineToggleActiveWarningButton from './components/ui/buttons/outline/toggle-active/OutlineToggleActiveWarningButton'
-import OutlineToggleDangerButton from './components/ui/buttons/outline/toggle/OutlineToggleDangerButton'
-import OutlineToggleDarkButton from './components/ui/buttons/outline/toggle/OutlineToggleDarkButton'
-import OutlineToggleDisabledDangerButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDangerButton'
-import OutlineToggleDisabledDarkButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDarkButton'
-import OutlineToggleDisabledInfoButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledInfoButton'
-import OutlineToggleDisabledLightButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledLightButton'
-import OutlineToggleDisabledPrimaryButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledPrimaryButton'
-import OutlineToggleDisabledSecondaryButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSecondaryButton'
-import OutlineToggleDisabledSuccessButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSuccessButton'
-import OutlineToggleDisabledWarningButton from './components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledWarningButton'
-import OutlineToggleInfoButton from './components/ui/buttons/outline/toggle/OutlineToggleInfoButton'
-import OutlineToggleLightButton from './components/ui/buttons/outline/toggle/OutlineToggleLightButton'
-import OutlineTogglePrimaryButton from './components/ui/buttons/outline/toggle/OutlineTogglePrimaryButton'
-import OutlineToggleSecondaryButton from './components/ui/buttons/outline/toggle/OutlineToggleSecondaryButton'
-import OutlineToggleSuccessButton from './components/ui/buttons/outline/toggle/OutlineToggleSuccessButton'
-import OutlineToggleWarningButton from './components/ui/buttons/outline/toggle/OutlineToggleWarningButton'
-import OutlineWarningButton from './components/ui/buttons/outline/OutlineWarningButton'
-import CheckActiveDisabledLargeButton from './components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledLargeButton'
-import CheckActiveDisabledSmallButton from './components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledSmallButton'
-import CheckActiveLargeButton from './components/ui/buttons/sizes/check-active/CheckActiveLargeButton'
-import CheckActiveSmallButton from './components/ui/buttons/sizes/check-active/CheckActiveSmallButton'
-import CheckDisabledLargeButton from './components/ui/buttons/sizes/check/disabled/CheckDisabledLargeButton'
-import CheckDisabledSmallButton from './components/ui/buttons/sizes/check/disabled/CheckDisabledSmallButton'
-import CheckLargeButton from './components/ui/buttons/sizes/check/CheckLargeButton'
-import CheckSmallButton from './components/ui/buttons/sizes/check/CheckSmallButton'
-import DisabledLargeButton from './components/ui/buttons/sizes/disabled/DisabledLargeButton'
-import DisabledSmallButton from './components/ui/buttons/sizes/disabled/DisabledSmallButton'
-import LargeButton from './components/ui/buttons/sizes/LargeButton'
-import SmallButton from './components/ui/buttons/sizes/SmallButton'
-import ToggleActiveDisabledLargeButton from './components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledLargeButton'
-import ToggleActiveDisabledSmallButton from './components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledSmallButton'
-import ToggleActiveLargeButton from './components/ui/buttons/sizes/toggle-active/ToggleActiveLargeButton'
-import ToggleActiveSmallButton from './components/ui/buttons/sizes/toggle-active/ToggleActiveSmallButton'
-import ToggleDisabledLargeButton from './components/ui/buttons/sizes/toggle/disabled/ToggleDisabledLargeButton'
-import ToggleDisabledSmallButton from './components/ui/buttons/sizes/toggle/disabled/ToggleDisabledSmallButton'
-import ToggleLargeButton from './components/ui/buttons/sizes/toggle/ToggleLargeButton'
-import ToggleSmallButton from './components/ui/buttons/sizes/toggle/ToggleSmallButton'
-import SolidBaseButton from './components/ui/buttons/solid/SolidBaseButton'
-import SolidCheckActiveBaseButton from './components/ui/buttons/solid/check-active/SolidCheckActiveBaseButton'
-import SolidCheckActiveDangerButton from './components/ui/buttons/solid/check-active/SolidCheckActiveDangerButton'
-import SolidCheckActiveDarkButton from './components/ui/buttons/solid/check-active/SolidCheckActiveDarkButton'
-import SolidCheckActiveDisabledBaseButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledBaseButton'
-import SolidCheckActiveDisabledDangerButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDangerButton'
-import SolidCheckActiveDisabledDarkButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDarkButton'
-import SolidCheckActiveDisabledInfoButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledInfoButton'
-import SolidCheckActiveDisabledLightButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLightButton'
-import SolidCheckActiveDisabledLinkButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLinkButton'
-import SolidCheckActiveDisabledPrimaryButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledPrimaryButton'
-import SolidCheckActiveDisabledSecondaryButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSecondaryButton'
-import SolidCheckActiveDisabledSuccessButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSuccessButton'
-import SolidCheckActiveDisabledWarningButton from './components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledWarningButton'
-import SolidCheckActiveInfoButton from './components/ui/buttons/solid/check-active/SolidCheckActiveInfoButton'
-import SolidCheckActiveLightButton from './components/ui/buttons/solid/check-active/SolidCheckActiveLightButton'
-import SolidCheckActiveLinkButton from './components/ui/buttons/solid/check-active/SolidCheckActiveLinkButton'
-import SolidCheckActivePrimaryButton from './components/ui/buttons/solid/check-active/SolidCheckActivePrimaryButton'
-import SolidCheckActiveSecondaryButton from './components/ui/buttons/solid/check-active/SolidCheckActiveSecondaryButton'
-import SolidCheckActiveSuccessButton from './components/ui/buttons/solid/check-active/SolidCheckActiveSuccessButton'
-import SolidCheckActiveWarningButton from './components/ui/buttons/solid/check-active/SolidCheckActiveWarningButton'
-import SolidCheckBaseButton from './components/ui/buttons/solid/check/SolidCheckBaseButton'
-import SolidCheckDangerButton from './components/ui/buttons/solid/check/SolidCheckDangerButton'
-import SolidCheckDarkButton from './components/ui/buttons/solid/check/SolidCheckDarkButton'
-import SolidCheckDisabledBaseButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledBaseButton'
-import SolidCheckDisabledDangerButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledDangerButton'
-import SolidCheckDisabledDarkButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledDarkButton'
-import SolidCheckDisabledInfoButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledInfoButton'
-import SolidCheckDisabledLightButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledLightButton'
-import SolidCheckDisabledLinkButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledLinkButton'
-import SolidCheckDisabledPrimaryButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledPrimaryButton'
-import SolidCheckDisabledSecondaryButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledSecondaryButton'
-import SolidCheckDisabledSuccessButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledSuccessButton'
-import SolidCheckDisabledWarningButton from './components/ui/buttons/solid/check/disabled/SolidCheckDisabledWarningButton'
-import SolidCheckInfoButton from './components/ui/buttons/solid/check/SolidCheckInfoButton'
-import SolidCheckLightButton from './components/ui/buttons/solid/check/SolidCheckLightButton'
-import SolidCheckLinkButton from './components/ui/buttons/solid/check/SolidCheckLinkButton'
-import SolidCheckPrimaryButton from './components/ui/buttons/solid/check/SolidCheckPrimaryButton'
-import SolidCheckSecondaryButton from './components/ui/buttons/solid/check/SolidCheckSecondaryButton'
-import SolidCheckSuccessButton from './components/ui/buttons/solid/check/SolidCheckSuccessButton'
-import SolidCheckWarningButton from './components/ui/buttons/solid/check/SolidCheckWarningButton'
-import SolidDangerButton from './components/ui/buttons/solid/SolidDangerButton'
-import SolidDarkButton from './components/ui/buttons/solid/SolidDarkButton'
-import SolidDisabledBaseButton from './components/ui/buttons/solid/disabled/SolidDisabledBaseButton'
-import SolidDisabledDangerButton from './components/ui/buttons/solid/disabled/SolidDisabledDangerButton'
-import SolidDisabledDarkButton from './components/ui/buttons/solid/disabled/SolidDisabledDarkButton'
-import SolidDisabledInfoButton from './components/ui/buttons/solid/disabled/SolidDisabledInfoButton'
-import SolidDisabledLightButton from './components/ui/buttons/solid/disabled/SolidDisabledLightButton'
-import SolidDisabledLinkButton from './components/ui/buttons/solid/disabled/SolidDisabledLinkButton'
-import SolidDisabledPrimaryButton from './components/ui/buttons/solid/disabled/SolidDisabledPrimaryButton'
-import SolidDisabledSecondaryButton from './components/ui/buttons/solid/disabled/SolidDisabledSecondaryButton'
-import SolidDisabledSuccessButton from './components/ui/buttons/solid/disabled/SolidDisabledSuccessButton'
-import SolidDisabledWarningButton from './components/ui/buttons/solid/disabled/SolidDisabledWarningButton'
-import SolidInfoButton from './components/ui/buttons/solid/SolidInfoButton'
-import SolidLightButton from './components/ui/buttons/solid/SolidLightButton'
-import SolidLinkButton from './components/ui/buttons/solid/SolidLinkButton'
-import SolidPrimaryButton from './components/ui/buttons/solid/SolidPrimaryButton'
-import SolidSecondaryButton from './components/ui/buttons/solid/SolidSecondaryButton'
-import SolidSuccessButton from './components/ui/buttons/solid/SolidSuccessButton'
-import SolidToggleActiveBaseButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveBaseButton'
-import SolidToggleActiveDangerButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveDangerButton'
-import SolidToggleActiveDarkButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveDarkButton'
-import SolidToggleActiveDisabledBaseButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledBaseButton'
-import SolidToggleActiveDisabledDangerButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDangerButton'
-import SolidToggleActiveDisabledDarkButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDarkButton'
-import SolidToggleActiveDisabledInfoButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledInfoButton'
-import SolidToggleActiveDisabledLightButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLightButton'
-import SolidToggleActiveDisabledLinkButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLinkButton'
-import SolidToggleActiveDisabledPrimaryButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledPrimaryButton'
-import SolidToggleActiveDisabledSecondaryButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSecondaryButton'
-import SolidToggleActiveDisabledSuccessButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSuccessButton'
-import SolidToggleActiveDisabledWarningButton from './components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledWarningButton'
-import SolidToggleActiveInfoButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveInfoButton'
-import SolidToggleActiveLightButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveLightButton'
-import SolidToggleActiveLinkButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveLinkButton'
-import SolidToggleActivePrimaryButton from './components/ui/buttons/solid/toggle-active/SolidToggleActivePrimaryButton'
-import SolidToggleActiveSecondaryButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveSecondaryButton'
-import SolidToggleActiveSuccessButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveSuccessButton'
-import SolidToggleActiveWarningButton from './components/ui/buttons/solid/toggle-active/SolidToggleActiveWarningButton'
-import SolidToggleBaseButton from './components/ui/buttons/solid/toggle/SolidToggleBaseButton'
-import SolidToggleDangerButton from './components/ui/buttons/solid/toggle/SolidToggleDangerButton'
-import SolidToggleDarkButton from './components/ui/buttons/solid/toggle/SolidToggleDarkButton'
-import SolidToggleDisabledBaseButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledBaseButton'
-import SolidToggleDisabledDangerButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDangerButton'
-import SolidToggleDisabledDarkButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDarkButton'
-import SolidToggleDisabledInfoButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledInfoButton'
-import SolidToggleDisabledLightButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLightButton'
-import SolidToggleDisabledLinkButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLinkButton'
-import SolidToggleDisabledPrimaryButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledPrimaryButton'
-import SolidToggleDisabledSecondaryButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSecondaryButton'
-import SolidToggleDisabledSuccessButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSuccessButton'
-import SolidToggleDisabledWarningButton from './components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledWarningButton'
-import SolidToggleInfoButton from './components/ui/buttons/solid/toggle/SolidToggleInfoButton'
-import SolidToggleLightButton from './components/ui/buttons/solid/toggle/SolidToggleLightButton'
-import SolidToggleLinkButton from './components/ui/buttons/solid/toggle/SolidToggleLinkButton'
-import SolidTogglePrimaryButton from './components/ui/buttons/solid/toggle/SolidTogglePrimaryButton'
-import SolidToggleSecondaryButton from './components/ui/buttons/solid/toggle/SolidToggleSecondaryButton'
-import SolidToggleSuccessButton from './components/ui/buttons/solid/toggle/SolidToggleSuccessButton'
-import SolidToggleWarningButton from './components/ui/buttons/solid/toggle/SolidToggleWarningButton'
-import SolidWarningButton from './components/ui/buttons/solid/SolidWarningButton'
 import './reset.css'
 import ContentsSection from './components/contents/ContentsSection'
 import Figures from './components/contents/Figures'
@@ -329,20 +329,20 @@ import Images from './components/contents/Images'
 import Responsive from './components/contents/images/Responsive'
 import Thumbnail from './components/contents/images/Thumbnail'
 import Tables from './components/contents/Tables'
-import Striped from './components/contents/tables/Striped'
+import Typography from './components/contents/Typography'
 import DarkBorderless from './components/contents/tables/DarkBorderless'
-import HoverVariants from './components/contents/tables/HoverVariants'
+import HoverDangerVariant from './components/contents/tables/HoverDangerVariant'
+import HoverDarkVariant from './components/contents/tables/HoverDarkVariant'
 import HoverDefaultVariant from './components/contents/tables/HoverDefaultVariant'
+import HoverInfoVariant from './components/contents/tables/HoverInfoVariant'
+import HoverLightVariant from './components/contents/tables/HoverLightVariant'
 import HoverPrimaryVariant from './components/contents/tables/HoverPrimaryVariant'
 import HoverSecondaryVariant from './components/contents/tables/HoverSecondaryVariant'
 import HoverSuccessVariant from './components/contents/tables/HoverSuccessVariant'
-import HoverDangerVariant from './components/contents/tables/HoverDangerVariant'
+import HoverVariants from './components/contents/tables/HoverVariants'
 import HoverWarningVariant from './components/contents/tables/HoverWarningVariant'
-import HoverInfoVariant from './components/contents/tables/HoverInfoVariant'
-import HoverLightVariant from './components/contents/tables/HoverLightVariant'
-import HoverDarkVariant from './components/contents/tables/HoverDarkVariant'
 import SmallBordered from './components/contents/tables/SmallBordered'
-import Typography from './components/contents/Typography'
+import Striped from './components/contents/tables/Striped'
 import Blockquote from './components/contents/typography/Blockquote'
 import Display from './components/contents/typography/Display'
 import Heading from './components/contents/typography/Heading'
@@ -350,41 +350,41 @@ import InlineList from './components/contents/typography/InlineList'
 import Lead from './components/contents/typography/Lead'
 import TextElements from './components/contents/typography/TextElements'
 import UnstyledList from './components/contents/typography/UnstyledList'
+import DisabledForms from './components/forms/DisabledForms'
+import DisabledCheckbox from './components/forms/disabled/DisabledCheckbox'
+import DisabledFieldset from './components/forms/disabled/DisabledFieldset'
+import DisabledFileRange from './components/forms/disabled/DisabledFileRange'
+import DisabledRadioButtons from './components/forms/disabled/DisabledRadioButtons'
+import DisabledSwitchCheckbox from './components/forms/disabled/DisabledSwitchCheckbox'
+import FloatingLabels from './components/forms/FloatingLabels'
 import FormsPage from './components/forms/FormsPage'
+import FloatingLabelsExample from './components/forms/floating-labels/FloatingLabelsExample'
+import InputGroup from './components/forms/InputGroup'
+import CurrencyAddon from './components/forms/input-group/CurrencyAddon'
+import PrefixAddon from './components/forms/input-group/PrefixAddon'
+import SuffixAddon from './components/forms/input-group/SuffixAddon'
+import TextareaAddon from './components/forms/input-group/TextareaAddon'
+import UrlAddon from './components/forms/input-group/UrlAddon'
 import Overview from './components/forms/Overview'
 import BasicForm from './components/forms/overview/BasicForm'
 import Checkbox from './components/forms/overview/Checkbox'
-import RadioButtons from './components/forms/overview/RadioButtons'
-import SwitchCheckbox from './components/forms/overview/SwitchCheckbox'
 import FileInput from './components/forms/overview/FileInput'
+import RadioButtons from './components/forms/overview/RadioButtons'
 import RangeInput from './components/forms/overview/RangeInput'
+import SwitchCheckbox from './components/forms/overview/SwitchCheckbox'
 import Sizing from './components/forms/Sizing'
 import LargeControls from './components/forms/sizing/LargeControls'
 import SmallControls from './components/forms/sizing/SmallControls'
-import DisabledForms from './components/forms/DisabledForms'
-import DisabledFieldset from './components/forms/disabled/DisabledFieldset'
-import DisabledCheckbox from './components/forms/disabled/DisabledCheckbox'
-import DisabledRadioButtons from './components/forms/disabled/DisabledRadioButtons'
-import DisabledSwitchCheckbox from './components/forms/disabled/DisabledSwitchCheckbox'
-import DisabledFileRange from './components/forms/disabled/DisabledFileRange'
-import FloatingLabels from './components/forms/FloatingLabels'
-import FloatingLabelsExample from './components/forms/floating-labels/FloatingLabelsExample'
-import InputGroup from './components/forms/InputGroup'
-import PrefixAddon from './components/forms/input-group/PrefixAddon'
-import SuffixAddon from './components/forms/input-group/SuffixAddon'
-import UrlAddon from './components/forms/input-group/UrlAddon'
-import CurrencyAddon from './components/forms/input-group/CurrencyAddon'
-import TextareaAddon from './components/forms/input-group/TextareaAddon'
 import Validation from './components/forms/Validation'
-import ValidNames from './components/forms/validation/ValidNames'
-import InvalidUsernameCity from './components/forms/validation/InvalidUsernameCity'
-import InvalidStateZip from './components/forms/validation/InvalidStateZip'
 import InvalidCheckboxes from './components/forms/validation/InvalidCheckboxes'
 import InvalidRadios from './components/forms/validation/InvalidRadios'
+import InvalidStateZip from './components/forms/validation/InvalidStateZip'
+import InvalidUsernameCity from './components/forms/validation/InvalidUsernameCity'
 import ValidCheckboxes from './components/forms/validation/ValidCheckboxes'
+import ValidNames from './components/forms/validation/ValidNames'
 import ValidRadios from './components/forms/validation/ValidRadios'
-import ThemeSupportGate from './themes/runtime/ThemeSupportGate'
 import { VeThemeRuntimeProvider } from './themes/runtime/provider'
+import ThemeSupportGate from './themes/runtime/ThemeSupportGate'
 
 function RouterRoot(props: { children: JSX.Element }) {
 	return (
@@ -412,7 +412,10 @@ render(
 			<Route path="/contents/tables/hover-info-variant" component={HoverInfoVariant} />
 			<Route path="/contents/tables/hover-light-variant" component={HoverLightVariant} />
 			<Route path="/contents/tables/hover-primary-variant" component={HoverPrimaryVariant} />
-			<Route path="/contents/tables/hover-secondary-variant" component={HoverSecondaryVariant} />
+			<Route
+				path="/contents/tables/hover-secondary-variant"
+				component={HoverSecondaryVariant}
+			/>
 			<Route path="/contents/tables/hover-success-variant" component={HoverSuccessVariant} />
 			<Route path="/contents/tables/hover-variants" component={HoverVariants} />
 			<Route path="/contents/tables/hover-warning-variant" component={HoverWarningVariant} />
@@ -432,9 +435,15 @@ render(
 			<Route path="/forms/disabled/disabled-fieldset" component={DisabledFieldset} />
 			<Route path="/forms/disabled/disabled-file-range" component={DisabledFileRange} />
 			<Route path="/forms/disabled/disabled-radio-buttons" component={DisabledRadioButtons} />
-			<Route path="/forms/disabled/disabled-switch-checkbox" component={DisabledSwitchCheckbox} />
+			<Route
+				path="/forms/disabled/disabled-switch-checkbox"
+				component={DisabledSwitchCheckbox}
+			/>
 			<Route path="/forms/floating-labels" component={FloatingLabels} />
-			<Route path="/forms/floating-labels/floating-labels-example" component={FloatingLabelsExample} />
+			<Route
+				path="/forms/floating-labels/floating-labels-example"
+				component={FloatingLabelsExample}
+			/>
 			<Route path="/forms/input-group" component={InputGroup} />
 			<Route path="/forms/input-group/currency-addon" component={CurrencyAddon} />
 			<Route path="/forms/input-group/prefix-addon" component={PrefixAddon} />
@@ -473,16 +482,43 @@ render(
 			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
 			<Route path="/ui/breadcrumb" component={Breadcrumb} />
 			<Route path="/ui/breadcrumb/breadcrumb-example" component={BreadcrumbExample} />
-			<Route path="/ui/list-group/contextual-default-list-group" component={ContextualDefaultListGroup} />
-			<Route path="/ui/list-group/contextual-danger-list-group" component={ContextualDangerListGroup} />
-			<Route path="/ui/list-group/contextual-dark-list-group" component={ContextualDarkListGroup} />
-			<Route path="/ui/list-group/contextual-info-list-group" component={ContextualInfoListGroup} />
-			<Route path="/ui/list-group/contextual-light-list-group" component={ContextualLightListGroup} />
+			<Route
+				path="/ui/list-group/contextual-default-list-group"
+				component={ContextualDefaultListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-danger-list-group"
+				component={ContextualDangerListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-dark-list-group"
+				component={ContextualDarkListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-info-list-group"
+				component={ContextualInfoListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-light-list-group"
+				component={ContextualLightListGroup}
+			/>
 			<Route path="/ui/list-group/contextual-list-group" component={ContextualListGroup} />
-			<Route path="/ui/list-group/contextual-primary-list-group" component={ContextualPrimaryListGroup} />
-			<Route path="/ui/list-group/contextual-secondary-list-group" component={ContextualSecondaryListGroup} />
-			<Route path="/ui/list-group/contextual-success-list-group" component={ContextualSuccessListGroup} />
-			<Route path="/ui/list-group/contextual-warning-list-group" component={ContextualWarningListGroup} />
+			<Route
+				path="/ui/list-group/contextual-primary-list-group"
+				component={ContextualPrimaryListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-secondary-list-group"
+				component={ContextualSecondaryListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-success-list-group"
+				component={ContextualSuccessListGroup}
+			/>
+			<Route
+				path="/ui/list-group/contextual-warning-list-group"
+				component={ContextualWarningListGroup}
+			/>
 			<Route path="/ui/list-group/default-list-group" component={DefaultListGroup} />
 			<Route path="/ui/list-group/flush-list-group" component={FlushListGroup} />
 			<Route path="/ui/list-group" component={ListGroup} />
@@ -510,205 +546,700 @@ render(
 			<Route path="/ui/carousel" component={Carousel} />
 			<Route path="/ui/carousel/carousel-example" component={CarouselExample} />
 			<Route path="/ui/buttons" component={ButtonsPage} />
-			<Route path="/ui/buttons/outline/check-active/danger-button" component={OutlineCheckActiveDangerButton} />
-			<Route path="/ui/buttons/outline/check-active/dark-button" component={OutlineCheckActiveDarkButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/danger-button" component={OutlineCheckActiveDisabledDangerButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/dark-button" component={OutlineCheckActiveDisabledDarkButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/info-button" component={OutlineCheckActiveDisabledInfoButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/light-button" component={OutlineCheckActiveDisabledLightButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/primary-button" component={OutlineCheckActiveDisabledPrimaryButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/secondary-button" component={OutlineCheckActiveDisabledSecondaryButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/success-button" component={OutlineCheckActiveDisabledSuccessButton} />
-			<Route path="/ui/buttons/outline/check-active/disabled/warning-button" component={OutlineCheckActiveDisabledWarningButton} />
-			<Route path="/ui/buttons/outline/check-active/info-button" component={OutlineCheckActiveInfoButton} />
-			<Route path="/ui/buttons/outline/check-active/light-button" component={OutlineCheckActiveLightButton} />
-			<Route path="/ui/buttons/outline/check-active/primary-button" component={OutlineCheckActivePrimaryButton} />
-			<Route path="/ui/buttons/outline/check-active/secondary-button" component={OutlineCheckActiveSecondaryButton} />
-			<Route path="/ui/buttons/outline/check-active/success-button" component={OutlineCheckActiveSuccessButton} />
-			<Route path="/ui/buttons/outline/check-active/warning-button" component={OutlineCheckActiveWarningButton} />
-			<Route path="/ui/buttons/outline/check/danger-button" component={OutlineCheckDangerButton} />
-			<Route path="/ui/buttons/outline/check/dark-button" component={OutlineCheckDarkButton} />
-			<Route path="/ui/buttons/outline/check/disabled/danger-button" component={OutlineCheckDisabledDangerButton} />
-			<Route path="/ui/buttons/outline/check/disabled/dark-button" component={OutlineCheckDisabledDarkButton} />
-			<Route path="/ui/buttons/outline/check/disabled/info-button" component={OutlineCheckDisabledInfoButton} />
-			<Route path="/ui/buttons/outline/check/disabled/light-button" component={OutlineCheckDisabledLightButton} />
-			<Route path="/ui/buttons/outline/check/disabled/primary-button" component={OutlineCheckDisabledPrimaryButton} />
-			<Route path="/ui/buttons/outline/check/disabled/secondary-button" component={OutlineCheckDisabledSecondaryButton} />
-			<Route path="/ui/buttons/outline/check/disabled/success-button" component={OutlineCheckDisabledSuccessButton} />
-			<Route path="/ui/buttons/outline/check/disabled/warning-button" component={OutlineCheckDisabledWarningButton} />
-			<Route path="/ui/buttons/outline/check/info-button" component={OutlineCheckInfoButton} />
-			<Route path="/ui/buttons/outline/check/light-button" component={OutlineCheckLightButton} />
-			<Route path="/ui/buttons/outline/check/primary-button" component={OutlineCheckPrimaryButton} />
-			<Route path="/ui/buttons/outline/check/secondary-button" component={OutlineCheckSecondaryButton} />
-			<Route path="/ui/buttons/outline/check/success-button" component={OutlineCheckSuccessButton} />
-			<Route path="/ui/buttons/outline/check/warning-button" component={OutlineCheckWarningButton} />
+			<Route
+				path="/ui/buttons/outline/check-active/danger-button"
+				component={OutlineCheckActiveDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/dark-button"
+				component={OutlineCheckActiveDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/danger-button"
+				component={OutlineCheckActiveDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/dark-button"
+				component={OutlineCheckActiveDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/info-button"
+				component={OutlineCheckActiveDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/light-button"
+				component={OutlineCheckActiveDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/primary-button"
+				component={OutlineCheckActiveDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/secondary-button"
+				component={OutlineCheckActiveDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/success-button"
+				component={OutlineCheckActiveDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/disabled/warning-button"
+				component={OutlineCheckActiveDisabledWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/info-button"
+				component={OutlineCheckActiveInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/light-button"
+				component={OutlineCheckActiveLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/primary-button"
+				component={OutlineCheckActivePrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/secondary-button"
+				component={OutlineCheckActiveSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/success-button"
+				component={OutlineCheckActiveSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check-active/warning-button"
+				component={OutlineCheckActiveWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/danger-button"
+				component={OutlineCheckDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/dark-button"
+				component={OutlineCheckDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/danger-button"
+				component={OutlineCheckDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/dark-button"
+				component={OutlineCheckDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/info-button"
+				component={OutlineCheckDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/light-button"
+				component={OutlineCheckDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/primary-button"
+				component={OutlineCheckDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/secondary-button"
+				component={OutlineCheckDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/success-button"
+				component={OutlineCheckDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/disabled/warning-button"
+				component={OutlineCheckDisabledWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/info-button"
+				component={OutlineCheckInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/light-button"
+				component={OutlineCheckLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/primary-button"
+				component={OutlineCheckPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/secondary-button"
+				component={OutlineCheckSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/success-button"
+				component={OutlineCheckSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/check/warning-button"
+				component={OutlineCheckWarningButton}
+			/>
 			<Route path="/ui/buttons/outline/danger-button" component={OutlineDangerButton} />
 			<Route path="/ui/buttons/outline/dark-button" component={OutlineDarkButton} />
-			<Route path="/ui/buttons/outline/disabled/danger-button" component={OutlineDisabledDangerButton} />
-			<Route path="/ui/buttons/outline/disabled/dark-button" component={OutlineDisabledDarkButton} />
-			<Route path="/ui/buttons/outline/disabled/info-button" component={OutlineDisabledInfoButton} />
-			<Route path="/ui/buttons/outline/disabled/light-button" component={OutlineDisabledLightButton} />
-			<Route path="/ui/buttons/outline/disabled/primary-button" component={OutlineDisabledPrimaryButton} />
-			<Route path="/ui/buttons/outline/disabled/secondary-button" component={OutlineDisabledSecondaryButton} />
-			<Route path="/ui/buttons/outline/disabled/success-button" component={OutlineDisabledSuccessButton} />
-			<Route path="/ui/buttons/outline/disabled/warning-button" component={OutlineDisabledWarningButton} />
+			<Route
+				path="/ui/buttons/outline/disabled/danger-button"
+				component={OutlineDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/dark-button"
+				component={OutlineDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/info-button"
+				component={OutlineDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/light-button"
+				component={OutlineDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/primary-button"
+				component={OutlineDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/secondary-button"
+				component={OutlineDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/success-button"
+				component={OutlineDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/disabled/warning-button"
+				component={OutlineDisabledWarningButton}
+			/>
 			<Route path="/ui/buttons/outline/info-button" component={OutlineInfoButton} />
 			<Route path="/ui/buttons/outline/light-button" component={OutlineLightButton} />
 			<Route path="/ui/buttons/outline/primary-button" component={OutlinePrimaryButton} />
 			<Route path="/ui/buttons/outline/secondary-button" component={OutlineSecondaryButton} />
 			<Route path="/ui/buttons/outline/success-button" component={OutlineSuccessButton} />
-			<Route path="/ui/buttons/outline/toggle-active/danger-button" component={OutlineToggleActiveDangerButton} />
-			<Route path="/ui/buttons/outline/toggle-active/dark-button" component={OutlineToggleActiveDarkButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/danger-button" component={OutlineToggleActiveDisabledDangerButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/dark-button" component={OutlineToggleActiveDisabledDarkButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/info-button" component={OutlineToggleActiveDisabledInfoButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/light-button" component={OutlineToggleActiveDisabledLightButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/primary-button" component={OutlineToggleActiveDisabledPrimaryButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/secondary-button" component={OutlineToggleActiveDisabledSecondaryButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/success-button" component={OutlineToggleActiveDisabledSuccessButton} />
-			<Route path="/ui/buttons/outline/toggle-active/disabled/warning-button" component={OutlineToggleActiveDisabledWarningButton} />
-			<Route path="/ui/buttons/outline/toggle-active/info-button" component={OutlineToggleActiveInfoButton} />
-			<Route path="/ui/buttons/outline/toggle-active/light-button" component={OutlineToggleActiveLightButton} />
-			<Route path="/ui/buttons/outline/toggle-active/primary-button" component={OutlineToggleActivePrimaryButton} />
-			<Route path="/ui/buttons/outline/toggle-active/secondary-button" component={OutlineToggleActiveSecondaryButton} />
-			<Route path="/ui/buttons/outline/toggle-active/success-button" component={OutlineToggleActiveSuccessButton} />
-			<Route path="/ui/buttons/outline/toggle-active/warning-button" component={OutlineToggleActiveWarningButton} />
-			<Route path="/ui/buttons/outline/toggle/danger-button" component={OutlineToggleDangerButton} />
-			<Route path="/ui/buttons/outline/toggle/dark-button" component={OutlineToggleDarkButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/danger-button" component={OutlineToggleDisabledDangerButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/dark-button" component={OutlineToggleDisabledDarkButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/info-button" component={OutlineToggleDisabledInfoButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/light-button" component={OutlineToggleDisabledLightButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/primary-button" component={OutlineToggleDisabledPrimaryButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/secondary-button" component={OutlineToggleDisabledSecondaryButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/success-button" component={OutlineToggleDisabledSuccessButton} />
-			<Route path="/ui/buttons/outline/toggle/disabled/warning-button" component={OutlineToggleDisabledWarningButton} />
-			<Route path="/ui/buttons/outline/toggle/info-button" component={OutlineToggleInfoButton} />
-			<Route path="/ui/buttons/outline/toggle/light-button" component={OutlineToggleLightButton} />
-			<Route path="/ui/buttons/outline/toggle/primary-button" component={OutlineTogglePrimaryButton} />
-			<Route path="/ui/buttons/outline/toggle/secondary-button" component={OutlineToggleSecondaryButton} />
-			<Route path="/ui/buttons/outline/toggle/success-button" component={OutlineToggleSuccessButton} />
-			<Route path="/ui/buttons/outline/toggle/warning-button" component={OutlineToggleWarningButton} />
+			<Route
+				path="/ui/buttons/outline/toggle-active/danger-button"
+				component={OutlineToggleActiveDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/dark-button"
+				component={OutlineToggleActiveDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/danger-button"
+				component={OutlineToggleActiveDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/dark-button"
+				component={OutlineToggleActiveDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/info-button"
+				component={OutlineToggleActiveDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/light-button"
+				component={OutlineToggleActiveDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/primary-button"
+				component={OutlineToggleActiveDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/secondary-button"
+				component={OutlineToggleActiveDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/success-button"
+				component={OutlineToggleActiveDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/disabled/warning-button"
+				component={OutlineToggleActiveDisabledWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/info-button"
+				component={OutlineToggleActiveInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/light-button"
+				component={OutlineToggleActiveLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/primary-button"
+				component={OutlineToggleActivePrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/secondary-button"
+				component={OutlineToggleActiveSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/success-button"
+				component={OutlineToggleActiveSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle-active/warning-button"
+				component={OutlineToggleActiveWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/danger-button"
+				component={OutlineToggleDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/dark-button"
+				component={OutlineToggleDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/danger-button"
+				component={OutlineToggleDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/dark-button"
+				component={OutlineToggleDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/info-button"
+				component={OutlineToggleDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/light-button"
+				component={OutlineToggleDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/primary-button"
+				component={OutlineToggleDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/secondary-button"
+				component={OutlineToggleDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/success-button"
+				component={OutlineToggleDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/disabled/warning-button"
+				component={OutlineToggleDisabledWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/info-button"
+				component={OutlineToggleInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/light-button"
+				component={OutlineToggleLightButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/primary-button"
+				component={OutlineTogglePrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/secondary-button"
+				component={OutlineToggleSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/success-button"
+				component={OutlineToggleSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/outline/toggle/warning-button"
+				component={OutlineToggleWarningButton}
+			/>
 			<Route path="/ui/buttons/outline/warning-button" component={OutlineWarningButton} />
-			<Route path="/ui/buttons/sizes/check-active/disabled/large-button" component={CheckActiveDisabledLargeButton} />
-			<Route path="/ui/buttons/sizes/check-active/disabled/small-button" component={CheckActiveDisabledSmallButton} />
-			<Route path="/ui/buttons/sizes/check-active/large-button" component={CheckActiveLargeButton} />
-			<Route path="/ui/buttons/sizes/check-active/small-button" component={CheckActiveSmallButton} />
-			<Route path="/ui/buttons/sizes/check/disabled/large-button" component={CheckDisabledLargeButton} />
-			<Route path="/ui/buttons/sizes/check/disabled/small-button" component={CheckDisabledSmallButton} />
+			<Route
+				path="/ui/buttons/sizes/check-active/disabled/large-button"
+				component={CheckActiveDisabledLargeButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/check-active/disabled/small-button"
+				component={CheckActiveDisabledSmallButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/check-active/large-button"
+				component={CheckActiveLargeButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/check-active/small-button"
+				component={CheckActiveSmallButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/check/disabled/large-button"
+				component={CheckDisabledLargeButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/check/disabled/small-button"
+				component={CheckDisabledSmallButton}
+			/>
 			<Route path="/ui/buttons/sizes/check/large-button" component={CheckLargeButton} />
 			<Route path="/ui/buttons/sizes/check/small-button" component={CheckSmallButton} />
 			<Route path="/ui/buttons/sizes/disabled/large-button" component={DisabledLargeButton} />
 			<Route path="/ui/buttons/sizes/disabled/small-button" component={DisabledSmallButton} />
 			<Route path="/ui/buttons/sizes/large-button" component={LargeButton} />
 			<Route path="/ui/buttons/sizes/small-button" component={SmallButton} />
-			<Route path="/ui/buttons/sizes/toggle-active/disabled/large-button" component={ToggleActiveDisabledLargeButton} />
-			<Route path="/ui/buttons/sizes/toggle-active/disabled/small-button" component={ToggleActiveDisabledSmallButton} />
-			<Route path="/ui/buttons/sizes/toggle-active/large-button" component={ToggleActiveLargeButton} />
-			<Route path="/ui/buttons/sizes/toggle-active/small-button" component={ToggleActiveSmallButton} />
-			<Route path="/ui/buttons/sizes/toggle/disabled/large-button" component={ToggleDisabledLargeButton} />
-			<Route path="/ui/buttons/sizes/toggle/disabled/small-button" component={ToggleDisabledSmallButton} />
+			<Route
+				path="/ui/buttons/sizes/toggle-active/disabled/large-button"
+				component={ToggleActiveDisabledLargeButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/toggle-active/disabled/small-button"
+				component={ToggleActiveDisabledSmallButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/toggle-active/large-button"
+				component={ToggleActiveLargeButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/toggle-active/small-button"
+				component={ToggleActiveSmallButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/toggle/disabled/large-button"
+				component={ToggleDisabledLargeButton}
+			/>
+			<Route
+				path="/ui/buttons/sizes/toggle/disabled/small-button"
+				component={ToggleDisabledSmallButton}
+			/>
 			<Route path="/ui/buttons/sizes/toggle/large-button" component={ToggleLargeButton} />
 			<Route path="/ui/buttons/sizes/toggle/small-button" component={ToggleSmallButton} />
 			<Route path="/ui/buttons/solid/base-button" component={SolidBaseButton} />
-			<Route path="/ui/buttons/solid/check-active/base-button" component={SolidCheckActiveBaseButton} />
-			<Route path="/ui/buttons/solid/check-active/danger-button" component={SolidCheckActiveDangerButton} />
-			<Route path="/ui/buttons/solid/check-active/dark-button" component={SolidCheckActiveDarkButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/base-button" component={SolidCheckActiveDisabledBaseButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/danger-button" component={SolidCheckActiveDisabledDangerButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/dark-button" component={SolidCheckActiveDisabledDarkButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/info-button" component={SolidCheckActiveDisabledInfoButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/light-button" component={SolidCheckActiveDisabledLightButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/link-button" component={SolidCheckActiveDisabledLinkButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/primary-button" component={SolidCheckActiveDisabledPrimaryButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/secondary-button" component={SolidCheckActiveDisabledSecondaryButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/success-button" component={SolidCheckActiveDisabledSuccessButton} />
-			<Route path="/ui/buttons/solid/check-active/disabled/warning-button" component={SolidCheckActiveDisabledWarningButton} />
-			<Route path="/ui/buttons/solid/check-active/info-button" component={SolidCheckActiveInfoButton} />
-			<Route path="/ui/buttons/solid/check-active/light-button" component={SolidCheckActiveLightButton} />
-			<Route path="/ui/buttons/solid/check-active/link-button" component={SolidCheckActiveLinkButton} />
-			<Route path="/ui/buttons/solid/check-active/primary-button" component={SolidCheckActivePrimaryButton} />
-			<Route path="/ui/buttons/solid/check-active/secondary-button" component={SolidCheckActiveSecondaryButton} />
-			<Route path="/ui/buttons/solid/check-active/success-button" component={SolidCheckActiveSuccessButton} />
-			<Route path="/ui/buttons/solid/check-active/warning-button" component={SolidCheckActiveWarningButton} />
+			<Route
+				path="/ui/buttons/solid/check-active/base-button"
+				component={SolidCheckActiveBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/danger-button"
+				component={SolidCheckActiveDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/dark-button"
+				component={SolidCheckActiveDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/base-button"
+				component={SolidCheckActiveDisabledBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/danger-button"
+				component={SolidCheckActiveDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/dark-button"
+				component={SolidCheckActiveDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/info-button"
+				component={SolidCheckActiveDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/light-button"
+				component={SolidCheckActiveDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/link-button"
+				component={SolidCheckActiveDisabledLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/primary-button"
+				component={SolidCheckActiveDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/secondary-button"
+				component={SolidCheckActiveDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/success-button"
+				component={SolidCheckActiveDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/disabled/warning-button"
+				component={SolidCheckActiveDisabledWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/info-button"
+				component={SolidCheckActiveInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/light-button"
+				component={SolidCheckActiveLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/link-button"
+				component={SolidCheckActiveLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/primary-button"
+				component={SolidCheckActivePrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/secondary-button"
+				component={SolidCheckActiveSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/success-button"
+				component={SolidCheckActiveSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check-active/warning-button"
+				component={SolidCheckActiveWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/check/base-button" component={SolidCheckBaseButton} />
-			<Route path="/ui/buttons/solid/check/danger-button" component={SolidCheckDangerButton} />
+			<Route
+				path="/ui/buttons/solid/check/danger-button"
+				component={SolidCheckDangerButton}
+			/>
 			<Route path="/ui/buttons/solid/check/dark-button" component={SolidCheckDarkButton} />
-			<Route path="/ui/buttons/solid/check/disabled/base-button" component={SolidCheckDisabledBaseButton} />
-			<Route path="/ui/buttons/solid/check/disabled/danger-button" component={SolidCheckDisabledDangerButton} />
-			<Route path="/ui/buttons/solid/check/disabled/dark-button" component={SolidCheckDisabledDarkButton} />
-			<Route path="/ui/buttons/solid/check/disabled/info-button" component={SolidCheckDisabledInfoButton} />
-			<Route path="/ui/buttons/solid/check/disabled/light-button" component={SolidCheckDisabledLightButton} />
-			<Route path="/ui/buttons/solid/check/disabled/link-button" component={SolidCheckDisabledLinkButton} />
-			<Route path="/ui/buttons/solid/check/disabled/primary-button" component={SolidCheckDisabledPrimaryButton} />
-			<Route path="/ui/buttons/solid/check/disabled/secondary-button" component={SolidCheckDisabledSecondaryButton} />
-			<Route path="/ui/buttons/solid/check/disabled/success-button" component={SolidCheckDisabledSuccessButton} />
-			<Route path="/ui/buttons/solid/check/disabled/warning-button" component={SolidCheckDisabledWarningButton} />
+			<Route
+				path="/ui/buttons/solid/check/disabled/base-button"
+				component={SolidCheckDisabledBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/danger-button"
+				component={SolidCheckDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/dark-button"
+				component={SolidCheckDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/info-button"
+				component={SolidCheckDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/light-button"
+				component={SolidCheckDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/link-button"
+				component={SolidCheckDisabledLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/primary-button"
+				component={SolidCheckDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/secondary-button"
+				component={SolidCheckDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/success-button"
+				component={SolidCheckDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/disabled/warning-button"
+				component={SolidCheckDisabledWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/check/info-button" component={SolidCheckInfoButton} />
 			<Route path="/ui/buttons/solid/check/light-button" component={SolidCheckLightButton} />
 			<Route path="/ui/buttons/solid/check/link-button" component={SolidCheckLinkButton} />
-			<Route path="/ui/buttons/solid/check/primary-button" component={SolidCheckPrimaryButton} />
-			<Route path="/ui/buttons/solid/check/secondary-button" component={SolidCheckSecondaryButton} />
-			<Route path="/ui/buttons/solid/check/success-button" component={SolidCheckSuccessButton} />
-			<Route path="/ui/buttons/solid/check/warning-button" component={SolidCheckWarningButton} />
+			<Route
+				path="/ui/buttons/solid/check/primary-button"
+				component={SolidCheckPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/secondary-button"
+				component={SolidCheckSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/success-button"
+				component={SolidCheckSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/check/warning-button"
+				component={SolidCheckWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/danger-button" component={SolidDangerButton} />
 			<Route path="/ui/buttons/solid/dark-button" component={SolidDarkButton} />
-			<Route path="/ui/buttons/solid/disabled/base-button" component={SolidDisabledBaseButton} />
-			<Route path="/ui/buttons/solid/disabled/danger-button" component={SolidDisabledDangerButton} />
-			<Route path="/ui/buttons/solid/disabled/dark-button" component={SolidDisabledDarkButton} />
-			<Route path="/ui/buttons/solid/disabled/info-button" component={SolidDisabledInfoButton} />
-			<Route path="/ui/buttons/solid/disabled/light-button" component={SolidDisabledLightButton} />
-			<Route path="/ui/buttons/solid/disabled/link-button" component={SolidDisabledLinkButton} />
-			<Route path="/ui/buttons/solid/disabled/primary-button" component={SolidDisabledPrimaryButton} />
-			<Route path="/ui/buttons/solid/disabled/secondary-button" component={SolidDisabledSecondaryButton} />
-			<Route path="/ui/buttons/solid/disabled/success-button" component={SolidDisabledSuccessButton} />
-			<Route path="/ui/buttons/solid/disabled/warning-button" component={SolidDisabledWarningButton} />
+			<Route
+				path="/ui/buttons/solid/disabled/base-button"
+				component={SolidDisabledBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/danger-button"
+				component={SolidDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/dark-button"
+				component={SolidDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/info-button"
+				component={SolidDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/light-button"
+				component={SolidDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/link-button"
+				component={SolidDisabledLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/primary-button"
+				component={SolidDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/secondary-button"
+				component={SolidDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/success-button"
+				component={SolidDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/disabled/warning-button"
+				component={SolidDisabledWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/info-button" component={SolidInfoButton} />
 			<Route path="/ui/buttons/solid/light-button" component={SolidLightButton} />
 			<Route path="/ui/buttons/solid/link-button" component={SolidLinkButton} />
 			<Route path="/ui/buttons/solid/primary-button" component={SolidPrimaryButton} />
 			<Route path="/ui/buttons/solid/secondary-button" component={SolidSecondaryButton} />
 			<Route path="/ui/buttons/solid/success-button" component={SolidSuccessButton} />
-			<Route path="/ui/buttons/solid/toggle-active/base-button" component={SolidToggleActiveBaseButton} />
-			<Route path="/ui/buttons/solid/toggle-active/danger-button" component={SolidToggleActiveDangerButton} />
-			<Route path="/ui/buttons/solid/toggle-active/dark-button" component={SolidToggleActiveDarkButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/base-button" component={SolidToggleActiveDisabledBaseButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/danger-button" component={SolidToggleActiveDisabledDangerButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/dark-button" component={SolidToggleActiveDisabledDarkButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/info-button" component={SolidToggleActiveDisabledInfoButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/light-button" component={SolidToggleActiveDisabledLightButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/link-button" component={SolidToggleActiveDisabledLinkButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/primary-button" component={SolidToggleActiveDisabledPrimaryButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/secondary-button" component={SolidToggleActiveDisabledSecondaryButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/success-button" component={SolidToggleActiveDisabledSuccessButton} />
-			<Route path="/ui/buttons/solid/toggle-active/disabled/warning-button" component={SolidToggleActiveDisabledWarningButton} />
-			<Route path="/ui/buttons/solid/toggle-active/info-button" component={SolidToggleActiveInfoButton} />
-			<Route path="/ui/buttons/solid/toggle-active/light-button" component={SolidToggleActiveLightButton} />
-			<Route path="/ui/buttons/solid/toggle-active/link-button" component={SolidToggleActiveLinkButton} />
-			<Route path="/ui/buttons/solid/toggle-active/primary-button" component={SolidToggleActivePrimaryButton} />
-			<Route path="/ui/buttons/solid/toggle-active/secondary-button" component={SolidToggleActiveSecondaryButton} />
-			<Route path="/ui/buttons/solid/toggle-active/success-button" component={SolidToggleActiveSuccessButton} />
-			<Route path="/ui/buttons/solid/toggle-active/warning-button" component={SolidToggleActiveWarningButton} />
+			<Route
+				path="/ui/buttons/solid/toggle-active/base-button"
+				component={SolidToggleActiveBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/danger-button"
+				component={SolidToggleActiveDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/dark-button"
+				component={SolidToggleActiveDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/base-button"
+				component={SolidToggleActiveDisabledBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/danger-button"
+				component={SolidToggleActiveDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/dark-button"
+				component={SolidToggleActiveDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/info-button"
+				component={SolidToggleActiveDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/light-button"
+				component={SolidToggleActiveDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/link-button"
+				component={SolidToggleActiveDisabledLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/primary-button"
+				component={SolidToggleActiveDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/secondary-button"
+				component={SolidToggleActiveDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/success-button"
+				component={SolidToggleActiveDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/disabled/warning-button"
+				component={SolidToggleActiveDisabledWarningButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/info-button"
+				component={SolidToggleActiveInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/light-button"
+				component={SolidToggleActiveLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/link-button"
+				component={SolidToggleActiveLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/primary-button"
+				component={SolidToggleActivePrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/secondary-button"
+				component={SolidToggleActiveSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/success-button"
+				component={SolidToggleActiveSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle-active/warning-button"
+				component={SolidToggleActiveWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/toggle/base-button" component={SolidToggleBaseButton} />
-			<Route path="/ui/buttons/solid/toggle/danger-button" component={SolidToggleDangerButton} />
+			<Route
+				path="/ui/buttons/solid/toggle/danger-button"
+				component={SolidToggleDangerButton}
+			/>
 			<Route path="/ui/buttons/solid/toggle/dark-button" component={SolidToggleDarkButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/base-button" component={SolidToggleDisabledBaseButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/danger-button" component={SolidToggleDisabledDangerButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/dark-button" component={SolidToggleDisabledDarkButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/info-button" component={SolidToggleDisabledInfoButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/light-button" component={SolidToggleDisabledLightButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/link-button" component={SolidToggleDisabledLinkButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/primary-button" component={SolidToggleDisabledPrimaryButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/secondary-button" component={SolidToggleDisabledSecondaryButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/success-button" component={SolidToggleDisabledSuccessButton} />
-			<Route path="/ui/buttons/solid/toggle/disabled/warning-button" component={SolidToggleDisabledWarningButton} />
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/base-button"
+				component={SolidToggleDisabledBaseButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/danger-button"
+				component={SolidToggleDisabledDangerButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/dark-button"
+				component={SolidToggleDisabledDarkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/info-button"
+				component={SolidToggleDisabledInfoButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/light-button"
+				component={SolidToggleDisabledLightButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/link-button"
+				component={SolidToggleDisabledLinkButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/primary-button"
+				component={SolidToggleDisabledPrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/secondary-button"
+				component={SolidToggleDisabledSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/success-button"
+				component={SolidToggleDisabledSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/disabled/warning-button"
+				component={SolidToggleDisabledWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/toggle/info-button" component={SolidToggleInfoButton} />
-			<Route path="/ui/buttons/solid/toggle/light-button" component={SolidToggleLightButton} />
+			<Route
+				path="/ui/buttons/solid/toggle/light-button"
+				component={SolidToggleLightButton}
+			/>
 			<Route path="/ui/buttons/solid/toggle/link-button" component={SolidToggleLinkButton} />
-			<Route path="/ui/buttons/solid/toggle/primary-button" component={SolidTogglePrimaryButton} />
-			<Route path="/ui/buttons/solid/toggle/secondary-button" component={SolidToggleSecondaryButton} />
-			<Route path="/ui/buttons/solid/toggle/success-button" component={SolidToggleSuccessButton} />
-			<Route path="/ui/buttons/solid/toggle/warning-button" component={SolidToggleWarningButton} />
+			<Route
+				path="/ui/buttons/solid/toggle/primary-button"
+				component={SolidTogglePrimaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/secondary-button"
+				component={SolidToggleSecondaryButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/success-button"
+				component={SolidToggleSuccessButton}
+			/>
+			<Route
+				path="/ui/buttons/solid/toggle/warning-button"
+				component={SolidToggleWarningButton}
+			/>
 			<Route path="/ui/buttons/solid/warning-button" component={SolidWarningButton} />
 			<Route path="/ui/dropdowns" component={Dropdowns} />
 			<Route path="/ui/dropdowns/aligned-dropdown" component={AlignedDropdown} />
@@ -721,7 +1252,10 @@ render(
 			<Route path="/ui/dropdowns/split-info-dropdown" component={SplitInfoDropdown} />
 			<Route path="/ui/dropdowns/split-light-dropdown" component={SplitLightDropdown} />
 			<Route path="/ui/dropdowns/split-primary-dropdown" component={SplitPrimaryDropdown} />
-			<Route path="/ui/dropdowns/split-secondary-dropdown" component={SplitSecondaryDropdown} />
+			<Route
+				path="/ui/dropdowns/split-secondary-dropdown"
+				component={SplitSecondaryDropdown}
+			/>
 			<Route path="/ui/dropdowns/split-success-dropdown" component={SplitSuccessDropdown} />
 			<Route path="/ui/dropdowns/split-warning-dropdown" component={SplitWarningDropdown} />
 			<Route path="/ui/dropdowns/start-dropdown" component={StartDropdown} />
@@ -739,7 +1273,10 @@ render(
 			<Route path="/ui/progress/striped-progress" component={StripedProgress} />
 			<Route path="/ui/spinners" component={Spinners} />
 			<Route path="/ui/spinners/border-primary-spinner" component={BorderPrimarySpinner} />
-			<Route path="/ui/spinners/border-secondary-spinner" component={BorderSecondarySpinner} />
+			<Route
+				path="/ui/spinners/border-secondary-spinner"
+				component={BorderSecondarySpinner}
+			/>
 			<Route path="/ui/spinners/border-success-spinner" component={BorderSuccessSpinner} />
 			<Route path="/ui/spinners/border-danger-spinner" component={BorderDangerSpinner} />
 			<Route path="/ui/spinners/border-warning-spinner" component={BorderWarningSpinner} />

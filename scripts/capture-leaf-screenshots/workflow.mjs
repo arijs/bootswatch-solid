@@ -34,9 +34,9 @@ import { performScenarioAction, stabilizeForScreenshot } from './playwright-acti
 import { getScenarioStateFolder } from './scenarios.mjs'
 import { resolveInitialNavigationWarmupDelayMs, resolveScreenshotSettleDelayMs } from './timing.mjs'
 import { slugifyTheme } from './utils.mjs'
-import { verifyScenarioCssRendering } from './verification.mjs'
 import { verifyScenarioVeRendering as verifyScenarioVe1Rendering } from './ve-verification.mjs'
 import { verifyScenarioVe2Rendering } from './ve2-verification.mjs'
+import { verifyScenarioCssRendering } from './verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
 
 export async function executeCaptureWorkflow({
@@ -189,7 +189,11 @@ export async function executeCaptureWorkflow({
 							requestedWidth,
 						)
 
-						if (verificationEnabled || ve1VerificationEnabled || veVerificationEnabled) {
+						if (
+							verificationEnabled ||
+							ve1VerificationEnabled ||
+							veVerificationEnabled
+						) {
 							if (configured.source !== 'directive' || configured.height == null) {
 								throw new Error(
 									`Missing @screenshot directive height for theme=${themeSlug} state=${stateFolder} width=${requestedWidth} in ${path.relative(ROOT, componentFile)}`,
@@ -420,12 +424,18 @@ export async function executeCaptureWorkflow({
 	}
 
 	if (verificationEnabled || ve1VerificationEnabled || veVerificationEnabled) {
-		const verificationLabel = verificationEnabled ? 'CSS' : (ve1VerificationEnabled ? 'VE1' : 'VE')
+		const verificationLabel = verificationEnabled
+			? 'CSS'
+			: ve1VerificationEnabled
+				? 'VE1'
+				: 'VE'
 		console.log(
 			`${verificationLabel} verification: ran=${verificationRan}, matched=${verificationMatched}, mismatched=${verificationMismatched}, skipped=${verificationSkipped}, maxDiffRatio=${verificationMaxDiffRatio}`,
 		)
 		if (verificationMismatches.length > 0) {
-			console.warn(`\n${verificationLabel} verification mismatches (${verificationMismatches.length}):`)
+			console.warn(
+				`\n${verificationLabel} verification mismatches (${verificationMismatches.length}):`,
+			)
 			for (const m of verificationMismatches) {
 				console.warn(`  ${path.relative(ROOT, m.outputPath)}: ${m.reason}`)
 				if (m.verifyPath && m.diffPath) {
@@ -520,7 +530,7 @@ async function runVerificationIfEnabled({
 	}
 
 	if (veVerificationEnabled && !ve2RouteSet.has(route)) {
-		const reason = "Route not implemented in ve-project2; skipping VE verification"
+		const reason = 'Route not implemented in ve-project2; skipping VE verification'
 		verificationStats.skipped()
 		console.warn(`VE verification skipped for ${route}: ${reason}`)
 		return {
@@ -542,34 +552,34 @@ async function runVerificationIfEnabled({
 				measuredHeight,
 				baselinePath: outputPath,
 				maxDiffRatio: verificationMaxDiffRatio,
-		  })
+			})
 		: isCssVerification
-		? await verifyScenarioCssRendering({
-				browser,
-				themeName,
-				themeSlug,
-				route,
-				routePath,
-				scenario,
-				stateFolder,
-				settleDelayMs,
-				requestedWidth,
-				measuredHeight,
-				baselinePath: outputPath,
-				maxDiffRatio: verificationMaxDiffRatio,
-		  })
-		: await verifyScenarioVe1Rendering({
-				browser,
-				themeSlug,
-				route,
-				stateFolder,
-				scenario,
-				settleDelayMs,
-				requestedWidth,
-				measuredHeight,
-				baselinePath: outputPath,
-				maxDiffRatio: verificationMaxDiffRatio,
-		  })
+			? await verifyScenarioCssRendering({
+					browser,
+					themeName,
+					themeSlug,
+					route,
+					routePath,
+					scenario,
+					stateFolder,
+					settleDelayMs,
+					requestedWidth,
+					measuredHeight,
+					baselinePath: outputPath,
+					maxDiffRatio: verificationMaxDiffRatio,
+				})
+			: await verifyScenarioVe1Rendering({
+					browser,
+					themeSlug,
+					route,
+					stateFolder,
+					scenario,
+					settleDelayMs,
+					requestedWidth,
+					measuredHeight,
+					baselinePath: outputPath,
+					maxDiffRatio: verificationMaxDiffRatio,
+				})
 
 	if (verification.skipped) {
 		verificationStats.skipped()

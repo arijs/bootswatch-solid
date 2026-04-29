@@ -7,11 +7,15 @@ const OutlineDisabledPrimaryButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button disabled type="button" class={`${theme} ${btn} ${btnOutlinePrimary} pwhook-btn`}>
-			Primary
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button
+				disabled
+				type="button"
+				class={`${theme} ${btn} ${btnOutlinePrimary} pwhook-btn`}
+			>
+				Primary
+			</button>
+		</div>
 	)
 }
 

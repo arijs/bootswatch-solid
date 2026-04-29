@@ -1,5 +1,5 @@
-import { INTERACTIVE_SCENARIOS } from './interactive-scenarios.mjs'
 import micromatch from 'micromatch'
+import { INTERACTIVE_SCENARIOS } from './interactive-scenarios.mjs'
 import { slugifyTheme } from './utils.mjs'
 
 export function buildStaticScenarios(leafRoutes) {

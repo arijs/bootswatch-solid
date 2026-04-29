@@ -7,11 +7,11 @@ const SolidSuccessButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button type="button" class={`${theme} ${btn} ${btnSuccess} pwhook-btn`}>
-			Success
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button type="button" class={`${theme} ${btn} ${btnSuccess} pwhook-btn`}>
+				Success
+			</button>
+		</div>
 	)
 }
 

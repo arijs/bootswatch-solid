@@ -170,24 +170,33 @@ globalStyle(`${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(`${inputGroup}${hasValidation} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
+globalStyle(
+	`${inputGroup}${hasValidation} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,
+	{
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	},
+)
 
 globalStyle(`${inputGroup}${hasValidation} > .dropdown-toggle:nth-last-child(n + 3)`, {
 	borderTopRightRadius: 0,
 	borderBottomRightRadius: 0,
 })
 
-globalStyle(`${inputGroup}${hasValidation} > .form-floating:not(:last-child) > input, ${inputGroup}${hasValidation} > .form-floating:not(:last-child) > select`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
+globalStyle(
+	`${inputGroup}${hasValidation} > .form-floating:not(:last-child) > input, ${inputGroup}${hasValidation} > .form-floating:not(:last-child) > select`,
+	{
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	},
+)
 
-globalStyle(`${inputGroup} > ${formControl}:not(:focus)${isInvalid}, ${inputGroup} > ${formControl}:not(:focus)${isValid}, ${inputGroup} > ${formSelect}:not(:focus)${isInvalid}, ${inputGroup} > ${formSelect}:not(:focus)${isValid}`, {
-	zIndex: 4,
-})
+globalStyle(
+	`${inputGroup} > ${formControl}:not(:focus)${isInvalid}, ${inputGroup} > ${formControl}:not(:focus)${isValid}, ${inputGroup} > ${formSelect}:not(:focus)${isInvalid}, ${inputGroup} > ${formSelect}:not(:focus)${isValid}`,
+	{
+		zIndex: 4,
+	},
+)
 
 globalStyle(`${isValid} ~ label`, {
 	color: varBsFormValidColor,
@@ -197,16 +206,22 @@ globalStyle(`${isInvalid} ~ label`, {
 	color: varBsFormInvalidColor,
 })
 
-globalStyle(`${inputGroup} > :not(:first-child):not(.dropdown-menu):not(${validFeedback}):not(${invalidFeedback})`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
+globalStyle(
+	`${inputGroup} > :not(:first-child):not(.dropdown-menu):not(${validFeedback}):not(${invalidFeedback})`,
+	{
+		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+		borderTopLeftRadius: 0,
+		borderBottomLeftRadius: 0,
+	},
+)
 
-globalStyle(`${inputGroup} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
+globalStyle(
+	`${inputGroup} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,
+	{
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	},
+)
 
 globalStyle(`${inputGroup} > ${formControl}`, {
 	position: 'relative',

@@ -7,11 +7,11 @@ const SolidWarningButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button type="button" class={`${theme} ${btn} ${btnWarning} pwhook-btn`}>
-			Warning
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button type="button" class={`${theme} ${btn} ${btnWarning} pwhook-btn`}>
+				Warning
+			</button>
+		</div>
 	)
 }
 

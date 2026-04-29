@@ -2,22 +2,20 @@ import type { Component } from 'solid-js'
 import { useVeButtonThemeClasses } from '../../../../../themes/runtime/hooks'
 
 const CheckActiveSmallButton: Component = () => {
-	const {
-		bsTheme,
-		body,
-		containerFluid,
-		btn,
-		btnActiveHook,
-		btnPrimary,
-		btnSm,
-	} = useVeButtonThemeClasses()
+	const { bsTheme, body, containerFluid, btn, btnActiveHook, btnPrimary, btnSm } =
+		useVeButtonThemeClasses()
 
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<button type="button" class={`${btn} ${btnPrimary} ${btnSm} ${btnActiveHook} pwhook-btn`} data-bs-toggle="button" aria-pressed="true">
-			Small button
-		</button>
-	</div>
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<button
+				type="button"
+				class={`${btn} ${btnPrimary} ${btnSm} ${btnActiveHook} pwhook-btn`}
+				data-bs-toggle="button"
+				aria-pressed="true"
+			>
+				Small button
+			</button>
+		</div>
 	)
 }
 

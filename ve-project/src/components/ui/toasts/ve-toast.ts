@@ -9,7 +9,9 @@ interface VeToastRuntimeClasses {
 }
 
 export function createVeToast(runtimeClasses: VeToastRuntimeClasses): typeof bootstrap.Toast {
-	return (bootstrap.Toast as unknown as BootstrapWithDefaults<typeof bootstrap.Toast>).extendDefaultConfig({
+	return (
+		bootstrap.Toast as unknown as BootstrapWithDefaults<typeof bootstrap.Toast>
+	).extendDefaultConfig({
 		CLASS_NAME_FADE: runtimeClasses.toastFade,
 		CLASS_NAME_HIDE: runtimeClasses.toastHide,
 		CLASS_NAME_SHOW: runtimeClasses.toastShow,

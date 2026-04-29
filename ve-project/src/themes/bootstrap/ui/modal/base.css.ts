@@ -261,7 +261,6 @@ globalStyle(`${fade}`, {
 	},
 })
 
-
 globalStyle(`${modalFade}.${fade} .${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {

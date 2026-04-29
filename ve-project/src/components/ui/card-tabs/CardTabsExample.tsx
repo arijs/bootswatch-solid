@@ -1,51 +1,77 @@
 import type { Component } from 'solid-js'
-import { useVeButtonThemeClasses, useVeCardThemeClasses, useVeNavThemeClasses } from '../../../themes/runtime/hooks'
+import {
+	useVeButtonThemeClasses,
+	useVeCardThemeClasses,
+	useVeNavThemeClasses,
+} from '../../../themes/runtime/hooks'
 
 const CardTabsExample: Component = () => {
 	const { bsTheme, body, containerFluid, btn, btnPrimary } = useVeButtonThemeClasses()
-	const { card, cardBody, cardHeader, cardRow, cardText, cardTitle, cardHeaderTabs, col, rowG4, textCenter, h5, paragraph } = useVeCardThemeClasses()
+	const {
+		card,
+		cardBody,
+		cardHeader,
+		cardRow,
+		cardText,
+		cardTitle,
+		cardHeaderTabs,
+		col,
+		rowG4,
+		textCenter,
+		h5,
+		paragraph,
+	} = useVeCardThemeClasses()
 	const { nav, navButtonReset, navLink, navLinkActive, navLinkDisabled } = useVeNavThemeClasses()
 
 	return (
-	<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
-		<div class={`${cardRow} ${rowG4}`}>
-			<div class={col}>
-				<div class={`${card} ${textCenter}`}>
-					<div class={cardHeader}>
-						<ul class={`${nav} ${cardHeaderTabs}`}>
-							<li>
-								<button class={`${navButtonReset} ${navLink} ${navLinkActive}`} type="button" aria-current="true">
-									Active
-								</button>
-							</li>
-							<li>
-								{/* biome-ignore lint: <a> is used for demonstration purposes */}
-								<a class={navLink} href="#">
-									Link
-								</a>
-							</li>
-							<li>
-								{/* biome-ignore lint: <a> is used for demonstration purposes */}
-								<a class={`${navLink} ${navLinkDisabled}`} aria-disabled="true" href="#">
-									Disabled
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class={cardBody}>
-						<h5 class={`${cardTitle} ${h5}`}>Special title treatment</h5>
-						<p class={`${cardText} ${paragraph}`}>
-							With supporting text below as a natural lead-in to additional content.
-						</p>
-						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a href="#" class={`${btn} ${btnPrimary}`}>
-							Go somewhere
-						</a>
+		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>
+			<div class={`${cardRow} ${rowG4}`}>
+				<div class={col}>
+					<div class={`${card} ${textCenter}`}>
+						<div class={cardHeader}>
+							<ul class={`${nav} ${cardHeaderTabs}`}>
+								<li>
+									<button
+										class={`${navButtonReset} ${navLink} ${navLinkActive}`}
+										type="button"
+										aria-current="true"
+									>
+										Active
+									</button>
+								</li>
+								<li>
+									{/* biome-ignore lint: <a> is used for demonstration purposes */}
+									<a class={navLink} href="#">
+										Link
+									</a>
+								</li>
+								<li>
+									{/* biome-ignore lint: <a> is used for demonstration purposes */}
+									<a
+										class={`${navLink} ${navLinkDisabled}`}
+										aria-disabled="true"
+										href="#"
+									>
+										Disabled
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class={cardBody}>
+							<h5 class={`${cardTitle} ${h5}`}>Special title treatment</h5>
+							<p class={`${cardText} ${paragraph}`}>
+								With supporting text below as a natural lead-in to additional
+								content.
+							</p>
+							{/* biome-ignore lint: <a> is used for demonstration purposes */}
+							<a href="#" class={`${btn} ${btnPrimary}`}>
+								Go somewhere
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	)
 }
 

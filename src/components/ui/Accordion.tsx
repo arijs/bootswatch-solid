@@ -17,4 +17,3 @@ const Accordion: Component = () => (
 )
 
 export default Accordion
-

@@ -82,7 +82,8 @@ export const navLink = style({
 	textDecoration: 'none',
 	background: 'none',
 	border: 0,
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',

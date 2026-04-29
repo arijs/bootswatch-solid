@@ -2,14 +2,14 @@ import { style } from '@vanilla-extract/css'
 import {
 	varBsBorderRadius,
 	varBsBorderRadiusPill,
+	varBsDanger,
 	varBsDark,
+	varBsInfo,
+	varBsLight,
 	varBsPrimary,
 	varBsSecondary,
 	varBsSuccess,
-	varBsDanger,
 	varBsWarning,
-	varBsInfo,
-	varBsLight,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBadgeBorderRadius,

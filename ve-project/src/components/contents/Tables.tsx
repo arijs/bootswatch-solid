@@ -1,5 +1,14 @@
 import type { Component } from 'solid-js'
-import { alignSelfStart, bdHeading, mb3, mbXl2, mt5, mtXl0, my3, stickyXlTop } from '../../themes/bootstrap/contents/generated.css'
+import {
+	alignSelfStart,
+	bdHeading,
+	mb3,
+	mbXl2,
+	mt5,
+	mtXl0,
+	my3,
+	stickyXlTop,
+} from '../../themes/bootstrap/contents/generated.css'
 import DocLink from '../common/DocLink'
 import DarkBorderless from './tables/DarkBorderless'
 import HoverDangerVariant from './tables/HoverDangerVariant'
@@ -17,7 +26,9 @@ import Striped from './tables/Striped'
 
 const Tables: Component = () => (
 	<article class={`${my3}`} id="tables">
-		<div class={`${bdHeading} ${stickyXlTop} ${alignSelfStart} ${mt5} ${mb3} ${mtXl0} ${mbXl2}`}>
+		<div
+			class={`${bdHeading} ${stickyXlTop} ${alignSelfStart} ${mt5} ${mb3} ${mtXl0} ${mbXl2}`}
+		>
 			<h3>Tables</h3>
 			<DocLink href="/contents/tables" />
 			<DocLink href="/contents/tables/striped">Striped</DocLink>

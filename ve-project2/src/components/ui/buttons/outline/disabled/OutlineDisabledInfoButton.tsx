@@ -7,11 +7,11 @@ const OutlineDisabledInfoButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button disabled type="button" class={`${theme} ${btn} ${btnOutlineInfo} pwhook-btn`}>
-			Info
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button disabled type="button" class={`${theme} ${btn} ${btnOutlineInfo} pwhook-btn`}>
+				Info
+			</button>
+		</div>
 	)
 }
 

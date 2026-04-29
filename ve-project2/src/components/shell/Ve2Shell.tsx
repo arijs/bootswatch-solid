@@ -17,6 +17,9 @@ import '../../themes/sketchy/ui/breadcrumb/styles.css'
 // Side-effect imports: register globalStyle rules for button-group
 import '../../themes/bootstrap/ui/button-group/styles.css'
 import '../../themes/sketchy/ui/button-group/styles.css'
+// Side-effect imports: register globalStyle rules for card + list-group
+import '../../themes/bootstrap/ui/card/styles.css'
+import '../../themes/sketchy/ui/card/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
@@ -24,12 +27,12 @@ import { ThemeContext } from '../../context/ThemeContext'
 import { body, bodyText } from '../../theme-contract/theme-contract.css'
 
 function resolveThemeClass(rawTheme: string | null | undefined): string {
-switch (rawTheme) {
-case 'sketchy':
-return sketchyScope
-default:
-return bootstrapScope
-}
+	switch (rawTheme) {
+		case 'sketchy':
+			return sketchyScope
+		default:
+			return bootstrapScope
+	}
 }
 
 // Ve2Shell — reads the ?theme= URL param (same convention as ve-project) and
@@ -37,16 +40,14 @@ return bootstrapScope
 // Wraps children in a div carrying scope + body + bodyText so root-level theme
 // styles (font-family, color, background) take effect for each leaf route.
 export function Ve2Shell(props: { children: JSX.Element }) {
-const location = useLocation()
-const themeClass = () => {
-const params = new URLSearchParams(location.search)
-return resolveThemeClass(params.get('theme'))
-}
-return (
-<ThemeContext.Provider value={themeClass()}>
-<div class={`${themeClass()} ${body} ${bodyText}`}>
-{props.children}
-</div>
-</ThemeContext.Provider>
-)
+	const location = useLocation()
+	const themeClass = () => {
+		const params = new URLSearchParams(location.search)
+		return resolveThemeClass(params.get('theme'))
+	}
+	return (
+		<ThemeContext.Provider value={themeClass()}>
+			<div class={`${themeClass()} ${body} ${bodyText}`}>{props.children}</div>
+		</ThemeContext.Provider>
+	)
 }

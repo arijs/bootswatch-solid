@@ -1,8 +1,5 @@
 import { readFileSync } from 'node:fs'
-import {
-	VE_RUNTIME_REGISTRY_FILE,
-	VE_RUNTIME_ROUTE_FAMILIES_FILE,
-} from './constants.mjs'
+import { VE_RUNTIME_REGISTRY_FILE, VE_RUNTIME_ROUTE_FAMILIES_FILE } from './constants.mjs'
 import { slugifyTheme } from './utils.mjs'
 
 function parseStringArrayLiteral(source) {
@@ -163,15 +160,15 @@ export function reportVeRuntimeCoverageGaps({
 	const themedResults = selectedThemes
 		.map((themeName) => {
 			const themeSlug = slugifyTheme(themeName)
-			const availableFamilies =
-				implementedThemeFamilies.get(themeSlug) ??
-				new Set()
+			const availableFamilies = implementedThemeFamilies.get(themeSlug) ?? new Set()
 			const familyToRoutes = new Map()
 			let impactedRouteCount = 0
 
 			for (const routePath of sortedRoutes) {
 				const requiredFamilies = getRequiredFamiliesForPath(routePath)
-				const missingFamilies = requiredFamilies.filter((family) => !availableFamilies.has(family))
+				const missingFamilies = requiredFamilies.filter(
+					(family) => !availableFamilies.has(family),
+				)
 				if (missingFamilies.length === 0) continue
 				impactedRouteCount += 1
 				for (const family of missingFamilies) {
@@ -193,7 +190,9 @@ export function reportVeRuntimeCoverageGaps({
 	let anyMissingCoverage = false
 	for (const themeResult of themedResults) {
 		if (themeResult.familyToRoutes.size === 0) {
-			console.log(`\nTheme ${themeResult.themeSlug}: all required families available for selected routes.`)
+			console.log(
+				`\nTheme ${themeResult.themeSlug}: all required families available for selected routes.`,
+			)
 			continue
 		}
 		anyMissingCoverage = true
@@ -201,9 +200,7 @@ export function reportVeRuntimeCoverageGaps({
 			`\nTheme ${themeResult.themeSlug}: missing ${themeResult.familyToRoutes.size} family/families across ${themeResult.impactedRouteCount}/${sortedRoutes.length} selected routes.`,
 		)
 
-		const families = [...themeResult.familyToRoutes.keys()].sort((a, b) =>
-			a.localeCompare(b),
-		)
+		const families = [...themeResult.familyToRoutes.keys()].sort((a, b) => a.localeCompare(b))
 		for (const family of families) {
 			const routes = themeResult.familyToRoutes.get(family) ?? []
 			console.warn(`  - ${family} (${routes.length} route(s))`)
@@ -216,7 +213,9 @@ export function reportVeRuntimeCoverageGaps({
 	}
 
 	if (!anyMissingCoverage) {
-		console.log('\nVE runtime coverage report: no missing family contracts for selected themes/routes.')
+		console.log(
+			'\nVE runtime coverage report: no missing family contracts for selected themes/routes.',
+		)
 		return
 	}
 

@@ -13,13 +13,13 @@ import {
 	modalDialogCentered,
 	modalDialogScrollable,
 	modalFade,
+	fade as modalFadeClass,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
 	modalOpenHook,
 	modalShowHook,
 	modalTitle,
-	fade as modalFadeClass,
 } from './base.css'
 
 export const bootstrapModalRuntimeClasses = {

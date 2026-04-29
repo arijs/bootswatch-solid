@@ -6,9 +6,9 @@ import {
 	btnDanger,
 	btnDark,
 	btnInfo,
+	btnLg,
 	btnLight,
 	btnLink,
-	btnLg,
 	btnOutlineDanger,
 	btnOutlineDark,
 	btnOutlineInfo,
@@ -434,4 +434,3 @@ globalStyle(`${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btnOutlin
 	backgroundColor: '#212529',
 	borderColor: '#212529',
 })
-

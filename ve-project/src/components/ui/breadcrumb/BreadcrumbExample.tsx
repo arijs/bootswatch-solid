@@ -20,7 +20,10 @@ const BreadcrumbExample: Component = () => {
 							Library
 						</a>
 					</li>
-					<li class={`${cls.breadcrumbItem} ${cls.breadcrumbItemActive}`} aria-current="page">
+					<li
+						class={`${cls.breadcrumbItem} ${cls.breadcrumbItemActive}`}
+						aria-current="page"
+					>
 						Data
 					</li>
 				</ol>

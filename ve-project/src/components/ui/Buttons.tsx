@@ -1,4 +1,4 @@
-import { For, type Component } from 'solid-js'
+import { type Component, For } from 'solid-js'
 import DocLink from '../common/DocLink'
 import { buttonLinks } from './buttons/buttonLinks'
 
@@ -7,7 +7,9 @@ const Buttons: Component = () => (
 		<div>
 			<h3>Buttons</h3>
 			<DocLink href="/ui/buttons" />
-			<For each={buttonLinks}>{(entry) => <DocLink href={entry().href}>{entry().label}</DocLink>}</For>
+			<For each={buttonLinks}>
+				{(entry) => <DocLink href={entry().href}>{entry().label}</DocLink>}
+			</For>
 		</div>
 	</article>
 )

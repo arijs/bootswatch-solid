@@ -7,11 +7,15 @@ const SolidCheckSecondaryButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button type="button" class={`${theme} ${btn} ${btnSecondary} pwhook-btn`} data-bs-toggle="button">
-			Secondary
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button
+				type="button"
+				class={`${theme} ${btn} ${btnSecondary} pwhook-btn`}
+				data-bs-toggle="button"
+			>
+				Secondary
+			</button>
+		</div>
 	)
 }
 

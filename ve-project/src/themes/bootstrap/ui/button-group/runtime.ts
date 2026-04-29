@@ -1,10 +1,4 @@
-import {
-	btnGroup,
-	btnGroupButton,
-	btnGroupInteractive,
-	btnToolbar,
-	marginEnd2,
-} from './base.css'
+import { btnGroup, btnGroupButton, btnGroupInteractive, btnToolbar, marginEnd2 } from './base.css'
 
 export const bootstrapButtonGroupRuntimeClasses = {
 	btnGroup,

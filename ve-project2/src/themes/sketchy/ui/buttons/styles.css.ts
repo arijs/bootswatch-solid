@@ -6,9 +6,9 @@ import {
 	btnDanger,
 	btnDark,
 	btnInfo,
+	btnLg,
 	btnLight,
 	btnLink,
-	btnLg,
 	btnOutlineDanger,
 	btnOutlineDark,
 	btnOutlineInfo,
@@ -440,4 +440,3 @@ globalStyle(`${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btnOutlineDar
 	backgroundColor: '#212529',
 	borderColor: '#212529',
 })
-

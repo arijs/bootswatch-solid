@@ -7,11 +7,11 @@ const SolidCheckDisabledLinkButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-	<div class="bd-example-ve2">
-		<button disabled type="button" class={`${theme} ${btn} ${btnLink} pwhook-btn`}>
-			Link
-		</button>
-	</div>
+		<div class="bd-example-ve2">
+			<button disabled type="button" class={`${theme} ${btn} ${btnLink} pwhook-btn`}>
+				Link
+			</button>
+		</div>
 	)
 }
 

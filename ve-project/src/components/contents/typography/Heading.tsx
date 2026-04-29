@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { h1, h2, h3, h4, h5, h6 } from '../../../themes/bootstrap/contents/generated.css'
 
 const Heading: Component = () => (
