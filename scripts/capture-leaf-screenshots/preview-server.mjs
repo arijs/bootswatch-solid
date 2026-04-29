@@ -1,4 +1,4 @@
-import { execSync, spawn } from 'node:child_process'
+import { execSync, spawn, spawnSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -89,11 +89,14 @@ export function startVePreviewServer() {
 }
 
 export function buildVe2Project() {
-	execSync(`${process.execPath} scripts/run-ve-vite.mjs build ve-project2`, {
+	const result = spawnSync(process.execPath, ['scripts/run-ve-vite.mjs', 'build', 've-project2'], {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',
 	})
+	if (result.status !== 0) {
+		throw new Error('VE2 build failed')
+	}
 }
 
 export function assertVe2BuildOutputExists() {

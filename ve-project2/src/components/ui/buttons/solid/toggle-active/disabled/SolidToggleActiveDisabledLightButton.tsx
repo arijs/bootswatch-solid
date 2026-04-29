@@ -8,8 +8,8 @@ const SolidToggleActiveDisabledLightButton: Component = () => {
 
 	return (
 	<div class="bd-example-ve2">
-		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-solid-toggle-active-active-disabled-light" checked autocomplete="off" />
-		<label class={`${theme} ${btn} ${btnLight}`} for="id-btn-solid-toggle-active-active-disabled-light">Checked Toggle Light</label>
+		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-solid-toggle-active-disabled-light" checked autocomplete="off" />
+		<label class={`${theme} ${btn} ${btnLight}`} for="id-btn-solid-toggle-active-disabled-light">Checked Toggle Light</label>
 	</div>
 	)
 }

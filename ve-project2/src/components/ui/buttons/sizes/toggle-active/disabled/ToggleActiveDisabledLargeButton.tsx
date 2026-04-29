@@ -8,8 +8,8 @@ const ToggleActiveDisabledLargeButton: Component = () => {
 
 	return (
 	<div class="bd-example-ve2">
-		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-sizes-toggle-active-active-disabled-large" checked autocomplete="off" />
-		<label class={`${theme} ${btn} ${btnPrimary} ${btnLg}`} for="id-btn-sizes-toggle-active-active-disabled-large">Checked Toggle Large button</label>
+		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-sizes-toggle-active-disabled-large" checked autocomplete="off" />
+		<label class={`${theme} ${btn} ${btnPrimary} ${btnLg}`} for="id-btn-sizes-toggle-active-disabled-large">Checked Toggle Large button</label>
 	</div>
 	)
 }

@@ -8,8 +8,8 @@ const SolidToggleActiveDisabledWarningButton: Component = () => {
 
 	return (
 	<div class="bd-example-ve2">
-		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-solid-toggle-active-active-disabled-warning" checked autocomplete="off" />
-		<label class={`${theme} ${btn} ${btnWarning}`} for="id-btn-solid-toggle-active-active-disabled-warning">Checked Toggle Warning</label>
+		<input disabled type="checkbox" class={`${theme} ${btnCheck}`} id="id-btn-solid-toggle-active-disabled-warning" checked autocomplete="off" />
+		<label class={`${theme} ${btn} ${btnWarning}`} for="id-btn-solid-toggle-active-disabled-warning">Checked Toggle Warning</label>
 	</div>
 	)
 }
