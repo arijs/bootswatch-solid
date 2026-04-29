@@ -8,27 +8,33 @@ import '../../themes/sketchy/ui/buttons/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
+// Root-level contract classes: body wrapper + text-bearing root.
+import { body, bodyText } from '../../theme-contract/theme-contract.css'
 
 function resolveThemeClass(rawTheme: string | null | undefined): string {
-	switch (rawTheme) {
-		case 'sketchy':
-			return sketchyScope
-		default:
-			return bootstrapScope
-	}
+switch (rawTheme) {
+case 'sketchy':
+return sketchyScope
+default:
+return bootstrapScope
+}
 }
 
 // Ve2Shell — reads the ?theme= URL param (same convention as ve-project) and
 // provides the matching scope class via ThemeContext to all child components.
+// Wraps children in a div carrying scope + body + bodyText so root-level theme
+// styles (font-family, color, background) take effect for each leaf route.
 export function Ve2Shell(props: { children: JSX.Element }) {
-	const location = useLocation()
-	const themeClass = () => {
-		const params = new URLSearchParams(location.search)
-		return resolveThemeClass(params.get('theme'))
-	}
-	return (
-		<ThemeContext.Provider value={themeClass()}>
-			{props.children}
-		</ThemeContext.Provider>
-	)
+const location = useLocation()
+const themeClass = () => {
+const params = new URLSearchParams(location.search)
+return resolveThemeClass(params.get('theme'))
+}
+return (
+<ThemeContext.Provider value={themeClass()}>
+<div class={`${themeClass()} ${body} ${bodyText}`}>
+{props.children}
+</div>
+</ThemeContext.Provider>
+)
 }
