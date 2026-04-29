@@ -68,6 +68,7 @@ globalStyle(`${bootstrapScope}${myComponentVariant}`, { /* variant styles */ })
 | Bootstrap 5.3 defaults | `node_modules/bootswatch/dist/{any-theme}/bootstrap.css` — search for the relevant class |
 | Sketchy overrides (SCSS) | `node_modules/bootswatch/dist/sketchy/_bootswatch.scss` |
 | Sketchy compiled values | `node_modules/bootswatch/dist/sketchy/bootstrap.css` — e.g. grep `--bs-primary-bg-subtle` for the light-mode palette |
+| Resolved CSS variable values | `screenshots/{theme}/bootstrap.css` `:root` block — e.g. `--bs-primary-rgb: 13, 110, 253`. Use this when Bootstrap CSS uses `rgba(var(--bs-primary-rgb), ...)` and you need the actual resolved value for a VE `globalStyle` call. |
 
 ---
 
@@ -165,3 +166,21 @@ The `converted=` number should increase by exactly the count of routes you added
 | `bd-example-ve2` vs `bd-example` | VE2 components use `bd-example-ve2` (defined in `ve-project2/src/styles/bd-example.css`). The original source uses `bd-example`. |
 | Sketchy close button | Sketchy replaces the SVG close-button background with a `::before { content: "X" }` pseudo-element. See `node_modules/bootswatch/dist/sketchy/_bootswatch.scss`. |
 | Sketchy border-radius | Alerts, cards, and other shaped elements use `$border-radius-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px` (defined in `_bootswatch.scss`). |
+| Utility classes must be absorbed into contract classes | The original HTML uses Bootstrap utility classes directly (`bg-primary`, `text-dark`, `rounded-pill`, etc.). In VE2 these have no effect — absorb their values into the appropriate contract variant class (e.g. `badgePrimary` encodes both background-color and the default white text; `badgeWarning` overrides `color` to `#000`; `badgeRoundedPill` sets the pill `border-radius`). |
+| `@screenshot` annotations — use the original's full list | The original source file (`src/components/…`) contains per-theme height overrides (e.g. `// @screenshot sketchy: 360x303 303`). Copy those annotations verbatim into the VE2 component so the screenshot harness captures the correct crop size per theme. Omitting them causes the wildcard `*` fallback to be used for all themes, which may cut off content in themes with larger spacing. |
+| `<p class="h1">` vs actual `<h1>` | The original uses Bootstrap typography utility classes (`.h1`–`.h6` on `<p>`) to mimic heading sizes. VE2 components should use real `<h1>`–`<h6>` elements instead — the browser's default UA stylesheet provides the same relative sizing without needing extra contract classes. |
+| Resolving `rgba(var(--bs-…-rgb), …)` to hard-coded values | `globalStyle` values must be static strings, so CSS custom-property expressions cannot be used directly. Resolve `--bs-primary-rgb` etc. from `screenshots/{theme}/bootstrap.css` (`:root` block near the top) and write the final hex or `rgb()` value in the VE2 style file. |
+
+---
+
+## Keeping this playbook up to date
+
+**Every time you convert a component family**, check whether you ran into any new edge cases, theme quirks, or patterns not listed in *Common gotchas* above.
+If you did, append a new row to the table before committing your work.
+Use the format:
+
+```
+| Short description | One or two sentences explaining the gotcha and how to handle it. |
+```
+
+This turns the playbook into a living document that improves with each conversion.
