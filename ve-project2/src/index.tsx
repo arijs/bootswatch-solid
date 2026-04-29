@@ -2,6 +2,15 @@ import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import PocThemeScopeDemo from './components/poc/PocThemeScopeDemo'
 import { Ve2Shell } from './components/shell/Ve2Shell'
+import DangerAlert from './components/ui/alerts/DangerAlert'
+import DarkAlert from './components/ui/alerts/DarkAlert'
+import HeadingAlert from './components/ui/alerts/HeadingAlert'
+import InfoAlert from './components/ui/alerts/InfoAlert'
+import LightAlert from './components/ui/alerts/LightAlert'
+import PrimaryAlert from './components/ui/alerts/PrimaryAlert'
+import SecondaryAlert from './components/ui/alerts/SecondaryAlert'
+import SuccessAlert from './components/ui/alerts/SuccessAlert'
+import WarningAlert from './components/ui/alerts/WarningAlert'
 import SolidBaseButton from './components/ui/buttons/solid/SolidBaseButton'
 import SolidDisabledBaseButton from './components/ui/buttons/solid/disabled/SolidDisabledBaseButton'
 import SolidCheckBaseButton from './components/ui/buttons/solid/check/SolidCheckBaseButton'
@@ -408,6 +417,15 @@ render(
 			<Route path="/ui/buttons/sizes/toggle/disabled/small-button" component={ToggleDisabledSmallButton} />
 			<Route path="/ui/buttons/sizes/toggle-active/small-button" component={ToggleActiveSmallButton} />
 			<Route path="/ui/buttons/sizes/toggle-active/disabled/small-button" component={ToggleActiveDisabledSmallButton} />
+			<Route path="/ui/alerts/danger-alert" component={DangerAlert} />
+			<Route path="/ui/alerts/dark-alert" component={DarkAlert} />
+			<Route path="/ui/alerts/heading-alert" component={HeadingAlert} />
+			<Route path="/ui/alerts/info-alert" component={InfoAlert} />
+			<Route path="/ui/alerts/light-alert" component={LightAlert} />
+			<Route path="/ui/alerts/primary-alert" component={PrimaryAlert} />
+			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
+			<Route path="/ui/alerts/success-alert" component={SuccessAlert} />
+			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
 			</Route>
 		</Router>
 	),
