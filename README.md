@@ -16,6 +16,7 @@ Bootstrap/Bootswatch component styles are being converted to [Vanilla Extract](h
 
 - **Current preferred approach:** [`ve-project2/`](./ve-project2) — element-owned scope via compound CSS selectors.
 - **Architecture docs:** [`docs/ve-architecture.md`](./docs/ve-architecture.md)
+- **Migration playbook (quick-reference for converting a family):** [`docs/ve2-migration-playbook.md`](./docs/ve2-migration-playbook.md)
 - **Historical ve-project (v1) docs:** [`docs/ve-project1-docs-index.md`](./docs/ve-project1-docs-index.md)
 
 ### Key concepts (ve-project2)

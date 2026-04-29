@@ -7,6 +7,7 @@ Implementation: [`ve-project2/`](../ve-project2)
 
 Companion documents:
 
+- [`docs/ve2-migration-playbook.md`](./ve2-migration-playbook.md) — **quick-reference playbook for converting a Bootstrap component family to ve-project2** (start here for a new conversion task).
 - [`docs/ve-architecture-v1-history.md`](./ve-architecture-v1-history.md) — archived architecture of the first VE sub-project (`ve-project`), preserved as historical context.
 - [`docs/ve-project1-docs-index.md`](./ve-project1-docs-index.md) — index of all historical docs for ve-project (v1).
 
@@ -219,6 +220,7 @@ ve-project2/src/
 ## Adding a New Bootstrap Component Family
 
 Use this checklist for every new component family (e.g. inputs, badges, modals).
+For a compact, action-oriented version with gotcha notes see [`docs/ve2-migration-playbook.md`](./ve2-migration-playbook.md).
 
 ### 1. Define contract classes
 
