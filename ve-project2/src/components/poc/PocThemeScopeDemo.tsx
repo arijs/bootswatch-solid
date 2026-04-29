@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js'
+import { type Component, createContext, useContext } from 'solid-js'
 // Contract classes — stable identifiers shared by all themes, applied to elements.
 // No runtime resolution required: every component always uses these same names.
 import {
@@ -10,55 +10,48 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../theme-contract/ui/buttons/contract.css'
-// Scope classes — applied to container divs to establish the active theme.
+// Scope classes — each element carries BOTH the scope class and its contract class.
+// CSS rules use compound selectors (.scope.contract) so each element is styled by
+// exactly the theme whose class it carries — no ancestor matching, no conflicts.
 import { bootstrapScope } from '../../themes/bootstrap/scope.css'
-// Layered scope classes — separate hashes used by the @layer demo (section 5)
-// to avoid interference from the non-layered styles above.
-import { bootstrapScopeL } from '../../themes/bootstrap/scope.layer.css'
 import { sketchyScope } from '../../themes/sketchy/scope.css'
-import { sketchyScopeL } from '../../themes/sketchy/scope.layer.css'
 
 // Side-effect imports: register globalStyle rules that map
-//   themeScope + contractClass  →  actual CSS
-// Bootstrap styles are imported first so that Sketchy (imported second) wins
-// whenever both scopes match a button, which is the correct behaviour for the
-// "Bootstrap outer / Sketchy inner" nesting example below.
+//   themeScope + contractClass  →  actual CSS  (compound selector, no space)
 import '../../themes/bootstrap/ui/buttons/styles.css'
 import '../../themes/sketchy/ui/buttons/styles.css'
 
-// Specificity-based reverse-nesting fix for section 4b (no @layer required).
-// Must be imported after both single-scope stylesheets so the two-scope selector
-// (.sketchyScope .bootstrapScope .btn, specificity 0-3-0) overrides them.
-import '../../themes/bootstrap/ui/buttons/styles-scope-nested.css'
+// ThemeContext — propagates the active scope class down to every component so
+// each element can stamp it onto itself without prop-drilling.
+const ThemeContext = createContext<string>('')
 
-// @layer-based styles for section 5.
-// Import order establishes layer priority: bootstrap < sketchy < nestedBootstrap.
-import '../../themes/bootstrap/ui/buttons/styles-layer.css'
-import '../../themes/sketchy/ui/buttons/styles-layer.css'
-import '../../themes/bootstrap/ui/buttons/styles-nested.css'
-
-const Buttons: Component = () => (
-	<>
-		<button type="button" class={`${btn} ${btnPrimary}`}>
-			Primary
-		</button>{' '}
-		<button type="button" class={`${btn} ${btnSecondary}`}>
-			Secondary
-		</button>{' '}
-		<button type="button" class={`${btn} ${btnSuccess}`}>
-			Success
-		</button>{' '}
-		<button type="button" class={`${btn} ${btnDanger}`}>
-			Danger
-		</button>{' '}
-		<button type="button" class={`${btn} ${btnWarning}`}>
-			Warning
-		</button>{' '}
-		<button type="button" class={`${btn} ${btnInfo}`}>
-			Info
-		</button>
-	</>
-)
+// Buttons reads the current theme class from context and applies it directly to
+// every button element alongside the contract classes.  No container needed.
+const Buttons: Component = () => {
+	const theme = useContext(ThemeContext)
+	return (
+		<>
+			<button type="button" class={`${theme} ${btn} ${btnPrimary}`}>
+				Primary
+			</button>{' '}
+			<button type="button" class={`${theme} ${btn} ${btnSecondary}`}>
+				Secondary
+			</button>{' '}
+			<button type="button" class={`${theme} ${btn} ${btnSuccess}`}>
+				Success
+			</button>{' '}
+			<button type="button" class={`${theme} ${btn} ${btnDanger}`}>
+				Danger
+			</button>{' '}
+			<button type="button" class={`${theme} ${btn} ${btnWarning}`}>
+				Warning
+			</button>{' '}
+			<button type="button" class={`${theme} ${btn} ${btnInfo}`}>
+				Info
+			</button>
+		</>
+	)
+}
 
 const sectionStyle = {
 	'border-left': '4px solid #dee2e6',
@@ -66,21 +59,24 @@ const sectionStyle = {
 	'margin-bottom': '2rem',
 }
 
+const labelStyle = { margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }
+
 const PocThemeScopeDemo: Component = () => (
 	<div style={{ 'font-family': 'system-ui, sans-serif', padding: '2rem', 'max-width': '900px' }}>
-		<h1>Contract Classes + Theme Scope — PoC</h1>
+		<h1>Element-Owned Scope — PoC</h1>
 		<p>
 			Every <code>&lt;button&gt;</code> below carries the <em>same</em> contract class names (
-			<code>btn</code>, <code>btnPrimary</code>, …). The <strong>theme scope class</strong> on
-			the container selects which theme's styles apply — no runtime resolver needed for
-			element names.
+			<code>btn</code>, <code>btnPrimary</code>, …) <strong>plus</strong> the active theme's
+			scope class. CSS rules use compound selectors (<code>.theme.btn</code>) so each element
+			is styled by exactly the theme class it carries — no ancestor matching, no nesting
+			conflicts, unlimited nesting depth.
 		</p>
 
 		<h2>1. Bootstrap theme</h2>
 		<div style={sectionStyle}>
-			<div class={bootstrapScope}>
+			<ThemeContext.Provider value={bootstrapScope}>
 				<Buttons />
-			</div>
+			</ThemeContext.Provider>
 		</div>
 
 		<h2>2. Sketchy theme</h2>
@@ -89,183 +85,69 @@ const PocThemeScopeDemo: Component = () => (
 			used. The hand-drawn border-radius is always present.
 		</p>
 		<div style={sectionStyle}>
-			<div class={sketchyScope}>
+			<ThemeContext.Provider value={sketchyScope}>
 				<Buttons />
-			</div>
+			</ThemeContext.Provider>
 		</div>
 
-		<h2>3. Nested — Bootstrap (outer) wrapping Sketchy (inner)</h2>
+		<h2>3. Nested — Bootstrap (outer) / Sketchy (inner) ✓</h2>
 		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			The outer row uses Bootstrap styles; the inner row uses Sketchy. Both rows use identical{' '}
-			<code>&lt;Buttons /&gt;</code> — only the scope class on the wrapper changes.
+			The inner <code>ThemeContext.Provider</code> overrides the outer one. Each button
+			carries the class of the nearest provider — no CSS workaround needed.
 		</p>
 		<div style={sectionStyle}>
-			<div class={bootstrapScope}>
-				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-					bootstrap scope (outer)
-				</p>
+			<ThemeContext.Provider value={bootstrapScope}>
+				<p style={labelStyle}>bootstrap (outer)</p>
 				<Buttons />
-				<div class={sketchyScope} style={{ 'margin-top': '0.75rem' }}>
-					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-						sketchy scope (inner — overrides bootstrap for its descendants)
-					</p>
-					<Buttons />
+				<div style={{ 'margin-top': '0.75rem' }}>
+					<ThemeContext.Provider value={sketchyScope}>
+						<p style={labelStyle}>sketchy (inner) — Sketchy wins ✓</p>
+						<Buttons />
+					</ThemeContext.Provider>
 				</div>
-			</div>
+			</ThemeContext.Provider>
 		</div>
 
-		<h2>4. Nested — Sketchy (outer) wrapping Bootstrap (inner)</h2>
+		<h2>4. Nested — Sketchy (outer) / Bootstrap (inner) ✓</h2>
 		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			⚠ With equal CSS specificity and Sketchy styles defined <em>last</em> in the stylesheet,
-			Sketchy wins for all buttons regardless of nesting direction. The inner Bootstrap row
-			below still shows Sketchy styling. Section 4b (below) shows a specificity-only fix;
-			section 5 shows an <code>@layer</code>-based alternative.
+			Reverse nesting works identically — no specificity tricks, no <code>@layer</code>, no
+			extra selectors. Element-owned scope eliminates the problem entirely.
 		</p>
 		<div style={sectionStyle}>
-			<div class={sketchyScope}>
-				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-					sketchy scope (outer)
-				</p>
+			<ThemeContext.Provider value={sketchyScope}>
+				<p style={labelStyle}>sketchy (outer)</p>
 				<Buttons />
-				<div class={bootstrapScope} style={{ 'margin-top': '0.75rem' }}>
-					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-						bootstrap scope (inner — currently styled as Sketchy due to equal
-						specificity)
-					</p>
-					<Buttons />
+				<div style={{ 'margin-top': '0.75rem' }}>
+					<ThemeContext.Provider value={bootstrapScope}>
+						<p style={labelStyle}>bootstrap (inner) — Bootstrap wins ✓</p>
+						<Buttons />
+					</ThemeContext.Provider>
 				</div>
-			</div>
+			</ThemeContext.Provider>
 		</div>
 
-		<h2>4b. Specificity fix — Reverse nesting solved without @layer</h2>
-		<p>
-			A two-ancestor-scope selector <code>.sketchyScope .bootstrapScope .btn</code> carries{' '}
-			<strong>3 class selectors</strong> (specificity 0-3-0), which naturally beats any
-			single-scope rule (0-2-0). Adding this override to the stylesheet — imported after the
-			single-scope styles — is enough to make inner Bootstrap win over outer Sketchy, with no{' '}
-			<code>@layer</code> or runtime logic required.
-		</p>
+		<h2>5. Three levels deep — Bootstrap / Sketchy / Bootstrap ✓</h2>
 		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			Note: this approach uses the same <code>bootstrapScope</code> /{' '}
-			<code>sketchyScope</code> classes as sections 1–4 (no separate hashed variants needed).
-		</p>
-
-		<h3 style={{ 'margin-bottom': '0.25rem' }}>
-			4b-i. Bootstrap outer + Sketchy inner (still works ✓)
-		</h3>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d', 'margin-top': 0 }}>
-			<code>.bootstrapScope .sketchyScope .btn</code> (0-3-0) doesn't exist, but{' '}
-			<code>.sketchyScope .btn</code> (0-2-0, defined last) still beats{' '}
-			<code>.bootstrapScope .btn</code> (0-2-0, defined first) → Sketchy wins ✓
+			Unlimited nesting depth: each provider overrides its parent independently. The CSS
+			stylesheet is unchanged — no new selectors are required for each additional depth.
 		</p>
 		<div style={sectionStyle}>
-			<div class={bootstrapScope}>
-				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-					bootstrapScope (outer)
-				</p>
+			<ThemeContext.Provider value={bootstrapScope}>
+				<p style={labelStyle}>bootstrap (depth 1)</p>
 				<Buttons />
-				<div class={sketchyScope} style={{ 'margin-top': '0.75rem' }}>
-					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-						sketchyScope (inner) — Sketchy wins ✓
-					</p>
-					<Buttons />
+				<div style={{ 'margin-top': '0.75rem' }}>
+					<ThemeContext.Provider value={sketchyScope}>
+						<p style={labelStyle}>sketchy (depth 2)</p>
+						<Buttons />
+						<div style={{ 'margin-top': '0.75rem' }}>
+							<ThemeContext.Provider value={bootstrapScope}>
+								<p style={labelStyle}>bootstrap (depth 3) — Bootstrap wins ✓</p>
+								<Buttons />
+							</ThemeContext.Provider>
+						</div>
+					</ThemeContext.Provider>
 				</div>
-			</div>
-		</div>
-
-		<h3 style={{ 'margin-bottom': '0.25rem' }}>
-			4b-ii. Sketchy outer + Bootstrap inner (now works ✓)
-		</h3>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d', 'margin-top': 0 }}>
-			<code>.sketchyScope .bootstrapScope .btn</code> (0-3-0) beats both{' '}
-			<code>.sketchyScope .btn</code> and <code>.bootstrapScope .btn</code> (0-2-0 each) →
-			Bootstrap wins ✓
-		</p>
-		<div style={sectionStyle}>
-			<div class={sketchyScope}>
-				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-					sketchyScope (outer)
-				</p>
-				<Buttons />
-				<div class={bootstrapScope} style={{ 'margin-top': '0.75rem' }}>
-					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-						bootstrapScope (inner) — Bootstrap wins ✓ (specificity fix)
-					</p>
-					<Buttons />
-				</div>
-			</div>
-		</div>
-
-		<h2>5. @layer — Reverse nesting solved</h2>
-		<p>
-			Using VE's <code>@layer</code> support, each theme's styles are placed in a named CSS
-			cascade layer. The layer order is established by import sequence:
-		</p>
-		<ol style={{ 'font-size': '0.875rem', 'line-height': 2 }}>
-			<li>
-				<code>styles-layer.css.ts</code> (bootstrap) imported first →{' '}
-				<code>@layer bootstrap</code> declared first → <strong>lowest priority</strong>
-			</li>
-			<li>
-				<code>styles-layer.css.ts</code> (sketchy) imported second →{' '}
-				<code>@layer sketchy</code> declared second → <strong>middle priority</strong>
-			</li>
-			<li>
-				<code>styles-nested.css.ts</code> (bootstrap-in-sketchy overrides) imported last →{' '}
-				<code>@layer nestedBootstrap</code> declared last →{' '}
-				<strong>highest priority</strong>
-			</li>
-		</ol>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			The <code>nestedBootstrap</code> layer carries explicit two-scope selectors (
-			<code>.sketchyScopeL .bootstrapScopeL .btn</code>). Because its layer is declared after{' '}
-			<code>@layer sketchy</code>, it wins regardless of specificity — this is the key
-			advantage of <code>@layer</code>: cascade priority is decoupled from selector
-			specificity.
-		</p>
-
-		<h3 style={{ 'margin-bottom': '0.25rem' }}>
-			5a. Bootstrap outer + Sketchy inner (still works ✓)
-		</h3>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d', 'margin-top': 0 }}>
-			<code>@layer sketchy</code> &gt; <code>@layer bootstrap</code> → Sketchy wins for inner
-			buttons.
-		</p>
-		<div style={sectionStyle}>
-			<div class={bootstrapScopeL}>
-				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-					bootstrapScopeL (outer) — layered
-				</p>
-				<Buttons />
-				<div class={sketchyScopeL} style={{ 'margin-top': '0.75rem' }}>
-					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-						sketchyScopeL (inner) — Sketchy wins ✓
-					</p>
-					<Buttons />
-				</div>
-			</div>
-		</div>
-
-		<h3 style={{ 'margin-bottom': '0.25rem' }}>
-			5b. Sketchy outer + Bootstrap inner (now works ✓)
-		</h3>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d', 'margin-top': 0 }}>
-			<code>@layer nestedBootstrap</code> &gt; <code>@layer sketchy</code> → Bootstrap wins
-			for inner buttons, even though Sketchy scope is an ancestor.
-		</p>
-		<div style={sectionStyle}>
-			<div class={sketchyScopeL}>
-				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-					sketchyScopeL (outer) — layered
-				</p>
-				<Buttons />
-				<div class={bootstrapScopeL} style={{ 'margin-top': '0.75rem' }}>
-					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
-						bootstrapScopeL (inner) — Bootstrap wins ✓ (reverse nesting solved)
-					</p>
-					<Buttons />
-				</div>
-			</div>
+			</ThemeContext.Provider>
 		</div>
 
 		<h2>Architecture summary</h2>
@@ -302,7 +184,8 @@ const PocThemeScopeDemo: Component = () => (
 						<code>themes/*/scope.css.ts</code>
 					</td>
 					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						One class per theme; applied to a container to select the active theme
+						One class per theme; stamped on every element via{' '}
+						<code>ThemeContext</code>
 					</td>
 				</tr>
 				<tr>
@@ -311,8 +194,18 @@ const PocThemeScopeDemo: Component = () => (
 						<code>themes/*/ui/…/styles.css.ts</code>
 					</td>
 					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>globalStyle(scope + contract, cssProps)</code> — real CSS, scoped to
-						theme
+						<code>globalStyle(scope + contract, cssProps)</code> — compound selector
+						(no space), one rule set per theme
+					</td>
+				</tr>
+				<tr>
+					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Context</td>
+					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+						<code>ThemeContext</code>
+					</td>
+					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+						Propagates the active scope class to every descendant component; nesting
+						overrides automatically
 					</td>
 				</tr>
 				<tr>
@@ -321,7 +214,8 @@ const PocThemeScopeDemo: Component = () => (
 						<code>components/…/*.tsx</code>
 					</td>
 					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						Uses only contract classes; knows nothing about themes
+						Reads theme from context; applies scope class to every rendered element
+						alongside contract classes
 					</td>
 				</tr>
 			</tbody>
