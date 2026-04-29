@@ -8,6 +8,9 @@ import '../../themes/sketchy/ui/buttons/styles.css'
 // Side-effect imports: register globalStyle rules for all alert variants
 import '../../themes/bootstrap/ui/alerts/styles.css'
 import '../../themes/sketchy/ui/alerts/styles.css'
+// Side-effect imports: register globalStyle rules for all badge variants
+import '../../themes/bootstrap/ui/badge/styles.css'
+import '../../themes/sketchy/ui/badge/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'

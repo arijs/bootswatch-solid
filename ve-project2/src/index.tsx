@@ -11,6 +11,8 @@ import PrimaryAlert from './components/ui/alerts/PrimaryAlert'
 import SecondaryAlert from './components/ui/alerts/SecondaryAlert'
 import SuccessAlert from './components/ui/alerts/SuccessAlert'
 import WarningAlert from './components/ui/alerts/WarningAlert'
+import HeadingBadges from './components/ui/badge/HeadingBadges'
+import PillBadges from './components/ui/badge/PillBadges'
 import SolidBaseButton from './components/ui/buttons/solid/SolidBaseButton'
 import SolidDisabledBaseButton from './components/ui/buttons/solid/disabled/SolidDisabledBaseButton'
 import SolidCheckBaseButton from './components/ui/buttons/solid/check/SolidCheckBaseButton'
@@ -426,6 +428,8 @@ render(
 			<Route path="/ui/alerts/secondary-alert" component={SecondaryAlert} />
 			<Route path="/ui/alerts/success-alert" component={SuccessAlert} />
 			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
+			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
+			<Route path="/ui/badge/pill-badges" component={PillBadges} />
 			</Route>
 		</Router>
 	),
