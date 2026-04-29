@@ -20,6 +20,9 @@ import '../../themes/sketchy/ui/button-group/styles.css'
 // Side-effect imports: register globalStyle rules for card + list-group
 import '../../themes/bootstrap/ui/card/styles.css'
 import '../../themes/sketchy/ui/card/styles.css'
+// Side-effect imports: register globalStyle rules for card-tabs (nav + nav-tabs)
+import '../../themes/bootstrap/ui/card-tabs/styles.css'
+import '../../themes/sketchy/ui/card-tabs/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'

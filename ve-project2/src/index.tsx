@@ -220,6 +220,7 @@ import FeaturedCard from './components/ui/card/FeaturedCard'
 import HorizontalCard from './components/ui/card/HorizontalCard'
 import ImageTopCard from './components/ui/card/ImageTopCard'
 import ListCard from './components/ui/card/ListCard'
+import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
 
 render(
 	() => (
@@ -978,6 +979,7 @@ render(
 				<Route path="/ui/card/horizontal-card" component={HorizontalCard} />
 				<Route path="/ui/card/image-top-card" component={ImageTopCard} />
 				<Route path="/ui/card/list-card" component={ListCard} />
+				<Route path="/ui/card-tabs/card-tabs-example" component={CardTabsExample} />
 			</Route>
 		</Router>
 	),

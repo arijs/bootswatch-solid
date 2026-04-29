@@ -61,6 +61,11 @@ import {
 	varBsWarningBorderSubtle,
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
+	varBsEmphasisColor,
+	varBsSecondaryColor,
+	varBsSecondaryBg,
+	varBsLinkColor,
+	varBsLinkHoverColor,
 } from '../../theme-contract/_vars.css'
 import { body, bodyText } from '../../theme-contract/theme-contract.css'
 
@@ -163,6 +168,13 @@ globalStyle(`${bootstrapScope}${body}`, {
 		[varBsFocusRingWidth]: '0.25rem',
 		[varBsFocusRingOpacity]: '0.25',
 		[varBsFocusRingColor]: 'rgba(13, 110, 253, 0.25)',
+		// Contextual / semantic UI colours
+		[varBsEmphasisColor]: '#000',
+		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
+		[varBsSecondaryBg]: '#e9ecef',
+		// Links
+		[varBsLinkColor]: '#0d6efd',
+		[varBsLinkHoverColor]: '#0a58ca',
 	},
 	backgroundColor: '#fff',
 	padding: '1rem',

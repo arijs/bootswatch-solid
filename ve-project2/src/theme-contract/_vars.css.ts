@@ -138,3 +138,9 @@ export const varBsBoxShadowInset = createVar()
 export const varBsFocusRingWidth = createVar()
 export const varBsFocusRingOpacity = createVar()
 export const varBsFocusRingColor = createVar()
+
+// ── Contextual / semantic UI colours ─────────────────────────────────────────
+
+export const varBsEmphasisColor = createVar()           // --bs-emphasis-color
+export const varBsSecondaryColor = createVar()          // --bs-secondary-color
+export const varBsSecondaryBg = createVar()             // --bs-secondary-bg
