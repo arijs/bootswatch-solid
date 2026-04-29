@@ -45,11 +45,12 @@ const {
 	dryRunWriteback,
 	cssExtractionEnabled,
 	verificationEnabled,
+	ve1VerificationEnabled,
 	veVerificationEnabled,
-	ve2VerificationEnabled,
+	ve1MissingOnly,
 	veMissingOnly,
-	veRuntimeMissingOnly,
-	veRuntimeMissingLeafs,
+	ve1RuntimeMissingOnly,
+	ve1RuntimeMissingLeafs,
 	verificationMaxDiffRatio,
 	strictScenarioAssert,
 	routeFilter,
@@ -62,16 +63,20 @@ const {
 
 async function main() {
 	const indexSource = await readFile(INDEX_FILE, 'utf8')
-	const themeSource = veMissingOnly ? null : await readFile(THEMES_FILE, 'utf8')
-	const veIndexSource = veVerificationEnabled ? await readFile(VE_INDEX_FILE, 'utf8') : null
-	const ve2IndexSource = ve2VerificationEnabled ? await readFile(VE2_INDEX_FILE, 'utf8') : null
+	const themeSource = ve1MissingOnly || veMissingOnly ? null : await readFile(THEMES_FILE, 'utf8')
+	const ve1IndexSource = ve1VerificationEnabled ? await readFile(VE_INDEX_FILE, 'utf8') : null
+	const ve2IndexSource = veVerificationEnabled ? await readFile(VE2_INDEX_FILE, 'utf8') : null
 
 	const { routes, routeToComponentFile } = parseRoutesAndComponents(indexSource, INDEX_FILE)
 	const leafRoutes = getLeafRoutes(routes)
-	const veLeafRoutes = veIndexSource
-		? getLeafRoutes(parseRoutesAndComponents(veIndexSource, VE_INDEX_FILE).routes)
+	const ve1LeafRoutes = ve1IndexSource
+		? getLeafRoutes(parseRoutesAndComponents(ve1IndexSource, VE_INDEX_FILE).routes)
 		: []
-	const veRouteSet = new Set(veLeafRoutes)
+	const ve2LeafRoutes = ve2IndexSource
+		? getLeafRoutes(parseRoutesAndComponents(ve2IndexSource, VE2_INDEX_FILE).routes)
+		: []
+	const ve1RouteSet = new Set(ve1LeafRoutes)
+	const ve2RouteSet = new Set(ve2LeafRoutes)
 	assertCuratedScenarioRoutes(leafRoutes, strictScenarioAssert)
 
 	if (leafRoutes.length === 0) {
@@ -83,28 +88,28 @@ async function main() {
 		console.warn(`Warning: ${unresolvedRoutes.length} leaf route(s) missing component mapping.`)
 	}
 
-	if (veMissingOnly) {
+	if (ve1MissingOnly) {
 		const routePatterns = routeFilter ? [...routeFilter] : null
 		const selectedLeafRoutes = routePatterns
 			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
-			throw new Error('No leaf routes selected for --ve-missing-only after applying --route filters.')
+			throw new Error('No leaf routes selected for --ve1-missing-only after applying --route filters.')
 		}
 
-		const missingRoutes = selectedLeafRoutes.filter((route) => !veRouteSet.has(route))
+		const missingRoutes = selectedLeafRoutes.filter((route) => !ve1RouteSet.has(route))
 		const convertedCount = selectedLeafRoutes.length - missingRoutes.length
 
-		console.log('Mode: VE missing-only enabled (--ve-missing-only).')
+		console.log('Mode: VE1 missing-only enabled (--ve1-missing-only).')
 		console.log(`Selected leaf routes: ${selectedLeafRoutes.length}.`)
-		console.log(`VE migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`)
+		console.log(`VE1 migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`)
 
 		if (missingRoutes.length === 0) {
-			console.log('All selected leaf routes are already migrated to VE.')
+			console.log('All selected leaf routes are already migrated to VE1.')
 			return
 		}
 
-		console.warn(`\nComponents still missing VE migration (${missingRoutes.length}):`)
+		console.warn(`\nComponents still missing VE1 migration (${missingRoutes.length}):`)
 		for (const route of missingRoutes) {
 			const componentFile = routeToComponentFile.get(route)
 			const componentRef = componentFile
@@ -115,9 +120,41 @@ async function main() {
 		return
 	}
 
-	if (veRuntimeMissingOnly) {
+	if (veMissingOnly) {
+		const routePatterns = routeFilter ? [...routeFilter] : null
+		const selectedLeafRoutes = routePatterns
+			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
+			: leafRoutes
+		if (selectedLeafRoutes.length === 0) {
+			throw new Error('No leaf routes selected for --ve-missing-only after applying --route filters.')
+		}
+
+		const missingRoutes = selectedLeafRoutes.filter((route) => !ve2RouteSet.has(route))
+		const convertedCount = selectedLeafRoutes.length - missingRoutes.length
+
+		console.log('Mode: VE missing-only enabled (--ve-missing-only).')
+		console.log(`Selected leaf routes: ${selectedLeafRoutes.length}.`)
+		console.log(`VE migration status: converted=${convertedCount}, missing=${missingRoutes.length}.`)
+
+		if (missingRoutes.length === 0) {
+			console.log('All selected leaf routes are already migrated to VE (ve-project2).')
+			return
+		}
+
+		console.warn(`\nComponents still missing VE migration in ve-project2 (${missingRoutes.length}):`)
+		for (const route of missingRoutes) {
+			const componentFile = routeToComponentFile.get(route)
+			const componentRef = componentFile
+				? path.relative(process.cwd(), componentFile)
+				: '[component-file-unresolved]'
+			console.warn(`  ${route} -> ${componentRef}`)
+		}
+		return
+	}
+
+	if (ve1RuntimeMissingOnly) {
 		if (!themeSource) {
-			throw new Error('Theme source unavailable for --ve-runtime-missing-only mode.')
+			throw new Error('Theme source unavailable for --ve1-runtime-missing-only mode.')
 		}
 
 		const routePatterns = routeFilter ? [...routeFilter] : null
@@ -126,7 +163,7 @@ async function main() {
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
 			throw new Error(
-				'No leaf routes selected for --ve-runtime-missing-only after applying --route filters.',
+				'No leaf routes selected for --ve1-runtime-missing-only after applying --route filters.',
 			)
 		}
 
@@ -138,7 +175,7 @@ async function main() {
 		}
 
 		if (selectedThemes.length === 0) {
-			throw new Error('No themes selected for --ve-runtime-missing-only after applying filters.')
+			throw new Error('No themes selected for --ve1-runtime-missing-only after applying filters.')
 		}
 
 		reportVeRuntimeCoverageGaps({
@@ -147,7 +184,7 @@ async function main() {
 			themesBeforeLimit,
 			maxThemes,
 			maxThemesSpecified,
-			includeLeafRoutes: veRuntimeMissingLeafs,
+			includeLeafRoutes: ve1RuntimeMissingLeafs,
 		})
 		return
 	}
@@ -188,20 +225,20 @@ async function main() {
 	if (!cssExtractionEnabled) {
 		console.log('Mode: CSS extraction disabled (--no-css-extraction).')
 	}
+	if (ve1VerificationEnabled) {
+		console.log(
+			`Mode: VE1 verification enabled (--verify-ve1-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
+		)
+		console.log(`Mode: VE1 route coverage available for ${ve1LeafRoutes.length} leaf route(s).`)
+	}
 	if (veVerificationEnabled) {
 		console.log(
 			`Mode: VE verification enabled (--verify-ve-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
 		)
-		console.log(`Mode: VE route coverage available for ${veLeafRoutes.length} leaf route(s).`)
-	}
-	if (ve2VerificationEnabled) {
-		console.log(
-			`Mode: VE2 verification enabled (--verify-ve2-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
-		)
 		const ve2Routes = ve2IndexSource
 			? getLeafRoutes(parseRoutesAndComponents(ve2IndexSource, VE2_INDEX_FILE).routes)
 			: []
-		console.log(`Mode: VE2 route coverage available for ${ve2Routes.length} leaf route(s).`)
+		console.log(`Mode: VE route coverage available for ${ve2Routes.length} leaf route(s).`)
 	}
 	if (strictScenarioAssert) {
 		console.log('Mode: strict scenario assertions enabled (--strict-scenarios).')
@@ -213,12 +250,12 @@ async function main() {
 		)
 		console.log('Mode: Forcing rebuild to ensure CSS artifacts are current.')
 		buildProject()
-	} else if (veVerificationEnabled) {
-		console.log('Mode: Forcing VE rebuild to ensure Vanilla Extract artifacts are current.')
+	} else if (ve1VerificationEnabled) {
+		console.log('Mode: Forcing VE1 rebuild to ensure Vanilla Extract artifacts are current.')
 		buildVeProject()
 		assertVeBuildOutputExists()
-	} else if (ve2VerificationEnabled) {
-		console.log('Mode: Forcing VE2 rebuild to ensure Vanilla Extract artifacts are current.')
+	} else if (veVerificationEnabled) {
+		console.log('Mode: Forcing VE rebuild to ensure Vanilla Extract artifacts are current.')
 		buildVe2Project()
 		assertVe2BuildOutputExists()
 	} else if (buildBeforeCapture) {
@@ -231,30 +268,26 @@ async function main() {
 	}
 
 	let previewServer = null
-	let vePreviewServer = null
+	let ve1PreviewServer = null
 	let ve2PreviewServer = null
 
-	if (veVerificationEnabled) {
+	if (ve1VerificationEnabled) {
+		console.log('Mode: using VE1 Vite preview server for screenshot verification.')
+		ve1PreviewServer = startVePreviewServer()
+	} else if (veVerificationEnabled) {
 		console.log('Mode: using VE Vite preview server for screenshot verification.')
-		vePreviewServer = startVePreviewServer()
-	} else if (ve2VerificationEnabled) {
-		console.log('Mode: using VE2 Vite preview server for screenshot verification.')
 		ve2PreviewServer = startVe2PreviewServer()
 	} else {
 		console.log('Mode: using Vite preview server for screenshot capture.')
 		previewServer = startPreviewServer()
 	}
 
-	// Derive VE2 route set for use in workflow
-	const ve2LeafRoutes = ve2IndexSource
-		? getLeafRoutes(parseRoutesAndComponents(ve2IndexSource, VE2_INDEX_FILE).routes)
-		: []
-	const ve2RouteSet = new Set(ve2LeafRoutes)
+	// Derive VE2 route set for use in workflow (already computed above)
 
 	try {
-		if (veVerificationEnabled) {
+		if (ve1VerificationEnabled) {
 			await waitForServer(VE_BASE_URL)
-		} else if (ve2VerificationEnabled) {
+		} else if (veVerificationEnabled) {
 			await waitForServer(VE2_BASE_URL)
 		} else {
 			await waitForServer(BASE_URL)
@@ -262,7 +295,7 @@ async function main() {
 		await executeCaptureWorkflow({
 			themes,
 			scenarios,
-			veRouteSet,
+			ve1RouteSet,
 			ve2RouteSet,
 			routeToComponentFile,
 			requestedWidth,
@@ -273,14 +306,14 @@ async function main() {
 			dryRunWriteback,
 			cssExtractionEnabled,
 			verificationEnabled,
+			ve1VerificationEnabled,
 			veVerificationEnabled,
-			ve2VerificationEnabled,
 			verificationMaxDiffRatio,
 		})
 	} finally {
 		await Promise.all([
 			stopServer(previewServer),
-			stopServer(vePreviewServer),
+			stopServer(ve1PreviewServer),
 			stopServer(ve2PreviewServer),
 		])
 	}

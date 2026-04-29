@@ -19,46 +19,66 @@ Related architecture notes:
 
 ## Recent changes (April 2026)
 
-### Vanilla Extract verification mode (`--verify-ve-rendering`)
+### Vanilla Extract verification mode
 
-A new verification mode was added to compare `ve-project` rendering against
-existing baseline screenshots while preserving dimensions from the original
-component `@screenshot` directives.
+Two VE verification modes are now available:
+
+**`--verify-ve-rendering`** (current/preferred, targets `ve-project2`):
+
+Compares `ve-project2` rendering against existing baseline screenshots.
 
 Key behavior:
 
-- New flag: `--verify-ve-rendering`
-- Optional fast flag: `--ve-missing-only` (automatically enables `--verify-ve-rendering`)
-- Mutually exclusive with `--verify-css-rendering`
-- Uses `ve-project` preview server for render capture
-- Skips routes that are not implemented in `ve-project` with a warning
-- Keeps directive source in original component files resolved from
-  `src/index.tsx` (not from `ve-project` components)
+- Flag: `--verify-ve-rendering`
+- Optional fast flag: `--ve-missing-only` (migration-status report for ve-project2, no Playwright)
+- Mutually exclusive with `--verify-css-rendering` and `--verify-ve1-rendering`
+- Uses `ve-project2` preview server for render capture
+- Skips routes that are not implemented in `ve-project2` with a warning
+- VE artifacts are written beside baseline images:
+  - `ve-{width}x{height}.png` — captured VE rendering (ve-project2)
+  - `ve-{width}x{height}.verify.png` — pixelmatch comparison image
 
-`--ve-missing-only` is a migration-status pass:
+**`--verify-ve1-rendering`** (historical, targets `ve-project` v1):
+
+Compares `ve-project` (v1) rendering against existing baseline screenshots.
+
+Key behavior:
+
+- Flag: `--verify-ve1-rendering`
+- Optional fast flag: `--ve1-missing-only` (migration-status report for ve-project v1, no Playwright)
+- Mutually exclusive with `--verify-css-rendering` and `--verify-ve-rendering`
+- Uses `ve-project` (v1) preview server for render capture
+- Skips routes that are not implemented in `ve-project` (v1) with a warning
+- VE1 artifacts are written beside baseline images:
+  - `ve1-{width}x{height}.png` — captured VE1 rendering
+  - `ve1-{width}x{height}.verify.png` — pixelmatch comparison image
+
+**`--ve-missing-only`** (fast migration-status report for ve-project2):
 
 - Does not build or run Playwright verification
-- Skips routes already implemented in `ve-project`
-- Logs only routes/components still missing VE migration
+- Skips routes already implemented in `ve-project2`
+- Logs only routes/components still missing VE migration (in ve-project2)
 - Supports route narrowing via `--route=...`
 
-VE artifacts are written beside baseline images:
+**`--ve1-missing-only`** (fast migration-status report for ve-project v1):
 
-- `ve-{width}x{height}.png` - captured Vanilla Extract rendering
-- `ve-{width}x{height}.verify.png` - pixelmatch comparison image
+- Does not build or run Playwright verification
+- Skips routes already implemented in `ve-project` (v1)
+- Logs only routes/components still missing VE1 migration
+- Supports route narrowing via `--route=...`
 
-### VE runtime coverage report mode (`--ve-runtime-missing-only`)
+### VE1 runtime coverage report mode (`--ve1-runtime-missing-only`)
 
-A new fast report mode shows remaining VE runtime family coverage gaps per
-theme and route.
+Fast report mode showing remaining VE1 runtime family coverage gaps per theme and route.
+This is specific to the `ve-project` (v1) runtime contract system.
 
 Key behavior:
 
-- New flag: `--ve-runtime-missing-only`
-- Optional detail flag: `--ve-runtime-missing-leafs`
+- Flag: `--ve1-runtime-missing-only`
+- Optional detail flag: `--ve1-runtime-missing-leafs`
 - Does not build, start preview servers, or run Playwright
 - Reports missing runtime families as `theme -> family`
-- Route-level output is hidden by default and enabled with `--ve-runtime-missing-leafs`
+- Route-level output is hidden by default and enabled with `--ve1-runtime-missing-leafs`
 - Uses route requirements from `ve-project/src/themes/runtime/route-families.ts`
 - Uses implemented family availability from `ve-project/src/themes/runtime/registry.ts`
 - Supports route narrowing via `--route=...`
@@ -477,8 +497,12 @@ states do not bleed across captures.
 | `--dry-run-writeback` | off | Compute and log writeback changes but do not write them to disk. |
 | `--no-css-extraction` | off | Disable CSS extraction. Use in Phase 2 verification runs: `--no-css-extraction --verify-css-rendering`. |
 | `--verify-css-rendering` | off | Enable CSS rendering verification against baseline screenshots. Requires Phase 2 execution (use with `--no-css-extraction`). Automatically triggers a rebuild to ensure CSS artifacts are current. |
-| `--ve-runtime-missing-only` | off | Fast report-only mode that lists missing VE runtime families per selected theme and route. No build/server/Playwright. |
-| `--ve-runtime-missing-leafs` | off | Route-detail toggle for runtime gap reporting; automatically enables `--ve-runtime-missing-only` and prints affected leaf routes under each missing family. |
+| `--verify-ve-rendering` | off | Enable VE rendering verification against baseline screenshots using `ve-project2` (current/preferred approach). Automatically triggers a VE rebuild. Mutually exclusive with `--verify-css-rendering` and `--verify-ve1-rendering`. |
+| `--verify-ve1-rendering` | off | Enable VE1 rendering verification against baseline screenshots using `ve-project` (v1, historical). Automatically triggers a VE1 rebuild. Mutually exclusive with `--verify-css-rendering` and `--verify-ve-rendering`. |
+| `--ve-missing-only` | off | Fast report-only mode that lists routes not yet implemented in `ve-project2` (current/preferred). No build/server/Playwright. |
+| `--ve1-missing-only` | off | Fast report-only mode that lists routes not yet implemented in `ve-project` v1. No build/server/Playwright. Automatically enables `--verify-ve1-rendering` when passed with other flags. |
+| `--ve1-runtime-missing-only` | off | Fast report-only mode that lists missing VE1 runtime families per selected theme and route (specific to ve-project v1 runtime contract system). No build/server/Playwright. |
+| `--ve1-runtime-missing-leafs` | off | Route-detail toggle for VE1 runtime gap reporting; automatically enables `--ve1-runtime-missing-only` and prints affected leaf routes under each missing family. |
 | `--verify-max-diff-ratio=N` | `0.001` | Maximum allowed pixel difference ratio for CSS verification (0.0–1.0). Only applies when `--verify-css-rendering` is set. |
 | `--strict-scenarios` | off | Fail fast if any leaf route is missing from curated scenario routes. |
 
@@ -524,22 +548,34 @@ node scripts/capture-leaf-screenshots.mjs --max-themes=27 --no-css-extraction --
 node scripts/capture-leaf-screenshots.mjs --theme=darkly --max-themes=1 --dry-run-writeback
 ```
 
-**Fast VE runtime gap report for all themes:**
+**Fast VE runtime gap report for all themes (ve-project v1):**
 
 ```
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only
 ```
 
-**Fast VE runtime gap report for selected themes/routes:**
+**Fast VE runtime gap report for selected themes/routes (ve-project v1):**
 
 ```
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy,quartz --route=/ui/buttons/**,/forms/**
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=sketchy,quartz --route=/ui/buttons/**,/forms/**
 ```
 
-**Fast VE runtime gap report with affected leaf routes shown:**
+**Fast VE runtime gap report with affected leaf routes shown (ve-project v1):**
 
 ```
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --ve-runtime-missing-leafs --theme=sketchy --route=/ui/buttons/**
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --ve1-runtime-missing-leafs --theme=sketchy --route=/ui/buttons/**
+```
+
+**Fast VE migration status report for ve-project2 (current/preferred):**
+
+```
+node scripts/capture-leaf-screenshots.mjs --ve-missing-only
+```
+
+**Fast VE1 migration status report for ve-project (v1):**
+
+```
+node scripts/capture-leaf-screenshots.mjs --ve1-missing-only
 ```
 
 **Capture one route at two states for quick iteration:**

@@ -49,7 +49,7 @@ Behavior Changes:
 
 Validation:
 1. `pnpm ve:build` passes after rollback.
-2. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy` reports `missing 21 family/families across 142/342 selected routes`, confirming `contents` and `forms` are again tracked as pending.
+2. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=sketchy` reports `missing 21 family/families across 142/342 selected routes`, confirming `contents` and `forms` are again tracked as pending.
 
 Risks / Pending:
 1. Sketchy still requires theme-local implementation for `contents`, `forms`, and remaining families from extracted Sketchy `style.css` artifacts.
@@ -68,11 +68,11 @@ Behavior Changes:
 4. Updated `scripts/capture-leaf-screenshots/ve-runtime-coverage.mjs` to parse both:
 - legacy inline `availableFamilies` theme definitions
 - helper-based `buildThemeDefinition(...)` theme definitions
-5. Updated `scripts/capture-leaf-screenshots/cli.mjs` to fail fast if `--ve-runtime-missing-leafs` is used, directing usage to the concise `--ve-runtime-missing-only` flow.
+5. Updated `scripts/capture-leaf-screenshots/cli.mjs` to fail fast if `--ve1-runtime-missing-leafs` is used, directing usage to the concise `--ve1-runtime-missing-only` flow.
 6. Added `docs/ve-next-work-verification.md` and linked it from `docs/ve-theme-selection-strategy.md` for faster agent/operator startup.
 
 Validation:
-1. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=bootstrap,sketchy` now reports Bootstrap as fully covered for selected routes after the registry refactor.
+1. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=bootstrap,sketchy` now reports Bootstrap as fully covered for selected routes after the registry refactor.
 2. The same command continues to report expected remaining gaps for Sketchy (`missing 21 family/families` across 142 selected routes).
 
 Risks / Pending:
@@ -93,7 +93,7 @@ Behavior Changes:
 
 Validation:
 1. `pnpm ve:build` passes after Sketchy global runtime registration.
-2. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy` now reports `missing 21 family/families` across 142 routes (previously 22 families across 342 routes), with `global` removed from the missing-family list.
+2. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=sketchy` now reports `missing 21 family/families` across 142 routes (previously 22 families across 342 routes), with `global` removed from the missing-family list.
 
 Risks / Pending:
 1. Current Sketchy global registration is a contract-coverage step; Sketchy-specific global token overrides remain pending.
@@ -112,7 +112,7 @@ Behavior Changes:
 
 Validation:
 1. `pnpm ve:build` passes after Sketchy buttons runtime registration.
-2. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy` now reports `missing 22 family/families` (previously 23), with `buttons` removed from the missing-family list.
+2. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=sketchy` now reports `missing 22 family/families` (previously 23), with `buttons` removed from the missing-family list.
 
 Risks / Pending:
 1. Sketchy is still globally unsupported for route rendering until foundational families (notably `global`) are implemented.
@@ -126,19 +126,19 @@ Scope:
 3. Updated tooling documentation to describe runtime-coverage usage and filtering behavior.
 
 Behavior Changes:
-1. Added `--ve-runtime-missing-only` to `scripts/capture-leaf-screenshots.mjs` for fast reporting without build, preview-server startup, or Playwright execution.
+1. Added `--ve1-runtime-missing-only` to `scripts/capture-leaf-screenshots.mjs` for fast reporting without build, preview-server startup, or Playwright execution.
 2. Added runtime-family gap output at theme/family granularity using runtime metadata from:
 - `ve-project/src/themes/runtime/registry.ts` (implemented families)
 - `ve-project/src/themes/runtime/route-families.ts` (required families per route)
 3. Changed default runtime report output to hide leaf routes.
-4. Added `--ve-runtime-missing-leafs` to print affected leaf routes under each missing family.
-5. `--ve-runtime-missing-leafs` now implicitly enables `--ve-runtime-missing-only`.
+4. Added `--ve1-runtime-missing-leafs` to print affected leaf routes under each missing family.
+5. `--ve1-runtime-missing-leafs` now implicitly enables `--ve1-runtime-missing-only`.
 
 Validation:
-1. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=bootstrap --route=/ui/buttons/solid/primary-button` reports no missing families for selected Bootstrap route.
-2. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy --route=/ui/buttons/solid/primary-button` reports expected missing families for selected Sketchy route.
-3. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --theme=sketchy --route=/ui/buttons/solid/primary-button` prints affected leaf routes and confirms implicit enablement.
-4. `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --verify-ve-rendering` fails fast with expected mutual-exclusion error.
+1. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=bootstrap --route=/ui/buttons/solid/primary-button` reports no missing families for selected Bootstrap route.
+2. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=sketchy --route=/ui/buttons/solid/primary-button` reports expected missing families for selected Sketchy route.
+3. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-leafs --theme=sketchy --route=/ui/buttons/solid/primary-button` prints affected leaf routes and confirms implicit enablement.
+4. `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-leafs --verify-ve1-rendering` fails fast with expected mutual-exclusion error.
 
 Risks / Pending:
 1. Runtime report currently parses runtime metadata from source files; consider exporting a small script-safe metadata surface to reduce parsing-coupling risk.

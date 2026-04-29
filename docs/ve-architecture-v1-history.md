@@ -86,7 +86,7 @@ It renders using explicit class composition:
 
 Migration work should proceed component-by-component with screenshot-based checks.
 
-A dedicated capture mode (`--verify-ve-rendering`) is introduced in the capture script to:
+A dedicated capture mode (`--verify-ve1-rendering`) is introduced in the capture script to:
 
 - render selected routes from `ve-project`
 - keep screenshot dimensions sourced from the original component `@screenshot` directives
@@ -260,7 +260,7 @@ The first Bootstrap VE mismatch in this area was:
 
 After applying the VE-safe selector strategy above, focused verification passed:
 
-- command: `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering "--route=/ui/buttons/outline/toggle-active/disabled/danger-button"`
+- command: `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve1-rendering "--route=/ui/buttons/outline/toggle-active/disabled/danger-button"`
 - result: `verification OK 0.000000 - 0/43200`
 
 ### No Static CSS Variable Name Strings in VE Theme Files
@@ -413,7 +413,7 @@ export const breadcrumb = style({
 Verification reminder:
 
 - Re-run focused VE parity after root-var initialization changes:
-  - `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering "--route=/ui/breadcrumb/breadcrumb-example"`
+  - `node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve1-rendering "--route=/ui/breadcrumb/breadcrumb-example"`
 
 ## Bootstrap JS Custom-Class Override Layer (April 2026)
 

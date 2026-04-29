@@ -73,10 +73,10 @@ export async function verifyScenarioVeRendering({
 		}
 	}
 
-	const vePath = baselinePath.replace(/\d+x\d+\.png$/i, `ve-${requestedWidth}x${measuredHeight}.png`)
+	const vePath = baselinePath.replace(/\d+x\d+\.png$/i, `ve1-${requestedWidth}x${measuredHeight}.png`)
 	const verifyPath = baselinePath.replace(
 		/\d+x\d+\.png$/i,
-		`ve-${requestedWidth}x${measuredHeight}.verify.png`,
+		`ve1-${requestedWidth}x${measuredHeight}.verify.png`,
 	)
 
 	const context = await browser.newContext({
@@ -106,7 +106,7 @@ export async function verifyScenarioVeRendering({
 				matched: false,
 				diffPixels: 0,
 				diffRatio: 0,
-				reason: `Scenario action unsupported in ve-project for state=${stateFolder}: ${String(error?.message || error).split('\n')[0]}`,
+				reason: `Scenario action unsupported in ve-project (v1) for state=${stateFolder}: ${String(error?.message || error).split('\n')[0]}`,
 			}
 		}
 		await stabilizeForScreenshot(page)

@@ -343,8 +343,8 @@ Implementation is complete for this feature when all checks below pass:
 
 Runtime coverage report mode policy:
 
-1. Use only the short runtime coverage report mode: `--ve-runtime-missing-only`.
-2. Do not use verbose leaf-path reporting mode (`--ve-runtime-missing-leafs`) for standard migration planning updates.
+1. Use only the short runtime coverage report mode: `--ve1-runtime-missing-only`.
+2. Do not use verbose leaf-path reporting mode (`--ve1-runtime-missing-leafs`) for standard migration planning updates.
 
 ## 14. Risks and Mitigations
 

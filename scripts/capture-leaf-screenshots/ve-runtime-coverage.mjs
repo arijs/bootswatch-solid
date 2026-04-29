@@ -150,13 +150,13 @@ export function reportVeRuntimeCoverageGaps({
 	const getRequiredFamiliesForPath = parseRouteFamilyResolver(routeFamiliesSource)
 	const implementedThemeFamilies = parseImplementedThemeFamilies(registrySource)
 
-	console.log('Mode: VE runtime missing-only enabled (--ve-runtime-missing-only).')
+	console.log('Mode: VE1 runtime missing-only enabled (--ve1-runtime-missing-only).')
 	console.log(`Selected leaf routes: ${selectedLeafRoutes.length}.`)
 	console.log(
 		`Selected themes: ${selectedThemes.length}${maxThemesSpecified && themesBeforeLimit > selectedThemes.length ? ` (limited to ${maxThemes} of ${themesBeforeLimit})` : ''}.`,
 	)
 	console.log(
-		`Leaf route detail: ${includeLeafRoutes ? 'shown (--ve-runtime-missing-leafs)' : 'hidden (use --ve-runtime-missing-leafs to show affected routes)'}.`,
+		`Leaf route detail: ${includeLeafRoutes ? 'shown (--ve1-runtime-missing-leafs)' : 'hidden (use --ve1-runtime-missing-leafs to show affected routes)'}.`,
 	)
 
 	const sortedRoutes = [...selectedLeafRoutes].sort((a, b) => a.localeCompare(b))
