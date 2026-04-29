@@ -56,8 +56,8 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	const ve1RuntimeMissingLeafs = argv.includes('--ve1-runtime-missing-leafs')
 	const ve1RuntimeMissingOnly = argv.includes('--ve1-runtime-missing-only') || ve1RuntimeMissingLeafs
 	const ve1VerificationEnabled = argv.includes('--verify-ve1-rendering') || ve1MissingOnly
-	const veVerificationEnabled = argv.includes('--verify-ve-rendering')
 	const veMissingOnly = argv.includes('--ve-missing-only')
+	const veVerificationEnabled = argv.includes('--verify-ve-rendering') || veMissingOnly
 	if (ve1RuntimeMissingOnly && ve1MissingOnly) {
 		throw new Error(
 			'--ve1-missing-only and --ve1-runtime-missing-only are mutually exclusive. Choose one fast-report mode per run.',
