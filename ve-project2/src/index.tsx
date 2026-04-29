@@ -13,6 +13,7 @@ import SuccessAlert from './components/ui/alerts/SuccessAlert'
 import WarningAlert from './components/ui/alerts/WarningAlert'
 import HeadingBadges from './components/ui/badge/HeadingBadges'
 import PillBadges from './components/ui/badge/PillBadges'
+import BreadcrumbExample from './components/ui/breadcrumb/BreadcrumbExample'
 import SolidBaseButton from './components/ui/buttons/solid/SolidBaseButton'
 import SolidDisabledBaseButton from './components/ui/buttons/solid/disabled/SolidDisabledBaseButton'
 import SolidCheckBaseButton from './components/ui/buttons/solid/check/SolidCheckBaseButton'
@@ -430,6 +431,7 @@ render(
 			<Route path="/ui/alerts/warning-alert" component={WarningAlert} />
 			<Route path="/ui/badge/heading-badges" component={HeadingBadges} />
 			<Route path="/ui/badge/pill-badges" component={PillBadges} />
+			<Route path="/ui/breadcrumb/breadcrumb-example" component={BreadcrumbExample} />
 			</Route>
 		</Router>
 	),

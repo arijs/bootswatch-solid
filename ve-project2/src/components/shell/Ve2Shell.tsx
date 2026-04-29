@@ -11,6 +11,9 @@ import '../../themes/sketchy/ui/alerts/styles.css'
 // Side-effect imports: register globalStyle rules for all badge variants
 import '../../themes/bootstrap/ui/badge/styles.css'
 import '../../themes/sketchy/ui/badge/styles.css'
+// Side-effect imports: register globalStyle rules for breadcrumb
+import '../../themes/bootstrap/ui/breadcrumb/styles.css'
+import '../../themes/sketchy/ui/breadcrumb/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
