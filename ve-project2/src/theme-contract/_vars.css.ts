@@ -144,3 +144,5 @@ export const varBsFocusRingColor = createVar()
 export const varBsEmphasisColor = createVar()           // --bs-emphasis-color
 export const varBsSecondaryColor = createVar()          // --bs-secondary-color
 export const varBsSecondaryBg = createVar()             // --bs-secondary-bg
+export const varBsTertiaryColor = createVar()           // --bs-tertiary-color
+export const varBsTertiaryBg = createVar()              // --bs-tertiary-bg

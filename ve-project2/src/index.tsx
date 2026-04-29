@@ -222,6 +222,7 @@ import ImageTopCard from './components/ui/card/ImageTopCard'
 import ListCard from './components/ui/card/ListCard'
 import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
 import CarouselExample from './components/ui/carousel/CarouselExample'
+import NormalDropdown from './components/ui/dropdowns/NormalDropdown'
 
 render(
 	() => (
@@ -982,6 +983,7 @@ render(
 				<Route path="/ui/card/list-card" component={ListCard} />
 				<Route path="/ui/card-tabs/card-tabs-example" component={CardTabsExample} />
 				<Route path="/ui/carousel/carousel-example" component={CarouselExample} />
+				<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
 			</Route>
 		</Router>
 	),

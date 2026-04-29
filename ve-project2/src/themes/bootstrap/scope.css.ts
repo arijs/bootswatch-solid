@@ -64,6 +64,8 @@ import {
 	varBsEmphasisColor,
 	varBsSecondaryColor,
 	varBsSecondaryBg,
+	varBsTertiaryColor,
+	varBsTertiaryBg,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../theme-contract/_vars.css'
@@ -172,6 +174,8 @@ globalStyle(`${bootstrapScope}${body}`, {
 		[varBsEmphasisColor]: '#000',
 		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
 		[varBsSecondaryBg]: '#e9ecef',
+		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',
+		[varBsTertiaryBg]: '#f8f9fa',
 		// Links
 		[varBsLinkColor]: '#0d6efd',
 		[varBsLinkHoverColor]: '#0a58ca',
