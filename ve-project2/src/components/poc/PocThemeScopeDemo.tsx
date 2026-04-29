@@ -85,11 +85,11 @@ conflicts, unlimited nesting depth.
 
 <h2>1. Bootstrap theme</h2>
 <div style={sectionStyle}>
-<ThemeContext.Provider value={bootstrapScope}>
+<ThemeContext value={bootstrapScope}>
 <ThemedBody>
 <Buttons />
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 
 <h2>2. Sketchy theme</h2>
@@ -98,33 +98,33 @@ Note: Neucha font loads from Google Fonts if available; otherwise a generic curs
 used. The hand-drawn border-radius is always present.
 </p>
 <div style={sectionStyle}>
-<ThemeContext.Provider value={sketchyScope}>
+<ThemeContext value={sketchyScope}>
 <ThemedBody>
 <Buttons />
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 
 <h2>3. Nested — Bootstrap (outer) / Sketchy (inner) ✓</h2>
 <p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-The inner <code>ThemeContext.Provider</code> overrides the outer one. Each button
+The inner <code>ThemeContext</code> overrides the outer one. Each button
 carries the class of the nearest provider — no CSS workaround needed.
 </p>
 <div style={sectionStyle}>
-<ThemeContext.Provider value={bootstrapScope}>
+<ThemeContext value={bootstrapScope}>
 <ThemedBody>
 <p style={labelStyle}>bootstrap (outer)</p>
 <Buttons />
 <div style={{ 'margin-top': '0.75rem' }}>
-<ThemeContext.Provider value={sketchyScope}>
+<ThemeContext value={sketchyScope}>
 <ThemedBody>
 <p style={labelStyle}>sketchy (inner) — Sketchy wins ✓</p>
 <Buttons />
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 
 <h2>4. Nested — Sketchy (outer) / Bootstrap (inner) ✓</h2>
@@ -133,20 +133,20 @@ Reverse nesting works identically — no specificity tricks, no <code>@layer</co
 extra selectors. Element-owned scope eliminates the problem entirely.
 </p>
 <div style={sectionStyle}>
-<ThemeContext.Provider value={sketchyScope}>
+<ThemeContext value={sketchyScope}>
 <ThemedBody>
 <p style={labelStyle}>sketchy (outer)</p>
 <Buttons />
 <div style={{ 'margin-top': '0.75rem' }}>
-<ThemeContext.Provider value={bootstrapScope}>
+<ThemeContext value={bootstrapScope}>
 <ThemedBody>
 <p style={labelStyle}>bootstrap (inner) — Bootstrap wins ✓</p>
 <Buttons />
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 
 <h2>5. Three levels deep — Bootstrap / Sketchy / Bootstrap ✓</h2>
@@ -155,28 +155,28 @@ Unlimited nesting depth: each provider overrides its parent independently. The C
 stylesheet is unchanged — no new selectors are required for each additional depth.
 </p>
 <div style={sectionStyle}>
-<ThemeContext.Provider value={bootstrapScope}>
+<ThemeContext value={bootstrapScope}>
 <ThemedBody>
 <p style={labelStyle}>bootstrap (depth 1)</p>
 <Buttons />
 <div style={{ 'margin-top': '0.75rem' }}>
-<ThemeContext.Provider value={sketchyScope}>
+<ThemeContext value={sketchyScope}>
 <ThemedBody>
 <p style={labelStyle}>sketchy (depth 2)</p>
 <Buttons />
 <div style={{ 'margin-top': '0.75rem' }}>
-<ThemeContext.Provider value={bootstrapScope}>
+<ThemeContext value={bootstrapScope}>
 <ThemedBody>
 <p style={labelStyle}>bootstrap (depth 3) — Bootstrap wins ✓</p>
 <Buttons />
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 </ThemedBody>
-</ThemeContext.Provider>
+</ThemeContext>
 </div>
 
 <h2>Architecture summary</h2>
