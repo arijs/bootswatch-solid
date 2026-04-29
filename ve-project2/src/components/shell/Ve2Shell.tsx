@@ -23,6 +23,9 @@ import '../../themes/sketchy/ui/card/styles.css'
 // Side-effect imports: register globalStyle rules for card-tabs (nav + nav-tabs)
 import '../../themes/bootstrap/ui/card-tabs/styles.css'
 import '../../themes/sketchy/ui/card-tabs/styles.css'
+// Side-effect imports: register globalStyle rules for carousel
+import '../../themes/bootstrap/ui/carousel/styles.css'
+import '../../themes/sketchy/ui/carousel/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
