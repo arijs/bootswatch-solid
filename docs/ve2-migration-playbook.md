@@ -6,6 +6,42 @@ For the full architecture rationale see [`docs/ve-architecture.md`](./ve-archite
 
 ---
 
+## Approach: literal CSS → VE conversion
+
+VE2 mirrors Bootstrap's own CSS structure as closely as possible.  Bootstrap declares CSS custom properties on each element class and then references those properties for actual values:
+
+```css
+/* Bootstrap source */
+.badge {
+  --bs-badge-padding-x: 0.65em;
+  --bs-badge-border-radius: var(--bs-border-radius);
+  padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+  border-radius: var(--bs-badge-border-radius);
+}
+```
+
+VE2 mirrors this using `createVar()` for each custom property, `vars:` inside `globalStyle` to assign values, and the same variable references for property values:
+
+```ts
+// theme-contract/ui/badge/_vars.css.ts
+export const varBsBadgePaddingX = createVar()       // → --bs-badge-padding-x
+export const varBsBadgeBorderRadius = createVar()   // → --bs-badge-border-radius
+
+// themes/bootstrap/ui/badge/styles.css.ts
+globalStyle(`${bootstrapScope}${badge}`, {
+  vars: {
+    [varBsBadgePaddingX]: '0.65em',
+    [varBsBadgeBorderRadius]: varBsBorderRadius,  // references global --bs-border-radius
+  },
+  padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
+  borderRadius: varBsBadgeBorderRadius,
+})
+```
+
+Global `--bs-*` variables (border-radius, colours, etc.) are declared in `theme-contract/_vars.css.ts` and assigned on the `${scope}${body}` element in each theme's `scope.css.ts`.  Because CSS custom properties inherit, every component inside the themed body wrapper automatically has access to them.
+
+---
+
 ## Step 0 — Discover what still needs converting
 
 ```bash
@@ -28,7 +64,9 @@ After converting, re-run the command; the `converted=` count increases by the nu
 
 ---
 
-## Step 1 — Define contract classes
+## Step 1 — Define contract classes and component vars
+
+### 1a — Contract classes
 
 Create `ve-project2/src/theme-contract/ui/{family}/contract.css.ts`:
 
@@ -42,6 +80,24 @@ export const myComponentVariant = style({})
 
 All exports must be `style({})` with **no CSS properties** — purely stable hashed identifiers.
 
+### 1b — Component-level CSS vars
+
+Create `ve-project2/src/theme-contract/ui/{family}/_vars.css.ts` with a `createVar()` for each Bootstrap CSS custom property used by this family.  Use the Bootstrap CSS property name as a guide for the JS identifier:
+
+```ts
+import { createVar } from '@vanilla-extract/css'
+
+// SOURCE CSS:  .my-component { --bs-my-component-padding-x: 1rem; … }
+export const varBsMyComponentPaddingX = createVar()   // --bs-my-component-padding-x
+export const varBsMyComponentPaddingY = createVar()   // --bs-my-component-padding-y
+export const varBsMyComponentBorderRadius = createVar() // --bs-my-component-border-radius
+// …
+```
+
+Naming convention: `varBs` + PascalCase version of the Bootstrap CSS variable name.
+
+> **Global vars**: Common `--bs-*` variables (colours, border radii, border width) are already declared in `ve-project2/src/theme-contract/_vars.css.ts`.  Import from there — do **not** duplicate them per-family.
+
 ---
 
 ## Step 2 — Implement theme styles
@@ -52,23 +108,62 @@ For each supported theme (currently `bootstrap` and `sketchy`), create:
 ve-project2/src/themes/{theme}/ui/{family}/styles.css.ts
 ```
 
+Mirror Bootstrap's CSS literally: first assign the CSS custom properties via `vars:`, then reference them in the property values — exactly as Bootstrap's source CSS does.
+
 ```ts
 import { globalStyle } from '@vanilla-extract/css'
 import { myComponent, myComponentVariant } from '../../../../theme-contract/ui/{family}/contract.css'
+import {
+  varBsMyComponentPaddingX,
+  varBsMyComponentBorderRadius,
+} from '../../../../theme-contract/ui/{family}/_vars.css'
+import { varBsBorderRadius } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
-globalStyle(`${bootstrapScope}${myComponent}`, { /* base styles */ })
-globalStyle(`${bootstrapScope}${myComponentVariant}`, { /* variant styles */ })
+// SOURCE CSS:
+// .my-component {
+//   --bs-my-component-padding-x: 1rem;
+//   --bs-my-component-border-radius: var(--bs-border-radius);
+//   padding: var(--bs-my-component-padding-y) var(--bs-my-component-padding-x);
+//   border-radius: var(--bs-my-component-border-radius);
+// }
+globalStyle(`${bootstrapScope}${myComponent}`, {
+  vars: {
+    [varBsMyComponentPaddingX]: '1rem',
+    [varBsMyComponentBorderRadius]: varBsBorderRadius,  // refs inherited global var
+  },
+  padding: `${varBsMyComponentPaddingY} ${varBsMyComponentPaddingX}`,
+  borderRadius: varBsMyComponentBorderRadius,
+})
+```
+
+For the sketchy theme, only override the vars and properties that differ — everything else follows automatically from the global vars already set on the body element:
+
+```ts
+// themes/sketchy/ui/{family}/styles.css.ts
+import { sketchyScope } from '../../scope.css'
+
+// Sketchy border-radius is 25px (set globally via scope body vars).
+// varBsMyComponentBorderRadius resolves to varBsBorderRadius which the body
+// already set to '25px' — no override needed unless the component value differs.
+globalStyle(`${sketchyScope}${myComponent}`, {
+  vars: {
+    [varBsMyComponentPaddingX]: '1rem',
+    [varBsMyComponentBorderRadius]: varBsBorderRadius,  // inherits sketchy's 25px
+  },
+  padding: `${varBsMyComponentPaddingY} ${varBsMyComponentPaddingX}`,
+  borderRadius: varBsMyComponentBorderRadius,
+})
 ```
 
 ### Sourcing CSS values
 
 | Source | Path |
 |--------|------|
-| Bootstrap 5.3 defaults | `node_modules/bootswatch/dist/{any-theme}/bootstrap.css` — search for the relevant class |
-| Sketchy overrides (SCSS) | `node_modules/bootswatch/dist/sketchy/_bootswatch.scss` |
-| Sketchy compiled values | `node_modules/bootswatch/dist/sketchy/bootstrap.css` — e.g. grep `--bs-primary-bg-subtle` for the light-mode palette |
-| Resolved CSS variable values | `screenshots/{theme}/bootstrap.css` `:root` block — e.g. `--bs-primary-rgb: 13, 110, 253`. Use this when Bootstrap CSS uses `rgba(var(--bs-primary-rgb), ...)` and you need the actual resolved value for a VE `globalStyle` call. |
+| Bootstrap 5.3 component CSS (var names + default values) | `screenshots/bootstrap/bootstrap.css` — search for `.my-component {` to find `--bs-my-component-*` var declarations and the properties that reference them |
+| Sketchy overrides (SCSS source) | `node_modules/bootswatch/dist/sketchy/_bootswatch.scss` |
+| Sketchy compiled CSS | `screenshots/sketchy/bootstrap.css` — grep for the component class to see final resolved values |
+| Global `--bs-*` resolved values | `screenshots/{theme}/bootstrap.css` `:root` block — `--bs-border-radius`, `--bs-primary-rgb`, etc. Cross-reference with `theme-contract/_vars.css.ts` to find the matching `createVar()` identifier |
 
 ---
 
@@ -111,6 +206,8 @@ Theme style files live at `ve-project2/src/themes/{theme}/ui/{family}/`, so rela
 
 ```ts
 import { myContract } from '../../../../theme-contract/ui/{family}/contract.css'
+import { myVars }     from '../../../../theme-contract/ui/{family}/_vars.css'
+import { varBsBorderRadius } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 ```
 
@@ -164,12 +261,14 @@ The `converted=` number should increase by exactly the count of routes you added
 | Wrong import depth in theme files | Theme style files are 4 levels deep (`themes/{theme}/ui/{family}/`). Use `../../../../` for theme-contract and `../../` for scope. |
 | `.css` vs `.css.ts` in side-effect imports | Always use `.css` extension in `import '…/styles.css'` statements. |
 | `bd-example-ve2` vs `bd-example` | VE2 components use `bd-example-ve2` (defined in `ve-project2/src/styles/bd-example.css`). The original source uses `bd-example`. |
+| Don't duplicate global `--bs-*` vars per-family | Global vars (`--bs-border-radius`, `--bs-primary`, etc.) are already in `theme-contract/_vars.css.ts` and assigned on the body element in each `scope.css.ts`. Import them directly — don't re-declare in `_vars.css.ts` files. |
+| `rgba()` with rgb-triple vars | Bootstrap writes `rgba(var(--bs-primary-rgb), 0.5)` — in VE2 write `rgba(${varBsPrimaryRgb}, 0.5)` as a template string. The `createVar()` reference resolves to the hashed property name, which carries the inherited `13, 110, 253` value from the body element. |
+| `varBsBorderRadius` resolves differently per theme | `varBsBorderRadius` is `0.375rem` in bootstrap and `25px` in sketchy (set on the body element). Component vars that reference it (`[varBsBadgeBorderRadius]: varBsBorderRadius`) automatically pick up the per-theme value — no separate sketchy override needed for border-radius unless the component uses a *different* radius than the global default. |
 | Sketchy close button | Sketchy replaces the SVG close-button background with a `::before { content: "X" }` pseudo-element. See `node_modules/bootswatch/dist/sketchy/_bootswatch.scss`. |
-| Sketchy border-radius | Alerts, cards, and other shaped elements use `$border-radius-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px` (defined in `_bootswatch.scss`). |
+| Sketchy border-radius for special shapes | Some components (alerts, cards) use a distinctive hand-drawn shape: `$border-radius-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px` (defined in `_bootswatch.scss`). This overrides the global `varBsBorderRadius` at the component level. |
 | Utility classes must be absorbed into contract classes | The original HTML uses Bootstrap utility classes directly (`bg-primary`, `text-dark`, `rounded-pill`, etc.). In VE2 these have no effect — absorb their values into the appropriate contract variant class (e.g. `badgePrimary` encodes both background-color and the default white text; `badgeWarning` overrides `color` to `#000`; `badgeRoundedPill` sets the pill `border-radius`). |
 | `@screenshot` annotations — use the original's full list | The original source file (`src/components/…`) contains per-theme height overrides (e.g. `// @screenshot sketchy: 360x303 303`). Copy those annotations verbatim into the VE2 component so the screenshot harness captures the correct crop size per theme. Omitting them causes the wildcard `*` fallback to be used for all themes, which may cut off content in themes with larger spacing. |
 | `<p class="h1">` vs actual `<h1>` | The original uses Bootstrap typography utility classes (`.h1`–`.h6` on `<p>`) to mimic heading sizes. VE2 components should use real `<h1>`–`<h6>` elements instead — the browser's default UA stylesheet provides the same relative sizing without needing extra contract classes. |
-| Resolving `rgba(var(--bs-…-rgb), …)` to hard-coded values | `globalStyle` values must be static strings, so CSS custom-property expressions cannot be used directly. Resolve `--bs-primary-rgb` etc. from `screenshots/{theme}/bootstrap.css` (`:root` block near the top) and write the final hex or `rgb()` value in the VE2 style file. |
 
 ---
 

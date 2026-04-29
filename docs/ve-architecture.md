@@ -208,7 +208,7 @@ ve-project2/src/
 1. **Scope and contract classes must be empty `style({})`** — no CSS properties embedded.
 2. **All styling goes through `globalStyle(scope + contract, props)`** — compound selector with no space.
 3. **No global element selectors** (`body`, `button`, `h1`, etc.).
-4. **No `createVar()` or CSS custom properties** needed for basic component styling in this model.
+4. **Use `createVar()` and `vars:` to mirror Bootstrap's CSS custom-property structure.** Component-level vars (`--bs-badge-padding-x`, etc.) live in `theme-contract/ui/{family}/_vars.css.ts`. Global vars (`--bs-border-radius`, `--bs-primary`, etc.) live in `theme-contract/_vars.css.ts` and are assigned on the `${scope}${body}` element so all descendants inherit them via CSS cascade.
 5. **Every styled element carries both the scope class and its contract class(es).**
 6. **Body/text styles use `body`/`bodyText` contract classes**, not the scope class directly.
 7. **Only these static class names are allowed in component markup:** `bd-example-ve2`, `pwhook-*` screenshot hooks. All other styling comes from VE imports.
@@ -222,7 +222,7 @@ ve-project2/src/
 Use this checklist for every new component family (e.g. inputs, badges, modals).
 For a compact, action-oriented version with gotcha notes see [`docs/ve2-migration-playbook.md`](./ve2-migration-playbook.md).
 
-### 1. Define contract classes
+### 1. Define contract classes and component vars
 
 Create `ve-project2/src/theme-contract/ui/{family}/contract.css.ts`:
 
@@ -236,17 +236,48 @@ export const myComponentVariant = style({})
 
 All exports must be `style({})` — no properties.
 
+Create `ve-project2/src/theme-contract/ui/{family}/_vars.css.ts` with a `createVar()` for each Bootstrap CSS custom property used by this family:
+
+```ts
+import { createVar } from '@vanilla-extract/css'
+
+// Mirror Bootstrap: .my-component { --bs-my-component-padding-x: 1rem; … }
+export const varBsMyComponentPaddingX = createVar()
+export const varBsMyComponentBorderRadius = createVar()
+// …
+```
+
+Global `--bs-*` variables are in `theme-contract/_vars.css.ts` — import from there, do not re-declare.
+
 ### 2. Implement theme rules
 
-For each theme that implements the family, create `ve-project2/src/themes/{theme}/ui/{family}/styles.css.ts`:
+For each theme that implements the family, create `ve-project2/src/themes/{theme}/ui/{family}/styles.css.ts`.
+
+Mirror Bootstrap's CSS literally: declare component vars via `vars:`, then reference them as property values — exactly as Bootstrap's source CSS does:
 
 ```ts
 import { globalStyle } from '@vanilla-extract/css'
 import { myComponent, myComponentVariant } from '../../../../theme-contract/ui/{family}/contract.css'
+import { varBsMyComponentPaddingX, varBsMyComponentBorderRadius } from '../../../../theme-contract/ui/{family}/_vars.css'
+import { varBsBorderRadius } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
-globalStyle(`${bootstrapScope}${myComponent}`, { /* base styles */ })
-globalStyle(`${bootstrapScope}${myComponentVariant}`, { /* variant styles */ })
+// SOURCE CSS:
+// .my-component {
+//   --bs-my-component-padding-x: 1rem;
+//   --bs-my-component-border-radius: var(--bs-border-radius);
+//   padding: … var(--bs-my-component-padding-x);
+//   border-radius: var(--bs-my-component-border-radius);
+// }
+globalStyle(`${bootstrapScope}${myComponent}`, {
+  vars: {
+    [varBsMyComponentPaddingX]: '1rem',
+    [varBsMyComponentBorderRadius]: varBsBorderRadius,  // refs inherited global var
+  },
+  padding: `… ${varBsMyComponentPaddingX}`,
+  borderRadius: varBsMyComponentBorderRadius,
+})
+globalStyle(`${bootstrapScope}${myComponentVariant}`, { /* variant vars + styles */ })
 ```
 
 Import the styles file as a **side-effect import** in the component or shell that uses it:
