@@ -26,6 +26,11 @@ import { sketchyScopeL } from '../../themes/sketchy/scope.layer.css'
 import '../../themes/bootstrap/ui/buttons/styles.css'
 import '../../themes/sketchy/ui/buttons/styles.css'
 
+// Specificity-based reverse-nesting fix for section 4b (no @layer required).
+// Must be imported after both single-scope stylesheets so the two-scope selector
+// (.sketchyScope .bootstrapScope .btn, specificity 0-3-0) overrides them.
+import '../../themes/bootstrap/ui/buttons/styles-scope-nested.css'
+
 // @layer-based styles for section 5.
 // Import order establishes layer priority: bootstrap < sketchy < nestedBootstrap.
 import '../../themes/bootstrap/ui/buttons/styles-layer.css'
@@ -113,8 +118,8 @@ const PocThemeScopeDemo: Component = () => (
 		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
 			⚠ With equal CSS specificity and Sketchy styles defined <em>last</em> in the stylesheet,
 			Sketchy wins for all buttons regardless of nesting direction. The inner Bootstrap row
-			below still shows Sketchy styling. Section 5 below shows how <code>@layer</code> fixes
-			this.
+			below still shows Sketchy styling. Section 4b (below) shows a specificity-only fix;
+			section 5 shows an <code>@layer</code>-based alternative.
 		</p>
 		<div style={sectionStyle}>
 			<div class={sketchyScope}>
@@ -126,6 +131,65 @@ const PocThemeScopeDemo: Component = () => (
 					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
 						bootstrap scope (inner — currently styled as Sketchy due to equal
 						specificity)
+					</p>
+					<Buttons />
+				</div>
+			</div>
+		</div>
+
+		<h2>4b. Specificity fix — Reverse nesting solved without @layer</h2>
+		<p>
+			A two-ancestor-scope selector <code>.sketchyScope .bootstrapScope .btn</code> carries{' '}
+			<strong>3 class selectors</strong> (specificity 0-3-0), which naturally beats any
+			single-scope rule (0-2-0). Adding this override to the stylesheet — imported after the
+			single-scope styles — is enough to make inner Bootstrap win over outer Sketchy, with no{' '}
+			<code>@layer</code> or runtime logic required.
+		</p>
+		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
+			Note: this approach uses the same <code>bootstrapScope</code> /{' '}
+			<code>sketchyScope</code> classes as sections 1–4 (no separate hashed variants needed).
+		</p>
+
+		<h3 style={{ 'margin-bottom': '0.25rem' }}>
+			4b-i. Bootstrap outer + Sketchy inner (still works ✓)
+		</h3>
+		<p style={{ 'font-size': '0.875rem', color: '#6c757d', 'margin-top': 0 }}>
+			<code>.bootstrapScope .sketchyScope .btn</code> (0-3-0) doesn't exist, but{' '}
+			<code>.sketchyScope .btn</code> (0-2-0, defined last) still beats{' '}
+			<code>.bootstrapScope .btn</code> (0-2-0, defined first) → Sketchy wins ✓
+		</p>
+		<div style={sectionStyle}>
+			<div class={bootstrapScope}>
+				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
+					bootstrapScope (outer)
+				</p>
+				<Buttons />
+				<div class={sketchyScope} style={{ 'margin-top': '0.75rem' }}>
+					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
+						sketchyScope (inner) — Sketchy wins ✓
+					</p>
+					<Buttons />
+				</div>
+			</div>
+		</div>
+
+		<h3 style={{ 'margin-bottom': '0.25rem' }}>
+			4b-ii. Sketchy outer + Bootstrap inner (now works ✓)
+		</h3>
+		<p style={{ 'font-size': '0.875rem', color: '#6c757d', 'margin-top': 0 }}>
+			<code>.sketchyScope .bootstrapScope .btn</code> (0-3-0) beats both{' '}
+			<code>.sketchyScope .btn</code> and <code>.bootstrapScope .btn</code> (0-2-0 each) →
+			Bootstrap wins ✓
+		</p>
+		<div style={sectionStyle}>
+			<div class={sketchyScope}>
+				<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
+					sketchyScope (outer)
+				</p>
+				<Buttons />
+				<div class={bootstrapScope} style={{ 'margin-top': '0.75rem' }}>
+					<p style={{ margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }}>
+						bootstrapScope (inner) — Bootstrap wins ✓ (specificity fix)
 					</p>
 					<Buttons />
 				</div>
