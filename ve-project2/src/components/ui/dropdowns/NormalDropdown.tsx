@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	dropdown,
 	dropdownDivider,
@@ -16,7 +17,7 @@ const NormalDropdown: Component = () => {
 		<div class="bd-example-ve2">
 			<div class={`${theme} ${dropdown}`}>
 				<button
-					class={`btn btn-secondary ${theme} ${dropdownToggle}`}
+					class={`${theme} ${btn} ${btnSecondary} ${dropdownToggle}`}
 					type="button"
 					aria-expanded="false"
 				>
