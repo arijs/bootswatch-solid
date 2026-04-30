@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import { btnGroup } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnDanger } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -15,14 +16,13 @@ import {
 	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
-import { vars } from '../../../theme-contract/theme-contract.css'
-
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 const SplitDangerDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	configureVeDropdown({ btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropend, dropstart, dropup })
 	return (
-		<div class="bd-example-ve2">
-			<div class={`${theme} ${vars} ${btnGroup}`}>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<div class={`${theme} ${btnGroup}`}>
 				<button type="button" class={`${theme} ${btn} ${btnDanger}`}>
 					Danger
 				</button>
@@ -32,7 +32,7 @@ const SplitDangerDropdown: Component = () => {
 					data-bs-toggle="dropdown"
 					aria-expanded="false"
 				>
-					<span class="visually-hidden">Toggle Dropdown</span>
+					<span class={visuallyHidden}>Toggle Dropdown</span>
 				</button>
 				<ul class={`${theme} ${dropdownMenu} pwhook-dropdown-menu`}>
 					<li>

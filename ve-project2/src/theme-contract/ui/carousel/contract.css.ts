@@ -37,6 +37,16 @@ export const carouselIndicatorActive = style({})
 
 export const carouselCaption = style({})
 
+/** Hides caption below md breakpoint (matches Bootstrap's d-none d-md-block). */
+export const carouselCaptionResponsive = style({
+	display: 'none !important' as 'none',
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'block !important' as 'block',
+		},
+	},
+})
+
 // ── Dark variant ──────────────────────────────────────────────────────────────
 
 export const carouselDark = style({})

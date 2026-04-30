@@ -1,7 +1,7 @@
-import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	breadcrumb,
 	breadcrumbItem,
@@ -12,9 +12,9 @@ const BreadcrumbExample: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-		<div class="bd-example-ve2">
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<nav aria-label="breadcrumb">
-				<ol class={`${theme} ${vars} ${breadcrumb}`}>
+				<ol class={`${theme} ${breadcrumb}`}>
 					<li class={breadcrumbItem}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a href="#" onClick={(e) => e.preventDefault()}>

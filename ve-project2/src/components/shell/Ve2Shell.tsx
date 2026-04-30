@@ -33,7 +33,7 @@ import '../../themes/sketchy/ui/dropdowns/styles.css'
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
 // Root-level contract classes: body wrapper + text-bearing root.
-import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { bodyText, vars } from '../../theme-contract/theme-contract.css'
 
 function resolveThemeClass(rawTheme: string | null | undefined): string {
 	switch (rawTheme) {
@@ -55,8 +55,8 @@ export function Ve2Shell(props: { children: JSX.Element }) {
 		return resolveThemeClass(params.get('theme'))
 	}
 	return (
-		<ThemeContext.Provider value={themeClass()}>
-			<div class={`${themeClass()} ${vars} ${body} ${bodyText}`}>{props.children}</div>
-		</ThemeContext.Provider>
+		<ThemeContext value={themeClass()}>
+			<div class={`${themeClass()} ${vars} ${bodyText}`}>{props.children}</div>
+		</ThemeContext>
 	)
 }

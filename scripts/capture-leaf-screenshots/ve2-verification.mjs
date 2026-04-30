@@ -89,7 +89,7 @@ export async function verifyScenarioVe2Rendering({
 	const page = await context.newPage()
 
 	try {
-		const ve2Url = `${VE2_BASE_URL}${route}`
+		const ve2Url = `${VE2_BASE_URL}${route}?theme=${themeSlug}`
 		await page.goto(ve2Url, { waitUntil: 'load', timeout: 60000 })
 		await delay(150)
 		const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({

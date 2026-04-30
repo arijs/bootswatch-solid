@@ -2,14 +2,13 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../context/ThemeContext'
 import { btn, btnWarning } from '../../../../theme-contract/ui/buttons/contract.css'
-import { vars } from '../../../../theme-contract/theme-contract.css'
-
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 const SolidWarningButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-		<div class="bd-example-ve2">
-			<button type="button" class={`${theme} ${vars} ${btn} ${btnWarning} pwhook-btn`}>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<button type="button" class={`${theme} ${btn} ${btnWarning} pwhook-btn`}>
 				Warning
 			</button>
 		</div>

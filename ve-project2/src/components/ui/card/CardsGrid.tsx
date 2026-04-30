@@ -6,11 +6,11 @@ import FeaturedCard from './FeaturedCard'
 import HorizontalCard from './HorizontalCard'
 import ImageTopCard from './ImageTopCard'
 import ListCard from './ListCard'
-
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 const CardsGrid: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
-		<div class="bd-example-ve2">
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<div class={cardsGrid}>
 				<div>
 					<ImageTopCard />

@@ -2,14 +2,13 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { alert, alertHeading, alertSuccess } from '../../../theme-contract/ui/alerts/contract.css'
-import { vars } from '../../../theme-contract/theme-contract.css'
-
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 const HeadingAlert: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-		<div class="bd-example-ve2">
-			<div class={`${theme} ${vars} ${alert} ${alertSuccess}`}>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<div class={`${theme} ${alert} ${alertSuccess}`}>
 				<h4 class={alertHeading}>Well done!</h4>
 				<p>
 					Aww yeah, you successfully read this important alert message. This example text

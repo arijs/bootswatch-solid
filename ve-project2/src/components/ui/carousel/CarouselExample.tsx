@@ -1,10 +1,12 @@
 import type { Component } from 'solid-js'
 import { onSettled, useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import {
 	carousel,
 	carouselActive,
 	carouselCaption,
+	carouselCaptionResponsive,
 	carouselControlNext,
 	carouselControlNextIcon,
 	carouselControlPrev,
@@ -19,7 +21,7 @@ import {
 	carouselSlide,
 } from '../../../theme-contract/ui/carousel/contract.css'
 import { configureVeCarousel } from './ve-carousel'
-import { vars } from '../../../theme-contract/theme-contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 
 const CarouselExample: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -42,11 +44,11 @@ const CarouselExample: Component = () => {
 	})
 
 	return (
-		<div class="bd-example-ve2">
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<div
 				ref={carouselRef}
 				id="carouselExampleCaptionsVe2"
-				class={`${theme} ${vars} ${carousel} ${carouselSlide} pwhook-carousel`}
+				class={`${theme} ${carousel} ${carouselSlide} pwhook-carousel`}
 				data-bs-ride="carousel"
 			>
 				<div class={`${theme} ${carouselIndicators}`}>
@@ -91,7 +93,7 @@ const CarouselExample: Component = () => {
 								First slide
 							</text>
 						</svg>
-						<div class={`${theme} ${carouselCaption}`}>
+							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
 							<h5>First slide label</h5>
 							<p>Some representative placeholder content for the first slide.</p>
 						</div>
@@ -113,7 +115,7 @@ const CarouselExample: Component = () => {
 								Second slide
 							</text>
 						</svg>
-						<div class={`${theme} ${carouselCaption}`}>
+							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
 							<h5>Second slide label</h5>
 							<p>Some representative placeholder content for the second slide.</p>
 						</div>
@@ -135,7 +137,7 @@ const CarouselExample: Component = () => {
 								Third slide
 							</text>
 						</svg>
-						<div class={`${theme} ${carouselCaption}`}>
+							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
 							<h5>Third slide label</h5>
 							<p>Some representative placeholder content for the third slide.</p>
 						</div>
@@ -148,7 +150,7 @@ const CarouselExample: Component = () => {
 					data-bs-slide="prev"
 				>
 					<span class={`${theme} ${carouselControlPrevIcon}`} aria-hidden="true" />
-					<span class="visually-hidden">Previous</span>
+					<span class={visuallyHidden}>Previous</span>
 				</button>
 				<button
 					class={`${theme} ${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
@@ -157,7 +159,7 @@ const CarouselExample: Component = () => {
 					data-bs-slide="next"
 				>
 					<span class={`${theme} ${carouselControlNextIcon}`} aria-hidden="true" />
-					<span class="visually-hidden">Next</span>
+					<span class={visuallyHidden}>Next</span>
 				</button>
 			</div>
 		</div>

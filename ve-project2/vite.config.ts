@@ -6,6 +6,7 @@ export default defineConfig({
 	plugins: [solidPlugin(), vanillaExtractPlugin()],
 	build: {
 		target: 'esnext',
+		sourcemap: true,
 		modulePreload: {
 			polyfill: false,
 		},

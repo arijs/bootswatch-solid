@@ -16,14 +16,13 @@ import {
 	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
-import { vars } from '../../../theme-contract/theme-contract.css'
-
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 const LargeDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	configureVeDropdown({ btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropend, dropstart, dropup })
 	return (
-		<div class="bd-example-ve2">
-			<div class={`${theme} ${vars} ${dropdown}`}>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<div class={`${theme} ${dropdown}`}>
 				<button
 					class={`${theme} ${btn} ${btnSecondary} ${btnLg} ${dropdownToggle} pwhook-dropdown-toggle`}
 					type="button"

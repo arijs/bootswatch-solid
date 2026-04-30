@@ -1,7 +1,7 @@
-import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	badge,
 	badgeDanger,
@@ -18,9 +18,9 @@ const HeadingBadges: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-		<div class="bd-example-ve2">
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<h1>
-				Example heading <span class={`${theme} ${vars} ${badge} ${badgePrimary}`}>New</span>
+				Example heading <span class={`${theme} ${badge} ${badgePrimary}`}>New</span>
 			</h1>
 			<h2>
 				Example heading <span class={`${theme} ${badge} ${badgeSecondary}`}>New</span>

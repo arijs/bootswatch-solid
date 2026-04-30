@@ -1,10 +1,12 @@
+/* Global CSS reset — matches ve-project/src/reset.css */
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 /* Layout container for ve-project2 screenshot demos.
-   Provides white background, padding, and inline display so screenshots
-   capture just the component with minimal surrounding space. */
+   Keep neutral; per-component gutters should come from VE classes (e.g. containerFluid). */
 .bd-example-ve2 {
-	padding: 1rem;
-	border: 1px solid #dee2e6;
-	border-radius: 0.25rem;
-	background-color: #fff;
-	display: inline-block;
+	display: block;
 }

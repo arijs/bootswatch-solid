@@ -1,7 +1,7 @@
-import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	badge,
 	badgeDanger,
@@ -19,8 +19,8 @@ const PillBadges: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-		<div class="bd-example-ve2">
-			<span class={`${theme} ${vars} ${badge} ${badgeRoundedPill} ${badgePrimary}`}>Primary</span>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgePrimary}`}>Primary</span>
 			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeSecondary}`}>Secondary</span>
 			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeSuccess}`}>Success</span>
 			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeDanger}`}>Danger</span>

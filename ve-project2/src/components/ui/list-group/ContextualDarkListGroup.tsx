@@ -1,7 +1,7 @@
-import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	listGroup,
 	listGroupItem,
@@ -12,8 +12,8 @@ import {
 const ContextualDarkListGroup: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
-		<div class="bd-example-ve2">
-			<div class={`${theme} ${vars} ${listGroup}`}>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<div class={`${theme} ${listGroup}`}>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
 				<a
 					href="#"

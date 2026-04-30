@@ -8,3 +8,12 @@ export const btnToolbar = style({})
 
 // A group of buttons that appear fused together
 export const btnGroup = style({})
+
+// Button inside .btn-group (used for adjacency/stacking selectors)
+export const btnGroupButton = style({})
+
+// Interactive behavior hooks for grouped buttons (:hover/:focus/:active)
+export const btnGroupInteractive = style({})
+
+// Bootstrap spacing utility equivalent to .me-2
+export const marginEnd2 = style({})

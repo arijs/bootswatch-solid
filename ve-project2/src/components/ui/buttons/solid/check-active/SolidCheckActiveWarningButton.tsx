@@ -1,7 +1,7 @@
-import { vars } from '../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
+import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import {
 	btn,
 	btnActiveHook,
@@ -12,10 +12,10 @@ const SolidCheckActiveWarningButton: Component = () => {
 	const theme = useContext(ThemeContext)
 
 	return (
-		<div class="bd-example-ve2">
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${vars} ${btn} ${btnWarning} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnWarning} ${btnActiveHook} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

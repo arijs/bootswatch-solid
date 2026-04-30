@@ -1,10 +1,16 @@
 import { globalStyle } from '@vanilla-extract/css'
-import { btnGroup, btnToolbar } from '../../../../theme-contract/ui/button-group/contract.css'
+import {
+	btnGroup,
+	btnGroupButton,
+	btnGroupInteractive,
+	btnToolbar,
+	marginEnd2,
+} from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	varBsBtnGroupBorderRadius,
 	varBsBtnGroupBorderWidth,
 } from '../../../../theme-contract/ui/button-group/_vars.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnActiveHook, btnCheck } from '../../../../theme-contract/ui/buttons/contract.css'
 import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
@@ -31,20 +37,31 @@ globalStyle(`${bootstrapScope}${btnGroup}`, {
 	position: 'relative',
 	display: 'inline-flex',
 	verticalAlign: 'middle',
+	minWidth: 0,
+	padding: 0,
+	margin: 0,
+	border: 0,
 	borderRadius: varBsBtnGroupBorderRadius,
 })
 
 // ── Buttons inside a group ────────────────────────────────────────────────────
 
-globalStyle(`${bootstrapScope}${btnGroup} > ${btn}`, {
+globalStyle(`${bootstrapScope}${btnGroupButton}`, {
 	position: 'relative',
 	flex: '1 1 auto',
 })
 
+globalStyle(`${bootstrapScope}${marginEnd2}`, {
+	marginRight: '0.5rem !important',
+})
+
 globalStyle(
-	`${bootstrapScope}${btnGroup} > ${btn}:hover,` +
-		`${bootstrapScope}${btnGroup} > ${btn}:focus,` +
-		`${bootstrapScope}${btnGroup} > ${btn}:active`,
+	`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btnGroupInteractive},` +
+		`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnCheck}:focus + ${bootstrapScope}${btnGroupInteractive},` +
+		`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:hover,` +
+		`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:focus,` +
+		`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:active,` +
+		`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}${btnActiveHook}`,
 	{
 		zIndex: 1,
 	},
@@ -52,6 +69,31 @@ globalStyle(
 
 // SOURCE CSS:
 // .btn-group > :not(.btn-check:first-child) + .btn { margin-left: calc(-1 * var(--bs-border-width)); }
+globalStyle(
+	`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupButton} + ${bootstrapScope}${btnGroupInteractive}`,
+	{
+		marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
+	},
+)
+
+// Remove right radius from all buttons except the last
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:not(:last-child)`, {
+	borderTopRightRadius: 0,
+	borderBottomRightRadius: 0,
+})
+
+// Remove left radius from all buttons except the first
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:not(:first-child)`, {
+	borderTopLeftRadius: 0,
+	borderBottomLeftRadius: 0,
+})
+
+// Keep base .btn children grouped even if component omits utility classes.
+globalStyle(`${bootstrapScope}${btnGroup} > ${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
 globalStyle(`${bootstrapScope}${btnGroup} > ${btn} + ${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
 })
