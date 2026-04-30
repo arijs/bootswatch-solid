@@ -1,6 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	carousel,
+	carouselActive,
 	carouselCaption,
 	carouselControlNext,
 	carouselControlNextIcon,
@@ -8,11 +9,9 @@ import {
 	carouselControlPrevIcon,
 	carouselDark,
 	carouselFade,
-	carouselIndicatorActive,
 	carouselIndicators,
 	carouselInner,
 	carouselItem,
-	carouselItemActive,
 	carouselItemEnd,
 	carouselItemNext,
 	carouselItemPrev,
@@ -91,7 +90,7 @@ globalStyle(`${bootstrapScope}${carouselItem}`, {
 // SOURCE CSS:
 // .carousel-item.active, .carousel-item-next, .carousel-item-prev { display: block; }
 globalStyle(
-	`${bootstrapScope}${carouselItem}${carouselItemActive}, ${bootstrapScope}${carouselItemNext}, ${bootstrapScope}${carouselItemPrev}`,
+	`${bootstrapScope}${carouselItem}${carouselActive}, ${bootstrapScope}${carouselItemNext}, ${bootstrapScope}${carouselItemPrev}`,
 	{ display: 'block' },
 )
 
@@ -99,7 +98,7 @@ globalStyle(
 // .carousel-item-next:not(.carousel-item-start), .active.carousel-item-end {
 //   transform: translateX(100%); }
 globalStyle(
-	`${bootstrapScope}${carouselItemNext}:not(${carouselItemStart}), ${bootstrapScope}${carouselItemActive}${carouselItemEnd}`,
+	`${bootstrapScope}${carouselItemNext}:not(${carouselItemStart}), ${bootstrapScope}${carouselActive}${carouselItemEnd}`,
 	{ transform: 'translateX(100%)' },
 )
 
@@ -107,7 +106,7 @@ globalStyle(
 // .carousel-item-prev:not(.carousel-item-end), .active.carousel-item-start {
 //   transform: translateX(-100%); }
 globalStyle(
-	`${bootstrapScope}${carouselItemPrev}:not(${carouselItemEnd}), ${bootstrapScope}${carouselItemActive}${carouselItemStart}`,
+	`${bootstrapScope}${carouselItemPrev}:not(${carouselItemEnd}), ${bootstrapScope}${carouselActive}${carouselItemStart}`,
 	{ transform: 'translateX(-100%)' },
 )
 
@@ -127,7 +126,7 @@ globalStyle(`${bootstrapScope}${carouselFade} ${carouselItem}`, {
 // .carousel-fade .carousel-item-prev.carousel-item-end { z-index: 1; opacity: 1; }
 globalStyle(
 	[
-		`${bootstrapScope}${carouselFade} ${carouselItem}${carouselItemActive}`,
+		`${bootstrapScope}${carouselFade} ${carouselItem}${carouselActive}`,
 		`${bootstrapScope}${carouselFade} ${carouselItemNext}${carouselItemStart}`,
 		`${bootstrapScope}${carouselFade} ${carouselItemPrev}${carouselItemEnd}`,
 	].join(', '),
@@ -139,8 +138,8 @@ globalStyle(
 //   z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
 globalStyle(
 	[
-		`${bootstrapScope}${carouselFade} ${carouselItemActive}${carouselItemStart}`,
-		`${bootstrapScope}${carouselFade} ${carouselItemActive}${carouselItemEnd}`,
+		`${bootstrapScope}${carouselFade} ${carouselActive}${carouselItemStart}`,
+		`${bootstrapScope}${carouselFade} ${carouselActive}${carouselItemEnd}`,
 	].join(', '),
 	{ zIndex: 0, opacity: 0, transition: 'opacity 0s 0.6s' },
 )
@@ -275,7 +274,7 @@ globalStyle(`${bootstrapScope}${carouselIndicators} [data-bs-target]`, {
 })
 
 // SOURCE CSS: .carousel-indicators .active { opacity: 1; }
-globalStyle(`${bootstrapScope}${carouselIndicators} ${carouselIndicatorActive}`, {
+globalStyle(`${bootstrapScope}${carouselIndicators} ${carouselActive}`, {
 	opacity: 1,
 })
 

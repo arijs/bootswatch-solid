@@ -1,38 +1,79 @@
 import type { Component } from 'solid-js'
-import { useContext } from 'solid-js'
+import { onSettled, useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import {
 	carousel,
+	carouselActive,
 	carouselCaption,
 	carouselControlNext,
 	carouselControlNextIcon,
 	carouselControlPrev,
 	carouselControlPrevIcon,
-	carouselIndicatorActive,
 	carouselIndicators,
 	carouselInner,
 	carouselItem,
-	carouselItemActive,
+	carouselItemEnd,
+	carouselItemNext,
+	carouselItemPrev,
+	carouselItemStart,
 	carouselSlide,
 } from '../../../theme-contract/ui/carousel/contract.css'
+import { configureVeCarousel } from './ve-carousel'
 
 const CarouselExample: Component = () => {
 	const theme = useContext(ThemeContext)
+	const VeCarousel = configureVeCarousel({
+		carousel,
+		carouselActive,
+		carouselIndicators,
+		carouselItem,
+		carouselItemEnd,
+		carouselItemNext,
+		carouselItemPrev,
+		carouselItemStart,
+		carouselSlide,
+	})
+	let carouselRef: HTMLDivElement | undefined
+	onSettled(() => {
+		if (carouselRef) {
+			VeCarousel.getOrCreateInstance(carouselRef)
+		}
+	})
+
 	return (
 		<div class="bd-example-ve2">
-			<div class={`${theme} ${carousel} ${carouselSlide}`}>
+			<div
+				ref={carouselRef}
+				id="carouselExampleCaptionsVe2"
+				class={`${theme} ${carousel} ${carouselSlide} pwhook-carousel`}
+				data-bs-ride="carousel"
+			>
 				<div class={`${theme} ${carouselIndicators}`}>
 					<button
 						type="button"
-						class={`${theme} ${carouselIndicatorActive}`}
+						data-bs-target="#carouselExampleCaptionsVe2"
+						data-bs-slide-to="0"
+						class={`${theme} ${carouselActive} pwhook-carousel-indicator pwhook-carousel-active`}
 						aria-current="true"
 						aria-label="Slide 1"
 					/>
-					<button type="button" aria-label="Slide 2" />
-					<button type="button" aria-label="Slide 3" />
+					<button
+						type="button"
+						data-bs-target="#carouselExampleCaptionsVe2"
+						data-bs-slide-to="1"
+						class={`${theme} pwhook-carousel-indicator`}
+						aria-label="Slide 2"
+					/>
+					<button
+						type="button"
+						data-bs-target="#carouselExampleCaptionsVe2"
+						data-bs-slide-to="2"
+						class={`${theme} pwhook-carousel-indicator`}
+						aria-label="Slide 3"
+					/>
 				</div>
 				<div class={`${theme} ${carouselInner}`}>
-					<div class={`${theme} ${carouselItem} ${carouselItemActive}`}>
+					<div class={`${theme} ${carouselItem} ${carouselActive} pwhook-carousel-item pwhook-carousel-active`}>
 						<svg
 							class="d-block w-100"
 							style={{ display: 'block', width: '100%' }}
@@ -54,7 +95,7 @@ const CarouselExample: Component = () => {
 							<p>Some representative placeholder content for the first slide.</p>
 						</div>
 					</div>
-					<div class={`${theme} ${carouselItem}`}>
+					<div class={`${theme} ${carouselItem} pwhook-carousel-item`}>
 						<svg
 							class="d-block w-100"
 							style={{ display: 'block', width: '100%' }}
@@ -76,7 +117,7 @@ const CarouselExample: Component = () => {
 							<p>Some representative placeholder content for the second slide.</p>
 						</div>
 					</div>
-					<div class={`${theme} ${carouselItem}`}>
+					<div class={`${theme} ${carouselItem} pwhook-carousel-item`}>
 						<svg
 							class="d-block w-100"
 							style={{ display: 'block', width: '100%' }}
@@ -100,17 +141,19 @@ const CarouselExample: Component = () => {
 					</div>
 				</div>
 				<button
-					class={`${theme} ${carouselControlPrev}`}
+					class={`${theme} ${carouselControlPrev} pwhook-carousel-control pwhook-carousel-control-prev`}
 					type="button"
-					aria-label="Previous"
+					data-bs-target="#carouselExampleCaptionsVe2"
+					data-bs-slide="prev"
 				>
 					<span class={`${theme} ${carouselControlPrevIcon}`} aria-hidden="true" />
 					<span class="visually-hidden">Previous</span>
 				</button>
 				<button
-					class={`${theme} ${carouselControlNext}`}
+					class={`${theme} ${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
 					type="button"
-					aria-label="Next"
+					data-bs-target="#carouselExampleCaptionsVe2"
+					data-bs-slide="next"
 				>
 					<span class={`${theme} ${carouselControlNextIcon}`} aria-hidden="true" />
 					<span class="visually-hidden">Next</span>

@@ -3,29 +3,37 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { btn, btnLg, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
+	btnShowHook,
 	dropdown,
 	dropdownDivider,
 	dropdownHeader,
 	dropdownItem,
 	dropdownMenu,
+	dropdownMenuShow,
 	dropdownToggle,
+	dropend,
+	dropstart,
+	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
+import { configureVeDropdown } from './ve-dropdown'
 
 const LargeDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
+	configureVeDropdown({ btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropend, dropstart, dropup })
 	return (
 		<div class="bd-example-ve2">
 			<div class={`${theme} ${dropdown}`}>
 				<button
-					class={`${theme} ${btn} ${btnSecondary} ${btnLg} ${dropdownToggle}`}
+					class={`${theme} ${btn} ${btnSecondary} ${btnLg} ${dropdownToggle} pwhook-dropdown-toggle`}
 					type="button"
 					id="dropdownMenuButtonLG"
+					data-bs-toggle="dropdown"
 					aria-expanded="false"
 				>
 					Dropdown button
 				</button>
 				<ul
-					class={`${theme} ${dropdownMenu}`}
+					class={`${theme} ${dropdownMenu} pwhook-dropdown-menu`}
 					aria-labelledby="dropdownMenuButtonLG"
 				>
 					<li>

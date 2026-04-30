@@ -29,3 +29,4 @@ export const varBsDropdownItemPaddingY = createVar()       // --bs-dropdown-item
 export const varBsDropdownHeaderColor = createVar()        // --bs-dropdown-header-color
 export const varBsDropdownHeaderPaddingX = createVar()     // --bs-dropdown-header-padding-x
 export const varBsDropdownHeaderPaddingY = createVar()     // --bs-dropdown-header-padding-y
+export const varBsDropdownPosition = createVar()           // --bs-dropdown-position (Popper.js placement)

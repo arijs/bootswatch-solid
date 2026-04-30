@@ -15,6 +15,7 @@ export const dropupCenter = style({})     // .dropup-center
 
 // ── Toggle button ─────────────────────────────────────────────────────────────
 
+export const btnShowHook = style({})            // .show (on toggle button when open)
 export const dropdownToggle = style({})         // .dropdown-toggle
 export const dropdownToggleSplit = style({})    // .dropdown-toggle-split
 
