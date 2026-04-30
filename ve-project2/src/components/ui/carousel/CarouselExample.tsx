@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { onSettled, useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
 import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import {
 	carousel,
@@ -94,8 +95,8 @@ const CarouselExample: Component = () => {
 							</text>
 						</svg>
 							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
-							<h5>First slide label</h5>
-							<p>Some representative placeholder content for the first slide.</p>
+							<h5 class={`${theme} ${h5}`}>First slide label</h5>
+							<p class={`${theme} ${paragraph}`}>Some representative placeholder content for the first slide.</p>
 						</div>
 					</div>
 					<div class={`${theme} ${carouselItem} pwhook-carousel-item`}>
@@ -116,8 +117,8 @@ const CarouselExample: Component = () => {
 							</text>
 						</svg>
 							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
-							<h5>Second slide label</h5>
-							<p>Some representative placeholder content for the second slide.</p>
+							<h5 class={`${theme} ${h5}`}>Second slide label</h5>
+							<p class={`${theme} ${paragraph}`}>Some representative placeholder content for the second slide.</p>
 						</div>
 					</div>
 					<div class={`${theme} ${carouselItem} pwhook-carousel-item`}>
@@ -138,8 +139,8 @@ const CarouselExample: Component = () => {
 							</text>
 						</svg>
 							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
-							<h5>Third slide label</h5>
-							<p>Some representative placeholder content for the third slide.</p>
+							<h5 class={`${theme} ${h5}`}>Third slide label</h5>
+							<p class={`${theme} ${paragraph}`}>Some representative placeholder content for the third slide.</p>
 						</div>
 					</div>
 				</div>

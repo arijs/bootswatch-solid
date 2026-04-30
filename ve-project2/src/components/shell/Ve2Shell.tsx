@@ -20,7 +20,13 @@ import '../../themes/sketchy/ui/button-group/styles.css'
 // Side-effect imports: register globalStyle rules for card + list-group
 import '../../themes/bootstrap/ui/card/styles.css'
 import '../../themes/sketchy/ui/card/styles.css'
-// Side-effect imports: register globalStyle rules for card-tabs (nav + nav-tabs)
+// Side-effect imports: register globalStyle rules for navs (nav, nav-tabs, nav-pills)
+import '../../themes/bootstrap/ui/navs/styles.css'
+import '../../themes/sketchy/ui/navs/styles.css'
+// Side-effect imports: register globalStyle rules for navbar
+import '../../themes/bootstrap/ui/navbar/styles.css'
+import '../../themes/sketchy/ui/navbar/styles.css'
+// Side-effect imports: register globalStyle rules for card-tabs
 import '../../themes/bootstrap/ui/card-tabs/styles.css'
 import '../../themes/sketchy/ui/card-tabs/styles.css'
 // Side-effect imports: register globalStyle rules for carousel
@@ -32,6 +38,9 @@ import '../../themes/sketchy/ui/dropdowns/styles.css'
 // Side-effect imports: register globalStyle rules for contents heading classes
 import '../../themes/bootstrap/contents/styles.css'
 import '../../themes/sketchy/contents/styles.css'
+// Side-effect imports: register utility classes (e.g. text-muted)
+import '../../themes/bootstrap/utilities/styles.css'
+import '../../themes/sketchy/utilities/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'

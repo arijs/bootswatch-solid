@@ -36,3 +36,11 @@ export const visuallyHidden = style({
 	whiteSpace: 'nowrap !important',
 	border: '0 !important',
 })
+
+// ── Utilities ─────────────────────────────────────────────────────────────────
+
+/**
+ * Bootstrap utility class: .text-muted { color: var(--bs-secondary-color) !important; }
+ * Theme-specific implementation is wired in each theme's utilities/styles.css.ts.
+ */
+export const textMuted = style({})

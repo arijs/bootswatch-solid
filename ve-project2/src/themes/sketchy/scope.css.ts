@@ -62,6 +62,7 @@ import {
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
 	varBsEmphasisColor,
+	varBsEmphasisColorRgb,
 	varBsSecondaryColor,
 	varBsSecondaryBg,
 	varBsTertiaryColor,
@@ -157,6 +158,7 @@ globalStyle(`${sketchyScope}${vars}`, {
 		[varBsFocusRingColor]: 'rgba(51, 51, 51, 0.25)',
 		// Contextual / semantic UI colours (same as Bootstrap)
 		[varBsEmphasisColor]: '#000',
+		[varBsEmphasisColorRgb]: '0, 0, 0',
 		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
 		[varBsSecondaryBg]: '#f7f7f9',
 		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',

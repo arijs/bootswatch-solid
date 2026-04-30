@@ -62,6 +62,7 @@ import {
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
 	varBsEmphasisColor,
+	varBsEmphasisColorRgb,
 	varBsSecondaryColor,
 	varBsSecondaryBg,
 	varBsTertiaryColor,
@@ -153,6 +154,7 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		[varBsFocusRingColor]: 'rgba(13, 110, 253, 0.25)',
 		// Contextual / semantic UI colours
 		[varBsEmphasisColor]: '#000',
+		[varBsEmphasisColorRgb]: '0, 0, 0',
 		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
 		[varBsSecondaryBg]: '#e9ecef',
 		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',

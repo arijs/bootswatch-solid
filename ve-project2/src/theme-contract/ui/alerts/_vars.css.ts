@@ -15,3 +15,12 @@ export const varBsAlertBorderColor = createVar()     // --bs-alert-border-color
 export const varBsAlertBorder = createVar()          // --bs-alert-border (shorthand)
 export const varBsAlertBorderRadius = createVar()    // --bs-alert-border-radius
 export const varBsAlertLinkColor = createVar()       // --bs-alert-link-color
+
+// Close button variables used by alert dismiss controls (.btn-close in alert context).
+export const varBsBtnCloseColor = createVar()         // --bs-btn-close-color
+export const varBsBtnCloseBg = createVar()            // --bs-btn-close-bg
+export const varBsBtnCloseOpacity = createVar()       // --bs-btn-close-opacity
+export const varBsBtnCloseHoverOpacity = createVar()  // --bs-btn-close-hover-opacity
+export const varBsBtnCloseFocusShadow = createVar()   // --bs-btn-close-focus-shadow
+export const varBsBtnCloseFocusOpacity = createVar()  // --bs-btn-close-focus-opacity
+export const varBsBtnCloseDisabledOpacity = createVar() // --bs-btn-close-disabled-opacity

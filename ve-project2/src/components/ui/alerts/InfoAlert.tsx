@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	alert,
@@ -18,11 +19,11 @@ const InfoAlert: Component = () => {
 			<div class={`${theme} ${alert} ${alertInfo} ${alertDismissible}`}>
 				A simple info alert with{' '}
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a href="#" onClick={(e) => e.preventDefault()} class={alertLink}>
+				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${alertLink} ${link}`}>
 					an example link
 				</a>
 				. Give it a click if you like.
-				<button type="button" class={alertBtnClose} aria-label="Close" />
+				<button type="button" class={`${theme} ${alertBtnClose}`} aria-label="Close" />
 			</div>
 		</div>
 	)

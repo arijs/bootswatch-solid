@@ -185,21 +185,19 @@ borderBottomLeftRadius: varBsCardInnerBorderRadius,
 
 // ── Horizontal card layout ────────────────────────────────────────────────────
 
+// At 360px (below md breakpoint), Bootstrap stacks col-md-4/col-md-8 vertically
 globalStyle(`${sketchyScope}${cardHorizontalRow}`, {
 display: 'flex',
-flexDirection: 'row',
-flexWrap: 'nowrap',
+flexDirection: 'column',
 })
 
 globalStyle(`${sketchyScope}${cardHorizontalColImg}`, {
-flex: '0 0 33.3333%',
-maxWidth: '33.3333%',
+width: '100%',
 overflow: 'hidden',
 })
 
 globalStyle(`${sketchyScope}${cardHorizontalColBody}`, {
-flex: '1 1 0',
-minWidth: 0,
+width: '100%',
 })
 
 // ── List group — Sketchy overrides ────────────────────────────────────────────
@@ -241,6 +239,7 @@ position: 'relative',
 display: 'block',
 padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
 textDecoration: 'none',
+backgroundColor: varBsBodyBg,
 borderTop: '2px solid #333',
 borderRight: 'none',
 borderLeft: 'none',

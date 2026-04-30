@@ -15,6 +15,7 @@ import {
 	horizontalRule,
 	link,
 	paragraph,
+	small,
 } from '../../../theme-contract/contents/contract.css'
 import { bootstrapScope } from '../scope.css'
 
@@ -55,6 +56,11 @@ globalStyle(`${bootstrapScope}${link}`, {
 
 globalStyle(`${bootstrapScope}${link}:hover`, {
 	color: varBsLinkHoverColor,
+})
+
+// Source CSS literal conversion for `.small, small { font-size: 0.875em }`.
+globalStyle(`${bootstrapScope}${small}`, {
+	fontSize: '0.875em',
 })
 
 globalStyle(`${bootstrapScope}${h1}`, {

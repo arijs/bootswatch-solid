@@ -145,6 +145,33 @@ outline: 0,
 boxShadow: varBsBtnFocusBoxShadow,
 })
 
+// SOURCE CSS: .btn-check { position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
+globalStyle(`${sketchyScope}${btnCheck}`, {
+position: 'absolute',
+clip: 'rect(0, 0, 0, 0)',
+pointerEvents: 'none',
+})
+
+// SOURCE CSS: .btn-check { display: inline-block; opacity: 0; }
+globalStyle(`${sketchyScope}${btnCheck}`, {
+display: 'inline-block',
+opacity: 0,
+})
+
+// SOURCE CSS: .btn-check + .btn:hover { color: var(--bs-btn-color); background-color: var(--bs-btn-bg); border-color: var(--bs-btn-border-color); }
+globalStyle(`${sketchyScope}${btnCheck} + ${sketchyScope}${btn}:hover`, {
+color: varBsBtnColor,
+backgroundColor: varBsBtnBg,
+borderColor: varBsBtnBorderColor,
+})
+
+// SOURCE CSS: .btn-check:focus-visible + .btn { border-color: var(--bs-btn-hover-border-color); outline: 0; box-shadow: var(--bs-btn-focus-box-shadow); }
+globalStyle(`${sketchyScope}${btnCheck}:focus-visible + ${sketchyScope}${btn}`, {
+borderColor: varBsBtnHoverBorderColor,
+outline: 0,
+boxShadow: varBsBtnFocusBoxShadow,
+})
+
 // SOURCE CSS:
 // .btn-check:checked + .btn, :not(.btn-check) + .btn:active,
 // .btn:first-child:active, .btn.active, .btn.show {
@@ -178,6 +205,11 @@ boxShadow: varBsBtnFocusBoxShadow,
 },
 )
 
+// SOURCE CSS: .btn-check:checked:focus-visible + .btn { box-shadow: var(--bs-btn-focus-box-shadow); }
+globalStyle(`${sketchyScope}${btnCheck}:checked:focus-visible + ${sketchyScope}${btn}`, {
+boxShadow: varBsBtnFocusBoxShadow,
+})
+
 // SOURCE CSS:
 // .btn:disabled, .btn.disabled, fieldset:disabled .btn {
 //   color: var(--bs-btn-disabled-color); pointer-events: none;
@@ -200,6 +232,12 @@ opacity: varBsBtnDisabledOpacity,
 
 // .btn-check:disabled + .btn (Bootstrap toggle-button pattern)
 globalStyle(`${sketchyScope}${btnCheck}:disabled + ${sketchyScope}${btn}`, {
+pointerEvents: 'none',
+opacity: varBsBtnDisabledOpacity,
+})
+
+// SOURCE CSS: .btn-check[disabled] + .btn, .btn-check:disabled + .btn { ... }
+globalStyle(`${sketchyScope}${btnCheck}[disabled] + ${sketchyScope}${btn}`, {
 pointerEvents: 'none',
 opacity: varBsBtnDisabledOpacity,
 })
@@ -498,7 +536,18 @@ vars: {
 [varBsBtnBoxShadow]: '0 0 0 #000',
 [varBsBtnFocusBoxShadowRgb]: '82, 82, 82',
 },
-textDecoration: 'underline',
+// Sketchy overrides .btn { text-decoration: none } after .btn-link, so no underline
+textDecoration: 'none',
+})
+
+// SOURCE CSS: .btn-link:focus-visible { color: var(--bs-btn-color); }
+globalStyle(`${sketchyScope}${btnLink}:focus-visible`, {
+color: varBsBtnColor,
+})
+
+// SOURCE CSS: .btn-link:hover { color: var(--bs-btn-hover-color); }
+globalStyle(`${sketchyScope}${btnLink}:hover`, {
+color: varBsBtnHoverColor,
 })
 
 // ── Outline variants ──────────────────────────────────────────────────────────

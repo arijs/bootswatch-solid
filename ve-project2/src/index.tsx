@@ -221,6 +221,10 @@ import HorizontalCard from './components/ui/card/HorizontalCard'
 import ImageTopCard from './components/ui/card/ImageTopCard'
 import ListCard from './components/ui/card/ListCard'
 import CardTabsExample from './components/ui/card-tabs/CardTabsExample'
+import BasicNav from './components/ui/navs/BasicNav'
+import PillNav from './components/ui/navs/PillNav'
+import TabbedNav from './components/ui/navs/TabbedNav'
+import NavbarExample from './components/ui/navbar/NavbarExample'
 import CarouselExample from './components/ui/carousel/CarouselExample'
 import NormalDropdown from './components/ui/dropdowns/NormalDropdown'
 
@@ -982,6 +986,10 @@ render(
 				<Route path="/ui/card/image-top-card" component={ImageTopCard} />
 				<Route path="/ui/card/list-card" component={ListCard} />
 				<Route path="/ui/card-tabs/card-tabs-example" component={CardTabsExample} />
+				<Route path="/ui/navs/basic-nav" component={BasicNav} />
+				<Route path="/ui/navs/pill-nav" component={PillNav} />
+				<Route path="/ui/navs/tabbed-nav" component={TabbedNav} />
+				<Route path="/ui/navbar/navbar-example" component={NavbarExample} />
 				<Route path="/ui/carousel/carousel-example" component={CarouselExample} />
 				<Route path="/ui/dropdowns/normal-dropdown" component={NormalDropdown} />
 			</Route>

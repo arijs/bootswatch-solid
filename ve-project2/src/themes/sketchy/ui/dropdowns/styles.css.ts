@@ -5,7 +5,6 @@ varBsBodyColor,
 varBsBorderRadius,
 varBsBorderWidth,
 varBsBoxShadow,
-varBsTertiaryBg,
 varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -275,7 +274,7 @@ width: '100%',
 padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 clear: 'both',
 fontWeight: 400,
-color: varBsDropdownLinkColor,
+color: varBsBodyColor,
 textAlign: 'inherit',
 textDecoration: 'none',
 whiteSpace: 'nowrap',
@@ -313,6 +312,20 @@ backgroundColor: 'transparent',
 
 globalStyle(`${sketchyScope}${dropdownMenu}${dropdownMenuShow}`, { display: 'block' })
 
+// Screenshot interactive scenarios force-open via literal `.show` class.
+// Support both contract show class and literal class to keep parity in opened-state captures.
+globalStyle(`${sketchyScope}${dropdownMenu}.show`, { display: 'block' })
+
+// Fallback text coloring when opened-state class toggles bypass runtime class constants.
+globalStyle(`${sketchyScope}${dropdownMenu}.show a`, {
+	color: varBsBodyColor,
+	textDecoration: 'none',
+})
+
+globalStyle(`${sketchyScope}${dropdownMenu}.show ${dropdownHeader}`, {
+	color: '#868e96',
+})
+
 // ── .dropdown-header ──────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${dropdownHeader}`, {
@@ -320,7 +333,7 @@ display: 'block',
 padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
 marginBottom: 0,
 fontSize: '0.875rem',
-color: varBsDropdownHeaderColor,
+color: '#868e96',
 whiteSpace: 'nowrap',
 })
 

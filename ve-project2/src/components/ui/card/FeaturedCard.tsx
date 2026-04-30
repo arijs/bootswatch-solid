@@ -1,7 +1,9 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { textMuted } from '../../../theme-contract/utilities/contract.css'
+import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	card,
 	cardBody,
@@ -14,18 +16,22 @@ import {
 const FeaturedCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
-		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+		<div class={`bd-example-ve2 ${theme}`}>
 			<div class={`${theme} ${card}`}>
 				<div class={`${theme} ${cardHeader}`}>Featured</div>
 				<div class={`${theme} ${cardBody}`}>
-					<h5 class={`${theme} ${cardTitle}`}>Card title</h5>
-					<p class={`${theme} ${cardText}`}>
+					<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
+					<p class={`${theme} ${cardText} ${paragraph}`}>
 						Some quick example text to build on the card title and make up the bulk of
 						the card's content.
 					</p>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
+						Go somewhere
+					</a>
 				</div>
-				<div class={`${theme} ${cardFooter}`}>
-					<small>2 days ago</small>
+				<div class={`${theme} ${cardFooter} ${textMuted}`}>
+					2 days ago
 				</div>
 			</div>
 		</div>

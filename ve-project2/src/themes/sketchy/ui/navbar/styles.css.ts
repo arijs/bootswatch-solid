@@ -1,0 +1,255 @@
+import { globalStyle } from '@vanilla-extract/css'
+import {
+	navbar,
+	navbarBgLight,
+	navbarBrand,
+	navbarCollapse,
+	navbarDarkBgPrimary,
+	navbarExpandLg,
+	navbarNav,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	varBsNavbarActiveColor,
+	varBsNavbarBrandColor,
+	varBsNavbarBrandFontSize,
+	varBsNavbarBrandHoverColor,
+	varBsNavbarBrandMarginEnd,
+	varBsNavbarBrandPaddingY,
+	varBsNavbarColor,
+	varBsNavbarDisabledColor,
+	varBsNavbarHoverColor,
+	varBsNavbarNavLinkPaddingX,
+	varBsNavbarPaddingX,
+	varBsNavbarPaddingY,
+	varBsNavbarTogglerBorderColor,
+	varBsNavbarTogglerBorderRadius,
+	varBsNavbarTogglerFocusWidth,
+	varBsNavbarTogglerFontSize,
+	varBsNavbarTogglerIconBg,
+	varBsNavbarTogglerPaddingX,
+	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+} from '../../../../theme-contract/ui/navbar/_vars.css'
+import {
+	varBsNavLinkColor,
+	varBsNavLinkDisabledColor,
+	varBsNavLinkFontWeight,
+	varBsNavLinkHoverColor,
+	varBsNavLinkPaddingX,
+	varBsNavLinkPaddingY,
+} from '../../../../theme-contract/ui/navs/_vars.css'
+import {
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsEmphasisColorRgb,
+} from '../../../../theme-contract/_vars.css'
+import { navLink, navLinkActive } from '../../../../theme-contract/ui/navs/contract.css'
+import { sketchyScope } from '../../scope.css'
+
+// ── .navbar ───────────────────────────────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbar}`, {
+	vars: {
+		[varBsNavbarPaddingX]: '0',
+		[varBsNavbarPaddingY]: '0.5rem',
+		[varBsNavbarColor]: `rgba(${varBsEmphasisColorRgb}, 0.65)`,
+		[varBsNavbarHoverColor]: `rgba(${varBsEmphasisColorRgb}, 0.8)`,
+		[varBsNavbarDisabledColor]: `rgba(${varBsEmphasisColorRgb}, 0.3)`,
+		[varBsNavbarActiveColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarBrandPaddingY]: '0.3125rem',
+		[varBsNavbarBrandMarginEnd]: '1rem',
+		[varBsNavbarBrandFontSize]: '1.25rem',
+		[varBsNavbarBrandColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarBrandHoverColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarNavLinkPaddingX]: '0.5rem',
+		[varBsNavbarTogglerPaddingY]: '0.25rem',
+		[varBsNavbarTogglerPaddingX]: '0.75rem',
+		[varBsNavbarTogglerFontSize]: '1.25rem',
+		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
+		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
+		[varBsNavbarTogglerFocusWidth]: '0.25rem',
+		[varBsNavbarTogglerTransition]: 'box-shadow 0.15s ease-in-out',
+	},
+	position: 'relative',
+	display: 'flex',
+	flexWrap: 'wrap',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+	// SOURCE CSS (bootswatch Sketchy override):
+	// .navbar { border-style: solid; border-width: 2px;
+	//   border-radius: 25px 25px 55px 5px/5px 55px 25px 25px; }
+	borderStyle: 'solid',
+	borderWidth: '2px',
+	borderRadius: '25px 25px 55px 5px/5px 55px 25px 25px',
+})
+
+globalStyle(
+	`${sketchyScope}${navbar} > .container, ${sketchyScope}${navbar} > .container-fluid`,
+	{
+		display: 'flex',
+		flexWrap: 'inherit',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+)
+
+// ── .navbar-brand ─────────────────────────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbarBrand}`, {
+	paddingTop: varBsNavbarBrandPaddingY,
+	paddingBottom: varBsNavbarBrandPaddingY,
+	marginRight: varBsNavbarBrandMarginEnd,
+	fontSize: varBsNavbarBrandFontSize,
+	color: varBsNavbarBrandColor,
+	// SOURCE CSS (bootswatch Sketchy override):
+	// .navbar-brand { font-family: "Cabin Sketch", cursive; font-weight: 400; text-decoration: none; }
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: 400,
+	textDecoration: 'none',
+	whiteSpace: 'nowrap',
+})
+
+globalStyle(`${sketchyScope}${navbarBrand}:hover, ${sketchyScope}${navbarBrand}:focus`, {
+	color: varBsNavbarBrandHoverColor,
+})
+
+// ── .navbar-nav ───────────────────────────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbarNav}`, {
+	vars: {
+		[varBsNavLinkPaddingX]: '0',
+		[varBsNavLinkPaddingY]: '0.5rem',
+		[varBsNavLinkFontWeight]: '',
+		[varBsNavLinkColor]: varBsNavbarColor,
+		[varBsNavLinkHoverColor]: varBsNavbarHoverColor,
+		[varBsNavLinkDisabledColor]: varBsNavbarDisabledColor,
+	},
+	display: 'flex',
+	flexDirection: 'column',
+	paddingLeft: 0,
+	marginBottom: 0,
+	listStyle: 'none',
+})
+
+globalStyle(`${sketchyScope}${navbarNav} ${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+// ── .navbar-collapse ──────────────────────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbarCollapse}`, {
+	display: 'none',
+	flexGrow: 1,
+	flexBasis: '100%',
+	alignItems: 'center',
+})
+
+// ── .navbar-toggler ───────────────────────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbarToggler}`, {
+	padding: `${varBsNavbarTogglerPaddingY} ${varBsNavbarTogglerPaddingX}`,
+	fontSize: varBsNavbarTogglerFontSize,
+	lineHeight: 1,
+	color: varBsNavbarColor,
+	backgroundColor: 'transparent',
+	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
+	borderRadius: varBsNavbarTogglerBorderRadius,
+	transition: varBsNavbarTogglerTransition,
+})
+
+globalStyle(`${sketchyScope}${navbarToggler}:hover`, {
+	textDecoration: 'none',
+})
+
+globalStyle(`${sketchyScope}${navbarToggler}:focus`, {
+	textDecoration: 'none',
+	outline: 0,
+	boxShadow: `0 0 0 ${varBsNavbarTogglerFocusWidth}`,
+})
+
+// ── .navbar-toggler-icon ──────────────────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbarTogglerIcon}`, {
+	display: 'inline-block',
+	width: '1.5em',
+	height: '1.5em',
+	verticalAlign: 'middle',
+	backgroundImage: varBsNavbarTogglerIconBg,
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'center',
+	backgroundSize: '100%',
+})
+
+// ── .navbar-expand-lg (responsive) ───────────────────────────────────────────
+
+globalStyle(`${sketchyScope}${navbarExpandLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandLg} ${navbarNav}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandLg} ${navbarNav} ${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandLg} ${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'flex',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandLg} ${navbarToggler}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none',
+		},
+	},
+})
+
+// ── Color scheme variants ─────────────────────────────────────────────────────
+
+// SOURCE CSS (bootswatch Sketchy override):
+// .navbar.bg-light { border-color: #333; }
+globalStyle(`${sketchyScope}${navbar}${navbarBgLight}`, {
+	backgroundColor: '#fff',
+	borderColor: '#333',
+})
+
+// navbarDarkBgPrimary absorbs `navbar-dark bg-primary`
+// Sketchy --bs-primary is #333
+globalStyle(`${sketchyScope}${navbar}${navbarDarkBgPrimary}`, {
+	vars: {
+		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
+		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsNavbarDisabledColor]: 'rgba(255, 255, 255, 0.25)',
+		[varBsNavbarActiveColor]: '#fff',
+		[varBsNavbarBrandColor]: '#fff',
+		[varBsNavbarBrandHoverColor]: '#fff',
+		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
+		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+	},
+	backgroundColor: '#333',
+})

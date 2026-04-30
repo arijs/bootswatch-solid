@@ -17,3 +17,6 @@ export const horizontalRule = style({})
 
 // Element utility used when source CSS targeted `.card > hr`.
 export const horizontalRuleCard = style({})
+
+// Contract class for Bootstrap `.small, small { font-size: 0.875em }`.
+export const small = style({})

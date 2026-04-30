@@ -142,6 +142,7 @@ export const varBsFocusRingColor = createVar()
 // ── Contextual / semantic UI colours ─────────────────────────────────────────
 
 export const varBsEmphasisColor = createVar()           // --bs-emphasis-color
+export const varBsEmphasisColorRgb = createVar()        // --bs-emphasis-color-rgb
 export const varBsSecondaryColor = createVar()          // --bs-secondary-color
 export const varBsSecondaryBg = createVar()             // --bs-secondary-bg
 export const varBsTertiaryColor = createVar()           // --bs-tertiary-color

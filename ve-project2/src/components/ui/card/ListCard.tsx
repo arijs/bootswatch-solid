@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
 import {
 	card,
 	cardBody,
@@ -16,11 +16,11 @@ import {
 const ListCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
-		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+		<div class={`bd-example-ve2 ${theme}`}>
 			<div class={`${theme} ${card}`}>
 				<div class={`${theme} ${cardBody}`}>
-					<h5 class={`${theme} ${cardTitle}`}>Card title</h5>
-					<p class={`${theme} ${cardText}`}>
+					<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
+					<p class={`${theme} ${cardText} ${paragraph}`}>
 						Some quick example text to build on the card title and make up the bulk of
 						the card's content.
 					</p>

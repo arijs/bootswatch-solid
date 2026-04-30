@@ -1,7 +1,8 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	card,
 	cardBody,
@@ -13,10 +14,10 @@ import {
 const ImageTopCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
-		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+		<div class={`bd-example-ve2 ${theme}`}>
 			<div class={`${theme} ${card}`}>
 				<svg
-					class={`${theme} ${cardImgTop}`}
+					class={`bd-placeholder-img ${theme} ${cardImgTop}`}
 					width="100%"
 					height="180"
 					xmlns="http://www.w3.org/2000/svg"
@@ -25,16 +26,20 @@ const ImageTopCard: Component = () => {
 				>
 					<title>Placeholder</title>
 					<rect width="100%" height="100%" fill="#868e96" />
-					<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+					<text x="50%" y="50%" fill="#dee2e6" dy=".3em" text-anchor="middle">
 						Image cap
 					</text>
 				</svg>
 				<div class={`${theme} ${cardBody}`}>
-					<h5 class={`${theme} ${cardTitle}`}>Card title</h5>
-					<p class={`${theme} ${cardText}`}>
+					<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
+					<p class={`${theme} ${cardText} ${paragraph}`}>
 						Some quick example text to build on the card title and make up the bulk of
 						the card's content.
 					</p>
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
+					Go somewhere
+				</a>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { h6 } from '../../../theme-contract/contents/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
@@ -37,7 +38,7 @@ const NormalDropdown: Component = () => {
 					aria-labelledby="dropdownMenuButton"
 				>
 					<li>
-						<h6 class={`${theme} ${dropdownHeader}`}>Dropdown header</h6>
+						<h6 class={`${theme} ${dropdownHeader} ${h6}`}>Dropdown header</h6>
 					</li>
 					<li>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}

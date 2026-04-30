@@ -9,4 +9,8 @@ export default defineConfig({
 			polyfill: false,
 		},
 	},
+	optimizeDeps: {
+		noDiscovery: true,
+		include: [],
+	},
 })
