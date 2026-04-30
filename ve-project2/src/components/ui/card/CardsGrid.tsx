@@ -1,20 +1,11 @@
-import { style } from '@vanilla-extract/css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { cardsGrid } from './CardsGrid.css'
 import FeaturedCard from './FeaturedCard'
 import HorizontalCard from './HorizontalCard'
 import ImageTopCard from './ImageTopCard'
 import ListCard from './ListCard'
-
-// Simple single-column grid that stacks cards vertically (matches the 360px
-// screenshot viewport used in the harness, which is narrower than Bootstrap's
-// md breakpoint where the two-column layout would activate).
-const cardsGrid = style({
-	display: 'grid',
-	gridTemplateColumns: '1fr',
-	gap: '1.5rem',
-})
 
 const CardsGrid: Component = () => {
 	const theme = useContext(ThemeContext)
