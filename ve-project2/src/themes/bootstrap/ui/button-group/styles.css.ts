@@ -1,13 +1,17 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { btnGroup, btnToolbar } from '../../../../theme-contract/ui/button-group/contract.css'
+import {
+	varBsBtnGroupBorderRadius,
+	varBsBtnGroupBorderWidth,
+} from '../../../../theme-contract/ui/button-group/_vars.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
-
-// Bootstrap default theme values
-// --bs-border-radius: 0.375rem, --bs-border-width: 1px
 
 // ── Toolbar ───────────────────────────────────────────────────────────────────
 
+// SOURCE CSS:
+// .btn-toolbar { display: flex; flex-wrap: wrap; justify-content: flex-start; }
 globalStyle(`${bootstrapScope}${btnToolbar}`, {
 	display: 'flex',
 	flexWrap: 'wrap',
@@ -16,11 +20,18 @@ globalStyle(`${bootstrapScope}${btnToolbar}`, {
 
 // ── Group container ───────────────────────────────────────────────────────────
 
+// SOURCE CSS:
+// .btn-group { position: relative; display: inline-flex; vertical-align: middle; }
+// .btn-group { border-radius: var(--bs-border-radius); }
 globalStyle(`${bootstrapScope}${btnGroup}`, {
+	vars: {
+		[varBsBtnGroupBorderRadius]: varBsBorderRadius,
+		[varBsBtnGroupBorderWidth]: varBsBorderWidth,
+	},
 	position: 'relative',
 	display: 'inline-flex',
 	verticalAlign: 'middle',
-	borderRadius: '0.375rem',
+	borderRadius: varBsBtnGroupBorderRadius,
 })
 
 // ── Buttons inside a group ────────────────────────────────────────────────────
@@ -39,9 +50,10 @@ globalStyle(
 	},
 )
 
-// Collapse adjacent button borders (negative margin equals border-width)
+// SOURCE CSS:
+// .btn-group > :not(.btn-check:first-child) + .btn { margin-left: calc(-1 * var(--bs-border-width)); }
 globalStyle(`${bootstrapScope}${btnGroup} > ${btn} + ${btn}`, {
-	marginLeft: '-1px',
+	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
 })
 
 // Remove right radius from all buttons except the last

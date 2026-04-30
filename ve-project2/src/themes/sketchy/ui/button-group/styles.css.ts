@@ -1,11 +1,16 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { btnGroup, btnToolbar } from '../../../../theme-contract/ui/button-group/contract.css'
+import {
+	varBsBtnGroupBorderRadius,
+	varBsBtnGroupBorderWidth,
+} from '../../../../theme-contract/ui/button-group/_vars.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
 import { sketchyScope } from '../../scope.css'
 
-// Sketchy theme values
-// --bs-border-radius: 25px, --bs-border-width: 2px
-// Sketchy has no special btn-group overrides beyond the changed border values.
+// Sketchy overrides --bs-border-radius (25px) and --bs-border-width (2px).
+// These propagate automatically via varBsBorderRadius/varBsBorderWidth which
+// already carry Sketchy values from the body scope, so no hardcoded values needed.
 
 // ── Toolbar ───────────────────────────────────────────────────────────────────
 
@@ -18,10 +23,14 @@ globalStyle(`${sketchyScope}${btnToolbar}`, {
 // ── Group container ───────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${btnGroup}`, {
+	vars: {
+		[varBsBtnGroupBorderRadius]: varBsBorderRadius,
+		[varBsBtnGroupBorderWidth]: varBsBorderWidth,
+	},
 	position: 'relative',
 	display: 'inline-flex',
 	verticalAlign: 'middle',
-	borderRadius: '25px',
+	borderRadius: varBsBtnGroupBorderRadius,
 })
 
 // ── Buttons inside a group ────────────────────────────────────────────────────
@@ -40,9 +49,9 @@ globalStyle(
 	},
 )
 
-// Collapse adjacent button borders (2px for sketchy)
+// Collapse adjacent button borders (negative margin equals Sketchy border-width = 2px)
 globalStyle(`${sketchyScope}${btnGroup} > ${btn} + ${btn}`, {
-	marginLeft: '-2px',
+	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
 })
 
 // Remove right radius from all buttons except the last
