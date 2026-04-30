@@ -214,6 +214,9 @@ ve-project2/src/
 7. **Only these static class names are allowed in component markup:** `bd-example-ve2`, `pwhook-*` screenshot hooks. All other styling comes from VE imports.
 8. **ThemeContext provides the active scope class string.** Components read it via `useContext(ThemeContext)` — no prop-drilling.
 9. **`ThemedBody` (or equivalent) must wrap any region that requires body-level theme styles** (font, color, background).
+10. **Global `--bs-*` var values in `scope.css.ts` must be sourced from `screenshots/{theme}/theme.css`.** The `:root` block in that file is the authoritative source for each theme's resolved CSS custom-property values (e.g. `--bs-primary`, `--bs-border-radius`, `--bs-link-color`, etc.). Never copy Bootstrap's default values for a Bootswatch theme — look up the theme's own overrides in `screenshots/{theme}/theme.css`.
+11. **CSS custom-property references must be preserved as references, not resolved to static values.** If the Bootstrap source CSS writes `var(--bs-border-radius)`, the VE2 output must write `varBsBorderRadius` (the matching `createVar()` identifier), not the final resolved value (e.g. `'0.375rem'`). This ensures per-theme values propagate correctly at runtime.
+12. **Component variant styles must set only CSS vars.** The base component class (e.g. `.btn`) owns all layout and interaction rules that reference those vars. Variant classes (e.g. `.btn-primary`, `.btn-outline-secondary`) only override CSS custom properties via `vars:` — never set `color`, `backgroundColor`, `borderColor`, etc. directly on a variant rule. This mirrors Bootstrap's own source structure exactly.
 
 ---
 
