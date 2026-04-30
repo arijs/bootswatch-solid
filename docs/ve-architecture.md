@@ -190,6 +190,7 @@ ve-project2/src/
           styles.css.ts            ← globalStyle rules for each family
     sketchy/
       scope.css.ts                 ← sketchyScope (empty), + globalStyle scope+vars and body/bodyText rules
+      fonts.generated.css          ← generated once at theme creation; @import rules for Google Fonts (sourced from screenshots/sketchy/bootstrap.css)
       ui/
         buttons/
           styles.css.ts            ← globalStyle rules: sketchyScope + btn/btnPrimary/…
@@ -226,6 +227,7 @@ ve-project2/src/
 9. **`ThemedBody` (or equivalent) must wrap any region that requires body-level theme styles** (font, color, background).
 10. **Global `--bs-*` var values in `scope.css.ts` must be sourced from `screenshots/{theme}/theme.css`.** The `:root` block in that file is the authoritative source for each theme's resolved CSS custom-property values (e.g. `--bs-primary`, `--bs-border-radius`, `--bs-link-color`, etc.). Never copy Bootstrap's default values for a Bootswatch theme — look up the theme's own overrides in `screenshots/{theme}/theme.css`.
 11. **CSS custom-property references must be preserved as references, not resolved to static values.** If the Bootstrap source CSS writes `var(--bs-border-radius)`, the VE2 output must write `varBsBorderRadius` (the matching `createVar()` identifier), not the final resolved value (e.g. `'0.375rem'`). This ensures per-theme values propagate correctly at runtime.
+12. **Font imports for Bootswatch themes must be extracted from `screenshots/{theme}/bootstrap.css` and written to `ve-project2/src/themes/{theme}/fonts.generated.css` exactly once when creating the theme's `scope.css.ts`.** Vanilla Extract cannot emit bare `@import` at-rules, so the generated CSS file preserves the source `@import` rules and is loaded globally via `ve-project2/index.html`. This step is **not** repeated when converting individual component families — it belongs solely to the one-time theme scope setup.
 
 ---
 
