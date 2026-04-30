@@ -16,7 +16,7 @@ bgInfo,
 bgLight,
 bgDark,
 textDark,
-} from '../../bootstrap/ui/badge/base.css'
+} from '../../../bootstrap/ui/badge/base.css'
 
 export { bgPrimary, bgSecondary, bgSuccess, bgDanger, bgWarning, bgInfo, bgLight, bgDark, textDark }
 

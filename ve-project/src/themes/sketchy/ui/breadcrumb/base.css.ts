@@ -10,7 +10,7 @@ import {
 breadcrumb as bootstrapBreadcrumb,
 breadcrumbItem,
 breadcrumbItemActive,
-} from '../../bootstrap/ui/breadcrumb/base.css'
+} from '../../../bootstrap/ui/breadcrumb/base.css'
 
 export { breadcrumbItem, breadcrumbItemActive }
 

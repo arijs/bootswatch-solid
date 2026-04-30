@@ -8,4 +8,4 @@ frameRow,
 justifyCenter,
 justifyEnd,
 justifyStart,
-} from '../../bootstrap/ui/tooltips/base.css'
+} from '../../../bootstrap/ui/tooltips/base.css'

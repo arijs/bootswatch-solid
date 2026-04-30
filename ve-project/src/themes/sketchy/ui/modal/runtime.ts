@@ -1,4 +1,4 @@
-import { bodyText } from '../../bootstrap/body.css'
+import { bodyText } from '../../../bootstrap/body.css'
 import { h4, h5 } from '../../contents/generated.css'
 import { btnClose } from '../alerts/base.css'
 import {

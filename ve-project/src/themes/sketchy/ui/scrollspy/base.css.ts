@@ -1,1 +1,1 @@
-export { scrollspyExample } from '../../bootstrap/ui/scrollspy/base.css'
+export { scrollspyExample } from '../../../bootstrap/ui/scrollspy/base.css'

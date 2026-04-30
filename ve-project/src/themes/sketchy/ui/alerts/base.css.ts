@@ -18,7 +18,7 @@ btnClose as bootstrapBtnClose,
 fade,
 mb0,
 show,
-} from '../../bootstrap/ui/alerts/base.css'
+} from '../../../bootstrap/ui/alerts/base.css'
 
 export { alertDismissible, alertHeading, alertHr, alertLink, fade, mb0, show }
 

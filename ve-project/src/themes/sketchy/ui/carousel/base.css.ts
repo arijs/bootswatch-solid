@@ -17,4 +17,4 @@ carouselItemPrev,
 carouselItemStart,
 carouselSlide,
 carouselSlideImage,
-} from '../../bootstrap/ui/carousel/base.css'
+} from '../../../bootstrap/ui/carousel/base.css'

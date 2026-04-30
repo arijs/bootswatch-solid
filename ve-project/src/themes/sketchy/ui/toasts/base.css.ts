@@ -11,4 +11,4 @@ toastBody,
 placeholderIcon,
 toastBrand,
 toastTimestamp,
-} from '../../bootstrap/ui/toasts/base.css'
+} from '../../../bootstrap/ui/toasts/base.css'

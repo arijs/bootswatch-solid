@@ -15,7 +15,7 @@ cardRow,
 cardText,
 cardTitle,
 textMuted,
-} from '../../bootstrap/ui/card/base.css'
+} from '../../../bootstrap/ui/card/base.css'
 
 export {
 cardBody,

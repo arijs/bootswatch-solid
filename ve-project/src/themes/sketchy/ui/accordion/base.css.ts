@@ -8,4 +8,4 @@ accordionCollapseShow,
 accordionCollapsing,
 accordionHeader,
 accordionItem,
-} from '../../bootstrap/ui/accordion/base.css'
+} from '../../../bootstrap/ui/accordion/base.css'

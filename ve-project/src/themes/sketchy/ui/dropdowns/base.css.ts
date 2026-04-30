@@ -19,4 +19,4 @@ dropendMenu,
 dropendToggle,
 dropstartMenu,
 dropstartToggle,
-} from '../../bootstrap/ui/dropdowns/base.css'
+} from '../../../bootstrap/ui/dropdowns/base.css'

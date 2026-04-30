@@ -17,4 +17,4 @@ modalHeader,
 modalOpenHook,
 modalShowHook,
 modalTitle,
-} from '../../bootstrap/ui/modal/base.css'
+} from '../../../bootstrap/ui/modal/base.css'

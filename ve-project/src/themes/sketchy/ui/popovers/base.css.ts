@@ -13,4 +13,4 @@ frameColumn,
 frameRow,
 justifyEnd,
 justifyStart,
-} from '../../bootstrap/ui/popovers/base.css'
+} from '../../../bootstrap/ui/popovers/base.css'

@@ -7,4 +7,4 @@ pageItem,
 pageItemActive,
 pageItemDisabled,
 pageLink,
-} from '../../bootstrap/ui/pagination/base.css'
+} from '../../../bootstrap/ui/pagination/base.css'

@@ -10,4 +10,4 @@ bgPrimary,
 dInlineBlock,
 alignTop,
 navbarLogoMuted,
-} from '../../bootstrap/ui/navbar/base.css'
+} from '../../../bootstrap/ui/navbar/base.css'

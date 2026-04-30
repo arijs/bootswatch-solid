@@ -19,4 +19,4 @@ btnSecondary,
 btnSm,
 btnSuccess,
 btnWarning,
-} from '../../bootstrap/ui/buttons/generated.css'
+} from '../../../bootstrap/ui/buttons/generated.css'

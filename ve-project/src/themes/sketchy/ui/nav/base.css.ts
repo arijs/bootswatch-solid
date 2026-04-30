@@ -12,4 +12,4 @@ show,
 tabContent,
 tabPane,
 tabPaneActive,
-} from '../../bootstrap/ui/nav/base.css'
+} from '../../../bootstrap/ui/nav/base.css'

@@ -10,4 +10,4 @@ textWarning,
 textInfo,
 textLight,
 textDark,
-} from '../../bootstrap/ui/spinners/base.css'
+} from '../../../bootstrap/ui/spinners/base.css'

@@ -9,4 +9,4 @@ progressBarDanger,
 progressBarTextDark,
 progressBarStriped,
 progressBarAnimated,
-} from '../../bootstrap/ui/progress/base.css'
+} from '../../../bootstrap/ui/progress/base.css'
