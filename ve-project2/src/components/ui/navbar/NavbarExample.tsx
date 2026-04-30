@@ -25,7 +25,7 @@ const NavbarExample: Component = () => {
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarBgLight}`}>
-				<div class={`container-fluid ${theme} ${containerFluid}`}>
+				<div class={`${theme} ${containerFluid}`}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
 					<a class={`${theme} ${navbarBrand}`} href="#" onClick={(e) => e.preventDefault()}>
 						<img
@@ -83,7 +83,7 @@ const NavbarExample: Component = () => {
 			</nav>
 
 			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarDarkBgPrimary}`} style={{ 'margin-top': '3rem' }}>
-				<div class={`container-fluid ${theme} ${containerFluid}`}>
+				<div class={`${theme} ${containerFluid}`}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
 					<a class={`${theme} ${navbarBrand}`} href="#" onClick={(e) => e.preventDefault()}>
 						<img

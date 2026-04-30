@@ -155,6 +155,8 @@ ve-project2/src/themes/{theme}/contents/styles.css.ts
 
 Then stamp the contents contract class directly on the element in JSX.
 
+If the source rule targets a static class selector outside the component family contract (for example `.container`, `.container-fluid`), do not keep that selector inside `themes/{theme}/ui/{family}/styles.css.ts`. Migrate it through the standalone contents family (`theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`) and stamp the matching contents contract class in JSX.
+
 Mirror Bootstrap's CSS literally: first assign the CSS custom properties via `vars:`, then reference them in the property values — exactly as Bootstrap's source CSS does.
 
 ```ts
@@ -318,6 +320,7 @@ The `converted=` number should increase by exactly the count of routes you added
 | Scope `vars:` values must come from `screenshots/{theme}/theme.css` | When populating `scope.css.ts` with global `--bs-*` values (colours, radii, link colours, etc.), always read the resolved values from the `:root` block in `screenshots/{theme}/theme.css`. Never copy Bootstrap's default values for a Bootswatch theme — the theme overrides many of them. E.g. Sketchy sets `--bs-primary: #333` (not `#0d6efd`) and `--bs-link-color: #333` (not `#0d6efd`). |
 | CSS var references must stay as var references | If Bootstrap's source CSS writes `var(--bs-border-radius)`, the VE2 output must use `varBsBorderRadius` (the matching `createVar()` identifier), **not** the resolved static value (e.g. `'0.375rem'`). Resolving to a static value breaks per-theme inheritance — the whole point of the CSS custom-property cascade is that each theme sets the global var to its own value. |
 | Font imports belong to scope creation, not component conversion | `fonts.generated.css` is created **once** when first setting up a theme's `scope.css.ts` (Step 0.5). Do not add or re-generate it when converting subsequent component families inside the same theme. |
+| Static string selectors in component theme files | Do not use raw selectors like `.container` or `.container-fluid` in `themes/{theme}/ui/{family}/styles.css.ts`. Move them to contents contracts/styles (`theme-contract/contents/contract.css.ts` and `themes/{theme}/contents/styles.css.ts`) and stamp the contents class in JSX. |
 | `@screenshot` annotations — use the original's full list | The original source file (`src/components/…`) contains per-theme height overrides (e.g. `// @screenshot sketchy: 360x303 303`). Copy those annotations verbatim into the VE2 component so the screenshot harness captures the correct crop size per theme. Omitting them causes the wildcard `*` fallback to be used for all themes, which may cut off content in themes with larger spacing. |
 | Source element selectors (`h*`, `p`, `hr`, etc.) | Do not target raw elements in VE selectors. Move these rules into `theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`, then stamp the contents class directly on the element in JSX (`class={`${theme} ${h4}`}`, `class={`${theme} ${paragraph}`}`, `class={`${theme} ${horizontalRule}`}`). |
 | `contents` family location | `contents` is standalone: use `theme-contract/contents/*` and `themes/{theme}/contents/*` (not `theme-contract/ui/contents` or `themes/{theme}/ui/contents`). |

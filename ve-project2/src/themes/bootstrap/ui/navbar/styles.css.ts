@@ -45,6 +45,7 @@ import {
 	varBsBorderWidth,
 	varBsEmphasisColorRgb,
 } from '../../../../theme-contract/_vars.css'
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import { navLink, navLinkActive } from '../../../../theme-contract/ui/navs/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
@@ -106,15 +107,13 @@ globalStyle(`${bootstrapScope}${navbar}`, {
 // SOURCE CSS:
 // .navbar > .container, .navbar > .container-fluid, … { display: flex;
 //   flex-wrap: inherit; align-items: center; justify-content: space-between; }
-globalStyle(
-	`${bootstrapScope}${navbar} > .container, ${bootstrapScope}${navbar} > .container-fluid`,
-	{
-		display: 'flex',
-		flexWrap: 'inherit',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
-)
+// VE2 migration: map source .container/.container-fluid to contract classes.
+globalStyle(`${bootstrapScope}${navbar} > ${bootstrapScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+})
 
 // ── .navbar-brand ─────────────────────────────────────────────────────────────
 

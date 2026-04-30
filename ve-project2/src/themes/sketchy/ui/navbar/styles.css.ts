@@ -45,6 +45,7 @@ import {
 	varBsBorderWidth,
 	varBsEmphasisColorRgb,
 } from '../../../../theme-contract/_vars.css'
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import { navLink, navLinkActive } from '../../../../theme-contract/ui/navs/contract.css'
 import { sketchyScope } from '../../scope.css'
 
@@ -87,15 +88,13 @@ globalStyle(`${sketchyScope}${navbar}`, {
 	borderRadius: '25px 25px 55px 5px/5px 55px 25px 25px',
 })
 
-globalStyle(
-	`${sketchyScope}${navbar} > .container, ${sketchyScope}${navbar} > .container-fluid`,
-	{
-		display: 'flex',
-		flexWrap: 'inherit',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
-)
+// VE2 migration: map source .container/.container-fluid to contract classes.
+globalStyle(`${sketchyScope}${navbar} > ${sketchyScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+})
 
 // ── .navbar-brand ─────────────────────────────────────────────────────────────
 
