@@ -1,0 +1,48 @@
+import { bodyText } from '../../bootstrap/body.css'
+import { h4, h5 } from '../../contents/generated.css'
+import { btnClose } from '../alerts/base.css'
+import {
+actionsRow,
+flexWrap,
+justifyContentBetween,
+modal,
+modalBackdrop,
+modalBody,
+modalContent,
+modalDialog,
+modalDialogCentered,
+modalDialogScrollable,
+modalFade,
+fade as modalFadeClass,
+modalFooter,
+modalFullscreen,
+modalHeader,
+modalOpenHook,
+modalShowHook,
+modalTitle,
+} from './base.css'
+
+export const sketchyModalRuntimeClasses = {
+actionsRow,
+bodyText,
+btnClose,
+fade: modalFadeClass,
+flexWrap,
+h4,
+h5,
+justifyContentBetween,
+modal,
+modalBackdrop,
+modalBody,
+modalContent,
+modalDialog,
+modalDialogCentered,
+modalDialogScrollable,
+modalFade,
+modalFooter,
+modalFullscreen,
+modalHeader,
+modalOpenHook,
+modalShowHook,
+modalTitle,
+} as const
