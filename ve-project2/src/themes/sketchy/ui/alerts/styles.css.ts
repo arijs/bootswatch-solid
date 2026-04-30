@@ -14,6 +14,44 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
+import {
+	varBsBorderWidth,
+	varBsDangerBgSubtle,
+	varBsDangerBorderSubtle,
+	varBsDangerTextEmphasis,
+	varBsDarkBgSubtle,
+	varBsDarkBorderSubtle,
+	varBsDarkTextEmphasis,
+	varBsInfoBgSubtle,
+	varBsInfoBorderSubtle,
+	varBsInfoTextEmphasis,
+	varBsLightBgSubtle,
+	varBsLightBorderSubtle,
+	varBsLightTextEmphasis,
+	varBsPrimaryBgSubtle,
+	varBsPrimaryBorderSubtle,
+	varBsPrimaryTextEmphasis,
+	varBsSecondaryBgSubtle,
+	varBsSecondaryBorderSubtle,
+	varBsSecondaryTextEmphasis,
+	varBsSuccessBgSubtle,
+	varBsSuccessBorderSubtle,
+	varBsSuccessTextEmphasis,
+	varBsWarningBgSubtle,
+	varBsWarningBorderSubtle,
+	varBsWarningTextEmphasis,
+} from '../../../../theme-contract/_vars.css'
 import { sketchyScope } from '../../scope.css'
 
 // Sketchy hand-drawn border-radius for alerts
@@ -21,64 +59,104 @@ const sketchyBorderRadius = '255px 25px 225px 25px / 25px 225px 25px 255px'
 
 // ── Base alert ────────────────────────────────────────────────────────────────
 
+// Sketchy overrides --bs-alert-border-radius to the hand-drawn shape.
+// All other vars use the same Bootstrap defaults; the colour vars (bg-subtle etc.)
+// already carry Sketchy-specific values from the body scope.
 globalStyle(`${sketchyScope}${alert}`, {
+	vars: {
+		[varBsAlertBg]: 'transparent',
+		[varBsAlertPaddingX]: '1rem',
+		[varBsAlertPaddingY]: '1rem',
+		[varBsAlertMarginBottom]: '1rem',
+		[varBsAlertColor]: 'inherit',
+		[varBsAlertBorderColor]: 'transparent',
+		[varBsAlertBorder]: `${varBsBorderWidth} solid ${varBsAlertBorderColor}`,
+		[varBsAlertBorderRadius]: sketchyBorderRadius,
+		[varBsAlertLinkColor]: 'inherit',
+	},
 	position: 'relative',
-	padding: '1rem',
-	marginBottom: '1rem',
-	border: '1px solid transparent',
-	borderRadius: sketchyBorderRadius,
+	padding: `${varBsAlertPaddingY} ${varBsAlertPaddingX}`,
+	marginBottom: varBsAlertMarginBottom,
+	color: varBsAlertColor,
+	backgroundColor: varBsAlertBg,
+	border: varBsAlertBorder,
+	borderRadius: varBsAlertBorderRadius,
 })
 
 // ── Colour variants ───────────────────────────────────────────────────────────
-// Colors derived from Sketchy Bootswatch theme CSS variables:
-//   --bs-*-text-emphasis / --bs-*-bg-subtle / --bs-*-border-subtle (light mode)
+// Variant rules point to root semantic vars — which already have Sketchy-specific
+// values set in the Sketchy body scope — so no hardcoded colours are needed.
 
 globalStyle(`${sketchyScope}${alertPrimary}`, {
-	color: '#141414',
-	backgroundColor: '#d6d6d6',
-	borderColor: '#adadad',
+	vars: {
+		[varBsAlertColor]: varBsPrimaryTextEmphasis,
+		[varBsAlertBg]: varBsPrimaryBgSubtle,
+		[varBsAlertBorderColor]: varBsPrimaryBorderSubtle,
+		[varBsAlertLinkColor]: varBsPrimaryTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertSecondary}`, {
-	color: '#222222',
-	backgroundColor: '#dddddd',
-	borderColor: '#bbbbbb',
+	vars: {
+		[varBsAlertColor]: varBsSecondaryTextEmphasis,
+		[varBsAlertBg]: varBsSecondaryBgSubtle,
+		[varBsAlertBorderColor]: varBsSecondaryBorderSubtle,
+		[varBsAlertLinkColor]: varBsSecondaryTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertSuccess}`, {
-	color: '#10431c',
-	backgroundColor: '#d4edda',
-	borderColor: '#a9dcb5',
+	vars: {
+		[varBsAlertColor]: varBsSuccessTextEmphasis,
+		[varBsAlertBg]: varBsSuccessBgSubtle,
+		[varBsAlertBorderColor]: varBsSuccessBorderSubtle,
+		[varBsAlertLinkColor]: varBsSuccessTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertDanger}`, {
-	color: '#58151c',
-	backgroundColor: '#f8d7da',
-	borderColor: '#f1aeb5',
+	vars: {
+		[varBsAlertColor]: varBsDangerTextEmphasis,
+		[varBsAlertBg]: varBsDangerBgSubtle,
+		[varBsAlertBorderColor]: varBsDangerBorderSubtle,
+		[varBsAlertLinkColor]: varBsDangerTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertWarning}`, {
-	color: '#664d03',
-	backgroundColor: '#fff3cd',
-	borderColor: '#ffe69c',
+	vars: {
+		[varBsAlertColor]: varBsWarningTextEmphasis,
+		[varBsAlertBg]: varBsWarningBgSubtle,
+		[varBsAlertBorderColor]: varBsWarningBorderSubtle,
+		[varBsAlertLinkColor]: varBsWarningTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertInfo}`, {
-	color: '#09414a',
-	backgroundColor: '#d1ecf1',
-	borderColor: '#a2dae3',
+	vars: {
+		[varBsAlertColor]: varBsInfoTextEmphasis,
+		[varBsAlertBg]: varBsInfoBgSubtle,
+		[varBsAlertBorderColor]: varBsInfoBorderSubtle,
+		[varBsAlertLinkColor]: varBsInfoTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertLight}`, {
-	color: '#555555',
-	backgroundColor: '#fcfcfd',
-	borderColor: '#f7f7f9',
+	vars: {
+		[varBsAlertColor]: varBsLightTextEmphasis,
+		[varBsAlertBg]: varBsLightBgSubtle,
+		[varBsAlertBorderColor]: varBsLightBorderSubtle,
+		[varBsAlertLinkColor]: varBsLightTextEmphasis,
+	},
 })
 
 globalStyle(`${sketchyScope}${alertDark}`, {
-	color: '#555555',
-	backgroundColor: '#cccccc',
-	borderColor: '#aaaaaa',
+	vars: {
+		[varBsAlertColor]: varBsDarkTextEmphasis,
+		[varBsAlertBg]: varBsDarkBgSubtle,
+		[varBsAlertBorderColor]: varBsDarkBorderSubtle,
+		[varBsAlertLinkColor]: varBsDarkTextEmphasis,
+	},
 })
 
 // ── Dismissible layout ────────────────────────────────────────────────────────
@@ -89,18 +167,15 @@ globalStyle(`${sketchyScope}${alertDismissible}`, {
 
 // ── Inner element hooks ───────────────────────────────────────────────────────
 
-// Links inside alerts: bold, inherit text colour
 globalStyle(`${sketchyScope}${alert} ${alertLink}`, {
 	fontWeight: 700,
-	color: 'inherit',
+	color: varBsAlertLinkColor,
 })
 
-// Headings inside alerts: inherit text colour
 globalStyle(`${sketchyScope}${alert} ${alertHeading}`, {
 	color: 'inherit',
 })
 
-// Horizontal rule inside alert
 globalStyle(`${sketchyScope}${alert} hr`, {
 	color: 'inherit',
 	border: 0,
@@ -109,7 +184,7 @@ globalStyle(`${sketchyScope}${alert} hr`, {
 	margin: '1rem 0',
 })
 
-// Close button: Sketchy uses a text "X" character instead of the SVG background image
+// Close button: Sketchy uses a text "X" character instead of an SVG background image
 globalStyle(`${sketchyScope}${alertBtnClose}`, {
 	backgroundColor: 'transparent',
 	border: 0,

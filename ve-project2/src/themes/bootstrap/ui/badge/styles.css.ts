@@ -11,25 +11,61 @@ import {
 	badgeSuccess,
 	badgeWarning,
 } from '../../../../theme-contract/ui/badge/contract.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../../theme-contract/ui/badge/_vars.css'
+import {
+	varBsBorderRadius,
+	varBsBorderRadiusPill,
+	varBsDanger,
+	varBsDark,
+	varBsInfo,
+	varBsLight,
+	varBsPrimary,
+	varBsSecondary,
+	varBsSuccess,
+	varBsWarning,
+} from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
-
-// Bootstrap default theme values
-// Primary: #0d6efd, Secondary: #6c757d, Success: #198754, Danger: #dc3545
-// Warning: #ffc107, Info: #0dcaf0, Light: #f8f9fa, Dark: #212529
 
 // ── Base badge ────────────────────────────────────────────────────────────────
 
+// SOURCE CSS:
+// .badge {
+//   --bs-badge-padding-x: 0.65em; --bs-badge-padding-y: 0.35em;
+//   --bs-badge-font-size: 0.75em; --bs-badge-font-weight: 700;
+//   --bs-badge-color: #fff; --bs-badge-border-radius: var(--bs-border-radius);
+//   display: inline-block;
+//   padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+//   font-size: var(--bs-badge-font-size); font-weight: var(--bs-badge-font-weight);
+//   line-height: 1; color: var(--bs-badge-color);
+//   text-align: center; white-space: nowrap; vertical-align: baseline;
+//   border-radius: var(--bs-badge-border-radius);
+// }
 globalStyle(`${bootstrapScope}${badge}`, {
+	vars: {
+		[varBsBadgePaddingX]: '0.65em',
+		[varBsBadgePaddingY]: '0.35em',
+		[varBsBadgeFontSize]: '0.75em',
+		[varBsBadgeFontWeight]: '700',
+		[varBsBadgeColor]: '#fff',
+		[varBsBadgeBorderRadius]: varBsBorderRadius,
+	},
 	display: 'inline-block',
-	padding: '0.35em 0.65em',
-	fontSize: '0.75em',
-	fontWeight: 700,
+	padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
+	fontSize: varBsBadgeFontSize,
+	fontWeight: varBsBadgeFontWeight,
 	lineHeight: 1,
-	color: '#fff',
+	color: varBsBadgeColor,
 	textAlign: 'center',
 	whiteSpace: 'nowrap',
 	verticalAlign: 'baseline',
-	borderRadius: '0.375rem',
+	borderRadius: varBsBadgeBorderRadius,
 })
 
 globalStyle(`${bootstrapScope}${badge}:empty`, {
@@ -37,46 +73,47 @@ globalStyle(`${bootstrapScope}${badge}:empty`, {
 })
 
 // ── Colour variants ───────────────────────────────────────────────────────────
+// Background colour references root semantic vars so themes override automatically.
 
 globalStyle(`${bootstrapScope}${badgePrimary}`, {
-	backgroundColor: '#0d6efd',
+	backgroundColor: varBsPrimary,
 })
 
 globalStyle(`${bootstrapScope}${badgeSecondary}`, {
-	backgroundColor: '#6c757d',
+	backgroundColor: varBsSecondary,
 })
 
 globalStyle(`${bootstrapScope}${badgeSuccess}`, {
-	backgroundColor: '#198754',
+	backgroundColor: varBsSuccess,
 })
 
 globalStyle(`${bootstrapScope}${badgeDanger}`, {
-	backgroundColor: '#dc3545',
+	backgroundColor: varBsDanger,
 })
 
 // Warning and Info use dark text for contrast
 globalStyle(`${bootstrapScope}${badgeWarning}`, {
-	backgroundColor: '#ffc107',
-	color: '#000',
+	backgroundColor: varBsWarning,
+	vars: { [varBsBadgeColor]: '#000' },
 })
 
 globalStyle(`${bootstrapScope}${badgeInfo}`, {
-	backgroundColor: '#0dcaf0',
-	color: '#000',
+	backgroundColor: varBsInfo,
+	vars: { [varBsBadgeColor]: '#000' },
 })
 
 // Light uses dark text for contrast
 globalStyle(`${bootstrapScope}${badgeLight}`, {
-	backgroundColor: '#f8f9fa',
-	color: '#212529',
+	backgroundColor: varBsLight,
+	vars: { [varBsBadgeColor]: varBsDark },
 })
 
 globalStyle(`${bootstrapScope}${badgeDark}`, {
-	backgroundColor: '#212529',
+	backgroundColor: varBsDark,
 })
 
 // ── Shape modifier ────────────────────────────────────────────────────────────
 
 globalStyle(`${bootstrapScope}${badgeRoundedPill}`, {
-	borderRadius: '50rem',
+	vars: { [varBsBadgeBorderRadius]: varBsBorderRadiusPill },
 })

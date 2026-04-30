@@ -11,26 +11,52 @@ import {
 	badgeSuccess,
 	badgeWarning,
 } from '../../../../theme-contract/ui/badge/contract.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../../theme-contract/ui/badge/_vars.css'
+import {
+	varBsDanger,
+	varBsDark,
+	varBsInfo,
+	varBsLight,
+	varBsPrimary,
+	varBsSecondary,
+	varBsSuccess,
+	varBsWarning,
+} from '../../../../theme-contract/_vars.css'
 import { sketchyScope } from '../../scope.css'
 
-// Sketchy theme values
-// Primary: #333333, Secondary: #555555, Success: #28a745, Danger: #dc3545
-// Warning: #ffc107, Info: #17a2b8, Light: #ffffff, Dark: #555555
+// Sketchy hand-drawn shapes for badges
+const sketchyBorderRadius = '255px 25px 225px 25px / 25px 225px 25px 255px'
+const sketchyPillBorderRadius = '7rem 8rem 8rem 8rem / 4rem 5rem 6rem 6rem'
 
 // ── Base badge ────────────────────────────────────────────────────────────────
-// Sketchy overrides badge padding and uses a hand-drawn border-radius
 
+// Sketchy overrides --bs-badge-padding-x/y and --bs-badge-border-radius.
 globalStyle(`${sketchyScope}${badge}`, {
+	vars: {
+		[varBsBadgePaddingX]: '1.2em',
+		[varBsBadgePaddingY]: '0.5em',
+		[varBsBadgeFontSize]: '0.75em',
+		[varBsBadgeFontWeight]: '700',
+		[varBsBadgeColor]: '#fff',
+		[varBsBadgeBorderRadius]: sketchyBorderRadius,
+	},
 	display: 'inline-block',
-	padding: '0.5em 1.2em',
-	fontSize: '0.75em',
-	fontWeight: 700,
+	padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
+	fontSize: varBsBadgeFontSize,
+	fontWeight: varBsBadgeFontWeight,
 	lineHeight: 1,
-	color: '#fff',
+	color: varBsBadgeColor,
 	textAlign: 'center',
 	whiteSpace: 'nowrap',
 	verticalAlign: 'baseline',
-	borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
+	borderRadius: varBsBadgeBorderRadius,
 })
 
 globalStyle(`${sketchyScope}${badge}:empty`, {
@@ -38,46 +64,47 @@ globalStyle(`${sketchyScope}${badge}:empty`, {
 })
 
 // ── Colour variants ───────────────────────────────────────────────────────────
+// Background colours reference root semantic vars which already carry
+// Sketchy-specific values from the body scope (e.g. varBsPrimary = '#333').
 
 globalStyle(`${sketchyScope}${badgePrimary}`, {
-	backgroundColor: '#333333',
+	backgroundColor: varBsPrimary,
 })
 
 globalStyle(`${sketchyScope}${badgeSecondary}`, {
-	backgroundColor: '#555555',
+	backgroundColor: varBsSecondary,
 })
 
 globalStyle(`${sketchyScope}${badgeSuccess}`, {
-	backgroundColor: '#28a745',
+	backgroundColor: varBsSuccess,
 })
 
 globalStyle(`${sketchyScope}${badgeDanger}`, {
-	backgroundColor: '#dc3545',
+	backgroundColor: varBsDanger,
 })
 
 globalStyle(`${sketchyScope}${badgeWarning}`, {
-	backgroundColor: '#ffc107',
-	color: '#000',
+	backgroundColor: varBsWarning,
+	vars: { [varBsBadgeColor]: '#000' },
 })
 
 globalStyle(`${sketchyScope}${badgeInfo}`, {
-	backgroundColor: '#17a2b8',
-	color: '#000',
+	backgroundColor: varBsInfo,
+	vars: { [varBsBadgeColor]: '#000' },
 })
 
-// Light uses dark text for contrast; Sketchy uses #555 as dark text on white
+// Sketchy: light badge uses #555 text (varBsDark = '#555' in Sketchy scope)
 globalStyle(`${sketchyScope}${badgeLight}`, {
-	backgroundColor: '#ffffff',
-	color: '#555555',
+	backgroundColor: varBsLight,
+	vars: { [varBsBadgeColor]: varBsDark },
 })
 
 globalStyle(`${sketchyScope}${badgeDark}`, {
-	backgroundColor: '#555555',
+	backgroundColor: varBsDark,
 })
 
 // ── Shape modifier ────────────────────────────────────────────────────────────
-// Sketchy pill uses an organic rounded shape instead of a plain 50rem pill
 
 globalStyle(`${sketchyScope}${badgeRoundedPill}`, {
-	borderRadius: '7rem 8rem 8rem 8rem / 4rem 5rem 6rem 6rem',
+	vars: { [varBsBadgeBorderRadius]: sketchyPillBorderRadius },
 })

@@ -14,6 +14,45 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
+import {
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsDangerBgSubtle,
+	varBsDangerBorderSubtle,
+	varBsDangerTextEmphasis,
+	varBsDarkBgSubtle,
+	varBsDarkBorderSubtle,
+	varBsDarkTextEmphasis,
+	varBsInfoBgSubtle,
+	varBsInfoBorderSubtle,
+	varBsInfoTextEmphasis,
+	varBsLightBgSubtle,
+	varBsLightBorderSubtle,
+	varBsLightTextEmphasis,
+	varBsPrimaryBgSubtle,
+	varBsPrimaryBorderSubtle,
+	varBsPrimaryTextEmphasis,
+	varBsSecondaryBgSubtle,
+	varBsSecondaryBorderSubtle,
+	varBsSecondaryTextEmphasis,
+	varBsSuccessBgSubtle,
+	varBsSuccessBorderSubtle,
+	varBsSuccessTextEmphasis,
+	varBsWarningBgSubtle,
+	varBsWarningBorderSubtle,
+	varBsWarningTextEmphasis,
+} from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
 // Bootstrap default theme SVG × icon for the close button
@@ -21,66 +60,121 @@ const btnCloseSvg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/200
 
 // ── Base alert ────────────────────────────────────────────────────────────────
 
+// SOURCE CSS:
+// .alert {
+//   --bs-alert-bg: transparent; --bs-alert-padding-x: 1rem; --bs-alert-padding-y: 1rem;
+//   --bs-alert-margin-bottom: 1rem; --bs-alert-color: inherit;
+//   --bs-alert-border-color: transparent;
+//   --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
+//   --bs-alert-border-radius: var(--bs-border-radius); --bs-alert-link-color: inherit;
+//   position: relative;
+//   padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+//   margin-bottom: var(--bs-alert-margin-bottom);
+//   color: var(--bs-alert-color); background-color: var(--bs-alert-bg);
+//   border: var(--bs-alert-border); border-radius: var(--bs-alert-border-radius);
+// }
 globalStyle(`${bootstrapScope}${alert}`, {
+	vars: {
+		[varBsAlertBg]: 'transparent',
+		[varBsAlertPaddingX]: '1rem',
+		[varBsAlertPaddingY]: '1rem',
+		[varBsAlertMarginBottom]: '1rem',
+		[varBsAlertColor]: 'inherit',
+		[varBsAlertBorderColor]: 'transparent',
+		[varBsAlertBorder]: `${varBsBorderWidth} solid ${varBsAlertBorderColor}`,
+		[varBsAlertBorderRadius]: varBsBorderRadius,
+		[varBsAlertLinkColor]: 'inherit',
+	},
 	position: 'relative',
-	padding: '1rem',
-	marginBottom: '1rem',
-	border: '1px solid transparent',
-	borderRadius: '0.375rem',
+	padding: `${varBsAlertPaddingY} ${varBsAlertPaddingX}`,
+	marginBottom: varBsAlertMarginBottom,
+	color: varBsAlertColor,
+	backgroundColor: varBsAlertBg,
+	border: varBsAlertBorder,
+	borderRadius: varBsAlertBorderRadius,
 })
 
 // ── Colour variants ───────────────────────────────────────────────────────────
-// Colors derived from Bootstrap 5.3 defaults:
-//   text-emphasis  = shade(base-color, 60%)
-//   bg-subtle      = tint(base-color, 80%)
-//   border-subtle  = tint(base-color, 60%)
+
+// SOURCE CSS:
+// .alert-primary {
+//   --bs-alert-color: var(--bs-primary-text-emphasis);
+//   --bs-alert-bg: var(--bs-primary-bg-subtle);
+//   --bs-alert-border-color: var(--bs-primary-border-subtle);
+//   --bs-alert-link-color: var(--bs-primary-text-emphasis);
+// }
+// (same pattern for all variants)
 
 globalStyle(`${bootstrapScope}${alertPrimary}`, {
-	color: '#052c65',
-	backgroundColor: '#cfe2ff',
-	borderColor: '#9ec5fe',
+	vars: {
+		[varBsAlertColor]: varBsPrimaryTextEmphasis,
+		[varBsAlertBg]: varBsPrimaryBgSubtle,
+		[varBsAlertBorderColor]: varBsPrimaryBorderSubtle,
+		[varBsAlertLinkColor]: varBsPrimaryTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertSecondary}`, {
-	color: '#2b2d2f',
-	backgroundColor: '#e2e3e5',
-	borderColor: '#c4c8cb',
+	vars: {
+		[varBsAlertColor]: varBsSecondaryTextEmphasis,
+		[varBsAlertBg]: varBsSecondaryBgSubtle,
+		[varBsAlertBorderColor]: varBsSecondaryBorderSubtle,
+		[varBsAlertLinkColor]: varBsSecondaryTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertSuccess}`, {
-	color: '#0a3622',
-	backgroundColor: '#d1e7dd',
-	borderColor: '#a3cfbb',
+	vars: {
+		[varBsAlertColor]: varBsSuccessTextEmphasis,
+		[varBsAlertBg]: varBsSuccessBgSubtle,
+		[varBsAlertBorderColor]: varBsSuccessBorderSubtle,
+		[varBsAlertLinkColor]: varBsSuccessTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertDanger}`, {
-	color: '#58151c',
-	backgroundColor: '#f8d7da',
-	borderColor: '#f1aeb5',
+	vars: {
+		[varBsAlertColor]: varBsDangerTextEmphasis,
+		[varBsAlertBg]: varBsDangerBgSubtle,
+		[varBsAlertBorderColor]: varBsDangerBorderSubtle,
+		[varBsAlertLinkColor]: varBsDangerTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertWarning}`, {
-	color: '#664d03',
-	backgroundColor: '#fff3cd',
-	borderColor: '#ffe69c',
+	vars: {
+		[varBsAlertColor]: varBsWarningTextEmphasis,
+		[varBsAlertBg]: varBsWarningBgSubtle,
+		[varBsAlertBorderColor]: varBsWarningBorderSubtle,
+		[varBsAlertLinkColor]: varBsWarningTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertInfo}`, {
-	color: '#055160',
-	backgroundColor: '#cff4fc',
-	borderColor: '#9eeaf9',
+	vars: {
+		[varBsAlertColor]: varBsInfoTextEmphasis,
+		[varBsAlertBg]: varBsInfoBgSubtle,
+		[varBsAlertBorderColor]: varBsInfoBorderSubtle,
+		[varBsAlertLinkColor]: varBsInfoTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertLight}`, {
-	color: '#495057',
-	backgroundColor: '#fcfcfd',
-	borderColor: '#e9ecef',
+	vars: {
+		[varBsAlertColor]: varBsLightTextEmphasis,
+		[varBsAlertBg]: varBsLightBgSubtle,
+		[varBsAlertBorderColor]: varBsLightBorderSubtle,
+		[varBsAlertLinkColor]: varBsLightTextEmphasis,
+	},
 })
 
 globalStyle(`${bootstrapScope}${alertDark}`, {
-	color: '#495057',
-	backgroundColor: '#ced4da',
-	borderColor: '#adb5bd',
+	vars: {
+		[varBsAlertColor]: varBsDarkTextEmphasis,
+		[varBsAlertBg]: varBsDarkBgSubtle,
+		[varBsAlertBorderColor]: varBsDarkBorderSubtle,
+		[varBsAlertLinkColor]: varBsDarkTextEmphasis,
+	},
 })
 
 // ── Dismissible layout ────────────────────────────────────────────────────────
@@ -91,10 +185,10 @@ globalStyle(`${bootstrapScope}${alertDismissible}`, {
 
 // ── Inner element hooks ───────────────────────────────────────────────────────
 
-// Links inside alerts: bold, inherit text colour from the variant
+// Links inside alerts: bold, use alert link colour
 globalStyle(`${bootstrapScope}${alert} ${alertLink}`, {
 	fontWeight: 700,
-	color: 'inherit',
+	color: varBsAlertLinkColor,
 })
 
 // Headings inside alerts: inherit text colour from the variant
@@ -124,7 +218,7 @@ globalStyle(`${bootstrapScope}${alertBtnClose}`, {
 	backgroundSize: '1em auto',
 	backgroundRepeat: 'no-repeat',
 	border: 0,
-	borderRadius: '0.375rem',
+	borderRadius: varBsAlertBorderRadius,
 	opacity: 0.5,
 	cursor: 'pointer',
 	position: 'absolute',
