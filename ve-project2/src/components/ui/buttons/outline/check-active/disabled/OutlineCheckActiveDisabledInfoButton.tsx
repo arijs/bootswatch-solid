@@ -1,3 +1,4 @@
+import { vars } from '../../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
@@ -15,7 +16,7 @@ const OutlineCheckActiveDisabledInfoButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineInfo} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnOutlineInfo} ${btnActiveHook} pwhook-btn`}
 			>
 				Info
 			</button>

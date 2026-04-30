@@ -1,3 +1,4 @@
+import { vars } from '../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
@@ -14,7 +15,7 @@ const OutlineCheckActiveDarkButton: Component = () => {
 		<div class="bd-example-ve2">
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineDark} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnOutlineDark} ${btnActiveHook} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

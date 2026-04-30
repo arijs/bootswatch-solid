@@ -2,6 +2,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
 import { btn, btnOutlineWarning } from '../../../../../theme-contract/ui/buttons/contract.css'
+import { vars } from '../../../../../theme-contract/theme-contract.css'
 
 const OutlineDisabledWarningButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -11,7 +12,7 @@ const OutlineDisabledWarningButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineWarning} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnOutlineWarning} pwhook-btn`}
 			>
 				Warning
 			</button>

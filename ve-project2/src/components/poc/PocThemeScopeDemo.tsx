@@ -1,6 +1,6 @@
 import { type Component, useContext } from 'solid-js'
 // Root-level contract classes: body wrapper + text-bearing root.
-import { body, bodyText } from '../../theme-contract/theme-contract.css'
+import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
 // Contract classes — stable identifiers shared by all themes, applied to elements.
 // No runtime resolution required: every component always uses these same names.
 import {
@@ -33,7 +33,7 @@ import { ThemeContext } from '../../context/ThemeContext'
 // a new ThemedBody wrapper stamps the correct scope for that subtree.
 const ThemedBody: Component<{ children: any }> = (props) => {
 	const theme = useContext(ThemeContext)
-	return <div class={`${theme} ${body} ${bodyText}`}>{props.children}</div>
+	return <div class={`${theme} ${vars} ${body} ${bodyText}`}>{props.children}</div>
 }
 
 // Buttons reads the current theme class from context and applies it directly to

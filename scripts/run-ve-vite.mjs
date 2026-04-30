@@ -7,6 +7,7 @@ const mode = process.argv[2]
 const projectDir = process.argv[3] ?? 've-project'
 const root = path.resolve(process.cwd(), projectDir)
 const configFile = path.resolve(root, 'vite.config.ts')
+const defaultPort = projectDir === 've-project2' ? 4175 : 4174
 
 if (mode !== 'build' && mode !== 'preview' && mode !== 'dev') {
 	throw new Error('Usage: node scripts/run-ve-vite.mjs <build|preview|dev> [project-dir]')
@@ -26,7 +27,7 @@ if (mode === 'dev') {
 		configFile,
 		server: {
 			host: '127.0.0.1',
-			port: 4174,
+			port: defaultPort,
 			strictPort: true,
 		},
 	})
@@ -64,7 +65,7 @@ const previewServer = await preview({
 	configFile,
 	preview: {
 		host: '127.0.0.1',
-		port: 4174,
+		port: defaultPort,
 		strictPort: true,
 	},
 })

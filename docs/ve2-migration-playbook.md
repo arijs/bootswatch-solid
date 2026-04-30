@@ -38,7 +38,7 @@ globalStyle(`${bootstrapScope}${badge}`, {
 })
 ```
 
-Global `--bs-*` variables (border-radius, colours, etc.) are declared in `theme-contract/_vars.css.ts` and assigned on the `${scope}${body}` element in each theme's `scope.css.ts`.  Because CSS custom properties inherit, every component inside the themed body wrapper automatically has access to them.
+Global `--bs-*` variables (border-radius, colours, etc.) are declared in `theme-contract/_vars.css.ts` and assigned via `globalStyle(`${scope}${vars}`, { vars: ... })` in each theme's `scope.css.ts`. Because CSS custom properties inherit, every component inside a wrapper stamped with scope + `vars` automatically has access to them.
 
 ---
 
@@ -96,7 +96,7 @@ export const varBsMyComponentBorderRadius = createVar() // --bs-my-component-bor
 
 Naming convention: `varBs` + PascalCase version of the Bootstrap CSS variable name.
 
-> **Global vars**: Common `--bs-*` variables (colours, border radii, border width) are already declared in `ve-project2/src/theme-contract/_vars.css.ts`.  Import from there — do **not** duplicate them per-family.
+> **Global vars**: Common `--bs-*` variables (colours, border radii, border width) are already declared in `ve-project2/src/theme-contract/_vars.css.ts`. Import from there — do **not** duplicate them per-family. Theme values for these vars are assigned on `${scope}${vars}` in each theme `scope.css.ts`, so ensure the outer themed wrapper includes the `vars` contract class.
 
 ---
 
@@ -137,7 +137,7 @@ globalStyle(`${bootstrapScope}${myComponent}`, {
 })
 ```
 
-For the sketchy theme, only override the vars and properties that differ — everything else follows automatically from the global vars already set on the body element:
+For the sketchy theme, only override the vars and properties that differ — everything else follows automatically from the global vars already set on the `${scope}${vars}` element:
 
 ```ts
 // themes/sketchy/ui/{family}/styles.css.ts
@@ -261,7 +261,7 @@ The `converted=` number should increase by exactly the count of routes you added
 | Wrong import depth in theme files | Theme style files are 4 levels deep (`themes/{theme}/ui/{family}/`). Use `../../../../` for theme-contract and `../../` for scope. |
 | `.css` vs `.css.ts` in side-effect imports | Always use `.css` extension in `import '…/styles.css'` statements. |
 | `bd-example-ve2` vs `bd-example` | VE2 components use `bd-example-ve2` (defined in `ve-project2/src/styles/bd-example.css`). The original source uses `bd-example`. |
-| Don't duplicate global `--bs-*` vars per-family | Global vars (`--bs-border-radius`, `--bs-primary`, etc.) are already in `theme-contract/_vars.css.ts` and assigned on the body element in each `scope.css.ts`. Import them directly — don't re-declare in `_vars.css.ts` files. |
+| Don't duplicate global `--bs-*` vars per-family | Global vars (`--bs-border-radius`, `--bs-primary`, etc.) are already in `theme-contract/_vars.css.ts` and assigned on `${scope}${vars}` in each `scope.css.ts`. Import them directly — don't re-declare in `_vars.css.ts` files. |
 | `rgba()` with rgb-triple vars | Bootstrap writes `rgba(var(--bs-primary-rgb), 0.5)` — in VE2 write `rgba(${varBsPrimaryRgb}, 0.5)` as a template string. The `createVar()` reference resolves to the hashed property name, which carries the inherited `13, 110, 253` value from the body element. |
 | `varBsBorderRadius` resolves differently per theme | `varBsBorderRadius` is `0.375rem` in bootstrap and `25px` in sketchy (set on the body element). Component vars that reference it (`[varBsBadgeBorderRadius]: varBsBorderRadius`) automatically pick up the per-theme value — no separate sketchy override needed for border-radius unless the component uses a *different* radius than the global default. |
 | Sketchy close button | Sketchy replaces the SVG close-button background with a `::before { content: "X" }` pseudo-element. See `node_modules/bootswatch/dist/sketchy/_bootswatch.scss`. |

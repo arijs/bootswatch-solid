@@ -19,6 +19,7 @@ import {
 	carouselSlide,
 } from '../../../theme-contract/ui/carousel/contract.css'
 import { configureVeCarousel } from './ve-carousel'
+import { vars } from '../../../theme-contract/theme-contract.css'
 
 const CarouselExample: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -45,7 +46,7 @@ const CarouselExample: Component = () => {
 			<div
 				ref={carouselRef}
 				id="carouselExampleCaptionsVe2"
-				class={`${theme} ${carousel} ${carouselSlide} pwhook-carousel`}
+				class={`${theme} ${vars} ${carousel} ${carouselSlide} pwhook-carousel`}
 				data-bs-ride="carousel"
 			>
 				<div class={`${theme} ${carouselIndicators}`}>

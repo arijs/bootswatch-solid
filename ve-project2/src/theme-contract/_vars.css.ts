@@ -4,8 +4,8 @@ import { createVar } from '@vanilla-extract/css'
 // These are the variables declared in Bootstrap's :root block and referenced
 // throughout its component CSS.  Each createVar() produces a stable hashed
 // CSS custom property name; theme style files set actual values via
-//   globalStyle(`${scope}${body}`, { vars: { [varBsBorderRadius]: '0.375rem', … } })
-// so that every component inside the themed body inherits them.
+//   globalStyle(`${scope}${vars}`, { vars: { [varBsBorderRadius]: '0.375rem', … } })
+// so that every component inside a themed vars host inherits them.
 
 // ── Colour palette ────────────────────────────────────────────────────────────
 

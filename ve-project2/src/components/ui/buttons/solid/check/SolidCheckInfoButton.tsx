@@ -2,6 +2,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
 import { btn, btnInfo } from '../../../../../theme-contract/ui/buttons/contract.css'
+import { vars } from '../../../../../theme-contract/theme-contract.css'
 
 const SolidCheckInfoButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +11,7 @@ const SolidCheckInfoButton: Component = () => {
 		<div class="bd-example-ve2">
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnInfo} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnInfo} pwhook-btn`}
 				data-bs-toggle="button"
 			>
 				Info

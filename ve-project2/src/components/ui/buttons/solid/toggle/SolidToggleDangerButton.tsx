@@ -2,6 +2,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
 import { btn, btnCheck, btnDanger } from '../../../../../theme-contract/ui/buttons/contract.css'
+import { vars } from '../../../../../theme-contract/theme-contract.css'
 
 const SolidToggleDangerButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +11,7 @@ const SolidToggleDangerButton: Component = () => {
 		<div class="bd-example-ve2">
 			<input
 				type="checkbox"
-				class={`${theme} ${btnCheck}`}
+				class={`${theme} ${vars} ${btnCheck}`}
 				id="id-btn-solid-toggle-danger"
 				autocomplete="off"
 			/>

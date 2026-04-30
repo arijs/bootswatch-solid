@@ -1,3 +1,4 @@
+import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
@@ -13,7 +14,7 @@ const ImageTopCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
 		<div class="bd-example-ve2">
-			<div class={`${theme} ${card}`}>
+			<div class={`${theme} ${vars} ${card}`}>
 				<svg
 					class={`${theme} ${cardImgTop}`}
 					width="100%"

@@ -1,3 +1,4 @@
+import { vars } from '../../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
@@ -16,7 +17,7 @@ const CheckActiveDisabledLargeButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnPrimary} ${btnLg} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnPrimary} ${btnLg} ${btnActiveHook} pwhook-btn`}
 			>
 				Large button
 			</button>

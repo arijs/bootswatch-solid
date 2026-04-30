@@ -2,6 +2,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
 import { btn, btnOutlinePrimary } from '../../../../../theme-contract/ui/buttons/contract.css'
+import { vars } from '../../../../../theme-contract/theme-contract.css'
 
 const OutlineCheckPrimaryButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +11,7 @@ const OutlineCheckPrimaryButton: Component = () => {
 		<div class="bd-example-ve2">
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnOutlinePrimary} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnOutlinePrimary} pwhook-btn`}
 				data-bs-toggle="button"
 			>
 				Primary

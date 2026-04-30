@@ -1,3 +1,4 @@
+import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
@@ -13,7 +14,7 @@ const BreadcrumbExample: Component = () => {
 	return (
 		<div class="bd-example-ve2">
 			<nav aria-label="breadcrumb">
-				<ol class={`${theme} ${breadcrumb}`}>
+				<ol class={`${theme} ${vars} ${breadcrumb}`}>
 					<li class={breadcrumbItem}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a href="#" onClick={(e) => e.preventDefault()}>

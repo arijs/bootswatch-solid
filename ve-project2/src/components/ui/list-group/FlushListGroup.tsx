@@ -1,3 +1,4 @@
+import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
@@ -11,7 +12,7 @@ const FlushListGroup: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
 		<div class="bd-example-ve2">
-			<ul class={`${theme} ${listGroup} ${listGroupFlush}`}>
+			<ul class={`${theme} ${vars} ${listGroup} ${listGroupFlush}`}>
 				<li class={listGroupItem}>An item</li>
 				<li class={listGroupItem}>A second item</li>
 				<li class={listGroupItem}>A third item</li>

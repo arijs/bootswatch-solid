@@ -6,6 +6,7 @@ import {
 	btnCheck,
 	btnOutlineDanger,
 } from '../../../../../../theme-contract/ui/buttons/contract.css'
+import { vars } from '../../../../../../theme-contract/theme-contract.css'
 
 const OutlineToggleActiveDisabledDangerButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -15,7 +16,7 @@ const OutlineToggleActiveDisabledDangerButton: Component = () => {
 			<input
 				disabled
 				type="checkbox"
-				class={`${theme} ${btnCheck}`}
+				class={`${theme} ${vars} ${btnCheck}`}
 				id="id-btn-outline-toggle-active-disabled-danger"
 				checked
 				autocomplete="off"

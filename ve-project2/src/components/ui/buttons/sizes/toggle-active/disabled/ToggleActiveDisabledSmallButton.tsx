@@ -1,3 +1,4 @@
+import { vars } from '../../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
@@ -16,7 +17,7 @@ const ToggleActiveDisabledSmallButton: Component = () => {
 			<input
 				disabled
 				type="checkbox"
-				class={`${theme} ${btnCheck}`}
+				class={`${theme} ${vars} ${btnCheck}`}
 				id="id-btn-sizes-toggle-active-disabled-small"
 				checked
 				autocomplete="off"

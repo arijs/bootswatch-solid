@@ -3,6 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import { vars } from '../../../theme-contract/theme-contract.css'
 
 const ButtonGroupExample: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +11,7 @@ const ButtonGroupExample: Component = () => {
 	return (
 		<div class="bd-example-ve2">
 			<div
-				class={`${theme} ${btnToolbar}`}
+				class={`${theme} ${vars} ${btnToolbar}`}
 				role="toolbar"
 				aria-label="Toolbar with button groups"
 			>

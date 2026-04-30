@@ -15,13 +15,14 @@ import {
 	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
+import { vars } from '../../../theme-contract/theme-contract.css'
 
 const SplitInfoDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	configureVeDropdown({ btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropend, dropstart, dropup })
 	return (
 		<div class="bd-example-ve2">
-			<div class={`${theme} ${btnGroup}`}>
+			<div class={`${theme} ${vars} ${btnGroup}`}>
 				<button type="button" class={`${theme} ${btn} ${btnInfo}`}>
 					Info
 				</button>

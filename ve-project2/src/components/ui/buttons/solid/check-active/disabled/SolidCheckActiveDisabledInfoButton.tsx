@@ -1,3 +1,4 @@
+import { vars } from '../../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
@@ -15,7 +16,7 @@ const SolidCheckActiveDisabledInfoButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnInfo} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${vars} ${btn} ${btnInfo} ${btnActiveHook} pwhook-btn`}
 			>
 				Info
 			</button>

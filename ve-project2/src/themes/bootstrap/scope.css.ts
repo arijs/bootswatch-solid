@@ -69,35 +69,16 @@ import {
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../theme-contract/_vars.css'
-import { body, bodyText } from '../../theme-contract/theme-contract.css'
+import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
 
 // Bootstrap theme scope class.
-// Zero-style identifier — just a stable hashed class name used as a selector
-// prefix in compound rules.  No CSS is embedded here; all Bootstrap root styles
-// are wired through globalStyle compound selectors below so the same
-// element-owned pattern used for components also applies to body-level traits.
+// Zero-style identifier used as a stable selector prefix.
 export const bootstrapScope = style({})
 
-// ── Root / body styles ────────────────────────────────────────────────────────
-
-// Text-bearing root: sets the Bootstrap base typography that every descendant
-// inherits.  Applied to any element that carries BOTH bootstrapScope + bodyText.
-globalStyle(`${bootstrapScope}${bodyText}`, {
-	fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-	fontSize: '1rem',
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: '#212529',
-})
-
-// Outer wrapper: sets Bootstrap's global CSS custom properties so every
-// component inside inherits them, then applies background and layout.
-// Applied to any element that carries BOTH bootstrapScope + body.
-//
-// SOURCE CSS (Bootstrap 5.3 :root block — abbreviated):
-// :root, [data-bs-theme=light] {
-//   --bs-primary: #0d6efd; --bs-border-radius: 0.375rem; … }
-globalStyle(`${bootstrapScope}${body}`, {
+// Global Bootstrap CSS custom properties (`--bs-*`) are assigned on the
+// dedicated vars contract class to keep root var hosting separate from body
+// layout/background styles.
+globalStyle(`${bootstrapScope}${vars}`, {
 	vars: {
 		// Semantic colours
 		[varBsPrimary]: '#0d6efd',
@@ -180,6 +161,23 @@ globalStyle(`${bootstrapScope}${body}`, {
 		[varBsLinkColor]: '#0d6efd',
 		[varBsLinkHoverColor]: '#0a58ca',
 	},
+})
+
+// ── Root / body styles ────────────────────────────────────────────────────────
+
+// Text-bearing root: sets the Bootstrap base typography that every descendant
+// inherits.  Applied to any element that carries BOTH bootstrapScope + bodyText.
+globalStyle(`${bootstrapScope}${bodyText}`, {
+	fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontSize: '1rem',
+	fontWeight: 400,
+	lineHeight: 1.5,
+	color: '#212529',
+})
+
+// Outer wrapper for direct body-level properties (layout/background).
+// Applied to any element that carries BOTH bootstrapScope + body.
+globalStyle(`${bootstrapScope}${body}`, {
 	backgroundColor: '#fff',
 	padding: '1rem',
 	display: 'block',

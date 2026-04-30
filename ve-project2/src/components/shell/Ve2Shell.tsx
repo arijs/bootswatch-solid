@@ -33,7 +33,7 @@ import '../../themes/sketchy/ui/dropdowns/styles.css'
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
 // Root-level contract classes: body wrapper + text-bearing root.
-import { body, bodyText } from '../../theme-contract/theme-contract.css'
+import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
 
 function resolveThemeClass(rawTheme: string | null | undefined): string {
 	switch (rawTheme) {
@@ -46,8 +46,8 @@ function resolveThemeClass(rawTheme: string | null | undefined): string {
 
 // Ve2Shell — reads the ?theme= URL param (same convention as ve-project) and
 // provides the matching scope class via ThemeContext to all child components.
-// Wraps children in a div carrying scope + body + bodyText so root-level theme
-// styles (font-family, color, background) take effect for each leaf route.
+// Wraps children in a div carrying scope + vars + body + bodyText so root-level
+// theme vars and styles (font-family, color, background) take effect.
 export function Ve2Shell(props: { children: JSX.Element }) {
 	const location = useLocation()
 	const themeClass = () => {
@@ -56,7 +56,7 @@ export function Ve2Shell(props: { children: JSX.Element }) {
 	}
 	return (
 		<ThemeContext.Provider value={themeClass()}>
-			<div class={`${themeClass()} ${body} ${bodyText}`}>{props.children}</div>
+			<div class={`${themeClass()} ${vars} ${body} ${bodyText}`}>{props.children}</div>
 		</ThemeContext.Provider>
 	)
 }

@@ -1,3 +1,4 @@
+import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
@@ -14,7 +15,7 @@ const DangerAlert: Component = () => {
 
 	return (
 		<div class="bd-example-ve2">
-			<div class={`${theme} ${alert} ${alertDanger} ${alertDismissible}`}>
+			<div class={`${theme} ${vars} ${alert} ${alertDanger} ${alertDismissible}`}>
 				A simple danger alert with{' '}
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
 				<a href="#" onClick={(e) => e.preventDefault()} class={alertLink}>

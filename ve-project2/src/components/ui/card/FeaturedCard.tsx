@@ -1,3 +1,4 @@
+import { vars } from '../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
@@ -14,7 +15,7 @@ const FeaturedCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
 		<div class="bd-example-ve2">
-			<div class={`${theme} ${card}`}>
+			<div class={`${theme} ${vars} ${card}`}>
 				<div class={`${theme} ${cardHeader}`}>Featured</div>
 				<div class={`${theme} ${cardBody}`}>
 					<h5 class={`${theme} ${cardTitle}`}>Card title</h5>

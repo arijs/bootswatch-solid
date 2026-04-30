@@ -1,3 +1,4 @@
+import { vars } from '../../../../../theme-contract/theme-contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
@@ -14,7 +15,7 @@ const OutlineToggleActiveInfoButton: Component = () => {
 		<div class="bd-example-ve2">
 			<input
 				type="checkbox"
-				class={`${theme} ${btnCheck}`}
+				class={`${theme} ${vars} ${btnCheck}`}
 				id="id-btn-outline-toggle-active-info"
 				checked
 				autocomplete="off"
