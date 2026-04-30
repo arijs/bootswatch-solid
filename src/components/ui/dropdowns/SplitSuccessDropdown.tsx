@@ -44,3 +44,4 @@ export default SplitSuccessDropdown
 // @screenshot */opened-dropdown: 360x154 154
 // @screenshot quartz/opened-dropdown: 360x188 188
 // @screenshot vapor/opened-dropdown: 360x150 150
+// @screenshot sketchy/opened-dropdown: 360x158 158

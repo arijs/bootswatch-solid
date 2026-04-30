@@ -176,14 +176,6 @@ globalStyle(`${sketchyScope}${alert} ${alertHeading}`, {
 	color: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${alert} hr`, {
-	color: 'inherit',
-	border: 0,
-	borderTop: '1px solid',
-	opacity: 0.25,
-	margin: '1rem 0',
-})
-
 // Close button: Sketchy uses a text "X" character instead of an SVG background image
 globalStyle(`${sketchyScope}${alertBtnClose}`, {
 	backgroundColor: 'transparent',

@@ -196,15 +196,6 @@ globalStyle(`${bootstrapScope}${alert} ${alertHeading}`, {
 	color: 'inherit',
 })
 
-// Horizontal rule inside alert
-globalStyle(`${bootstrapScope}${alert} hr`, {
-	color: 'inherit',
-	border: 0,
-	borderTop: '1px solid',
-	opacity: 0.25,
-	margin: '1rem 0',
-})
-
 // Close button: positioned in the top-right corner of a dismissible alert
 globalStyle(`${bootstrapScope}${alertBtnClose}`, {
 	boxSizing: 'content-box',

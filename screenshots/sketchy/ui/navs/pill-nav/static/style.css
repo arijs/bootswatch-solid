@@ -24,7 +24,7 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover { color: inherit; t
 
 .nav-pills { --bs-nav-pills-border-radius: var(--bs-border-radius); --bs-nav-pills-link-active-color: #fff; --bs-nav-pills-link-active-bg: #333; }
 
-.nav-pills .nav-link { border-radius: 255px 25px 225px 25px/25px 225px 25px 255px; }
+.nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
 

@@ -26,8 +26,8 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover { color: inherit; t
 
 .list-group-item { border-top: 2px solid #333; border-right: none; border-left: none; border-radius: 255px 5px 225px 5px/25px 225px 25px 255px; }
 
-.list-group-item:first-child { border-top-width: medium; border-top-style: none; border-top-color: currentcolor; }
+.list-group-item:first-child { border-top: none; }
 
-.list-group-item:last-child { border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; }
+.list-group-item:last-child { border-bottom: none; }
 
 .nav-link, .page-link, .list-group-item, .dropdown-item { text-decoration: none; }

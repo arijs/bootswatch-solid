@@ -146,6 +146,15 @@ For each supported theme (currently `bootstrap` and `sketchy`), create:
 ve-project2/src/themes/{theme}/ui/{family}/styles.css.ts
 ```
 
+If the source rule targets a raw element selector (for example `h4`, `p`, `hr`) rather than a component class, migrate it through the standalone contents family instead:
+
+```
+ve-project2/src/theme-contract/contents/contract.css.ts
+ve-project2/src/themes/{theme}/contents/styles.css.ts
+```
+
+Then stamp the contents contract class directly on the element in JSX.
+
 Mirror Bootstrap's CSS literally: first assign the CSS custom properties via `vars:`, then reference them in the property values — exactly as Bootstrap's source CSS does.
 
 ```ts
@@ -310,7 +319,8 @@ The `converted=` number should increase by exactly the count of routes you added
 | CSS var references must stay as var references | If Bootstrap's source CSS writes `var(--bs-border-radius)`, the VE2 output must use `varBsBorderRadius` (the matching `createVar()` identifier), **not** the resolved static value (e.g. `'0.375rem'`). Resolving to a static value breaks per-theme inheritance — the whole point of the CSS custom-property cascade is that each theme sets the global var to its own value. |
 | Font imports belong to scope creation, not component conversion | `fonts.generated.css` is created **once** when first setting up a theme's `scope.css.ts` (Step 0.5). Do not add or re-generate it when converting subsequent component families inside the same theme. |
 | `@screenshot` annotations — use the original's full list | The original source file (`src/components/…`) contains per-theme height overrides (e.g. `// @screenshot sketchy: 360x303 303`). Copy those annotations verbatim into the VE2 component so the screenshot harness captures the correct crop size per theme. Omitting them causes the wildcard `*` fallback to be used for all themes, which may cut off content in themes with larger spacing. |
-| `<p class="h1">` vs actual `<h1>` | The original uses Bootstrap typography utility classes (`.h1`–`.h6` on `<p>`) to mimic heading sizes. VE2 components should use real `<h1>`–`<h6>` elements instead — the browser's default UA stylesheet provides the same relative sizing without needing extra contract classes. |
+| Source element selectors (`h*`, `p`, `hr`, etc.) | Do not target raw elements in VE selectors. Move these rules into `theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`, then stamp the contents class directly on the element in JSX (`class={`${theme} ${h4}`}`, `class={`${theme} ${paragraph}`}`, `class={`${theme} ${horizontalRule}`}`). |
+| `contents` family location | `contents` is standalone: use `theme-contract/contents/*` and `themes/{theme}/contents/*` (not `theme-contract/ui/contents` or `themes/{theme}/ui/contents`). |
 
 ---
 

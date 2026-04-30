@@ -54,3 +54,4 @@ export default SmallDropdown
 // @screenshot */opened-dropdown: 360x229 229
 // @screenshot quartz/opened-dropdown: 360x273 273
 // @screenshot vapor/opened-dropdown: 360x225 225
+// @screenshot sketchy/opened-dropdown: 360x234 234

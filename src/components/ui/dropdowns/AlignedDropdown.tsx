@@ -53,3 +53,4 @@ export default AlignedDropdown
 // @screenshot */opened-dropdown: 360x204 204
 // @screenshot quartz/opened-dropdown: 360x252 252
 // @screenshot vapor/opened-dropdown: 360x200 200
+// @screenshot sketchy/opened-dropdown: 360x209 209

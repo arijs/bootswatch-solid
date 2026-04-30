@@ -91,15 +91,15 @@ globalStyle(`${bootstrapScope}${badgeDanger}`, {
 	backgroundColor: varBsDanger,
 })
 
-// Warning and Info use dark text for contrast
+// Warning and Info use text-dark semantics (theme dark token)
 globalStyle(`${bootstrapScope}${badgeWarning}`, {
 	backgroundColor: varBsWarning,
-	vars: { [varBsBadgeColor]: '#000' },
+	vars: { [varBsBadgeColor]: varBsDark },
 })
 
 globalStyle(`${bootstrapScope}${badgeInfo}`, {
 	backgroundColor: varBsInfo,
-	vars: { [varBsBadgeColor]: '#000' },
+	vars: { [varBsBadgeColor]: varBsDark },
 })
 
 // Light uses dark text for contrast

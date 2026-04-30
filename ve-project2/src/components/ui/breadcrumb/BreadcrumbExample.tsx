@@ -2,6 +2,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { link } from '../../../theme-contract/contents/contract.css'
 import {
 	breadcrumb,
 	breadcrumbItem,
@@ -17,13 +18,13 @@ const BreadcrumbExample: Component = () => {
 				<ol class={`${theme} ${breadcrumb}`}>
 					<li class={breadcrumbItem}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a href="#" onClick={(e) => e.preventDefault()}>
+						<a class={`${theme} ${link}`} href="#" onClick={(e) => e.preventDefault()}>
 							Home
 						</a>
 					</li>
 					<li class={breadcrumbItem}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a href="#" onClick={(e) => e.preventDefault()}>
+						<a class={`${theme} ${link}`} href="#" onClick={(e) => e.preventDefault()}>
 							Library
 						</a>
 					</li>

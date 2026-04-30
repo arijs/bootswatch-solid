@@ -20,6 +20,7 @@ import {
 	varBsBadgePaddingY,
 } from '../../../../theme-contract/ui/badge/_vars.css'
 import {
+	varBsBorderRadiusPill,
 	varBsDanger,
 	varBsDark,
 	varBsInfo,
@@ -31,10 +32,6 @@ import {
 } from '../../../../theme-contract/_vars.css'
 import { sketchyScope } from '../../scope.css'
 
-// Sketchy hand-drawn shapes for badges
-const sketchyBorderRadius = '255px 25px 225px 25px / 25px 225px 25px 255px'
-const sketchyPillBorderRadius = '7rem 8rem 8rem 8rem / 4rem 5rem 6rem 6rem'
-
 // ── Base badge ────────────────────────────────────────────────────────────────
 
 // Sketchy overrides --bs-badge-padding-x/y and --bs-badge-border-radius.
@@ -45,7 +42,7 @@ globalStyle(`${sketchyScope}${badge}`, {
 		[varBsBadgeFontSize]: '0.75em',
 		[varBsBadgeFontWeight]: '700',
 		[varBsBadgeColor]: '#fff',
-		[varBsBadgeBorderRadius]: sketchyBorderRadius,
+		[varBsBadgeBorderRadius]: '255px 25px 225px 25px / 25px 225px 25px 255px',
 	},
 	display: 'inline-block',
 	padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
@@ -85,15 +82,15 @@ globalStyle(`${sketchyScope}${badgeDanger}`, {
 
 globalStyle(`${sketchyScope}${badgeWarning}`, {
 	backgroundColor: varBsWarning,
-	vars: { [varBsBadgeColor]: '#000' },
+	vars: { [varBsBadgeColor]: varBsDark },
 })
 
 globalStyle(`${sketchyScope}${badgeInfo}`, {
 	backgroundColor: varBsInfo,
-	vars: { [varBsBadgeColor]: '#000' },
+	vars: { [varBsBadgeColor]: varBsDark },
 })
 
-// Sketchy: light badge uses #555 text (varBsDark = '#555' in Sketchy scope)
+// Sketchy: text-dark maps to varBsDark (#555).
 globalStyle(`${sketchyScope}${badgeLight}`, {
 	backgroundColor: varBsLight,
 	vars: { [varBsBadgeColor]: varBsDark },
@@ -106,5 +103,5 @@ globalStyle(`${sketchyScope}${badgeDark}`, {
 // ── Shape modifier ────────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${badgeRoundedPill}`, {
-	vars: { [varBsBadgeBorderRadius]: sketchyPillBorderRadius },
+	vars: { [varBsBadgeBorderRadius]: varBsBorderRadiusPill },
 })

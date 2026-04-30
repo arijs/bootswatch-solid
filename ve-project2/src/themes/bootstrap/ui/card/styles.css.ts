@@ -109,12 +109,6 @@ globalStyle(`${bootstrapScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-// SOURCE CSS: .card > hr { margin-right: 0; margin-left: 0; }
-globalStyle(`${bootstrapScope}${card} > hr`, {
-	marginRight: 0,
-	marginLeft: 0,
-})
-
 // SOURCE CSS: .card > .list-group { border-top: inherit; border-bottom: inherit; }
 globalStyle(`${bootstrapScope}${card} > ${listGroup}`, {
 	borderTop: 'inherit',

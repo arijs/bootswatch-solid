@@ -174,6 +174,8 @@ const themeClass = () => resolveThemeClass(params.get('theme'))
 ve-project2/src/
   theme-contract/
     theme-contract.css.ts          ← body, bodyText root contract classes
+    contents/
+      contract.css.ts              ← h1…h6, paragraph, horizontalRule generic contents element contracts
     ui/
       buttons/
         contract.css.ts            ← btn, btnPrimary, btnSecondary, … contract classes
@@ -183,6 +185,8 @@ ve-project2/src/
   themes/
     bootstrap/
       scope.css.ts                 ← bootstrapScope (empty), + globalStyle scope+vars and body/bodyText rules
+      contents/
+        styles.css.ts              ← globalStyle rules: bootstrapScope + h1/h2/…/paragraph/horizontalRule
       ui/
         buttons/
           styles.css.ts            ← globalStyle rules: bootstrapScope + btn/btnPrimary/…
@@ -191,6 +195,8 @@ ve-project2/src/
     sketchy/
       scope.css.ts                 ← sketchyScope (empty), + globalStyle scope+vars and body/bodyText rules
       fonts.generated.css          ← generated once at theme creation; @import rules for Google Fonts (sourced from screenshots/sketchy/bootstrap.css)
+      contents/
+        styles.css.ts              ← globalStyle rules: sketchyScope + h1/h2/…/paragraph/horizontalRule
       ui/
         buttons/
           styles.css.ts            ← globalStyle rules: sketchyScope + btn/btnPrimary/…
@@ -228,6 +234,7 @@ ve-project2/src/
 10. **Global `--bs-*` var values in `scope.css.ts` must be sourced from `screenshots/{theme}/theme.css`.** The `:root` block in that file is the authoritative source for each theme's resolved CSS custom-property values (e.g. `--bs-primary`, `--bs-border-radius`, `--bs-link-color`, etc.). Never copy Bootstrap's default values for a Bootswatch theme — look up the theme's own overrides in `screenshots/{theme}/theme.css`.
 11. **CSS custom-property references must be preserved as references, not resolved to static values.** If the Bootstrap source CSS writes `var(--bs-border-radius)`, the VE2 output must write `varBsBorderRadius` (the matching `createVar()` identifier), not the final resolved value (e.g. `'0.375rem'`). This ensures per-theme values propagate correctly at runtime.
 12. **Font imports for Bootswatch themes must be extracted from `screenshots/{theme}/bootstrap.css` and written to `ve-project2/src/themes/{theme}/fonts.generated.css` exactly once when creating the theme's `scope.css.ts`.** Vanilla Extract cannot emit bare `@import` at-rules, so the generated CSS file preserves the source `@import` rules and is loaded globally via `ve-project2/index.html`. This step is **not** repeated when converting individual component families — it belongs solely to the one-time theme scope setup.
+13. **Source CSS element rules (`h1`/`h4`/`p`/`hr`, etc.) must be migrated via `contents` contracts, never by targeting raw elements in selectors.** Create a contract class in `theme-contract/contents/contract.css.ts`, implement theme rules in `themes/{theme}/contents/styles.css.ts`, and stamp those classes directly on component elements (for example `<h4 class={`${theme} ${h4}`}>`). Do not use selectors like ``${scope} hr`` or ``${scope}${component} p``.
 
 ---
 

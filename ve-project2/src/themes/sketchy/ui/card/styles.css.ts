@@ -87,11 +87,6 @@ border: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 borderRadius: '5px 5px 5px 5px/25px 25px 25px 5px',
 })
 
-globalStyle(`${sketchyScope}${card} > hr`, {
-marginRight: 0,
-marginLeft: 0,
-})
-
 globalStyle(`${sketchyScope}${card} > ${listGroup}`, {
 borderTop: 'inherit',
 borderBottom: 'inherit',

@@ -29,6 +29,9 @@ import '../../themes/sketchy/ui/carousel/styles.css'
 // Side-effect imports: register globalStyle rules for dropdowns
 import '../../themes/bootstrap/ui/dropdowns/styles.css'
 import '../../themes/sketchy/ui/dropdowns/styles.css'
+// Side-effect imports: register globalStyle rules for contents heading classes
+import '../../themes/bootstrap/contents/styles.css'
+import '../../themes/sketchy/contents/styles.css'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 import { ThemeContext } from '../../context/ThemeContext'
