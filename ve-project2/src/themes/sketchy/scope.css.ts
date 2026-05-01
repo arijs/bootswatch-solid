@@ -1,8 +1,11 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
+	varBsBodyBgRgb,
 	varBsBodyColor,
 	varBsBodyColorRgb,
+	varBsBodyFontFamily,
+	varBsFontSansSerif,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
@@ -136,10 +139,14 @@ globalStyle(`${sketchyScope}${vars}`, {
 		[varBsDangerBorderSubtle]: '#f1aeb5',
 		[varBsLightBorderSubtle]: '#f7f7f9',
 		[varBsDarkBorderSubtle]: '#aaa',
+		// Typography
+		[varBsFontSansSerif]: 'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+		[varBsBodyFontFamily]: varBsFontSansSerif,
 		// Body defaults
 		[varBsBodyColor]: '#212529',
 		[varBsBodyColorRgb]: '33, 37, 41',
 		[varBsBodyBg]: '#fff',
+		[varBsBodyBgRgb]: '255, 255, 255',
 		// Borders (Sketchy uses 2px width and 25px radius)
 		[varBsBorderWidth]: '2px',
 		[varBsBorderStyle]: 'solid',

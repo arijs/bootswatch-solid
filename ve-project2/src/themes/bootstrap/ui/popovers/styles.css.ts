@@ -27,6 +27,7 @@ import {
 	popoverHeader,
 	popoverVe,
 } from '../../../../theme-contract/ui/popovers/contract.css'
+import { h3 } from '../../../../theme-contract/contents/contract.css'
 import {
 	varBsPopoverArrowBorder,
 	varBsPopoverArrowHeight,
@@ -205,6 +206,15 @@ globalStyle(`${bootstrapScope}${popoverHeader}`, {
 
 globalStyle(`${bootstrapScope}${popoverHeader}:empty`, {
 	display: 'none',
+})
+
+// When popoverHeader and h3 are both on the same element the h3 heading rule
+// (fontSize: 1.75rem, marginBottom: 0.5rem, fontWeight: 500, lineHeight: 1.2)
+// can win over popoverHeader at equal specificity depending on load order.
+// This combined selector has higher specificity and restores popover-header values.
+globalStyle(`${bootstrapScope}${popoverHeader}${h3}`, {
+	fontSize: varBsPopoverHeaderFontSize,
+	marginBottom: 0,
 })
 
 globalStyle(`${bootstrapScope}${popoverBody}`, {

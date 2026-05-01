@@ -1,8 +1,11 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
+	varBsBodyBgRgb,
 	varBsBodyColor,
 	varBsBodyColorRgb,
+	varBsBodyFontFamily,
+	varBsFontSansSerif,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
@@ -132,10 +135,14 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		[varBsDangerBorderSubtle]: '#f1aeb5',
 		[varBsLightBorderSubtle]: '#e9ecef',
 		[varBsDarkBorderSubtle]: '#adb5bd',
+		// Typography
+		[varBsFontSansSerif]: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+		[varBsBodyFontFamily]: varBsFontSansSerif,
 		// Body defaults
 		[varBsBodyColor]: '#212529',
 		[varBsBodyColorRgb]: '33, 37, 41',
 		[varBsBodyBg]: '#fff',
+		[varBsBodyBgRgb]: '255, 255, 255',
 		// Borders
 		[varBsBorderWidth]: '1px',
 		[varBsBorderStyle]: 'solid',

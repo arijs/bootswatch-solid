@@ -1,6 +1,5 @@
 import { type Component, onSettled, useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
 placeholderIcon,
@@ -41,7 +40,7 @@ toastInstance.dispose()
 })
 
 return (
-<div class={`bd-example ${theme} ${containerFluid} ${toastExample}`}>
+<div class={`bd-example ${theme} ${toastExample}`}>
 <div
 class={`${theme} ${toast} ${toastRuntime} pwhook-toast`}
 ref={toastNode}

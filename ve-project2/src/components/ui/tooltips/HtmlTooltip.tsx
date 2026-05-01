@@ -3,7 +3,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { vars } from '../../../theme-contract/theme-contract.css'
+import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 frame,
@@ -33,7 +33,7 @@ data-bs-toggle="tooltip"
 data-bs-custom-class="pwhook-tooltip"
 ref={(tooltip) =>
 new VeTooltip(tooltip, {
-template: `<div class="${tooltipVe} ${theme} ${vars} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+template: `<div class="${tooltipVe} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
 })
 }
 data-bs-html="true"
