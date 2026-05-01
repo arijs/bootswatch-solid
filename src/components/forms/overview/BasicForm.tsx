@@ -21,7 +21,11 @@ const BasicForm: Component = () => (
 				<label for="exampleInputPassword1" class="form-label">
 					Password
 				</label>
-				<input type="password" class="form-control pwhook-form-control" id="exampleInputPassword1" />
+				<input
+					type="password"
+					class="form-control pwhook-form-control"
+					id="exampleInputPassword1"
+				/>
 			</div>
 		</form>
 	</div>

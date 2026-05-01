@@ -141,6 +141,7 @@ import {
 	varBsBreadcrumbPaddingX,
 	varBsBreadcrumbPaddingY,
 } from '../../theme-contract/ui/breadcrumb/_vars.css'
+
 const defBsBlue = { [varBsBlue]: '#0d6efd' }
 export const bsBlue = style({ vars: defBsBlue })
 const defBsIndigo = { [varBsIndigo]: '#6610f2' }
@@ -429,7 +430,9 @@ const defBsBreadcrumbDivider = { [varBsBreadcrumbDivider]: '"/"' }
 export const bsBreadcrumbDivider = style({ vars: defBsBreadcrumbDivider })
 const defBsBreadcrumbItemPaddingX = { [varBsBreadcrumbItemPaddingX]: '0.5rem' }
 export const bsBreadcrumbItemPaddingX = style({ vars: defBsBreadcrumbItemPaddingX })
-const defBsBreadcrumbItemActivColor = { [varBsBreadcrumbItemActivColor]: 'var(--bs-secondary-color)' }
+const defBsBreadcrumbItemActivColor = {
+	[varBsBreadcrumbItemActivColor]: 'var(--bs-secondary-color)',
+}
 export const bsBreadcrumbItemActivColor = style({ vars: defBsBreadcrumbItemActivColor })
 
 export const bsTheme = style({
@@ -561,16 +564,16 @@ export const bsTheme = style({
 		...defBsBreakpointXxl,
 		...defBsCarouselIndicatorActiveBg,
 		...defBsCarouselCaptionColor,
-			...defBsBreadcrumbPaddingX,
-			...defBsBreadcrumbPaddingY,
-			...defBsBreadcrumbMarginBottom,
-			...defBsBreadcrumbBg,
-			...defBsBreadcrumbBorderRadius,
-			...defBsBreadcrumbFontSize,
-			...defBsBreadcrumbDividerColor,
-			...defBsBreadcrumbDivider,
-			...defBsBreadcrumbItemPaddingX,
-			...defBsBreadcrumbItemActivColor,
+		...defBsBreadcrumbPaddingX,
+		...defBsBreadcrumbPaddingY,
+		...defBsBreadcrumbMarginBottom,
+		...defBsBreadcrumbBg,
+		...defBsBreadcrumbBorderRadius,
+		...defBsBreadcrumbFontSize,
+		...defBsBreadcrumbDividerColor,
+		...defBsBreadcrumbDivider,
+		...defBsBreadcrumbItemPaddingX,
+		...defBsBreadcrumbItemActivColor,
 	},
 })
 

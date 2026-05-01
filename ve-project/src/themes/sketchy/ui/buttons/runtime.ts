@@ -1,5 +1,48 @@
-import { bootstrapButtonRuntimeClasses } from '../../../bootstrap/ui/buttons/runtime'
+import { btn, btnActiveHook, btnCheckHook, btnShowHook, btnDisabledHook } from './base.css'
+import {
+btnCheck,
+btnDanger,
+btnDark,
+btnInfo,
+btnLg,
+btnLight,
+btnLink,
+btnOutlineDanger,
+btnOutlineDark,
+btnOutlineInfo,
+btnOutlineLight,
+btnOutlinePrimary,
+btnOutlineSecondary,
+btnOutlineSuccess,
+btnOutlineWarning,
+btnPrimary,
+btnSecondary,
+btnSm,
+btnSuccess,
+btnWarning,
+} from './generated.css'
 
-// Temporary adapter: reuse migrated VE button classes while Sketchy-specific
-// button styling tokens are implemented family-by-family.
-export const sketchyButtonRuntimeClasses = bootstrapButtonRuntimeClasses
+export const sketchyButtonRuntimeClasses = {
+btn,
+btnActiveHook,
+btnCheck,
+btnDanger,
+btnDark,
+btnInfo,
+btnLg,
+btnLight,
+btnLink,
+btnOutlineDanger,
+btnOutlineDark,
+btnOutlineInfo,
+btnOutlineLight,
+btnOutlinePrimary,
+btnOutlineSecondary,
+btnOutlineSuccess,
+btnOutlineWarning,
+btnPrimary,
+btnSecondary,
+btnSm,
+btnSuccess,
+btnWarning,
+} as const

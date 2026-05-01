@@ -1,0 +1,12 @@
+/* Global CSS reset — matches ve-project/src/reset.css */
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Layout container for ve-project2 screenshot demos.
+   Keep neutral; per-component gutters should come from VE classes (e.g. containerFluid). */
+.bd-example-ve2 {
+	display: block;
+}

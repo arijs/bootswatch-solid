@@ -1,15 +1,17 @@
 import { style } from '@vanilla-extract/css'
 import { varBsSecondaryColor } from '../../../../theme-contract/_vars.css'
-import { varBsBreadcrumbBg } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbBorderRadius } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbDividerColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbDivider } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbFontSize } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbItemActivColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbItemPaddingX } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbMarginBottom } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbPaddingX } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsBreadcrumbPaddingY } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
+import {
+	varBsBreadcrumbBg,
+	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
+	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbFontSize,
+	varBsBreadcrumbItemActivColor,
+	varBsBreadcrumbItemPaddingX,
+	varBsBreadcrumbMarginBottom,
+	varBsBreadcrumbPaddingX,
+	varBsBreadcrumbPaddingY,
+} from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 
 export const breadcrumb = style({
 	vars: {

@@ -1,11 +1,25 @@
 import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 import { useVePopoverThemeClasses } from '../../../themes/runtime/hooks'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 const BasicPopover: Component = () => {
-	const { bsTheme, body, containerFluid, btn, btnDanger, btnLg, h3, popoverArrow, popoverBody, popoverClass, popoverHeader } = useVePopoverThemeClasses()
-	const VePopover = (bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>).extendDefaultConfig({
+	const {
+		bsTheme,
+		body,
+		containerFluid,
+		btn,
+		btnDanger,
+		btnLg,
+		h3,
+		popoverArrow,
+		popoverBody,
+		popoverClass,
+		popoverHeader,
+	} = useVePopoverThemeClasses()
+	const VePopover = (
+		bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>
+	).extendDefaultConfig({
 		SELECTOR_ARROW: `.${popoverArrow}`,
 		SELECTOR_TITLE: `.${popoverHeader}`,
 		SELECTOR_CONTENT: `.${popoverBody}`,
@@ -19,7 +33,8 @@ const BasicPopover: Component = () => {
 				ref={(popover) =>
 					new VePopover(popover, {
 						template: `<div class="${popoverClass} ${bsTheme} ${body} pwhook-popover" role="tooltip"><div class="${popoverArrow}"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
-					})}
+					})
+				}
 				title="Popover title"
 				data-bs-content="And here's some amazing content. It's very engaging. Right?"
 			>

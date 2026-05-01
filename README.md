@@ -10,6 +10,21 @@ $ npm install # or pnpm install or yarn install
 
 ### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
 
+## Vanilla Extract Architecture
+
+Bootstrap/Bootswatch component styles are being converted to [Vanilla Extract](https://vanilla-extract.style/) using an **element-owned scope** model.
+
+- **Current preferred approach:** [`ve-project2/`](./ve-project2) — element-owned scope via compound CSS selectors.
+- **Architecture docs:** [`docs/ve-architecture.md`](./docs/ve-architecture.md)
+- **Migration playbook (quick-reference for converting a family):** [`docs/ve2-migration-playbook.md`](./docs/ve2-migration-playbook.md)
+- **Historical ve-project (v1) docs:** [`docs/ve-project1-docs-index.md`](./docs/ve-project1-docs-index.md)
+
+### Key concepts (ve-project2)
+
+- Every rendered element carries both a **scope class** (identifies the active theme) and a **contract class** (identifies the component slot).
+- CSS rules use compound selectors (`.scope.contract`) — no ancestor matching, no inheritance coupling.
+- Unlimited theme nesting depth is supported without extra selectors or `@layer`.
+
 ## Available Scripts
 
 In the project directory, you can run:

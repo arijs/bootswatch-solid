@@ -2,7 +2,18 @@ import type { Component } from 'solid-js'
 import { useVePaginationThemeClasses } from '../../../themes/runtime/hooks'
 
 const LargePagination: Component = () => {
-	const { body, containerFluid, bsTheme, flexWrap, pagination, paginationLarge, pageItem, pageItemActive, pageItemDisabled, pageLink } = useVePaginationThemeClasses()
+	const {
+		body,
+		containerFluid,
+		bsTheme,
+		flexWrap,
+		pagination,
+		paginationLarge,
+		pageItem,
+		pageItemActive,
+		pageItemDisabled,
+		pageLink,
+	} = useVePaginationThemeClasses()
 
 	return (
 		<div class={`bd-example ${bsTheme} ${body} ${containerFluid}`}>

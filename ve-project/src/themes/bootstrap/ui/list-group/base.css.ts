@@ -144,11 +144,11 @@ export const listGroupItemActive = style({
 globalStyle(
 	`${listGroupItemAction}:not(${listGroupItemActive}):hover, ${listGroupItemAction}:not(${listGroupItemActive}):focus`,
 	{
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-},
+		zIndex: '1',
+		color: varBsListGroupActionHoverColor,
+		textDecoration: 'none',
+		backgroundColor: varBsListGroupActionHoverBg,
+	},
 )
 
 globalStyle(`${listGroupItemAction}:not(${listGroupItemActive}):active`, {
@@ -156,11 +156,7 @@ globalStyle(`${listGroupItemAction}:not(${listGroupItemActive}):active`, {
 	backgroundColor: varBsListGroupActionActiveBg,
 })
 
-const contextualListGroupItem = (
-	color: string,
-	bg: string,
-	borderColor: string,
-) =>
+const contextualListGroupItem = (color: string, bg: string, borderColor: string) =>
 	style({
 		vars: {
 			[varBsListGroupColor]: color,

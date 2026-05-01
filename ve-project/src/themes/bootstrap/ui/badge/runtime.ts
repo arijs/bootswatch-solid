@@ -1,11 +1,11 @@
 import { h1, h2, h3, h4, h5, h6 } from '../../contents/generated.css'
 import {
 	badge,
-	bgDark,
-	bgDanger,
-	bgInfo,
 	bgLight as badgeBgLight,
 	bgPrimary as badgeBgPrimary,
+	bgDanger,
+	bgDark,
+	bgInfo,
 	bgSecondary,
 	bgSuccess,
 	bgWarning,

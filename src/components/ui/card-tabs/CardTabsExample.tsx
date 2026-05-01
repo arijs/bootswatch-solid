@@ -8,11 +8,7 @@ const CardTabsExample: Component = () => (
 					<div class="card-header">
 						<ul class="nav nav-tabs card-header-tabs">
 							<li class="nav-item">
-								<button
-									class="nav-link active"
-									type="button"
-									aria-current="true"
-								>
+								<button class="nav-link active" type="button" aria-current="true">
 									Active
 								</button>
 							</li>
@@ -33,8 +29,7 @@ const CardTabsExample: Component = () => (
 					<div class="card-body">
 						<h5 class="card-title">Special title treatment</h5>
 						<p class="card-text">
-							With supporting text below as a natural lead-in to additional
-							content.
+							With supporting text below as a natural lead-in to additional content.
 						</p>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a href="#" class="btn btn-primary">

@@ -6,8 +6,8 @@ import {
 	varBsDark,
 	varBsInfo,
 	varBsPrimary,
-	varBsSuccess,
 	varBsSecondaryBg,
+	varBsSuccess,
 	varBsWarning,
 	varBsWhite,
 } from '../../../../theme-contract/_vars.css'

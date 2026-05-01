@@ -1,12 +1,12 @@
 import {
-	flexWrap as paginationFlexWrap,
-	pagination,
-	paginationLarge,
-	paginationSmall,
 	pageItem,
 	pageItemActive,
 	pageItemDisabled,
 	pageLink,
+	pagination,
+	flexWrap as paginationFlexWrap,
+	paginationLarge,
+	paginationSmall,
 } from './base.css'
 
 export const bootstrapPaginationRuntimeClasses = {

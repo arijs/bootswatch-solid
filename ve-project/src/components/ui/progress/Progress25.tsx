@@ -7,7 +7,10 @@ const Progress25: Component = () => {
 	return (
 		<div class={`bd-example ${cls.bsTheme} ${cls.body} ${cls.containerFluid}`}>
 			<div class={cls.progress}>
-				<div class={`${cls.progressBar} ${cls.progressBarSuccess}`} style={{ width: '25%' }}>
+				<div
+					class={`${cls.progressBar} ${cls.progressBarSuccess}`}
+					style={{ width: '25%' }}
+				>
 					25%
 				</div>
 			</div>

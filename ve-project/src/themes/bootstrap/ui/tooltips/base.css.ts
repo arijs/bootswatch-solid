@@ -2,8 +2,8 @@ import { globalStyle, style } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
 	varBsBorderColor,
-	varBsBorderStyle,
 	varBsBorderRadius,
+	varBsBorderStyle,
 	varBsBorderWidth,
 	varBsEmphasisColor,
 	varBsFontSansSerif,

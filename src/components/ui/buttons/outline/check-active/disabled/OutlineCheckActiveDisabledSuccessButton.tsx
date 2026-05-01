@@ -2,7 +2,13 @@ import type { Component } from 'solid-js'
 
 const OutlineCheckActiveDisabledSuccessButton: Component = () => (
 	<div class="bd-example container-fluid">
-		<button disabled type="button" class="btn btn-outline-success active" data-bs-toggle="button" aria-pressed="true">
+		<button
+			disabled
+			type="button"
+			class="btn btn-outline-success active"
+			data-bs-toggle="button"
+			aria-pressed="true"
+		>
 			Success
 		</button>
 	</div>

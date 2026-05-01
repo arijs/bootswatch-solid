@@ -53,11 +53,14 @@ type OutlinePalette = {
 
 const activeInsetShadow = 'inset 0 3px 5px rgba(0, 0, 0, 0.125)'
 
-export const btnCheck = style([btnCheckHook, {
-	position: 'absolute',
-	clip: 'rect(0, 0, 0, 0)',
-	pointerEvents: 'none',
-}])
+export const btnCheck = style([
+	btnCheckHook,
+	{
+		position: 'absolute',
+		clip: 'rect(0, 0, 0, 0)',
+		pointerEvents: 'none',
+	},
+])
 
 globalStyle(`${btnCheck}[disabled] + ${btn}, ${btnCheck}:disabled + ${btn}`, {
 	pointerEvents: 'none',

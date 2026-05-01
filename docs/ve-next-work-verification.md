@@ -1,4 +1,15 @@
-# VE Next Work Verification (Theme + Family Priority)
+# VE Next Work Verification — Theme + Family Priority (ve-project v1 — Historical)
+
+> **Historical Context — ve-project (v1)**
+>
+> This playbook describes how to pick the next migration slice for the **first** Vanilla Extract sub-project (`ve-project`).
+> It is preserved here for historical context.
+>
+> The current preferred approach is described in [`docs/ve-architecture.md`](./ve-architecture.md)
+> and is implemented in [`ve-project2/`](../ve-project2).
+> See [`docs/ve-project1-docs-index.md`](./ve-project1-docs-index.md) for an index of all v1 historical docs.
+
+---
 
 Purpose: quickly decide the next migration slice without re-researching theme/family status.
 
@@ -15,16 +26,16 @@ Use this playbook when choosing the next VE runtime-contract task for non-Bootst
 - Declares required family sets per route.
 
 3. Runtime coverage command (no browser, no screenshots):
-- `node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=<theme-list>`
+- `node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=<theme-list>`
 
-Policy: use only `--ve-runtime-missing-only` for planning updates. Do not use `--ve-runtime-missing-leafs` unless route-level detail is needed for a specific family.
+Policy: use only `--ve1-runtime-missing-only` for planning updates. Do not use `--ve1-runtime-missing-leafs` unless route-level detail is needed for a specific family.
 
 ## Fast Priority Workflow
 
 1. Run runtime coverage for unfinished themes.
 
 ```powershell
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sketchy,cerulean,quartz
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=sketchy,cerulean,quartz
 ```
 
 2. Pick the unfinished theme with the highest progress.
@@ -38,14 +49,14 @@ node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=sket
 4. If route detail is needed for implementation scoping, run:
 
 ```powershell
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --theme=<chosen-theme>
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-leafs --theme=<chosen-theme>
 ```
 
 5. After implementing that family, verify progress reduction:
 
 ```powershell
 pnpm ve:build
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=<chosen-theme>
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=<chosen-theme>
 ```
 
 Expected result: missing family count decreases (or impacted route count decreases for the selected family).
@@ -81,7 +92,7 @@ A family is considered converted for a theme only when all of the following are 
 3. `ve-project/src/themes/runtime/registry.ts` includes the family in both:
 - `contracts` for the theme definition
 - `availableFamilies` for the theme definition
-4. Runtime coverage (`--ve-runtime-missing-only`) no longer reports that family as missing for the theme.
+4. Runtime coverage (`--ve1-runtime-missing-only`) no longer reports that family as missing for the theme.
 
 ### Inputs to gather before editing
 
@@ -127,7 +138,7 @@ Important: implementation must target visual parity using theme-local files. Boo
 
 ```powershell
 pnpm ve:build
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=<chosen-theme>
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=<chosen-theme>
 ```
 
 7. Confirm expected delta.
@@ -141,7 +152,7 @@ node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=<cho
 Use this only when you need leaf-route detail to stage implementation order:
 
 ```powershell
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-leafs --theme=<chosen-theme>
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-leafs --theme=<chosen-theme>
 ```
 
 ### Definition of done per family
@@ -185,7 +196,7 @@ After `sketchy`, `cerulean`, and `quartz` are fully converted (no missing famili
 Run them as the next verification batch:
 
 ```powershell
-node scripts/capture-leaf-screenshots.mjs --ve-runtime-missing-only --theme=brite,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,morph,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,vapor,yeti,zephyr
+node scripts/capture-leaf-screenshots.mjs --ve1-runtime-missing-only --theme=brite,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,morph,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,vapor,yeti,zephyr
 ```
 
 Apply the same decision rule: pick the most-progressed unfinished theme first, then its highest-impact missing family.

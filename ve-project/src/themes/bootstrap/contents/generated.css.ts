@@ -1,9 +1,9 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsEmphasisColor,
 	varBsEmphasisColorRgb,
 	varBsHeadingColor,
@@ -422,8 +422,7 @@ globalStyle(`${table} > :not(caption) > * > *`, {
 	color: `var(${cssVarName(varBsTableColorState)}, var(${cssVarName(varBsTableColorType)}, ${varBsTableColor}))`,
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow:
-		`inset 0 0 0 9999px var(${cssVarName(varBsTableBgState)}, var(${cssVarName(varBsTableBgType)}, ${varBsTableAccentBg}))`,
+	boxShadow: `inset 0 0 0 9999px var(${cssVarName(varBsTableBgState)}, var(${cssVarName(varBsTableBgType)}, ${varBsTableAccentBg}))`,
 })
 
 globalStyle(`${table} > tbody`, {

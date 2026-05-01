@@ -1,0 +1,17 @@
+import { createVar } from '@vanilla-extract/css'
+
+export const varBsToastZindex = createVar()
+export const varBsToastPaddingX = createVar()
+export const varBsToastPaddingY = createVar()
+export const varBsToastSpacing = createVar()
+export const varBsToastMaxWidth = createVar()
+export const varBsToastFontSize = createVar()
+export const varBsToastColor = createVar()
+export const varBsToastBg = createVar()
+export const varBsToastBorderWidth = createVar()
+export const varBsToastBorderColor = createVar()
+export const varBsToastBorderRadius = createVar()
+export const varBsToastBoxShadow = createVar()
+export const varBsToastHeaderColor = createVar()
+export const varBsToastHeaderBg = createVar()
+export const varBsToastHeaderBorderColor = createVar()

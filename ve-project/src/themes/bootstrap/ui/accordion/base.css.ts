@@ -162,10 +162,13 @@ globalStyle(`${accordionItem}:first-of-type > ${accordionHeader} ${accordionButt
 	borderTopRightRadius: varBsAccordionInnerBorderRadius,
 })
 
-globalStyle(`${accordionItem}:last-of-type > ${accordionHeader} ${accordionButton}${accordionButtonCollapsed}`, {
-	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
-})
+globalStyle(
+	`${accordionItem}:last-of-type > ${accordionHeader} ${accordionButton}${accordionButtonCollapsed}`,
+	{
+		borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+		borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
+	},
+)
 
 globalStyle(`${accordionItem}:last-of-type > ${accordionCollapse}`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,

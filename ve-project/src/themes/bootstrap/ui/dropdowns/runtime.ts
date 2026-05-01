@@ -1,6 +1,17 @@
 import { h6 } from '../../contents/generated.css'
 import { btn, btnShowHook } from '../buttons/base.css'
-import { btnDanger, btnDark, btnInfo, btnLg, btnLight, btnPrimary, btnSecondary, btnSm, btnSuccess, btnWarning } from '../buttons/generated.css'
+import {
+	btnDanger,
+	btnDark,
+	btnInfo,
+	btnLg,
+	btnLight,
+	btnPrimary,
+	btnSecondary,
+	btnSm,
+	btnSuccess,
+	btnWarning,
+} from '../buttons/generated.css'
 import {
 	btnGroup,
 	dropdown,

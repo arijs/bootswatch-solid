@@ -1,3 +1,5 @@
+import { inputGroup, inputGroupText } from './input-group/base.css'
+import { formCheck, formCheckInput, formCheckLabel, formSwitch } from './overview/form-check.css'
 import {
 	fieldset,
 	floatingLabel,
@@ -17,9 +19,19 @@ import {
 	legendClear,
 	mb3,
 } from './sizing/controls.css'
-import { formCheck, formCheckInput, formCheckLabel, formSwitch } from './overview/form-check.css'
-import { inputGroup, inputGroupText } from './input-group/base.css'
-import { colMd3, colMd6, colSm6, g3, hasValidation, invalidFeedback, isInvalid, isValid, row, rowCol, validFeedback } from './validation/base.css'
+import {
+	colMd3,
+	colMd6,
+	colSm6,
+	g3,
+	hasValidation,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	row,
+	rowCol,
+	validFeedback,
+} from './validation/base.css'
 
 export const bootstrapFormsRuntimeClasses = {
 	colMd3,

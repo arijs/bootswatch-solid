@@ -11,9 +11,11 @@ const BOOLEAN_FLAGS = new Set([
 	'--no-css-extraction',
 	'--verify-css-rendering',
 	'--verify-ve-rendering',
+	'--verify-ve1-rendering',
 	'--ve-missing-only',
-	'--ve-runtime-missing-only',
-	'--ve-runtime-missing-leafs',
+	'--ve1-missing-only',
+	'--ve1-runtime-missing-only',
+	'--ve1-runtime-missing-leafs',
 	'--strict-scenarios',
 ])
 
@@ -50,18 +52,31 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	assertKnownArgs(argv)
 
 	const verificationEnabled = argv.includes('--verify-css-rendering')
+	const ve1MissingOnly = argv.includes('--ve1-missing-only')
+	const ve1RuntimeMissingLeafs = argv.includes('--ve1-runtime-missing-leafs')
+	const ve1RuntimeMissingOnly =
+		argv.includes('--ve1-runtime-missing-only') || ve1RuntimeMissingLeafs
+	const ve1VerificationEnabled = argv.includes('--verify-ve1-rendering') || ve1MissingOnly
 	const veMissingOnly = argv.includes('--ve-missing-only')
-	const veRuntimeMissingLeafs = argv.includes('--ve-runtime-missing-leafs')
-	const veRuntimeMissingOnly = argv.includes('--ve-runtime-missing-only') || veRuntimeMissingLeafs
 	const veVerificationEnabled = argv.includes('--verify-ve-rendering') || veMissingOnly
-	if (veRuntimeMissingOnly && veMissingOnly) {
+	if (ve1RuntimeMissingOnly && ve1MissingOnly) {
 		throw new Error(
-			'--ve-missing-only and --ve-runtime-missing-only are mutually exclusive. Choose one fast-report mode per run.',
+			'--ve1-missing-only and --ve1-runtime-missing-only are mutually exclusive. Choose one fast-report mode per run.',
 		)
 	}
-	if (veRuntimeMissingOnly && (verificationEnabled || veVerificationEnabled)) {
+	if (ve1MissingOnly && veMissingOnly) {
 		throw new Error(
-			'--ve-runtime-missing-only is mutually exclusive with verification modes. Remove --verify-css-rendering/--verify-ve-rendering/--ve-missing-only.',
+			'--ve1-missing-only and --ve-missing-only are mutually exclusive. Choose one fast-report mode per run.',
+		)
+	}
+	if (ve1RuntimeMissingOnly && (verificationEnabled || ve1VerificationEnabled)) {
+		throw new Error(
+			'--ve1-runtime-missing-only is mutually exclusive with verification modes. Remove --verify-css-rendering/--verify-ve1-rendering/--ve1-missing-only.',
+		)
+	}
+	if (verificationEnabled && ve1VerificationEnabled) {
+		throw new Error(
+			'--verify-css-rendering and --verify-ve1-rendering are mutually exclusive. Choose one verification mode per run.',
 		)
 	}
 	if (verificationEnabled && veVerificationEnabled) {
@@ -69,10 +84,18 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 			'--verify-css-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
 		)
 	}
-	if (veRuntimeMissingLeafs) {
-		throw new Error('--ve-runtime-missing-leafs: Sorry my brotha, this is too verbose and you don\'t need it. Use --ve-runtime-missing-only instead to get a concise report of missing routes for each theme.')
+	if (ve1VerificationEnabled && veVerificationEnabled) {
+		throw new Error(
+			'--verify-ve1-rendering and --verify-ve-rendering are mutually exclusive. Choose one verification mode per run.',
+		)
 	}
-	const anyVerificationEnabled = verificationEnabled || veVerificationEnabled
+	if (ve1RuntimeMissingLeafs) {
+		throw new Error(
+			"--ve1-runtime-missing-leafs: Sorry my brotha, this is too verbose and you don't need it. Use --ve1-runtime-missing-only instead to get a concise report of missing routes for each theme.",
+		)
+	}
+	const anyVerificationEnabled =
+		verificationEnabled || ve1VerificationEnabled || veVerificationEnabled
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 
@@ -86,10 +109,12 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		dryRunWriteback: argv.includes('--dry-run-writeback'),
 		cssExtractionEnabled,
 		verificationEnabled,
+		ve1VerificationEnabled,
 		veVerificationEnabled,
+		ve1MissingOnly,
 		veMissingOnly,
-		veRuntimeMissingOnly,
-		veRuntimeMissingLeafs,
+		ve1RuntimeMissingOnly,
+		ve1RuntimeMissingLeafs,
 		verificationMaxDiffRatio: parseFloatArg(argv, '--verify-max-diff-ratio', 0.001, 0),
 		strictScenarioAssert: argv.includes('--strict-scenarios'),
 		maxThemesSpecified,

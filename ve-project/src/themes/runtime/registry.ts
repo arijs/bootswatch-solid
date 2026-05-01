@@ -1,6 +1,6 @@
+import { bsTheme } from '../bootstrap/_vars.css'
 import { body } from '../bootstrap/body.css'
 import { containerFluid } from '../bootstrap/container.css'
-import { bsTheme } from '../bootstrap/_vars.css'
 import { bootstrapContentsRuntimeClasses } from '../bootstrap/contents/runtime'
 import { bootstrapFormsRuntimeClasses } from '../bootstrap/forms/runtime'
 import { bootstrapAccordionRuntimeClasses } from '../bootstrap/ui/accordion/runtime'
@@ -23,10 +23,10 @@ import { bootstrapScrollspyRuntimeClasses } from '../bootstrap/ui/scrollspy/runt
 import { bootstrapSpinnerRuntimeClasses } from '../bootstrap/ui/spinners/runtime'
 import { bootstrapToastRuntimeClasses } from '../bootstrap/ui/toasts/runtime'
 import { bootstrapTooltipRuntimeClasses } from '../bootstrap/ui/tooltips/runtime'
-import { sketchyButtonRuntimeClasses } from '../sketchy/ui/buttons/runtime'
 import { sketchyGlobalRuntimeClasses } from '../sketchy/global/runtime'
+import { sketchyButtonRuntimeClasses } from '../sketchy/ui/buttons/runtime'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
-import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
+import { isKnownThemeSlug, parseKnownThemeSlug, VE_DEFAULT_THEME_SLUG } from './theme-slugs'
 
 export const bootstrapGlobalRuntimeClasses = {
 	bsTheme,
@@ -34,7 +34,11 @@ export const bootstrapGlobalRuntimeClasses = {
 	containerFluid,
 } as const
 
-function buildThemeDefinition(slug: VeThemeDefinition['slug'], contracts: VeThemeDefinition['contracts'], extras: readonly VeThemeFamily[] = []): VeThemeDefinition {
+function buildThemeDefinition(
+	slug: VeThemeDefinition['slug'],
+	contracts: VeThemeDefinition['contracts'],
+	extras: readonly VeThemeFamily[] = [],
+): VeThemeDefinition {
 	const contractFamilies = Object.keys(contracts) as VeThemeFamily[]
 	return {
 		slug,
@@ -43,7 +47,9 @@ function buildThemeDefinition(slug: VeThemeDefinition['slug'], contracts: VeThem
 	}
 }
 
-const bootstrapThemeDefinition = buildThemeDefinition('bootstrap', {
+const bootstrapThemeDefinition = buildThemeDefinition(
+	'bootstrap',
+	{
 		global: bootstrapGlobalRuntimeClasses,
 		contents: bootstrapContentsRuntimeClasses,
 		forms: bootstrapFormsRuntimeClasses,
@@ -67,11 +73,13 @@ const bootstrapThemeDefinition = buildThemeDefinition('bootstrap', {
 		spinners: bootstrapSpinnerRuntimeClasses,
 		toasts: bootstrapToastRuntimeClasses,
 		listGroup: bootstrapListGroupRuntimeClasses,
-}, ['ui'])
+	},
+	['ui'],
+)
 
 const sketchyThemeDefinition = buildThemeDefinition('sketchy', {
-		global: sketchyGlobalRuntimeClasses,
-		buttons: sketchyButtonRuntimeClasses,
+	global: sketchyGlobalRuntimeClasses,
+	buttons: sketchyButtonRuntimeClasses,
 })
 
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
@@ -92,7 +100,11 @@ export interface VeThemeResolution {
 	theme?: VeThemeDefinition
 }
 
-export function resolveVeThemeForRoute(search: string, routePath: string, requiredFamilies: readonly VeThemeFamily[]): VeThemeResolution {
+export function resolveVeThemeForRoute(
+	search: string,
+	routePath: string,
+	requiredFamilies: readonly VeThemeFamily[],
+): VeThemeResolution {
 	const params = new URLSearchParams(search)
 	const rawTheme = params.get('theme')
 	const requestedSlug = parseKnownThemeSlug(rawTheme)
@@ -124,7 +136,9 @@ export function resolveVeThemeForRoute(search: string, routePath: string, requir
 		}
 	}
 
-	const missingFamilies = requiredFamilies.filter((family) => !theme.availableFamilies.has(family))
+	const missingFamilies = requiredFamilies.filter(
+		(family) => !theme.availableFamilies.has(family),
+	)
 	if (missingFamilies.length > 0) {
 		return {
 			requestedThemeParam: rawTheme,
@@ -160,15 +174,15 @@ export {
 	bootstrapContentsRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
 	bootstrapFormsRuntimeClasses,
+	bootstrapListGroupRuntimeClasses,
 	bootstrapModalRuntimeClasses,
-	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
+	bootstrapNavRuntimeClasses,
 	bootstrapPaginationRuntimeClasses,
 	bootstrapPopoverRuntimeClasses,
 	bootstrapProgressRuntimeClasses,
 	bootstrapScrollspyRuntimeClasses,
 	bootstrapSpinnerRuntimeClasses,
 	bootstrapToastRuntimeClasses,
-	bootstrapListGroupRuntimeClasses,
 	bootstrapTooltipRuntimeClasses,
 }

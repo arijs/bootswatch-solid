@@ -50,17 +50,26 @@ export const carouselItemEnd = style({})
 
 const carouselHookActive = 'pwhook-carousel-active'
 
-globalStyle(`${carouselItem}.${carouselActive}, ${carouselItem}.${carouselHookActive}, ${carouselItem}.${carouselItemNext}, ${carouselItem}.${carouselItemPrev}`, {
-	display: 'block',
-})
+globalStyle(
+	`${carouselItem}.${carouselActive}, ${carouselItem}.${carouselHookActive}, ${carouselItem}.${carouselItemNext}, ${carouselItem}.${carouselItemPrev}`,
+	{
+		display: 'block',
+	},
+)
 
-globalStyle(`${carouselItem}.${carouselItemNext}:not(.${carouselItemStart}), .${carouselActive}.${carouselItemEnd}, .${carouselHookActive}.${carouselItemEnd}`, {
-	transform: 'translateX(100%)',
-})
+globalStyle(
+	`${carouselItem}.${carouselItemNext}:not(.${carouselItemStart}), .${carouselActive}.${carouselItemEnd}, .${carouselHookActive}.${carouselItemEnd}`,
+	{
+		transform: 'translateX(100%)',
+	},
+)
 
-globalStyle(`${carouselItem}.${carouselItemPrev}:not(.${carouselItemEnd}), .${carouselActive}.${carouselItemStart}, .${carouselHookActive}.${carouselItemStart}`, {
-	transform: 'translateX(-100%)',
-})
+globalStyle(
+	`${carouselItem}.${carouselItemPrev}:not(.${carouselItemEnd}), .${carouselActive}.${carouselItemStart}, .${carouselHookActive}.${carouselItemStart}`,
+	{
+		transform: 'translateX(-100%)',
+	},
+)
 
 const carouselControlBase = {
 	position: 'absolute',
@@ -115,13 +124,13 @@ const carouselControlIconBase = {
 export const carouselControlPrevIcon = style({
 	...carouselControlIconBase,
 	backgroundImage:
-		'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e")',
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\")",
 })
 
 export const carouselControlNextIcon = style({
 	...carouselControlIconBase,
 	backgroundImage:
-		'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
 })
 
 export const carouselIndicators = style({
@@ -162,9 +171,12 @@ export const carouselIndicatorsTarget = style({
 	},
 })
 
-globalStyle(`${carouselIndicatorsTarget}.${carouselActive}, ${carouselIndicatorsTarget}.${carouselHookActive}`, {
-	opacity: 1,
-})
+globalStyle(
+	`${carouselIndicatorsTarget}.${carouselActive}, ${carouselIndicatorsTarget}.${carouselHookActive}`,
+	{
+		opacity: 1,
+	},
+)
 
 export const carouselCaption = style({
 	position: 'absolute',

@@ -17,11 +17,15 @@ async function* walkDir(dir) {
 }
 
 function updateImports(content, filePath) {
-	const relativePath = path.relative(path.dirname(filePath), path.join(ROOT, 've-project', 'src', 'themes', 'bootstrap', 'ui', 'buttons'))
+	const relativePath = path.relative(
+		path.dirname(filePath),
+		path.join(ROOT, 've-project', 'src', 'themes', 'bootstrap', 'ui', 'buttons'),
+	)
 	const relPath = relativePath.split(path.sep).join('/')
 
 	// Match imports from generated.css that include btn
-	const generatedImportRegex = /import\s*\{\s*([^}]+)\s*\}\s*from\s*['"]([^'"]*generated\.css)['"]/g
+	const generatedImportRegex =
+		/import\s*\{\s*([^}]+)\s*\}\s*from\s*['"]([^'"]*generated\.css)['"]/g
 
 	let updated = content
 	let hasChanges = false
@@ -31,7 +35,10 @@ function updateImports(content, filePath) {
 		const importPath = match[2]
 
 		// Split imports by comma
-		const importList = imports.split(',').map((i) => i.trim()).filter(Boolean)
+		const importList = imports
+			.split(',')
+			.map((i) => i.trim())
+			.filter(Boolean)
 
 		// Check if btn is in the imports
 		if (!importList.includes('btn')) {
@@ -48,7 +55,8 @@ function updateImports(content, filePath) {
 		let newImports = `import { btn } from '${relPath}/base.css'`
 
 		if (otherImports.length > 0) {
-			newImports += `\n` + `import { ${otherImports.join(', ')} } from '${relPath}/generated.css'`
+			newImports +=
+				`\n` + `import { ${otherImports.join(', ')} } from '${relPath}/generated.css'`
 		}
 
 		// Replace the old import with new imports

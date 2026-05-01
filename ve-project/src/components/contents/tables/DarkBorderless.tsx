@@ -1,8 +1,17 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { table, tableBorderless, tableDark, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	table,
+	tableBorderless,
+	tableCell,
+	tableDark,
+	tableElement,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const DarkBorderless: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
@@ -30,7 +39,9 @@ const DarkBorderless: Component = () => (
 				</tr>
 				<tr class={tableRow}>
 					<th class={tableHeaderCell}>3</th>
-					<td class={tableCell} colspan="2">Larry the Bird</td>
+					<td class={tableCell} colspan="2">
+						Larry the Bird
+					</td>
 					<td class={tableCell}>@twitter</td>
 				</tr>
 			</tbody>
@@ -47,5 +58,3 @@ export default DarkBorderless
 // @screenshot superhero: 360x148 148
 // @screenshot yeti: 360x148 148
 // @screenshot zephyr: 360x212 212
-
-

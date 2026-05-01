@@ -1,3 +1,7 @@
+::file-selector-button { font: inherit; appearance: button; }
+
+::-webkit-file-upload-button { font: inherit; -webkit-appearance: button; }
+
 input, button, select, optgroup, textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
 
 button, select { text-transform: none; }

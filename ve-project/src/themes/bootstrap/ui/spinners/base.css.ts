@@ -18,7 +18,10 @@ import {
 	varBsSpinnerVerticalAlign,
 	varBsSpinnerWidth,
 } from '../../../../theme-contract/ui/spinners/_vars.css'
-import { spinnerBorder as spinnerBorderAnimation, spinnerGrow as spinnerGrowAnimation } from '../../_keyframes.css'
+import {
+	spinnerBorder as spinnerBorderAnimation,
+	spinnerGrow as spinnerGrowAnimation,
+} from '../../_keyframes.css'
 
 const spinnerBaseVars = {
 	[varBsSpinnerWidth]: '2rem',

@@ -30,16 +30,22 @@ export const inputGroupText = style({
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(`${inputGroup} > input, ${inputGroup} > select, ${inputGroup} > textarea, ${inputGroup} > .form-floating`, {
-	position: 'relative',
-	flex: '1 1 auto',
-	width: '1%',
-	minWidth: 0,
-})
+globalStyle(
+	`${inputGroup} > input, ${inputGroup} > select, ${inputGroup} > textarea, ${inputGroup} > .form-floating`,
+	{
+		position: 'relative',
+		flex: '1 1 auto',
+		width: '1%',
+		minWidth: 0,
+	},
+)
 
-globalStyle(`${inputGroup} > input:focus, ${inputGroup} > select:focus, ${inputGroup} > textarea:focus, ${inputGroup} > .form-floating:focus-within`, {
-	zIndex: 5,
-})
+globalStyle(
+	`${inputGroup} > input:focus, ${inputGroup} > select:focus, ${inputGroup} > textarea:focus, ${inputGroup} > .form-floating:focus-within`,
+	{
+		zIndex: 5,
+	},
+)
 
 globalStyle(
 	`${inputGroup} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,

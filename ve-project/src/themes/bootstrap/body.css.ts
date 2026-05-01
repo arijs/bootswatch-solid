@@ -18,12 +18,15 @@ export const bodyText = style({
 	WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
 })
 
-export const body = style([bodyText, {
-	margin: 0,
-	color: varBsBodyColor,
-	textAlign: varBsBodyTextAlign,
-	backgroundColor: varBsBodyBg,
-}])
+export const body = style([
+	bodyText,
+	{
+		margin: 0,
+		color: varBsBodyColor,
+		textAlign: varBsBodyTextAlign,
+		backgroundColor: varBsBodyBg,
+	},
+])
 
 /*
 

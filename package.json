@@ -12,6 +12,9 @@
 		"ve:dev": "node scripts/run-ve-vite.mjs dev",
 		"ve:build": "node scripts/run-ve-vite.mjs build",
 		"ve:preview": "node scripts/run-ve-vite.mjs preview",
+		"ve2:dev": "node scripts/run-ve-vite.mjs dev ve-project2",
+		"ve2:build": "node scripts/run-ve-vite.mjs build ve-project2",
+		"ve2:preview": "node scripts/run-ve-vite.mjs preview ve-project2",
 		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
@@ -30,6 +33,7 @@
 		"playwright": "^1.59.1",
 		"pngjs": "^7.0.0",
 		"sass": "^1.99.0",
+		"source-map": "^0.7.6",
 		"typescript": "^6.0.3",
 		"vite": "^8.0.8",
 		"vite-plugin-solid": "3.0.0-next.5"

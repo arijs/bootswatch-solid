@@ -5,24 +5,25 @@ import type {
 	VeBreadcrumbThemeContract,
 	VeButtonGroupThemeContract,
 	VeButtonThemeContract,
-	VeCarouselThemeContract,
 	VeCardThemeContract,
+	VeCarouselThemeContract,
 	VeContentsThemeContract,
 	VeDropdownThemeContract,
 	VeFormsThemeContract,
 	VeGlobalThemeContract,
 	VeListGroupThemeContract,
 	VeModalThemeContract,
-	VeNavThemeContract,
 	VeNavbarThemeContract,
+	VeNavThemeContract,
+	VePaginationThemeContract,
 	VePopoverThemeContract,
 	VeProgressThemeContract,
-	VePaginationThemeContract,
 	VeScrollspyThemeContract,
 	VeSpinnerThemeContract,
 	VeToastThemeContract,
 	VeTooltipThemeContract,
 } from './contracts'
+import { useVeThemeRuntime } from './provider'
 import {
 	bootstrapAccordionRuntimeClasses,
 	bootstrapAlertRuntimeClasses,
@@ -30,16 +31,16 @@ import {
 	bootstrapBreadcrumbRuntimeClasses,
 	bootstrapButtonGroupRuntimeClasses,
 	bootstrapButtonRuntimeClasses,
-	bootstrapCarouselRuntimeClasses,
 	bootstrapCardRuntimeClasses,
+	bootstrapCarouselRuntimeClasses,
 	bootstrapContentsRuntimeClasses,
 	bootstrapDropdownRuntimeClasses,
 	bootstrapFormsRuntimeClasses,
 	bootstrapGlobalRuntimeClasses,
 	bootstrapListGroupRuntimeClasses,
 	bootstrapModalRuntimeClasses,
-	bootstrapNavRuntimeClasses,
 	bootstrapNavbarRuntimeClasses,
+	bootstrapNavRuntimeClasses,
 	bootstrapPaginationRuntimeClasses,
 	bootstrapPopoverRuntimeClasses,
 	bootstrapProgressRuntimeClasses,
@@ -49,13 +50,14 @@ import {
 	bootstrapTooltipRuntimeClasses,
 	type VeThemeResolution,
 } from './registry'
-import { useVeThemeRuntime } from './provider'
 
 const emittedWarnings = new Set<string>()
 
 function warnUnsupportedIfNeeded(resolution: VeThemeResolution) {
 	if (resolution.supported) return
-	const warningKey = [resolution.selectedThemeSlug, resolution.routePath, resolution.reason].join('|')
+	const warningKey = [resolution.selectedThemeSlug, resolution.routePath, resolution.reason].join(
+		'|',
+	)
 	if (emittedWarnings.has(warningKey)) return
 	emittedWarnings.add(warningKey)
 
@@ -169,7 +171,9 @@ export function useVeBadgeThemeClasses(): VeGlobalThemeContract & VeBadgeThemeCo
 	}
 }
 
-export function useVePopoverThemeClasses(): VeGlobalThemeContract & VeButtonThemeContract & VePopoverThemeContract {
+export function useVePopoverThemeClasses(): VeGlobalThemeContract &
+	VeButtonThemeContract &
+	VePopoverThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return {
@@ -179,7 +183,9 @@ export function useVePopoverThemeClasses(): VeGlobalThemeContract & VeButtonThem
 	}
 }
 
-export function useVeTooltipThemeClasses(): VeGlobalThemeContract & VeButtonThemeContract & VeTooltipThemeContract {
+export function useVeTooltipThemeClasses(): VeGlobalThemeContract &
+	VeButtonThemeContract &
+	VeTooltipThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return {
@@ -231,7 +237,9 @@ export function useVeSpinnerThemeClasses(): VeGlobalThemeContract & VeSpinnerThe
 	}
 }
 
-export function useVeCarouselThemeClasses(): VeGlobalThemeContract & VeContentsThemeContract & VeCarouselThemeContract {
+export function useVeCarouselThemeClasses(): VeGlobalThemeContract &
+	VeContentsThemeContract &
+	VeCarouselThemeContract {
 	const runtime = useVeThemeRuntime()
 	warnUnsupportedIfNeeded(runtime())
 	return {

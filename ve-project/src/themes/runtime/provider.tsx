@@ -1,7 +1,7 @@
 import { useLocation } from '@solidjs/router'
-import { createContext, createMemo, useContext, type Accessor, type JSX } from 'solid-js'
-import { getRequiredFamiliesForPath } from './route-families'
+import { type Accessor, createContext, createMemo, type JSX, useContext } from 'solid-js'
 import { resolveVeThemeForRoute, type VeThemeResolution } from './registry'
+import { getRequiredFamiliesForPath } from './route-families'
 
 type VeThemeRuntimeContextValue = Accessor<VeThemeResolution>
 

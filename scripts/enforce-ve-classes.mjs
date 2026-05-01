@@ -1,10 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const roots = [
-	've-project/src/components/contents',
-	've-project/src/components/ui',
-]
+const roots = ['ve-project/src/components/contents', 've-project/src/components/ui']
 
 function walk(dir, out = []) {
 	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -90,9 +87,15 @@ for (const file of files) {
 	}
 }
 
-console.log(JSON.stringify({
-	filesScanned: files.length,
-	changedFiles,
-	beforeViolations,
-	afterViolations,
-}, null, 2))
+console.log(
+	JSON.stringify(
+		{
+			filesScanned: files.length,
+			changedFiles,
+			beforeViolations,
+			afterViolations,
+		},
+		null,
+		2,
+	),
+)

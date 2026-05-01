@@ -2,8 +2,16 @@ import type { Component } from 'solid-js'
 
 const SolidToggleDisabledWarningButton: Component = () => (
 	<div class="bd-example container-fluid">
-		<input disabled type="checkbox" class="btn-check" id="id-btn-solid-toggle-disabled-warning" autocomplete="off"  />
-		<label class="btn btn-warning" for="id-btn-solid-toggle-disabled-warning">Toggle Warning</label>
+		<input
+			disabled
+			type="checkbox"
+			class="btn-check"
+			id="id-btn-solid-toggle-disabled-warning"
+			autocomplete="off"
+		/>
+		<label class="btn btn-warning" for="id-btn-solid-toggle-disabled-warning">
+			Toggle Warning
+		</label>
 	</div>
 )
 

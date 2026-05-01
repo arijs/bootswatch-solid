@@ -1,4 +1,4 @@
-import { Show, createEffect, createSignal, type JSX } from 'solid-js'
+import { createEffect, createSignal, type JSX, Show } from 'solid-js'
 import { useVeThemeRuntime } from './provider'
 
 export default function ThemeSupportGate(props: { children: JSX.Element }) {
@@ -49,7 +49,8 @@ export default function ThemeSupportGate(props: { children: JSX.Element }) {
 				<main style={{ padding: '1.5rem', 'font-family': 'system-ui, sans-serif' }}>
 					<h1>Theme Not Yet Implemented In VE</h1>
 					<p>
-						The selected theme <strong>{runtime().selectedThemeSlug}</strong> is not available for this VE route yet.
+						The selected theme <strong>{runtime().selectedThemeSlug}</strong> is not
+						available for this VE route yet.
 					</p>
 					<p>
 						Reason: <code>{runtime().reason}</code>

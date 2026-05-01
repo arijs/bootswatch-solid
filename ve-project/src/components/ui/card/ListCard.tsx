@@ -2,32 +2,43 @@ import type { Component } from 'solid-js'
 import { useVeCardThemeClasses } from '../../../themes/runtime/hooks'
 
 const ListCard: Component = () => {
-	const { card, cardBody, cardLink, cardText, cardTitle, h5, listGroup, listGroupFlush, listGroupItem, paragraph } = useVeCardThemeClasses()
+	const {
+		card,
+		cardBody,
+		cardLink,
+		cardText,
+		cardTitle,
+		h5,
+		listGroup,
+		listGroupFlush,
+		listGroupItem,
+		paragraph,
+	} = useVeCardThemeClasses()
 	return (
-	<div class={card}>
-		<div class={cardBody}>
-			<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
-			<p class={`${paragraph} ${cardText}`}>
-				Some quick example text to build on the card title and make up the bulk of the
-				card's content.
-			</p>
+		<div class={card}>
+			<div class={cardBody}>
+				<h5 class={`${h5} ${cardTitle}`}>Card title</h5>
+				<p class={`${paragraph} ${cardText}`}>
+					Some quick example text to build on the card title and make up the bulk of the
+					card's content.
+				</p>
+			</div>
+			<ul class={`${listGroup} ${listGroupFlush}`}>
+				<li class={listGroupItem}>An item</li>
+				<li class={listGroupItem}>A second item</li>
+				<li class={listGroupItem}>A third item</li>
+			</ul>
+			<div class={cardBody}>
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a href="#" onClick={(e) => e.preventDefault()} class={cardLink}>
+					Card link
+				</a>
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a href="#" onClick={(e) => e.preventDefault()} class={cardLink}>
+					Another link
+				</a>
+			</div>
 		</div>
-		<ul class={`${listGroup} ${listGroupFlush}`}>
-			<li class={listGroupItem}>An item</li>
-			<li class={listGroupItem}>A second item</li>
-			<li class={listGroupItem}>A third item</li>
-		</ul>
-		<div class={cardBody}>
-			{/* biome-ignore lint: <a> is used for demonstration purposes */}
-			<a href="#" onClick={(e) => e.preventDefault()} class={cardLink}>
-				Card link
-			</a>
-			{/* biome-ignore lint: <a> is used for demonstration purposes */}
-			<a href="#" onClick={(e) => e.preventDefault()} class={cardLink}>
-				Another link
-			</a>
-		</div>
-	</div>
 	)
 }
 

@@ -1,8 +1,24 @@
 import type { Component } from 'solid-js'
-import { containerFluid } from '../../../themes/bootstrap/container.css'
 import { bsTheme } from '../../../themes/bootstrap/_vars.css'
 import { body } from '../../../themes/bootstrap/body.css'
-import { table, tableDanger, tableDark, tableHover, tableInfo, tableLight, tablePrimary, tableSecondary, tableSuccess, tableWarning, tableElement, tableSection, tableRow, tableCell, tableHeaderCell } from '../../../themes/bootstrap/contents/generated.css'
+import { containerFluid } from '../../../themes/bootstrap/container.css'
+import {
+	table,
+	tableCell,
+	tableDanger,
+	tableDark,
+	tableElement,
+	tableHeaderCell,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableRow,
+	tableSecondary,
+	tableSection,
+	tableSuccess,
+	tableWarning,
+} from '../../../themes/bootstrap/contents/generated.css'
 
 const HoverVariants: Component = () => (
 	<div class={`bd-example ${containerFluid} ${bsTheme} ${body}`}>
@@ -78,5 +94,3 @@ export default HoverVariants
 // @screenshot vapor: 360x400 400
 // @screenshot yeti: 360x380 380
 // @screenshot zephyr: 360x540 540
-
-

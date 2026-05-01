@@ -2,7 +2,11 @@ import type { Component } from 'solid-js'
 
 const CarouselExample: Component = () => (
 	<div class="bd-example container-fluid">
-		<div id="carouselExampleCaptions" class="carousel slide pwhook-carousel" data-bs-ride="carousel">
+		<div
+			id="carouselExampleCaptions"
+			class="carousel slide pwhook-carousel"
+			data-bs-ride="carousel"
+		>
 			<div class="carousel-indicators pwhook-carousel-indicators">
 				<button
 					type="button"
@@ -120,6 +124,6 @@ const CarouselExample: Component = () => (
 export default CarouselExample
 
 // @screenshot *: 360x400 476
-// @screenshot bootstrap/carousel-at-index-2: 360x400 400
-// @screenshot bootstrap/carousel-click-next-from-0: 360x400 400
-// @screenshot bootstrap/carousel-click-prev-from-2: 360x400 400
+// @screenshot */carousel-at-index-2: 360x400 400
+// @screenshot */carousel-click-next-from-0: 360x400 400
+// @screenshot */carousel-click-prev-from-2: 360x400 400

@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
-import FormsSection from './FormsSection'
 import { useVeFormsThemeClasses } from '../../themes/runtime/hooks'
+import FormsSection from './FormsSection'
 
 const FormsPage: Component = () => {
 	const { bsTheme, containerFluid } = useVeFormsThemeClasses()
