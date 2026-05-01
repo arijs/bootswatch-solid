@@ -199,11 +199,29 @@ globalStyle(
 	},
 )
 
-// .btn-check:disabled + .btn (Bootstrap toggle-button pattern)
-globalStyle(`${bootstrapScope}${btnCheck}:disabled + ${bootstrapScope}${btn}`, {
+// SOURCE CSS:
+// .btn-check {
+//   position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
+globalStyle(`${bootstrapScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
 	pointerEvents: 'none',
-	opacity: varBsBtnDisabledOpacity,
 })
+
+// SOURCE CSS:
+// .btn-check[disabled] + .btn, .btn-check:disabled + .btn {
+//   pointer-events: none; filter: none; opacity: 0.65; }
+globalStyle(
+	[
+		`${bootstrapScope}${btnCheck}[disabled] + ${bootstrapScope}${btn}`,
+		`${bootstrapScope}${btnCheck}:disabled + ${bootstrapScope}${btn}`,
+	].join(', '),
+	{
+		pointerEvents: 'none',
+		filter: 'none',
+		opacity: varBsBtnDisabledOpacity,
+	},
+)
 
 // ── Size modifiers ────────────────────────────────────────────────────────────
 //
