@@ -19,8 +19,13 @@ import {
 	varBsFormCheckBgImage,
 	varBsFormSelectBgImg,
 	varBsFormSwitchBg,
+	varBsFormValidColor,
+	varBsFormValidBorderColor,
+	varBsFormInvalidColor,
+	varBsFormInvalidBorderColor,
 } from '../../../theme-contract/forms/_vars.css'
 import {
+	colMd6,
 	fieldset,
 	floatingLabel,
 	form,
@@ -48,6 +53,9 @@ import {
 	legend,
 	legendClear,
 	mb3,
+	g3,
+	row,
+	rowCol,
 	validFeedback,
 } from '../../../theme-contract/forms/contract.css'
 import { bootstrapScope } from '../scope.css'
@@ -78,16 +86,48 @@ const invalidIcon =
 const validIcon =
 	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.54.54 2.4-2.4-.53-.53-1.87 1.86-.8-.8-.53.53z'/%3e%3c/svg%3e\")"
 
-// Form validation colors (hardcoded Bootstrap defaults)
-const formValidColor = '#198754'
-const formValidBorderColor = '#198754'
-const formInvalidColor = '#dc3545'
-const formInvalidBorderColor = '#dc3545'
-
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
 globalStyle(`${bootstrapScope}${mb3}`, {
 	marginBottom: '1rem',
+})
+
+// Bootstrap grid utilities used by validation form demos.
+globalStyle(`${bootstrapScope}${row}`, {
+	vars: {
+		'--bs-gutter-x': '1.5rem',
+		'--bs-gutter-y': '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: 'calc(-1 * var(--bs-gutter-y))',
+	marginRight: 'calc(-0.5 * var(--bs-gutter-x))',
+	marginLeft: 'calc(-0.5 * var(--bs-gutter-x))',
+})
+
+globalStyle(`${bootstrapScope}${rowCol}`, {
+	flexShrink: 0,
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: 'calc(var(--bs-gutter-x) * 0.5)',
+	paddingLeft: 'calc(var(--bs-gutter-x) * 0.5)',
+	marginTop: 'var(--bs-gutter-y)',
+})
+
+globalStyle(`${bootstrapScope}${g3}`, {
+	vars: {
+		'--bs-gutter-x': '1rem',
+		'--bs-gutter-y': '1rem',
+	},
+})
+
+globalStyle(`${bootstrapScope}${colMd6}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
 })
 
 // ─── Form label / text ────────────────────────────────────────────────────────
@@ -648,7 +688,7 @@ globalStyle(`${bootstrapScope}${validFeedback}`, {
 	width: '100%',
 	marginTop: '0.25rem',
 	fontSize: '0.875em',
-	color: formValidColor,
+	color: varBsFormValidColor,
 })
 
 globalStyle(`${bootstrapScope}${invalidFeedback}`, {
@@ -656,7 +696,7 @@ globalStyle(`${bootstrapScope}${invalidFeedback}`, {
 	width: '100%',
 	marginTop: '0.25rem',
 	fontSize: '0.875em',
-	color: formInvalidColor,
+	color: varBsFormInvalidColor,
 })
 
 globalStyle(`${bootstrapScope}${isValid} ~ ${validFeedback}`, {
@@ -675,49 +715,49 @@ globalStyle(`${bootstrapScope}${formControl}${isValid}, ${bootstrapScope}${formC
 })
 
 globalStyle(`${bootstrapScope}${formControl}${isValid}`, {
-	borderColor: formValidBorderColor,
+	borderColor: varBsFormValidBorderColor,
 	backgroundImage: validIcon,
 })
 
 globalStyle(`${bootstrapScope}${formControl}${isValid}:focus`, {
-	borderColor: formValidBorderColor,
+	borderColor: varBsFormValidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
 globalStyle(`${bootstrapScope}${formControl}${isInvalid}`, {
-	borderColor: formInvalidBorderColor,
+	borderColor: varBsFormInvalidBorderColor,
 	backgroundImage: invalidIcon,
 })
 
 globalStyle(`${bootstrapScope}${formControl}${isInvalid}:focus`, {
-	borderColor: formInvalidBorderColor,
+	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
 globalStyle(`${bootstrapScope}${formSelect}${isValid}`, {
-	borderColor: formValidBorderColor,
+	borderColor: varBsFormValidBorderColor,
 })
 
 globalStyle(`${bootstrapScope}${formSelect}${isValid}:focus`, {
-	borderColor: formValidBorderColor,
+	borderColor: varBsFormValidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
 globalStyle(`${bootstrapScope}${formSelect}${isInvalid}`, {
-	borderColor: formInvalidBorderColor,
+	borderColor: varBsFormInvalidBorderColor,
 })
 
 globalStyle(`${bootstrapScope}${formSelect}${isInvalid}:focus`, {
-	borderColor: formInvalidBorderColor,
+	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isValid}`, {
-	borderColor: formValidBorderColor,
+	borderColor: varBsFormValidBorderColor,
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isValid}:checked`, {
-	backgroundColor: formValidColor,
+	backgroundColor: varBsFormValidColor,
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isValid}:focus`, {
@@ -725,15 +765,15 @@ globalStyle(`${bootstrapScope}${formCheckInput}${isValid}:focus`, {
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isValid} ~ ${formCheckLabel}`, {
-	color: formValidColor,
+	color: varBsFormValidColor,
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}`, {
-	borderColor: formInvalidBorderColor,
+	borderColor: varBsFormInvalidBorderColor,
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:checked`, {
-	backgroundColor: formInvalidColor,
+	backgroundColor: varBsFormInvalidColor,
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:focus`, {
@@ -741,7 +781,7 @@ globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:focus`, {
 })
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid} ~ ${formCheckLabel}`, {
-	color: formInvalidColor,
+	color: varBsFormInvalidColor,
 })
 
 globalStyle(

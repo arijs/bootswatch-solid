@@ -70,6 +70,12 @@ import {
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../theme-contract/_vars.css'
+import {
+	varBsFormValidColor,
+	varBsFormValidBorderColor,
+	varBsFormInvalidColor,
+	varBsFormInvalidBorderColor,
+} from '../../theme-contract/forms/_vars.css'
 import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
 
 // Bootstrap theme scope class.
@@ -162,6 +168,11 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		// Links
 		[varBsLinkColor]: '#0d6efd',
 		[varBsLinkHoverColor]: '#0a58ca',
+		// Form validation
+		[varBsFormValidColor]: '#198754',
+		[varBsFormValidBorderColor]: '#198754',
+		[varBsFormInvalidColor]: '#dc3545',
+		[varBsFormInvalidBorderColor]: '#dc3545',
 	},
 })
 

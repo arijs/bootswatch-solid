@@ -70,6 +70,12 @@ import {
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../theme-contract/_vars.css'
+import {
+	varBsFormValidColor,
+	varBsFormValidBorderColor,
+	varBsFormInvalidColor,
+	varBsFormInvalidBorderColor,
+} from '../../theme-contract/forms/_vars.css'
 import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
 
 // Sketchy theme scope class.
@@ -166,6 +172,11 @@ globalStyle(`${sketchyScope}${vars}`, {
 		// Links (same as Bootstrap)
 		[varBsLinkColor]: '#333',
 		[varBsLinkHoverColor]: '#292929',
+		// Form validation
+		[varBsFormValidColor]: '#28a745',
+		[varBsFormValidBorderColor]: '#28a745',
+		[varBsFormInvalidColor]: '#dc3545',
+		[varBsFormInvalidBorderColor]: '#dc3545',
 	},
 })
 
