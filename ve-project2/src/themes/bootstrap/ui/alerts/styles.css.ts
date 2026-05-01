@@ -56,7 +56,7 @@ import {
 import { bootstrapScope } from '../../scope.css'
 
 // Bootstrap default theme SVG × icon for the close button
-const btnCloseSvg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`
+const btnCloseSvg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e")`
 
 // ── Base alert ────────────────────────────────────────────────────────────────
 
@@ -196,12 +196,16 @@ globalStyle(`${bootstrapScope}${alert} ${alertHeading}`, {
 	color: 'inherit',
 })
 
-// Close button: positioned in the top-right corner of a dismissible alert
+// Base close button styles shared by alerts, modals, and toasts.
 globalStyle(`${bootstrapScope}${alertBtnClose}`, {
 	boxSizing: 'content-box',
+	margin: 0,
+	fontFamily: 'inherit',
+	fontSize: 'inherit',
+	lineHeight: 'inherit',
 	width: '1em',
 	height: '1em',
-	padding: '1.25rem 1rem',
+	padding: '0.25em 0.25em',
 	color: '#000',
 	backgroundColor: 'transparent',
 	backgroundImage: btnCloseSvg,
@@ -209,11 +213,16 @@ globalStyle(`${bootstrapScope}${alertBtnClose}`, {
 	backgroundSize: '1em auto',
 	backgroundRepeat: 'no-repeat',
 	border: 0,
-	borderRadius: varBsAlertBorderRadius,
+	borderRadius: varBsBorderRadius,
 	opacity: 0.5,
 	cursor: 'pointer',
+})
+
+// Dismissible alerts place the close button in the top-right corner.
+globalStyle(`${bootstrapScope}${alertDismissible} ${alertBtnClose}`, {
 	position: 'absolute',
 	top: 0,
 	right: 0,
 	zIndex: 2,
+	padding: '1.25rem 1rem',
 })
