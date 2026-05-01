@@ -16,19 +16,19 @@ const BreadcrumbExample: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<nav aria-label="breadcrumb">
 				<ol class={`${theme} ${breadcrumb}`}>
-					<li class={breadcrumbItem}>
+					<li class={`${theme} ${breadcrumbItem}`}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a class={`${theme} ${link}`} href="#" onClick={(e) => e.preventDefault()}>
 							Home
 						</a>
 					</li>
-					<li class={breadcrumbItem}>
+					<li class={`${theme} ${breadcrumbItem}`}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a class={`${theme} ${link}`} href="#" onClick={(e) => e.preventDefault()}>
 							Library
 						</a>
 					</li>
-					<li class={`${breadcrumbItem} ${breadcrumbItemActive}`} aria-current="page">
+					<li class={`${theme} ${breadcrumbItem} ${breadcrumbItemActive}`} aria-current="page">
 						Data
 					</li>
 				</ol>

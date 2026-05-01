@@ -18,7 +18,7 @@ const ContextualWarningListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemWarning}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemWarning}`}
 				>
 					A simple warning list group item
 				</a>

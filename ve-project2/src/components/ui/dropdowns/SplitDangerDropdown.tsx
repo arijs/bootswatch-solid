@@ -32,7 +32,7 @@ const SplitDangerDropdown: Component = () => {
 					data-bs-toggle="dropdown"
 					aria-expanded="false"
 				>
-					<span class={visuallyHidden}>Toggle Dropdown</span>
+					<span class={`${theme} ${visuallyHidden}`}>Toggle Dropdown</span>
 				</button>
 				<ul class={`${theme} ${dropdownMenu} pwhook-dropdown-menu`}>
 					<li>

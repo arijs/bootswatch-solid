@@ -18,7 +18,7 @@ const ContextualDarkListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemDark}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemDark}`}
 				>
 					A simple dark list group item
 				</a>

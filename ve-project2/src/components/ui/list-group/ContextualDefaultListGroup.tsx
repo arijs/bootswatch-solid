@@ -17,7 +17,7 @@ const ContextualDefaultListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction}`}
 				>
 					A simple default list group item
 				</a>

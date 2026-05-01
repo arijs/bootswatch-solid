@@ -13,11 +13,11 @@ const FlushListGroup: Component = () => {
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<ul class={`${theme} ${listGroup} ${listGroupFlush}`}>
-				<li class={listGroupItem}>An item</li>
-				<li class={listGroupItem}>A second item</li>
-				<li class={listGroupItem}>A third item</li>
-				<li class={listGroupItem}>A fourth item</li>
-				<li class={listGroupItem}>And a fifth one</li>
+				<li class={`${theme} ${listGroupItem}`}>An item</li>
+				<li class={`${theme} ${listGroupItem}`}>A second item</li>
+				<li class={`${theme} ${listGroupItem}`}>A third item</li>
+				<li class={`${theme} ${listGroupItem}`}>A fourth item</li>
+				<li class={`${theme} ${listGroupItem}`}>And a fifth one</li>
 			</ul>
 		</div>
 	)

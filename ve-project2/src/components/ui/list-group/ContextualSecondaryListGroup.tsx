@@ -18,7 +18,7 @@ const ContextualSecondaryListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemSecondary}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemSecondary}`}
 				>
 					A simple secondary list group item
 				</a>

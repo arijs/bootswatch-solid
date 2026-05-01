@@ -18,7 +18,7 @@ const ContextualSuccessListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemSuccess}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemSuccess}`}
 				>
 					A simple success list group item
 				</a>

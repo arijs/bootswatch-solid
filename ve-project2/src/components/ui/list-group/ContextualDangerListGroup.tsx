@@ -18,7 +18,7 @@ const ContextualDangerListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemDanger}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemDanger}`}
 				>
 					A simple danger list group item
 				</a>

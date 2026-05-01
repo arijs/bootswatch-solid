@@ -1,0 +1,16 @@
+import { style } from '@vanilla-extract/css'
+
+export const popoverVe = style({})
+export const bsPopoverTop = style({})
+export const bsPopoverEnd = style({})
+export const bsPopoverBottom = style({})
+export const bsPopoverStart = style({})
+export const bsPopoverAuto = style({})
+export const popoverArrow = style({})
+export const popoverHeader = style({})
+export const popoverBody = style({})
+export const frame = style({})
+export const frameColumn = style({})
+export const frameRow = style({})
+export const justifyEnd = style({})
+export const justifyStart = style({})

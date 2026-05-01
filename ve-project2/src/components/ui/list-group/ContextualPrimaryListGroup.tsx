@@ -18,7 +18,7 @@ const ContextualPrimaryListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${listGroupItem} ${listGroupItemAction} ${listGroupItemPrimary}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemPrimary}`}
 				>
 					A simple primary list group item
 				</a>

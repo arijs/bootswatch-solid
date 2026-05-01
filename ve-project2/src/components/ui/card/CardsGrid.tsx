@@ -11,7 +11,7 @@ const CardsGrid: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<div class={cardsGrid}>
+			<div class={`${theme} ${cardsGrid}`}>
 				<div>
 					<ImageTopCard />
 				</div>

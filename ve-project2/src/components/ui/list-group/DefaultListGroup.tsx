@@ -13,13 +13,13 @@ const DefaultListGroup: Component = () => {
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<ul class={`${theme} ${listGroup}`}>
-				<li class={`${listGroupItem} ${listGroupItemDisabled}`} aria-disabled="true">
+				<li class={`${theme} ${listGroupItem} ${listGroupItemDisabled}`} aria-disabled="true">
 					A disabled item
 				</li>
-				<li class={listGroupItem}>A second item</li>
-				<li class={listGroupItem}>A third item</li>
-				<li class={listGroupItem}>A fourth item</li>
-				<li class={listGroupItem}>And a fifth one</li>
+				<li class={`${theme} ${listGroupItem}`}>A second item</li>
+				<li class={`${theme} ${listGroupItem}`}>A third item</li>
+				<li class={`${theme} ${listGroupItem}`}>A fourth item</li>
+				<li class={`${theme} ${listGroupItem}`}>And a fifth one</li>
 			</ul>
 		</div>
 	)

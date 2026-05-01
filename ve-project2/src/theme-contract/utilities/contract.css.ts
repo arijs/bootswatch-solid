@@ -44,3 +44,9 @@ export const visuallyHidden = style({
  * Theme-specific implementation is wired in each theme's utilities/styles.css.ts.
  */
 export const textMuted = style({})
+
+/**
+ * Bootstrap utility class: .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
+ * Theme-specific implementation is wired in each theme's utilities/styles.css.ts.
+ */
+export const px3 = style({})

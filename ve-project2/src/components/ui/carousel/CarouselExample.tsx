@@ -151,7 +151,7 @@ const CarouselExample: Component = () => {
 					data-bs-slide="prev"
 				>
 					<span class={`${theme} ${carouselControlPrevIcon}`} aria-hidden="true" />
-					<span class={visuallyHidden}>Previous</span>
+					<span class={`${theme} ${visuallyHidden}`}>Previous</span>
 				</button>
 				<button
 					class={`${theme} ${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
@@ -160,7 +160,7 @@ const CarouselExample: Component = () => {
 					data-bs-slide="next"
 				>
 					<span class={`${theme} ${carouselControlNextIcon}`} aria-hidden="true" />
-					<span class={visuallyHidden}>Next</span>
+					<span class={`${theme} ${visuallyHidden}`}>Next</span>
 				</button>
 			</div>
 		</div>
