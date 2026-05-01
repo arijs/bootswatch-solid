@@ -170,7 +170,8 @@ globalStyle(`${bootstrapScope}${vars}`, {
 // Text-bearing root: sets the Bootstrap base typography that every descendant
 // inherits.  Applied to any element that carries BOTH bootstrapScope + bodyText.
 globalStyle(`${bootstrapScope}${bodyText}`, {
-	fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontFamily:
+		'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 	fontSize: '1rem',
 	fontWeight: 400,
 	lineHeight: 1.5,

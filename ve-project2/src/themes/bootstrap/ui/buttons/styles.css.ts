@@ -59,6 +59,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // ── Base .btn ─────────────────────────────────────────────────────────────────
@@ -157,6 +158,7 @@ globalStyle(
 		`:not(${bootstrapScope}${btnCheck}) + ${bootstrapScope}${btn}:active`,
 		`${bootstrapScope}${btn}:first-child:active`,
 		`${bootstrapScope}${btn}${btnActiveHook}`,
+		`${bootstrapScope}${btn}${btnShowHook}`,
 	].join(', '),
 	{
 		color: varBsBtnActiveColor,
@@ -173,6 +175,7 @@ globalStyle(
 		`:not(${bootstrapScope}${btnCheck}) + ${bootstrapScope}${btn}:active:focus-visible`,
 		`${bootstrapScope}${btn}:first-child:active:focus-visible`,
 		`${bootstrapScope}${btn}${btnActiveHook}:focus-visible`,
+		`${bootstrapScope}${btn}${btnShowHook}:focus-visible`,
 	].join(', '),
 	{
 		boxShadow: varBsBtnFocusBoxShadow,

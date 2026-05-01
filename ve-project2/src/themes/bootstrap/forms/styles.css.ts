@@ -724,6 +724,10 @@ globalStyle(`${bootstrapScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
+globalStyle(`${bootstrapScope}${formCheckInput}${isValid} ~ ${formCheckLabel}`, {
+	color: formValidColor,
+})
+
 globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}`, {
 	borderColor: formInvalidBorderColor,
 })
@@ -734,6 +738,10 @@ globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:checked`, {
 
 globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid} ~ ${formCheckLabel}`, {
+	color: formInvalidColor,
 })
 
 globalStyle(

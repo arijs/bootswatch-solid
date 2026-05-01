@@ -2,9 +2,8 @@ import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { h3 } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 frame,
@@ -33,10 +32,10 @@ return (
 type="button"
 class={`${theme} ${btn} ${btnSecondary} pwhook-popover-trigger`}
 data-bs-container="body"
-data-bs-toggle="popover"
+				data-bs-toggle="popover"
 ref={(popover) =>
 new VePopover(popover, {
-template: `<div class="${popoverVe} ${theme} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow}"></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody}"></div></div>`,
+template: `<div class="${popoverVe} ${theme} ${vars} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
 })
 }
 data-bs-placement="top"

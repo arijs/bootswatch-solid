@@ -34,6 +34,7 @@ import {
 	varBsDropdownMinWidth,
 	varBsDropdownPaddingX,
 	varBsDropdownPaddingY,
+	varBsDropdownPosition,
 	varBsDropdownSpacer,
 	varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
@@ -58,6 +59,7 @@ import {
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { h6 } from '../../../../theme-contract/contents/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // ── Wrapper positioning ───────────────────────────────────────────────────────
@@ -155,14 +157,18 @@ globalStyle(`${bootstrapScope}${dropdownMenu}[data-bs-popper]`, {
 // ── Menu alignment modifiers ──────────────────────────────────────────────────
 
 // SOURCE CSS: .dropdown-menu-start { --bs-position: start; }
-globalStyle(`${bootstrapScope}${dropdownMenuStart}`, { vars: { '--bs-position': 'start' } })
+globalStyle(`${bootstrapScope}${dropdownMenuStart}`, {
+	vars: { [varBsDropdownPosition]: 'start' },
+})
 globalStyle(`${bootstrapScope}${dropdownMenuStart}[data-bs-popper]`, {
 	right: 'auto',
 	left: 0,
 })
 
 // SOURCE CSS: .dropdown-menu-end { --bs-position: end; }
-globalStyle(`${bootstrapScope}${dropdownMenuEnd}`, { vars: { '--bs-position': 'end' } })
+globalStyle(`${bootstrapScope}${dropdownMenuEnd}`, {
+	vars: { [varBsDropdownPosition]: 'end' },
+})
 globalStyle(`${bootstrapScope}${dropdownMenuEnd}[data-bs-popper]`, {
 	right: 0,
 	left: 'auto',
@@ -283,6 +289,7 @@ globalStyle(`${bootstrapScope}${dropdownDivider}`, {
 	height: 0,
 	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: 'hidden',
+	border: 0,
 	borderTop: `1px solid ${varBsDropdownDividerBg}`,
 	opacity: 1,
 })
@@ -357,6 +364,13 @@ globalStyle(`${bootstrapScope}${dropdownHeader}`, {
 	fontSize: '0.875rem',
 	color: varBsDropdownHeaderColor,
 	whiteSpace: 'nowrap',
+})
+
+// Dropdown header is rendered as <h6>; keep dropdown-header semantics over heading defaults.
+globalStyle(`${bootstrapScope}${dropdownHeader}${h6}`, {
+	marginBottom: 0,
+	fontSize: '0.875rem',
+	color: varBsDropdownHeaderColor,
 })
 
 // ── .dropdown-item-text ───────────────────────────────────────────────────────

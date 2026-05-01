@@ -122,3 +122,17 @@ globalStyle(`${bootstrapScope}${spinnerWarning}`, { color: varBsWarning })
 globalStyle(`${bootstrapScope}${spinnerInfo}`, { color: varBsInfo })
 globalStyle(`${bootstrapScope}${spinnerLight}`, { color: varBsLight })
 globalStyle(`${bootstrapScope}${spinnerDark}`, { color: varBsDark })
+
+// Spinner demos still use literal `.visually-hidden` text spans.
+// Keep Bootstrap parity by hiding that class inside the themed scope.
+globalStyle(`${bootstrapScope} .visually-hidden`, {
+	position: 'absolute',
+	width: '1px',
+	height: '1px',
+	padding: 0,
+	margin: '-1px',
+	overflow: 'hidden',
+	clip: 'rect(0, 0, 0, 0)',
+	whiteSpace: 'nowrap',
+	border: 0,
+})

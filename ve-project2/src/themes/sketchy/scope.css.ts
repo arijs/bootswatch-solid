@@ -188,3 +188,8 @@ globalStyle(`${sketchyScope}${body}`, {
 	padding: '1rem',
 	display: 'block',
 })
+
+// Bold inline elements use Cabin Sketch font (mirrors Sketchy theme CSS: b, strong { font-family: "Cabin Sketch", cursive })
+globalStyle(`${sketchyScope} b, ${sketchyScope} strong`, {
+	fontFamily: '"Cabin Sketch", cursive',
+})
