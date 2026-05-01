@@ -23,6 +23,8 @@ import { bootstrapScrollspyRuntimeClasses } from '../bootstrap/ui/scrollspy/runt
 import { bootstrapSpinnerRuntimeClasses } from '../bootstrap/ui/spinners/runtime'
 import { bootstrapToastRuntimeClasses } from '../bootstrap/ui/toasts/runtime'
 import { bootstrapTooltipRuntimeClasses } from '../bootstrap/ui/tooltips/runtime'
+import { sketchyButtonRuntimeClasses } from '../sketchy/ui/buttons/runtime'
+import { sketchyGlobalRuntimeClasses } from '../sketchy/global/runtime'
 import type { VeThemeDefinition, VeThemeFamily } from './contracts'
 import { VE_DEFAULT_THEME_SLUG, isKnownThemeSlug, parseKnownThemeSlug } from './theme-slugs'
 
@@ -67,8 +69,14 @@ const bootstrapThemeDefinition = buildThemeDefinition('bootstrap', {
 		listGroup: bootstrapListGroupRuntimeClasses,
 }, ['ui'])
 
+const sketchyThemeDefinition = buildThemeDefinition('sketchy', {
+		global: sketchyGlobalRuntimeClasses,
+		buttons: sketchyButtonRuntimeClasses,
+})
+
 const implementedThemeRegistry: Record<string, VeThemeDefinition> = {
 	bootstrap: bootstrapThemeDefinition,
+	sketchy: sketchyThemeDefinition,
 }
 
 export type VeThemeResolutionReason = 'unknown-theme' | 'missing-family-contract'
