@@ -25,7 +25,7 @@ const SwitchCheckbox: Component = () => {
 						id="flexSwitchCheckChecked"
 						checked
 					/>
-					<label class={`${theme} ${formCheckLabel}`} for="flexSwitchCheckChecked">
+					<label class={`${theme} ${formCheckLabel} pwhook-checkbox-label`} for="flexSwitchCheckChecked">
 						Checked switch checkbox input
 					</label>
 				</div>

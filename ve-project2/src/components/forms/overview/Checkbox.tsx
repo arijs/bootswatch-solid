@@ -23,7 +23,7 @@ const Checkbox: Component = () => {
 						class={`${theme} ${formCheckInput} pwhook-checkbox`}
 						id="exampleCheck1"
 					/>
-					<label class={`${theme} ${formCheckLabel}`} for="exampleCheck1">
+					<label class={`${theme} ${formCheckLabel} pwhook-checkbox-label`} for="exampleCheck1">
 						Check me out
 					</label>
 				</div>

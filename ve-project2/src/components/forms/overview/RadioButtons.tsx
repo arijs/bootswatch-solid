@@ -29,7 +29,7 @@ const RadioButtons: Component = () => {
 							class={`${theme} ${formCheckInput} pwhook-radio`}
 							id="exampleRadio1"
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="exampleRadio1">
+						<label class={`${theme} ${formCheckLabel} pwhook-radio-label`} for="exampleRadio1">
 							Default radio
 						</label>
 					</div>
@@ -40,7 +40,7 @@ const RadioButtons: Component = () => {
 							class={`${theme} ${formCheckInput} pwhook-radio`}
 							id="exampleRadio2"
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="exampleRadio2">
+						<label class={`${theme} ${formCheckLabel} pwhook-radio-label`} for="exampleRadio2">
 							Another radio
 						</label>
 					</div>

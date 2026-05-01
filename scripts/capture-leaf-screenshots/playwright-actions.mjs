@@ -470,15 +470,16 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		return
 	}
 
+	const selectorContext = { theme: themeSlug }
 	const scenarioLocator =
 		scenario.selector instanceof Function
-			? scenario.selector(page, themeSlug)
+			? scenario.selector(page, selectorContext)
 			: scenario.selector
 	const locator =
 		typeof scenarioLocator === 'string'
 			? page.locator(scenarioLocator).first()
 			: scenarioLocator.first()
-	await locator.waitFor({ state: scenario.locatorState?.(themeSlug) ?? 'visible', timeout: 5000 })
+	await locator.waitFor({ state: scenario.locatorState?.(selectorContext) ?? 'visible', timeout: 5000 })
 	ensureSelector(locator, scenario.selector)
 
 	switch (scenario.kind) {
@@ -545,7 +546,7 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 			const carouselSelector = scenario.carouselSelector ?? scenario.selector
 			const carouselLocator = page.locator(carouselSelector).first()
 			await carouselLocator.waitFor({
-				state: scenario.locatorState?.(themeSlug) ?? 'visible',
+				state: scenario.locatorState?.(selectorContext) ?? 'visible',
 				timeout: 5000,
 			})
 
@@ -574,7 +575,7 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 
 			const carouselLocator = page.locator(carouselSelector).first()
 			await carouselLocator.waitFor({
-				state: scenario.locatorState?.(themeSlug) ?? 'visible',
+				state: scenario.locatorState?.(selectorContext) ?? 'visible',
 				timeout: 5000,
 			})
 

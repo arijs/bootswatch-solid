@@ -501,7 +501,7 @@ globalStyle(`${sketchyScope}${formCheckInput}:active`, {
 globalStyle(`${sketchyScope}${formCheckInput}:focus`, {
 	borderColor: '#333',
 	outline: 0,
-	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+	// boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
 })
 
 globalStyle(`${sketchyScope}${formCheckInput}:checked`, {
