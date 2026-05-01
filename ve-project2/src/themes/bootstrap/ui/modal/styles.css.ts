@@ -228,6 +228,9 @@ globalStyle(`${bootstrapScope}${modalFullscreen} ${modalBody}`, {
 })
 
 globalStyle(`${bootstrapScope}${modalHeader} ${alertBtnClose}`, {
+	position: 'relative',
+	top: 'auto',
+	right: 'auto',
 	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
 	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
 	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
