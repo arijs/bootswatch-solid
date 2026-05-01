@@ -59,6 +59,7 @@ btnSm,
 btnSuccess,
 btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { sketchyScope } from '../../scope.css'
 
 // ── Base .btn ─────────────────────────────────────────────────────────────────
@@ -183,6 +184,7 @@ globalStyle(
 `:not(${sketchyScope}${btnCheck}) + ${sketchyScope}${btn}:active`,
 `${sketchyScope}${btn}:first-child:active`,
 `${sketchyScope}${btn}${btnActiveHook}`,
+`${sketchyScope}${btn}${btnShowHook}`,
 ].join(', '),
 {
 color: varBsBtnActiveColor,
@@ -199,6 +201,7 @@ globalStyle(
 `:not(${sketchyScope}${btnCheck}) + ${sketchyScope}${btn}:active:focus-visible`,
 `${sketchyScope}${btn}:first-child:active:focus-visible`,
 `${sketchyScope}${btn}${btnActiveHook}:focus-visible`,
+`${sketchyScope}${btn}${btnShowHook}:focus-visible`,
 ].join(', '),
 {
 boxShadow: varBsBtnFocusBoxShadow,

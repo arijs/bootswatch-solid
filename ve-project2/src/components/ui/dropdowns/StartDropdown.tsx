@@ -14,6 +14,7 @@ import {
 	dropstart,
 	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
+import { h6 } from '../../../theme-contract/contents/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 const StartDropdown: Component = () => {
@@ -36,7 +37,7 @@ const StartDropdown: Component = () => {
 					aria-labelledby="dropstartMenuButton"
 				>
 					<li>
-						<h6 class={`${theme} ${dropdownHeader}`}>Dropdown header</h6>
+						<h6 class={`${theme} ${dropdownHeader} ${h6}`}>Dropdown header</h6>
 					</li>
 					<li>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}

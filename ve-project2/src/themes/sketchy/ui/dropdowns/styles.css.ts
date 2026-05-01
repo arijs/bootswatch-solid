@@ -35,6 +35,7 @@ varBsDropdownPaddingY,
 varBsDropdownSpacer,
 varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
+import { h6 } from '../../../../theme-contract/contents/contract.css'
 import {
 dropdown,
 dropdownCenter,
@@ -261,6 +262,7 @@ globalStyle(`${sketchyScope}${dropdownDivider}`, {
 height: 0,
 margin: `${varBsDropdownDividerMarginY} 0`,
 overflow: 'hidden',
+border: 0,
 borderTop: `1px solid ${varBsDropdownDividerBg}`,
 borderTopWidth: '2px',
 opacity: 1,
@@ -329,20 +331,32 @@ globalStyle(`${sketchyScope}${dropdownMenu}.show ${dropdownHeader}`, {
 // ── .dropdown-header ──────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${dropdownHeader}`, {
-display: 'block',
-padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
-marginBottom: 0,
-fontSize: '0.875rem',
-color: '#868e96',
-whiteSpace: 'nowrap',
+	display: 'block',
+	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
+	marginBottom: 0,
+	fontSize: '0.875rem',
+	color: '#868e96',
+	whiteSpace: 'nowrap',
+})
+
+// Heading element used as dropdown header inherits Sketchy heading font.
+// Also re-asserts marginBottom:0 since the h6 heading rule (rendered later in CSS)
+// would otherwise override dropdown-header's margin-bottom:0 with 0.5rem.
+globalStyle(`${sketchyScope}${dropdownHeader}${h6}`, {
+	marginBottom: 0,
+	fontSize: '0.875rem',
+	color: '#868e96',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: 500,
+	lineHeight: 1.2,
 })
 
 // ── .dropdown-item-text ───────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${dropdownItemText}`, {
-display: 'block',
-padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
-color: varBsDropdownLinkColor,
+	display: 'block',
+	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
+	color: varBsDropdownLinkColor,
 })
 
 // ── .dropdown-menu-dark ───────────────────────────────────────────────────────
