@@ -1,4 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { h4 } from '../../../../theme-contract/contents/contract.css'
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -100,6 +101,11 @@ globalStyle(`${bootstrapScope}${accordionHeader}`, {
 	marginBottom: 0,
 })
 
+// Ensure heading utility margin doesn't re-introduce spacing inside accordion headers.
+globalStyle(`${bootstrapScope}${accordionHeader}${h4}`, {
+	marginBottom: 0,
+})
+
 globalStyle(`${bootstrapScope}${accordionButton}`, {
 	position: 'relative',
 	display: 'flex',
@@ -190,8 +196,9 @@ globalStyle(`${bootstrapScope}${accordionBody}`, {
 })
 
 globalStyle(`${bootstrapScope}${accordionBody} code`, {
-	fontFamily: varBsFontMonospace,
+	fontFamily:
+		'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 	fontSize: '0.875em',
-	color: varBsCodeColor,
+	color: '#d63384',
 	wordWrap: 'break-word',
 })

@@ -1,6 +1,9 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { varBsSecondaryColor } from '../../../theme-contract/_vars.css'
-import { px3, textMuted } from '../../../theme-contract/utilities/contract.css'
+import {
+	px3,
+	textMuted,
+} from '../../../theme-contract/utilities/contract.css'
 import { sketchyScope } from '../scope.css'
 
 // Bootstrap utility parity:

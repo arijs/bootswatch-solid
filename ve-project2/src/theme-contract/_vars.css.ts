@@ -109,6 +109,7 @@ export const varBsLinkColorRgb = createVar()
 export const varBsLinkDecoration = createVar()
 export const varBsLinkHoverColor = createVar()
 export const varBsLinkHoverColorRgb = createVar()
+export const varBsCodeColor = createVar()
 
 // ── Borders ───────────────────────────────────────────────────────────────────
 

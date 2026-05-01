@@ -252,22 +252,37 @@ globalStyle(`${bootstrapScope}${cardImg}, ${bootstrapScope}${cardImgBottom}`, {
 
 // ── Horizontal card layout ────────────────────────────────────────────────────
 // Replaces Bootstrap's row/col grid utilities with a direct flex layout.
+// col-md-* only activates at ≥768px (Bootstrap md breakpoint), so columns
+// stack on mobile and go side-by-side at ≥768px.
 
 globalStyle(`${bootstrapScope}${cardHorizontalRow}`, {
 	display: 'flex',
-	flexDirection: 'row',
+	flexDirection: 'column',
 	flexWrap: 'nowrap',
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
 })
 
 globalStyle(`${bootstrapScope}${cardHorizontalColImg}`, {
-	flex: '0 0 33.3333%',
-	maxWidth: '33.3333%',
 	overflow: 'hidden',
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 33.3333%',
+			maxWidth: '33.3333%',
+		},
+	},
 })
 
 globalStyle(`${bootstrapScope}${cardHorizontalColBody}`, {
-	flex: '1 1 0',
-	minWidth: 0,
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '1 1 0',
+			minWidth: 0,
+		},
+	},
 })
 
 // ── List group ────────────────────────────────────────────────────────────────

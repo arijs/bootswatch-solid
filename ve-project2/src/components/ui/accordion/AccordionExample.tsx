@@ -3,6 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { h4 } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
 accordion,
 accordionBody,
@@ -10,30 +11,21 @@ accordionButton,
 accordionButtonCollapsed,
 accordionCollapse,
 accordionCollapseShow,
-accordionCollapsing,
 accordionHeader,
 accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
-import { configureVeCollapse } from './ve-collapse'
 
 const AccordionExample: Component = () => {
 const theme = useContext(ThemeContext)
-configureVeCollapse({
-accordionCollapse,
-accordionButtonCollapsed,
-accordionCollapsing,
-accordionCollapseShow,
-})
-
 return (
-<div class={`bd-example ${theme} ${containerFluid}`}>
+<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 <div class={`${theme} ${accordion}`} id="accordionExample">
 <div class={`${theme} ${accordionItem}`}>
 <h4 class={`${theme} ${h4} ${accordionHeader}`} id="headingOne">
 <button
 class={`${theme} ${accordionButton}`}
 type="button"
-data-ve-toggle="collapse"
+					data-bs-toggle="collapse"
 data-bs-target="#collapseOne"
 aria-expanded="true"
 aria-controls="collapseOne"
@@ -63,7 +55,7 @@ though the transition does limit overflow.
 <button
 class={`${theme} ${accordionButton} ${accordionButtonCollapsed}`}
 type="button"
-data-ve-toggle="collapse"
+					data-bs-toggle="collapse"
 data-bs-target="#collapseTwo"
 aria-expanded="false"
 aria-controls="collapseTwo"
@@ -93,7 +85,7 @@ though the transition does limit overflow.
 <button
 class={`${theme} ${accordionButton} ${accordionButtonCollapsed}`}
 type="button"
-data-ve-toggle="collapse"
+					data-bs-toggle="collapse"
 data-bs-target="#collapseThree"
 aria-expanded="false"
 aria-controls="collapseThree"

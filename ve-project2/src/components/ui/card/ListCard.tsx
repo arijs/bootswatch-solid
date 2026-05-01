@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { h5, link, paragraph } from '../../../theme-contract/contents/contract.css'
 import {
 	card,
 	cardBody,
@@ -32,11 +32,11 @@ const ListCard: Component = () => {
 				</ul>
 				<div class={`${theme} ${cardBody}`}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${cardLink}`}>
+					<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${cardLink} ${link}`}>
 						Card link
 					</a>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${cardLink}`}>
+					<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${cardLink} ${link}`}>
 						Another link
 					</a>
 				</div>

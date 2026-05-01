@@ -1,7 +1,13 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { h5, paragraph, small } from '../../../theme-contract/contents/contract.css'
+import {
+	bdPlaceholderImg,
+	h5,
+	paragraph,
+	small,
+	mediaMiddle,
+} from '../../../theme-contract/contents/contract.css'
 import { textMuted } from '../../../theme-contract/utilities/contract.css'
 import {
 	card,
@@ -21,16 +27,17 @@ const HorizontalCard: Component = () => {
 				<div class={`${theme} ${cardHorizontalRow}`}>
 					<div class={`${theme} ${cardHorizontalColImg}`}>
 						<svg
-							class="bd-placeholder-img"
+							class={`bd-placeholder-img ${theme} ${bdPlaceholderImg} ${mediaMiddle}`}
 							width="100%"
 							height="250"
 							xmlns="http://www.w3.org/2000/svg"
 							aria-label="Placeholder: Image"
 							preserveAspectRatio="xMidYMid slice"
+							tabindex="0"
 						>
 							<title>Placeholder</title>
 							<rect width="100%" height="100%" fill="#868e96" />
-							<text x="50%" y="50%" fill="#dee2e6" dy=".3em" text-anchor="middle">
+							<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
 								Image
 							</text>
 						</svg>

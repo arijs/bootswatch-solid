@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { bdPlaceholderImg, h5, paragraph, mediaMiddle } from '../../../theme-contract/contents/contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	card,
@@ -17,16 +17,17 @@ const ImageTopCard: Component = () => {
 		<div class={`bd-example-ve2 ${theme}`}>
 			<div class={`${theme} ${card}`}>
 				<svg
-					class={`bd-placeholder-img ${theme} ${cardImgTop}`}
+					class={`bd-placeholder-img ${theme} ${cardImgTop} ${bdPlaceholderImg} ${mediaMiddle}`}
 					width="100%"
 					height="180"
 					xmlns="http://www.w3.org/2000/svg"
 					aria-label="Placeholder: Image cap"
 					preserveAspectRatio="xMidYMid slice"
+					tabindex="0"
 				>
 					<title>Placeholder</title>
 					<rect width="100%" height="100%" fill="#868e96" />
-					<text x="50%" y="50%" fill="#dee2e6" dy=".3em" text-anchor="middle">
+					<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
 						Image cap
 					</text>
 				</svg>
