@@ -1,6 +1,5 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import micromatch from 'micromatch'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
 import {
 	BASE_URL,
@@ -34,6 +33,7 @@ import {
 	createScenarioCatalog,
 	filterScenarios,
 	filterThemes,
+	matchesRouteFilter,
 } from './capture-leaf-screenshots/scenarios.mjs'
 import { reportVeRuntimeCoverageGaps } from './capture-leaf-screenshots/ve-runtime-coverage.mjs'
 import { executeCaptureWorkflow } from './capture-leaf-screenshots/workflow.mjs'
@@ -89,9 +89,8 @@ async function main() {
 	}
 
 	if (ve1MissingOnly) {
-		const routePatterns = routeFilter ? [...routeFilter] : null
-		const selectedLeafRoutes = routePatterns
-			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
+		const selectedLeafRoutes = routeFilter
+			? leafRoutes.filter((route) => matchesRouteFilter(route, routeFilter))
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
 			throw new Error(
@@ -125,9 +124,8 @@ async function main() {
 	}
 
 	if (veMissingOnly) {
-		const routePatterns = routeFilter ? [...routeFilter] : null
-		const selectedLeafRoutes = routePatterns
-			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
+		const selectedLeafRoutes = routeFilter
+			? leafRoutes.filter((route) => matchesRouteFilter(route, routeFilter))
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
 			throw new Error(
@@ -167,9 +165,8 @@ async function main() {
 			throw new Error('Theme source unavailable for --ve1-runtime-missing-only mode.')
 		}
 
-		const routePatterns = routeFilter ? [...routeFilter] : null
-		const selectedLeafRoutes = routePatterns
-			? leafRoutes.filter((route) => micromatch.isMatch(route, routePatterns))
+		const selectedLeafRoutes = routeFilter
+			? leafRoutes.filter((route) => matchesRouteFilter(route, routeFilter))
 			: leafRoutes
 		if (selectedLeafRoutes.length === 0) {
 			throw new Error(

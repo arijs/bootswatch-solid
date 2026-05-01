@@ -21,8 +21,8 @@ CLASS_NAME_SHOW: runtime.modalShowHook,
 OPEN_SELECTOR: `.pwhook-modal.${runtime.modalShowHook}`,
 SELECTOR_DIALOG: `.${runtime.modalDialog}`,
 SELECTOR_MODAL_BODY: `.${runtime.modalBody}`,
-// @ts-expect-error bootstrap runtime exposes this but types do not
 BackdropClass: (
+// @ts-expect-error bootstrap runtime exposes this but types do not
 bootstrap.Backdrop as unknown as BootstrapWithDefaults<typeof bootstrap.Backdrop>
 ).extendDefaultConfig({
 CLASS_NAME_FADE: runtime.fade,

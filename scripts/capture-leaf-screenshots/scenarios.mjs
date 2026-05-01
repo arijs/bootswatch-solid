@@ -19,10 +19,30 @@ export function filterThemes(themes, themeFilter) {
 	return themes.filter((theme) => themeFilter.has(slugifyTheme(theme)) || themeFilter.has(theme))
 }
 
+export function matchesRouteFilter(route, routeFilter) {
+	if (!routeFilter || routeFilter.size === 0) return true
+
+	const patterns = [...routeFilter]
+	const includePatterns = patterns.filter((pattern) => !pattern.startsWith('!'))
+	const excludePatterns = patterns
+		.filter((pattern) => pattern.startsWith('!'))
+		.map((pattern) => pattern.slice(1))
+		.filter(Boolean)
+
+	if (includePatterns.length > 0 && !micromatch.isMatch(route, includePatterns)) {
+		return false
+	}
+
+	if (excludePatterns.length > 0 && micromatch.isMatch(route, excludePatterns)) {
+		return false
+	}
+
+	return true
+}
+
 export function filterScenarios(scenarios, routeFilter, stateFilter) {
-	const routePatterns = routeFilter ? [...routeFilter] : null
 	return scenarios.filter((scenario) => {
-		if (routePatterns && !micromatch.isMatch(scenario.route, routePatterns)) return false
+		if (!matchesRouteFilter(scenario.route, routeFilter)) return false
 		const stateName = scenario.state ?? 'static'
 		if (stateFilter && !stateFilter.has(stateName)) return false
 		return true
