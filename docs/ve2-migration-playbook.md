@@ -68,16 +68,16 @@ After converting, re-run the command; the `converted=` count increases by the nu
 
 > **Do this once per theme when first creating `scope.css.ts`. Skip entirely when converting additional component families inside an already-established theme.**
 
-Bootswatch themes load custom fonts via `@import` at the top of their compiled CSS. Vanilla Extract cannot emit bare `@import` at-rules, so font loading is handled through a generated CSS file.
+Bootswatch themes load custom fonts via `@import` at the top of their theme CSS. Vanilla Extract cannot emit bare `@import` at-rules, so font loading is handled through a generated CSS file.
 
 ### How to generate the font file
 
-1. Open `screenshots/{theme}/bootstrap.css` and collect every top-level `@import` line (they appear before any rule blocks, typically line 14).
+1. Open `screenshots/{theme}/bootstrap.css` and collect every top-level `@import` line.
 2. Create `ve-project2/src/themes/{theme}/fonts.generated.css` containing those `@import` lines verbatim:
 
 ```css
 /* AUTO-GENERATED — do not edit by hand.
-   Source: screenshots/sketchy/bootstrap.css
+  Source: screenshots/sketchy/bootstrap.css
    Re-generate if the theme's font imports change. */
 @import url("https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch&display=swap");
 ```
@@ -89,16 +89,16 @@ Bootswatch themes load custom fonts via `@import` at the top of their compiled C
 <link rel="stylesheet" href="/src/themes/sketchy/fonts.generated.css" />
 ```
 
-> **Note:** If the source `bootstrap.css` has no `@import` lines (e.g. Bootstrap itself), skip this step — no font file is needed.
+> **Note:** If the source `screenshots/{theme}/bootstrap.css` has no `@import` lines (e.g. Bootstrap theme, Sketchy, Quartz, etc), skip this step — no font file is needed.
 
 ### Source authority
 
 | Data | Source file |
 |------|------------|
-| Font `@import` URLs | `screenshots/{theme}/bootstrap.css` — top-level `@import` lines |
+| Font `@import` URLs | `screenshots/{theme}/theme.css` — top-level `@import` lines |
 | Global `--bs-*` var values | `screenshots/{theme}/theme.css` `:root` block (unchanged rule) |
 
-These are separate concerns: `bootstrap.css` is authoritative for font imports; `theme.css` remains authoritative for CSS custom-property values.
+This keeps theme setup self-contained inside `screenshots/{theme}/theme.css`.
 
 ---
 
@@ -157,6 +157,13 @@ Then stamp the contents contract class directly on the element in JSX.
 
 If the source rule targets a static class selector outside the component family contract (for example `.container`, `.container-fluid`), do not keep that selector inside `themes/{theme}/ui/{family}/styles.css.ts`. Migrate it through the standalone contents family (`theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`) and stamp the matching contents contract class in JSX.
 
+Theme implementations must be self-contained. When authoring `themes/{theme}/**/styles.css.ts`, do not copy values, selectors, or behavior from another theme's VE file, from `screenshots/bootstrap/**`, or from another theme's screenshot output. The only approved theme-specific source inputs are:
+
+- `screenshots/{theme}/theme.css` for top-level `@import` lines and global `--bs-*` values
+- `screenshots/{theme}/**/style.css` for per-route/component/theme-specific selectors, vars, and resolved values
+
+If another theme already has a VE implementation for the same family, treat it only as a structural reference for file shape and contract usage, not as a source of theme values.
+
 Mirror Bootstrap's CSS literally: first assign the CSS custom properties via `vars:`, then reference them in the property values — exactly as Bootstrap's source CSS does.
 
 ```ts
@@ -209,11 +216,11 @@ globalStyle(`${sketchyScope}${myComponent}`, {
 
 | Source | Path |
 |--------|------|
-| Bootstrap 5.3 component CSS (var names + default values) | `screenshots/bootstrap/bootstrap.css` — search for `.my-component {` to find `--bs-my-component-*` var declarations and the properties that reference them |
-| Sketchy overrides (SCSS source) | `node_modules/bootswatch/dist/sketchy/_bootswatch.scss` |
-| Sketchy compiled CSS | `screenshots/sketchy/bootstrap.css` — grep for the component class to see final resolved values |
 | Global `--bs-*` resolved values for a theme | **`screenshots/{theme}/theme.css`** `:root` block — this is the **authoritative source** for each theme's CSS custom-property values (`--bs-primary`, `--bs-border-radius`, `--bs-link-color`, etc.). Always read values from this file when setting vars in `scope.css.ts`. Cross-reference with `theme-contract/_vars.css.ts` to find the matching `createVar()` identifier. |
-| Font `@import` URLs for a theme | **`screenshots/{theme}/bootstrap.css`** top-level `@import` lines — extract these **once** during theme scope creation and write to `ve-project2/src/themes/{theme}/fonts.generated.css`. Do not use `theme.css` for this — it may omit `@import` lines that `bootstrap.css` retains. |
+| Font `@import` URLs for a theme | **`screenshots/{theme}/theme.css`** top-level `@import` lines — extract these **once** during theme scope creation and write to `ve-project2/src/themes/{theme}/fonts.generated.css`. |
+| Theme-specific component and route behavior | **`screenshots/{theme}/**/style.css`** — this is the authoritative source for theme-local selectors, resolved component vars, and special-case rules (for example Sketchy table variants or hand-drawn border treatments). |
+
+Never source theme-specific values from another theme's screenshot files, from `screenshots/bootstrap/**`, or from `node_modules/bootswatch/**` when implementing `themes/{theme}/**`.
 
 ---
 
@@ -317,13 +324,14 @@ The `converted=` number should increase by exactly the count of routes you added
 | Sketchy close button | Sketchy replaces the SVG close-button background with a `::before { content: "X" }` pseudo-element. See `node_modules/bootswatch/dist/sketchy/_bootswatch.scss`. |
 | Sketchy border-radius for special shapes | Some components (alerts, cards) use a distinctive hand-drawn shape: `$border-radius-sketchy: 255px 25px 225px 25px / 25px 225px 25px 255px` (defined in `_bootswatch.scss`). This overrides the global `varBsBorderRadius` at the component level. |
 | Utility classes must be absorbed into contract classes | The original HTML uses Bootstrap utility classes directly (`bg-primary`, `text-dark`, `rounded-pill`, etc.). In VE2 these have no effect — absorb their values into the appropriate contract variant class (e.g. `badgePrimary` encodes both background-color and the default white text; `badgeWarning` overrides `color` to `#000`; `badgeRoundedPill` sets the pill `border-radius`). |
-| Scope `vars:` values must come from `screenshots/{theme}/theme.css` | When populating `scope.css.ts` with global `--bs-*` values (colours, radii, link colours, etc.), always read the resolved values from the `:root` block in `screenshots/{theme}/theme.css`. Never copy Bootstrap's default values for a Bootswatch theme — the theme overrides many of them. E.g. Sketchy sets `--bs-primary: #333` (not `#0d6efd`) and `--bs-link-color: #333` (not `#0d6efd`). |
+| Scope `vars:` values must come from `screenshots/{theme}/theme.css` | When populating `scope.css.ts` with global `--bs-*` values (colours, radii, link colours, etc.), always read the resolved values from the `:root` block in `screenshots/{theme}/theme.css`. Never copy values from Bootstrap or any other theme. E.g. Sketchy sets `--bs-primary: #333` (not `#0d6efd`) and `--bs-link-color: #333` (not `#0d6efd`). |
 | CSS var references must stay as var references | If Bootstrap's source CSS writes `var(--bs-border-radius)`, the VE2 output must use `varBsBorderRadius` (the matching `createVar()` identifier), **not** the resolved static value (e.g. `'0.375rem'`). Resolving to a static value breaks per-theme inheritance — the whole point of the CSS custom-property cascade is that each theme sets the global var to its own value. |
-| Font imports belong to scope creation, not component conversion | `fonts.generated.css` is created **once** when first setting up a theme's `scope.css.ts` (Step 0.5). Do not add or re-generate it when converting subsequent component families inside the same theme. |
+| Font imports belong to scope creation, not component conversion | `fonts.generated.css` is created **once** when first setting up a theme's `scope.css.ts` (Step 0.5), using the top-level `@import` lines from `screenshots/{theme}/theme.css`. Do not add or re-generate it when converting subsequent component families inside the same theme. |
 | Static string selectors in component theme files | Do not use raw selectors like `.container` or `.container-fluid` in `themes/{theme}/ui/{family}/styles.css.ts`. Move them to contents contracts/styles (`theme-contract/contents/contract.css.ts` and `themes/{theme}/contents/styles.css.ts`) and stamp the contents class in JSX. |
 | `@screenshot` annotations — use the original's full list | The original source file (`src/components/…`) contains per-theme height overrides (e.g. `// @screenshot sketchy: 360x303 303`). Copy those annotations verbatim into the VE2 component so the screenshot harness captures the correct crop size per theme. Omitting them causes the wildcard `*` fallback to be used for all themes, which may cut off content in themes with larger spacing. |
 | Source element selectors (`h*`, `p`, `hr`, etc.) | Do not target raw elements in VE selectors. Move these rules into `theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`, then stamp the contents class directly on the element in JSX (`class={`${theme} ${h4}`}`, `class={`${theme} ${paragraph}`}`, `class={`${theme} ${horizontalRule}`}`). |
 | `contents` family location | `contents` is standalone: use `theme-contract/contents/*` and `themes/{theme}/contents/*` (not `theme-contract/ui/contents` or `themes/{theme}/ui/contents`). |
+| Themes are self-contained | When converting or repairing a theme under `themes/{theme}/`, do not reuse resolved values from another theme's VE implementation or screenshot output. Use only `screenshots/{theme}/theme.css` and `screenshots/{theme}/**/style.css` as theme-specific authorities. |
 
 ---
 
