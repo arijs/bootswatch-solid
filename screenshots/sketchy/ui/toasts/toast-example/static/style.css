@@ -67,3 +67,5 @@ b, strong { font-family: "Cabin Sketch", cursive; }
 .btn-close { background-image: none; }
 
 .btn-close::before { position: absolute; top: 0.8rem; right: 1rem; content: "X"; }
+
+.toast-header .btn-close::before { position: static; top: auto; right: auto; }

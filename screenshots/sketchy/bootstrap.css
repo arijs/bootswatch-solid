@@ -12513,6 +12513,12 @@ pre {
   content: "X";
 }
 
+.toast-header .btn-close::before {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
 .img-thumbnail {
   border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
 }

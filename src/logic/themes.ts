@@ -102,7 +102,7 @@ export const themeList: ThemeItem[] = [
 	{
 		name: `Sketchy`,
 		href: 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/sketchy/bootstrap.css',
-		integrity: 'sha256-PoYo9znbQR4P+tsM0v+2CAD2BBfYCIffNIBMn/l0t6Q=',
+		integrity: 'sha256-V+7ThF4dZDzyz6f0ByMhB9HQJmbOJZDD8p2ENXaOOGM=',
 	},
 	{
 		name: `Slate`,
