@@ -106,7 +106,9 @@ This keeps theme setup self-contained inside `screenshots/{theme}/theme.css`.
 
 ### 1a — Contract classes
 
-Create `ve-project2/src/theme-contract/ui/{family}/contract.css.ts`:
+> See [Contract class](./ve-architecture.md#contract-class) in the architecture guide for the full rationale.
+
+Create `ve-project2/src/theme-contract/{component family}/contract.css.ts`:
 
 ```ts
 import { style } from '@vanilla-extract/css'
@@ -120,7 +122,7 @@ All exports must be `style({})` with **no CSS properties** — purely stable has
 
 ### 1b — Component-level CSS vars
 
-Create `ve-project2/src/theme-contract/ui/{family}/_vars.css.ts` with a `createVar()` for each Bootstrap CSS custom property used by this family.  Use the Bootstrap CSS property name as a guide for the JS identifier:
+Create `ve-project2/src/theme-contract/{component family}/_vars.css.ts` with a `createVar()` for each Bootstrap CSS custom property used by this family.  Use the Bootstrap CSS property name as a guide for the JS identifier:
 
 ```ts
 import { createVar } from '@vanilla-extract/css'
@@ -143,7 +145,7 @@ Naming convention: `varBs` + PascalCase version of the Bootstrap CSS variable na
 For each supported theme (currently `bootstrap` and `sketchy`), create:
 
 ```
-ve-project2/src/themes/{theme}/ui/{family}/styles.css.ts
+ve-project2/src/themes/{theme}/{component family}/styles.css.ts
 ```
 
 If the source rule targets a raw element selector (for example `h4`, `p`, `hr`) rather than a component class, migrate it through the standalone contents family instead:
@@ -155,7 +157,7 @@ ve-project2/src/themes/{theme}/contents/styles.css.ts
 
 Then stamp the contents contract class directly on the element in JSX.
 
-If the source rule targets a static class selector outside the component family contract (for example `.container`, `.container-fluid`), do not keep that selector inside `themes/{theme}/ui/{family}/styles.css.ts`. Migrate it through the standalone contents family (`theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`) and stamp the matching contents contract class in JSX.
+If the source rule targets a static class selector outside the component family contract (for example `.container`, `.container-fluid`), do not keep that selector inside `themes/{theme}/{component family}/styles.css.ts`. Migrate it through the standalone contents family (`theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`) and stamp the matching contents contract class in JSX.
 
 Theme implementations must be self-contained. When authoring `themes/{theme}/**/styles.css.ts`, do not copy values, selectors, or behavior from another theme's VE file, from `screenshots/bootstrap/**`, or from another theme's screenshot output. The only approved theme-specific source inputs are:
 
@@ -172,11 +174,11 @@ Mirror Bootstrap's CSS literally: first assign the CSS custom properties via `va
 
 ```ts
 import { globalStyle } from '@vanilla-extract/css'
-import { myComponent, myComponentVariant } from '../../../../theme-contract/ui/{family}/contract.css'
+import { myComponent, myComponentVariant } from '../../../../theme-contract/{component family}/contract.css'
 import {
   varBsMyComponentPaddingX,
   varBsMyComponentBorderRadius,
-} from '../../../../theme-contract/ui/{family}/_vars.css'
+} from '../../../../theme-contract/{component family}/_vars.css'
 import { varBsBorderRadius } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
@@ -200,7 +202,7 @@ globalStyle(`${bootstrapScope}${myComponent}`, {
 For the sketchy theme, only override the vars and properties that differ — everything else follows automatically from the global vars already set on the `${scope}${vars}` element:
 
 ```ts
-// themes/sketchy/ui/{family}/styles.css.ts
+// themes/sketchy/{component family}/styles.css.ts
 import { sketchyScope } from '../../scope.css'
 
 // Sketchy border-radius is 25px (set globally via scope body vars).
@@ -226,17 +228,47 @@ globalStyle(`${sketchyScope}${myComponent}`, {
 
 Never source theme-specific values from another theme's screenshot files, from `screenshots/bootstrap/**`, or from `node_modules/bootswatch/**` when implementing `themes/{theme}/**`.
 
+### Next Themes After Initial Duo
+
+After `bootstrap` and `sketchy` are fully converted (no missing families for selected routes), continue verification with the remaining known theme slugs:
+
+1. `quartz`
+2. `slate`
+3. `materia`
+4. `darkly`
+5. `brite`
+6. `cerulean`
+7. `cosmo`
+8. `cyborg`
+9. `flatly`
+10. `journal`
+11. `litera`
+12. `lumen`
+13. `lux`
+14. `minty`
+15. `morph`
+16. `pulse`
+17. `sandstone`
+18. `simplex`
+19. `solar`
+20. `spacelab`
+21. `superhero`
+22. `united`
+23. `vapor`
+24. `yeti`
+25. `zephyr`
+
 ---
 
 ## Step 3 — Create components
 
-Create `ve-project2/src/components/ui/{family}/{ComponentName}.tsx` for each route:
+Create `ve-project2/src/components/{component family}/{ComponentName}.tsx` for each route:
 
 ```tsx
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { myComponent, myComponentVariant } from '../../../theme-contract/ui/{family}/contract.css'
+import { myComponent, myComponentVariant } from '../../../theme-contract/{component family}/contract.css'
 
 const MyComponent: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -254,20 +286,20 @@ export default MyComponent
 
 ### Import depth — components
 
-Components live at `ve-project2/src/components/ui/{family}/`, so relative imports go **up 3 levels**:
+Components live at `ve-project2/src/components/{component family}/`, so relative imports go **up 3 levels**:
 
 ```ts
 import { ThemeContext } from '../../../context/ThemeContext'
-import { myContract } from '../../../theme-contract/ui/{family}/contract.css'
+import { myContract } from '../../../theme-contract/{component family}/contract.css'
 ```
 
 ### Import depth — theme style files
 
-Theme style files live at `ve-project2/src/themes/{theme}/ui/{family}/`, so relative imports go **up 4 levels** for theme-contract and **up 2 levels** for the scope:
+Theme style files live at `ve-project2/src/themes/{theme}/{component family}/`, so relative imports go **up 4 levels** for theme-contract and **up 2 levels** for the scope:
 
 ```ts
-import { myContract } from '../../../../theme-contract/ui/{family}/contract.css'
-import { myVars }     from '../../../../theme-contract/ui/{family}/_vars.css'
+import { myContract } from '../../../../theme-contract/{component family}/contract.css'
+import { myVars }     from '../../../../theme-contract/{component family}/_vars.css'
 import { varBsBorderRadius } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 ```
@@ -280,10 +312,10 @@ Add imports and `<Route>` entries to `ve-project2/src/index.tsx`:
 
 ```tsx
 // imports block (top of file)
-import MyComponent from './components/ui/{family}/MyComponent'
+import MyComponent from './components/{component family}/MyComponent'
 
 // inside <Route component={Ve2Shell}>
-<Route path="/ui/{family}/my-component" component={MyComponent} />
+<Route path="/{component family}/my-component" component={MyComponent} />
 ```
 
 The route paths must match those reported by `--ve-missing-only`.
@@ -296,8 +328,8 @@ In `ve-project2/src/components/shell/Ve2Shell.tsx`, add the two theme imports:
 
 ```ts
 // Side-effect imports: register globalStyle rules for {family}
-import '../../themes/bootstrap/ui/{family}/styles.css'
-import '../../themes/sketchy/ui/{family}/styles.css'
+import '../../themes/bootstrap/{component family}/styles.css'
+import '../../themes/sketchy/{component family}/styles.css'
 ```
 
 > **Important:** use the `.css` extension (not `.css.ts`). Both are the same file on disk; the `.css` alias is what Vite / Vanilla Extract expect for side-effect registration.
@@ -318,8 +350,8 @@ The `converted=` number should increase by exactly the count of routes you added
 
 | Gotcha | Details |
 |--------|---------|
-| Wrong import depth in components | Components are 3 levels deep (`components/ui/{family}/`). Use `../../../` not `../../../../`. |
-| Wrong import depth in theme files | Theme style files are 4 levels deep (`themes/{theme}/ui/{family}/`). Use `../../../../` for theme-contract and `../../` for scope. |
+| Wrong import depth in components | Components are 3 levels deep (`components/{component family}/`). Use `../../../` not `../../../../`. |
+| Wrong import depth in theme files | Theme style files are 4 levels deep (`themes/{theme}/{component family}/`). Use `../../../../` for theme-contract and `../../` for scope. |
 | `.css` vs `.css.ts` in side-effect imports | Always use `.css` extension in `import '…/styles.css'` statements. |
 | `bd-example-ve2` vs `bd-example` | VE2 components use `bd-example-ve2` (defined in `ve-project2/src/styles/bd-example.css`). The original source uses `bd-example`. |
 | Don't duplicate global `--bs-*` vars per-family | Global vars (`--bs-border-radius`, `--bs-primary`, etc.) are already in `theme-contract/_vars.css.ts` and assigned on `${scope}${vars}` in each `scope.css.ts`. Import them directly — don't re-declare in `_vars.css.ts` files. |
@@ -331,7 +363,7 @@ The `converted=` number should increase by exactly the count of routes you added
 | Scope `vars:` values must come from `screenshots/{theme}/theme.css` | When populating `scope.css.ts` with global `--bs-*` values (colours, radii, link colours, etc.), always read the resolved values from the `:root` block in `screenshots/{theme}/theme.css`. Never copy values from Bootstrap or any other theme. E.g. Sketchy sets `--bs-primary: #333` (not `#0d6efd`) and `--bs-link-color: #333` (not `#0d6efd`). |
 | CSS var references must stay as var references | If Bootstrap's source CSS writes `var(--bs-border-radius)`, the VE2 output must use `varBsBorderRadius` (the matching `createVar()` identifier), **not** the resolved static value (e.g. `'0.375rem'`). Resolving to a static value breaks per-theme inheritance — the whole point of the CSS custom-property cascade is that each theme sets the global var to its own value. |
 | Font imports belong to scope creation, not component conversion | `fonts.generated.css` is created **once** when first setting up a theme's `scope.css.ts` (Step 0.5), using the top-level `@import` lines from `screenshots/{theme}/theme.css`. Do not add or re-generate it when converting subsequent component families inside the same theme. |
-| Static string selectors in component theme files | Do not use raw selectors like `.container` or `.container-fluid` in `themes/{theme}/ui/{family}/styles.css.ts`. Move them to contents contracts/styles (`theme-contract/contents/contract.css.ts` and `themes/{theme}/contents/styles.css.ts`) and stamp the contents class in JSX. |
+| Static string selectors in component theme files | Do not use raw selectors like `.container` or `.container-fluid` in `themes/{theme}/{component family}/styles.css.ts`. Move them to contents contracts/styles (`theme-contract/contents/contract.css.ts` and `themes/{theme}/contents/styles.css.ts`) and stamp the contents class in JSX. |
 | `@screenshot` annotations — use the original's full list | The original source file (`src/components/…`) contains per-theme height overrides (e.g. `// @screenshot sketchy: 360x303 303`). Copy those annotations verbatim into the VE2 component so the screenshot harness captures the correct crop size per theme. Omitting them causes the wildcard `*` fallback to be used for all themes, which may cut off content in themes with larger spacing. |
 | Source element selectors (`h*`, `p`, `hr`, etc.) | Do not target raw elements in VE selectors. Move these rules into `theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`, then stamp the contents class directly on the element in JSX (`class={`${theme} ${h4}`}`, `class={`${theme} ${paragraph}`}`, `class={`${theme} ${horizontalRule}`}`). |
 | `contents` family location | `contents` is standalone: use `theme-contract/contents/*` and `themes/{theme}/contents/*` (not `theme-contract/ui/contents` or `themes/{theme}/ui/contents`). |

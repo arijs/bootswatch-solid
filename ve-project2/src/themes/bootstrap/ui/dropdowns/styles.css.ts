@@ -266,6 +266,10 @@ globalStyle(`${bootstrapScope}${dropstart} ${dropdownToggle}:empty::after`, {
 globalStyle(`${bootstrapScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.5625rem',
 	paddingLeft: '0.5625rem',
+	borderTopLeftRadius: 0,
+	borderBottomLeftRadius: 0,
+	borderTopRightRadius: varBsBorderRadius,
+	borderBottomRightRadius: varBsBorderRadius,
 })
 globalStyle(`${bootstrapScope}${dropdownToggleSplit}::after`, { marginLeft: 0 })
 globalStyle(

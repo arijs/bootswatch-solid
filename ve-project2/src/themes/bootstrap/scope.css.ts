@@ -70,6 +70,8 @@ import {
 	varBsSecondaryBg,
 	varBsTertiaryColor,
 	varBsTertiaryBg,
+	varBsHighlightColor,
+	varBsHighlightBg,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 	varBsCodeColor,
@@ -174,6 +176,8 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		[varBsSecondaryBg]: '#e9ecef',
 		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',
 		[varBsTertiaryBg]: '#f8f9fa',
+		[varBsHighlightColor]: '#212529',
+		[varBsHighlightBg]: '#fff3cd',
 		// Links
 		[varBsLinkColor]: '#0d6efd',
 		[varBsLinkHoverColor]: '#0a58ca',

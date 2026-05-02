@@ -11,3 +11,5 @@ import { style } from '@vanilla-extract/css'
 export const vars = style({})
 export const body = style({})
 export const bodyText = style({})
+
+export const bodyFrame = style({})

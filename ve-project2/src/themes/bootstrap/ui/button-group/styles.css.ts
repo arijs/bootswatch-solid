@@ -11,6 +11,7 @@ import {
 	varBsBtnGroupBorderWidth,
 } from '../../../../theme-contract/ui/button-group/_vars.css'
 import { btn, btnActiveHook, btnCheck } from '../../../../theme-contract/ui/buttons/contract.css'
+import { dropdownToggle } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
@@ -76,11 +77,14 @@ globalStyle(
 	},
 )
 
-// Remove right radius from all buttons except the last
-globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:not(:last-child)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
+// Match Bootstrap: dropdown toggles keep their right radius even when a menu follows.
+globalStyle(
+	`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:not(:last-child):not(${bootstrapScope}${dropdownToggle})`,
+	{
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	},
+)
 
 // Remove left radius from all buttons except the first
 globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroupInteractive}:not(:first-child)`, {
@@ -98,8 +102,8 @@ globalStyle(`${bootstrapScope}${btnGroup} > ${btn} + ${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
 })
 
-// Remove right radius from all buttons except the last
-globalStyle(`${bootstrapScope}${btnGroup} > ${btn}:not(:last-child)`, {
+// Match Bootstrap: dropdown toggles keep their right radius even when a menu follows.
+globalStyle(`${bootstrapScope}${btnGroup} > ${btn}:not(:last-child):not(${bootstrapScope}${dropdownToggle})`, {
 	borderTopRightRadius: 0,
 	borderBottomRightRadius: 0,
 })
