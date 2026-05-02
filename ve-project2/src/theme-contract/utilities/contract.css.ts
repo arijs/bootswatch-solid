@@ -24,17 +24,6 @@ export const fieldsetReset = style({
 })
 
 export const visuallyHidden = style({
-	// vanilla-extract uses csstype which doesn't allow '!important' in values, so we cast
-	// https://github.com/vanilla-extract-css/vanilla-extract/issues/541
-	position: 'absolute !important' as 'absolute',
-	width: '1px !important',
-	height: '1px !important',
-	padding: '0 !important',
-	margin: '-1px !important',
-	overflow: 'hidden !important',
-	clip: 'rect(0, 0, 0, 0) !important',
-	whiteSpace: 'nowrap !important',
-	border: '0 !important',
 })
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
