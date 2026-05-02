@@ -332,6 +332,7 @@ The `converted=` number should increase by exactly the count of routes you added
 | Source element selectors (`h*`, `p`, `hr`, etc.) | Do not target raw elements in VE selectors. Move these rules into `theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`, then stamp the contents class directly on the element in JSX (`class={`${theme} ${h4}`}`, `class={`${theme} ${paragraph}`}`, `class={`${theme} ${horizontalRule}`}`). |
 | `contents` family location | `contents` is standalone: use `theme-contract/contents/*` and `themes/{theme}/contents/*` (not `theme-contract/ui/contents` or `themes/{theme}/ui/contents`). |
 | Themes are self-contained | When converting or repairing a theme under `themes/{theme}/`, do not reuse resolved values from another theme's VE implementation or screenshot output. Use only `screenshots/{theme}/theme.css` and `screenshots/{theme}/**/style.css` as theme-specific authorities. |
+| First/last child `page-link` corner radii (pagination) | `.page-item:first-child .page-link` and `:last-child` rules have specificity 0,3,0 and override the `.pagination .page-link` Sketchy hand-drawn `border-radius` shorthand (0,2,0) on their respective corners. Mirror these rules explicitly in VE2 using `varBsPaginationBorderRadius` — exactly as the source CSS does — so the first/last child corners match the baseline. Without them the outer corners of the first and last page items render with the wrong radius. |
 
 ---
 
