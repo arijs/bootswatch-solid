@@ -102,13 +102,16 @@ globalStyle(`${sketchyScope}${listGroup}`, {
 	flexDirection: 'column',
 	paddingLeft: 0,
 	marginBottom: 0,
-	borderRadius: varBsListGroupBorderRadius,
+	overflow: 'hidden',
+	backgroundColor: '#333',
+	border: '2px solid #333',
+	borderRadius: '45px 15px 35px 5px / 15px 5px 15px 65px',
 })
 
 // ── Flush variant ─────────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${listGroupFlush}`, {
-	borderRadius: 0,
+	borderRadius: '45px 15px 35px 5px / 15px 5px 15px 65px',
 })
 
 globalStyle(`${sketchyScope}${listGroupFlush} > ${listGroupItem}`, {
@@ -129,16 +132,18 @@ globalStyle(`${sketchyScope}${listGroupItem}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsListGroupBg,
 	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
+	borderTop: '2px solid #333',
+	borderRight: 'none',
+	borderLeft: 'none',
+	borderRadius: '255px 5px 225px 5px / 25px 225px 25px 255px',
 })
 
 globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
-	borderTopLeftRadius: 'inherit',
-	borderTopRightRadius: 'inherit',
+	borderTop: 'none',
 })
 
 globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
-	borderBottomRightRadius: 'inherit',
-	borderBottomLeftRadius: 'inherit',
+	borderBottom: 'none',
 })
 
 globalStyle(
