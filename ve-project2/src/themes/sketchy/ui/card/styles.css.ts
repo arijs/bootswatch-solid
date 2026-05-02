@@ -3,7 +3,6 @@ import {
 varBsBodyBg,
 varBsBodyColor,
 varBsBodyColorRgb,
-varBsBorderColor,
 varBsBorderRadius,
 varBsBorderWidth,
 } from '../../../../theme-contract/_vars.css'
@@ -25,11 +24,6 @@ varBsCardSpacerY,
 varBsCardSubtitleColor,
 varBsCardTitleColor,
 varBsCardTitleSpacerY,
-varBsListGroupBorderColor,
-varBsListGroupBorderRadius,
-varBsListGroupBorderWidth,
-varBsListGroupItemPaddingX,
-varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 card,
@@ -46,10 +40,8 @@ cardLink,
 cardSubtitle,
 cardText,
 cardTitle,
-listGroup,
-listGroupFlush,
-listGroupItem,
 } from '../../../../theme-contract/ui/card/contract.css'
+import { listGroup } from '../../../../theme-contract/ui/list-group/contract.css'
 import { sketchyScope } from '../../scope.css'
 
 // ── Card base — Sketchy overrides ─────────────────────────────────────────────
@@ -200,56 +192,3 @@ globalStyle(`${sketchyScope}${cardHorizontalColBody}`, {
 width: '100%',
 })
 
-// ── List group — Sketchy overrides ────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${listGroup}`, {
-vars: {
-[varBsListGroupBorderColor]: varBsBorderColor,
-[varBsListGroupBorderWidth]: varBsBorderWidth,
-[varBsListGroupBorderRadius]: varBsBorderRadius,
-[varBsListGroupItemPaddingX]: '1rem',
-[varBsListGroupItemPaddingY]: '0.5rem',
-},
-display: 'flex',
-flexDirection: 'column',
-paddingLeft: 0,
-marginBottom: 0,
-overflow: 'hidden',
-backgroundColor: '#333',
-border: '2px solid #333',
-borderRadius: '45px 15px 35px 5px/15px 5px 15px 65px',
-})
-
-globalStyle(`${sketchyScope}${listGroupFlush}`, {
-borderRadius: 0,
-})
-
-globalStyle(`${sketchyScope}${listGroupFlush} > ${listGroupItem}`, {
-borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
-})
-
-globalStyle(`${sketchyScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-borderBottomWidth: 0,
-})
-
-// ── List group items — Sketchy overrides ──────────────────────────────────────
-
-globalStyle(`${sketchyScope}${listGroupItem}`, {
-position: 'relative',
-display: 'block',
-padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
-textDecoration: 'none',
-backgroundColor: varBsBodyBg,
-borderTop: '2px solid #333',
-borderRight: 'none',
-borderLeft: 'none',
-borderRadius: '255px 5px 225px 5px/25px 225px 25px 255px',
-})
-
-globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
-borderTop: 'none',
-})
-
-globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
-borderBottom: 'none',
-})

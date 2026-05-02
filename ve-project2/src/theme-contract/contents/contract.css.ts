@@ -21,6 +21,9 @@ export const horizontalRuleCard = style({})
 // Contract class for Bootstrap `.small, small { font-size: 0.875em }`.
 export const small = style({})
 
+// Inline code element: `code { font-size: 0.875em; color: var(--bs-code-color); ... }`
+export const inlineCode = style({})
+
 // Display headings
 export const display1 = style({})
 export const display2 = style({})

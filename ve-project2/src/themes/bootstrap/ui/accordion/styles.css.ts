@@ -6,8 +6,6 @@ import {
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsCodeColor,
-	varBsFontMonospace,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryRgb,
 	varBsPrimaryTextEmphasis,
@@ -195,10 +193,4 @@ globalStyle(`${bootstrapScope}${accordionBody}`, {
 	padding: `${varBsAccordionBodyPaddingY} ${varBsAccordionBodyPaddingX}`,
 })
 
-globalStyle(`${bootstrapScope}${accordionBody} code`, {
-	fontFamily:
-		'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-	fontSize: '0.875em',
-	color: '#d63384',
-	wordWrap: 'break-word',
-})
+// inlineCode styles are handled by the contract class in contents/styles.css.ts

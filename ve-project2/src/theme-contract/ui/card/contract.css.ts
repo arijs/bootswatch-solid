@@ -30,9 +30,3 @@ export const cardImgBottom = style({})
 export const cardHorizontalRow = style({})
 export const cardHorizontalColImg = style({})
 export const cardHorizontalColBody = style({})
-
-// ── List group (used inside cards) ───────────────────────────────────────────
-
-export const listGroup = style({})
-export const listGroupFlush = style({})
-export const listGroupItem = style({})

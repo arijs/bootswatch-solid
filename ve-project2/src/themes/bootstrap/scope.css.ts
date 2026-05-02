@@ -72,6 +72,8 @@ import {
 	varBsTertiaryBg,
 	varBsLinkColor,
 	varBsLinkHoverColor,
+	varBsCodeColor,
+	varBsFontMonospace,
 } from '../../theme-contract/_vars.css'
 import {
 	varBsFormValidColor,
@@ -175,6 +177,9 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		// Links
 		[varBsLinkColor]: '#0d6efd',
 		[varBsLinkHoverColor]: '#0a58ca',
+		// Code
+		[varBsCodeColor]: '#d63384',
+		[varBsFontMonospace]: 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 		// Form validation
 		[varBsFormValidColor]: '#198754',
 		[varBsFormValidBorderColor]: '#198754',

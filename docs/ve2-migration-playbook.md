@@ -162,6 +162,10 @@ Theme implementations must be self-contained. When authoring `themes/{theme}/**/
 - `screenshots/{theme}/theme.css` for top-level `@import` lines and global `--bs-*` values
 - `screenshots/{theme}/**/style.css` for per-route/component/theme-specific selectors, vars, and resolved values
 
+**Hard rule:** never import another theme's `styles.css.ts` into the current theme (for example, importing `themes/bootstrap/**/styles.css.ts` from `themes/sketchy/**/styles.css.ts`).
+Cross-theme style imports hide ownership mistakes, break theme isolation, and frequently produce subtle parity regressions.
+If two themes share structure, duplicate the structure and source each theme's values from its own `screenshots/{theme}/**/style.css`.
+
 If another theme already has a VE implementation for the same family, treat it only as a structural reference for file shape and contract usage, not as a source of theme values.
 
 Mirror Bootstrap's CSS literally: first assign the CSS custom properties via `vars:`, then reference them in the property values — exactly as Bootstrap's source CSS does.
@@ -332,7 +336,9 @@ The `converted=` number should increase by exactly the count of routes you added
 | Source element selectors (`h*`, `p`, `hr`, etc.) | Do not target raw elements in VE selectors. Move these rules into `theme-contract/contents/contract.css.ts` + `themes/{theme}/contents/styles.css.ts`, then stamp the contents class directly on the element in JSX (`class={`${theme} ${h4}`}`, `class={`${theme} ${paragraph}`}`, `class={`${theme} ${horizontalRule}`}`). |
 | `contents` family location | `contents` is standalone: use `theme-contract/contents/*` and `themes/{theme}/contents/*` (not `theme-contract/ui/contents` or `themes/{theme}/ui/contents`). |
 | Themes are self-contained | When converting or repairing a theme under `themes/{theme}/`, do not reuse resolved values from another theme's VE implementation or screenshot output. Use only `screenshots/{theme}/theme.css` and `screenshots/{theme}/**/style.css` as theme-specific authorities. |
+| Cross-theme style imports are forbidden | Never re-export or import another theme's `styles.css.ts` (for example, Sketchy importing Bootstrap accordion styles). Each theme file must declare its own `globalStyle` rules and read values from that same theme's screenshot CSS artifacts. |
 | First/last child `page-link` corner radii (pagination) | `.page-item:first-child .page-link` and `:last-child` rules have specificity 0,3,0 and override the `.pagination .page-link` Sketchy hand-drawn `border-radius` shorthand (0,2,0) on their respective corners. Mirror these rules explicitly in VE2 using `varBsPaginationBorderRadius` — exactly as the source CSS does — so the first/last child corners match the baseline. Without them the outer corners of the first and last page items render with the wrong radius. |
+| Cross-family contract ownership and migration order | Some components intentionally reuse contract classes from another family (for example, `ListCard` uses `listGroup`, `listGroupFlush`, and `listGroupItem` from `theme-contract/ui/list-group/contract.css.ts`). Do not duplicate those classes in `theme-contract/ui/card/contract.css.ts` or re-implement their base rules in card theme files. Migrate the owner family first (`/ui/list-group` before `/ui/card`), import the owner contract in the dependent component/theme, and keep card theme rules limited to card-specific composition selectors such as `.card > .list-group`. |
 
 ---
 

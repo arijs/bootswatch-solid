@@ -8,10 +8,12 @@ import {
 	cardLink,
 	cardText,
 	cardTitle,
+} from '../../../theme-contract/ui/card/contract.css'
+import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
-} from '../../../theme-contract/ui/card/contract.css'
+} from '../../../theme-contract/ui/list-group/contract.css'
 
 const ListCard: Component = () => {
 	const theme = useContext(ThemeContext)

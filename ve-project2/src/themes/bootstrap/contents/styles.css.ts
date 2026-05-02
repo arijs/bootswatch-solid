@@ -83,7 +83,12 @@ import {
 	tableSuccess,
 	tableWarning,
 	table,
+	inlineCode,
 } from '../../../theme-contract/contents/contract.css'
+import {
+	varBsCodeColor,
+	varBsFontMonospace,
+} from '../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../scope.css'
 
 // Helper to strip `var(` prefix/suffix for use in other var() calls
@@ -558,7 +563,13 @@ globalStyle(`${bootstrapScope}${tableWarning}`, {
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
-
+// Source CSS: code { font-family: var(--bs-font-monospace); font-size: 0.875em; color: var(--bs-code-color); word-wrap: break-word; }
+globalStyle(`${bootstrapScope}${inlineCode}`, {
+	fontFamily: varBsFontMonospace,
+	fontSize: '0.875em',
+	color: varBsCodeColor,
+	wordWrap: 'break-word',
+})
 globalStyle(`${bootstrapScope}${tableInfo}`, {
 	vars: {
 		[varBsTableColor]: '#000',

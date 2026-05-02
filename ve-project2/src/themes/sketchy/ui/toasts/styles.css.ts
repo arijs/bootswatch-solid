@@ -1,7 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBodyBgRgb,
-	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
@@ -55,12 +54,12 @@ globalStyle(`${sketchyScope}${toast}`, {
 		[varBsToastColor]: '',
 		[varBsToastBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
 		[varBsToastBorderWidth]: varBsBorderWidth,
-		[varBsToastBorderColor]: varBsBorderColorTranslucent,
+		[varBsToastBorderColor]: '#333',
 		[varBsToastBorderRadius]: '10px 10px 15px 5px / 5px 15px 5px 15px',
 		[varBsToastBoxShadow]: varBsBoxShadow,
-		[varBsToastHeaderColor]: varBsSecondaryColor,
+		[varBsToastHeaderColor]: '#333',
 		[varBsToastHeaderBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
-		[varBsToastHeaderBorderColor]: varBsBorderColorTranslucent,
+		[varBsToastHeaderBorderColor]: '#333',
 	},
 	width: varBsToastMaxWidth,
 	maxWidth: '100%',
@@ -81,6 +80,7 @@ globalStyle(`${sketchyScope}${toast}:not(${toastShow})`, {
 globalStyle(`${sketchyScope}${toastHeader}`, {
 	display: 'flex',
 	alignItems: 'center',
+	fontFamily: '"Cabin Sketch", cursive',
 	padding: `${varBsToastPaddingY} ${varBsToastPaddingX}`,
 	color: varBsToastHeaderColor,
 	backgroundColor: varBsToastHeaderBg,

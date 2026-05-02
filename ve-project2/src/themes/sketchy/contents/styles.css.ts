@@ -4,8 +4,9 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBodyBg,
-	varBsEmphasisColor,
+	varBsCodeColor,
 	varBsEmphasisColorRgb,
+	varBsFontMonospace,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 	varBsSecondaryColor,
@@ -83,6 +84,7 @@ import {
 	tableSuccess,
 	tableWarning,
 	table,
+	inlineCode,
 } from '../../../theme-contract/contents/contract.css'
 import { sketchyScope } from '../scope.css'
 
@@ -314,6 +316,11 @@ globalStyle(`${sketchyScope}${imgThumbnail}`, {
 	borderRadius: varBsBorderRadius,
 	maxWidth: '100%',
 	height: 'auto',
+})
+
+// SOURCE CSS: .img-thumbnail { border-radius: 255px 25px 225px 25px/25px 225px 25px 255px; }
+globalStyle(`${sketchyScope}${imgThumbnail}`, {
+	borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
 })
 
 // ─── Figures ──────────────────────────────────────────────────────────────────
@@ -609,4 +616,12 @@ globalStyle(`${sketchyScope}${tableLight}`, {
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
+})
+
+// Source CSS: code { font-family: var(--bs-font-monospace); font-size: 0.875em; color: var(--bs-code-color); word-wrap: break-word; }
+globalStyle(`${sketchyScope}${inlineCode}`, {
+	fontFamily: varBsFontMonospace,
+	fontSize: '0.875em',
+	color: varBsCodeColor,
+	wordWrap: 'break-word',
 })
