@@ -10,6 +10,7 @@ import {
 	alertLink,
 	alertWarning,
 } from '../../../theme-contract/ui/alerts/contract.css'
+import { inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 
 const WarningAlert: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -23,7 +24,11 @@ const WarningAlert: Component = () => {
 					an example link
 				</a>
 				. Give it a click if you like.
-				<button type="button" class={`${theme} ${alertBtnClose}`} aria-label="Close" />
+				<button
+					type="button"
+					class={`${theme} ${alertBtnClose} ${inputFontFamily}`}
+					aria-label="Close"
+				/>
 			</div>
 		</div>
 	)

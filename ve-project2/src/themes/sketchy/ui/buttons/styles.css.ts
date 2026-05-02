@@ -42,6 +42,7 @@ btnCheck,
 btnDanger,
 btnDark,
 btnInfo,
+	inputFontFamily,
 btnLg,
 btnLight,
 btnLink,
@@ -61,6 +62,17 @@ btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { sketchyScope } from '../../scope.css'
+
+// SOURCE CSS:
+// button, input, optgroup, select, textarea {
+//   font-family: Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+// }
+// Keep this rule before the base btn rule so when an element has both classes
+// (inputFontFamily + btn), the later btn declaration wins for font-family.
+globalStyle(`${sketchyScope}${inputFontFamily}`, {
+	fontFamily:
+		'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+})
 
 // ── Base .btn ─────────────────────────────────────────────────────────────────
 //

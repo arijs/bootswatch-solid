@@ -239,7 +239,9 @@ globalStyle(`${sketchyScope}${alertBtnClose}:disabled`, {
 
 // Sketchy removes the SVG background image from ALL btn-close and uses the ::before 'X' instead.
 globalStyle(`${sketchyScope}${alertBtnClose}`, {
-	fontFamily: 'inherit',
+	// No font-family declaration in the source
+	// \screenshots\sketchy\ui\toasts\toast-example\static\style.css
+	// fontFamily: 'inherit',
 	fontSize: 'inherit',
 	backgroundImage: 'none',
 })

@@ -117,3 +117,9 @@ globalStyle(`${sketchyScope}${toastHeader} ${alertBtnClose}`, {
 	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
 	marginLeft: varBsToastPaddingX,
 })
+
+globalStyle(`${sketchyScope}${toastHeader} ${alertBtnClose}::before`, {
+	position: 'static',
+	top: 'auto',
+	right: 'auto',
+})
