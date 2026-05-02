@@ -139,6 +139,16 @@ globalStyle(`${sketchyScope}${listGroupItem}`, {
 })
 
 globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
+	borderTopLeftRadius: 'inherit',
+	borderTopRightRadius: 'inherit',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
+	borderBottomRightRadius: 'inherit',
+	borderBottomLeftRadius: 'inherit',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
 	borderTop: 'none',
 })
 

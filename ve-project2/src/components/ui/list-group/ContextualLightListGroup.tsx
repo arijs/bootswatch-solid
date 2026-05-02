@@ -18,7 +18,7 @@ const ContextualLightListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemLight}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemLight}`}
 				>
 					A simple light list group item
 				</a>

@@ -18,7 +18,7 @@ const ContextualSecondaryListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemSecondary}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemSecondary}`}
 				>
 					A simple secondary list group item
 				</a>

@@ -25,7 +25,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item`}
 				>
 					A simple default list group item
 				</a>
@@ -33,7 +33,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemPrimary}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemPrimary}`}
 				>
 					A simple primary list group item
 				</a>
@@ -41,7 +41,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemSecondary}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemSecondary}`}
 				>
 					A simple secondary list group item
 				</a>
@@ -49,7 +49,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemSuccess}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemSuccess}`}
 				>
 					A simple success list group item
 				</a>
@@ -57,7 +57,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemDanger}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemDanger}`}
 				>
 					A simple danger list group item
 				</a>
@@ -65,7 +65,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemWarning}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemWarning}`}
 				>
 					A simple warning list group item
 				</a>
@@ -73,7 +73,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemInfo}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemInfo}`}
 				>
 					A simple info list group item
 				</a>
@@ -81,7 +81,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemLight}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemLight}`}
 				>
 					A simple light list group item
 				</a>
@@ -89,7 +89,7 @@ const ContextualListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} ${listGroupItemDark}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemDark}`}
 				>
 					A simple dark list group item
 				</a>

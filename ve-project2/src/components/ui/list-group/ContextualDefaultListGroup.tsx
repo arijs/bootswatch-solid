@@ -17,7 +17,7 @@ const ContextualDefaultListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction}`}
+					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item`}
 				>
 					A simple default list group item
 				</a>
