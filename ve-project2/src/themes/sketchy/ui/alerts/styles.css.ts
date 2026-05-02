@@ -201,25 +201,12 @@ globalStyle(`${sketchyScope}${alertBtnClose}`, {
 	width: '1em',
 	height: '1em',
 	padding: '0.25em 0.25em',
-	margin: 0,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
-	lineHeight: 'inherit',
-	textTransform: 'none',
-	appearance: 'button',
 	color: varBsBtnCloseColor,
-	backgroundColor: 'transparent',
-	backgroundImage: varBsBtnCloseBg,
-	backgroundPosition: 'center',
-	backgroundSize: '1em auto',
-	backgroundRepeat: 'no-repeat',
-	filter: 'none',
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
+	filter: 'var(--bs-btn-close-filter)' as 'none',
 	border: 0,
 	borderRadius: '25px',
 	opacity: varBsBtnCloseOpacity,
-
-	// Keep button alignment stable with source button reset behavior.
-	cursor: 'pointer',
 })
 
 globalStyle(`${sketchyScope}${alertDismissible} ${alertBtnClose}`, {
@@ -250,7 +237,10 @@ globalStyle(`${sketchyScope}${alertBtnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
-globalStyle(`${sketchyScope}${alert} ${alertBtnClose}`, {
+// Sketchy removes the SVG background image from ALL btn-close and uses the ::before 'X' instead.
+globalStyle(`${sketchyScope}${alertBtnClose}`, {
+	fontFamily: 'inherit',
+	fontSize: 'inherit',
 	backgroundImage: 'none',
 })
 

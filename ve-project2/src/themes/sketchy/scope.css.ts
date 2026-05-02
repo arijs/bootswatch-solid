@@ -192,7 +192,7 @@ globalStyle(`${sketchyScope}${vars}`, {
 // Text-bearing root: sets the Sketchy base typography (Neucha handwritten font).
 // Applied to any element that carries BOTH sketchyScope + bodyText.
 globalStyle(`${sketchyScope}${bodyText}`, {
-	fontFamily: "'Neucha', cursive",
+	fontFamily: varBsBodyFontFamily,
 	fontSize: '1rem',
 	fontWeight: 700,
 	lineHeight: 1.5,
