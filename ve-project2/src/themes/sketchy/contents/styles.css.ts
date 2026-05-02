@@ -66,14 +66,18 @@ import {
 	smallText,
 	tableBordered,
 	tableBorderless,
+	tableCell,
 	tableDanger,
 	tableDark,
 	tableElement,
+	tableHeaderCell,
 	tableHover,
 	tableInfo,
 	tableLight,
 	tablePrimary,
+	tableRow,
 	tableSecondary,
+	tableSection,
 	tableSm,
 	tableStriped,
 	tableSuccess,
@@ -358,6 +362,31 @@ globalStyle(`${sketchyScope}${tableElement}`, {
 	borderCollapse: 'collapse',
 })
 
+globalStyle(`${sketchyScope}${tableSection}`, {
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+})
+
+globalStyle(`${sketchyScope}${tableRow}`, {
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+})
+
+globalStyle(`${sketchyScope}${tableCell}`, {
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+})
+
+globalStyle(`${sketchyScope}${tableHeaderCell}`, {
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: 0,
+	textAlign: 'inherit',
+})
+
 globalStyle(`${sketchyScope}${tableElement} > thead`, {
 	verticalAlign: 'bottom',
 })
@@ -372,16 +401,16 @@ globalStyle(`${sketchyScope}${table}`, {
 		[varBsTableBgType]: 'initial',
 		[varBsTableColorState]: 'initial',
 		[varBsTableBgState]: 'initial',
-		[varBsTableColor]: varBsEmphasisColor,
+		[varBsTableColor]: 'initial',
 		[varBsTableBg]: varBsBodyBg,
-		[varBsTableBorderColor]: varBsBorderColor,
+		[varBsTableBorderColor]: '#333',
 		[varBsTableAccentBg]: 'transparent',
-		[varBsTableStripedColor]: varBsEmphasisColor,
+		[varBsTableStripedColor]: 'initial',
 		[varBsTableStripedBg]: `rgba(${varBsEmphasisColorRgb}, 0.05)`,
-		[varBsTableActiveColor]: varBsEmphasisColor,
+		[varBsTableActiveColor]: 'initial',
 		[varBsTableActiveBg]: `rgba(${varBsEmphasisColorRgb}, 0.1)`,
-		[varBsTableHoverColor]: varBsEmphasisColor,
-		[varBsTableHoverBg]: `rgba(${varBsEmphasisColorRgb}, 0.075)`,
+		[varBsTableHoverColor]: 'initial',
+		[varBsTableHoverBg]: '#fff',
 	},
 	width: '100%',
 	marginBottom: '1rem',
@@ -403,6 +432,18 @@ globalStyle(`${sketchyScope}${tableBordered} > :not(caption) > *`, {
 
 globalStyle(`${sketchyScope}${tableBordered} > :not(caption) > * > *`, {
 	borderWidth: `0 ${varBsBorderWidth}`,
+})
+
+globalStyle(`${sketchyScope}${tableBordered}`, {
+	overflow: 'hidden',
+	borderSpacing: 0,
+	borderCollapse: 'separate',
+	backgroundColor: '#333',
+	borderRadius: '5px 25px 5px 25px / 25px 5px 25px 5px',
+})
+
+globalStyle(`${sketchyScope}${tableBordered} th, ${sketchyScope}${tableBordered} td`, {
+	borderRadius: '5px 5px 25px 4px / 5px 4px 3px 5px',
 })
 
 globalStyle(`${sketchyScope}${tableBorderless} > :not(caption) > * > *`, {
@@ -434,30 +475,41 @@ globalStyle(`${sketchyScope}${tableHover} > tbody > tr:hover > *`, {
 globalStyle(`${sketchyScope}${tableDark}`, {
 	vars: {
 		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#212529',
-		[varBsTableBorderColor]: '#4d5154',
-		[varBsTableStripedBg]: '#2c3034',
+		[varBsTableBg]: '#555',
+		[varBsTableBorderColor]: '#777777',
+		[varBsTableStripedBg]: '#5e5e5e',
 		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#373b3e',
+		[varBsTableActiveBg]: '#666666',
 		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#323539',
+		[varBsTableHoverBg]: '#626262',
 		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
 
+globalStyle(`${sketchyScope} table th, ${sketchyScope} table td`, {
+	backgroundColor: '#fff',
+})
+
+globalStyle(
+	`${sketchyScope}${tableDark} th, ${sketchyScope}${tableDark} td, ${sketchyScope}${tableDark}${tableHover} .table-active:hover > th, ${sketchyScope}${tableDark}${tableHover} .table-active:hover > td`,
+	{
+		backgroundColor: '#333',
+	}
+)
+
 globalStyle(`${sketchyScope}${tablePrimary}`, {
 	vars: {
-		[varBsTableColor]: '#000',
-		[varBsTableBg]: '#cfe2ff',
-		[varBsTableBorderColor]: '#a6b5cc',
-		[varBsTableStripedBg]: '#c5d7f2',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#bacbe6',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#bfd1ec',
-		[varBsTableHoverColor]: '#000',
+		[varBsTableColor]: '#212529',
+		[varBsTableBg]: '#d6d6d6',
+		[varBsTableBorderColor]: '#ababab',
+		[varBsTableStripedBg]: '#cbcbcb',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#c1c1c1',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#c6c6c6',
+		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
@@ -465,15 +517,15 @@ globalStyle(`${sketchyScope}${tablePrimary}`, {
 
 globalStyle(`${sketchyScope}${tableSecondary}`, {
 	vars: {
-		[varBsTableColor]: '#000',
-		[varBsTableBg]: '#e2e3e5',
-		[varBsTableBorderColor]: '#b5b6b7',
-		[varBsTableStripedBg]: '#d7d8da',
+		[varBsTableColor]: '#212529',
+		[varBsTableBg]: '#dddddd',
+		[varBsTableBorderColor]: '#b1b1b1',
+		[varBsTableStripedBg]: '#d2d2d2',
 		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#cbccce',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#d1d2d4',
-		[varBsTableHoverColor]: '#000',
+		[varBsTableActiveBg]: '#c7c7c7',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#cccccc',
+		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
@@ -481,13 +533,13 @@ globalStyle(`${sketchyScope}${tableSecondary}`, {
 
 globalStyle(`${sketchyScope}${tableDanger}`, {
 	vars: {
-		[varBsTableColor]: '#000',
+		[varBsTableColor]: '#212529',
 		[varBsTableBg]: '#f8d7da',
 		[varBsTableBorderColor]: '#c6acae',
 		[varBsTableStripedBg]: '#eccccf',
 		[varBsTableStripedColor]: '#000',
 		[varBsTableActiveBg]: '#dfc2c4',
-		[varBsTableActiveColor]: '#000',
+		[varBsTableActiveColor]: '#fff',
 		[varBsTableHoverBg]: '#e5c7ca',
 		[varBsTableHoverColor]: '#000',
 	},
@@ -497,14 +549,14 @@ globalStyle(`${sketchyScope}${tableDanger}`, {
 
 globalStyle(`${sketchyScope}${tableSuccess}`, {
 	vars: {
-		[varBsTableColor]: '#000',
-		[varBsTableBg]: '#d1e7dd',
-		[varBsTableBorderColor]: '#a7b9b1',
-		[varBsTableStripedBg]: '#c7dbd2',
+		[varBsTableColor]: '#212529',
+		[varBsTableBg]: '#d4edda',
+		[varBsTableBorderColor]: '#aabeae',
+		[varBsTableStripedBg]: '#c9e1cf',
 		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#bcd0c7',
+		[varBsTableActiveBg]: '#bfd5c4',
 		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#c1d6cc',
+		[varBsTableHoverBg]: '#c4dbca',
 		[varBsTableHoverColor]: '#000',
 	},
 	color: varBsTableColor,
@@ -513,7 +565,7 @@ globalStyle(`${sketchyScope}${tableSuccess}`, {
 
 globalStyle(`${sketchyScope}${tableWarning}`, {
 	vars: {
-		[varBsTableColor]: '#000',
+		[varBsTableColor]: '#212529',
 		[varBsTableBg]: '#fff3cd',
 		[varBsTableBorderColor]: '#ccc2a4',
 		[varBsTableStripedBg]: '#f2e7c3',
@@ -529,14 +581,14 @@ globalStyle(`${sketchyScope}${tableWarning}`, {
 
 globalStyle(`${sketchyScope}${tableInfo}`, {
 	vars: {
-		[varBsTableColor]: '#000',
-		[varBsTableBg]: '#cff4fc',
-		[varBsTableBorderColor]: '#a6c3ca',
-		[varBsTableStripedBg]: '#c5e8ef',
+		[varBsTableColor]: '#212529',
+		[varBsTableBg]: '#d1ecf1',
+		[varBsTableBorderColor]: '#a7bdc1',
+		[varBsTableStripedBg]: '#c7e0e5',
 		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#badce3',
+		[varBsTableActiveBg]: '#bcd4d9',
 		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#bfe2e9',
+		[varBsTableHoverBg]: '#c1dadf',
 		[varBsTableHoverColor]: '#000',
 	},
 	color: varBsTableColor,
@@ -545,14 +597,14 @@ globalStyle(`${sketchyScope}${tableInfo}`, {
 
 globalStyle(`${sketchyScope}${tableLight}`, {
 	vars: {
-		[varBsTableColor]: '#000',
-		[varBsTableBg]: '#f8f9fa',
-		[varBsTableBorderColor]: '#c6c7c8',
-		[varBsTableStripedBg]: '#ecedee',
+		[varBsTableColor]: '#212529',
+		[varBsTableBg]: '#fff',
+		[varBsTableBorderColor]: '#cccccc',
+		[varBsTableStripedBg]: '#f2f2f2',
 		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#dfe0e1',
+		[varBsTableActiveBg]: '#e6e6e6',
 		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#e5e6e7',
+		[varBsTableHoverBg]: '#ececec',
 		[varBsTableHoverColor]: '#000',
 	},
 	color: varBsTableColor,
