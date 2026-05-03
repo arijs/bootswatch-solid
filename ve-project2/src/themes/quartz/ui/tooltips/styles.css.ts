@@ -39,14 +39,14 @@ globalStyle(`${quartzScope}${tooltipVe}`, {
 	vars: {
 		[varBsTooltipZindex]: '1080',
 		[varBsTooltipMaxWidth]: '200px',
-		[varBsTooltipPaddingX]: '0.5rem',
-		[varBsTooltipPaddingY]: '0.25rem',
+		[varBsTooltipPaddingX]: '1rem',
+		[varBsTooltipPaddingY]: '0.5rem',
 		[varBsTooltipMargin]: '',
 		[varBsTooltipFontSize]: '0.875rem',
 		[varBsTooltipColor]: varBsBodyBg,
 		[varBsTooltipBg]: varBsEmphasisColor,
 		[varBsTooltipBorderRadius]: varBsBorderRadius,
-		[varBsTooltipOpacity]: '0.9',
+		[varBsTooltipOpacity]: '0.7',
 		[varBsTooltipArrowWidth]: '0.8rem',
 		[varBsTooltipArrowHeight]: '0.4rem',
 	},
@@ -67,6 +67,7 @@ globalStyle(`${quartzScope}${tooltipVe}`, {
 	wordSpacing: 'normal',
 	fontSize: varBsTooltipFontSize,
 	wordWrap: 'break-word',
+	backdropFilter: 'blur(5px)',
 	opacity: 0,
 })
 
