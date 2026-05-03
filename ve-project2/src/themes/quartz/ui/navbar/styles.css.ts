@@ -30,7 +30,6 @@ import {
 	varBsNavbarTogglerIconBg,
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
-	varBsNavbarTogglerTransition,
 } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -54,7 +53,7 @@ import { quartzScope } from '../../scope.css'
 globalStyle(`${quartzScope}${navbar}`, {
 	vars: {
 		[varBsNavbarPaddingX]: '0',
-		[varBsNavbarPaddingY]: '0.5rem',
+		[varBsNavbarPaddingY]: '1rem',
 		[varBsNavbarColor]: `rgba(${varBsEmphasisColorRgb}, 0.65)`,
 		[varBsNavbarHoverColor]: `rgba(${varBsEmphasisColorRgb}, 0.8)`,
 		[varBsNavbarDisabledColor]: `rgba(${varBsEmphasisColorRgb}, 0.3)`,
@@ -68,11 +67,10 @@ globalStyle(`${quartzScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
-		[varBsNavbarTogglerTransition]: 'box-shadow 0.15s ease-in-out',
 	},
 	position: 'relative',
 	display: 'flex',
@@ -146,7 +144,7 @@ globalStyle(`${quartzScope}${navbarToggler}`, {
 	backgroundColor: 'transparent',
 	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
-	transition: varBsNavbarTogglerTransition,
+	transition: 'none',
 })
 
 globalStyle(`${quartzScope}${navbarToggler}:hover`, {

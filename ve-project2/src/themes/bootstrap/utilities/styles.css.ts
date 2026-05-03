@@ -2,9 +2,14 @@ import { globalStyle } from '@vanilla-extract/css'
 import { varBsSecondaryColor } from '../../../theme-contract/_vars.css'
 import {
 	alignSelfStart,
+	dFlex,
+	mb2,
 	mb3,
+	mbLg0,
 	mbXl2,
 	mbXl5,
+	me2,
+	meAuto,
 	mt5,
 	mtXl0,
 	pb2,
@@ -30,6 +35,10 @@ globalStyle(`${bootstrapScope}${alignSelfStart}`, {
 	alignSelf: 'flex-start !important',
 })
 
+globalStyle(`${bootstrapScope}${dFlex}`, {
+	display: 'flex !important',
+})
+
 // Bootstrap utility parity:
 // .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
 globalStyle(`${bootstrapScope}${px3}`, {
@@ -46,6 +55,18 @@ globalStyle(`${bootstrapScope}${px2}`, {
 // .mb-3 { margin-bottom: 1rem !important; }
 globalStyle(`${bootstrapScope}${mb3}`, {
 	marginBottom: '1rem !important',
+})
+
+globalStyle(`${bootstrapScope}${mb2}`, {
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${bootstrapScope}${me2}`, {
+	marginRight: '0.5rem !important',
+})
+
+globalStyle(`${bootstrapScope}${meAuto}`, {
+	marginRight: 'auto !important',
 })
 
 globalStyle(`${bootstrapScope}${mt5}`, {
@@ -84,6 +105,14 @@ globalStyle(`${bootstrapScope}${mtXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginTop: '0 !important',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${mbLg0}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginBottom: '0 !important',
 		},
 	},
 })

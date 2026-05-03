@@ -116,3 +116,31 @@ export const pb2 = style({})
  * Value is applied only at xl breakpoint and is theme-specific.
  */
 export const pbXl3 = style({})
+
+/**
+ * Bootstrap utility class: .me-2 { margin-right: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const me2 = style({})
+
+/**
+ * Bootstrap utility class: .me-auto { margin-right: auto !important; }
+ */
+export const meAuto = style({})
+
+/**
+ * Bootstrap utility class: .mb-2 { margin-bottom: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const mb2 = style({})
+
+/**
+ * Bootstrap utility class: .mb-lg-0 { margin-bottom: 0 !important; }
+ * Applied only at lg breakpoint.
+ */
+export const mbLg0 = style({})
+
+/**
+ * Bootstrap utility class: .d-flex { display: flex !important; }
+ */
+export const dFlex = style({})

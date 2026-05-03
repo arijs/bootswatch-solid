@@ -2,9 +2,14 @@ import { globalStyle } from '@vanilla-extract/css'
 import { varBsSecondaryColor } from '../../../theme-contract/_vars.css'
 import {
 	alignSelfStart,
+	dFlex,
+	mb2,
 	mb3,
+	mbLg0,
 	mbXl2,
 	mbXl5,
+	me2,
+	meAuto,
 	mt5,
 	mtXl0,
 	pb2,
@@ -30,6 +35,10 @@ globalStyle(`${quartzScope}${alignSelfStart}`, {
 	alignSelf: 'flex-start !important',
 })
 
+globalStyle(`${quartzScope}${dFlex}`, {
+	display: 'flex !important',
+})
+
 // Bootstrap utility parity:
 // .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
 globalStyle(`${quartzScope}${px3}`, {
@@ -46,6 +55,18 @@ globalStyle(`${quartzScope}${px2}`, {
 // .mb-3 { margin-bottom: 2rem !important; }
 globalStyle(`${quartzScope}${mb3}`, {
 	marginBottom: '2rem !important',
+})
+
+globalStyle(`${quartzScope}${mb2}`, {
+	marginBottom: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${me2}`, {
+	marginRight: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${meAuto}`, {
+	marginRight: 'auto !important',
 })
 
 globalStyle(`${quartzScope}${mt5}`, {
@@ -84,6 +105,14 @@ globalStyle(`${quartzScope}${mtXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginTop: '0 !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${mbLg0}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginBottom: '0 !important',
 		},
 	},
 })

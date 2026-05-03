@@ -1,7 +1,24 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { formControl } from '../../../theme-contract/forms/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	dFlex,
+	mb2,
+	mbLg0,
+	me2,
+	meAuto,
+	mt5,
+} from '../../../theme-contract/utilities/contract.css'
+import { btn, btnOutlineDark, btnOutlineLight } from '../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdown,
+	dropdownDivider,
+	dropdownItem,
+	dropdownMenu,
+	dropdownToggle,
+} from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
 	navbar,
 	navbarBgLight,
@@ -47,7 +64,7 @@ const NavbarExample: Component = () => {
 						<span class={`${theme} ${navbarTogglerIcon}`} />
 					</button>
 					<div class={`${theme} ${navbarCollapse}`} id="navbarSupportedContent">
-						<ul class={`${theme} ${navbarNav}`} style={{ 'margin-right': 'auto', 'margin-bottom': '0.5rem' }}>
+						<ul class={`${theme} ${navbarNav} ${meAuto} ${mb2} ${mbLg0}`}>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
@@ -65,6 +82,41 @@ const NavbarExample: Component = () => {
 									Link
 								</a>
 							</li>
+							<li class={`${theme} ${navItem} ${dropdown}`}>
+								{/* biome-ignore lint: <a> is used for demonstration purposes */}
+								<a
+									class={`${theme} ${navLink} ${dropdownToggle}`}
+									href="#"
+									onClick={(e) => e.preventDefault()}
+									id="navbarDropdown"
+									aria-expanded="false"
+								>
+									Dropdown
+								</a>
+								<ul class={`${theme} ${dropdownMenu}`} aria-labelledby="navbarDropdown">
+									<li>
+										{/* biome-ignore lint: <a> is used for demonstration purposes */}
+										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+											Action
+										</a>
+									</li>
+									<li>
+										{/* biome-ignore lint: <a> is used for demonstration purposes */}
+										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+											Another action
+										</a>
+									</li>
+									<li>
+										<hr class={`${theme} ${dropdownDivider}`} />
+									</li>
+									<li>
+										{/* biome-ignore lint: <a> is used for demonstration purposes */}
+										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+											Something else here
+										</a>
+									</li>
+								</ul>
+							</li>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
@@ -78,11 +130,22 @@ const NavbarExample: Component = () => {
 								</a>
 							</li>
 						</ul>
+						<form class={`${theme} ${dFlex}`}>
+							<input
+								class={`${theme} ${formControl} ${me2}`}
+								type="search"
+								placeholder="Search"
+								aria-label="Search"
+							/>
+							<button class={`${theme} ${btn} ${btnOutlineDark}`} type="submit">
+								Search
+							</button>
+						</form>
 					</div>
 				</div>
 			</nav>
 
-			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarDarkBgPrimary}`} style={{ 'margin-top': '3rem' }}>
+			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarDarkBgPrimary} ${mt5}`}>
 				<div class={`${theme} ${containerFluid}`}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
 					<a class={`${theme} ${navbarBrand}`} href="#" onClick={(e) => e.preventDefault()}>
@@ -105,7 +168,7 @@ const NavbarExample: Component = () => {
 						<span class={`${theme} ${navbarTogglerIcon}`} />
 					</button>
 					<div class={`${theme} ${navbarCollapse}`} id="navbarSupportedContent2">
-						<ul class={`${theme} ${navbarNav}`} style={{ 'margin-right': 'auto', 'margin-bottom': '0.5rem' }}>
+						<ul class={`${theme} ${navbarNav} ${meAuto} ${mb2} ${mbLg0}`}>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
@@ -123,6 +186,41 @@ const NavbarExample: Component = () => {
 									Link
 								</a>
 							</li>
+							<li class={`${theme} ${navItem} ${dropdown}`}>
+								{/* biome-ignore lint: <a> is used for demonstration purposes */}
+								<a
+									class={`${theme} ${navLink} ${dropdownToggle}`}
+									href="#"
+									onClick={(e) => e.preventDefault()}
+									id="navbarDropdown2"
+									aria-expanded="false"
+								>
+									Dropdown
+								</a>
+								<ul class={`${theme} ${dropdownMenu}`} aria-labelledby="navbarDropdown2">
+									<li>
+										{/* biome-ignore lint: <a> is used for demonstration purposes */}
+										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+											Action
+										</a>
+									</li>
+									<li>
+										{/* biome-ignore lint: <a> is used for demonstration purposes */}
+										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+											Another action
+										</a>
+									</li>
+									<li>
+										<hr class={`${theme} ${dropdownDivider}`} />
+									</li>
+									<li>
+										{/* biome-ignore lint: <a> is used for demonstration purposes */}
+										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+											Something else here
+										</a>
+									</li>
+								</ul>
+							</li>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
@@ -136,6 +234,17 @@ const NavbarExample: Component = () => {
 								</a>
 							</li>
 						</ul>
+						<form class={`${theme} ${dFlex}`}>
+							<input
+								class={`${theme} ${formControl} ${me2}`}
+								type="search"
+								placeholder="Search"
+								aria-label="Search"
+							/>
+							<button class={`${theme} ${btn} ${btnOutlineLight}`} type="submit">
+								Search
+							</button>
+						</form>
 					</div>
 				</div>
 			</nav>
