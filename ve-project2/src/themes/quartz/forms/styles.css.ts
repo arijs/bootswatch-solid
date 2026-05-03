@@ -69,10 +69,10 @@ const checkedRadioIcon =
 	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")"
 
 const switchKnobIcon =
-	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")"
+	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")"
 
 const switchKnobFocusIcon =
-	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e\")"
+	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")"
 
 const switchKnobCheckedIcon =
 	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")"
@@ -81,15 +81,15 @@ const selectChevronIcon =
 	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")"
 
 const invalidIcon =
-	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")"
+	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23fd7e14'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23fd7e14' stroke='none'/%3e%3c/svg%3e\")"
 
 const validIcon =
-	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.54.54 2.4-2.4-.53-.53-1.87 1.86-.8-.8-.53.53z'/%3e%3c/svg%3e\")"
+	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2341d7a7' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")"
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${mb3}`, {
-	marginBottom: '1rem',
+	marginBottom: '2rem',
 })
 
 // Bootstrap grid utilities used by validation form demos.
@@ -117,7 +117,7 @@ globalStyle(`${quartzScope}${rowCol}`, {
 globalStyle(`${quartzScope}${g3}`, {
 	vars: {
 		'--bs-gutter-x': '1rem',
-		'--bs-gutter-y': '1rem',
+		'--bs-gutter-y': '2rem',
 	},
 })
 
@@ -306,7 +306,7 @@ globalStyle(`${quartzScope}${formSelect}`, {
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: 'transparent',
-	backgroundImage: `${varBsFormSelectBgImg}, none`,
+	backgroundImage: `${varBsFormSelectBgImg}, var(--bs-form-select-bg-icon, none)`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 1.5rem center',
 	backgroundSize: '16px 12px',
@@ -367,17 +367,13 @@ globalStyle(`${quartzScope}${formRange}:focus`, {
 	outline: 0,
 })
 
-globalStyle(`${quartzScope}${formRange}:focus::-webkit-slider-thumb`, {
-	boxShadow: '0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
-})
-
 globalStyle(`${quartzScope}${formRange}::-webkit-slider-thumb`, {
 	width: '1rem',
 	height: '1rem',
 	marginTop: '-0.25rem',
 	WebkitAppearance: 'none',
 	appearance: 'none',
-	backgroundColor: '#0d6efd',
+	backgroundColor: '#e83283',
 	border: 0,
 	borderRadius: '1rem',
 	transition:
@@ -385,7 +381,7 @@ globalStyle(`${quartzScope}${formRange}::-webkit-slider-thumb`, {
 })
 
 globalStyle(`${quartzScope}${formRange}::-webkit-slider-thumb:active`, {
-	backgroundColor: '#b6d4fe',
+	backgroundColor: '#f8c2da',
 })
 
 globalStyle(`${quartzScope}${formRange}::-webkit-slider-runnable-track`, {
@@ -393,7 +389,7 @@ globalStyle(`${quartzScope}${formRange}::-webkit-slider-runnable-track`, {
 	height: '0.5rem',
 	color: 'transparent',
 	cursor: 'pointer',
-	backgroundColor: varBsSecondaryBg,
+	backgroundColor: 'rgba(0, 0, 0, 0.2)',
 	borderColor: 'transparent',
 	borderRadius: '1rem',
 })
@@ -421,7 +417,7 @@ globalStyle(`${quartzScope}${formSwitch}`, {
 
 globalStyle(`${quartzScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormCheckBg]: varBsBodyBg,
+		[varBsFormCheckBg]: 'rgba(255, 255, 255, 0.3)',
 		[varBsFormCheckBgImage]: 'none',
 		[varBsFormSwitchBg]: switchKnobIcon,
 	},
@@ -442,7 +438,7 @@ globalStyle(`${quartzScope}${formCheckInput}`, {
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
 	backgroundSize: 'contain',
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	border: '1px solid rgba(255, 255, 255, 0.2)',
 	WebkitPrintColorAdjust: 'exact',
 	printColorAdjust: 'exact',
 })
@@ -460,14 +456,14 @@ globalStyle(`${quartzScope}${formCheckInput}:active`, {
 })
 
 globalStyle(`${quartzScope}${formCheckInput}:focus`, {
-	borderColor: '#86b7fe',
+	borderColor: 'rgba(255, 255, 255, 0.4)',
 	outline: 0,
-	boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+	boxShadow: '0 0 0 0.25rem rgba(232, 50, 131, 0.25)',
 })
 
 globalStyle(`${quartzScope}${formCheckInput}:checked`, {
-	backgroundColor: '#0d6efd',
-	borderColor: '#0d6efd',
+	backgroundColor: '#e83283',
+	borderColor: '#e83283',
 })
 
 globalStyle(`${quartzScope}${formCheckInput}:checked[type="checkbox"]`, {
@@ -536,7 +532,7 @@ globalStyle(`${quartzScope}${inputGroup}`, {
 globalStyle(`${quartzScope}${inputGroupText}`, {
 	display: 'flex',
 	alignItems: 'center',
-	padding: '0.375rem 0.75rem',
+	padding: '0.75rem 1.5rem',
 	fontSize: '1rem',
 	fontWeight: 400,
 	lineHeight: '1.5',
@@ -595,7 +591,7 @@ globalStyle(`${quartzScope}${floatingLabel}`, {
 	zIndex: 2,
 	maxWidth: '100%',
 	height: '100%',
-	padding: '1rem 0.75rem',
+	padding: '1rem 1.5rem',
 	overflow: 'hidden',
 	color: `rgba(${varBsBodyColorRgb}, 0.65)`,
 	textAlign: 'start',
@@ -615,7 +611,7 @@ globalStyle(`${quartzScope}${formControlFloating}`, {
 	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	lineHeight: '1.25',
-	padding: '1rem 0.75rem',
+	padding: '1rem 1.5rem',
 })
 
 globalStyle(`${quartzScope}${formControlFloating}::placeholder`, {
@@ -714,10 +710,10 @@ globalStyle(`${quartzScope}${isInvalid} ~ ${invalidFeedback}`, {
 })
 
 globalStyle(`${quartzScope}${formControl}${isValid}, ${quartzScope}${formControl}${isInvalid}`, {
-	paddingRight: 'calc(1.5em + 0.75rem)',
+	paddingRight: 'calc(1.5em + 1.5rem)',
 	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
-	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+	backgroundPosition: 'right calc(0.375em + 0.375rem) center',
+	backgroundSize: 'calc(0.75em + 0.75rem) calc(0.75em + 0.75rem)',
 })
 
 globalStyle(`${quartzScope}${formControl}${isValid}`, {
@@ -744,6 +740,13 @@ globalStyle(`${quartzScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
+globalStyle(`${quartzScope}${formSelect}${isValid}:not([multiple]):not([size]), ${quartzScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
+	vars: { '--bs-form-select-bg-icon': validIcon },
+	paddingRight: '8.25rem',
+	backgroundPosition: 'right 1.5rem center, center right 4.5rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.75rem) calc(0.75em + 0.75rem)',
+})
+
 globalStyle(`${quartzScope}${formSelect}${isValid}:focus`, {
 	borderColor: varBsFormValidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
@@ -751,6 +754,13 @@ globalStyle(`${quartzScope}${formSelect}${isValid}:focus`, {
 
 globalStyle(`${quartzScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${quartzScope}${formSelect}${isInvalid}:not([multiple]):not([size]), ${quartzScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
+	vars: { '--bs-form-select-bg-icon': invalidIcon },
+	paddingRight: '8.25rem',
+	backgroundPosition: 'right 1.5rem center, center right 4.5rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.75rem) calc(0.75em + 0.75rem)',
 })
 
 globalStyle(`${quartzScope}${formSelect}${isInvalid}:focus`, {

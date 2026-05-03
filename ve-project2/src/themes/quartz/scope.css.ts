@@ -206,8 +206,13 @@ globalStyle(`${quartzScope}${body}`, {
 	display: 'block',
 })
 
+// Keep Quartz body-level background scoped to Ve2Shell (no global body styling).
+// During forms validation parity work, the last row's bottom margin escaped this wrapper,
+// which shortened the painted area. flow-root creates a new formatting context so margins
+// are contained inside bodyFrame and screenshots match baseline spacing/background behavior.
 globalStyle(`${quartzScope}${bodyFrame}`, {
 	minHeight: '100vh',
+	display: 'flow-root',
 	backgroundColor: '#686dc3',
 	backgroundImage: 'linear-gradient(90deg, #33b7e2, #5e62b0, #dc307c)',
 })
