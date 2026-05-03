@@ -25,7 +25,7 @@ import {
 	varBsInfo,
 	varBsLight,
 	varBsPrimary,
-	varBsSecondary,
+	varBsSecondaryRgb,
 	varBsSuccess,
 	varBsWarning,
 } from '../../../../theme-contract/_vars.css'
@@ -115,7 +115,11 @@ globalStyle(`${quartzScope}${spinnerGrow}`, {
 // ── Color variants (absorbing Bootstrap text-* utility classes) ───────────────
 
 globalStyle(`${quartzScope}${spinnerPrimary}`, { color: varBsPrimary })
-globalStyle(`${quartzScope}${spinnerSecondary}`, { color: varBsSecondary })
+globalStyle(`${quartzScope}${spinnerSecondary}`, {
+	// Quartz text-secondary resolves from --bs-secondary-rgb with opacity 1,
+	// not from --bs-secondary (which is semi-transparent in this theme).
+	color: `rgba(${varBsSecondaryRgb}, 1)`,
+})
 globalStyle(`${quartzScope}${spinnerSuccess}`, { color: varBsSuccess })
 globalStyle(`${quartzScope}${spinnerDanger}`, { color: varBsDanger })
 globalStyle(`${quartzScope}${spinnerWarning}`, { color: varBsWarning })
