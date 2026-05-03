@@ -128,11 +128,11 @@ globalStyle(`${quartzScope}${colMd8}`, {
 	},
 })
 
-// Bootstrap utility parity:
-// .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
+// Quartz utility parity:
+// .px-3 { padding-right: 2rem !important; padding-left: 2rem !important; }
 globalStyle(`${quartzScope}${px3}`, {
-	paddingRight: '1rem !important',
-	paddingLeft: '1rem !important',
+	paddingRight: '2rem !important',
+	paddingLeft: '2rem !important',
 })
 
 globalStyle(`${quartzScope}${px2}`, {
