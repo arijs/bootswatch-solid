@@ -1,7 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
-	varBsBodyColor,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
@@ -9,7 +8,6 @@ import {
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsFontSansSerif,
-	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
 import {
 	bsPopoverAuto,
@@ -58,20 +56,20 @@ globalStyle(`${quartzScope}${popoverVe}`, {
 		[varBsPopoverZindex]: '1070',
 		[varBsPopoverMaxWidth]: '276px',
 		[varBsPopoverFontSize]: '0.875rem',
-		[varBsPopoverBg]: 'transparent',
-		[varBsPopoverBorderWidth]: '0',
+		[varBsPopoverBg]: varBsBodyBg,
+		[varBsPopoverBorderWidth]: varBsBorderWidth,
 		[varBsPopoverBorderColor]: varBsBorderColorTranslucent,
 		[varBsPopoverBorderRadius]: varBsBorderRadiusLg,
 		[varBsPopoverInnerBorderRadius]: `calc(${varBsBorderRadiusLg} - ${varBsBorderWidth})`,
 		[varBsPopoverBoxShadow]: varBsBoxShadow,
-		[varBsPopoverHeaderPaddingX]: '1rem',
+		[varBsPopoverHeaderPaddingX]: '2rem',
 		[varBsPopoverHeaderPaddingY]: '0.5rem',
 		[varBsPopoverHeaderFontSize]: '1rem',
 		[varBsPopoverHeaderColor]: 'inherit',
 		[varBsPopoverHeaderBg]: 'transparent',
-		[varBsPopoverBodyPaddingX]: '1rem',
+		[varBsPopoverBodyPaddingX]: '2rem',
 		[varBsPopoverBodyPaddingY]: '1rem',
-		[varBsPopoverBodyColor]: varBsBodyColor,
+		[varBsPopoverBodyColor]: '#fff',
 		[varBsPopoverArrowWidth]: '1rem',
 		[varBsPopoverArrowHeight]: '0.5rem',
 		[varBsPopoverArrowBorder]: varBsPopoverBorderColor,
@@ -214,6 +212,7 @@ globalStyle(`${quartzScope}${popoverHeader}:empty`, {
 
 globalStyle(`${quartzScope}${popoverHeader}${h3}`, {
 	fontSize: varBsPopoverHeaderFontSize,
+	fontWeight: 700,
 	marginBottom: 0,
 })
 
