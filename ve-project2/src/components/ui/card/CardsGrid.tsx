@@ -1,27 +1,35 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { cardsGrid } from './CardsGrid.css'
 import FeaturedCard from './FeaturedCard'
 import HorizontalCard from './HorizontalCard'
 import ImageTopCard from './ImageTopCard'
 import ListCard from './ListCard'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	col,
+	g4,
+	overflowXHidden,
+	positionRelative,
+	row,
+	rowCols1,
+	rowColsMd2,
+} from '../../../theme-contract/utilities/contract.css'
 const CardsGrid: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
-		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<div class={`${theme} ${cardsGrid}`}>
-				<div>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid} ${positionRelative} ${overflowXHidden}`}>
+			<div class={`${theme} ${row} ${rowCols1} ${rowColsMd2} ${g4}`}>
+				<div class={`${theme} ${col}`}>
 					<ImageTopCard />
 				</div>
-				<div>
+				<div class={`${theme} ${col}`}>
 					<FeaturedCard />
 				</div>
-				<div>
+				<div class={`${theme} ${col}`}>
 					<ListCard />
 				</div>
-				<div>
+				<div class={`${theme} ${col}`}>
 					<HorizontalCard />
 				</div>
 			</div>

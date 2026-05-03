@@ -2,7 +2,12 @@ import { globalStyle } from '@vanilla-extract/css'
 import { varBsSecondaryColor } from '../../../theme-contract/_vars.css'
 import {
 	alignSelfStart,
+	col,
+	colMd4,
+	colMd8,
 	dFlex,
+	g0,
+	g4,
 	mb2,
 	mb3,
 	mbLg0,
@@ -12,12 +17,17 @@ import {
 	meAuto,
 	mt5,
 	mtXl0,
+	overflowXHidden,
 	pb2,
 	pbXl3,
+	positionRelative,
 	pt3,
 	ptXl5,
 	px2,
 	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
 	stickyXlTop,
 	textMuted,
 	visuallyHidden,
@@ -37,6 +47,85 @@ globalStyle(`${bootstrapScope}${alignSelfStart}`, {
 
 globalStyle(`${bootstrapScope}${dFlex}`, {
 	display: 'flex !important',
+})
+
+globalStyle(`${bootstrapScope}${positionRelative}`, {
+	position: 'relative !important',
+})
+
+globalStyle(`${bootstrapScope}${overflowXHidden}`, {
+	overflowX: 'hidden !important',
+})
+
+globalStyle(`${bootstrapScope}${row}`, {
+	vars: {
+		'--bs-gutter-x': '1.5rem',
+		'--bs-gutter-y': '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: 'calc(-1 * var(--bs-gutter-y))',
+	marginRight: 'calc(-0.5 * var(--bs-gutter-x))',
+	marginLeft: 'calc(-0.5 * var(--bs-gutter-x))',
+})
+
+globalStyle(`${bootstrapScope}${row} > *`, {
+	flexShrink: 0,
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: 'calc(var(--bs-gutter-x) * 0.5)',
+	paddingLeft: 'calc(var(--bs-gutter-x) * 0.5)',
+	marginTop: 'var(--bs-gutter-y)',
+})
+
+globalStyle(`${bootstrapScope}${col}`, {
+	flex: '1 0 0',
+})
+
+globalStyle(`${bootstrapScope}${rowCols1} > *`, {
+	flex: '0 0 auto',
+	width: '100%',
+})
+
+globalStyle(`${bootstrapScope}${rowColsMd2} > *`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${g0}`, {
+	vars: {
+		'--bs-gutter-x': '0',
+		'--bs-gutter-y': '0',
+	},
+})
+
+globalStyle(`${bootstrapScope}${g4}`, {
+	vars: {
+		'--bs-gutter-x': '1.5rem',
+		'--bs-gutter-y': '1.5rem',
+	},
+})
+
+globalStyle(`${bootstrapScope}${colMd4}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '33.3333%',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${colMd8}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '66.6667%',
+		},
+	},
 })
 
 // Bootstrap utility parity:

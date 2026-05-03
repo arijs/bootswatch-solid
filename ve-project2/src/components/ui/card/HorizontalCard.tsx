@@ -12,20 +12,18 @@ import { textMuted } from '../../../theme-contract/utilities/contract.css'
 import {
 	card,
 	cardBody,
-	cardHorizontalColBody,
-	cardHorizontalColImg,
-	cardHorizontalRow,
 	cardText,
 	cardTitle,
 } from '../../../theme-contract/ui/card/contract.css'
+import { colMd4, colMd8, g0, row } from '../../../theme-contract/utilities/contract.css'
 
 const HorizontalCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
 		<div class={`bd-example-ve2 ${theme}`}>
 			<div class={`${theme} ${card}`}>
-				<div class={`${theme} ${cardHorizontalRow}`}>
-					<div class={`${theme} ${cardHorizontalColImg}`}>
+				<div class={`${theme} ${row} ${g0}`}>
+					<div class={`${theme} ${colMd4}`}>
 						<svg
 							class={`bd-placeholder-img ${theme} ${bdPlaceholderImg} ${mediaMiddle}`}
 							width="100%"
@@ -42,7 +40,7 @@ const HorizontalCard: Component = () => {
 							</text>
 						</svg>
 					</div>
-					<div class={`${theme} ${cardHorizontalColBody}`}>
+					<div class={`${theme} ${colMd8}`}>
 						<div class={`${theme} ${cardBody}`}>
 							<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
 							<p class={`${theme} ${cardText} ${paragraph}`}>

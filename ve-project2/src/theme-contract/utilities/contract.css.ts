@@ -144,3 +144,53 @@ export const mbLg0 = style({})
  * Bootstrap utility class: .d-flex { display: flex !important; }
  */
 export const dFlex = style({})
+
+/**
+ * Bootstrap layout utility: .row
+ */
+export const row = style({})
+
+/**
+ * Bootstrap layout utility: .col
+ */
+export const col = style({})
+
+/**
+ * Bootstrap layout utility: .row-cols-1
+ */
+export const rowCols1 = style({})
+
+/**
+ * Bootstrap layout utility: .row-cols-md-2
+ */
+export const rowColsMd2 = style({})
+
+/**
+ * Bootstrap gutter utility: .g-0
+ */
+export const g0 = style({})
+
+/**
+ * Bootstrap gutter utility: .g-4
+ */
+export const g4 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-md-4
+ */
+export const colMd4 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-md-8
+ */
+export const colMd8 = style({})
+
+/**
+ * Bootstrap utility: .position-relative
+ */
+export const positionRelative = style({})
+
+/**
+ * Bootstrap utility: .overflow-x-hidden
+ */
+export const overflowXHidden = style({})

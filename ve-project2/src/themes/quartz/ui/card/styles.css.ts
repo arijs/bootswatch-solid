@@ -1,10 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
-	varBsBodyColor,
-	varBsBodyColorRgb,
 	varBsBorderColor,
-	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 } from '../../../../theme-contract/_vars.css'
@@ -73,22 +70,22 @@ const glassMixin = {
 
 globalStyle(`${quartzScope}${card}`, {
 	vars: {
-		[varBsCardSpacerY]: '1rem',
-		[varBsCardSpacerX]: '1rem',
-		[varBsCardTitleSpacerY]: '0.5rem',
+		[varBsCardSpacerY]: '1.75rem',
+		[varBsCardSpacerX]: '2rem',
+		[varBsCardTitleSpacerY]: '1rem',
 		[varBsCardTitleColor]: '',
 		[varBsCardSubtitleColor]: '',
 		[varBsCardBorderWidth]: varBsBorderWidth,
-		[varBsCardBorderColor]: varBsBorderColorTranslucent,
+		[varBsCardBorderColor]: 'rgba(255, 255, 255, 0.2)',
 		[varBsCardBorderRadius]: varBsBorderRadius,
 		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - ${varBsBorderWidth})`,
-		[varBsCardCapPaddingY]: '0.5rem',
-		[varBsCardCapPaddingX]: '1rem',
+		[varBsCardCapPaddingY]: '0.875rem',
+		[varBsCardCapPaddingX]: '2rem',
 		[varBsCardCapBg]: 'transparent',
 		[varBsCardCapColor]: '#fff',
 		[varBsCardColor]: '#fff',
 		[varBsCardBg]: 'transparent',
-		[varBsCardImgOverlayPadding]: '1rem',
+		[varBsCardImgOverlayPadding]: '2rem',
 		[varBsCardGroupMargin]: '0.75rem',
 	},
 	...glassMixin,
