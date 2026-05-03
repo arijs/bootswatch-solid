@@ -64,6 +64,10 @@ tabindex="0"
 <small class={`${theme} ${toastTimestamp}`}>11 mins ago</small>
 <button
 type="button"
+// inputFontFamily is required for Sketchy theme because in the original css,
+// Sketchy applies font-family to a series of input controls (buttons, inputs, select, etc)
+// but in VE we don't use any global styles for elements, only classes, so we need to
+// apply the font-family to the close button explicitly. Do not remove it.
 class={`${theme} ${alertBtnClose} ${inputFontFamily}`}
 data-bs-dismiss="toast"
 aria-label="Close"
