@@ -3,6 +3,7 @@ import {
 	cardHeaderTabs,
 } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import {
+	navItem,
 	navLink,
 	navLinkActive,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -33,6 +34,32 @@ globalStyle(`${quartzScope}${cardHeaderTabs}`, {
 //   background-color: var(--bs-card-bg);
 //   border-bottom-color: var(--bs-card-bg); }
 globalStyle(`${quartzScope}${cardHeaderTabs} ${navLink}${navLinkActive}`, {
-	backgroundColor: varBsCardBg,
+	border: 'none',
+	boxShadow:
+		'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, white, rgba(255, 255, 255, 0.9) 70%)',
+	backdropFilter: 'blur(5px)',
 	borderBottomColor: varBsCardBg,
+	borderRadius: '0.5rem',
+	transform: 'scale(1.1)',
 })
+
+globalStyle(`${quartzScope}${cardHeaderTabs} ${navItem}:first-child > ${navLink}`, {
+	borderRadius: '0.5rem 0 0 0.5rem',
+})
+
+globalStyle(`${quartzScope}${cardHeaderTabs} ${navItem}:last-child > ${navLink}`, {
+	borderRadius: '0 0.5rem 0.5rem 0',
+})
+
+globalStyle(`${quartzScope}${cardHeaderTabs} ${navItem} > ${navLink}${navLinkActive}`, {
+	borderRadius: '0.5rem',
+})
+
+globalStyle(
+	`${quartzScope}${cardHeaderTabs} ${navItem} ${navLink}${navLinkActive}:hover, ${quartzScope}${cardHeaderTabs} ${navItem} ${navLink}${navLinkActive}:focus`,
+	{
+		color: '#343a40',
+	},
+)
