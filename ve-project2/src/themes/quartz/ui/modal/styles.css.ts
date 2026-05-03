@@ -1,6 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
 	varBsBodyColor,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
@@ -78,7 +77,7 @@ globalStyle(`${quartzScope}${modal}`, {
 	vars: {
 		[varBsModalZindex]: '1055',
 		[varBsModalWidth]: '500px',
-		[varBsModalPadding]: '1rem',
+		[varBsModalPadding]: '2rem',
 		[varBsModalMargin]: '0.5rem',
 		[varBsModalColor]: varBsBodyColor,
 		[varBsModalBg]: 'transparent',
@@ -87,9 +86,9 @@ globalStyle(`${quartzScope}${modal}`, {
 		[varBsModalBorderRadius]: varBsBorderRadiusLg,
 		[varBsModalBoxShadow]: varBsBoxShadowSm,
 		[varBsModalInnerBorderRadius]: `calc(${varBsBorderRadiusLg} - (${varBsBorderWidth}))`,
-		[varBsModalHeaderPaddingX]: '1rem',
-		[varBsModalHeaderPaddingY]: '1rem',
-		[varBsModalHeaderPadding]: '1rem 1rem',
+		[varBsModalHeaderPaddingX]: '2rem',
+		[varBsModalHeaderPaddingY]: '2rem',
+		[varBsModalHeaderPadding]: '2rem 2rem',
 		[varBsModalHeaderBorderColor]: varBsBorderColor,
 		[varBsModalHeaderBorderWidth]: varBsBorderWidth,
 		[varBsModalTitleLineHeight]: '1.5',
