@@ -15,7 +15,6 @@ import {
 	varBsBreadcrumbPaddingX,
 	varBsBreadcrumbPaddingY,
 } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsSecondaryColor } from '../../../../theme-contract/_vars.css'
 import { quartzScope } from '../../scope.css'
 
 // ── Base breadcrumb ───────────────────────────────────────────────────────────
@@ -43,9 +42,9 @@ globalStyle(`${quartzScope}${breadcrumb}`, {
 		[varBsBreadcrumbMarginBottom]: '1rem',
 		[varBsBreadcrumbBg]: '',
 		[varBsBreadcrumbBorderRadius]: '',
-		[varBsBreadcrumbDividerColor]: varBsSecondaryColor,
+		[varBsBreadcrumbDividerColor]: '#fff',
 		[varBsBreadcrumbItemPaddingX]: '0.5rem',
-		[varBsBreadcrumbItemActiveColor]: varBsSecondaryColor,
+		[varBsBreadcrumbItemActiveColor]: '#fff',
 		[varBsBreadcrumbDivider]: '"/"',
 	},
 	display: 'flex',
