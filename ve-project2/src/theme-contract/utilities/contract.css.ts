@@ -35,7 +35,84 @@ export const visuallyHidden = style({
 export const textMuted = style({})
 
 /**
+ * Bootstrap utility class: .align-self-start { align-self: flex-start !important; }
+ * Theme-specific implementation is wired in each theme's utilities/styles.css.ts.
+ */
+export const alignSelfStart = style({})
+
+/**
  * Bootstrap utility class: .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
  * Theme-specific implementation is wired in each theme's utilities/styles.css.ts.
  */
 export const px3 = style({})
+
+/**
+ * Bootstrap utility class: .px-2 { padding-right: ... !important; padding-left: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const px2 = style({})
+
+/**
+ * Bootstrap utility class: .mb-3 { margin-bottom: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const mb3 = style({})
+
+/**
+ * Bootstrap utility class: .mb-xl-2 { margin-bottom: ... !important; }
+ * Value is applied only at xl breakpoint and is theme-specific.
+ */
+export const mbXl2 = style({})
+
+/**
+ * Bootstrap utility class: .mb-xl-5 { margin-bottom: ... !important; }
+ * Value is applied only at xl breakpoint and is theme-specific.
+ */
+export const mbXl5 = style({})
+
+/**
+ * Bootstrap utility class: .mt-5 { margin-top: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const mt5 = style({})
+
+/**
+ * Bootstrap utility class: .mt-xl-0 { margin-top: 0 !important; }
+ * Applied only at xl breakpoint.
+ */
+export const mtXl0 = style({})
+
+/**
+ * Bootstrap utility class: .sticky-xl-top { position: sticky; top: 0; z-index: 1020; }
+ * Applied only at xl breakpoint.
+ */
+export const stickyXlTop = style({})
+
+/**
+ * Bootstrap utility class: .fw-bold { font-weight: 700 !important; }
+ */
+export const fwBold = style({})
+
+/**
+ * Bootstrap utility class: .pt-3 { padding-top: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const pt3 = style({})
+
+/**
+ * Bootstrap utility class: .pt-xl-5 { padding-top: ... !important; }
+ * Value is applied only at xl breakpoint and is theme-specific.
+ */
+export const ptXl5 = style({})
+
+/**
+ * Bootstrap utility class: .pb-2 { padding-bottom: ... !important; }
+ * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
+ */
+export const pb2 = style({})
+
+/**
+ * Bootstrap utility class: .pb-xl-3 { padding-bottom: ... !important; }
+ * Value is applied only at xl breakpoint and is theme-specific.
+ */
+export const pbXl3 = style({})

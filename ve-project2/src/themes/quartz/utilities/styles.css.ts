@@ -1,9 +1,22 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { varBsSecondaryColor } from '../../../theme-contract/_vars.css'
 import {
+	alignSelfStart,
+	mb3,
+	mbXl2,
+	mbXl5,
+	mt5,
+	mtXl0,
+	pb2,
+	pbXl3,
+	pt3,
+	ptXl5,
+	px2,
 	px3,
+	stickyXlTop,
 	textMuted,
 	visuallyHidden,
+	fwBold,
 } from '../../../theme-contract/utilities/contract.css'
 import { quartzScope } from '../scope.css'
 
@@ -13,11 +26,92 @@ globalStyle(`${quartzScope}${textMuted}`, {
 	color: `${varBsSecondaryColor} !important`,
 })
 
+globalStyle(`${quartzScope}${alignSelfStart}`, {
+	alignSelf: 'flex-start !important',
+})
+
 // Bootstrap utility parity:
 // .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
 globalStyle(`${quartzScope}${px3}`, {
 	paddingRight: '1rem !important',
 	paddingLeft: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${px2}`, {
+	paddingRight: '1rem !important',
+	paddingLeft: '1rem !important',
+})
+
+// Bootstrap utility parity in Quartz:
+// .mb-3 { margin-bottom: 2rem !important; }
+globalStyle(`${quartzScope}${mb3}`, {
+	marginBottom: '2rem !important',
+})
+
+globalStyle(`${quartzScope}${mt5}`, {
+	marginTop: '6rem !important',
+})
+
+globalStyle(`${quartzScope}${pt3}`, {
+	paddingTop: '2rem !important',
+})
+
+globalStyle(`${quartzScope}${pb2}`, {
+	paddingBottom: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${fwBold}`, {
+	fontWeight: '700 !important',
+})
+
+globalStyle(`${quartzScope}${mbXl2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '1rem !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${mbXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '6rem !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${mtXl0}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0 !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${ptXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingTop: '6rem !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${pbXl3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingBottom: '2rem !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${stickyXlTop}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'sticky',
+			top: '0',
+			zIndex: '1020',
+		},
+	},
 })
 
 // Bootstrap utility parity:

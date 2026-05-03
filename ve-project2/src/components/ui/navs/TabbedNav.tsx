@@ -1,7 +1,9 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 import {
 	nav,
 	navLink,
@@ -15,7 +17,11 @@ const TabbedNav: Component = () => {
 		<div class="bd-example-ve2">
 			<div class={`${theme} ${containerFluid}`}>
 			<nav>
-				<div class={`${theme} ${nav} ${navTabs}`} id="nav-tab" role="tablist" style={{ 'margin-bottom': '1rem' }}>
+				<div
+					class={`${theme} ${nav} ${navTabs} ${mb3}`}
+					id="nav-tab"
+					role="tablist"
+				>
 					<button
 						class={`${theme} ${navLink} ${navLinkActive}`}
 						id="nav-home-tab"
@@ -55,7 +61,7 @@ const TabbedNav: Component = () => {
 					role="tabpanel"
 					aria-labelledby="nav-home-tab"
 				>
-						<p>
+						<p class={`${theme} ${paragraph}`}>
 						Placeholder content for the tab panel. This one relates to the home tab. Takes
 							you miles high, so high, 'cause she’s got that one international smile. There's
 						a stranger in my bed, there's a pounding in my head. Oh, no. In another life I

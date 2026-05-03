@@ -27,10 +27,6 @@ import {
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
 	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsEmphasisColor,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 	varBsSecondaryBg,
@@ -95,9 +91,9 @@ globalStyle(`${quartzScope}${navTabs}`, {
 		[varBsNavTabsBorderColor]: varBsBorderColor,
 		[varBsNavTabsBorderRadius]: '0',
 		[varBsNavTabsLinkHoverBorderColor]: `${varBsSecondaryBg} ${varBsSecondaryBg} ${varBsBorderColor}`,
-		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
-		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: `${varBsBorderColor} ${varBsBorderColor} ${varBsBodyBg}`,
+		[varBsNavTabsLinkActiveColor]: '#343a40',
+		[varBsNavTabsLinkActiveBg]: '#fff',
+		[varBsNavTabsLinkActiveBorderColor]: '#dee2e6 #dee2e6 #fff',
 	},
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
@@ -137,7 +133,7 @@ globalStyle(`${quartzScope}${navTabs} ${navLink}${navLinkActive}`, {
 
 globalStyle(`${quartzScope}${navPills}`, {
 	vars: {
-		[varBsNavPillsBorderRadius]: varBsBorderRadius,
+		[varBsNavPillsBorderRadius]: '50rem',
 		[varBsNavPillsLinkActiveColor]: '#fff',
 		[varBsNavPillsLinkActiveBg]: '#e83283',
 	},
