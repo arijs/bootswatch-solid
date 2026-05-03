@@ -23,7 +23,6 @@ import {
 	varBsDanger,
 	varBsDark,
 	varBsInfo,
-	varBsSecondaryBg,
 	varBsSuccess,
 	varBsWarning,
 } from '../../../../theme-contract/_vars.css'
@@ -53,10 +52,10 @@ globalStyle(`${quartzScope}${progress}`, {
 	vars: {
 		[varBsProgressHeight]: '1rem',
 		[varBsProgressFontSize]: '0.75rem',
-		[varBsProgressBg]: varBsSecondaryBg,
+		[varBsProgressBg]: 'rgba(0, 0, 0, 0.2)',
 		[varBsProgressBorderRadius]: varBsBorderRadius,
 		[varBsProgressBarColor]: '#fff',
-		[varBsProgressBarBg]: '#0d6efd',
+		[varBsProgressBarBg]: '#e83283',
 		[varBsProgressBarTransition]: 'width 0.6s ease',
 	},
 	display: 'flex',
@@ -88,6 +87,10 @@ globalStyle(`${quartzScope}${progressBar}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: varBsProgressBarBg,
 	transition: varBsProgressBarTransition,
+})
+
+globalStyle(`${quartzScope}${progressBar}`, {
+	transition: 'none',
 })
 
 // ── Progress bar color variants (absorbing Bootstrap bg-* utility classes) ───
