@@ -146,7 +146,7 @@ globalStyle(`${quartzScope}${alertDark}::after`, {
 // ── Dismissible alert ─────────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${alertDismissible}`, {
-	paddingRight: '3rem',
+	paddingRight: '6rem',
 })
 
 // ── Close button ──────────────────────────────────────────────────────────────

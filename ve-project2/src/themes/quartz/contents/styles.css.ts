@@ -4,7 +4,6 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBodyBg,
-	varBsEmphasisColor,
 	varBsEmphasisColorRgb,
 	varBsHighlightColor,
 	varBsHighlightBg,
@@ -111,7 +110,7 @@ const displayBase = {
 
 // Source CSS literal conversion for generic hr.
 globalStyle(`${quartzScope}${horizontalRule}`, {
-	margin: '1rem 0',
+	margin: '2rem 0',
 	color: 'inherit',
 	border: 0,
 	borderTop: `${varBsBorderWidth} solid`,
