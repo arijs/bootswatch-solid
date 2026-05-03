@@ -6,7 +6,6 @@ import {
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsDarkRgb,
-	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	placeholderIcon,
@@ -40,7 +39,7 @@ import { quartzScope } from '../../scope.css'
 
 globalStyle(`${quartzScope}${toastExample}`, {
 	backgroundColor: `rgba(${varBsDarkRgb}, 1)`,
-	padding: '3rem',
+	padding: '6rem',
 	alignItems: 'center',
 })
 
@@ -54,12 +53,12 @@ globalStyle(`${quartzScope}${toast}`, {
 		[varBsToastMaxWidth]: '350px',
 		[varBsToastFontSize]: '0.875rem',
 		[varBsToastColor]: '',
-		[varBsToastBg]: 'transparent',
-		[varBsToastBorderWidth]: '0',
+		[varBsToastBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
+		[varBsToastBorderWidth]: varBsBorderWidth,
 		[varBsToastBorderColor]: varBsBorderColorTranslucent,
 		[varBsToastBorderRadius]: varBsBorderRadius,
 		[varBsToastBoxShadow]: varBsBoxShadow,
-		[varBsToastHeaderColor]: varBsSecondaryColor,
+		[varBsToastHeaderColor]: '#fff',
 		[varBsToastHeaderBg]: 'transparent',
 		[varBsToastHeaderBorderColor]: 'rgba(255, 255, 255, 0.2)',
 	},
@@ -103,7 +102,7 @@ globalStyle(`${quartzScope}${placeholderIcon}`, {
 	width: '20px',
 	height: '20px',
 	borderRadius: `${varBsBorderRadius} !important`,
-	marginRight: '0.5rem !important',
+	marginRight: '1rem !important',
 })
 
 globalStyle(`${quartzScope}${toastBrand}`, {
@@ -113,7 +112,7 @@ globalStyle(`${quartzScope}${toastBrand}`, {
 
 globalStyle(`${quartzScope}${toastTimestamp}`, {
 	fontSize: '0.875em',
-	color: `${varBsSecondaryColor} !important`,
+	color: 'rgba(255, 255, 255, 0.7) !important',
 })
 
 globalStyle(`${quartzScope}${toastHeader} ${alertBtnClose}`, {
