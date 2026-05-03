@@ -35,14 +35,7 @@ import {
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
-	varBsBorderWidth,
-	varBsBodyBg,
 	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsPrimaryRgb,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-	varBsTertiaryBg,
 } from '../../../../theme-contract/_vars.css'
 import { quartzScope } from '../../scope.css'
 
@@ -77,21 +70,21 @@ globalStyle(`${quartzScope}${pagination}`, {
 		[varBsPaginationPaddingY]: '0.375rem',
 		[varBsPaginationFontSize]: '1rem',
 		[varBsPaginationColor]: varBsLinkColor,
-		[varBsPaginationBg]: varBsBodyBg,
-		[varBsPaginationBorderWidth]: varBsBorderWidth,
+		[varBsPaginationBg]: 'rgba(255, 255, 255, 0.3)',
+		[varBsPaginationBorderWidth]: '0',
 		[varBsPaginationBorderColor]: varBsBorderColor,
 		[varBsPaginationBorderRadius]: varBsBorderRadius,
-		[varBsPaginationHoverColor]: varBsLinkHoverColor,
-		[varBsPaginationHoverBg]: varBsTertiaryBg,
+		[varBsPaginationHoverColor]: '#fff',
+		[varBsPaginationHoverBg]: 'rgba(255, 255, 255, 0.4)',
 		[varBsPaginationHoverBorderColor]: varBsBorderColor,
-		[varBsPaginationFocusColor]: varBsLinkHoverColor,
-		[varBsPaginationFocusBg]: varBsSecondaryBg,
-		[varBsPaginationFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsPrimaryRgb}, 0.25)`,
+		[varBsPaginationFocusColor]: '#fff',
+		[varBsPaginationFocusBg]: 'rgba(255, 255, 255, 0.4)',
+		[varBsPaginationFocusBoxShadow]: 'none',
 		[varBsPaginationActiveColor]: '#fff',
-		[varBsPaginationActiveBg]: '#0d6efd',
-		[varBsPaginationActiveBorderColor]: '#0d6efd',
-		[varBsPaginationDisabledColor]: varBsSecondaryColor,
-		[varBsPaginationDisabledBg]: varBsSecondaryBg,
+		[varBsPaginationActiveBg]: '#e83283',
+		[varBsPaginationActiveBorderColor]: '#e83283',
+		[varBsPaginationDisabledColor]: 'rgba(255, 255, 255, 0.7)',
+		[varBsPaginationDisabledBg]: 'rgba(255, 255, 255, 0.3)',
 		[varBsPaginationDisabledBorderColor]: varBsBorderColor,
 	},
 	display: 'flex',
@@ -123,6 +116,10 @@ globalStyle(`${quartzScope}${pageLink}`, {
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${quartzScope}${pageLink}`, {
+	transition: 'none',
 })
 
 // SOURCE CSS: .page-link:hover { z-index: 2; color: ...; background-color: ...; border-color: ...; }
