@@ -48,7 +48,7 @@ globalStyle(`${quartzScope}${btnGroupButton}`, {
 })
 
 globalStyle(`${quartzScope}${marginEnd2}`, {
-	marginRight: '0.5rem !important',
+	marginRight: '1rem !important',
 })
 
 globalStyle(
