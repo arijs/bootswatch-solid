@@ -194,3 +194,9 @@ export const positionRelative = style({})
  * Bootstrap utility: .overflow-x-hidden
  */
 export const overflowXHidden = style({})
+
+/**
+ * Bootstrap utility: .text-dark { color: var(--bs-dark) !important; }
+ * Theme-specific text-shadow wired in each theme's utilities/styles.css.ts.
+ */
+export const textDark = style({})

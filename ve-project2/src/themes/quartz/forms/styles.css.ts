@@ -9,6 +9,8 @@ import {
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
 	varBsDangerRgb,
+	varBsGutterX,
+	varBsGutterY,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 	varBsSuccessRgb,
@@ -17,6 +19,7 @@ import {
 import {
 	varBsFormCheckBg,
 	varBsFormCheckBgImage,
+	varBsFormSelectBgIcon,
 	varBsFormSelectBgImg,
 	varBsFormSwitchBg,
 	varBsFormValidColor,
@@ -95,29 +98,29 @@ globalStyle(`${quartzScope}${mb3}`, {
 // Bootstrap grid utilities used by validation form demos.
 globalStyle(`${quartzScope}${row}`, {
 	vars: {
-		'--bs-gutter-x': '1.5rem',
-		'--bs-gutter-y': '0',
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	marginTop: 'calc(-1 * var(--bs-gutter-y))',
-	marginRight: 'calc(-0.5 * var(--bs-gutter-x))',
-	marginLeft: 'calc(-0.5 * var(--bs-gutter-x))',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
 globalStyle(`${quartzScope}${rowCol}`, {
 	flexShrink: 0,
 	width: '100%',
 	maxWidth: '100%',
-	paddingRight: 'calc(var(--bs-gutter-x) * 0.5)',
-	paddingLeft: 'calc(var(--bs-gutter-x) * 0.5)',
-	marginTop: 'var(--bs-gutter-y)',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
 })
 
 globalStyle(`${quartzScope}${g3}`, {
 	vars: {
-		'--bs-gutter-x': '1rem',
-		'--bs-gutter-y': '2rem',
+		[varBsGutterX]: '1rem',
+		[varBsGutterY]: '2rem',
 	},
 })
 
@@ -290,7 +293,7 @@ globalStyle(`${quartzScope}${formControlLg}::file-selector-button`, {
 // ─── Form select ──────────────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${formSelect}`, {
-	vars: { [varBsFormSelectBgImg]: selectChevronIcon },
+	vars: { [varBsFormSelectBgImg]: selectChevronIcon, [varBsFormSelectBgIcon]: 'none' },
 	margin: 0,
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
@@ -306,7 +309,7 @@ globalStyle(`${quartzScope}${formSelect}`, {
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: 'transparent',
-	backgroundImage: `${varBsFormSelectBgImg}, var(--bs-form-select-bg-icon, none)`,
+	backgroundImage: `${varBsFormSelectBgImg}, ${varBsFormSelectBgIcon}`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 1.5rem center',
 	backgroundSize: '16px 12px',
@@ -741,7 +744,7 @@ globalStyle(`${quartzScope}${formSelect}${isValid}`, {
 })
 
 globalStyle(`${quartzScope}${formSelect}${isValid}:not([multiple]):not([size]), ${quartzScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
-	vars: { '--bs-form-select-bg-icon': validIcon },
+	vars: { [varBsFormSelectBgIcon]: validIcon },
 	paddingRight: '8.25rem',
 	backgroundPosition: 'right 1.5rem center, center right 4.5rem',
 	backgroundSize: '16px 12px, calc(0.75em + 0.75rem) calc(0.75em + 0.75rem)',
@@ -757,7 +760,7 @@ globalStyle(`${quartzScope}${formSelect}${isInvalid}`, {
 })
 
 globalStyle(`${quartzScope}${formSelect}${isInvalid}:not([multiple]):not([size]), ${quartzScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
-	vars: { '--bs-form-select-bg-icon': invalidIcon },
+	vars: { [varBsFormSelectBgIcon]: invalidIcon },
 	paddingRight: '8.25rem',
 	backgroundPosition: 'right 1.5rem center, center right 4.5rem',
 	backgroundSize: '16px 12px, calc(0.75em + 0.75rem) calc(0.75em + 0.75rem)',

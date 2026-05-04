@@ -32,6 +32,7 @@ varBsDropdownLinkHoverColor,
 varBsDropdownMinWidth,
 varBsDropdownPaddingX,
 varBsDropdownPaddingY,
+varBsDropdownPosition,
 varBsDropdownSpacer,
 varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
@@ -149,13 +150,13 @@ marginTop: varBsDropdownSpacer,
 
 // ── Menu alignment modifiers ──────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${dropdownMenuStart}`, { vars: { '--bs-position': 'start' } })
+globalStyle(`${sketchyScope}${dropdownMenuStart}`, { vars: { [varBsDropdownPosition]: 'start' } })
 globalStyle(`${sketchyScope}${dropdownMenuStart}[data-bs-popper]`, {
 right: 'auto',
 left: 0,
 })
 
-globalStyle(`${sketchyScope}${dropdownMenuEnd}`, { vars: { '--bs-position': 'end' } })
+globalStyle(`${sketchyScope}${dropdownMenuEnd}`, { vars: { [varBsDropdownPosition]: 'end' } })
 globalStyle(`${sketchyScope}${dropdownMenuEnd}[data-bs-popper]`, {
 right: 0,
 left: 'auto',

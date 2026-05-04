@@ -29,35 +29,42 @@ import {
 	rowCols1,
 	rowColsMd2,
 	stickyXlTop,
+	textDark,
 	textMuted,
 	visuallyHidden,
 	fwBold,
 } from '../../../theme-contract/utilities/contract.css'
-import { bootstrapScope } from '../scope.css'
+import { vaporScope } from '../scope.css'
 
 // Bootstrap utility parity:
 // .text-muted { color: var(--bs-secondary-color) !important; }
-globalStyle(`${bootstrapScope}${textMuted}`, {
+globalStyle(`${vaporScope}${textMuted}`, {
 	color: `${varBsSecondaryColor} !important`,
+	textShadow: '0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
 })
 
-globalStyle(`${bootstrapScope}${alignSelfStart}`, {
+// .text-dark uses dark glow text-shadow in Vapor
+globalStyle(`${vaporScope}${textDark}`, {
+	textShadow: '0 0 1px rgba(23, 2, 41, 0.3), 0 0 2px rgba(23, 2, 41, 0.3), 0 0 5px rgba(23, 2, 41, 0.2)',
+})
+
+globalStyle(`${vaporScope}${alignSelfStart}`, {
 	alignSelf: 'flex-start !important',
 })
 
-globalStyle(`${bootstrapScope}${dFlex}`, {
+globalStyle(`${vaporScope}${dFlex}`, {
 	display: 'flex !important',
 })
 
-globalStyle(`${bootstrapScope}${positionRelative}`, {
+globalStyle(`${vaporScope}${positionRelative}`, {
 	position: 'relative',
 })
 
-globalStyle(`${bootstrapScope}${overflowXHidden}`, {
+globalStyle(`${vaporScope}${overflowXHidden}`, {
 	overflowX: 'hidden',
 })
 
-globalStyle(`${bootstrapScope}${row}`, {
+globalStyle(`${vaporScope}${row}`, {
 	vars: {
 		[varBsGutterX]: '1.5rem',
 		[varBsGutterY]: '0',
@@ -69,7 +76,7 @@ globalStyle(`${bootstrapScope}${row}`, {
 	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
-globalStyle(`${bootstrapScope}${row} > *`, {
+globalStyle(`${vaporScope}${row} > *`, {
 	flexShrink: 0,
 	width: '100%',
 	maxWidth: '100%',
@@ -78,16 +85,16 @@ globalStyle(`${bootstrapScope}${row} > *`, {
 	marginTop: varBsGutterY,
 })
 
-globalStyle(`${bootstrapScope}${col}`, {
+globalStyle(`${vaporScope}${col}`, {
 	flex: '1 0 0',
 })
 
-globalStyle(`${bootstrapScope}${rowCols1} > *`, {
+globalStyle(`${vaporScope}${rowCols1} > *`, {
 	flex: '0 0 auto',
 	width: '100%',
 })
 
-globalStyle(`${bootstrapScope}${rowColsMd2} > *`, {
+globalStyle(`${vaporScope}${rowColsMd2} > *`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
@@ -96,21 +103,21 @@ globalStyle(`${bootstrapScope}${rowColsMd2} > *`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${g0}`, {
+globalStyle(`${vaporScope}${g0}`, {
 	vars: {
 		[varBsGutterX]: '0',
 		[varBsGutterY]: '0',
 	},
 })
 
-globalStyle(`${bootstrapScope}${g4}`, {
+globalStyle(`${vaporScope}${g4}`, {
 	vars: {
 		[varBsGutterX]: '1.5rem',
 		[varBsGutterY]: '1.5rem',
 	},
 })
 
-globalStyle(`${bootstrapScope}${colMd4}`, {
+globalStyle(`${vaporScope}${colMd4}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
@@ -119,7 +126,7 @@ globalStyle(`${bootstrapScope}${colMd4}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${colMd8}`, {
+globalStyle(`${vaporScope}${colMd8}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
@@ -130,51 +137,51 @@ globalStyle(`${bootstrapScope}${colMd8}`, {
 
 // Bootstrap utility parity:
 // .px-3 { padding-right: 1rem !important; padding-left: 1rem !important; }
-globalStyle(`${bootstrapScope}${px3}`, {
+globalStyle(`${vaporScope}${px3}`, {
 	paddingRight: '1rem !important',
 	paddingLeft: '1rem !important',
 })
 
-globalStyle(`${bootstrapScope}${px2}`, {
+globalStyle(`${vaporScope}${px2}`, {
 	paddingRight: '0.5rem !important',
 	paddingLeft: '0.5rem !important',
 })
 
 // Bootstrap utility parity:
 // .mb-3 { margin-bottom: 1rem !important; }
-globalStyle(`${bootstrapScope}${mb3}`, {
+globalStyle(`${vaporScope}${mb3}`, {
 	marginBottom: '1rem !important',
 })
 
-globalStyle(`${bootstrapScope}${mb2}`, {
+globalStyle(`${vaporScope}${mb2}`, {
 	marginBottom: '0.5rem !important',
 })
 
-globalStyle(`${bootstrapScope}${me2}`, {
+globalStyle(`${vaporScope}${me2}`, {
 	marginRight: '0.5rem !important',
 })
 
-globalStyle(`${bootstrapScope}${meAuto}`, {
+globalStyle(`${vaporScope}${meAuto}`, {
 	marginRight: 'auto !important',
 })
 
-globalStyle(`${bootstrapScope}${mt5}`, {
+globalStyle(`${vaporScope}${mt5}`, {
 	marginTop: '3rem !important',
 })
 
-globalStyle(`${bootstrapScope}${pt3}`, {
+globalStyle(`${vaporScope}${pt3}`, {
 	paddingTop: '1rem !important',
 })
 
-globalStyle(`${bootstrapScope}${pb2}`, {
+globalStyle(`${vaporScope}${pb2}`, {
 	paddingBottom: '0.5rem !important',
 })
 
-globalStyle(`${bootstrapScope}${fwBold}`, {
+globalStyle(`${vaporScope}${fwBold}`, {
 	fontWeight: '700 !important',
 })
 
-globalStyle(`${bootstrapScope}${mbXl2}`, {
+globalStyle(`${vaporScope}${mbXl2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginBottom: '0.5rem !important',
@@ -182,7 +189,7 @@ globalStyle(`${bootstrapScope}${mbXl2}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${mbXl5}`, {
+globalStyle(`${vaporScope}${mbXl5}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginBottom: '3rem !important',
@@ -190,7 +197,7 @@ globalStyle(`${bootstrapScope}${mbXl5}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${mtXl0}`, {
+globalStyle(`${vaporScope}${mtXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginTop: '0 !important',
@@ -198,7 +205,7 @@ globalStyle(`${bootstrapScope}${mtXl0}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${mbLg0}`, {
+globalStyle(`${vaporScope}${mbLg0}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			marginBottom: '0 !important',
@@ -206,7 +213,7 @@ globalStyle(`${bootstrapScope}${mbLg0}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${ptXl5}`, {
+globalStyle(`${vaporScope}${ptXl5}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			paddingTop: '3rem !important',
@@ -214,7 +221,7 @@ globalStyle(`${bootstrapScope}${ptXl5}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${pbXl3}`, {
+globalStyle(`${vaporScope}${pbXl3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			paddingBottom: '1rem !important',
@@ -222,7 +229,7 @@ globalStyle(`${bootstrapScope}${pbXl3}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${stickyXlTop}`, {
+globalStyle(`${vaporScope}${stickyXlTop}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			position: 'sticky',
@@ -234,7 +241,7 @@ globalStyle(`${bootstrapScope}${stickyXlTop}`, {
 
 // Bootstrap utility parity:
 // .visually-hidden { position: absolute !important; width: 1px !important; ... }
-globalStyle(`${bootstrapScope}${visuallyHidden}`, {
+globalStyle(`${vaporScope}${visuallyHidden}`, {
 	position: 'absolute !important' as 'absolute',
 	width: '1px !important',
 	height: '1px !important',

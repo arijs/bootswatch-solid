@@ -111,6 +111,11 @@ export const varBsLinkHoverColor = createVar()
 export const varBsLinkHoverColorRgb = createVar()
 export const varBsCodeColor = createVar()
 
+// ── Layout / grid helpers ───────────────────────────────────────────────────
+
+export const varBsGutterX = createVar()
+export const varBsGutterY = createVar()
+
 // ── Borders ───────────────────────────────────────────────────────────────────
 
 export const varBsBorderWidth = createVar()

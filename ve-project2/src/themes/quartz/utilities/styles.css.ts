@@ -1,5 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css'
-import { varBsSecondaryColor } from '../../../theme-contract/_vars.css'
+import { varBsGutterX, varBsGutterY, varBsSecondaryColor } from '../../../theme-contract/_vars.css'
 import {
 	alignSelfStart,
 	col,
@@ -59,23 +59,23 @@ globalStyle(`${quartzScope}${overflowXHidden}`, {
 
 globalStyle(`${quartzScope}${row}`, {
 	vars: {
-		'--bs-gutter-x': '1.5rem',
-		'--bs-gutter-y': '0',
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	marginTop: 'calc(-1 * var(--bs-gutter-y))',
-	marginRight: 'calc(-0.5 * var(--bs-gutter-x))',
-	marginLeft: 'calc(-0.5 * var(--bs-gutter-x))',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
 globalStyle(`${quartzScope}${row} > *`, {
 	flexShrink: 0,
 	width: '100%',
 	maxWidth: '100%',
-	paddingRight: 'calc(var(--bs-gutter-x) * 0.5)',
-	paddingLeft: 'calc(var(--bs-gutter-x) * 0.5)',
-	marginTop: 'var(--bs-gutter-y)',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
 })
 
 globalStyle(`${quartzScope}${col}`, {
@@ -98,15 +98,15 @@ globalStyle(`${quartzScope}${rowColsMd2} > *`, {
 
 globalStyle(`${quartzScope}${g0}`, {
 	vars: {
-		'--bs-gutter-x': '0',
-		'--bs-gutter-y': '0',
+		[varBsGutterX]: '0',
+		[varBsGutterY]: '0',
 	},
 })
 
 globalStyle(`${quartzScope}${g4}`, {
 	vars: {
-		'--bs-gutter-x': '3rem',
-		'--bs-gutter-y': '3rem',
+		[varBsGutterX]: '3rem',
+		[varBsGutterY]: '3rem',
 	},
 })
 

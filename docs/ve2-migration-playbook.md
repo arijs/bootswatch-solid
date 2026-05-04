@@ -233,30 +233,30 @@ Never source theme-specific values from another theme's screenshot files, from `
 After `bootstrap` and `sketchy` are fully converted (no missing families for selected routes), continue verification with the remaining known theme slugs:
 
 1. `quartz`
+23. `vapor`
 2. `slate`
+19. `solar`
+17. `sandstone`
 3. `materia`
 4. `darkly`
+8. `cyborg`
 5. `brite`
+13. `lux`
+12. `lumen`
 6. `cerulean`
 7. `cosmo`
-8. `cyborg`
+21. `superhero`
+25. `zephyr`
+20. `spacelab`
 9. `flatly`
 10. `journal`
 11. `litera`
-12. `lumen`
-13. `lux`
 14. `minty`
 15. `morph`
 16. `pulse`
-17. `sandstone`
 18. `simplex`
-19. `solar`
-20. `spacelab`
-21. `superhero`
 22. `united`
-23. `vapor`
 24. `yeti`
-25. `zephyr`
 
 ---
 
@@ -343,6 +343,8 @@ node scripts/capture-leaf-screenshots.mjs --ve-missing-only
 ```
 
 The `converted=` number should increase by exactly the count of routes you added. None of the new family's routes should appear in the missing list.
+
+For screenshot mismatches that are hard to diagnose from the diff image alone, use the Playwright computed-style comparison technique documented in [`docs/ve2-debugging-mismatch-walkthrough.md`](./ve2-debugging-mismatch-walkthrough.md).
 
 ---
 

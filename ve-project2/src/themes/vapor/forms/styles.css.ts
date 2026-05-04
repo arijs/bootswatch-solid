@@ -14,7 +14,6 @@ import {
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 	varBsSuccessRgb,
-	varBsTertiaryBg,
 } from '../../../theme-contract/_vars.css'
 import {
 	varBsFormCheckBg,
@@ -27,9 +26,9 @@ import {
 	varBsFormInvalidBorderColor,
 } from '../../../theme-contract/forms/_vars.css'
 import {
+	colMd6,
 	fieldset,
 	floatingLabel,
-	form,
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
@@ -43,10 +42,8 @@ import {
 	formSelect,
 	formSelectLg,
 	formSelectSm,
-	colMd6,
 	formSwitch,
 	formText,
-	g3,
 	hasValidation,
 	inputGroup,
 	inputGroupText,
@@ -56,11 +53,12 @@ import {
 	legend,
 	legendClear,
 	mb3,
+	g3,
 	row,
 	rowCol,
 	validFeedback,
 } from '../../../theme-contract/forms/contract.css'
-import { sketchyScope } from '../scope.css'
+import { vaporScope } from '../scope.css'
 
 // ─── SVG icons ────────────────────────────────────────────────────────────────
 
@@ -88,22 +86,58 @@ const invalidIcon =
 const validIcon =
 	"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.54.54 2.4-2.4-.53-.53-1.87 1.86-.8-.8-.53.53z'/%3e%3c/svg%3e\")"
 
-
-
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${mb3}`, {
+globalStyle(`${vaporScope}${mb3}`, {
 	marginBottom: '1rem',
+})
+
+// Bootstrap grid utilities used by validation form demos.
+globalStyle(`${vaporScope}${row}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
+})
+
+globalStyle(`${vaporScope}${rowCol}`, {
+	flexShrink: 0,
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
+})
+
+globalStyle(`${vaporScope}${g3}`, {
+	vars: {
+		[varBsGutterX]: '1rem',
+		[varBsGutterY]: '1rem',
+	},
+})
+
+globalStyle(`${vaporScope}${colMd6}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
 })
 
 // ─── Form label / text ────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formLabel}`, {
+globalStyle(`${vaporScope}${formLabel}`, {
 	display: 'inline-block',
 	marginBottom: '0.5rem',
 })
 
-globalStyle(`${sketchyScope}${formText}`, {
+globalStyle(`${vaporScope}${formText}`, {
 	marginTop: '0.25rem',
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
@@ -111,7 +145,7 @@ globalStyle(`${sketchyScope}${formText}`, {
 
 // ─── Form control (input/textarea) ────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formControl}`, {
+globalStyle(`${vaporScope}${formControl}`, {
 	margin: 0,
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
@@ -119,54 +153,54 @@ globalStyle(`${sketchyScope}${formControl}`, {
 	display: 'block',
 	width: '100%',
 	padding: '0.375rem 0.75rem',
-	fontWeight: 700,
+	fontWeight: 400,
 	color: varBsBodyColor,
 	WebkitAppearance: 'none',
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: varBsBodyBg,
 	backgroundClip: 'padding-box',
-	border: `${varBsBorderWidth} solid #333`,
-	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
+	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	borderRadius: varBsBorderRadius,
 	transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formControl}:focus`, {
+globalStyle(`${vaporScope}${formControl}:focus`, {
 	color: varBsBodyColor,
 	backgroundColor: varBsBodyBg,
-	borderColor: '#333',
+	borderColor: '#f59cdc',
 	outline: 0,
-	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+	boxShadow: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
 })
 
-globalStyle(`${sketchyScope}${formControl}::placeholder`, {
+globalStyle(`${vaporScope}${formControl}::placeholder`, {
 	color: varBsSecondaryColor,
 	opacity: 1,
 })
 
-globalStyle(`${sketchyScope}${formControl}:disabled`, {
+globalStyle(`${vaporScope}${formControl}:disabled`, {
+	color: '#adb5bd',
 	backgroundColor: varBsSecondaryBg,
-	borderColor: '#868e96',
 	opacity: 1,
 })
 
-globalStyle(`${sketchyScope}${formControl}[type="file"]`, {
+globalStyle(`${vaporScope}${formControl}[type="file"]`, {
 	overflow: 'hidden',
 })
 
-globalStyle(`${sketchyScope}${formControl}[type="file"]:not(:disabled):not([readonly])`, {
+globalStyle(`${vaporScope}${formControl}[type="file"]:not(:disabled):not([readonly])`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`${sketchyScope}${formControl}::-webkit-file-upload-button`, {
+globalStyle(`${vaporScope}${formControl}::-webkit-file-upload-button`, {
 	font: 'inherit',
 	WebkitAppearance: 'button',
 	padding: '0.375rem 0.75rem',
 	margin: '-0.375rem -0.75rem',
 	WebkitMarginEnd: '0.75rem',
 	marginInlineEnd: '0.75rem',
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
+	color: '#fff',
+	backgroundColor: '#250d49',
 	pointerEvents: 'none',
 	borderColor: 'inherit',
 	borderStyle: 'solid',
@@ -177,15 +211,15 @@ globalStyle(`${sketchyScope}${formControl}::-webkit-file-upload-button`, {
 		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formControl}::file-selector-button`, {
+globalStyle(`${vaporScope}${formControl}::file-selector-button`, {
 	font: 'inherit',
 	appearance: 'button',
 	padding: '0.375rem 0.75rem',
 	margin: '-0.375rem -0.75rem',
 	WebkitMarginEnd: '0.75rem',
 	marginInlineEnd: '0.75rem',
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
+	color: '#fff',
+	backgroundColor: '#250d49',
 	pointerEvents: 'none',
 	borderColor: 'inherit',
 	borderStyle: 'solid',
@@ -197,56 +231,57 @@ globalStyle(`${sketchyScope}${formControl}::file-selector-button`, {
 })
 
 globalStyle(
-	`${sketchyScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
-	{ backgroundColor: varBsSecondaryBg },
+	`${vaporScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
+	{ backgroundColor: '#210b40' },
 )
 globalStyle(
-	`${sketchyScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
-	{ backgroundColor: varBsSecondaryBg },
+	`${vaporScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
+	{ backgroundColor: '#210b40' },
 )
 
-globalStyle(`${sketchyScope}${formControl}`, {
+// @media prefers-reduced-motion
+globalStyle(`${vaporScope}${formControl}`, {
 	'@media': { '(prefers-reduced-motion: reduce)': { transition: 'none' } },
 })
 
 // ─── Form control sizing ───────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formControlSm}`, {
+globalStyle(`${vaporScope}${formControlSm}`, {
 	minHeight: `calc(1.5em + 0.5rem + calc(${varBsBorderWidth} * 2))`,
 	padding: '0.25rem 0.5rem',
 	fontSize: '0.875rem',
-	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
+	borderRadius: varBsBorderRadiusSm,
 })
 
-globalStyle(`${sketchyScope}${formControlSm}::-webkit-file-upload-button`, {
+globalStyle(`${vaporScope}${formControlSm}::-webkit-file-upload-button`, {
 	padding: '0.25rem 0.5rem',
 	margin: '-0.25rem -0.5rem',
 	WebkitMarginEnd: '0.5rem',
 	marginInlineEnd: '0.5rem',
 })
 
-globalStyle(`${sketchyScope}${formControlSm}::file-selector-button`, {
+globalStyle(`${vaporScope}${formControlSm}::file-selector-button`, {
 	padding: '0.25rem 0.5rem',
 	margin: '-0.25rem -0.5rem',
 	WebkitMarginEnd: '0.5rem',
 	marginInlineEnd: '0.5rem',
 })
 
-globalStyle(`${sketchyScope}${formControlLg}`, {
+globalStyle(`${vaporScope}${formControlLg}`, {
 	minHeight: `calc(1.5em + 1rem + calc(${varBsBorderWidth} * 2))`,
 	padding: '0.5rem 1rem',
 	fontSize: '1.25rem',
-	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
+	borderRadius: varBsBorderRadiusLg,
 })
 
-globalStyle(`${sketchyScope}${formControlLg}::-webkit-file-upload-button`, {
+globalStyle(`${vaporScope}${formControlLg}::-webkit-file-upload-button`, {
 	padding: '0.5rem 1rem',
 	margin: '-0.5rem -1rem',
 	WebkitMarginEnd: '1rem',
 	marginInlineEnd: '1rem',
 })
 
-globalStyle(`${sketchyScope}${formControlLg}::file-selector-button`, {
+globalStyle(`${vaporScope}${formControlLg}::file-selector-button`, {
 	padding: '0.5rem 1rem',
 	margin: '-0.5rem -1rem',
 	WebkitMarginEnd: '1rem',
@@ -255,7 +290,7 @@ globalStyle(`${sketchyScope}${formControlLg}::file-selector-button`, {
 
 // ─── Form select ──────────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formSelect}`, {
+globalStyle(`${vaporScope}${formSelect}`, {
 	vars: { [varBsFormSelectBgImg]: selectChevronIcon },
 	margin: 0,
 	fontFamily: 'inherit',
@@ -266,7 +301,7 @@ globalStyle(`${sketchyScope}${formSelect}`, {
 	display: 'block',
 	width: '100%',
 	padding: '0.375rem 2.25rem 0.375rem 0.75rem',
-	fontWeight: 700,
+	fontWeight: 400,
 	color: varBsBodyColor,
 	WebkitAppearance: 'none',
 	MozAppearance: 'none',
@@ -276,29 +311,27 @@ globalStyle(`${sketchyScope}${formSelect}`, {
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 0.75rem center',
 	backgroundSize: '16px 12px',
-	border: `${varBsBorderWidth} solid #333`,
-	borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px',
+	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	borderRadius: varBsBorderRadius,
 	transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formSelect}:focus`, {
-	borderColor: '#333',
+globalStyle(`${vaporScope}${formSelect}:focus`, {
+	borderColor: '#f59cdc',
 	outline: 0,
-	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+	boxShadow: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
 })
 
-globalStyle(`${sketchyScope}${formSelect}:disabled`, {
-	color: '#868e96',
+globalStyle(`${vaporScope}${formSelect}:disabled`, {
 	backgroundColor: varBsSecondaryBg,
-	borderColor: '#868e96',
 	opacity: 1,
 })
 
-globalStyle(`${sketchyScope}${formSelect}`, {
+globalStyle(`${vaporScope}${formSelect}`, {
 	'@media': { '(prefers-reduced-motion: reduce)': { transition: 'none' } },
 })
 
-globalStyle(`${sketchyScope}${formSelectSm}`, {
+globalStyle(`${vaporScope}${formSelectSm}`, {
 	paddingTop: '0.25rem',
 	paddingBottom: '0.25rem',
 	paddingLeft: '0.5rem',
@@ -306,7 +339,7 @@ globalStyle(`${sketchyScope}${formSelectSm}`, {
 	borderRadius: varBsBorderRadiusSm,
 })
 
-globalStyle(`${sketchyScope}${formSelectLg}`, {
+globalStyle(`${vaporScope}${formSelectLg}`, {
 	paddingTop: '0.5rem',
 	paddingBottom: '0.5rem',
 	paddingLeft: '1rem',
@@ -314,17 +347,9 @@ globalStyle(`${sketchyScope}${formSelectLg}`, {
 	borderRadius: varBsBorderRadiusLg,
 })
 
-// Sketchy textarea/select controls use a distinct hand-drawn shape.
-globalStyle(
-	`${sketchyScope} textarea, ${sketchyScope} textarea${formControl}, ${sketchyScope} select, ${sketchyScope} select${formControl}`,
-	{
-		borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px !important',
-	},
-)
-
 // ─── Form range ───────────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formRange}`, {
+globalStyle(`${vaporScope}${formRange}`, {
 	margin: 0,
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
@@ -338,63 +363,63 @@ globalStyle(`${sketchyScope}${formRange}`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${sketchyScope}${formRange}:focus`, {
+globalStyle(`${vaporScope}${formRange}:focus`, {
 	outline: 0,
 })
 
-globalStyle(`${sketchyScope}${formRange}:focus::-webkit-slider-thumb`, {
-	boxShadow: '0 0 0 1px #fff, 0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+globalStyle(`${vaporScope}${formRange}:focus::-webkit-slider-thumb`, {
+	boxShadow: '0 0 0 1px #1a0933, 0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
 })
 
-globalStyle(`${sketchyScope}${formRange}::-webkit-slider-thumb`, {
+globalStyle(`${vaporScope}${formRange}::-webkit-slider-thumb`, {
 	width: '1rem',
 	height: '1rem',
 	marginTop: '-0.25rem',
 	WebkitAppearance: 'none',
 	appearance: 'none',
-	backgroundColor: '#333',
+	backgroundColor: '#ea39b8',
 	border: 0,
 	borderRadius: '1rem',
 	transition:
 		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formRange}::-webkit-slider-thumb:active`, {
-	backgroundColor: '#c2c2c2',
+globalStyle(`${vaporScope}${formRange}::-webkit-slider-thumb:active`, {
+	backgroundColor: '#f9c4ea',
 })
 
-globalStyle(`${sketchyScope}${formRange}::-webkit-slider-runnable-track`, {
+globalStyle(`${vaporScope}${formRange}::-webkit-slider-runnable-track`, {
 	width: '100%',
 	height: '0.5rem',
 	color: 'transparent',
 	cursor: 'pointer',
-	backgroundColor: varBsSecondaryBg,
+	backgroundColor: '#30115e',
 	borderColor: 'transparent',
 	borderRadius: '1rem',
 })
 
-globalStyle(`${sketchyScope}${formRange}:disabled`, {
+globalStyle(`${vaporScope}${formRange}:disabled`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${sketchyScope}${formRange}:disabled::-webkit-slider-thumb`, {
-	backgroundColor: varBsSecondaryColor,
+globalStyle(`${vaporScope}${formRange}:disabled::-webkit-slider-thumb`, {
+	backgroundColor: '#6f42c1',
 })
 
 // ─── Form check ───────────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formCheck}`, {
+globalStyle(`${vaporScope}${formCheck}`, {
 	display: 'block',
 	minHeight: '1.5rem',
 	paddingLeft: '1.5em',
 	marginBottom: '0.125rem',
 })
 
-globalStyle(`${sketchyScope}${formSwitch}`, {
-	paddingLeft: 0,
+globalStyle(`${vaporScope}${formSwitch}`, {
+	paddingLeft: '2.5em',
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}`, {
+globalStyle(`${vaporScope}${formCheckInput}`, {
 	vars: {
 		[varBsFormCheckBg]: varBsBodyBg,
 		[varBsFormCheckBgImage]: 'none',
@@ -422,184 +447,85 @@ globalStyle(`${sketchyScope}${formCheckInput}`, {
 	printColorAdjust: 'exact',
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}[type="checkbox"]`, {
+globalStyle(`${vaporScope}${formCheckInput}[type="checkbox"]`, {
 	borderRadius: '0.25em',
 })
 
-// Sketchy hand-drawn checkbox: replace native checkbox with pseudo-element box + "x" mark.
-globalStyle(`${sketchyScope}${formCheckInput}[type="checkbox"]`, {
-	position: 'relative',
-	width: 0,
-	height: 0,
-	border: 'none',
+globalStyle(`${vaporScope}${formCheckInput}[type="radio"]`, {
+	borderRadius: '50%',
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}[type="checkbox"]::before`, {
-	position: 'absolute',
-	top: '-0.1em',
-	left: 0,
-	display: 'inline-block',
-	width: '15px',
-	height: '16px',
-	content: '""',
-	border: '2px solid #333',
-	borderRadius: '2px 8px 2px 4px/5px 3px 5px 3px',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="checkbox"]:focus::before`, {
-	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="checkbox"]:checked::after`, {
-	position: 'absolute',
-	top: 0,
-	left: '0.1em',
-	fontSize: '1.5rem',
-	lineHeight: 0.5,
-	color: '#333',
-	content: '"x"',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="checkbox"]:disabled::before`, {
-	border: '2px solid #aaa',
-})
-
-// Sketchy hand-drawn radio button: replace native with pseudo-element circle.
-globalStyle(`${sketchyScope}${formCheckInput}[type="radio"]`, {
-	position: 'relative',
-	width: 0,
-	height: 0,
-	border: 'none',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="radio"]::before`, {
-	position: 'absolute',
-	top: '-0.1em',
-	left: 0,
-	display: 'inline-block',
-	width: '16px',
-	height: '16px',
-	content: '""',
-	border: '2px solid #333',
-	borderRadius: '50% 45% 40% 50%/40% 50% 50% 45%',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="radio"]:focus::before`, {
-	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="radio"]:checked::before`, {
-	backgroundColor: '#333',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}[type="radio"]:disabled::before`, {
-	border: '2px solid #aaa',
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}:active`, {
+globalStyle(`${vaporScope}${formCheckInput}:active`, {
 	filter: 'brightness(90%)',
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}:focus`, {
-	borderColor: '#333',
+globalStyle(`${vaporScope}${formCheckInput}:focus`, {
+	borderColor: '#f59cdc',
 	outline: 0,
-	// boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+	boxShadow: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}:checked`, {
-	backgroundColor: '#333',
-	borderColor: '#333',
+globalStyle(`${vaporScope}${formCheckInput}:checked`, {
+	backgroundColor: '#ea39b8',
+	borderColor: '#ea39b8',
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}:checked[type="checkbox"]`, {
+globalStyle(`${vaporScope}${formCheckInput}:checked[type="checkbox"]`, {
 	vars: { [varBsFormCheckBgImage]: checkedMarkIcon },
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}:checked[type="radio"]`, {
+globalStyle(`${vaporScope}${formCheckInput}:checked[type="radio"]`, {
 	vars: { [varBsFormCheckBgImage]: checkedRadioIcon },
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}:disabled`, {
+globalStyle(`${vaporScope}${formCheckInput}:disabled`, {
 	pointerEvents: 'none',
 	filter: 'none',
 	opacity: 0.5,
 })
 
-globalStyle(`${sketchyScope}${formCheckLabel}`, {
+globalStyle(`${vaporScope}${formCheckLabel}`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${sketchyScope}${formCheck} ${formCheckInput}`, {
+globalStyle(`${vaporScope}${formCheck} ${formCheckInput}`, {
 	float: 'left',
 	marginLeft: '-1.5em',
 })
 
-// Sketchy form-switch uses pseudo-elements instead of background-image toggle.
-// Use [type="checkbox"] to beat specificity of formCheckInput[type="checkbox"] width:0/height:0 rule.
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}[type="checkbox"]`, {
-	position: 'relative',
-	marginLeft: 0,
+globalStyle(`${vaporScope}${formSwitch} ${formCheckInput}`, {
 	width: '2em',
-	height: '1em',
-	backgroundImage: 'none',
-	backgroundColor: varBsBodyBg,
+	marginLeft: '-2.5em',
+	backgroundImage: varBsFormSwitchBg,
+	backgroundPosition: 'left center',
+	borderRadius: '2em',
+	transition: 'background-position 0.15s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}[type="checkbox"]:checked`, {
-	backgroundColor: varBsBodyBg,
-	borderColor: '#333',
-	vars: { [varBsFormCheckBgImage]: 'none' },
+globalStyle(`${vaporScope}${formSwitch} ${formCheckInput}:focus`, {
+	vars: { [varBsFormSwitchBg]: switchKnobFocusIcon },
 })
 
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}[type="checkbox"]:focus`, {
-	boxShadow: 'none',
-})
-
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}[type="checkbox"]::before`, {
-	width: '32px',
-	borderRadius: '30% 35% 30% 30%/30% 50% 30% 45%',
-})
-
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}[type="checkbox"]::after`, {
-	position: 'absolute',
-	top: 0,
-	left: 0,
-	display: 'inline-block',
-	width: '12px',
-	height: '12px',
-	content: '""',
-	backgroundColor: '#fff',
-	border: '2px solid #333',
-	borderRadius: '50% 45% 40% 50%/40% 50% 50% 45%',
-	transition: 'none',
-})
-
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}[type="checkbox"]:checked::after`, {
-	content: '""',
-	top: 0,
-	left: '18px',
-	backgroundColor: '#333',
-})
-
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckLabel}`, {
-	marginLeft: '0.5em',
+globalStyle(`${vaporScope}${formSwitch} ${formCheckInput}:checked`, {
+	backgroundPosition: 'right center',
+	vars: { [varBsFormSwitchBg]: switchKnobCheckedIcon },
 })
 
 globalStyle(
-	`${sketchyScope}${formCheckInput}[disabled] ~ ${formCheckLabel}, ${sketchyScope}${formCheckInput}:disabled ~ ${formCheckLabel}`,
+	`${vaporScope}${formCheckInput}[disabled] ~ ${formCheckLabel}, ${vaporScope}${formCheckInput}:disabled ~ ${formCheckLabel}`,
 	{
 		cursor: 'default',
 		opacity: 0.5,
 	},
 )
 
-globalStyle(`${sketchyScope}${formSwitch} ${formCheckInput}`, {
+globalStyle(`${vaporScope}${formSwitch} ${formCheckInput}`, {
 	'@media': { '(prefers-reduced-motion: reduce)': { transition: 'none' } },
 })
 
 // ─── Input group ──────────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${inputGroup}`, {
+globalStyle(`${vaporScope}${inputGroup}`, {
 	position: 'relative',
 	display: 'flex',
 	flexWrap: 'wrap',
@@ -607,23 +533,23 @@ globalStyle(`${sketchyScope}${inputGroup}`, {
 	width: '100%',
 })
 
-globalStyle(`${sketchyScope}${inputGroupText}`, {
+globalStyle(`${vaporScope}${inputGroupText}`, {
 	display: 'flex',
 	alignItems: 'center',
 	padding: '0.375rem 0.75rem',
 	fontSize: '1rem',
-	fontWeight: 700,
+	fontWeight: 400,
 	lineHeight: '1.5',
-	color: varBsBodyColor,
+	color: '#fff',
 	textAlign: 'center',
 	whiteSpace: 'nowrap',
-	backgroundColor: varBsTertiaryBg,
-	border: `${varBsBorderWidth} solid #333`,
-	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
+	backgroundColor: '#250d49',
+	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	borderRadius: varBsBorderRadius,
 })
 
 globalStyle(
-	`${sketchyScope}${inputGroup} > input, ${sketchyScope}${inputGroup} > select, ${sketchyScope}${inputGroup} > textarea, ${sketchyScope}${inputGroup} > .form-floating`,
+	`${vaporScope}${inputGroup} > input, ${vaporScope}${inputGroup} > select, ${vaporScope}${inputGroup} > textarea, ${vaporScope}${inputGroup} > .form-floating`,
 	{
 		position: 'relative',
 		flex: '1 1 auto',
@@ -633,17 +559,17 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${inputGroup} > input:focus, ${sketchyScope}${inputGroup} > select:focus, ${sketchyScope}${inputGroup} > textarea:focus, ${sketchyScope}${inputGroup} > .form-floating:focus-within`,
+	`${vaporScope}${inputGroup} > input:focus, ${vaporScope}${inputGroup} > select:focus, ${vaporScope}${inputGroup} > textarea:focus, ${vaporScope}${inputGroup} > .form-floating:focus-within`,
 	{ zIndex: 5 },
 )
 
 globalStyle(
-	`${sketchyScope}${inputGroup} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,
+	`${vaporScope}${inputGroup} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,
 	{ borderTopRightRadius: 0, borderBottomRightRadius: 0 },
 )
 
 globalStyle(
-	`${sketchyScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`,
+	`${vaporScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`,
 	{
 		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 		borderTopLeftRadius: 0,
@@ -653,11 +579,11 @@ globalStyle(
 
 // ─── Floating label ───────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${formFloating}`, {
+globalStyle(`${vaporScope}${formFloating}`, {
 	position: 'relative',
 })
 
-globalStyle(`${sketchyScope}${floatingLabel}`, {
+globalStyle(`${vaporScope}${floatingLabel}`, {
 	position: 'absolute',
 	top: 0,
 	left: 0,
@@ -676,73 +602,73 @@ globalStyle(`${sketchyScope}${floatingLabel}`, {
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${floatingLabel}`, {
+globalStyle(`${vaporScope}${floatingLabel}`, {
 	'@media': { '(prefers-reduced-motion: reduce)': { transition: 'none' } },
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}`, {
+globalStyle(`${vaporScope}${formControlFloating}`, {
 	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	lineHeight: '1.25',
 	padding: '1rem 0.75rem',
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}::placeholder`, {
+globalStyle(`${vaporScope}${formControlFloating}::placeholder`, {
 	color: 'transparent',
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}:focus`, {
+globalStyle(`${vaporScope}${formControlFloating}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}:not(:placeholder-shown)`, {
+globalStyle(`${vaporScope}${formControlFloating}:not(:placeholder-shown)`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}:-webkit-autofill`, {
+globalStyle(`${vaporScope}${formControlFloating}:-webkit-autofill`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}:focus ~ ${floatingLabel}`, {
+globalStyle(`${vaporScope}${formControlFloating}:focus ~ ${floatingLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${formControlFloating}::placeholder`,
+	`${vaporScope}${formFloating} > ${formControlFloating}::placeholder`,
 	{ color: 'transparent' },
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${formControlFloating}::-webkit-input-placeholder`,
+	`${vaporScope}${formFloating} > ${formControlFloating}::-webkit-input-placeholder`,
 	{ color: 'transparent' },
 )
 
 globalStyle(
-	`${sketchyScope}${formControlFloating}:not(:placeholder-shown) ~ ${floatingLabel}`,
+	`${vaporScope}${formControlFloating}:not(:placeholder-shown) ~ ${floatingLabel}`,
 	{ transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)' },
 )
 
-globalStyle(`${sketchyScope}${formControlFloating}:-webkit-autofill ~ ${floatingLabel}`, {
+globalStyle(`${vaporScope}${formControlFloating}:-webkit-autofill ~ ${floatingLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-globalStyle(`${sketchyScope}${formControlFloating}:disabled ~ ${floatingLabel}`, {
+globalStyle(`${vaporScope}${formControlFloating}:disabled ~ ${floatingLabel}`, {
 	color: '#6c757d',
 })
 
 // ─── Fieldset / legend ────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${fieldset}`, {
+globalStyle(`${vaporScope}${fieldset}`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
 	border: 0,
 })
 
-globalStyle(`${sketchyScope}${legend}`, {
+globalStyle(`${vaporScope}${legend}`, {
 	float: 'left',
 	width: '100%',
 	padding: 0,
@@ -752,13 +678,13 @@ globalStyle(`${sketchyScope}${legend}`, {
 	'@media': { '(min-width: 1200px)': { fontSize: '1.5rem' } },
 })
 
-globalStyle(`${sketchyScope}${legendClear}`, {
+globalStyle(`${vaporScope}${legendClear}`, {
 	clear: 'left',
 })
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 
-globalStyle(`${sketchyScope}${validFeedback}`, {
+globalStyle(`${vaporScope}${validFeedback}`, {
 	display: 'none',
 	width: '100%',
 	marginTop: '0.25rem',
@@ -766,143 +692,139 @@ globalStyle(`${sketchyScope}${validFeedback}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(`${sketchyScope}${invalidFeedback}`, {
+globalStyle(`${vaporScope}${invalidFeedback}`, {
 	display: 'none',
 	width: '100%',
 	marginTop: '0.25rem',
 	fontSize: '0.875em',
 	color: varBsFormInvalidColor,
+	textShadow: '0 0 1px rgba(228, 76, 85, 0.3), 0 0 2px rgba(228, 76, 85, 0.3), 0 0 5px rgba(228, 76, 85, 0.2)',
 })
 
-globalStyle(`${sketchyScope}${isValid} ~ ${validFeedback}`, {
+globalStyle(`${vaporScope}${isValid} ~ ${validFeedback}`, {
 	display: 'block',
 })
 
-globalStyle(`${sketchyScope}${isInvalid} ~ ${invalidFeedback}`, {
+globalStyle(`${vaporScope}${isInvalid} ~ ${invalidFeedback}`, {
 	display: 'block',
 })
 
-globalStyle(`${sketchyScope}${formControl}${isValid}, ${sketchyScope}${formControl}${isInvalid}`, {
+globalStyle(`${vaporScope}${formControl}${isValid}, ${vaporScope}${formControl}${isInvalid}`, {
 	paddingRight: 'calc(1.5em + 0.75rem)',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 })
 
-globalStyle(`${sketchyScope}${formControl}${isValid}`, {
+globalStyle(`${vaporScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	backgroundImage: validIcon,
 })
 
-globalStyle(`${sketchyScope}${formControl}${isValid}:focus`, {
+globalStyle(`${vaporScope}${formControl}${isValid}:focus`, {
 	borderColor: varBsFormValidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${formControl}${isInvalid}`, {
+globalStyle(`${vaporScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	backgroundImage: invalidIcon,
 })
 
-globalStyle(`${sketchyScope}${formControl}${isInvalid}:focus`, {
+globalStyle(`${vaporScope}${formControl}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${formSelect}${isValid}`, {
+globalStyle(`${vaporScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(`${sketchyScope}${formSelect}${isValid}:focus`, {
+globalStyle(`${vaporScope}${formSelect}${isValid}:focus`, {
 	borderColor: varBsFormValidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${formSelect}${isInvalid}`, {
+globalStyle(`${vaporScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
-globalStyle(`${sketchyScope}${formSelect}${isInvalid}:focus`, {
+globalStyle(`${vaporScope}${formSelect}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}${isValid}`, {
+globalStyle(`${vaporScope}${formCheckInput}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}${isValid}:checked`, {
+globalStyle(`${vaporScope}${formCheckInput}${isValid}:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}${isValid}:focus`, {
+globalStyle(`${vaporScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}${isInvalid}`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}${isInvalid}:checked`, {
-	backgroundColor: varBsFormInvalidColor,
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}${isInvalid}:focus`, {
-	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
-})
-
-globalStyle(`${sketchyScope}${formCheckInput}${isValid} ~ ${formCheckLabel}`, {
+globalStyle(`${vaporScope}${formCheckInput}${isValid} ~ ${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(`${sketchyScope}${formCheckInput}${isInvalid} ~ ${formCheckLabel}`, {
+globalStyle(`${vaporScope}${formCheckInput}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${vaporScope}${formCheckInput}${isInvalid}:checked`, {
+	backgroundColor: varBsFormInvalidColor,
+})
+
+globalStyle(`${vaporScope}${formCheckInput}${isInvalid}:focus`, {
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${vaporScope}${formCheckInput}${isInvalid} ~ ${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
-// Bootstrap grid utilities used by validation form demos.
-globalStyle(`${sketchyScope}${row}`, {
-	vars: {
-		[varBsGutterX]: '1.5rem',
-		[varBsGutterY]: '0',
-	},
-	display: 'flex',
-	flexWrap: 'wrap',
-	marginTop: `calc(-1 * ${varBsGutterY})`,
-	marginRight: `calc(-0.5 * ${varBsGutterX})`,
-	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
-})
-
-globalStyle(`${sketchyScope}${rowCol}`, {
-	flexShrink: 0,
-	width: '100%',
-	maxWidth: '100%',
-	paddingRight: `calc(${varBsGutterX} * 0.5)`,
-	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
-	marginTop: varBsGutterY,
-})
-
-globalStyle(`${sketchyScope}${g3}`, {
-	vars: {
-		[varBsGutterX]: '1rem',
-		[varBsGutterY]: '1rem',
-	},
-})
-
-globalStyle(`${sketchyScope}${colMd6}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			flex: '0 0 auto',
-			width: '50%',
-		},
-	},
-})
-
 globalStyle(
-	`${sketchyScope}${inputGroup}${hasValidation} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,
+	`${vaporScope}${inputGroup}${hasValidation} > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`,
 	{ borderTopRightRadius: 0, borderBottomRightRadius: 0 },
 )
 
 globalStyle(
-	`${sketchyScope}${inputGroup} > ${formControl}:not(:focus)${isInvalid}, ${sketchyScope}${inputGroup} > ${formControl}:not(:focus)${isValid}, ${sketchyScope}${inputGroup} > ${formSelect}:not(:focus)${isInvalid}, ${sketchyScope}${inputGroup} > ${formSelect}:not(:focus)${isValid}`,
+	`${vaporScope}${inputGroup} > ${formControl}:not(:focus)${isInvalid}, ${vaporScope}${inputGroup} > ${formControl}:not(:focus)${isValid}, ${vaporScope}${inputGroup} > ${formSelect}:not(:focus)${isInvalid}, ${vaporScope}${inputGroup} > ${formSelect}:not(:focus)${isValid}`,
 	{ zIndex: 4 },
 )
+
+globalStyle(`${vaporScope}${formControl}`, {
+	backgroundColor: '#30115e',
+	color: '#fff',
+})
+
+globalStyle(`${vaporScope}${formControl}:focus`, {
+	borderColor: '#f59cdc',
+	color: '#fff',
+	backgroundColor: '#30115e',
+})
+
+globalStyle(`${vaporScope}${formControl}:disabled`, {
+	backgroundColor: '#250d49',
+})
+
+globalStyle(`${vaporScope}${formControl}::placeholder`, {
+	color: 'rgba(255,255,255,0.4)',
+})
+
+globalStyle(`${vaporScope}${formSelect}`, {
+	backgroundColor: '#30115e',
+	color: '#fff',
+})
+
+globalStyle(`${vaporScope}${formSelect}:focus`, {
+	borderColor: '#f59cdc',
+})
+
+globalStyle(`${vaporScope}${formSelect}:disabled`, {
+	backgroundColor: '#250d49',
+	color: 'rgba(255, 255, 255, 0.4)',
+})
