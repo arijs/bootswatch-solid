@@ -31,18 +31,13 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 import {
-	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsBodyBg,
-	varBsLinkColor,
 	varBsLinkHoverColor,
-	varBsPrimaryRgb,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
-	varBsTertiaryBg,
 } from '../../../../theme-contract/_vars.css'
 import { slateScope } from '../../scope.css'
 
@@ -50,53 +45,54 @@ import { slateScope } from '../../scope.css'
 
 // SOURCE CSS:
 // .pagination {
-//   --bs-pagination-padding-x: 0.75rem; --bs-pagination-padding-y: 0.375rem;
+//   --bs-pagination-padding-x: 1rem; --bs-pagination-padding-y: 0.75rem;
 //   --bs-pagination-font-size: 1rem;
-//   --bs-pagination-color: var(--bs-link-color);
-//   --bs-pagination-bg: var(--bs-body-bg);
+//   --bs-pagination-color: #fff;
+//   --bs-pagination-bg: transparent;
 //   --bs-pagination-border-width: var(--bs-border-width);
-//   --bs-pagination-border-color: var(--bs-border-color);
+//   --bs-pagination-border-color: rgba(0, 0, 0, 0.6);
 //   --bs-pagination-border-radius: var(--bs-border-radius);
-//   --bs-pagination-hover-color: var(--bs-link-hover-color);
-//   --bs-pagination-hover-bg: var(--bs-tertiary-bg);
-//   --bs-pagination-hover-border-color: var(--bs-border-color);
+//   --bs-pagination-hover-color: #fff;
+//   --bs-pagination-hover-bg: transparent;
+//   --bs-pagination-hover-border-color: rgba(0, 0, 0, 0.6);
 //   --bs-pagination-focus-color: var(--bs-link-hover-color);
 //   --bs-pagination-focus-bg: var(--bs-secondary-bg);
-//   --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+//   --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(58, 63, 68, 0.25);
 //   --bs-pagination-active-color: #fff;
-//   --bs-pagination-active-bg: #0d6efd;
-//   --bs-pagination-active-border-color: #0d6efd;
+//   --bs-pagination-active-bg: transparent;
+//   --bs-pagination-active-border-color: rgba(0, 0, 0, 0.6);
 //   --bs-pagination-disabled-color: var(--bs-secondary-color);
-//   --bs-pagination-disabled-bg: var(--bs-secondary-bg);
-//   --bs-pagination-disabled-border-color: var(--bs-border-color);
+//   --bs-pagination-disabled-bg: transparent;
+//   --bs-pagination-disabled-border-color: rgba(0, 0, 0, 0.6);
 //   display: flex; padding-left: 0; list-style: none;
 // }
 globalStyle(`${slateScope}${pagination}`, {
 	vars: {
-		[varBsPaginationPaddingX]: '0.75rem',
-		[varBsPaginationPaddingY]: '0.375rem',
+		[varBsPaginationPaddingX]: '1rem',
+		[varBsPaginationPaddingY]: '0.75rem',
 		[varBsPaginationFontSize]: '1rem',
-		[varBsPaginationColor]: varBsLinkColor,
-		[varBsPaginationBg]: varBsBodyBg,
+		[varBsPaginationColor]: '#fff',
+		[varBsPaginationBg]: 'transparent',
 		[varBsPaginationBorderWidth]: varBsBorderWidth,
-		[varBsPaginationBorderColor]: varBsBorderColor,
+		[varBsPaginationBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsPaginationBorderRadius]: varBsBorderRadius,
-		[varBsPaginationHoverColor]: varBsLinkHoverColor,
-		[varBsPaginationHoverBg]: varBsTertiaryBg,
-		[varBsPaginationHoverBorderColor]: varBsBorderColor,
+		[varBsPaginationHoverColor]: '#fff',
+		[varBsPaginationHoverBg]: 'transparent',
+		[varBsPaginationHoverBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsPaginationFocusColor]: varBsLinkHoverColor,
 		[varBsPaginationFocusBg]: varBsSecondaryBg,
-		[varBsPaginationFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsPrimaryRgb}, 0.25)`,
+		[varBsPaginationFocusBoxShadow]: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
 		[varBsPaginationActiveColor]: '#fff',
-		[varBsPaginationActiveBg]: '#0d6efd',
-		[varBsPaginationActiveBorderColor]: '#0d6efd',
+		[varBsPaginationActiveBg]: 'transparent',
+		[varBsPaginationActiveBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsPaginationDisabledColor]: varBsSecondaryColor,
-		[varBsPaginationDisabledBg]: varBsSecondaryBg,
-		[varBsPaginationDisabledBorderColor]: varBsBorderColor,
+		[varBsPaginationDisabledBg]: 'transparent',
+		[varBsPaginationDisabledBorderColor]: 'rgba(0, 0, 0, 0.6)',
 	},
 	display: 'flex',
 	paddingLeft: 0,
 	listStyle: 'none',
+	textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)',
 })
 
 // ── .page-link ────────────────────────────────────────────────────────────────
@@ -217,25 +213,6 @@ globalStyle(`${slateScope}${paginationSm}`, {
 	},
 })
 
-globalStyle(`${slateScope}${pagination}`, {
-	vars: {
-		[varBsPaginationPaddingX]: '1rem',
-		[varBsPaginationPaddingY]: '0.75rem',
-		[varBsPaginationColor]: '#fff',
-		[varBsPaginationBg]: 'transparent',
-		[varBsPaginationBorderColor]: 'rgba(0, 0, 0, 0.6)',
-		[varBsPaginationHoverColor]: '#fff',
-		[varBsPaginationHoverBg]: 'transparent',
-		[varBsPaginationHoverBorderColor]: 'rgba(0, 0, 0, 0.6)',
-		[varBsPaginationActiveColor]: '#fff',
-		[varBsPaginationActiveBg]: 'transparent',
-		[varBsPaginationActiveBorderColor]: 'rgba(0, 0, 0, 0.6)',
-		[varBsPaginationDisabledBg]: 'transparent',
-		[varBsPaginationDisabledBorderColor]: 'rgba(0, 0, 0, 0.6)',
-		[varBsPaginationFocusBoxShadow]: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
-	},
-})
-
 globalStyle(`${slateScope}${pagination} ${pageLink}`, {
 	textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)',
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
@@ -246,6 +223,11 @@ globalStyle(`${slateScope}${pagination} ${pageLink}:hover`, {
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 	textDecoration: 'none',
+})
+
+globalStyle(`${slateScope}${pagination} ${pageLink}:focus`, {
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
 })
 
 globalStyle(`${slateScope}${pagination} ${pageItemActive} > ${pageLink}`, {

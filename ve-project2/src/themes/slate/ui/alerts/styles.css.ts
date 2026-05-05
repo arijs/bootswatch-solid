@@ -279,6 +279,8 @@ globalStyle(`${slateScope}${alertLight}`, {
 		[varBsAlertBg]: '#e9ecef',
 		[varBsAlertLinkColor]: '#272b30',
 	},
+	color: '#272b30',
+	backgroundColor: '#e9ecef',
 })
 
 globalStyle(`${slateScope}${alertDark}`, {

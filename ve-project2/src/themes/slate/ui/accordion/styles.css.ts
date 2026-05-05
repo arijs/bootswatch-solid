@@ -1,14 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { h4 } from '../../../../theme-contract/contents/contract.css'
 import {
-	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsPrimaryBgSubtle,
-	varBsPrimaryRgb,
-	varBsPrimaryTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
 import {
 	accordion,
@@ -49,10 +45,10 @@ import { slateScope } from '../../scope.css'
 globalStyle(`${slateScope}${accordion}`, {
 	vars: {
 		[varBsAccordionColor]: varBsBodyColor,
-		[varBsAccordionBg]: varBsBodyBg,
+		[varBsAccordionBg]: '#32383e',
 		[varBsAccordionTransition]:
 			'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
-		[varBsAccordionBorderColor]: varBsBorderColor,
+		[varBsAccordionBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
 		[varBsAccordionInnerBorderRadius]: `calc(${varBsBorderRadius} - (${varBsBorderWidth}))`,
@@ -61,16 +57,16 @@ globalStyle(`${slateScope}${accordion}`, {
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
 		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23212529' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23aaa' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnIconWidth]: '1.25rem',
 		[varBsAccordionBtnIconTransform]: 'rotate(-180deg)',
 		[varBsAccordionBtnIconTransition]: 'transform 0.2s ease-in-out',
 		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23052c65' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsPrimaryRgb}, 0.25)`,
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2317191b' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnFocusBoxShadow]: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
 		[varBsAccordionBodyPaddingX]: '1.25rem',
 		[varBsAccordionBodyPaddingY]: '1rem',
-		[varBsAccordionActiveColor]: varBsPrimaryTextEmphasis,
+		[varBsAccordionActiveColor]: '#fff',
 		[varBsAccordionActiveBg]: varBsPrimaryBgSubtle,
 	},
 })

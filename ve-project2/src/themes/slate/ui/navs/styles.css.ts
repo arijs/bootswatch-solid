@@ -7,6 +7,7 @@ import {
 	navPills,
 	navTabs,
 } from '../../../../theme-contract/ui/navs/contract.css'
+import { navbar, navbarBgLight } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
@@ -26,14 +27,11 @@ import {
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
-	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBodyBg,
-	varBsEmphasisColor,
 	varBsLinkColor,
 	varBsLinkHoverColor,
-	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import { slateScope } from '../../scope.css'
@@ -123,12 +121,12 @@ globalStyle(
 globalStyle(`${slateScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
-		[varBsNavTabsBorderColor]: varBsBorderColor,
+		[varBsNavTabsBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsNavTabsBorderRadius]: varBsBorderRadius,
-		[varBsNavTabsLinkHoverBorderColor]: `${varBsSecondaryBg} ${varBsSecondaryBg} ${varBsBorderColor}`,
-		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
+		[varBsNavTabsLinkHoverBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsNavTabsLinkActiveColor]: '#fff',
 		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: `${varBsBorderColor} ${varBsBorderColor} ${varBsBodyBg}`,
+		[varBsNavTabsLinkActiveBorderColor]: 'rgba(0, 0, 0, 0.6)',
 	},
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
@@ -179,7 +177,7 @@ globalStyle(`${slateScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
 		[varBsNavPillsLinkActiveColor]: '#fff',
-		[varBsNavPillsLinkActiveBg]: '#0d6efd',
+		[varBsNavPillsLinkActiveBg]: '#3a3f44',
 	},
 })
 
@@ -248,4 +246,17 @@ globalStyle(`${slateScope}${navPills} ${navLinkDisabled}, ${slateScope}${navPill
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: varBsSecondaryColor,
+})
+
+// In scrollspy/navbar compositions, ensure nav-pills visuals win over generic navbar link borders.
+globalStyle(`${slateScope}${navbar} ${slateScope}${navPills} ${navLink}`, {
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+// Match source scrollspy baseline for the active first pill in a light navbar.
+globalStyle(`${slateScope}${navbar}${navbarBgLight} ${slateScope}${navPills} ${navLink}${navLinkActive}`, {
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })

@@ -76,7 +76,7 @@ import { slateScope } from '../../scope.css'
 globalStyle(`${slateScope}${navbar}`, {
 	vars: {
 		[varBsNavbarPaddingX]: '0',
-		[varBsNavbarPaddingY]: '0.5rem',
+		[varBsNavbarPaddingY]: '0',
 		[varBsNavbarColor]: `rgba(${varBsEmphasisColorRgb}, 0.65)`,
 		[varBsNavbarHoverColor]: `rgba(${varBsEmphasisColorRgb}, 0.8)`,
 		[varBsNavbarDisabledColor]: `rgba(${varBsEmphasisColorRgb}, 0.3)`,
@@ -90,7 +90,7 @@ globalStyle(`${slateScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28170, 170, 170, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -286,7 +286,7 @@ globalStyle(`${slateScope}${navbarExpandLg} ${navbarToggler}`, {
 // navbarBgLight absorbs `navbar-light bg-light`:
 //   light-color scheme (default emphasis-based vars) + background-color: var(--bs-light)
 globalStyle(`${slateScope}${navbar}${navbarBgLight}`, {
-	backgroundColor: '#f8f9fa',
+	backgroundColor: '#e9ecef',
 })
 
 // navbarDarkBgPrimary absorbs `navbar-dark bg-primary`:
@@ -310,16 +310,12 @@ globalStyle(`${slateScope}${navbar}${navbarDarkBgPrimary}`, {
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
 		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
 	},
-	backgroundColor: '#0d6efd',
+	backgroundColor: '#3a3f44',
 })
 
 globalStyle(`${slateScope}${navbar}`, {
 	textShadow: '1px 1px 1px rgba(0, 0, 0, 0.2)',
 	border: '1px solid rgba(0, 0, 0, 0.6)',
-})
-
-globalStyle(`${slateScope}${navbar} > ${slateScope}${containerFluid}`, {
-	padding: 0,
 })
 
 globalStyle(`${slateScope}${navbar} ${navbarToggler}`, {
@@ -430,6 +426,27 @@ globalStyle(`${slateScope}${navbar}.bg-light ${navLink}:active, ${slateScope}${n
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
+
+// SOURCE CSS:
+// @media (max-width: 992px) {
+//   .navbar-expand-lg .navbar-brand,
+//   .navbar-expand-lg .nav-link {
+//     border: none !important;
+//   }
+// }
+globalStyle(
+	`${slateScope}${navbarExpandLg} ${slateScope}${navbarBrand}, ${slateScope}${navbarExpandLg} ${slateScope}${navLink}`,
+	{
+		'@media': {
+			'(max-width: 992px)': {
+				borderWidth: 'medium !important',
+				borderStyle: 'none !important',
+				borderColor: 'currentcolor !important',
+				borderImage: 'initial !important',
+			},
+		},
+	},
+)
 
 globalStyle(`${slateScope}${navbar}.bg-dark ${navLink}:hover`, {
 	backgroundImage: 'linear-gradient(#212428, #23272b 40%, #25282d)',

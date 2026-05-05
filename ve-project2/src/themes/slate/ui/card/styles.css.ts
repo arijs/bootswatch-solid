@@ -1,10 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
 	varBsBodyColor,
-	varBsBodyColorRgb,
-	varBsBorderColor,
-	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 } from '../../../../theme-contract/_vars.css'
@@ -87,15 +83,15 @@ globalStyle(`${slateScope}${card}`, {
 		[varBsCardTitleColor]: '',
 		[varBsCardSubtitleColor]: '',
 		[varBsCardBorderWidth]: varBsBorderWidth,
-		[varBsCardBorderColor]: varBsBorderColorTranslucent,
+		[varBsCardBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsCardBorderRadius]: varBsBorderRadius,
 		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - ${varBsBorderWidth})`,
 		[varBsCardCapPaddingY]: '0.5rem',
 		[varBsCardCapPaddingX]: '1rem',
-		[varBsCardCapBg]: `rgba(${varBsBodyColorRgb}, 0.03)`,
+		[varBsCardCapBg]: '#515960',
 		[varBsCardCapColor]: '',
 		[varBsCardColor]: '',
-		[varBsCardBg]: varBsBodyBg,
+		[varBsCardBg]: '#32383e',
 		[varBsCardImgOverlayPadding]: '1rem',
 		[varBsCardGroupMargin]: '0.75rem',
 	},
@@ -303,8 +299,8 @@ globalStyle(`${slateScope}${cardHorizontalColBody}`, {
 globalStyle(`${slateScope}${listGroup}`, {
 	vars: {
 		[varBsListGroupColor]: varBsBodyColor,
-		[varBsListGroupBg]: varBsBodyBg,
-		[varBsListGroupBorderColor]: varBsBorderColor,
+		[varBsListGroupBg]: '#32383e',
+		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsListGroupBorderWidth]: varBsBorderWidth,
 		[varBsListGroupBorderRadius]: varBsBorderRadius,
 		[varBsListGroupItemPaddingX]: '1rem',

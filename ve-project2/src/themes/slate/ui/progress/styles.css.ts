@@ -23,7 +23,6 @@ import {
 	varBsDanger,
 	varBsDark,
 	varBsInfo,
-	varBsSecondaryBg,
 	varBsSuccess,
 	varBsWarning,
 } from '../../../../theme-contract/_vars.css'
@@ -53,10 +52,10 @@ globalStyle(`${slateScope}${progress}`, {
 	vars: {
 		[varBsProgressHeight]: '1rem',
 		[varBsProgressFontSize]: '0.75rem',
-		[varBsProgressBg]: varBsSecondaryBg,
+		[varBsProgressBg]: '#1c1e22',
 		[varBsProgressBorderRadius]: varBsBorderRadius,
-		[varBsProgressBarColor]: '#fff',
-		[varBsProgressBarBg]: '#0d6efd',
+		[varBsProgressBarColor]: '#7a8288',
+		[varBsProgressBarBg]: '#3a3f44',
 		[varBsProgressBarTransition]: 'width 0.6s ease',
 	},
 	display: 'flex',
