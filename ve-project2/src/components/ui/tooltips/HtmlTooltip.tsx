@@ -33,6 +33,7 @@ data-bs-toggle="tooltip"
 data-bs-custom-class="pwhook-tooltip"
 ref={(tooltip) =>
 new VeTooltip(tooltip, {
+	animation: false,
 template: `<div class="${tooltipVe} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
 })
 }
