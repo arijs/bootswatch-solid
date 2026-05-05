@@ -45,3 +45,4 @@ export default SplitWarningDropdown
 // @screenshot quartz/opened-dropdown: 360x188 188
 // @screenshot vapor/opened-dropdown: 360x150 150
 // @screenshot sketchy/opened-dropdown: 360x158 158
+// @screenshot slate/opened-dropdown: 360x166 166

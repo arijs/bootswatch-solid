@@ -55,3 +55,4 @@ export default NormalDropdown
 // @screenshot quartz/opened-dropdown: 360x292 292
 // @screenshot vapor/opened-dropdown: 360x232 232
 // @screenshot sketchy/opened-dropdown: 360x241 241
+// @screenshot slate/opened-dropdown: 360x248 248

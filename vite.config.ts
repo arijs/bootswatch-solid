@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import solidPlugin from 'vite-plugin-solid'
 
 export default defineConfig({
+	mode: 'development',
 	plugins: [solidPlugin()],
 	build: {
 		target: 'esnext',

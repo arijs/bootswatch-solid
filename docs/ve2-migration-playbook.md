@@ -233,30 +233,30 @@ Never source theme-specific values from another theme's screenshot files, from `
 After `bootstrap` and `sketchy` are fully converted (no missing families for selected routes), continue verification with the remaining known theme slugs:
 
 1. `quartz`
-23. `vapor`
-2. `slate`
-19. `solar`
-17. `sandstone`
-3. `materia`
-4. `darkly`
+2. `vapor`
+3. `slate`
+4. `solar`
+5. `sandstone`
+6. `materia`
+7. `darkly`
 8. `cyborg`
-5. `brite`
-13. `lux`
-12. `lumen`
-6. `cerulean`
-7. `cosmo`
-21. `superhero`
-25. `zephyr`
-20. `spacelab`
-9. `flatly`
-10. `journal`
-11. `litera`
-14. `minty`
-15. `morph`
-16. `pulse`
-18. `simplex`
-22. `united`
-24. `yeti`
+9. `brite`
+10. `lux`
+11. `lumen`
+12. `cerulean`
+13. `cosmo`
+14. `superhero`
+15. `zephyr`
+16. `spacelab`
+17. `flatly`
+18. `journal`
+19. `litera`
+20. `minty`
+21. `morph`
+22. `pulse`
+23. `simplex`
+24. `united`
+25. `yeti`
 
 ---
 
