@@ -56,3 +56,4 @@ export default NormalDropdown
 // @screenshot vapor/opened-dropdown: 360x232 232
 // @screenshot sketchy/opened-dropdown: 360x241 241
 // @screenshot slate/opened-dropdown: 360x248 248
+// @screenshot sandstone/opened-dropdown: 360x226 226

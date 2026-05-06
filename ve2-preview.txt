@@ -1,0 +1,5 @@
+
+> vite-template-solid@0.0.0 ve2:preview D:\dev\github\bootswatch-solid
+> node scripts/run-ve-vite.mjs preview ve-project2 "--port" "4175"
+
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

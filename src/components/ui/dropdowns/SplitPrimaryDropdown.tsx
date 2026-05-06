@@ -46,3 +46,4 @@ export default SplitPrimaryDropdown
 // @screenshot vapor/opened-dropdown: 360x150 150
 // @screenshot sketchy/opened-dropdown: 360x158 158
 // @screenshot slate/opened-dropdown: 360x166 166
+// @screenshot sandstone/opened-dropdown: 360x146 146
