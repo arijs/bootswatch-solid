@@ -139,6 +139,10 @@ export const varBsBoxShadowSm = createVar()
 export const varBsBoxShadowLg = createVar()
 export const varBsBoxShadowInset = createVar()
 
+// ── Gradient ──────────────────────────────────────────────────────────────────
+
+export const varBsGradient = createVar()
+
 // ── Focus ring ────────────────────────────────────────────────────────────────
 
 export const varBsFocusRingWidth = createVar()

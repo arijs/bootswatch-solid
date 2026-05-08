@@ -228,35 +228,97 @@ globalStyle(`${sketchyScope}${myComponent}`, {
 
 Never source theme-specific values from another theme's screenshot files, from `screenshots/bootstrap/**`, or from `node_modules/bootswatch/**` when implementing `themes/{theme}/**`.
 
-### Next Themes After Initial Duo
+### Empty-file conversion workflow (approved sources only)
 
-After `bootstrap` and `sketchy` are fully converted (no missing families for selected routes), continue verification with the remaining known theme slugs:
+When starting or continuing a theme conversion in `ve-project2/src/themes/{theme}/`, use this sequence to prevent accidental cross-theme drift:
 
-1. `quartz`
-2. `vapor`
-3. `slate`
-4. `solar`
-5. `sandstone`
-6. `materia`
-7. `darkly`
-8. `cyborg`
-9. `brite`
-10. `lux`
-11. `lumen`
-12. `cerulean`
-13. `cosmo`
-14. `superhero`
-15. `zephyr`
-16. `spacelab`
-17. `flatly`
-18. `journal`
-19. `litera`
-20. `minty`
-21. `morph`
-22. `pulse`
-23. `simplex`
-24. `united`
-25. `yeti`
+1. Create (or keep) an empty `styles.css.ts` file for the family in the current theme:
+
+```ts
+// ve-project2/src/themes/{theme}/{component family}/styles.css.ts
+// Intentionally empty on first creation.
+// Add globalStyle rules only from screenshots/{theme} approved sources.
+export {}
+```
+
+2. Open only these source files while converting:
+  - `screenshots/{theme}/theme.css` (global vars and top-level imports)
+  - `screenshots/{theme}/**/style.css` (family and route selectors)
+3. Transcribe selectors in small chunks, keeping Bootstrap's order and specificity:
+  - declare component vars in `vars:` first
+  - then use those vars in property values
+4. Do not copy or paste from any other theme's VE file, screenshot CSS, or dist CSS.
+5. Do not import another theme's style module (directly or indirectly) to "reuse" rules.
+6. After each chunk, run verification and fix mismatches before adding more selectors.
+
+If a value seems missing, stop and re-check the current theme's screenshot artifacts instead of borrowing from another theme.
+
+### Theme conversion tracker
+
+Use this table to track per-theme conversion progress in `ve-project2/src/themes/{themeName}/` and high-level verification status.
+
+| Theme | Conversion status (`/themes/{themeName}`) | Testing summary (matched leafs / total leafs) | Last verified | Notes |
+|------|--------------------------------------------|-----------------------------------------------|---------------|------|
+| `bootstrap` | Complete | `433/433` | `2026-05-07` | Baseline complete for VE2 coverage set. |
+| `sketchy` | Complete | `433/433` | `2026-05-07` | Baseline complete for VE2 coverage set. |
+| `quartz` | Complete | `433/433` | `2026-05-07` | Theme conversion finished. |
+| `vapor` | Complete | `433/433` | `2026-05-07` | Theme conversion finished. |
+| `slate` | Complete | `433/433` | `2026-05-07` | Theme conversion finished. |
+| `solar` | Complete | `433/433` | `2026-05-07` | Theme conversion finished. |
+| `sandstone` | Complete | `433/433` | `2026-05-07` | Theme conversion finished. |
+| `materia` | In progress (`/contents/**` + `/ui/buttons/**` done; 22 families remaining) | `220/220` (buttons) | `2026-05-07` | Scope, fonts, and all 24 family scaffolds wired. `contents` (typography letter-spacing) and `ui/buttons` (220 routes) verified at full parity. Remaining families pending conversion. |
+| `darkly` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `cyborg` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `brite` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `lux` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `lumen` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `cerulean` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `cosmo` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `superhero` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `zephyr` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `spacelab` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `flatly` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `journal` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `litera` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `minty` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `morph` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `pulse` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `simplex` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `united` | Not started | `0/433` | `not verified` | Pending conversion start. |
+| `yeti` | Not started | `0/433` | `not verified` | Pending conversion start. |
+
+Keep the matched/total values synced to the latest screenshot verification run; do not infer values from another theme.
+
+### Current theme deep dive: `materia`
+
+Current state:
+
+- `fonts.generated.css` and `scope.css.ts` created with all Materia `:root` var values.
+- All 24 family `styles.css.ts` scaffolds created and wired into `Ve2Shell.tsx`.
+- ✅ `contents` (typography): letter-spacing contract mapped; parity confirmed.
+- ✅ `ui/buttons`: all 220 routes verified at parity (`220/220`). Key fixes: `inputFontFamily` contract class stamped on every `<button>` element; gradient overlay (`background-image: var(--bs-gradient)`) added for dark/danger solid buttons; active-state `backgroundImage: 'none'` reset added for danger variant.
+- 22 remaining families pending style conversion.
+- Tracker target is full parity (`433/433`) after conversion and mismatch resolution.
+
+Authoritative source: `screenshots/materia/bootstrap.css` (single compiled full CSS file — no per-component `style.css` files exist for Materia).
+
+Execution plan for Materia:
+
+1. ~~Start each family with an empty Materia `styles.css.ts` scaffold and required imports only.~~ ✅ Done.
+2. ~~Convert `contents` (typography).~~ ✅ Done.
+3. ~~Convert `ui/buttons`.~~ ✅ Done.
+4. Read selectors and values only from the Materia-approved source:
+  - `screenshots/materia/bootstrap.css`
+5. Convert one family at a time by mirroring CSS var declarations and property usage literally.
+6. Verify frequently (small family batches) and fix parity issues before moving to the next family.
+
+Hard anti-divergence rule for Materia (and all themes):
+
+- Do not copy style values, selectors, or VE rules from another theme.
+- Do not use another theme as a value source, even when structures look similar.
+- Do not import another theme's `styles.css.ts` to bootstrap work.
+
+Any cross-theme reuse introduces subtle mismatches and compounds debugging cost; isolate each theme conversion to its own screenshot-derived source data.
 
 ---
 
@@ -372,8 +434,30 @@ For screenshot mismatches that are hard to diagnose from the diff image alone, u
 | Themes are self-contained | When converting or repairing a theme under `themes/{theme}/`, do not reuse resolved values from another theme's VE implementation or screenshot output. Use only `screenshots/{theme}/theme.css` and `screenshots/{theme}/**/style.css` as theme-specific authorities. |
 | Cross-theme style imports are forbidden | Never re-export or import another theme's `styles.css.ts` (for example, Sketchy importing Bootstrap accordion styles). Each theme file must declare its own `globalStyle` rules and read values from that same theme's screenshot CSS artifacts. |
 | Sketchy input font-family fallback for non-`.btn` buttons | Sketchy sets `button, input, optgroup, select, textarea` font-family globally (`Neucha, ...`). In VE2, expose this as a reusable contract class (for example `inputFontFamily`) for elements that need that baseline font but do not carry `.btn`. Define the class rule before the base `btn` rule so `btn` still wins when both classes are applied on the same element. |
+| Bootstrap gradient overlay on solid buttons | Bootstrap's base `.btn` rule includes `background-image: var(--bs-gradient)` (resolves to `linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0))`), and every `.btn-outline-*` block resets `--bs-gradient: none`. VE2 must mirror this structure literally: (1) declare `export const varBsGradient = createVar()` in `theme-contract/_vars.css.ts`; (2) assign its value in `themes/{theme}/scope.css.ts`; (3) set `backgroundImage: varBsGradient` on the base `btn` rule (and `btn:focus-visible`); (4) add `[varBsGradient]: 'none'` to the `vars:` block of every `btnOutline*` variant. Do **not** add explicit per-variant `backgroundImage` overrides — that diverges from the source structure and misses the gradient on all non-dark/danger solid variants. |
+| Global element selectors must map to contracts | Do not ship raw global selectors like `body, input, button` in theme files. Map `body` styles to root contracts (`body` for non-typography and `bodyText` for typography such as `letter-spacing`), and map element-group rules (for example `input`/`button`) to an existing reusable contract class such as `inputFontFamily`. If no adequate contract exists, create one, then stamp that contract class in TSX on every affected element so the rule actually applies.[^global-selector-case] |
 | First/last child `page-link` corner radii (pagination) | `.page-item:first-child .page-link` and `:last-child` rules have specificity 0,3,0 and override the `.pagination .page-link` Sketchy hand-drawn `border-radius` shorthand (0,2,0) on their respective corners. Mirror these rules explicitly in VE2 using `varBsPaginationBorderRadius` — exactly as the source CSS does — so the first/last child corners match the baseline. Without them the outer corners of the first and last page items render with the wrong radius. |
 | Cross-family contract ownership and migration order | Some components intentionally reuse contract classes from another family (for example, `ListCard` uses `listGroup`, `listGroupFlush`, and `listGroupItem` from `theme-contract/ui/list-group/contract.css.ts`). Do not duplicate those classes in `theme-contract/ui/card/contract.css.ts` or re-implement their base rules in card theme files. Migrate the owner family first (`/ui/list-group` before `/ui/card`), import the owner contract in the dependent component/theme, and keep card theme rules limited to card-specific composition selectors such as `.card > .list-group`. |
+
+### Concrete case: Materia letter-spacing
+
+Source CSS (`screenshots/materia/bootstrap.css`) included a global selector:
+
+```css
+body,
+input,
+button {
+  letter-spacing: 0.1px;
+}
+```
+
+Resolution in VE2:
+
+- `body` typography was mapped to the root text contract via `globalStyle(${scope}${bodyText}, { letterSpacing: '0.1px' })`.
+- `input` and `button` were mapped to an existing reusable contract via `globalStyle(${materiaScope}${inputFontFamily}, { letterSpacing: '0.1px' })` in `themes/materia/ui/buttons/styles.css.ts`.
+- Route-level parity was re-checked with targeted verification (`/contents/typography/*`) and matched after this mapping.
+
+[^global-selector-case]: See [Concrete case: Materia letter-spacing](#concrete-case-materia-letter-spacing).
 
 ---
 
