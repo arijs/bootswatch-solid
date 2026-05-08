@@ -3,11 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 import {
-	btn,
-	btnActiveHook,
-	btnPrimary,
-	btnSm,
-} from '../../../../../../theme-contract/ui/buttons/contract.css'
+	btn, btnActiveHook, btnPrimary, btnSm, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 
 const CheckActiveDisabledSmallButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -17,7 +13,7 @@ const CheckActiveDisabledSmallButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnPrimary} ${btnSm} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnPrimary} ${btnSm} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 			>
 				Small button
 			</button>

@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
-import { btn, btnOutlinePrimary } from '../../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnOutlinePrimary, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 const OutlineCheckDisabledPrimaryButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -11,7 +11,7 @@ const OutlineCheckDisabledPrimaryButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnOutlinePrimary} pwhook-btn`}
+				class={`${theme} ${btn} ${btnOutlinePrimary} ${inputFontFamily} pwhook-btn`}
 			>
 				Primary
 			</button>

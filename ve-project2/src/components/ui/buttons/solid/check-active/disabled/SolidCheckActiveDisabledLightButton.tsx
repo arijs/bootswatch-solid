@@ -3,10 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 import {
-	btn,
-	btnActiveHook,
-	btnLight,
-} from '../../../../../../theme-contract/ui/buttons/contract.css'
+	btn, btnActiveHook, btnLight, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 
 const SolidCheckActiveDisabledLightButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -16,7 +13,7 @@ const SolidCheckActiveDisabledLightButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnLight} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnLight} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 			>
 				Light
 			</button>

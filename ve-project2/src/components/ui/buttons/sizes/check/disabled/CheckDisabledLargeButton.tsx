@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
-import { btn, btnLg, btnPrimary } from '../../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnLg, btnPrimary, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 const CheckDisabledLargeButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -11,7 +11,7 @@ const CheckDisabledLargeButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnPrimary} ${btnLg} pwhook-btn`}
+				class={`${theme} ${btn} ${btnPrimary} ${btnLg} ${inputFontFamily} pwhook-btn`}
 			>
 				Large button
 			</button>

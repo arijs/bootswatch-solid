@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
-import { btn, btnOutlineSuccess } from '../../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnOutlineSuccess, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 const OutlineCheckDisabledSuccessButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -11,7 +11,7 @@ const OutlineCheckDisabledSuccessButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineSuccess} pwhook-btn`}
+				class={`${theme} ${btn} ${btnOutlineSuccess} ${inputFontFamily} pwhook-btn`}
 			>
 				Success
 			</button>

@@ -3,10 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import {
-	btn,
-	btnActiveHook,
-	btnOutlineWarning,
-} from '../../../../../theme-contract/ui/buttons/contract.css'
+	btn, btnActiveHook, btnOutlineWarning, inputFontFamily } from '../../../../../theme-contract/ui/buttons/contract.css'
 
 const OutlineCheckActiveWarningButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -15,7 +12,7 @@ const OutlineCheckActiveWarningButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineWarning} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnOutlineWarning} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

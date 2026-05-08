@@ -3,10 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 import {
-	btn,
-	btnActiveHook,
-	btnOutlinePrimary,
-} from '../../../../../../theme-contract/ui/buttons/contract.css'
+	btn, btnActiveHook, btnOutlinePrimary, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 
 const OutlineCheckActiveDisabledPrimaryButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -16,7 +13,7 @@ const OutlineCheckActiveDisabledPrimaryButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnOutlinePrimary} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnOutlinePrimary} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 			>
 				Primary
 			</button>

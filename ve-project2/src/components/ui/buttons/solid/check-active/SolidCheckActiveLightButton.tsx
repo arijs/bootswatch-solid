@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
-import { btn, btnActiveHook, btnLight } from '../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnActiveHook, btnLight, inputFontFamily } from '../../../../../theme-contract/ui/buttons/contract.css'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 const SolidCheckActiveLightButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +10,7 @@ const SolidCheckActiveLightButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnLight} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnLight} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

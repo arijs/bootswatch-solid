@@ -3,10 +3,7 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../../context/ThemeContext'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 import {
-	btn,
-	btnActiveHook,
-	btnOutlineSuccess,
-} from '../../../../../../theme-contract/ui/buttons/contract.css'
+	btn, btnActiveHook, btnOutlineSuccess, inputFontFamily } from '../../../../../../theme-contract/ui/buttons/contract.css'
 
 const OutlineCheckActiveDisabledSuccessButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -16,7 +13,7 @@ const OutlineCheckActiveDisabledSuccessButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineSuccess} ${btnActiveHook} pwhook-btn`}
+				class={`${theme} ${btn} ${btnOutlineSuccess} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 			>
 				Success
 			</button>

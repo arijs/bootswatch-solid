@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../../context/ThemeContext'
-import { btn, btnOutlineLight } from '../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnOutlineLight, inputFontFamily } from '../../../../../theme-contract/ui/buttons/contract.css'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 const OutlineCheckLightButton: Component = () => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +10,7 @@ const OutlineCheckLightButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineLight} pwhook-btn`}
+				class={`${theme} ${btn} ${btnOutlineLight} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 			>
 				Light
