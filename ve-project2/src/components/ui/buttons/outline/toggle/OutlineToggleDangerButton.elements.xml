@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnOutlineDanger
+  </family>
+</contract-classes>
+<component name="OutlineToggleDangerButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input type="checkbox" class-contracts="theme btnCheck" id="id-btn-outline-toggle-danger" autocomplete="off" />
+      <label class-contracts="theme btn btnOutlineDanger" for="id-btn-outline-toggle-danger">
+        Toggle Danger
+      </label>
+    </div>
+  </jsx>
+</component>

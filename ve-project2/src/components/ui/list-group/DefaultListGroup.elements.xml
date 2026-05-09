@@ -1,0 +1,31 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/list-group/contract.css">
+    listGroup, listGroupItem, listGroupItemDisabled
+  </family>
+</contract-classes>
+<component name="DefaultListGroup">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <ul class-contracts="theme listGroup">
+        <li class-contracts="theme listGroupItem listGroupItemDisabled" aria-disabled="true">
+          A disabled item
+        </li>
+        <li class-contracts="theme listGroupItem">
+          A second item
+        </li>
+        <li class-contracts="theme listGroupItem">
+          A third item
+        </li>
+        <li class-contracts="theme listGroupItem">
+          A fourth item
+        </li>
+        <li class-contracts="theme listGroupItem">
+          And a fifth one
+        </li>
+      </ul>
+    </div>
+  </jsx>
+</component>

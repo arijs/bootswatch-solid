@@ -1,0 +1,23 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    formControl, inputGroup, inputGroupText
+  </family>
+</contract-classes>
+<component name="TextareaAddon">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <div class-contracts="theme inputGroup">
+        <span class-contracts="theme inputGroupText">
+          With textarea
+        </span>
+        <textarea class-contracts="theme formControl" aria-label="With textarea" />
+      </div>
+    </div>
+  </jsx>
+</component>

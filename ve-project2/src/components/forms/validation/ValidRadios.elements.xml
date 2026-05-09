@@ -1,0 +1,41 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    colMd6, formCheck, formCheckInput, formCheckLabel, g3, isValid, row, rowCol, validFeedback
+  </family>
+</contract-classes>
+<component name="ValidRadios">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme row g3">
+        <div class-contracts="theme rowCol colMd6">
+          <div class-contracts="theme formCheck">
+            <input class-contracts="theme formCheckInput isValid" type="radio" name="radioGroup" value="" id="validRadio3" required="true" checked="true" />
+            <label class-contracts="theme formCheckLabel" for="validRadio3">
+              Agree to terms and conditions
+            </label>
+            <div class-contracts="theme validFeedback">
+              You agreed before submitting.
+            </div>
+          </div>
+        </div>
+        <div class-contracts="theme rowCol colMd6">
+          <div class-contracts="theme formCheck">
+            <input class-contracts="theme formCheckInput isValid" type="radio" name="radioGroup" value="" id="validRadio4" required="true" />
+            <label class-contracts="theme formCheckLabel" for="validRadio4">
+              Do NOT Agree to terms and conditions
+            </label>
+            <div class-contracts="theme validFeedback">
+              You agreed before submitting.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </jsx>
+</component>

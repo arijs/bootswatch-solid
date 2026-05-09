@@ -1,0 +1,17 @@
+<contract-classes>
+  <family source="ui/buttons/contract.css">
+    btn, btnActiveHook, btnInfo, inputFontFamily
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+</contract-classes>
+<component name="SolidCheckActiveInfoButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <button type="button" class="pwhook-btn" class-contracts="theme btn btnInfo btnActiveHook inputFontFamily" data-bs-toggle="button" aria-pressed="true">
+        Info
+      </button>
+    </div>
+  </jsx>
+</component>

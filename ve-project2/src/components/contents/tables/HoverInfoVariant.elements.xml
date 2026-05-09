@@ -1,0 +1,45 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="contents/contract.css">
+    table, tableCell, tableElement, tableHeaderCell, tableHover, tableInfo, tableRow, tableSection
+  </family>
+</contract-classes>
+<component name="HoverInfoVariant">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <table class="pwhook-table-hover" class-contracts="theme table tableElement tableHover">
+        <thead class-contracts="theme tableSection">
+          <tr class-contracts="theme tableInfo tableRow">
+            <th class-contracts="theme tableHeaderCell">
+              Info
+            </th>
+            <th class-contracts="theme tableHeaderCell">
+              Heading
+            </th>
+            <th class-contracts="theme tableHeaderCell">
+              Heading
+            </th>
+          </tr>
+        </thead>
+        <tbody class-contracts="theme tableSection">
+          <tr class-contracts="theme tableInfo tableRow">
+            <th class-contracts="theme tableHeaderCell">
+              Info
+            </th>
+            <td class-contracts="theme tableCell">
+              Cell
+            </td>
+            <td class-contracts="theme tableCell">
+              Cell
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </jsx>
+</component>

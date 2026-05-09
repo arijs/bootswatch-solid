@@ -1,0 +1,17 @@
+<contract-classes>
+  <family source="ui/buttons/contract.css">
+    btn, btnInfo, inputFontFamily
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+</contract-classes>
+<component name="SolidCheckInfoButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <button type="button" class="pwhook-btn" class-contracts="theme btn btnInfo inputFontFamily" data-bs-toggle="button">
+        Info
+      </button>
+    </div>
+  </jsx>
+</component>

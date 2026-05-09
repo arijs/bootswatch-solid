@@ -1,0 +1,35 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="contents/contract.css">
+    display1, display2, display3, display4, display5, display6, paragraph
+  </family>
+</contract-classes>
+<component name="Display">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <p class-contracts="theme display1 paragraph">
+        Display 1
+      </p>
+      <p class-contracts="theme display2 paragraph">
+        Display 2
+      </p>
+      <p class-contracts="theme display3 paragraph">
+        Display 3
+      </p>
+      <p class-contracts="theme display4 paragraph">
+        Display 4
+      </p>
+      <p class-contracts="theme display5 paragraph">
+        Display 5
+      </p>
+      <p class-contracts="theme display6 paragraph">
+        Display 6
+      </p>
+    </div>
+  </jsx>
+</component>

@@ -1,0 +1,165 @@
+<contract-classes>
+  <family source="forms/contract.css">
+    formControl
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="utilities/contract.css">
+    dFlex, mb2, mbLg0, me2, meAuto, mt5
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnOutlineDark, btnOutlineLight
+  </family>
+  <family source="ui/dropdowns/contract.css">
+    dropdown, dropdownDivider, dropdownItem, dropdownMenu, dropdownToggle
+  </family>
+  <family source="ui/navbar/contract.css">
+    navbar, navbarBgLight, navbarBrand, navbarCollapse, navbarDarkBgPrimary, navbarExpandLg, navbarNav, navbarToggler, navbarTogglerIcon
+  </family>
+  <family source="ui/navs/contract.css">
+    navItem, navLink, navLinkActive, navLinkDisabled
+  </family>
+</contract-classes>
+<component name="NavbarExample">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <nav class-contracts="theme navbar navbarExpandLg navbarBgLight">
+        <div class-contracts="theme containerFluid">
+          <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+          <a class-contracts="theme navbarBrand" href="#" onClick="(e) =&gt; e.preventDefault()">
+            <img src="/assets/brand/bootstrap-logo-white.svg" width="38" height="30" alt="Bootstrap" loading="lazy" style="display: inline-block; vertical-align: top; filter: invert(1) grayscale(100%) brightness(200%);" />
+          </a>
+          <button class-contracts="theme navbarToggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class-contracts="theme navbarTogglerIcon" />
+          </button>
+          <div class-contracts="theme navbarCollapse" id="navbarSupportedContent">
+            <ul class-contracts="theme navbarNav meAuto mb2 mbLg0">
+              <li class-contracts="theme navItem">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink navLinkActive" aria-current="page" href="#" onClick="(e) =&gt; e.preventDefault()">
+                  Home
+                </a>
+              </li>
+              <li class-contracts="theme navItem">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink" href="#" onClick="(e) =&gt; e.preventDefault()">
+                  Link
+                </a>
+              </li>
+              <li class-contracts="theme navItem dropdown">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink dropdownToggle" href="#" onClick="(e) =&gt; e.preventDefault()" id="navbarDropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class-contracts="theme dropdownMenu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                    <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+                      Action
+                    </a>
+                  </li>
+                  <li>
+                    <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                    <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+                      Another action
+                    </a>
+                  </li>
+                  <li>
+                    <hr class-contracts="theme dropdownDivider" />
+                  </li>
+                  <li>
+                    <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                    <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+                      Something else here
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class-contracts="theme navItem">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink navLinkDisabled" href="#" onClick="(e) =&gt; e.preventDefault()" tabindex="-1" aria-disabled="true">
+                  Disabled
+                </a>
+              </li>
+            </ul>
+            <form class-contracts="theme dFlex">
+              <input class-contracts="theme formControl me2" type="search" placeholder="Search" aria-label="Search" />
+              <button class-contracts="theme btn btnOutlineDark" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <nav class-contracts="theme navbar navbarExpandLg navbarDarkBgPrimary mt5">
+        <div class-contracts="theme containerFluid">
+          <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+          <a class-contracts="theme navbarBrand" href="#" onClick="(e) =&gt; e.preventDefault()">
+            <img src="/assets/brand/bootstrap-logo-white.svg" width="38" height="30" alt="Bootstrap" loading="lazy" style="display: inline-block; vertical-align: top;" />
+          </a>
+          <button class-contracts="theme navbarToggler" type="button" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class-contracts="theme navbarTogglerIcon" />
+          </button>
+          <div class-contracts="theme navbarCollapse" id="navbarSupportedContent2">
+            <ul class-contracts="theme navbarNav meAuto mb2 mbLg0">
+              <li class-contracts="theme navItem">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink navLinkActive" aria-current="page" href="#" onClick="(e) =&gt; e.preventDefault()">
+                  Home
+                </a>
+              </li>
+              <li class-contracts="theme navItem">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink" href="#" onClick="(e) =&gt; e.preventDefault()">
+                  Link
+                </a>
+              </li>
+              <li class-contracts="theme navItem dropdown">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink dropdownToggle" href="#" onClick="(e) =&gt; e.preventDefault()" id="navbarDropdown2" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class-contracts="theme dropdownMenu" aria-labelledby="navbarDropdown2">
+                  <li>
+                    <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                    <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+                      Action
+                    </a>
+                  </li>
+                  <li>
+                    <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                    <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+                      Another action
+                    </a>
+                  </li>
+                  <li>
+                    <hr class-contracts="theme dropdownDivider" />
+                  </li>
+                  <li>
+                    <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                    <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+                      Something else here
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class-contracts="theme navItem">
+                <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+                <a class-contracts="theme navLink navLinkDisabled" href="#" onClick="(e) =&gt; e.preventDefault()" tabindex="-1" aria-disabled="true">
+                  Disabled
+                </a>
+              </li>
+            </ul>
+            <form class-contracts="theme dFlex">
+              <input class-contracts="theme formControl me2" type="search" placeholder="Search" aria-label="Search" />
+              <button class-contracts="theme btn btnOutlineLight" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </jsx>
+</component>

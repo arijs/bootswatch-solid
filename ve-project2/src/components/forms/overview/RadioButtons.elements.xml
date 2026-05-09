@@ -1,0 +1,36 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    fieldset, form, formCheck, formCheckInput, formCheckLabel, legend, legendClear, mb3
+  </family>
+</contract-classes>
+<component name="RadioButtons">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme form">
+        <fieldset class-contracts="theme mb3 fieldset">
+          <legend class-contracts="theme legend">
+            Radios buttons
+          </legend>
+          <div class-contracts="theme legendClear formCheck">
+            <input type="radio" name="radios" class="pwhook-radio" class-contracts="theme formCheckInput" id="exampleRadio1" />
+            <label class="pwhook-radio-label" class-contracts="theme formCheckLabel" for="exampleRadio1">
+              Default radio
+            </label>
+          </div>
+          <div class-contracts="theme mb3 formCheck">
+            <input type="radio" name="radios" class="pwhook-radio" class-contracts="theme formCheckInput" id="exampleRadio2" />
+            <label class="pwhook-radio-label" class-contracts="theme formCheckLabel" for="exampleRadio2">
+              Another radio
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </jsx>
+</component>

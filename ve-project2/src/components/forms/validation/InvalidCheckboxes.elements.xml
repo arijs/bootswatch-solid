@@ -1,0 +1,41 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    colMd6, formCheck, formCheckInput, formCheckLabel, g3, invalidFeedback, isInvalid, row, rowCol
+  </family>
+</contract-classes>
+<component name="InvalidCheckboxes">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme row g3">
+        <div class-contracts="theme rowCol colMd6">
+          <div class-contracts="theme formCheck">
+            <input class-contracts="theme formCheckInput isInvalid" type="checkbox" value="" id="invalidCheck3" required="true" />
+            <label class-contracts="theme formCheckLabel" for="invalidCheck3">
+              Agree to terms and conditions
+            </label>
+            <div class-contracts="theme invalidFeedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class-contracts="theme rowCol colMd6">
+          <div class-contracts="theme formCheck">
+            <input class-contracts="theme formCheckInput isInvalid" type="checkbox" value="" id="invalidCheck4" required="true" checked="true" />
+            <label class-contracts="theme formCheckLabel" for="invalidCheck4">
+              Do NOT Agree to terms and conditions
+            </label>
+            <div class-contracts="theme invalidFeedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </jsx>
+</component>

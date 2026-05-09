@@ -1,0 +1,48 @@
+<contract-classes>
+  <family source="contents/contract.css">
+    paragraph
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="utilities/contract.css">
+    mb3
+  </family>
+  <family source="ui/navs/contract.css">
+    nav, navLink, navLinkActive, navTabs
+  </family>
+</contract-classes>
+<component name="TabbedNav">
+  <jsx>
+    <div class="bd-example-ve2">
+      <div class-contracts="theme containerFluid">
+        <nav>
+          <div class-contracts="theme nav navTabs mb3" id="nav-tab" role="tablist">
+            <button class-contracts="theme navLink navLinkActive" id="nav-home-tab" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+              Home
+            </button>
+            <button class-contracts="theme navLink" id="nav-profile-tab" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+              Profile
+            </button>
+            <button class-contracts="theme navLink" id="nav-contact-tab" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+              Contact
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p class-contracts="theme paragraph">
+              Placeholder content for the tab panel. This one relates to the home tab. Takes
+              you miles high, so high, 'cause she’s got that one international smile. There's
+              a stranger in my bed, there's a pounding in my head. Oh, no. In another life I
+              would make you stay. ‘Cause I, I’m capable of anything. Suiting up for my
+              crowning battle. Used to steal your parents' liquor and climb to the roof. Tone,
+              tan fit and ready, turn it up cause its gettin' heavy. Her love is like a drug.
+              I guess that I forgot I had a choice.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </jsx>
+</component>

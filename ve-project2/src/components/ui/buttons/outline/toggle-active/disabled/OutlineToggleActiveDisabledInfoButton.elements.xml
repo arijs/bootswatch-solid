@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnOutlineInfo
+  </family>
+</contract-classes>
+<component name="OutlineToggleActiveDisabledInfoButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input disabled="true" type="checkbox" class-contracts="theme btnCheck" id="id-btn-outline-toggle-active-disabled-info" checked="true" autocomplete="off" />
+      <label class-contracts="theme btn btnOutlineInfo" for="id-btn-outline-toggle-active-disabled-info">
+        Checked Toggle Info
+      </label>
+    </div>
+  </jsx>
+</component>

@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnLink
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+</contract-classes>
+<component name="SolidToggleLinkButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input type="checkbox" class-contracts="theme btnCheck" id="id-btn-solid-toggle-link" autocomplete="off" />
+      <label class-contracts="theme btn btnLink" for="id-btn-solid-toggle-link">
+        Toggle Link
+      </label>
+    </div>
+  </jsx>
+</component>

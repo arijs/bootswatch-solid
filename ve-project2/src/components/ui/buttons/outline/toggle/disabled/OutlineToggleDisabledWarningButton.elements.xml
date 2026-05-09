@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnOutlineWarning
+  </family>
+</contract-classes>
+<component name="OutlineToggleDisabledWarningButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input disabled="true" type="checkbox" class-contracts="theme btnCheck" id="id-btn-outline-toggle-disabled-warning" autocomplete="off" />
+      <label class-contracts="theme btn btnOutlineWarning" for="id-btn-outline-toggle-disabled-warning">
+        Toggle Warning
+      </label>
+    </div>
+  </jsx>
+</component>

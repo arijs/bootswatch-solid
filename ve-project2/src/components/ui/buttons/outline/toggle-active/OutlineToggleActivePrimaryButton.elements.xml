@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnOutlinePrimary
+  </family>
+</contract-classes>
+<component name="OutlineToggleActivePrimaryButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input type="checkbox" class-contracts="theme btnCheck" id="id-btn-outline-toggle-active-primary" checked="true" autocomplete="off" />
+      <label class-contracts="theme btn btnOutlinePrimary" for="id-btn-outline-toggle-active-primary">
+        Checked Toggle Primary
+      </label>
+    </div>
+  </jsx>
+</component>

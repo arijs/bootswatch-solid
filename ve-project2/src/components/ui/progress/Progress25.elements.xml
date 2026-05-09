@@ -1,0 +1,21 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/progress/contract.css">
+    progress, progressBar, progressBarSuccess
+  </family>
+</contract-classes>
+<component name="Progress25">
+  <jsx>
+    <div class="bd-example-ve2">
+      <div class-contracts="theme containerFluid">
+        <div class-contracts="theme progress">
+          <div class-contracts="theme progressBar progressBarSuccess" style="{ width: '25%' }">
+            25%
+          </div>
+        </div>
+      </div>
+    </div>
+  </jsx>
+</component>

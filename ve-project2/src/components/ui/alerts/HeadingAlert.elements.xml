@@ -1,0 +1,32 @@
+<contract-classes>
+  <family source="ui/alerts/contract.css">
+    alert, alertHeading, alertSuccess
+  </family>
+  <family source="contents/contract.css">
+    h4, horizontalRule, paragraph
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+</contract-classes>
+<component name="HeadingAlert">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <div class-contracts="theme alert alertSuccess">
+        <h4 class-contracts="theme alertHeading h4">
+          Well done!
+        </h4>
+        <p class-contracts="theme paragraph">
+          Aww yeah, you successfully read this important alert message. This example text
+          is going to run a bit longer so that you can see how spacing within an alert
+          works with this kind of content.
+        </p>
+        <hr class-contracts="theme horizontalRule" />
+        <p class-contracts="theme paragraph" style="{ 'margin-bottom': '0' }">
+          Whenever you need to, be sure to use margin utilities to keep things nice and
+          tidy.
+        </p>
+      </div>
+    </div>
+  </jsx>
+</component>

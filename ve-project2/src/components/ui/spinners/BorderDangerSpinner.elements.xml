@@ -1,0 +1,24 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="utilities/contract.css">
+    visuallyHidden
+  </family>
+  <family source="ui/spinners/contract.css">
+    spinnerBorder, spinnerDanger
+  </family>
+</contract-classes>
+<component name="BorderDangerSpinner">
+  <jsx>
+    <div class="bd-example-ve2">
+      <div class-contracts="theme containerFluid">
+        <div class-contracts="theme spinnerBorder spinnerDanger">
+          <span class-contracts="theme visuallyHidden">
+            Loading...
+          </span>
+        </div>
+      </div>
+    </div>
+  </jsx>
+</component>

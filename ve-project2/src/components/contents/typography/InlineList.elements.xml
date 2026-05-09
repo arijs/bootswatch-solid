@@ -1,0 +1,28 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="contents/contract.css">
+    listInline, listInlineItem
+  </family>
+</contract-classes>
+<component name="InlineList">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <ul class-contracts="theme listInline">
+        <li class-contracts="theme listInlineItem">
+          This is a list item.
+        </li>
+        <li class-contracts="theme listInlineItem">
+          And another one.
+        </li>
+        <li class-contracts="theme listInlineItem">
+          But they're displayed inline.
+        </li>
+      </ul>
+    </div>
+  </jsx>
+</component>

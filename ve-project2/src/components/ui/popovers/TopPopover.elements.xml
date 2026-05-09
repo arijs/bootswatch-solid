@@ -1,0 +1,26 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    vars
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnSecondary
+  </family>
+  <family source="ui/popovers/contract.css">
+    frame, frameColumn, justifyEnd, popoverArrow, popoverBody, popoverHeader, popoverVe
+  </family>
+</contract-classes>
+<component name="TopPopover">
+  <jsx>
+    <div class="bd-example" class-contracts="theme containerFluid frame frameColumn justifyEnd">
+      <button type="button" class="pwhook-popover-trigger" class-contracts="theme btn btnSecondary" data-bs-container="body" data-bs-toggle="popover" ref="(popover) =&gt;
+new VePopover(popover, {
+template: `&lt;div class=&quot;${popoverVe} ${theme} ${vars} pwhook-popover&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;${popoverArrow} ${theme}&quot;&gt;&lt;/div&gt;&lt;h3 class=&quot;${popoverHeader} ${theme}&quot;&gt;&lt;/h3&gt;&lt;div class=&quot;${popoverBody} ${theme}&quot;&gt;&lt;/div&gt;&lt;/div&gt;`,
+})" data-bs-placement="top" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on top
+      </button>
+    </div>
+  </jsx>
+</component>

@@ -1,0 +1,41 @@
+<contract-classes>
+  <family source="contents/contract.css">
+    bdPlaceholderImg, h5, paragraph, mediaMiddle
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnPrimary
+  </family>
+  <family source="ui/card/contract.css">
+    card, cardBody, cardImgTop, cardText, cardTitle
+  </family>
+</contract-classes>
+<component name="ImageTopCard">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme">
+      <div class-contracts="theme card">
+        <svg class="bd-placeholder-img" class-contracts="theme cardImgTop bdPlaceholderImg mediaMiddle" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" tabindex="0">
+          <title>
+            Placeholder
+          </title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+            Image cap
+          </text>
+        </svg>
+        <div class-contracts="theme cardBody">
+          <h5 class-contracts="theme cardTitle h5">
+            Card title
+          </h5>
+          <p class-contracts="theme cardText paragraph">
+            Some quick example text to build on the card title and make up the bulk of
+            the card's content.
+          </p>
+          <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+          <a href="#" onClick="(e) =&gt; e.preventDefault()" class-contracts="theme btn btnPrimary">
+            Go somewhere
+          </a>
+        </div>
+      </div>
+    </div>
+  </jsx>
+</component>

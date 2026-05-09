@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnLg, btnPrimary
+  </family>
+</contract-classes>
+<component name="ToggleActiveDisabledLargeButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input disabled="true" type="checkbox" class-contracts="theme btnCheck" id="id-btn-sizes-toggle-active-disabled-large" checked="true" autocomplete="off" />
+      <label class-contracts="theme btn btnPrimary btnLg" for="id-btn-sizes-toggle-active-disabled-large">
+        Checked Toggle Large button
+      </label>
+    </div>
+  </jsx>
+</component>

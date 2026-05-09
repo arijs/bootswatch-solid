@@ -1,0 +1,31 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    floatingLabel, form, formControl, formControlFloating, formFloating, mb3
+  </family>
+</contract-classes>
+<component name="FloatingLabelsExample">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme form">
+        <div class-contracts="theme formFloating mb3">
+          <input type="email" class-contracts="theme formControl formControlFloating" id="floatingInput" placeholder="name@example.com" />
+          <label class-contracts="theme floatingLabel" for="floatingInput">
+            Email address
+          </label>
+        </div>
+        <div class-contracts="theme formFloating">
+          <input type="password" class-contracts="theme formControl formControlFloating" id="floatingPassword" placeholder="Password" />
+          <label class-contracts="theme floatingLabel" for="floatingPassword">
+            Password
+          </label>
+        </div>
+      </form>
+    </div>
+  </jsx>
+</component>

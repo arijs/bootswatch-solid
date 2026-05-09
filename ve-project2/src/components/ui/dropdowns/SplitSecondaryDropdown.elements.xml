@@ -1,0 +1,53 @@
+<contract-classes>
+  <family source="utilities/contract.css">
+    visuallyHidden
+  </family>
+  <family source="ui/button-group/contract.css">
+    btnGroup
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnSecondary
+  </family>
+  <family source="ui/dropdowns/contract.css">
+    btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropdownToggle, dropdownToggleSplit, dropend, dropstart, dropup
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+</contract-classes>
+<component name="SplitSecondaryDropdown">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <div class-contracts="theme btnGroup">
+        <button type="button" class-contracts="theme btn btnSecondary">
+          Secondary
+        </button>
+        <button type="button" class="pwhook-dropdown-toggle" class-contracts="theme btn btnSecondary dropdownToggle dropdownToggleSplit" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class-contracts="theme visuallyHidden">
+            Toggle Dropdown
+          </span>
+        </button>
+        <ul class="pwhook-dropdown-menu" class-contracts="theme dropdownMenu">
+          <li>
+            <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+            <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+              Action
+            </a>
+          </li>
+          <li>
+            <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+            <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+              Another action
+            </a>
+          </li>
+          <li>
+            <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+            <a class-contracts="theme dropdownItem" href="#" onClick="(e) =&gt; e.preventDefault()">
+              Something else here
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </jsx>
+</component>

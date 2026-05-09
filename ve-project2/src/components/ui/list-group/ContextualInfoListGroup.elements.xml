@@ -1,0 +1,20 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/list-group/contract.css">
+    listGroup, listGroupItem, listGroupItemAction, listGroupItemInfo
+  </family>
+</contract-classes>
+<component name="ContextualInfoListGroup">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <div class-contracts="theme listGroup">
+        <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+        <a href="#" onClick="(e) =&gt; e.preventDefault()" class="pwhook-list-group-item" class-contracts="theme listGroupItem listGroupItemAction listGroupItemInfo">
+          A simple info list group item
+        </a>
+      </div>
+    </div>
+  </jsx>
+</component>

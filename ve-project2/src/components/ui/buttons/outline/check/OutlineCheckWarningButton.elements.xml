@@ -1,0 +1,17 @@
+<contract-classes>
+  <family source="ui/buttons/contract.css">
+    btn, btnOutlineWarning, inputFontFamily
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+</contract-classes>
+<component name="OutlineCheckWarningButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <button type="button" class="pwhook-btn" class-contracts="theme btn btnOutlineWarning inputFontFamily" data-bs-toggle="button">
+        Warning
+      </button>
+    </div>
+  </jsx>
+</component>

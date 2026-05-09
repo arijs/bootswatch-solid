@@ -1,0 +1,97 @@
+<contract-classes>
+  <family source="contents/contract.css">
+    h4, inlineCode
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="ui/accordion/contract.css">
+    accordion, accordionBody, accordionButton, accordionButtonCollapsed, accordionCollapse, accordionCollapseShow, accordionHeader, accordionItem
+  </family>
+</contract-classes>
+<component name="AccordionExample">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <div class-contracts="theme accordion" id="accordionExample">
+        <div class-contracts="theme accordionItem">
+          <h4 class-contracts="theme h4 accordionHeader" id="headingOne">
+            <button class-contracts="theme accordionButton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Accordion Item #1
+            </button>
+          </h4>
+          <section id="collapseOne" class-contracts="theme accordionCollapse accordionCollapseShow" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class-contracts="theme accordionBody">
+              <strong>
+                This is the first item's accordion body.
+              </strong>
+              It is hidden by
+              default, until the collapse plugin adds the appropriate classes that we use
+              to style each element. These classes control the overall appearance, as well
+              as the showing and hiding via CSS transitions. You can modify any of this
+              with custom CSS or overriding our default variables. It's also worth noting
+              that just about any HTML can go within the
+              <code class-contracts="theme inlineCode">
+                .accordion-body
+              </code>
+              ,
+              though the transition does limit overflow.
+            </div>
+          </section>
+        </div>
+        <div class-contracts="theme accordionItem">
+          <h4 class-contracts="theme h4 accordionHeader" id="headingTwo">
+            <button class-contracts="theme accordionButton accordionButtonCollapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Accordion Item #2
+            </button>
+          </h4>
+          <section id="collapseTwo" class-contracts="theme accordionCollapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class-contracts="theme accordionBody">
+              <strong>
+                This is the second item's accordion body.
+              </strong>
+              It is hidden by
+              default, until the collapse plugin adds the appropriate classes that we use
+              to style each element. These classes control the overall appearance, as well
+              as the showing and hiding via CSS transitions. You can modify any of this
+              with custom CSS or overriding our default variables. It's also worth noting
+              that just about any HTML can go within the
+              <code class-contracts="theme inlineCode">
+                .accordion-body
+              </code>
+              ,
+              though the transition does limit overflow.
+            </div>
+          </section>
+        </div>
+        <div class-contracts="theme accordionItem">
+          <h4 class-contracts="theme h4 accordionHeader" id="headingThree">
+            <button class-contracts="theme accordionButton accordionButtonCollapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Accordion Item #3
+            </button>
+          </h4>
+          <section id="collapseThree" class-contracts="theme accordionCollapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class-contracts="theme accordionBody">
+              <strong>
+                This is the third item's accordion body.
+              </strong>
+              It is hidden by
+              default, until the collapse plugin adds the appropriate classes that we use
+              to style each element. These classes control the overall appearance, as well
+              as the showing and hiding via CSS transitions. You can modify any of this
+              with custom CSS or overriding our default variables. It's also worth noting
+              that just about any HTML can go within the
+              <code class-contracts="theme inlineCode">
+                .accordion-body
+              </code>
+              ,
+              though the transition does limit overflow.
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </jsx>
+</component>

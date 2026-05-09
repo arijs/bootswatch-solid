@@ -1,0 +1,20 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="contents/contract.css">
+    lead
+  </family>
+</contract-classes>
+<component name="Lead">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <p class-contracts="theme lead">
+        This is a lead paragraph. It stands out from regular paragraphs.
+      </p>
+    </div>
+  </jsx>
+</component>

@@ -1,0 +1,36 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="contents/contract.css">
+    link
+  </family>
+  <family source="ui/breadcrumb/contract.css">
+    breadcrumb, breadcrumbItem, breadcrumbItemActive
+  </family>
+</contract-classes>
+<component name="BreadcrumbExample">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <nav aria-label="breadcrumb">
+        <ol class-contracts="theme breadcrumb">
+          <li class-contracts="theme breadcrumbItem">
+            <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+            <a class-contracts="theme link" href="#" onClick="(e) =&gt; e.preventDefault()">
+              Home
+            </a>
+          </li>
+          <li class-contracts="theme breadcrumbItem">
+            <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+            <a class-contracts="theme link" href="#" onClick="(e) =&gt; e.preventDefault()">
+              Library
+            </a>
+          </li>
+          <li class-contracts="theme breadcrumbItem breadcrumbItemActive" aria-current="page">
+            Data
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </jsx>
+</component>

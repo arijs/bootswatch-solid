@@ -1,0 +1,25 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    form, formCheck, formCheckInput, formCheckLabel, formSwitch, mb3
+  </family>
+</contract-classes>
+<component name="SwitchCheckbox">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme form">
+        <div class-contracts="theme mb3 formCheck formSwitch">
+          <input class="pwhook-checkbox" class-contracts="theme formCheckInput" type="checkbox" id="flexSwitchCheckChecked" checked="true" />
+          <label class="pwhook-checkbox-label" class-contracts="theme formCheckLabel" for="flexSwitchCheckChecked">
+            Checked switch checkbox input
+          </label>
+        </div>
+      </form>
+    </div>
+  </jsx>
+</component>

@@ -1,0 +1,18 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/buttons/contract.css">
+    btn, btnCheck, btnOutlineSuccess
+  </family>
+</contract-classes>
+<component name="OutlineToggleActiveSuccessButton">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <input type="checkbox" class-contracts="theme btnCheck" id="id-btn-outline-toggle-active-success" checked="true" autocomplete="off" />
+      <label class-contracts="theme btn btnOutlineSuccess" for="id-btn-outline-toggle-active-success">
+        Checked Toggle Success
+      </label>
+    </div>
+  </jsx>
+</component>

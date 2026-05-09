@@ -1,0 +1,44 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    colMd3, colSm6, formSelect, formControl, formLabel, g3, invalidFeedback, isInvalid, row, rowCol
+  </family>
+</contract-classes>
+<component name="InvalidStateZip">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme row g3">
+        <div class-contracts="theme rowCol colMd3 colSm6">
+          <label for="validationServer04" class-contracts="theme formLabel">
+            State
+          </label>
+          <select class-contracts="theme formSelect isInvalid" id="validationServer04" required="true">
+            <option selected="true" disabled="true" value="">
+              Choose...
+            </option>
+            <option>
+              ...
+            </option>
+          </select>
+          <div class-contracts="theme invalidFeedback">
+            Please select a valid state.
+          </div>
+        </div>
+        <div class-contracts="theme rowCol colMd3 colSm6">
+          <label for="validationServer05" class-contracts="theme formLabel">
+            Zip
+          </label>
+          <input type="text" class-contracts="theme formControl isInvalid" id="validationServer05" required="true" />
+          <div class-contracts="theme invalidFeedback">
+            Please provide a valid zip.
+          </div>
+        </div>
+      </form>
+    </div>
+  </jsx>
+</component>

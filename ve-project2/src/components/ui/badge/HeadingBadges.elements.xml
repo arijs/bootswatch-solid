@@ -1,0 +1,65 @@
+<contract-classes>
+  <family source="contents/contract.css">
+    h1, h2, h3, h4, h5, h6
+  </family>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/badge/contract.css">
+    badge, badgeDanger, badgeDark, badgeInfo, badgeLight, badgePrimary, badgeSecondary, badgeSuccess, badgeWarning
+  </family>
+</contract-classes>
+<component name="HeadingBadges">
+  <jsx>
+    <div class="bd-example-ve2" class-contracts="theme containerFluid">
+      <h1 class-contracts="theme h1">
+        Example heading
+        <span class-contracts="theme badge badgePrimary">
+          New
+        </span>
+      </h1>
+      <h2 class-contracts="theme h2">
+        Example heading
+        <span class-contracts="theme badge badgeSecondary">
+          New
+        </span>
+      </h2>
+      <h3 class-contracts="theme h3">
+        Example heading
+        <span class-contracts="theme badge badgeSuccess">
+          New
+        </span>
+      </h3>
+      <h4 class-contracts="theme h4">
+        Example heading
+        <span class-contracts="theme badge badgeDanger">
+          New
+        </span>
+      </h4>
+      <h5 class-contracts="theme h5">
+        Example heading
+        <span class-contracts="theme badge badgeWarning">
+          New
+        </span>
+      </h5>
+      <h6 class-contracts="theme h6">
+        Example heading
+        <span class-contracts="theme badge badgeInfo">
+          New
+        </span>
+      </h6>
+      <h6 class-contracts="theme h6">
+        Example heading
+        <span class-contracts="theme badge badgeLight">
+          New
+        </span>
+      </h6>
+      <h6 class-contracts="theme h6">
+        Example heading
+        <span class-contracts="theme badge badgeDark">
+          New
+        </span>
+      </h6>
+    </div>
+  </jsx>
+</component>

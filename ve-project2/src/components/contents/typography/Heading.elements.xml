@@ -1,0 +1,35 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="contents/contract.css">
+    h1, h2, h3, h4, h5, h6
+  </family>
+</contract-classes>
+<component name="Heading">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <p class-contracts="theme h1">
+        Heading 1
+      </p>
+      <p class-contracts="theme h2">
+        Heading 2
+      </p>
+      <p class-contracts="theme h3">
+        Heading 3
+      </p>
+      <p class-contracts="theme h4">
+        Heading 4
+      </p>
+      <p class-contracts="theme h5">
+        Heading 5
+      </p>
+      <p class-contracts="theme h6">
+        Heading 6
+      </p>
+    </div>
+  </jsx>
+</component>

@@ -1,0 +1,38 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="ui/pagination/contract.css">
+    pageItem, pageItemActive, pageLink, pagination, paginationSm
+  </family>
+</contract-classes>
+<component name="SmallPagination">
+  <jsx>
+    <div class="bd-example-ve2">
+      <div class-contracts="theme containerFluid">
+        <nav aria-label="Pagination example">
+          <ul class-contracts="theme pagination paginationSm">
+            <li class-contracts="theme pageItem">
+              <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+              <a class-contracts="theme pageLink" href="#" onClick="(e) =&gt; e.preventDefault()">
+                1
+              </a>
+            </li>
+            <li class-contracts="theme pageItem pageItemActive" aria-current="page">
+              <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+              <a class-contracts="theme pageLink" href="#" onClick="(e) =&gt; e.preventDefault()">
+                2
+              </a>
+            </li>
+            <li class-contracts="theme pageItem">
+              <!-- biome-ignore lint: <a> is used for demonstration purposes -->
+              <a class-contracts="theme pageLink" href="#" onClick="(e) =&gt; e.preventDefault()">
+                3
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </jsx>
+</component>

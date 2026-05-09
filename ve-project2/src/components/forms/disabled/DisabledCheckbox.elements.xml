@@ -1,0 +1,27 @@
+<contract-classes>
+  <family source="layout/container.css">
+    containerFluid
+  </family>
+  <family source="theme-contract.css">
+    bodyText
+  </family>
+  <family source="forms/contract.css">
+    form, formCheck, formCheckInput, formCheckLabel, mb3
+  </family>
+</contract-classes>
+<component name="DisabledCheckbox">
+  <jsx>
+    <div class="bd-example" class-contracts="theme bodyText containerFluid">
+      <form class-contracts="theme form">
+        <div class-contracts="theme mb3">
+          <div class-contracts="theme formCheck">
+            <input class-contracts="theme formCheckInput" type="checkbox" id="disabledFieldsetCheck" disabled="true" />
+            <label class-contracts="theme formCheckLabel" for="disabledFieldsetCheck">
+              Can't check this
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </jsx>
+</component>
