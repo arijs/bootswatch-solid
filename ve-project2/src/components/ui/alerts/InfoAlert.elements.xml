@@ -17,7 +17,6 @@
     <div class="bd-example-ve2" class-contracts="theme containerFluid">
       <div class-contracts="theme alert alertInfo alertDismissible">
         A simple info alert with
-        { }
         <!-- biome-ignore lint: <a> is used for demonstration purposes -->
         <a href="#" onClick="(e) =&gt; e.preventDefault()" class-contracts="theme alertLink link">
           an example link
