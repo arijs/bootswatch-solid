@@ -56,3 +56,4 @@ export default LargeDropdown
 // @screenshot vapor/opened-dropdown: 360x242 242
 // @screenshot sketchy/opened-dropdown: 360x251 251
 // @screenshot sandstone/opened-dropdown: 360x230 230
+// @screenshot materia/opened-dropdown: 360x242 242

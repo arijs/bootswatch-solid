@@ -92,6 +92,7 @@ globalStyle(`${materiaScope}${btn}`, {
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
 	appearance: 'button',
+	letterSpacing: '0.1px',
 	display: 'inline-block',
 	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,

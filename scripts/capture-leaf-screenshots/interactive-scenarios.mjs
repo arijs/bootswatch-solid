@@ -67,6 +67,7 @@ export const INTERACTIVE_SCENARIOS = [
 		kind: 'focus-check',
 		selector: 'input.pwhook-checkbox',
 		locatorState: ({theme}) => (theme === 'sketchy' ? 'attached' : undefined),
+		settleDelayMs: 320,
 	},
 	{
 		route: '/forms/overview/file-input',

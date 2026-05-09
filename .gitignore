@@ -6,3 +6,8 @@ dist
 /screenshots/**/ve-*.png
 /verify-*.txt
 /ve-project/verify-*.txt
+/debug-*.txt
+/capture-*.txt
+/baseline-*.txt
+/scripts/debug-*.mjs
+/scripts/tmp-*.mjs

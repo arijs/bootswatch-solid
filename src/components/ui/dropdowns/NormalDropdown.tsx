@@ -57,3 +57,4 @@ export default NormalDropdown
 // @screenshot sketchy/opened-dropdown: 360x241 241
 // @screenshot slate/opened-dropdown: 360x248 248
 // @screenshot sandstone/opened-dropdown: 360x226 226
+// @screenshot materia/opened-dropdown: 360x246 246

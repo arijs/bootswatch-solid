@@ -86,7 +86,7 @@ varBsFormInvalidBorderColor,
 } from '../../theme-contract/forms/_vars.css'
 import { body, bodyText, bodyFrame, vars } from '../../theme-contract/theme-contract.css'
 
-export const materiaScope = style({})
+export const materiaScope = style({ letterSpacing: '0.1px' })
 
 globalStyle(`${materiaScope}${vars}`, {
 vars: {
