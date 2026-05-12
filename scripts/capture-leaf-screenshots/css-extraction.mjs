@@ -1,7 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
-import { getParser, printerTransform } from '@arijs/stream-xml-parser'
+import { getMatcherFromCssSelector, getParser, printerTransform } from '@arijs/stream-xml-parser'
+import inspectObj from '@arijs/frontend/isomorphic/utils/inspect'
 import { parse as parseCss } from '@adobe/css-tools'
 
 import { ROOT } from './constants.mjs'
@@ -199,6 +200,196 @@ function findBestSourceRule(ruleText, sourceCandidates) {
 	return bestCandidate
 }
 
+function canonicalizeCssPropertyName(name) {
+	const trimmed = String(name ?? '').trim()
+	if (!trimmed) return ''
+	if (trimmed.startsWith('--')) return trimmed.toLowerCase()
+	return trimmed.replace(/[A-Z]/g, (char) => `-${char.toLowerCase()}`).toLowerCase()
+}
+
+function splitSelectorList(selectorText) {
+	const selectors = []
+	let current = ''
+	let inSquare = 0
+	let inRound = 0
+	let quote = ''
+
+	for (let index = 0; index < selectorText.length; index += 1) {
+		const char = selectorText[index]
+		if (quote) {
+			current += char
+			if (char === quote && selectorText[index - 1] !== '\\') {
+				quote = ''
+			}
+			continue
+		}
+
+		if (char === '"' || char === "'") {
+			quote = char
+			current += char
+			continue
+		}
+		if (char === '[') inSquare += 1
+		if (char === ']') inSquare = Math.max(0, inSquare - 1)
+		if (char === '(') inRound += 1
+		if (char === ')') inRound = Math.max(0, inRound - 1)
+
+		if (char === ',' && inSquare === 0 && inRound === 0) {
+			const trimmed = current.trim()
+			if (trimmed) selectors.push(trimmed)
+			current = ''
+			continue
+		}
+		current += char
+	}
+
+	const trailing = current.trim()
+	if (trailing) selectors.push(trailing)
+	return selectors
+}
+
+function parseResolvedStyleDeclarations(styleText) {
+	const declarations = []
+	for (const declaration of String(styleText ?? '').split(';')) {
+		const trimmed = declaration.trim()
+		if (!trimmed) continue
+		const separator = trimmed.indexOf(':')
+		if (separator === -1) continue
+		const name = trimmed.slice(0, separator).trim()
+		const value = trimmed.slice(separator + 1).trim()
+		if (!name || !value) continue
+		declarations.push({
+			name,
+			canonicalName: canonicalizeCssPropertyName(name),
+			value,
+		})
+	}
+	return declarations
+}
+
+function getPseudoNameFromAstItem(item) {
+	const candidate = (item && typeof item.name === 'string' && item.name) || ''
+	return candidate.replace(/^:+/, '').toLowerCase()
+}
+
+function getCssSelectorEntries(cssArtifacts) {
+	const cssTexts = [...(cssArtifacts?.scenarioRules ?? []), ...(cssArtifacts?.globalRules ?? [])]
+	if (cssTexts.length === 0) return []
+
+	const selectorToProperties = new Map()
+
+	function addRuleSelectors(selectors, declarations) {
+		const propertyNames = new Set(
+			declarations
+				.filter((declaration) => declaration.type === 'declaration')
+				.map((declaration) => canonicalizeCssPropertyName(declaration.property))
+				.filter(Boolean),
+		)
+		if (propertyNames.size === 0) return
+
+		for (const selectorText of selectors) {
+			for (const selector of splitSelectorList(selectorText)) {
+				const normalizedSelector = normalizeSelectorForLookup(selector)
+				if (!normalizedSelector) continue
+				const existing = selectorToProperties.get(normalizedSelector)
+				if (!existing) {
+					selectorToProperties.set(normalizedSelector, new Set(propertyNames))
+					continue
+				}
+				for (const propertyName of propertyNames) {
+					existing.add(propertyName)
+				}
+			}
+		}
+	}
+
+	function collectRules(rules) {
+		for (const rule of rules ?? []) {
+			if (rule.type === 'rule') {
+				if (Array.isArray(rule.selectors) && Array.isArray(rule.declarations)) {
+					addRuleSelectors(rule.selectors, rule.declarations)
+				}
+				continue
+			}
+
+			if (Array.isArray(rule.rules)) {
+				collectRules(rule.rules)
+			}
+		}
+	}
+
+	for (const cssText of cssTexts) {
+		let ast
+		try {
+			ast = parseCss(cssText, { silent: true })
+		} catch {
+			continue
+		}
+		collectRules(ast?.stylesheet?.rules)
+	}
+
+	const entries = []
+	for (const [selector, properties] of selectorToProperties.entries()) {
+		entries.push({ selector, properties })
+	}
+	return entries
+}
+
+function getSelectorMatcher(selector, elAdapter, matcherCache, options) {
+	if (matcherCache.has(selector)) {
+		return matcherCache.get(selector)
+	}
+
+	const allowHoverPseudoClass = Boolean(options?.allowHoverPseudoClass)
+	const selectorHasHover = /(^|[^a-z-]):hover\b/i.test(selector)
+
+	let hasPseudoElement = false
+	let hasNonHoverPseudoClass = false
+	let hasHoverPseudoClass = false
+	let matcher = null
+	try {
+		matcher = getMatcherFromCssSelector(selector, elAdapter, {
+			beforeProcessAstRuleItemRecursive: ({ items }) => {
+				let changed = false
+				const filtered = []
+				for (const item of items) {
+					if (item.type === 'PseudoElement') {
+						hasPseudoElement = true
+						changed = true
+						continue
+					}
+					if (item.type === 'PseudoClass') {
+						const pseudoName = getPseudoNameFromAstItem(item)
+						if (pseudoName === 'hover') {
+							hasHoverPseudoClass = true
+						} else {
+							hasNonHoverPseudoClass = true
+						}
+						changed = true
+						continue
+					}
+					filtered.push(item)
+				}
+				if (!changed) return undefined
+				return filtered
+			},
+		})
+	} catch {
+		matcher = null
+	}
+
+	if (hasPseudoElement || hasNonHoverPseudoClass) {
+		matcher = null
+	}
+
+	if (hasHoverPseudoClass && !(allowHoverPseudoClass && selectorHasHover)) {
+		matcher = null
+	}
+
+	matcherCache.set(selector, matcher)
+	return matcher
+}
+
 async function extractScenarioMarkupArtifact(page) {
 	return page.evaluate(async () => {
 		// Use StreamXMLParser exposed on window by the app bundle (src/index.tsx)
@@ -263,10 +454,17 @@ async function extractScenarioMarkupArtifact(page) {
 	})
 }
 
-export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts) {
+export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {}) {
 	const p = getParser()
 	p.end(markup)
 	const { tree, elAdapter } = p.getResult()
+	const selectorEntries = getCssSelectorEntries(cssArtifacts)
+	const selectorMatcherCache = new Map()
+	const stateFolder = String(options.stateFolder ?? '')
+	const allowHoverPseudoClass = /(^|[^a-z0-9])hover($|[^a-z0-9])/i.test(stateFolder)
+
+	const total = { inputLength: 0, outputLength: 0, inputProps: 0, outputProps: 0 }
+	const perElement = []
 
 	const sm = printerTransform.syncMatcher(elAdapter);
 
@@ -279,7 +477,7 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts) {
 			// (new TreeMatcher(...)).testAll(nodeEntry, path) will return an object
 			// with a 'success' property indicating if the node matches the filter
 			// ---
-			// We can combine this node with 
+			// We can combine this node with
 			// StreamXMLParser.getMatcherFromCssSelector(cssSelector, elAdapter).
 			// This will convert a CSS selector into a TreeMatcher that tests if a
 			// node would be selected by the selector.
@@ -296,6 +494,9 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts) {
 			// are defined in the CSS rules.
 			const { node } = nodeEntry
 			let computedStyles = ''
+			if (elAdapter.isText(node)) {
+				throw new Error(`Unexpected text node in optimizeMarkupWithCssArtifacts: ${JSON.stringify(elAdapter.textValueGet(node))}, nodeEntry: ${JSON.stringify(inspectObj(nodeEntry, 2, 64))}`)
+			}
 			elAdapter.attrsEach(node, function (name, value) {
 				if (name === 'style-resolved') {
 					computedStyles = value
@@ -303,11 +504,57 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts) {
 					return this._remove | this._break
 				}
 			})
-			// computedStyles now is this:
-			// "accentColor: auto; alignContent: normal; alignItems: normal; alignSelf: auto; alignmentBaseline: auto; anchorName: none; anchorScope: none; animation: none; ..." // and so on, with all the properties and values separated by semicolons
+
+			const declarations = parseResolvedStyleDeclarations(computedStyles)
+			const cssDefinedProperties = new Set()
+			for (const entry of selectorEntries) {
+				const matcher = getSelectorMatcher(entry.selector, elAdapter, selectorMatcherCache, {
+					allowHoverPseudoClass,
+				})
+				if (!matcher) continue
+				let matched = false
+				try {
+					matched = Boolean(matcher.testAll(nodeEntry, path)?.success)
+				} catch {
+					matched = false
+				}
+				if (!matched) continue
+				for (const propertyName of entry.properties) {
+					cssDefinedProperties.add(propertyName)
+				}
+			}
+
+			const filteredDeclarations = declarations.filter((declaration) =>
+				cssDefinedProperties.has(declaration.canonicalName),
+			)
+			const filteredStyles = filteredDeclarations
+				.map((declaration) => `${declaration.name}: ${declaration.value};`)
+				.join(' ')
+
+			const elStats = {
+				el: elAdapter.nameGet(node),
+				inputLength: computedStyles.length,
+				outputLength: filteredStyles.length,
+				inputProps: declarations.length,
+				outputProps: filteredDeclarations.length,
+			}
+			total.inputLength += elStats.inputLength
+			total.outputLength += elStats.outputLength
+			total.inputProps += elStats.inputProps
+			total.outputProps += elStats.outputProps
+			perElement.push(elStats)
+
 			elAdapter.attrsAdd(node, {
+				// We would cause an infinite loop here if we used the same attribute name,
+				// because the matcher would keep matching and modifying the node on every
+				// iteration. By using a different attribute name, we can avoid this issue
+				// and ensure that the matcher only processes the node once.
 				name: 'style-modified',
-				value: computedStyles,
+				value: filteredStyles,
+			})
+			elAdapter.attrsAdd(node, {
+				name: 'style-stats',
+				value: `in-len: ${elStats.inputLength}; out-len: ${elStats.outputLength}; in-props: ${elStats.inputProps}; out-props: ${elStats.outputProps};`,
 			})
 			return {
 				full: { tree: [node], noFormat: true },
@@ -329,7 +576,14 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts) {
 			throw new Error(`Multiple errors optimizing markup with CSS artifacts:\n${message}`)
 		}
 	}
-	return optimized
+
+	const stats = { total, perElement }
+
+	return {
+		optimized: `${optimized.trim()}\n<!--
+		in-len: ${total.inputLength}; out-len: ${total.outputLength}; in-props: ${total.inputProps}; out-props: ${total.outputProps}; -->\n`,
+		stats,
+	}
 }
 
 async function getThemeSourceStyleRules(themeSlug) {

@@ -76,6 +76,8 @@ export async function executeCaptureWorkflow({
 	const componentCache = new Map()
 	const writebackQueue = new Map()
 	const cssAccumulator = createThemeCssAccumulator()
+	const markupStatsAccumulator = new Map() // theme -> array of stats
+	let htmlExtractionFileCount = 0
 
 	let { browser, context, page } = await freshBrowser()
 	const failed = []
@@ -304,16 +306,24 @@ export async function executeCaptureWorkflow({
 							themeHasScenarioCss = true
 							cssScenarioCount += 1
 							if (htmlExtractionEnabled) {
-								const markup = optimizeMarkupWithCssArtifacts(
+								const { optimized: markup, stats: markupStats } = optimizeMarkupWithCssArtifacts(
 									await extractScenarioMarkupArtifact(page),
 									cssArtifacts,
+									{ stateFolder },
 								)
 								await writeScenarioMarkupArtifact({
 									themeSlug,
 									routePath,
 									stateFolder,
 									markup,
+									markupStats,
 								})
+								// Track markup stats for logging
+								if (!markupStatsAccumulator.has(themeSlug)) {
+									markupStatsAccumulator.set(themeSlug, [])
+								}
+								markupStatsAccumulator.get(themeSlug).push(markupStats)
+								htmlExtractionFileCount += 1
 							}
 						}
 
@@ -364,12 +374,42 @@ export async function executeCaptureWorkflow({
 							savedCount += 1
 							scenarioSummary.get(summaryKey).saved += 1
 							shotsSinceRestart += 1
-							console.log(
-								`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
+						let markupLogInfo = ''
+						if (htmlExtractionEnabled && markupStatsAccumulator.has(themeSlug)) {
+							const themeStats = markupStatsAccumulator.get(themeSlug)
+							if (themeStats.length > 0) {
+								const lastStats = themeStats[themeStats.length - 1]
+								const numElements = lastStats.perElement.length
+								const lenRatio = lastStats.total.inputLength > 0 
+									? (lastStats.total.outputLength / lastStats.total.inputLength).toFixed(6)
+									: '0.000000'
+								const propsRatio = lastStats.total.inputProps > 0
+									? (lastStats.total.outputProps / lastStats.total.inputProps).toFixed(6)
+									: '0.000000'
+								markupLogInfo = ` (markup: ${numElements} els, len: ${lenRatio} ${lastStats.total.outputLength}/${lastStats.total.inputLength}, props ${propsRatio} ${lastStats.total.outputProps}/${lastStats.total.inputProps})`
+							}
+						}
+						console.log(
+							`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${markupLogInfo}`,
 							)
 						} else {
+							let markupLogInfo = ''
+							if (htmlExtractionEnabled && markupStatsAccumulator.has(themeSlug)) {
+								const themeStats = markupStatsAccumulator.get(themeSlug)
+								if (themeStats.length > 0) {
+									const lastStats = themeStats[themeStats.length - 1]
+									const numElements = lastStats.perElement.length
+									const lenRatio = lastStats.total.inputLength > 0 
+										? (lastStats.total.outputLength / lastStats.total.inputLength).toFixed(6)
+										: '0.000000'
+									const propsRatio = lastStats.total.inputProps > 0
+										? (lastStats.total.outputProps / lastStats.total.inputProps).toFixed(6)
+										: '0.000000'
+									markupLogInfo = ` (markup: ${numElements} els, len: ${lenRatio} ${lastStats.total.outputLength}/${lastStats.total.inputLength}, props ${propsRatio} ${lastStats.total.outputProps}/${lastStats.total.inputProps})`
+								}
+							}
 							console.log(
-								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped PNG output: ${route} [${stateFolder}] (${configured.source} -> measured ${measuredHeight})`,
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped PNG output: ${route} [${stateFolder}] (${configured.source} -> measured ${measuredHeight})${markupLogInfo}`,
 							)
 						}
 						captured = true
@@ -442,6 +482,12 @@ export async function executeCaptureWorkflow({
 	if (cssExtractionEnabled) {
 		console.log(
 			`CSS extraction: scenario-files=${cssScenarioCount}, theme-files=${cssThemeCount}, writes=${cssAccumulator.writes}`,
+		)
+	}
+
+	if (htmlExtractionEnabled) {
+		console.log(
+			`HTML extraction: scenario-files=${htmlExtractionFileCount}`,
 		)
 	}
 
