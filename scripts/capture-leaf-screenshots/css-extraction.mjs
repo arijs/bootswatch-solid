@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
+import { getParser, printerTransform } from '@arijs/stream-xml-parser'
 import { parse as parseCss } from '@adobe/css-tools'
 
 import { ROOT } from './constants.mjs'
@@ -57,8 +58,9 @@ function mergeThemeGlobalRules(accumulator, themeSlug, rules) {
 function resolveThemeArtifactPaths(themeSlug, routePath, stateFolder) {
 	const scenarioDir = path.join(ROOT, 'screenshots', themeSlug, routePath, stateFolder)
 	const scenarioCssPath = path.join(scenarioDir, 'style.css')
+	const scenarioMarkupPath = path.join(scenarioDir, 'markup.html')
 	const themeCssPath = path.join(ROOT, 'screenshots', themeSlug, 'theme.css')
-	return { scenarioDir, scenarioCssPath, themeCssPath }
+	return { scenarioDir, scenarioCssPath, scenarioMarkupPath, themeCssPath }
 }
 
 function formatCss(rules) {
@@ -197,6 +199,139 @@ function findBestSourceRule(ruleText, sourceCandidates) {
 	return bestCandidate
 }
 
+async function extractScenarioMarkupArtifact(page) {
+	return page.evaluate(async () => {
+		// Use StreamXMLParser exposed on window by the app bundle (src/index.tsx)
+		const StreamXMLParser = await window.loadStreamXMLParser()
+		if (!StreamXMLParser) throw new Error('window.StreamXMLParser is not available')
+
+		const elementDom = StreamXMLParser.elementDom
+		const printerTransform = StreamXMLParser.printerTransform
+
+		// Create DOM element adapter
+		const elAdapter = elementDom(document)
+
+		// Create a matcher to filter out unwanted nodes
+		const matcher = printerTransform.syncMatcher(elAdapter)
+
+		const cbRemove = () => ({ full: { noFormat: true }, noFormat: true })
+
+		// Add rule to remove elements
+		matcher.addRule({
+			matcher: StreamXMLParser.TreeMatcher.fromArray([
+				{ name: 'head', path: ['html'] },
+				{ name: 'link' },
+				{ name: 'noscript' },
+				{ name: 'script' },
+				{ name: 'style' },
+			], elAdapter),
+			callback: cbRemove,
+		})
+
+		// Get the live root element
+		const rootNode = document.documentElement
+
+		const printer = new StreamXMLParser.Printer({
+			// Ensure tag names are lower case for aesthetic reasons
+			encodeTagName: name => name.toLowerCase(),
+		});
+		const originalPrintTagOpen = printer.printTagOpen
+		printer.printTagOpen = function(node, isSelfClose) {
+			const [, openTag, closeTag] = originalPrintTagOpen.call(this, node, isSelfClose).match(/^(.*?)\s*(\/?>)$/)
+			return `${openTag} style-resolved="${
+				Object.entries(getComputedStyle(node))
+					.filter(([key]) => !/^\d+$/.test(key))
+					.filter(([key]) => !key.startsWith('webkit') && !key.startsWith('moz') && !key.startsWith('ms'))
+					.filter(([, value]) => '' !== value)
+					.map(([key, value]) => `${key}: ${value};`)
+					.join(' ')
+					.replaceAll("'", "&apos;")
+					.replaceAll('"', "'")
+			}"${closeTag}`
+		}
+		// printTagOpen: function(node, isSelfClose)
+
+		// Serialize with matcher filter
+		const result = printerTransform.sync({
+			tree: [rootNode],
+			elAdapter: elAdapter,
+			transform: matcher.transform,
+			printer,
+		})
+
+		return result.page
+	})
+}
+
+export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts) {
+	const p = getParser()
+	p.end(markup)
+	const { tree, elAdapter } = p.getResult()
+
+	const sm = printerTransform.syncMatcher(elAdapter);
+
+	sm.addRule({
+		matcher: {
+			attrs: [['style-resolved', null, '<1>']],
+		},
+		callback: ({ node: nodeEntry, path }) => {
+			// nodeEntry and path are variables that can be used with TreeMatcher:
+			// (new TreeMatcher(...)).testAll(nodeEntry, path) will return an object
+			// with a 'success' property indicating if the node matches the filter
+			// ---
+			// We can combine this node with 
+			// StreamXMLParser.getMatcherFromCssSelector(cssSelector, elAdapter).
+			// This will convert a CSS selector into a TreeMatcher that tests if a
+			// node would be selected by the selector.
+			// Thus, we could iterate through the CSS rules in cssArtifacts, convert
+			// their selectors to TreeMatchers, and _then_ if the selector matches
+			// the current node, we can inspect the declarations in the rule to see
+			// which style properties are being set in this element.
+			// We need to do this for all rules in cssArtifacts, and then we collect
+			// all the properties that are defined for this element in the CSS.
+			// Then, with this list of properties, we can filter the 'style-resolved'
+			// attribute to only include the properties that are actually defined in
+			// the CSS, and remove the rest. This way, we can reduce the size of the
+			// 'style-resolved' attribute and only keep the relevant properties that
+			// are defined in the CSS rules.
+			const { node } = nodeEntry
+			let computedStyles = ''
+			elAdapter.attrsEach(node, function (name, value) {
+				if (name === 'style-resolved') {
+					computedStyles = value
+					// bitwise OR mask to indicate both remove and break
+					return this._remove | this._break
+				}
+			})
+			// computedStyles now is this:
+			// "accentColor: auto; alignContent: normal; alignItems: normal; alignSelf: auto; alignmentBaseline: auto; anchorName: none; anchorScope: none; animation: none; ..." // and so on, with all the properties and values separated by semicolons
+			elAdapter.attrsAdd(node, {
+				name: 'style-modified',
+				value: computedStyles,
+			})
+			return {
+				full: { tree: [node], noFormat: true },
+				noFormat: true,
+			}
+		},
+	})
+
+	const { errors, page: optimized } = printerTransform.sync({
+		tree,
+		elAdapter,
+		transform: sm.transform, // use the matcher transform
+	})
+	if (errors && errors.length > 0) {
+		if (errors.length === 1) {
+			throw new Error(`Error optimizing markup with CSS artifacts: ${errors[0].message}`)
+		} else {
+			const message = errors.map((e, i) => `Error ${i + 1}: ${e.message}`).join('\n')
+			throw new Error(`Multiple errors optimizing markup with CSS artifacts:\n${message}`)
+		}
+	}
+	return optimized
+}
+
 async function getThemeSourceStyleRules(themeSlug) {
 	if (SOURCE_STYLE_RULE_CACHE.has(themeSlug)) {
 		return SOURCE_STYLE_RULE_CACHE.get(themeSlug)
@@ -246,6 +381,19 @@ function restoreRulesFromSource(ruleList, sourceStyleRules) {
 		return sourceRule ?? ruleText
 	})
 }
+
+export async function writeScenarioMarkupArtifact({ themeSlug, routePath, stateFolder, markup }) {
+	const { scenarioDir, scenarioMarkupPath } = resolveThemeArtifactPaths(
+		themeSlug,
+		routePath,
+		stateFolder,
+	)
+
+	await mkdir(scenarioDir, { recursive: true })
+	await writeFile(scenarioMarkupPath, `${markup}\n`, 'utf8')
+}
+
+export { extractScenarioMarkupArtifact }
 
 export async function extractScenarioCssArtifacts(page) {
 	return page.evaluate(

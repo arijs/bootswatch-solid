@@ -3,10 +3,27 @@
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import * as bootstrap from 'bootstrap'
+import type * as StreamXMLParser from '@arijs/stream-xml-parser'
 import './cheatsheet.scss'
 
+interface WindowExtended {
+	bootstrap?: typeof bootstrap
+	cssSelectorParser?: {}
+	streamXMLParser?: typeof StreamXMLParser
+	loadStreamXMLParser?: () => Promise<typeof StreamXMLParser>
+}
+
 if (typeof window !== 'undefined') {
-	;(window as Window & { bootstrap?: typeof bootstrap }).bootstrap = bootstrap
+	;(window as Window & WindowExtended).bootstrap = bootstrap
+	;(window as Window & WindowExtended).cssSelectorParser = {}
+	;(window as Window & WindowExtended).loadStreamXMLParser = async () => {
+		if ((window as Window & WindowExtended).streamXMLParser) {
+			return (window as Window & WindowExtended).streamXMLParser
+		}
+		const module = (await import('@arijs/stream-xml-parser/dist/arijs-stream-xml-parser.esm.js')) as typeof StreamXMLParser
+		;(window as Window & WindowExtended).streamXMLParser = module
+		return module
+	}
 }
 
 // import 'bootstrap/scss/bootstrap.scss';

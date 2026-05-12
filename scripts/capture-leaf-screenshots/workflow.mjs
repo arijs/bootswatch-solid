@@ -14,8 +14,11 @@ import {
 import {
 	createThemeCssAccumulator,
 	extractScenarioCssArtifacts,
+	extractScenarioMarkupArtifact,
+	writeScenarioMarkupArtifact,
 	writeScenarioCssArtifact,
 	writeThemeCssArtifact,
+	optimizeMarkupWithCssArtifacts,
 } from './css-extraction.mjs'
 import { resolveConfiguredHeight } from './directives.mjs'
 import {
@@ -52,6 +55,8 @@ export async function executeCaptureWorkflow({
 	writebackEnabled,
 	dryRunWriteback,
 	cssExtractionEnabled,
+	htmlExtractionEnabled,
+	imgExtractionEnabled,
 	verificationEnabled,
 	ve1VerificationEnabled,
 	veVerificationEnabled,
@@ -285,15 +290,6 @@ export async function executeCaptureWorkflow({
 						)
 						await stabilizeForScreenshot(page)
 
-						const outputPath = path.join(
-							ROOT,
-							'screenshots',
-							themeSlug,
-							routePath,
-							stateFolder,
-							`${requestedWidth}x${measuredHeight}.png`,
-						)
-
 						if (cssExtractionEnabled) {
 							const cssArtifacts = await extractScenarioCssArtifacts(page)
 							await writeScenarioCssArtifact({
@@ -307,6 +303,18 @@ export async function executeCaptureWorkflow({
 							})
 							themeHasScenarioCss = true
 							cssScenarioCount += 1
+							if (htmlExtractionEnabled) {
+								const markup = optimizeMarkupWithCssArtifacts(
+									await extractScenarioMarkupArtifact(page),
+									cssArtifacts,
+								)
+								await writeScenarioMarkupArtifact({
+									themeSlug,
+									routePath,
+									stateFolder,
+									markup,
+								})
+							}
 						}
 
 						recordWritebackMeasure(
@@ -318,39 +326,53 @@ export async function executeCaptureWorkflow({
 							measuredHeight,
 						)
 
-						const outputDir = path.dirname(outputPath)
-
-						await mkdir(outputDir, { recursive: true })
-						const deletedStaleCount =
-							await removeScreenshotsForWidthWithDifferentHeight(
-								outputDir,
-								requestedWidth,
-								measuredHeight,
+						if (imgExtractionEnabled) {
+							const outputPath = path.join(
+								ROOT,
+								'screenshots',
+								themeSlug,
+								routePath,
+								stateFolder,
+								`${requestedWidth}x${measuredHeight}.png`,
 							)
-						if (deletedStaleCount > 0) {
+							const outputDir = path.dirname(outputPath)
+
+							await mkdir(outputDir, { recursive: true })
+							const deletedStaleCount =
+								await removeScreenshotsForWidthWithDifferentHeight(
+									outputDir,
+									requestedWidth,
+									measuredHeight,
+								)
+							if (deletedStaleCount > 0) {
+								console.log(
+									`Removed ${deletedStaleCount} stale screenshot(s) from ${path.relative(ROOT, outputDir)} for width ${requestedWidth}`,
+								)
+							}
+
+							if (skipExisting && (await pathExists(outputPath))) {
+								skippedCount += 1
+								scenarioSummary.get(summaryKey).skipped += 1
+								captured = true
+								console.log(
+									`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
+								)
+								break
+							}
+
+							await page.screenshot({ path: outputPath, fullPage: false, timeout: 20000 })
+							savedCount += 1
+							scenarioSummary.get(summaryKey).saved += 1
+							shotsSinceRestart += 1
 							console.log(
-								`Removed ${deletedStaleCount} stale screenshot(s) from ${path.relative(ROOT, outputDir)} for width ${requestedWidth}`,
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
+							)
+						} else {
+							console.log(
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped PNG output: ${route} [${stateFolder}] (${configured.source} -> measured ${measuredHeight})`,
 							)
 						}
-
-						if (skipExisting && (await pathExists(outputPath))) {
-							skippedCount += 1
-							scenarioSummary.get(summaryKey).skipped += 1
-							captured = true
-							console.log(
-								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
-							)
-							break
-						}
-
-						await page.screenshot({ path: outputPath, fullPage: false, timeout: 20000 })
-						savedCount += 1
-						scenarioSummary.get(summaryKey).saved += 1
-						shotsSinceRestart += 1
 						captured = true
-						console.log(
-							`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})`,
-						)
 						break
 					} catch (err) {
 						const reason = err?.message

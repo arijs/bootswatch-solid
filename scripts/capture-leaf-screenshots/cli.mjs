@@ -9,6 +9,8 @@ const BOOLEAN_FLAGS = new Set([
 	'--no-writeback',
 	'--dry-run-writeback',
 	'--no-css-extraction',
+	'--no-html-extraction',
+	'--no-img-extraction',
 	'--verify-css-rendering',
 	'--verify-ve-rendering',
 	'--verify-ve1-rendering',
@@ -98,6 +100,8 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		verificationEnabled || ve1VerificationEnabled || veVerificationEnabled
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
+	const htmlExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-html-extraction')
+	const imgExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-img-extraction')
 
 	const maxThemesSpecified = argv.some((arg) => arg.startsWith('--max-themes='))
 	const maxThemes = parseIntArg(argv, '--max-themes', 1)
@@ -108,6 +112,8 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		writebackEnabled: !anyVerificationEnabled && !argv.includes('--no-writeback'),
 		dryRunWriteback: argv.includes('--dry-run-writeback'),
 		cssExtractionEnabled,
+		htmlExtractionEnabled,
+		imgExtractionEnabled,
 		verificationEnabled,
 		ve1VerificationEnabled,
 		veVerificationEnabled,

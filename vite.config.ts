@@ -14,4 +14,8 @@ export default defineConfig({
 		noDiscovery: true,
 		include: [],
 	},
+	experimental: {
+		// Set to false to disable the new Rolldown native resolver
+		enableNativePlugin: false,
+	},
 })

@@ -4,6 +4,7 @@ dist
 /screenshots/**/*.verify.png
 /screenshots/**/*.verify.diff.png
 /screenshots/**/ve-*.png
+/screenshots/**/markup.html
 /verify-*.txt
 /ve-project/verify-*.txt
 /debug-*.txt
@@ -11,3 +12,4 @@ dist
 /baseline-*.txt
 /scripts/debug-*.mjs
 /scripts/tmp-*.mjs
+*.elements.xml
