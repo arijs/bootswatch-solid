@@ -98,6 +98,45 @@ The script now enforces a two-phase workflow when working with CSS extraction an
 
 **Error on simultaneous execution:** If you accidentally run with both `--no-css-extraction` is not set (extraction enabled) AND `--verify-css-rendering` is set, the script will fail immediately with a helpful error message.
 
+### HTML extraction and CSS-aware markup optimization
+
+HTML extraction runs in the same Playwright scenario pass as screenshot capture and CSS extraction (same page state, same route/state/theme, no second browser pass).
+
+Pipeline overview:
+
+1. **Playwright-side DOM snapshot (after scenario action settles)**
+   - The script serializes the live `document.documentElement` tree.
+   - It removes nodes that are not needed for scenario markup artifacts:
+     - `head` (under `html`)
+     - `link`
+     - `noscript`
+     - `script`
+     - `style`
+2. **Playwright-side computed style capture per remaining element**
+   - For each retained element, `getComputedStyle(node)` is converted into a `style-resolved` attribute.
+   - Filtering is applied immediately in Playwright before writing markup:
+     - Drops numeric-index keys from `CSSStyleDeclaration`
+     - Drops vendor-prefixed keys starting with `webkit`, `moz`, `ms`
+     - Drops empty values
+3. **Node.js optimization using extracted CSS artifacts**
+   - The markup and CSS artifacts (`scenarioRules` + `globalRules`) are parsed in Node.js.
+   - CSS selectors are mapped to the canonical set of properties they declare.
+   - For each element's `style-resolved` declarations, only properties that are actually declared by CSS selectors matching that element are kept.
+   - Selector matching is conservative:
+     - Pseudo-elements are ignored
+     - Non-`:hover` pseudo-classes are ignored
+     - `:hover` selectors are only considered when the scenario state name indicates a hover state
+   - Optimized per-element output is written into `style-modified` (and per-element metrics in `style-stats`).
+4. **Artifact write**
+   - Final optimized markup is written to:
+     - `screenshots/{theme}/{route}/{state}/markup.html`
+
+Why this is useful:
+
+- Keeps extraction aligned with the exact rendered screenshot state
+- Shrinks style payload to CSS-relevant declarations instead of full computed-style noise
+- Produces deterministic markup artifacts that are easier to diff and inspect
+
 ### Quartz duplicate-selector restoration fix (`forms/sizing/large-controls`)
 
 Root cause found in April 2026:
@@ -167,6 +206,7 @@ Behavior is intended to remain the same unless explicitly noted below.
 | `scripts/capture-leaf-screenshots/persistence.mjs` | Component model cache loading, writeback queue recording, file persistence | Separate file I/O concerns from directive decision logic |
 | `scripts/capture-leaf-screenshots/writeback.mjs` | Directive upsert/canonicalization/promotion/redundancy removal | Isolate highest-complexity writeback behavior |
 | `scripts/capture-leaf-screenshots/workflow.mjs` | Main capture workflow loop and summary reporting | Keep runtime capture pipeline modular and maintainable |
+| `scripts/capture-leaf-screenshots/css-extraction.mjs` | CSS extraction plus HTML extraction/markup optimization helpers | Keep extraction and artifact processing logic centralized |
 
 ### State filter pruning fix
 
@@ -210,6 +250,7 @@ The script supports two execution phases when working with CSS verification:
 **Phase 1: Screenshot capture and CSS extraction (default)**
 - Captures screenshots for all selected routes and themes
 - Extracts CSS artifacts for each scenario
+- Extracts and optimizes HTML markup artifacts for each scenario
 - Generates/updates `@screenshot` directives in component files
 - Uses Vite preview server with built/existing code
 
@@ -330,14 +371,59 @@ During processing, progress logs are emitted as:
 - `[current/total] Saved ...` for successful captures.
 - `[current/total] Skipped ...` when `--skip-existing` skips an existing file.
 
-### 8. Height writeback
+When HTML extraction is enabled, saved/skipped progress lines also include
+markup compression stats for the current scenario, including:
+
+- Number of processed elements
+- Output/input style string length ratio and raw counts
+- Output/input style property count ratio and raw counts
+
+Example suffix:
+
+```
+(markup: 128 els, len: 0.184211 4201/22806, props 0.147727 312/2112)
+```
+
+At the end of the run, an extraction summary line is also emitted:
+
+```
+HTML extraction: scenario-files={count}
+```
+
+### 8. HTML artifact extraction and optimization
+
+After interaction settles (same point where CSS extraction happens), the script
+extracts scenario markup in Playwright and immediately optimizes it in Node.js
+against the just-extracted CSS artifacts.
+
+Playwright extraction behavior:
+
+- Serializes the live page DOM rooted at `html`
+- Removes `head`, `link`, `noscript`, `script`, and `style` nodes
+- Injects `style-resolved` on each remaining element from `getComputedStyle`
+- Filters out numeric keys, vendor-prefixed keys (`webkit*`, `moz*`, `ms*`),
+  and empty style values before serialization
+
+Node.js optimization behavior:
+
+- Parses extracted CSS rule artifacts and builds selector -> property sets
+- Parses each element's `style-resolved` declarations
+- Matches selectors against the element and path in the serialized tree
+- Keeps only computed style properties that are declared by matching CSS rules
+- Writes filtered declarations to `style-modified`
+- Writes per-element stats to `style-stats`
+
+Each `markup.html` also includes an aggregate stats comment footer with
+input/output style lengths and property counts.
+
+### 9. Height writeback
 
 After all captures finish, measured heights are persisted back to the route
 component files as `@screenshot` directives (unless `--no-writeback` is set).
 See [`@screenshot` directives](#screenshot-directives) for the format and
 writeback rules.
 
-### 9. Browser lifecycle
+### 10. Browser lifecycle
 
 A Chromium browser is launched once and reused across captures. The browser is
 fully recreated every 120 successful captures (`RESTART_BROWSER_EVERY`) to
@@ -496,6 +582,8 @@ states do not bleed across captures.
 | `--no-writeback` | off | Do not modify any component source files after capturing. |
 | `--dry-run-writeback` | off | Compute and log writeback changes but do not write them to disk. |
 | `--no-css-extraction` | off | Disable CSS extraction. Use in Phase 2 verification runs: `--no-css-extraction --verify-css-rendering`. |
+| `--no-html-extraction` | off | Disable HTML extraction/optimization artifact generation (`markup.html`). Like CSS extraction, this is automatically disabled in verification modes. |
+| `--no-img-extraction` | off | Disable PNG screenshot output while still allowing extraction/writeback work in non-verification runs. |
 | `--verify-css-rendering` | off | Enable CSS rendering verification against baseline screenshots. Requires Phase 2 execution (use with `--no-css-extraction`). Automatically triggers a rebuild to ensure CSS artifacts are current. |
 | `--verify-ve-rendering` | off | Enable VE rendering verification against baseline screenshots using `ve-project2` (current/preferred approach). Automatically triggers a VE rebuild. Mutually exclusive with `--verify-css-rendering` and `--verify-ve1-rendering`. |
 | `--verify-ve1-rendering` | off | Enable VE1 rendering verification against baseline screenshots using `ve-project` (v1, historical). Automatically triggers a VE1 rebuild. Mutually exclusive with `--verify-css-rendering` and `--verify-ve-rendering`. |
@@ -609,10 +697,15 @@ node scripts/capture-leaf-screenshots.mjs --max-themes=27 --no-writeback
 ```
 screenshots/
   {theme-slug}/
+    theme.css
     {section}/{sub-section}/{leaf}/
       static/
+        style.css
+        markup.html
         {width}x{height}.png
       {state-name}/
+        style.css
+        markup.html
         {width}x{height}.png
 ```
 
@@ -623,19 +716,32 @@ screenshots/
   bootstrap/
     ui/buttons/solid/primary-button/
       static/
+        style.css
+        markup.html
         360x576.png
       hover-buttons/
+        style.css
+        markup.html
         360x576.png
     forms/overview/basic-form/
       static/
+        style.css
+        markup.html
         360x420.png
       focus-text-input/
+        style.css
+        markup.html
         360x420.png
       typed-text-input/
+        style.css
+        markup.html
         360x420.png
   darkly/
+    theme.css
     ui/buttons/solid-primary-button/
       static/
+        style.css
+        markup.html
         360x592.png
 ```
 

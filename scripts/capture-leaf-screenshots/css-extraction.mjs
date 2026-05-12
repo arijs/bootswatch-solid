@@ -580,8 +580,8 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {
 	const stats = { total, perElement }
 
 	return {
-		optimized: `${optimized.trim()}\n<!--
-		in-len: ${total.inputLength}; out-len: ${total.outputLength}; in-props: ${total.inputProps}; out-props: ${total.outputProps}; -->\n`,
+		optimized: `${optimized.trim()}\n<!--\n
+	in-len: ${total.inputLength}; out-len: ${total.outputLength}; in-props: ${total.inputProps}; out-props: ${total.outputProps};\n--><!-- ${JSON.stringify(options)} -->`,
 		stats,
 	}
 }

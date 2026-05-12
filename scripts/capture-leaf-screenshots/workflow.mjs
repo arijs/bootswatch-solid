@@ -309,7 +309,12 @@ export async function executeCaptureWorkflow({
 								const { optimized: markup, stats: markupStats } = optimizeMarkupWithCssArtifacts(
 									await extractScenarioMarkupArtifact(page),
 									cssArtifacts,
-									{ stateFolder },
+									{
+										themeSlug,
+										route,
+										stateFolder,
+										scenario,
+									},
 								)
 								await writeScenarioMarkupArtifact({
 									themeSlug,
