@@ -27,7 +27,8 @@ import { configureVeModal } from './ve-modal'
 
 const DefaultModal: Component = () => {
 	const theme = useContext(ThemeContext)
-	configureVeModal({ fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
+	const modalName = modal
+	configureVeModal({ name: modalName, fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
@@ -35,7 +36,7 @@ const DefaultModal: Component = () => {
 					<button
 						type="button"
 						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
-						data-bs-toggle="modal"
+						data-bs-toggle={modalName}
 						data-bs-target="#exampleModalDefault"
 					>
 						Launch demo modal
@@ -60,7 +61,7 @@ const DefaultModal: Component = () => {
 							<button
 								type="button"
 								class={`${theme} ${alertBtnClose}`}
-								data-bs-dismiss="modal"
+								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
 						</div>
@@ -69,7 +70,7 @@ const DefaultModal: Component = () => {
 							<button
 								type="button"
 								class={`${theme} ${btn} ${btnSecondary}`}
-								data-bs-dismiss="modal"
+								data-bs-dismiss={`.${modalName}`}
 							>
 								Close
 							</button>

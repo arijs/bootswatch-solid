@@ -7,7 +7,9 @@ const mode = process.argv[2]
 const projectDir = process.argv[3] ?? 've-project'
 const root = path.resolve(process.cwd(), projectDir)
 const configFile = path.resolve(root, 'vite.config.ts')
-const defaultPort = projectDir === 've-project2' ? 4175 : 4174
+const defaultPort = mode === 'dev'
+	? projectDir === 've-project2' ? 5175 : 5174
+	: projectDir === 've-project2' ? 4175 : 4174
 
 if (mode !== 'build' && mode !== 'preview' && mode !== 'dev') {
 	throw new Error('Usage: node scripts/run-ve-vite.mjs <build|preview|dev> [project-dir]')

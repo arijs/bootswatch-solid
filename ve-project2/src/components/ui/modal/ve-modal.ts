@@ -2,6 +2,7 @@ import * as bootstrap from 'bootstrap'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeModalRuntimeClasses {
+name: string
 fade: string
 modalBackdrop: string
 modalBody: string
@@ -11,14 +12,17 @@ modalShowHook: string
 }
 
 export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.Modal {
+	console.log('Creating VeModal with runtime classes:', runtime)
 return (
 bootstrap.Modal as unknown as BootstrapWithDefaults<typeof bootstrap.Modal>
 ).extendDefaultConfig({
+NAME: runtime.name,
 CLASS_NAME_BACKDROP: runtime.modalBackdrop,
 CLASS_NAME_FADE: runtime.fade,
 CLASS_NAME_OPEN: runtime.modalOpenHook,
 CLASS_NAME_SHOW: runtime.modalShowHook,
 OPEN_SELECTOR: `.pwhook-modal.${runtime.modalShowHook}`,
+SELECTOR_DATA_TOGGLE: `[data-bs-toggle="${runtime.name}"]`,
 SELECTOR_DIALOG: `.${runtime.modalDialog}`,
 SELECTOR_MODAL_BODY: `.${runtime.modalBody}`,
 BackdropClass: (

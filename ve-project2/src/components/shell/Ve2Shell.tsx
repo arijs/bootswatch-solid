@@ -17,14 +17,14 @@ import { bodyText, bodyFrame, vars } from '../../theme-contract/theme-contract.c
 // Each loader returns a dynamic import for that theme's side-effect barrel.
 // Explicit paths are required so Vite can build separate chunks per theme.
 const themeLoaders: Record<string, () => Promise<unknown>> = {
-	bootstrap: () => import('../../themes/bootstrap/theme'),
-	quartz:    () => import('../../themes/quartz/theme'),
-	solar:     () => import('../../themes/solar/theme'),
-	slate:     () => import('../../themes/slate/theme'),
-	sketchy:   () => import('../../themes/sketchy/theme'),
-	vapor:     () => import('../../themes/vapor/theme'),
-	sandstone: () => import('../../themes/sandstone/theme'),
-	materia:   () => import('../../themes/materia/theme'),
+	bootstrap: () => import('../../themes/bootstrap/theme.js'),
+	quartz:    () => import('../../themes/quartz/theme.js'),
+	solar:     () => import('../../themes/solar/theme.js'),
+	slate:     () => import('../../themes/slate/theme.js'),
+	sketchy:   () => import('../../themes/sketchy/theme.js'),
+	vapor:     () => import('../../themes/vapor/theme.js'),
+	sandstone: () => import('../../themes/sandstone/theme.js'),
+	materia:   () => import('../../themes/materia/theme.js'),
 }
 
 // Tracks which themes have already been loaded (module-level, survives re-mounts).
