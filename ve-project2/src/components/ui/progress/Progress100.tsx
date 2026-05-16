@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	progress,
@@ -8,8 +8,15 @@ import {
 	progressBarDanger,
 } from '../../../theme-contract/ui/progress/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/progress',
+	'contents',
+	'utilities',
+]
+
 const Progress100: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class="bd-example-ve2">
 			<div class={`${theme} ${containerFluid}`}>

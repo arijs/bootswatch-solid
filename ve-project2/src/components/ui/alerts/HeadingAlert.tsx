@@ -1,11 +1,19 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { alert, alertHeading, alertSuccess } from '../../../theme-contract/ui/alerts/contract.css'
 import { h4, horizontalRule, paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/alerts',
+	'ui/buttons',
+	'contents',
+	'utilities',
+]
+
 const HeadingAlert: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>

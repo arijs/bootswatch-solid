@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { h4, inlineCode } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
@@ -15,8 +15,15 @@ accordionHeader,
 accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/accordion',
+	'contents',
+	'utilities',
+]
+
 const AccordionExample: Component = () => {
 const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 return (
 <div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 <div class={`${theme} ${accordion}`} id="accordionExample">

@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
@@ -11,8 +11,15 @@ import {
 	mb3,
 } from '../../../theme-contract/forms/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'forms',
+	'contents',
+	'utilities',
+]
+
 const DisabledFileRange: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>

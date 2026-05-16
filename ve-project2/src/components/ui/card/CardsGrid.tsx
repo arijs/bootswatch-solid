@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import FeaturedCard from './FeaturedCard'
 import HorizontalCard from './HorizontalCard'
 import ImageTopCard from './ImageTopCard'
@@ -15,8 +15,15 @@ import {
 	rowCols1,
 	rowColsMd2,
 } from '../../../theme-contract/utilities/contract.css'
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/card',
+	'contents',
+	'utilities',
+]
+
 const CardsGrid: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid} ${positionRelative} ${overflowXHidden}`}>
 			<div class={`${theme} ${row} ${rowCols1} ${rowColsMd2} ${g4}`}>

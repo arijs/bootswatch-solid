@@ -124,6 +124,12 @@ import { createContext } from 'solid-js'
 export const ThemeContext = createContext('')
 ```
 
+The same module also re-exports VE2 runtime typing and the request hook used by leaf components when granular style loading is enabled:
+
+```ts
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+```
+
 ### Element stamping (components)
 
 Every rendered element carries both the scope class (from context) and its contract class(es):
@@ -152,19 +158,38 @@ const ThemedBody: Component<{ children: any }> = (props) => {
 
 Use `ThemedBody` at the root of any themed region and whenever the theme switches in nested `ThemeContext.Provider` blocks.
 
-### Ve2Shell
+### Ve2 shell runtime
 
-The application shell for `ve-project2`. Reads the `?theme=` URL parameter, resolves the matching scope class, provides it via `ThemeContext`, and wraps content in a `ThemedBody`-equivalent `<div>`.
+`ve-project2` now uses a runtime wrapper shell that keeps the legacy full-theme mode as default, while supporting opt-in granular family loading.
+
+- `Ve2ShellRuntime` chooses mode from URL query:
+  - default mode: full-theme `Ve2Shell`
+  - granular mode: `?style-loader=granular` (or `?styleLoader=granular`) uses `Ve2GranularShell`
+- `Ve2GranularShell` still provides the same `ThemeContext` scope class, but loads style families on demand via dynamic imports and dedupe caches.
+- If a route is not mapped to known granular families, `Ve2GranularShell` falls back to loading the full theme bundle for that theme.
 
 ```ts
-// ve-project2/src/components/shell/Ve2Shell.tsx
-const themeClass = () => resolveThemeClass(params.get('theme'))
+// ve-project2/src/components/shell/Ve2ShellRuntime.tsx
+return useGranularStyleLoaderEnabled() ? (
+  <Ve2GranularShell>{props.children}</Ve2GranularShell>
+) : (
+  <Ve2Shell>{props.children}</Ve2Shell>
+)
+```
 
-<ThemeContext.Provider value={themeClass()}>
-  <div class={`${themeClass()} ${vars} ${body} ${bodyText}`}>
-    {props.children}
-  </div>
-</ThemeContext.Provider>
+### Component-to-shell family requests
+
+Leaf components can declare their required style families and request them from the active shell using a no-op-safe hook (safe under full-theme shell, active under granular shell).
+
+```ts
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+  'ui/buttons',
+  'contents',
+  'utilities',
+]
+
+const theme = useContext(ThemeContext)
+useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 ```
 
 ---
@@ -203,11 +228,13 @@ ve-project2/src/
           styles.css.ts            ← globalStyle rules: sketchyScope + btn/btnPrimary/…
 
   context/
-    ThemeContext.ts                ← SolidJS context for active scope class string
+    ThemeContext.ts                ← active scope context + VE2 request hook/type re-exports
 
   components/
     shell/
-      Ve2Shell.tsx                 ← URL theme resolution + ThemeContext provider
+      Ve2Shell.tsx                 ← legacy full-theme shell
+      Ve2GranularShell.tsx         ← granular family-loading shell with fallback
+      Ve2ShellRuntime.tsx          ← runtime switch: full vs granular
     poc/
       PocThemeScopeDemo.tsx        ← interactive demo of element-owned scope
     ui/
@@ -231,14 +258,17 @@ ve-project2/src/
 6. **Root theme vars and body/text styles use dedicated root contracts**: `vars` hosts global `--bs-*`, while `body`/`bodyText` define layout and typography.
 7. **Only these static class names are allowed in component markup:** `bd-example-ve2`, `pwhook-*` screenshot hooks. All other styling comes from VE imports.
 8. **ThemeContext provides the active scope class string.** Components read it via `useContext(ThemeContext)` — no prop-drilling.
-9. **`ThemedBody` (or equivalent) must wrap any region that requires body-level theme styles** (font, color, background).
-10. **Each theme must be implemented as a self-contained source of truth.** When authoring or repairing `themes/{theme}/**`, do not copy resolved values, selectors, or behavior from another theme's VE files or screenshot output. Theme-specific inputs are restricted to `screenshots/{theme}/theme.css` and `screenshots/{theme}/**/style.css`.
-11. **Global `--bs-*` var values in `scope.css.ts` must be sourced from `screenshots/{theme}/theme.css`.** The `:root` block in that file is the authoritative source for each theme's resolved CSS custom-property values (e.g. `--bs-primary`, `--bs-border-radius`, `--bs-link-color`, etc.). Never copy Bootstrap's default values for a Bootswatch theme, and never borrow another theme's resolved values.
-12. **CSS custom-property references must be preserved as references, not resolved to static values.** If the Bootstrap source CSS writes `var(--bs-border-radius)`, the VE2 output must write `varBsBorderRadius` (the matching `createVar()` identifier), not the final resolved value (e.g. `'0.375rem'`). This ensures per-theme values propagate correctly at runtime.
-13. **Font imports for Bootswatch themes must be extracted from `screenshots/{theme}/bootstrap.css` and written to `ve-project2/src/themes/{theme}/fonts.generated.css` exactly once when creating the theme's `scope.css.ts`.** Vanilla Extract cannot emit bare `@import` at-rules, so the generated CSS file preserves the source `@import` rules and is loaded globally via `ve-project2/index.html`. This step is **not** repeated when converting individual component families — it belongs solely to the one-time theme scope setup.
-14. **Theme-local selectors and resolved component values must come from `screenshots/{theme}/**/style.css`.** If a component needs a special-case rule beyond the global `theme.css` vars, derive it from the matching route-level `style.css` files for the same theme rather than from another theme or from package sources.
-15. **Source CSS element rules (`h1`/`h4`/`p`/`hr`, etc.) must be migrated via `contents` contracts, never by targeting raw elements in selectors.** Create a contract class in `theme-contract/contents/contract.css.ts`, implement theme rules in `themes/{theme}/contents/styles.css.ts`, and stamp those classes directly on component elements (for example `<h4 class={`${theme} ${h4}`}>`). Do not use selectors like ``${scope} hr`` or ``${scope}${component} p``.
-16. **Static string class selectors from source CSS (for example `.container`, `.container-fluid`) must not be authored inside `themes/{theme}/{family}/styles.css.ts`.** Migrate these rules through `theme-contract/contents/contract.css.ts` and implement them in `themes/{theme}/contents/styles.css.ts`, then apply the corresponding contents contract classes in markup. Do not write raw selector strings like `.container` or `.container-fluid` in component-family theme files.
+9. **Leaf components should declare family requirements with `ve2RequiredStyleFamilies` and call `useVe2RequiredStyleFamilies(...)`.** Under full-theme shell this is a safe no-op; under granular shell it drives on-demand family loading.
+10. **`Ve2ShellRuntime` is the entry shell.** Default behavior remains full-theme loading; granular mode is opt-in through query param.
+11. **Granular mode must always preserve a safe fallback path.** If a route is outside known family mappings, load the full theme chunk once for that theme.
+12. **`ThemedBody` (or equivalent) must wrap any region that requires body-level theme styles** (font, color, background).
+13. **Each theme must be implemented as a self-contained source of truth.** When authoring or repairing `themes/{theme}/**`, do not copy resolved values, selectors, or behavior from another theme's VE files or screenshot output. Theme-specific inputs are restricted to `screenshots/{theme}/theme.css` and `screenshots/{theme}/**/style.css`.
+14. **Global `--bs-*` var values in `scope.css.ts` must be sourced from `screenshots/{theme}/theme.css`.** The `:root` block in that file is the authoritative source for each theme's resolved CSS custom-property values (e.g. `--bs-primary`, `--bs-border-radius`, `--bs-link-color`, etc.). Never copy Bootstrap's default values for a Bootswatch theme, and never borrow another theme's resolved values.
+15. **CSS custom-property references must be preserved as references, not resolved to static values.** If the Bootstrap source CSS writes `var(--bs-border-radius)`, the VE2 output must write `varBsBorderRadius` (the matching `createVar()` identifier), not the final resolved value (e.g. `'0.375rem'`). This ensures per-theme values propagate correctly at runtime.
+16. **Font imports for Bootswatch themes must be extracted from `screenshots/{theme}/bootstrap.css` and written to `ve-project2/src/themes/{theme}/fonts.generated.css` exactly once when creating the theme's `scope.css.ts`.** Vanilla Extract cannot emit bare `@import` at-rules, so the generated CSS file preserves the source `@import` rules and is loaded globally via `ve-project2/index.html`. This step is **not** repeated when converting individual component families — it belongs solely to the one-time theme scope setup.
+17. **Theme-local selectors and resolved component values must come from `screenshots/{theme}/**/style.css`.** If a component needs a special-case rule beyond the global `theme.css` vars, derive it from the matching route-level `style.css` files for the same theme rather than from another theme or from package sources.
+18. **Source CSS element rules (`h1`/`h4`/`p`/`hr`, etc.) must be migrated via `contents` contracts, never by targeting raw elements in selectors.** Create a contract class in `theme-contract/contents/contract.css.ts`, implement theme rules in `themes/{theme}/contents/styles.css.ts`, and stamp those classes directly on component elements (for example `<h4 class={`${theme} ${h4}`}>`). Do not use selectors like ``${scope} hr`` or ``${scope}${component} p``.
+19. **Static string class selectors from source CSS (for example `.container`, `.container-fluid`) must not be authored inside `themes/{theme}/{family}/styles.css.ts`.** Migrate these rules through `theme-contract/contents/contract.css.ts` and implement them in `themes/{theme}/contents/styles.css.ts`, then apply the corresponding contents contract classes in markup. Do not write raw selector strings like `.container` or `.container-fluid` in component-family theme files.
 
 ---
 

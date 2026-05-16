@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { formControl } from '../../../theme-contract/forms/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
@@ -37,8 +37,18 @@ import {
 	navLinkDisabled,
 } from '../../../theme-contract/ui/navs/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/navbar',
+	'ui/navs',
+	'ui/dropdowns',
+	'ui/buttons',
+	'contents',
+	'utilities',
+]
+
 const NavbarExample: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarBgLight}`}>

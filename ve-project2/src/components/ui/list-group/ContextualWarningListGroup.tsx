@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	listGroup,
@@ -9,8 +9,15 @@ import {
 	listGroupItemWarning,
 } from '../../../theme-contract/ui/list-group/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/list-group',
+	'contents',
+	'utilities',
+]
+
 const ContextualWarningListGroup: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<div class={`${theme} ${listGroup}`}>

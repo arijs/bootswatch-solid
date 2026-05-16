@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { bdPlaceholderImg, h5, paragraph, mediaMiddle } from '../../../theme-contract/contents/contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -11,8 +11,15 @@ import {
 	cardTitle,
 } from '../../../theme-contract/ui/card/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/card',
+	'contents',
+	'utilities',
+]
+
 const ImageTopCard: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class={`bd-example-ve2 ${theme}`}>
 			<div class={`${theme} ${card}`}>

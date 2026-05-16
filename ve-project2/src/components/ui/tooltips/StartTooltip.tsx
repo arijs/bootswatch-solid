@@ -1,7 +1,7 @@
 import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
@@ -15,8 +15,15 @@ tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/tooltips',
+	'contents',
+	'utilities',
+]
+
 const StartTooltip: Component = () => {
 const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 const VeTooltip = (
 bootstrap.Tooltip as unknown as BootstrapWithDefaults<typeof bootstrap.Tooltip>
 ).extendDefaultConfig({

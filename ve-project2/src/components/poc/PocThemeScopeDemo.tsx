@@ -1,4 +1,4 @@
-import { type Component, useContext } from 'solid-js'
+import { createRenderEffect, type Component, type JSX, useContext } from 'solid-js'
 // Root-level contract classes: body wrapper + text-bearing root.
 import { body, bodyText } from '../../theme-contract/theme-contract.css'
 // Contract classes — stable identifiers shared by all themes, applied to elements.
@@ -18,10 +18,13 @@ import {
 import { bootstrapScope } from '../../themes/bootstrap/scope.css'
 import { sketchyScope } from '../../themes/sketchy/scope.css'
 
-// Side-effect imports: register globalStyle rules that map
-//   themeScope + contractClass  →  actual CSS  (compound selector, no space)
-import '../../themes/bootstrap/ui/buttons/styles.css'
-import '../../themes/sketchy/ui/buttons/styles.css'
+// Loads both button families only when this POC route is rendered.
+function usePocThemeButtonStyles(): void {
+	createRenderEffect(() => {
+		void import('../../themes/bootstrap/ui/buttons/styles.css')
+		void import('../../themes/sketchy/ui/buttons/styles.css')
+	})
+}
 
 // ThemeContext — propagates the active scope class down to every component so
 // each element can stamp it onto itself without prop-drilling.
@@ -31,7 +34,7 @@ import { ThemeContext } from '../../context/ThemeContext'
 // classes on a div wrapper so that root-level theme styles (font, color,
 // background) take effect.  Each time ThemeContext changes (nested providers)
 // a new ThemedBody wrapper stamps the correct scope for that subtree.
-const ThemedBody: Component<{ children: any }> = (props) => {
+const ThemedBody: Component<{ children: JSX.Element }> = (props) => {
 	const theme = useContext(ThemeContext)
 	return <div class={`${theme} ${body} ${bodyText}`}>{props.children}</div>
 }
@@ -72,8 +75,11 @@ const sectionStyle = {
 
 const labelStyle = { margin: '0 0 0.5rem', 'font-size': '0.75rem', color: '#6c757d' }
 
-const PocThemeScopeDemo: Component = () => (
-	<div style={{ 'font-family': 'system-ui, sans-serif', padding: '2rem', 'max-width': '900px' }}>
+const PocThemeScopeDemo: Component = () => {
+	usePocThemeButtonStyles()
+
+	return (
+		<div style={{ 'font-family': 'system-ui, sans-serif', padding: '2rem', 'max-width': '900px' }}>
 		<h1>Element-Owned Scope — PoC</h1>
 		<p>
 			Every <code>&lt;button&gt;</code> below carries the <em>same</em> contract class names (
@@ -261,7 +267,8 @@ const PocThemeScopeDemo: Component = () => (
 				</tr>
 			</tbody>
 		</table>
-	</div>
-)
+		</div>
+	)
+}
 
 export default PocThemeScopeDemo

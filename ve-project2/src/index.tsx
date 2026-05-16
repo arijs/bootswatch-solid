@@ -1,7 +1,7 @@
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
 import PocThemeScopeDemo from './components/poc/PocThemeScopeDemo'
-import { Ve2Shell } from './components/shell/Ve2Shell'
+import { Ve2ShellRuntime } from './components/shell/Ve2ShellRuntime'
 import DangerAlert from './components/ui/alerts/DangerAlert'
 import DarkAlert from './components/ui/alerts/DarkAlert'
 import HeadingAlert from './components/ui/alerts/HeadingAlert'
@@ -349,7 +349,7 @@ render(
 	() => (
 		<Router>
 			<Route path="/" component={PocThemeScopeDemo} />
-			<Route component={Ve2Shell}>
+			<Route component={Ve2ShellRuntime}>
 				<Route path="/ui/buttons/solid/base-button" component={SolidBaseButton} />
 				<Route
 					path="/ui/buttons/solid/disabled/base-button"

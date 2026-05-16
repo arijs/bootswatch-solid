@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { mb3 } from '../../../theme-contract/utilities/contract.css'
@@ -11,8 +11,15 @@ import {
 	navTabs,
 } from '../../../theme-contract/ui/navs/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/navs',
+	'contents',
+	'utilities',
+]
+
 const TabbedNav: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class="bd-example-ve2">
 			<div class={`${theme} ${containerFluid}`}>

@@ -3,6 +3,8 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { h6 } from '../../../theme-contract/contents/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import type { Ve2StyleFamily } from '../../../themes/runtime/style-families'
+import { useVe2RequiredStyleFamilies } from '../../../themes/runtime/style-loader-context'
 import {
 	btnShowHook,
 	dropdown,
@@ -18,8 +20,17 @@ import {
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/buttons',
+	'ui/dropdowns',
+	'contents',
+	'utilities',
+]
+
 const NormalDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	configureVeDropdown({ btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropend, dropstart, dropup })
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>

@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { h4, paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
@@ -15,8 +15,18 @@ import { nav, navItem, navLink, navLinkActive, navPills } from '../../../theme-c
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { px3 } from '../../../theme-contract/utilities/contract.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/scrollspy',
+	'ui/navs',
+	'ui/navbar',
+	'ui/dropdowns',
+	'contents',
+	'utilities',
+]
+
 const ScrollspyExample: Component = () => {
 const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 
 return (
 <div class={`bd-example ${theme} ${containerFluid}`}>

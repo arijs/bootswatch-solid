@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { onSettled, useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import {
 	bdPlaceholderImg,
 	bdPlaceholderImgLg,
@@ -30,8 +30,15 @@ import {
 import { configureVeCarousel } from './ve-carousel'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/carousel',
+	'contents',
+	'utilities',
+]
+
 const CarouselExample: Component = () => {
 	const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const VeCarousel = configureVeCarousel({
 		carousel,
 		carouselActive,

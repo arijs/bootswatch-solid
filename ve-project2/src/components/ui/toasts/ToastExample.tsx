@@ -1,5 +1,5 @@
 import { type Component, onSettled, useContext } from 'solid-js'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import { inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -18,8 +18,16 @@ toastTimestamp,
 } from '../../../theme-contract/ui/toasts/contract.css'
 import { createVeToast } from './ve-toast'
 
+export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
+	'ui/toasts',
+	'ui/buttons',
+	'contents',
+	'utilities',
+]
+
 const ToastExample: Component = () => {
 const theme = useContext(ThemeContext)
+	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 const VeToast = createVeToast({
 toastFade,
 toastHide,
