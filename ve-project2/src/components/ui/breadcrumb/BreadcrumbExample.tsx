@@ -11,7 +11,7 @@ import {
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/breadcrumb',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

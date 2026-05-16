@@ -42,7 +42,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'ui/dropdowns',
 	'ui/buttons',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

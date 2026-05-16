@@ -15,7 +15,8 @@ import {
 } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
-	'contents',
+	'contents/basic',
+	'contents/tables',
 	'utilities',
 ]
 

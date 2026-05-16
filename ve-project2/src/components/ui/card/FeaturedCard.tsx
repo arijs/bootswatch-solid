@@ -15,7 +15,7 @@ import {
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

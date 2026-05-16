@@ -5,7 +5,7 @@ import { btn, btnCheck, btnSuccess } from '../../../../../../theme-contract/ui/b
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

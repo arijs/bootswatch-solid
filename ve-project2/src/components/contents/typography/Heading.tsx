@@ -6,7 +6,8 @@ import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
-	'contents',
+	'contents/basic',
+	'contents/heading',
 	'utilities',
 ]
 

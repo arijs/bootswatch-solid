@@ -27,7 +27,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card-tabs',
 	'ui/card',
 	'ui/navs',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

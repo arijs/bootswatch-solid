@@ -435,6 +435,7 @@ For screenshot mismatches that are hard to diagnose from the diff image alone, u
 | Cross-theme style imports are forbidden | Never re-export or import another theme's `styles.css.ts` (for example, Sketchy importing Bootstrap accordion styles). Each theme file must declare its own `globalStyle` rules and read values from that same theme's screenshot CSS artifacts. |
 | Sketchy input font-family fallback for non-`.btn` buttons | Sketchy sets `button, input, optgroup, select, textarea` font-family globally (`Neucha, ...`). In VE2, expose this as a reusable contract class (for example `inputFontFamily`) for elements that need that baseline font but do not carry `.btn`. Define the class rule before the base `btn` rule so `btn` still wins when both classes are applied on the same element. |
 | Bootstrap gradient overlay on solid buttons | Bootstrap's base `.btn` rule includes `background-image: var(--bs-gradient)` (resolves to `linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0))`), and every `.btn-outline-*` block resets `--bs-gradient: none`. VE2 must mirror this structure literally: (1) declare `export const varBsGradient = createVar()` in `theme-contract/_vars.css.ts`; (2) assign its value in `themes/{theme}/scope.css.ts`; (3) set `backgroundImage: varBsGradient` on the base `btn` rule (and `btn:focus-visible`); (4) add `[varBsGradient]: 'none'` to the `vars:` block of every `btnOutline*` variant. Do **not** add explicit per-variant `backgroundImage` overrides — that diverges from the source structure and misses the gradient on all non-dark/danger solid variants. |
+| Missing font weights can change fallback rendering | A theme may declare a font weight in CSS that is not actually loaded by that theme's `@import` (for example Sandstone `.lead { font-weight: 300 }` while Sandstone only imports Roboto 400/500/700). Baselines then render with fallback/synthetic weight behavior, while VE2 can render differently if another loaded theme imports that missing weight globally. Treat this as a source-parity gotcha: document it, keep selectors/weights source-faithful, and validate with screenshot parity instead of "fixing" by borrowing weights from another theme. |
 | Global element selectors must map to contracts | Do not ship raw global selectors like `body, input, button` in theme files. Map `body` styles to root contracts (`body` for non-typography and `bodyText` for typography such as `letter-spacing`), and map element-group rules (for example `input`/`button`) to an existing reusable contract class such as `inputFontFamily`. If no adequate contract exists, create one, then stamp that contract class in TSX on every affected element so the rule actually applies.[^global-selector-case] |
 | First/last child `page-link` corner radii (pagination) | `.page-item:first-child .page-link` and `:last-child` rules have specificity 0,3,0 and override the `.pagination .page-link` Sketchy hand-drawn `border-radius` shorthand (0,2,0) on their respective corners. Mirror these rules explicitly in VE2 using `varBsPaginationBorderRadius` — exactly as the source CSS does — so the first/last child corners match the baseline. Without them the outer corners of the first and last page items render with the wrong radius. |
 | Cross-family contract ownership and migration order | Some components intentionally reuse contract classes from another family (for example, `ListCard` uses `listGroup`, `listGroupFlush`, and `listGroupItem` from `theme-contract/ui/list-group/contract.css.ts`). Do not duplicate those classes in `theme-contract/ui/card/contract.css.ts` or re-implement their base rules in card theme files. Migrate the owner family first (`/ui/list-group` before `/ui/card`), import the owner contract in the dependent component/theme, and keep card theme rules limited to card-specific composition selectors such as `.card > .list-group`. |
@@ -456,6 +457,24 @@ Resolution in VE2:
 - `body` typography was mapped to the root text contract via `globalStyle(${scope}${bodyText}, { letterSpacing: '0.1px' })`.
 - `input` and `button` were mapped to an existing reusable contract via `globalStyle(${materiaScope}${inputFontFamily}, { letterSpacing: '0.1px' })` in `themes/materia/ui/buttons/styles.css.ts`.
 - Route-level parity was re-checked with targeted verification (`/contents/typography/*`) and matched after this mapping.
+
+### Concrete case: Sandstone lead font-weight fallback
+
+Source CSS for Sandstone typography includes:
+
+```css
+.lead { font-size: 1.25rem; font-weight: 300; }
+```
+
+But Sandstone's own font import only loads Roboto weights 400, 500, and 700 from Google Fonts. That means the baseline render does not have a real 300 face available for Sandstone itself, so browsers render via fallback/synthetic behavior.
+
+In VE2, if another loaded theme imports Roboto 300 globally, Sandstone content can accidentally render with the real 300 weight, producing a visual mismatch even when VE2 rules are otherwise source-faithful.
+
+Resolution policy for this case:
+
+- Keep Sandstone style declarations source-faithful (`font-weight: 300` remains 300).
+- Treat the mismatch as a font-asset loading context issue, not a selector/value rewrite issue.
+- Document the root cause and verify parity with screenshot artifacts for the target theme.
 
 [^global-selector-case]: See [Concrete case: Materia letter-spacing](#concrete-case-materia-letter-spacing).
 

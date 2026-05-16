@@ -1,6 +1,12 @@
 export const VE2_STYLE_FAMILIES = [
 	'global',
 	'contents',
+	'contents/basic',
+	'contents/heading',
+	'contents/display',
+	'contents/lists',
+	'contents/tables',
+	'contents/images',
 	'forms',
 	'utilities',
 	'ui/accordion',

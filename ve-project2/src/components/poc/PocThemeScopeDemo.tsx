@@ -20,7 +20,7 @@ import { sketchyScope } from '../../themes/sketchy/scope.css'
 
 // Loads both button families only when this POC route is rendered.
 function usePocThemeButtonStyles(): void {
-	createRenderEffect(() => {
+	createRenderEffect(() => {}, () => {
 		void import('../../themes/bootstrap/ui/buttons/styles.css')
 		void import('../../themes/sketchy/ui/buttons/styles.css')
 	})

@@ -5,7 +5,7 @@ export interface Ve2RouteStyleLoadPlan {
 	fullThemeFallback: boolean
 }
 
-const DEFAULT_FAMILIES: readonly Ve2StyleFamily[] = ['contents', 'utilities']
+const DEFAULT_FAMILIES: readonly Ve2StyleFamily[] = ['contents/basic', 'utilities']
 
 const UI_ROUTE_FAMILY_MAP: Array<readonly [prefix: string, families: readonly Ve2StyleFamily[]]> = [
 	['/ui/accordion/', ['ui/accordion']],
@@ -32,6 +32,8 @@ const UI_ROUTE_FAMILY_MAP: Array<readonly [prefix: string, families: readonly Ve
 ]
 
 export function getVe2RouteStyleLoadPlan(pathname: string): Ve2RouteStyleLoadPlan {
+	const contentsSpecificFamily = getContentsSpecificFamily(pathname)
+
 	for (const [prefix, families] of UI_ROUTE_FAMILY_MAP) {
 		if (pathname.startsWith(prefix)) {
 			return {
@@ -50,7 +52,9 @@ export function getVe2RouteStyleLoadPlan(pathname: string): Ve2RouteStyleLoadPla
 
 	if (pathname.startsWith('/contents/')) {
 		return {
-			families: [...DEFAULT_FAMILIES],
+			families: contentsSpecificFamily
+				? [contentsSpecificFamily, ...DEFAULT_FAMILIES]
+				: [...DEFAULT_FAMILIES],
 			fullThemeFallback: false,
 		}
 	}
@@ -59,4 +63,21 @@ export function getVe2RouteStyleLoadPlan(pathname: string): Ve2RouteStyleLoadPla
 		families: [],
 		fullThemeFallback: true,
 	}
+}
+
+function getContentsSpecificFamily(pathname: string): Ve2StyleFamily | null {
+	if (pathname.startsWith('/contents/typography/heading')) return 'contents/heading'
+	if (pathname.startsWith('/contents/typography/display')) return 'contents/display'
+	if (
+		pathname.startsWith('/contents/typography/unstyled-list') ||
+		pathname.startsWith('/contents/typography/inline-list')
+	) {
+		return 'contents/lists'
+	}
+	if (pathname.startsWith('/contents/tables/')) return 'contents/tables'
+	if (pathname.startsWith('/contents/images/') || pathname.startsWith('/contents/figures/')) {
+		return 'contents/images'
+	}
+
+	return null
 }

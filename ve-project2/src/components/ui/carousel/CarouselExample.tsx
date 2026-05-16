@@ -32,7 +32,7 @@ import { containerFluid } from '../../../theme-contract/layout/container.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/carousel',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

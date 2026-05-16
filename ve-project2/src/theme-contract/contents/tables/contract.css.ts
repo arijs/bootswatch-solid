@@ -1,0 +1,22 @@
+import { style } from '@vanilla-extract/css'
+
+// Contract classes for table element and Bootstrap table variants.
+export const table = style({})
+export const tableElement = style({})
+export const tableDark = style({})
+export const tableBordered = style({})
+export const tableBorderless = style({})
+export const tableHover = style({})
+export const tableSm = style({})
+export const tableStriped = style({})
+export const tablePrimary = style({})
+export const tableSecondary = style({})
+export const tableDanger = style({})
+export const tableSuccess = style({})
+export const tableWarning = style({})
+export const tableInfo = style({})
+export const tableLight = style({})
+export const tableSection = style({})
+export const tableRow = style({})
+export const tableHeaderCell = style({})
+export const tableCell = style({})

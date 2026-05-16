@@ -16,7 +16,7 @@ import {
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

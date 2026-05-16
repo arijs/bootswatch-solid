@@ -15,7 +15,7 @@ import { inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',
 	'ui/buttons',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

@@ -92,7 +92,7 @@ export const themeList: ThemeItem[] = [
 	{
 		name: `Sandstone`,
 		href: 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/sandstone/bootstrap.css',
-		integrity: 'sha256-WO5jquBOsBifQk0y7noGyh/flCbJt0g/V3LM+o6UOnI=',
+		integrity: 'sha256-IObhfH18+YNAGeyD9Y+waWCTI8eUXFCM3JkDlBUJwOs=',
 	},
 	{
 		name: `Simplex`,

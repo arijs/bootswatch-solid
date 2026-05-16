@@ -31,7 +31,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/modal',
 	'ui/buttons',
 	'ui/alerts',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

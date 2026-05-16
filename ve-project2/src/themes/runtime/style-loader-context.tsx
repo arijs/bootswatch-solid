@@ -14,8 +14,11 @@ export function useVe2StyleLoaderApi(): Ve2StyleLoaderApi | null {
 export function useVe2RequiredStyleFamilies(families: readonly Ve2StyleFamily[]): void {
 	const styleLoaderApi = useVe2StyleLoaderApi()
 
-	createRenderEffect(() => {
-		if (!styleLoaderApi || families.length === 0) return
-		void styleLoaderApi.requestFamilies(families)
-	})
+	createRenderEffect(
+		() => families,
+		(fams) => {
+			if (!styleLoaderApi || fams.length === 0) return
+			void styleLoaderApi.requestFamilies(fams)
+		}
+	)
 }

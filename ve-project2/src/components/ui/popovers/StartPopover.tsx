@@ -18,7 +18,7 @@ import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/popovers',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

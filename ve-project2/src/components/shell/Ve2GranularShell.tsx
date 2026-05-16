@@ -115,7 +115,11 @@ export function Ve2GranularShell(props: { children: JSX.Element }) {
 		return resolveVe2ThemeKey(params.get('theme'))
 	})
 
-	const themeClass = createMemo(() => resolveVe2ThemeClass(themeKey()))
+	const themeClass = createMemo(() => {
+		const resolved = resolveVe2ThemeClass(themeKey())
+		return resolved || resolveVe2ThemeClass('bootstrap')
+	})
+	const themeScopeClass = createMemo(() => `${themeKey()} ${themeClass()}`)
 
 	const styleLoaderApi: Ve2StyleLoaderApi = {
 		requestFamilies: async (families) => {
@@ -124,22 +128,25 @@ export function Ve2GranularShell(props: { children: JSX.Element }) {
 	}
 
 	// Always mark baseline global family as loaded for the active theme.
-	createRenderEffect(() => {
-		void requestThemeFamilies(themeKey(), ['global'])
-	})
+	createRenderEffect(
+		() => themeKey(),
+		(theme) => {
+			void requestThemeFamilies(theme, ['global'])
+		}
+	)
 
 	// Route-driven preload keeps granular mode working across non-migrated routes.
-	createRenderEffect(() => {
-		const theme = themeKey()
-		const routeLoadPlan = getVe2RouteStyleLoadPlan(location.pathname)
+	createRenderEffect(
+		() => ({ theme: themeKey(), plan: getVe2RouteStyleLoadPlan(location.pathname) }),
+		({ theme, plan }) => {
+			if (plan.fullThemeFallback) {
+				void ensureThemeLoaded(theme)
+				return
+			}
 
-		if (routeLoadPlan.fullThemeFallback) {
-			void ensureThemeLoaded(theme)
-			return
+			void requestThemeFamilies(theme, plan.families)
 		}
-
-		void requestThemeFamilies(theme, routeLoadPlan.families)
-	})
+	)
 
 	return (
 		<ThemeContext value={themeClass()}>

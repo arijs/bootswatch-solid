@@ -7,7 +7,7 @@ import { containerFluid } from '../../../theme-contract/layout/container.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',
 	'ui/buttons',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 

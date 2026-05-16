@@ -10,7 +10,7 @@ import {
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',
-	'contents',
+	'contents/basic',
 	'utilities',
 ]
 
