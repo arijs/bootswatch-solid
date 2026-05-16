@@ -2,19 +2,19 @@ import { useLocation } from '@solidjs/router'
 import { createMemo, createRenderEffect, type JSX } from 'solid-js'
 import { ThemeContext } from '../../context/ThemeContext'
 import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
-import { getVe2RouteStyleLoadPlan } from '../../themes/runtime/route-style-families'
+import { getVe2RouteStyleLoadPlan } from '../../theme-runtime/route-style-families'
 import {
 	type Ve2StyleFamily,
 	normalizeVe2StyleFamilies,
-} from '../../themes/runtime/style-families'
-import { Ve2StyleLoaderContext, type Ve2StyleLoaderApi } from '../../themes/runtime/style-loader-context'
+} from '../../theme-runtime/style-families'
+import { Ve2StyleLoaderContext, type Ve2StyleLoaderApi } from '../../theme-runtime/style-loader-context'
 import {
 	type Ve2ThemeKey,
 	resolveVe2ThemeClass,
 	resolveVe2ThemeKey,
 	ve2ThemeLoaders,
 	ve2ThemeFamilyLoaders,
-} from '../../themes/runtime/theme-runtime'
+} from '../../theme-runtime/theme-runtime'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
 

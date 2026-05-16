@@ -1,8 +1,8 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import type { Ve2StyleFamily } from '../../../themes/runtime/style-families'
-import { useVe2RequiredStyleFamilies } from '../../../themes/runtime/style-loader-context'
+import type { Ve2StyleFamily } from '../../../theme-runtime/style-families'
+import { useVe2RequiredStyleFamilies } from '../../../theme-runtime/style-loader-context'
 import { btnGroup } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {

@@ -1,6 +1,6 @@
 import { createContext } from 'solid-js'
-export type { Ve2StyleFamily } from '../themes/runtime/style-families'
-export { useVe2RequiredStyleFamilies } from '../themes/runtime/style-loader-context'
+export type { Ve2StyleFamily } from '../theme-runtime/style-families'
+export { useVe2RequiredStyleFamilies } from '../theme-runtime/style-loader-context'
 
 // Shared ThemeContext — propagates the active scope class (hashed VE identifier)
 // down to every component so each element can stamp it onto itself alongside

@@ -3,8 +3,8 @@ import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { h6 } from '../../../theme-contract/contents/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
-import type { Ve2StyleFamily } from '../../../themes/runtime/style-families'
-import { useVe2RequiredStyleFamilies } from '../../../themes/runtime/style-loader-context'
+import type { Ve2StyleFamily } from '../../../theme-runtime/style-families'
+import { useVe2RequiredStyleFamilies } from '../../../theme-runtime/style-loader-context'
 import {
 	btnShowHook,
 	dropdown,
