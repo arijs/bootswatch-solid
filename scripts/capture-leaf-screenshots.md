@@ -582,7 +582,7 @@ states do not bleed across captures.
 | `--no-writeback` | off | Do not modify any component source files after capturing. |
 | `--dry-run-writeback` | off | Compute and log writeback changes but do not write them to disk. |
 | `--no-css-extraction` | off | Disable CSS extraction. Use in Phase 2 verification runs: `--no-css-extraction --verify-css-rendering`. |
-| `--no-html-extraction` | off | Disable HTML extraction/optimization artifact generation (`markup.html`). Like CSS extraction, this is automatically disabled in verification modes. |
+| `--no-html-extraction` | off | Disable HTML extraction/optimization artifact generation. In non-verification runs this disables baseline `markup.html`; in `--verify-ve-rendering` it also opts out of VE artifact generation (`markup-ve.html`). |
 | `--no-img-extraction` | off | Disable PNG screenshot output while still allowing extraction/writeback work in non-verification runs. |
 | `--verify-css-rendering` | off | Enable CSS rendering verification against baseline screenshots. Requires Phase 2 execution (use with `--no-css-extraction`). Automatically triggers a rebuild to ensure CSS artifacts are current. |
 | `--verify-ve-rendering` | off | Enable VE rendering verification against baseline screenshots using `ve-project2` (current/preferred approach). Automatically triggers a VE rebuild. Mutually exclusive with `--verify-css-rendering` and `--verify-ve1-rendering`. |
@@ -689,6 +689,17 @@ node scripts/capture-leaf-screenshots.mjs --max-themes=27 --build
 ```
 node scripts/capture-leaf-screenshots.mjs --max-themes=27 --no-writeback
 ```
+
+**Diff baseline markup vs VE markup for one scenario:**
+
+```
+node scripts/diff-scenario-markup.mjs --theme=sketchy --route=/ui/buttons/solid-danger-button --state=static
+```
+
+This writes:
+
+- `markup.diff.json` — full machine-readable node/property diff
+- `markup.diff.md` — compact human summary (structure + style deltas)
 
 ---
 

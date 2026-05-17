@@ -5,7 +5,11 @@ dist
 /screenshots/**/*.verify.diff.png
 /screenshots/**/ve-*.png
 /screenshots/**/markup.html
+/screenshots/**/markup-ve.html
+/screenshots/**/markup.diff.json
+/screenshots/**/markup.diff.md
 /verify-*.txt
+/tmp-*.*
 /ve-project/verify-*.txt
 /debug-*.txt
 /capture-*.txt

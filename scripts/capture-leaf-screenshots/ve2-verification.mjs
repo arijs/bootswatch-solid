@@ -6,6 +6,12 @@ import pixelmatch from 'pixelmatch'
 import { PNG } from 'pngjs'
 
 import { ROOT, VE2_BASE_URL } from './constants.mjs'
+import {
+	extractScenarioMarkupArtifact,
+	extractScenarioVe2CssArtifacts,
+	optimizeMarkupWithCssArtifacts,
+	writeScenarioMarkupArtifact,
+} from './css-extraction.mjs'
 import { pathExists } from './folder-pruning.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
 import { resolveInitialNavigationWarmupDelayMs } from './timing.mjs'
@@ -62,6 +68,7 @@ export async function verifyScenarioVe2Rendering({
 	measuredHeight,
 	baselinePath,
 	maxDiffRatio,
+	markupExtractionEnabled = true,
 }) {
 	if (!(await pathExists(baselinePath))) {
 		return {
@@ -77,6 +84,7 @@ export async function verifyScenarioVe2Rendering({
 		/\d+x\d+\.png$/i,
 		`ve-${requestedWidth}x${measuredHeight}.png`,
 	)
+	const routePath = route.replace(/^\//, '')
 	const verifyPath = baselinePath.replace(
 		/\d+x\d+\.png$/i,
 		`ve-${requestedWidth}x${measuredHeight}.verify.png`,
@@ -119,6 +127,38 @@ export async function verifyScenarioVe2Rendering({
 		await stabilizeForScreenshot(page)
 		await page.screenshot({ path: ve2Path, fullPage: false, timeout: 20000 })
 
+		let veMarkupPath = null
+		let veMarkupError = null
+		if (markupExtractionEnabled) {
+			try {
+				const [markupRaw, cssArtifacts] = await Promise.all([
+					extractScenarioMarkupArtifact(page),
+					extractScenarioVe2CssArtifacts(page, { themeSlug }),
+				])
+				if ((cssArtifacts?.globalRules?.length ?? 0) === 0) {
+					throw new Error(
+						`VE2 CSS collector returned zero rules (stylesheets=${cssArtifacts?.stylesheetCount ?? 0}, fallback=${Boolean(cssArtifacts?.fallbackMode)}, scope=${(cssArtifacts?.scopeClasses ?? []).join(',')})`,
+					)
+				}
+				const { optimized: markup } = optimizeMarkupWithCssArtifacts(markupRaw, cssArtifacts, {
+					themeSlug,
+					route,
+					stateFolder,
+					scenario,
+					kind: 've',
+				})
+				veMarkupPath = await writeScenarioMarkupArtifact({
+					themeSlug,
+					routePath,
+					stateFolder,
+					markup,
+					fileName: 'markup-ve.html',
+				})
+			} catch (error) {
+				veMarkupError = String(error?.message || error).split('\n')[0]
+			}
+		}
+
 		const compared = await comparePngFiles(baselinePath, ve2Path, verifyPath)
 		if (!compared.ok) {
 			return {
@@ -130,6 +170,8 @@ export async function verifyScenarioVe2Rendering({
 				reason: compared.reason,
 				ve2Path,
 				verifyPath,
+				veMarkupPath,
+				veMarkupError,
 			}
 		}
 
@@ -145,6 +187,8 @@ export async function verifyScenarioVe2Rendering({
 				: `Diff ratio ${compared.diffRatio.toFixed(6)} exceeds max ${maxDiffRatio.toFixed(6)}`,
 			ve2Path,
 			verifyPath,
+			veMarkupPath,
+			veMarkupError,
 		}
 	} finally {
 		await context.close()

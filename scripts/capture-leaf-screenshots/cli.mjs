@@ -101,6 +101,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 	const htmlExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-html-extraction')
+	const veMarkupExtractionEnabled = veVerificationEnabled && !argv.includes('--no-html-extraction')
 	const imgExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-img-extraction')
 
 	const maxThemesSpecified = argv.some((arg) => arg.startsWith('--max-themes='))
@@ -113,6 +114,7 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		dryRunWriteback: argv.includes('--dry-run-writeback'),
 		cssExtractionEnabled,
 		htmlExtractionEnabled,
+		veMarkupExtractionEnabled,
 		imgExtractionEnabled,
 		verificationEnabled,
 		ve1VerificationEnabled,

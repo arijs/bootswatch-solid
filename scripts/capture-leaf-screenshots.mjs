@@ -45,6 +45,7 @@ const {
 	dryRunWriteback,
 	cssExtractionEnabled,
 	htmlExtractionEnabled,
+	veMarkupExtractionEnabled,
 	imgExtractionEnabled,
 	verificationEnabled,
 	ve1VerificationEnabled,
@@ -246,6 +247,9 @@ async function main() {
 		console.log(
 			`Mode: VE verification enabled (--verify-ve-rendering, maxDiffRatio=${verificationMaxDiffRatio}).`,
 		)
+		if (!veMarkupExtractionEnabled) {
+			console.log('Mode: VE markup extraction disabled (--no-html-extraction).')
+		}
 		const ve2Routes = ve2IndexSource
 			? getLeafRoutes(parseRoutesAndComponents(ve2IndexSource, VE2_INDEX_FILE).routes)
 			: []
@@ -317,6 +321,7 @@ async function main() {
 			dryRunWriteback,
 			cssExtractionEnabled,
 			htmlExtractionEnabled,
+			veMarkupExtractionEnabled,
 			imgExtractionEnabled,
 			verificationEnabled,
 			ve1VerificationEnabled,

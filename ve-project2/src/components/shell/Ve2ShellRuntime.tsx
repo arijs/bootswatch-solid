@@ -10,7 +10,7 @@ function useGranularStyleLoaderEnabled(): boolean {
 	return mode !== 'theme'
 }
 
-export function Ve2ShellRuntime(props: { children: JSX.Element }) {
+export function Ve2ShellRuntime(props: { children?: JSX.Element | undefined }) {
 	return useGranularStyleLoaderEnabled() ? (
 		<Ve2GranularShell>{props.children}</Ve2GranularShell>
 	) : (

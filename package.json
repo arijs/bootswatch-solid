@@ -18,6 +18,7 @@
 		"extract:contract-classes": "node scripts/extract-contract-classes.mjs",
 		"extract:static-classes": "node scripts/extract-static-classes.mjs",
 		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",
+		"screenshots:diff-markup": "node scripts/diff-scenario-markup.mjs",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
 		"check": "biome check --write"

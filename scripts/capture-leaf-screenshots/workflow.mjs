@@ -56,6 +56,7 @@ export async function executeCaptureWorkflow({
 	dryRunWriteback,
 	cssExtractionEnabled,
 	htmlExtractionEnabled,
+	veMarkupExtractionEnabled,
 	imgExtractionEnabled,
 	verificationEnabled,
 	ve1VerificationEnabled,
@@ -78,6 +79,7 @@ export async function executeCaptureWorkflow({
 	const cssAccumulator = createThemeCssAccumulator()
 	const markupStatsAccumulator = new Map() // theme -> array of stats
 	let htmlExtractionFileCount = 0
+	let veMarkupExtractionFileCount = 0
 
 	let { browser, context, page } = await freshBrowser()
 	const failed = []
@@ -242,7 +244,11 @@ export async function executeCaptureWorkflow({
 								measuredHeight,
 								outputPath,
 								verificationMaxDiffRatio,
+								veMarkupExtractionEnabled,
 							})
+							if (verification?.veMarkupPath) {
+								veMarkupExtractionFileCount += 1
+							}
 							skippedCount += 1
 							scenarioSummary.get(summaryKey).skipped += 1
 							captured = true
@@ -496,6 +502,10 @@ export async function executeCaptureWorkflow({
 		)
 	}
 
+	if (veVerificationEnabled && veMarkupExtractionEnabled) {
+		console.log(`VE markup extraction: scenario-files=${veMarkupExtractionFileCount}`)
+	}
+
 	if (verificationEnabled || ve1VerificationEnabled || veVerificationEnabled) {
 		const verificationLabel = verificationEnabled
 			? 'CSS'
@@ -585,6 +595,7 @@ async function runVerificationIfEnabled({
 	measuredHeight,
 	outputPath,
 	verificationMaxDiffRatio,
+	veMarkupExtractionEnabled,
 }) {
 	if (!verificationEnabled && !ve1VerificationEnabled && !veVerificationEnabled) return null
 	const isCssVerification = verificationEnabled
@@ -625,6 +636,7 @@ async function runVerificationIfEnabled({
 				measuredHeight,
 				baselinePath: outputPath,
 				maxDiffRatio: verificationMaxDiffRatio,
+				markupExtractionEnabled: veMarkupExtractionEnabled,
 			})
 		: isCssVerification
 			? await verifyScenarioCssRendering({
@@ -662,6 +674,12 @@ async function runVerificationIfEnabled({
 		return verification
 	}
 
+	if (verification.veMarkupError) {
+		console.warn(
+			`VE markup extraction warning for ${path.relative(ROOT, outputPath)}: ${verification.veMarkupError}`,
+		)
+	}
+
 	if (verification.matched) {
 		verificationStats.matched()
 		return verification
@@ -684,6 +702,9 @@ async function runVerificationIfEnabled({
 	} else {
 		mismatchRecord.vePath = verification.ve2Path
 		mismatchRecord.verifyPath = verification.verifyPath
+		if (verification.veMarkupPath) {
+			mismatchRecord.veMarkupPath = verification.veMarkupPath
+		}
 	}
 	verificationMismatches.push(mismatchRecord)
 
