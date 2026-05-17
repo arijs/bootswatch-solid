@@ -21,6 +21,7 @@ import { createVeToast } from './ve-toast'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/toasts',
 	'ui/buttons',
+	'ui/alerts',
 	'contents/basic',
 	'utilities',
 ]

@@ -409,10 +409,16 @@ import HtmlTooltip from './components/ui/tooltips/HtmlTooltip'
 import StartTooltip from './components/ui/tooltips/StartTooltip'
 import TopTooltip from './components/ui/tooltips/TopTooltip'
 import UiSection from './components/ui/UiSection'
+import type { JSX } from 'solid-js'
+
+function ScopeWrapper({ children }: { children?: JSX.Element }) {
+	return <div class="scope-wrapper">{children}</div>
+}
 
 render(
 	() => (
 		<Router>
+			<Route component={ScopeWrapper}>
 			<Route path="/" component={Home} />
 
 			{/* Contents routes */}
@@ -1333,6 +1339,7 @@ render(
 			<Route path="/ui/tooltips/bottom-tooltip" component={BottomTooltip} />
 			<Route path="/ui/tooltips/start-tooltip" component={StartTooltip} />
 			<Route path="/ui/tooltips/html-tooltip" component={HtmlTooltip} />
+			</Route>
 		</Router>
 	),
 	document.getElementById('root') ??

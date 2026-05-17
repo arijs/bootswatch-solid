@@ -20,7 +20,7 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 		lines.push('## Added Nodes')
 		lines.push('')
 		for (const node of addedNodes) {
-			lines.push(`- ${node.path} (${node.tag})`)
+			lines.push(`- ${node.path} (${node.tag})${node.veClass ? ` \`class="${node.veClass}"\`` : ''}`)
 		}
 	}
 
@@ -30,7 +30,7 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 		lines.push('## Removed Nodes')
 		lines.push('')
 		for (const node of removedNodes) {
-			lines.push(`- ${node.path} (${node.tag})`)
+			lines.push(`- ${node.path} (${node.tag})${node.baselineClass ? ` \`class="${node.baselineClass}"\`` : ''}`)
 		}
 	}
 
@@ -43,8 +43,24 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 			lines.push(`### ${node.path}`)
 			if (node.tagMismatch) {
 				lines.push(`- Tag mismatch: baseline=${node.tag}, ve=${node.veTag}`)
+				if (node.baselineClass || node.veClass) {
+					if (node.baselineClass === node.veClass) {
+						lines.push(`- class: \`${node.baselineClass}\``)
+					} else {
+						if (node.baselineClass) lines.push(`- baseline class: \`${node.baselineClass}\``)
+						if (node.veClass) lines.push(`- ve class: \`${node.veClass}\``)
+					}
+				}
 				lines.push('')
 				continue
+			}
+			if (node.baselineClass || node.veClass) {
+				if (node.baselineClass === node.veClass) {
+					lines.push(`- class: \`${node.baselineClass}\``)
+				} else {
+					if (node.baselineClass) lines.push(`- baseline class: \`${node.baselineClass}\``)
+					if (node.veClass) lines.push(`- ve class: \`${node.veClass}\``)
+				}
 			}
 			if (node.styleDiff.added.length > 0) {
 				lines.push(`- Added properties (${node.styleDiff.added.length}): ${node.styleDiff.added.map((item) => item.property).join(', ')}`)

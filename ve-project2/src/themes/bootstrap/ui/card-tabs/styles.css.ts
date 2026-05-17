@@ -3,6 +3,8 @@ import {
 	cardHeaderTabs,
 } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import {
+	nav,
+	navTabs,
 	navLink,
 	navLinkActive,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -25,6 +27,16 @@ globalStyle(`${bootstrapScope}${cardHeaderTabs}`, {
 	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
 	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
 	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: 0,
+})
+
+// we need these overrides to change these specific styles for
+// nav and nav-tabs when they are with card-header-tabs
+globalStyle(`${bootstrapScope}${cardHeaderTabs}${nav}`, {
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+})
+
+globalStyle(`${bootstrapScope}${cardHeaderTabs}${navTabs}`, {
 	borderBottom: 0,
 })
 

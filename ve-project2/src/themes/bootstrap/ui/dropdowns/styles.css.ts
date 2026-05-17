@@ -59,12 +59,12 @@ import {
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { h6 } from '../../../../theme-contract/contents/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // ── Wrapper positioning ───────────────────────────────────────────────────────
 
-// SOURCE CSS:
 // .dropdown, .dropstart, .dropup-center, .dropdown-center { position: relative; }
 globalStyle(
 	[
@@ -282,6 +282,14 @@ globalStyle(
 globalStyle(`${bootstrapScope}${dropstart} ${dropdownToggleSplit}::before`, {
 	marginRight: 0,
 })
+globalStyle(`${bootstrapScope}${btn}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+	borderTopLeftRadius: 0,
+	borderBottomLeftRadius: 0,
+	borderTopRightRadius: varBsBorderRadius,
+	borderBottomRightRadius: varBsBorderRadius,
+})
 
 // ── .dropdown-divider ─────────────────────────────────────────────────────────
 
@@ -293,6 +301,7 @@ globalStyle(`${bootstrapScope}${dropdownDivider}`, {
 	height: 0,
 	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: 'hidden',
+	color: 'inherit',
 	border: 0,
 	borderTop: `1px solid ${varBsDropdownDividerBg}`,
 	opacity: 1,
@@ -364,8 +373,11 @@ globalStyle(`${bootstrapScope}${dropdownMenu}${dropdownMenuShow}`, { display: 'b
 globalStyle(`${bootstrapScope}${dropdownHeader}`, {
 	display: 'block',
 	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
+	marginTop: 0,
 	marginBottom: 0,
 	fontSize: '0.875rem',
+	fontWeight: 500,
+	lineHeight: 1.2,
 	color: varBsDropdownHeaderColor,
 	whiteSpace: 'nowrap',
 })

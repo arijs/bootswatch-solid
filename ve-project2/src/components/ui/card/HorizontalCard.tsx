@@ -20,6 +20,8 @@ import { colMd4, colMd8, g0, row } from '../../../theme-contract/utilities/contr
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card',
 	'contents/basic',
+	'contents/heading',
+	'contents/images',
 	'utilities',
 ]
 

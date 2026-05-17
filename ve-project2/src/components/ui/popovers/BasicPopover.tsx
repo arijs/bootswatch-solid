@@ -16,7 +16,9 @@ import { h3 } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/popovers',
+	'ui/buttons',
 	'contents/basic',
+	'contents/heading',
 	'utilities',
 ]
 

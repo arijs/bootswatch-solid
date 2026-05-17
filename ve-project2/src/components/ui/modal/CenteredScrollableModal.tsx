@@ -32,13 +32,15 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/alerts',
 	'contents/basic',
+	'contents/heading',
 	'utilities',
 ]
 
 const CenteredScrollableModal: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-	configureVeModal({ fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
+	const modalName = modal
+	configureVeModal({ name: modalName, fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
@@ -46,7 +48,7 @@ const CenteredScrollableModal: Component = () => {
 					<button
 						type="button"
 						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
-						data-bs-toggle="modal"
+						data-bs-toggle={modalName}
 						data-bs-target="#exampleModalCenteredScrollable"
 					>
 						Vertically centered scrollable modal
@@ -74,7 +76,7 @@ const CenteredScrollableModal: Component = () => {
 							<button
 								type="button"
 								class={`${theme} ${alertBtnClose}`}
-								data-bs-dismiss="modal"
+								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
 						</div>
@@ -108,7 +110,7 @@ const CenteredScrollableModal: Component = () => {
 							<button
 								type="button"
 								class={`${theme} ${btn} ${btnSecondary}`}
-								data-bs-dismiss="modal"
+								data-bs-dismiss={`.${modalName}`}
 							>
 								Close
 							</button>

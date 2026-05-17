@@ -18,8 +18,9 @@ import {
 import { configureVeDropdown } from './ve-dropdown'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
-	'ui/dropdowns',
+	'ui/button-group',
 	'ui/buttons',
+	'ui/dropdowns',
 	'contents/basic',
 	'utilities',
 ]

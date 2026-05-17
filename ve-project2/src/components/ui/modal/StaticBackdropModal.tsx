@@ -30,13 +30,15 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/alerts',
 	'contents/basic',
+	'contents/heading',
 	'utilities',
 ]
 
 const StaticBackdropModal: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-	configureVeModal({ fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
+	const modalName = modal
+	configureVeModal({ name: modalName, fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
@@ -44,8 +46,8 @@ const StaticBackdropModal: Component = () => {
 					<button
 						type="button"
 						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
-						data-bs-toggle="modal"
-						data-bs-target="#staticBackdropLive"
+						data-bs-toggle={modalName}
+						data-bs-target={`#staticBackdropLive`}
 					>
 						Launch static backdrop modal
 					</button>
@@ -71,7 +73,7 @@ const StaticBackdropModal: Component = () => {
 							<button
 								type="button"
 								class={`${theme} ${alertBtnClose}`}
-								data-bs-dismiss="modal"
+								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
 						</div>
@@ -85,7 +87,7 @@ const StaticBackdropModal: Component = () => {
 							<button
 								type="button"
 								class={`${theme} ${btn} ${btnSecondary}`}
-								data-bs-dismiss="modal"
+								data-bs-dismiss={`.${modalName}`}
 							>
 								Close
 							</button>

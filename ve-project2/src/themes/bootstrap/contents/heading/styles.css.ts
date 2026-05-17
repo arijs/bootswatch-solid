@@ -1,8 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBorderWidth,
-	varBsLinkColor,
-	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	h1,
@@ -13,7 +11,6 @@ import {
 	h6,
 	horizontalRule,
 	horizontalRuleCard,
-	link,
 	paragraph,
 	small,
 } from '../../../../theme-contract/contents/contract.css'
@@ -46,16 +43,6 @@ globalStyle(`${bootstrapScope}${horizontalRuleCard}`, {
 globalStyle(`${bootstrapScope}${paragraph}`, {
 	marginTop: 0,
 	marginBottom: '1rem',
-})
-
-// Source CSS literal conversion for generic a and a:hover.
-globalStyle(`${bootstrapScope}${link}`, {
-	color: varBsLinkColor,
-	textDecoration: 'underline',
-})
-
-globalStyle(`${bootstrapScope}${link}:hover`, {
-	color: varBsLinkHoverColor,
 })
 
 // Source CSS literal conversion for `.small, small { font-size: 0.875em }`.

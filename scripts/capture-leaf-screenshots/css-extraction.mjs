@@ -521,6 +521,7 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {
 
 			const declarations = parseResolvedStyleDeclarations(computedStyles)
 			const cssDefinedProperties = new Set()
+			cssDefinedProperties.add('box-sizing') // Always include box-sizing because the source applies it globally, this will reduce a lot of style properties diff in the markup
 			for (const entry of selectorEntries) {
 				const matcher = getSelectorMatcher(entry.selector, elAdapter, selectorMatcherCache, {
 					allowHoverPseudoClass,

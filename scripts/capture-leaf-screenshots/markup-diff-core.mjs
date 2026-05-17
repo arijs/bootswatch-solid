@@ -118,7 +118,7 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 	for (const [pathKey, baselineNode] of baselineIndex.entries()) {
 		const veNode = veIndex.get(pathKey)
 		if (!veNode) {
-			removedNodes.push({ path: pathKey, tag: baselineNode.tag })
+			removedNodes.push({ path: pathKey, tag: baselineNode.tag, baselineClass: baselineNode.attrs.get('class') ?? '' })
 			continue
 		}
 		if (baselineNode.tag !== veNode.tag) {
@@ -126,6 +126,8 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 				path: pathKey,
 				tag: baselineNode.tag,
 				veTag: veNode.tag,
+				baselineClass: baselineNode.attrs.get('class') ?? '',
+				veClass: veNode.attrs.get('class') ?? '',
 				styleDiff: { added: [], removed: [], changed: [] },
 				tagMismatch: true,
 			})
@@ -141,6 +143,8 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 			path: pathKey,
 			tag: baselineNode.tag,
 			veTag: veNode.tag,
+			baselineClass: baselineNode.attrs.get('class') ?? '',
+			veClass: veNode.attrs.get('class') ?? '',
 			styleDiff,
 			tagMismatch: false,
 		})
@@ -148,7 +152,7 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 
 	for (const [pathKey, veNode] of veIndex.entries()) {
 		if (!baselineIndex.has(pathKey)) {
-			addedNodes.push({ path: pathKey, tag: veNode.tag })
+			addedNodes.push({ path: pathKey, tag: veNode.tag, veClass: veNode.attrs.get('class') ?? '' })
 		}
 	}
 

@@ -2,12 +2,18 @@ import { globalStyle } from '@vanilla-extract/css'
 import {
 	blockquote,
 	blockquoteFooter,
+	link,
 	lead,
 	markText,
 	smallText,
 	inlineCode,
 } from '../../../../theme-contract/contents/contract.css'
-import { varBsCodeColor, varBsFontMonospace } from '../../../../theme-contract/_vars.css'
+import {
+	varBsCodeColor,
+	varBsFontMonospace,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+} from '../../../../theme-contract/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
 // ─── Lead ─────────────────────────────────────────────────────────────────────
@@ -27,6 +33,15 @@ globalStyle(`${bootstrapScope}${markText}`, {
 
 globalStyle(`${bootstrapScope}${smallText}`, {
 	fontSize: '0.875em',
+})
+
+globalStyle(`${bootstrapScope}${link}`, {
+	color: varBsLinkColor,
+	textDecoration: 'underline',
+})
+
+globalStyle(`${bootstrapScope}${link}:hover`, {
+	color: varBsLinkHoverColor,
 })
 
 // ─── Blockquote ───────────────────────────────────────────────────────────────
