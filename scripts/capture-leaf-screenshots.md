@@ -596,6 +596,31 @@ states do not bleed across captures.
 
 ### Common invocation patterns
 
+**Single theme: full baseline capture, then VE verification (ve-project2):**
+
+Use this two-step workflow when refreshing baselines and confirming VE2 parity for one theme (for example `bootstrap`).
+
+Step 1 — Capture or refresh baseline artifacts (screenshots, extracted CSS, markup) from the main app:
+
+```
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --build
+```
+
+- `--theme=bootstrap` selects one theme; the default `--max-themes=1` is sufficient here.
+- Omit `--skip-existing` when you want a full refresh of every scenario (433 per theme).
+- `--build` ensures `dist/` is current before capture. The Vite build can take several minutes and may appear idle after `modules transformed` while it renders chunks — wait for `built in …` before capture starts.
+- If `dist/` is already up to date, omit `--build` to start Playwright immediately.
+
+Step 2 — Verify `ve-project2` rendering against those baselines:
+
+```
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering
+```
+
+- Automatically rebuilds `ve-project2` and compares each scenario to the baseline PNG beside it.
+- Expect `433` scenarios for a full theme run; summary should report `failed=0`.
+- For historical `ve-project` (v1) verification instead, swap the flag to `--verify-ve1-rendering`.
+
 **Full run across all themes, all routes, all states:**
 
 ```

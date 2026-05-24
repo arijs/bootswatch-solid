@@ -45,7 +45,7 @@ function getPnpmCommand() {
 }
 
 export function buildProject() {
-	execSync(`${getPnpmCommand()} build`, {
+	execSync(`${getPnpmCommand()} build -- --logLevel error`, {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',
@@ -53,7 +53,7 @@ export function buildProject() {
 }
 
 export function buildVeProject() {
-	execSync(`${process.execPath} scripts/run-ve-vite.mjs build`, {
+	execSync(`${process.execPath} scripts/run-ve-vite.mjs build --quiet`, {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',
@@ -91,7 +91,7 @@ export function startVePreviewServer() {
 export function buildVe2Project() {
 	const result = spawnSync(
 		process.execPath,
-		['scripts/run-ve-vite.mjs', 'build', 've-project2'],
+		['scripts/run-ve-vite.mjs', 'build', 've-project2', '--quiet'],
 		{
 			cwd: ROOT,
 			env: process.env,

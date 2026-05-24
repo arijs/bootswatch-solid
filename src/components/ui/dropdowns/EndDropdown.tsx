@@ -57,3 +57,4 @@ export default EndDropdown
 // @screenshot sketchy/opened-dropdown: 360x199 199
 // @screenshot sandstone/opened-dropdown: 360x188 188
 // @screenshot materia/opened-dropdown: 360x194 194
+// @screenshot brite/opened-dropdown: 360x184 184

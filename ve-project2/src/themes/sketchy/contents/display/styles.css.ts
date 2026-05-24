@@ -1,53 +1,69 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-} from '../../../../theme-contract/contents/contract.css'
+	paragraph,
+} from '../../../../theme-contract/contents/basic/contract.css'
 import { sketchyScope } from '../../scope.css'
 
-const displayBase = {
+// AUTO-GENERATED family styles for bootstrap/contents/display
+// Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// p { margin-top: 0; margin-bottom: 1rem; }
+globalStyle(`${sketchyScope}${paragraph}`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// .display-1 { font-weight: 300; line-height: 1.2; font-size: calc(1.625rem + 4.5vw); }
+// [UNMAPPED_SELECTOR] class ".display-1" — no contract mapping
+globalStyle(`.display-1`, {
 	fontWeight: 300,
 	lineHeight: 1.2,
-} as const
-
-// ─── Display headings ─────────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${display1}`, {
-	...displayBase,
-	fontSize: 'calc(1.625rem + 4.5vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '5rem' } },
+	fontSize: "calc(1.625rem + 4.5vw)",
 })
 
-globalStyle(`${sketchyScope}${display2}`, {
-	...displayBase,
-	fontSize: 'calc(1.575rem + 3.9vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '4.5rem' } },
+// SOURCE CSS:
+// .display-2 { font-weight: 300; line-height: 1.2; font-size: calc(1.575rem + 3.9vw); }
+// [UNMAPPED_SELECTOR] class ".display-2" — no contract mapping
+globalStyle(`.display-2`, {
+	fontWeight: 300,
+	lineHeight: 1.2,
+	fontSize: "calc(1.575rem + 3.9vw)",
 })
 
-globalStyle(`${sketchyScope}${display3}`, {
-	...displayBase,
-	fontSize: 'calc(1.525rem + 3.3vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '4rem' } },
+// SOURCE CSS:
+// .display-3 { font-weight: 300; line-height: 1.2; font-size: calc(1.525rem + 3.3vw); }
+// [UNMAPPED_SELECTOR] class ".display-3" — no contract mapping
+globalStyle(`.display-3`, {
+	fontWeight: 300,
+	lineHeight: 1.2,
+	fontSize: "calc(1.525rem + 3.3vw)",
 })
 
-globalStyle(`${sketchyScope}${display4}`, {
-	...displayBase,
-	fontSize: 'calc(1.475rem + 2.7vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '3.5rem' } },
+// SOURCE CSS:
+// .display-4 { font-weight: 300; line-height: 1.2; font-size: calc(1.475rem + 2.7vw); }
+// [UNMAPPED_SELECTOR] class ".display-4" — no contract mapping
+globalStyle(`.display-4`, {
+	fontWeight: 300,
+	lineHeight: 1.2,
+	fontSize: "calc(1.475rem + 2.7vw)",
 })
 
-globalStyle(`${sketchyScope}${display5}`, {
-	...displayBase,
-	fontSize: 'calc(1.425rem + 2.1vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '3rem' } },
+// SOURCE CSS:
+// .display-5 { font-weight: 300; line-height: 1.2; font-size: calc(1.425rem + 2.1vw); }
+// [UNMAPPED_SELECTOR] class ".display-5" — no contract mapping
+globalStyle(`.display-5`, {
+	fontWeight: 300,
+	lineHeight: 1.2,
+	fontSize: "calc(1.425rem + 2.1vw)",
 })
 
-globalStyle(`${sketchyScope}${display6}`, {
-	...displayBase,
-	fontSize: 'calc(1.375rem + 1.5vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '2.5rem' } },
+// SOURCE CSS:
+// .display-6 { font-weight: 300; line-height: 1.2; font-size: calc(1.375rem + 1.5vw); }
+// [UNMAPPED_SELECTOR] class ".display-6" — no contract mapping
+globalStyle(`.display-6`, {
+	fontWeight: 300,
+	lineHeight: 1.2,
+	fontSize: "calc(1.375rem + 1.5vw)",
 })

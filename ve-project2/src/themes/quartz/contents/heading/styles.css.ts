@@ -1,9 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBorderWidth,
-	varBsLinkColor,
-	varBsLinkHoverColor,
+	varBsHeadingColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	paragraph,
+} from '../../../../theme-contract/contents/basic/contract.css'
 import {
 	h1,
 	h2,
@@ -11,104 +12,153 @@ import {
 	h4,
 	h5,
 	h6,
-	horizontalRule,
-	horizontalRuleCard,
-	link,
-	paragraph,
-	small,
-} from '../../../../theme-contract/contents/contract.css'
+} from '../../../../theme-contract/contents/heading/contract.css'
 import { quartzScope } from '../../scope.css'
 
-const headingBase = {
+// AUTO-GENERATED family styles for bootstrap/contents/heading
+// Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+globalStyle(`${quartzScope}${h6}`, {
 	marginTop: 0,
-	marginBottom: '1rem',
-	fontWeight: 700,
+	marginBottom: "1rem",
+	fontWeight: 500,
 	lineHeight: 1.2,
-	color: 'var(--bs-heading-color)',
-} as const
-
-// Source CSS literal conversion for generic hr.
-globalStyle(`${quartzScope}${horizontalRule}`, {
-	margin: '2rem 0',
-	color: 'inherit',
-	border: 0,
-	borderTop: `${varBsBorderWidth} solid`,
-	opacity: 0.25,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
 })
 
-// Source CSS literal conversion for `.card > hr`.
-globalStyle(`${quartzScope}${horizontalRuleCard}`, {
-	marginRight: 0,
-	marginLeft: 0,
+// SOURCE CSS:
+// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
+globalStyle(`.h6`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
 })
 
-// Source CSS literal conversion for generic p.
+// SOURCE CSS:
+// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
+globalStyle(`${quartzScope}${h5}`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
+})
+
+// SOURCE CSS:
+// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
+// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
+globalStyle(`.h5`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
+})
+
+// SOURCE CSS:
+// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
+globalStyle(`${quartzScope}${h4}`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.275rem + 0.3vw)",
+})
+
+// SOURCE CSS:
+// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
+// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
+globalStyle(`.h4`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.275rem + 0.3vw)",
+})
+
+// SOURCE CSS:
+// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
+globalStyle(`${quartzScope}${h3}`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.3rem + 0.6vw)",
+})
+
+// SOURCE CSS:
+// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
+// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
+globalStyle(`.h3`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.3rem + 0.6vw)",
+})
+
+// SOURCE CSS:
+// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
+globalStyle(`${quartzScope}${h2}`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.325rem + 0.9vw)",
+})
+
+// SOURCE CSS:
+// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
+// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
+globalStyle(`.h2`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.325rem + 0.9vw)",
+})
+
+// SOURCE CSS:
+// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
+globalStyle(`${quartzScope}${h1}`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.375rem + 1.5vw)",
+})
+
+// SOURCE CSS:
+// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
+// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
+globalStyle(`.h1`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.375rem + 1.5vw)",
+})
+
+// SOURCE CSS:
+// p { margin-top: 0; margin-bottom: 1rem; }
 globalStyle(`${quartzScope}${paragraph}`, {
 	marginTop: 0,
-	marginBottom: '1rem',
-})
-
-// Source CSS literal conversion for generic a and a:hover.
-globalStyle(`${quartzScope}${link}`, {
-	color: varBsLinkColor,
-	textDecoration: 'underline',
-})
-
-globalStyle(`${quartzScope}${link}:hover`, {
-	color: varBsLinkHoverColor,
-})
-
-// Source CSS literal conversion for `.small, small { font-size: 0.875em }`.
-globalStyle(`${quartzScope}${small}`, {
-	fontSize: '0.875em',
-})
-
-globalStyle(`${quartzScope}${h1}`, {
-	...headingBase,
-	fontSize: 'calc(1.375rem + 1.5vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '2.5rem',
-		},
-	},
-})
-
-globalStyle(`${quartzScope}${h2}`, {
-	...headingBase,
-	fontSize: 'calc(1.325rem + 0.9vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '2rem',
-		},
-	},
-})
-
-globalStyle(`${quartzScope}${h3}`, {
-	...headingBase,
-	fontSize: 'calc(1.3rem + 0.6vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '1.75rem',
-		},
-	},
-})
-
-globalStyle(`${quartzScope}${h4}`, {
-	...headingBase,
-	fontSize: 'calc(1.275rem + 0.3vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '1.5rem',
-		},
-	},
-})
-
-globalStyle(`${quartzScope}${h5}`, {
-	...headingBase,
-	fontSize: '1.25rem',
-})
-
-globalStyle(`${quartzScope}${h6}`, {
-	...headingBase,
-	fontSize: '1rem',
+	marginBottom: "1rem",
 })

@@ -1,43 +1,94 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	listBase,
 	listInline,
 	listInlineItem,
-	listIndented,
-	listNested,
 	listUnstyled,
-} from '../../../../theme-contract/contents/contract.css'
+} from '../../../../theme-contract/contents/lists/contract.css'
 import { slateScope } from '../../scope.css'
 
-// ─── Lists ────────────────────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/contents/lists
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
-globalStyle(`${slateScope}${listBase}`, {
+// SOURCE CSS:
+// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+globalStyle(`ol`, {
+	paddingLeft: "2rem",
 	marginTop: 0,
-	marginBottom: '1rem',
+	marginBottom: "1rem",
 })
 
-globalStyle(`${slateScope}${listNested}`, {
+// SOURCE CSS:
+// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+globalStyle(`ul`, {
+	paddingLeft: "2rem",
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// dl { margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
+globalStyle(`dl`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// .list-inline { padding-left: 0; list-style: none; }
+globalStyle(`${slateScope}${listInline}`, {
+	paddingLeft: 0,
+	listStyle: "none",
+})
+
+// SOURCE CSS:
+// .list-inline-item { display: inline-block; }
+globalStyle(`${slateScope}${listInlineItem}`, {
+	display: "inline-block",
+})
+
+// SOURCE CSS:
+// .list-inline-item:not(:last-child) { margin-right: 0.5rem; }
+globalStyle(`${slateScope}${listInlineItem}:not(:last-child)`, {
+	marginRight: "0.5rem",
+})
+
+// SOURCE CSS:
+// ol ol { margin-bottom: 0; }
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+globalStyle(`ol ol`, {
 	marginBottom: 0,
 })
 
-globalStyle(`${slateScope}${listIndented}`, {
-	paddingLeft: '2rem',
+// SOURCE CSS:
+// ul ul { margin-bottom: 0; }
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+globalStyle(`ul ul`, {
+	marginBottom: 0,
 })
 
+// SOURCE CSS:
+// ol ul { margin-bottom: 0; }
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+globalStyle(`ol ul`, {
+	marginBottom: 0,
+})
+
+// SOURCE CSS:
+// ul ol { margin-bottom: 0; }
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+globalStyle(`ul ol`, {
+	marginBottom: 0,
+})
+
+// SOURCE CSS:
+// .list-unstyled { padding-left: 0; list-style: none; }
 globalStyle(`${slateScope}${listUnstyled}`, {
 	paddingLeft: 0,
-	listStyle: 'none',
-})
-
-globalStyle(`${slateScope}${listInline}`, {
-	paddingLeft: 0,
-	listStyle: 'none',
-})
-
-globalStyle(`${slateScope}${listInlineItem}`, {
-	display: 'inline-block',
-})
-
-globalStyle(`${slateScope}${listInlineItem}:not(:last-child)`, {
-	marginRight: '0.5rem',
+	listStyle: "none",
 })

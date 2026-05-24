@@ -20,6 +20,7 @@ import {
 	dropdownToggle,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
+	collapse,
 	navbar,
 	navbarBgLight,
 	navbarBrand,
@@ -42,6 +43,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'ui/dropdowns',
 	'ui/buttons',
+	'forms',
 	'contents/basic',
 	'utilities',
 ]
@@ -73,7 +75,7 @@ const NavbarExample: Component = () => {
 					>
 						<span class={`${theme} ${navbarTogglerIcon}`} />
 					</button>
-					<div class={`${theme} ${navbarCollapse}`} id="navbarSupportedContent">
+					<div class={`${theme} ${collapse} ${navbarCollapse}`} id="navbarSupportedContent">
 						<ul class={`${theme} ${navbarNav} ${meAuto} ${mb2} ${mbLg0}`}>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
@@ -177,7 +179,7 @@ const NavbarExample: Component = () => {
 					>
 						<span class={`${theme} ${navbarTogglerIcon}`} />
 					</button>
-					<div class={`${theme} ${navbarCollapse}`} id="navbarSupportedContent2">
+					<div class={`${theme} ${collapse} ${navbarCollapse}`} id="navbarSupportedContent2">
 						<ul class={`${theme} ${navbarNav} ${meAuto} ${mb2} ${mbLg0}`}>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}

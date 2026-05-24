@@ -6,6 +6,10 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
+	varBsDropdownItemBorderRadius,
+	varBsHeadingColor,
+	varBsLinkColorRgb,
+	varBsLinkHoverColorRgb,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
@@ -34,385 +38,676 @@ import {
 	varBsDropdownMinWidth,
 	varBsDropdownPaddingX,
 	varBsDropdownPaddingY,
-	varBsDropdownPosition,
 	varBsDropdownSpacer,
 	varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
 import {
+	horizontalRule,
+	link,
+} from '../../../../theme-contract/contents/basic/contract.css'
+import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../../theme-contract/contents/heading/contract.css'
+import {
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
-	dropend,
 	dropdownHeader,
 	dropdownItem,
-	dropdownItemActive,
-	dropdownItemDisabled,
-	dropdownItemText,
 	dropdownMenu,
-	dropdownMenuDark,
-	dropdownMenuEnd,
-	dropdownMenuShow,
-	dropdownMenuStart,
-	dropstart,
 	dropdownToggle,
 	dropdownToggleSplit,
+	dropend,
+	dropstart,
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { h6 } from '../../../../theme-contract/contents/contract.css'
 import { vaporScope } from '../../scope.css'
 
-// ── Wrapper positioning ───────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/ui/dropdowns
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// .dropdown, .dropstart, .dropup-center, .dropdown-center { position: relative; }
-globalStyle(
-	[
-		`${vaporScope}${dropdown}`,
-		`${vaporScope}${dropstart}`,
-		`${vaporScope}${dropupCenter}`,
-		`${vaporScope}${dropdownCenter}`,
-	].join(', '),
-	{ position: 'relative' },
-)
-
-// ── Dropdown toggle caret ─────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropdown-toggle { white-space: nowrap; }
-globalStyle(`${vaporScope}${dropdownToggle}`, { whiteSpace: 'nowrap' })
-
-// SOURCE CSS: .dropdown-toggle::after { display: inline-block; margin-left: 0.255em;
-//   vertical-align: 0.255em; content: ""; border-top: 0.3em solid;
-//   border-right: 0.3em solid transparent; border-bottom: 0;
-//   border-left: 0.3em solid transparent; }
-globalStyle(`${vaporScope}${dropdownToggle}::after`, {
-	display: 'inline-block',
-	marginLeft: '0.255em',
-	verticalAlign: '0.255em',
-	content: '""',
-	borderTop: '0.3em solid',
-	borderRight: '0.3em solid transparent',
-	borderBottom: 0,
-	borderLeft: '0.3em solid transparent',
+// hr { margin: 1rem 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0.25; }
+globalStyle(`${vaporScope}${horizontalRule}`, {
+	margin: "1rem 0",
+	color: "inherit",
+	border: 0,
+	borderTop: "var(--bs-border-width) solid",
+	opacity: 0.25,
 })
 
-// SOURCE CSS: .dropdown-toggle:empty::after { margin-left: 0; }
-globalStyle(`${vaporScope}${dropdownToggle}:empty::after`, { marginLeft: 0 })
+// SOURCE CSS:
+// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+globalStyle(`${vaporScope}${h6}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
+})
 
-// ── Dropdown menu ─────────────────────────────────────────────────────────────
+// SOURCE CSS:
+// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
+globalStyle(`.h6`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
+})
 
-// SOURCE CSS: .dropdown-menu { --bs-dropdown-* vars + layout }
+// SOURCE CSS:
+// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+globalStyle(`${vaporScope}${h5}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
+globalStyle(`.h5`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+globalStyle(`${vaporScope}${h4}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
+globalStyle(`.h4`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+globalStyle(`${vaporScope}${h3}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
+globalStyle(`.h3`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+globalStyle(`${vaporScope}${h2}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
+globalStyle(`.h2`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+globalStyle(`${vaporScope}${h1}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
+// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
+globalStyle(`.h1`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+})
+
+// SOURCE CSS:
+// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+globalStyle(`ol`, {
+	paddingLeft: "2rem",
+	marginTop: 0,
+	marginBottom: "0.5rem",
+})
+
+// SOURCE CSS:
+// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+globalStyle(`ul`, {
+	paddingLeft: "2rem",
+	marginTop: 0,
+	marginBottom: "0.5rem",
+})
+
+// SOURCE CSS:
+// dl { margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
+globalStyle(`dl`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
+// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
+globalStyle(`a`, {
+	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
+	textDecoration: "underline",
+})
+
+// SOURCE CSS:
+// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
+// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
+globalStyle(`a:hover`, {
+	vars: {
+		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
+	},
+})
+
+// SOURCE CSS:
+// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
+// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
+globalStyle(`a:not([href]):not([class])`, {
+	color: "inherit",
+	textDecoration: "none",
+})
+
+// SOURCE CSS:
+// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
+// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
+globalStyle(`a:not([href]):not([class]):hover`, {
+	color: "inherit",
+	textDecoration: "none",
+})
+
+// SOURCE CSS:
+// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
+globalStyle(`button`, {
+	borderRadius: 0,
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// button:focus:not(:focus-visible) { outline: 0; }
+// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
+globalStyle(`button:focus:not(:focus-visible)`, {
+	outline: 0,
+})
+
+// SOURCE CSS:
+// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
+globalStyle(`input`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
+// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
+globalStyle(`select`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+})
+
+// SOURCE CSS:
+// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
+globalStyle(`optgroup`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
+globalStyle(`textarea`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// [type="button"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
+globalStyle(`[type="button"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="reset"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
+globalStyle(`[type="reset"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="submit"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
+globalStyle(`[type="submit"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// button:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
+globalStyle(`button:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="button"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="button"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="reset"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="reset"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="submit"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="submit"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// .dropup { position: relative; }
+globalStyle(`${vaporScope}${dropup}`, {
+	position: "relative",
+})
+
+// SOURCE CSS:
+// .dropend { position: relative; }
+globalStyle(`${vaporScope}${dropend}`, {
+	position: "relative",
+})
+
+// SOURCE CSS:
+// .dropdown { position: relative; }
+globalStyle(`${vaporScope}${dropdown}`, {
+	position: "relative",
+})
+
+// SOURCE CSS:
+// .dropstart { position: relative; }
+globalStyle(`${vaporScope}${dropstart}`, {
+	position: "relative",
+})
+
+// SOURCE CSS:
+// .dropup-center { position: relative; }
+globalStyle(`${vaporScope}${dropupCenter}`, {
+	position: "relative",
+})
+
+// SOURCE CSS:
+// .dropdown-center { position: relative; }
+globalStyle(`${vaporScope}${dropdownCenter}`, {
+	position: "relative",
+})
+
+// SOURCE CSS:
+// .dropdown-toggle { white-space: nowrap; }
+globalStyle(`${vaporScope}${dropdownToggle}`, {
+	whiteSpace: "nowrap",
+})
+
+// SOURCE CSS:
+// .dropdown-toggle::after { display: inline-block; margin-left: 0.255em; vertical-align: 0.255em; content: ""; border-top: 0.3em solid; border-right: 0.3em solid transparent; border-bottom: 0; border-left: 0.3em solid transparent; }
+globalStyle(`${vaporScope}${dropdownToggle}::after`, {
+	display: "inline-block",
+	marginLeft: "0.255em",
+	verticalAlign: "0.255em",
+	content: "\"\"",
+	borderTop: "0.3em solid",
+	borderRight: "0.3em solid transparent",
+	borderBottom: 0,
+	borderLeft: "0.3em solid transparent",
+})
+
+// SOURCE CSS:
+// .dropdown-toggle:empty::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropdownToggle}:empty::after`, {
+	marginLeft: 0,
+})
+
+// SOURCE CSS:
+// .dropdown-menu { --bs-dropdown-zindex: 1000; --bs-dropdown-min-width: 10rem; --bs-dropdown-padding-x: 0; --bs-dropdown-padding-y: 0.5rem; --bs-dropdown-spacer: 0.125rem; --bs-dropdown-font-size: 1rem; --bs-dropdown-color: var(--bs-body-color); --bs-dropdown-bg: var(--bs-body-bg); --bs-dropdown-border-color: var(--bs-border-color-translucent); --bs-dropdown-border-radius: var(--bs-border-radius); --bs-dropdown-border-width: var(--bs-border-width); --bs-dropdown-inner-border-radius: calc(var(--bs-border-radius) - var(--bs-border-width)); --bs-dropdown-divider-bg: var(--bs-border-color-translucent); --bs-dropdown-divider-margin-y: 0.5rem; --bs-dropdown-box-shadow: var(--bs-box-shadow); --bs-dropdown-link-color: var(--bs-body-color); --bs-dropdown-link-hover-color: var(--bs-body-color); --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg); --bs-dropdown-link-active-color: #fff; --bs-dropdown-link-active-bg: #0d6efd; --bs-dropdown-link-disabled-color: var(--bs-tertiary-color); --bs-dropdown-item-padding-x: 1rem; --bs-dropdown-item-padding-y: 0.25rem; --bs-dropdown-header-color: #6c757d; --bs-dropdown-header-padding-x: 1rem; --bs-dropdown-header-padding-y: 0.5rem; position: absolute; z-index: var(--bs-dropdown-zindex); display: none; min-width: var(--bs-dropdown-min-width); padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x); margin: 0; font-size: var(--bs-dropdown-font-size); color: var(--bs-dropdown-color); text-align: left; list-style: none; background-color: var(--bs-dropdown-bg); background-clip: padding-box; border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color); border-radius: var(--bs-dropdown-border-radius); }
 globalStyle(`${vaporScope}${dropdownMenu}`, {
 	vars: {
-		[varBsDropdownZindex]: '1000',
-		[varBsDropdownMinWidth]: '10rem',
-		[varBsDropdownPaddingX]: '0',
-		[varBsDropdownPaddingY]: '0.5rem',
-		[varBsDropdownSpacer]: '0.125rem',
-		[varBsDropdownFontSize]: '1rem',
+		[varBsDropdownZindex]: 1000,
+		[varBsDropdownMinWidth]: "10rem",
+		[varBsDropdownPaddingX]: 0,
+		[varBsDropdownPaddingY]: "0.5rem",
+		[varBsDropdownSpacer]: "0.125rem",
+		[varBsDropdownFontSize]: "1rem",
 		[varBsDropdownColor]: varBsBodyColor,
 		[varBsDropdownBg]: varBsBodyBg,
 		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
 		[varBsDropdownBorderRadius]: varBsBorderRadius,
 		[varBsDropdownBorderWidth]: varBsBorderWidth,
-		[varBsDropdownInnerBorderRadius]: `calc(${varBsBorderRadius} - ${varBsBorderWidth})`,
+		[varBsDropdownInnerBorderRadius]: "calc(var(--bs-border-radius) - var(--bs-border-width))",
 		[varBsDropdownDividerBg]: varBsBorderColorTranslucent,
-		[varBsDropdownDividerMarginY]: '0.5rem',
+		[varBsDropdownDividerMarginY]: "0.5rem",
 		[varBsDropdownBoxShadow]: varBsBoxShadow,
 		[varBsDropdownLinkColor]: varBsBodyColor,
 		[varBsDropdownLinkHoverColor]: varBsBodyColor,
 		[varBsDropdownLinkHoverBg]: varBsTertiaryBg,
-		[varBsDropdownLinkActiveColor]: '#fff',
-		[varBsDropdownLinkActiveBg]: '#0d6efd',
+		[varBsDropdownLinkActiveColor]: "#fff",
+		[varBsDropdownLinkActiveBg]: "#0d6efd",
 		[varBsDropdownLinkDisabledColor]: varBsTertiaryColor,
-		[varBsDropdownItemPaddingX]: '1rem',
-		[varBsDropdownItemPaddingY]: '0.25rem',
-		[varBsDropdownHeaderColor]: '#6c757d',
-		[varBsDropdownHeaderPaddingX]: '1rem',
-		[varBsDropdownHeaderPaddingY]: '0.5rem',
+		[varBsDropdownItemPaddingX]: "1rem",
+		[varBsDropdownItemPaddingY]: "0.25rem",
+		[varBsDropdownHeaderColor]: "#6c757d",
+		[varBsDropdownHeaderPaddingX]: "1rem",
+		[varBsDropdownHeaderPaddingY]: "0.5rem",
 	},
-	position: 'absolute',
+	position: "absolute",
 	zIndex: varBsDropdownZindex,
-	display: 'none',
+	display: "none",
 	minWidth: varBsDropdownMinWidth,
-	padding: `${varBsDropdownPaddingY} ${varBsDropdownPaddingX}`,
+	padding: "var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x)",
 	margin: 0,
 	fontSize: varBsDropdownFontSize,
 	color: varBsDropdownColor,
-	textAlign: 'left',
-	listStyle: 'none',
+	textAlign: "left",
+	listStyle: "none",
 	backgroundColor: varBsDropdownBg,
-	backgroundClip: 'padding-box',
-	border: `${varBsDropdownBorderWidth} solid ${varBsDropdownBorderColor}`,
+	backgroundClip: "padding-box",
+	border: "var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color)",
 	borderRadius: varBsDropdownBorderRadius,
 })
 
-// SOURCE CSS: .dropdown-menu[data-bs-popper] { top: 100%; left: 0; margin-top: ...; }
-globalStyle(`${vaporScope}${dropdownMenu}[data-bs-popper]`, {
-	top: '100%',
-	left: 0,
-	marginTop: varBsDropdownSpacer,
-})
-
-// ── Menu alignment modifiers ──────────────────────────────────────────────────
-
-// SOURCE CSS: .dropdown-menu-start { --bs-position: start; }
-globalStyle(`${vaporScope}${dropdownMenuStart}`, {
-	vars: { [varBsDropdownPosition]: 'start' },
-})
-globalStyle(`${vaporScope}${dropdownMenuStart}[data-bs-popper]`, {
-	right: 'auto',
-	left: 0,
-})
-
-// SOURCE CSS: .dropdown-menu-end { --bs-position: end; }
-globalStyle(`${vaporScope}${dropdownMenuEnd}`, {
-	vars: { [varBsDropdownPosition]: 'end' },
-})
-globalStyle(`${vaporScope}${dropdownMenuEnd}[data-bs-popper]`, {
-	right: 0,
-	left: 'auto',
-})
-
-// ── .dropup variant ───────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropup .dropdown-menu[data-bs-popper] { top: auto; bottom: 100%; … }
-globalStyle(`${vaporScope}${dropup} ${dropdownMenu}[data-bs-popper]`, {
-	top: 'auto',
-	bottom: '100%',
-	marginTop: 0,
-	marginBottom: varBsDropdownSpacer,
-})
-
-// SOURCE CSS: .dropup .dropdown-toggle::after { ... border-top: 0; border-bottom: 0.3em solid; }
-globalStyle(`${vaporScope}${dropup} ${dropdownToggle}::after`, {
-	display: 'inline-block',
-	marginLeft: '0.255em',
-	verticalAlign: '0.255em',
-	content: '""',
-	borderTop: 0,
-	borderRight: '0.3em solid transparent',
-	borderBottom: '0.3em solid',
-	borderLeft: '0.3em solid transparent',
-})
-
-globalStyle(`${vaporScope}${dropup} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
-})
-
-// ── .dropend variant ──────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropend .dropdown-menu[data-bs-popper] { top: 0; right: auto; left: 100%; … }
-globalStyle(`${vaporScope}${dropend} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
-	right: 'auto',
-	left: '100%',
-	marginTop: 0,
-	marginLeft: varBsDropdownSpacer,
-})
-
-// SOURCE CSS: .dropend .dropdown-toggle::after { border-right: 0; border-left: 0.3em solid; … }
-globalStyle(`${vaporScope}${dropend} ${dropdownToggle}::after`, {
-	display: 'inline-block',
-	marginLeft: '0.255em',
-	verticalAlign: 0,
-	content: '""',
-	borderTop: '0.3em solid transparent',
-	borderRight: 0,
-	borderBottom: '0.3em solid transparent',
-	borderLeft: '0.3em solid',
-})
-
-globalStyle(`${vaporScope}${dropend} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
-})
-
-// ── .dropstart variant ────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropstart .dropdown-menu[data-bs-popper] { top: 0; right: 100%; left: auto; … }
-globalStyle(`${vaporScope}${dropstart} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
-	right: '100%',
-	left: 'auto',
-	marginTop: 0,
-	marginRight: varBsDropdownSpacer,
-})
-
-// SOURCE CSS: .dropstart .dropdown-toggle::after { display: none; }
-globalStyle(`${vaporScope}${dropstart} ${dropdownToggle}::after`, {
-	display: 'none',
-})
-
-// SOURCE CSS: .dropstart .dropdown-toggle::before { ... border-right: 0.3em solid; }
-globalStyle(`${vaporScope}${dropstart} ${dropdownToggle}::before`, {
-	display: 'inline-block',
-	marginRight: '0.255em',
-	verticalAlign: 0,
-	content: '""',
-	borderTop: '0.3em solid transparent',
-	borderRight: '0.3em solid',
-	borderBottom: '0.3em solid transparent',
-})
-
-globalStyle(`${vaporScope}${dropstart} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
-})
-
-// ── .dropdown-toggle-split ────────────────────────────────────────────────────
-
 // SOURCE CSS:
-// .dropdown-toggle-split { padding-right: 0.5625rem; padding-left: 0.5625rem; }
-// .dropdown-toggle-split::after { margin-left: 0; }
-globalStyle(`${vaporScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-	borderTopRightRadius: varBsBorderRadius,
-	borderBottomRightRadius: varBsBorderRadius,
-})
-globalStyle(`${vaporScope}${dropdownToggleSplit}::after`, { marginLeft: 0 })
-globalStyle(
-	[
-		`${vaporScope}${dropup} ${dropdownToggleSplit}::after`,
-		`${vaporScope}${dropend} ${dropdownToggleSplit}::after`,
-	].join(', '),
-	{ marginLeft: 0 },
-)
-globalStyle(`${vaporScope}${dropstart} ${dropdownToggleSplit}::before`, {
-	marginRight: 0,
-})
-
-// ── .dropdown-divider ─────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-divider { height: 0; margin: var(--bs-dropdown-divider-margin-y) 0;
-//   overflow: hidden; border-top: 1px solid var(--bs-dropdown-divider-bg);
-//   opacity: 1; }
+// .dropdown-divider { height: 0; margin: var(--bs-dropdown-divider-margin-y) 0; overflow: hidden; border-top: 1px solid var(--bs-dropdown-divider-bg); opacity: 1; }
 globalStyle(`${vaporScope}${dropdownDivider}`, {
 	height: 0,
-	margin: `${varBsDropdownDividerMarginY} 0`,
-	overflow: 'hidden',
-	border: 0,
-	borderTop: `1px solid ${varBsDropdownDividerBg}`,
+	margin: "var(--bs-dropdown-divider-margin-y) 0",
+	overflow: "hidden",
+	borderTop: "1px solid var(--bs-dropdown-divider-bg)",
 	opacity: 1,
 })
 
-// ── .dropdown-item ────────────────────────────────────────────────────────────
-
 // SOURCE CSS:
-// .dropdown-item { display: block; width: 100%;
-//   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-//   clear: both; font-weight: 400; color: var(--bs-dropdown-link-color);
-//   text-align: inherit; text-decoration: none; white-space: nowrap;
-//   background-color: transparent; border: 0;
-//   border-radius: var(--bs-dropdown-item-border-radius, 0); }
+// .dropdown-item { display: block; width: 100%; padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x); clear: both; font-weight: 400; color: var(--bs-dropdown-link-color); text-align: inherit; text-decoration: none; white-space: nowrap; background-color: transparent; border: 0; border-radius: var(--bs-dropdown-item-border-radius, 0); }
 globalStyle(`${vaporScope}${dropdownItem}`, {
-	display: 'block',
-	width: '100%',
-	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
-	clear: 'both',
+	display: "block",
+	width: "100%",
+	padding: "var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x)",
+	clear: "both",
 	fontWeight: 400,
 	color: varBsDropdownLinkColor,
-	textAlign: 'inherit',
-	textDecoration: 'none',
-	whiteSpace: 'nowrap',
-	backgroundColor: 'transparent',
+	textAlign: "inherit",
+	textDecoration: "none",
+	whiteSpace: "nowrap",
+	backgroundColor: "transparent",
 	border: 0,
+	borderRadius: varBsDropdownItemBorderRadius,
 })
 
-// SOURCE CSS: .dropdown-item:hover, .dropdown-item:focus { … }
-globalStyle(
-	`${vaporScope}${dropdownItem}:hover, ${vaporScope}${dropdownItem}:focus`,
-	{
-		color: varBsDropdownLinkHoverColor,
-		backgroundColor: varBsDropdownLinkHoverBg,
-	},
-)
-
-// SOURCE CSS: .dropdown-item.active, .dropdown-item:active { … }
-globalStyle(
-	`${vaporScope}${dropdownItem}${dropdownItemActive}, ${vaporScope}${dropdownItem}:active`,
-	{
-		color: varBsDropdownLinkActiveColor,
-		textDecoration: 'none',
-		backgroundColor: varBsDropdownLinkActiveBg,
-	},
-)
-
-// SOURCE CSS: .dropdown-item.disabled, .dropdown-item:disabled { … }
-globalStyle(
-	`${vaporScope}${dropdownItem}${dropdownItemDisabled}, ${vaporScope}${dropdownItem}:disabled`,
-	{
-		color: varBsDropdownLinkDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: 'transparent',
-	},
-)
-
-// ── .dropdown-menu.show ───────────────────────────────────────────────────────
-
-globalStyle(`${vaporScope}${dropdownMenu}${dropdownMenuShow}`, { display: 'block' })
-
-// ── .dropdown-header ──────────────────────────────────────────────────────────
+// SOURCE CSS:
+// .dropdown-item:hover { color: var(--bs-dropdown-link-hover-color); background-color: var(--bs-dropdown-link-hover-bg); }
+globalStyle(`${vaporScope}${dropdownItem}:hover`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+})
 
 // SOURCE CSS:
-// .dropdown-header { display: block;
-//   padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
-//   margin-bottom: 0; font-size: 0.875rem;
-//   color: var(--bs-dropdown-header-color); white-space: nowrap; }
+// .dropdown-item:focus { color: var(--bs-dropdown-link-hover-color); background-color: var(--bs-dropdown-link-hover-bg); }
+globalStyle(`${vaporScope}${dropdownItem}:focus`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+})
+
+// SOURCE CSS:
+// .dropdown-item.active { color: var(--bs-dropdown-link-active-color); text-decoration: none; background-color: var(--bs-dropdown-link-active-bg); }
+globalStyle(`${vaporScope}${dropdownItem}.active`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: "none",
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+// SOURCE CSS:
+// .dropdown-item:active { color: var(--bs-dropdown-link-active-color); text-decoration: none; background-color: var(--bs-dropdown-link-active-bg); }
+globalStyle(`${vaporScope}${dropdownItem}:active`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: "none",
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+// SOURCE CSS:
+// .dropdown-item.disabled { color: var(--bs-dropdown-link-disabled-color); pointer-events: none; background-color: transparent; }
+globalStyle(`${vaporScope}${dropdownItem}.disabled`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: "none",
+	backgroundColor: "transparent",
+})
+
+// SOURCE CSS:
+// .dropdown-item:disabled { color: var(--bs-dropdown-link-disabled-color); pointer-events: none; background-color: transparent; }
+globalStyle(`${vaporScope}${dropdownItem}:disabled`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: "none",
+	backgroundColor: "transparent",
+})
+
+// SOURCE CSS:
+// .dropdown-header { display: block; padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x); margin-bottom: 0; font-size: 0.875rem; color: var(--bs-dropdown-header-color); white-space: nowrap; }
 globalStyle(`${vaporScope}${dropdownHeader}`, {
-	display: 'block',
-	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
+	display: "block",
+	padding: "var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x)",
 	marginBottom: 0,
-	fontSize: '0.875rem',
+	fontSize: "0.875rem",
 	color: varBsDropdownHeaderColor,
-	whiteSpace: 'nowrap',
+	whiteSpace: "nowrap",
 })
-
-// Dropdown header is rendered as <h6>; keep dropdown-header semantics over heading defaults.
-globalStyle(`${vaporScope}${dropdownHeader}${h6}`, {
-	marginBottom: 0,
-	fontSize: '0.875rem',
-	color: varBsDropdownHeaderColor,
-})
-
-// ── .dropdown-item-text ───────────────────────────────────────────────────────
 
 // SOURCE CSS:
-// .dropdown-item-text { display: block;
-//   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-//   color: var(--bs-dropdown-link-color); }
-globalStyle(`${vaporScope}${dropdownItemText}`, {
-	display: 'block',
-	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
-	color: varBsDropdownLinkColor,
+// .dropdown-menu.show { display: block; }
+globalStyle(`${vaporScope}${dropdownMenu}.show`, {
+	display: "block",
 })
-
-// ── .dropdown-menu-dark ───────────────────────────────────────────────────────
 
 // SOURCE CSS:
-// .dropdown-menu-dark { --bs-dropdown-color: #dee2e6; --bs-dropdown-bg: #343a40; … }
-globalStyle(`${vaporScope}${dropdownMenuDark}`, {
-	vars: {
-		[varBsDropdownColor]: '#dee2e6',
-		[varBsDropdownBg]: '#343a40',
-		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
-		[varBsDropdownBoxShadow]: '',
-		[varBsDropdownLinkColor]: '#dee2e6',
-		[varBsDropdownLinkHoverColor]: '#fff',
-		[varBsDropdownDividerBg]: varBsBorderColorTranslucent,
-		[varBsDropdownLinkHoverBg]: 'rgba(255, 255, 255, 0.15)',
-		[varBsDropdownLinkActiveColor]: '#fff',
-		[varBsDropdownLinkActiveBg]: '#0d6efd',
-		[varBsDropdownLinkDisabledColor]: '#adb5bd',
-		[varBsDropdownHeaderColor]: '#adb5bd',
-	},
+// .dropend .dropdown-toggle::after { display: inline-block; margin-left: 0.255em; vertical-align: 0; content: ""; border-top: 0.3em solid transparent; border-right: 0; border-bottom: 0.3em solid transparent; border-left: 0.3em solid; }
+globalStyle(`${vaporScope}${dropend} ${vaporScope}${dropdownToggle}::after`, {
+	display: "inline-block",
+	marginLeft: "0.255em",
+	verticalAlign: 0,
+	content: "\"\"",
+	borderTop: "0.3em solid transparent",
+	borderRight: 0,
+	borderBottom: "0.3em solid transparent",
+	borderLeft: "0.3em solid",
 })
 
-globalStyle(`${vaporScope}${dropdownMenu}`, {
-	vars: {
-		[varBsDropdownLinkActiveBg]: '#ea39b8',
-		[varBsDropdownLinkHoverBg]: 'rgba(255,255,255,0.15)',
-	},
+// SOURCE CSS:
+// .dropend .dropdown-toggle:empty::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropend} ${vaporScope}${dropdownToggle}:empty::after`, {
+	marginLeft: 0,
 })
+
+// SOURCE CSS:
+// .dropdown-toggle-split { padding-right: 0.5625rem; padding-left: 0.5625rem; }
+globalStyle(`${vaporScope}${dropdownToggleSplit}`, {
+	paddingRight: "0.5625rem",
+	paddingLeft: "0.5625rem",
+})
+
+// SOURCE CSS:
+// .dropdown-toggle-split::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropdownToggleSplit}::after`, {
+	marginLeft: 0,
+})
+
+// SOURCE CSS:
+// .dropup .dropdown-toggle-split::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropup} ${vaporScope}${dropdownToggleSplit}::after`, {
+	marginLeft: 0,
+})
+
+// SOURCE CSS:
+// .dropend .dropdown-toggle-split::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropend} ${vaporScope}${dropdownToggleSplit}::after`, {
+	marginLeft: 0,
+})
+
+// SOURCE CSS:
+// .visually-hidden { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
+globalStyle(`.visually-hidden`, {
+	width: "1px !important",
+	height: "1px !important",
+	padding: "0 !important",
+	margin: "-1px !important",
+	overflow: "hidden !important",
+	clip: "rect(0, 0, 0, 0) !important",
+	whiteSpace: "nowrap !important",
+	border: "0 !important",
+})
+
+// SOURCE CSS:
+// .visually-hidden-focusable:not(:focus):not(:focus-within) { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
+globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
+	width: "1px !important",
+	height: "1px !important",
+	padding: "0 !important",
+	margin: "-1px !important",
+	overflow: "hidden !important",
+	clip: "rect(0, 0, 0, 0) !important",
+	whiteSpace: "nowrap !important",
+	border: "0 !important",
+})
+
+// SOURCE CSS:
+// .visually-hidden:not(caption) { position: absolute !important; }
+// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
+globalStyle(`.visually-hidden:not(caption)`, {
+	position: "absolute !important",
+})
+
+// SOURCE CSS:
+// .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) { position: absolute !important; }
+// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
+globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within):not(caption)`, {
+	position: "absolute !important",
+})
+
+// SOURCE CSS:
+// .dropstart .dropdown-toggle::after { display: none; margin-left: 0.255em; vertical-align: 0.255em; content: ""; }
+globalStyle(`${vaporScope}${dropstart} ${vaporScope}${dropdownToggle}::after`, {
+	display: "none",
+	marginLeft: "0.255em",
+	verticalAlign: "0.255em",
+	content: "\"\"",
+})
+
+// SOURCE CSS:
+// .dropstart .dropdown-toggle::before { display: inline-block; margin-right: 0.255em; vertical-align: 0; content: ""; border-top: 0.3em solid transparent; border-right: 0.3em solid; border-bottom: 0.3em solid transparent; }
+globalStyle(`${vaporScope}${dropstart} ${vaporScope}${dropdownToggle}::before`, {
+	display: "inline-block",
+	marginRight: "0.255em",
+	verticalAlign: 0,
+	content: "\"\"",
+	borderTop: "0.3em solid transparent",
+	borderRight: "0.3em solid",
+	borderBottom: "0.3em solid transparent",
+})
+
+// SOURCE CSS:
+// .dropstart .dropdown-toggle:empty::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropstart} ${vaporScope}${dropdownToggle}:empty::after`, {
+	marginLeft: 0,
+})
+
+// SOURCE CSS:
+// .dropup .dropdown-toggle::after { display: inline-block; margin-left: 0.255em; vertical-align: 0.255em; content: ""; border-top: 0; border-right: 0.3em solid transparent; border-bottom: 0.3em solid; border-left: 0.3em solid transparent; }
+globalStyle(`${vaporScope}${dropup} ${vaporScope}${dropdownToggle}::after`, {
+	display: "inline-block",
+	marginLeft: "0.255em",
+	verticalAlign: "0.255em",
+	content: "\"\"",
+	borderTop: 0,
+	borderRight: "0.3em solid transparent",
+	borderBottom: "0.3em solid",
+	borderLeft: "0.3em solid transparent",
+})
+
+// SOURCE CSS:
+// .dropup .dropdown-toggle:empty::after { margin-left: 0; }
+globalStyle(`${vaporScope}${dropup} ${vaporScope}${dropdownToggle}:empty::after`, {
+	marginLeft: 0,
+})
+
+// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
+// [DELTA] unmapped selector: .dropdown-menu-end

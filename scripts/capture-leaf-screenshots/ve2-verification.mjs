@@ -14,6 +14,7 @@ import {
 } from './css-extraction.mjs'
 import { pathExists } from './folder-pruning.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
+import { gotoWithPreviewRecovery } from './preview-server-manager.mjs'
 import { resolveInitialNavigationWarmupDelayMs } from './timing.mjs'
 
 function toBufferPng(png) {
@@ -69,6 +70,7 @@ export async function verifyScenarioVe2Rendering({
 	baselinePath,
 	maxDiffRatio,
 	markupExtractionEnabled = true,
+	previewServerManager,
 }) {
 	if (!(await pathExists(baselinePath))) {
 		return {
@@ -97,8 +99,8 @@ export async function verifyScenarioVe2Rendering({
 	const page = await context.newPage()
 
 	try {
-		const ve2Url = `${VE2_BASE_URL}${route}?theme=${themeSlug}`
-		await page.goto(ve2Url, { waitUntil: 'load', timeout: 60000 })
+		const ve2Url = `${VE2_BASE_URL}${route}?theme=${encodeURIComponent(themeSlug)}&style-loader=theme`
+		await gotoWithPreviewRecovery(page, ve2Url, previewServerManager)
 		await delay(150)
 		const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
 			themeSlug,

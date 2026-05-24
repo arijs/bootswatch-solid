@@ -1,5 +1,7 @@
 node_modules
 dist
+/debug*.log
+/docs/ve-theme-generator-validation
 /public/theme
 /screenshots/**/*.verify.png
 /screenshots/**/*.verify.diff.png

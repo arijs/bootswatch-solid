@@ -1,60 +1,114 @@
 import { globalStyle } from '@vanilla-extract/css'
-import { varBsCodeColor, varBsFontMonospace } from '../../../../theme-contract/_vars.css'
 import {
-	blockquote,
-	blockquoteFooter,
-	lead,
-	markText,
-	smallText,
-	inlineCode,
-} from '../../../../theme-contract/contents/contract.css'
+	varBsGutterX,
+	varBsGutterY,
+} from '../../../../theme-contract/_vars.css'
 import { sketchyScope } from '../../scope.css'
 
-// ─── Lead ─────────────────────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/contents/basic
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
-globalStyle(`${sketchyScope}${lead}`, {
-	fontSize: '1.25rem',
-	fontWeight: 300,
+// SOURCE CSS:
+// .container { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container" — no contract mapping
+globalStyle(`.container`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })
 
-// ─── Inline text elements ─────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${markText}`, {
-	padding: '0.1875em',
-	color: '#212529',
-	backgroundColor: '#fff3cd',
+// SOURCE CSS:
+// .container-fluid { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container-fluid" — no contract mapping
+globalStyle(`.container-fluid`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })
 
-globalStyle(`${sketchyScope}${smallText}`, {
-	fontSize: '0.875em',
+// SOURCE CSS:
+// .container-xxl { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container-xxl" — no contract mapping
+globalStyle(`.container-xxl`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })
 
-// ─── Blockquote ───────────────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${blockquote}`, {
-	marginBottom: '1rem',
-	fontSize: '1.25rem',
+// SOURCE CSS:
+// .container-xl { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container-xl" — no contract mapping
+globalStyle(`.container-xl`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })
 
-globalStyle(`${sketchyScope}${blockquote} > :last-child`, {
-	marginBottom: 0,
+// SOURCE CSS:
+// .container-lg { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container-lg" — no contract mapping
+globalStyle(`.container-lg`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })
 
-globalStyle(`${sketchyScope}${blockquoteFooter}`, {
-	marginTop: '-1rem',
-	marginBottom: '1rem',
-	fontSize: '0.875em',
-	color: '#6c757d',
+// SOURCE CSS:
+// .container-md { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container-md" — no contract mapping
+globalStyle(`.container-md`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })
 
-globalStyle(`${sketchyScope}${blockquoteFooter}::before`, {
-	content: '"—\\00a0"',
-})
-
-// Source CSS: code { font-family: var(--bs-font-monospace); font-size: 0.875em; color: var(--bs-code-color); word-wrap: break-word; }
-globalStyle(`${sketchyScope}${inlineCode}`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: '0.875em',
-	color: varBsCodeColor,
-	wordWrap: 'break-word',
+// SOURCE CSS:
+// .container-sm { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
+// [UNMAPPED_SELECTOR] class ".container-sm" — no contract mapping
+globalStyle(`.container-sm`, {
+	vars: {
+		[varBsGutterX]: "1.5rem",
+		[varBsGutterY]: 0,
+	},
+	width: "100%",
+	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	marginRight: "auto",
+	marginLeft: "auto",
 })

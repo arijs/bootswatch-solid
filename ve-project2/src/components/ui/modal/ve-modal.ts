@@ -12,7 +12,6 @@ modalShowHook: string
 }
 
 export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.Modal {
-	console.log('Creating VeModal with runtime classes:', runtime)
 return (
 bootstrap.Modal as unknown as BootstrapWithDefaults<typeof bootstrap.Modal>
 ).extendDefaultConfig({

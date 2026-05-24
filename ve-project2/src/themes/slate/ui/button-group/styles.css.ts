@@ -1,115 +1,134 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	btnGroup,
-	btnGroupButton,
-	btnGroupInteractive,
-	btnToolbar,
-	marginEnd2,
-} from '../../../../theme-contract/ui/button-group/contract.css'
-import {
-	varBsBtnGroupBorderRadius,
-	varBsBtnGroupBorderWidth,
-} from '../../../../theme-contract/ui/button-group/_vars.css'
-import { btn, btnActiveHook, btnCheck } from '../../../../theme-contract/ui/buttons/contract.css'
-import { dropdownToggle } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
+	fieldset,
+} from '../../../../theme-contract/forms/contract.css'
 import { slateScope } from '../../scope.css'
 
-// ── Toolbar ───────────────────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/ui/button-group
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// .btn-toolbar { display: flex; flex-wrap: wrap; justify-content: flex-start; }
-globalStyle(`${slateScope}${btnToolbar}`, {
-	display: 'flex',
-	flexWrap: 'wrap',
-	justifyContent: 'flex-start',
+// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
+globalStyle(`button`, {
+	borderRadius: 0,
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
 })
 
-// ── Group container ───────────────────────────────────────────────────────────
+// SOURCE CSS:
+// button:focus:not(:focus-visible) { outline: 0; }
+// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
+globalStyle(`button:focus:not(:focus-visible)`, {
+	outline: 0,
+})
 
 // SOURCE CSS:
-// .btn-group { position: relative; display: inline-flex; vertical-align: middle; }
-// .btn-group { border-radius: var(--bs-border-radius); }
-globalStyle(`${slateScope}${btnGroup}`, {
-	vars: {
-		[varBsBtnGroupBorderRadius]: varBsBorderRadius,
-		[varBsBtnGroupBorderWidth]: varBsBorderWidth,
-	},
-	position: 'relative',
-	display: 'inline-flex',
-	verticalAlign: 'middle',
+// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
+globalStyle(`input`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
+// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
+globalStyle(`select`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+})
+
+// SOURCE CSS:
+// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
+globalStyle(`optgroup`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
+globalStyle(`textarea`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// [type="button"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
+globalStyle(`[type="button"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="reset"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
+globalStyle(`[type="reset"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="submit"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
+globalStyle(`[type="submit"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// button:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
+globalStyle(`button:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="button"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="button"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="reset"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="reset"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="submit"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="submit"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
+globalStyle(`fieldset`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
 	border: 0,
-	borderRadius: varBsBtnGroupBorderRadius,
 })
-
-// ── Buttons inside a group ────────────────────────────────────────────────────
-
-globalStyle(`${slateScope}${btnGroupButton}`, {
-	position: 'relative',
-	flex: '1 1 auto',
-})
-
-globalStyle(`${slateScope}${marginEnd2}`, {
-	marginRight: '0.5rem !important',
-})
-
-globalStyle(
-	`${slateScope}${btnGroup} > ${slateScope}${btnCheck}:checked + ${slateScope}${btnGroupInteractive},` +
-		`${slateScope}${btnGroup} > ${slateScope}${btnCheck}:focus + ${slateScope}${btnGroupInteractive},` +
-		`${slateScope}${btnGroup} > ${slateScope}${btnGroupInteractive}:hover,` +
-		`${slateScope}${btnGroup} > ${slateScope}${btnGroupInteractive}:focus,` +
-		`${slateScope}${btnGroup} > ${slateScope}${btnGroupInteractive}:active,` +
-		`${slateScope}${btnGroup} > ${slateScope}${btnGroupInteractive}${btnActiveHook}`,
-	{
-		zIndex: 1,
-	},
-)
 
 // SOURCE CSS:
-// .btn-group > :not(.btn-check:first-child) + .btn { margin-left: calc(-1 * var(--bs-border-width)); }
-globalStyle(
-	`${slateScope}${btnGroup} > ${slateScope}${btnGroupButton} + ${slateScope}${btnGroupInteractive}`,
-	{
-		marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
-	},
-)
-
-// Match Bootstrap: dropdown toggles keep their right radius even when a menu follows.
-globalStyle(
-	`${slateScope}${btnGroup} > ${slateScope}${btnGroupInteractive}:not(:last-child):not(${slateScope}${dropdownToggle})`,
-	{
-		borderTopRightRadius: 0,
-		borderBottomRightRadius: 0,
-	},
-)
-
-// Remove left radius from all buttons except the first
-globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btnGroupInteractive}:not(:first-child)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// Keep base .btn children grouped even if component omits utility classes.
-globalStyle(`${slateScope}${btnGroup} > ${btn}`, {
-	position: 'relative',
-	flex: '1 1 auto',
-})
-
-globalStyle(`${slateScope}${btnGroup} > ${btn} + ${btn}`, {
-	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
-})
-
-// Match Bootstrap: dropdown toggles keep their right radius even when a menu follows.
-globalStyle(`${slateScope}${btnGroup} > ${btn}:not(:last-child):not(${slateScope}${dropdownToggle})`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// Remove left radius from all buttons except the first
-globalStyle(`${slateScope}${btnGroup} > ${btn}:not(:first-child)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
+// .me-2 { margin-right: 0.5rem !important; }
+// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
+globalStyle(`.me-2`, {
+	marginRight: "0.5rem !important",
 })

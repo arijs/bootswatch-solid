@@ -1,110 +1,134 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	btnGroup,
-	btnGroupButton,
-	btnGroupInteractive,
-	btnToolbar,
-	marginEnd2,
-} from '../../../../theme-contract/ui/button-group/contract.css'
-import {
-	varBsBtnGroupBorderRadius,
-	varBsBtnGroupBorderWidth,
-} from '../../../../theme-contract/ui/button-group/_vars.css'
-import { btn, btnActiveHook, btnCheck } from '../../../../theme-contract/ui/buttons/contract.css'
-import { dropdownToggle } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
+	fieldset,
+} from '../../../../theme-contract/forms/contract.css'
 import { quartzScope } from '../../scope.css'
 
-// ── Toolbar ───────────────────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/ui/button-group
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
-globalStyle(`${quartzScope}${btnToolbar}`, {
-	display: 'flex',
-	flexWrap: 'wrap',
-	justifyContent: 'flex-start',
+// SOURCE CSS:
+// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
+globalStyle(`button`, {
+	borderRadius: 0,
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
 })
 
-// ── Group container ───────────────────────────────────────────────────────────
+// SOURCE CSS:
+// button:focus:not(:focus-visible) { outline: 0; }
+// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
+globalStyle(`button:focus:not(:focus-visible)`, {
+	outline: 0,
+})
 
-globalStyle(`${quartzScope}${btnGroup}`, {
-	vars: {
-		[varBsBtnGroupBorderRadius]: varBsBorderRadius,
-		[varBsBtnGroupBorderWidth]: varBsBorderWidth,
-	},
-	position: 'relative',
-	display: 'inline-flex',
-	verticalAlign: 'middle',
+// SOURCE CSS:
+// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
+globalStyle(`input`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
+// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
+globalStyle(`select`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+})
+
+// SOURCE CSS:
+// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
+globalStyle(`optgroup`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
+globalStyle(`textarea`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// [type="button"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
+globalStyle(`[type="button"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="reset"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
+globalStyle(`[type="reset"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="submit"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
+globalStyle(`[type="submit"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// button:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
+globalStyle(`button:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="button"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="button"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="reset"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="reset"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="submit"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="submit"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
+globalStyle(`fieldset`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
 	border: 0,
-	borderRadius: varBsBtnGroupBorderRadius,
 })
 
-// ── Buttons inside a group ────────────────────────────────────────────────────
-
-globalStyle(`${quartzScope}${btnGroupButton}`, {
-	position: 'relative',
-	flex: '1 1 auto',
-})
-
-globalStyle(`${quartzScope}${marginEnd2}`, {
-	marginRight: '1rem !important',
-})
-
-globalStyle(
-	`${quartzScope}${btnGroup} > ${quartzScope}${btnCheck}:checked + ${quartzScope}${btnGroupInteractive},` +
-		`${quartzScope}${btnGroup} > ${quartzScope}${btnCheck}:focus + ${quartzScope}${btnGroupInteractive},` +
-		`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupInteractive}:hover,` +
-		`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupInteractive}:focus,` +
-		`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupInteractive}:active,` +
-		`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupInteractive}${btnActiveHook}`,
-	{
-		zIndex: 1,
-	},
-)
-
-// Match Bootstrap/source adjacency behavior for split dropdowns.
-globalStyle(
-	`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupButton} + ${quartzScope}${btnGroupInteractive}`,
-	{
-		marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
-	},
-)
-
-// Match Bootstrap: dropdown toggles keep their right radius even when a menu follows.
-globalStyle(
-	`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupInteractive}:not(:last-child):not(${quartzScope}${dropdownToggle})`,
-	{
-		borderTopRightRadius: 0,
-		borderBottomRightRadius: 0,
-	},
-)
-
-// Remove left radius from all buttons except the first
-globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnGroupInteractive}:not(:first-child)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// Keep base .btn children grouped even if component omits utility classes.
-globalStyle(`${quartzScope}${btnGroup} > ${btn}`, {
-	position: 'relative',
-	flex: '1 1 auto',
-})
-
-// Match Bootstrap/source adjacency behavior for base .btn children too.
-globalStyle(`${quartzScope}${btnGroup} > ${btn} + ${btn}`, {
-	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
-})
-
-// Match Bootstrap: dropdown toggles keep their right radius even when a menu follows.
-globalStyle(`${quartzScope}${btnGroup} > ${btn}:not(:last-child):not(${quartzScope}${dropdownToggle})`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// Remove left radius from all buttons except the first
-globalStyle(`${quartzScope}${btnGroup} > ${btn}:not(:first-child)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
+// SOURCE CSS:
+// .me-2 { margin-right: 0.5rem !important; }
+// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
+globalStyle(`.me-2`, {
+	marginRight: "1rem !important",
 })

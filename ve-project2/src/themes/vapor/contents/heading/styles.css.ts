@@ -1,5 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
-import { varBsLinkColor, varBsLinkHoverColor } from '../../../../theme-contract/_vars.css'
+import {
+	varBsHeadingColor,
+} from '../../../../theme-contract/_vars.css'
+import {
+	paragraph,
+} from '../../../../theme-contract/contents/basic/contract.css'
 import {
 	h1,
 	h2,
@@ -7,110 +12,153 @@ import {
 	h4,
 	h5,
 	h6,
-	horizontalRule,
-	horizontalRuleCard,
-	link,
-	paragraph,
-	small,
-} from '../../../../theme-contract/contents/contract.css'
+} from '../../../../theme-contract/contents/heading/contract.css'
 import { vaporScope } from '../../scope.css'
 
-const headingBase = {
+// AUTO-GENERATED family styles for bootstrap/contents/heading
+// Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+globalStyle(`${vaporScope}${h6}`, {
 	marginTop: 0,
-	marginBottom: '0.5rem',
+	marginBottom: "0.5rem",
 	fontWeight: 500,
 	lineHeight: 1.2,
-	color: 'inherit',
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
-} as const
-
-// Source CSS literal conversion for generic hr. Vapor hard-codes a 1px top rule
-// even though --bs-border-width is 0 in this theme.
-globalStyle(`${vaporScope}${horizontalRule}`, {
-	margin: '1rem 0',
-	color: 'inherit',
-	border: 0,
-	borderTop: '1px solid',
-	borderTopColor: '#6f42c1',
-	opacity: 1,
-	boxShadow:
-		'0 0 2px rgba(111,66,193,0.9), 0 0 4px rgba(111,66,193,0.4), 0 0 1rem rgba(111,66,193,0.3)',
+	color: varBsHeadingColor,
+	fontSize: "1rem",
 })
 
-// Source CSS literal conversion for `.card > hr`.
-globalStyle(`${vaporScope}${horizontalRuleCard}`, {
-	marginRight: 0,
-	marginLeft: 0,
+// SOURCE CSS:
+// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
+globalStyle(`.h6`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
 })
 
-// Source CSS literal conversion for generic p.
+// SOURCE CSS:
+// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
+globalStyle(`${vaporScope}${h5}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
+})
+
+// SOURCE CSS:
+// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
+// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
+globalStyle(`.h5`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
+})
+
+// SOURCE CSS:
+// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
+globalStyle(`${vaporScope}${h4}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.275rem + 0.3vw)",
+})
+
+// SOURCE CSS:
+// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
+// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
+globalStyle(`.h4`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.275rem + 0.3vw)",
+})
+
+// SOURCE CSS:
+// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
+globalStyle(`${vaporScope}${h3}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.3rem + 0.6vw)",
+})
+
+// SOURCE CSS:
+// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
+// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
+globalStyle(`.h3`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.3rem + 0.6vw)",
+})
+
+// SOURCE CSS:
+// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
+globalStyle(`${vaporScope}${h2}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.325rem + 0.9vw)",
+})
+
+// SOURCE CSS:
+// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
+// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
+globalStyle(`.h2`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.325rem + 0.9vw)",
+})
+
+// SOURCE CSS:
+// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
+globalStyle(`${vaporScope}${h1}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.375rem + 1.5vw)",
+})
+
+// SOURCE CSS:
+// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
+// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
+globalStyle(`.h1`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "calc(1.375rem + 1.5vw)",
+})
+
+// SOURCE CSS:
+// p { margin-top: 0; margin-bottom: 1rem; }
 globalStyle(`${vaporScope}${paragraph}`, {
 	marginTop: 0,
-	marginBottom: '1rem',
-})
-
-// Source CSS literal conversion for generic a and a:hover.
-globalStyle(`${vaporScope}${link}`, {
-	color: varBsLinkColor,
-	textDecoration: 'underline',
-})
-
-globalStyle(`${vaporScope}${link}:hover`, {
-	color: varBsLinkHoverColor,
-})
-
-// Source CSS literal conversion for `.small, small { font-size: 0.875em }`.
-globalStyle(`${vaporScope}${small}`, {
-	fontSize: '0.875em',
-})
-
-globalStyle(`${vaporScope}${h1}`, {
-	...headingBase,
-	fontSize: 'calc(1.375rem + 1.5vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '2.5rem',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${h2}`, {
-	...headingBase,
-	fontSize: 'calc(1.325rem + 0.9vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '2rem',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${h3}`, {
-	...headingBase,
-	fontSize: 'calc(1.3rem + 0.6vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '1.75rem',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${h4}`, {
-	...headingBase,
-	fontSize: 'calc(1.275rem + 0.3vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '1.5rem',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${h5}`, {
-	...headingBase,
-	fontSize: '1.25rem',
-})
-
-globalStyle(`${vaporScope}${h6}`, {
-	...headingBase,
-	fontSize: '1rem',
+	marginBottom: "1rem",
 })

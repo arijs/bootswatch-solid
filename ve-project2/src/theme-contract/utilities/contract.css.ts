@@ -24,6 +24,15 @@ export const fieldsetReset = style({
 })
 
 export const visuallyHidden = style({
+	width: '1px',
+	height: '1px',
+	padding: 0,
+	margin: '-1px',
+	overflow: 'hidden',
+	clip: 'rect(0, 0, 0, 0)',
+	whiteSpace: 'nowrap',
+	border: 0,
+	position: 'absolute',
 })
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
@@ -127,6 +136,21 @@ export const me2 = style({})
  * Bootstrap utility class: .me-auto { margin-right: auto !important; }
  */
 export const meAuto = style({})
+
+/**
+ * Bootstrap utility class: .p-5 { padding: 3rem !important; }
+ */
+export const p5 = style({})
+
+/**
+ * Bootstrap utility class: .bg-dark { background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; }
+ */
+export const bgDark = style({})
+
+/**
+ * Bootstrap utility class: .align-items-center { align-items: center !important; }
+ */
+export const alignItemsCenter = style({})
 
 /**
  * Bootstrap utility class: .mb-2 { margin-bottom: ... !important; }

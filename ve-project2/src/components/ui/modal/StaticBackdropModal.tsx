@@ -1,8 +1,9 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { h5 } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import { btn, btnPrimary, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
@@ -23,6 +24,7 @@ import {
 	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
+import { dFlex } from '../../../theme-contract/utilities/contract.css'
 import { configureVeModal } from './ve-modal'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -42,7 +44,7 @@ const StaticBackdropModal: Component = () => {
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
-				<div class={`${theme} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
+				<div class={`${theme} ${dFlex} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
 					<button
 						type="button"
 						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
@@ -78,7 +80,7 @@ const StaticBackdropModal: Component = () => {
 							></button>
 						</div>
 						<div class={`${theme} ${modalBody}`}>
-							<p>
+							<p class={`${theme} ${paragraph}`}>
 								I will not close if you click outside me. Don't even try to press
 								escape key.
 							</p>

@@ -41,6 +41,7 @@ import { verifyScenarioVeRendering as verifyScenarioVe1Rendering } from './ve-ve
 import { verifyScenarioVe2Rendering } from './ve2-verification.mjs'
 import { verifyScenarioCssRendering } from './verification.mjs'
 import { applyWritebackQueue } from './writeback.mjs'
+import { gotoWithPreviewRecovery } from './preview-server-manager.mjs'
 
 export async function executeCaptureWorkflow({
 	themes,
@@ -62,6 +63,7 @@ export async function executeCaptureWorkflow({
 	ve1VerificationEnabled,
 	veVerificationEnabled,
 	verificationMaxDiffRatio,
+	previewServerManager,
 }) {
 	async function freshBrowser(initialHeight = DEFAULT_VIEWPORT.height) {
 		const browser = await chromium.launch({ headless: true })
@@ -245,6 +247,7 @@ export async function executeCaptureWorkflow({
 								outputPath,
 								verificationMaxDiffRatio,
 								veMarkupExtractionEnabled,
+								previewServerManager,
 							})
 							if (verification?.veMarkupPath) {
 								veMarkupExtractionFileCount += 1
@@ -267,7 +270,7 @@ export async function executeCaptureWorkflow({
 						})
 
 						const url = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}`
-						await page.goto(url, { waitUntil: 'load', timeout: 60000 })
+						await gotoWithPreviewRecovery(page, url, previewServerManager)
 						await delay(150)
 						if (shotsSinceRestart === 0) {
 							const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
@@ -596,6 +599,7 @@ async function runVerificationIfEnabled({
 	outputPath,
 	verificationMaxDiffRatio,
 	veMarkupExtractionEnabled,
+	previewServerManager,
 }) {
 	if (!verificationEnabled && !ve1VerificationEnabled && !veVerificationEnabled) return null
 	const isCssVerification = verificationEnabled
@@ -637,6 +641,7 @@ async function runVerificationIfEnabled({
 				baselinePath: outputPath,
 				maxDiffRatio: verificationMaxDiffRatio,
 				markupExtractionEnabled: veMarkupExtractionEnabled,
+				previewServerManager,
 			})
 		: isCssVerification
 			? await verifyScenarioCssRendering({
@@ -652,6 +657,7 @@ async function runVerificationIfEnabled({
 					measuredHeight,
 					baselinePath: outputPath,
 					maxDiffRatio: verificationMaxDiffRatio,
+					previewServerManager,
 				})
 			: await verifyScenarioVe1Rendering({
 					browser,
@@ -664,6 +670,7 @@ async function runVerificationIfEnabled({
 					measuredHeight,
 					baselinePath: outputPath,
 					maxDiffRatio: verificationMaxDiffRatio,
+					previewServerManager,
 				})
 
 	if (verification.skipped) {

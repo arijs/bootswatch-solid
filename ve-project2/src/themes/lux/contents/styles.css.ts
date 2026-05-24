@@ -1,0 +1,6 @@
+import './basic/styles.css'
+import './heading/styles.css'
+import './display/styles.css'
+import './lists/styles.css'
+import './tables/styles.css'
+import './images/styles.css'

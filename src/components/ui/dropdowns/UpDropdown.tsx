@@ -58,3 +58,4 @@ export default UpDropdown
 // @screenshot slate/opened-dropdown: 360x248 248
 // @screenshot sandstone/opened-dropdown: 360x226 226
 // @screenshot materia/opened-dropdown: 360x246 246
+// @screenshot brite/opened-dropdown: 360x225 225

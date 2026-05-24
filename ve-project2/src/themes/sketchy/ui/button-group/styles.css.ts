@@ -1,109 +1,134 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	btnGroup,
-	btnGroupButton,
-	btnGroupInteractive,
-	btnToolbar,
-	marginEnd2,
-} from '../../../../theme-contract/ui/button-group/contract.css'
-import {
-	varBsBtnGroupBorderRadius,
-	varBsBtnGroupBorderWidth,
-} from '../../../../theme-contract/ui/button-group/_vars.css'
-import { btn, btnActiveHook, btnCheck } from '../../../../theme-contract/ui/buttons/contract.css'
-import { varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
+	fieldset,
+} from '../../../../theme-contract/forms/contract.css'
 import { sketchyScope } from '../../scope.css'
 
-// Sketchy overrides --bs-border-radius (25px) and --bs-border-width (2px).
-// These propagate automatically via varBsBorderRadius/varBsBorderWidth which
-// already carry Sketchy values from the body scope, so no hardcoded values needed.
+// AUTO-GENERATED family styles for bootstrap/ui/button-group
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
-// ── Toolbar ───────────────────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${btnToolbar}`, {
-	display: 'flex',
-	flexWrap: 'wrap',
-	justifyContent: 'flex-start',
+// SOURCE CSS:
+// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
+globalStyle(`button`, {
+	borderRadius: 0,
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
 })
 
-// ── Group container ───────────────────────────────────────────────────────────
+// SOURCE CSS:
+// button:focus:not(:focus-visible) { outline: 0; }
+// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
+globalStyle(`button:focus:not(:focus-visible)`, {
+	outline: 0,
+})
 
-globalStyle(`${sketchyScope}${btnGroup}`, {
-	vars: {
-		[varBsBtnGroupBorderRadius]: varBsBorderRadius,
-		[varBsBtnGroupBorderWidth]: varBsBorderWidth,
-	},
-	position: 'relative',
-	display: 'inline-flex',
-	verticalAlign: 'middle',
+// SOURCE CSS:
+// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
+globalStyle(`input`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
+// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
+globalStyle(`select`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+})
+
+// SOURCE CSS:
+// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
+globalStyle(`optgroup`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
+globalStyle(`textarea`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+})
+
+// SOURCE CSS:
+// [type="button"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
+globalStyle(`[type="button"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="reset"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
+globalStyle(`[type="reset"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// [type="submit"] { appearance: button; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
+globalStyle(`[type="submit"]`, {
+	appearance: "button",
+})
+
+// SOURCE CSS:
+// button:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
+globalStyle(`button:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="button"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="button"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="reset"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="reset"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// [type="submit"]:not(:disabled) { cursor: pointer; }
+// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
+globalStyle(`[type="submit"]:not(:disabled)`, {
+	cursor: "pointer",
+})
+
+// SOURCE CSS:
+// fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
+globalStyle(`fieldset`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
 	border: 0,
-	borderRadius: varBsBtnGroupBorderRadius,
 })
 
-// ── Buttons inside a group ────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${btnGroupButton}`, {
-	position: 'relative',
-	flex: '1 1 auto',
-})
-
-globalStyle(`${sketchyScope}${marginEnd2}`, {
-	marginRight: '0.5rem !important',
-})
-
-globalStyle(
-	`${sketchyScope}${btnGroup} > ${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btnGroupInteractive},` +
-		`${sketchyScope}${btnGroup} > ${sketchyScope}${btnCheck}:focus + ${sketchyScope}${btnGroupInteractive},` +
-		`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupInteractive}:hover,` +
-		`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupInteractive}:focus,` +
-		`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupInteractive}:active,` +
-		`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupInteractive}${btnActiveHook}`,
-	{
-		zIndex: 1,
-	},
-)
-
-// Collapse adjacent button borders (negative margin equals Sketchy border-width = 2px)
-globalStyle(
-	`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupButton} + ${sketchyScope}${btnGroupInteractive}`,
-	{
-		marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
-	},
-)
-
-// Remove right radius from all buttons except the last
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupInteractive}:not(:last-child)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// Remove left radius from all buttons except the first
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroupInteractive}:not(:first-child)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// Keep base .btn children grouped even if component omits utility classes.
-globalStyle(`${sketchyScope}${btnGroup} > ${btn}`, {
-	position: 'relative',
-	flex: '1 1 auto',
-})
-
-globalStyle(`${sketchyScope}${btnGroup} > ${btn} + ${btn}`, {
-	marginLeft: `calc(-1 * ${varBsBtnGroupBorderWidth})`,
-})
-
-// Remove right radius from all buttons except the last
-globalStyle(`${sketchyScope}${btnGroup} > ${btn}:not(:last-child)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// Remove left radius from all buttons except the first
-globalStyle(`${sketchyScope}${btnGroup} > ${btn}:not(:first-child)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
+// SOURCE CSS:
+// .me-2 { margin-right: 0.5rem !important; }
+// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
+globalStyle(`.me-2`, {
+	marginRight: "0.5rem !important",
 })

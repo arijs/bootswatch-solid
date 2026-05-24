@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBorderWidth,
+	varBsHeadingColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	h1,
@@ -9,93 +9,146 @@ import {
 	h4,
 	h5,
 	h6,
-	horizontalRule,
-	horizontalRuleCard,
-	paragraph,
-	small,
-} from '../../../../theme-contract/contents/contract.css'
+} from '../../../../theme-contract/contents/heading/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
-const headingBase = {
+// AUTO-GENERATED family styles for bootstrap/contents/heading
+// Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+globalStyle(`${bootstrapScope}${h6}`, {
 	marginTop: 0,
-	marginBottom: '0.5rem',
+	marginBottom: "0.5rem",
 	fontWeight: 500,
 	lineHeight: 1.2,
-	color: 'inherit',
-} as const
-
-// Source CSS literal conversion for generic hr.
-globalStyle(`${bootstrapScope}${horizontalRule}`, {
-	margin: '1rem 0',
-	color: 'inherit',
-	border: 0,
-	borderTop: `${varBsBorderWidth} solid`,
-	opacity: 0.25,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
 })
 
-// Source CSS literal conversion for `.card > hr`.
-globalStyle(`${bootstrapScope}${horizontalRuleCard}`, {
-	marginRight: 0,
-	marginLeft: 0,
-})
-
-// Source CSS literal conversion for generic p.
-globalStyle(`${bootstrapScope}${paragraph}`, {
+// SOURCE CSS:
+// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
+// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
+globalStyle(`.h6`, {
 	marginTop: 0,
-	marginBottom: '1rem',
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
 })
 
-// Source CSS literal conversion for `.small, small { font-size: 0.875em }`.
-globalStyle(`${bootstrapScope}${small}`, {
-	fontSize: '0.875em',
-})
-
-globalStyle(`${bootstrapScope}${h1}`, {
-	...headingBase,
-	fontSize: 'calc(1.375rem + 1.5vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '2.5rem',
-		},
-	},
-})
-
-globalStyle(`${bootstrapScope}${h2}`, {
-	...headingBase,
-	fontSize: 'calc(1.325rem + 0.9vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '2rem',
-		},
-	},
-})
-
-globalStyle(`${bootstrapScope}${h3}`, {
-	...headingBase,
-	fontSize: 'calc(1.3rem + 0.6vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '1.75rem',
-		},
-	},
-})
-
-globalStyle(`${bootstrapScope}${h4}`, {
-	...headingBase,
-	fontSize: 'calc(1.275rem + 0.3vw)',
-	'@media': {
-		'(min-width: 1200px)': {
-			fontSize: '1.5rem',
-		},
-	},
-})
-
+// SOURCE CSS:
+// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
 globalStyle(`${bootstrapScope}${h5}`, {
-	...headingBase,
-	fontSize: '1.25rem',
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
 })
 
-globalStyle(`${bootstrapScope}${h6}`, {
-	...headingBase,
-	fontSize: '1rem',
+// SOURCE CSS:
+// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
+// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
+globalStyle(`.h5`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
+})
+
+// SOURCE CSS:
+// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
+globalStyle(`${bootstrapScope}${h4}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.275rem + 0.3vw)`,
+})
+
+// SOURCE CSS:
+// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
+// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
+globalStyle(`.h4`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.275rem + 0.3vw)`,
+})
+
+// SOURCE CSS:
+// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
+globalStyle(`${bootstrapScope}${h3}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.3rem + 0.6vw)`,
+})
+
+// SOURCE CSS:
+// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
+// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
+globalStyle(`.h3`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.3rem + 0.6vw)`,
+})
+
+// SOURCE CSS:
+// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
+globalStyle(`${bootstrapScope}${h2}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.325rem + 0.9vw)`,
+})
+
+// SOURCE CSS:
+// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
+// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
+globalStyle(`.h2`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.325rem + 0.9vw)`,
+})
+
+// SOURCE CSS:
+// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
+globalStyle(`${bootstrapScope}${h1}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.375rem + 1.5vw)`,
+})
+
+// SOURCE CSS:
+// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
+// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
+globalStyle(`.h1`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.375rem + 1.5vw)`,
 })

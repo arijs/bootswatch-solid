@@ -1,75 +1,83 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
 	varBsBodyBg,
+	varBsBorderRadius,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	bdPlaceholderImg,
-	bdPlaceholderImgLg,
 	figure,
 	figureCaption,
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	mediaMiddle,
 	rounded,
-} from '../../../../theme-contract/contents/contract.css'
+} from '../../../../theme-contract/contents/images/contract.css'
 import { quartzScope } from '../../scope.css'
 
-// ─── Images ───────────────────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/contents/images
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
+// SOURCE CSS:
+// figure { margin: 0 0 1rem; }
+// [UNMAPPED_SELECTOR] element selector "figure" — map to a contract class
+globalStyle(`figure`, {
+	margin: "0 0 1rem",
+})
+
+// SOURCE CSS:
+// img { vertical-align: middle; }
+// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
+globalStyle(`img`, {
+	verticalAlign: "middle",
+})
+
+// SOURCE CSS:
+// svg { vertical-align: middle; }
+// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
+globalStyle(`svg`, {
+	verticalAlign: "middle",
+})
+
+// SOURCE CSS:
+// .img-fluid { max-width: 100%; height: auto; }
 globalStyle(`${quartzScope}${imgFluid}`, {
-	maxWidth: '100%',
-	height: 'auto',
+	maxWidth: "100%",
+	height: "auto",
 })
 
-globalStyle(`${quartzScope}${imgThumbnail}`, {
-	padding: '0.25rem',
-	backgroundColor: varBsBodyBg,
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	borderRadius: varBsBorderRadius,
-	maxWidth: '100%',
-	height: 'auto',
-})
-
-// ─── Figures ──────────────────────────────────────────────────────────────────
-
+// SOURCE CSS:
+// .figure { display: inline-block; }
 globalStyle(`${quartzScope}${figure}`, {
-	display: 'inline-block',
-	margin: '0 0 1rem',
+	display: "inline-block",
 })
 
+// SOURCE CSS:
+// .figure-img { margin-bottom: 0.5rem; line-height: 1; }
 globalStyle(`${quartzScope}${figureImg}`, {
-	marginBottom: '1rem',
+	marginBottom: "0.5rem",
 	lineHeight: 1,
 })
 
+// SOURCE CSS:
+// .figure-caption { font-size: 0.875em; color: var(--bs-secondary-color); }
 globalStyle(`${quartzScope}${figureCaption}`, {
-	fontSize: '0.875em',
+	fontSize: "0.875em",
 	color: varBsSecondaryColor,
 })
 
-// ─── Placeholder images ───────────────────────────────────────────────────────
-
-globalStyle(`${quartzScope}${bdPlaceholderImg}`, {
-	fontSize: '1.125rem',
-	textAnchor: 'middle',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-})
-
-globalStyle(`${quartzScope}${bdPlaceholderImgLg}`, {
-	'@media': { '(min-width: 768px)': { fontSize: '3.5rem' } },
-})
-
-globalStyle(`${quartzScope}${mediaMiddle}`, {
-	verticalAlign: 'middle',
-})
-
+// SOURCE CSS:
+// .rounded { border-radius: var(--bs-border-radius) !important; }
 globalStyle(`${quartzScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
+	borderRadius: "var(--bs-border-radius) !important",
+})
+
+// SOURCE CSS:
+// .img-thumbnail { padding: 0.25rem; background-color: var(--bs-body-bg); border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); max-width: 100%; height: auto; }
+globalStyle(`${quartzScope}${imgThumbnail}`, {
+	padding: "0.25rem",
+	backgroundColor: varBsBodyBg,
+	border: "var(--bs-border-width) solid var(--bs-border-color)",
+	borderRadius: varBsBorderRadius,
+	maxWidth: "100%",
+	height: "auto",
 })

@@ -19,6 +19,7 @@
 		"extract:static-classes": "node scripts/extract-static-classes.mjs",
 		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",
 		"screenshots:diff-markup": "node scripts/diff-scenario-markup.mjs",
+		"generate:ve-theme": "node scripts/generate-ve-theme.mjs",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
 		"check": "biome check --write"

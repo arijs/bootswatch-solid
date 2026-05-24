@@ -3,8 +3,10 @@ import process from 'node:process'
 
 import { build, createServer, preview } from 'vite'
 
-const mode = process.argv[2]
-const projectDir = process.argv[3] ?? 've-project'
+const quiet = process.argv.includes('--quiet')
+const cliArgs = process.argv.slice(2).filter((arg) => arg !== '--quiet')
+const mode = cliArgs[0]
+const projectDir = cliArgs[1] ?? 've-project'
 const root = path.resolve(process.cwd(), projectDir)
 const configFile = path.resolve(root, 'vite.config.ts')
 const defaultPort = mode === 'dev'
@@ -19,6 +21,8 @@ if (mode === 'build') {
 	await build({
 		root,
 		configFile,
+		logLevel: quiet ? 'error' : 'info',
+		build: quiet ? { reportCompressedSize: false } : undefined,
 	})
 	process.exit(0)
 }

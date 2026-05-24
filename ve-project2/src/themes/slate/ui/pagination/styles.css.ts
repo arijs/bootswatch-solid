@@ -1,13 +1,19 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	pageItem,
-	pageItemActive,
-	pageItemDisabled,
-	pageLink,
-	pagination,
-	paginationLg,
-	paginationSm,
-} from '../../../../theme-contract/ui/pagination/contract.css'
+	varBsBodyBg,
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderRadiusLg,
+	varBsBorderRadiusSm,
+	varBsBorderWidth,
+	varBsLinkColor,
+	varBsLinkColorRgb,
+	varBsLinkHoverColor,
+	varBsLinkHoverColorRgb,
+	varBsSecondaryBg,
+	varBsSecondaryColor,
+	varBsTertiaryBg,
+} from '../../../../theme-contract/_vars.css'
 import {
 	varBsPaginationActiveBg,
 	varBsPaginationActiveBorderColor,
@@ -31,97 +37,128 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 import {
-	varBsBorderRadius,
-	varBsBorderRadiusLg,
-	varBsBorderRadiusSm,
-	varBsBorderWidth,
-	varBsLinkHoverColor,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
+	link,
+} from '../../../../theme-contract/contents/basic/contract.css'
+import {
+	flexWrap,
+} from '../../../../theme-contract/ui/modal/contract.css'
+import {
+	pageItem,
+	pageLink,
+	pagination,
+	paginationLg,
+	paginationSm,
+} from '../../../../theme-contract/ui/pagination/contract.css'
 import { slateScope } from '../../scope.css'
 
-// ── .pagination ───────────────────────────────────────────────────────────────
+// AUTO-GENERATED family styles for bootstrap/ui/pagination
+// Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// .pagination {
-//   --bs-pagination-padding-x: 1rem; --bs-pagination-padding-y: 0.75rem;
-//   --bs-pagination-font-size: 1rem;
-//   --bs-pagination-color: #fff;
-//   --bs-pagination-bg: transparent;
-//   --bs-pagination-border-width: var(--bs-border-width);
-//   --bs-pagination-border-color: rgba(0, 0, 0, 0.6);
-//   --bs-pagination-border-radius: var(--bs-border-radius);
-//   --bs-pagination-hover-color: #fff;
-//   --bs-pagination-hover-bg: transparent;
-//   --bs-pagination-hover-border-color: rgba(0, 0, 0, 0.6);
-//   --bs-pagination-focus-color: var(--bs-link-hover-color);
-//   --bs-pagination-focus-bg: var(--bs-secondary-bg);
-//   --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(58, 63, 68, 0.25);
-//   --bs-pagination-active-color: #fff;
-//   --bs-pagination-active-bg: transparent;
-//   --bs-pagination-active-border-color: rgba(0, 0, 0, 0.6);
-//   --bs-pagination-disabled-color: var(--bs-secondary-color);
-//   --bs-pagination-disabled-bg: transparent;
-//   --bs-pagination-disabled-border-color: rgba(0, 0, 0, 0.6);
-//   display: flex; padding-left: 0; list-style: none;
-// }
+// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
+globalStyle(`ol`, {
+	paddingLeft: "2rem",
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
+globalStyle(`ul`, {
+	paddingLeft: "2rem",
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// dl { margin-top: 0; margin-bottom: 1rem; }
+// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
+globalStyle(`dl`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
+// SOURCE CSS:
+// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
+// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
+globalStyle(`a`, {
+	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
+	textDecoration: "underline",
+})
+
+// SOURCE CSS:
+// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
+// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
+globalStyle(`a:hover`, {
+	vars: {
+		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
+	},
+})
+
+// SOURCE CSS:
+// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
+// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
+globalStyle(`a:not([href]):not([class])`, {
+	color: "inherit",
+	textDecoration: "none",
+})
+
+// SOURCE CSS:
+// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
+// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
+globalStyle(`a:not([href]):not([class]):hover`, {
+	color: "inherit",
+	textDecoration: "none",
+})
+
+// SOURCE CSS:
+// .pagination { --bs-pagination-padding-x: 0.75rem; --bs-pagination-padding-y: 0.375rem; --bs-pagination-font-size: 1rem; --bs-pagination-color: var(--bs-link-color); --bs-pagination-bg: var(--bs-body-bg); --bs-pagination-border-width: var(--bs-border-width); --bs-pagination-border-color: var(--bs-border-color); --bs-pagination-border-radius: var(--bs-border-radius); --bs-pagination-hover-color: var(--bs-link-hover-color); --bs-pagination-hover-bg: var(--bs-tertiary-bg); --bs-pagination-hover-border-color: var(--bs-border-color); --bs-pagination-focus-color: var(--bs-link-hover-color); --bs-pagination-focus-bg: var(--bs-secondary-bg); --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-pagination-active-color: #fff; --bs-pagination-active-bg: #0d6efd; --bs-pagination-active-border-color: #0d6efd; --bs-pagination-disabled-color: var(--bs-secondary-color); --bs-pagination-disabled-bg: var(--bs-secondary-bg); --bs-pagination-disabled-border-color: var(--bs-border-color); display: flex; padding-left: 0; list-style: none; }
 globalStyle(`${slateScope}${pagination}`, {
 	vars: {
-		[varBsPaginationPaddingX]: '1rem',
-		[varBsPaginationPaddingY]: '0.75rem',
-		[varBsPaginationFontSize]: '1rem',
-		[varBsPaginationColor]: '#fff',
-		[varBsPaginationBg]: 'transparent',
+		[varBsPaginationPaddingX]: "0.75rem",
+		[varBsPaginationPaddingY]: "0.375rem",
+		[varBsPaginationFontSize]: "1rem",
+		[varBsPaginationColor]: varBsLinkColor,
+		[varBsPaginationBg]: varBsBodyBg,
 		[varBsPaginationBorderWidth]: varBsBorderWidth,
-		[varBsPaginationBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsPaginationBorderColor]: varBsBorderColor,
 		[varBsPaginationBorderRadius]: varBsBorderRadius,
-		[varBsPaginationHoverColor]: '#fff',
-		[varBsPaginationHoverBg]: 'transparent',
-		[varBsPaginationHoverBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsPaginationHoverColor]: varBsLinkHoverColor,
+		[varBsPaginationHoverBg]: varBsTertiaryBg,
+		[varBsPaginationHoverBorderColor]: varBsBorderColor,
 		[varBsPaginationFocusColor]: varBsLinkHoverColor,
 		[varBsPaginationFocusBg]: varBsSecondaryBg,
-		[varBsPaginationFocusBoxShadow]: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
-		[varBsPaginationActiveColor]: '#fff',
-		[varBsPaginationActiveBg]: 'transparent',
-		[varBsPaginationActiveBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsPaginationFocusBoxShadow]: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+		[varBsPaginationActiveColor]: "#fff",
+		[varBsPaginationActiveBg]: "#0d6efd",
+		[varBsPaginationActiveBorderColor]: "#0d6efd",
 		[varBsPaginationDisabledColor]: varBsSecondaryColor,
-		[varBsPaginationDisabledBg]: 'transparent',
-		[varBsPaginationDisabledBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsPaginationDisabledBg]: varBsSecondaryBg,
+		[varBsPaginationDisabledBorderColor]: varBsBorderColor,
 	},
-	display: 'flex',
+	display: "flex",
 	paddingLeft: 0,
-	listStyle: 'none',
-	textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)',
+	listStyle: "none",
 })
-
-// ── .page-link ────────────────────────────────────────────────────────────────
 
 // SOURCE CSS:
-// .page-link {
-//   position: relative; display: block;
-//   padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
-//   font-size: var(--bs-pagination-font-size);
-//   color: var(--bs-pagination-color);
-//   text-decoration: none;
-//   background-color: var(--bs-pagination-bg);
-//   border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//               border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-// }
+// .page-link { position: relative; display: block; padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x); font-size: var(--bs-pagination-font-size); color: var(--bs-pagination-color); text-decoration: none; background-color: var(--bs-pagination-bg); border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color); transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${slateScope}${pageLink}`, {
-	position: 'relative',
-	display: 'block',
-	padding: `${varBsPaginationPaddingY} ${varBsPaginationPaddingX}`,
+	position: "relative",
+	display: "block",
+	padding: "var(--bs-pagination-padding-y) var(--bs-pagination-padding-x)",
 	fontSize: varBsPaginationFontSize,
 	color: varBsPaginationColor,
-	textDecoration: 'none',
+	textDecoration: "none",
 	backgroundColor: varBsPaginationBg,
-	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	border: "var(--bs-pagination-border-width) solid var(--bs-pagination-border-color)",
+	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
 })
 
-// SOURCE CSS: .page-link:hover { z-index: 2; color: ...; background-color: ...; border-color: ...; }
+// SOURCE CSS:
+// .page-link:hover { z-index: 2; color: var(--bs-pagination-hover-color); background-color: var(--bs-pagination-hover-bg); border-color: var(--bs-pagination-hover-border-color); }
 globalStyle(`${slateScope}${pageLink}:hover`, {
 	zIndex: 2,
 	color: varBsPaginationHoverColor,
@@ -129,7 +166,8 @@ globalStyle(`${slateScope}${pageLink}:hover`, {
 	borderColor: varBsPaginationHoverBorderColor,
 })
 
-// SOURCE CSS: .page-link:focus { z-index: 3; color: ...; background-color: ...; outline: 0; box-shadow: ...; }
+// SOURCE CSS:
+// .page-link:focus { z-index: 3; color: var(--bs-pagination-focus-color); background-color: var(--bs-pagination-focus-bg); outline: 0; box-shadow: var(--bs-pagination-focus-box-shadow); }
 globalStyle(`${slateScope}${pageLink}:focus`, {
 	zIndex: 3,
 	color: varBsPaginationFocusColor,
@@ -138,104 +176,94 @@ globalStyle(`${slateScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-// SOURCE CSS: .page-link.active, .active > .page-link { z-index: 3; color: ...; background-color: ...; border-color: ...; }
-globalStyle(
-	`${slateScope}${pageLink}${pageItemActive}, ${slateScope}${pageItemActive} > ${pageLink}`,
-	{
-		zIndex: 3,
-		color: varBsPaginationActiveColor,
-		backgroundColor: varBsPaginationActiveBg,
-		borderColor: varBsPaginationActiveBorderColor,
-	},
-)
-
-// SOURCE CSS: .page-link.disabled, .disabled > .page-link { color: ...; pointer-events: none; background-color: ...; border-color: ...; }
-globalStyle(
-	`${slateScope}${pageLink}${pageItemDisabled}, ${slateScope}${pageItemDisabled} > ${pageLink}`,
-	{
-		color: varBsPaginationDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsPaginationDisabledBg,
-		borderColor: varBsPaginationDisabledBorderColor,
-	},
-)
-
-// ── .page-item positioning ────────────────────────────────────────────────────
-
-// SOURCE CSS: .page-item:not(:first-child) .page-link { margin-left: calc(-1 * var(--bs-border-width)); }
-globalStyle(`${slateScope}${pageItem}:not(:first-child) ${pageLink}`, {
-	marginLeft: `calc(-1 * ${varBsPaginationBorderWidth})`,
+// SOURCE CSS:
+// .page-link.active { z-index: 3; color: var(--bs-pagination-active-color); background-color: var(--bs-pagination-active-bg); border-color: var(--bs-pagination-active-border-color); }
+globalStyle(`${slateScope}${pageLink}.active`, {
+	zIndex: 3,
+	color: varBsPaginationActiveColor,
+	backgroundColor: varBsPaginationActiveBg,
+	borderColor: varBsPaginationActiveBorderColor,
 })
 
-// SOURCE CSS: .page-item:first-child .page-link { border-top-left-radius: ...; border-bottom-left-radius: ...; }
-globalStyle(`${slateScope}${pageItem}:first-child ${pageLink}`, {
+// SOURCE CSS:
+// .active > .page-link { z-index: 3; color: var(--bs-pagination-active-color); background-color: var(--bs-pagination-active-bg); border-color: var(--bs-pagination-active-border-color); }
+// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
+globalStyle(`.active > ${slateScope}${pageLink}`, {
+	zIndex: 3,
+	color: varBsPaginationActiveColor,
+	backgroundColor: varBsPaginationActiveBg,
+	borderColor: varBsPaginationActiveBorderColor,
+})
+
+// SOURCE CSS:
+// .page-link.disabled { color: var(--bs-pagination-disabled-color); pointer-events: none; background-color: var(--bs-pagination-disabled-bg); border-color: var(--bs-pagination-disabled-border-color); }
+globalStyle(`${slateScope}${pageLink}.disabled`, {
+	color: varBsPaginationDisabledColor,
+	pointerEvents: "none",
+	backgroundColor: varBsPaginationDisabledBg,
+	borderColor: varBsPaginationDisabledBorderColor,
+})
+
+// SOURCE CSS:
+// .disabled > .page-link { color: var(--bs-pagination-disabled-color); pointer-events: none; background-color: var(--bs-pagination-disabled-bg); border-color: var(--bs-pagination-disabled-border-color); }
+// [UNMAPPED_SELECTOR] class ".disabled" — no contract mapping
+globalStyle(`.disabled > ${slateScope}${pageLink}`, {
+	color: varBsPaginationDisabledColor,
+	pointerEvents: "none",
+	backgroundColor: varBsPaginationDisabledBg,
+	borderColor: varBsPaginationDisabledBorderColor,
+})
+
+// SOURCE CSS:
+// .page-item:not(:first-child) .page-link { margin-left: calc(-1 * var(--bs-border-width)); }
+globalStyle(`${slateScope}${pageItem}:not(:first-child) ${slateScope}${pageLink}`, {
+	marginLeft: "calc(-1 * var(--bs-border-width))",
+})
+
+// SOURCE CSS:
+// .page-item:first-child .page-link { border-top-left-radius: var(--bs-pagination-border-radius); border-bottom-left-radius: var(--bs-pagination-border-radius); }
+globalStyle(`${slateScope}${pageItem}:first-child ${slateScope}${pageLink}`, {
 	borderTopLeftRadius: varBsPaginationBorderRadius,
 	borderBottomLeftRadius: varBsPaginationBorderRadius,
 })
 
-// SOURCE CSS: .page-item:last-child .page-link { border-top-right-radius: ...; border-bottom-right-radius: ...; }
-globalStyle(`${slateScope}${pageItem}:last-child ${pageLink}`, {
+// SOURCE CSS:
+// .page-item:last-child .page-link { border-top-right-radius: var(--bs-pagination-border-radius); border-bottom-right-radius: var(--bs-pagination-border-radius); }
+globalStyle(`${slateScope}${pageItem}:last-child ${slateScope}${pageLink}`, {
 	borderTopRightRadius: varBsPaginationBorderRadius,
 	borderBottomRightRadius: varBsPaginationBorderRadius,
 })
 
-// ── .pagination-lg ────────────────────────────────────────────────────────────
-
 // SOURCE CSS:
-// .pagination-lg {
-//   --bs-pagination-padding-x: 1.5rem; --bs-pagination-padding-y: 0.75rem;
-//   --bs-pagination-font-size: 1.25rem;
-//   --bs-pagination-border-radius: var(--bs-border-radius-lg);
-// }
+// .pagination-lg { --bs-pagination-padding-x: 1.5rem; --bs-pagination-padding-y: 0.75rem; --bs-pagination-font-size: 1.25rem; --bs-pagination-border-radius: var(--bs-border-radius-lg); }
 globalStyle(`${slateScope}${paginationLg}`, {
 	vars: {
-		[varBsPaginationPaddingX]: '1.5rem',
-		[varBsPaginationPaddingY]: '0.75rem',
-		[varBsPaginationFontSize]: '1.25rem',
+		[varBsPaginationPaddingX]: "1.5rem",
+		[varBsPaginationPaddingY]: "0.75rem",
+		[varBsPaginationFontSize]: "1.25rem",
 		[varBsPaginationBorderRadius]: varBsBorderRadiusLg,
 	},
 })
 
-// ── .pagination-sm ────────────────────────────────────────────────────────────
+// SOURCE CSS:
+// .flex-wrap { flex-wrap: wrap !important; }
+globalStyle(`${slateScope}${flexWrap}`, {
+	flexWrap: "wrap !important",
+})
 
 // SOURCE CSS:
-// .pagination-sm {
-//   --bs-pagination-padding-x: 0.5rem; --bs-pagination-padding-y: 0.25rem;
-//   --bs-pagination-font-size: 0.875rem;
-//   --bs-pagination-border-radius: var(--bs-border-radius-sm);
-// }
+// .pagination-sm { --bs-pagination-padding-x: 0.5rem; --bs-pagination-padding-y: 0.25rem; --bs-pagination-font-size: 0.875rem; --bs-pagination-border-radius: var(--bs-border-radius-sm); }
 globalStyle(`${slateScope}${paginationSm}`, {
 	vars: {
-		[varBsPaginationPaddingX]: '0.5rem',
-		[varBsPaginationPaddingY]: '0.25rem',
-		[varBsPaginationFontSize]: '0.875rem',
+		[varBsPaginationPaddingX]: "0.5rem",
+		[varBsPaginationPaddingY]: "0.25rem",
+		[varBsPaginationFontSize]: "0.875rem",
 		[varBsPaginationBorderRadius]: varBsBorderRadiusSm,
 	},
 })
 
-globalStyle(`${slateScope}${pagination} ${pageLink}`, {
-	textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)',
-	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
-	filter: 'none',
-})
-
-globalStyle(`${slateScope}${pagination} ${pageLink}:hover`, {
-	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
-	filter: 'none',
-	textDecoration: 'none',
-})
-
-globalStyle(`${slateScope}${pagination} ${pageLink}:focus`, {
-	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
-	filter: 'none',
-})
-
-globalStyle(`${slateScope}${pagination} ${pageItemActive} > ${pageLink}`, {
-	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
-	filter: 'none',
-})
-
-globalStyle(`${slateScope}${pagination} ${pageItemDisabled} > ${pageLink}`, {
-	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
-	filter: 'none',
-})
+// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
+// [DELTA] unmapped selector: .pagination .page-link
+// [DELTA] unmapped selector: .pagination .page-link:hover
+// [DELTA] unmapped selector: .pagination .page-item.active .page-link
+// [DELTA] unmapped selector: .pagination .page-item.disabled .page-link
