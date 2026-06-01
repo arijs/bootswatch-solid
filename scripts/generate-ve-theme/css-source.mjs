@@ -2,7 +2,14 @@ import { access, readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 import { SCREENSHOTS_ROOT } from './constants.mjs'
-import { buildSelectorMap, normalizeSelector, parseCssRules } from './css-utils.mjs'
+import {
+	buildSelectorMap,
+	isBareFormsOwnedSelector,
+	isBareHeadingOwnedSelector,
+	normalizeSelector,
+	normalizeSelectorForLookup,
+	parseCssRules,
+} from './css-utils.mjs'
 import { getFamiliesForRoute, resolveFamilyForSelector } from './route-families.mjs'
 
 async function fileExists(filePath) {
@@ -57,6 +64,13 @@ function bucketRulesByFamily(rules, routePath) {
 			}
 		}
 		if (!assigned && routeFamilies.length > 0) {
+			// Do not bleed bare element selectors into the route's primary family.
+			const hasClassSelector = rule.selectors.some((s) => /\.[a-z]/i.test(s))
+			if (!hasClassSelector) continue
+
+			// Bare form/heading selectors belong to their owning family — never route-fallback bleed.
+			if (rule.selectors.some((s) => isBareFormsOwnedSelector(s) || isBareHeadingOwnedSelector(s))) continue
+
 			// Fallback: first non-utilities family on the route
 			const primary = routeFamilies.find((f) => !f.startsWith('contents/basic') && f !== 'utilities')
 			if (primary) buckets.get(primary).push(rule)
@@ -87,19 +101,9 @@ export async function loadThemeCss(themeSlug) {
  */
 export async function aggregateFamilyCss(themeSlug) {
 	const themeDir = path.join(SCREENSHOTS_ROOT, themeSlug)
-	const styleFiles = await walkStyleCssFiles(themeDir)
 	const familyRules = new Map()
 
-	for (const { filePath, routePath } of styleFiles) {
-		const cssText = await readFile(filePath, 'utf8')
-		const rules = parseCssRules(cssText)
-		const buckets = bucketRulesByFamily(rules, routePath)
-		for (const [family, familyRuleList] of buckets) {
-			mergeRulesIntoFamily(familyRules, family, familyRuleList)
-		}
-	}
-
-	// Also ingest full bootstrap.css / theme.css for families when style.css corpus is sparse
+	// Bundled theme CSS first — route style.css overrides win (matches screenshot capture source).
 	const fullCss = await loadThemeCss(themeSlug)
 	const fullRules = parseCssRules(fullCss)
 	for (const rule of fullRules) {
@@ -107,6 +111,16 @@ export async function aggregateFamilyCss(themeSlug) {
 		for (const selector of rule.selectors) {
 			const family = resolveFamilyForSelector(selector)
 			if (family) mergeRulesIntoFamily(familyRules, family, [rule])
+		}
+	}
+
+	const styleFiles = await walkStyleCssFiles(themeDir)
+	for (const { filePath, routePath } of styleFiles) {
+		const cssText = await readFile(filePath, 'utf8')
+		const rules = parseCssRules(cssText)
+		const buckets = bucketRulesByFamily(rules, routePath)
+		for (const [family, familyRuleList] of buckets) {
+			mergeRulesIntoFamily(familyRules, family, familyRuleList)
 		}
 	}
 
@@ -122,19 +136,23 @@ export async function aggregateFamilyCss(themeSlug) {
  * Tries exact match, then simple class match without pseudo/combinators.
  */
 export function lookupDeclarations(familyMap, sourceSelector) {
-	const normalized = normalizeSelector(sourceSelector)
+	if (!familyMap) return null
+	const normalized = normalizeSelectorForLookup(sourceSelector)
 	if (familyMap.has(normalized)) {
 		const decl = familyMap.get(normalized)
 		const { _media, ...rest } = decl
 		return rest
 	}
 
-	// Strip to primary class for compound selectors
+	// Compound class selectors only (.btn.btn-primary) — not pseudo/attribute variants
 	const simpleClass = normalized.match(/^(\.[a-z0-9-]+)/i)?.[1]
 	if (simpleClass && familyMap.has(simpleClass)) {
-		const decl = familyMap.get(simpleClass)
-		const { _media, ...rest } = decl
-		return rest
+		const suffix = normalized.slice(simpleClass.length)
+		if (suffix.startsWith('.')) {
+			const decl = familyMap.get(simpleClass)
+			const { _media, ...rest } = decl
+			return rest
+		}
 	}
 
 	return null

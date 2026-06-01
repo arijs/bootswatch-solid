@@ -5,6 +5,8 @@ import {
 	ELEMENT_SELECTOR_BY_FAMILY,
 	FAMILY_CLASS_TO_CONTRACT,
 	FAMILY_STATE_CLASS_BY_PARENT,
+	isScopedFamilySelector,
+	ORPHAN_STATE_SEGMENT_BY_FAMILY,
 	resolveTableWildcardContract,
 	STATE_CLASS_BY_PARENT_SELECTOR,
 	STATE_ONLY_CLASSES,
@@ -28,7 +30,7 @@ export function declarationsToVeProps(declarations, registry, { varsOnly = false
 				continue
 			}
 			varsEntries.push(`\t\t[${symbol}]: ${formatVeValue(value, registry)},`)
-		} else if (!propsOnly) {
+		} else if (!varsOnly) {
 			const key = cssPropToVeKey(prop)
 			propEntries.push(`\t${key}: ${formatVeValue(value, registry)},`)
 		}
@@ -272,7 +274,7 @@ function convertSimpleSegment(
 			}
 		}
 
-		if (segment.startsWith(':') || segment === 'fieldset') {
+		if (segment.startsWith(':')) {
 			return segment
 		}
 		warnings.push(`[UNMAPPED_SELECTOR] element selector "${segment}" — map to a contract class`)
@@ -281,6 +283,20 @@ function convertSimpleSegment(
 
 	const { classes, suffix } = extractClassesAndSuffix(segment)
 	if (classes.length === 0) return segment
+
+	const orphanParents =
+		classes.length === 1 && STATE_ONLY_CLASSES.has(classes[0])
+			? ORPHAN_STATE_SEGMENT_BY_FAMILY[family]?.[classes[0]]
+			: null
+	if (orphanParents) {
+		const [parentContract, stateContract] = orphanParents
+		const convertedSuffix = convertPseudoSuffix(suffix, scopeName, registry, warnings, {
+			elementParent: null,
+			ancestorSelector,
+			family,
+		})
+		return `\${${scopeName}}\${${parentContract}}\${${stateContract}}${convertedSuffix}`
+	}
 
 	const elementParent = inferPrimarySelectorFromClasses(classes)
 	const convertedClasses = convertClassList(classes, scopeName, registry, warnings, {
@@ -307,7 +323,7 @@ function expandTableCellSelectors(veSelector, family) {
 
 function formatGlobalStyleSelector(selectors) {
 	if (selectors.length === 1) return `\`${selectors[0]}\``
-	return `[\n\t\`${selectors[0]}\`,\n\t\`${selectors[1]}\`,\n].join(',')`
+	return `[\n\t\`${selectors[0]}\`,\n\t\`${selectors[1]}\`,\n]`
 }
 
 function appendBtnVariantPaintProps(propEntries, declarations) {
@@ -323,11 +339,21 @@ function appendBtnVariantPaintProps(propEntries, declarations) {
 }
 
 export function upgradeBtnBorderOverride(cssSelector, propEntries, declarations) {
-	if (normalizeSelector(cssSelector) !== '.btn' || declarations['border-color'] == null) return
+	upgradeBorderColorOverlay(cssSelector, propEntries, declarations)
+}
+
+/** When theme delta sets border-color, emit a full border shorthand so it overrides earlier `border` rules. */
+export function upgradeBorderColorOverlay(cssSelector, propEntries, declarations) {
+	if (declarations['border-color'] == null) return
+	const sel = normalizeSelector(cssSelector)
+	const isBtn = sel === '.btn'
+	const isListGroupItem = sel === '.list-group-item' || /^\.list-group-item-[a-z]+$/.test(sel)
+	if (!isBtn && !isListGroupItem) return
 	const idx = propEntries.findIndex((line) => /\bborderColor:/.test(line))
 	if (idx < 0) return
 	propEntries.splice(idx, 1)
-	propEntries.push(`\tborder: \`\${varBsBtnBorderWidth} solid ${declarations['border-color']}\`,`)
+	const widthVar = isBtn ? 'varBsBtnBorderWidth' : 'varBsListGroupBorderWidth'
+	propEntries.push(`\tborder: \`\${${widthVar}} solid ${declarations['border-color']}\`,`)
 }
 
 /**
@@ -337,10 +363,27 @@ export function upgradeBtnBorderOverride(cssSelector, propEntries, declarations)
 export function finalizeVeSelector(cssSelector, veSelector, declarations, family) {
 	let resolvedSelector = veSelector
 
-	if (normalizeSelector(cssSelector) === '.fade:not(.show)' && declarations.opacity === '0') {
+	if (
+		family === 'ui/modal' &&
+		normalizeSelector(cssSelector) === '.fade:not(.show)'
+	) {
 		resolvedSelector = resolvedSelector.replace(
-			/:not\(\.show\)$/,
+			/\$\{(\w+)\}\$\{fade\}/,
+			'${$1}${modal}${fade}',
+		)
+		resolvedSelector = resolvedSelector.replace(
+			/:not\(\$\{modalShowHook\}\)$|:not\(\.show\)$/,
 			':not(${modalShowHook})',
+		)
+	}
+
+	if (
+		family === 'ui/card' &&
+		normalizeSelector(cssSelector) === '.card-header-tabs .nav-link.active'
+	) {
+		resolvedSelector = resolvedSelector.replace(
+			/\$\{(\w+)\}\$\{cardHeaderTabs\}/,
+			'${$1}${navTabs}${cardHeaderTabs}',
 		)
 	}
 
@@ -350,6 +393,39 @@ export function finalizeVeSelector(cssSelector, veSelector, declarations, family
 		declarations.opacity === '0'
 	) {
 		resolvedSelector = `${resolvedSelector}:not(\${modalShowHook})`
+	}
+
+	// Nav tab panes own fade opacity — bare `.fade:not(.show)` would hit modal/backdrop fade.
+	if (
+		family === 'ui/navs' &&
+		normalizeSelector(cssSelector) === '.fade:not(.show)' &&
+		declarations.opacity === '0'
+	) {
+		resolvedSelector = resolvedSelector.replace(
+			/\$\{(\w+)\}\$\{fade\}/,
+			'${$1}${tabPane}${fade}',
+		)
+	}
+
+	// Tooltips/popovers reuse modal `fade`; scope opacity rule to the tooltip/popover root.
+	if (
+		(family === 'ui/tooltips' || family === 'ui/popovers') &&
+		normalizeSelector(cssSelector) === '.fade:not(.show)' &&
+		declarations.opacity === '0'
+	) {
+		const rootContract = family === 'ui/tooltips' ? 'tooltipVe' : 'popoverVe'
+		const showHook = family === 'ui/tooltips' ? 'tooltipShow' : 'popoverShow'
+		resolvedSelector = resolvedSelector.replace(
+			/\$\{(\w+)\}\$\{fade\}/,
+			`\${$1}\${${rootContract}}\${fade}`,
+		)
+		resolvedSelector = resolvedSelector.replace(/:not\(\.show\)$/, `:not(\${${showHook}})`)
+	}
+
+	const btnSizeMatch = resolvedSelector.match(/^\$\{(\w+)\}\$\{(btn(?:Lg|Sm))\}$/)
+	if (btnSizeMatch) {
+		const [, scope, size] = btnSizeMatch
+		resolvedSelector = `\${${scope}}\${btn}\${${size}}`
 	}
 
 	const btnVariantMatch = resolvedSelector.match(
@@ -368,6 +444,14 @@ export function finalizeVeSelector(cssSelector, veSelector, declarations, family
 
 	if (family === 'ui/modal' && normalizeSelector(cssSelector) === '.modal-title') {
 		resolvedSelector = resolvedSelector.replace('${modalTitle}', '${h5}${modalTitle}')
+	}
+
+	// Table cell rules: use explicit section/row path (matches hover/striped selectors).
+	if (family === 'contents/tables') {
+		resolvedSelector = resolvedSelector.replace(
+			/:not\(caption\) > \$\{(\w+)\}\$\{tableRow\}/g,
+			'${$1}${tableSection} > ${$1}${tableRow}',
+		)
 	}
 
 	return resolvedSelector
@@ -403,6 +487,13 @@ export function emitGlobalStyleBlock({
 	if (varsEntries.length === 0 && propEntries.length === 0) return { code: '', warnings }
 
 	let resolvedSelector = finalizeVeSelector(cssSelector, veSelector, declarations, family)
+
+	if (!isScopedFamilySelector(resolvedSelector, scopeName)) {
+		warnings.push(
+			'[SKIPPED] selector not scoped to contract — raw element/unmapped class (see ve-architecture.md)',
+		)
+		return { code: '', warnings }
+	}
 
 	if (/btn(?:Primary|Secondary|Success|Danger|Warning|Info|Light|Dark|Link)/.test(veSelector)) {
 		appendBtnVariantPaintProps(propEntries, declarations)

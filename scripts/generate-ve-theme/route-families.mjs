@@ -5,6 +5,7 @@ const DEFAULT_FAMILIES = ['contents/basic', 'utilities']
 const UI_ROUTE_FAMILY_MAP = [
 	['/ui/accordion/', ['ui/accordion']],
 	['/ui/alerts/', ['ui/alerts']],
+	['/ui/badge/heading-badges', ['ui/badge', 'contents/heading']],
 	['/ui/badge/', ['ui/badge']],
 	['/ui/breadcrumb/', ['ui/breadcrumb']],
 	['/ui/button-group/', ['ui/button-group', 'ui/buttons']],
@@ -84,6 +85,7 @@ export function guessFamilyForSelector(selector) {
 		['modal-', 'ui/modal'],
 		['navbar-', 'ui/navbar'],
 		['nav-', 'ui/navs'],
+		['pagination-', 'ui/pagination'],
 		['page-', 'ui/pagination'],
 		['popover', 'ui/popovers'],
 		['progress', 'ui/progress'],
@@ -91,6 +93,7 @@ export function guessFamilyForSelector(selector) {
 		['toast', 'ui/toasts'],
 		['tooltip', 'ui/tooltips'],
 		['accordion', 'ui/accordion'],
+		['input-group', 'forms'],
 		['form-', 'forms'],
 		['table', 'contents/tables'],
 		['container', 'contents/basic'],
@@ -109,7 +112,15 @@ export function guessFamilyForSelector(selector) {
 export function guessFamilyForElementSelector(selector) {
 	const base = selector.trim().split(/[:[\s>+~]/)[0]
 	if (/^h[1-6]$/.test(base)) return 'contents/heading'
-	if (base === 'p' || base === 'hr' || base === 'small') return 'contents/basic'
+	if (base === 'p' || base === 'hr' || base === 'small' || base === 'a' || base === 'dl') {
+		return 'contents/basic'
+	}
+	if (base === 'button' || base === 'input') return 'ui/buttons'
+	if (base === 'select' || base === 'textarea' || base === 'optgroup' || base === 'fieldset' || base === 'legend') {
+		return 'forms'
+	}
+	if (base === 'img' || base === 'svg') return 'contents/images'
+	if (base === 'ol' || base === 'ul') return 'contents/lists'
 	return null
 }
 

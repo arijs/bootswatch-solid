@@ -6,10 +6,7 @@ import {
 	varBsBorderWidth,
 	varBsEmphasisColor,
 	varBsLinkColor,
-	varBsLinkColorRgb,
 	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
@@ -33,22 +30,26 @@ import {
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
-	link,
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	fade,
 	flexWrap,
-	modalShowHook,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	fade,
 	nav,
 	navItem,
+	navItemShow,
 	navLink,
 	navLinkActive,
+	navLinkDisabled,
 	navPills,
 	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
 } from '../../../../theme-contract/ui/navs/contract.css'
+import {
+	mb3,
+} from '../../../../theme-contract/utilities/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/navs
@@ -107,8 +108,7 @@ globalStyle(`${bootstrapScope}${navLink}:focus-visible`, {
 
 // SOURCE CSS:
 // .nav-link.disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${bootstrapScope}${navLink}.disabled`, {
+globalStyle(`${bootstrapScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: "none",
 	cursor: "default",
@@ -170,70 +170,10 @@ globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${navLinkAct
 
 // SOURCE CSS:
 // .nav-tabs .nav-item.show .nav-link { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-// [UNMAPPED_SELECTOR] state class ".show" — no contract mapping
-globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navItem}.show ${bootstrapScope}${navLink}`, {
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navItem}${navItemShow} ${bootstrapScope}${navLink}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
 })
 
 // SOURCE CSS:
@@ -261,127 +201,9 @@ globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${navLinkAc
 
 // SOURCE CSS:
 // .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-// [UNMAPPED_SELECTOR] state class ".show" — no contract mapping
-globalStyle(`${bootstrapScope}${navPills} .show > ${bootstrapScope}${navLink}`, {
+globalStyle(`${bootstrapScope}${navPills} ${show} > ${bootstrapScope}${navLink}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${bootstrapScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
 })
 
 // SOURCE CSS:
@@ -392,29 +214,24 @@ globalStyle(`${bootstrapScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${bootstrapScope}${fade}:not(${modalShowHook})`, {
+globalStyle(`${bootstrapScope}${tabPane}${fade}:not(${show})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .tab-content > .tab-pane { display: none; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".tab-pane" — no contract mapping
-globalStyle(`.tab-content > .tab-pane`, {
+globalStyle(`${bootstrapScope}${tabContent} > ${bootstrapScope}${tabPane}`, {
 	display: "none",
 })
 
 // SOURCE CSS:
 // .tab-content > .active { display: block; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] state class ".active" — no contract mapping
-globalStyle(`.tab-content > .active`, {
+globalStyle(`${bootstrapScope}${tabContent} > ${tabPaneActive}`, {
 	display: "block",
 })
 
 // SOURCE CSS:
 // .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
+globalStyle(`${bootstrapScope}${mb3}`, {
 	marginBottom: "1rem !important",
 })

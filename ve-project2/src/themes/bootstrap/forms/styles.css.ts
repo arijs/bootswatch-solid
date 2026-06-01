@@ -42,13 +42,14 @@ import {
 	formSelectSm,
 	formSwitch,
 	formText,
+	g3,
 	hasValidation,
 	inputGroup,
 	inputGroupText,
 	invalidFeedback,
 	isInvalid,
 	isValid,
-	legend,
+	mb3,
 	row,
 	validFeedback,
 	wasValidated,
@@ -64,67 +65,6 @@ import { bootstrapScope } from '../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/forms
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// label { display: inline-block; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`label`, {
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// button { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; word-wrap: normal; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	wordWrap: "normal",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; resize: vertical; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	resize: "vertical",
-})
 
 // SOURCE CSS:
 // .form-check { display: block; min-height: 1.5rem; padding-left: 1.5em; margin-bottom: 0.125rem; }
@@ -236,21 +176,13 @@ globalStyle(`${bootstrapScope}${formCheckInput}:disabled ~ ${bootstrapScope}${fo
 
 // SOURCE CSS:
 // .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
+globalStyle(`${bootstrapScope}${mb3}`, {
 	marginBottom: "1rem !important",
 })
 
 // SOURCE CSS:
-// select:disabled { opacity: 1; }
-// [UNMAPPED_SELECTOR] element selector "select:disabled" — map to a contract class
-globalStyle(`select:disabled`, {
-	opacity: 1,
-})
-
-// SOURCE CSS:
 // fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
-globalStyle(`fieldset`, {
+globalStyle(`${bootstrapScope}${fieldset}`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
@@ -261,6 +193,7 @@ globalStyle(`fieldset`, {
 // .form-label { margin-bottom: 0.5rem; }
 globalStyle(`${bootstrapScope}${formLabel}`, {
 	marginBottom: "0.5rem",
+	display: "inline-block",
 })
 
 // SOURCE CSS:
@@ -272,6 +205,8 @@ globalStyle(`${bootstrapScope}${formControl}`, {
 	fontSize: "1rem",
 	fontWeight: 400,
 	lineHeight: 1.5,
+	fontFamily: "inherit",
+	margin: 0,
 	color: varBsBodyColor,
 	WebkitAppearance: "none",
 	MozAppearance: "none",
@@ -414,20 +349,6 @@ globalStyle(`${bootstrapScope}${formSelect}:disabled`, {
 })
 
 // SOURCE CSS:
-// ::file-selector-button { font: inherit; appearance: button; }
-globalStyle(`::file-selector-button`, {
-	font: "inherit",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// ::-webkit-file-upload-button { font: inherit; -webkit-appearance: button; }
-globalStyle(`::-webkit-file-upload-button`, {
-	font: "inherit",
-	WebkitAppearance: "button",
-})
-
-// SOURCE CSS:
 // .form-control[type="file"] { overflow: hidden; }
 globalStyle(`${bootstrapScope}${formControl}[type="file"]`, {
 	overflow: "hidden",
@@ -510,26 +431,6 @@ globalStyle(`${bootstrapScope}${formRange}:disabled::-webkit-slider-thumb`, {
 })
 
 // SOURCE CSS:
-// legend { float: left; width: 100%; padding: 0; margin-bottom: 0.5rem; line-height: inherit; font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] element selector "legend" — map to a contract class
-globalStyle(`legend`, {
-	float: "left",
-	width: "100%",
-	padding: 0,
-	marginBottom: "0.5rem",
-	lineHeight: "inherit",
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
-// SOURCE CSS:
-// legend + * { clear: left; }
-// [UNMAPPED_SELECTOR] element selector "legend" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`legend + *`, {
-	clear: "left",
-})
-
-// SOURCE CSS:
 // .form-check-input[type="radio"] { border-radius: 50%; }
 globalStyle(`${bootstrapScope}${formCheckInput}[type="radio"]`, {
 	borderRadius: "50%",
@@ -589,8 +490,8 @@ globalStyle(`${bootstrapScope}${formFloating}`, {
 // SOURCE CSS:
 // .form-floating > .form-control { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
+	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
+	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	lineHeight: 1.25,
 	padding: "1rem 0.75rem",
 })
@@ -599,8 +500,8 @@ globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}`
 // .form-floating > .form-control-plaintext { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 // [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
 globalStyle(`${bootstrapScope}${formFloating} > .form-control-plaintext`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
+	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
+	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	lineHeight: 1.25,
 	padding: "1rem 0.75rem",
 })
@@ -608,8 +509,8 @@ globalStyle(`${bootstrapScope}${formFloating} > .form-control-plaintext`, {
 // SOURCE CSS:
 // .form-floating > .form-select { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; }
 globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formSelect}`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
+	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
+	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	lineHeight: 1.25,
 })
 
@@ -846,16 +747,9 @@ globalStyle(`${bootstrapScope}${inputGroup}:not(${bootstrapScope}${hasValidation
 // SOURCE CSS:
 // .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) { margin-left: calc(-1 * var(--bs-border-width)); border-top-left-radius: 0; border-bottom-left-radius: 0; }
 globalStyle(`${bootstrapScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth} )`,
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 	borderTopLeftRadius: 0,
 	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// textarea.form-control { min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)); }
-// [UNMAPPED_SELECTOR] element selector "textarea.form-control" — map to a contract class
-globalStyle(`textarea.form-control`, {
-	minHeight: "calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2))",
 })
 
 // SOURCE CSS:
@@ -868,8 +762,8 @@ globalStyle(`${bootstrapScope}${formText}`, {
 
 // SOURCE CSS:
 // .form-control-lg { min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2)); padding: 0.5rem 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${bootstrapScope}${formControlLg}`, {
-	minHeight: "calc(1.5em + 1rem + calc(var(--bs-border-width) * 2))",
+globalStyle(`${bootstrapScope}${formControl}${formControlLg}`, {
+	minHeight: `calc(1.5em + 1rem + calc(${varBsBorderWidth} * 2))`,
 	padding: "0.5rem 1rem",
 	fontSize: "1.25rem",
 	borderRadius: varBsBorderRadiusLg,
@@ -877,7 +771,7 @@ globalStyle(`${bootstrapScope}${formControlLg}`, {
 
 // SOURCE CSS:
 // .form-control-lg::-webkit-file-upload-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${bootstrapScope}${formControlLg}::-webkit-file-upload-button`, {
+globalStyle(`${bootstrapScope}${formControl}${formControlLg}::-webkit-file-upload-button`, {
 	padding: "0.5rem 1rem",
 	margin: "-0.5rem -1rem",
 	WebkitMarginEnd: "1rem",
@@ -886,7 +780,7 @@ globalStyle(`${bootstrapScope}${formControlLg}::-webkit-file-upload-button`, {
 
 // SOURCE CSS:
 // .form-control-lg::file-selector-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${bootstrapScope}${formControlLg}::file-selector-button`, {
+globalStyle(`${bootstrapScope}${formControl}${formControlLg}::file-selector-button`, {
 	padding: "0.5rem 1rem",
 	margin: "-0.5rem -1rem",
 	WebkitMarginEnd: "1rem",
@@ -905,16 +799,18 @@ globalStyle(`${bootstrapScope}${formSelectLg}`, {
 
 // SOURCE CSS:
 // .form-control-sm { min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2)); padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${bootstrapScope}${formControlSm}`, {
-	minHeight: "calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2))",
+globalStyle(`${bootstrapScope}${formControl}${formControlSm}`, {
+	minHeight: `calc(1.5em + 0.5rem + calc(${varBsBorderWidth} * 2))`,
 	padding: "0.25rem 0.5rem",
 	fontSize: "0.875rem",
+	fontFamily: "inherit",
+	margin: 0,
 	borderRadius: varBsBorderRadiusSm,
 })
 
 // SOURCE CSS:
 // .form-control-sm::-webkit-file-upload-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${bootstrapScope}${formControlSm}::-webkit-file-upload-button`, {
+globalStyle(`${bootstrapScope}${formControl}${formControlSm}::-webkit-file-upload-button`, {
 	padding: "0.25rem 0.5rem",
 	margin: "-0.25rem -0.5rem",
 	WebkitMarginEnd: "0.5rem",
@@ -923,7 +819,7 @@ globalStyle(`${bootstrapScope}${formControlSm}::-webkit-file-upload-button`, {
 
 // SOURCE CSS:
 // .form-control-sm::file-selector-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${bootstrapScope}${formControlSm}::file-selector-button`, {
+globalStyle(`${bootstrapScope}${formControl}${formControlSm}::file-selector-button`, {
 	padding: "0.25rem 0.5rem",
 	margin: "-0.25rem -0.5rem",
 	WebkitMarginEnd: "0.5rem",
@@ -937,6 +833,7 @@ globalStyle(`${bootstrapScope}${formSelectSm}`, {
 	paddingBottom: "0.25rem",
 	paddingLeft: "0.5rem",
 	fontSize: "0.875rem",
+	fontFamily: "inherit",
 	borderRadius: varBsBorderRadiusSm,
 })
 
@@ -949,9 +846,9 @@ globalStyle(`${bootstrapScope}${row}`, {
 	},
 	display: "flex",
 	flexWrap: "wrap",
-	marginTop: `calc(-1 * ${varBsGutterY} )`,
-	marginRight: `calc(-0.5 * ${varBsGutterX} )`,
-	marginLeft: `calc(-0.5 * ${varBsGutterX} )`,
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
 // SOURCE CSS:
@@ -961,35 +858,16 @@ globalStyle(`${bootstrapScope}${row} > *`, {
 	flexShrink: 0,
 	width: "100%",
 	maxWidth: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
 	marginTop: varBsGutterY,
 })
 
 // SOURCE CSS:
 // .g-3 { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".g-3" — no contract mapping
-globalStyle(`.g-3`, {
+globalStyle(`${bootstrapScope}${g3}`, {
 	vars: {
 		[varBsGutterX]: "1rem",
-		[varBsGutterY]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .gx-3 { --bs-gutter-x: 1rem; }
-// [UNMAPPED_SELECTOR] class ".gx-3" — no contract mapping
-globalStyle(`.gx-3`, {
-	vars: {
-		[varBsGutterX]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .gy-3 { --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".gy-3" — no contract mapping
-globalStyle(`.gy-3`, {
-	vars: {
 		[varBsGutterY]: "1rem",
 	},
 })
@@ -1038,7 +916,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isInvalid}`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
@@ -1050,7 +928,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isInvalid}:checked`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:checked`, {
 	backgroundColor: varBsFormInvalidColor,
 })
 
@@ -1062,7 +940,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isInvalid}:focus`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
 })
 
@@ -1074,7 +952,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isInvalid} ~ ${bootstrapScope}${formCheckLabel}`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isInvalid} ~ ${bootstrapScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
@@ -1082,22 +960,22 @@ globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isInvalid} ~ $
 // .was-validated .form-control:invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
+	paddingRight: `calc(1.5em + 0.75rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
+	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
 })
 
 // SOURCE CSS:
 // .form-control.is-invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${bootstrapScope}${formControl}${bootstrapScope}${isInvalid}`, {
+globalStyle(`${bootstrapScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
+	paddingRight: `calc(1.5em + 0.75rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
+	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
 })
 
 // SOURCE CSS:
@@ -1109,7 +987,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formControl}:in
 
 // SOURCE CSS:
 // .form-control.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${bootstrapScope}${formControl}${bootstrapScope}${isInvalid}:focus`, {
+globalStyle(`${bootstrapScope}${formControl}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
 })
@@ -1122,7 +1000,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formSelect}:inv
 
 // SOURCE CSS:
 // .form-select.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${bootstrapScope}${formSelect}${bootstrapScope}${isInvalid}`, {
+globalStyle(`${bootstrapScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
@@ -1155,7 +1033,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formSelect}:inv
 // .form-select.is-invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 // [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
 // [UNMAPPED_SELECTOR] element selector "[size]" — map to a contract class
-globalStyle(`${bootstrapScope}${formSelect}${bootstrapScope}${isInvalid}:not([multiple]):not([size])`, {
+globalStyle(`${bootstrapScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
 		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	},
@@ -1167,7 +1045,7 @@ globalStyle(`${bootstrapScope}${formSelect}${bootstrapScope}${isInvalid}:not([mu
 // SOURCE CSS:
 // .form-select.is-invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 // [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-globalStyle(`${bootstrapScope}${formSelect}${bootstrapScope}${isInvalid}:not([multiple])[size="1"]`, {
+globalStyle(`${bootstrapScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
 		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	},
@@ -1185,7 +1063,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formSelect}:inv
 
 // SOURCE CSS:
 // .form-select.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${bootstrapScope}${formSelect}${bootstrapScope}${isInvalid}:focus`, {
+globalStyle(`${bootstrapScope}${formSelect}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
 })
@@ -1270,7 +1148,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-valid { border-color: var(--bs-form-valid-border-color); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isValid}`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
@@ -1282,7 +1160,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-valid:checked { background-color: var(--bs-form-valid-color); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isValid}:checked`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isValid}:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
@@ -1294,7 +1172,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isValid}:focus`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
 })
 
@@ -1306,7 +1184,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formCheckInput}
 
 // SOURCE CSS:
 // .form-check-input.is-valid ~ .form-check-label { color: var(--bs-form-valid-color); }
-globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isValid} ~ ${bootstrapScope}${formCheckLabel}`, {
+globalStyle(`${bootstrapScope}${formCheckInput}${isValid} ~ ${bootstrapScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
@@ -1314,22 +1192,22 @@ globalStyle(`${bootstrapScope}${formCheckInput}${bootstrapScope}${isValid} ~ ${b
 // .was-validated .form-control:valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
+	paddingRight: `calc(1.5em + 0.75rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
+	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
 })
 
 // SOURCE CSS:
 // .form-control.is-valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${bootstrapScope}${formControl}${bootstrapScope}${isValid}`, {
+globalStyle(`${bootstrapScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
+	paddingRight: `calc(1.5em + 0.75rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
+	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
 })
 
 // SOURCE CSS:
@@ -1341,7 +1219,7 @@ globalStyle(`${bootstrapScope}${wasValidated} ${bootstrapScope}${formControl}:va
 
 // SOURCE CSS:
 // .form-control.is-valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${bootstrapScope}${formControl}${bootstrapScope}${isValid}:focus`, {
+globalStyle(`${bootstrapScope}${formControl}${isValid}:focus`, {
 	borderColor: varBsFormValidBorderColor,
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
 })

@@ -7,6 +7,7 @@ import {
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
+	bdPlaceholderImg,
 	figure,
 	figureCaption,
 	figureImg,
@@ -20,23 +21,14 @@ import { briteScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// figure { margin: 0 0 1rem; }
-// [UNMAPPED_SELECTOR] element selector "figure" — map to a contract class
-globalStyle(`figure`, {
-	margin: "0 0 1rem",
-})
-
-// SOURCE CSS:
 // img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
+globalStyle(`${briteScope}${bdPlaceholderImg}`, {
 	verticalAlign: "middle",
 })
 
 // SOURCE CSS:
 // svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
+globalStyle(`${briteScope}${bdPlaceholderImg}`, {
 	verticalAlign: "middle",
 })
 

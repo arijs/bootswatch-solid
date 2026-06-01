@@ -1,17 +1,18 @@
-import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnDanger, btnLg } from '../../../theme-contract/ui/buttons/contract.css'
+import { fade } from '../../../theme-contract/ui/modal/contract.css'
 import {
 popoverArrow,
 popoverBody,
 popoverHeader,
+popoverShow,
 popoverVe,
 } from '../../../theme-contract/ui/popovers/contract.css'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
+import { createVePopover } from './ve-popover'
 import { h3 } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -25,13 +26,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 const BasicPopover: Component = () => {
 const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-const VePopover = (
-bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>
-).extendDefaultConfig({
-SELECTOR_ARROW: `.${popoverArrow}`,
-SELECTOR_TITLE: `.${popoverHeader}`,
-SELECTOR_CONTENT: `.${popoverBody}`,
-}) as typeof bootstrap.Popover
+const VePopover = createVePopover({ popoverArrow, popoverHeader, popoverBody, popoverShow })
 
 return (
 <div class={`bd-example ${theme} ${containerFluid}`}>
@@ -40,7 +35,7 @@ type="button"
 class={`${theme} ${btn} ${btnLg} ${btnDanger} pwhook-popover-trigger`}
 ref={(popover) =>
 new VePopover(popover, {
-template: `<div class="${popoverVe} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
+template: `<div class="${popoverVe} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
 })
 }
 title="Popover title"

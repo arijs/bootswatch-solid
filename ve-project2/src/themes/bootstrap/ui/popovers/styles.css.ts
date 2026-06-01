@@ -70,13 +70,13 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
 	fieldset,
-	row,
 } from '../../../../theme-contract/forms/contract.css'
 import {
 	btn,
 	btnActiveHook,
 	btnCheck,
 	btnDanger,
+	btnDisabledHook,
 	btnLg,
 	btnSecondary,
 } from '../../../../theme-contract/ui/buttons/contract.css'
@@ -85,20 +85,26 @@ import {
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import {
 	fade,
-	modalShowHook,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	bsPopoverAuto,
 	bsPopoverBottom,
 	bsPopoverEnd,
 	bsPopoverTop,
+	frame,
+	frameColumn,
+	frameRow,
+	justifyEnd,
+	justifyStart,
 	popoverArrow,
 	popoverBody,
 	popoverHeader,
+	popoverShow,
+	popoverVe,
 } from '../../../../theme-contract/ui/popovers/contract.css'
 import {
 	alignItemsCenter,
-	dFlex,
+	row,
 } from '../../../../theme-contract/utilities/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
@@ -108,17 +114,6 @@ import { bootstrapScope } from '../../scope.css'
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${bootstrapScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -137,30 +132,8 @@ globalStyle(`${bootstrapScope}${h5}`, {
 })
 
 // SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${bootstrapScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -180,31 +153,8 @@ globalStyle(`${bootstrapScope}${h3}`, {
 })
 
 // SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: `calc(1.3rem + 0.6vw)`,
-})
-
-// SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${bootstrapScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -220,127 +170,6 @@ globalStyle(`${bootstrapScope}${h1}`, {
 	fontWeight: 500,
 	lineHeight: 1.2,
 	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
 })
 
 // SOURCE CSS:
@@ -483,8 +312,7 @@ globalStyle(`${bootstrapScope}${btn}:disabled`, {
 
 // SOURCE CSS:
 // .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${bootstrapScope}${btn}.disabled`, {
+globalStyle(`${bootstrapScope}${btn}${btnDisabledHook}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -524,12 +352,11 @@ globalStyle(`${bootstrapScope}${btn}${btnDanger}`, {
 	},
 	backgroundColor: varBsBtnBg,
 	color: varBsBtnColor,
-	borderColor: varBsBtnBorderColor,
 })
 
 // SOURCE CSS:
 // .btn-lg { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${bootstrapScope}${btnLg}`, {
+globalStyle(`${bootstrapScope}${btn}${btnLg}`, {
 	vars: {
 		[varBsBtnPaddingY]: "0.5rem",
 		[varBsBtnPaddingX]: "1rem",
@@ -558,14 +385,13 @@ globalStyle(`${bootstrapScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${bootstrapScope}${fade}:not(${modalShowHook})`, {
+globalStyle(`${bootstrapScope}${popoverVe}${fade}:not(${popoverShow})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .popover { --bs-popover-zindex: 1070; --bs-popover-max-width: 276px; --bs-popover-font-size: 0.875rem; --bs-popover-bg: var(--bs-body-bg); --bs-popover-border-width: var(--bs-border-width); --bs-popover-border-color: var(--bs-border-color-translucent); --bs-popover-border-radius: var(--bs-border-radius-lg); --bs-popover-inner-border-radius: calc(var(--bs-border-radius-lg) - var(--bs-border-width)); --bs-popover-box-shadow: var(--bs-box-shadow); --bs-popover-header-padding-x: 1rem; --bs-popover-header-padding-y: 0.5rem; --bs-popover-header-font-size: 1rem; --bs-popover-header-color: inherit; --bs-popover-header-bg: var(--bs-secondary-bg); --bs-popover-body-padding-x: 1rem; --bs-popover-body-padding-y: 1rem; --bs-popover-body-color: var(--bs-body-color); --bs-popover-arrow-width: 1rem; --bs-popover-arrow-height: 0.5rem; --bs-popover-arrow-border: var(--bs-popover-border-color); z-index: var(--bs-popover-zindex); display: block; max-width: var(--bs-popover-max-width); font-family: var(--bs-font-sans-serif); font-style: normal; font-weight: 400; line-height: 1.5; text-align: start; text-decoration: none; text-shadow: none; text-transform: none; letter-spacing: normal; word-break: normal; white-space: normal; word-spacing: normal; line-break: auto; font-size: var(--bs-popover-font-size); word-wrap: break-word; background-color: var(--bs-popover-bg); background-clip: padding-box; border: var(--bs-popover-border-width) solid var(--bs-popover-border-color); border-radius: var(--bs-popover-border-radius); }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover`, {
+globalStyle(`${bootstrapScope}${popoverVe}`, {
 	vars: {
 		[varBsPopoverZindex]: 1070,
 		[varBsPopoverMaxWidth]: "276px",
@@ -614,8 +440,7 @@ globalStyle(`.popover`, {
 
 // SOURCE CSS:
 // .popover .popover-arrow { display: block; width: var(--bs-popover-arrow-width); height: var(--bs-popover-arrow-height); }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover ${bootstrapScope}${popoverArrow}`, {
+globalStyle(`${bootstrapScope}${popoverVe} ${bootstrapScope}${popoverArrow}`, {
 	display: "block",
 	width: varBsPopoverArrowWidth,
 	height: varBsPopoverArrowHeight,
@@ -623,8 +448,7 @@ globalStyle(`.popover ${bootstrapScope}${popoverArrow}`, {
 
 // SOURCE CSS:
 // .popover .popover-arrow::before { position: absolute; display: block; content: ""; border-color: transparent; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover ${bootstrapScope}${popoverArrow}::before`, {
+globalStyle(`${bootstrapScope}${popoverVe} ${bootstrapScope}${popoverArrow}::before`, {
 	position: "absolute",
 	display: "block",
 	content: "\"\"",
@@ -635,8 +459,7 @@ globalStyle(`.popover ${bootstrapScope}${popoverArrow}::before`, {
 
 // SOURCE CSS:
 // .popover .popover-arrow::after { position: absolute; display: block; content: ""; border-color: transparent; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover ${bootstrapScope}${popoverArrow}::after`, {
+globalStyle(`${bootstrapScope}${popoverVe} ${bootstrapScope}${popoverArrow}::after`, {
 	position: "absolute",
 	display: "block",
 	content: "\"\"",
@@ -740,7 +563,6 @@ globalStyle(`${bootstrapScope}${btn}${btnSecondary}`, {
 	},
 	backgroundColor: varBsBtnBg,
 	color: varBsBtnColor,
-	borderColor: varBsBtnBorderColor,
 })
 
 // SOURCE CSS:
@@ -789,28 +611,25 @@ globalStyle(`${bootstrapScope}${bsPopoverAuto}[data-popper-placement^="bottom"] 
 
 // SOURCE CSS:
 // .d-flex { display: flex !important; }
-globalStyle(`${bootstrapScope}${dFlex}`, {
+globalStyle(`${bootstrapScope}${frame}`, {
 	display: "flex !important",
 })
 
 // SOURCE CSS:
 // .border { border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important; }
-// [UNMAPPED_SELECTOR] class ".border" — no contract mapping
-globalStyle(`.border`, {
+globalStyle(`${bootstrapScope}${frame}`, {
 	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 // SOURCE CSS:
 // .flex-column { flex-direction: column !important; }
-// [UNMAPPED_SELECTOR] class ".flex-column" — no contract mapping
-globalStyle(`.flex-column`, {
+globalStyle(`${bootstrapScope}${frameColumn}`, {
 	flexDirection: "column !important",
 })
 
 // SOURCE CSS:
 // .justify-content-start { justify-content: flex-start !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-start" — no contract mapping
-globalStyle(`.justify-content-start`, {
+globalStyle(`${bootstrapScope}${justifyStart}`, {
 	justifyContent: "flex-start !important",
 })
 
@@ -866,14 +685,12 @@ globalStyle(`${bootstrapScope}${bsPopoverAuto}[data-popper-placement^="top"] > $
 
 // SOURCE CSS:
 // .flex-row { flex-direction: row !important; }
-// [UNMAPPED_SELECTOR] class ".flex-row" — no contract mapping
-globalStyle(`.flex-row`, {
+globalStyle(`${bootstrapScope}${frameRow}`, {
 	flexDirection: "row !important",
 })
 
 // SOURCE CSS:
 // .justify-content-end { justify-content: flex-end !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-end" — no contract mapping
-globalStyle(`.justify-content-end`, {
+globalStyle(`${bootstrapScope}${justifyEnd}`, {
 	justifyContent: "flex-end !important",
 })

@@ -64,6 +64,7 @@ export async function generateFamilies(
 					themeSlug,
 					family,
 					familyMap,
+					familyMaps,
 					registry,
 					referenceTheme,
 				})

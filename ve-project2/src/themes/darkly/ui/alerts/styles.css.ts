@@ -1,6 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBorderRadius,
+	varBsBorderWidth,
 	varBsBtnCloseFilter,
 	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
@@ -63,6 +64,8 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
 	alert,
+	alertBtnClose,
+	alertBtnCloseDisabledHook,
 	alertDanger,
 	alertDark,
 	alertDismissible,
@@ -80,6 +83,7 @@ import {
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	fade,
+	modalShowHook,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import { darklyScope } from '../../scope.css'
 
@@ -237,7 +241,7 @@ globalStyle(`${darklyScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${darklyScope}${fade}:not(.show)`, {
+globalStyle(`${darklyScope}${fade}:not(${modalShowHook})`, {
 	opacity: 0,
 })
 
@@ -251,16 +255,16 @@ globalStyle(`${darklyScope}${alert}`, {
 		[varBsAlertMarginBottom]: "1rem",
 		[varBsAlertColor]: "inherit",
 		[varBsAlertBorderColor]: "transparent",
-		[varBsAlertBorder]: "var(--bs-border-width) solid var(--bs-alert-border-color)",
+		[varBsAlertBorder]: `${varBsBorderWidth} solid ${varBsAlertBorderColor}`,
 		[varBsAlertBorderRadius]: varBsBorderRadius,
 		[varBsAlertLinkColor]: "inherit",
 	},
 	position: "relative",
-	padding: "var(--bs-alert-padding-y) var(--bs-alert-padding-x)",
+	padding: `${varBsAlertPaddingY} ${varBsAlertPaddingX}`,
 	marginBottom: varBsAlertMarginBottom,
-	color: varBsAlertColor,
+	color: "#fff",
 	backgroundColor: varBsAlertBg,
-	border: varBsAlertBorder,
+	border: "none",
 	borderRadius: varBsAlertBorderRadius,
 })
 
@@ -268,7 +272,8 @@ globalStyle(`${darklyScope}${alert}`, {
 // .alert-link { font-weight: 700; color: var(--bs-alert-link-color); }
 globalStyle(`${darklyScope}${alertLink}`, {
 	fontWeight: 700,
-	color: varBsAlertLinkColor,
+	color: "#fff",
+	textDecoration: "underline",
 })
 
 // SOURCE CSS:
@@ -280,7 +285,7 @@ globalStyle(`${darklyScope}${alertDismissible}`, {
 // SOURCE CSS:
 // .alert-dismissible .btn-close { position: absolute; top: 0; right: 0; z-index: 2; padding: 1.25rem 1rem; }
 // [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`${darklyScope}${alertDismissible} .btn-close`, {
+globalStyle(`${darklyScope}${alertDismissible} ${darklyScope}${alertBtnClose}`, {
 	position: "absolute",
 	top: 0,
 	right: 0,
@@ -297,18 +302,18 @@ globalStyle(`${darklyScope}${alertDanger}`, {
 		[varBsAlertBorderColor]: varBsDangerBorderSubtle,
 		[varBsAlertLinkColor]: varBsDangerTextEmphasis,
 	},
+	backgroundColor: "#e74c3c",
 })
 
 // SOURCE CSS:
-// .btn-close { --bs-btn-close-color: #000; --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e"); --bs-btn-close-opacity: 0.5; --bs-btn-close-hover-opacity: 0.75; --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-btn-close-focus-opacity: 1; --bs-btn-close-disabled-opacity: 0.25; box-sizing: content-box; width: 1em; height: 1em; padding: 0.25em 0.25em; color: var(--bs-btn-close-color); background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat; filter: var(--bs-btn-close-filter); border: 0; border-radius: 0.375rem; opacity: var(--bs-btn-close-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close`, {
+// .btn-close { --bs-btn-close-color: #fff; ...
+globalStyle(`${darklyScope}${alertBtnClose}`, {
 	vars: {
-		[varBsBtnCloseColor]: "#000",
-		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
-		[varBsBtnCloseOpacity]: 0.5,
-		[varBsBtnCloseHoverOpacity]: 0.75,
-		[varBsBtnCloseFocusShadow]: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+		[varBsBtnCloseColor]: "#fff",
+		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
+		[varBsBtnCloseOpacity]: 0.4,
+		[varBsBtnCloseHoverOpacity]: 1,
+		[varBsBtnCloseFocusShadow]: "0 0 0 0.25rem rgba(55, 90, 127, 0.25)",
 		[varBsBtnCloseFocusOpacity]: 1,
 		[varBsBtnCloseDisabledOpacity]: 0.25,
 	},
@@ -317,35 +322,26 @@ globalStyle(`.btn-close`, {
 	height: "1em",
 	padding: "0.25em 0.25em",
 	color: varBsBtnCloseColor,
-	background: "transparent var(--bs-btn-close-bg) center/1em auto no-repeat",
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
 	filter: varBsBtnCloseFilter,
 	border: 0,
 	borderRadius: "0.375rem",
 	opacity: varBsBtnCloseOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:hover { color: var(--bs-btn-close-color); text-decoration: none; opacity: var(--bs-btn-close-hover-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:hover`, {
+globalStyle(`${darklyScope}${alertBtnClose}:hover`, {
 	color: varBsBtnCloseColor,
 	textDecoration: "none",
 	opacity: varBsBtnCloseHoverOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:focus { outline: 0; box-shadow: var(--bs-btn-close-focus-shadow); opacity: var(--bs-btn-close-focus-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:focus`, {
+globalStyle(`${darklyScope}${alertBtnClose}:focus`, {
 	outline: 0,
 	boxShadow: varBsBtnCloseFocusShadow,
 	opacity: varBsBtnCloseFocusOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:disabled`, {
+globalStyle(`${darklyScope}${alertBtnClose}:disabled`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
@@ -353,10 +349,7 @@ globalStyle(`.btn-close:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close.disabled`, {
+globalStyle(`${darklyScope}${alertBtnClose}${alertBtnCloseDisabledHook}`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
@@ -373,6 +366,7 @@ globalStyle(`${darklyScope}${alertDark}`, {
 		[varBsAlertBorderColor]: varBsDarkBorderSubtle,
 		[varBsAlertLinkColor]: varBsDarkTextEmphasis,
 	},
+	backgroundColor: "#303030",
 })
 
 // SOURCE CSS:
@@ -381,7 +375,7 @@ globalStyle(`${darklyScope}${horizontalRule}`, {
 	margin: "1rem 0",
 	color: "inherit",
 	border: 0,
-	borderTop: "var(--bs-border-width) solid",
+	borderTop: `${varBsBorderWidth} solid`,
 	opacity: 0.25,
 })
 
@@ -535,6 +529,7 @@ globalStyle(`${darklyScope}${alertSuccess}`, {
 		[varBsAlertBorderColor]: varBsSuccessBorderSubtle,
 		[varBsAlertLinkColor]: varBsSuccessTextEmphasis,
 	},
+	backgroundColor: "#00bc8c",
 })
 
 // SOURCE CSS:
@@ -553,6 +548,7 @@ globalStyle(`${darklyScope}${alertInfo}`, {
 		[varBsAlertBorderColor]: varBsInfoBorderSubtle,
 		[varBsAlertLinkColor]: varBsInfoTextEmphasis,
 	},
+	backgroundColor: "#3498db",
 })
 
 // SOURCE CSS:
@@ -564,6 +560,7 @@ globalStyle(`${darklyScope}${alertLight}`, {
 		[varBsAlertBorderColor]: varBsLightBorderSubtle,
 		[varBsAlertLinkColor]: varBsLightTextEmphasis,
 	},
+	backgroundColor: "#adb5bd",
 })
 
 // SOURCE CSS:
@@ -575,6 +572,7 @@ globalStyle(`${darklyScope}${alertPrimary}`, {
 		[varBsAlertBorderColor]: varBsPrimaryBorderSubtle,
 		[varBsAlertLinkColor]: varBsPrimaryTextEmphasis,
 	},
+	backgroundColor: "#375a7f",
 })
 
 // SOURCE CSS:
@@ -586,6 +584,7 @@ globalStyle(`${darklyScope}${alertSecondary}`, {
 		[varBsAlertBorderColor]: varBsSecondaryBorderSubtle,
 		[varBsAlertLinkColor]: varBsSecondaryTextEmphasis,
 	},
+	backgroundColor: "#444",
 })
 
 // SOURCE CSS:
@@ -597,8 +596,16 @@ globalStyle(`${darklyScope}${alertWarning}`, {
 		[varBsAlertBorderColor]: varBsWarningBorderSubtle,
 		[varBsAlertLinkColor]: varBsWarningTextEmphasis,
 	},
+	backgroundColor: "#f39c12",
 })
 
 // ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .alert a
-// [DELTA] unmapped selector: .alert .alert-link
+globalStyle(`${darklyScope}${alert} a`, {
+	color: "#fff",
+	textDecoration: "underline",
+})
+
+globalStyle(`${darklyScope}${alert} ${darklyScope}${alertLink}`, {
+	color: "#fff",
+	textDecoration: "underline",
+})

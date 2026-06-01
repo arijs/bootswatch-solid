@@ -114,7 +114,7 @@ globalStyle(`${darklyScope}${btn}`, {
 		[varBsBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)",
 	},
 	display: "inline-block",
-	padding: "var(--bs-btn-padding-y) var(--bs-btn-padding-x)",
+	padding: "0.375rem 0.75rem",
 	fontFamily: varBsBtnFontFamily,
 	fontSize: varBsBtnFontSize,
 	fontWeight: varBsBtnFontWeight,
@@ -127,7 +127,7 @@ globalStyle(`${darklyScope}${btn}`, {
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
 	userSelect: "none",
-	border: "var(--bs-btn-border-width) solid var(--bs-btn-border-color)",
+	border: "1px solid transparent",
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
@@ -256,21 +256,26 @@ globalStyle(`fieldset:disabled ${darklyScope}${btn}`, {
 // .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #6c757d; --bs-btn-border-color: #6c757d; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64; --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff; --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #6c757d; --bs-btn-disabled-border-color: #6c757d; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnSecondary}`, {
+globalStyle(`${darklyScope}${btn}${btnSecondary}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#6c757d",
-		[varBsBtnBorderColor]: "#6c757d",
+		[varBsBtnBg]: "#444",
+		[varBsBtnBorderColor]: "#444",
 		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#5c636a",
-		[varBsBtnHoverBorderColor]: "#565e64",
+		[varBsBtnHoverBg]: "#3a3a3a",
+		[varBsBtnHoverBorderColor]: "#363636",
 		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#565e64",
-		[varBsBtnActiveBorderColor]: "#51585e",
+		[varBsBtnActiveBg]: "#363636",
+		[varBsBtnActiveBorderColor]: "#333333",
 		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#6c757d",
-		[varBsBtnDisabledBorderColor]: "#6c757d",
+		[varBsBtnDisabledBg]: "#444",
+		[varBsBtnDisabledBorderColor]: "#444",
 	},
+	color: "#fff",
+	backgroundColor: "#444",
+	border: "1px solid #444",
+	padding: "0.375rem 0.75rem",
+	display: "inline-block",
 })
 
 // SOURCE CSS:
@@ -296,6 +301,7 @@ globalStyle(`.btn-group-vertical`, {
 globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}`, {
 	position: "relative",
 	flex: "1 1 auto",
+	padding: "0.375rem 0.75rem",
 })
 
 // SOURCE CSS:
@@ -781,25 +787,44 @@ globalStyle(`${darklyScope}${btnCheck}:checked:focus-visible + ${darklyScope}${b
 // .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca; --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd; --bs-btn-disabled-border-color: #0d6efd; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnPrimary}`, {
+globalStyle(`${darklyScope}${btn}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#0d6efd",
-		[varBsBtnBorderColor]: "#0d6efd",
+		[varBsBtnBg]: "#375a7f",
+		[varBsBtnBorderColor]: "#375a7f",
 		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#0b5ed7",
-		[varBsBtnHoverBorderColor]: "#0a58ca",
+		[varBsBtnHoverBg]: "#2f4d6c",
+		[varBsBtnHoverBorderColor]: "#2c4866",
 		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#0a58ca",
-		[varBsBtnActiveBorderColor]: "#0a53be",
+		[varBsBtnActiveBg]: "#2c4866",
+		[varBsBtnActiveBorderColor]: "#29445f",
 		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#0d6efd",
-		[varBsBtnDisabledBorderColor]: "#0d6efd",
+		[varBsBtnDisabledBg]: "#375a7f",
+		[varBsBtnDisabledBorderColor]: "#375a7f",
 	},
+	color: "#fff",
+	backgroundColor: "#375a7f",
+	border: "1px solid #375a7f",
+	padding: "0.375rem 0.75rem",
+	display: "inline-block",
 })
 
 // SOURCE CSS:
 // .btn-lg { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
+globalStyle(`${darklyScope}${btn}${btnLg}`, {
+	padding: "0.5rem 1rem",
+	fontSize: "1.25rem",
+	lineHeight: 1.5,
+	borderRadius: varBsBorderRadiusLg,
+	display: "inline-block",
+})
+
+globalStyle(`${darklyScope}${btn}${btnLg}${btnDanger}`, {
+	padding: "0.5rem 1rem",
+	fontSize: "1.25rem",
+	lineHeight: 1.5,
+})
+
 globalStyle(`${darklyScope}${btnLg}`, {
 	vars: {
 		[varBsBtnPaddingY]: "0.5rem",
@@ -848,21 +873,26 @@ globalStyle(`.btn-group-sm > ${darklyScope}${btn}`, {
 // .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #dc3545; --bs-btn-border-color: #dc3545; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37; --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff; --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #dc3545; --bs-btn-disabled-border-color: #dc3545; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnDanger}`, {
+globalStyle(`${darklyScope}${btn}${btnDanger}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#dc3545",
-		[varBsBtnBorderColor]: "#dc3545",
+		[varBsBtnBg]: "#e74c3c",
+		[varBsBtnBorderColor]: "#e74c3c",
 		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#bb2d3b",
-		[varBsBtnHoverBorderColor]: "#b02a37",
+		[varBsBtnHoverBg]: "#c44133",
+		[varBsBtnHoverBorderColor]: "#b93d30",
 		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#b02a37",
-		[varBsBtnActiveBorderColor]: "#a52834",
+		[varBsBtnActiveBg]: "#b93d30",
+		[varBsBtnActiveBorderColor]: "#ad392d",
 		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#dc3545",
-		[varBsBtnDisabledBorderColor]: "#dc3545",
+		[varBsBtnDisabledBg]: "#e74c3c",
+		[varBsBtnDisabledBorderColor]: "#e74c3c",
 	},
+	color: "#fff",
+	backgroundColor: "#e74c3c",
+	border: "1px solid #e74c3c",
+	padding: "0.375rem 0.75rem",
+	display: "inline-block",
 })
 
 // SOURCE CSS:

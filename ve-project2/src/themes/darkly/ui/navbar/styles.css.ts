@@ -1,15 +1,11 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
-	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsEmphasisColorRgb,
 	varBsLinkColorRgb,
 	varBsLinkHoverColorRgb,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-	varBsTertiaryBg,
+	varBsScrollHeight,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsNavbarActiveColor,
@@ -43,12 +39,10 @@ import {
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
 	horizontalRule,
-	link,
 } from '../../../../theme-contract/contents/basic/contract.css'
 import {
-	form,
-	formControl,
-} from '../../../../theme-contract/forms/contract.css'
+	containerFluid,
+} from '../../../../theme-contract/layout/container.css'
 import {
 	dropdown,
 	dropdownMenu,
@@ -57,20 +51,31 @@ import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	collapse,
+	collapseShow,
 	navbar,
+	navbarBgLight,
 	navbarBrand,
 	navbarCollapse,
+	navbarDarkBgPrimary,
+	navbarExpandLg,
 	navbarNav,
+	navbarNavScroll,
+	navbarText,
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	nav,
 	navLink,
+	navLinkActive,
+	show,
 } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	dFlex,
+	mb2,
 	meAuto,
+	me2,
+	mt5,
 } from '../../../../theme-contract/utilities/contract.css'
 import { darklyScope } from '../../scope.css'
 
@@ -319,117 +324,9 @@ globalStyle(`[type="search"]::-webkit-search-cancel-button`, {
 })
 
 // SOURCE CSS:
-// .form-control { display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-clip: padding-box; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${darklyScope}${formControl}`, {
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsBodyBg,
-	backgroundClip: "padding-box",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
-	borderRadius: varBsBorderRadius,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
-// SOURCE CSS:
-// .form-control:focus { color: var(--bs-body-color); background-color: var(--bs-body-bg); border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
-globalStyle(`${darklyScope}${formControl}:focus`, {
-	color: varBsBodyColor,
-	backgroundColor: varBsBodyBg,
-	borderColor: "#86b7fe",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
-})
-
-// SOURCE CSS:
-// .form-control::-webkit-date-and-time-value { min-width: 85px; height: 1.5em; margin: 0; }
-globalStyle(`${darklyScope}${formControl}::-webkit-date-and-time-value`, {
-	minWidth: "85px",
-	height: "1.5em",
-	margin: 0,
-})
-
-// SOURCE CSS:
-// .form-control::-webkit-datetime-edit { display: block; padding: 0; }
-globalStyle(`${darklyScope}${formControl}::-webkit-datetime-edit`, {
-	display: "block",
-	padding: 0,
-})
-
-// SOURCE CSS:
-// .form-control::placeholder { color: var(--bs-secondary-color); opacity: 1; }
-globalStyle(`${darklyScope}${formControl}::placeholder`, {
-	color: varBsSecondaryColor,
-	opacity: 1,
-})
-
-// SOURCE CSS:
-// .form-control:disabled { background-color: var(--bs-secondary-bg); opacity: 1; }
-globalStyle(`${darklyScope}${formControl}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
-	opacity: 1,
-})
-
-// SOURCE CSS:
-// .form-control::-webkit-file-upload-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${darklyScope}${formControl}::-webkit-file-upload-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	WebkitTransition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
-// SOURCE CSS:
-// .form-control::file-selector-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${darklyScope}${formControl}::file-selector-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
-// SOURCE CSS:
-// .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button { background-color: var(--bs-secondary-bg); }
-globalStyle(`${darklyScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
-
-// SOURCE CSS:
-// .form-control:hover:not(:disabled):not([readonly])::file-selector-button { background-color: var(--bs-secondary-bg); }
-globalStyle(`${darklyScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
-
-// SOURCE CSS:
 // .collapse:not(.show) { display: none; }
 // [UNMAPPED_SELECTOR] class ".collapse" — no contract mapping
-globalStyle(`.collapse:not(.show)`, {
+globalStyle(`${darklyScope}${collapse}:not(${collapseShow})`, {
 	display: "none",
 })
 
@@ -438,22 +335,22 @@ globalStyle(`.collapse:not(.show)`, {
 globalStyle(`${darklyScope}${navbar}`, {
 	vars: {
 		[varBsNavbarPaddingX]: 0,
-		[varBsNavbarPaddingY]: "0.5rem",
-		[varBsNavbarColor]: `rgba(${varBsEmphasisColorRgb}, 0.65)`,
-		[varBsNavbarHoverColor]: `rgba(${varBsEmphasisColorRgb}, 0.8)`,
+		[varBsNavbarPaddingY]: "1rem",
+		[varBsNavbarColor]: "rgba(34, 34, 34, 0.7)",
+		[varBsNavbarHoverColor]: "#222",
 		[varBsNavbarDisabledColor]: `rgba(${varBsEmphasisColorRgb}, 0.3)`,
-		[varBsNavbarActiveColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarActiveColor]: "#222",
 		[varBsNavbarBrandPaddingY]: "0.3125rem",
 		[varBsNavbarBrandMarginEnd]: "1rem",
 		[varBsNavbarBrandFontSize]: "1.25rem",
-		[varBsNavbarBrandColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
-		[varBsNavbarBrandHoverColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarBrandColor]: "#222",
+		[varBsNavbarBrandHoverColor]: "#222",
 		[varBsNavbarNavLinkPaddingX]: "0.5rem",
 		[varBsNavbarTogglerPaddingY]: "0.25rem",
 		[varBsNavbarTogglerPaddingX]: "0.75rem",
 		[varBsNavbarTogglerFontSize]: "1.25rem",
-		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
-		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
+		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerBorderColor]: "rgba(34, 34, 34, 0.1)",
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: "0.25rem",
 		[varBsNavbarTogglerTransition]: "box-shadow 0.15s ease-in-out",
@@ -463,7 +360,7 @@ globalStyle(`${darklyScope}${navbar}`, {
 	flexWrap: "wrap",
 	alignItems: "center",
 	justifyContent: "space-between",
-	padding: "var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)",
+	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
 })
 
 // SOURCE CSS:
@@ -479,7 +376,7 @@ globalStyle(`${darklyScope}${navbar} > .container`, {
 // SOURCE CSS:
 // .navbar > .container-fluid { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
 // [UNMAPPED_SELECTOR] class ".container-fluid" — no contract mapping
-globalStyle(`${darklyScope}${navbar} > .container-fluid`, {
+globalStyle(`${darklyScope}${navbar} > ${darklyScope}${containerFluid}`, {
 	display: "flex",
 	flexWrap: "inherit",
 	alignItems: "center",
@@ -580,13 +477,13 @@ globalStyle(`${darklyScope}${navbarNav}`, {
 
 // SOURCE CSS:
 // .navbar-nav .nav-link.active { color: var(--bs-navbar-active-color); }
-globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}.active`, {
+globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
 
 // SOURCE CSS:
 // .navbar-nav .nav-link.show { color: var(--bs-navbar-active-color); }
-globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}.show`, {
+globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${show}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -607,12 +504,12 @@ globalStyle(`${darklyScope}${navbarCollapse}`, {
 // SOURCE CSS:
 // .navbar-toggler { padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x); font-size: var(--bs-navbar-toggler-font-size); line-height: 1; color: var(--bs-navbar-color); background-color: transparent; border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color); border-radius: var(--bs-navbar-toggler-border-radius); transition: var(--bs-navbar-toggler-transition); }
 globalStyle(`${darklyScope}${navbarToggler}`, {
-	padding: "var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x)",
+	padding: `${varBsNavbarTogglerPaddingY} ${varBsNavbarTogglerPaddingX}`,
 	fontSize: varBsNavbarTogglerFontSize,
 	lineHeight: 1,
 	color: varBsNavbarColor,
 	backgroundColor: "transparent",
-	border: "var(--bs-border-width) solid var(--bs-navbar-toggler-border-color)",
+	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
 	transition: varBsNavbarTogglerTransition,
 })
@@ -628,7 +525,7 @@ globalStyle(`${darklyScope}${navbarToggler}:hover`, {
 globalStyle(`${darklyScope}${navbarToggler}:focus`, {
 	textDecoration: "none",
 	outline: 0,
-	boxShadow: "0 0 0 var(--bs-navbar-toggler-focus-width)",
+	boxShadow: `0 0 0 ${varBsNavbarTogglerFocusWidth}`,
 })
 
 // SOURCE CSS:
@@ -647,7 +544,7 @@ globalStyle(`${darklyScope}${navbarTogglerIcon}`, {
 // SOURCE CSS:
 // .navbar-dark { --bs-navbar-color: rgba(255, 255, 255, 0.55); --bs-navbar-hover-color: rgba(255, 255, 255, 0.75); --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25); --bs-navbar-active-color: #fff; --bs-navbar-brand-color: #fff; --bs-navbar-brand-hover-color: #fff; --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1); --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
 // [UNMAPPED_SELECTOR] class ".navbar-dark" — no contract mapping
-globalStyle(`.navbar-dark`, {
+globalStyle(`${darklyScope}${navbarDarkBgPrimary}`, {
 	vars: {
 		[varBsNavbarColor]: "rgba(255, 255, 255, 0.6)",
 		[varBsNavbarHoverColor]: "#fff",
@@ -658,6 +555,7 @@ globalStyle(`.navbar-dark`, {
 		[varBsNavbarTogglerBorderColor]: "rgba(255, 255, 255, 0.1)",
 		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.6%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
+	backgroundColor: "#375a7f !important",
 })
 
 // SOURCE CSS:
@@ -695,18 +593,20 @@ globalStyle(`${darklyScope}${dFlex}`, {
 	display: "flex !important",
 })
 
-// SOURCE CSS:
-// .mt-5 { margin-top: 3rem !important; }
-// [UNMAPPED_SELECTOR] class ".mt-5" — no contract mapping
-globalStyle(`.mt-5`, {
+globalStyle(`${darklyScope}${mt5}`, {
 	marginTop: "3rem !important",
 })
 
-// SOURCE CSS:
-// .me-2 { margin-right: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
-globalStyle(`.me-2`, {
+globalStyle(`${darklyScope}${me2}`, {
 	marginRight: "0.5rem !important",
+})
+
+globalStyle(`${darklyScope}${mb2}`, {
+	marginBottom: "0.5rem !important",
+})
+
+globalStyle(`${darklyScope}${navbarBgLight}`, {
+	backgroundColor: "#adb5bd !important",
 })
 
 // SOURCE CSS:
@@ -715,43 +615,89 @@ globalStyle(`${darklyScope}${meAuto}`, {
 	marginRight: "auto !important",
 })
 
-// SOURCE CSS:
-// .mb-2 { margin-bottom: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-2" — no contract mapping
-globalStyle(`.mb-2`, {
-	marginBottom: "0.5rem !important",
-})
-
-// SOURCE CSS:
-// .bg-primary { --bs-bg-opacity: 1; background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-primary" — no contract mapping
-// [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-primary`, {
-	backgroundColor: "rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important",
-})
-
-// SOURCE CSS:
-// .bg-light { --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-light" — no contract mapping
-// [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-light`, {
-	backgroundColor: "rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important",
-})
-
 // ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .navbar-text
-// [DELTA] unmapped selector: .navbar-text a
-// [DELTA] unmapped selector: .navbar-text a:hover
-// [DELTA] unmapped selector: .navbar-text a:focus
-// [DELTA] unmapped selector: .navbar-nav-scroll
-// [DELTA] unmapped selector: .navbar-expand
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav .dropdown-menu
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav .nav-link
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav-scroll
-// [DELTA] unmapped selector: .navbar-expand .navbar-collapse
-// [DELTA] unmapped selector: .navbar-expand .navbar-toggler
-// [DELTA] unmapped selector: .navbar-expand .offcanvas
-// [DELTA] unmapped selector: .navbar-expand .offcanvas .offcanvas-header
-// [DELTA] unmapped selector: .navbar-expand .offcanvas .offcanvas-body
-// [DELTA] unmapped selector: .navbar[data-bs-theme=dark]
+globalStyle(`${darklyScope}${navbarText}`, {
+	paddingTop: "0.5rem",
+	paddingBottom: "0.5rem",
+	color: varBsNavbarColor,
+})
+
+globalStyle(`${darklyScope}${navbarText} a`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${darklyScope}${navbarText} a:hover`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${darklyScope}${navbarText} a:focus`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${darklyScope}${navbarNavScroll}`, {
+	maxHeight: varBsScrollHeight,
+	overflowY: "auto",
+})
+
+globalStyle(`${darklyScope}${navbarExpandLg} ${darklyScope}${navbarNav}`, {
+	'@media': {
+		'screen and (min-width: 992px)': {
+			flexDirection: "row",
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${navbarExpandLg} ${darklyScope}${navbarNav} ${darklyScope}${dropdownMenu}`, {
+	'@media': {
+		'screen and (min-width: 992px)': {
+			position: "absolute",
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${navbarExpandLg} ${darklyScope}${navbarNav} ${darklyScope}${navLink}`, {
+	'@media': {
+		'screen and (min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${navbarExpandLg} ${darklyScope}${navbarNavScroll}`, {
+	'@media': {
+		'screen and (min-width: 992px)': {
+			overflow: "visible",
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${navbarExpandLg} ${darklyScope}${navbarCollapse}`, {
+	'@media': {
+		'screen and (min-width: 992px)': {
+			display: "flex !important",
+			flexBasis: "auto",
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${navbarExpandLg} ${darklyScope}${navbarToggler}`, {
+	'@media': {
+		'screen and (min-width: 992px)': {
+			display: "none",
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${navbar}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsNavbarColor]: "rgba(255, 255, 255, 0.55)",
+		[varBsNavbarHoverColor]: "rgba(255, 255, 255, 0.75)",
+		[varBsNavbarDisabledColor]: "rgba(255, 255, 255, 0.25)",
+		[varBsNavbarActiveColor]: "#fff",
+		[varBsNavbarBrandColor]: "#fff",
+		[varBsNavbarBrandHoverColor]: "#fff",
+		[varBsNavbarTogglerBorderColor]: "rgba(255, 255, 255, 0.1)",
+		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+	},
+})

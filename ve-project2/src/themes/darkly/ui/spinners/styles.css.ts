@@ -1,5 +1,8 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
+	varBsDarkRgb,
+} from '../../../../theme-contract/_vars.css'
+import {
 	varBsSpinnerAnimationName,
 	varBsSpinnerAnimationSpeed,
 	varBsSpinnerBorderWidth,
@@ -114,9 +117,8 @@ globalStyle(`.text-danger`, {
 
 // SOURCE CSS:
 // .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_VAR] --bs-text-opacity
 globalStyle(`${darklyScope}${textDark}`, {
-	color: "rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important",
+	color: `rgba(${varBsDarkRgb}, 1) !important`,
 })
 
 // SOURCE CSS:

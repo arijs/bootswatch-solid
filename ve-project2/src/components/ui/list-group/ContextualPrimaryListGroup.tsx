@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	listGroup,
@@ -25,7 +26,7 @@ const ContextualPrimaryListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemPrimary}`}
+					class={`${theme} ${link} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemPrimary}`}
 				>
 					A simple primary list group item
 				</a>

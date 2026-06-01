@@ -1,5 +1,5 @@
 import { useLocation } from '@solidjs/router'
-import { createEffect, type JSX } from 'solid-js'
+import { createRenderEffect, createSignal, Show, type JSX } from 'solid-js'
 import { bootstrapScope } from '../../themes/bootstrap/scope.css'
 import { briteScope } from '../../themes/brite/scope.css'
 import { ceruleanScope } from '../../themes/cerulean/scope.css'
@@ -67,6 +67,29 @@ const themeLoaders: Record<string, () => Promise<unknown>> = {
 
 // Tracks which themes have already been loaded (module-level, survives re-mounts).
 const loadedThemes = new Set<string>()
+const inFlightThemeLoads = new Map<string, Promise<void>>()
+
+async function ensureThemeLoaded(key: string): Promise<void> {
+	if (loadedThemes.has(key)) return
+
+	const existing = inFlightThemeLoads.get(key)
+	if (existing) {
+		await existing
+		return
+	}
+
+	const loader = themeLoaders[key] ?? themeLoaders.bootstrap
+	const loadPromise = loader()
+		.then(() => {
+			loadedThemes.add(key)
+		})
+		.finally(() => {
+			inFlightThemeLoads.delete(key)
+		})
+
+	inFlightThemeLoads.set(key, loadPromise)
+	await loadPromise
+}
 
 function resolveThemeKey(rawTheme: string | null | undefined): string {
 	switch (rawTheme) {
@@ -192,25 +215,26 @@ function resolveThemeClass(rawTheme: string | null | undefined): string {
 // theme vars, page canvas (background), and typography take effect.
 export function Ve2Shell(props: { children: JSX.Element }) {
 	const location = useLocation()
+	const [themeReady, setThemeReady] = createSignal(false)
 	const themeKey = () => {
 		const params = new URLSearchParams(location.search)
 		return resolveThemeKey(params.get('theme'))
 	}
 	const themeClass = () => resolveThemeClass(themeKey())
 
-	createEffect(
+	createRenderEffect(
 		() => themeKey(),
 		(key) => {
-			if (!loadedThemes.has(key)) {
-				loadedThemes.add(key)
-				themeLoaders[key]()
-			}
+			setThemeReady(false)
+			void ensureThemeLoaded(key).then(() => setThemeReady(true))
 		},
 	)
 
 	return (
-		<ThemeContext value={themeClass()}>
-			<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>{props.children}</div>
-		</ThemeContext>
+		<Show when={themeReady()}>
+			<ThemeContext value={themeClass()}>
+				<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>{props.children}</div>
+			</ThemeContext>
+		</Show>
 	)
 }

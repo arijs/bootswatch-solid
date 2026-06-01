@@ -87,14 +87,16 @@ export const INTERACTIVE_SCENARIOS = [
 		state: 'opened-tooltip',
 		kind: 'hover-visible',
 		selector: 'button.pwhook-tooltip-trigger',
-		visibleSelector: '.pwhook-tooltip.show',
+		visibleSelector: 'div.pwhook-tooltip[role="tooltip"]',
+		settleDelayMs: 450,
 	})),
 	...POPOVER_ROUTES.map((route) => ({
 		route,
 		state: 'opened-popover',
 		kind: 'click-visible',
 		selector: 'button.pwhook-popover-trigger',
-		visibleSelector: '.pwhook-popover.show',
+		visibleSelector: 'div.pwhook-popover[role="tooltip"]',
+		settleDelayMs: 450,
 	})),
 	...MODAL_ROUTES.map((route) => ({
 		route,

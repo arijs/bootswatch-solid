@@ -5,15 +5,17 @@ import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import { fade } from '../../../theme-contract/ui/modal/contract.css'
 import {
 frame,
 frameRow,
 justifyStart,
 tooltipArrow,
 tooltipInner,
+tooltipShow,
 tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
+import { createVeTooltip } from './ve-tooltip'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/tooltips',
@@ -25,12 +27,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 const EndTooltip: Component = () => {
 const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-const VeTooltip = (
-bootstrap.Tooltip as unknown as BootstrapWithDefaults<typeof bootstrap.Tooltip>
-).extendDefaultConfig({
-SELECTOR_ARROW: `.${tooltipArrow}`,
-SELECTOR_TOOLTIP_INNER: `.${tooltipInner}`,
-}) as typeof bootstrap.Tooltip
+const VeTooltip = createVeTooltip({ tooltipArrow, tooltipInner, tooltipShow })
 
 return (
 <div class={`bd-example ${theme} ${containerFluid} ${frame} ${frameRow} ${justifyStart}`}>
@@ -41,7 +38,7 @@ data-bs-toggle="tooltip"
 data-bs-custom-class="pwhook-tooltip"
 ref={(tooltip) =>
 new VeTooltip(tooltip, {
-template: `<div class="${tooltipVe} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+template: `<div class="${tooltipVe} ${fade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
 })
 }
 data-bs-placement="right"

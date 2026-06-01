@@ -1,13 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
 	varBsBorderWidth,
 	varBsBoxShadowSm,
-	varBsHeadingColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBackdropBg,
@@ -36,19 +33,12 @@ import {
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
 import {
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	h1,
-	h2,
-	h3,
 	h4,
 	h5,
-	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
+	alertBtnClose,
+} from '../../../../theme-contract/ui/alerts/contract.css'
 import {
 	fade,
 	flexWrap,
@@ -63,6 +53,7 @@ import {
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
+	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
@@ -75,251 +66,16 @@ import { cyborgScope } from '../../scope.css'
 
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${cyborgScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
 // SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`${cyborgScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${cyborgScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
 // SOURCE CSS:
 // .fade { transition: opacity 0.15s linear; }
 globalStyle(`${cyborgScope}${fade}`, {
@@ -328,12 +84,24 @@ globalStyle(`${cyborgScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${cyborgScope}${fade}:not(.show)`, {
+globalStyle(`${cyborgScope}${modal}${fade}:not(${modalShowHook})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .modal { --bs-modal-zindex: 1055; --bs-modal-width: 500px; --bs-modal-padding: 1rem; --bs-modal-margin: 0.5rem; --bs-modal-color: var(--bs-body-color); --bs-modal-bg: var(--bs-body-bg); --bs-modal-border-color: var(--bs-border-color-translucent); --bs-modal-border-width: var(--bs-border-width); --bs-modal-border-radius: var(--bs-border-radius-lg); --bs-modal-box-shadow: var(--bs-box-shadow-sm); --bs-modal-inner-border-radius: calc(var(--bs-border-radius-lg) - (var(--bs-border-width))); --bs-modal-header-padding-x: 1rem; --bs-modal-header-padding-y: 1rem; --bs-modal-header-padding: 1rem 1rem; --bs-modal-header-border-color: var(--bs-border-color); --bs-modal-header-border-width: var(--bs-border-width); --bs-modal-title-line-height: 1.5; --bs-modal-footer-gap: 0.5rem; --bs-modal-footer-bg: ; --bs-modal-footer-border-color: var(--bs-border-color); --bs-modal-footer-border-width: var(--bs-border-width); position: fixed; top: 0; left: 0; z-index: var(--bs-modal-zindex); display: none; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; outline: 0; }
+globalStyle(`${cyborgScope}${modal}${modalShowHook}`, {
+	display: "block",
+})
+
+globalStyle(`${cyborgScope}${modal}[aria-hidden="true"]`, {
+	display: "none !important",
+})
+
+globalStyle(`${cyborgScope}${modal}:not(${modalShowHook})`, {
+	display: "none !important",
+})
+
 globalStyle(`${cyborgScope}${modal}`, {
 	vars: {
 		[varBsModalZindex]: 1055,
@@ -341,21 +109,21 @@ globalStyle(`${cyborgScope}${modal}`, {
 		[varBsModalPadding]: "1rem",
 		[varBsModalMargin]: "0.5rem",
 		[varBsModalColor]: varBsBodyColor,
-		[varBsModalBg]: varBsBodyBg,
+		[varBsModalBg]: "#222",
 		[varBsModalBorderColor]: varBsBorderColorTranslucent,
 		[varBsModalBorderWidth]: varBsBorderWidth,
 		[varBsModalBorderRadius]: varBsBorderRadiusLg,
 		[varBsModalBoxShadow]: varBsBoxShadowSm,
-		[varBsModalInnerBorderRadius]: "calc(var(--bs-border-radius-lg) - (var(--bs-border-width)))",
+		[varBsModalInnerBorderRadius]: `calc(${varBsBorderRadiusLg} - (${varBsBorderWidth}))`,
 		[varBsModalHeaderPaddingX]: "1rem",
 		[varBsModalHeaderPaddingY]: "1rem",
 		[varBsModalHeaderPadding]: "1rem 1rem",
-		[varBsModalHeaderBorderColor]: varBsBorderColor,
+		[varBsModalHeaderBorderColor]: "#282828",
 		[varBsModalHeaderBorderWidth]: varBsBorderWidth,
 		[varBsModalTitleLineHeight]: 1.5,
 		[varBsModalFooterGap]: "0.5rem",
 		[varBsModalFooterBg]: "",
-		[varBsModalFooterBorderColor]: varBsBorderColor,
+		[varBsModalFooterBorderColor]: "#282828",
 		[varBsModalFooterBorderWidth]: varBsBorderWidth,
 	},
 	position: "fixed",
@@ -381,21 +149,21 @@ globalStyle(`${cyborgScope}${modalDialog}`, {
 
 // SOURCE CSS:
 // .modal.fade .modal-dialog { transform: translate(0, -50px); transition: transform 0.3s ease-out; }
-globalStyle(`${cyborgScope}${modal}.fade ${cyborgScope}${modalDialog}`, {
+globalStyle(`${cyborgScope}${modal}${fade} ${cyborgScope}${modalDialog}`, {
 	transform: "translate(0, -50px)",
 	transition: "transform 0.3s ease-out",
 })
 
 // SOURCE CSS:
 // .modal.show .modal-dialog { transform: none; }
-globalStyle(`${cyborgScope}${modal}.show ${cyborgScope}${modalDialog}`, {
+globalStyle(`${cyborgScope}${modal}${modalShowHook} ${cyborgScope}${modalDialog}`, {
 	transform: "none",
 })
 
 // SOURCE CSS:
 // .modal-dialog-scrollable { height: calc(100% - var(--bs-modal-margin) * 2); }
 globalStyle(`${cyborgScope}${modalDialogScrollable}`, {
-	height: "calc(100% - var(--bs-modal-margin) * 2)",
+	height: `calc(100% - ${varBsModalMargin} * 2)`,
 })
 
 // SOURCE CSS:
@@ -416,7 +184,7 @@ globalStyle(`${cyborgScope}${modalDialogScrollable} ${cyborgScope}${modalBody}`,
 globalStyle(`${cyborgScope}${modalDialogCentered}`, {
 	display: "flex",
 	alignItems: "center",
-	minHeight: "calc(100% - var(--bs-modal-margin) * 2)",
+	minHeight: `calc(100% - ${varBsModalMargin} * 2)`,
 })
 
 // SOURCE CSS:
@@ -430,7 +198,7 @@ globalStyle(`${cyborgScope}${modalContent}`, {
 	pointerEvents: "auto",
 	backgroundColor: varBsModalBg,
 	backgroundClip: "padding-box",
-	border: "var(--bs-modal-border-width) solid var(--bs-modal-border-color)",
+	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
 	outline: 0,
 })
@@ -454,14 +222,18 @@ globalStyle(`${cyborgScope}${modalBackdrop}`, {
 
 // SOURCE CSS:
 // .modal-backdrop.fade { opacity: 0; }
-globalStyle(`${cyborgScope}${modalBackdrop}.fade`, {
+globalStyle(`${cyborgScope}${modalBackdrop}${fade}:not(${modalShowHook})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .modal-backdrop.show { opacity: var(--bs-backdrop-opacity); }
-globalStyle(`${cyborgScope}${modalBackdrop}.show`, {
-	opacity: varBsBackdropOpacity,
+globalStyle(`${cyborgScope}${modalBackdrop}${fade}${modalShowHook}`, {
+	opacity: 0.5,
+})
+
+globalStyle(`${cyborgScope}${modalBackdrop}${modalShowHook}`, {
+	opacity: 0.5,
 })
 
 // SOURCE CSS:
@@ -471,25 +243,29 @@ globalStyle(`${cyborgScope}${modalHeader}`, {
 	flexShrink: 0,
 	alignItems: "center",
 	padding: varBsModalHeaderPadding,
-	borderBottom: "var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color)",
+	borderBottom: `${varBsModalHeaderBorderWidth} solid ${varBsModalHeaderBorderColor}`,
 	borderTopLeftRadius: varBsModalInnerBorderRadius,
 	borderTopRightRadius: varBsModalInnerBorderRadius,
 })
 
 // SOURCE CSS:
 // .modal-header .btn-close { padding: calc(var(--bs-modal-header-padding-y) * 0.5) calc(var(--bs-modal-header-padding-x) * 0.5); margin-top: calc(-0.5 * var(--bs-modal-header-padding-y)); margin-right: calc(-0.5 * var(--bs-modal-header-padding-x)); margin-bottom: calc(-0.5 * var(--bs-modal-header-padding-y)); margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`${cyborgScope}${modalHeader} .btn-close`, {
-	padding: "calc(var(--bs-modal-header-padding-y) * 0.5) calc(var(--bs-modal-header-padding-x) * 0.5)",
-	marginTop: "calc(-0.5 * var(--bs-modal-header-padding-y))",
-	marginRight: "calc(-0.5 * var(--bs-modal-header-padding-x))",
-	marginBottom: "calc(-0.5 * var(--bs-modal-header-padding-y))",
+globalStyle(`${cyborgScope}${modalHeader} ${cyborgScope}${alertBtnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
 	marginLeft: "auto",
 })
 
 // SOURCE CSS:
 // .modal-title { margin-bottom: 0; line-height: var(--bs-modal-title-line-height); }
-globalStyle(`${cyborgScope}${modalTitle}`, {
+globalStyle(`${cyborgScope}${h5}${modalTitle}`, {
+	marginBottom: 0,
+	lineHeight: varBsModalTitleLineHeight,
+})
+
+globalStyle(`${cyborgScope}${h4}${modalTitle}`, {
 	marginBottom: 0,
 	lineHeight: varBsModalTitleLineHeight,
 })
@@ -502,6 +278,11 @@ globalStyle(`${cyborgScope}${modalBody}`, {
 	padding: varBsModalPadding,
 })
 
+globalStyle(`${cyborgScope}${modalBody} p`, {
+	marginTop: 0,
+	marginBottom: "1rem",
+})
+
 // SOURCE CSS:
 // .modal-footer { display: flex; flex-shrink: 0; flex-wrap: wrap; align-items: center; justify-content: flex-end; padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5); background-color: var(--bs-modal-footer-bg); border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color); border-bottom-right-radius: var(--bs-modal-inner-border-radius); border-bottom-left-radius: var(--bs-modal-inner-border-radius); }
 globalStyle(`${cyborgScope}${modalFooter}`, {
@@ -510,9 +291,9 @@ globalStyle(`${cyborgScope}${modalFooter}`, {
 	flexWrap: "wrap",
 	alignItems: "center",
 	justifyContent: "flex-end",
-	padding: "calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5)",
+	padding: `calc(${varBsModalPadding} - ${varBsModalFooterGap} * 0.5)`,
 	backgroundColor: varBsModalFooterBg,
-	borderTop: "var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color)",
+	borderTop: `${varBsModalFooterBorderWidth} solid ${varBsModalFooterBorderColor}`,
 	borderBottomRightRadius: varBsModalInnerBorderRadius,
 	borderBottomLeftRadius: varBsModalInnerBorderRadius,
 })
@@ -521,7 +302,7 @@ globalStyle(`${cyborgScope}${modalFooter}`, {
 // .modal-footer > * { margin: calc(var(--bs-modal-footer-gap) * 0.5); }
 // [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
 globalStyle(`${cyborgScope}${modalFooter} > *`, {
-	margin: "calc(var(--bs-modal-footer-gap) * 0.5)",
+	margin: `calc(${varBsModalFooterGap} * 0.5)`,
 })
 
 // SOURCE CSS:
@@ -577,5 +358,11 @@ globalStyle(`${cyborgScope}${modalFullscreen} ${cyborgScope}${modalBody}`, {
 	overflowY: "auto",
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .modal.modal-static .modal-dialog
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .modal.modal-static .modal-dialog { transform: scale(1.02); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".modal-static" — no contract mapping
+globalStyle(`${cyborgScope}${modal}.modal-static ${cyborgScope}${modalDialog}`, {
+	transform: "scale(1.02)",
+})

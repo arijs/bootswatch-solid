@@ -1,7 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { scrollspyExample } from '../../../../theme-contract/ui/scrollspy/contract.css'
 import { darklyScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for darkly/ui/scrollspy
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-export {}
+globalStyle(`${darklyScope}${scrollspyExample}`, {
+	position: "relative",
+	height: "200px",
+	marginTop: "0.5rem",
+	overflow: "auto",
+})

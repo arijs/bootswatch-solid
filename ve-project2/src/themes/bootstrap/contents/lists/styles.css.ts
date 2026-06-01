@@ -11,8 +11,7 @@ import { bootstrapScope } from '../../scope.css'
 
 // SOURCE CSS:
 // ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
+globalStyle(`${bootstrapScope}${listUnstyled}`, {
 	paddingLeft: "2rem",
 	marginTop: 0,
 	marginBottom: "1rem",
@@ -20,17 +19,8 @@ globalStyle(`ol`, {
 
 // SOURCE CSS:
 // ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
+globalStyle(`${bootstrapScope}${listUnstyled}`, {
 	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
 	marginTop: 0,
 	marginBottom: "1rem",
 })
@@ -56,33 +46,25 @@ globalStyle(`${bootstrapScope}${listInlineItem}:not(:last-child)`, {
 
 // SOURCE CSS:
 // ol ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol ol`, {
+globalStyle(`${bootstrapScope}${listUnstyled} ${bootstrapScope}${listUnstyled}`, {
 	marginBottom: 0,
 })
 
 // SOURCE CSS:
 // ul ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul ul`, {
+globalStyle(`${bootstrapScope}${listUnstyled} ${bootstrapScope}${listUnstyled}`, {
 	marginBottom: 0,
 })
 
 // SOURCE CSS:
 // ol ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ol ul`, {
+globalStyle(`${bootstrapScope}${listUnstyled} ${bootstrapScope}${listUnstyled}`, {
 	marginBottom: 0,
 })
 
 // SOURCE CSS:
 // ul ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ul ol`, {
+globalStyle(`${bootstrapScope}${listUnstyled} ${bootstrapScope}${listUnstyled}`, {
 	marginBottom: 0,
 })
 

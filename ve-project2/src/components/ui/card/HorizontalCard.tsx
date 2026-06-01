@@ -25,46 +25,45 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'utilities',
 ]
 
-const HorizontalCard: Component = () => {
+const HorizontalCard: Component<{ embedded?: boolean }> = (props) => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-	return (
-		<div class={`bd-example-ve2 ${theme}`}>
-			<div class={`${theme} ${card}`}>
-				<div class={`${theme} ${row} ${g0}`}>
-					<div class={`${theme} ${colMd4}`}>
-						<svg
-							class={`bd-placeholder-img ${theme} ${bdPlaceholderImg} ${mediaMiddle}`}
-							width="100%"
-							height="250"
-							xmlns="http://www.w3.org/2000/svg"
-							aria-label="Placeholder: Image"
-							preserveAspectRatio="xMidYMid slice"
-							tabindex="0"
-						>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#868e96" />
-							<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
-								Image
-							</text>
-						</svg>
-					</div>
-					<div class={`${theme} ${colMd8}`}>
-						<div class={`${theme} ${cardBody}`}>
-							<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
-							<p class={`${theme} ${cardText} ${paragraph}`}>
-								This is a wider card with supporting text below as a natural lead-in
-								to additional content. This content is a little bit longer.
-							</p>
-							<p class={`${theme} ${cardText} ${paragraph}`}>
-								<small class={`${theme} ${small} ${textMuted}`}>Last updated 3 mins ago</small>
-							</p>
-						</div>
+	const cardMarkup = (
+		<div class={`${theme} ${card}`}>
+			<div class={`${theme} ${row} ${g0}`}>
+				<div class={`${theme} ${colMd4}`}>
+					<svg
+						class={`bd-placeholder-img ${theme} ${bdPlaceholderImg} ${mediaMiddle}`}
+						width="100%"
+						height="250"
+						xmlns="http://www.w3.org/2000/svg"
+						aria-label="Placeholder: Image"
+						preserveAspectRatio="xMidYMid slice"
+						tabindex="0"
+					>
+						<title>Placeholder</title>
+						<rect width="100%" height="100%" fill="#868e96" />
+						<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+							Image
+						</text>
+					</svg>
+				</div>
+				<div class={`${theme} ${colMd8}`}>
+					<div class={`${theme} ${cardBody}`}>
+						<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
+						<p class={`${theme} ${cardText} ${paragraph}`}>
+							This is a wider card with supporting text below as a natural lead-in
+							to additional content. This content is a little bit longer.
+						</p>
+						<p class={`${theme} ${cardText} ${paragraph}`}>
+							<small class={`${theme} ${small} ${textMuted}`}>Last updated 3 mins ago</small>
+						</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	)
+	return props.embedded ? cardMarkup : <div class={`bd-example-ve2 ${theme}`}>{cardMarkup}</div>
 }
 
 export default HorizontalCard

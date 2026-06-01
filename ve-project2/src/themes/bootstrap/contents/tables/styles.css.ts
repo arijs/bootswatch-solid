@@ -49,65 +49,6 @@ import { bootstrapScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// table { caption-side: bottom; border-collapse: collapse; }
-globalStyle(`${bootstrapScope}${tableElement}`, {
-	captionSide: "bottom",
-	borderCollapse: "collapse",
-})
-
-// SOURCE CSS:
-// th { text-align: -webkit-match-parent; border-color: inherit; border-style: solid; border-width: 0; }
-globalStyle(`${bootstrapScope}${tableHeaderCell}`, {
-	textAlign: "-webkit-match-parent",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// thead { border-color: inherit; border-style: solid; border-width: 0; }
-globalStyle(`${bootstrapScope}${tableSection}`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// tbody { border-color: inherit; border-style: solid; border-width: 0; }
-globalStyle(`${bootstrapScope}${tableSection}`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// tfoot { border-color: inherit; border-style: solid; border-width: 0; }
-globalStyle(`${bootstrapScope}${tableSection}`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// tr { border-color: inherit; border-style: solid; border-width: 0; }
-globalStyle(`${bootstrapScope}${tableRow}`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// td { border-color: inherit; border-style: solid; border-width: 0; }
-globalStyle([
-	`${bootstrapScope}${tableCell}`,
-	`${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
 // .table { --bs-table-color-type: initial; --bs-table-bg-type: initial; --bs-table-color-state: initial; --bs-table-bg-state: initial; --bs-table-color: var(--bs-emphasis-color); --bs-table-bg: var(--bs-body-bg); --bs-table-border-color: var(--bs-border-color); --bs-table-accent-bg: transparent; --bs-table-striped-color: var(--bs-emphasis-color); --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05); --bs-table-active-color: var(--bs-emphasis-color); --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1); --bs-table-hover-color: var(--bs-emphasis-color); --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075); width: 100%; margin-bottom: 1rem; vertical-align: top; border-color: var(--bs-table-border-color); }
 globalStyle(`${bootstrapScope}${table}`, {
 	vars: {
@@ -132,12 +73,75 @@ globalStyle(`${bootstrapScope}${table}`, {
 	borderColor: varBsTableBorderColor,
 })
 
+// Reboot: table element border model (components stamp tableElement on <table>).
+globalStyle(`${bootstrapScope}${tableElement}`, {
+	borderCollapse: 'collapse',
+	captionSide: 'bottom',
+})
+
+// Direct cell paint — compound table>section>row>cell selectors fail VE scope chaining in globalStyle.
+// SOURCE CSS:
+// .table > :not(caption) > * > * { padding: 0.5rem 0.5rem; color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color))); background-color: var(--bs-table-bg); border-bottom-width: var(--bs-border-width); box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg))); }
+globalStyle(`${bootstrapScope}${tableHeaderCell}`, {
+	padding: '0.5rem 0.5rem',
+	textAlign: 'left',
+	borderBottomWidth: varBsBorderWidth,
+	borderBottomStyle: 'solid',
+	color: 'var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)))',
+	backgroundColor: varBsTableBg,
+	boxShadow:
+		'inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)))',
+})
+
+// SOURCE CSS:
+// .table > :not(caption) > * > * { padding: 0.5rem 0.5rem; color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color))); background-color: var(--bs-table-bg); border-bottom-width: var(--bs-border-width); box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg))); }
+globalStyle(`${bootstrapScope}${tableCell}`, {
+	padding: '0.5rem 0.5rem',
+	borderBottomWidth: varBsBorderWidth,
+	borderBottomStyle: 'solid',
+	color: 'var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)))',
+	backgroundColor: varBsTableBg,
+	boxShadow:
+		'inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)))',
+})
+
+// SOURCE CSS:
+// .table-sm > :not(caption) > * > * { padding: 0.25rem 0.25rem; }
+globalStyle(`${bootstrapScope}${tableSm} ${bootstrapScope}${tableHeaderCell}`, {
+	padding: '0.25rem 0.25rem',
+})
+
+// SOURCE CSS:
+// .table-sm > :not(caption) > * > * { padding: 0.25rem 0.25rem; }
+globalStyle(`${bootstrapScope}${tableSm} ${bootstrapScope}${tableCell}`, {
+	padding: '0.25rem 0.25rem',
+})
+
+globalStyle(`${bootstrapScope}${tableBordered} > ${bootstrapScope}${tableSection}`, {
+	borderWidth: `${varBsBorderWidth} 0`,
+	borderStyle: 'solid',
+})
+
+// SOURCE CSS:
+// .table-bordered > :not(caption) > * > * { border-width: 0 var(--bs-border-width); }
+globalStyle(`${bootstrapScope}${tableBordered} ${bootstrapScope}${tableHeaderCell}`, {
+	borderWidth: `0 ${varBsBorderWidth}`,
+	borderStyle: 'solid',
+})
+
+// SOURCE CSS:
+// .table-bordered > :not(caption) > * > * { border-width: 0 var(--bs-border-width); }
+globalStyle(`${bootstrapScope}${tableBordered} ${bootstrapScope}${tableCell}`, {
+	borderWidth: `0 ${varBsBorderWidth}`,
+	borderStyle: 'solid',
+})
+
 // SOURCE CSS:
 // .table > :not(caption) > * > * { padding: 0.5rem 0.5rem; color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color))); background-color: var(--bs-table-bg); border-bottom-width: var(--bs-border-width); box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg))); }
 globalStyle([
-	`${bootstrapScope}${table} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
-	`${bootstrapScope}${table} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
+	`${bootstrapScope}${table} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
+	`${bootstrapScope}${table} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
+], {
 	padding: "0.5rem 0.5rem",
 	color: "var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)))",
 	backgroundColor: varBsTableBg,
@@ -160,9 +164,9 @@ globalStyle(`${bootstrapScope}${table} > ${bootstrapScope}${tableSection}`, {
 // SOURCE CSS:
 // .table-borderless > :not(caption) > * > * { border-bottom-width: 0; }
 globalStyle([
-	`${bootstrapScope}${tableBorderless} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
-	`${bootstrapScope}${tableBorderless} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
+	`${bootstrapScope}${tableBorderless} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
+	`${bootstrapScope}${tableBorderless} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
+], {
 	borderBottomWidth: 0,
 })
 
@@ -195,7 +199,7 @@ globalStyle(`${bootstrapScope}${tableDark}`, {
 globalStyle([
 	`${bootstrapScope}${tableHover} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow}:hover > ${bootstrapScope}${tableCell}`,
 	`${bootstrapScope}${tableHover} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow}:hover > ${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
+], {
 	vars: {
 		[varBsTableColorState]: varBsTableHoverColor,
 		[varBsTableBgState]: varBsTableHoverBg,
@@ -331,9 +335,9 @@ globalStyle(`${bootstrapScope}${tableWarning}`, {
 // SOURCE CSS:
 // .table-sm > :not(caption) > * > * { padding: 0.25rem 0.25rem; }
 globalStyle([
-	`${bootstrapScope}${tableSm} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
-	`${bootstrapScope}${tableSm} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
+	`${bootstrapScope}${tableSm} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
+	`${bootstrapScope}${tableSm} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
+], {
 	padding: "0.25rem 0.25rem",
 })
 
@@ -346,9 +350,9 @@ globalStyle(`${bootstrapScope}${tableBordered} > :not(caption) > ${bootstrapScop
 // SOURCE CSS:
 // .table-bordered > :not(caption) > * > * { border-width: 0 var(--bs-border-width); }
 globalStyle([
-	`${bootstrapScope}${tableBordered} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
-	`${bootstrapScope}${tableBordered} > :not(caption) > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
+	`${bootstrapScope}${tableBordered} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableCell}`,
+	`${bootstrapScope}${tableBordered} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow} > ${bootstrapScope}${tableHeaderCell}`,
+], {
 	borderWidth: `0 ${varBsBorderWidth}`,
 })
 
@@ -357,7 +361,7 @@ globalStyle([
 globalStyle([
 	`${bootstrapScope}${tableStriped} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow}:nth-of-type(2n+1) > ${bootstrapScope}${tableCell}`,
 	`${bootstrapScope}${tableStriped} > ${bootstrapScope}${tableSection} > ${bootstrapScope}${tableRow}:nth-of-type(2n+1) > ${bootstrapScope}${tableHeaderCell}`,
-].join(','), {
+], {
 	vars: {
 		[varBsTableColorType]: varBsTableStripedColor,
 		[varBsTableBgType]: varBsTableStripedBg,

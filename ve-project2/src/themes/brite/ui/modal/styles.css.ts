@@ -3,7 +3,6 @@ import {
 	varBsBodyBg,
 	varBsBodyColor,
 	varBsBorderColor,
-	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
 	varBsBorderWidth,
 	varBsBoxShadowSm,
@@ -36,9 +35,6 @@ import {
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
 import {
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	h1,
 	h2,
 	h3,
@@ -49,9 +45,6 @@ import {
 import {
 	alertBtnClose,
 } from '../../../../theme-contract/ui/alerts/contract.css'
-import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	fade,
 	flexWrap,
@@ -88,31 +81,8 @@ globalStyle(`${briteScope}${h6}`, {
 })
 
 // SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
 globalStyle(`${briteScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.09375rem",
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -133,31 +103,8 @@ globalStyle(`${briteScope}${h4}`, {
 })
 
 // SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: `calc(1.25625rem + 0.075vw)`,
-})
-
-// SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${briteScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -176,17 +123,6 @@ globalStyle(`${briteScope}${h2}`, {
 })
 
 // SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${briteScope}${h1}`, {
 	marginTop: 0,
@@ -194,134 +130,6 @@ globalStyle(`${briteScope}${h1}`, {
 	fontWeight: 500,
 	lineHeight: 1.2,
 	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${briteScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
 })
 
 // SOURCE CSS:
@@ -346,7 +154,7 @@ globalStyle(`${briteScope}${modal}`, {
 		[varBsModalMargin]: "0.5rem",
 		[varBsModalColor]: varBsBodyColor,
 		[varBsModalBg]: varBsBodyBg,
-		[varBsModalBorderColor]: varBsBorderColorTranslucent,
+		[varBsModalBorderColor]: "#000",
 		[varBsModalBorderWidth]: varBsBorderWidth,
 		[varBsModalBorderRadius]: varBsBorderRadiusLg,
 		[varBsModalBoxShadow]: varBsBoxShadowSm,
@@ -437,6 +245,7 @@ globalStyle(`${briteScope}${modalContent}`, {
 	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
 	outline: 0,
+	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -578,4 +387,13 @@ globalStyle(`${briteScope}${modalFullscreen} ${briteScope}${modalFooter}`, {
 // .modal-fullscreen .modal-body { overflow-y: auto; }
 globalStyle(`${briteScope}${modalFullscreen} ${briteScope}${modalBody}`, {
 	overflowY: "auto",
+})
+
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .modal-footer > * { margin: calc(var(--bs-modal-footer-gap) * 0.5); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
+globalStyle(`${briteScope}${modalFooter} > *`, {
+	margin: `calc(${varBsModalFooterGap} * 0.5)`,
 })

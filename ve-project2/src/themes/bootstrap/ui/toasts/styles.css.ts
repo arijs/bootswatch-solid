@@ -36,26 +36,15 @@ import {
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
 import {
-	small,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	bdPlaceholderImg,
 	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	alertBtnClose,
+	alertBtnCloseDisabledHook,
 } from '../../../../theme-contract/ui/alerts/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	fade,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import {
-	placeholderIcon,
 	toast,
 	toastBody,
-	toastBrand,
 	toastFade,
 	toastHeader,
 	toastShow,
@@ -72,152 +61,6 @@ import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/toasts
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// b { font-weight: bolder; }
-globalStyle(`${bootstrapScope}${toastBrand}`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// strong { font-weight: bolder; }
-globalStyle(`${bootstrapScope}${toastBrand}`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// small { font-size: 0.875em; }
-globalStyle(`${bootstrapScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-globalStyle(`${bootstrapScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-globalStyle(`${bootstrapScope}${bdPlaceholderImg}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-globalStyle(`${bootstrapScope}${placeholderIcon}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
 
 // SOURCE CSS:
 // .fade { transition: opacity 0.15s linear; }
@@ -283,8 +126,7 @@ globalStyle(`${bootstrapScope}${alertBtnClose}:disabled`, {
 
 // SOURCE CSS:
 // .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${bootstrapScope}${alertBtnClose}.disabled`, {
+globalStyle(`${bootstrapScope}${alertBtnClose}${alertBtnCloseDisabledHook}`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",

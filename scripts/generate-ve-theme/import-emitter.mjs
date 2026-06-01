@@ -46,19 +46,26 @@ export function collectUsedSymbols(code, scopeName, registry) {
 		}
 	}
 
-	// Bare contract identifiers used as property values (e.g. fontFamily: varBsBtnFontFamily)
+	// Bare contract identifiers in emitted code (ignore comment-only mentions).
+	const codeWithoutComments = code.replace(/\/\/.*$/gm, '')
 	for (const sym of registry.allContracts) {
 		const re = new RegExp(`\\b${sym}\\b`)
-		if (re.test(code)) contractSymbols.add(sym)
+		if (re.test(codeWithoutComments)) contractSymbols.add(sym)
 	}
 
 	return { varSymbols, contractSymbols }
 }
 
-function groupVarsByImportPath(varSymbols, registry, basePath) {
+function groupVarsByImportPath(varSymbols, registry, basePath, generatingFamily) {
 	const groups = new Map()
 	for (const sym of varSymbols) {
-		const family = registry.symbolToFamily.get(sym) ?? 'global'
+		let family = registry.symbolToFamily.get(sym) ?? 'global'
+		if (
+			generatingFamily === 'contents/basic' &&
+			LAYOUT_CONTRACT_SYMBOLS.has(sym)
+		) {
+			family = 'layout'
+		}
 		const rel = getVarsImportPath(family)
 		if (!rel) continue
 		const full = basePath + rel
@@ -68,16 +75,30 @@ function groupVarsByImportPath(varSymbols, registry, basePath) {
 	return groups
 }
 
-function groupContractsByImportPath(contractSymbols, registry, basePath) {
+/** Layout contracts scanned into contents/basic family — import from layout module, not basic/contract.css. */
+const LAYOUT_CONTRACT_IMPORT = 'layout/container.css'
+
+const LAYOUT_CONTRACT_SYMBOLS = new Set(['containerFluid', 'varBsGutterX', 'varBsGutterY'])
+
+/** When the same contract symbol exists in forms and utilities, pick the intended module. */
+function resolveContractImportFamily(sym, registry, generatingFamily) {
+	if (LAYOUT_CONTRACT_SYMBOLS.has(sym)) return 'layout'
+	const candidates = []
+	for (const [fam, syms] of registry.contractsByFamily) {
+		if (syms.has(sym)) candidates.push(fam)
+	}
+	if (candidates.length === 0) return null
+	if (candidates.length === 1) return candidates[0]
+	if (generatingFamily && candidates.includes(generatingFamily)) return generatingFamily
+	if (generatingFamily === 'forms' && candidates.includes('forms')) return 'forms'
+	if (candidates.includes('utilities')) return 'utilities'
+	return candidates[0]
+}
+
+function groupContractsByImportPath(contractSymbols, registry, basePath, generatingFamily) {
 	const groups = new Map()
 	for (const sym of contractSymbols) {
-		let family = null
-		for (const [fam, syms] of registry.contractsByFamily) {
-			if (syms.has(sym)) {
-				family = fam
-				break
-			}
-		}
+		const family = resolveContractImportFamily(sym, registry, generatingFamily)
 		if (!family) continue
 		const rel = getContractImportPath(family)
 		if (!rel) continue
@@ -102,12 +123,17 @@ export function emitFamilyImports({ code, family, scopeName, registry }) {
 
 	const lines = ["import { globalStyle } from '@vanilla-extract/css'"]
 
-	const varGroups = groupVarsByImportPath(varSymbols, registry, basePath)
+	const varGroups = groupVarsByImportPath(varSymbols, registry, basePath, family)
 	for (const [importPath, syms] of [...varGroups.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
 		lines.push(formatImportBlock(syms, importPath))
 	}
 
-	const contractGroups = groupContractsByImportPath(contractSymbols, registry, basePath)
+	const contractGroups = groupContractsByImportPath(
+		contractSymbols,
+		registry,
+		basePath,
+		family,
+	)
 	for (const [importPath, syms] of [...contractGroups.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
 		lines.push(formatImportBlock(syms, importPath))
 	}

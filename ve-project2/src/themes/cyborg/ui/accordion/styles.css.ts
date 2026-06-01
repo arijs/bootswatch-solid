@@ -5,9 +5,6 @@ import {
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsCodeColor,
-	varBsFontMonospace,
-	varBsHeadingColor,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
@@ -35,24 +32,21 @@ import {
 	varBsAccordionTransition,
 } from '../../../../theme-contract/ui/accordion/_vars.css'
 import {
-	h1,
-	h2,
-	h3,
 	h4,
-	h5,
-	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
+	accordionButtonCollapsed,
 	accordionCollapse,
+	accordionCollapseShow,
 	accordionHeader,
 	accordionItem,
 } from '../../../../theme-contract/ui/accordion/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
+	collapse,
+} from '../../../../theme-contract/ui/navbar/contract.css'
 import { cyborgScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/accordion
@@ -60,294 +54,19 @@ import { cyborgScope } from '../../scope.css'
 
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`${cyborgScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// b { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "b" — map to a contract class
-globalStyle(`b`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// strong { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "strong" — map to a contract class
-globalStyle(`strong`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// pre { font-family: var(--bs-font-monospace); font-size: 1em; }
-// [UNMAPPED_SELECTOR] element selector "pre" — map to a contract class
-globalStyle(`pre`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "1em",
-})
-
-// SOURCE CSS:
-// code { font-family: var(--bs-font-monospace); font-size: 0.875em; color: var(--bs-code-color); word-wrap: break-word; }
-// [UNMAPPED_SELECTOR] element selector "code" — map to a contract class
-globalStyle(`code`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "0.875em",
-	color: varBsCodeColor,
-	wordWrap: "break-word",
-})
-
-// SOURCE CSS:
-// kbd { font-family: var(--bs-font-monospace); font-size: 1em; }
-// [UNMAPPED_SELECTOR] element selector "kbd" — map to a contract class
-globalStyle(`kbd`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "1em",
-})
-
-// SOURCE CSS:
-// samp { font-family: var(--bs-font-monospace); font-size: 1em; }
-// [UNMAPPED_SELECTOR] element selector "samp" — map to a contract class
-globalStyle(`samp`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "1em",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
 // SOURCE CSS:
 // .collapse:not(.show) { display: none; }
-// [UNMAPPED_SELECTOR] class ".collapse" — no contract mapping
-globalStyle(`.collapse:not(.show)`, {
+globalStyle(`${cyborgScope}${collapse}:not(${accordionCollapseShow})`, {
 	display: "none",
 })
 
@@ -361,17 +80,17 @@ globalStyle(`${cyborgScope}${accordion}`, {
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
-		[varBsAccordionInnerBorderRadius]: "calc(var(--bs-border-radius) - (var(--bs-border-width)))",
+		[varBsAccordionInnerBorderRadius]: `calc(${varBsBorderRadius} - (${varBsBorderWidth}))`,
 		[varBsAccordionBtnPaddingX]: "1.25rem",
 		[varBsAccordionBtnPaddingY]: "1rem",
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
-		[varBsAccordionBtnIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23212529' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23adafae' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnIconWidth]: "1.25rem",
 		[varBsAccordionBtnIconTransform]: "rotate(-180deg)",
 		[varBsAccordionBtnIconTransition]: "transform 0.2s ease-in-out",
-		[varBsAccordionBtnActiveIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23052c65' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+		[varBsAccordionBtnActiveIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23114056' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(42, 159, 214, 0.25)",
 		[varBsAccordionBodyPaddingX]: "1.25rem",
 		[varBsAccordionBodyPaddingY]: "1rem",
 		[varBsAccordionActiveColor]: varBsPrimaryTextEmphasis,
@@ -386,7 +105,7 @@ globalStyle(`${cyborgScope}${accordionButton}`, {
 	display: "flex",
 	alignItems: "center",
 	width: "100%",
-	padding: "var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x)",
+	padding: `${varBsAccordionBtnPaddingY} ${varBsAccordionBtnPaddingX}`,
 	fontSize: "1rem",
 	color: varBsAccordionBtnColor,
 	textAlign: "left",
@@ -399,15 +118,15 @@ globalStyle(`${cyborgScope}${accordionButton}`, {
 
 // SOURCE CSS:
 // .accordion-button:not(.collapsed) { color: var(--bs-accordion-active-color); background-color: var(--bs-accordion-active-bg); box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color); }
-globalStyle(`${cyborgScope}${accordionButton}:not(.collapsed)`, {
+globalStyle(`${cyborgScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
-	boxShadow: "inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color)",
+	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
 // SOURCE CSS:
 // .accordion-button:not(.collapsed)::after { background-image: var(--bs-accordion-btn-active-icon); transform: var(--bs-accordion-btn-icon-transform); }
-globalStyle(`${cyborgScope}${accordionButton}:not(.collapsed)::after`, {
+globalStyle(`${cyborgScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -445,13 +164,16 @@ globalStyle(`${cyborgScope}${accordionButton}:focus`, {
 globalStyle(`${cyborgScope}${accordionHeader}`, {
 	marginBottom: 0,
 })
+globalStyle(`${cyborgScope}${accordionHeader}${h4}`, {
+	marginBottom: 0,
+})
 
 // SOURCE CSS:
 // .accordion-item { color: var(--bs-accordion-color); background-color: var(--bs-accordion-bg); border: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color); }
 globalStyle(`${cyborgScope}${accordionItem}`, {
 	color: varBsAccordionColor,
 	backgroundColor: varBsAccordionBg,
-	border: "var(--bs-accordion-border-width) solid var(--bs-accordion-border-color)",
+	border: `${varBsAccordionBorderWidth} solid ${varBsAccordionBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -483,7 +205,7 @@ globalStyle(`${cyborgScope}${accordionItem}:last-of-type`, {
 
 // SOURCE CSS:
 // .accordion-item:last-of-type > .accordion-header .accordion-button.collapsed { border-bottom-right-radius: var(--bs-accordion-inner-border-radius); border-bottom-left-radius: var(--bs-accordion-inner-border-radius); }
-globalStyle(`${cyborgScope}${accordionItem}:last-of-type > ${cyborgScope}${accordionHeader} ${cyborgScope}${accordionButton}.collapsed`, {
+globalStyle(`${cyborgScope}${accordionItem}:last-of-type > ${cyborgScope}${accordionHeader} ${cyborgScope}${accordionButton}${accordionButtonCollapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -498,13 +220,51 @@ globalStyle(`${cyborgScope}${accordionItem}:last-of-type > ${cyborgScope}${accor
 // SOURCE CSS:
 // .accordion-body { padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x); }
 globalStyle(`${cyborgScope}${accordionBody}`, {
-	padding: "var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x)",
+	padding: `${varBsAccordionBodyPaddingY} ${varBsAccordionBodyPaddingX}`,
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .accordion-flush > .accordion-item
-// [DELTA] unmapped selector: .accordion-flush > .accordion-item:first-child
-// [DELTA] unmapped selector: .accordion-flush > .accordion-item:last-child
-// [DELTA] unmapped selector: .accordion-flush > .accordion-item > .accordion-collapse
-// [DELTA] unmapped selector: .accordion-flush > .accordion-item > .accordion-header .accordion-button
-// [DELTA] unmapped selector: .accordion-flush > .accordion-item > .accordion-header .accordion-button.collapsed
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .accordion-flush > .accordion-item { border-right: 0; border-left: 0; border-radius: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".accordion-flush" — no contract mapping
+globalStyle(`.accordion-flush > ${cyborgScope}${accordionItem}`, {
+	borderRight: 0,
+	borderLeft: 0,
+	borderRadius: 0,
+})
+// SOURCE CSS:
+// .accordion-flush > .accordion-item:first-child { border-top: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".accordion-flush" — no contract mapping
+globalStyle(`.accordion-flush > ${cyborgScope}${accordionItem}:first-child`, {
+	borderTop: 0,
+})
+// SOURCE CSS:
+// .accordion-flush > .accordion-item:last-child { border-bottom: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".accordion-flush" — no contract mapping
+globalStyle(`.accordion-flush > ${cyborgScope}${accordionItem}:last-child`, {
+	borderBottom: 0,
+})
+// SOURCE CSS:
+// .accordion-flush > .accordion-item > .accordion-collapse { border-radius: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".accordion-flush" — no contract mapping
+globalStyle(`.accordion-flush > ${cyborgScope}${accordionItem} > ${cyborgScope}${accordionCollapse}`, {
+	borderRadius: 0,
+})
+// SOURCE CSS:
+// .accordion-flush > .accordion-item > .accordion-header .accordion-button { border-radius: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".accordion-flush" — no contract mapping
+globalStyle(`.accordion-flush > ${cyborgScope}${accordionItem} > ${cyborgScope}${accordionHeader} ${cyborgScope}${accordionButton}`, {
+	borderRadius: 0,
+})
+// SOURCE CSS:
+// .accordion-flush > .accordion-item > .accordion-header .accordion-button.collapsed { border-radius: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".accordion-flush" — no contract mapping
+globalStyle(`.accordion-flush > ${cyborgScope}${accordionItem} > ${cyborgScope}${accordionHeader} ${cyborgScope}${accordionButton}${accordionButtonCollapsed}`, {
+	borderRadius: 0,
+})

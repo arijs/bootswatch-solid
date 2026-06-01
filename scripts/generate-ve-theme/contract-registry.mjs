@@ -58,6 +58,7 @@ function inferFamilyFromPath(filePath) {
 	const rel = path.relative(VE2_CONTRACT_ROOT, filePath).replace(/\\/g, '/')
 	if (rel === '_vars.css.ts') return 'global'
 	if (rel === 'theme-contract.css.ts') return 'root-contract'
+	if (rel.startsWith('layout/')) return 'layout'
 	if (rel.startsWith('forms/')) return 'forms'
 	if (rel.startsWith('utilities/')) return 'utilities'
 	if (rel.startsWith('contents/')) {
@@ -69,7 +70,6 @@ function inferFamilyFromPath(filePath) {
 		const parts = rel.split('/')
 		return `ui/${parts[1]}`
 	}
-	if (rel.startsWith('layout/')) return 'contents/basic'
 	return null
 }
 
@@ -157,6 +157,7 @@ export async function buildContractRegistry() {
 }
 
 export function getContractImportPath(family) {
+	if (family === 'layout') return 'layout/container.css'
 	if (family === 'forms') return 'forms/contract.css'
 	if (family === 'utilities') return 'utilities/contract.css'
 	if (family.startsWith('contents/')) {
@@ -171,6 +172,7 @@ export function getContractImportPath(family) {
 }
 
 export function getVarsImportPath(family) {
+	if (family === 'layout') return 'layout/container.css'
 	if (family === 'global') return '_vars.css'
 	if (family === 'forms') return 'forms/_vars.css'
 	if (family.startsWith('ui/')) {

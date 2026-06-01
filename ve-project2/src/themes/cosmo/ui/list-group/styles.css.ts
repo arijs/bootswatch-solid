@@ -18,8 +18,6 @@ import {
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightTextEmphasis,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryTextEmphasis,
@@ -56,15 +54,14 @@ import {
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
 	listGroupItemAction,
+	listGroupItemActive,
 	listGroupItemDanger,
 	listGroupItemDark,
+	listGroupItemDisabled,
 	listGroupItemInfo,
 	listGroupItemLight,
 	listGroupItemPrimary,
@@ -76,39 +73,6 @@ import { cosmoScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/list-group
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
 
 // SOURCE CSS:
 // .list-group { --bs-list-group-color: var(--bs-body-color); --bs-list-group-bg: var(--bs-body-bg); --bs-list-group-border-color: var(--bs-border-color); --bs-list-group-border-width: var(--bs-border-width); --bs-list-group-border-radius: var(--bs-border-radius); --bs-list-group-item-padding-x: 1rem; --bs-list-group-item-padding-y: 0.5rem; --bs-list-group-action-color: var(--bs-secondary-color); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-tertiary-bg); --bs-list-group-action-active-color: var(--bs-body-color); --bs-list-group-action-active-bg: var(--bs-secondary-bg); --bs-list-group-disabled-color: var(--bs-secondary-color); --bs-list-group-disabled-bg: var(--bs-body-bg); --bs-list-group-active-color: #fff; --bs-list-group-active-bg: #0d6efd; --bs-list-group-active-border-color: #0d6efd; display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0; border-radius: var(--bs-list-group-border-radius); }
@@ -129,8 +93,8 @@ globalStyle(`${cosmoScope}${listGroup}`, {
 		[varBsListGroupDisabledColor]: varBsSecondaryColor,
 		[varBsListGroupDisabledBg]: varBsBodyBg,
 		[varBsListGroupActiveColor]: "#fff",
-		[varBsListGroupActiveBg]: "#0d6efd",
-		[varBsListGroupActiveBorderColor]: "#0d6efd",
+		[varBsListGroupActiveBg]: "#2780e3",
+		[varBsListGroupActiveBorderColor]: "#2780e3",
 	},
 	display: "flex",
 	flexDirection: "column",
@@ -144,11 +108,11 @@ globalStyle(`${cosmoScope}${listGroup}`, {
 globalStyle(`${cosmoScope}${listGroupItem}`, {
 	position: "relative",
 	display: "block",
-	padding: "var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x)",
+	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
 	color: varBsListGroupColor,
 	textDecoration: "none",
 	backgroundColor: varBsListGroupBg,
-	border: "var(--bs-list-group-border-width) solid var(--bs-list-group-border-color)",
+	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -156,6 +120,13 @@ globalStyle(`${cosmoScope}${listGroupItem}`, {
 globalStyle(`${cosmoScope}${listGroupItem}:first-child`, {
 	borderTopLeftRadius: "inherit",
 	borderTopRightRadius: "inherit",
+	position: "relative",
+	display: "block",
+	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
+	color: varBsListGroupColor,
+	textDecoration: "none",
+	backgroundColor: varBsListGroupBg,
+	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -163,11 +134,18 @@ globalStyle(`${cosmoScope}${listGroupItem}:first-child`, {
 globalStyle(`${cosmoScope}${listGroupItem}:last-child`, {
 	borderBottomRightRadius: "inherit",
 	borderBottomLeftRadius: "inherit",
+	position: "relative",
+	display: "block",
+	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
+	color: varBsListGroupColor,
+	textDecoration: "none",
+	backgroundColor: varBsListGroupBg,
+	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
 // SOURCE CSS:
 // .list-group-item.disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
-globalStyle(`${cosmoScope}${listGroupItem}.disabled`, {
+globalStyle(`${cosmoScope}${listGroupItem}${listGroupItemDisabled}`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsListGroupDisabledBg,
@@ -191,7 +169,7 @@ globalStyle(`${cosmoScope}${listGroupItemAction}`, {
 
 // SOURCE CSS:
 // .list-group-item-action:not(.active):hover { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${cosmoScope}${listGroupItemAction}:not(.active):hover`, {
+globalStyle(`${cosmoScope}${listGroupItemAction}:not(${listGroupItemActive}):hover`, {
 	zIndex: 1,
 	color: varBsListGroupActionHoverColor,
 	textDecoration: "none",
@@ -200,7 +178,7 @@ globalStyle(`${cosmoScope}${listGroupItemAction}:not(.active):hover`, {
 
 // SOURCE CSS:
 // .list-group-item-action:not(.active):focus { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${cosmoScope}${listGroupItemAction}:not(.active):focus`, {
+globalStyle(`${cosmoScope}${listGroupItemAction}:not(${listGroupItemActive}):focus`, {
 	zIndex: 1,
 	color: varBsListGroupActionHoverColor,
 	textDecoration: "none",
@@ -209,7 +187,7 @@ globalStyle(`${cosmoScope}${listGroupItemAction}:not(.active):focus`, {
 
 // SOURCE CSS:
 // .list-group-item-action:not(.active):active { color: var(--bs-list-group-action-active-color); background-color: var(--bs-list-group-action-active-bg); }
-globalStyle(`${cosmoScope}${listGroupItemAction}:not(.active):active`, {
+globalStyle(`${cosmoScope}${listGroupItemAction}:not(${listGroupItemActive}):active`, {
 	color: varBsListGroupActionActiveColor,
 	backgroundColor: varBsListGroupActionActiveBg,
 })
@@ -357,32 +335,6 @@ globalStyle(`${cosmoScope}${listGroupItemWarning}`, {
 })
 
 // SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
 // .list-group-flush { border-radius: 0; }
 globalStyle(`${cosmoScope}${listGroupFlush}`, {
 	borderRadius: 0,
@@ -391,7 +343,7 @@ globalStyle(`${cosmoScope}${listGroupFlush}`, {
 // SOURCE CSS:
 // .list-group-flush > .list-group-item { border-width: 0 0 var(--bs-list-group-border-width); }
 globalStyle(`${cosmoScope}${listGroupFlush} > ${cosmoScope}${listGroupItem}`, {
-	borderWidth: "0 0 var(--bs-list-group-border-width)",
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
 })
 
 // SOURCE CSS:
@@ -400,12 +352,51 @@ globalStyle(`${cosmoScope}${listGroupFlush} > ${cosmoScope}${listGroupItem}:last
 	borderBottomWidth: 0,
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .list-group-numbered
-// [DELTA] unmapped selector: .list-group-numbered > .list-group-item::before
-// [DELTA] unmapped selector: .list-group-item.active
-// [DELTA] unmapped selector: .list-group-item + .list-group-item.active
-// [DELTA] unmapped selector: .list-group-horizontal
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item.active
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item + .list-group-item
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item + .list-group-item.active
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .list-group-numbered > .list-group-item::before { content: counters(section, ".") ". "; counter-increment: section; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".list-group-numbered" — no contract mapping
+globalStyle(`.list-group-numbered > ${cosmoScope}${listGroupItem}::before`, {
+	content: "counters(section, \".\") \". \"",
+	counterIncrement: "section",
+})
+// SOURCE CSS:
+// .list-group-item.active { z-index: 2; color: var(--bs-list-group-active-color); background-color: var(--bs-list-group-active-bg); border-color: var(--bs-list-group-active-border-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cosmoScope}${listGroupItem}${listGroupItemActive}`, {
+	zIndex: 2,
+	color: varBsListGroupActiveColor,
+	backgroundColor: varBsListGroupActiveBg,
+	borderColor: varBsListGroupActiveBorderColor,
+})
+// SOURCE CSS:
+// .list-group-item + .list-group-item.active { margin-top: calc(-1 * var(--bs-list-group-border-width)); border-top-width: var(--bs-list-group-border-width); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${listGroupItemActive}`, {
+	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderTopWidth: varBsListGroupBorderWidth,
+})
+// SOURCE CSS:
+// .list-group-horizontal > .list-group-item.active { margin-top: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
+globalStyle(`.list-group-horizontal > ${cosmoScope}${listGroupItem}${listGroupItemActive}`, {
+	marginTop: 0,
+})
+// SOURCE CSS:
+// .list-group-horizontal > .list-group-item + .list-group-item { border-top-width: var(--bs-list-group-border-width); border-left-width: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
+globalStyle(`.list-group-horizontal > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: 0,
+})
+// SOURCE CSS:
+// .list-group-horizontal > .list-group-item + .list-group-item.active { margin-left: calc(-1 * var(--bs-list-group-border-width)); border-left-width: var(--bs-list-group-border-width); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
+globalStyle(`.list-group-horizontal > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${listGroupItemActive}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})

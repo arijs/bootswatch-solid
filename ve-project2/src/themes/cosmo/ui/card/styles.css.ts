@@ -12,8 +12,6 @@ import {
 	varBsGutterX,
 	varBsGutterY,
 	varBsHeadingColor,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 	varBsTertiaryBg,
@@ -83,9 +81,7 @@ import {
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import {
-	link,
-	paragraph,
-	small,
+	horizontalRule,
 } from '../../../../theme-contract/contents/basic/contract.css'
 import {
 	h1,
@@ -97,12 +93,12 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
 	fieldset,
-	row,
 } from '../../../../theme-contract/forms/contract.css'
 import {
 	btn,
 	btnActiveHook,
 	btnCheck,
+	btnDisabledHook,
 	btnPrimary,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -117,6 +113,7 @@ import {
 	cardImgBottom,
 	cardImgTop,
 	cardLink,
+	cardSubtitle,
 	cardText,
 	cardTitle,
 } from '../../../../theme-contract/ui/card/contract.css'
@@ -127,6 +124,7 @@ import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
+	listGroupItemDisabled,
 } from '../../../../theme-contract/ui/list-group/contract.css'
 import {
 	flexWrap,
@@ -134,11 +132,16 @@ import {
 import {
 	nav,
 	navLink,
+	navLinkActive,
 } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	col,
+	g0,
+	g4,
 	overflowXHidden,
 	positionRelative,
+	row,
+	rowCols1,
 	textMuted,
 } from '../../../../theme-contract/utilities/contract.css'
 import { cosmoScope } from '../../scope.css'
@@ -149,17 +152,6 @@ import { cosmoScope } from '../../scope.css'
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${cosmoScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -179,31 +171,8 @@ globalStyle(`${cosmoScope}${h5}`, {
 })
 
 // SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
-// SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${cosmoScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -222,30 +191,8 @@ globalStyle(`${cosmoScope}${h3}`, {
 })
 
 // SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${cosmoScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -264,109 +211,6 @@ globalStyle(`${cosmoScope}${h1}`, {
 })
 
 // SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${cosmoScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// small { font-size: 0.875em; }
-globalStyle(`${cosmoScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-globalStyle(`${cosmoScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
 // .row { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; display: flex; flex-wrap: wrap; margin-top: calc(-1 * var(--bs-gutter-y)); margin-right: calc(-0.5 * var(--bs-gutter-x)); margin-left: calc(-0.5 * var(--bs-gutter-x)); }
 globalStyle(`${cosmoScope}${row}`, {
 	vars: {
@@ -375,20 +219,19 @@ globalStyle(`${cosmoScope}${row}`, {
 	},
 	display: "flex",
 	flexWrap: "wrap",
-	marginTop: "calc(-1 * var(--bs-gutter-y))",
-	marginRight: "calc(-0.5 * var(--bs-gutter-x))",
-	marginLeft: "calc(-0.5 * var(--bs-gutter-x))",
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
 // SOURCE CSS:
 // .row > * { flex-shrink: 0; width: 100%; max-width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-top: var(--bs-gutter-y); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${cosmoScope}${row} > *`, {
+globalStyle(`${cosmoScope}${row} > ${cosmoScope}${col}`, {
 	flexShrink: 0,
 	width: "100%",
 	maxWidth: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
 	marginTop: varBsGutterY,
 })
 
@@ -400,65 +243,25 @@ globalStyle(`${cosmoScope}${col}`, {
 
 // SOURCE CSS:
 // .row-cols-1 > * { flex: 0 0 auto; width: 100%; }
-// [UNMAPPED_SELECTOR] class ".row-cols-1" — no contract mapping
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`.row-cols-1 > *`, {
+globalStyle(`${cosmoScope}${rowCols1} > ${cosmoScope}${col}`, {
 	flex: "0 0 auto",
 	width: "100%",
 })
 
 // SOURCE CSS:
 // .g-0 { --bs-gutter-x: 0; --bs-gutter-y: 0; }
-// [UNMAPPED_SELECTOR] class ".g-0" — no contract mapping
-globalStyle(`.g-0`, {
+globalStyle(`${cosmoScope}${g0}`, {
 	vars: {
 		[varBsGutterX]: 0,
-		[varBsGutterY]: 0,
-	},
-})
-
-// SOURCE CSS:
-// .gx-0 { --bs-gutter-x: 0; }
-// [UNMAPPED_SELECTOR] class ".gx-0" — no contract mapping
-globalStyle(`.gx-0`, {
-	vars: {
-		[varBsGutterX]: 0,
-	},
-})
-
-// SOURCE CSS:
-// .gy-0 { --bs-gutter-y: 0; }
-// [UNMAPPED_SELECTOR] class ".gy-0" — no contract mapping
-globalStyle(`.gy-0`, {
-	vars: {
 		[varBsGutterY]: 0,
 	},
 })
 
 // SOURCE CSS:
 // .g-4 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 1.5rem; }
-// [UNMAPPED_SELECTOR] class ".g-4" — no contract mapping
-globalStyle(`.g-4`, {
+globalStyle(`${cosmoScope}${g4}`, {
 	vars: {
 		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: "1.5rem",
-	},
-})
-
-// SOURCE CSS:
-// .gx-4 { --bs-gutter-x: 1.5rem; }
-// [UNMAPPED_SELECTOR] class ".gx-4" — no contract mapping
-globalStyle(`.gx-4`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-	},
-})
-
-// SOURCE CSS:
-// .gy-4 { --bs-gutter-y: 1.5rem; }
-// [UNMAPPED_SELECTOR] class ".gy-4" — no contract mapping
-globalStyle(`.gy-4`, {
-	vars: {
 		[varBsGutterY]: "1.5rem",
 	},
 })
@@ -484,7 +287,7 @@ globalStyle(`${cosmoScope}${btn}`, {
 		[varBsBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)",
 	},
 	display: "inline-block",
-	padding: "var(--bs-btn-padding-y) var(--bs-btn-padding-x)",
+	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
 	fontSize: varBsBtnFontSize,
 	fontWeight: varBsBtnFontWeight,
@@ -497,7 +300,7 @@ globalStyle(`${cosmoScope}${btn}`, {
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
 	userSelect: "none",
-	border: "var(--bs-btn-border-width) solid var(--bs-btn-border-color)",
+	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
@@ -581,13 +384,13 @@ globalStyle(`${cosmoScope}${btn}:first-child:active:focus-visible`, {
 
 // SOURCE CSS:
 // .btn.active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${cosmoScope}${btn}.active:focus-visible`, {
+globalStyle(`${cosmoScope}${btn}${btnActiveHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
 // SOURCE CSS:
 // .btn.show:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${cosmoScope}${btn}${btnShowHook}`, {
+globalStyle(`${cosmoScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -603,7 +406,7 @@ globalStyle(`${cosmoScope}${btn}:disabled`, {
 
 // SOURCE CSS:
 // .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(`${cosmoScope}${btn}.disabled`, {
+globalStyle(`${cosmoScope}${btn}${btnDisabledHook}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -626,7 +429,7 @@ globalStyle(`fieldset:disabled ${cosmoScope}${btn}`, {
 // .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca; --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd; --bs-btn-disabled-border-color: #0d6efd; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${cosmoScope}${btnPrimary}`, {
+globalStyle(`${cosmoScope}${btn}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
 		[varBsBtnBg]: "#0d6efd",
@@ -641,6 +444,8 @@ globalStyle(`${cosmoScope}${btnPrimary}`, {
 		[varBsBtnDisabledBg]: "#0d6efd",
 		[varBsBtnDisabledBorderColor]: "#0d6efd",
 	},
+	backgroundColor: varBsBtnBg,
+	color: varBsBtnColor,
 })
 
 // SOURCE CSS:
@@ -657,13 +462,13 @@ globalStyle(`${cosmoScope}${card}`, {
 		[varBsCardBorderColor]: varBsBorderColorTranslucent,
 		[varBsCardBorderRadius]: varBsBorderRadius,
 		[varBsCardBoxShadow]: "",
-		[varBsCardInnerBorderRadius]: "calc(var(--bs-border-radius) - (var(--bs-border-width)))",
+		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - (${varBsBorderWidth}))`,
 		[varBsCardCapPaddingY]: "0.5rem",
 		[varBsCardCapPaddingX]: "1rem",
 		[varBsCardCapBg]: `rgba(${varBsBodyColorRgb}, 0.03)`,
 		[varBsCardCapColor]: "",
 		[varBsCardColor]: "",
-		[varBsCardBg]: varBsBodyBg,
+		[varBsCardBg]: varBsCardBg,
 		[varBsCardImgOverlayPadding]: "1rem",
 		[varBsCardGroupMargin]: "0.75rem",
 	},
@@ -676,7 +481,7 @@ globalStyle(`${cosmoScope}${card}`, {
 	wordWrap: "break-word",
 	backgroundColor: varBsCardBg,
 	backgroundClip: "border-box",
-	border: "var(--bs-card-border-width) solid var(--bs-card-border-color)",
+	border: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 	borderRadius: varBsCardBorderRadius,
 })
 
@@ -707,7 +512,7 @@ globalStyle(`${cosmoScope}${card} > ${cosmoScope}${listGroup}:last-child`, {
 // .card-body { flex: 1 1 auto; padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); color: var(--bs-card-color); }
 globalStyle(`${cosmoScope}${cardBody}`, {
 	flex: "1 1 auto",
-	padding: "var(--bs-card-spacer-y) var(--bs-card-spacer-x)",
+	padding: `${varBsCardSpacerY} ${varBsCardSpacerX}`,
 	color: varBsCardColor,
 })
 
@@ -733,32 +538,41 @@ globalStyle(`${cosmoScope}${cardLink} + ${cosmoScope}${cardLink}`, {
 // SOURCE CSS:
 // .card-header { padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x); margin-bottom: 0; color: var(--bs-card-cap-color); background-color: var(--bs-card-cap-bg); border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color); }
 globalStyle(`${cosmoScope}${cardHeader}`, {
-	padding: "var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x)",
+	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
 	marginBottom: 0,
 	color: varBsCardCapColor,
 	backgroundColor: varBsCardCapBg,
-	borderBottom: "var(--bs-card-border-width) solid var(--bs-card-border-color)",
+	borderBottom: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
 // SOURCE CSS:
 // .card-header:first-child { border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0; }
 globalStyle(`${cosmoScope}${cardHeader}:first-child`, {
-	borderRadius: "var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0",
+	borderRadius: `${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius} 0 0`,
+	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
+	marginBottom: 0,
+	color: varBsCardCapColor,
+	backgroundColor: varBsCardCapBg,
+	borderBottom: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
 // SOURCE CSS:
 // .card-footer { padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x); color: var(--bs-card-cap-color); background-color: var(--bs-card-cap-bg); border-top: var(--bs-card-border-width) solid var(--bs-card-border-color); }
 globalStyle(`${cosmoScope}${cardFooter}`, {
-	padding: "var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x)",
+	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
 	color: varBsCardCapColor,
 	backgroundColor: varBsCardCapBg,
-	borderTop: "var(--bs-card-border-width) solid var(--bs-card-border-color)",
+	borderTop: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
 // SOURCE CSS:
 // .card-footer:last-child { border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius); }
 globalStyle(`${cosmoScope}${cardFooter}:last-child`, {
-	borderRadius: "0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius)",
+	borderRadius: `0 0 ${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius}`,
+	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
+	color: varBsCardCapColor,
+	backgroundColor: varBsCardCapBg,
+	borderTop: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -817,11 +631,11 @@ globalStyle(`${cosmoScope}${listGroup}`, {
 globalStyle(`${cosmoScope}${listGroupItem}`, {
 	position: "relative",
 	display: "block",
-	padding: "var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x)",
+	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
 	color: varBsListGroupColor,
 	textDecoration: "none",
 	backgroundColor: varBsListGroupBg,
-	border: "var(--bs-list-group-border-width) solid var(--bs-list-group-border-color)",
+	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -840,7 +654,7 @@ globalStyle(`${cosmoScope}${listGroupItem}:last-child`, {
 
 // SOURCE CSS:
 // .list-group-item.disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
-globalStyle(`${cosmoScope}${listGroupItem}.disabled`, {
+globalStyle(`${cosmoScope}${listGroupItem}${listGroupItemDisabled}`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsListGroupDisabledBg,
@@ -869,7 +683,7 @@ globalStyle(`${cosmoScope}${listGroupFlush}`, {
 // SOURCE CSS:
 // .list-group-flush > .list-group-item { border-width: 0 0 var(--bs-list-group-border-width); }
 globalStyle(`${cosmoScope}${listGroupFlush} > ${cosmoScope}${listGroupItem}`, {
-	borderWidth: "0 0 var(--bs-list-group-border-width)",
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
 })
 
 // SOURCE CSS:
@@ -894,30 +708,57 @@ globalStyle(`${cosmoScope}${positionRelative}`, {
 // .text-muted { --bs-text-opacity: 1; color: var(--bs-secondary-color) !important; }
 // [UNMAPPED_VAR] --bs-text-opacity
 globalStyle(`${cosmoScope}${textMuted}`, {
-	color: "var(--bs-secondary-color) !important",
+	color: `${varBsSecondaryColor} !important`,
 })
 
 // SOURCE CSS:
 // .card-header-tabs { margin-right: calc(-0.5 * var(--bs-card-cap-padding-x)); margin-bottom: calc(-1 * var(--bs-card-cap-padding-y)); margin-left: calc(-0.5 * var(--bs-card-cap-padding-x)); border-bottom: 0; }
-globalStyle(`${cosmoScope}${cardHeaderTabs}`, {
-	marginRight: "calc(-0.5 * var(--bs-card-cap-padding-x))",
-	marginBottom: "calc(-1 * var(--bs-card-cap-padding-y))",
-	marginLeft: "calc(-0.5 * var(--bs-card-cap-padding-x))",
+globalStyle(`${cosmoScope}${nav}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
 	borderBottom: 0,
 })
 
 // SOURCE CSS:
 // .card-header-tabs .nav-link.active { background-color: var(--bs-card-bg); border-bottom-color: var(--bs-card-bg); }
-globalStyle(`${cosmoScope}${cardHeaderTabs} ${cosmoScope}${navLink}.active`, {
+globalStyle(`${cosmoScope}${cardHeaderTabs} ${cosmoScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .card > hr
-// [DELTA] unmapped selector: .card > .card-header + .list-group
-// [DELTA] unmapped selector: .card > .list-group + .card-footer
-// [DELTA] unmapped selector: .card-subtitle
-// [DELTA] unmapped selector: .card-header-pills
-// [DELTA] unmapped selector: .card-img-overlay
-// [DELTA] unmapped selector: .card-group > .card
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .card > hr { margin-right: 0; margin-left: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cosmoScope}${card} > ${cosmoScope}${horizontalRule}`, {
+	marginRight: 0,
+	marginLeft: 0,
+})
+// SOURCE CSS:
+// .card > .card-header + .list-group { border-top: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cosmoScope}${card} > ${cosmoScope}${cardHeader} + ${cosmoScope}${listGroup}`, {
+	borderTop: 0,
+})
+// SOURCE CSS:
+// .card > .list-group + .card-footer { border-top: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cosmoScope}${card} > ${cosmoScope}${listGroup} + ${cosmoScope}${cardFooter}`, {
+	borderTop: 0,
+})
+// SOURCE CSS:
+// .card-subtitle { margin-top: calc(-0.5 * var(--bs-card-title-spacer-y)); margin-bottom: 0; color: var(--bs-card-subtitle-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cosmoScope}${cardSubtitle}`, {
+	marginTop: `calc(-0.5 * ${varBsCardTitleSpacerY})`,
+	marginBottom: 0,
+	color: varBsCardSubtitleColor,
+})
+// SOURCE CSS:
+// .card-group > .card { margin-bottom: var(--bs-card-group-margin); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".card-group" — no contract mapping
+globalStyle(`.card-group > ${cosmoScope}${card}`, {
+	marginBottom: varBsCardGroupMargin,
+})

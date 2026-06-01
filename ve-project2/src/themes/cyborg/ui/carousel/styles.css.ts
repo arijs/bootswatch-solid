@@ -1,40 +1,30 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsHeadingColor,
-} from '../../../../theme-contract/_vars.css'
-import {
 	varBsCarouselCaptionColor,
 	varBsCarouselControlIconFilter,
 	varBsCarouselIndicatorActiveBg,
 } from '../../../../theme-contract/ui/carousel/_vars.css'
 import {
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
-import {
 	carousel,
+	carouselActive,
 	carouselCaption,
 	carouselControlNext,
 	carouselControlNextIcon,
 	carouselControlPrev,
 	carouselControlPrevIcon,
+	carouselDark,
 	carouselFade,
 	carouselIndicators,
 	carouselInner,
 	carouselItem,
+	carouselItemEnd,
 	carouselItemNext,
 	carouselItemPrev,
+	carouselItemStart,
 } from '../../../../theme-contract/ui/carousel/contract.css'
 import {
-	fade,
-} from '../../../../theme-contract/ui/modal/contract.css'
+	visuallyHidden,
+} from '../../../../theme-contract/utilities/contract.css'
 import { cyborgScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/carousel
@@ -42,263 +32,16 @@ import { cyborgScope } from '../../scope.css'
 
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${cyborgScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
 // SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${cyborgScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
 // SOURCE CSS:
 // .carousel { position: relative; }
 globalStyle(`${cyborgScope}${carousel}`, {
@@ -336,7 +79,7 @@ globalStyle(`${cyborgScope}${carouselItem}`, {
 
 // SOURCE CSS:
 // .carousel-item.active { display: block; }
-globalStyle(`${cyborgScope}${carouselItem}.active`, {
+globalStyle(`${cyborgScope}${carouselItem}${carouselActive}`, {
 	display: "block",
 })
 
@@ -354,55 +97,40 @@ globalStyle(`${cyborgScope}${carouselItemPrev}`, {
 
 // SOURCE CSS:
 // .carousel-item-next:not(.carousel-item-start) { transform: translateX(100%); }
-globalStyle(`${cyborgScope}${carouselItemNext}:not(.carousel-item-start)`, {
-	transform: "translateX(100%)",
-})
-
-// SOURCE CSS:
-// .active.carousel-item-end { transform: translateX(100%); }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.active.carousel-item-end`, {
+globalStyle(`${cyborgScope}${carouselItemNext}:not(${cyborgScope}${carouselItemStart})`, {
 	transform: "translateX(100%)",
 })
 
 // SOURCE CSS:
 // .carousel-item-prev:not(.carousel-item-end) { transform: translateX(-100%); }
-globalStyle(`${cyborgScope}${carouselItemPrev}:not(.carousel-item-end)`, {
-	transform: "translateX(-100%)",
-})
-
-// SOURCE CSS:
-// .active.carousel-item-start { transform: translateX(-100%); }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.active.carousel-item-start`, {
+globalStyle(`${cyborgScope}${carouselItemPrev}:not(${cyborgScope}${carouselItemEnd})`, {
 	transform: "translateX(-100%)",
 })
 
 // SOURCE CSS:
 // .carousel-fade .carousel-item.active { z-index: 1; opacity: 1; }
-globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItem}.active`, {
+globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItem}${carouselActive}`, {
 	zIndex: 1,
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .carousel-fade .carousel-item-next.carousel-item-start { z-index: 1; opacity: 1; }
-globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItemNext}.carousel-item-start`, {
+globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItemNext}${carouselItemStart}`, {
 	zIndex: 1,
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .carousel-fade .carousel-item-prev.carousel-item-end { z-index: 1; opacity: 1; }
-globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItemPrev}.carousel-item-end`, {
+globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItemPrev}${carouselItemEnd}`, {
 	zIndex: 1,
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .carousel-fade .active.carousel-item-start { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`${cyborgScope}${carouselFade} .active.carousel-item-start`, {
+globalStyle(`${cyborgScope}${carouselFade} ${carouselActive}${carouselItemStart}`, {
 	zIndex: 0,
 	opacity: 0,
 	transition: "opacity 0s 0.6s",
@@ -410,8 +138,7 @@ globalStyle(`${cyborgScope}${carouselFade} .active.carousel-item-start`, {
 
 // SOURCE CSS:
 // .carousel-fade .active.carousel-item-end { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`${cyborgScope}${carouselFade} .active.carousel-item-end`, {
+globalStyle(`${cyborgScope}${carouselFade} ${carouselActive}${carouselItemEnd}`, {
 	zIndex: 0,
 	opacity: 0,
 	transition: "opacity 0s 0.6s",
@@ -561,8 +288,7 @@ globalStyle(`${cyborgScope}${carouselIndicators} [data-bs-target]`, {
 
 // SOURCE CSS:
 // .carousel-indicators .active { opacity: 1; }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`${cyborgScope}${carouselIndicators} .active`, {
+globalStyle(`${cyborgScope}${carouselIndicators} ${carouselActive}`, {
 	opacity: 1,
 })
 
@@ -581,22 +307,7 @@ globalStyle(`${cyborgScope}${carouselCaption}`, {
 
 // SOURCE CSS:
 // .visually-hidden { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden`, {
-	width: "1px !important",
-	height: "1px !important",
-	padding: "0 !important",
-	margin: "-1px !important",
-	overflow: "hidden !important",
-	clip: "rect(0, 0, 0, 0) !important",
-	whiteSpace: "nowrap !important",
-	border: "0 !important",
-})
-
-// SOURCE CSS:
-// .visually-hidden-focusable:not(:focus):not(:focus-within) { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
-globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
+globalStyle(`${cyborgScope}${visuallyHidden}`, {
 	width: "1px !important",
 	height: "1px !important",
 	padding: "0 !important",
@@ -609,40 +320,34 @@ globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
 
 // SOURCE CSS:
 // .visually-hidden:not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden:not(caption)`, {
+// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
+globalStyle(`${cyborgScope}${visuallyHidden}:not(caption)`, {
 	position: "absolute !important",
 })
 
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
 // SOURCE CSS:
-// .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
-globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within):not(caption)`, {
-	position: "absolute !important",
+// .carousel.pointer-event { touch-action: pan-y; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".pointer-event" — no contract mapping
+globalStyle(`${cyborgScope}${carousel}.pointer-event`, {
+	touchAction: "pan-y",
 })
-
 // SOURCE CSS:
-// .d-block { display: block !important; }
-// [UNMAPPED_SELECTOR] class ".d-block" — no contract mapping
-globalStyle(`.d-block`, {
-	display: "block !important",
+// .carousel-fade .carousel-item { opacity: 0; transition-property: opacity; transform: none; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${carouselFade} ${cyborgScope}${carouselItem}`, {
+	opacity: 0,
+	transitionProperty: "opacity",
+	transform: "none",
 })
-
 // SOURCE CSS:
-// .d-none { display: none !important; }
-// [UNMAPPED_SELECTOR] class ".d-none" — no contract mapping
-globalStyle(`.d-none`, {
-	display: "none !important",
+// .carousel-dark { --bs-carousel-indicator-active-bg: #000; --bs-carousel-caption-color: #000; --bs-carousel-control-icon-filter: invert(1) grayscale(100); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${carouselDark}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: "#000",
+		[varBsCarouselCaptionColor]: "#000",
+		[varBsCarouselControlIconFilter]: "invert(1) grayscale(100)",
+	},
 })
-
-// SOURCE CSS:
-// .w-100 { width: 100% !important; }
-// [UNMAPPED_SELECTOR] class ".w-100" — no contract mapping
-globalStyle(`.w-100`, {
-	width: "100% !important",
-})
-
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .carousel.pointer-event
-// [DELTA] unmapped selector: .carousel-fade .carousel-item
-// [DELTA] unmapped selector: .carousel-dark

@@ -13,6 +13,7 @@ export const listGroupFlush = style({})   // .list-group-flush
 
 export const listGroupItem = style({})           // .list-group-item
 export const listGroupItemAction = style({})     // .list-group-item-action
+export const listGroupItemActive = style({})     // .active
 export const listGroupItemDisabled = style({})   // .disabled
 
 // ── Colour variants ───────────────────────────────────────────────────────────

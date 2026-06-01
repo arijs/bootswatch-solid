@@ -2,11 +2,10 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
-import { h4, h5 } from '../../../theme-contract/contents/heading/contract.css'
+import { h4 } from '../../../theme-contract/contents/heading/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
-import { btn, btnPrimary, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnPrimary, btnSecondary, inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	actionsRow,
 	fade,
@@ -32,7 +31,6 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/modal',
 	'ui/buttons',
 	'ui/alerts',
-	'contents/basic',
 	'contents/heading',
 	'utilities',
 ]
@@ -68,24 +66,24 @@ const FullscreenModal: Component = () => {
 				<div class={`${theme} ${modalDialog} ${modalFullscreen}`}>
 					<div class={`${theme} ${modalContent}`}>
 						<div class={`${theme} ${modalHeader}`}>
-							<h5 class={`${theme} ${h4} ${h5} ${modalTitle}`} id="exampleModalFullscreenLabel">
+							<h5 class={`${theme} ${h4} ${modalTitle}`} id="exampleModalFullscreenLabel">
 								Full screen modal
 							</h5>
 							<button
 								type="button"
-								class={`${theme} ${alertBtnClose}`}
+								class={`${theme} ${alertBtnClose} ${inputFontFamily}`}
 								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
 						</div>
 						<div class={`${theme} ${modalBody}`}>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								What follows is just some placeholder text for this modal dialog. I
 								feel like I'm already there. I'm gon' put her in a coma. Boom, boom,
 								boom. You're reading me like erotica, boy, you make me feel exotic,
 								yeah. Happy birthday. From Tokyo to Mexico, to Rio. I knew you were.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								Last Friday night. Calling out my name. Kiss her, touch her, squeeze
 								her buns. Heavy is the head that wears the crown. So open up your
 								heart and just let it begin. Boy all this time was worth the
@@ -95,7 +93,7 @@ const FullscreenModal: Component = () => {
 								for you 'Cause there's a spark in you? So I sat quietly, agreed
 								politely. From Tokyo to Mexico, to Rio.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								Don't be a shy kinda guy I'll bet it's beautiful. You fall asleep
 								during foreplay, 'Cause the pills you take, are more your forte.
 								Open up your heart. You're never gonna be unsatisfied. Know that you
@@ -104,7 +102,7 @@ const FullscreenModal: Component = () => {
 								told you what you meant to me 'Cause now I pay the price. Takes you
 								miles high, so high, 'cause she's got that one international smile.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								Yo, shout out to all you kids, buying bottle service, with your rent
 								money. So I sat quietly, agreed politely. They say, be afraid you're
 								not like the others, futuristic lover. Boom, boom, boom. Don't need
@@ -113,14 +111,14 @@ const FullscreenModal: Component = () => {
 								I'm the girl that you should call. This Friday night, do it all
 								again.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								I'm walking on air. But lil' mama so dope. It's time to bring out
 								the big balloons. Are you ready for, ready for. The boys break their
 								necks try'na to creep a little sneak peek. Summer after high school
 								when we first met. If you want it all. (This is how we do) You open
 								my eyes and I'm ready to go, lead me into the light.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								Growing fast into a bolt of lightning. We freak in my jeep, Snoop
 								Doggy Dogg on the stereo. Baby do you dare to do this? Open up your
 								heart and just let it begin. Peach-pink lips, yeah, everybody
@@ -130,7 +128,7 @@ const FullscreenModal: Component = () => {
 								machine. I can't sleep let's run away and don't ever look back,
 								don't ever look back.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								Make it like your birthday everyday. I'm not sticking around to
 								watch you go down. Uh-huh, I see you. For you I'll risk it all, all.
 								I'm gon' put her in a coma. She ride me like a roller coaster. You
@@ -139,7 +137,7 @@ const FullscreenModal: Component = () => {
 								others, futuristic lover. There is no fear now, let go and just be
 								free, I will love you unconditionally.
 							</p>
-							<p class={`${theme} ${paragraph}`}>
+							<p>
 								We can dance, until we die, you and I, will be young forever. Pop
 								your Perignon. Last Friday night, yeah I think we broke the law,
 								always say we're gonna stop. Don't need apologies. Give you

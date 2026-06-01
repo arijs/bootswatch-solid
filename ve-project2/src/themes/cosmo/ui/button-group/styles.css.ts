@@ -1,7 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { marginEnd2 } from '../../../../theme-contract/ui/button-group/contract.css'
 import { cosmoScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for cosmo/ui/button-group
+// AUTO-GENERATED family styles for bootstrap/ui/button-group
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
-export {}
+// SOURCE CSS:
+// .me-2 { margin-right: 0.5rem !important; }
+globalStyle(`${cosmoScope}${marginEnd2}`, {
+	marginRight: "0.5rem !important",
+})

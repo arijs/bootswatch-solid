@@ -31,9 +31,17 @@ import {
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
+	varBsCardBg,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+} from '../../../../theme-contract/ui/card/_vars.css'
+import {
 	link,
 	paragraph,
 } from '../../../../theme-contract/contents/basic/contract.css'
+import {
+	cardHeaderTabs,
+} from '../../../../theme-contract/ui/card-tabs/contract.css'
 import {
 	dropdown,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
@@ -43,11 +51,21 @@ import {
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	nav,
+	navButtonReset,
 	navItem,
+	navItemShow,
 	navLink,
+	navLinkActive,
 	navPills,
 	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
 } from '../../../../theme-contract/ui/navs/contract.css'
+import {
+	mb3,
+} from '../../../../theme-contract/utilities/contract.css'
 import { darklyScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/navs
@@ -57,12 +75,12 @@ import { darklyScope } from '../../scope.css'
 // .nav { --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem; --bs-nav-link-font-weight: ; --bs-nav-link-color: var(--bs-link-color); --bs-nav-link-hover-color: var(--bs-link-hover-color); --bs-nav-link-disabled-color: var(--bs-secondary-color); display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none; }
 globalStyle(`${darklyScope}${nav}`, {
 	vars: {
-		[varBsNavLinkPaddingX]: "1rem",
-		[varBsNavLinkPaddingY]: "0.5rem",
-		[varBsNavLinkFontWeight]: "",
-		[varBsNavLinkColor]: varBsLinkColor,
-		[varBsNavLinkHoverColor]: varBsLinkHoverColor,
-		[varBsNavLinkDisabledColor]: varBsSecondaryColor,
+		[varBsNavLinkPaddingX]: '2rem',
+		[varBsNavLinkPaddingY]: '0.5rem',
+		[varBsNavLinkFontWeight]: '',
+		[varBsNavLinkColor]: '#fff',
+		[varBsNavLinkHoverColor]: '#fff',
+		[varBsNavLinkDisabledColor]: '#888',
 	},
 	display: "flex",
 	flexWrap: "wrap",
@@ -71,11 +89,25 @@ globalStyle(`${darklyScope}${nav}`, {
 	listStyle: "none",
 })
 
+globalStyle(`${darklyScope}${navButtonReset}`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
+	borderRadius: 0,
+})
+
+globalStyle(`${darklyScope}${navButtonReset}:not(:disabled)`, {
+	cursor: "pointer",
+})
+
 // SOURCE CSS:
 // .nav-link { display: block; padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); font-size: var(--bs-nav-link-font-size); font-weight: var(--bs-nav-link-font-weight); color: var(--bs-nav-link-color); text-decoration: none; background: none; border: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
 globalStyle(`${darklyScope}${navLink}`, {
 	display: "block",
-	padding: "var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x)",
+	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
 	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
 	color: varBsNavLinkColor,
@@ -101,7 +133,7 @@ globalStyle(`${darklyScope}${navLink}:focus`, {
 // .nav-link:focus-visible { outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${darklyScope}${navLink}:focus-visible`, {
 	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	boxShadow: "0 0 0 0.25rem rgba(55, 90, 127, 0.25)",
 })
 
 // SOURCE CSS:
@@ -125,21 +157,28 @@ globalStyle(`${darklyScope}${navLink}:disabled`, {
 globalStyle(`${darklyScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
-		[varBsNavTabsBorderColor]: varBsBorderColor,
+		[varBsNavTabsBorderColor]: "#444",
 		[varBsNavTabsBorderRadius]: varBsBorderRadius,
-		[varBsNavTabsLinkHoverBorderColor]: "var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color)",
-		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
+		[varBsNavTabsLinkHoverBorderColor]: "#444 #444 transparent",
+		[varBsNavTabsLinkActiveColor]: "#fff",
 		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: "var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg)",
+		[varBsNavTabsLinkActiveBorderColor]: "#444 #444 transparent",
 	},
-	borderBottom: "var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color)",
+	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
+})
+
+globalStyle(`${darklyScope}${navTabs}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: 0,
 })
 
 // SOURCE CSS:
 // .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); border: var(--bs-nav-tabs-border-width) solid transparent; border-top-left-radius: var(--bs-nav-tabs-border-radius); border-top-right-radius: var(--bs-nav-tabs-border-radius); }
 globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}`, {
-	marginBottom: "calc(-1 * var(--bs-nav-tabs-border-width))",
-	border: "var(--bs-nav-tabs-border-width) solid transparent",
+	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
@@ -160,7 +199,7 @@ globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}:focus`, {
 
 // SOURCE CSS:
 // .nav-tabs .nav-link.active { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}.active`, {
+globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -168,43 +207,15 @@ globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}.active`, {
 
 // SOURCE CSS:
 // .nav-tabs .nav-item.show .nav-link { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navItem}.show ${darklyScope}${navLink}`, {
+globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navItem}${navItemShow} ${darklyScope}${navLink}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${darklyScope}${navTabs}${cardHeaderTabs} ${darklyScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderColor: `${varBsNavTabsBorderColor} ${varBsNavTabsBorderColor} ${varBsCardBg}`,
 })
 
 // SOURCE CSS:
@@ -239,7 +250,7 @@ globalStyle(`${darklyScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
 		[varBsNavPillsLinkActiveColor]: "#fff",
-		[varBsNavPillsLinkActiveBg]: "#0d6efd",
+		[varBsNavPillsLinkActiveBg]: "#375a7f",
 	},
 })
 
@@ -251,15 +262,14 @@ globalStyle(`${darklyScope}${navPills} ${darklyScope}${navLink}`, {
 
 // SOURCE CSS:
 // .nav-pills .nav-link.active { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${darklyScope}${navPills} ${darklyScope}${navLink}.active`, {
+globalStyle(`${darklyScope}${navPills} ${darklyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
 // SOURCE CSS:
 // .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-// [UNMAPPED_SELECTOR] class ".show" — no contract mapping
-globalStyle(`${darklyScope}${navPills} .show > ${darklyScope}${navLink}`, {
+globalStyle(`${darklyScope}${navPills} ${show} > ${darklyScope}${navLink}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -389,30 +399,19 @@ globalStyle(`${darklyScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${darklyScope}${fade}:not(.show)`, {
+globalStyle(`${darklyScope}${tabPane}${fade}:not(${show})`, {
 	opacity: 0,
 })
 
-// SOURCE CSS:
-// .tab-content > .tab-pane { display: none; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".tab-pane" — no contract mapping
-globalStyle(`.tab-content > .tab-pane`, {
+globalStyle(`${darklyScope}${tabContent} > ${darklyScope}${tabPane}`, {
 	display: "none",
 })
 
-// SOURCE CSS:
-// .tab-content > .active { display: block; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.tab-content > .active`, {
+globalStyle(`${darklyScope}${tabContent} > ${tabPaneActive}`, {
 	display: "block",
 })
 
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
+globalStyle(`${darklyScope}${mb3}`, {
 	marginBottom: "1rem !important",
 })
 

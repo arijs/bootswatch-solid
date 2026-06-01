@@ -3,7 +3,12 @@ import path from 'node:path'
 
 import { VE2_THEMES_ROOT, STRUCTURE_REFERENCE_THEME } from './constants.mjs'
 import { lookupDeclarations } from './css-source.mjs'
-import { cssPropToVeKey, formatVeValue, shouldSkipFamilySelector, symbolToCssVarName } from './css-utils.mjs'
+import {
+	cssPropToVeKey,
+	formatVeValue,
+	shouldSkipFamilySelector,
+	symbolToCssVarName,
+} from './css-utils.mjs'
 import { themeScopeExportName } from './constants.mjs'
 import { scopeImportPath } from './import-emitter.mjs'
 
@@ -29,7 +34,7 @@ export function extractSourceSelectorsFromComments(source) {
  */
 export function parseGlobalStyleBlocks(source) {
 	const blocks = []
-	const globalStyleRegex = /globalStyle\(\s*(?:`([^`]+)`|\[([\s\S]*?)\]\.join\([^)]*\))\s*,\s*\{/g
+	const globalStyleRegex = /globalStyle\(\s*(?:`([^`]+)`|\[([\s\S]*?)\](?:\.join\([^)]*\))?)\s*,\s*\{/g
 	let match
 	while ((match = globalStyleRegex.exec(source)) !== null) {
 		const veSelector = match[1] ?? match[2]?.replace(/\s+/g, ' ').trim()
@@ -47,9 +52,92 @@ export function parseGlobalStyleBlocks(source) {
 			i++
 		}
 		const body = source.slice(bodyStart, i - 1)
-		blocks.push({ veSelector, body, startIdx, endIdx: i })
+		blocks.push({ veSelector, body, bodyStart, startIdx, endIdx: i })
 	}
 	return blocks
+}
+
+function findOutputBlockForSourceSelector(source, sourceSelector) {
+	for (const block of parseGlobalStyleBlocks(source)) {
+		if (findSourceSelectorForBlock(source, block.startIdx) === sourceSelector) return block
+	}
+	return null
+}
+
+/** Remove cross-family owned blocks copied from bootstrap reference into overlay families. */
+function stripCrossFamilyOwnedBlocks(source, refSource, family) {
+	if (family === 'forms' || family === 'contents/heading') return source
+
+	const refBlocks = parseGlobalStyleBlocks(refSource)
+	let result = source
+	for (let i = refBlocks.length - 1; i >= 0; i--) {
+		const sourceSelector = findSourceSelectorForBlock(refSource, refBlocks[i].startIdx)
+		if (!sourceSelector || !shouldSkipFamilySelector(family, sourceSelector)) continue
+
+		const outBlock = findOutputBlockForSourceSelector(result, sourceSelector)
+		if (!outBlock) continue
+
+		let removeStart = outBlock.startIdx
+		while (removeStart > 0) {
+			let lineStart = removeStart
+			while (lineStart > 0 && result[lineStart - 1] !== '\n') lineStart--
+			if (lineStart === 0) break
+			const prevLine = result.slice(lineStart, removeStart).trim()
+			if (!prevLine.startsWith('//')) break
+			removeStart = lineStart
+			if (removeStart > 0 && result[removeStart - 1] === '\n') removeStart--
+		}
+
+		let removeEnd = outBlock.endIdx
+		while (removeEnd < result.length && /[\s]/.test(result[removeEnd]) && result[removeEnd] !== '\n') {
+			removeEnd++
+		}
+		if (result[removeEnd] === ')') removeEnd++
+		while (removeEnd < result.length && result[removeEnd] === '\n') removeEnd++
+
+		result = `${result.slice(0, removeStart)}${result.slice(removeEnd)}`
+	}
+
+	return result
+}
+
+/** Paint props Bootswatch theme deltas set literally while structure vars keep Bootstrap subtle tokens. */
+const PAINT_PROP_TO_CSS_VARS = {
+	'background-color': ['--bs-list-group-bg', '--bs-alert-bg', '--bs-card-bg'],
+	'color': ['--bs-list-group-color', '--bs-alert-color'],
+	'border-color': ['--bs-list-group-border-color', '--bs-alert-border-color', '--bs-card-border-color'],
+}
+
+function isSelfVarReference(value, cssVar, registry) {
+	if (value == null) return false
+	const trimmed = value.trim()
+	const selfRef = `var(${cssVar})`
+	if (trimmed === selfRef) return true
+	const symbol = registry.cssVarToSymbol.get(cssVar)
+	if (!symbol) return false
+	return formatVeValue(trimmed, registry) === symbol
+}
+
+function syncPaintPropsToVars(body, declarations, registry) {
+	let result = body
+	for (const [prop, cssVars] of Object.entries(PAINT_PROP_TO_CSS_VARS)) {
+		for (const cssVar of cssVars) {
+			const symbol = registry.cssVarToSymbol.get(cssVar)
+			if (!symbol) continue
+			// Prefer literal --bs-* overrides; skip background-color: var(--bs-card-bg) self-refs
+			const paintSource =
+				declarations[cssVar] != null && !isSelfVarReference(declarations[cssVar], cssVar, registry)
+					? declarations[cssVar]
+					: declarations[prop]
+			if (paintSource == null || isSelfVarReference(paintSource, cssVar, registry)) continue
+			const paintValue = formatVeValue(paintSource, registry)
+			if (paintValue === symbol) continue
+			const pattern = new RegExp(`(\\[${symbol}\\]:\\s*)(?:[^,\\n]+)`, 'g')
+			const updated = result.replace(pattern, `$1${paintValue}`)
+			if (updated !== result) result = updated
+		}
+	}
+	return result
 }
 
 /**
@@ -68,6 +156,30 @@ export function hydrateBlockBody(body, declarations, registry) {
 			const cssVar = symbolToCssVarName(symbol)
 			if (cssVar && declarations[cssVar] !== undefined) {
 				return `${prefix}${formatVeValue(declarations[cssVar], registry)}`
+			}
+			return full
+		},
+	)
+
+	// Replace [varBsXxx]: `template` entries when theme overrides the CSS variable
+	result = result.replace(
+		/(\[(\w+)\]:\s*)`[^`]+`,/g,
+		(full, prefix, symbol) => {
+			const cssVar = symbolToCssVarName(symbol)
+			if (cssVar && declarations[cssVar] !== undefined) {
+				return `${prefix}${formatVeValue(declarations[cssVar], registry)},`
+			}
+			return full
+		},
+	)
+
+	// Replace [varBsXxx]: varOtherSymbol when theme overrides the CSS variable
+	result = result.replace(
+		/(\[(\w+)\]:\s*)(varBs\w+),/g,
+		(full, prefix, symbol) => {
+			const cssVar = symbolToCssVarName(symbol)
+			if (cssVar && declarations[cssVar] !== undefined) {
+				return `${prefix}${formatVeValue(declarations[cssVar], registry)},`
 			}
 			return full
 		},
@@ -115,7 +227,7 @@ export function hydrateBlockBody(body, declarations, registry) {
 		},
 	)
 
-	return result
+	return syncPaintPropsToVars(result, declarations, registry)
 }
 
 /**
@@ -154,13 +266,84 @@ export function computeOverlayDeclarations(body, themeDeclarations, registry) {
 	return overlay
 }
 
+/** Merge overlay prop lines into a block body, replacing same-key properties when present. */
+function mergeOverlayPropEntries(body, propEntries) {
+	let result = body
+	for (const line of propEntries) {
+		const key = line.match(/^\t(\w+):/)?.[1]
+		if (!key) continue
+		const pattern = new RegExp(`^\t${key}:[^\n]*,?\\n`, 'm')
+		if (pattern.test(result)) {
+			result = result.replace(pattern, `${line}\n`)
+		} else {
+			result = `${result.trimEnd()}\n${line}\n`
+		}
+	}
+	return result
+}
+
+/** Bootswatch sketchy-style `.btn` paint overrides must win over variant var blocks. */
+const BTN_PAINT_FOOTER_SELECTORS = [
+	'.btn',
+	'.btn:hover',
+	'.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show',
+	'.btn.disabled',
+]
+
+async function appendBtnPaintFooters(result, { family, familyMap, targetScope, registry }) {
+	if (family !== 'ui/buttons' || !familyMap) return result
+
+	const { emitGlobalStyleBlock } = await import('./rule-transpiler.mjs')
+	const footers = []
+
+	for (const selector of BTN_PAINT_FOOTER_SELECTORS) {
+		const declarations = lookupDeclarations(familyMap, selector)
+		if (!declarations) continue
+		const paintDecl = {}
+		for (const prop of ['margin', 'border-color', 'box-shadow', 'transform', 'transition']) {
+			if (declarations[prop] != null) paintDecl[prop] = declarations[prop]
+		}
+		if (Object.keys(paintDecl).length === 0) continue
+		footers.push({ selector, declarations: paintDecl })
+	}
+
+	if (footers.length === 0) return result
+
+	let output = `${result}\n// ── Theme paint footers (cascade after variant blocks) ─────────────────────────\n`
+	for (const { selector, declarations } of footers) {
+		const { code } = emitGlobalStyleBlock({
+			cssSelector: selector,
+			declarations,
+			scopeName: targetScope,
+			registry,
+			family,
+			isDelta: true,
+		})
+		output += code
+	}
+	return output
+}
+
 /**
  * Find the SOURCE CSS comment selector preceding a globalStyle block.
  */
 function findSourceSelectorForBlock(source, blockStartIdx) {
 	const before = source.slice(0, blockStartIdx)
 	const lines = before.split('\n')
-	for (let i = lines.length - 1; i >= 0 && i >= lines.length - 30; i--) {
+	for (let i = lines.length - 1; i >= 0 && i >= lines.length - 8; i--) {
+		const line = lines[i]
+		const trimmed = line.trim()
+		if (trimmed === '})') break
+		if (trimmed === '// SOURCE CSS:') continue
+		// Skip generator metadata between SOURCE CSS and globalStyle.
+		if (/^\/\/\s*\[(UNMAPPED_VAR|UNMAPPED_SELECTOR|DELTA)\]/.test(trimmed)) continue
+		// Stop at section comments (e.g. manual paint blocks, reboot helpers).
+		if (
+			/^\/\//.test(trimmed) &&
+			!/^\/\/\s*(\.|h[1-6]|:[a-z]|[a-z][\w-]*\s*\{)/i.test(trimmed)
+		) {
+			break
+		}
 		if (!lines[i].includes('globalStyle(') && i < lines.length - 1 && lines[i + 1]?.includes('globalStyle(')) {
 			const m = lines[i].match(/^\/\/\s*(\.[^{]+)\s*\{/)
 			if (m) return m[1].trim()
@@ -179,16 +362,30 @@ function findSourceSelectorForBlock(source, blockStartIdx) {
 	return null
 }
 
+/** Overlay families duplicate .btn-* rules; hydrate from ui/buttons when missing locally. */
+const BTN_FALLBACK_SELECTOR = /^\.btn(?:-[a-z0-9-]+)?(?:[:.[]|$)/i
+
+function lookupThemeDeclarations(familyMap, fallbackMaps, sourceSelector) {
+	const primary = lookupDeclarations(familyMap, sourceSelector)
+	if (primary && Object.keys(primary).length > 0) return primary
+	if (!BTN_FALLBACK_SELECTOR.test(sourceSelector.trim())) return primary
+	const buttonsMap = fallbackMaps?.get?.('ui/buttons')
+	if (!buttonsMap) return primary
+	return lookupDeclarations(buttonsMap, sourceSelector) ?? primary
+}
+
 /**
  * Two-pass hydrate: clone bootstrap structure, replace scope name, hydrate values.
  */
 export async function hydrateFamilyStyles({
 	themeSlug,
 	family,
-	familyMap,
+	familyMap: familyMapInput,
+	familyMaps,
 	registry,
 	referenceTheme = STRUCTURE_REFERENCE_THEME,
 }) {
+	const familyMap = familyMapInput ?? new Map()
 	const relPath = family.includes('/') ? `${family}/styles.css.ts` : `${family}/styles.css.ts`
 	const refPath = path.join(VE2_THEMES_ROOT, referenceTheme, `${relPath}`)
 	const refSource = await readFile(refPath, 'utf8')
@@ -200,39 +397,38 @@ export async function hydrateFamilyStyles({
 	let output = refSource.replaceAll(refScope, targetScope)
 	// Fix comment references to theme name
 	output = output.replace(new RegExp(`${referenceTheme}Scope`, 'g'), targetScope)
+	output = stripCrossFamilyOwnedBlocks(output, refSource, family)
 
 	// Pass A.5: re-transpile selectors from SOURCE CSS comments (applies generator fixes)
 	const { cssSelectorToVeSelector, finalizeVeSelector } = await import('./rule-transpiler.mjs')
 	const blocks = parseGlobalStyleBlocks(refSource)
 
-	// Pass B: hydrate each globalStyle block in the output string
+	// Pass B: hydrate each globalStyle block — match output blocks to SOURCE selectors, not indices
+	// (stripCrossFamilyOwnedBlocks removes blocks and would desync index pairing).
 	let result = output
-	for (const block of blocks) {
-		const sourceSelector = findSourceSelectorForBlock(refSource, block.startIdx)
-		if (!sourceSelector) continue
-		const declarations = lookupDeclarations(familyMap, sourceSelector)
+	const outputBlocks = parseGlobalStyleBlocks(result)
+	for (let i = outputBlocks.length - 1; i >= 0; i--) {
+		const outBlock = outputBlocks[i]
+		const sourceSelector = findSourceSelectorForBlock(result, outBlock.startIdx)
+		if (!sourceSelector || shouldSkipFamilySelector(family, sourceSelector)) continue
+		const declarations = lookupThemeDeclarations(familyMap, familyMaps, sourceSelector)
 		if (!declarations) continue
-		let hydratedBody = hydrateBlockBody(block.body, declarations, registry)
-		if (hydratedBody !== block.body) {
-			result = result.replace(block.body, hydratedBody)
-		}
-		const overlayDecl = computeOverlayDeclarations(hydratedBody, declarations, registry)
+		let newBody = hydrateBlockBody(outBlock.body, declarations, registry)
+		const overlayDecl = computeOverlayDeclarations(newBody, declarations, registry)
 		if (Object.keys(overlayDecl).length > 0) {
 			const { declarationsToVeProps, upgradeBtnBorderOverride } = await import('./rule-transpiler.mjs')
 			const { propEntries } = declarationsToVeProps(overlayDecl, registry, { propsOnly: true })
 			upgradeBtnBorderOverride(sourceSelector, propEntries, overlayDecl)
-			if (propEntries.length > 0) {
-				const mergedBody = `${hydratedBody.trimEnd()}\n${propEntries.join('\n')}\n`
-				result = result.replace(hydratedBody, mergedBody)
-				hydratedBody = mergedBody
-			}
+			newBody = mergeOverlayPropEntries(newBody, propEntries)
 		}
+		if (newBody === outBlock.body) continue
+		result = `${result.slice(0, outBlock.bodyStart)}${newBody}${result.slice(outBlock.endIdx - 1)}`
 	}
 
 	for (const block of [...blocks].reverse()) {
 		const sourceSelector = findSourceSelectorForBlock(refSource, block.startIdx)
 		if (!sourceSelector) continue
-		const declarations = lookupDeclarations(familyMap, sourceSelector) ?? {}
+		const declarations = lookupThemeDeclarations(familyMap, familyMaps, sourceSelector) ?? {}
 		const { veSelector: newVeSelector } = cssSelectorToVeSelector(sourceSelector, targetScope, registry, {
 			family,
 		})
@@ -240,6 +436,12 @@ export async function hydrateFamilyStyles({
 		const blockSlice = refSource.slice(block.startIdx, block.endIdx)
 		const oldSingle = blockSlice.match(/globalStyle\(\s*`([^`]+)`\s*,\s*\{/)?.[1]
 		if (!oldSingle) continue
+		const { veSelector: refTranspiled } = cssSelectorToVeSelector(sourceSelector, refScope, registry, {
+			family,
+		})
+		const refFinalized = finalizeVeSelector(sourceSelector, refTranspiled, declarations, family)
+		// Preserve manual contract selectors that reuse a SOURCE CSS comment for hydration only.
+		if (oldSingle !== refTranspiled && oldSingle !== refFinalized) continue
 		const oldInOutput = oldSingle.replaceAll(refScope, targetScope)
 		if (oldInOutput === finalizedVeSelector) continue
 		const needle = `\`${oldInOutput}\``
@@ -265,6 +467,7 @@ export async function hydrateFamilyStyles({
 		for (const [selector, decl] of familyMap) {
 			if (selector.includes('|||')) continue
 			if (coveredSelectors.has(selector)) continue
+			if (shouldSkipFamilySelector(family, selector)) continue
 			if (!selector.startsWith('.')) {
 				unmapped.push(selector)
 				continue
@@ -291,6 +494,13 @@ export async function hydrateFamilyStyles({
 			if (code) result += code
 		}
 	}
+
+	result = await appendBtnPaintFooters(result, {
+		family,
+		familyMap,
+		targetScope,
+		registry,
+	})
 
 	return { code: result, unmappedSelectors: unmapped }
 }

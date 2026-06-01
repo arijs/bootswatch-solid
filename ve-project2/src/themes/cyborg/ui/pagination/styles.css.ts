@@ -1,18 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
-	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsLinkColor,
-	varBsLinkColorRgb,
 	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
-	varBsTertiaryBg,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsPaginationActiveBg,
@@ -37,13 +31,12 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	pageItem,
+	pageItemActive,
+	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -55,88 +48,29 @@ import { cyborgScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
 // .pagination { --bs-pagination-padding-x: 0.75rem; --bs-pagination-padding-y: 0.375rem; --bs-pagination-font-size: 1rem; --bs-pagination-color: var(--bs-link-color); --bs-pagination-bg: var(--bs-body-bg); --bs-pagination-border-width: var(--bs-border-width); --bs-pagination-border-color: var(--bs-border-color); --bs-pagination-border-radius: var(--bs-border-radius); --bs-pagination-hover-color: var(--bs-link-hover-color); --bs-pagination-hover-bg: var(--bs-tertiary-bg); --bs-pagination-hover-border-color: var(--bs-border-color); --bs-pagination-focus-color: var(--bs-link-hover-color); --bs-pagination-focus-bg: var(--bs-secondary-bg); --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-pagination-active-color: #fff; --bs-pagination-active-bg: #0d6efd; --bs-pagination-active-border-color: #0d6efd; --bs-pagination-disabled-color: var(--bs-secondary-color); --bs-pagination-disabled-bg: var(--bs-secondary-bg); --bs-pagination-disabled-border-color: var(--bs-border-color); display: flex; padding-left: 0; list-style: none; }
 globalStyle(`${cyborgScope}${pagination}`, {
 	vars: {
 		[varBsPaginationPaddingX]: "0.75rem",
 		[varBsPaginationPaddingY]: "0.375rem",
 		[varBsPaginationFontSize]: "1rem",
-		[varBsPaginationColor]: varBsLinkColor,
-		[varBsPaginationBg]: varBsBodyBg,
+		[varBsPaginationColor]: "#fff",
+		[varBsPaginationBg]: "#282828",
 		[varBsPaginationBorderWidth]: varBsBorderWidth,
-		[varBsPaginationBorderColor]: varBsBorderColor,
+		[varBsPaginationBorderColor]: "transparent",
 		[varBsPaginationBorderRadius]: varBsBorderRadius,
-		[varBsPaginationHoverColor]: varBsLinkHoverColor,
-		[varBsPaginationHoverBg]: varBsTertiaryBg,
-		[varBsPaginationHoverBorderColor]: varBsBorderColor,
+		[varBsPaginationHoverColor]: "#fff",
+		[varBsPaginationHoverBg]: "#2a9fd6",
+		[varBsPaginationHoverBorderColor]: "transparent",
 		[varBsPaginationFocusColor]: varBsLinkHoverColor,
 		[varBsPaginationFocusBg]: varBsSecondaryBg,
-		[varBsPaginationFocusBoxShadow]: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+		[varBsPaginationFocusBoxShadow]: "0 0 0 0.25rem rgba(42, 159, 214, 0.25)",
 		[varBsPaginationActiveColor]: "#fff",
-		[varBsPaginationActiveBg]: "#0d6efd",
-		[varBsPaginationActiveBorderColor]: "#0d6efd",
+		[varBsPaginationActiveBg]: "#2a9fd6",
+		[varBsPaginationActiveBorderColor]: "#2a9fd6",
 		[varBsPaginationDisabledColor]: varBsSecondaryColor,
-		[varBsPaginationDisabledBg]: varBsSecondaryBg,
-		[varBsPaginationDisabledBorderColor]: varBsBorderColor,
+		[varBsPaginationDisabledBg]: "#282828",
+		[varBsPaginationDisabledBorderColor]: "transparent",
 	},
 	display: "flex",
 	paddingLeft: 0,
@@ -148,12 +82,12 @@ globalStyle(`${cyborgScope}${pagination}`, {
 globalStyle(`${cyborgScope}${pageLink}`, {
 	position: "relative",
 	display: "block",
-	padding: "var(--bs-pagination-padding-y) var(--bs-pagination-padding-x)",
+	padding: `${varBsPaginationPaddingY} ${varBsPaginationPaddingX}`,
 	fontSize: varBsPaginationFontSize,
 	color: varBsPaginationColor,
 	textDecoration: "none",
 	backgroundColor: varBsPaginationBg,
-	border: "var(--bs-pagination-border-width) solid var(--bs-pagination-border-color)",
+	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
 	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
 })
 
@@ -178,7 +112,7 @@ globalStyle(`${cyborgScope}${pageLink}:focus`, {
 
 // SOURCE CSS:
 // .page-link.active { z-index: 3; color: var(--bs-pagination-active-color); background-color: var(--bs-pagination-active-bg); border-color: var(--bs-pagination-active-border-color); }
-globalStyle(`${cyborgScope}${pageLink}.active`, {
+globalStyle(`${cyborgScope}${pageLink}${pageItemActive}`, {
 	zIndex: 3,
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
@@ -187,8 +121,7 @@ globalStyle(`${cyborgScope}${pageLink}.active`, {
 
 // SOURCE CSS:
 // .active > .page-link { z-index: 3; color: var(--bs-pagination-active-color); background-color: var(--bs-pagination-active-bg); border-color: var(--bs-pagination-active-border-color); }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.active > ${cyborgScope}${pageLink}`, {
+globalStyle(`${cyborgScope}${pageItem}${pageItemActive} > ${cyborgScope}${pageLink}`, {
 	zIndex: 3,
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
@@ -197,7 +130,7 @@ globalStyle(`.active > ${cyborgScope}${pageLink}`, {
 
 // SOURCE CSS:
 // .page-link.disabled { color: var(--bs-pagination-disabled-color); pointer-events: none; background-color: var(--bs-pagination-disabled-bg); border-color: var(--bs-pagination-disabled-border-color); }
-globalStyle(`${cyborgScope}${pageLink}.disabled`, {
+globalStyle(`${cyborgScope}${pageLink}${pageItemDisabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsPaginationDisabledBg,
@@ -206,8 +139,7 @@ globalStyle(`${cyborgScope}${pageLink}.disabled`, {
 
 // SOURCE CSS:
 // .disabled > .page-link { color: var(--bs-pagination-disabled-color); pointer-events: none; background-color: var(--bs-pagination-disabled-bg); border-color: var(--bs-pagination-disabled-border-color); }
-// [UNMAPPED_SELECTOR] class ".disabled" — no contract mapping
-globalStyle(`.disabled > ${cyborgScope}${pageLink}`, {
+globalStyle(`${cyborgScope}${pageItem}${pageItemDisabled} > ${cyborgScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsPaginationDisabledBg,
@@ -217,7 +149,7 @@ globalStyle(`.disabled > ${cyborgScope}${pageLink}`, {
 // SOURCE CSS:
 // .page-item:not(:first-child) .page-link { margin-left: calc(-1 * var(--bs-border-width)); }
 globalStyle(`${cyborgScope}${pageItem}:not(:first-child) ${cyborgScope}${pageLink}`, {
-	marginLeft: "calc(-1 * var(--bs-border-width))",
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
 // SOURCE CSS:
@@ -260,4 +192,13 @@ globalStyle(`${cyborgScope}${paginationSm}`, {
 		[varBsPaginationFontSize]: "0.875rem",
 		[varBsPaginationBorderRadius]: varBsBorderRadiusSm,
 	},
+})
+
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .pagination a:hover { text-decoration: none; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
+globalStyle(`${cyborgScope}${pagination} a:hover`, {
+	textDecoration: "none",
 })

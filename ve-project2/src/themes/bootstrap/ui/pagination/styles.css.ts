@@ -7,10 +7,7 @@ import {
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
 	varBsLinkColor,
-	varBsLinkColorRgb,
 	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 	varBsTertiaryBg,
@@ -38,14 +35,12 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	pageItem,
 	pageItemActive,
+	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -55,65 +50,6 @@ import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/pagination
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
 
 // SOURCE CSS:
 // .pagination { --bs-pagination-padding-x: 0.75rem; --bs-pagination-padding-y: 0.375rem; --bs-pagination-font-size: 1rem; --bs-pagination-color: var(--bs-link-color); --bs-pagination-bg: var(--bs-body-bg); --bs-pagination-border-width: var(--bs-border-width); --bs-pagination-border-color: var(--bs-border-color); --bs-pagination-border-radius: var(--bs-border-radius); --bs-pagination-hover-color: var(--bs-link-hover-color); --bs-pagination-hover-bg: var(--bs-tertiary-bg); --bs-pagination-hover-border-color: var(--bs-border-color); --bs-pagination-focus-color: var(--bs-link-hover-color); --bs-pagination-focus-bg: var(--bs-secondary-bg); --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-pagination-active-color: #fff; --bs-pagination-active-bg: #0d6efd; --bs-pagination-active-border-color: #0d6efd; --bs-pagination-disabled-color: var(--bs-secondary-color); --bs-pagination-disabled-bg: var(--bs-secondary-bg); --bs-pagination-disabled-border-color: var(--bs-border-color); display: flex; padding-left: 0; list-style: none; }
@@ -189,8 +125,7 @@ globalStyle(`${bootstrapScope}${pageLink}${pageItemActive}`, {
 
 // SOURCE CSS:
 // .active > .page-link { z-index: 3; color: var(--bs-pagination-active-color); background-color: var(--bs-pagination-active-bg); border-color: var(--bs-pagination-active-border-color); }
-// [UNMAPPED_SELECTOR] state class ".active" — no contract mapping
-globalStyle(`.active > ${bootstrapScope}${pageLink}`, {
+globalStyle(`${bootstrapScope}${pageItem}${pageItemActive} > ${bootstrapScope}${pageLink}`, {
 	zIndex: 3,
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
@@ -199,8 +134,7 @@ globalStyle(`.active > ${bootstrapScope}${pageLink}`, {
 
 // SOURCE CSS:
 // .page-link.disabled { color: var(--bs-pagination-disabled-color); pointer-events: none; background-color: var(--bs-pagination-disabled-bg); border-color: var(--bs-pagination-disabled-border-color); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${bootstrapScope}${pageLink}.disabled`, {
+globalStyle(`${bootstrapScope}${pageLink}${pageItemDisabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsPaginationDisabledBg,
@@ -209,8 +143,7 @@ globalStyle(`${bootstrapScope}${pageLink}.disabled`, {
 
 // SOURCE CSS:
 // .disabled > .page-link { color: var(--bs-pagination-disabled-color); pointer-events: none; background-color: var(--bs-pagination-disabled-bg); border-color: var(--bs-pagination-disabled-border-color); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`.disabled > ${bootstrapScope}${pageLink}`, {
+globalStyle(`${bootstrapScope}${pageItem}${pageItemDisabled} > ${bootstrapScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsPaginationDisabledBg,
@@ -220,7 +153,7 @@ globalStyle(`.disabled > ${bootstrapScope}${pageLink}`, {
 // SOURCE CSS:
 // .page-item:not(:first-child) .page-link { margin-left: calc(-1 * var(--bs-border-width)); }
 globalStyle(`${bootstrapScope}${pageItem}:not(:first-child) ${bootstrapScope}${pageLink}`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth} )`,
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
 // SOURCE CSS:

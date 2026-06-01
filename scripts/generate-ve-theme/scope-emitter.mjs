@@ -87,7 +87,7 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 		/^varBs(Primary|Secondary|Success|Info|Warning|Danger|Light|Dark)$/.test(v.symbol),
 	)
 	const emitted = new Set()
-	for (const entry of globalVars) {
+	for (const entry of [...globalVars, ...formsVars]) {
 		if (emitted.has(entry.symbol)) continue
 		emitted.add(entry.symbol)
 		lines.push(emitVarAssignment(entry, registry))
@@ -138,6 +138,7 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 	if (!hasFrameProp && !bodyDecls['background-color']) {
 		lines.push("\tbackgroundColor: '#fff',")
 	}
+	lines.push("\tminHeight: '100vh',")
 	lines.push('})')
 	lines.push('')
 	lines.push('// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.')

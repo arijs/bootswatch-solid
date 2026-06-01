@@ -1,15 +1,11 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
-	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsEmphasisColorRgb,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-	varBsTertiaryBg,
+	varBsLightRgb,
+	varBsPrimaryRgb,
+	varBsScrollHeight,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsNavbarActiveColor,
@@ -42,35 +38,41 @@ import {
 	varBsNavLinkPaddingY,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
-	horizontalRule,
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	containerFluid,
+} from '../../../../theme-contract/layout/container.css'
 import {
-	form,
-	formControl,
-} from '../../../../theme-contract/forms/contract.css'
-import {
-	dropdown,
 	dropdownMenu,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	collapse,
+	collapseShow,
 	navbar,
+	navbarBgLight,
 	navbarBrand,
 	navbarCollapse,
+	navbarDarkBgPrimary,
 	navbarNav,
+	navbarNavScroll,
+	navbarText,
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	nav,
 	navLink,
+	navLinkActive,
+	show,
 } from '../../../../theme-contract/ui/navs/contract.css'
 import {
+	bgDark,
 	dFlex,
+	mb2,
+	me2,
 	meAuto,
+	mt5,
+	row,
 } from '../../../../theme-contract/utilities/contract.css'
 import { cyborgScope } from '../../scope.css'
 
@@ -78,358 +80,30 @@ import { cyborgScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// hr { margin: 1rem 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0.25; }
-globalStyle(`${cyborgScope}${horizontalRule}`, {
-	margin: "1rem 0",
-	color: "inherit",
-	border: 0,
-	borderTop: "var(--bs-border-width) solid",
-	opacity: 0.25,
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ol ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol ol`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul ul`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ol ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ol ul`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ul ol`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="search"] { appearance: textfield; outline-offset: -2px; }
-// [UNMAPPED_SELECTOR] element selector "[type="search"]" — map to a contract class
-globalStyle(`[type="search"]`, {
-	appearance: "textfield",
-	outlineOffset: "-2px",
-})
-
-// SOURCE CSS:
-// [type="search"]::-webkit-search-cancel-button { cursor: pointer; filter: grayscale(1); }
-// [UNMAPPED_SELECTOR] element selector "[type="search"]::-webkit-search-cancel-button" — map to a contract class
-globalStyle(`[type="search"]::-webkit-search-cancel-button`, {
-	cursor: "pointer",
-	filter: "grayscale(1)",
-})
-
-// SOURCE CSS:
 // .form-control { display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-clip: padding-box; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${cyborgScope}${formControl}`, {
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsBodyBg,
-	backgroundClip: "padding-box",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
-	borderRadius: varBsBorderRadius,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
 // SOURCE CSS:
 // .form-control:focus { color: var(--bs-body-color); background-color: var(--bs-body-bg); border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
-globalStyle(`${cyborgScope}${formControl}:focus`, {
-	color: varBsBodyColor,
-	backgroundColor: varBsBodyBg,
-	borderColor: "#86b7fe",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
-})
-
 // SOURCE CSS:
 // .form-control::-webkit-date-and-time-value { min-width: 85px; height: 1.5em; margin: 0; }
-globalStyle(`${cyborgScope}${formControl}::-webkit-date-and-time-value`, {
-	minWidth: "85px",
-	height: "1.5em",
-	margin: 0,
-})
-
 // SOURCE CSS:
 // .form-control::-webkit-datetime-edit { display: block; padding: 0; }
-globalStyle(`${cyborgScope}${formControl}::-webkit-datetime-edit`, {
-	display: "block",
-	padding: 0,
-})
-
 // SOURCE CSS:
 // .form-control::placeholder { color: var(--bs-secondary-color); opacity: 1; }
-globalStyle(`${cyborgScope}${formControl}::placeholder`, {
-	color: varBsSecondaryColor,
-	opacity: 1,
-})
-
 // SOURCE CSS:
 // .form-control:disabled { background-color: var(--bs-secondary-bg); opacity: 1; }
-globalStyle(`${cyborgScope}${formControl}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
-	opacity: 1,
-})
-
 // SOURCE CSS:
 // .form-control::-webkit-file-upload-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${cyborgScope}${formControl}::-webkit-file-upload-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	WebkitTransition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
 // SOURCE CSS:
 // .form-control::file-selector-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${cyborgScope}${formControl}::file-selector-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
 // SOURCE CSS:
 // .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button { background-color: var(--bs-secondary-bg); }
-globalStyle(`${cyborgScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
-
+// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
 // SOURCE CSS:
 // .form-control:hover:not(:disabled):not([readonly])::file-selector-button { background-color: var(--bs-secondary-bg); }
-globalStyle(`${cyborgScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
-
+// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
 // SOURCE CSS:
 // .collapse:not(.show) { display: none; }
-// [UNMAPPED_SELECTOR] class ".collapse" — no contract mapping
-globalStyle(`.collapse:not(.show)`, {
+globalStyle(`${cyborgScope}${collapse}:not(${collapseShow})`, {
 	display: "none",
 })
 
@@ -452,7 +126,7 @@ globalStyle(`${cyborgScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: "0.25rem",
 		[varBsNavbarTogglerPaddingX]: "0.75rem",
 		[varBsNavbarTogglerFontSize]: "1.25rem",
-		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28173, 175, 174, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: "0.25rem",
@@ -463,7 +137,7 @@ globalStyle(`${cyborgScope}${navbar}`, {
 	flexWrap: "wrap",
 	alignItems: "center",
 	justifyContent: "space-between",
-	padding: "var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)",
+	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
 })
 
 // SOURCE CSS:
@@ -478,8 +152,7 @@ globalStyle(`${cyborgScope}${navbar} > .container`, {
 
 // SOURCE CSS:
 // .navbar > .container-fluid { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
-// [UNMAPPED_SELECTOR] class ".container-fluid" — no contract mapping
-globalStyle(`${cyborgScope}${navbar} > .container-fluid`, {
+globalStyle(`${cyborgScope}${navbar} > ${cyborgScope}${containerFluid}`, {
 	display: "flex",
 	flexWrap: "inherit",
 	alignItems: "center",
@@ -580,13 +253,13 @@ globalStyle(`${cyborgScope}${navbarNav}`, {
 
 // SOURCE CSS:
 // .navbar-nav .nav-link.active { color: var(--bs-navbar-active-color); }
-globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}.active`, {
+globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
 
 // SOURCE CSS:
 // .navbar-nav .nav-link.show { color: var(--bs-navbar-active-color); }
-globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}.show`, {
+globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${show}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -607,12 +280,12 @@ globalStyle(`${cyborgScope}${navbarCollapse}`, {
 // SOURCE CSS:
 // .navbar-toggler { padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x); font-size: var(--bs-navbar-toggler-font-size); line-height: 1; color: var(--bs-navbar-color); background-color: transparent; border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color); border-radius: var(--bs-navbar-toggler-border-radius); transition: var(--bs-navbar-toggler-transition); }
 globalStyle(`${cyborgScope}${navbarToggler}`, {
-	padding: "var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x)",
+	padding: `${varBsNavbarTogglerPaddingY} ${varBsNavbarTogglerPaddingX}`,
 	fontSize: varBsNavbarTogglerFontSize,
 	lineHeight: 1,
 	color: varBsNavbarColor,
 	backgroundColor: "transparent",
-	border: "var(--bs-border-width) solid var(--bs-navbar-toggler-border-color)",
+	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
 	transition: varBsNavbarTogglerTransition,
 })
@@ -628,7 +301,7 @@ globalStyle(`${cyborgScope}${navbarToggler}:hover`, {
 globalStyle(`${cyborgScope}${navbarToggler}:focus`, {
 	textDecoration: "none",
 	outline: 0,
-	boxShadow: "0 0 0 var(--bs-navbar-toggler-focus-width)",
+	boxShadow: `0 0 0 ${varBsNavbarTogglerFocusWidth}`,
 })
 
 // SOURCE CSS:
@@ -646,8 +319,7 @@ globalStyle(`${cyborgScope}${navbarTogglerIcon}`, {
 
 // SOURCE CSS:
 // .navbar-dark { --bs-navbar-color: rgba(255, 255, 255, 0.55); --bs-navbar-hover-color: rgba(255, 255, 255, 0.75); --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25); --bs-navbar-active-color: #fff; --bs-navbar-brand-color: #fff; --bs-navbar-brand-hover-color: #fff; --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1); --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
-// [UNMAPPED_SELECTOR] class ".navbar-dark" — no contract mapping
-globalStyle(`.navbar-dark`, {
+globalStyle(`${cyborgScope}${navbarDarkBgPrimary}`, {
 	vars: {
 		[varBsNavbarColor]: "rgba(255, 255, 255, 0.55)",
 		[varBsNavbarHoverColor]: "#fff",
@@ -665,7 +337,7 @@ globalStyle(`.navbar-dark`, {
 globalStyle(`${cyborgScope}${navbar}[data-bs-theme="dark"]`, {
 	vars: {
 		[varBsNavbarColor]: "rgba(255, 255, 255, 0.55)",
-		[varBsNavbarHoverColor]: "rgba(255, 255, 255, 0.75)",
+		[varBsNavbarHoverColor]: "#fff",
 		[varBsNavbarDisabledColor]: "rgba(255, 255, 255, 0.25)",
 		[varBsNavbarActiveColor]: "#fff",
 		[varBsNavbarBrandColor]: "#fff",
@@ -676,20 +348,6 @@ globalStyle(`${cyborgScope}${navbar}[data-bs-theme="dark"]`, {
 })
 
 // SOURCE CSS:
-// .align-top { vertical-align: top !important; }
-// [UNMAPPED_SELECTOR] class ".align-top" — no contract mapping
-globalStyle(`.align-top`, {
-	verticalAlign: "top !important",
-})
-
-// SOURCE CSS:
-// .d-inline-block { display: inline-block !important; }
-// [UNMAPPED_SELECTOR] class ".d-inline-block" — no contract mapping
-globalStyle(`.d-inline-block`, {
-	display: "inline-block !important",
-})
-
-// SOURCE CSS:
 // .d-flex { display: flex !important; }
 globalStyle(`${cyborgScope}${dFlex}`, {
 	display: "flex !important",
@@ -697,15 +355,13 @@ globalStyle(`${cyborgScope}${dFlex}`, {
 
 // SOURCE CSS:
 // .mt-5 { margin-top: 3rem !important; }
-// [UNMAPPED_SELECTOR] class ".mt-5" — no contract mapping
-globalStyle(`.mt-5`, {
+globalStyle(`${cyborgScope}${mt5}`, {
 	marginTop: "3rem !important",
 })
 
 // SOURCE CSS:
 // .me-2 { margin-right: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
-globalStyle(`.me-2`, {
+globalStyle(`${cyborgScope}${me2}`, {
 	marginRight: "0.5rem !important",
 })
 
@@ -717,46 +373,150 @@ globalStyle(`${cyborgScope}${meAuto}`, {
 
 // SOURCE CSS:
 // .mb-2 { margin-bottom: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-2" — no contract mapping
-globalStyle(`.mb-2`, {
+globalStyle(`${cyborgScope}${mb2}`, {
 	marginBottom: "0.5rem !important",
 })
 
 // SOURCE CSS:
 // .bg-primary { --bs-bg-opacity: 1; background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-primary" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-primary`, {
-	backgroundColor: "rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important",
+globalStyle(`${cyborgScope}${navbarDarkBgPrimary}`, {
+	backgroundColor: `rgba(${varBsPrimaryRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
 // .bg-light { --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-light" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-light`, {
-	backgroundColor: "rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important",
+globalStyle(`${cyborgScope}${navbarBgLight}`, {
+	backgroundColor: `rgba(${varBsLightRgb}, 1) !important`,
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .navbar-text
-// [DELTA] unmapped selector: .navbar-text a
-// [DELTA] unmapped selector: .navbar-text a:hover
-// [DELTA] unmapped selector: .navbar-text a:focus
-// [DELTA] unmapped selector: .navbar-nav-scroll
-// [DELTA] unmapped selector: .navbar-expand
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav .dropdown-menu
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav .nav-link
-// [DELTA] unmapped selector: .navbar-expand .navbar-nav-scroll
-// [DELTA] unmapped selector: .navbar-expand .navbar-collapse
-// [DELTA] unmapped selector: .navbar-expand .navbar-toggler
-// [DELTA] unmapped selector: .navbar-expand .offcanvas
-// [DELTA] unmapped selector: .navbar-expand .offcanvas .offcanvas-header
-// [DELTA] unmapped selector: .navbar-expand .offcanvas .offcanvas-body
-// [DELTA] unmapped selector: .navbar[data-bs-theme=dark]
-// [DELTA] unmapped selector: .navbar.bg-primary
-// [DELTA] unmapped selector: .navbar.bg-dark
-// [DELTA] unmapped selector: .navbar.bg-light
-// [DELTA] unmapped selector: .navbar.fixed-top
-// [DELTA] ... and 1 more unmapped selectors
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .navbar-text { padding-top: 0.5rem; padding-bottom: 0.5rem; color: var(--bs-navbar-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navbarText}`, {
+	paddingTop: "0.5rem",
+	paddingBottom: "0.5rem",
+	color: varBsNavbarColor,
+})
+// SOURCE CSS:
+// .navbar-text a { color: var(--bs-navbar-active-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
+globalStyle(`${cyborgScope}${navbarText} a`, {
+	color: varBsNavbarActiveColor,
+})
+// SOURCE CSS:
+// .navbar-text a:hover { color: var(--bs-navbar-active-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
+globalStyle(`${cyborgScope}${navbarText} a:hover`, {
+	color: varBsNavbarActiveColor,
+})
+// SOURCE CSS:
+// .navbar-text a:focus { color: var(--bs-navbar-active-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] element selector "a:focus" — map to a contract class
+globalStyle(`${cyborgScope}${navbarText} a:focus`, {
+	color: varBsNavbarActiveColor,
+})
+// SOURCE CSS:
+// .navbar-nav-scroll { max-height: var(--bs-scroll-height, 75vh); overflow-y: auto; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navbarNavScroll}`, {
+	maxHeight: varBsScrollHeight,
+	overflowY: "auto",
+})
+// SOURCE CSS:
+// .navbar-expand .navbar-nav { flex-direction: row; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".navbar-expand" — no contract mapping
+globalStyle(`.navbar-expand ${cyborgScope}${navbarNav}`, {
+	flexDirection: "row",
+})
+// SOURCE CSS:
+// .navbar-expand .navbar-nav .dropdown-menu { position: absolute; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".navbar-expand" — no contract mapping
+globalStyle(`.navbar-expand ${cyborgScope}${navbarNav} ${cyborgScope}${dropdownMenu}`, {
+	position: "absolute",
+})
+// SOURCE CSS:
+// .navbar-expand .navbar-nav .nav-link { padding-right: var(--bs-navbar-nav-link-padding-x); padding-left: var(--bs-navbar-nav-link-padding-x); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".navbar-expand" — no contract mapping
+globalStyle(`.navbar-expand ${cyborgScope}${navbarNav} ${cyborgScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+// SOURCE CSS:
+// .navbar-expand .navbar-nav-scroll { overflow: visible; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".navbar-expand" — no contract mapping
+globalStyle(`.navbar-expand ${cyborgScope}${navbarNavScroll}`, {
+	overflow: "visible",
+})
+// SOURCE CSS:
+// .navbar-expand .navbar-collapse { display: flex !important; flex-basis: auto; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".navbar-expand" — no contract mapping
+globalStyle(`.navbar-expand ${cyborgScope}${navbarCollapse}`, {
+	display: "flex !important",
+	flexBasis: "auto",
+})
+// SOURCE CSS:
+// .navbar-expand .navbar-toggler { display: none; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".navbar-expand" — no contract mapping
+globalStyle(`.navbar-expand ${cyborgScope}${navbarToggler}`, {
+	display: "none",
+})
+// SOURCE CSS:
+// .navbar[data-bs-theme=dark] { --bs-navbar-color: rgba(255, 255, 255, 0.55); --bs-navbar-hover-color: #fff; --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25); --bs-navbar-active-color: #fff; --bs-navbar-brand-color: #fff; --bs-navbar-brand-hover-color: #fff; --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1); --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navbar}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsNavbarColor]: "rgba(255, 255, 255, 0.55)",
+		[varBsNavbarHoverColor]: "#fff",
+		[varBsNavbarDisabledColor]: "rgba(255, 255, 255, 0.25)",
+		[varBsNavbarActiveColor]: "#fff",
+		[varBsNavbarBrandColor]: "#fff",
+		[varBsNavbarBrandHoverColor]: "#fff",
+		[varBsNavbarTogglerBorderColor]: "rgba(255, 255, 255, 0.1)",
+		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+	},
+})
+// SOURCE CSS:
+// .navbar.bg-primary { border: 1px solid #282828; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navbar}${navbarDarkBgPrimary}`, {
+	border: "1px solid #282828",
+})
+// SOURCE CSS:
+// .navbar.bg-dark { background-color: #060606 !important; border: 1px solid #282828; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navbar}${bgDark}`, {
+	backgroundColor: "#060606 !important",
+	border: "1px solid #282828",
+})
+// SOURCE CSS:
+// .navbar.bg-light { background-color: #888 !important; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navbar}${navbarBgLight}`, {
+	backgroundColor: "#888 !important",
+})
+// SOURCE CSS:
+// .navbar.fixed-top { border-width: 0 0 1px; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".fixed-top" — no contract mapping
+globalStyle(`${cyborgScope}${navbar}.fixed-top`, {
+	borderWidth: "0 0 1px",
+})
+// SOURCE CSS:
+// .navbar.fixed-bottom { border-width: 1px 0 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".fixed-bottom" — no contract mapping
+globalStyle(`${cyborgScope}${navbar}.fixed-bottom`, {
+	borderWidth: "1px 0 0",
+})

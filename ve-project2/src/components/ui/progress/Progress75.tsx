@@ -6,6 +6,7 @@ import {
 	progress,
 	progressBar,
 	progressBarWarning,
+	progressBarTextDark,
 } from '../../../theme-contract/ui/progress/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -22,7 +23,7 @@ const Progress75: Component = () => {
 			<div class={`${theme} ${containerFluid}`}>
 				<div class={`${theme} ${progress}`}>
 					<div
-						class={`${theme} ${progressBar} ${progressBarWarning}`}
+						class={`${theme} ${progressBar} ${progressBarWarning} ${progressBarTextDark}`}
 						style={{ width: '75%' }}
 					>
 						75%

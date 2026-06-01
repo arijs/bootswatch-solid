@@ -1,10 +1,8 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBodyBgRgb,
-	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsBoxShadow,
 	varBsBtnCloseFilter,
 	varBsDarkRgb,
 	varBsSecondaryColor,
@@ -36,26 +34,15 @@ import {
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
 import {
-	small,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	bdPlaceholderImg,
 	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	alertBtnClose,
+	alertBtnCloseDisabledHook,
 } from '../../../../theme-contract/ui/alerts/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	fade,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import {
-	placeholderIcon,
 	toast,
 	toastBody,
-	toastBrand,
 	toastFade,
 	toastHeader,
 	toastShow,
@@ -72,152 +59,6 @@ import { briteScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/toasts
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// b { font-weight: bolder; }
-globalStyle(`${briteScope}${toastBrand}`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// strong { font-weight: bolder; }
-globalStyle(`${briteScope}${toastBrand}`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// small { font-size: 0.875em; }
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-globalStyle(`${briteScope}${bdPlaceholderImg}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-globalStyle(`${briteScope}${placeholderIcon}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
 
 // SOURCE CSS:
 // .fade { transition: opacity 0.15s linear; }
@@ -283,8 +124,7 @@ globalStyle(`${briteScope}${alertBtnClose}:disabled`, {
 
 // SOURCE CSS:
 // .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${briteScope}${alertBtnClose}.disabled`, {
+globalStyle(`${briteScope}${alertBtnClose}${alertBtnCloseDisabledHook}`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
@@ -305,12 +145,12 @@ globalStyle(`${briteScope}${toast}`, {
 		[varBsToastColor]: "",
 		[varBsToastBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
 		[varBsToastBorderWidth]: varBsBorderWidth,
-		[varBsToastBorderColor]: varBsBorderColorTranslucent,
+		[varBsToastBorderColor]: "#000",
 		[varBsToastBorderRadius]: varBsBorderRadius,
-		[varBsToastBoxShadow]: varBsBoxShadow,
-		[varBsToastHeaderColor]: varBsSecondaryColor,
+		[varBsToastBoxShadow]: "3px 3px 0 0 #000",
+		[varBsToastHeaderColor]: "#000",
 		[varBsToastHeaderBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
-		[varBsToastHeaderBorderColor]: varBsBorderColorTranslucent,
+		[varBsToastHeaderBorderColor]: "#000",
 	},
 	width: varBsToastMaxWidth,
 	maxWidth: "100%",
@@ -404,61 +244,16 @@ globalStyle(`${briteScope}${rounded}`, {
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
 // SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// .text-muted { --bs-text-opacity: 1; color: var(--bs-secondary-color) !important; }
 // [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+// [UNMAPPED_VAR] --bs-text-opacity
+globalStyle(`${briteScope}${textMuted}`, {
+	color: `${varBsSecondaryColor} !important`,
 })
 // SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// .bg-dark { --bs-bg-opacity: 1; background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; }
 // [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// .btn-close { --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e"); --bs-btn-close-opacity: 1; --bs-btn-close-hover-opacity: 1; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertBtnClose}`, {
-	vars: {
-		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
-		[varBsBtnCloseOpacity]: 1,
-		[varBsBtnCloseHoverOpacity]: 1,
-	},
-})
-// SOURCE CSS:
-// .toast { --bs-toast-bg: rgba(var(--bs-body-bg-rgb), 0.85); --bs-toast-border-color: #000; --bs-toast-box-shadow: 3px 3px 0 0 #000; --bs-toast-header-color: #000; --bs-toast-header-bg: rgba(var(--bs-body-bg-rgb), 0.85); --bs-toast-header-border-color: #000; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${toast}`, {
-	vars: {
-		[varBsToastBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
-		[varBsToastBorderColor]: "#000",
-		[varBsToastBoxShadow]: "3px 3px 0 0 #000",
-		[varBsToastHeaderColor]: "#000",
-		[varBsToastHeaderBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
-		[varBsToastHeaderBorderColor]: "#000",
-	},
-})
-// SOURCE CSS:
-// .bg-dark { background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; }
-// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_VAR] --bs-bg-opacity
 globalStyle(`${briteScope}${bgDark}`, {
 	backgroundColor: `rgba(${varBsDarkRgb}, 1) !important`,
 })

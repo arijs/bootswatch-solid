@@ -1,5 +1,8 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
+	varBsTextOpacity,
+} from '../../../../theme-contract/_vars.css'
+import {
 	varBsSpinnerAnimationName,
 	varBsSpinnerAnimationSpeed,
 	varBsSpinnerBorderWidth,
@@ -13,6 +16,7 @@ import {
 } from '../../../../theme-contract/ui/spinners/contract.css'
 import {
 	textDark,
+	visuallyHidden,
 } from '../../../../theme-contract/utilities/contract.css'
 import { cosmoScope } from '../../scope.css'
 
@@ -35,7 +39,7 @@ globalStyle(`${cosmoScope}${spinnerGrow}`, {
 	height: varBsSpinnerHeight,
 	verticalAlign: varBsSpinnerVerticalAlign,
 	borderRadius: "50%",
-	animation: "var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name)",
+	animation: `${varBsSpinnerAnimationSpeed} linear infinite ${varBsSpinnerAnimationName}`,
 	backgroundColor: "currentcolor",
 	opacity: 0,
 })
@@ -57,29 +61,14 @@ globalStyle(`${cosmoScope}${spinnerBorder}`, {
 	height: varBsSpinnerHeight,
 	verticalAlign: varBsSpinnerVerticalAlign,
 	borderRadius: "50%",
-	animation: "var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name)",
-	border: "var(--bs-spinner-border-width) solid currentcolor",
+	animation: `${varBsSpinnerAnimationSpeed} linear infinite ${varBsSpinnerAnimationName}`,
+	border: `${varBsSpinnerBorderWidth} solid currentcolor`,
 	borderRightColor: "transparent",
 })
 
 // SOURCE CSS:
 // .visually-hidden { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden`, {
-	width: "1px !important",
-	height: "1px !important",
-	padding: "0 !important",
-	margin: "-1px !important",
-	overflow: "hidden !important",
-	clip: "rect(0, 0, 0, 0) !important",
-	whiteSpace: "nowrap !important",
-	border: "0 !important",
-})
-
-// SOURCE CSS:
-// .visually-hidden-focusable:not(:focus):not(:focus-within) { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
-globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
+globalStyle(`${cosmoScope}${visuallyHidden}`, {
 	width: "1px !important",
 	height: "1px !important",
 	padding: "0 !important",
@@ -92,81 +81,16 @@ globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
 
 // SOURCE CSS:
 // .visually-hidden:not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden:not(caption)`, {
+// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
+globalStyle(`${cosmoScope}${visuallyHidden}:not(caption)`, {
 	position: "absolute !important",
-})
-
-// SOURCE CSS:
-// .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
-globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within):not(caption)`, {
-	position: "absolute !important",
-})
-
-// SOURCE CSS:
-// .text-danger { --bs-text-opacity: 1; color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-danger" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-danger`, {
-	color: "rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important",
 })
 
 // SOURCE CSS:
 // .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
 // [UNMAPPED_VAR] --bs-text-opacity
 globalStyle(`${cosmoScope}${textDark}`, {
-	color: "rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important",
+	color: `rgba(var(--bs-dark-rgb), ${varBsTextOpacity} ) !important`,
 })
 
-// SOURCE CSS:
-// .text-info { --bs-text-opacity: 1; color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-info" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-info`, {
-	color: "rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important",
-})
-
-// SOURCE CSS:
-// .text-light { --bs-text-opacity: 1; color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-light" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-light`, {
-	color: "rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important",
-})
-
-// SOURCE CSS:
-// .text-primary { --bs-text-opacity: 1; color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-primary" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-primary`, {
-	color: "rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important",
-})
-
-// SOURCE CSS:
-// .text-secondary { --bs-text-opacity: 1; color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-secondary" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-secondary`, {
-	color: "rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important",
-})
-
-// SOURCE CSS:
-// .text-success { --bs-text-opacity: 1; color: rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-success" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-success`, {
-	color: "rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important",
-})
-
-// SOURCE CSS:
-// .text-warning { --bs-text-opacity: 1; color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".text-warning" — no contract mapping
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`.text-warning`, {
-	color: "rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important",
-})
-
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .spinner-border-sm
-// [DELTA] unmapped selector: .spinner-grow-sm
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────

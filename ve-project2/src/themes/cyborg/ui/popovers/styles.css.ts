@@ -1,14 +1,14 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
 	varBsBodyColor,
+	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
+	varBsBorderStyle,
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsFontSansSerif,
-	varBsHeadingColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -59,22 +59,14 @@ import {
 	varBsPopoverZindex,
 } from '../../../../theme-contract/ui/popovers/_vars.css'
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
-import {
 	fieldset,
-	row,
 } from '../../../../theme-contract/forms/contract.css'
 import {
 	btn,
 	btnActiveHook,
 	btnCheck,
 	btnDanger,
+	btnDisabledHook,
 	btnLg,
 	btnSecondary,
 } from '../../../../theme-contract/ui/buttons/contract.css'
@@ -89,12 +81,20 @@ import {
 	bsPopoverBottom,
 	bsPopoverEnd,
 	bsPopoverTop,
+	frame,
+	frameColumn,
+	frameRow,
+	justifyEnd,
+	justifyStart,
 	popoverArrow,
 	popoverBody,
 	popoverHeader,
+	popoverShow,
+	popoverVe,
 } from '../../../../theme-contract/ui/popovers/contract.css'
 import {
-	dFlex,
+	alignItemsCenter,
+	row,
 } from '../../../../theme-contract/utilities/contract.css'
 import { cyborgScope } from '../../scope.css'
 
@@ -103,247 +103,21 @@ import { cyborgScope } from '../../scope.css'
 
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
-globalStyle(`${cyborgScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.3rem + 0.6vw)",
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.3rem + 0.6vw)",
-})
-
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
 // SOURCE CSS:
 // .btn { --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem; --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400; --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color); --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width); --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius); --bs-btn-hover-border-color: transparent; --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); --bs-btn-disabled-opacity: 0.65; --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5); display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x); font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size); font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height); color: var(--bs-btn-color); text-align: center; text-decoration: none; vertical-align: middle; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none; border: var(--bs-btn-border-width) solid var(--bs-btn-border-color); border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg); transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${cyborgScope}${btn}`, {
 	vars: {
-		[varBsBtnPaddingX]: "0.75rem",
+		[varBsBtnPaddingX]: "1rem",
 		[varBsBtnPaddingY]: "0.375rem",
 		[varBsBtnFontFamily]: "",
 		[varBsBtnFontSize]: "1rem",
@@ -360,7 +134,7 @@ globalStyle(`${cyborgScope}${btn}`, {
 		[varBsBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)",
 	},
 	display: "inline-block",
-	padding: "var(--bs-btn-padding-y) var(--bs-btn-padding-x)",
+	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
 	fontSize: varBsBtnFontSize,
 	fontWeight: varBsBtnFontWeight,
@@ -373,7 +147,7 @@ globalStyle(`${cyborgScope}${btn}`, {
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
 	userSelect: "none",
-	border: "var(--bs-btn-border-width) solid var(--bs-btn-border-color)",
+	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
@@ -457,13 +231,13 @@ globalStyle(`${cyborgScope}${btn}:first-child:active:focus-visible`, {
 
 // SOURCE CSS:
 // .btn.active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${cyborgScope}${btn}.active:focus-visible`, {
+globalStyle(`${cyborgScope}${btn}${btnActiveHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
 // SOURCE CSS:
 // .btn.show:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${cyborgScope}${btn}${btnShowHook}`, {
+globalStyle(`${cyborgScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -479,7 +253,7 @@ globalStyle(`${cyborgScope}${btn}:disabled`, {
 
 // SOURCE CSS:
 // .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(`${cyborgScope}${btn}.disabled`, {
+globalStyle(`${cyborgScope}${btn}${btnDisabledHook}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -502,26 +276,28 @@ globalStyle(`fieldset:disabled ${cyborgScope}${btn}`, {
 // .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #dc3545; --bs-btn-border-color: #dc3545; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37; --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff; --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #dc3545; --bs-btn-disabled-border-color: #dc3545; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${cyborgScope}${btnDanger}`, {
+globalStyle(`${cyborgScope}${btn}${btnDanger}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#dc3545",
-		[varBsBtnBorderColor]: "#dc3545",
+		[varBsBtnBg]: "#c00",
+		[varBsBtnBorderColor]: "#c00",
 		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#bb2d3b",
-		[varBsBtnHoverBorderColor]: "#b02a37",
+		[varBsBtnHoverBg]: "#ad0000",
+		[varBsBtnHoverBorderColor]: "#a30000",
 		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#b02a37",
-		[varBsBtnActiveBorderColor]: "#a52834",
+		[varBsBtnActiveBg]: "#a30000",
+		[varBsBtnActiveBorderColor]: "#990000",
 		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#dc3545",
-		[varBsBtnDisabledBorderColor]: "#dc3545",
+		[varBsBtnDisabledBg]: "#c00",
+		[varBsBtnDisabledBorderColor]: "#c00",
 	},
+	backgroundColor: "#c00",
+	color: varBsBtnColor,
 })
 
 // SOURCE CSS:
 // .btn-lg { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${cyborgScope}${btnLg}`, {
+globalStyle(`${cyborgScope}${btn}${btnLg}`, {
 	vars: {
 		[varBsBtnPaddingY]: "0.5rem",
 		[varBsBtnPaddingX]: "1rem",
@@ -550,23 +326,22 @@ globalStyle(`${cyborgScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${cyborgScope}${fade}:not(.show)`, {
+globalStyle(`${cyborgScope}${popoverVe}${fade}:not(${popoverShow})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .popover { --bs-popover-zindex: 1070; --bs-popover-max-width: 276px; --bs-popover-font-size: 0.875rem; --bs-popover-bg: var(--bs-body-bg); --bs-popover-border-width: var(--bs-border-width); --bs-popover-border-color: var(--bs-border-color-translucent); --bs-popover-border-radius: var(--bs-border-radius-lg); --bs-popover-inner-border-radius: calc(var(--bs-border-radius-lg) - var(--bs-border-width)); --bs-popover-box-shadow: var(--bs-box-shadow); --bs-popover-header-padding-x: 1rem; --bs-popover-header-padding-y: 0.5rem; --bs-popover-header-font-size: 1rem; --bs-popover-header-color: inherit; --bs-popover-header-bg: var(--bs-secondary-bg); --bs-popover-body-padding-x: 1rem; --bs-popover-body-padding-y: 1rem; --bs-popover-body-color: var(--bs-body-color); --bs-popover-arrow-width: 1rem; --bs-popover-arrow-height: 0.5rem; --bs-popover-arrow-border: var(--bs-popover-border-color); z-index: var(--bs-popover-zindex); display: block; max-width: var(--bs-popover-max-width); font-family: var(--bs-font-sans-serif); font-style: normal; font-weight: 400; line-height: 1.5; text-align: start; text-decoration: none; text-shadow: none; text-transform: none; letter-spacing: normal; word-break: normal; white-space: normal; word-spacing: normal; line-break: auto; font-size: var(--bs-popover-font-size); word-wrap: break-word; background-color: var(--bs-popover-bg); background-clip: padding-box; border: var(--bs-popover-border-width) solid var(--bs-popover-border-color); border-radius: var(--bs-popover-border-radius); }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover`, {
+globalStyle(`${cyborgScope}${popoverVe}`, {
 	vars: {
 		[varBsPopoverZindex]: 1070,
 		[varBsPopoverMaxWidth]: "276px",
 		[varBsPopoverFontSize]: "0.875rem",
-		[varBsPopoverBg]: varBsBodyBg,
+		[varBsPopoverBg]: "#282828",
 		[varBsPopoverBorderWidth]: varBsBorderWidth,
 		[varBsPopoverBorderColor]: varBsBorderColorTranslucent,
 		[varBsPopoverBorderRadius]: varBsBorderRadiusLg,
-		[varBsPopoverInnerBorderRadius]: "calc(var(--bs-border-radius-lg) - var(--bs-border-width))",
+		[varBsPopoverInnerBorderRadius]: `calc(${varBsBorderRadiusLg} - ${varBsBorderWidth})`,
 		[varBsPopoverBoxShadow]: varBsBoxShadow,
 		[varBsPopoverHeaderPaddingX]: "1rem",
 		[varBsPopoverHeaderPaddingY]: "0.5rem",
@@ -600,14 +375,13 @@ globalStyle(`.popover`, {
 	wordWrap: "break-word",
 	backgroundColor: varBsPopoverBg,
 	backgroundClip: "padding-box",
-	border: "var(--bs-popover-border-width) solid var(--bs-popover-border-color)",
+	border: `${varBsPopoverBorderWidth} solid ${varBsPopoverBorderColor}`,
 	borderRadius: varBsPopoverBorderRadius,
 })
 
 // SOURCE CSS:
 // .popover .popover-arrow { display: block; width: var(--bs-popover-arrow-width); height: var(--bs-popover-arrow-height); }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover ${cyborgScope}${popoverArrow}`, {
+globalStyle(`${cyborgScope}${popoverVe} ${cyborgScope}${popoverArrow}`, {
 	display: "block",
 	width: varBsPopoverArrowWidth,
 	height: varBsPopoverArrowHeight,
@@ -615,8 +389,7 @@ globalStyle(`.popover ${cyborgScope}${popoverArrow}`, {
 
 // SOURCE CSS:
 // .popover .popover-arrow::before { position: absolute; display: block; content: ""; border-color: transparent; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover ${cyborgScope}${popoverArrow}::before`, {
+globalStyle(`${cyborgScope}${popoverVe} ${cyborgScope}${popoverArrow}::before`, {
 	position: "absolute",
 	display: "block",
 	content: "\"\"",
@@ -627,8 +400,7 @@ globalStyle(`.popover ${cyborgScope}${popoverArrow}::before`, {
 
 // SOURCE CSS:
 // .popover .popover-arrow::after { position: absolute; display: block; content: ""; border-color: transparent; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] class ".popover" — no contract mapping
-globalStyle(`.popover ${cyborgScope}${popoverArrow}::after`, {
+globalStyle(`${cyborgScope}${popoverVe} ${cyborgScope}${popoverArrow}::after`, {
 	position: "absolute",
 	display: "block",
 	content: "\"\"",
@@ -640,7 +412,7 @@ globalStyle(`.popover ${cyborgScope}${popoverArrow}::after`, {
 // SOURCE CSS:
 // .bs-popover-end > .popover-arrow { left: calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width)); width: var(--bs-popover-arrow-height); height: var(--bs-popover-arrow-width); }
 globalStyle(`${cyborgScope}${bsPopoverEnd} > ${cyborgScope}${popoverArrow}`, {
-	left: "calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width))",
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 	width: varBsPopoverArrowHeight,
 	height: varBsPopoverArrowWidth,
 })
@@ -648,7 +420,7 @@ globalStyle(`${cyborgScope}${bsPopoverEnd} > ${cyborgScope}${popoverArrow}`, {
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="right"] > .popover-arrow { left: calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width)); width: var(--bs-popover-arrow-height); height: var(--bs-popover-arrow-width); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="right"] > ${cyborgScope}${popoverArrow}`, {
-	left: "calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width))",
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 	width: varBsPopoverArrowHeight,
 	height: varBsPopoverArrowWidth,
 })
@@ -656,7 +428,7 @@ globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="right"] > ${
 // SOURCE CSS:
 // .bs-popover-end > .popover-arrow::before { border-width: calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; left: 0px; border-right-color: var(--bs-popover-arrow-border); }
 globalStyle(`${cyborgScope}${bsPopoverEnd} > ${cyborgScope}${popoverArrow}::before`, {
-	borderWidth: "calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	left: "0px",
 	borderRightColor: varBsPopoverArrowBorder,
 })
@@ -664,7 +436,7 @@ globalStyle(`${cyborgScope}${bsPopoverEnd} > ${cyborgScope}${popoverArrow}::befo
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="right"] > .popover-arrow::before { border-width: calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; left: 0px; border-right-color: var(--bs-popover-arrow-border); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="right"] > ${cyborgScope}${popoverArrow}::before`, {
-	borderWidth: "calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	left: "0px",
 	borderRightColor: varBsPopoverArrowBorder,
 })
@@ -672,7 +444,7 @@ globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="right"] > ${
 // SOURCE CSS:
 // .bs-popover-end > .popover-arrow::after { border-width: calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; left: var(--bs-popover-border-width); border-right-color: var(--bs-popover-bg); }
 globalStyle(`${cyborgScope}${bsPopoverEnd} > ${cyborgScope}${popoverArrow}::after`, {
-	borderWidth: "calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
@@ -680,7 +452,7 @@ globalStyle(`${cyborgScope}${bsPopoverEnd} > ${cyborgScope}${popoverArrow}::afte
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="right"] > .popover-arrow::after { border-width: calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; left: var(--bs-popover-border-width); border-right-color: var(--bs-popover-bg); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="right"] > ${cyborgScope}${popoverArrow}::after`, {
-	borderWidth: "calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
@@ -688,12 +460,12 @@ globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="right"] > ${
 // SOURCE CSS:
 // .popover-header { padding: var(--bs-popover-header-padding-y) var(--bs-popover-header-padding-x); margin-bottom: 0; font-size: var(--bs-popover-header-font-size); color: var(--bs-popover-header-color); background-color: var(--bs-popover-header-bg); border-bottom: var(--bs-popover-border-width) solid var(--bs-popover-border-color); border-top-left-radius: var(--bs-popover-inner-border-radius); border-top-right-radius: var(--bs-popover-inner-border-radius); }
 globalStyle(`${cyborgScope}${popoverHeader}`, {
-	padding: "var(--bs-popover-header-padding-y) var(--bs-popover-header-padding-x)",
+	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
 	marginBottom: 0,
 	fontSize: varBsPopoverHeaderFontSize,
 	color: varBsPopoverHeaderColor,
 	backgroundColor: varBsPopoverHeaderBg,
-	borderBottom: "var(--bs-popover-border-width) solid var(--bs-popover-border-color)",
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverBorderColor}`,
 	borderTopLeftRadius: varBsPopoverInnerBorderRadius,
 	borderTopRightRadius: varBsPopoverInnerBorderRadius,
 })
@@ -707,7 +479,7 @@ globalStyle(`${cyborgScope}${popoverHeader}:empty`, {
 // SOURCE CSS:
 // .popover-body { padding: var(--bs-popover-body-padding-y) var(--bs-popover-body-padding-x); color: var(--bs-popover-body-color); }
 globalStyle(`${cyborgScope}${popoverBody}`, {
-	padding: "var(--bs-popover-body-padding-y) var(--bs-popover-body-padding-x)",
+	padding: `${varBsPopoverBodyPaddingY} ${varBsPopoverBodyPaddingX}`,
 	color: varBsPopoverBodyColor,
 })
 
@@ -715,39 +487,41 @@ globalStyle(`${cyborgScope}${popoverBody}`, {
 // .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #6c757d; --bs-btn-border-color: #6c757d; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64; --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff; --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #6c757d; --bs-btn-disabled-border-color: #6c757d; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${cyborgScope}${btnSecondary}`, {
+globalStyle(`${cyborgScope}${btn}${btnSecondary}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#6c757d",
-		[varBsBtnBorderColor]: "#6c757d",
+		[varBsBtnBg]: "#555",
+		[varBsBtnBorderColor]: "#555",
 		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#5c636a",
-		[varBsBtnHoverBorderColor]: "#565e64",
+		[varBsBtnHoverBg]: "#484848",
+		[varBsBtnHoverBorderColor]: "#444444",
 		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#565e64",
-		[varBsBtnActiveBorderColor]: "#51585e",
+		[varBsBtnActiveBg]: "#444444",
+		[varBsBtnActiveBorderColor]: "#404040",
 		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#6c757d",
-		[varBsBtnDisabledBorderColor]: "#6c757d",
+		[varBsBtnDisabledBg]: "#555",
+		[varBsBtnDisabledBorderColor]: "#555",
 	},
+	backgroundColor: "#555",
+	color: varBsBtnColor,
 })
 
 // SOURCE CSS:
 // .bs-popover-bottom > .popover-arrow { top: calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width)); }
 globalStyle(`${cyborgScope}${bsPopoverBottom} > ${cyborgScope}${popoverArrow}`, {
-	top: "calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width))",
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow { top: calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width)); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="bottom"] > ${cyborgScope}${popoverArrow}`, {
-	top: "calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width))",
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
 // SOURCE CSS:
 // .bs-popover-bottom > .popover-arrow::before { border-width: 0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height); top: 0px; border-bottom-color: var(--bs-popover-arrow-border); }
 globalStyle(`${cyborgScope}${bsPopoverBottom} > ${cyborgScope}${popoverArrow}::before`, {
-	borderWidth: "0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height)",
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 	top: "0px",
 	borderBottomColor: varBsPopoverArrowBorder,
 })
@@ -755,7 +529,7 @@ globalStyle(`${cyborgScope}${bsPopoverBottom} > ${cyborgScope}${popoverArrow}::b
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::before { border-width: 0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height); top: 0px; border-bottom-color: var(--bs-popover-arrow-border); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="bottom"] > ${cyborgScope}${popoverArrow}::before`, {
-	borderWidth: "0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height)",
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 	top: "0px",
 	borderBottomColor: varBsPopoverArrowBorder,
 })
@@ -763,7 +537,7 @@ globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="bottom"] > $
 // SOURCE CSS:
 // .bs-popover-bottom > .popover-arrow::after { border-width: 0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height); top: var(--bs-popover-border-width); border-bottom-color: var(--bs-popover-bg); }
 globalStyle(`${cyborgScope}${bsPopoverBottom} > ${cyborgScope}${popoverArrow}::after`, {
-	borderWidth: "0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height)",
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
@@ -771,61 +545,57 @@ globalStyle(`${cyborgScope}${bsPopoverBottom} > ${cyborgScope}${popoverArrow}::a
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::after { border-width: 0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height); top: var(--bs-popover-border-width); border-bottom-color: var(--bs-popover-bg); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="bottom"] > ${cyborgScope}${popoverArrow}::after`, {
-	borderWidth: "0 calc(var(--bs-popover-arrow-width) * 0.5) var(--bs-popover-arrow-height)",
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
 
 // SOURCE CSS:
 // .d-flex { display: flex !important; }
-globalStyle(`${cyborgScope}${dFlex}`, {
+globalStyle(`${cyborgScope}${frame}`, {
 	display: "flex !important",
 })
 
 // SOURCE CSS:
 // .border { border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important; }
-// [UNMAPPED_SELECTOR] class ".border" — no contract mapping
-globalStyle(`.border`, {
-	border: "var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important",
+globalStyle(`${cyborgScope}${frame}`, {
+	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 // SOURCE CSS:
 // .flex-column { flex-direction: column !important; }
-// [UNMAPPED_SELECTOR] class ".flex-column" — no contract mapping
-globalStyle(`.flex-column`, {
+globalStyle(`${cyborgScope}${frameColumn}`, {
 	flexDirection: "column !important",
 })
 
 // SOURCE CSS:
 // .justify-content-start { justify-content: flex-start !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-start" — no contract mapping
-globalStyle(`.justify-content-start`, {
+globalStyle(`${cyborgScope}${justifyStart}`, {
 	justifyContent: "flex-start !important",
 })
 
 // SOURCE CSS:
 // .align-items-center { align-items: center !important; }
-// [UNMAPPED_SELECTOR] class ".align-items-center" — no contract mapping
-globalStyle(`.align-items-center`, {
+globalStyle(`${cyborgScope}${alignItemsCenter}`, {
 	alignItems: "center !important",
 })
 
 // SOURCE CSS:
 // .bs-popover-top > .popover-arrow { bottom: calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width)); }
 globalStyle(`${cyborgScope}${bsPopoverTop} > ${cyborgScope}${popoverArrow}`, {
-	bottom: "calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width))",
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow { bottom: calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width)); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="top"] > ${cyborgScope}${popoverArrow}`, {
-	bottom: "calc(-1 * (var(--bs-popover-arrow-height)) - var(--bs-popover-border-width))",
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
 // SOURCE CSS:
 // .bs-popover-top > .popover-arrow::before { border-width: var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; bottom: 0px; border-top-color: var(--bs-popover-arrow-border); }
 globalStyle(`${cyborgScope}${bsPopoverTop} > ${cyborgScope}${popoverArrow}::before`, {
-	borderWidth: "var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	bottom: "0px",
 	borderTopColor: varBsPopoverArrowBorder,
 })
@@ -833,7 +603,7 @@ globalStyle(`${cyborgScope}${bsPopoverTop} > ${cyborgScope}${popoverArrow}::befo
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::before { border-width: var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; bottom: 0px; border-top-color: var(--bs-popover-arrow-border); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="top"] > ${cyborgScope}${popoverArrow}::before`, {
-	borderWidth: "var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	bottom: "0px",
 	borderTopColor: varBsPopoverArrowBorder,
 })
@@ -841,7 +611,7 @@ globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="top"] > ${cy
 // SOURCE CSS:
 // .bs-popover-top > .popover-arrow::after { border-width: var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; bottom: var(--bs-popover-border-width); border-top-color: var(--bs-popover-bg); }
 globalStyle(`${cyborgScope}${bsPopoverTop} > ${cyborgScope}${popoverArrow}::after`, {
-	borderWidth: "var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
@@ -849,24 +619,21 @@ globalStyle(`${cyborgScope}${bsPopoverTop} > ${cyborgScope}${popoverArrow}::afte
 // SOURCE CSS:
 // .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::after { border-width: var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0; bottom: var(--bs-popover-border-width); border-top-color: var(--bs-popover-bg); }
 globalStyle(`${cyborgScope}${bsPopoverAuto}[data-popper-placement^="top"] > ${cyborgScope}${popoverArrow}::after`, {
-	borderWidth: "var(--bs-popover-arrow-height) calc(var(--bs-popover-arrow-width) * 0.5) 0",
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
 
 // SOURCE CSS:
 // .flex-row { flex-direction: row !important; }
-// [UNMAPPED_SELECTOR] class ".flex-row" — no contract mapping
-globalStyle(`.flex-row`, {
+globalStyle(`${cyborgScope}${frameRow}`, {
 	flexDirection: "row !important",
 })
 
 // SOURCE CSS:
 // .justify-content-end { justify-content: flex-end !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-end" — no contract mapping
-globalStyle(`.justify-content-end`, {
+globalStyle(`${cyborgScope}${justifyEnd}`, {
 	justifyContent: "flex-end !important",
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .popover-title
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────

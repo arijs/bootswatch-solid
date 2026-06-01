@@ -92,6 +92,8 @@ import {
 	popoverArrow,
 	popoverBody,
 	popoverHeader,
+	popoverShow,
+	popoverVe,
 } from '../../../../theme-contract/ui/popovers/contract.css'
 import {
 	dFlex,
@@ -550,7 +552,7 @@ globalStyle(`${darklyScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${darklyScope}${fade}:not(.show)`, {
+globalStyle(`${darklyScope}${popoverVe}${fade}:not(${popoverShow})`, {
 	opacity: 0,
 })
 
@@ -718,17 +720,17 @@ globalStyle(`${darklyScope}${popoverBody}`, {
 globalStyle(`${darklyScope}${btnSecondary}`, {
 	vars: {
 		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#6c757d",
-		[varBsBtnBorderColor]: "#6c757d",
+		[varBsBtnBg]: "#444",
+		[varBsBtnBorderColor]: "#444",
 		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#5c636a",
-		[varBsBtnHoverBorderColor]: "#565e64",
+		[varBsBtnHoverBg]: "#3a3a3a",
+		[varBsBtnHoverBorderColor]: "#363636",
 		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#565e64",
-		[varBsBtnActiveBorderColor]: "#51585e",
+		[varBsBtnActiveBg]: "#363636",
+		[varBsBtnActiveBorderColor]: "#333333",
 		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#6c757d",
-		[varBsBtnDisabledBorderColor]: "#6c757d",
+		[varBsBtnDisabledBg]: "#444",
+		[varBsBtnDisabledBorderColor]: "#444",
 	},
 })
 

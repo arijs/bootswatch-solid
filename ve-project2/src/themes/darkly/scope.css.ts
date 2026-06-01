@@ -121,7 +121,8 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../theme-contract/forms/_vars.css'
-import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { modalOpenHook } from '../../theme-contract/ui/modal/contract.css'
 
 // Darkly theme scope class.
 // Zero-style identifier used as a stable selector prefix.
@@ -231,6 +232,10 @@ globalStyle(`${darklyScope}${vars}`, {
 		[varBsFocusRingWidth]: "0.25rem",
 		[varBsFocusRingOpacity]: 0.25,
 		[varBsFocusRingColor]: "rgba(55, 90, 127, 0.25)",
+		[varBsFormValidColor]: "#00bc8c",
+		[varBsFormValidBorderColor]: "#00bc8c",
+		[varBsFormInvalidColor]: "#e74c3c",
+		[varBsFormInvalidBorderColor]: "#e74c3c",
 		[varBsNavbarColor]: "rgba(255, 255, 255, 0.6)",
 		[varBsNavbarHoverColor]: "#fff",
 		[varBsNavbarDisabledColor]: "rgba(255, 255, 255, 0.25)",
@@ -241,13 +246,15 @@ globalStyle(`${darklyScope}${vars}`, {
 		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.6%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23879cb2'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnActiveIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23879cb2'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
-		[varBsCarouselIndicatorActiveBg]: "#000",
-		[varBsCarouselCaptionColor]: "#000",
-		[varBsCarouselControlIconFilter]: "invert(1) grayscale(100)",
+		[varBsCarouselIndicatorActiveBg]: "#fff",
+		[varBsCarouselCaptionColor]: "#fff",
+		[varBsCarouselControlIconFilter]: "",
 	},
 })
 
 // ── Root / body styles ────────────────────────────────────────────────────────
+// bodyText = typography; bodyFrame = page canvas (Ve2Shell). Do not add padding
+// here — baseline screenshots have no padded wrapper around bd-example.
 
 globalStyle(`${darklyScope}${bodyText}`, {
 	fontFamily: varBsBodyFontFamily,
@@ -257,8 +264,19 @@ globalStyle(`${darklyScope}${bodyText}`, {
 	color: varBsBodyColor,
 })
 
-globalStyle(`${darklyScope}${body}`, {
+globalStyle(`${darklyScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
-	padding: '1rem',
-	display: 'block',
+	margin: 0,
+	minHeight: '100vh',
+})
+
+// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.
+globalStyle(`${modalOpenHook}`, {
+	fontFamily: varBsBodyFontFamily,
+	fontSize: varBsBodyFontSize,
+	fontWeight: varBsBodyFontWeight,
+	lineHeight: varBsBodyLineHeight,
+	color: varBsBodyColor,
+	backgroundColor: varBsBodyBg,
+	margin: 0,
 })

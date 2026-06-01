@@ -7,9 +7,6 @@ import {
 	varBsBorderWidth,
 	varBsEmphasisColorRgb,
 	varBsLightRgb,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
 	varBsPrimaryRgb,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
@@ -46,15 +43,12 @@ import {
 	varBsNavLinkPaddingY,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
-	containerFluid,
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	form,
 	formControl,
 } from '../../../../theme-contract/forms/contract.css'
 import {
-	dropdown,
+	containerFluid,
+} from '../../../../theme-contract/layout/container.css'
+import {
 	dropdownMenu,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import {
@@ -73,9 +67,9 @@ import {
 	navbarTogglerIcon,
 } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	nav,
 	navLink,
 	navLinkActive,
+	show,
 } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	dFlex,
@@ -88,237 +82,6 @@ import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/navbar
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ol ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol ol`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul ul`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ol ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ol ul`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ul ol`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="search"] { appearance: textfield; outline-offset: -2px; }
-// [UNMAPPED_SELECTOR] element selector "[type="search"]" — map to a contract class
-globalStyle(`[type="search"]`, {
-	appearance: "textfield",
-	outlineOffset: "-2px",
-})
-
-// SOURCE CSS:
-// [type="search"]::-webkit-search-cancel-button { cursor: pointer; filter: grayscale(1); }
-// [UNMAPPED_SELECTOR] element selector "[type="search"]::-webkit-search-cancel-button" — map to a contract class
-globalStyle(`[type="search"]::-webkit-search-cancel-button`, {
-	cursor: "pointer",
-	filter: "grayscale(1)",
-})
 
 // SOURCE CSS:
 // .form-control { display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-clip: padding-box; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -588,8 +351,7 @@ globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${navLinkA
 
 // SOURCE CSS:
 // .navbar-nav .nav-link.show { color: var(--bs-navbar-active-color); }
-// [UNMAPPED_SELECTOR] state class ".show" — no contract mapping
-globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}.show`, {
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${show}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -675,20 +437,6 @@ globalStyle(`${bootstrapScope}${navbar}[data-bs-theme="dark"]`, {
 		[varBsNavbarTogglerBorderColor]: "rgba(255, 255, 255, 0.1)",
 		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
-})
-
-// SOURCE CSS:
-// .align-top { vertical-align: top !important; }
-// [UNMAPPED_SELECTOR] class ".align-top" — no contract mapping
-globalStyle(`.align-top`, {
-	verticalAlign: "top !important",
-})
-
-// SOURCE CSS:
-// .d-inline-block { display: inline-block !important; }
-// [UNMAPPED_SELECTOR] class ".d-inline-block" — no contract mapping
-globalStyle(`.d-inline-block`, {
-	display: "inline-block !important",
 })
 
 // SOURCE CSS:

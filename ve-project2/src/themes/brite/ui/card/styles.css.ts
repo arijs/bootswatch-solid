@@ -4,7 +4,6 @@ import {
 	varBsBodyColor,
 	varBsBodyColorRgb,
 	varBsBorderColor,
-	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsCardHeight,
@@ -12,9 +11,6 @@ import {
 	varBsGutterX,
 	varBsGutterY,
 	varBsHeadingColor,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 	varBsTertiaryBg,
@@ -84,10 +80,6 @@ import {
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import {
-	link,
-	small,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	h1,
 	h2,
 	h3,
@@ -97,12 +89,12 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
 	fieldset,
-	row,
 } from '../../../../theme-contract/forms/contract.css'
 import {
 	btn,
 	btnActiveHook,
 	btnCheck,
+	btnDisabledHook,
 	btnPrimary,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -139,8 +131,12 @@ import {
 } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	col,
+	g0,
+	g4,
 	overflowXHidden,
 	positionRelative,
+	row,
+	rowCols1,
 	textMuted,
 } from '../../../../theme-contract/utilities/contract.css'
 import { briteScope } from '../../scope.css'
@@ -159,19 +155,8 @@ globalStyle(`${briteScope}${h6}`, {
 })
 
 // SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`.h6`, {
+globalStyle(`${briteScope}${h5}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -181,31 +166,8 @@ globalStyle(`.h6`, {
 })
 
 // SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
-// SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
+globalStyle(`${briteScope}${h4}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -215,18 +177,7 @@ globalStyle(`.h4`, {
 
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
+globalStyle(`${briteScope}${h3}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -236,18 +187,7 @@ globalStyle(`.h3`, {
 
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
+globalStyle(`${briteScope}${h2}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -257,115 +197,12 @@ globalStyle(`.h2`, {
 
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h2`, {
+globalStyle(`${briteScope}${h1}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
 	lineHeight: 1.2,
 	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`.h1`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "0.5rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`.h1`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "0.5rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// small { font-size: 0.875em; }
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`${briteScope}${small}`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`${briteScope}${small}`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`${briteScope}${small}`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
 })
 
 // SOURCE CSS:
@@ -377,20 +214,19 @@ globalStyle(`${briteScope}${row}`, {
 	},
 	display: "flex",
 	flexWrap: "wrap",
-	marginTop: `calc(-1 * ${varBsGutterY} )`,
-	marginRight: `calc(-0.5 * ${varBsGutterX} )`,
-	marginLeft: `calc(-0.5 * ${varBsGutterX} )`,
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
 // SOURCE CSS:
 // .row > * { flex-shrink: 0; width: 100%; max-width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-top: var(--bs-gutter-y); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${briteScope}${row} > *`, {
+globalStyle(`${briteScope}${row} > ${briteScope}${col}`, {
 	flexShrink: 0,
 	width: "100%",
 	maxWidth: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
 	marginTop: varBsGutterY,
 })
 
@@ -402,65 +238,25 @@ globalStyle(`${briteScope}${col}`, {
 
 // SOURCE CSS:
 // .row-cols-1 > * { flex: 0 0 auto; width: 100%; }
-// [UNMAPPED_SELECTOR] class ".row-cols-1" — no contract mapping
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`.row-cols-1 > *`, {
+globalStyle(`${briteScope}${rowCols1} > ${briteScope}${col}`, {
 	flex: "0 0 auto",
 	width: "100%",
 })
 
 // SOURCE CSS:
 // .g-0 { --bs-gutter-x: 0; --bs-gutter-y: 0; }
-// [UNMAPPED_SELECTOR] class ".g-0" — no contract mapping
-globalStyle(`.g-0`, {
+globalStyle(`${briteScope}${g0}`, {
 	vars: {
 		[varBsGutterX]: 0,
-		[varBsGutterY]: 0,
-	},
-})
-
-// SOURCE CSS:
-// .gx-0 { --bs-gutter-x: 0; }
-// [UNMAPPED_SELECTOR] class ".gx-0" — no contract mapping
-globalStyle(`.gx-0`, {
-	vars: {
-		[varBsGutterX]: 0,
-	},
-})
-
-// SOURCE CSS:
-// .gy-0 { --bs-gutter-y: 0; }
-// [UNMAPPED_SELECTOR] class ".gy-0" — no contract mapping
-globalStyle(`.gy-0`, {
-	vars: {
 		[varBsGutterY]: 0,
 	},
 })
 
 // SOURCE CSS:
 // .g-4 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 1.5rem; }
-// [UNMAPPED_SELECTOR] class ".g-4" — no contract mapping
-globalStyle(`.g-4`, {
+globalStyle(`${briteScope}${g4}`, {
 	vars: {
 		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: "1.5rem",
-	},
-})
-
-// SOURCE CSS:
-// .gx-4 { --bs-gutter-x: 1.5rem; }
-// [UNMAPPED_SELECTOR] class ".gx-4" — no contract mapping
-globalStyle(`.gx-4`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-	},
-})
-
-// SOURCE CSS:
-// .gy-4 { --bs-gutter-y: 1.5rem; }
-// [UNMAPPED_SELECTOR] class ".gy-4" — no contract mapping
-globalStyle(`.gy-4`, {
-	vars: {
 		[varBsGutterY]: "1.5rem",
 	},
 })
@@ -477,7 +273,7 @@ globalStyle(`${briteScope}${btn}`, {
 		[varBsBtnLineHeight]: 1.5,
 		[varBsBtnColor]: varBsBodyColor,
 		[varBsBtnBg]: "transparent",
-		[varBsBtnBorderWidth]: varBsBorderWidth,
+		[varBsBtnBorderWidth]: "2px",
 		[varBsBtnBorderColor]: "transparent",
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: "transparent",
@@ -499,10 +295,13 @@ globalStyle(`${briteScope}${btn}`, {
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
 	userSelect: "none",
-	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
+	border: `${varBsBtnBorderWidth} solid #000`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	transition: "all 0.3s",
+	margin: "3px 0 0 3px",
+	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
+	transform: "translate(-3px, -3px)",
 })
 
 // SOURCE CSS:
@@ -511,6 +310,8 @@ globalStyle(`${briteScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -529,14 +330,16 @@ globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
 // :not(.btn-check) + .btn:active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
+globalStyle(`:not(${briteScope}${btnCheck}) + ${briteScope}${btn}:active`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
-	borderColor: "#000",
+	borderColor: varBsBtnActiveBorderColor,
 })
 
 // SOURCE CSS:
@@ -545,6 +348,8 @@ globalStyle(`${briteScope}${btn}:first-child:active`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -553,6 +358,8 @@ globalStyle(`${briteScope}${btn}${btnActiveHook}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -561,6 +368,8 @@ globalStyle(`${briteScope}${btn}${btnShowHook}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -571,7 +380,7 @@ globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}:focus-visibl
 
 // SOURCE CSS:
 // :not(.btn-check) + .btn:active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}:focus-visible`, {
+globalStyle(`:not(${briteScope}${btnCheck}) + ${briteScope}${btn}:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -605,8 +414,7 @@ globalStyle(`${briteScope}${btn}:disabled`, {
 
 // SOURCE CSS:
 // .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${briteScope}${btn}.disabled`, {
+globalStyle(`${briteScope}${btn}${btnDisabledHook}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -617,7 +425,7 @@ globalStyle(`${briteScope}${btn}.disabled`, {
 // SOURCE CSS:
 // fieldset:disabled .btn { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
 // [UNMAPPED_SELECTOR] element selector "fieldset:disabled" — map to a contract class
-globalStyle(`${briteScope}${btn}.disabled`, {
+globalStyle(`fieldset:disabled ${briteScope}${btn}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -629,7 +437,7 @@ globalStyle(`${briteScope}${btn}.disabled`, {
 // .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca; --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd; --bs-btn-disabled-border-color: #0d6efd; }
 // [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
 // [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${briteScope}${btnPrimary}`, {
+globalStyle(`${briteScope}${btn}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: "#000",
 		[varBsBtnBg]: "#a2e436",
@@ -644,6 +452,8 @@ globalStyle(`${briteScope}${btnPrimary}`, {
 		[varBsBtnDisabledBg]: "#a2e436",
 		[varBsBtnDisabledBorderColor]: "#a2e436",
 	},
+	backgroundColor: varBsBtnBg,
+	color: varBsBtnColor,
 })
 
 // SOURCE CSS:
@@ -657,10 +467,10 @@ globalStyle(`${briteScope}${card}`, {
 		[varBsCardTitleColor]: "",
 		[varBsCardSubtitleColor]: "",
 		[varBsCardBorderWidth]: varBsBorderWidth,
-		[varBsCardBorderColor]: varBsBorderColorTranslucent,
+		[varBsCardBorderColor]: "#000",
 		[varBsCardBorderRadius]: varBsBorderRadius,
 		[varBsCardBoxShadow]: "",
-		[varBsCardInnerBorderRadius]: "calc(var(--bs-border-radius) - (var(--bs-border-width)))",
+		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - (${varBsBorderWidth}))`,
 		[varBsCardCapPaddingY]: "0.5rem",
 		[varBsCardCapPaddingX]: "1rem",
 		[varBsCardCapBg]: `rgba(${varBsBodyColorRgb}, 0.03)`,
@@ -902,10 +712,10 @@ globalStyle(`${briteScope}${textMuted}`, {
 
 // SOURCE CSS:
 // .card-header-tabs { margin-right: calc(-0.5 * var(--bs-card-cap-padding-x)); margin-bottom: calc(-1 * var(--bs-card-cap-padding-y)); margin-left: calc(-0.5 * var(--bs-card-cap-padding-x)); border-bottom: 0; }
-globalStyle(`${briteScope}${cardHeaderTabs}`, {
-	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX} )`,
-	marginBottom: `calc(-1 * ${varBsCardCapPaddingY} )`,
-	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX} )`,
+globalStyle(`${briteScope}${nav}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
 	borderBottom: 0,
 })
 
@@ -917,120 +727,3 @@ globalStyle(`${briteScope}${cardHeaderTabs} ${briteScope}${navLink}${navLinkActi
 })
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// .h5 { font-size: 1.09375rem; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	fontSize: "1.09375rem",
-})
-// SOURCE CSS:
-// .h1 { font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-// SOURCE CSS:
-// .h1 { font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-// SOURCE CSS:
-// .h1 { font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${small}`, {
-	fontSize: "0.875em",
-})
-// SOURCE CSS:
-// .btn { --bs-btn-border-width: 2px; --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); --bs-btn-focus-box-shadow: 0 0 0 1px rgba(var(--bs-btn-focus-shadow-rgb), .5); margin: 3px 0 0 3px; border-color: #000; box-shadow: 3px 3px 0 0 var(--bs-border-color); transform: translate(-3px, -3px); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}`, {
-	vars: {
-		[varBsBtnBorderWidth]: "2px",
-		[varBsBtnBoxShadow]: "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
-		[varBsBtnFocusBoxShadow]: "0 0 0 1px rgba(var(--bs-btn-focus-shadow-rgb), .5)",
-	},
-	margin: "3px 0 0 3px",
-	borderColor: "#000",
-	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
-	transform: "translate(-3px, -3px)",
-})
-// SOURCE CSS:
-// .btn:hover { box-shadow: none; transform: translate(0, 0); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}:hover`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
-})
-// SOURCE CSS:
-// .btn-check:checked + .btn { box-shadow: none; transform: translate(0, 0); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
-})
-// SOURCE CSS:
-// .btn-check:checked + .btn { box-shadow: none; transform: translate(0, 0); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
-})
-// SOURCE CSS:
-// .btn:first-child:active { box-shadow: none; transform: translate(0, 0); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}:first-child:active`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
-})
-// SOURCE CSS:
-// .btn.active { box-shadow: none; transform: translate(0, 0); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}${btnActiveHook}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
-})
-// SOURCE CSS:
-// .btn.show { box-shadow: none; transform: translate(0, 0); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}${btnShowHook}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
-})
-// SOURCE CSS:
-// .card { --bs-card-border-color: #000; --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${card}`, {
-	vars: {
-		[varBsCardBorderColor]: "#000",
-		[varBsCardCapBg]: `rgba(${varBsBodyColorRgb}, 0.03)`,
-	},
-})

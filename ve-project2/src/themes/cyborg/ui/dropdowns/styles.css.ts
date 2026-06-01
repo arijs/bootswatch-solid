@@ -1,16 +1,11 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
 	varBsBodyColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsDropdownItemBorderRadius,
-	varBsHeadingColor,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsTertiaryBg,
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -42,24 +37,22 @@ import {
 	varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
 import {
-	horizontalRule,
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
+	btn,
+} from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
 	dropdownHeader,
 	dropdownItem,
+	dropdownItemActive,
+	dropdownItemDisabled,
+	dropdownItemText,
 	dropdownMenu,
+	dropdownMenuDark,
+	dropdownMenuEnd,
+	dropdownMenuShow,
+	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
@@ -67,318 +60,26 @@ import {
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import {
+	visuallyHidden,
+} from '../../../../theme-contract/utilities/contract.css'
 import { cyborgScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/dropdowns
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// hr { margin: 1rem 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0.25; }
-globalStyle(`${cyborgScope}${horizontalRule}`, {
-	margin: "1rem 0",
-	color: "inherit",
-	border: 0,
-	borderTop: "var(--bs-border-width) solid",
-	opacity: 0.25,
-})
-
-// SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
-globalStyle(`${cyborgScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1rem",
-})
-
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1rem",
-})
-
 // SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cyborgScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
 // SOURCE CSS:
 // .dropup { position: relative; }
 globalStyle(`${cyborgScope}${dropup}`, {
@@ -451,23 +152,23 @@ globalStyle(`${cyborgScope}${dropdownMenu}`, {
 		[varBsDropdownSpacer]: "0.125rem",
 		[varBsDropdownFontSize]: "1rem",
 		[varBsDropdownColor]: varBsBodyColor,
-		[varBsDropdownBg]: varBsBodyBg,
+		[varBsDropdownBg]: "#282828",
 		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
 		[varBsDropdownBorderRadius]: varBsBorderRadius,
 		[varBsDropdownBorderWidth]: varBsBorderWidth,
-		[varBsDropdownInnerBorderRadius]: "calc(var(--bs-border-radius) - var(--bs-border-width))",
-		[varBsDropdownDividerBg]: varBsBorderColorTranslucent,
+		[varBsDropdownInnerBorderRadius]: `calc(${varBsBorderRadius} - ${varBsBorderWidth})`,
+		[varBsDropdownDividerBg]: "#222",
 		[varBsDropdownDividerMarginY]: "0.5rem",
 		[varBsDropdownBoxShadow]: varBsBoxShadow,
-		[varBsDropdownLinkColor]: varBsBodyColor,
-		[varBsDropdownLinkHoverColor]: varBsBodyColor,
-		[varBsDropdownLinkHoverBg]: varBsTertiaryBg,
+		[varBsDropdownLinkColor]: "#fff",
+		[varBsDropdownLinkHoverColor]: "#fff",
+		[varBsDropdownLinkHoverBg]: "#2a9fd6",
 		[varBsDropdownLinkActiveColor]: "#fff",
-		[varBsDropdownLinkActiveBg]: "#0d6efd",
+		[varBsDropdownLinkActiveBg]: "#2a9fd6",
 		[varBsDropdownLinkDisabledColor]: varBsTertiaryColor,
 		[varBsDropdownItemPaddingX]: "1rem",
 		[varBsDropdownItemPaddingY]: "0.25rem",
-		[varBsDropdownHeaderColor]: "#6c757d",
+		[varBsDropdownHeaderColor]: "#555",
 		[varBsDropdownHeaderPaddingX]: "1rem",
 		[varBsDropdownHeaderPaddingY]: "0.5rem",
 	},
@@ -475,7 +176,7 @@ globalStyle(`${cyborgScope}${dropdownMenu}`, {
 	zIndex: varBsDropdownZindex,
 	display: "none",
 	minWidth: varBsDropdownMinWidth,
-	padding: "var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x)",
+	padding: `${varBsDropdownPaddingY} ${varBsDropdownPaddingX}`,
 	margin: 0,
 	fontSize: varBsDropdownFontSize,
 	color: varBsDropdownColor,
@@ -483,7 +184,7 @@ globalStyle(`${cyborgScope}${dropdownMenu}`, {
 	listStyle: "none",
 	backgroundColor: varBsDropdownBg,
 	backgroundClip: "padding-box",
-	border: "var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color)",
+	border: `${varBsDropdownBorderWidth} solid ${varBsDropdownBorderColor}`,
 	borderRadius: varBsDropdownBorderRadius,
 })
 
@@ -491,9 +192,9 @@ globalStyle(`${cyborgScope}${dropdownMenu}`, {
 // .dropdown-divider { height: 0; margin: var(--bs-dropdown-divider-margin-y) 0; overflow: hidden; border-top: 1px solid var(--bs-dropdown-divider-bg); opacity: 1; }
 globalStyle(`${cyborgScope}${dropdownDivider}`, {
 	height: 0,
-	margin: "var(--bs-dropdown-divider-margin-y) 0",
+	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: "hidden",
-	borderTop: "1px solid var(--bs-dropdown-divider-bg)",
+	borderTop: `1px solid ${varBsDropdownDividerBg}`,
 	opacity: 1,
 })
 
@@ -502,7 +203,7 @@ globalStyle(`${cyborgScope}${dropdownDivider}`, {
 globalStyle(`${cyborgScope}${dropdownItem}`, {
 	display: "block",
 	width: "100%",
-	padding: "var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x)",
+	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	clear: "both",
 	fontWeight: 400,
 	color: varBsDropdownLinkColor,
@@ -530,7 +231,7 @@ globalStyle(`${cyborgScope}${dropdownItem}:focus`, {
 
 // SOURCE CSS:
 // .dropdown-item.active { color: var(--bs-dropdown-link-active-color); text-decoration: none; background-color: var(--bs-dropdown-link-active-bg); }
-globalStyle(`${cyborgScope}${dropdownItem}.active`, {
+globalStyle(`${cyborgScope}${dropdownItem}${dropdownItemActive}`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: "none",
 	backgroundColor: varBsDropdownLinkActiveBg,
@@ -546,7 +247,7 @@ globalStyle(`${cyborgScope}${dropdownItem}:active`, {
 
 // SOURCE CSS:
 // .dropdown-item.disabled { color: var(--bs-dropdown-link-disabled-color); pointer-events: none; background-color: transparent; }
-globalStyle(`${cyborgScope}${dropdownItem}.disabled`, {
+globalStyle(`${cyborgScope}${dropdownItem}${dropdownItemDisabled}`, {
 	color: varBsDropdownLinkDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: "transparent",
@@ -564,7 +265,7 @@ globalStyle(`${cyborgScope}${dropdownItem}:disabled`, {
 // .dropdown-header { display: block; padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x); margin-bottom: 0; font-size: 0.875rem; color: var(--bs-dropdown-header-color); white-space: nowrap; }
 globalStyle(`${cyborgScope}${dropdownHeader}`, {
 	display: "block",
-	padding: "var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x)",
+	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
 	marginBottom: 0,
 	fontSize: "0.875rem",
 	color: varBsDropdownHeaderColor,
@@ -573,7 +274,7 @@ globalStyle(`${cyborgScope}${dropdownHeader}`, {
 
 // SOURCE CSS:
 // .dropdown-menu.show { display: block; }
-globalStyle(`${cyborgScope}${dropdownMenu}.show`, {
+globalStyle(`${cyborgScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: "block",
 })
 
@@ -598,9 +299,9 @@ globalStyle(`${cyborgScope}${dropend} ${cyborgScope}${dropdownToggle}:empty::aft
 
 // SOURCE CSS:
 // .dropdown-toggle-split { padding-right: 0.5625rem; padding-left: 0.5625rem; }
-globalStyle(`${cyborgScope}${dropdownToggleSplit}`, {
-	paddingRight: "0.5625rem",
-	paddingLeft: "0.5625rem",
+globalStyle(`${cyborgScope}${btn}${dropdownToggleSplit}`, {
+	paddingRight: "0.75rem",
+	paddingLeft: "0.75rem",
 })
 
 // SOURCE CSS:
@@ -623,22 +324,7 @@ globalStyle(`${cyborgScope}${dropend} ${cyborgScope}${dropdownToggleSplit}::afte
 
 // SOURCE CSS:
 // .visually-hidden { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden`, {
-	width: "1px !important",
-	height: "1px !important",
-	padding: "0 !important",
-	margin: "-1px !important",
-	overflow: "hidden !important",
-	clip: "rect(0, 0, 0, 0) !important",
-	whiteSpace: "nowrap !important",
-	border: "0 !important",
-})
-
-// SOURCE CSS:
-// .visually-hidden-focusable:not(:focus):not(:focus-within) { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
-globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
+globalStyle(`${cyborgScope}${visuallyHidden}`, {
 	width: "1px !important",
 	height: "1px !important",
 	padding: "0 !important",
@@ -651,15 +337,8 @@ globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
 
 // SOURCE CSS:
 // .visually-hidden:not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden:not(caption)`, {
-	position: "absolute !important",
-})
-
-// SOURCE CSS:
-// .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden-focusable" — no contract mapping
-globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within):not(caption)`, {
+// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
+globalStyle(`${cyborgScope}${visuallyHidden}:not(caption)`, {
 	position: "absolute !important",
 })
 
@@ -709,11 +388,53 @@ globalStyle(`${cyborgScope}${dropup} ${cyborgScope}${dropdownToggle}:empty::afte
 	marginLeft: 0,
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .dropdown-menu[data-bs-popper]
-// [DELTA] unmapped selector: .dropdown-menu-start
-// [DELTA] unmapped selector: .dropdown-menu-start[data-bs-popper]
-// [DELTA] unmapped selector: .dropdown-menu-end
-// [DELTA] unmapped selector: .dropdown-menu-end[data-bs-popper]
-// [DELTA] unmapped selector: .dropdown-item-text
-// [DELTA] unmapped selector: .dropdown-menu-dark
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .dropdown-menu[data-bs-popper] { top: 100%; left: 0; margin-top: var(--bs-dropdown-spacer); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${dropdownMenu}[data-bs-popper]`, {
+	top: "100%",
+	left: 0,
+	marginTop: varBsDropdownSpacer,
+})
+// SOURCE CSS:
+// .dropdown-menu-start[data-bs-popper] { right: auto; left: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${dropdownMenuStart}[data-bs-popper]`, {
+	right: "auto",
+	left: 0,
+})
+// SOURCE CSS:
+// .dropdown-menu-end[data-bs-popper] { right: 0; left: auto; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${dropdownMenuEnd}[data-bs-popper]`, {
+	right: 0,
+	left: "auto",
+})
+// SOURCE CSS:
+// .dropdown-item-text { display: block; padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x); color: var(--bs-dropdown-link-color); }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${dropdownItemText}`, {
+	display: "block",
+	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
+	color: varBsDropdownLinkColor,
+})
+// SOURCE CSS:
+// .dropdown-menu-dark { --bs-dropdown-color: #dee2e6; --bs-dropdown-bg: #222; --bs-dropdown-border-color: var(--bs-border-color-translucent); --bs-dropdown-box-shadow: ; --bs-dropdown-link-color: #dee2e6; --bs-dropdown-link-hover-color: #fff; --bs-dropdown-divider-bg: #222; --bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15); --bs-dropdown-link-active-color: #fff; --bs-dropdown-link-active-bg: #2a9fd6; --bs-dropdown-link-disabled-color: #888; --bs-dropdown-header-color: #888; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${dropdownMenuDark}`, {
+	vars: {
+		[varBsDropdownColor]: "#dee2e6",
+		[varBsDropdownBg]: "#222",
+		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
+		[varBsDropdownBoxShadow]: "",
+		[varBsDropdownLinkColor]: "#dee2e6",
+		[varBsDropdownLinkHoverColor]: "#fff",
+		[varBsDropdownDividerBg]: "#222",
+		[varBsDropdownLinkHoverBg]: "rgba(255, 255, 255, 0.15)",
+		[varBsDropdownLinkActiveColor]: "#fff",
+		[varBsDropdownLinkActiveBg]: "#2a9fd6",
+		[varBsDropdownLinkDisabledColor]: "#888",
+		[varBsDropdownHeaderColor]: "#888",
+	},
+})

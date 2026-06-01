@@ -6,7 +6,7 @@ import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
-import { btn, btnPrimary, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnPrimary, btnSecondary, inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	actionsRow,
 	fade,
@@ -74,7 +74,7 @@ const StaticBackdropModal: Component = () => {
 							</h5>
 							<button
 								type="button"
-								class={`${theme} ${alertBtnClose}`}
+								class={`${theme} ${alertBtnClose} ${inputFontFamily}`}
 								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>

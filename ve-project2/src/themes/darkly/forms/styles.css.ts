@@ -26,6 +26,10 @@ import {
 } from '../../../theme-contract/forms/_vars.css'
 import {
 	fieldset,
+	colMd3,
+	colMd6,
+	colSm6,
+	floatingLabel,
 	form,
 	formCheck,
 	formCheckInput,
@@ -41,13 +45,17 @@ import {
 	formSelectSm,
 	formSwitch,
 	formText,
+	g3,
+	hasValidation,
 	inputGroup,
 	inputGroupText,
 	invalidFeedback,
 	isInvalid,
 	isValid,
 	legend,
+	mb3,
 	row,
+	rowCol,
 	validFeedback,
 	wasValidated,
 } from '../../../theme-contract/forms/contract.css'
@@ -144,7 +152,7 @@ globalStyle(`${darklyScope}${formCheck} ${darklyScope}${formCheckInput}`, {
 // .form-check-input { --bs-form-check-bg: var(--bs-body-bg); flex-shrink: 0; width: 1em; height: 1em; margin-top: 0.25em; vertical-align: top; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-form-check-bg); background-image: var(--bs-form-check-bg-image); background-repeat: no-repeat; background-position: center; background-size: contain; border: var(--bs-border-width) solid var(--bs-border-color); -webkit-print-color-adjust: exact; color-adjust: exact; print-color-adjust: exact; }
 globalStyle(`${darklyScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormCheckBg]: varBsBodyBg,
+		[varBsFormCheckBg]: "#fff",
 	},
 	flexShrink: 0,
 	width: "1em",
@@ -159,7 +167,7 @@ globalStyle(`${darklyScope}${formCheckInput}`, {
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "center",
 	backgroundSize: "contain",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
+	border: "none",
 	WebkitPrintColorAdjust: "exact",
 	colorAdjust: "exact",
 	printColorAdjust: "exact",
@@ -180,16 +188,16 @@ globalStyle(`${darklyScope}${formCheckInput}:active`, {
 // SOURCE CSS:
 // .form-check-input:focus { border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${darklyScope}${formCheckInput}:focus`, {
-	borderColor: "#86b7fe",
+	borderColor: "#9badbf",
 	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	boxShadow: "0 0 0 0.25rem rgba(55, 90, 127, 0.25)",
 })
 
 // SOURCE CSS:
 // .form-check-input:checked { background-color: #0d6efd; border-color: #0d6efd; }
 globalStyle(`${darklyScope}${formCheckInput}:checked`, {
-	backgroundColor: "#0d6efd",
-	borderColor: "#0d6efd",
+	backgroundColor: "#375a7f",
+	borderColor: "#375a7f",
 })
 
 // SOURCE CSS:
@@ -206,8 +214,8 @@ globalStyle(`${darklyScope}${formCheckInput}[type="checkbox"]:indeterminate`, {
 	vars: {
 		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
 	},
-	backgroundColor: "rgb(13, 110, 253)",
-	borderColor: "rgb(13, 110, 253)",
+	backgroundColor: "#375a7f",
+	borderColor: "#375a7f",
 })
 
 // SOURCE CSS:
@@ -234,8 +242,7 @@ globalStyle(`${darklyScope}${formCheckInput}:disabled ~ ${darklyScope}${formChec
 
 // SOURCE CSS:
 // .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
+globalStyle(`${darklyScope}${mb3}`, {
 	marginBottom: "1rem !important",
 })
 
@@ -248,7 +255,7 @@ globalStyle(`select:disabled`, {
 
 // SOURCE CSS:
 // fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
-globalStyle(`fieldset`, {
+globalStyle(`${darklyScope}${fieldset}`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
@@ -259,6 +266,7 @@ globalStyle(`fieldset`, {
 // .form-label { margin-bottom: 0.5rem; }
 globalStyle(`${darklyScope}${formLabel}`, {
 	marginBottom: "0.5rem",
+	display: "inline-block",
 })
 
 // SOURCE CSS:
@@ -270,13 +278,16 @@ globalStyle(`${darklyScope}${formControl}`, {
 	fontSize: "1rem",
 	fontWeight: 400,
 	lineHeight: 1.5,
-	color: varBsBodyColor,
+	fontFamily: "inherit",
+	color: "#303030",
 	WebkitAppearance: "none",
 	MozAppearance: "none",
 	appearance: "none",
-	backgroundColor: varBsBodyBg,
+	backgroundColor: "#fff",
 	backgroundClip: "padding-box",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
+	borderWidth: "1px",
+	borderStyle: "solid",
+	borderColor: "#222",
 	borderRadius: varBsBorderRadius,
 	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
 })
@@ -284,11 +295,11 @@ globalStyle(`${darklyScope}${formControl}`, {
 // SOURCE CSS:
 // .form-control:focus { color: var(--bs-body-color); background-color: var(--bs-body-bg); border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${darklyScope}${formControl}:focus`, {
-	color: varBsBodyColor,
-	backgroundColor: varBsBodyBg,
-	borderColor: "#86b7fe",
+	color: "#303030",
+	backgroundColor: "#fff",
+	borderColor: "#9badbf",
 	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	boxShadow: "0 0 0 0.25rem rgba(55, 90, 127, 0.25)",
 })
 
 // SOURCE CSS:
@@ -309,14 +320,15 @@ globalStyle(`${darklyScope}${formControl}::-webkit-datetime-edit`, {
 // SOURCE CSS:
 // .form-control::placeholder { color: var(--bs-secondary-color); opacity: 1; }
 globalStyle(`${darklyScope}${formControl}::placeholder`, {
-	color: varBsSecondaryColor,
+	color: "#888",
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .form-control:disabled { background-color: var(--bs-secondary-bg); opacity: 1; }
 globalStyle(`${darklyScope}${formControl}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
+	color: "#888",
+	backgroundColor: "#ebebeb",
 	opacity: 1,
 })
 
@@ -327,8 +339,8 @@ globalStyle(`${darklyScope}${formControl}::-webkit-file-upload-button`, {
 	margin: "-0.375rem -0.75rem",
 	WebkitMarginEnd: "0.75rem",
 	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
+	color: "#adb5bd",
+	backgroundColor: "#444",
 	pointerEvents: "none",
 	borderColor: "inherit",
 	borderStyle: "solid",
@@ -346,8 +358,8 @@ globalStyle(`${darklyScope}${formControl}::file-selector-button`, {
 	margin: "-0.375rem -0.75rem",
 	WebkitMarginEnd: "0.75rem",
 	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
-	backgroundColor: varBsTertiaryBg,
+	color: "#adb5bd",
+	backgroundColor: "#444",
 	pointerEvents: "none",
 	borderColor: "inherit",
 	borderStyle: "solid",
@@ -360,20 +372,20 @@ globalStyle(`${darklyScope}${formControl}::file-selector-button`, {
 // SOURCE CSS:
 // .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button { background-color: var(--bs-secondary-bg); }
 globalStyle(`${darklyScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
-	backgroundColor: varBsSecondaryBg,
+	backgroundColor: "#373737",
 })
 
 // SOURCE CSS:
 // .form-control:hover:not(:disabled):not([readonly])::file-selector-button { background-color: var(--bs-secondary-bg); }
 globalStyle(`${darklyScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
-	backgroundColor: varBsSecondaryBg,
+	backgroundColor: "#373737",
 })
 
 // SOURCE CSS:
 // .form-select { --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); display: block; width: 100%; padding: 0.375rem 2.25rem 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 16px 12px; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${darklyScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23303030' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 	},
 	display: "block",
 	width: "100%",
@@ -381,16 +393,18 @@ globalStyle(`${darklyScope}${formSelect}`, {
 	fontSize: "1rem",
 	fontWeight: 400,
 	lineHeight: 1.5,
-	color: varBsBodyColor,
+	color: "#303030",
 	WebkitAppearance: "none",
 	MozAppearance: "none",
 	appearance: "none",
-	backgroundColor: varBsBodyBg,
+	backgroundColor: "#fff",
 	backgroundImage: "var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none)",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right 0.75rem center",
 	backgroundSize: "16px 12px",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
+	borderWidth: "1px",
+	borderStyle: "solid",
+	borderColor: "#222",
 	borderRadius: varBsBorderRadius,
 	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
 })
@@ -398,15 +412,17 @@ globalStyle(`${darklyScope}${formSelect}`, {
 // SOURCE CSS:
 // .form-select:focus { border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${darklyScope}${formSelect}:focus`, {
-	borderColor: "#86b7fe",
+	borderColor: "#9badbf",
 	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	boxShadow: "0 0 0 0.25rem rgba(55, 90, 127, 0.25)",
 })
 
 // SOURCE CSS:
 // .form-select:disabled { background-color: var(--bs-secondary-bg); }
 globalStyle(`${darklyScope}${formSelect}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
+	color: "#888",
+	backgroundColor: "#ebebeb",
+	opacity: 1,
 })
 
 // SOURCE CSS:
@@ -562,7 +578,7 @@ globalStyle(`${darklyScope}${formSwitch} ${darklyScope}${formCheckInput}`, {
 // .form-switch .form-check-input:focus { --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e"); }
 globalStyle(`${darklyScope}${formSwitch} ${darklyScope}${formCheckInput}:focus`, {
 	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%239badbf'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -584,8 +600,8 @@ globalStyle(`${darklyScope}${formFloating}`, {
 // SOURCE CSS:
 // .form-floating > .form-control { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
+	height: "calc(3.5rem + 2px)",
+	minHeight: "calc(3.5rem + 2px)",
 	lineHeight: 1.25,
 	padding: "1rem 0.75rem",
 })
@@ -594,8 +610,8 @@ globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}`, {
 // .form-floating > .form-control-plaintext { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 // [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
 globalStyle(`${darklyScope}${formFloating} > .form-control-plaintext`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
+	height: "calc(3.5rem + 2px)",
+	minHeight: "calc(3.5rem + 2px)",
 	lineHeight: 1.25,
 	padding: "1rem 0.75rem",
 })
@@ -603,9 +619,12 @@ globalStyle(`${darklyScope}${formFloating} > .form-control-plaintext`, {
 // SOURCE CSS:
 // .form-floating > .form-select { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; }
 globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formSelect}`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
+	height: "calc(3.5rem + 2px)",
+	minHeight: "calc(3.5rem + 2px)",
 	lineHeight: 1.25,
+	paddingTop: "1.625rem",
+	paddingBottom: "0.625rem",
+	paddingLeft: "0.75rem",
 })
 
 // SOURCE CSS:
@@ -620,12 +639,14 @@ globalStyle(`${darklyScope}${formFloating} > label`, {
 	height: "100%",
 	padding: "1rem 0.75rem",
 	overflow: "hidden",
-	color: `rgba(${varBsBodyColorRgb}, 0.65)`,
+	color: "#888",
 	textAlign: "start",
 	textOverflow: "ellipsis",
 	whiteSpace: "nowrap",
 	pointerEvents: "none",
-	border: "var(--bs-border-width) solid transparent",
+	borderWidth: "1px",
+	borderStyle: "solid",
+	borderColor: "transparent",
 	transformOrigin: "0 0",
 	transition: "opacity 0.1s ease-in-out, transform 0.1s ease-in-out",
 })
@@ -728,14 +749,14 @@ globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:-webki
 // .form-floating > :disabled ~ label { color: #6c757d; }
 // [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
 globalStyle(`${darklyScope}${formFloating} > :disabled ~ label`, {
-	color: "#6c757d",
+	color: "#888",
 })
 
 // SOURCE CSS:
 // .form-floating > .form-control:disabled ~ label { color: #6c757d; }
 // [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
 globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:disabled ~ label`, {
-	color: "#6c757d",
+	color: "#888",
 })
 
 // SOURCE CSS:
@@ -802,38 +823,38 @@ globalStyle(`${darklyScope}${inputGroupText}`, {
 	fontSize: "1rem",
 	fontWeight: 400,
 	lineHeight: 1.5,
-	color: varBsBodyColor,
+	color: "#adb5bd",
 	textAlign: "center",
 	whiteSpace: "nowrap",
-	backgroundColor: varBsTertiaryBg,
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
+	backgroundColor: "#444",
+	border: "var(--bs-border-width) solid #222",
 	borderRadius: varBsBorderRadius,
 })
 
 // SOURCE CSS:
 // .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${inputGroup}:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`, {
+globalStyle(`${darklyScope}${inputGroup}:not(${darklyScope}${hasValidation}) > :not(:last-child):not(.dropdown-menu):not(${darklyScope}${formFloating})`, {
 	borderTopRightRadius: 0,
 	borderBottomRightRadius: 0,
 })
 
 // SOURCE CSS:
 // .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${inputGroup}:not(.has-validation) > ${darklyScope}${dropdownToggle}:nth-last-child(n+3)`, {
+globalStyle(`${darklyScope}${inputGroup}:not(${darklyScope}${hasValidation}) > ${darklyScope}${dropdownToggle}:nth-last-child(n+3)`, {
 	borderTopRightRadius: 0,
 	borderBottomRightRadius: 0,
 })
 
 // SOURCE CSS:
 // .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${inputGroup}:not(.has-validation) > ${darklyScope}${formFloating}:not(:last-child) > ${darklyScope}${formControl}`, {
+globalStyle(`${darklyScope}${inputGroup}:not(${darklyScope}${hasValidation}) > ${darklyScope}${formFloating}:not(:last-child) > ${darklyScope}${formControl}`, {
 	borderTopRightRadius: 0,
 	borderBottomRightRadius: 0,
 })
 
 // SOURCE CSS:
 // .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${inputGroup}:not(.has-validation) > ${darklyScope}${formFloating}:not(:last-child) > ${darklyScope}${formSelect}`, {
+globalStyle(`${darklyScope}${inputGroup}:not(${darklyScope}${hasValidation}) > ${darklyScope}${formFloating}:not(:last-child) > ${darklyScope}${formSelect}`, {
 	borderTopRightRadius: 0,
 	borderBottomRightRadius: 0,
 })
@@ -850,7 +871,7 @@ globalStyle(`${darklyScope}${inputGroup} > :not(:first-child):not(.dropdown-menu
 // textarea.form-control { min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)); }
 // [UNMAPPED_SELECTOR] element selector "textarea.form-control" — map to a contract class
 globalStyle(`textarea.form-control`, {
-	minHeight: "calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2))",
+	minHeight: "calc(1.5em + 0.75rem + 2px)",
 })
 
 // SOURCE CSS:
@@ -863,16 +884,18 @@ globalStyle(`${darklyScope}${formText}`, {
 
 // SOURCE CSS:
 // .form-control-lg { min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2)); padding: 0.5rem 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${darklyScope}${formControlLg}`, {
-	minHeight: "calc(1.5em + 1rem + calc(var(--bs-border-width) * 2))",
+globalStyle(`${darklyScope}${formControl}${formControlLg}`, {
+	minHeight: "calc(1.5em + 1rem + 2px)",
 	padding: "0.5rem 1rem",
 	fontSize: "1.25rem",
+	fontFamily: "inherit",
+	margin: 0,
 	borderRadius: varBsBorderRadiusLg,
 })
 
 // SOURCE CSS:
 // .form-control-lg::-webkit-file-upload-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${darklyScope}${formControlLg}::-webkit-file-upload-button`, {
+globalStyle(`${darklyScope}${formControl}${formControlLg}::-webkit-file-upload-button`, {
 	padding: "0.5rem 1rem",
 	margin: "-0.5rem -1rem",
 	WebkitMarginEnd: "1rem",
@@ -881,7 +904,7 @@ globalStyle(`${darklyScope}${formControlLg}::-webkit-file-upload-button`, {
 
 // SOURCE CSS:
 // .form-control-lg::file-selector-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${darklyScope}${formControlLg}::file-selector-button`, {
+globalStyle(`${darklyScope}${formControl}${formControlLg}::file-selector-button`, {
 	padding: "0.5rem 1rem",
 	margin: "-0.5rem -1rem",
 	WebkitMarginEnd: "1rem",
@@ -895,21 +918,24 @@ globalStyle(`${darklyScope}${formSelectLg}`, {
 	paddingBottom: "0.5rem",
 	paddingLeft: "1rem",
 	fontSize: "1.25rem",
+	fontFamily: "inherit",
 	borderRadius: varBsBorderRadiusLg,
 })
 
 // SOURCE CSS:
 // .form-control-sm { min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2)); padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${darklyScope}${formControlSm}`, {
-	minHeight: "calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2))",
+globalStyle(`${darklyScope}${formControl}${formControlSm}`, {
+	minHeight: "calc(1.5em + 0.5rem + 2px)",
 	padding: "0.25rem 0.5rem",
 	fontSize: "0.875rem",
+	fontFamily: "inherit",
+	margin: 0,
 	borderRadius: varBsBorderRadiusSm,
 })
 
 // SOURCE CSS:
 // .form-control-sm::-webkit-file-upload-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${darklyScope}${formControlSm}::-webkit-file-upload-button`, {
+globalStyle(`${darklyScope}${formControl}${formControlSm}::-webkit-file-upload-button`, {
 	padding: "0.25rem 0.5rem",
 	margin: "-0.25rem -0.5rem",
 	WebkitMarginEnd: "0.5rem",
@@ -918,7 +944,7 @@ globalStyle(`${darklyScope}${formControlSm}::-webkit-file-upload-button`, {
 
 // SOURCE CSS:
 // .form-control-sm::file-selector-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${darklyScope}${formControlSm}::file-selector-button`, {
+globalStyle(`${darklyScope}${formControl}${formControlSm}::file-selector-button`, {
 	padding: "0.25rem 0.5rem",
 	margin: "-0.25rem -0.5rem",
 	WebkitMarginEnd: "0.5rem",
@@ -932,6 +958,7 @@ globalStyle(`${darklyScope}${formSelectSm}`, {
 	paddingBottom: "0.25rem",
 	paddingLeft: "0.5rem",
 	fontSize: "0.875rem",
+	fontFamily: "inherit",
 	borderRadius: varBsBorderRadiusSm,
 })
 
@@ -949,26 +976,44 @@ globalStyle(`${darklyScope}${row}`, {
 	marginLeft: "calc(-0.5 * var(--bs-gutter-x))",
 })
 
-// SOURCE CSS:
-// .row > * { flex-shrink: 0; width: 100%; max-width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-top: var(--bs-gutter-y); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${darklyScope}${row} > *`, {
+globalStyle(`${darklyScope}${row} > ${darklyScope}${rowCol}`, {
 	flexShrink: 0,
 	width: "100%",
 	maxWidth: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginTop: varBsGutterY,
+})
+
+globalStyle(`${darklyScope}${colMd6}`, {
+	flex: "0 0 auto",
+	width: "100%",
+})
+
+globalStyle(`${darklyScope}${colMd3}`, {
+	flex: "0 0 auto",
+	width: "100%",
+})
+
+globalStyle(`${darklyScope}${colSm6}`, {
+	flex: "0 0 auto",
+	width: "100%",
 })
 
 // SOURCE CSS:
 // .g-3 { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".g-3" — no contract mapping
-globalStyle(`.g-3`, {
+globalStyle(`${darklyScope}${g3}`, {
 	vars: {
 		[varBsGutterX]: "1rem",
 		[varBsGutterY]: "1rem",
 	},
+})
+
+globalStyle(`${darklyScope}${row}${g3}`, {
+	marginTop: "-1rem",
+})
+
+globalStyle(`${darklyScope}${row}${g3} > ${darklyScope}${rowCol}`, {
+	paddingRight: "0.5rem",
+	paddingLeft: "0.5rem",
+	marginTop: "1rem",
 })
 
 // SOURCE CSS:
@@ -1033,7 +1078,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:inval
 
 // SOURCE CSS:
 // .form-check-input.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${darklyScope}${formCheckInput}.is-invalid`, {
+globalStyle(`${darklyScope}${formCheckInput}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
@@ -1045,7 +1090,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:inval
 
 // SOURCE CSS:
 // .form-check-input.is-invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${darklyScope}${formCheckInput}.is-invalid:checked`, {
+globalStyle(`${darklyScope}${formCheckInput}${isInvalid}:checked`, {
 	backgroundColor: varBsFormInvalidColor,
 })
 
@@ -1057,7 +1102,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:inval
 
 // SOURCE CSS:
 // .form-check-input.is-invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${darklyScope}${formCheckInput}.is-invalid:focus`, {
+globalStyle(`${darklyScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
 })
 
@@ -1069,27 +1114,27 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:inval
 
 // SOURCE CSS:
 // .form-check-input.is-invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${darklyScope}${formCheckInput}.is-invalid ~ ${darklyScope}${formCheckLabel}`, {
+globalStyle(`${darklyScope}${formCheckInput}${isInvalid} ~ ${darklyScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
 // SOURCE CSS:
-// .was-validated .form-control:invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+// .was-validated .form-control:invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
 	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
 })
 
 // SOURCE CSS:
-// .form-control.is-invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${darklyScope}${formControl}.is-invalid`, {
+// .form-control.is-invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+globalStyle(`${darklyScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
 	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
@@ -1104,7 +1149,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formControl}:invalid:
 
 // SOURCE CSS:
 // .form-control.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${darklyScope}${formControl}.is-invalid:focus`, {
+globalStyle(`${darklyScope}${formControl}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
 })
@@ -1117,15 +1162,15 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formSelect}:invalid`,
 
 // SOURCE CSS:
 // .form-select.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${darklyScope}${formSelect}.is-invalid`, {
+globalStyle(`${darklyScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
 // SOURCE CSS:
-// .was-validated .form-select:invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+// .was-validated .form-select:invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formSelect}:invalid:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: "4.125rem",
 	backgroundPosition: "right 0.75rem center, center right 2.25rem",
@@ -1133,10 +1178,10 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formSelect}:invalid:n
 })
 
 // SOURCE CSS:
-// .was-validated .form-select:invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+// .was-validated .form-select:invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: "4.125rem",
 	backgroundPosition: "right 0.75rem center, center right 2.25rem",
@@ -1144,10 +1189,10 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formSelect}:invalid:n
 })
 
 // SOURCE CSS:
-// .form-select.is-invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${darklyScope}${formSelect}.is-invalid:not([multiple]):not([size])`, {
+// .form-select.is-invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+globalStyle(`${darklyScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: "4.125rem",
 	backgroundPosition: "right 0.75rem center, center right 2.25rem",
@@ -1155,10 +1200,10 @@ globalStyle(`${darklyScope}${formSelect}.is-invalid:not([multiple]):not([size])`
 })
 
 // SOURCE CSS:
-// .form-select.is-invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${darklyScope}${formSelect}.is-invalid:not([multiple])[size="1"]`, {
+// .form-select.is-invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+globalStyle(`${darklyScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e74c3c'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e74c3c' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: "4.125rem",
 	backgroundPosition: "right 0.75rem center, center right 2.25rem",
@@ -1174,7 +1219,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formSelect}:invalid:f
 
 // SOURCE CSS:
 // .form-select.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${darklyScope}${formSelect}.is-invalid:focus`, {
+globalStyle(`${darklyScope}${formSelect}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
 })
@@ -1186,8 +1231,8 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${inputGroup} > ${darkl
 })
 
 // SOURCE CSS:
-// .input-group > .form-control:not(:focus).is-invalid { z-index: 4; }
-globalStyle(`${darklyScope}${inputGroup} > ${darklyScope}${formControl}:not(:focus).is-invalid`, {
+// .input-group > .form-control:not(:focus)${isInvalid} { z-index: 4; }
+globalStyle(`${darklyScope}${inputGroup} > ${darklyScope}${formControl}:not(:focus)${isInvalid}`, {
 	zIndex: 4,
 })
 
@@ -1198,8 +1243,8 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${inputGroup} > ${darkl
 })
 
 // SOURCE CSS:
-// .input-group > .form-select:not(:focus).is-invalid { z-index: 4; }
-globalStyle(`${darklyScope}${inputGroup} > ${darklyScope}${formSelect}:not(:focus).is-invalid`, {
+// .input-group > .form-select:not(:focus)${isInvalid} { z-index: 4; }
+globalStyle(`${darklyScope}${inputGroup} > ${darklyScope}${formSelect}:not(:focus)${isInvalid}`, {
 	zIndex: 4,
 })
 
@@ -1210,8 +1255,8 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${inputGroup} > ${darkl
 })
 
 // SOURCE CSS:
-// .input-group > .form-floating:not(:focus-within).is-invalid { z-index: 4; }
-globalStyle(`${darklyScope}${inputGroup} > ${darklyScope}${formFloating}:not(:focus-within).is-invalid`, {
+// .input-group > .form-floating:not(:focus-within)${isInvalid} { z-index: 4; }
+globalStyle(`${darklyScope}${inputGroup} > ${darklyScope}${formFloating}:not(:focus-within)${isInvalid}`, {
 	zIndex: 4,
 })
 
@@ -1259,7 +1304,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:valid
 
 // SOURCE CSS:
 // .form-check-input.is-valid { border-color: var(--bs-form-valid-border-color); }
-globalStyle(`${darklyScope}${formCheckInput}.is-valid`, {
+globalStyle(`${darklyScope}${formCheckInput}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
@@ -1271,7 +1316,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:valid
 
 // SOURCE CSS:
 // .form-check-input.is-valid:checked { background-color: var(--bs-form-valid-color); }
-globalStyle(`${darklyScope}${formCheckInput}.is-valid:checked`, {
+globalStyle(`${darklyScope}${formCheckInput}${isValid}:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
@@ -1283,7 +1328,7 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:valid
 
 // SOURCE CSS:
 // .form-check-input.is-valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${darklyScope}${formCheckInput}.is-valid:focus`, {
+globalStyle(`${darklyScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
 })
 
@@ -1295,27 +1340,27 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formCheckInput}:valid
 
 // SOURCE CSS:
 // .form-check-input.is-valid ~ .form-check-label { color: var(--bs-form-valid-color); }
-globalStyle(`${darklyScope}${formCheckInput}.is-valid ~ ${darklyScope}${formCheckLabel}`, {
+globalStyle(`${darklyScope}${formCheckInput}${isValid} ~ ${darklyScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
 // SOURCE CSS:
-// .was-validated .form-control:valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+// .was-validated .form-control:valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300bc8c' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300bc8c' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
 	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
 })
 
 // SOURCE CSS:
-// .form-control.is-valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${darklyScope}${formControl}.is-valid`, {
+// .form-control.is-valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300bc8c' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
+globalStyle(`${darklyScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300bc8c' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
 	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
@@ -1330,30 +1375,116 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formControl}:valid:fo
 
 // SOURCE CSS:
 // .form-control.is-valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${darklyScope}${formControl}.is-valid:focus`, {
+globalStyle(`${darklyScope}${formControl}${isValid}:focus`, {
 	borderColor: varBsFormValidBorderColor,
 	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
 })
 
 // ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .form-control[type=file]
-// [DELTA] unmapped selector: .form-control[type=file]:not(:disabled):not([readonly])
-// [DELTA] unmapped selector: .form-control::-moz-placeholder
-// [DELTA] unmapped selector: .form-control-plaintext
-// [DELTA] unmapped selector: .form-control-plaintext:focus
-// [DELTA] unmapped selector: .form-control-plaintext.form-control-sm
-// [DELTA] unmapped selector: .form-control-plaintext.form-control-lg
-// [DELTA] unmapped selector: .form-control-color
-// [DELTA] unmapped selector: .form-control-color:not(:disabled):not([readonly])
-// [DELTA] unmapped selector: .form-control-color::-moz-color-swatch
-// [DELTA] unmapped selector: .form-control-color::-webkit-color-swatch
-// [DELTA] unmapped selector: .form-control-color.form-control-sm
-// [DELTA] unmapped selector: .form-control-color.form-control-lg
-// [DELTA] unmapped selector: .form-select[multiple]
-// [DELTA] unmapped selector: .form-select[size]:not([size="1"])
-// [DELTA] unmapped selector: .form-select:-moz-focusring
-// [DELTA] unmapped selector: .form-check-reverse
-// [DELTA] unmapped selector: .form-check-reverse .form-check-input
-// [DELTA] unmapped selector: .form-check-input[type=checkbox]
-// [DELTA] unmapped selector: .form-check-input[type=radio]
-// [DELTA] ... and 37 more unmapped selectors
+
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}::-moz-placeholder`, {
+	color: "transparent",
+})
+
+globalStyle(`${darklyScope}${formFloating} > .form-control-plaintext::-moz-placeholder`, {
+	color: "transparent",
+})
+
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:not(:-moz-placeholder-shown)`, {
+	paddingTop: "1.625rem",
+	paddingBottom: "0.625rem",
+})
+
+globalStyle(`${darklyScope}${formFloating} > .form-control-plaintext:not(:-moz-placeholder-shown)`, {
+	paddingTop: "1.625rem",
+	paddingBottom: "0.625rem",
+})
+
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:not(:-moz-placeholder-shown) ~ ${darklyScope}${floatingLabel}`, {
+	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+})
+
+globalStyle(`${darklyScope}${formFloating} > textarea:not(:-moz-placeholder-shown) ~ ${darklyScope}${floatingLabel}::after`, {
+	position: "absolute",
+	inset: "1rem 0.375rem",
+	zIndex: -1,
+	height: "1.5em",
+	content: "\"\"",
+	backgroundColor: "#fff",
+	borderRadius: varBsBorderRadius,
+})
+
+globalStyle(`${darklyScope}${formFloating} > textarea:focus ~ ${darklyScope}${floatingLabel}::after`, {
+	position: "absolute",
+	inset: "1rem 0.375rem",
+	zIndex: -1,
+	height: "1.5em",
+	content: "\"\"",
+	backgroundColor: "#fff",
+	borderRadius: varBsBorderRadius,
+})
+
+globalStyle(`${darklyScope}${formFloating} > textarea:not(:placeholder-shown) ~ ${darklyScope}${floatingLabel}::after`, {
+	position: "absolute",
+	inset: "1rem 0.375rem",
+	zIndex: -1,
+	height: "1.5em",
+	content: "\"\"",
+	backgroundColor: "#fff",
+	borderRadius: varBsBorderRadius,
+})
+
+globalStyle(`${darklyScope}${formFloating} > textarea:disabled ~ ${darklyScope}${floatingLabel}::after`, {
+	backgroundColor: "#ebebeb",
+})
+
+// Bootswatch darkly: floating label color override
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${floatingLabel}`, {
+	color: "#888",
+})
+
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:focus ~ ${darklyScope}${floatingLabel}`, {
+	color: "#888",
+})
+
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:not(:placeholder-shown) ~ ${darklyScope}${floatingLabel}`, {
+	color: "#888",
+})
+
+globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:not(:-moz-placeholder-shown) ~ ${darklyScope}${floatingLabel}`, {
+	color: "#888",
+})
+
+globalStyle(`${darklyScope}${formControl}::-moz-placeholder`, {
+	color: "#888",
+	opacity: 1,
+})
+
+globalStyle(`${darklyScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
+	backgroundColor: "#373737",
+})
+
+globalStyle(`${darklyScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
+	backgroundColor: "#373737",
+})
+
+globalStyle(`${darklyScope}${inputGroup}${hasValidation} > :nth-last-child(n+3):not(.dropdown-menu):not(${darklyScope}${formFloating})`, {
+	borderTopRightRadius: 0,
+	borderBottomRightRadius: 0,
+})
+
+globalStyle(`${darklyScope}${inputGroup}${hasValidation} > ${darklyScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: 0,
+	borderBottomRightRadius: 0,
+})
+
+globalStyle(`${darklyScope}${inputGroup}${hasValidation} > ${darklyScope}${formFloating}:nth-last-child(n+3) > ${darklyScope}${formControl}`, {
+	borderTopRightRadius: 0,
+	borderBottomRightRadius: 0,
+})
+
+globalStyle(`${darklyScope}${inputGroup}${hasValidation} > ${darklyScope}${formFloating}:nth-last-child(n+3) > ${darklyScope}${formSelect}`, {
+	borderTopRightRadius: 0,
+	borderBottomRightRadius: 0,
+})
+

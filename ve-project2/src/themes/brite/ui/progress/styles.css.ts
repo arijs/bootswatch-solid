@@ -1,10 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBgOpacity,
 	varBsBorderRadius,
 	varBsBoxShadowInset,
+	varBsDangerRgb,
+	varBsInfoRgb,
 	varBsSecondaryBg,
+	varBsSuccessRgb,
 	varBsTextOpacity,
+	varBsWarningRgb,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsProgressBarBg,
@@ -20,11 +23,13 @@ import {
 	progress,
 	progressBar,
 	progressBarAnimated,
+	progressBarDanger,
+	progressBarInfo,
 	progressBarStriped,
+	progressBarSuccess,
+	progressBarTextDark,
+	progressBarWarning,
 } from '../../../../theme-contract/ui/progress/contract.css'
-import {
-	textDark,
-} from '../../../../theme-contract/utilities/contract.css'
 import { briteScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/progress
@@ -49,28 +54,7 @@ globalStyle(`${briteScope}${progress}`, {
 	fontSize: varBsProgressFontSize,
 	backgroundColor: varBsProgressBg,
 	borderRadius: varBsProgressBorderRadius,
-})
-
-// SOURCE CSS:
-// .progress-stacked { --bs-progress-height: 1rem; --bs-progress-font-size: 0.75rem; --bs-progress-bg: var(--bs-secondary-bg); --bs-progress-border-radius: var(--bs-border-radius); --bs-progress-box-shadow: var(--bs-box-shadow-inset); --bs-progress-bar-color: #fff; --bs-progress-bar-bg: #0d6efd; --bs-progress-bar-transition: width 0.6s ease; display: flex; height: var(--bs-progress-height); overflow: hidden; font-size: var(--bs-progress-font-size); background-color: var(--bs-progress-bg); border-radius: var(--bs-progress-border-radius); }
-// [UNMAPPED_SELECTOR] class ".progress-stacked" — no contract mapping
-globalStyle(`.progress-stacked`, {
-	vars: {
-		[varBsProgressHeight]: "1rem",
-		[varBsProgressFontSize]: "0.65625rem",
-		[varBsProgressBg]: varBsSecondaryBg,
-		[varBsProgressBorderRadius]: varBsBorderRadius,
-		[varBsProgressBoxShadow]: varBsBoxShadowInset,
-		[varBsProgressBarColor]: "#fff",
-		[varBsProgressBarBg]: "#a2e436",
-		[varBsProgressBarTransition]: "width 0.6s ease",
-	},
-	display: "flex",
-	height: varBsProgressHeight,
-	overflow: "hidden",
-	fontSize: varBsProgressFontSize,
-	backgroundColor: varBsProgressBg,
-	borderRadius: varBsProgressBorderRadius,
+	border: "2px solid #000",
 })
 
 // SOURCE CSS:
@@ -85,73 +69,42 @@ globalStyle(`${briteScope}${progressBar}`, {
 	whiteSpace: "nowrap",
 	backgroundColor: varBsProgressBarBg,
 	transition: varBsProgressBarTransition,
-})
-
-// SOURCE CSS:
-// .w-100 { width: 100% !important; }
-// [UNMAPPED_SELECTOR] class ".w-100" — no contract mapping
-globalStyle(`.w-100`, {
-	width: "100% !important",
+	borderRight: "2px solid #000",
 })
 
 // SOURCE CSS:
 // .bg-danger { --bs-bg-opacity: 1; background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-danger" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-danger`, {
-	backgroundColor: `rgba(var(--bs-danger-rgb), ${varBsBgOpacity} ) !important`,
-})
-
-// SOURCE CSS:
-// .w-25 { width: 25% !important; }
-// [UNMAPPED_SELECTOR] class ".w-25" — no contract mapping
-globalStyle(`.w-25`, {
-	width: "25% !important",
+globalStyle(`${briteScope}${progressBarDanger}`, {
+	backgroundColor: `rgba(${varBsDangerRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
 // .bg-success { --bs-bg-opacity: 1; background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-success" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-success`, {
-	backgroundColor: `rgba(var(--bs-success-rgb), ${varBsBgOpacity} ) !important`,
-})
-
-// SOURCE CSS:
-// .w-50 { width: 50% !important; }
-// [UNMAPPED_SELECTOR] class ".w-50" — no contract mapping
-globalStyle(`.w-50`, {
-	width: "50% !important",
+globalStyle(`${briteScope}${progressBarSuccess}`, {
+	backgroundColor: `rgba(${varBsSuccessRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
 // .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
 // [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`${briteScope}${textDark}`, {
+globalStyle(`${briteScope}${progressBarTextDark}`, {
 	color: `rgba(var(--bs-dark-rgb), ${varBsTextOpacity} ) !important`,
 })
 
 // SOURCE CSS:
 // .bg-info { --bs-bg-opacity: 1; background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-info" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-info`, {
-	backgroundColor: `rgba(var(--bs-info-rgb), ${varBsBgOpacity} ) !important`,
-})
-
-// SOURCE CSS:
-// .w-75 { width: 75% !important; }
-// [UNMAPPED_SELECTOR] class ".w-75" — no contract mapping
-globalStyle(`.w-75`, {
-	width: "75% !important",
+globalStyle(`${briteScope}${progressBarInfo}`, {
+	backgroundColor: `rgba(${varBsInfoRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
 // .bg-warning { --bs-bg-opacity: 1; background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-warning" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-warning`, {
-	backgroundColor: `rgba(var(--bs-warning-rgb), ${varBsBgOpacity} ) !important`,
+globalStyle(`${briteScope}${progressBarWarning}`, {
+	backgroundColor: `rgba(${varBsWarningRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
@@ -169,14 +122,37 @@ globalStyle(`${briteScope}${progressBarAnimated}`, {
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
 // SOURCE CSS:
-// .progress { border: 2px solid #000; }
+// .bg-danger { --bs-bg-opacity: 1; background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important; }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${progress}`, {
-	border: "2px solid #000",
+// [UNMAPPED_VAR] --bs-bg-opacity
+globalStyle(`${briteScope}${progressBarDanger}`, {
+	backgroundColor: `rgba(${varBsDangerRgb}, 1) !important`,
 })
 // SOURCE CSS:
-// .progress-bar { border-right: 2px solid #000; }
+// .bg-success { --bs-bg-opacity: 1; background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important; }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${progressBar}`, {
-	borderRight: "2px solid #000",
+// [UNMAPPED_VAR] --bs-bg-opacity
+globalStyle(`${briteScope}${progressBarSuccess}`, {
+	backgroundColor: `rgba(${varBsSuccessRgb}, 1) !important`,
+})
+// SOURCE CSS:
+// .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_VAR] --bs-text-opacity
+globalStyle(`${briteScope}${progressBarTextDark}`, {
+	color: `rgba(var(--bs-dark-rgb), ${varBsTextOpacity} ) !important`,
+})
+// SOURCE CSS:
+// .bg-info { --bs-bg-opacity: 1; background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_VAR] --bs-bg-opacity
+globalStyle(`${briteScope}${progressBarInfo}`, {
+	backgroundColor: `rgba(${varBsInfoRgb}, 1) !important`,
+})
+// SOURCE CSS:
+// .bg-warning { --bs-bg-opacity: 1; background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_VAR] --bs-bg-opacity
+globalStyle(`${briteScope}${progressBarWarning}`, {
+	backgroundColor: `rgba(${varBsWarningRgb}, 1) !important`,
 })

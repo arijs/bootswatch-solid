@@ -18,9 +18,6 @@ import {
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightTextEmphasis,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryTextEmphasis,
@@ -57,13 +54,11 @@ import {
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
 	listGroupItemAction,
+	listGroupItemActive,
 	listGroupItemDanger,
 	listGroupItemDark,
 	listGroupItemDisabled,
@@ -78,39 +73,6 @@ import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/list-group
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
 
 // SOURCE CSS:
 // .list-group { --bs-list-group-color: var(--bs-body-color); --bs-list-group-bg: var(--bs-body-bg); --bs-list-group-border-color: var(--bs-border-color); --bs-list-group-border-width: var(--bs-border-width); --bs-list-group-border-radius: var(--bs-border-radius); --bs-list-group-item-padding-x: 1rem; --bs-list-group-item-padding-y: 0.5rem; --bs-list-group-action-color: var(--bs-secondary-color); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-tertiary-bg); --bs-list-group-action-active-color: var(--bs-body-color); --bs-list-group-action-active-bg: var(--bs-secondary-bg); --bs-list-group-disabled-color: var(--bs-secondary-color); --bs-list-group-disabled-bg: var(--bs-body-bg); --bs-list-group-active-color: #fff; --bs-list-group-active-bg: #0d6efd; --bs-list-group-active-border-color: #0d6efd; display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0; border-radius: var(--bs-list-group-border-radius); }
@@ -193,8 +155,7 @@ globalStyle(`${bootstrapScope}${listGroupItemAction}`, {
 
 // SOURCE CSS:
 // .list-group-item-action:not(.active):hover { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-// [UNMAPPED_SELECTOR] state class ".active" — no contract mapping
-globalStyle(`${bootstrapScope}${listGroupItemAction}:not(.active):hover`, {
+globalStyle(`${bootstrapScope}${listGroupItemAction}:not(${listGroupItemActive}):hover`, {
 	zIndex: 1,
 	color: varBsListGroupActionHoverColor,
 	textDecoration: "none",
@@ -203,8 +164,7 @@ globalStyle(`${bootstrapScope}${listGroupItemAction}:not(.active):hover`, {
 
 // SOURCE CSS:
 // .list-group-item-action:not(.active):focus { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-// [UNMAPPED_SELECTOR] state class ".active" — no contract mapping
-globalStyle(`${bootstrapScope}${listGroupItemAction}:not(.active):focus`, {
+globalStyle(`${bootstrapScope}${listGroupItemAction}:not(${listGroupItemActive}):focus`, {
 	zIndex: 1,
 	color: varBsListGroupActionHoverColor,
 	textDecoration: "none",
@@ -213,8 +173,7 @@ globalStyle(`${bootstrapScope}${listGroupItemAction}:not(.active):focus`, {
 
 // SOURCE CSS:
 // .list-group-item-action:not(.active):active { color: var(--bs-list-group-action-active-color); background-color: var(--bs-list-group-action-active-bg); }
-// [UNMAPPED_SELECTOR] state class ".active" — no contract mapping
-globalStyle(`${bootstrapScope}${listGroupItemAction}:not(.active):active`, {
+globalStyle(`${bootstrapScope}${listGroupItemAction}:not(${listGroupItemActive}):active`, {
 	color: varBsListGroupActionActiveColor,
 	backgroundColor: varBsListGroupActionActiveBg,
 })
@@ -359,32 +318,6 @@ globalStyle(`${bootstrapScope}${listGroupItemWarning}`, {
 		[varBsListGroupActiveBg]: varBsWarningTextEmphasis,
 		[varBsListGroupActiveBorderColor]: varBsWarningTextEmphasis,
 	},
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
 })
 
 // SOURCE CSS:

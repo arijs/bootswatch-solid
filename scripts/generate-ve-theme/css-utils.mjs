@@ -5,6 +5,13 @@ export function normalizeSelector(selectorText) {
 	return selectorText.replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim()
 }
 
+/** Normalize selector for familyMap lookup (unquoted attribute values). */
+export function normalizeSelectorForLookup(selectorText) {
+	return normalizeSelector(selectorText)
+		.replace(/="([^"]+)"/g, '=$1')
+		.replace(/='([^']+)'/g, '=$1')
+}
+
 /** Convert CSS property name to VE camelCase object key. */
 export function cssPropToVeKey(prop) {
 	if (prop.startsWith('--')) return prop
@@ -50,6 +57,10 @@ export function camelToKebab(value) {
 export const CONTRACT_SELECTOR_OVERRIDES = {
 	btnActiveHook: '.btn.active',
 	btnShowHook: '.btn.show',
+	btnDisabledHook: '.btn.disabled',
+	tooltipShow: '.tooltip.show',
+	popoverShow: '.popover.show',
+	alertBtnCloseDisabledHook: '.btn-close.disabled',
 	alertBtnClose: '.btn-close',
 	inputFontFamily: 'input, button, select, optgroup, textarea',
 	body: 'body',
@@ -60,6 +71,25 @@ export const CONTRACT_SELECTOR_OVERRIDES = {
 	bgDark: '.bg-dark',
 	alignItemsCenter: '.align-items-center',
 	modalOpenHook: '.modal-open',
+	tooltipVe: '.tooltip',
+	popoverVe: '.popover',
+	containerFluid: '.container-fluid',
+	// Bootstrap grid/gutter utilities — camelCase cannot infer digit/hyphen boundaries.
+	g0: '.g-0',
+	g3: '.g-3',
+	g4: '.g-4',
+	rowCols1: '.row-cols-1',
+	rowColsMd2: '.row-cols-md-2',
+	colMd2: '.col-md-2',
+	colMd3: '.col-md-3',
+	colMd4: '.col-md-4',
+	colMd5: '.col-md-5',
+	colMd6: '.col-md-6',
+	colMd8: '.col-md-8',
+	colSm6: '.col-sm-6',
+	mb3: '.mb-3',
+	tabContent: '.tab-content',
+	tabPane: '.tab-pane',
 }
 
 /** Bootstrap class → contract symbol overrides (name differs from camelCase-kebab). */
@@ -100,6 +130,40 @@ export const FAMILY_CLASS_TO_CONTRACT = {
 		'.bg-dark': 'badgeDark',
 		'.text-dark': 'badgeLight',
 	},
+	'ui/tooltips': {
+		'.fade': 'fade',
+		'.d-flex': 'frame',
+		'.flex-column': 'frameColumn',
+		'.flex-row': 'frameRow',
+		'.align-items-center': 'alignItemsCenter',
+		'.justify-content-center': 'justifyCenter',
+		'.justify-content-start': 'justifyStart',
+		'.justify-content-end': 'justifyEnd',
+		'.border': 'frame',
+	},
+	'ui/popovers': {
+		'.fade': 'fade',
+		'.d-flex': 'frame',
+		'.flex-column': 'frameColumn',
+		'.flex-row': 'frameRow',
+		'.align-items-center': 'alignItemsCenter',
+		'.justify-content-center': 'justifyCenter',
+		'.justify-content-start': 'justifyStart',
+		'.justify-content-end': 'justifyEnd',
+		'.border': 'frame',
+	},
+	'ui/navs': {
+		'.tab-content': 'tabContent',
+		'.tab-pane': 'tabPane',
+		'.fade': 'fade',
+	},
+	'ui/progress': {
+		'.bg-success': 'progressBarSuccess',
+		'.bg-info': 'progressBarInfo',
+		'.bg-warning': 'progressBarWarning',
+		'.bg-danger': 'progressBarDanger',
+		'.text-dark': 'progressBarTextDark',
+	},
 }
 
 /**
@@ -109,15 +173,15 @@ export const FAMILY_CLASS_TO_CONTRACT = {
 export const STATE_CLASS_BY_PARENT_SELECTOR = {
 	'.carousel-item': { '.active': 'carouselActive' },
 	'.carousel-indicators': { '.active': 'carouselActive' },
-	'.nav-link': { '.active': 'navLinkActive' },
+	'.nav-link': { '.active': 'navLinkActive', '.disabled': 'navLinkDisabled' },
 	'.nav-tabs': { '.active': 'navLinkActive' },
 	'.nav-pills': { '.active': 'navLinkActive' },
-	'.page-item': { '.active': 'pageItemActive' },
-	'.page-link': { '.active': 'pageItemActive' },
-	'.dropdown-item': { '.active': 'dropdownItemActive' },
+	'.page-item': { '.active': 'pageItemActive', '.disabled': 'pageItemDisabled' },
+	'.page-link': { '.active': 'pageItemActive', '.disabled': 'pageItemDisabled' },
+	'.dropdown-item': { '.active': 'dropdownItemActive', '.disabled': 'dropdownItemDisabled' },
 	'.breadcrumb-item': { '.active': 'breadcrumbItemActive' },
-	'.list-group-item': { '.disabled': 'listGroupItemDisabled' },
-	'.list-group-item-action': { '.disabled': 'listGroupItemDisabled' },
+	'.list-group-item': { '.active': 'listGroupItemActive', '.disabled': 'listGroupItemDisabled' },
+	'.list-group-item-action': { '.active': 'listGroupItemActive', '.disabled': 'listGroupItemDisabled' },
 	'.accordion-button': { '.collapsed': 'accordionButtonCollapsed' },
 	'.collapse': { '.show': 'accordionCollapseShow' },
 	'.fade': { '.show': 'modalShowHook' },
@@ -125,7 +189,19 @@ export const STATE_CLASS_BY_PARENT_SELECTOR = {
 	'.modal-backdrop': { '.show': 'modalShowHook' },
 	'.toast': { '.show': 'toastShow' },
 	'.dropdown-menu': { '.show': 'dropdownMenuShow' },
-	'.btn': { '.show': 'btnShowHook', '.active': 'btnActiveHook' },
+	'.btn': { '.show': 'btnShowHook', '.active': 'btnActiveHook', '.disabled': 'btnDisabledHook' },
+	'.btn-close': { '.disabled': 'alertBtnCloseDisabledHook' },
+}
+
+/**
+ * Standalone state-only parent segments (e.g. pagination `.active > .page-link` where
+ * Bootstrap omits `.page-item` on the parent).
+ */
+export const ORPHAN_STATE_SEGMENT_BY_FAMILY = {
+	'ui/pagination': {
+		'.active': ['pageItem', 'pageItemActive'],
+		'.disabled': ['pageItem', 'pageItemDisabled'],
+	},
 }
 
 /** Family-specific state class overrides (e.g. `.fade.show` in toasts vs modals). */
@@ -133,6 +209,19 @@ export const FAMILY_STATE_CLASS_BY_PARENT = {
 	'ui/toasts': { '.fade': { '.show': 'toastShow' } },
 	'ui/modal': { '.fade': { '.show': 'modalShowHook' } },
 	'ui/navbar': { '.collapse': { '.show': 'collapseShow' } },
+	'ui/navs': {
+		'.fade': { '.show': 'show' },
+		'.tab-content': { '.active': 'tabPaneActive' },
+		'.nav-item': { '.show': 'navItemShow' },
+	},
+	'ui/tooltips': {
+		'.tooltip': { '.show': 'tooltipShow' },
+		'.fade': { '.show': 'tooltipShow' },
+	},
+	'ui/popovers': {
+		'.popover': { '.show': 'popoverShow' },
+		'.fade': { '.show': 'popoverShow' },
+	},
 }
 
 /**
@@ -143,11 +232,45 @@ export const SKIP_SELECTORS_BY_FAMILY = {
 	'ui/alerts': ['.fade', '.fade:not(.show)'],
 }
 
+/** Bare `.form-control` / `.input-group*` selectors owned exclusively by the forms family. */
+export function isBareFormsOwnedSelector(selector) {
+	const normalized = normalizeSelector(selector)
+	if (/[\s>+~]/.test(normalized)) return false
+	return /^\.(?:form-(?:control|select|check|input|range|floating|text|label|switch)|input-group(?:-text|-lg|-sm)?)(?:$|[:\[.])/i.test(
+		normalized,
+	)
+}
+
+/** Bare `h1`–`h6` reboot selectors owned exclusively by contents/heading. */
+export function isBareHeadingOwnedSelector(selector) {
+	const normalized = normalizeSelector(selector)
+	if (/[\s>+~]/.test(normalized)) return false
+	const base = normalized.split(/[:[\s]/)[0]
+	return /^h[1-6]$/i.test(base)
+}
+
 export function shouldSkipFamilySelector(family, selector) {
+	if (family && family !== 'forms' && isBareFormsOwnedSelector(selector)) return true
+	if (family && family !== 'contents/heading' && isBareHeadingOwnedSelector(selector)) return true
 	const skipList = family ? SKIP_SELECTORS_BY_FAMILY[family] : null
 	if (!skipList) return false
 	const normalized = normalizeSelector(selector)
 	return skipList.some((entry) => normalized === normalizeSelector(entry))
+}
+
+/**
+ * VE2 architecture: family theme files must only emit `${scope}${contract}` compound selectors.
+ * Raw element selectors (`button`, `p`) and unmapped utility classes (`.w-100`) are skipped.
+ */
+const LITERAL_BOOTSTRAP_STATE_CLASS = /\.(show|disabled|active|collapsed)(?:[^a-z0-9_-]|$)/
+
+export function isScopedFamilySelector(veSelector, scopeName) {
+	if (!veSelector || typeof veSelector !== 'string') return false
+	const compound = `\${${scopeName}}\${`
+	if (!veSelector.includes(compound)) return false
+	// Bootstrap state tokens must map to VE contract symbols — never literal `.show` / `.disabled`.
+	if (LITERAL_BOOTSTRAP_STATE_CLASS.test(veSelector)) return false
+	return true
 }
 
 export const STATE_ONLY_CLASSES = new Set(['.active', '.show', '.disabled', '.collapsed'])
@@ -219,6 +342,16 @@ function rootVarSelectorPriority(selector) {
 	return 0
 }
 
+/** Only extract custom properties from bare :root / [data-bs-theme] blocks. */
+function isRootVarSelector(selector) {
+	const parts = normalizeSelector(selector)
+		.split(',')
+		.map((part) => part.trim())
+		.filter(Boolean)
+	if (parts.length === 0) return false
+	return parts.every((part) => /^(:root|\[data-bs-theme=[^\]]+\])$/.test(part))
+}
+
 /** Extract :root / [data-bs-theme] custom properties from parsed CSS. */
 export function extractRootVars(cssText) {
 	const rules = parseCssRules(cssText)
@@ -227,7 +360,7 @@ export function extractRootVars(cssText) {
 
 	for (const rule of rules) {
 		for (const selector of rule.selectors) {
-			if (!/:root|\[data-bs-theme/.test(selector)) continue
+			if (!isRootVarSelector(selector)) continue
 			const score = rootVarSelectorPriority(selector)
 			for (const [prop, value] of Object.entries(rule.declarations)) {
 				if (!prop.startsWith('--bs-')) continue
@@ -260,6 +393,31 @@ export const ELEMENT_SELECTOR_BY_FAMILY = {
 		small: 'small',
 		svg: 'placeholderIcon',
 		img: 'bdPlaceholderImg',
+	},
+	'ui/navs': {
+		button: 'navButtonReset',
+	},
+	'ui/buttons': {
+		button: 'inputFontFamily',
+		input: 'inputFontFamily',
+		select: 'inputFontFamily',
+		textarea: 'inputFontFamily',
+		optgroup: 'inputFontFamily',
+	},
+	'forms': {
+		fieldset: 'fieldset',
+	},
+	'contents/basic': {
+		a: 'link',
+		code: 'inlineCode',
+	},
+	'contents/images': {
+		img: 'bdPlaceholderImg',
+		svg: 'bdPlaceholderImg',
+	},
+	'contents/lists': {
+		ol: 'listUnstyled',
+		ul: 'listUnstyled',
 	},
 }
 
@@ -411,6 +569,14 @@ export function formatVeValue(value, registry) {
 	const parsed = parseCssValue(trimmed, registry)
 	if (parsed.kind === 'var') {
 		return suffix ? `\`\${${parsed.symbol}}${suffix}\`` : parsed.symbol
+	}
+
+	// var(--bs-*, fallback) — preserve CSS fallback (e.g. breadcrumb divider default "/")
+	const varFallbackMatch = trimmed.match(/^var\(\s*(--bs-[^,)]+)\s*,\s*([^)]+)\s*\)$/i)
+	if (varFallbackMatch) {
+		const symbol =
+			registry?.cssVarToSymbol?.get(varFallbackMatch[1]) ?? cssVarNameToSymbol(varFallbackMatch[1])
+		return `\`var(\${${symbol}}, ${varFallbackMatch[2].trim()})${suffix}\``
 	}
 
 	if (suffix) return JSON.stringify(trimmed + suffix)

@@ -1,8 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBreadcrumbFontSize,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -17,11 +15,9 @@ import {
 	varBsBreadcrumbPaddingY,
 } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	breadcrumb,
 	breadcrumbItem,
+	breadcrumbItemActive,
 } from '../../../../theme-contract/ui/breadcrumb/contract.css'
 import {
 	flexWrap,
@@ -30,65 +26,6 @@ import { cosmoScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/breadcrumb
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
 
 // SOURCE CSS:
 // .breadcrumb { --bs-breadcrumb-padding-x: 0; --bs-breadcrumb-padding-y: 0; --bs-breadcrumb-margin-bottom: 1rem; --bs-breadcrumb-bg: ; --bs-breadcrumb-border-radius: ; --bs-breadcrumb-divider-color: var(--bs-secondary-color); --bs-breadcrumb-item-padding-x: 0.5rem; --bs-breadcrumb-item-active-color: var(--bs-secondary-color); display: flex; flex-wrap: wrap; padding: var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x); margin-bottom: var(--bs-breadcrumb-margin-bottom); font-size: var(--bs-breadcrumb-font-size); list-style: none; background-color: var(--bs-breadcrumb-bg); border-radius: var(--bs-breadcrumb-border-radius); }
@@ -105,7 +42,7 @@ globalStyle(`${cosmoScope}${breadcrumb}`, {
 	},
 	display: "flex",
 	flexWrap: "wrap",
-	padding: "var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x)",
+	padding: `${varBsBreadcrumbPaddingY} ${varBsBreadcrumbPaddingX}`,
 	marginBottom: varBsBreadcrumbMarginBottom,
 	fontSize: varBsBreadcrumbFontSize,
 	listStyle: "none",
@@ -130,6 +67,6 @@ globalStyle(`${cosmoScope}${breadcrumbItem} + ${cosmoScope}${breadcrumbItem}::be
 
 // SOURCE CSS:
 // .breadcrumb-item.active { color: var(--bs-breadcrumb-item-active-color); }
-globalStyle(`${cosmoScope}${breadcrumbItem}.active`, {
+globalStyle(`${cosmoScope}${breadcrumbItem}${breadcrumbItemActive}`, {
 	color: varBsBreadcrumbItemActiveColor,
 })

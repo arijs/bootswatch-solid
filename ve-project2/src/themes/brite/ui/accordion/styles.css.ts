@@ -5,11 +5,7 @@ import {
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsCodeColor,
-	varBsFontMonospace,
 	varBsHeadingColor,
-	varBsPrimaryBgSubtle,
-	varBsPrimaryTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsAccordionActiveBg,
@@ -53,8 +49,8 @@ import {
 	accordionItem,
 } from '../../../../theme-contract/ui/accordion/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
+	collapse,
+} from '../../../../theme-contract/ui/navbar/contract.css'
 import { briteScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/accordion
@@ -71,30 +67,8 @@ globalStyle(`${briteScope}${h6}`, {
 })
 
 // SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
+globalStyle(`${briteScope}${h5}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -104,41 +78,18 @@ globalStyle(`.h5`, {
 
 // SOURCE CSS:
 // h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`.h5`, {
+globalStyle(`${briteScope}${h4}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
 	lineHeight: 1.2,
 	color: varBsHeadingColor,
-	fontSize: "calc(1.25625rem + 0.075vw)",
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
+	fontSize: `calc(1.25625rem + 0.075vw)`,
 })
 
 // SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
+globalStyle(`${briteScope}${h3}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -148,18 +99,7 @@ globalStyle(`.h3`, {
 
 // SOURCE CSS:
 // h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
+globalStyle(`${briteScope}${h2}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -169,187 +109,17 @@ globalStyle(`.h2`, {
 
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`.h2`, {
+globalStyle(`${briteScope}${h1}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
 	lineHeight: 1.2,
 	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// b { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "b" — map to a contract class
-globalStyle(`.h1`, {
-	fontWeight: 500,
-})
-
-// SOURCE CSS:
-// strong { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "strong" — map to a contract class
-globalStyle(`.h1`, {
-	fontWeight: 500,
-})
-
-// SOURCE CSS:
-// pre { font-family: var(--bs-font-monospace); font-size: 1em; }
-// [UNMAPPED_SELECTOR] element selector "pre" — map to a contract class
-globalStyle(`.h1`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "1em",
-})
-
-// SOURCE CSS:
-// code { font-family: var(--bs-font-monospace); font-size: 0.875em; color: var(--bs-code-color); word-wrap: break-word; }
-// [UNMAPPED_SELECTOR] element selector "code" — map to a contract class
-globalStyle(`code`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "0.875em",
-	color: varBsCodeColor,
-	wordWrap: "break-word",
-})
-
-// SOURCE CSS:
-// kbd { font-family: var(--bs-font-monospace); font-size: 1em; }
-// [UNMAPPED_SELECTOR] element selector "kbd" — map to a contract class
-globalStyle(`kbd`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "1em",
-})
-
-// SOURCE CSS:
-// samp { font-family: var(--bs-font-monospace); font-size: 1em; }
-// [UNMAPPED_SELECTOR] element selector "samp" — map to a contract class
-globalStyle(`samp`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "1em",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
 })
 
 // SOURCE CSS:
 // .collapse:not(.show) { display: none; }
-// [UNMAPPED_SELECTOR] class ".collapse" — no contract mapping
-globalStyle(`.collapse:not(${accordionCollapseShow})`, {
+globalStyle(`${briteScope}${collapse}:not(${accordionCollapseShow})`, {
 	display: "none",
 })
 
@@ -363,7 +133,7 @@ globalStyle(`${briteScope}${accordion}`, {
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
-		[varBsAccordionInnerBorderRadius]: "calc(var(--bs-border-radius) - (var(--bs-border-width)))",
+		[varBsAccordionInnerBorderRadius]: `calc(${varBsBorderRadius} - (${varBsBorderWidth}))`,
 		[varBsAccordionBtnPaddingX]: "1.25rem",
 		[varBsAccordionBtnPaddingY]: "1rem",
 		[varBsAccordionBtnColor]: varBsBodyColor,
@@ -376,8 +146,8 @@ globalStyle(`${briteScope}${accordion}`, {
 		[varBsAccordionBtnFocusBoxShadow]: "0 0 0 1px #000",
 		[varBsAccordionBodyPaddingX]: "1.25rem",
 		[varBsAccordionBodyPaddingY]: "1rem",
-		[varBsAccordionActiveColor]: varBsPrimaryTextEmphasis,
-		[varBsAccordionActiveBg]: varBsPrimaryBgSubtle,
+		[varBsAccordionActiveColor]: "#000",
+		[varBsAccordionActiveBg]: "#a2e436",
 	},
 })
 
@@ -404,7 +174,7 @@ globalStyle(`${briteScope}${accordionButton}`, {
 globalStyle(`${briteScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
-	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth} ) 0 ${varBsAccordionBorderColor}`,
+	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -445,6 +215,9 @@ globalStyle(`${briteScope}${accordionButton}:focus`, {
 // SOURCE CSS:
 // .accordion-header { margin-bottom: 0; }
 globalStyle(`${briteScope}${accordionHeader}`, {
+	marginBottom: 0,
+})
+globalStyle(`${briteScope}${accordionHeader}${h4}`, {
 	marginBottom: 0,
 })
 
@@ -504,41 +277,3 @@ globalStyle(`${briteScope}${accordionBody}`, {
 })
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// .h4 { font-size: calc(1.25625rem + 0.075vw); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	fontSize: "calc(1.25625rem + 0.075vw)",
-})
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; line-height: 1.2; color: var(--bs-heading-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; line-height: 1.2; color: var(--bs-heading-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})

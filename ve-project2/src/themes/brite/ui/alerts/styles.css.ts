@@ -4,32 +4,21 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBtnCloseFilter,
-	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
 	varBsDangerTextEmphasis,
-	varBsDarkBgSubtle,
 	varBsDarkBorderSubtle,
 	varBsDarkTextEmphasis,
 	varBsHeadingColor,
-	varBsInfoBgSubtle,
 	varBsInfoBorderSubtle,
 	varBsInfoTextEmphasis,
-	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightTextEmphasis,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
-	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryTextEmphasis,
-	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
 	varBsSecondaryTextEmphasis,
-	varBsSuccessBgSubtle,
 	varBsSuccessBorderSubtle,
 	varBsSuccessTextEmphasis,
-	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
 	varBsWarningTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
@@ -52,11 +41,6 @@ import {
 	varBsBtnCloseOpacity,
 } from '../../../../theme-contract/ui/alerts/_vars.css'
 import {
-	horizontalRule,
-	link,
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	h1,
 	h2,
 	h3,
@@ -67,6 +51,7 @@ import {
 import {
 	alert,
 	alertBtnClose,
+	alertBtnCloseDisabledHook,
 	alertDanger,
 	alertDark,
 	alertDismissible,
@@ -80,9 +65,6 @@ import {
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
-import {
 	fade,
 	modalShowHook,
 } from '../../../../theme-contract/ui/modal/contract.css'
@@ -92,157 +74,14 @@ import { briteScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
 // .alert { --bs-alert-bg: transparent; --bs-alert-padding-x: 1rem; --bs-alert-padding-y: 1rem; --bs-alert-margin-bottom: 1rem; --bs-alert-color: inherit; --bs-alert-border-color: transparent; --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color); --bs-alert-border-radius: var(--bs-border-radius); --bs-alert-link-color: inherit; position: relative; padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x); margin-bottom: var(--bs-alert-margin-bottom); color: var(--bs-alert-color); background-color: var(--bs-alert-bg); border: var(--bs-alert-border); border-radius: var(--bs-alert-border-radius); }
 globalStyle(`${briteScope}${alert}`, {
 	vars: {
-		[varBsAlertBg]: "transparent",
+		[varBsAlertBg]: varBsAlertBg,
 		[varBsAlertPaddingX]: "1rem",
 		[varBsAlertPaddingY]: "1rem",
 		[varBsAlertMarginBottom]: "1rem",
-		[varBsAlertColor]: "inherit",
+		[varBsAlertColor]: "#000",
 		[varBsAlertBorderColor]: "transparent",
 		[varBsAlertBorder]: `${varBsBorderWidth} solid ${varBsAlertBorderColor}`,
 		[varBsAlertBorderRadius]: varBsBorderRadius,
@@ -255,6 +94,7 @@ globalStyle(`${briteScope}${alert}`, {
 	backgroundColor: varBsAlertBg,
 	border: "2px solid #000",
 	borderRadius: varBsAlertBorderRadius,
+	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
 })
 
 // SOURCE CSS:
@@ -285,10 +125,11 @@ globalStyle(`${briteScope}${alertDismissible} ${briteScope}${alertBtnClose}`, {
 globalStyle(`${briteScope}${alertDanger}`, {
 	vars: {
 		[varBsAlertColor]: varBsDangerTextEmphasis,
-		[varBsAlertBg]: varBsDangerBgSubtle,
+		[varBsAlertBg]: "#f56565",
 		[varBsAlertBorderColor]: varBsDangerBorderSubtle,
 		[varBsAlertLinkColor]: varBsDangerTextEmphasis,
 	},
+	backgroundColor: "#f56565",
 })
 
 // SOURCE CSS:
@@ -343,8 +184,7 @@ globalStyle(`${briteScope}${alertBtnClose}:disabled`, {
 
 // SOURCE CSS:
 // .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${briteScope}${alertBtnClose}.disabled`, {
+globalStyle(`${briteScope}${alertBtnClose}${alertBtnCloseDisabledHook}`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
@@ -356,21 +196,13 @@ globalStyle(`${briteScope}${alertBtnClose}.disabled`, {
 // .alert-dark { --bs-alert-color: var(--bs-dark-text-emphasis); --bs-alert-bg: var(--bs-dark-bg-subtle); --bs-alert-border-color: var(--bs-dark-border-subtle); --bs-alert-link-color: var(--bs-dark-text-emphasis); }
 globalStyle(`${briteScope}${alertDark}`, {
 	vars: {
-		[varBsAlertColor]: varBsDarkTextEmphasis,
-		[varBsAlertBg]: varBsDarkBgSubtle,
+		[varBsAlertColor]: "#fff",
+		[varBsAlertBg]: "#000",
 		[varBsAlertBorderColor]: varBsDarkBorderSubtle,
 		[varBsAlertLinkColor]: varBsDarkTextEmphasis,
 	},
-})
-
-// SOURCE CSS:
-// hr { margin: 1rem 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0.25; }
-globalStyle(`${briteScope}${horizontalRule}`, {
-	margin: "1rem 0",
-	color: "inherit",
-	border: 0,
-	borderTop: "2px solid",
-	opacity: 0.25,
+	color: "#fff",
+	backgroundColor: "#000",
 })
 
 // SOURCE CSS:
@@ -384,30 +216,8 @@ globalStyle(`${briteScope}${h6}`, {
 })
 
 // SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${briteScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -427,31 +237,8 @@ globalStyle(`${briteScope}${h4}`, {
 })
 
 // SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: `calc(1.25625rem + 0.075vw)`,
-})
-
-// SOURCE CSS:
 // h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${briteScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,
@@ -470,17 +257,6 @@ globalStyle(`${briteScope}${h2}`, {
 })
 
 // SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
 globalStyle(`${briteScope}${h1}`, {
 	marginTop: 0,
@@ -488,24 +264,6 @@ globalStyle(`${briteScope}${h1}`, {
 	fontWeight: 500,
 	lineHeight: 1.2,
 	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${briteScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
 })
 
 // SOURCE CSS:
@@ -519,17 +277,11 @@ globalStyle(`${briteScope}${alertHeading}`, {
 globalStyle(`${briteScope}${alertSuccess}`, {
 	vars: {
 		[varBsAlertColor]: varBsSuccessTextEmphasis,
-		[varBsAlertBg]: varBsSuccessBgSubtle,
+		[varBsAlertBg]: "#68d391",
 		[varBsAlertBorderColor]: varBsSuccessBorderSubtle,
 		[varBsAlertLinkColor]: varBsSuccessTextEmphasis,
 	},
-})
-
-// SOURCE CSS:
-// .mb-0 { margin-bottom: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".mb-0" — no contract mapping
-globalStyle(`.mb-0`, {
-	marginBottom: "0 !important",
+	backgroundColor: "#68d391",
 })
 
 // SOURCE CSS:
@@ -537,10 +289,11 @@ globalStyle(`.mb-0`, {
 globalStyle(`${briteScope}${alertInfo}`, {
 	vars: {
 		[varBsAlertColor]: varBsInfoTextEmphasis,
-		[varBsAlertBg]: varBsInfoBgSubtle,
+		[varBsAlertBg]: "#22d2ed",
 		[varBsAlertBorderColor]: varBsInfoBorderSubtle,
 		[varBsAlertLinkColor]: varBsInfoTextEmphasis,
 	},
+	backgroundColor: "#22d2ed",
 })
 
 // SOURCE CSS:
@@ -548,10 +301,11 @@ globalStyle(`${briteScope}${alertInfo}`, {
 globalStyle(`${briteScope}${alertLight}`, {
 	vars: {
 		[varBsAlertColor]: varBsLightTextEmphasis,
-		[varBsAlertBg]: varBsLightBgSubtle,
+		[varBsAlertBg]: "#e9ecef",
 		[varBsAlertBorderColor]: varBsLightBorderSubtle,
 		[varBsAlertLinkColor]: varBsLightTextEmphasis,
 	},
+	backgroundColor: "#e9ecef",
 })
 
 // SOURCE CSS:
@@ -559,10 +313,11 @@ globalStyle(`${briteScope}${alertLight}`, {
 globalStyle(`${briteScope}${alertPrimary}`, {
 	vars: {
 		[varBsAlertColor]: varBsPrimaryTextEmphasis,
-		[varBsAlertBg]: varBsPrimaryBgSubtle,
+		[varBsAlertBg]: "#a2e436",
 		[varBsAlertBorderColor]: varBsPrimaryBorderSubtle,
 		[varBsAlertLinkColor]: varBsPrimaryTextEmphasis,
 	},
+	backgroundColor: "#a2e436",
 })
 
 // SOURCE CSS:
@@ -570,10 +325,11 @@ globalStyle(`${briteScope}${alertPrimary}`, {
 globalStyle(`${briteScope}${alertSecondary}`, {
 	vars: {
 		[varBsAlertColor]: varBsSecondaryTextEmphasis,
-		[varBsAlertBg]: varBsSecondaryBgSubtle,
+		[varBsAlertBg]: "#fff",
 		[varBsAlertBorderColor]: varBsSecondaryBorderSubtle,
 		[varBsAlertLinkColor]: varBsSecondaryTextEmphasis,
 	},
+	backgroundColor: "#fff",
 })
 
 // SOURCE CSS:
@@ -581,140 +337,14 @@ globalStyle(`${briteScope}${alertSecondary}`, {
 globalStyle(`${briteScope}${alertWarning}`, {
 	vars: {
 		[varBsAlertColor]: varBsWarningTextEmphasis,
-		[varBsAlertBg]: varBsWarningBgSubtle,
+		[varBsAlertBg]: "#ffc700",
 		[varBsAlertBorderColor]: varBsWarningBorderSubtle,
 		[varBsAlertLinkColor]: varBsWarningTextEmphasis,
 	},
+	backgroundColor: "#ffc700",
 })
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); font-weight: 500; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	fontWeight: 500,
-})
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// .alert { box-shadow: 3px 3px 0 0 var(--bs-border-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alert}`, {
-	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
-})
-// SOURCE CSS:
-// .alert-danger { background-color: #f56565; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertDanger}`, {
-	backgroundColor: "#f56565",
-})
-// SOURCE CSS:
-// .btn-close { --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e"); --bs-btn-close-opacity: 1; --bs-btn-close-hover-opacity: 1; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertBtnClose}`, {
-	vars: {
-		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
-		[varBsBtnCloseOpacity]: 1,
-		[varBsBtnCloseHoverOpacity]: 1,
-	},
-})
-// SOURCE CSS:
-// .alert-dark { color: #fff; background-color: #000; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertDark}`, {
-	color: "#fff",
-	backgroundColor: "#000",
-})
-// SOURCE CSS:
-// hr { opacity: 1; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${horizontalRule}`, {
-	opacity: 1,
-})
-// SOURCE CSS:
-// .alert-success { background-color: #68d391; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertSuccess}`, {
-	backgroundColor: "#68d391",
-})
-// SOURCE CSS:
-// .alert-info { background-color: #22d2ed; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertInfo}`, {
-	backgroundColor: "#22d2ed",
-})
-// SOURCE CSS:
-// .alert-light { background-color: #e9ecef; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertLight}`, {
-	backgroundColor: "#e9ecef",
-})
-// SOURCE CSS:
-// .alert-primary { background-color: #a2e436; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertPrimary}`, {
-	backgroundColor: "#a2e436",
-})
-// SOURCE CSS:
-// .alert-secondary { background-color: #fff; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertSecondary}`, {
-	backgroundColor: "#fff",
-})
-// SOURCE CSS:
-// .alert-warning { background-color: #ffc700; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${alertWarning}`, {
-	backgroundColor: "#ffc700",
-})
 // SOURCE CSS:
 // .fade { transition: opacity 0.15s linear; }
 // [DELTA] theme-specific rule not in bootstrap structure

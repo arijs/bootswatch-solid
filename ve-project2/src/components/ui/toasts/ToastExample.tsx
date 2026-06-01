@@ -1,7 +1,7 @@
 import { type Component, onSettled, useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { small } from '../../../theme-contract/contents/basic/contract.css'
-import { bdPlaceholderImg, rounded } from '../../../theme-contract/contents/images/contract.css'
+import { bdPlaceholderImg } from '../../../theme-contract/contents/images/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import { inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -16,8 +16,8 @@ import {
 	toastRuntime,
 	toastShow,
 	toastShowing,
+	toastTimestamp,
 } from '../../../theme-contract/ui/toasts/contract.css'
-import { alignItemsCenter, bgDark, me2, meAuto, p5, textMuted } from '../../../theme-contract/utilities/contract.css'
 import { createVeToast } from './ve-toast'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -53,7 +53,7 @@ const ToastExample: Component = () => {
 	})
 
 	return (
-		<div class={`bd-example ${theme} ${toastExample} ${bgDark} ${p5} ${alignItemsCenter}`}>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid} ${toastExample}`}>
 			<div
 				class={`${theme} ${toast} ${toastRuntime} pwhook-toast`}
 				ref={toastNode}
@@ -62,7 +62,7 @@ const ToastExample: Component = () => {
 			>
 				<div class={`${theme} ${toastHeader}`}>
 					<svg
-						class={`${theme} ${bdPlaceholderImg} ${rounded} ${me2} ${placeholderIcon}`}
+						class={`${theme} ${bdPlaceholderImg} ${placeholderIcon}`}
 						width="20"
 						height="20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -72,14 +72,10 @@ const ToastExample: Component = () => {
 					>
 						<rect width="100%" height="100%" fill="#007aff" />
 					</svg>
-					<strong class={`${theme} ${toastBrand} ${meAuto}`}>Bootstrap</strong>
-					<small class={`${theme} ${small} ${textMuted}`}>11 mins ago</small>
+					<strong class={`${theme} ${toastBrand}`}>Bootstrap</strong>
+					<small class={`${theme} ${toastTimestamp}`}>11 mins ago</small>
 					<button
 						type="button"
-						// inputFontFamily is required for Sketchy theme because in the original css,
-						// Sketchy applies font-family to a series of input controls (buttons, inputs, select, etc)
-						// but in VE we don't use any global styles for elements, only classes, so we need to
-						// apply the font-family to the close button explicitly. Do not remove it.
 						class={`${theme} ${alertBtnClose} ${inputFontFamily}`}
 						data-bs-dismiss="toast"
 						aria-label="Close"
@@ -94,13 +90,3 @@ const ToastExample: Component = () => {
 export default ToastExample
 
 // @screenshot *: 360x181 257
-// @screenshot brite: 360x184 184
-// @screenshot lux: 360x199 199
-// @screenshot morph: 360x178 178
-// @screenshot quartz: 360x331 331
-// @screenshot simplex: 360x202 202
-// @screenshot sketchy: 360x184 184
-// @screenshot spacelab: 360x202 202
-// @screenshot vapor: 360x178 178
-// @screenshot yeti: 360x202 202
-// @screenshot zephyr: 360x202 202

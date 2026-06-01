@@ -1,15 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBgOpacity,
 	varBsBodyBg,
 	varBsBodyColor,
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsEmphasisColorRgb,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
+	varBsLightRgb,
+	varBsPrimaryRgb,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 	varBsTertiaryBg,
@@ -45,18 +42,12 @@ import {
 	varBsNavLinkPaddingY,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
-	horizontalRule,
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	form,
 	formControl,
 } from '../../../../theme-contract/forms/contract.css'
 import {
-	accordionCollapseShow,
-} from '../../../../theme-contract/ui/accordion/contract.css'
+	containerFluid,
+} from '../../../../theme-contract/layout/container.css'
 import {
-	dropdown,
 	dropdownMenu,
 	dropdownToggle,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
@@ -64,267 +55,33 @@ import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	collapse,
+	collapseShow,
 	navbar,
+	navbarBgLight,
 	navbarBrand,
 	navbarCollapse,
+	navbarDarkBgPrimary,
 	navbarNav,
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	nav,
 	navLink,
 	navLinkActive,
+	show,
 } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	dFlex,
+	mb2,
+	me2,
 	meAuto,
+	mt5,
 } from '../../../../theme-contract/utilities/contract.css'
 import { briteScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/navbar
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// hr { margin: 1rem 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0.25; }
-globalStyle(`${briteScope}${horizontalRule}`, {
-	margin: "1rem 0",
-	color: "inherit",
-	border: 0,
-	borderTop: `${varBsBorderWidth} solid`,
-	opacity: 0.25,
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ol ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol ol`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul ul`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ol ul { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ol ul`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ol { margin-bottom: 0; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ul ol`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="search"] { appearance: textfield; outline-offset: -2px; }
-// [UNMAPPED_SELECTOR] element selector "[type="search"]" — map to a contract class
-globalStyle(`[type="search"]`, {
-	appearance: "textfield",
-	outlineOffset: "-2px",
-})
-
-// SOURCE CSS:
-// [type="search"]::-webkit-search-cancel-button { cursor: pointer; filter: grayscale(1); }
-// [UNMAPPED_SELECTOR] element selector "[type="search"]::-webkit-search-cancel-button" — map to a contract class
-globalStyle(`[type="search"]::-webkit-search-cancel-button`, {
-	cursor: "pointer",
-	filter: "grayscale(1)",
-})
 
 // SOURCE CSS:
 // .form-control { display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-clip: padding-box; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -438,8 +195,7 @@ globalStyle(`${briteScope}${formControl}:hover:not(:disabled):not([readonly])::f
 
 // SOURCE CSS:
 // .collapse:not(.show) { display: none; }
-// [UNMAPPED_SELECTOR] class ".collapse" — no contract mapping
-globalStyle(`.collapse:not(${accordionCollapseShow})`, {
+globalStyle(`${briteScope}${collapse}:not(${collapseShow})`, {
 	display: "none",
 })
 
@@ -449,21 +205,21 @@ globalStyle(`${briteScope}${navbar}`, {
 	vars: {
 		[varBsNavbarPaddingX]: 0,
 		[varBsNavbarPaddingY]: "0.75rem",
-		[varBsNavbarColor]: `rgba(${varBsEmphasisColorRgb}, 0.65)`,
-		[varBsNavbarHoverColor]: `rgba(${varBsEmphasisColorRgb}, 0.8)`,
-		[varBsNavbarDisabledColor]: `rgba(${varBsEmphasisColorRgb}, 0.3)`,
-		[varBsNavbarActiveColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarColor]: "#000",
+		[varBsNavbarHoverColor]: "#000",
+		[varBsNavbarDisabledColor]: "rgba(0, 0, 0, 0.3)",
+		[varBsNavbarActiveColor]: "#000",
 		[varBsNavbarBrandPaddingY]: "0.3359375rem",
 		[varBsNavbarBrandMarginEnd]: "1rem",
 		[varBsNavbarBrandFontSize]: "1.09375rem",
-		[varBsNavbarBrandColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
-		[varBsNavbarBrandHoverColor]: `rgba(${varBsEmphasisColorRgb}, 1)`,
+		[varBsNavbarBrandColor]: "#000",
+		[varBsNavbarBrandHoverColor]: "#000",
 		[varBsNavbarNavLinkPaddingX]: "1rem",
 		[varBsNavbarTogglerPaddingY]: "0.25rem",
 		[varBsNavbarTogglerPaddingX]: "0.75rem",
 		[varBsNavbarTogglerFontSize]: "1.09375rem",
 		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
-		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
+		[varBsNavbarTogglerBorderColor]: "#000",
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: "1px",
 		[varBsNavbarTogglerTransition]: "box-shadow 0.15s ease-in-out",
@@ -474,6 +230,9 @@ globalStyle(`${briteScope}${navbar}`, {
 	alignItems: "center",
 	justifyContent: "space-between",
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+	fontSize: "1.09375rem",
+	fontWeight: 500,
+	border: "2px solid #000",
 })
 
 // SOURCE CSS:
@@ -488,8 +247,7 @@ globalStyle(`${briteScope}${navbar} > .container`, {
 
 // SOURCE CSS:
 // .navbar > .container-fluid { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
-// [UNMAPPED_SELECTOR] class ".container-fluid" — no contract mapping
-globalStyle(`${briteScope}${navbar} > .container-fluid`, {
+globalStyle(`${briteScope}${navbar} > ${briteScope}${containerFluid}`, {
 	display: "flex",
 	flexWrap: "inherit",
 	alignItems: "center",
@@ -596,8 +354,7 @@ globalStyle(`${briteScope}${navbarNav} ${briteScope}${navLink}${navLinkActive}`,
 
 // SOURCE CSS:
 // .navbar-nav .nav-link.show { color: var(--bs-navbar-active-color); }
-// [UNMAPPED_SELECTOR] state class ".show" — no contract mapping
-globalStyle(`${briteScope}${navbarNav} ${briteScope}${navLink}.show`, {
+globalStyle(`${briteScope}${navbarNav} ${briteScope}${navLink}${show}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -657,8 +414,7 @@ globalStyle(`${briteScope}${navbarTogglerIcon}`, {
 
 // SOURCE CSS:
 // .navbar-dark { --bs-navbar-color: rgba(255, 255, 255, 0.55); --bs-navbar-hover-color: rgba(255, 255, 255, 0.75); --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25); --bs-navbar-active-color: #fff; --bs-navbar-brand-color: #fff; --bs-navbar-brand-hover-color: #fff; --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1); --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
-// [UNMAPPED_SELECTOR] class ".navbar-dark" — no contract mapping
-globalStyle(`.navbar-dark`, {
+globalStyle(`${briteScope}${navbarDarkBgPrimary}`, {
 	vars: {
 		[varBsNavbarColor]: "#fff",
 		[varBsNavbarHoverColor]: "#fff",
@@ -687,20 +443,6 @@ globalStyle(`${briteScope}${navbar}[data-bs-theme="dark"]`, {
 })
 
 // SOURCE CSS:
-// .align-top { vertical-align: top !important; }
-// [UNMAPPED_SELECTOR] class ".align-top" — no contract mapping
-globalStyle(`.align-top`, {
-	verticalAlign: "top !important",
-})
-
-// SOURCE CSS:
-// .d-inline-block { display: inline-block !important; }
-// [UNMAPPED_SELECTOR] class ".d-inline-block" — no contract mapping
-globalStyle(`.d-inline-block`, {
-	display: "inline-block !important",
-})
-
-// SOURCE CSS:
 // .d-flex { display: flex !important; }
 globalStyle(`${briteScope}${dFlex}`, {
 	display: "flex !important",
@@ -708,15 +450,13 @@ globalStyle(`${briteScope}${dFlex}`, {
 
 // SOURCE CSS:
 // .mt-5 { margin-top: 3rem !important; }
-// [UNMAPPED_SELECTOR] class ".mt-5" — no contract mapping
-globalStyle(`.mt-5`, {
+globalStyle(`${briteScope}${mt5}`, {
 	marginTop: "3rem !important",
 })
 
 // SOURCE CSS:
 // .me-2 { margin-right: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
-globalStyle(`.me-2`, {
+globalStyle(`${briteScope}${me2}`, {
 	marginRight: "0.5rem !important",
 })
 
@@ -728,43 +468,112 @@ globalStyle(`${briteScope}${meAuto}`, {
 
 // SOURCE CSS:
 // .mb-2 { margin-bottom: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-2" — no contract mapping
-globalStyle(`.mb-2`, {
+globalStyle(`${briteScope}${mb2}`, {
 	marginBottom: "0.5rem !important",
 })
 
 // SOURCE CSS:
 // .bg-primary { --bs-bg-opacity: 1; background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-primary" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-primary`, {
-	backgroundColor: `rgba(var(--bs-primary-rgb), ${varBsBgOpacity} ) !important`,
+globalStyle(`${briteScope}${navbarDarkBgPrimary}`, {
+	backgroundColor: `rgba(${varBsPrimaryRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
 // .bg-light { --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-light" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-light`, {
-	backgroundColor: `rgba(var(--bs-light-rgb), ${varBsBgOpacity} ) !important`,
+globalStyle(`${briteScope}${navbarBgLight}`, {
+	backgroundColor: `rgba(${varBsLightRgb}, 1) !important`,
 })
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
 // SOURCE CSS:
-// .navbar { font-size: 1.09375rem; font-weight: 500; border: 2px solid #000; }
+// .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button { background-color: var(--bs-secondary-bg); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${navbar}`, {
-	fontSize: "1.09375rem",
-	fontWeight: 500,
-	border: "2px solid #000",
+// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
+globalStyle(`${briteScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
+	backgroundColor: varBsSecondaryBg,
 })
 // SOURCE CSS:
-// .navbar-toggler { --bs-border-width: 2px; }
+// .form-control:hover:not(:disabled):not([readonly])::file-selector-button { background-color: var(--bs-secondary-bg); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${navbarToggler}`, {
-	vars: {
-		[varBsBorderWidth]: "2px",
-	},
+// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
+globalStyle(`${briteScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
+	backgroundColor: varBsSecondaryBg,
+})
+// SOURCE CSS:
+// .navbar > .container { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".container" — no contract mapping
+globalStyle(`${briteScope}${navbar} > .container`, {
+	display: "flex",
+	flexWrap: "inherit",
+	alignItems: "center",
+	justifyContent: "space-between",
+})
+// SOURCE CSS:
+// .navbar > .container-sm { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".container-sm" — no contract mapping
+globalStyle(`${briteScope}${navbar} > .container-sm`, {
+	display: "flex",
+	flexWrap: "inherit",
+	alignItems: "center",
+	justifyContent: "space-between",
+})
+// SOURCE CSS:
+// .navbar > .container-md { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".container-md" — no contract mapping
+globalStyle(`${briteScope}${navbar} > .container-md`, {
+	display: "flex",
+	flexWrap: "inherit",
+	alignItems: "center",
+	justifyContent: "space-between",
+})
+// SOURCE CSS:
+// .navbar > .container-lg { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".container-lg" — no contract mapping
+globalStyle(`${briteScope}${navbar} > .container-lg`, {
+	display: "flex",
+	flexWrap: "inherit",
+	alignItems: "center",
+	justifyContent: "space-between",
+})
+// SOURCE CSS:
+// .navbar > .container-xl { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".container-xl" — no contract mapping
+globalStyle(`${briteScope}${navbar} > .container-xl`, {
+	display: "flex",
+	flexWrap: "inherit",
+	alignItems: "center",
+	justifyContent: "space-between",
+})
+// SOURCE CSS:
+// .navbar > .container-xxl { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".container-xxl" — no contract mapping
+globalStyle(`${briteScope}${navbar} > .container-xxl`, {
+	display: "flex",
+	flexWrap: "inherit",
+	alignItems: "center",
+	justifyContent: "space-between",
+})
+// SOURCE CSS:
+// .bg-primary { --bs-bg-opacity: 1; background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_VAR] --bs-bg-opacity
+globalStyle(`${briteScope}${navbarDarkBgPrimary}`, {
+	backgroundColor: `rgba(${varBsPrimaryRgb}, 1) !important`,
+})
+// SOURCE CSS:
+// .bg-light { --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_VAR] --bs-bg-opacity
+globalStyle(`${briteScope}${navbarBgLight}`, {
+	backgroundColor: `rgba(${varBsLightRgb}, 1) !important`,
 })
 // SOURCE CSS:
 // .navbar .dropdown-toggle::after { margin-left: 0.15em; vertical-align: 0.15em; }

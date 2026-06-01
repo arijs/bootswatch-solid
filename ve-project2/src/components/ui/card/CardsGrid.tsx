@@ -17,7 +17,11 @@ import {
 } from '../../../theme-contract/utilities/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card',
+	'ui/buttons',
+	'ui/list-group',
 	'contents/basic',
+	'contents/heading',
+	'contents/images',
 	'utilities',
 ]
 
@@ -28,16 +32,16 @@ const CardsGrid: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid} ${positionRelative} ${overflowXHidden}`}>
 			<div class={`${theme} ${row} ${rowCols1} ${rowColsMd2} ${g4}`}>
 				<div class={`${theme} ${col}`}>
-					<ImageTopCard />
+					<ImageTopCard embedded />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<FeaturedCard />
+					<FeaturedCard embedded />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<ListCard />
+					<ListCard embedded />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<HorizontalCard />
+					<HorizontalCard embedded />
 				</div>
 			</div>
 		</div>

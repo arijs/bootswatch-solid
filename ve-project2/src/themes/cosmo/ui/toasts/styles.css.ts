@@ -6,6 +6,7 @@ import {
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsBtnCloseFilter,
+	varBsDarkRgb,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -35,24 +36,25 @@ import {
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
 import {
-	small,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
 	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	fade,
-} from '../../../../theme-contract/ui/modal/contract.css'
+	alertBtnClose,
+	alertBtnCloseDisabledHook,
+} from '../../../../theme-contract/ui/alerts/contract.css'
 import {
 	toast,
 	toastBody,
+	toastFade,
 	toastHeader,
+	toastShow,
 } from '../../../../theme-contract/ui/toasts/contract.css'
 import {
+	alignItemsCenter,
+	bgDark,
+	me2,
 	meAuto,
+	p5,
 	textMuted,
 } from '../../../../theme-contract/utilities/contract.css'
 import { cosmoScope } from '../../scope.css'
@@ -61,171 +63,20 @@ import { cosmoScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// b { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "b" — map to a contract class
-globalStyle(`b`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// strong { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "strong" — map to a contract class
-globalStyle(`strong`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// small { font-size: 0.875em; }
-globalStyle(`${cosmoScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-globalStyle(`${cosmoScope}${small}`, {
-	fontSize: "0.875em",
-})
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "img" — map to a contract class
-globalStyle(`img`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-// [UNMAPPED_SELECTOR] element selector "svg" — map to a contract class
-globalStyle(`svg`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
 // .fade { transition: opacity 0.15s linear; }
-globalStyle(`${cosmoScope}${fade}`, {
+globalStyle(`${cosmoScope}${toastFade}`, {
 	transition: "opacity 0.15s linear",
 })
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${cosmoScope}${fade}:not(.show)`, {
+globalStyle(`${cosmoScope}${toastFade}:not(${toastShow})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .btn-close { --bs-btn-close-color: #000; --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e"); --bs-btn-close-opacity: 0.5; --bs-btn-close-hover-opacity: 0.75; --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-btn-close-focus-opacity: 1; --bs-btn-close-disabled-opacity: 0.25; box-sizing: content-box; width: 1em; height: 1em; padding: 0.25em 0.25em; color: var(--bs-btn-close-color); background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat; filter: var(--bs-btn-close-filter); border: 0; border-radius: 0.375rem; opacity: var(--bs-btn-close-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close`, {
+globalStyle(`${cosmoScope}${alertBtnClose}`, {
 	vars: {
 		[varBsBtnCloseColor]: "#000",
 		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
@@ -240,7 +91,7 @@ globalStyle(`.btn-close`, {
 	height: "1em",
 	padding: "0.25em 0.25em",
 	color: varBsBtnCloseColor,
-	background: "transparent var(--bs-btn-close-bg) center/1em auto no-repeat",
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
 	filter: varBsBtnCloseFilter,
 	border: 0,
 	borderRadius: "0.375rem",
@@ -249,8 +100,7 @@ globalStyle(`.btn-close`, {
 
 // SOURCE CSS:
 // .btn-close:hover { color: var(--bs-btn-close-color); text-decoration: none; opacity: var(--bs-btn-close-hover-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:hover`, {
+globalStyle(`${cosmoScope}${alertBtnClose}:hover`, {
 	color: varBsBtnCloseColor,
 	textDecoration: "none",
 	opacity: varBsBtnCloseHoverOpacity,
@@ -258,8 +108,7 @@ globalStyle(`.btn-close:hover`, {
 
 // SOURCE CSS:
 // .btn-close:focus { outline: 0; box-shadow: var(--bs-btn-close-focus-shadow); opacity: var(--bs-btn-close-focus-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:focus`, {
+globalStyle(`${cosmoScope}${alertBtnClose}:focus`, {
 	outline: 0,
 	boxShadow: varBsBtnCloseFocusShadow,
 	opacity: varBsBtnCloseFocusOpacity,
@@ -267,8 +116,7 @@ globalStyle(`.btn-close:focus`, {
 
 // SOURCE CSS:
 // .btn-close:disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:disabled`, {
+globalStyle(`${cosmoScope}${alertBtnClose}:disabled`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
@@ -278,8 +126,7 @@ globalStyle(`.btn-close:disabled`, {
 
 // SOURCE CSS:
 // .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close.disabled`, {
+globalStyle(`${cosmoScope}${alertBtnClose}${alertBtnCloseDisabledHook}`, {
 	pointerEvents: "none",
 	WebkitUserSelect: "none",
 	MozUserSelect: "none",
@@ -314,14 +161,14 @@ globalStyle(`${cosmoScope}${toast}`, {
 	pointerEvents: "auto",
 	backgroundColor: varBsToastBg,
 	backgroundClip: "padding-box",
-	border: "var(--bs-toast-border-width) solid var(--bs-toast-border-color)",
+	border: `${varBsToastBorderWidth} solid ${varBsToastBorderColor}`,
 	boxShadow: varBsToastBoxShadow,
 	borderRadius: varBsToastBorderRadius,
 })
 
 // SOURCE CSS:
 // .toast:not(.show) { display: none; }
-globalStyle(`${cosmoScope}${toast}:not(.show)`, {
+globalStyle(`${cosmoScope}${toast}:not(${toastShow})`, {
 	display: "none",
 })
 
@@ -330,20 +177,19 @@ globalStyle(`${cosmoScope}${toast}:not(.show)`, {
 globalStyle(`${cosmoScope}${toastHeader}`, {
 	display: "flex",
 	alignItems: "center",
-	padding: "var(--bs-toast-padding-y) var(--bs-toast-padding-x)",
+	padding: `${varBsToastPaddingY} ${varBsToastPaddingX}`,
 	color: varBsToastHeaderColor,
 	backgroundColor: varBsToastHeaderBg,
 	backgroundClip: "padding-box",
-	borderBottom: "var(--bs-toast-border-width) solid var(--bs-toast-header-border-color)",
-	borderTopLeftRadius: "calc(var(--bs-toast-border-radius) - var(--bs-toast-border-width))",
-	borderTopRightRadius: "calc(var(--bs-toast-border-radius) - var(--bs-toast-border-width))",
+	borderBottom: `${varBsToastBorderWidth} solid ${varBsToastHeaderBorderColor}`,
+	borderTopLeftRadius: `calc(${varBsToastBorderRadius} - ${varBsToastBorderWidth})`,
+	borderTopRightRadius: `calc(${varBsToastBorderRadius} - ${varBsToastBorderWidth})`,
 })
 
 // SOURCE CSS:
 // .toast-header .btn-close { margin-right: calc(-0.5 * var(--bs-toast-padding-x)); margin-left: var(--bs-toast-padding-x); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`${cosmoScope}${toastHeader} .btn-close`, {
-	marginRight: "calc(-0.5 * var(--bs-toast-padding-x))",
+globalStyle(`${cosmoScope}${toastHeader} ${cosmoScope}${alertBtnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
 	marginLeft: varBsToastPaddingX,
 })
 
@@ -356,15 +202,13 @@ globalStyle(`${cosmoScope}${toastBody}`, {
 
 // SOURCE CSS:
 // .align-items-center { align-items: center !important; }
-// [UNMAPPED_SELECTOR] class ".align-items-center" — no contract mapping
-globalStyle(`.align-items-center`, {
+globalStyle(`${cosmoScope}${alignItemsCenter}`, {
 	alignItems: "center !important",
 })
 
 // SOURCE CSS:
 // .me-2 { margin-right: 0.5rem !important; }
-// [UNMAPPED_SELECTOR] class ".me-2" — no contract mapping
-globalStyle(`.me-2`, {
+globalStyle(`${cosmoScope}${me2}`, {
 	marginRight: "0.5rem !important",
 })
 
@@ -376,8 +220,7 @@ globalStyle(`${cosmoScope}${meAuto}`, {
 
 // SOURCE CSS:
 // .p-5 { padding: 3rem !important; }
-// [UNMAPPED_SELECTOR] class ".p-5" — no contract mapping
-globalStyle(`.p-5`, {
+globalStyle(`${cosmoScope}${p5}`, {
 	padding: "3rem !important",
 })
 
@@ -385,24 +228,27 @@ globalStyle(`.p-5`, {
 // .text-muted { --bs-text-opacity: 1; color: var(--bs-secondary-color) !important; }
 // [UNMAPPED_VAR] --bs-text-opacity
 globalStyle(`${cosmoScope}${textMuted}`, {
-	color: "var(--bs-secondary-color) !important",
+	color: `${varBsSecondaryColor} !important`,
 })
 
 // SOURCE CSS:
 // .bg-dark { --bs-bg-opacity: 1; background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; }
-// [UNMAPPED_SELECTOR] class ".bg-dark" — no contract mapping
 // [UNMAPPED_VAR] --bs-bg-opacity
-globalStyle(`.bg-dark`, {
-	backgroundColor: "rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important",
+globalStyle(`${cosmoScope}${bgDark}`, {
+	backgroundColor: `rgba(${varBsDarkRgb}, 1) !important`,
 })
 
 // SOURCE CSS:
 // .rounded { border-radius: var(--bs-border-radius) !important; }
 globalStyle(`${cosmoScope}${rounded}`, {
-	borderRadius: "var(--bs-border-radius) !important",
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .toast.showing
-// [DELTA] unmapped selector: .toast-container
-// [DELTA] unmapped selector: .toast-container > :not(:last-child)
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .toast.showing { opacity: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".showing" — no contract mapping
+globalStyle(`${cosmoScope}${toast}.showing`, {
+	opacity: 0,
+})

@@ -50,12 +50,12 @@ import {
 } from '../../../../theme-contract/ui/tooltips/_vars.css'
 import {
 	fieldset,
-	row,
 } from '../../../../theme-contract/forms/contract.css'
 import {
 	btn,
 	btnActiveHook,
 	btnCheck,
+	btnDisabledHook,
 	btnSecondary,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -63,130 +63,27 @@ import {
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import {
 	fade,
-	modalShowHook,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	frame,
+	frameColumn,
+	frameRow,
+	justifyCenter,
+	justifyEnd,
+	justifyStart,
 	tooltipArrow,
 	tooltipInner,
+	tooltipShow,
+	tooltipVe,
 } from '../../../../theme-contract/ui/tooltips/contract.css'
 import {
 	alignItemsCenter,
-	dFlex,
+	row,
 } from '../../../../theme-contract/utilities/contract.css'
 import { briteScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/tooltips
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`textarea`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
 
 // SOURCE CSS:
 // .btn { --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem; --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400; --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color); --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width); --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius); --bs-btn-hover-border-color: transparent; --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); --bs-btn-disabled-opacity: 0.65; --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5); display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x); font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size); font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height); color: var(--bs-btn-color); text-align: center; text-decoration: none; vertical-align: middle; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none; border: var(--bs-btn-border-width) solid var(--bs-btn-border-color); border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg); transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -200,7 +97,7 @@ globalStyle(`${briteScope}${btn}`, {
 		[varBsBtnLineHeight]: 1.5,
 		[varBsBtnColor]: varBsBodyColor,
 		[varBsBtnBg]: "transparent",
-		[varBsBtnBorderWidth]: varBsBorderWidth,
+		[varBsBtnBorderWidth]: "2px",
 		[varBsBtnBorderColor]: "transparent",
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: "transparent",
@@ -226,6 +123,9 @@ globalStyle(`${briteScope}${btn}`, {
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	transition: "all 0.3s",
+	margin: "3px 0 0 3px",
+	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
+	transform: "translate(-3px, -3px)",
 })
 
 // SOURCE CSS:
@@ -234,6 +134,8 @@ globalStyle(`${briteScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -252,14 +154,16 @@ globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
 // :not(.btn-check) + .btn:active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
+globalStyle(`:not(${briteScope}${btnCheck}) + ${briteScope}${btn}:active`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
-	borderColor: "#000",
+	borderColor: varBsBtnActiveBorderColor,
 })
 
 // SOURCE CSS:
@@ -268,6 +172,8 @@ globalStyle(`${briteScope}${btn}:first-child:active`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -276,6 +182,8 @@ globalStyle(`${briteScope}${btn}${btnActiveHook}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -284,6 +192,8 @@ globalStyle(`${briteScope}${btn}${btnShowHook}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
 	borderColor: "#000",
+	boxShadow: "none",
+	transform: "translate(0, 0)",
 })
 
 // SOURCE CSS:
@@ -328,8 +238,7 @@ globalStyle(`${briteScope}${btn}:disabled`, {
 
 // SOURCE CSS:
 // .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-// [UNMAPPED_SELECTOR] state class ".disabled" — no contract mapping
-globalStyle(`${briteScope}${btn}.disabled`, {
+globalStyle(`${briteScope}${btn}${btnDisabledHook}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -340,7 +249,7 @@ globalStyle(`${briteScope}${btn}.disabled`, {
 // SOURCE CSS:
 // fieldset:disabled .btn { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
 // [UNMAPPED_SELECTOR] element selector "fieldset:disabled" — map to a contract class
-globalStyle(`${briteScope}${btn}.disabled`, {
+globalStyle(`fieldset:disabled ${briteScope}${btn}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: "none",
 	backgroundColor: varBsBtnDisabledBg,
@@ -354,22 +263,21 @@ globalStyle(`${briteScope}${btn}.disabled`, {
 // [UNMAPPED_VAR] --bs-btn-active-shadow
 globalStyle(`${briteScope}${btn}${btnSecondary}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#fff",
-		[varBsBtnBorderColor]: "#fff",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "white",
-		[varBsBtnHoverBorderColor]: "white",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "white",
-		[varBsBtnActiveBorderColor]: "white",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#fff",
-		[varBsBtnDisabledBorderColor]: "#fff",
+		[varBsBtnColor]: "#fff",
+		[varBsBtnBg]: "#6c757d",
+		[varBsBtnBorderColor]: "#6c757d",
+		[varBsBtnHoverColor]: "#fff",
+		[varBsBtnHoverBg]: "#5c636a",
+		[varBsBtnHoverBorderColor]: "#565e64",
+		[varBsBtnActiveColor]: "#fff",
+		[varBsBtnActiveBg]: "#565e64",
+		[varBsBtnActiveBorderColor]: "#51585e",
+		[varBsBtnDisabledColor]: "#fff",
+		[varBsBtnDisabledBg]: "#6c757d",
+		[varBsBtnDisabledBorderColor]: "#6c757d",
 	},
 	backgroundColor: varBsBtnBg,
 	color: varBsBtnColor,
-	borderColor: varBsBtnBorderColor,
 })
 
 // SOURCE CSS:
@@ -380,14 +288,13 @@ globalStyle(`${briteScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${briteScope}${fade}:not(${modalShowHook})`, {
+globalStyle(`${briteScope}${tooltipVe}${fade}:not(${tooltipShow})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .tooltip { --bs-tooltip-zindex: 1080; --bs-tooltip-max-width: 200px; --bs-tooltip-padding-x: 0.5rem; --bs-tooltip-padding-y: 0.25rem; --bs-tooltip-margin: ; --bs-tooltip-font-size: 0.875rem; --bs-tooltip-color: var(--bs-body-bg); --bs-tooltip-bg: var(--bs-emphasis-color); --bs-tooltip-border-radius: var(--bs-border-radius); --bs-tooltip-opacity: 0.9; --bs-tooltip-arrow-width: 0.8rem; --bs-tooltip-arrow-height: 0.4rem; z-index: var(--bs-tooltip-zindex); display: block; margin: var(--bs-tooltip-margin); font-family: var(--bs-font-sans-serif); font-style: normal; font-weight: 400; line-height: 1.5; text-align: start; text-decoration: none; text-shadow: none; text-transform: none; letter-spacing: normal; word-break: normal; white-space: normal; word-spacing: normal; line-break: auto; font-size: var(--bs-tooltip-font-size); word-wrap: break-word; opacity: 0; }
-// [UNMAPPED_SELECTOR] class ".tooltip" — no contract mapping
-globalStyle(`.tooltip`, {
+globalStyle(`${briteScope}${tooltipVe}`, {
 	vars: {
 		[varBsTooltipZindex]: 1080,
 		[varBsTooltipMaxWidth]: "200px",
@@ -425,16 +332,13 @@ globalStyle(`.tooltip`, {
 
 // SOURCE CSS:
 // .tooltip.show { opacity: var(--bs-tooltip-opacity); }
-// [UNMAPPED_SELECTOR] class ".tooltip" — no contract mapping
-// [UNMAPPED_SELECTOR] state class ".show" — no contract mapping
-globalStyle(`.tooltip.show`, {
+globalStyle(`${briteScope}${tooltipVe}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
 // SOURCE CSS:
 // .tooltip .tooltip-arrow { display: block; width: var(--bs-tooltip-arrow-width); height: var(--bs-tooltip-arrow-height); }
-// [UNMAPPED_SELECTOR] class ".tooltip" — no contract mapping
-globalStyle(`.tooltip ${briteScope}${tooltipArrow}`, {
+globalStyle(`${briteScope}${tooltipVe} ${briteScope}${tooltipArrow}`, {
 	display: "block",
 	width: varBsTooltipArrowWidth,
 	height: varBsTooltipArrowHeight,
@@ -442,8 +346,7 @@ globalStyle(`.tooltip ${briteScope}${tooltipArrow}`, {
 
 // SOURCE CSS:
 // .tooltip .tooltip-arrow::before { position: absolute; content: ""; border-color: transparent; border-style: solid; }
-// [UNMAPPED_SELECTOR] class ".tooltip" — no contract mapping
-globalStyle(`.tooltip ${briteScope}${tooltipArrow}::before`, {
+globalStyle(`${briteScope}${tooltipVe} ${briteScope}${tooltipArrow}::before`, {
 	position: "absolute",
 	content: "\"\"",
 	borderColor: "transparent",
@@ -495,28 +398,25 @@ globalStyle(`${briteScope}${tooltipInner}`, {
 
 // SOURCE CSS:
 // .d-flex { display: flex !important; }
-globalStyle(`${briteScope}${dFlex}`, {
+globalStyle(`${briteScope}${frame}`, {
 	display: "flex !important",
 })
 
 // SOURCE CSS:
 // .border { border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important; }
-// [UNMAPPED_SELECTOR] class ".border" — no contract mapping
-globalStyle(`.border`, {
+globalStyle(`${briteScope}${frame}`, {
 	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 // SOURCE CSS:
 // .flex-column { flex-direction: column !important; }
-// [UNMAPPED_SELECTOR] class ".flex-column" — no contract mapping
-globalStyle(`.flex-column`, {
+globalStyle(`${briteScope}${frameColumn}`, {
 	flexDirection: "column !important",
 })
 
 // SOURCE CSS:
 // .justify-content-start { justify-content: flex-start !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-start" — no contract mapping
-globalStyle(`.justify-content-start`, {
+globalStyle(`${briteScope}${justifyStart}`, {
 	justifyContent: "flex-start !important",
 })
 
@@ -564,23 +464,8 @@ globalStyle(`.bs-tooltip-auto[data-popper-placement^="right"] ${briteScope}${too
 
 // SOURCE CSS:
 // .flex-row { flex-direction: row !important; }
-// [UNMAPPED_SELECTOR] class ".flex-row" — no contract mapping
-globalStyle(`.flex-row`, {
+globalStyle(`${briteScope}${frameRow}`, {
 	flexDirection: "row !important",
-})
-
-// SOURCE CSS:
-// b { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "b" — map to a contract class
-globalStyle(`b`, {
-	fontWeight: "bolder",
-})
-
-// SOURCE CSS:
-// strong { font-weight: bolder; }
-// [UNMAPPED_SELECTOR] element selector "strong" — map to a contract class
-globalStyle(`strong`, {
-	fontWeight: "bolder",
 })
 
 // SOURCE CSS:
@@ -617,8 +502,7 @@ globalStyle(`.bs-tooltip-auto[data-popper-placement^="top"] ${briteScope}${toolt
 
 // SOURCE CSS:
 // .justify-content-center { justify-content: center !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-center" — no contract mapping
-globalStyle(`.justify-content-center`, {
+globalStyle(`${briteScope}${justifyCenter}`, {
 	justifyContent: "center !important",
 })
 
@@ -660,104 +544,167 @@ globalStyle(`.bs-tooltip-auto[data-popper-placement^="left"] ${briteScope}${tool
 
 // SOURCE CSS:
 // .justify-content-end { justify-content: flex-end !important; }
-// [UNMAPPED_SELECTOR] class ".justify-content-end" — no contract mapping
-globalStyle(`.justify-content-end`, {
+globalStyle(`${briteScope}${justifyEnd}`, {
 	justifyContent: "flex-end !important",
 })
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
 // SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+// .btn-secondary { --bs-btn-color: #000; --bs-btn-bg: #fff; --bs-btn-border-color: #fff; --bs-btn-hover-color: #000; --bs-btn-hover-bg: white; --bs-btn-hover-border-color: white; --bs-btn-focus-shadow-rgb: 217, 217, 217; --bs-btn-active-color: #000; --bs-btn-active-bg: white; --bs-btn-active-border-color: white; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #fff; --bs-btn-disabled-border-color: #fff; }
 // [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-// SOURCE CSS:
-// .btn { --bs-btn-border-width: 2px; --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); --bs-btn-focus-box-shadow: 0 0 0 1px rgba(var(--bs-btn-focus-shadow-rgb), .5); margin: 3px 0 0 3px; border-color: #000; box-shadow: 3px 3px 0 0 var(--bs-border-color); transform: translate(-3px, -3px); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}`, {
+// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
+// [UNMAPPED_VAR] --bs-btn-active-shadow
+globalStyle(`${briteScope}${btn}${btnSecondary}`, {
 	vars: {
-		[varBsBtnBorderWidth]: "2px",
-		[varBsBtnBoxShadow]: "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
-		[varBsBtnFocusBoxShadow]: "0 0 0 1px rgba(var(--bs-btn-focus-shadow-rgb), .5)",
+		[varBsBtnColor]: "#000",
+		[varBsBtnBg]: "#fff",
+		[varBsBtnBorderColor]: "#fff",
+		[varBsBtnHoverColor]: "#000",
+		[varBsBtnHoverBg]: "white",
+		[varBsBtnHoverBorderColor]: "white",
+		[varBsBtnActiveColor]: "#000",
+		[varBsBtnActiveBg]: "white",
+		[varBsBtnActiveBorderColor]: "white",
+		[varBsBtnDisabledColor]: "#000",
+		[varBsBtnDisabledBg]: "#fff",
+		[varBsBtnDisabledBorderColor]: "#fff",
 	},
-	margin: "3px 0 0 3px",
-	borderColor: "#000",
-	boxShadow: `3px 3px 0 0 ${varBsBorderColor}`,
-	transform: "translate(-3px, -3px)",
+	backgroundColor: varBsBtnBg,
+	color: varBsBtnColor,
 })
 // SOURCE CSS:
-// .btn:hover { box-shadow: none; transform: translate(0, 0); }
+// .bs-tooltip-bottom .tooltip-arrow { top: calc(-1 * var(--bs-tooltip-arrow-height)); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}:hover`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-bottom" — no contract mapping
+globalStyle(`.bs-tooltip-bottom ${briteScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 // SOURCE CSS:
-// .btn-check:checked + .btn { box-shadow: none; transform: translate(0, 0); }
+// .bs-tooltip-auto[data-popper-placement^="bottom"] .tooltip-arrow { top: calc(-1 * var(--bs-tooltip-arrow-height)); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="bottom"] ${briteScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 // SOURCE CSS:
-// .btn-check:checked + .btn { box-shadow: none; transform: translate(0, 0); }
+// .bs-tooltip-bottom .tooltip-arrow::before { bottom: -1px; border-width: 0 calc(var(--bs-tooltip-arrow-width) * 0.5) var(--bs-tooltip-arrow-height); border-bottom-color: var(--bs-tooltip-bg); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-bottom" — no contract mapping
+globalStyle(`.bs-tooltip-bottom ${briteScope}${tooltipArrow}::before`, {
+	bottom: "-1px",
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
 })
 // SOURCE CSS:
-// .btn:first-child:active { box-shadow: none; transform: translate(0, 0); }
+// .bs-tooltip-auto[data-popper-placement^="bottom"] .tooltip-arrow::before { bottom: -1px; border-width: 0 calc(var(--bs-tooltip-arrow-width) * 0.5) var(--bs-tooltip-arrow-height); border-bottom-color: var(--bs-tooltip-bg); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}:first-child:active`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="bottom"] ${briteScope}${tooltipArrow}::before`, {
+	bottom: "-1px",
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
 })
 // SOURCE CSS:
-// .btn.active { box-shadow: none; transform: translate(0, 0); }
+// .bs-tooltip-end .tooltip-arrow { left: calc(-1 * var(--bs-tooltip-arrow-height)); width: var(--bs-tooltip-arrow-height); height: var(--bs-tooltip-arrow-width); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}${btnActiveHook}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-end" — no contract mapping
+globalStyle(`.bs-tooltip-end ${briteScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
 })
 // SOURCE CSS:
-// .btn.show { box-shadow: none; transform: translate(0, 0); }
+// .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow { left: calc(-1 * var(--bs-tooltip-arrow-height)); width: var(--bs-tooltip-arrow-height); height: var(--bs-tooltip-arrow-width); }
 // [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${btn}${btnShowHook}`, {
-	boxShadow: "none",
-	transform: "translate(0, 0)",
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="right"] ${briteScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
 })
 // SOURCE CSS:
-// .tooltip { --bs-tooltip-opacity: 1; }
+// .bs-tooltip-end .tooltip-arrow::before { right: -1px; border-width: calc(var(--bs-tooltip-arrow-width) * 0.5) var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) * 0.5) 0; border-right-color: var(--bs-tooltip-bg); }
 // [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".tooltip" — no contract mapping
-globalStyle(`.tooltip`, {
-	vars: {
-		[varBsTooltipOpacity]: 1,
-	},
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-end" — no contract mapping
+globalStyle(`.bs-tooltip-end ${briteScope}${tooltipArrow}::before`, {
+	right: "-1px",
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
+// SOURCE CSS:
+// .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before { right: -1px; border-width: calc(var(--bs-tooltip-arrow-width) * 0.5) var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) * 0.5) 0; border-right-color: var(--bs-tooltip-bg); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="right"] ${briteScope}${tooltipArrow}::before`, {
+	right: "-1px",
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
+// SOURCE CSS:
+// .bs-tooltip-top .tooltip-arrow { bottom: calc(-1 * var(--bs-tooltip-arrow-height)); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-top" — no contract mapping
+globalStyle(`.bs-tooltip-top ${briteScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+// SOURCE CSS:
+// .bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow { bottom: calc(-1 * var(--bs-tooltip-arrow-height)); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="top"] ${briteScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+// SOURCE CSS:
+// .bs-tooltip-top .tooltip-arrow::before { top: -1px; border-width: var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) * 0.5) 0; border-top-color: var(--bs-tooltip-bg); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-top" — no contract mapping
+globalStyle(`.bs-tooltip-top ${briteScope}${tooltipArrow}::before`, {
+	top: "-1px",
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
+// SOURCE CSS:
+// .bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow::before { top: -1px; border-width: var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) * 0.5) 0; border-top-color: var(--bs-tooltip-bg); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="top"] ${briteScope}${tooltipArrow}::before`, {
+	top: "-1px",
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
+// SOURCE CSS:
+// .bs-tooltip-start .tooltip-arrow { right: calc(-1 * var(--bs-tooltip-arrow-height)); width: var(--bs-tooltip-arrow-height); height: var(--bs-tooltip-arrow-width); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-start" — no contract mapping
+globalStyle(`.bs-tooltip-start ${briteScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+// SOURCE CSS:
+// .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow { right: calc(-1 * var(--bs-tooltip-arrow-height)); width: var(--bs-tooltip-arrow-height); height: var(--bs-tooltip-arrow-width); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="left"] ${briteScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+// SOURCE CSS:
+// .bs-tooltip-start .tooltip-arrow::before { left: -1px; border-width: calc(var(--bs-tooltip-arrow-width) * 0.5) 0 calc(var(--bs-tooltip-arrow-width) * 0.5) var(--bs-tooltip-arrow-height); border-left-color: var(--bs-tooltip-bg); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-start" — no contract mapping
+globalStyle(`.bs-tooltip-start ${briteScope}${tooltipArrow}::before`, {
+	left: "-1px",
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) var(--bs-tooltip-arrow-height)`,
+	borderLeftColor: varBsTooltipBg,
+})
+// SOURCE CSS:
+// .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before { left: -1px; border-width: calc(var(--bs-tooltip-arrow-width) * 0.5) 0 calc(var(--bs-tooltip-arrow-width) * 0.5) var(--bs-tooltip-arrow-height); border-left-color: var(--bs-tooltip-bg); }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".bs-tooltip-auto" — no contract mapping
+globalStyle(`.bs-tooltip-auto[data-popper-placement^="left"] ${briteScope}${tooltipArrow}::before`, {
+	left: "-1px",
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) var(--bs-tooltip-arrow-height)`,
+	borderLeftColor: varBsTooltipBg,
 })

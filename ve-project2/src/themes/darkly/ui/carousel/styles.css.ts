@@ -20,21 +20,25 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 import {
 	carousel,
+	carouselActive,
 	carouselCaption,
 	carouselControlNext,
 	carouselControlNextIcon,
 	carouselControlPrev,
 	carouselControlPrevIcon,
+	carouselDark,
 	carouselFade,
 	carouselIndicators,
 	carouselInner,
 	carouselItem,
+	carouselItemEnd,
 	carouselItemNext,
 	carouselItemPrev,
+	carouselItemStart,
 } from '../../../../theme-contract/ui/carousel/contract.css'
 import {
-	fade,
-} from '../../../../theme-contract/ui/modal/contract.css'
+	visuallyHidden,
+} from '../../../../theme-contract/utilities/contract.css'
 import { darklyScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/carousel
@@ -336,7 +340,7 @@ globalStyle(`${darklyScope}${carouselItem}`, {
 
 // SOURCE CSS:
 // .carousel-item.active { display: block; }
-globalStyle(`${darklyScope}${carouselItem}.active`, {
+globalStyle(`${darklyScope}${carouselItem}${carouselActive}`, {
 	display: "block",
 })
 
@@ -354,55 +358,52 @@ globalStyle(`${darklyScope}${carouselItemPrev}`, {
 
 // SOURCE CSS:
 // .carousel-item-next:not(.carousel-item-start) { transform: translateX(100%); }
-globalStyle(`${darklyScope}${carouselItemNext}:not(.carousel-item-start)`, {
+globalStyle(`${darklyScope}${carouselItemNext}:not(${darklyScope}${carouselItemStart})`, {
 	transform: "translateX(100%)",
 })
 
 // SOURCE CSS:
 // .active.carousel-item-end { transform: translateX(100%); }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.active.carousel-item-end`, {
+globalStyle(`${darklyScope}${carouselActive}${carouselItemEnd}`, {
 	transform: "translateX(100%)",
 })
 
 // SOURCE CSS:
 // .carousel-item-prev:not(.carousel-item-end) { transform: translateX(-100%); }
-globalStyle(`${darklyScope}${carouselItemPrev}:not(.carousel-item-end)`, {
+globalStyle(`${darklyScope}${carouselItemPrev}:not(${darklyScope}${carouselItemEnd})`, {
 	transform: "translateX(-100%)",
 })
 
 // SOURCE CSS:
 // .active.carousel-item-start { transform: translateX(-100%); }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.active.carousel-item-start`, {
+globalStyle(`${darklyScope}${carouselActive}${carouselItemStart}`, {
 	transform: "translateX(-100%)",
 })
 
 // SOURCE CSS:
 // .carousel-fade .carousel-item.active { z-index: 1; opacity: 1; }
-globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItem}.active`, {
+globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItem}${carouselActive}`, {
 	zIndex: 1,
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .carousel-fade .carousel-item-next.carousel-item-start { z-index: 1; opacity: 1; }
-globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItemNext}.carousel-item-start`, {
+globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItemNext}${carouselItemStart}`, {
 	zIndex: 1,
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .carousel-fade .carousel-item-prev.carousel-item-end { z-index: 1; opacity: 1; }
-globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItemPrev}.carousel-item-end`, {
+globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItemPrev}${carouselItemEnd}`, {
 	zIndex: 1,
 	opacity: 1,
 })
 
 // SOURCE CSS:
 // .carousel-fade .active.carousel-item-start { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`${darklyScope}${carouselFade} .active.carousel-item-start`, {
+globalStyle(`${darklyScope}${carouselFade} ${carouselActive}${carouselItemStart}`, {
 	zIndex: 0,
 	opacity: 0,
 	transition: "opacity 0s 0.6s",
@@ -410,8 +411,7 @@ globalStyle(`${darklyScope}${carouselFade} .active.carousel-item-start`, {
 
 // SOURCE CSS:
 // .carousel-fade .active.carousel-item-end { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`${darklyScope}${carouselFade} .active.carousel-item-end`, {
+globalStyle(`${darklyScope}${carouselFade} ${carouselActive}${carouselItemEnd}`, {
 	zIndex: 0,
 	opacity: 0,
 	transition: "opacity 0s 0.6s",
@@ -561,8 +561,7 @@ globalStyle(`${darklyScope}${carouselIndicators} [data-bs-target]`, {
 
 // SOURCE CSS:
 // .carousel-indicators .active { opacity: 1; }
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`${darklyScope}${carouselIndicators} .active`, {
+globalStyle(`${darklyScope}${carouselIndicators} ${carouselActive}`, {
 	opacity: 1,
 })
 
@@ -581,8 +580,7 @@ globalStyle(`${darklyScope}${carouselCaption}`, {
 
 // SOURCE CSS:
 // .visually-hidden { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden`, {
+globalStyle(`${darklyScope}${visuallyHidden}`, {
 	width: "1px !important",
 	height: "1px !important",
 	padding: "0 !important",
@@ -609,8 +607,7 @@ globalStyle(`.visually-hidden-focusable:not(:focus):not(:focus-within)`, {
 
 // SOURCE CSS:
 // .visually-hidden:not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] class ".visually-hidden" — no contract mapping
-globalStyle(`.visually-hidden:not(caption)`, {
+globalStyle(`${darklyScope}${visuallyHidden}:not(caption)`, {
 	position: "absolute !important",
 })
 
@@ -642,7 +639,25 @@ globalStyle(`.w-100`, {
 	width: "100% !important",
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .carousel.pointer-event
-// [DELTA] unmapped selector: .carousel-fade .carousel-item
-// [DELTA] unmapped selector: .carousel-dark
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .carousel.pointer-event { touch-action: pan-y; }
+globalStyle(`${darklyScope}${carousel}.pointer-event`, {
+	touchAction: "pan-y",
+})
+// SOURCE CSS:
+// .carousel-fade .carousel-item { opacity: 0; transition-property: opacity; transform: none; }
+globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItem}`, {
+	opacity: 0,
+	transitionProperty: "opacity",
+	transform: "none",
+})
+// SOURCE CSS:
+// .carousel-dark { --bs-carousel-indicator-active-bg: #000; --bs-carousel-caption-color: #000; --bs-carousel-control-icon-filter: invert(1) grayscale(100); }
+globalStyle(`${darklyScope}${carouselDark}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: "#000",
+		[varBsCarouselCaptionColor]: "#000",
+		[varBsCarouselControlIconFilter]: "invert(1) grayscale(100)",
+	},
+})

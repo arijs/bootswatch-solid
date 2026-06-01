@@ -59,7 +59,9 @@ import {
 	dropdownDivider,
 	dropdownHeader,
 	dropdownItem,
+	dropdownItemActive,
 	dropdownMenu,
+	dropdownMenuShow,
 	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
@@ -451,23 +453,23 @@ globalStyle(`${darklyScope}${dropdownMenu}`, {
 		[varBsDropdownSpacer]: "0.125rem",
 		[varBsDropdownFontSize]: "1rem",
 		[varBsDropdownColor]: varBsBodyColor,
-		[varBsDropdownBg]: varBsBodyBg,
-		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
+		[varBsDropdownBg]: "#222",
+		[varBsDropdownBorderColor]: "#444",
 		[varBsDropdownBorderRadius]: varBsBorderRadius,
 		[varBsDropdownBorderWidth]: varBsBorderWidth,
-		[varBsDropdownInnerBorderRadius]: "calc(var(--bs-border-radius) - var(--bs-border-width))",
-		[varBsDropdownDividerBg]: varBsBorderColorTranslucent,
+		[varBsDropdownInnerBorderRadius]: `calc(${varBsBorderRadius} - ${varBsBorderWidth})`,
+		[varBsDropdownDividerBg]: "#444",
 		[varBsDropdownDividerMarginY]: "0.5rem",
 		[varBsDropdownBoxShadow]: varBsBoxShadow,
-		[varBsDropdownLinkColor]: varBsBodyColor,
-		[varBsDropdownLinkHoverColor]: varBsBodyColor,
-		[varBsDropdownLinkHoverBg]: varBsTertiaryBg,
+		[varBsDropdownLinkColor]: "#fff",
+		[varBsDropdownLinkHoverColor]: "#fff",
+		[varBsDropdownLinkHoverBg]: "#375a7f",
 		[varBsDropdownLinkActiveColor]: "#fff",
-		[varBsDropdownLinkActiveBg]: "#0d6efd",
+		[varBsDropdownLinkActiveBg]: "#375a7f",
 		[varBsDropdownLinkDisabledColor]: varBsTertiaryColor,
 		[varBsDropdownItemPaddingX]: "1rem",
 		[varBsDropdownItemPaddingY]: "0.25rem",
-		[varBsDropdownHeaderColor]: "#6c757d",
+		[varBsDropdownHeaderColor]: "#888",
 		[varBsDropdownHeaderPaddingX]: "1rem",
 		[varBsDropdownHeaderPaddingY]: "0.5rem",
 	},
@@ -475,7 +477,7 @@ globalStyle(`${darklyScope}${dropdownMenu}`, {
 	zIndex: varBsDropdownZindex,
 	display: "none",
 	minWidth: varBsDropdownMinWidth,
-	padding: "var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x)",
+	padding: `${varBsDropdownPaddingY} ${varBsDropdownPaddingX}`,
 	margin: 0,
 	fontSize: varBsDropdownFontSize,
 	color: varBsDropdownColor,
@@ -483,7 +485,7 @@ globalStyle(`${darklyScope}${dropdownMenu}`, {
 	listStyle: "none",
 	backgroundColor: varBsDropdownBg,
 	backgroundClip: "padding-box",
-	border: "var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color)",
+	border: `${varBsDropdownBorderWidth} solid ${varBsDropdownBorderColor}`,
 	borderRadius: varBsDropdownBorderRadius,
 })
 
@@ -502,7 +504,7 @@ globalStyle(`${darklyScope}${dropdownDivider}`, {
 globalStyle(`${darklyScope}${dropdownItem}`, {
 	display: "block",
 	width: "100%",
-	padding: "var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x)",
+	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	clear: "both",
 	fontWeight: 400,
 	color: varBsDropdownLinkColor,
@@ -530,7 +532,7 @@ globalStyle(`${darklyScope}${dropdownItem}:focus`, {
 
 // SOURCE CSS:
 // .dropdown-item.active { color: var(--bs-dropdown-link-active-color); text-decoration: none; background-color: var(--bs-dropdown-link-active-bg); }
-globalStyle(`${darklyScope}${dropdownItem}.active`, {
+globalStyle(`${darklyScope}${dropdownItem}${dropdownItemActive}`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: "none",
 	backgroundColor: varBsDropdownLinkActiveBg,
@@ -573,7 +575,7 @@ globalStyle(`${darklyScope}${dropdownHeader}`, {
 
 // SOURCE CSS:
 // .dropdown-menu.show { display: block; }
-globalStyle(`${darklyScope}${dropdownMenu}.show`, {
+globalStyle(`${darklyScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: "block",
 })
 

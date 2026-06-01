@@ -17,6 +17,9 @@ export const progressBarInfo = style({})
 export const progressBarWarning = style({})
 export const progressBarDanger = style({})
 
+/** Dark label text on light progress fills (`.text-dark` on warning bars). */
+export const progressBarTextDark = style({})
+
 // ── Progress bar striped / animated ──────────────────────────────────────────
 
 export const progressBarStriped = style({})

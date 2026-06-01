@@ -1,7 +1,4 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	card,
-} from '../../../../theme-contract/ui/card/contract.css'
 import { cosmoScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for cosmo/ui/card-tabs

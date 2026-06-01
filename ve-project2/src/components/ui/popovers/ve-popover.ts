@@ -1,0 +1,20 @@
+import * as bootstrap from 'bootstrap'
+import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
+
+interface VePopoverRuntimeClasses {
+	popoverArrow: string
+	popoverHeader: string
+	popoverBody: string
+	popoverShow: string
+}
+
+export function createVePopover(runtime: VePopoverRuntimeClasses): typeof bootstrap.Popover {
+	return (
+		bootstrap.Popover as unknown as BootstrapWithDefaults<typeof bootstrap.Popover>
+	).extendDefaultConfig({
+		SELECTOR_ARROW: `.${runtime.popoverArrow}`,
+		SELECTOR_TITLE: `.${runtime.popoverHeader}`,
+		SELECTOR_CONTENT: `.${runtime.popoverBody}`,
+		CLASS_NAME_SHOW: runtime.popoverShow,
+	}) as typeof bootstrap.Popover
+}

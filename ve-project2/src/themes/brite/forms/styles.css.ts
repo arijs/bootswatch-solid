@@ -42,13 +42,14 @@ import {
 	formSelectSm,
 	formSwitch,
 	formText,
+	g3,
 	hasValidation,
 	inputGroup,
 	inputGroupText,
 	invalidFeedback,
 	isInvalid,
 	isValid,
-	legend,
+	mb3,
 	row,
 	validFeedback,
 	wasValidated,
@@ -64,67 +65,6 @@ import { briteScope } from '../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/forms
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// label { display: inline-block; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`label`, {
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// button { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; word-wrap: normal; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	wordWrap: "normal",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; resize: vertical; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	resize: "vertical",
-})
 
 // SOURCE CSS:
 // .form-check { display: block; min-height: 1.5rem; padding-left: 1.5em; margin-bottom: 0.125rem; }
@@ -236,21 +176,13 @@ globalStyle(`${briteScope}${formCheckInput}:disabled ~ ${briteScope}${formCheckL
 
 // SOURCE CSS:
 // .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
+globalStyle(`${briteScope}${mb3}`, {
 	marginBottom: "1rem !important",
 })
 
 // SOURCE CSS:
-// select:disabled { opacity: 1; }
-// [UNMAPPED_SELECTOR] element selector "select:disabled" — map to a contract class
-globalStyle(`.mb-3`, {
-	opacity: 1,
-})
-
-// SOURCE CSS:
 // fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
-globalStyle(`.mb-3`, {
+globalStyle(`${briteScope}${fieldset}`, {
 	minWidth: 0,
 	padding: 0,
 	margin: 0,
@@ -261,6 +193,8 @@ globalStyle(`.mb-3`, {
 // .form-label { margin-bottom: 0.5rem; }
 globalStyle(`${briteScope}${formLabel}`, {
 	marginBottom: "0.5rem",
+	display: "inline-block",
+	fontWeight: 500,
 })
 
 // SOURCE CSS:
@@ -272,6 +206,8 @@ globalStyle(`${briteScope}${formControl}`, {
 	fontSize: "0.875rem",
 	fontWeight: 400,
 	lineHeight: 1.5,
+	fontFamily: "inherit",
+	margin: 0,
 	color: varBsBodyColor,
 	WebkitAppearance: "none",
 	MozAppearance: "none",
@@ -325,10 +261,10 @@ globalStyle(`${briteScope}${formControl}:disabled`, {
 // SOURCE CSS:
 // .form-control::-webkit-file-upload-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${briteScope}${formControl}::-webkit-file-upload-button`, {
-	padding: "0.75rem 1.25rem",
-	margin: "-0.75rem -1.25rem",
-	WebkitMarginEnd: "1.25rem",
-	marginInlineEnd: "1.25rem",
+	padding: "0.5rem 1rem",
+	margin: "-0.5rem -1rem",
+	WebkitMarginEnd: "1rem",
+	marginInlineEnd: "1rem",
 	color: varBsBodyColor,
 	backgroundColor: varBsTertiaryBg,
 	pointerEvents: "none",
@@ -344,10 +280,10 @@ globalStyle(`${briteScope}${formControl}::-webkit-file-upload-button`, {
 // SOURCE CSS:
 // .form-control::file-selector-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${briteScope}${formControl}::file-selector-button`, {
-	padding: "0.75rem 1.25rem",
-	margin: "-0.75rem -1.25rem",
-	WebkitMarginEnd: "1.25rem",
-	marginInlineEnd: "1.25rem",
+	padding: "0.5rem 1rem",
+	margin: "-0.5rem -1rem",
+	WebkitMarginEnd: "1rem",
+	marginInlineEnd: "1rem",
 	color: varBsBodyColor,
 	backgroundColor: varBsTertiaryBg,
 	pointerEvents: "none",
@@ -414,20 +350,6 @@ globalStyle(`${briteScope}${formSelect}:disabled`, {
 })
 
 // SOURCE CSS:
-// ::file-selector-button { font: inherit; appearance: button; }
-globalStyle(`${briteScope}${formSelect}:disabled`, {
-	font: "inherit",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// ::-webkit-file-upload-button { font: inherit; -webkit-appearance: button; }
-globalStyle(`${briteScope}${formSelect}:disabled`, {
-	font: "inherit",
-	WebkitAppearance: "button",
-})
-
-// SOURCE CSS:
 // .form-control[type="file"] { overflow: hidden; }
 globalStyle(`${briteScope}${formControl}[type="file"]`, {
 	overflow: "hidden",
@@ -444,7 +366,7 @@ globalStyle(`${briteScope}${formControl}[type="file"]:not(:disabled):not([readon
 // .form-range { width: 100%; height: 1.5rem; padding: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: transparent; }
 globalStyle(`${briteScope}${formRange}`, {
 	width: "100%",
-	height: "calc(1.2rem + 2px)",
+	height: `calc(1.2rem + 2px)`,
 	padding: 0,
 	WebkitAppearance: "none",
 	MozAppearance: "none",
@@ -473,7 +395,7 @@ globalStyle(`${briteScope}${formRange}::-webkit-slider-thumb`, {
 	WebkitAppearance: "none",
 	appearance: "none",
 	backgroundColor: "#a2e436",
-	border: 0,
+	border: "2px solid #000",
 	borderRadius: "1rem",
 	WebkitTransition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
 	transition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
@@ -495,6 +417,7 @@ globalStyle(`${briteScope}${formRange}::-webkit-slider-runnable-track`, {
 	backgroundColor: varBsSecondaryBg,
 	borderColor: "transparent",
 	borderRadius: "1rem",
+	border: "2px solid #000",
 })
 
 // SOURCE CSS:
@@ -507,26 +430,6 @@ globalStyle(`${briteScope}${formRange}:disabled`, {
 // .form-range:disabled::-webkit-slider-thumb { background-color: var(--bs-secondary-color); }
 globalStyle(`${briteScope}${formRange}:disabled::-webkit-slider-thumb`, {
 	backgroundColor: "#e9ecef",
-})
-
-// SOURCE CSS:
-// legend { float: left; width: 100%; padding: 0; margin-bottom: 0.5rem; line-height: inherit; font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] element selector "legend" — map to a contract class
-globalStyle(`${briteScope}${formRange}:disabled::-webkit-slider-thumb`, {
-	float: "left",
-	width: "100%",
-	padding: 0,
-	marginBottom: "0.5rem",
-	lineHeight: "inherit",
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
-// SOURCE CSS:
-// legend + * { clear: left; }
-// [UNMAPPED_SELECTOR] element selector "legend" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${briteScope}${formRange}:disabled::-webkit-slider-thumb`, {
-	clear: "left",
 })
 
 // SOURCE CSS:
@@ -589,8 +492,8 @@ globalStyle(`${briteScope}${formFloating}`, {
 // SOURCE CSS:
 // .form-floating > .form-control { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 globalStyle(`${briteScope}${formFloating} > ${briteScope}${formControl}`, {
-	height: "calc(3.5rem + calc(2px * 2))",
-	minHeight: "calc(3.5rem + calc(2px * 2))",
+	height: `calc(3.5rem + calc(2px * 2))`,
+	minHeight: `calc(3.5rem + calc(2px * 2))`,
 	lineHeight: 1.25,
 	padding: "1rem 1rem",
 })
@@ -599,8 +502,8 @@ globalStyle(`${briteScope}${formFloating} > ${briteScope}${formControl}`, {
 // .form-floating > .form-control-plaintext { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 // [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
 globalStyle(`${briteScope}${formFloating} > .form-control-plaintext`, {
-	height: "calc(3.5rem + calc(2px * 2))",
-	minHeight: "calc(3.5rem + calc(2px * 2))",
+	height: `calc(3.5rem + calc(2px * 2))`,
+	minHeight: `calc(3.5rem + calc(2px * 2))`,
 	lineHeight: 1.25,
 	padding: "1rem 1rem",
 })
@@ -608,8 +511,8 @@ globalStyle(`${briteScope}${formFloating} > .form-control-plaintext`, {
 // SOURCE CSS:
 // .form-floating > .form-select { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; }
 globalStyle(`${briteScope}${formFloating} > ${briteScope}${formSelect}`, {
-	height: "calc(3.5rem + calc(2px * 2))",
-	minHeight: "calc(3.5rem + calc(2px * 2))",
+	height: `calc(3.5rem + calc(2px * 2))`,
+	minHeight: `calc(3.5rem + calc(2px * 2))`,
 	lineHeight: 1.25,
 })
 
@@ -846,16 +749,9 @@ globalStyle(`${briteScope}${inputGroup}:not(${briteScope}${hasValidation}) > ${b
 // SOURCE CSS:
 // .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) { margin-left: calc(-1 * var(--bs-border-width)); border-top-left-radius: 0; border-bottom-left-radius: 0; }
 globalStyle(`${briteScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`, {
-	marginLeft: "calc(-1 * 2px)",
+	marginLeft: `calc(-1 * 2px)`,
 	borderTopLeftRadius: 0,
 	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// textarea.form-control { min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)); }
-// [UNMAPPED_SELECTOR] element selector "textarea.form-control" — map to a contract class
-globalStyle(`${briteScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`, {
-	minHeight: "calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2))",
 })
 
 // SOURCE CSS:
@@ -868,8 +764,8 @@ globalStyle(`${briteScope}${formText}`, {
 
 // SOURCE CSS:
 // .form-control-lg { min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2)); padding: 0.5rem 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${briteScope}${formControlLg}`, {
-	minHeight: "calc(1.5em + 1.5rem + calc(2px * 2))",
+globalStyle(`${briteScope}${formControl}${formControlLg}`, {
+	minHeight: `calc(1.5em + 1.5rem + calc(2px * 2))`,
 	padding: "0.75rem 1.25rem",
 	fontSize: "0.875rem",
 	borderRadius: varBsBorderRadiusLg,
@@ -877,20 +773,20 @@ globalStyle(`${briteScope}${formControlLg}`, {
 
 // SOURCE CSS:
 // .form-control-lg::-webkit-file-upload-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${briteScope}${formControlLg}::-webkit-file-upload-button`, {
-	padding: "0.5rem 1rem",
-	margin: "-0.5rem -1rem",
-	WebkitMarginEnd: "1rem",
-	marginInlineEnd: "1rem",
+globalStyle(`${briteScope}${formControl}${formControlLg}::-webkit-file-upload-button`, {
+	padding: "0.75rem 1.25rem",
+	margin: "-0.75rem -1.25rem",
+	WebkitMarginEnd: "1.25rem",
+	marginInlineEnd: "1.25rem",
 })
 
 // SOURCE CSS:
 // .form-control-lg::file-selector-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${briteScope}${formControlLg}::file-selector-button`, {
-	padding: "0.5rem 1rem",
-	margin: "-0.5rem -1rem",
-	WebkitMarginEnd: "1rem",
-	marginInlineEnd: "1rem",
+globalStyle(`${briteScope}${formControl}${formControlLg}::file-selector-button`, {
+	padding: "0.75rem 1.25rem",
+	margin: "-0.75rem -1.25rem",
+	WebkitMarginEnd: "1.25rem",
+	marginInlineEnd: "1.25rem",
 })
 
 // SOURCE CSS:
@@ -905,16 +801,18 @@ globalStyle(`${briteScope}${formSelectLg}`, {
 
 // SOURCE CSS:
 // .form-control-sm { min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2)); padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${briteScope}${formControlSm}`, {
-	minHeight: "calc(1.5em + 0.5rem + calc(2px * 2))",
+globalStyle(`${briteScope}${formControl}${formControlSm}`, {
+	minHeight: `calc(1.5em + 0.5rem + calc(2px * 2))`,
 	padding: "0.25rem 0.75rem",
 	fontSize: "0.765625rem",
+	fontFamily: "inherit",
+	margin: 0,
 	borderRadius: varBsBorderRadiusSm,
 })
 
 // SOURCE CSS:
 // .form-control-sm::-webkit-file-upload-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${briteScope}${formControlSm}::-webkit-file-upload-button`, {
+globalStyle(`${briteScope}${formControl}${formControlSm}::-webkit-file-upload-button`, {
 	padding: "0.25rem 0.75rem",
 	margin: "-0.25rem -0.75rem",
 	WebkitMarginEnd: "0.75rem",
@@ -923,7 +821,7 @@ globalStyle(`${briteScope}${formControlSm}::-webkit-file-upload-button`, {
 
 // SOURCE CSS:
 // .form-control-sm::file-selector-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${briteScope}${formControlSm}::file-selector-button`, {
+globalStyle(`${briteScope}${formControl}${formControlSm}::file-selector-button`, {
 	padding: "0.25rem 0.75rem",
 	margin: "-0.25rem -0.75rem",
 	WebkitMarginEnd: "0.75rem",
@@ -937,6 +835,7 @@ globalStyle(`${briteScope}${formSelectSm}`, {
 	paddingBottom: "0.25rem",
 	paddingLeft: "0.75rem",
 	fontSize: "0.765625rem",
+	fontFamily: "inherit",
 	borderRadius: varBsBorderRadiusSm,
 })
 
@@ -949,9 +848,9 @@ globalStyle(`${briteScope}${row}`, {
 	},
 	display: "flex",
 	flexWrap: "wrap",
-	marginTop: `calc(-1 * ${varBsGutterY} )`,
-	marginRight: `calc(-0.5 * ${varBsGutterX} )`,
-	marginLeft: `calc(-0.5 * ${varBsGutterX} )`,
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
 })
 
 // SOURCE CSS:
@@ -961,35 +860,16 @@ globalStyle(`${briteScope}${row} > *`, {
 	flexShrink: 0,
 	width: "100%",
 	maxWidth: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
 	marginTop: varBsGutterY,
 })
 
 // SOURCE CSS:
 // .g-3 { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".g-3" — no contract mapping
-globalStyle(`.g-3`, {
+globalStyle(`${briteScope}${g3}`, {
 	vars: {
 		[varBsGutterX]: "1rem",
-		[varBsGutterY]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .gx-3 { --bs-gutter-x: 1rem; }
-// [UNMAPPED_SELECTOR] class ".gx-3" — no contract mapping
-globalStyle(`.gx-3`, {
-	vars: {
-		[varBsGutterX]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .gy-3 { --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".gy-3" — no contract mapping
-globalStyle(`.gy-3`, {
-	vars: {
 		[varBsGutterY]: "1rem",
 	},
 })
@@ -1038,7 +918,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:invalid
 
 // SOURCE CSS:
 // .form-check-input.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isInvalid}`, {
+globalStyle(`${briteScope}${formCheckInput}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
@@ -1050,7 +930,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:invalid
 
 // SOURCE CSS:
 // .form-check-input.is-invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isInvalid}:checked`, {
+globalStyle(`${briteScope}${formCheckInput}${isInvalid}:checked`, {
 	backgroundColor: varBsFormInvalidColor,
 })
 
@@ -1062,7 +942,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:invalid
 
 // SOURCE CSS:
 // .form-check-input.is-invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isInvalid}:focus`, {
+globalStyle(`${briteScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: "0 0 0 1px rgba(var(--bs-danger-rgb), 1)",
 })
 
@@ -1074,7 +954,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:invalid
 
 // SOURCE CSS:
 // .form-check-input.is-invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isInvalid} ~ ${briteScope}${formCheckLabel}`, {
+globalStyle(`${briteScope}${formCheckInput}${isInvalid} ~ ${briteScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
@@ -1082,22 +962,22 @@ globalStyle(`${briteScope}${formCheckInput}${briteScope}${isInvalid} ~ ${briteSc
 // .was-validated .form-control:invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${briteScope}${wasValidated} ${briteScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: "calc(1.5em + 1rem)",
+	paddingRight: `calc(1.5em + 1rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f56565'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f56565' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.25rem) center",
-	backgroundSize: "calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)",
+	backgroundSize: `calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)`,
 })
 
 // SOURCE CSS:
 // .form-control.is-invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${briteScope}${formControl}${briteScope}${isInvalid}`, {
+globalStyle(`${briteScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: "calc(1.5em + 1rem)",
+	paddingRight: `calc(1.5em + 1rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f56565'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f56565' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.25rem) center",
-	backgroundSize: "calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)",
+	backgroundSize: `calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)`,
 })
 
 // SOURCE CSS:
@@ -1109,7 +989,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formControl}:invalid:fo
 
 // SOURCE CSS:
 // .form-control.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${briteScope}${formControl}${briteScope}${isInvalid}:focus`, {
+globalStyle(`${briteScope}${formControl}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: "0 0 0 1px rgba(var(--bs-danger-rgb), 1)",
 })
@@ -1122,7 +1002,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formSelect}:invalid`, {
 
 // SOURCE CSS:
 // .form-select.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${briteScope}${formSelect}${briteScope}${isInvalid}`, {
+globalStyle(`${briteScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
@@ -1155,7 +1035,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formSelect}:invalid:not
 // .form-select.is-invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 // [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
 // [UNMAPPED_SELECTOR] element selector "[size]" — map to a contract class
-globalStyle(`${briteScope}${formSelect}${briteScope}${isInvalid}:not([multiple]):not([size])`, {
+globalStyle(`${briteScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
 		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f56565'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f56565' stroke='none'/%3e%3c/svg%3e\")",
 	},
@@ -1167,7 +1047,7 @@ globalStyle(`${briteScope}${formSelect}${briteScope}${isInvalid}:not([multiple])
 // SOURCE CSS:
 // .form-select.is-invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 // [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-globalStyle(`${briteScope}${formSelect}${briteScope}${isInvalid}:not([multiple])[size="1"]`, {
+globalStyle(`${briteScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
 		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f56565'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f56565' stroke='none'/%3e%3c/svg%3e\")",
 	},
@@ -1185,7 +1065,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formSelect}:invalid:foc
 
 // SOURCE CSS:
 // .form-select.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${briteScope}${formSelect}${briteScope}${isInvalid}:focus`, {
+globalStyle(`${briteScope}${formSelect}${isInvalid}:focus`, {
 	borderColor: varBsFormInvalidBorderColor,
 	boxShadow: "0 0 0 1px rgba(var(--bs-danger-rgb), 1)",
 })
@@ -1270,7 +1150,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:valid`,
 
 // SOURCE CSS:
 // .form-check-input.is-valid { border-color: var(--bs-form-valid-border-color); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isValid}`, {
+globalStyle(`${briteScope}${formCheckInput}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
@@ -1282,7 +1162,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:valid:c
 
 // SOURCE CSS:
 // .form-check-input.is-valid:checked { background-color: var(--bs-form-valid-color); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isValid}:checked`, {
+globalStyle(`${briteScope}${formCheckInput}${isValid}:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
@@ -1294,7 +1174,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:valid:f
 
 // SOURCE CSS:
 // .form-check-input.is-valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isValid}:focus`, {
+globalStyle(`${briteScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: "0 0 0 1px rgba(var(--bs-success-rgb), 1)",
 })
 
@@ -1306,7 +1186,7 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formCheckInput}:valid ~
 
 // SOURCE CSS:
 // .form-check-input.is-valid ~ .form-check-label { color: var(--bs-form-valid-color); }
-globalStyle(`${briteScope}${formCheckInput}${briteScope}${isValid} ~ ${briteScope}${formCheckLabel}`, {
+globalStyle(`${briteScope}${formCheckInput}${isValid} ~ ${briteScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
@@ -1314,22 +1194,22 @@ globalStyle(`${briteScope}${formCheckInput}${briteScope}${isValid} ~ ${briteScop
 // .was-validated .form-control:valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
 globalStyle(`${briteScope}${wasValidated} ${briteScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
-	paddingRight: "calc(1.5em + 1rem)",
+	paddingRight: `calc(1.5em + 1rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2368d391' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.25rem) center",
-	backgroundSize: "calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)",
+	backgroundSize: `calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)`,
 })
 
 // SOURCE CSS:
 // .form-control.is-valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${briteScope}${formControl}${briteScope}${isValid}`, {
+globalStyle(`${briteScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
-	paddingRight: "calc(1.5em + 1rem)",
+	paddingRight: `calc(1.5em + 1rem)`,
 	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2368d391' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right calc(0.375em + 0.25rem) center",
-	backgroundSize: "calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)",
+	backgroundSize: `calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)`,
 })
 
 // SOURCE CSS:
@@ -1341,67 +1221,9 @@ globalStyle(`${briteScope}${wasValidated} ${briteScope}${formControl}:valid:focu
 
 // SOURCE CSS:
 // .form-control.is-valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${briteScope}${formControl}${briteScope}${isValid}:focus`, {
+globalStyle(`${briteScope}${formControl}${isValid}:focus`, {
 	borderColor: varBsFormValidBorderColor,
 	boxShadow: "0 0 0 1px rgba(var(--bs-success-rgb), 1)",
 })
 
 // ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
-	marginBottom: "1rem !important",
-})
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
-	marginBottom: "1rem !important",
-})
-// SOURCE CSS:
-// .form-label { font-weight: 500; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${formLabel}`, {
-	fontWeight: 500,
-})
-// SOURCE CSS:
-// .form-select:disabled { background-color: var(--bs-secondary-bg); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${formSelect}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
-})
-// SOURCE CSS:
-// .form-select:disabled { background-color: var(--bs-secondary-bg); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${formSelect}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
-})
-// SOURCE CSS:
-// .form-range::-webkit-slider-runnable-track { border: 2px solid #000; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${formRange}::-webkit-slider-runnable-track`, {
-	border: "2px solid #000",
-})
-// SOURCE CSS:
-// .form-range:disabled::-webkit-slider-thumb { background-color: #e9ecef; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${formRange}:disabled::-webkit-slider-thumb`, {
-	backgroundColor: "#e9ecef",
-})
-// SOURCE CSS:
-// .form-range:disabled::-webkit-slider-thumb { background-color: #e9ecef; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${formRange}:disabled::-webkit-slider-thumb`, {
-	backgroundColor: "#e9ecef",
-})
-// SOURCE CSS:
-// .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) { margin-left: calc(-1 * 2px); border-top-left-radius: 0; border-bottom-left-radius: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${briteScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`, {
-	marginLeft: "calc(-1 * 2px)",
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})

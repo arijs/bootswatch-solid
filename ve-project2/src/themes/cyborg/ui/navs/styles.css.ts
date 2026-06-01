@@ -1,14 +1,11 @@
 import { globalStyle } from '@vanilla-extract/css'
 import {
-	varBsBodyBg,
-	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsEmphasisColor,
 	varBsLinkColor,
-	varBsLinkColorRgb,
 	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
+	varBsNavUnderlineBorderWidth,
+	varBsNavUnderlineLinkActiveColor,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -31,23 +28,36 @@ import {
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
 import {
-	link,
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	varBsCardBg,
+} from '../../../../theme-contract/ui/card/_vars.css'
 import {
-	dropdown,
+	dropdownMenu,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import {
-	fade,
+	cardHeaderTabs,
+} from '../../../../theme-contract/ui/card-tabs/contract.css'
+import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	fade,
 	nav,
+	navButtonReset,
 	navItem,
+	navItemShow,
 	navLink,
+	navLinkActive,
+	navLinkDisabled,
 	navPills,
 	navTabs,
+	show,
+	tabContent,
+	tabPane,
+	tabPaneActive,
 } from '../../../../theme-contract/ui/navs/contract.css'
+import {
+	mb3,
+} from '../../../../theme-contract/utilities/contract.css'
 import { cyborgScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/navs
@@ -71,11 +81,25 @@ globalStyle(`${cyborgScope}${nav}`, {
 	listStyle: "none",
 })
 
+// Button reset for tab triggers styled as `.nav-link` (matches ve-project navButtonReset).
+globalStyle(`${cyborgScope}${navButtonReset}`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
+	borderRadius: 0,
+})
+globalStyle(`${cyborgScope}${navButtonReset}:not(:disabled)`, {
+	cursor: "pointer",
+})
+
 // SOURCE CSS:
 // .nav-link { display: block; padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); font-size: var(--bs-nav-link-font-size); font-weight: var(--bs-nav-link-font-weight); color: var(--bs-nav-link-color); text-decoration: none; background: none; border: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
 globalStyle(`${cyborgScope}${navLink}`, {
 	display: "block",
-	padding: "var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x)",
+	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
 	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
 	color: varBsNavLinkColor,
@@ -101,12 +125,12 @@ globalStyle(`${cyborgScope}${navLink}:focus`, {
 // .nav-link:focus-visible { outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${cyborgScope}${navLink}:focus-visible`, {
 	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	boxShadow: "0 0 0 0.25rem rgba(42, 159, 214, 0.25)",
 })
 
 // SOURCE CSS:
 // .nav-link.disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(`${cyborgScope}${navLink}.disabled`, {
+globalStyle(`${cyborgScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: "none",
 	cursor: "default",
@@ -125,23 +149,24 @@ globalStyle(`${cyborgScope}${navLink}:disabled`, {
 globalStyle(`${cyborgScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
-		[varBsNavTabsBorderColor]: varBsBorderColor,
+		[varBsNavTabsBorderColor]: "#282828",
 		[varBsNavTabsBorderRadius]: varBsBorderRadius,
-		[varBsNavTabsLinkHoverBorderColor]: "var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color)",
-		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
-		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: "var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg)",
+		[varBsNavTabsLinkHoverBorderColor]: "#282828",
+		[varBsNavTabsLinkActiveColor]: "#fff",
+		[varBsNavTabsLinkActiveBg]: "#282828",
+		[varBsNavTabsLinkActiveBorderColor]: "#282828",
 	},
-	borderBottom: "var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color)",
+	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
 // SOURCE CSS:
 // .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); border: var(--bs-nav-tabs-border-width) solid transparent; border-top-left-radius: var(--bs-nav-tabs-border-radius); border-top-right-radius: var(--bs-nav-tabs-border-radius); }
 globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}`, {
-	marginBottom: "calc(-1 * var(--bs-nav-tabs-border-width))",
-	border: "var(--bs-nav-tabs-border-width) solid transparent",
+	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
+	color: "#fff",
 })
 
 // SOURCE CSS:
@@ -149,6 +174,7 @@ globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}`, {
 globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}:hover`, {
 	isolation: "isolate",
 	borderColor: varBsNavTabsLinkHoverBorderColor,
+	backgroundColor: "#282828",
 })
 
 // SOURCE CSS:
@@ -160,77 +186,18 @@ globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}:focus`, {
 
 // SOURCE CSS:
 // .nav-tabs .nav-link.active { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}.active`, {
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
-	backgroundColor: varBsNavTabsLinkActiveBg,
+	backgroundColor: "#2a9fd6",
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
 // SOURCE CSS:
 // .nav-tabs .nav-item.show .nav-link { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navItem}.show ${cyborgScope}${navLink}`, {
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navItem}${navItemShow} ${cyborgScope}${navLink}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
-})
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
 })
 
 // SOURCE CSS:
@@ -239,7 +206,7 @@ globalStyle(`${cyborgScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
 		[varBsNavPillsLinkActiveColor]: "#fff",
-		[varBsNavPillsLinkActiveBg]: "#0d6efd",
+		[varBsNavPillsLinkActiveBg]: "#2a9fd6",
 	},
 })
 
@@ -247,138 +214,21 @@ globalStyle(`${cyborgScope}${navPills}`, {
 // .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
 globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
+	color: "#fff",
 })
 
 // SOURCE CSS:
 // .nav-pills .nav-link.active { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}.active`, {
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
-	backgroundColor: varBsNavPillsLinkActiveBg,
+	backgroundColor: "#2a9fd6",
 })
 
 // SOURCE CSS:
 // .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-// [UNMAPPED_SELECTOR] class ".show" — no contract mapping
-globalStyle(`${cyborgScope}${navPills} .show > ${cyborgScope}${navLink}`, {
+globalStyle(`${cyborgScope}${navPills} ${show} > ${cyborgScope}${navLink}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${cyborgScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
 })
 
 // SOURCE CSS:
@@ -389,49 +239,165 @@ globalStyle(`${cyborgScope}${fade}`, {
 
 // SOURCE CSS:
 // .fade:not(.show) { opacity: 0; }
-globalStyle(`${cyborgScope}${fade}:not(.show)`, {
+globalStyle(`${cyborgScope}${tabPane}${fade}:not(${show})`, {
 	opacity: 0,
 })
 
 // SOURCE CSS:
 // .tab-content > .tab-pane { display: none; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".tab-pane" — no contract mapping
-globalStyle(`.tab-content > .tab-pane`, {
+globalStyle(`${cyborgScope}${tabContent} > ${cyborgScope}${tabPane}`, {
 	display: "none",
 })
 
 // SOURCE CSS:
 // .tab-content > .active { display: block; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.tab-content > .active`, {
+globalStyle(`${cyborgScope}${tabContent} > ${tabPaneActive}`, {
 	display: "block",
 })
 
 // SOURCE CSS:
 // .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
+globalStyle(`${cyborgScope}${mb3}`, {
 	marginBottom: "1rem !important",
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .nav-tabs .dropdown-menu
-// [DELTA] unmapped selector: .nav-underline
-// [DELTA] unmapped selector: .nav-underline .nav-link
-// [DELTA] unmapped selector: .nav-underline .nav-link:hover
-// [DELTA] unmapped selector: .nav-underline .nav-link:focus
-// [DELTA] unmapped selector: .nav-underline .nav-link.active
-// [DELTA] unmapped selector: .nav-underline .show > .nav-link
-// [DELTA] unmapped selector: .nav-fill > .nav-link
-// [DELTA] unmapped selector: .nav-fill .nav-item
-// [DELTA] unmapped selector: .nav-justified > .nav-link
-// [DELTA] unmapped selector: .nav-justified .nav-item
-// [DELTA] unmapped selector: .nav-fill .nav-item .nav-link
-// [DELTA] unmapped selector: .nav-justified .nav-item .nav-link
-// [DELTA] unmapped selector: .nav-pills .nav-link:hover
-// [DELTA] unmapped selector: .nav-tabs .nav-link.disabled
-// [DELTA] unmapped selector: .nav-tabs .nav-link.disabled:hover
-// [DELTA] unmapped selector: .nav-pills .nav-link.disabled
-// [DELTA] unmapped selector: .nav-pills .nav-link.disabled:hover
+// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+// SOURCE CSS:
+// .nav-tabs .dropdown-menu { margin-top: calc(-1 * var(--bs-nav-tabs-border-width)); border-top-left-radius: 0; border-top-right-radius: 0; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${dropdownMenu}`, {
+	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	borderTopLeftRadius: 0,
+	borderTopRightRadius: 0,
+})
+// SOURCE CSS:
+// .nav-underline .nav-link { padding-right: 0; padding-left: 0; border-bottom: var(--bs-nav-underline-border-width) solid transparent; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-underline" — no contract mapping
+globalStyle(`.nav-underline ${cyborgScope}${navLink}`, {
+	paddingRight: 0,
+	paddingLeft: 0,
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+// SOURCE CSS:
+// .nav-underline .nav-link:hover { border-bottom-color: currentcolor; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-underline" — no contract mapping
+globalStyle(`.nav-underline ${cyborgScope}${navLink}:hover`, {
+	borderBottomColor: "currentcolor",
+})
+// SOURCE CSS:
+// .nav-underline .nav-link:focus { border-bottom-color: currentcolor; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-underline" — no contract mapping
+globalStyle(`.nav-underline ${cyborgScope}${navLink}:focus`, {
+	borderBottomColor: "currentcolor",
+})
+// SOURCE CSS:
+// .nav-underline .nav-link.active { font-weight: 700; color: var(--bs-nav-underline-link-active-color); border-bottom-color: currentcolor; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-underline" — no contract mapping
+globalStyle(`.nav-underline ${cyborgScope}${navLink}${navLinkActive}`, {
+	fontWeight: 700,
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: "currentcolor",
+})
+// SOURCE CSS:
+// .nav-underline .show > .nav-link { font-weight: 700; color: var(--bs-nav-underline-link-active-color); border-bottom-color: currentcolor; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-underline" — no contract mapping
+globalStyle(`.nav-underline ${show} > ${cyborgScope}${navLink}`, {
+	fontWeight: 700,
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: "currentcolor",
+})
+// SOURCE CSS:
+// .nav-fill > .nav-link { flex: 1 1 auto; text-align: center; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-fill" — no contract mapping
+globalStyle(`.nav-fill > ${cyborgScope}${navLink}`, {
+	flex: "1 1 auto",
+	textAlign: "center",
+})
+// SOURCE CSS:
+// .nav-fill .nav-item { flex: 1 1 auto; text-align: center; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-fill" — no contract mapping
+globalStyle(`.nav-fill ${cyborgScope}${navItem}`, {
+	flex: "1 1 auto",
+	textAlign: "center",
+})
+// SOURCE CSS:
+// .nav-justified > .nav-link { flex-grow: 1; flex-basis: 0; text-align: center; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-justified" — no contract mapping
+globalStyle(`.nav-justified > ${cyborgScope}${navLink}`, {
+	flexGrow: 1,
+	flexBasis: 0,
+	textAlign: "center",
+})
+// SOURCE CSS:
+// .nav-justified .nav-item { flex-grow: 1; flex-basis: 0; text-align: center; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-justified" — no contract mapping
+globalStyle(`.nav-justified ${cyborgScope}${navItem}`, {
+	flexGrow: 1,
+	flexBasis: 0,
+	textAlign: "center",
+})
+// SOURCE CSS:
+// .nav-fill .nav-item .nav-link { width: 100%; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-fill" — no contract mapping
+globalStyle(`.nav-fill ${cyborgScope}${navItem} ${cyborgScope}${navLink}`, {
+	width: "100%",
+})
+// SOURCE CSS:
+// .nav-justified .nav-item .nav-link { width: 100%; }
+// [DELTA] theme-specific rule not in bootstrap structure
+// [UNMAPPED_SELECTOR] class ".nav-justified" — no contract mapping
+globalStyle(`.nav-justified ${cyborgScope}${navItem} ${cyborgScope}${navLink}`, {
+	width: "100%",
+})
+// SOURCE CSS:
+// .nav-pills .nav-link:hover { background-color: #282828; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}:hover`, {
+	backgroundColor: "#282828",
+})
+// SOURCE CSS:
+// .nav-tabs .nav-link.disabled { color: var(--bs-secondary-color); background-color: transparent; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkDisabled}`, {
+	color: varBsSecondaryColor,
+	backgroundColor: "transparent",
+})
+// SOURCE CSS:
+// .nav-tabs .nav-link.disabled:hover { color: var(--bs-secondary-color); background-color: transparent; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkDisabled}:hover`, {
+	color: varBsSecondaryColor,
+	backgroundColor: "transparent",
+})
+// SOURCE CSS:
+// .nav-pills .nav-link.disabled { color: var(--bs-secondary-color); background-color: transparent; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkDisabled}`, {
+	color: varBsSecondaryColor,
+	backgroundColor: "transparent",
+})
+// SOURCE CSS:
+// .nav-pills .nav-link.disabled:hover { color: var(--bs-secondary-color); background-color: transparent; }
+// [DELTA] theme-specific rule not in bootstrap structure
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkDisabled}:hover`, {
+	color: varBsSecondaryColor,
+	backgroundColor: "transparent",
+})
+
+// Bootswatch blue bg + card-header-tabs border-bottom merge (bootstrap.css cascade).
+globalStyle(`${cyborgScope}${navTabs}${cardHeaderTabs} ${cyborgScope}${navLink}${navLinkActive}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: "#2a9fd6",
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+	borderBottomColor: varBsCardBg,
+})

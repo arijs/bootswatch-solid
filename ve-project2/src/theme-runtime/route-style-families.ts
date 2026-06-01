@@ -10,6 +10,7 @@ const DEFAULT_FAMILIES: readonly Ve2StyleFamily[] = ['contents/basic', 'utilitie
 const UI_ROUTE_FAMILY_MAP: Array<readonly [prefix: string, families: readonly Ve2StyleFamily[]]> = [
 	['/ui/accordion/', ['ui/accordion']],
 	['/ui/alerts/', ['ui/alerts']],
+	['/ui/badge/heading-badges', ['ui/badge', 'contents/heading']],
 	['/ui/badge/', ['ui/badge']],
 	['/ui/breadcrumb/', ['ui/breadcrumb']],
 	['/ui/button-group/', ['ui/button-group', 'ui/buttons']],

@@ -21,30 +21,29 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'utilities',
 ]
 
-const FeaturedCard: Component = () => {
+const FeaturedCard: Component<{ embedded?: boolean }> = (props) => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-	return (
-		<div class={`bd-example-ve2 ${theme}`}>
-			<div class={`${theme} ${card}`}>
-				<div class={`${theme} ${cardHeader}`}>Featured</div>
-				<div class={`${theme} ${cardBody}`}>
-					<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
-					<p class={`${theme} ${cardText} ${paragraph}`}>
-						Some quick example text to build on the card title and make up the bulk of
-						the card's content.
-					</p>
-					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
-						Go somewhere
-					</a>
-				</div>
-				<div class={`${theme} ${cardFooter} ${textMuted}`}>
-					2 days ago
-				</div>
+	const cardMarkup = (
+		<div class={`${theme} ${card}`}>
+			<div class={`${theme} ${cardHeader}`}>Featured</div>
+			<div class={`${theme} ${cardBody}`}>
+				<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
+				<p class={`${theme} ${cardText} ${paragraph}`}>
+					Some quick example text to build on the card title and make up the bulk of
+					the card's content.
+				</p>
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
+					Go somewhere
+				</a>
+			</div>
+			<div class={`${theme} ${cardFooter} ${textMuted}`}>
+				2 days ago
 			</div>
 		</div>
 	)
+	return props.embedded ? cardMarkup : <div class={`bd-example-ve2 ${theme}`}>{cardMarkup}</div>
 }
 
 export default FeaturedCard
