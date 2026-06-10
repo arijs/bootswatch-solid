@@ -7,7 +7,6 @@ import {
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	bdPlaceholderImg,
 	figure,
 	figureCaption,
 	figureImg,
@@ -21,18 +20,6 @@ import { bootstrapScope } from '../../scope.css'
 // Review [UNMAPPED] and [DELTA] comments before committing.
 
 // SOURCE CSS:
-// img { vertical-align: middle; }
-globalStyle(`${bootstrapScope}${bdPlaceholderImg}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-globalStyle(`${bootstrapScope}${bdPlaceholderImg}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
 // .img-fluid { max-width: 100%; height: auto; }
 globalStyle(`${bootstrapScope}${imgFluid}`, {
 	maxWidth: "100%",
@@ -41,8 +28,10 @@ globalStyle(`${bootstrapScope}${imgFluid}`, {
 
 // SOURCE CSS:
 // .figure { display: inline-block; }
+// figure { margin: 0 0 1rem; }  (browser default normalized by Bootstrap reboot)
 globalStyle(`${bootstrapScope}${figure}`, {
 	display: "inline-block",
+	marginBottom: "1rem",
 })
 
 // SOURCE CSS:

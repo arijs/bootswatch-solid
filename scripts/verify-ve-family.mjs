@@ -145,12 +145,14 @@ function runFamilyVerification(theme, family, routeArg, logPath) {
 		return { theme, family, ran: 0, matched: 0, mismatched: 0, skipped: 0, scenarios: [], noRoutes: true }
 	}
 
+	const styleLoader = parseArg('style-loader', 'theme')
 	const args = [
 		'scripts/capture-leaf-screenshots.mjs',
 		`--theme=${theme}`,
 		'--verify-ve-rendering',
 		'--skip-existing',
 		`--route=${routeArg}`,
+		`--style-loader=${styleLoader}`,
 	]
 
 	const result = spawnSync('node', args, {
@@ -197,7 +199,7 @@ async function main() {
 	const theme = parseArg('theme', 'bootstrap')
 	const family = parseArg('family')
 	const allFamilies = hasFlag('all-families')
-	const threshold = parseFloat(parseArg('threshold', '0.1'))
+	const threshold = parseFloat(parseArg('threshold', '0.001'))
 	const logPath = path.join(RUN_DIR, `verify-${theme}-families.log`)
 
 	mkdirSync(RUN_DIR, { recursive: true })

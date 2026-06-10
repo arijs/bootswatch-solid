@@ -216,6 +216,313 @@ own value and add a comment explaining why.
 
 ---
 
+## Walkthrough: figure-example figcaption gap in Bootstrap literal mode
+
+### 1. Observe the mismatch
+
+The screenshot harness (with `--style-loader=literal`) reported:
+
+```
+MISMATCH bootstrap contents/figures/figure-example  622px  ratio=0.005817
+```
+
+The diff image showed red/yellow pixels concentrated along the figcaption text
+at the bottom of the figure. The gray SVG placeholder above it looked identical.
+This pattern — differing pixels along a text block, not a colour band — signals a
+**vertical shift**: the content is the same but positioned a few pixels lower
+in one of the two screenshots.
+
+### 2. Identify the shift pattern quickly
+
+When the diff shows shifted text rather than changed colour, the culprit is
+almost always one of:
+
+- `vertical-align` on an inline replaced element (img, svg, iframe) sitting
+  above the shifted content — the **baseline gap**
+- `margin-bottom` / `margin-top` on a container element
+- `display` changing from `inline` to `block` or vice versa
+
+**Do not** start by investigating colour, font, or timing. Start with the element
+directly above the shifted content and check those three properties first.
+
+### 3. Write a targeted Playwright comparison script
+
+```js
+// scripts/debug-figure-example.mjs
+import { chromium } from 'playwright'
+
+const BASELINE_URL =
+  'http://localhost:4173/contents/figures/figure-example?theme=bootstrap&css=local&state=static'
+const VE_URL =
+  'http://127.0.0.1:4175/contents/figures/figure-example?theme=bootstrap&style-loader=literal'
+
+async function getStyles(page) {
+  return page.evaluate(() => {
+    const figure = document.querySelector('figure')
+    const svg = figure?.querySelector('svg')
+    const figcaption = figure?.querySelector('figcaption')
+    const read = (el, props) => {
+      if (!el) return { error: 'not found' }
+      const cs = getComputedStyle(el)
+      const out = {}
+      for (const p of props) out[p] = cs[p]
+      out._rect = JSON.stringify(el.getBoundingClientRect())
+      return out
+    }
+    return {
+      figure:     read(figure,     ['display', 'marginBottom']),
+      svg:        read(svg,        ['verticalAlign', 'height', 'maxWidth', 'marginBottom']),
+      figcaption: read(figcaption, ['fontSize', 'color', 'lineHeight']),
+    }
+  })
+}
+
+const browser = await chromium.launch()
+const ctx = await browser.newContext({ viewport: { width: 360, height: 800 } })
+
+const bPage = await ctx.newPage()
+await bPage.goto(BASELINE_URL, { waitUntil: 'networkidle' })
+console.log('\n=== BASELINE ===')
+console.log(await getStyles(bPage))
+
+const vPage = await ctx.newPage()
+await vPage.goto(VE_URL, { waitUntil: 'networkidle' })
+console.log('\n=== VE (literal) ===')
+console.log(await getStyles(vPage))
+
+await browser.close()
+```
+
+Key points about this script vs the capture harness:
+
+- Use `waitUntil: 'networkidle'` (not `'load'`). The literal theme CSS is
+  a 413 KB chunk loaded via a dynamic `import()` after the page `load` event.
+  The capture harness uses `'load'` + a short delay which may fire before the
+  CSS chunk arrives, causing the harness screenshot to miss the literal styles.
+  `networkidle` waits until the browser has no pending requests, ensuring the
+  CSS is fully applied before you read computed styles.
+- Target the element **above** the shifted content first (the SVG), not the
+  shifted element itself (the figcaption).
+
+### 4. Read the output
+
+```
+=== BASELINE ===
+{ svg: { verticalAlign: 'middle', height: '252px', … } }
+
+=== VE (literal) ===
+{ svg: { verticalAlign: 'baseline', … } }   // ← the culprit
+```
+
+`verticalAlign: baseline` explains the gap. Inline replaced elements (img, svg)
+with `vertical-align: baseline` leave a descender gap below them — the space
+reserved for text descenders. Bootstrap eliminates this with its global rule:
+
+```css
+img, svg { vertical-align: middle; }
+```
+
+In VE this is expressed as a `globalStyle` in `literal/styles.css.ts`:
+
+```ts
+globalStyle(`${bootstrapScope} .${elSvg}`, { verticalAlign: 'middle' })
+```
+
+### 5. Verify that the rule exists in the compiled CSS
+
+Before concluding anything, check whether the rule is actually present in the
+production bundle. Find the class hash from the markup or DevTools, then:
+
+```bash
+# replace <hash> with the actual elSvg hash you see in the element's class list
+grep -o "[^}]*<hash>[^}]*}" ve-project2/dist/assets/theme-bootstrap-lists-*.css
+```
+
+In this case the rule **was** present in the dist bundle:
+
+```css
+.scope_bootstrapScope__qve0r20.contract_elSvg__6tr2961b { vertical-align: middle }
+```
+
+But **inspecting the running Vite dev server in DevTools** told a different story:
+the element had both `scope_bootstrapScope__qve0r20` and `contract_elSvg__6tr2961b`
+in its class list, yet the rule targeting those classes was completely absent from
+the Styles panel — even after the page had been fully idle for minutes. This is
+**not** a timing issue.
+
+### 6. Root cause: vanilla-extract silently drops rules from very large files in dev mode
+
+`literal/styles.css.ts` is 24 000+ lines. In dev mode the vanilla-extract Vite
+plugin processes each `.css.ts` file through its Node evaluator to collect all
+`style()` and `globalStyle()` calls. At this scale the evaluator appears to stop
+collecting rules before reaching the end of the file, silently dropping any
+`globalStyle()` calls that come after some internal limit. Rules for `elSvg`,
+`elImg`, and other global-element classes that happen to live in the latter half
+of the file are therefore absent from the dev-mode virtual CSS sheet, even though
+the exact same file compiles correctly in the production build (where the Rollup
+bundler processes the whole file without that limit).
+
+**How to confirm**: open the element in DevTools Styles panel (not Computed).
+The Styles panel lists every matched rule including overridden ones. If the rule
+is not listed at all, the CSS was never injected — not overridden, not deferred,
+simply absent.
+
+**Consequence for the capture harness**: the harness runs against the **preview**
+server (the dist build), where the rule IS present. Any remaining screenshot
+mismatch on the preview server needs a separate explanation — see the quick
+diagnostic workflow below.
+
+**Long-term fix**: split `literal/styles.css.ts` into smaller per-family files
+so each file stays well within vanilla-extract's dev-mode processing capacity.
+Until that refactor lands, always verify bugs against the preview build
+(`pnpm ve2:preview`), not the dev server, because the dev server may be missing
+rules that the production build correctly generates.
+
+### 7. Resolution: what was actually changed
+
+Three independent fixes were needed to close this mismatch:
+
+**Fix 1 — CLI parsing bug** (`scripts/capture-leaf-screenshots/cli.mjs`):
+
+`parseArgValue` was called with `'--style-loader'` (no `=`) as prefix. For arg
+`--style-loader=literal` it returned `'=literal'` instead of `'literal'`, so
+`ve2StyleLoader === 'literal'` was always false and every run silently used
+theme mode instead of literal mode. All previous verification runs were testing
+the wrong loader.
+
+```diff
+- ve2StyleLoader: parseArgValue(argv, '--style-loader', 'theme'),
++ ve2StyleLoader: parseArgValue(argv, '--style-loader=', 'theme'),
+```
+
+**Fix 2 — missing `elFigure` class** (`ve-project2/src/components/contents/figures/FigureExample.tsx`):
+
+The `<figure>` element was missing the `elFigure` contract class. Bootstrap's
+global rule `figure { margin: 0 0 1rem }` is expressed in VE as a `globalStyle`
+targeting `elFigure`. Without that class on the element the margin rule never
+matched.
+
+```diff
+- <figure class={`${theme} ${figure}`}>
++ <figure class={`${theme} ${elFigure} ${figure}`}>
+```
+
+**Fix 3 — hash mismatch in `literal/styles.css.ts`**:
+
+Several figure-related and image-related names (`figure`, `figureCaption`,
+`figureImg`, `imgFluid`, `imgThumbnail`, `rounded`, `containerFluid`) were
+imported from `literal/contract.css.ts`, which generates its own `style({})`
+entries with different hashes than the canonical contract files. Because
+components import those same names from the canonical files, the CSS rules
+targeted the wrong hash selectors.
+
+Fixed by moving each name to its canonical import:
+
+```ts
+// added canonical import
+import { figure, figureCaption, figureImg, imgFluid, imgThumbnail, rounded }
+  from '../../../theme-contract/contents/images/contract.css'
+
+// updated existing import to add containerFluid
+import { containerFluid, varBsGutterX, varBsGutterY }
+  from '../../../theme-contract/layout/container.css'
+
+// removed those names from the literal/contract.css import block
+```
+
+### 8. Pitfalls uncovered by this investigation
+
+**Pitfall 1: `--style-loader=literal` silently does nothing if the CLI arg is wrong.**
+Always confirm literal mode is active by checking that the VE preview URL
+contains `style-loader=literal`. If the URL shows `style-loader=theme`, the
+arg is not being parsed. Reproduce: add a `console.log(ve2StyleLoader)` just
+before the URL is built in `ve2-verification.mjs`.
+
+**Pitfall 2: VE dev server drops rules from `literal/styles.css.ts`.**
+The file is 24 000+ lines. The vanilla-extract dev-mode evaluator silently stops
+collecting `globalStyle` calls before reaching the end of the file. Rules for
+`elSvg`, `elImg`, and other global-element classes are absent in dev mode but
+present in the production build. **Always test mismatches against
+`pnpm ve2:preview` (the dist build), not `pnpm ve2:dev`.**
+
+**Pitfall 3: importing contract classes from `literal/contract.css.ts` causes hash mismatches.**
+`literal/contract.css.ts` is a generated file that re-declares every Bootstrap
+class with its own `style({})` entries. Those entries produce different hashes
+from the canonical contract files that components import. Any `globalStyle` in
+`literal/styles.css.ts` that references a class from `literal/contract.css.ts`
+will generate a CSS rule targeting the wrong selector and will never match.
+Always import contract classes from their canonical source file.
+
+**Pitfall 4: missing `el*` classes on component elements.**
+See the checklist below.
+
+---
+
+## `el*` class checklist: prevent this class of bug
+
+Bootstrap applies many properties via **tag-based selectors** (`img`, `svg`,
+`a`, `figure`, `abbr`, etc.). In VE these rules live in `literal/styles.css.ts`
+as `globalStyle` calls targeting the corresponding `el*` contract class. If a
+component element is missing its `el*` class, those tag-based rules will not
+apply and the element will differ visually from baseline.
+
+**Rule: every component element that Bootstrap styles via a tag selector must
+carry the matching `el*` contract class.**
+
+Tag → contract class mapping:
+
+| HTML tag    | Contract class  | Source file                                          |
+|-------------|-----------------|------------------------------------------------------|
+| `<img>`     | `elImg`         | `theme-contract/global-elements/contract.css.ts`     |
+| `<svg>`     | `elSvg`         | `theme-contract/global-elements/contract.css.ts`     |
+| `<figure>`  | `elFigure`      | `theme-contract/global-elements/contract.css.ts`     |
+| `<a>`       | `elA`           | `theme-contract/global-elements/contract.css.ts`     |
+| `<abbr>`    | `elAbbr`        | `theme-contract/global-elements/contract.css.ts`     |
+| `<address>` | `elAddress`     | `theme-contract/global-elements/contract.css.ts`     |
+| `<b>`,`<strong>` | `elB`      | `theme-contract/global-elements/contract.css.ts`     |
+
+When writing or reviewing a VE component, run through each rendered HTML element
+and ask: _does Bootstrap's CSS target this tag directly?_ If yes, the `el*`
+class must be present.
+
+---
+
+## Quick diagnostic workflow for any new mismatch
+
+```
+1. Look at the diff image (.verify.png)
+   ├── Pixels differ along a text block / content is shifted vertically
+   │   → check vertical-align, margin-top/bottom, display on the element ABOVE the shift
+   ├── A colour band or tinted area
+   │   → check background-color, color, opacity, CSS variables
+   └── An element is missing entirely (blank area in diff)
+       → check display: none, visibility, opacity: 0, z-index
+
+2. Write a minimal Playwright script (networkidle wait)
+   → compare getComputedStyle() for the 3–5 most likely properties
+   → run against BOTH baseline and VE literal URLs side-by-side
+
+3. Find the differing property (e.g. verticalAlign: baseline vs middle)
+
+4. Grep the compiled dist CSS for the relevant rule:
+   grep "<hash>" ve-project2/dist/assets/theme-bootstrap-lists-*.css
+   ├── Rule present in dist → the production build is correct
+   │   ├── Also present in DevTools Styles panel → specificity conflict
+   │   │   → look for a higher-specificity rule overriding the property
+   │   └── Absent from DevTools Styles panel (dev server) → VE large-file limit
+   │       → always verify on preview server, not dev server; long-term fix is
+   │         to split literal/styles.css.ts into smaller per-family files
+   └── Rule absent from dist → VE compilation issue or wrong import source
+       → check literal/styles.css.ts for the globalStyle targeting that class
+       → check that literal/styles.css.ts imports contract classes from their
+         CANONICAL files, not from literal/contract.css.ts (which has different
+         hashes and causes rules to target the wrong selector)
+
+5. Apply fix → rebuild → re-run harness for that route only
+```
+
+---
+
 ## Adapting the script for other routes / properties
 
 1. Change `BASELINE_URL` and `VE2_URL` to the route you are investigating.
@@ -236,4 +543,6 @@ quickly for any new mismatch.
 - [`docs/ve2-migration-playbook.md`](./ve2-migration-playbook.md) — step-by-step
   migration guide and common gotchas table
 - [`scripts/debug-heading-alert.mjs`](../scripts/debug-heading-alert.mjs) — the
+  Playwright script created during this investigation
+- [`scripts/debug-figure-example.mjs`](../scripts/debug-figure-example.mjs) — the
   Playwright script created during this investigation

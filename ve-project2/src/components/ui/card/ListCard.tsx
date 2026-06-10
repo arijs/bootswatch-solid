@@ -2,6 +2,7 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { h5, link, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elLi, elUl } from '../../../theme-contract/global-elements/contract.css'
 import {
 	card,
 	cardBody,
@@ -23,7 +24,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'utilities',
 ]
 
-const ListCard: Component<{ embedded?: boolean }> = (props) => {
+const ListCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const cardMarkup = (
@@ -35,10 +36,10 @@ const ListCard: Component<{ embedded?: boolean }> = (props) => {
 					the card's content.
 				</p>
 			</div>
-			<ul class={`${theme} ${listGroup} ${listGroupFlush}`}>
-				<li class={`${theme} ${listGroupItem}`}>An item</li>
-				<li class={`${theme} ${listGroupItem}`}>A second item</li>
-				<li class={`${theme} ${listGroupItem}`}>A third item</li>
+			<ul class={`${theme} ${listGroup} ${listGroupFlush} ${elUl}`}>
+				<li class={`${theme} ${listGroupItem} ${elLi}`}>An item</li>
+				<li class={`${theme} ${listGroupItem} ${elLi}`}>A second item</li>
+				<li class={`${theme} ${listGroupItem} ${elLi}`}>A third item</li>
 			</ul>
 			<div class={`${theme} ${cardBody}`}>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
@@ -52,7 +53,7 @@ const ListCard: Component<{ embedded?: boolean }> = (props) => {
 			</div>
 		</div>
 	)
-	return props.embedded ? cardMarkup : <div class={`bd-example-ve2 ${theme}`}>{cardMarkup}</div>
+	return cardMarkup
 }
 
 export default ListCard

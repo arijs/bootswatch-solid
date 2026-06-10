@@ -4,15 +4,21 @@ import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
-	colMd6,
 	formControl,
 	formLabel,
-	g3,
 	isValid,
-	row,
-	rowCol,
 	validFeedback,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	colMd6,
+	g3,
+	row,
+	rowCol,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -28,12 +34,12 @@ const ValidNames: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<form class={`${theme} ${row} ${g3}`}>
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
-					<label for="validationServer01" class={`${theme} ${formLabel}`}>
+					<label for="validationServer01" class={`${theme} ${elLabel} ${formLabel}`}>
 						First name
 					</label>
 					<input
 						type="text"
-						class={`${theme} ${formControl} ${isValid}`}
+						class={`${theme} ${elInput} ${formControl} ${isValid}`}
 						id="validationServer01"
 						value="Mark"
 						required
@@ -41,12 +47,12 @@ const ValidNames: Component = () => {
 					<div class={`${theme} ${validFeedback}`}>Looks good!</div>
 				</div>
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
-					<label for="validationServer02" class={`${theme} ${formLabel}`}>
+					<label for="validationServer02" class={`${theme} ${elLabel} ${formLabel}`}>
 						Last name
 					</label>
 					<input
 						type="text"
-						class={`${theme} ${formControl} ${isValid}`}
+						class={`${theme} ${elInput} ${formControl} ${isValid}`}
 						id="validationServer02"
 						value="Otto"
 						required

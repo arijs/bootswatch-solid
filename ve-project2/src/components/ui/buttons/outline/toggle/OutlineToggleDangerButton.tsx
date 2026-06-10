@@ -1,6 +1,14 @@
+import {
+	elInput,
+	elLabel,
+} from '../../../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../../../context/ThemeContext'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import {
 	btn,
@@ -22,11 +30,11 @@ const OutlineToggleDangerButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<input
 				type="checkbox"
-				class={`${theme} ${btnCheck}`}
+				class={`${theme} ${elInput} ${btnCheck}`}
 				id="id-btn-outline-toggle-danger"
 				autocomplete="off"
 			/>
-			<label class={`${theme} ${btn} ${btnOutlineDanger}`} for="id-btn-outline-toggle-danger">
+			<label class={`${theme} ${elLabel} ${btn} ${btnOutlineDanger}`} for="id-btn-outline-toggle-danger">
 				Toggle Danger
 			</label>
 		</div>

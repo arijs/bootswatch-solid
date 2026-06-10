@@ -1,3 +1,6 @@
+import {
+	elButton,
+} from '../../theme-contract/global-elements/contract.css'
 import { createRenderEffect, type Component, type JSX, useContext } from 'solid-js'
 // Root-level contract classes: body wrapper + text-bearing root.
 import { body, bodyText } from '../../theme-contract/theme-contract.css'
@@ -45,22 +48,22 @@ const Buttons: Component = () => {
 	const theme = useContext(ThemeContext)
 	return (
 		<>
-			<button type="button" class={`${theme} ${btn} ${btnPrimary}`}>
+			<button type="button" class={`${theme} ${elButton} ${btn} ${btnPrimary}`}>
 				Primary
 			</button>{' '}
-			<button type="button" class={`${theme} ${btn} ${btnSecondary}`}>
+			<button type="button" class={`${theme} ${elButton} ${btn} ${btnSecondary}`}>
 				Secondary
 			</button>{' '}
-			<button type="button" class={`${theme} ${btn} ${btnSuccess}`}>
+			<button type="button" class={`${theme} ${elButton} ${btn} ${btnSuccess}`}>
 				Success
 			</button>{' '}
-			<button type="button" class={`${theme} ${btn} ${btnDanger}`}>
+			<button type="button" class={`${theme} ${elButton} ${btn} ${btnDanger}`}>
 				Danger
 			</button>{' '}
-			<button type="button" class={`${theme} ${btn} ${btnWarning}`}>
+			<button type="button" class={`${theme} ${elButton} ${btn} ${btnWarning}`}>
 				Warning
 			</button>{' '}
-			<button type="button" class={`${theme} ${btn} ${btnInfo}`}>
+			<button type="button" class={`${theme} ${elButton} ${btn} ${btnInfo}`}>
 				Info
 			</button>
 		</>

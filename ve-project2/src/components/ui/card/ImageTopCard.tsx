@@ -1,7 +1,8 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { bdPlaceholderImg, h5, paragraph, mediaMiddle } from '../../../theme-contract/contents/contract.css'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	card,
@@ -20,13 +21,13 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'utilities',
 ]
 
-const ImageTopCard: Component<{ embedded?: boolean }> = (props) => {
+const ImageTopCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const cardMarkup = (
 		<div class={`${theme} ${card}`}>
 			<svg
-				class={`bd-placeholder-img ${theme} ${cardImgTop} ${bdPlaceholderImg} ${mediaMiddle}`}
+				class={`bd-placeholder-img ${theme} ${elSvg} ${cardImgTop}`}
 				width="100%"
 				height="180"
 				xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +54,7 @@ const ImageTopCard: Component<{ embedded?: boolean }> = (props) => {
 			</div>
 		</div>
 	)
-	return props.embedded ? cardMarkup : <div class={`bd-example-ve2 ${theme}`}>{cardMarkup}</div>
+	return cardMarkup
 }
 
 export default ImageTopCard

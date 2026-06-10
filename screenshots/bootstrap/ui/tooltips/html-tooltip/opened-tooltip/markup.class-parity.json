@@ -1,0 +1,60 @@
+{
+  "summary": {
+    "totalElements": 12,
+    "elementsChecked": 12,
+    "elementsWithGaps": 2,
+    "totalExpected": 13,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-secondary",
+        "pwhook-tooltip-trigger"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnSecondary"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnSecondary"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-tooltip-trigger"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[2]",
+      "tag": "div",
+      "baselineClasses": [
+        "tooltip",
+        "pwhook-tooltip",
+        "bs-tooltip-auto",
+        "fade",
+        "show"
+      ],
+      "expectedSymbols": [
+        "tooltip",
+        "bsTooltipAuto",
+        "fade",
+        "show"
+      ],
+      "stampedSymbols": [
+        "tooltipVe",
+        "tooltip",
+        "bsTooltipAuto",
+        "fade",
+        "show"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-tooltip"
+      ]
+    }
+  ]
+}

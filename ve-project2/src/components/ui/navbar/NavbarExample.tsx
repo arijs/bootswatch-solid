@@ -1,17 +1,32 @@
+import {
+	elButton,
+	elInput,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { formControl } from '../../../theme-contract/forms/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
-	dFlex,
-	mb2,
-	mbLg0,
-	me2,
-	meAuto,
-	mt5,
-} from '../../../theme-contract/utilities/contract.css'
-import { btn, btnOutlineDark, btnOutlineLight } from '../../../theme-contract/ui/buttons/contract.css'
+	active,
+	alignTop,
+	bgLight,
+	bgPrimary,
+	collapse,
+	dInlineBlock,
+	disabled,
+	navbarDark,
+	navbarLight,
+} from '../../../theme-contract/literal/contract.css'
+import {
+	btn,
+	btnOutlineDark,
+	btnOutlineLight,
+} from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	dropdown,
 	dropdownDivider,
@@ -20,7 +35,6 @@ import {
 	dropdownToggle,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
-	collapse,
 	navbar,
 	navbarBgLight,
 	navbarBrand,
@@ -37,6 +51,7 @@ import {
 	navLinkActive,
 	navLinkDisabled,
 } from '../../../theme-contract/ui/navs/contract.css'
+import { dFlex, mb2, mbLg0, me2, meAuto, mt5 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navbar',
@@ -53,21 +68,28 @@ const NavbarExample: Component = () => {
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarBgLight}`}>
+			<nav
+				class={`${theme} ${navbar} ${navbarExpandLg} ${navbarBgLight} ${navbarLight} ${bgLight}`}
+			>
 				<div class={`${theme} ${containerFluid}`}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class={`${theme} ${navbarBrand}`} href="#" onClick={(e) => e.preventDefault()}>
+					<a
+						class={`${theme} ${navbarBrand}`}
+						href="#"
+						onClick={(e) => e.preventDefault()}
+					>
 						<img
 							src="/assets/brand/bootstrap-logo-white.svg"
 							width="38"
 							height="30"
 							alt="Bootstrap"
 							loading="lazy"
-							style="display: inline-block; vertical-align: top; filter: invert(1) grayscale(100%) brightness(200%);"
+							class={`${theme} ${dInlineBlock} ${alignTop}`}
+							style="filter: invert(1) grayscale(100%) brightness(200%);"
 						/>
 					</a>
 					<button
-						class={`${theme} ${navbarToggler}`}
+						class={`${theme} ${elButton} ${navbarToggler}`}
 						type="button"
 						aria-controls="navbarSupportedContent"
 						aria-expanded="false"
@@ -75,12 +97,15 @@ const NavbarExample: Component = () => {
 					>
 						<span class={`${theme} ${navbarTogglerIcon}`} />
 					</button>
-					<div class={`${theme} ${collapse} ${navbarCollapse}`} id="navbarSupportedContent">
+					<div
+						class={`${theme} ${collapse} ${navbarCollapse}`}
+						id="navbarSupportedContent"
+					>
 						<ul class={`${theme} ${navbarNav} ${meAuto} ${mb2} ${mbLg0}`}>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${navLink} ${navLinkActive}`}
+									class={`${theme} ${navLink} ${navLinkActive} ${active}`}
 									aria-current="page"
 									href="#"
 									onClick={(e) => e.preventDefault()}
@@ -90,7 +115,11 @@ const NavbarExample: Component = () => {
 							</li>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
-								<a class={`${theme} ${navLink}`} href="#" onClick={(e) => e.preventDefault()}>
+								<a
+									class={`${theme} ${navLink}`}
+									href="#"
+									onClick={(e) => e.preventDefault()}
+								>
 									Link
 								</a>
 							</li>
@@ -105,16 +134,27 @@ const NavbarExample: Component = () => {
 								>
 									Dropdown
 								</a>
-								<ul class={`${theme} ${dropdownMenu}`} aria-labelledby="navbarDropdown">
+								<ul
+									class={`${theme} ${dropdownMenu}`}
+									aria-labelledby="navbarDropdown"
+								>
 									<li>
 										{/* biome-ignore lint: <a> is used for demonstration purposes */}
-										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+										<a
+											class={`${theme} ${dropdownItem}`}
+											href="#"
+											onClick={(e) => e.preventDefault()}
+										>
 											Action
 										</a>
 									</li>
 									<li>
 										{/* biome-ignore lint: <a> is used for demonstration purposes */}
-										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+										<a
+											class={`${theme} ${dropdownItem}`}
+											href="#"
+											onClick={(e) => e.preventDefault()}
+										>
 											Another action
 										</a>
 									</li>
@@ -123,7 +163,11 @@ const NavbarExample: Component = () => {
 									</li>
 									<li>
 										{/* biome-ignore lint: <a> is used for demonstration purposes */}
-										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+										<a
+											class={`${theme} ${dropdownItem}`}
+											href="#"
+											onClick={(e) => e.preventDefault()}
+										>
 											Something else here
 										</a>
 									</li>
@@ -132,7 +176,7 @@ const NavbarExample: Component = () => {
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${navLink} ${navLinkDisabled}`}
+									class={`${theme} ${navLink} ${navLinkDisabled} ${disabled}`}
 									href="#"
 									onClick={(e) => e.preventDefault()}
 									tabindex="-1"
@@ -144,12 +188,12 @@ const NavbarExample: Component = () => {
 						</ul>
 						<form class={`${theme} ${dFlex}`}>
 							<input
-								class={`${theme} ${formControl} ${me2}`}
+								class={`${theme} ${elInput} ${formControl} ${me2}`}
 								type="search"
 								placeholder="Search"
 								aria-label="Search"
 							/>
-							<button class={`${theme} ${btn} ${btnOutlineDark}`} type="submit">
+							<button class={`${theme} ${elButton} ${btn} ${btnOutlineDark}`} type="submit">
 								Search
 							</button>
 						</form>
@@ -157,21 +201,27 @@ const NavbarExample: Component = () => {
 				</div>
 			</nav>
 
-			<nav class={`${theme} ${navbar} ${navbarExpandLg} ${navbarDarkBgPrimary} ${mt5}`}>
+			<nav
+				class={`${theme} ${navbar} ${navbarExpandLg} ${navbarDarkBgPrimary} ${navbarDark} ${bgPrimary} ${mt5}`}
+			>
 				<div class={`${theme} ${containerFluid}`}>
 					{/* biome-ignore lint: <a> is used for demonstration purposes */}
-					<a class={`${theme} ${navbarBrand}`} href="#" onClick={(e) => e.preventDefault()}>
+					<a
+						class={`${theme} ${navbarBrand}`}
+						href="#"
+						onClick={(e) => e.preventDefault()}
+					>
 						<img
 							src="/assets/brand/bootstrap-logo-white.svg"
 							width="38"
 							height="30"
 							alt="Bootstrap"
 							loading="lazy"
-							style="display: inline-block; vertical-align: top;"
+							class={`${theme} ${dInlineBlock} ${alignTop}`}
 						/>
 					</a>
 					<button
-						class={`${theme} ${navbarToggler}`}
+						class={`${theme} ${elButton} ${navbarToggler}`}
 						type="button"
 						aria-controls="navbarSupportedContent2"
 						aria-expanded="false"
@@ -179,12 +229,15 @@ const NavbarExample: Component = () => {
 					>
 						<span class={`${theme} ${navbarTogglerIcon}`} />
 					</button>
-					<div class={`${theme} ${collapse} ${navbarCollapse}`} id="navbarSupportedContent2">
+					<div
+						class={`${theme} ${collapse} ${navbarCollapse}`}
+						id="navbarSupportedContent2"
+					>
 						<ul class={`${theme} ${navbarNav} ${meAuto} ${mb2} ${mbLg0}`}>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${navLink} ${navLinkActive}`}
+									class={`${theme} ${navLink} ${navLinkActive} ${active}`}
 									aria-current="page"
 									href="#"
 									onClick={(e) => e.preventDefault()}
@@ -194,7 +247,11 @@ const NavbarExample: Component = () => {
 							</li>
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
-								<a class={`${theme} ${navLink}`} href="#" onClick={(e) => e.preventDefault()}>
+								<a
+									class={`${theme} ${navLink}`}
+									href="#"
+									onClick={(e) => e.preventDefault()}
+								>
 									Link
 								</a>
 							</li>
@@ -209,16 +266,27 @@ const NavbarExample: Component = () => {
 								>
 									Dropdown
 								</a>
-								<ul class={`${theme} ${dropdownMenu}`} aria-labelledby="navbarDropdown2">
+								<ul
+									class={`${theme} ${dropdownMenu}`}
+									aria-labelledby="navbarDropdown2"
+								>
 									<li>
 										{/* biome-ignore lint: <a> is used for demonstration purposes */}
-										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+										<a
+											class={`${theme} ${dropdownItem}`}
+											href="#"
+											onClick={(e) => e.preventDefault()}
+										>
 											Action
 										</a>
 									</li>
 									<li>
 										{/* biome-ignore lint: <a> is used for demonstration purposes */}
-										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+										<a
+											class={`${theme} ${dropdownItem}`}
+											href="#"
+											onClick={(e) => e.preventDefault()}
+										>
 											Another action
 										</a>
 									</li>
@@ -227,7 +295,11 @@ const NavbarExample: Component = () => {
 									</li>
 									<li>
 										{/* biome-ignore lint: <a> is used for demonstration purposes */}
-										<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+										<a
+											class={`${theme} ${dropdownItem}`}
+											href="#"
+											onClick={(e) => e.preventDefault()}
+										>
 											Something else here
 										</a>
 									</li>
@@ -236,7 +308,7 @@ const NavbarExample: Component = () => {
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${navLink} ${navLinkDisabled}`}
+									class={`${theme} ${navLink} ${navLinkDisabled} ${disabled}`}
 									href="#"
 									onClick={(e) => e.preventDefault()}
 									tabindex="-1"
@@ -248,12 +320,12 @@ const NavbarExample: Component = () => {
 						</ul>
 						<form class={`${theme} ${dFlex}`}>
 							<input
-								class={`${theme} ${formControl} ${me2}`}
+								class={`${theme} ${elInput} ${formControl} ${me2}`}
 								type="search"
 								placeholder="Search"
 								aria-label="Search"
 							/>
-							<button class={`${theme} ${btn} ${btnOutlineLight}`} type="submit">
+							<button class={`${theme} ${elButton} ${btn} ${btnOutlineLight}`} type="submit">
 								Search
 							</button>
 						</form>

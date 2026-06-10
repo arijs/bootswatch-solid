@@ -1,3 +1,6 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
@@ -32,7 +35,7 @@ const StartDropdown: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<div class={`${theme} ${dropstart}`}>
 				<button
-					class={`${theme} ${btn} ${btnSecondary} ${dropdownToggle} pwhook-dropdown-toggle`}
+					class={`${theme} ${elButton} ${btn} ${btnSecondary} ${dropdownToggle} pwhook-dropdown-toggle`}
 					type="button"
 					id="dropstartMenuButton"
 					data-bs-toggle="dropdown"

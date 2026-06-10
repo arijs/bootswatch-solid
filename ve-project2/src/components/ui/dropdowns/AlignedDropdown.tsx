@@ -1,3 +1,6 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
@@ -40,7 +43,7 @@ const AlignedDropdown: Component = () => {
 			<div class={`${theme} ${btnGroup}`}>
 				<div class={`${theme} ${dropdown}`}>
 					<button
-						class={`${theme} ${btn} ${btnSecondary} ${dropdownToggle} pwhook-dropdown-toggle`}
+						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${dropdownToggle} pwhook-dropdown-toggle`}
 						type="button"
 						id="dropdownRightMenuButton"
 						data-bs-toggle="dropdown"

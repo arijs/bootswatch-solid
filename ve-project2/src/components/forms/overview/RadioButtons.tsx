@@ -11,8 +11,14 @@ import {
 	formCheckLabel,
 	legend,
 	legendClear,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -33,10 +39,10 @@ const RadioButtons: Component = () => {
 						<input
 							type="radio"
 							name="radios"
-							class={`${theme} ${formCheckInput} pwhook-radio`}
+							class={`${theme} ${elInput} ${formCheckInput} pwhook-radio`}
 							id="exampleRadio1"
 						/>
-						<label class={`${theme} ${formCheckLabel} pwhook-radio-label`} for="exampleRadio1">
+						<label class={`${theme} ${elLabel} ${formCheckLabel} pwhook-radio-label`} for="exampleRadio1">
 							Default radio
 						</label>
 					</div>
@@ -44,10 +50,10 @@ const RadioButtons: Component = () => {
 						<input
 							type="radio"
 							name="radios"
-							class={`${theme} ${formCheckInput} pwhook-radio`}
+							class={`${theme} ${elInput} ${formCheckInput} pwhook-radio`}
 							id="exampleRadio2"
 						/>
-						<label class={`${theme} ${formCheckLabel} pwhook-radio-label`} for="exampleRadio2">
+						<label class={`${theme} ${elLabel} ${formCheckLabel} pwhook-radio-label`} for="exampleRadio2">
 							Another radio
 						</label>
 					</div>

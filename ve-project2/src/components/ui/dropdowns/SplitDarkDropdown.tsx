@@ -1,3 +1,6 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
@@ -32,12 +35,12 @@ const SplitDarkDropdown: Component = () => {
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<div class={`${theme} ${btnGroup}`}>
-				<button type="button" class={`${theme} ${btn} ${btnDark}`}>
+				<button type="button" class={`${theme} ${elButton} ${btn} ${btnDark}`}>
 					Dark
 				</button>
 				<button
 					type="button"
-					class={`${theme} ${btn} ${btnDark} ${dropdownToggle} ${dropdownToggleSplit} pwhook-dropdown-toggle`}
+					class={`${theme} ${elButton} ${btn} ${btnDark} ${dropdownToggle} ${dropdownToggleSplit} pwhook-dropdown-toggle`}
 					data-bs-toggle="dropdown"
 					aria-expanded="false"
 				>

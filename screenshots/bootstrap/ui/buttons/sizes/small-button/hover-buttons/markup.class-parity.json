@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "totalElements": 6,
+    "elementsChecked": 6,
+    "elementsWithGaps": 1,
+    "totalExpected": 3,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-primary",
+        "btn-sm",
+        "pwhook-btn"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnPrimary",
+        "btnSm"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnPrimary",
+        "btnSm",
+        "inputFontFamily"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-btn"
+      ]
+    }
+  ]
+}

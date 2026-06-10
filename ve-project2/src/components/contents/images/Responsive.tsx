@@ -1,13 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import { imgFluid } from '../../../theme-contract/contents/contract.css'
+import { elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
-import {
-	bdPlaceholderImg,
-	bdPlaceholderImgLg,
-	imgFluid,
-} from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
@@ -22,7 +19,7 @@ const Responsive: Component = () => {
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<svg
-				class={`${theme} ${bdPlaceholderImg} ${bdPlaceholderImgLg} ${imgFluid}`}
+				class={`bd-placeholder-img bd-placeholder-img-lg ${theme} ${elSvg} ${imgFluid}`}
 				width="100%"
 				height="250"
 				xmlns="http://www.w3.org/2000/svg"

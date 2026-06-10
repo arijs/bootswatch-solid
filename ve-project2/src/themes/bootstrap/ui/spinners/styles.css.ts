@@ -1,7 +1,15 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { globalStyle, globalKeyframes } from '@vanilla-extract/css'
 import {
-	varBsTextOpacity,
+	varBsDangerRgb,
+	varBsDarkRgb,
+	varBsInfoRgb,
+	varBsLightRgb,
+	varBsPrimaryRgb,
+	varBsSecondaryRgb,
+	varBsSuccessRgb,
+	varBsWarningRgb,
 } from '../../../../theme-contract/_vars.css'
+import { varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 import {
 	varBsSpinnerAnimationName,
 	varBsSpinnerAnimationSpeed,
@@ -12,16 +20,43 @@ import {
 } from '../../../../theme-contract/ui/spinners/_vars.css'
 import {
 	spinnerBorder,
+	spinnerDanger,
+	spinnerDark,
 	spinnerGrow,
+	spinnerInfo,
+	spinnerLight,
+	spinnerPrimary,
+	spinnerSecondary,
+	spinnerSuccess,
+	spinnerWarning,
 } from '../../../../theme-contract/ui/spinners/contract.css'
 import {
-	textDark,
 	visuallyHidden,
 } from '../../../../theme-contract/utilities/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/spinners
 // Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// @keyframes spinner-border { … }
+globalKeyframes('spinner-border', {
+	to: {
+		transform: 'rotate(360deg)',
+	},
+})
+
+// SOURCE CSS:
+// @keyframes spinner-grow { … }
+globalKeyframes('spinner-grow', {
+	'0%': {
+		transform: 'scale(0)',
+	},
+	'50%': {
+		opacity: 1,
+		transform: 'none',
+	},
+})
 
 // SOURCE CSS:
 // .spinner-grow { display: inline-block; flex-shrink: 0; width: var(--bs-spinner-width); height: var(--bs-spinner-height); vertical-align: var(--bs-spinner-vertical-align); border-radius: 50%; animation: var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name); --bs-spinner-width: 2rem; --bs-spinner-height: 2rem; --bs-spinner-vertical-align: -0.125em; --bs-spinner-animation-speed: 0.75s; --bs-spinner-animation-name: spinner-grow; background-color: currentcolor; opacity: 0; }
@@ -86,9 +121,36 @@ globalStyle(`${bootstrapScope}${visuallyHidden}:not(caption)`, {
 	position: "absolute !important",
 })
 
-// SOURCE CSS:
-// .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`${bootstrapScope}${textDark}`, {
-	color: `rgba(var(--bs-dark-rgb), ${varBsTextOpacity} ) !important`,
+// Spinner color variants mirror .text-* utilities (components stamp spinner*, not text-*).
+globalStyle(`${bootstrapScope}${spinnerPrimary}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsPrimaryRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerSecondary}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsSecondaryRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerSuccess}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsSuccessRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerDanger}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsDangerRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerWarning}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsWarningRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerInfo}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsInfoRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerLight}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsLightRgb}, ${varBsTextOpacity}) !important`,
+})
+globalStyle(`${bootstrapScope}${spinnerDark}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
 })

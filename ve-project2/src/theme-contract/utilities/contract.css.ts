@@ -200,14 +200,49 @@ export const g0 = style({})
 export const g4 = style({})
 
 /**
+ * Bootstrap breakpoint utility: .col-md-2
+ */
+export const colMd2 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-md-3
+ */
+export const colMd3 = style({})
+
+/**
  * Bootstrap breakpoint utility: .col-md-4
  */
 export const colMd4 = style({})
 
 /**
+ * Bootstrap breakpoint utility: .col-md-5
+ */
+export const colMd5 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-md-6
+ */
+export const colMd6 = style({})
+
+/**
  * Bootstrap breakpoint utility: .col-md-8
  */
 export const colMd8 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-sm-6
+ */
+export const colSm6 = style({})
+
+/**
+ * Bootstrap gutter utility: .g-3
+ */
+export const g3 = style({})
+
+/**
+ * Bootstrap layout utility: .row-cols-auto (or row column wrapper)
+ */
+export const rowCol = style({})
 
 /**
  * Bootstrap utility: .position-relative

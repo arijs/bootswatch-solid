@@ -5,8 +5,8 @@ import {
 	varBsFontMonospace,
 	varBsLinkColorRgb,
 	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
 } from '../../../../theme-contract/_vars.css'
+import { varBsLinkOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 import {
 	varBsGutterX,
 	varBsGutterY,
@@ -48,7 +48,7 @@ globalStyle(`${bootstrapScope}${small}`, {
 // SOURCE CSS:
 // a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
 globalStyle(`${bootstrapScope}${link}`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
+	color: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
 	textDecoration: "underline",
 })
 

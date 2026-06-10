@@ -26,7 +26,7 @@ export const INTERACTIVE_SCENARIOS = [
 		state: 'opened-dropdown',
 		kind: 'click-visible',
 		selector: '.pwhook-dropdown-toggle',
-		visibleSelector: '.pwhook-dropdown-menu.show',
+		visibleSelector: '.pwhook-dropdown-toggle[aria-expanded="true"]',
 		resetMouseToCornerAfterAction: true,
 	})),
 	...TABLE_HOVER_COLOR_ROUTES.map((route) => ({

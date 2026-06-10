@@ -1,0 +1,215 @@
+{
+  "summary": {
+    "totalElements": 13,
+    "elementsChecked": 13,
+    "elementsWithGaps": 8,
+    "totalExpected": 27,
+    "totalMissing": 19
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-primary"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgPrimary"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgePrimary"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgPrimary"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[2]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-secondary"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgSecondary"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeSecondary"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgSecondary"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[3]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-success"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgSuccess"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeSuccess"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgSuccess"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[4]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-danger"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgDanger"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeDanger"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgDanger"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[5]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-warning",
+        "text-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgWarning",
+        "textDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeWarning",
+        "badgeTextDark"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgWarning",
+        "textDark"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[6]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-info",
+        "text-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgInfo",
+        "textDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeInfo",
+        "badgeTextDark"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgInfo",
+        "textDark"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[7]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-light",
+        "text-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgLight",
+        "textDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeLight",
+        "badgeTextDark"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgLight",
+        "textDark"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/span[8]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "rounded-pill",
+        "bg-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "roundedPill",
+        "bgDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeRoundedPill",
+        "badgeDark"
+      ],
+      "missingSymbols": [
+        "roundedPill",
+        "bgDark"
+      ],
+      "unmappedClasses": []
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "totalElements": 25,
+    "elementsChecked": 25,
+    "elementsWithGaps": 3,
+    "totalExpected": 22,
+    "totalMissing": 1
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-primary",
+        "pwhook-modal-trigger"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnPrimary"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnPrimary"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-modal-trigger"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[2]",
+      "tag": "div",
+      "baselineClasses": [
+        "modal",
+        "fade",
+        "pwhook-modal",
+        "show"
+      ],
+      "expectedSymbols": [
+        "modal",
+        "fade",
+        "show"
+      ],
+      "stampedSymbols": [
+        "modal",
+        "modalFade",
+        "fade",
+        "show"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-modal"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/h5[1]",
+      "tag": "h5",
+      "baselineClasses": [
+        "modal-title",
+        "h4"
+      ],
+      "expectedSymbols": [
+        "modalTitle",
+        "clsH4"
+      ],
+      "stampedSymbols": [
+        "h4",
+        "modalTitle"
+      ],
+      "missingSymbols": [
+        "clsH4"
+      ],
+      "unmappedClasses": []
+    }
+  ]
+}

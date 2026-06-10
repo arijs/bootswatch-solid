@@ -1,0 +1,66 @@
+{
+  "summary": {
+    "totalElements": 19,
+    "elementsChecked": 19,
+    "elementsWithGaps": 2,
+    "totalExpected": 14,
+    "totalMissing": 2
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-secondary",
+        "dropdown-toggle",
+        "pwhook-dropdown-toggle",
+        "show"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnSecondary",
+        "dropdownToggle",
+        "show"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnSecondary",
+        "dropdownToggle",
+        "btnShowHook"
+      ],
+      "missingSymbols": [
+        "show"
+      ],
+      "unmappedClasses": [
+        "pwhook-dropdown-toggle"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]",
+      "tag": "ul",
+      "baselineClasses": [
+        "dropdown-menu",
+        "dropdown-menu-end",
+        "pwhook-dropdown-menu",
+        "show"
+      ],
+      "expectedSymbols": [
+        "dropdownMenu",
+        "dropdownMenuEnd",
+        "show"
+      ],
+      "stampedSymbols": [
+        "dropdownMenu",
+        "dropdownMenuEnd",
+        "dropdownMenuShow"
+      ],
+      "missingSymbols": [
+        "show"
+      ],
+      "unmappedClasses": [
+        "pwhook-dropdown-menu"
+      ]
+    }
+  ]
+}

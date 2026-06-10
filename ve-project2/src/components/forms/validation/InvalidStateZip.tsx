@@ -4,17 +4,24 @@ import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
-	colMd3,
-	colSm6,
 	formSelect,
 	formControl,
 	formLabel,
-	g3,
 	invalidFeedback,
 	isInvalid,
+} from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+	elSelect,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	colMd3,
+	colSm6,
+	g3,
 	row,
 	rowCol,
-} from '../../../theme-contract/forms/contract.css'
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -30,10 +37,10 @@ const InvalidStateZip: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<form class={`${theme} ${row} ${g3}`}>
 				<div class={`${theme} ${rowCol} ${colMd3} ${colSm6}`}>
-					<label for="validationServer04" class={`${theme} ${formLabel}`}>
+					<label for="validationServer04" class={`${theme} ${elLabel} ${formLabel}`}>
 						State
 					</label>
-					<select class={`${theme} ${formSelect} ${isInvalid}`} id="validationServer04" required>
+					<select class={`${theme} ${elSelect} ${formSelect} ${isInvalid}`} id="validationServer04" required>
 						<option selected disabled value="">
 							Choose...
 						</option>
@@ -42,12 +49,12 @@ const InvalidStateZip: Component = () => {
 					<div class={`${theme} ${invalidFeedback}`}>Please select a valid state.</div>
 				</div>
 				<div class={`${theme} ${rowCol} ${colMd3} ${colSm6}`}>
-					<label for="validationServer05" class={`${theme} ${formLabel}`}>
+					<label for="validationServer05" class={`${theme} ${elLabel} ${formLabel}`}>
 						Zip
 					</label>
 					<input
 						type="text"
-						class={`${theme} ${formControl} ${isInvalid}`}
+						class={`${theme} ${elInput} ${formControl} ${isInvalid}`}
 						id="validationServer05"
 						required
 					/>

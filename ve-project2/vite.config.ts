@@ -1,6 +1,33 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import solidPlugin from 'vite-plugin-solid'
+
+/**
+ * When VITE_LITERAL_THEMES=bootstrap,cerulean (comma-separated), every other
+ * literal theme is replaced with an empty stub so Vite never compiles those
+ * 500 KB files. Speeds up single-theme development/capture builds by ~26x.
+ */
+function literalThemeFilterPlugin(): Plugin | null {
+	const raw = process.env.VITE_LITERAL_THEMES
+	if (!raw) return null
+	const allowed = new Set(raw.split(',').map((s) => s.trim()).filter(Boolean))
+	console.log(`[literal-theme-filter] active — building only: ${[...allowed].join(', ')}`)
+	return {
+		name: 'literal-theme-filter',
+		enforce: 'pre',
+		resolveId(id) {
+			// Matches both relative (../../themes/foo/literal/) and absolute paths
+			const m = id.match(/(?:^|[/\\])themes[/\\]([^/\\]+)[/\\]literal[/\\]/)
+			if (!m) return null
+			const theme = m[1]
+			if (allowed.has(theme)) return null
+			return `\0literal-theme-stub:${id}`
+		},
+		load(id) {
+			if (id.startsWith('\0literal-theme-stub:')) return 'export default {}'
+		},
+	}
+}
 
 function inferThemeFamilyFromCss(source: string) {
 	if (/contract_list/i.test(source)) return 'lists'
@@ -73,10 +100,10 @@ function assetSourceToText(source: unknown) {
 
 export default defineConfig({
 	mode: 'development',
-	plugins: [solidPlugin(), vanillaExtractPlugin()],
+	plugins: [solidPlugin(), vanillaExtractPlugin(), literalThemeFilterPlugin()],
 	build: {
 		target: 'esnext',
-		sourcemap: true,
+		sourcemap: false,
 		modulePreload: {
 			polyfill: false,
 		},

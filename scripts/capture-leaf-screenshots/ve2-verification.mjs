@@ -70,6 +70,7 @@ export async function verifyScenarioVe2Rendering({
 	baselinePath,
 	maxDiffRatio,
 	markupExtractionEnabled = true,
+	ve2StyleLoader = 'theme',
 	previewServerManager,
 }) {
 	if (!(await pathExists(baselinePath))) {
@@ -99,8 +100,15 @@ export async function verifyScenarioVe2Rendering({
 	const page = await context.newPage()
 
 	try {
-		const ve2Url = `${VE2_BASE_URL}${route}?theme=${encodeURIComponent(themeSlug)}&style-loader=theme`
+		const loader = ve2StyleLoader === 'literal' ? 'literal' : 'theme'
+		const ve2Url = `${VE2_BASE_URL}${route}?theme=${encodeURIComponent(themeSlug)}&style-loader=${encodeURIComponent(loader)}`
 		await gotoWithPreviewRecovery(page, ve2Url, previewServerManager)
+		if (ve2StyleLoader === 'literal') {
+			// Literal theme CSS is loaded via a dynamic import() after page load.
+			// Wait for network idle so the CSS chunk is fully applied before capture.
+			// Short timeout so Google Fonts @imports don't block indefinitely.
+			await page.waitForLoadState('networkidle', { timeout: 2000 }).catch(() => {})
+		}
 		await delay(150)
 		const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
 			themeSlug,

@@ -10,10 +10,19 @@ import {
 	h5,
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
+import { scrollspyExample } from '../../../../theme-contract/ui/scrollspy/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/scrollspy
 // Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// .scrollspy-example { height: 200px; overflow-y: scroll; }
+globalStyle(`${bootstrapScope}${scrollspyExample}`, {
+	height: '200px',
+	overflowY: 'auto',
+	marginTop: '0.5rem',
+})
 
 // SOURCE CSS:
 // h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }

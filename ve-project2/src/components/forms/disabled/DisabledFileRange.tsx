@@ -8,8 +8,14 @@ import {
 	formControl,
 	formLabel,
 	formRange,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -25,18 +31,18 @@ const DisabledFileRange: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<form class={`${theme} ${form}`}>
 				<div class={`${theme} ${mb3}`}>
-					<label class={`${theme} ${formLabel}`} for="disabledCustomFile">
+					<label class={`${theme} ${elLabel} ${formLabel}`} for="disabledCustomFile">
 						Upload
 					</label>
-					<input type="file" class={`${theme} ${formControl}`} id="disabledCustomFile" disabled />
+					<input type="file" class={`${theme} ${elInput} ${formControl}`} id="disabledCustomFile" disabled />
 				</div>
 				<div class={`${theme} ${mb3}`}>
-					<label for="disabledRange" class={`${theme} ${formLabel}`}>
+					<label for="disabledRange" class={`${theme} ${elLabel} ${formLabel}`}>
 						Disabled range
 					</label>
 					<input
 						type="range"
-						class={`${theme} ${formRange}`}
+						class={`${theme} ${elInput} ${formRange}`}
 						min="0"
 						max="5"
 						step="0.5"

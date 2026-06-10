@@ -7,8 +7,13 @@ import {
 	formControl,
 	inputGroup,
 	inputGroupText,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -28,7 +33,7 @@ const PrefixAddon: Component = () => {
 				</span>
 				<input
 					type="text"
-					class={`${theme} ${formControl}`}
+					class={`${theme} ${elInput} ${formControl}`}
 					placeholder="Username"
 					aria-label="Username"
 					aria-describedby="basic-addon1"

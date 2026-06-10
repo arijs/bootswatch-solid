@@ -1,9 +1,13 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { lead, paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
-import { lead, paragraph } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
@@ -17,7 +21,9 @@ const Lead: Component = () => {
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
-			<p class={`${theme} ${lead} ${paragraph}`}>This is a lead paragraph. It stands out from regular paragraphs.</p>
+			<p class={`${theme} ${lead} ${paragraph}`}>
+				This is a lead paragraph. It stands out from regular paragraphs.
+			</p>
 		</div>
 	)
 }

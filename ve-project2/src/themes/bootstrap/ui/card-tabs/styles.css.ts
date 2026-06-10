@@ -61,6 +61,7 @@ import {
 	g4,
 	row,
 } from '../../../../theme-contract/utilities/contract.css'
+import { textCenter } from '../../../../theme-contract/utilities/generated/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/card-tabs
@@ -348,4 +349,10 @@ globalStyle(`${bootstrapScope}${btn}${btnPrimary}`, {
 	},
 	backgroundColor: varBsBtnBg,
 	color: varBsBtnColor,
+})
+
+// SOURCE CSS:
+// .text-center { text-align: center !important; }
+globalStyle(`${bootstrapScope}${textCenter}`, {
+	textAlign: 'center !important',
 })

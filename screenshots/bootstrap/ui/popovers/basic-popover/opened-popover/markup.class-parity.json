@@ -1,0 +1,63 @@
+{
+  "summary": {
+    "totalElements": 10,
+    "elementsChecked": 10,
+    "elementsWithGaps": 2,
+    "totalExpected": 10,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-lg",
+        "btn-danger",
+        "pwhook-popover-trigger"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnLg",
+        "btnDanger"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnLg",
+        "btnDanger"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-popover-trigger"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[2]",
+      "tag": "div",
+      "baselineClasses": [
+        "popover",
+        "pwhook-popover",
+        "bs-popover-auto",
+        "fade",
+        "show"
+      ],
+      "expectedSymbols": [
+        "popover",
+        "bsPopoverAuto",
+        "fade",
+        "show"
+      ],
+      "stampedSymbols": [
+        "popoverVe",
+        "popover",
+        "bsPopoverAuto",
+        "fade",
+        "show"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-popover"
+      ]
+    }
+  ]
+}

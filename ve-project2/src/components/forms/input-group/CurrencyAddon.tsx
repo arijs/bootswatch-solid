@@ -7,8 +7,13 @@ import {
 	formControl,
 	inputGroup,
 	inputGroupText,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -26,7 +31,7 @@ const CurrencyAddon: Component = () => {
 				<span class={`${theme} ${inputGroupText}`}>$</span>
 				<input
 					type="text"
-					class={`${theme} ${formControl}`}
+					class={`${theme} ${elInput} ${formControl}`}
 					aria-label="Amount (to the nearest dollar)"
 				/>
 				<span class={`${theme} ${inputGroupText}`}>.00</span>

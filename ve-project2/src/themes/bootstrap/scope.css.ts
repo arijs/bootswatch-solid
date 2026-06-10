@@ -25,8 +25,6 @@ import {
 	varBsBoxShadowInset,
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
-	varBsCarouselCaptionColor,
-	varBsCarouselIndicatorActiveBg,
 	varBsCodeColor,
 	varBsCyan,
 	varBsDanger,
@@ -108,7 +106,9 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../theme-contract/forms/_vars.css'
+import { varBsCarouselCaptionColor, varBsCarouselIndicatorActiveBg } from '../../theme-contract/ui/carousel/_vars.css'
 import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { varBsLinkOpacity } from '../../theme-contract/utilities/generated/_vars.css'
 import { modalOpenHook } from '../../theme-contract/ui/modal/contract.css'
 
 // Bootstrap theme scope class.
@@ -199,6 +199,7 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		[varBsLinkDecoration]: "underline",
 		[varBsLinkHoverColor]: "#0a58ca",
 		[varBsLinkHoverColorRgb]: "10, 88, 202",
+		[varBsLinkOpacity]: '1',
 		[varBsCodeColor]: "#d63384",
 		[varBsHighlightColor]: "#212529",
 		[varBsHighlightBg]: "#fff3cd",
@@ -221,6 +222,10 @@ globalStyle(`${bootstrapScope}${vars}`, {
 		[varBsFocusRingColor]: "rgba(13, 110, 253, 0.25)",
 		[varBsCarouselIndicatorActiveBg]: "#fff",
 		[varBsCarouselCaptionColor]: "#fff",
+		[varBsFormValidColor]: '#198754',
+		[varBsFormValidBorderColor]: '#198754',
+		[varBsFormInvalidColor]: '#dc3545',
+		[varBsFormInvalidBorderColor]: '#dc3545',
 	},
 })
 

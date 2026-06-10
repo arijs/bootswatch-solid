@@ -1,0 +1,10 @@
+{
+  "summary": {
+    "totalElements": 15,
+    "elementsChecked": 15,
+    "elementsWithGaps": 0,
+    "totalExpected": 9,
+    "totalMissing": 0
+  },
+  "gaps": []
+}

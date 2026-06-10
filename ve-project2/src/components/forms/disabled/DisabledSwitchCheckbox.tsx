@@ -9,8 +9,14 @@ import {
 	formCheckInput,
 	formCheckLabel,
 	formSwitch,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -27,13 +33,13 @@ const DisabledSwitchCheckbox: Component = () => {
 			<form class={`${theme} ${form}`}>
 				<div class={`${theme} ${mb3} ${formCheck} ${formSwitch}`}>
 					<input
-						class={`${theme} ${formCheckInput}`}
+						class={`${theme} ${elInput} ${formCheckInput}`}
 						type="checkbox"
 						id="disabledSwitchCheckChecked"
 						checked
 						disabled
 					/>
-					<label class={`${theme} ${formCheckLabel}`} for="disabledSwitchCheckChecked">
+					<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="disabledSwitchCheckChecked">
 						Disabled checked switch checkbox input
 					</label>
 				</div>

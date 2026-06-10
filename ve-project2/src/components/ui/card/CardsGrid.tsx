@@ -32,16 +32,16 @@ const CardsGrid: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid} ${positionRelative} ${overflowXHidden}`}>
 			<div class={`${theme} ${row} ${rowCols1} ${rowColsMd2} ${g4}`}>
 				<div class={`${theme} ${col}`}>
-					<ImageTopCard embedded />
+					<ImageTopCard  />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<FeaturedCard embedded />
+					<FeaturedCard  />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<ListCard embedded />
+					<ListCard  />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<HorizontalCard embedded />
+					<HorizontalCard  />
 				</div>
 			</div>
 		</div>

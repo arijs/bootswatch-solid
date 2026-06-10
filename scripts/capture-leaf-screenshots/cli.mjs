@@ -19,6 +19,7 @@ const BOOLEAN_FLAGS = new Set([
 	'--ve1-runtime-missing-only',
 	'--ve1-runtime-missing-leafs',
 	'--strict-scenarios',
+	'--bail',
 ])
 
 const VALUE_FLAG_PREFIXES = [
@@ -28,6 +29,8 @@ const VALUE_FLAG_PREFIXES = [
 	'--theme=',
 	'--state=',
 	'--width=',
+	'--style-loader=',
+	'--skip-to-route=',
 ]
 
 function assertKnownArgs(argv) {
@@ -101,7 +104,8 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 	// Verification automatically disables CSS extraction (two-phase: extract first, then verify)
 	const cssExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-css-extraction')
 	const htmlExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-html-extraction')
-	const veMarkupExtractionEnabled = veVerificationEnabled && !argv.includes('--no-html-extraction')
+	const veMarkupExtractionEnabled =
+		veVerificationEnabled && !argv.includes('--no-html-extraction')
 	const imgExtractionEnabled = !anyVerificationEnabled && !argv.includes('--no-img-extraction')
 
 	const maxThemesSpecified = argv.some((arg) => arg.startsWith('--max-themes='))
@@ -132,5 +136,13 @@ export function parseCaptureCli(argv = process.argv.slice(2)) {
 		stateFilter: parseCsvArg(argv, '--state'),
 		maxThemes,
 		requestedWidth: parseIntArg(argv, '--width', DEFAULT_VIEWPORT.width),
+		ve2StyleLoader: parseArgValue(argv, '--style-loader=', 'theme'),
+		bailOnMismatch: argv.includes('--bail'),
+		skipToRoute: parseArgValue(argv, '--skip-to-route=', null),
 	}
+}
+
+function parseArgValue(argv, prefix, fallback) {
+	const hit = argv.find((arg) => arg.startsWith(prefix))
+	return hit ? hit.slice(prefix.length) : fallback
 }

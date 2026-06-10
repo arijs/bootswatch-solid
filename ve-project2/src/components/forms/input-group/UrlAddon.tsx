@@ -8,8 +8,14 @@ import {
 	formLabel,
 	inputGroup,
 	inputGroupText,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -23,7 +29,7 @@ const UrlAddon: Component = () => {
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
-			<label for="basic-url" class={`${theme} ${formLabel}`}>
+			<label for="basic-url" class={`${theme} ${elLabel} ${formLabel}`}>
 				Your vanity URL
 			</label>
 			<div class={`${theme} ${inputGroup} ${mb3}`}>
@@ -32,7 +38,7 @@ const UrlAddon: Component = () => {
 				</span>
 				<input
 					type="text"
-					class={`${theme} ${formControl}`}
+					class={`${theme} ${elInput} ${formControl}`}
 					id="basic-url"
 					aria-describedby="basic-addon3"
 				/>

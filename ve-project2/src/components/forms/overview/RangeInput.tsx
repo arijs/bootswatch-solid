@@ -7,8 +7,14 @@ import {
 	form,
 	formLabel,
 	formRange,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -24,12 +30,12 @@ const RangeInput: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<form class={`${theme} ${form}`}>
 				<div class={`${theme} ${mb3}`}>
-					<label for="customRange3" class={`${theme} ${formLabel}`}>
+					<label for="customRange3" class={`${theme} ${elLabel} ${formLabel}`}>
 						Example range
 					</label>
 					<input
 						type="range"
-						class={`${theme} ${formRange}`}
+						class={`${theme} ${elInput} ${formRange}`}
 						min="0"
 						max="5"
 						step="0.5"

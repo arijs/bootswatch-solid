@@ -1,19 +1,25 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { h3 } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bsPopoverAuto, fade, popover } from '../../../theme-contract/literal/contract.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnDanger, btnLg } from '../../../theme-contract/ui/buttons/contract.css'
-import { fade } from '../../../theme-contract/ui/modal/contract.css'
 import {
-popoverArrow,
-popoverBody,
-popoverHeader,
-popoverShow,
-popoverVe,
+	popoverArrow,
+	popoverBody,
+	popoverHeader,
+	popoverVe,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import { createVePopover } from './ve-popover'
-import { h3 } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/popovers',
@@ -24,27 +30,27 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 ]
 
 const BasicPopover: Component = () => {
-const theme = useContext(ThemeContext)
+	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-const VePopover = createVePopover({ popoverArrow, popoverHeader, popoverBody, popoverShow })
+	const VePopover = createVePopover({ popoverArrow, popoverHeader, popoverBody })
 
-return (
-<div class={`bd-example ${theme} ${containerFluid}`}>
-<button
-type="button"
-class={`${theme} ${btn} ${btnLg} ${btnDanger} pwhook-popover-trigger`}
-ref={(popover) =>
-new VePopover(popover, {
-template: `<div class="${popoverVe} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
-})
-}
-title="Popover title"
-data-bs-content="And here's some amazing content. It's very engaging. Right?"
->
-Click to toggle popover
-</button>
-</div>
-)
+	return (
+		<div class={`bd-example ${theme} ${containerFluid}`}>
+			<button
+				type="button"
+				class={`${theme} ${elButton} ${btn} ${btnLg} ${btnDanger} pwhook-popover-trigger`}
+				ref={(el) =>
+					new VePopover(el, {
+						template: `<div class="${popoverVe} ${popover} ${bsPopoverAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
+					})
+				}
+				title="Popover title"
+				data-bs-content="And here's some amazing content. It's very engaging. Right?"
+			>
+				Click to toggle popover
+			</button>
+		</div>
+	)
 }
 
 export default BasicPopover

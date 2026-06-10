@@ -1,0 +1,319 @@
+{
+  "summary": {
+    "totalElements": 21,
+    "elementsChecked": 21,
+    "elementsWithGaps": 16,
+    "totalExpected": 27,
+    "totalMissing": 19
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[1]",
+      "tag": "p",
+      "baselineClasses": [
+        "h1"
+      ],
+      "expectedSymbols": [
+        "clsH1"
+      ],
+      "stampedSymbols": [
+        "h1"
+      ],
+      "missingSymbols": [
+        "clsH1"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[1]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-primary"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgPrimary"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgePrimary"
+      ],
+      "missingSymbols": [
+        "bgPrimary"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[2]",
+      "tag": "p",
+      "baselineClasses": [
+        "h2"
+      ],
+      "expectedSymbols": [
+        "clsH2"
+      ],
+      "stampedSymbols": [
+        "h2"
+      ],
+      "missingSymbols": [
+        "clsH2"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[2]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-secondary"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgSecondary"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeSecondary"
+      ],
+      "missingSymbols": [
+        "bgSecondary"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[3]",
+      "tag": "p",
+      "baselineClasses": [
+        "h3"
+      ],
+      "expectedSymbols": [
+        "clsH3"
+      ],
+      "stampedSymbols": [
+        "h3"
+      ],
+      "missingSymbols": [
+        "clsH3"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[3]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-success"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgSuccess"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeSuccess"
+      ],
+      "missingSymbols": [
+        "bgSuccess"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[4]",
+      "tag": "p",
+      "baselineClasses": [
+        "h4"
+      ],
+      "expectedSymbols": [
+        "clsH4"
+      ],
+      "stampedSymbols": [
+        "h4"
+      ],
+      "missingSymbols": [
+        "clsH4"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[4]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-danger"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgDanger"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeDanger"
+      ],
+      "missingSymbols": [
+        "bgDanger"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[5]",
+      "tag": "p",
+      "baselineClasses": [
+        "h5"
+      ],
+      "expectedSymbols": [
+        "clsH5"
+      ],
+      "stampedSymbols": [
+        "h5"
+      ],
+      "missingSymbols": [
+        "clsH5"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[5]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-warning",
+        "text-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgWarning",
+        "textDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeWarning",
+        "badgeTextDark"
+      ],
+      "missingSymbols": [
+        "bgWarning",
+        "textDark"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[6]",
+      "tag": "p",
+      "baselineClasses": [
+        "h6"
+      ],
+      "expectedSymbols": [
+        "clsH6"
+      ],
+      "stampedSymbols": [
+        "h6"
+      ],
+      "missingSymbols": [
+        "clsH6"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[6]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-info",
+        "text-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgInfo",
+        "textDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeInfo",
+        "badgeTextDark"
+      ],
+      "missingSymbols": [
+        "bgInfo",
+        "textDark"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[7]",
+      "tag": "p",
+      "baselineClasses": [
+        "h6"
+      ],
+      "expectedSymbols": [
+        "clsH6"
+      ],
+      "stampedSymbols": [
+        "h6"
+      ],
+      "missingSymbols": [
+        "clsH6"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[7]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-light",
+        "text-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgLight",
+        "textDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeLight",
+        "badgeTextDark"
+      ],
+      "missingSymbols": [
+        "bgLight",
+        "textDark"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[8]",
+      "tag": "p",
+      "baselineClasses": [
+        "h6"
+      ],
+      "expectedSymbols": [
+        "clsH6"
+      ],
+      "stampedSymbols": [
+        "h6"
+      ],
+      "missingSymbols": [
+        "clsH6"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/p[8]/span[1]",
+      "tag": "span",
+      "baselineClasses": [
+        "badge",
+        "bg-dark"
+      ],
+      "expectedSymbols": [
+        "badge",
+        "bgDark"
+      ],
+      "stampedSymbols": [
+        "badge",
+        "badgeDark"
+      ],
+      "missingSymbols": [
+        "bgDark"
+      ],
+      "unmappedClasses": []
+    }
+  ]
+}

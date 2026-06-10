@@ -8,8 +8,14 @@ import {
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -27,10 +33,10 @@ const Checkbox: Component = () => {
 				<div class={`${theme} ${mb3} ${formCheck}`}>
 					<input
 						type="checkbox"
-						class={`${theme} ${formCheckInput} pwhook-checkbox`}
+						class={`${theme} ${elInput} ${formCheckInput} pwhook-checkbox`}
 						id="exampleCheck1"
 					/>
-					<label class={`${theme} ${formCheckLabel} pwhook-checkbox-label`} for="exampleCheck1">
+					<label class={`${theme} ${elLabel} ${formCheckLabel} pwhook-checkbox-label`} for="exampleCheck1">
 						Check me out
 					</label>
 				</div>

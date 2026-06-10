@@ -1,21 +1,27 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { mb3 } from '../../../theme-contract/utilities/contract.css'
+import { active, fade, show } from '../../../theme-contract/literal/contract.css'
 import {
-	fade,
 	nav,
 	navButtonReset,
 	navLink,
 	navLinkActive,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 	tabPaneActive,
 } from '../../../theme-contract/ui/navs/contract.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
@@ -31,7 +37,7 @@ const TabbedNav: Component = () => {
 			<nav>
 				<div class={`${theme} ${nav} ${navTabs} ${mb3}`} id="nav-tab" role="tablist">
 					<button
-						class={`${theme} ${navButtonReset} ${navLink} ${navLinkActive}`}
+						class={`${theme} ${elButton} ${navButtonReset} ${navLink} ${navLinkActive} ${active}`}
 						id="nav-home-tab"
 						type="button"
 						role="tab"
@@ -41,7 +47,7 @@ const TabbedNav: Component = () => {
 						Home
 					</button>
 					<button
-						class={`${theme} ${navButtonReset} ${navLink}`}
+						class={`${theme} ${elButton} ${navButtonReset} ${navLink}`}
 						id="nav-profile-tab"
 						type="button"
 						role="tab"
@@ -51,7 +57,7 @@ const TabbedNav: Component = () => {
 						Profile
 					</button>
 					<button
-						class={`${theme} ${navButtonReset} ${navLink}`}
+						class={`${theme} ${elButton} ${navButtonReset} ${navLink}`}
 						id="nav-contact-tab"
 						type="button"
 						role="tab"
@@ -64,19 +70,19 @@ const TabbedNav: Component = () => {
 			</nav>
 			<div class={`${theme} ${tabContent}`} id="nav-tabContent">
 				<div
-					class={`${theme} ${tabPane} ${fade} ${show} ${tabPaneActive}`}
+					class={`${theme} ${tabPane} ${fade} ${show} ${tabPaneActive} ${active}`}
 					id="nav-home"
 					role="tabpanel"
 					aria-labelledby="nav-home-tab"
 				>
 					<p class={`${theme} ${paragraph}`}>
-						Placeholder content for the tab panel. This one relates to the home tab. Takes
-						you miles high, so high, 'cause she’s got that one international smile. There's
-						a stranger in my bed, there's a pounding in my head. Oh, no. In another life I
-						would make you stay. ‘Cause I, I’m capable of anything. Suiting up for my
-						crowning battle. Used to steal your parents' liquor and climb to the roof. Tone,
-						tan fit and ready, turn it up cause its gettin' heavy. Her love is like a drug.
-						I guess that I forgot I had a choice.
+						Placeholder content for the tab panel. This one relates to the home tab.
+						Takes you miles high, so high, 'cause she's got that one international
+						smile. There's a stranger in my bed, there's a pounding in my head. Oh, no.
+						In another life I would make you stay. 'Cause I, I'm capable of anything.
+						Suiting up for my crowning battle. Used to steal your parents' liquor and
+						climb to the roof. Tone, tan fit and ready, turn it up cause its gettin'
+						heavy. Her love is like a drug. I guess that I forgot I had a choice.
 					</p>
 				</div>
 			</div>

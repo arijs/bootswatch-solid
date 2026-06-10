@@ -7,7 +7,6 @@ import {
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	bdPlaceholderImg,
 	figure,
 	figureCaption,
 	figureImg,
@@ -19,18 +18,6 @@ import { cosmoScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/contents/images
 // Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// img { vertical-align: middle; }
-globalStyle(`${cosmoScope}${bdPlaceholderImg}`, {
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// svg { vertical-align: middle; }
-globalStyle(`${cosmoScope}${bdPlaceholderImg}`, {
-	verticalAlign: "middle",
-})
 
 // SOURCE CSS:
 // .img-fluid { max-width: 100%; height: auto; }

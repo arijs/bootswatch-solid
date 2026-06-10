@@ -9,8 +9,14 @@ import {
 	formCheckInput,
 	formCheckLabel,
 	formSwitch,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -27,12 +33,12 @@ const SwitchCheckbox: Component = () => {
 			<form class={`${theme} ${form}`}>
 				<div class={`${theme} ${mb3} ${formCheck} ${formSwitch}`}>
 					<input
-						class={`${theme} ${formCheckInput} pwhook-checkbox`}
+						class={`${theme} ${elInput} ${formCheckInput} pwhook-checkbox`}
 						type="checkbox"
 						id="flexSwitchCheckChecked"
 						checked
 					/>
-					<label class={`${theme} ${formCheckLabel} pwhook-checkbox-label`} for="flexSwitchCheckChecked">
+					<label class={`${theme} ${elLabel} ${formCheckLabel} pwhook-checkbox-label`} for="flexSwitchCheckChecked">
 						Checked switch checkbox input
 					</label>
 				</div>

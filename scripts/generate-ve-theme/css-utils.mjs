@@ -1,5 +1,7 @@
 import { parse as parseCss } from '@adobe/css-tools'
 
+import { LITERAL_ELEMENT_SELECTOR_MAP } from '../generate-ve-theme-literal/element-registry.mjs'
+
 /** Normalize selector text for lookup keys. */
 export function normalizeSelector(selectorText) {
 	return selectorText.replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim()
@@ -187,7 +189,7 @@ export const STATE_CLASS_BY_PARENT_SELECTOR = {
 	'.fade': { '.show': 'modalShowHook' },
 	'.modal': { '.show': 'modalShowHook' },
 	'.modal-backdrop': { '.show': 'modalShowHook' },
-	'.toast': { '.show': 'toastShow' },
+	'.toast': { '.show': 'toastShow', '.showing': 'toastShowing' },
 	'.dropdown-menu': { '.show': 'dropdownMenuShow' },
 	'.btn': { '.show': 'btnShowHook', '.active': 'btnActiveHook', '.disabled': 'btnDisabledHook' },
 	'.btn-close': { '.disabled': 'alertBtnCloseDisabledHook' },
@@ -273,7 +275,13 @@ export function isScopedFamilySelector(veSelector, scopeName) {
 	return true
 }
 
-export const STATE_ONLY_CLASSES = new Set(['.active', '.show', '.disabled', '.collapsed'])
+export const STATE_ONLY_CLASSES = new Set([
+	'.active',
+	'.show',
+	'.showing',
+	'.disabled',
+	'.collapsed',
+])
 
 /** Parse CSS text into flat rule list: { selectors, declarations, type, media? } */
 export function parseCssRules(cssText) {
@@ -419,6 +427,10 @@ export const ELEMENT_SELECTOR_BY_FAMILY = {
 		ol: 'listUnstyled',
 		ul: 'listUnstyled',
 	},
+	literal: {
+		...LITERAL_ELEMENT_SELECTOR_MAP,
+		'*': 'tableCell',
+	},
 }
 
 /** Resolve a `*` segment within a tables-family selector. */
@@ -520,7 +532,10 @@ export function formatVeValue(value, registry) {
 	}
 
 	const calcFormatted = formatCalcValue(trimmed, registry)
-	if (calcFormatted) return calcFormatted + suffix
+	if (calcFormatted) {
+		if (suffix) return calcFormatted.replace(/`$/, `${suffix}\``)
+		return calcFormatted
+	}
 
 	// calc(...) embedded in shorthand (e.g. padding with * and -) — still convert var refs
 	if (trimmed.includes('calc(')) {
@@ -528,7 +543,7 @@ export function formatVeValue(value, registry) {
 			const symbol = registry?.cssVarToSymbol?.get(cssVar) ?? cssVarNameToSymbol(cssVar)
 			return `\${${symbol}}`
 		})
-		if (converted !== trimmed) return `\`${converted}\`${suffix}`
+		if (converted !== trimmed) return `\`${converted}${suffix}\``
 	}
 
 	// rgba(var(--bs-*-rgb), var(--bs-bg-opacity)) — Bootstrap bg-* utility pattern
@@ -541,13 +556,18 @@ export function formatVeValue(value, registry) {
 		return `\`rgba(\${${symbol}}, 1)${suffix}\``
 	}
 
-	// rgba(var(--bs-primary-rgb), 0.5) pattern
-	const rgbaVarMatch = trimmed.match(
-		/^rgba\(\s*var\(\s*(--bs-[^)]+)\s*\)\s*,\s*([^)]+)\s*\)$/i,
-	)
-	if (rgbaVarMatch) {
-		const symbol = registry?.cssVarToSymbol?.get(rgbaVarMatch[1]) ?? cssVarNameToSymbol(rgbaVarMatch[1])
-		return `\`rgba(\${${symbol}}, ${rgbaVarMatch[2]})${suffix}\``
+	// rgba(var(--bs-primary-rgb), 0.5) or rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))
+	const rgbaRgbVarMatch = trimmed.match(/^rgba\(\s*var\(\s*(--bs-[^)]+)\s*\)\s*,\s*(.+)\s*\)$/i)
+	if (rgbaRgbVarMatch) {
+		const symbol =
+			registry?.cssVarToSymbol?.get(rgbaRgbVarMatch[1]) ?? cssVarNameToSymbol(rgbaRgbVarMatch[1])
+		const alphaRaw = rgbaRgbVarMatch[2].trim()
+		const alphaVarMatch = alphaRaw.match(/^var\(\s*(--bs-[^,)]+)(?:\s*,\s*[^)]+)?\s*\)$/i)
+		const alpha =
+			alphaVarMatch != null
+				? `\${${registry?.cssVarToSymbol?.get(alphaVarMatch[1]) ?? cssVarNameToSymbol(alphaVarMatch[1])}}`
+				: alphaRaw
+		return `\`rgba(\${${symbol}}, ${alpha})${suffix}\``
 	}
 
 

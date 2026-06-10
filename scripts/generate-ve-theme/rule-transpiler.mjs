@@ -1,3 +1,4 @@
+import { ATTRIBUTE_TO_HOST_CONTRACT } from '../generate-ve-theme-literal/element-registry.mjs'
 import {
 	cssPropToVeKey,
 	formatVeValue,
@@ -168,8 +169,14 @@ function convertClassToken(
 	return scopePrefix ? `\${${scopeName}}\${${contract}}` : `\${${contract}}`
 }
 
+function ensureScopeOnCompound(joined, scopeName) {
+	if (!joined.includes('${')) return joined
+	if (joined.includes(`\${${scopeName}}`)) return joined
+	return `\${${scopeName}}${joined}`
+}
+
 function convertClassList(classes, scopeName, registry, warnings, { elementParent, ancestorSelector, family }) {
-	return classes
+	const joined = classes
 		.map((className, index) =>
 			convertClassToken(className, scopeName, registry, warnings, {
 				elementParent,
@@ -180,6 +187,49 @@ function convertClassList(classes, scopeName, registry, warnings, { elementParen
 			}),
 		)
 		.join('')
+	return ensureScopeOnCompound(joined, scopeName)
+}
+
+function convertTagClassSuffix(suffix, scopeName, registry, warnings, { family, tagContract }) {
+	const classMatch = suffix.match(/^((?:\.[a-z0-9_-]+)+)/i)
+	if (!classMatch) {
+		return `\${${scopeName}}\${${tagContract}}${suffix}`
+	}
+	const classPart = classMatch[1]
+	const rest = suffix.slice(classPart.length)
+	const { classes } = extractClassesAndSuffix(classPart)
+	const convertedClasses = convertClassList(classes, scopeName, registry, warnings, {
+		elementParent: classes.find((c) => !STATE_ONLY_CLASSES.has(c)) ?? null,
+		ancestorSelector: null,
+		family,
+	})
+	const classTokens = convertedClasses.includes(`\${${scopeName}}`)
+		? convertedClasses.replace(`\${${scopeName}}`, '')
+		: convertedClasses
+	return `\${${scopeName}}\${${tagContract}}${classTokens}${rest}`
+}
+
+function resolveAttributeOnlySegment(segment, scopeName, family) {
+	if (!family) return null
+	if (!/^\[[^\]]+\]/.test(segment)) return null
+	const bracket = segment.match(/^(\[[^\]]+\])/)
+	if (!bracket) return null
+	const attr = bracket[1]
+	const familyElements = ELEMENT_SELECTOR_BY_FAMILY[family]
+	const host =
+		ATTRIBUTE_TO_HOST_CONTRACT[attr] ??
+		familyElements?._attrHost ??
+		familyElements?.button ??
+		null
+	if (!host) return null
+	return `\${${scopeName}}\${${host}}${segment.slice(attr.length)}`
+}
+
+function resolvePseudoOnlySegment(segment, scopeName, family) {
+	if (!family || (!segment.startsWith('::') && !segment.startsWith('::-'))) return null
+	const familyElements = ELEMENT_SELECTOR_BY_FAMILY[family]
+	const host = familyElements?._pseudoHost ?? familyElements?.button ?? 'elButton'
+	return `\${${scopeName}}\${${host}}${segment}`
 }
 
 function convertPseudoSuffix(suffix, scopeName, registry, warnings, context) {
@@ -246,6 +296,12 @@ function convertSimpleSegment(
 	}
 
 	if (!segment.startsWith('.')) {
+		const attrOnly = resolveAttributeOnlySegment(segment, scopeName, family)
+		if (attrOnly) return attrOnly
+
+		const pseudoOnly = resolvePseudoOnlySegment(segment, scopeName, family)
+		if (pseudoOnly) return pseudoOnly
+
 		if (/^h[1-6]$/.test(segment) || segment === 'p' || segment === 'hr' || segment === 'small') {
 			const contract = registry.resolveContractForSelector(segment)
 			if (!contract) {
@@ -257,21 +313,34 @@ function convertSimpleSegment(
 
 		const familyElements = family ? ELEMENT_SELECTOR_BY_FAMILY[family] : null
 		if (familyElements) {
-			const elementMatch = segment.match(/^(\*|[a-z]+)((?:[:[].*)?)$/i)
+			const elementMatch = segment.match(/^(\*|[a-z]+)((?:\.[a-z0-9_-]+)+)?((?:[:[].*)?)$/i)
 			if (elementMatch) {
 				const tag = elementMatch[1].toLowerCase()
 				const suffix = elementMatch[2] ?? ''
 				let contract = familyElements[tag]
-				if (tag === '*' && family === 'contents/tables' && starIndex !== null) {
+				if (tag === '*' && (family === 'contents/tables' || family === 'literal') && starIndex !== null) {
 					contract = resolveTableWildcardContract(starIndex, totalStars, previousSegment)
 				}
 				if (contract) {
+					if (suffix.startsWith('.')) {
+						return convertTagClassSuffix(suffix, scopeName, registry, warnings, {
+							family,
+							tagContract: contract,
+						})
+					}
+					if (suffix.startsWith('[') && suffix.includes('[data-bs-theme')) {
+						return `\${${scopeName}}\${vars}${suffix}`
+					}
 					return `\${${scopeName}}\${${contract}}${suffix}`
 				}
 				if (tag === 'caption') {
 					return 'caption'
 				}
 			}
+		}
+
+		if (segment.startsWith('[') && segment.includes('data-bs-theme')) {
+			return `\${${scopeName}}\${vars}${segment}`
 		}
 
 		if (segment.startsWith(':')) {
@@ -316,7 +385,7 @@ function convertSimpleSegment(
 
 /** In tables family, `> *` cell wildcards match both td and th contracts. */
 function expandTableCellSelectors(veSelector, family) {
-	if (family !== 'contents/tables') return [veSelector]
+	if (family !== 'contents/tables' && family !== 'literal') return [veSelector]
 	if (!/\$\{tableCell\}/.test(veSelector)) return [veSelector]
 	return [veSelector, veSelector.replace(/\$\{tableCell\}/g, '${tableHeaderCell}')]
 }
@@ -324,6 +393,52 @@ function expandTableCellSelectors(veSelector, family) {
 function formatGlobalStyleSelector(selectors) {
 	if (selectors.length === 1) return `\`${selectors[0]}\``
 	return `[\n\t\`${selectors[0]}\`,\n\t\`${selectors[1]}\`,\n]`
+}
+
+function formatMediaQueryKey(media) {
+	const trimmed = media.trim()
+	if (trimmed.startsWith('(') || trimmed.startsWith('screen') || trimmed.startsWith('print')) {
+		return trimmed
+	}
+	return `(${trimmed})`
+}
+
+function appendStyleObjectBody(lines, varsEntries, propEntries, mediaStack = []) {
+	if (!mediaStack.length) {
+		if (varsEntries.length > 0) {
+			lines.push('\tvars: {')
+			lines.push(...varsEntries)
+			lines.push('\t},')
+		}
+		lines.push(...propEntries)
+		return
+	}
+
+	const inner = []
+	if (varsEntries.length > 0) {
+		inner.push('vars: {')
+		inner.push(...varsEntries.map((line) => line.replace(/^\t+/, '')))
+		inner.push('},')
+	}
+	for (const line of propEntries) {
+		inner.push(line.replace(/^\t/, ''))
+	}
+
+	let depth = 1
+	lines.push(`${'\t'.repeat(depth)}'@media': {`)
+	for (const mq of mediaStack) {
+		depth++
+		lines.push(`${'\t'.repeat(depth)}'${formatMediaQueryKey(mq)}': {`)
+	}
+	depth++
+	for (const line of inner) {
+		lines.push(`${'\t'.repeat(depth)}${line}`)
+	}
+	for (let i = mediaStack.length - 1; i >= 0; i--) {
+		depth--
+		lines.push(`${'\t'.repeat(depth + 1)}},`)
+	}
+	lines.push(`${'\t'.repeat(1)}},`)
 }
 
 function appendBtnVariantPaintProps(propEntries, declarations) {
@@ -378,7 +493,7 @@ export function finalizeVeSelector(cssSelector, veSelector, declarations, family
 	}
 
 	if (
-		family === 'ui/card' &&
+		(family === 'ui/card' || family === 'literal') &&
 		normalizeSelector(cssSelector) === '.card-header-tabs .nav-link.active'
 	) {
 		resolvedSelector = resolvedSelector.replace(
@@ -447,7 +562,7 @@ export function finalizeVeSelector(cssSelector, veSelector, declarations, family
 	}
 
 	// Table cell rules: use explicit section/row path (matches hover/striped selectors).
-	if (family === 'contents/tables') {
+	if (family === 'contents/tables' || family === 'literal') {
 		resolvedSelector = resolvedSelector.replace(
 			/:not\(caption\) > \$\{(\w+)\}\$\{tableRow\}/g,
 			'${$1}${tableSection} > ${$1}${tableRow}',
@@ -468,6 +583,7 @@ export function emitGlobalStyleBlock({
 	comment,
 	isDelta = false,
 	family = null,
+	mediaStack = [],
 }) {
 	const { veSelector, warnings } = cssSelectorToVeSelector(cssSelector, scopeName, registry, { family })
 	const { varsEntries, propEntries, unmappedVars } = declarationsToVeProps(declarations, registry)
@@ -503,12 +619,7 @@ export function emitGlobalStyleBlock({
 
 	const selectors = expandTableCellSelectors(resolvedSelector, family)
 	lines.push(`globalStyle(${formatGlobalStyleSelector(selectors)}, {`)
-	if (varsEntries.length > 0) {
-		lines.push('\tvars: {')
-		lines.push(...varsEntries)
-		lines.push('\t},')
-	}
-	lines.push(...propEntries)
+	appendStyleObjectBody(lines, varsEntries, propEntries, mediaStack)
 	lines.push('})')
 	lines.push('')
 

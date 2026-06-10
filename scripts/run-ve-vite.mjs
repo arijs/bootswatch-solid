@@ -4,9 +4,14 @@ import process from 'node:process'
 import { build, createServer, preview } from 'vite'
 
 const quiet = process.argv.includes('--quiet')
-const cliArgs = process.argv.slice(2).filter((arg) => arg !== '--quiet')
+const cliArgs = process.argv.slice(2).filter((arg) => arg !== '--quiet' && arg !== '--')
 const mode = cliArgs[0]
 const projectDir = cliArgs[1] ?? 've-project'
+
+const themeArg = cliArgs.find((arg) => arg.startsWith('--theme='))
+if (themeArg) {
+	process.env.VITE_LITERAL_THEMES = themeArg.slice('--theme='.length)
+}
 const root = path.resolve(process.cwd(), projectDir)
 const configFile = path.resolve(root, 'vite.config.ts')
 const defaultPort = mode === 'dev'

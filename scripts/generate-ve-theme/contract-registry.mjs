@@ -10,6 +10,7 @@ import {
 } from './css-utils.mjs'
 
 const EXPORT_CONST_PATTERN = /export const (\w+) = (?:createVar\(\)|style\(\{)/g
+const VAR_CSS_COMMENT_PATTERN = /\/\/\s*(--bs-[\w-]+)\s*$/
 
 /** Manual overrides where camelCase → kebab does not match Bootstrap class names. */
 const CONTRACT_CLASS_OVERRIDES = {
@@ -54,12 +55,54 @@ function parseExports(source) {
 	return exports
 }
 
+/** Read `// --bs-*` trailing comments on createVar() exports. */
+function parseVarCssComments(source) {
+	const map = new Map()
+	const lines = source.split('\n')
+	for (const line of lines) {
+		const exportMatch = line.match(/export const (\w+) = createVar\(\)/)
+		if (!exportMatch) continue
+		const commentMatch = line.match(VAR_CSS_COMMENT_PATTERN)
+		if (commentMatch) {
+			map.set(commentMatch[1], exportMatch[1])
+			continue
+		}
+		const inline = line.match(/createVar\(\)\s*\/\/\s*(--bs-[\w-]+)/)
+		if (inline) map.set(inline[1], exportMatch[1])
+	}
+	return map
+}
+
+/** Read `// .class-name` lines above auto-generated contract exports. */
+function findCssVarForSymbol(symbol, varCssComments) {
+	for (const [cssVar, sym] of varCssComments.entries()) {
+		if (sym === symbol) return cssVar
+	}
+	return null
+}
+
+function parseGeneratedSelectorComments(source) {
+	const map = new Map()
+	const lines = source.split('\n')
+	for (let i = 0; i < lines.length; i++) {
+		const comment = lines[i].match(/^\/\/\s*(\.[a-z0-9][\w-]*)\s*$/i)
+		if (!comment) continue
+		const next = lines[i + 1] ?? ''
+		const sym = next.match(/export const (\w+) = style\(\{\}\)/)
+		if (sym) map.set(sym[1], comment[1])
+	}
+	return map
+}
+
 function inferFamilyFromPath(filePath) {
 	const rel = path.relative(VE2_CONTRACT_ROOT, filePath).replace(/\\/g, '/')
 	if (rel === '_vars.css.ts') return 'global'
 	if (rel === 'theme-contract.css.ts') return 'root-contract'
+	if (rel.startsWith('global-elements/')) return 'global-elements'
 	if (rel.startsWith('layout/')) return 'layout'
 	if (rel.startsWith('forms/')) return 'forms'
+		if (rel === 'utilities/generated/_vars.css.ts') return 'utilities/generated-vars'
+		if (rel.startsWith('utilities/generated/')) return 'utilities/generated'
 	if (rel.startsWith('utilities/')) return 'utilities'
 	if (rel.startsWith('contents/')) {
 		const parts = rel.split('/')
@@ -93,13 +136,23 @@ export async function buildContractRegistry() {
 		const source = await readFile(filePath, 'utf8')
 		const family = inferFamilyFromPath(filePath)
 		const exports = parseExports(source)
+		const generatedSelectorBySymbol = parseGeneratedSelectorComments(source)
+		const varCssComments = parseVarCssComments(source)
+		for (const [cssVar, sym] of varCssComments.entries()) {
+			cssVarToSymbol.set(cssVar, sym)
+			symbolToCssVar.set(sym, cssVar)
+			allVarSymbols.add(sym)
+			if (family) symbolToFamily.set(sym, family)
+		}
 
 		for (const symbol of exports) {
 			if (symbol.startsWith('varBs')) {
-				const cssVar = symbolToCssVarName(symbol)
-				if (cssVar) {
-					cssVarToSymbol.set(cssVar, symbol)
-					symbolToCssVar.set(symbol, cssVar)
+				if (allVarSymbols.has(symbol)) continue
+				const resolvedCssVar =
+					findCssVarForSymbol(symbol, varCssComments) ?? symbolToCssVarName(symbol)
+				if (resolvedCssVar) {
+					cssVarToSymbol.set(resolvedCssVar, symbol)
+					symbolToCssVar.set(symbol, resolvedCssVar)
 					allVarSymbols.add(symbol)
 					if (family) symbolToFamily.set(symbol, family)
 				}
@@ -112,7 +165,7 @@ export async function buildContractRegistry() {
 				contractsByFamily.get(family).add(symbol)
 			}
 
-			const selector = contractToSelector(symbol)
+			const selector = generatedSelectorBySymbol.get(symbol) ?? contractToSelector(symbol)
 			contractToSelectorMap.set(symbol, selector)
 			if (selector.startsWith('.')) {
 				selectorToContract.set(selector, symbol)
@@ -157,8 +210,11 @@ export async function buildContractRegistry() {
 }
 
 export function getContractImportPath(family) {
+	if (family === 'global-elements') return 'global-elements/contract.css'
 	if (family === 'layout') return 'layout/container.css'
 	if (family === 'forms') return 'forms/contract.css'
+	if (family === 'utilities/generated') return 'utilities/generated/contract.css'
+	if (family === 'utilities/generated-vars') return 'utilities/generated/_vars.css'
 	if (family === 'utilities') return 'utilities/contract.css'
 	if (family.startsWith('contents/')) {
 		const sub = family.split('/')[1]
@@ -173,6 +229,7 @@ export function getContractImportPath(family) {
 
 export function getVarsImportPath(family) {
 	if (family === 'layout') return 'layout/container.css'
+	if (family === 'utilities/generated-vars') return 'utilities/generated/_vars.css'
 	if (family === 'global') return '_vars.css'
 	if (family === 'forms') return 'forms/_vars.css'
 	if (family.startsWith('ui/')) {

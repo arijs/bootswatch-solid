@@ -1,13 +1,18 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
+	bgWarning,
 	progress,
 	progressBar,
-	progressBarWarning,
-	progressBarTextDark,
-} from '../../../theme-contract/ui/progress/contract.css'
+	w75,
+} from '../../../theme-contract/literal/contract.css'
+import { textDark } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',
@@ -19,16 +24,9 @@ const Progress75: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
-		<div class="bd-example-ve2">
-			<div class={`${theme} ${containerFluid}`}>
-				<div class={`${theme} ${progress}`}>
-					<div
-						class={`${theme} ${progressBar} ${progressBarWarning} ${progressBarTextDark}`}
-						style={{ width: '75%' }}
-					>
-						75%
-					</div>
-				</div>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<div class={`${theme} ${progress}`}>
+				<div class={`${theme} ${progressBar} ${bgWarning} ${textDark} ${w75}`}>75%</div>
 			</div>
 		</div>
 	)

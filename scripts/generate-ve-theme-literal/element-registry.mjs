@@ -1,0 +1,93 @@
+/**
+ * Maps bare HTML tag selectors to VE contract symbols.
+ * Prefer existing theme-contract exports; use el* from global-elements when needed.
+ */
+export const TAG_TO_CONTRACT = {
+	abbr: 'elAbbr',
+	address: 'elAddress',
+	b: 'elB',
+	blockquote: 'blockquote',
+	button: 'elButton',
+	caption: 'elCaption',
+	cite: 'elCite',
+	code: 'inlineCode',
+	dd: 'elDd',
+	div: 'elDiv',
+	dl: 'elDl',
+	dt: 'elDt',
+	em: 'elEm',
+	fieldset: 'fieldset',
+	figcaption: 'elFigcaption',
+	figure: 'elFigure',
+	footer: 'elFooter',
+	form: 'elForm',
+	h1: 'h1',
+	h2: 'h2',
+	h3: 'h3',
+	h4: 'h4',
+	h5: 'h5',
+	h6: 'h6',
+	hgroup: 'elHgroup',
+	hr: 'horizontalRule',
+	i: 'elI',
+	iframe: 'elIframe',
+	img: 'elImg',
+	input: 'elInput',
+	kbd: 'elKbd',
+	label: 'elLabel',
+	legend: 'elLegend',
+	li: 'elLi',
+	main: 'elMain',
+	mark: 'markText',
+	nav: 'elNav',
+	ol: 'elOl',
+	optgroup: 'elOptgroup',
+	option: 'elOption',
+	output: 'elOutput',
+	p: 'paragraph',
+	pre: 'elPre',
+	progress: 'elProgress',
+	s: 'elS',
+	samp: 'elSamp',
+	section: 'elSection',
+	select: 'elSelect',
+	small: 'small',
+	span: 'elSpan',
+	strong: 'elStrong',
+	sub: 'elSub',
+	summary: 'elSummary',
+	sup: 'elSup',
+	svg: 'elSvg',
+	table: 'tableElement',
+	tbody: 'tableSection',
+	td: 'tableCell',
+	textarea: 'elTextarea',
+	tfoot: 'tableSection',
+	th: 'tableHeaderCell',
+	thead: 'tableSection',
+	tr: 'tableRow',
+	ul: 'elUl',
+	a: 'link',
+}
+
+/** Attribute selectors → host contract (literal transpiler). */
+export const ATTRIBUTE_TO_HOST_CONTRACT = {
+	'[role=button]': 'elButton',
+	'[type=button]': 'elButton',
+	'[type=reset]': 'elButton',
+	'[type=submit]': 'elButton',
+	'[type=search]': 'elInput',
+	'[hidden]': 'elHidden',
+	'[readonly]': 'elReadonly',
+	'[data-bs-target]': 'elDataBsTarget',
+}
+
+/** Merged into ELEMENT_SELECTOR_BY_FAMILY.literal for the rule transpiler. */
+export const LITERAL_ELEMENT_SELECTOR_MAP = {
+	...Object.fromEntries(Object.entries(TAG_TO_CONTRACT).map(([tag, contract]) => [tag, contract])),
+	_attrHost: 'elButton',
+	_pseudoHost: 'elButton',
+}
+
+/** Tags handled in scope.css.ts — skip duplicate bare rules in literal bundle. */
+export const SCOPE_OWNED_TAGS = new Set(['body'])

@@ -1,5 +1,6 @@
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
+import './styles/cheatsheet.css'
 import PocThemeScopeDemo from './components/poc/PocThemeScopeDemo'
 import { Ve2ShellRuntime } from './components/shell/Ve2ShellRuntime'
 import DangerAlert from './components/ui/alerts/DangerAlert'

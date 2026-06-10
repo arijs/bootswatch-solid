@@ -8,8 +8,14 @@ import {
 	formControlLg,
 	formSelect,
 	formSelectLg,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elSelect,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -25,7 +31,7 @@ const LargeControls: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<div class={`${theme} ${mb3}`}>
 				<input
-					class={`${theme} ${formControl} ${formControlLg}`}
+					class={`${theme} ${elInput} ${formControl} ${formControlLg}`}
 					type="text"
 					placeholder=".form-control-lg"
 					aria-label=".form-control-lg example"
@@ -33,7 +39,7 @@ const LargeControls: Component = () => {
 			</div>
 			<div class={`${theme} ${mb3}`}>
 				<select
-					class={`${theme} ${formSelect} ${formSelectLg} ${mb3}`}
+					class={`${theme} ${elSelect} ${formSelect} ${formSelectLg} ${mb3}`}
 					aria-label=".form-select-lg example"
 				>
 					<option selected>Open this select menu</option>
@@ -45,7 +51,7 @@ const LargeControls: Component = () => {
 			<div class={`${theme} ${mb3}`}>
 				<input
 					type="file"
-					class={`${theme} ${formControl} ${formControlLg}`}
+					class={`${theme} ${elInput} ${formControl} ${formControlLg}`}
 					aria-label="Large file input example"
 				/>
 			</div>

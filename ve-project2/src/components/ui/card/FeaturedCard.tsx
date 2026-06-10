@@ -2,8 +2,8 @@ import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
-import { textMuted } from '../../../theme-contract/utilities/contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
+import { textMuted } from '../../../theme-contract/utilities/contract.css'
 import {
 	card,
 	cardBody,
@@ -21,7 +21,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'utilities',
 ]
 
-const FeaturedCard: Component<{ embedded?: boolean }> = (props) => {
+const FeaturedCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const cardMarkup = (
@@ -43,7 +43,7 @@ const FeaturedCard: Component<{ embedded?: boolean }> = (props) => {
 			</div>
 		</div>
 	)
-	return props.embedded ? cardMarkup : <div class={`bd-example-ve2 ${theme}`}>{cardMarkup}</div>
+	return cardMarkup
 }
 
 export default FeaturedCard

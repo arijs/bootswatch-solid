@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "totalElements": 7,
+    "elementsChecked": 7,
+    "elementsWithGaps": 1,
+    "totalExpected": 4,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/a[1]",
+      "tag": "a",
+      "baselineClasses": [
+        "list-group-item",
+        "list-group-item-action",
+        "list-group-item-warning",
+        "pwhook-list-group-item"
+      ],
+      "expectedSymbols": [
+        "listGroupItem",
+        "listGroupItemAction",
+        "listGroupItemWarning"
+      ],
+      "stampedSymbols": [
+        "listGroupItem",
+        "listGroupItemAction",
+        "listGroupItemWarning"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-list-group-item"
+      ]
+    }
+  ]
+}

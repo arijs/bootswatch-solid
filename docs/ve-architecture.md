@@ -9,6 +9,7 @@ Companion documents:
 
 - [`docs/ve2-migration-playbook.md`](./ve2-migration-playbook.md) — **quick-reference playbook for converting a Bootstrap component family to ve-project2** (start here for a new conversion task).
 - [`docs/ve2-theme-generator.md`](./ve2-theme-generator.md) — **automated generation of `ve-project2/src/themes/{theme}/**` from screenshot CSS artifacts**.
+- [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md) — **implementation plan (v2) for the deterministic 1:1 literal converter** (zero-mismatch, all 27 themes; includes the Bootstrap-JS integration spec for modals/dropdowns/carousels/etc.).
 - [`docs/ve2-debugging-mismatch-walkthrough.md`](./ve2-debugging-mismatch-walkthrough.md) — **step-by-step walkthrough for diagnosing screenshot mismatches** using Playwright computed-style comparison (use this when a diff image is not enough to identify the root cause).
 - [`docs/ve-architecture-v1-history.md`](./ve-architecture-v1-history.md) — archived architecture of the first VE sub-project (`ve-project`), preserved as historical context.
 - [`docs/ve-project1-docs-index.md`](./ve-project1-docs-index.md) — index of all historical docs for ve-project (v1).

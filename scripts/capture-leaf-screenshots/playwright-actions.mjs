@@ -30,37 +30,6 @@ function assertCarouselDirection(rawDirection) {
 	}
 }
 
-async function forceOpenDropdownMenu(locator) {
-	return locator.evaluate((toggle) => {
-		const toggleElement = toggle
-		const labelledBy = toggleElement.getAttribute('id')
-		const scope =
-			toggleElement.closest('.dropdown, .dropup, .dropstart, .dropend, .btn-group') ??
-			toggleElement.parentElement
-
-		let menu = null
-		if (labelledBy) {
-			menu = document.querySelector(`.pwhook-dropdown-menu[aria-labelledby="${labelledBy}"]`)
-		}
-		if (!menu && scope) {
-			menu = scope.querySelector('.pwhook-dropdown-menu')
-		}
-		if (!menu) {
-			return false
-		}
-
-		menu.classList.add('show')
-		toggleElement.classList.add('show')
-		toggleElement.setAttribute('aria-expanded', 'true')
-
-		const container = menu.closest('.dropdown, .dropup, .dropstart, .dropend, .btn-group')
-		if (container) {
-			container.classList.add('show')
-		}
-
-		return true
-	})
-}
 
 async function slideCarouselToIndex(
 	locator,
@@ -459,6 +428,28 @@ export async function stabilizeForScreenshot(page) {
 			}
 			animation.pause()
 		}
+
+		// Border spinners are fully visible at animation t=0; subpixel differences between
+		// WAAPI-seek and static CSS exceed the default 0.001 verify threshold. Pin both
+		// baseline and VE captures to the same static frame (works with .spinner-border
+		// and VE contract classes that keep animation-name: spinner-border).
+		const spinnerBorderNames = new Set(['spinner-border'])
+		const spinnerGrowNames = new Set(['spinner-grow'])
+		for (const element of document.querySelectorAll('*')) {
+			const animationName = getComputedStyle(element).animationName
+			if (!animationName || animationName === 'none') continue
+			const names = animationName.split(',').map((part) => part.trim())
+			if (names.some((name) => spinnerBorderNames.has(name))) {
+				element.style.setProperty('animation', 'none', 'important')
+				element.style.setProperty('transform', 'rotate(0deg)', 'important')
+				continue
+			}
+			if (names.some((name) => spinnerGrowNames.has(name))) {
+				element.style.setProperty('animation', 'none', 'important')
+				element.style.setProperty('opacity', '0', 'important')
+				element.style.setProperty('transform', 'scale(0)', 'important')
+			}
+		}
 	})
 	await delay(80)
 }
@@ -515,29 +506,10 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		}
 		case 'click-visible': {
 			await locator.click({ force: true })
-			try {
-				await page.waitForSelector(scenario.visibleSelector, {
-					state: 'visible',
-					timeout: 5000,
-				})
-			} catch (error) {
-				const isDropdownVisibleSelector =
-					typeof scenario.visibleSelector === 'string' &&
-					scenario.visibleSelector.includes('.pwhook-dropdown-menu.show')
-				if (!isDropdownVisibleSelector) {
-					throw error
-				}
-
-				const forcedOpen = await forceOpenDropdownMenu(locator)
-				if (!forcedOpen) {
-					throw error
-				}
-
-				await page.waitForSelector(scenario.visibleSelector, {
-					state: 'visible',
-					timeout: 1500,
-				})
-			}
+			await page.waitForSelector(scenario.visibleSelector, {
+				state: 'visible',
+				timeout: 5000,
+			})
 			break
 		}
 		case 'carousel-to-index': {

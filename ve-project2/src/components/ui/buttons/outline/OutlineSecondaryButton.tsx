@@ -1,8 +1,19 @@
+import {
+	elButton,
+} from '../../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../../context/ThemeContext'
-import { btn, btnOutlineSecondary, inputFontFamily } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../../context/ThemeContext'
 import { containerFluid } from '../../../../theme-contract/layout/container.css'
+import {
+	btn,
+	btnOutlineSecondary,
+	inputFontFamily,
+} from '../../../../theme-contract/ui/buttons/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
@@ -15,7 +26,10 @@ const OutlineSecondaryButton: Component = () => {
 
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<button type="button" class={`${theme} ${btn} ${btnOutlineSecondary} ${inputFontFamily} pwhook-btn`}>
+			<button
+				type="button"
+				class={`${theme} ${elButton} ${btn} ${btnOutlineSecondary} ${inputFontFamily} pwhook-btn`}
+			>
 				Secondary
 			</button>
 		</div>

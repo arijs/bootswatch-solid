@@ -1,15 +1,27 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { h5 } from '../../../theme-contract/contents/heading/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { btnClose, fade } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
-import { btn, btnPrimary, btnSecondary, inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
+import {
+	btn,
+	btnPrimary,
+	btnSecondary,
+	inputFontFamily,
+} from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	actionsRow,
-	fade,
 	flexWrap,
 	justifyContentBetween,
 	modal,
@@ -40,14 +52,21 @@ const StaticBackdropModal: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const modalName = modal
-	configureVeModal({ name: modalName, fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
+	configureVeModal({
+		name: modalName,
+		modalBackdrop: `${theme} ${modalBackdrop}`,
+		modalBody,
+		modalDialog,
+		modalOpenHook,
+		modalShowHook,
+	})
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
 				<div class={`${theme} ${dFlex} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
 					<button
 						type="button"
-						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
+						class={`${theme} ${elButton} ${btn} ${btnPrimary} pwhook-modal-trigger`}
 						data-bs-toggle={modalName}
 						data-bs-target={`#staticBackdropLive`}
 					>
@@ -74,7 +93,7 @@ const StaticBackdropModal: Component = () => {
 							</h5>
 							<button
 								type="button"
-								class={`${theme} ${alertBtnClose} ${inputFontFamily}`}
+								class={`${theme} ${elButton} ${alertBtnClose} ${btnClose} ${inputFontFamily}`}
 								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
@@ -88,12 +107,12 @@ const StaticBackdropModal: Component = () => {
 						<div class={`${theme} ${modalFooter}`}>
 							<button
 								type="button"
-								class={`${theme} ${btn} ${btnSecondary}`}
+								class={`${theme} ${elButton} ${btn} ${btnSecondary}`}
 								data-bs-dismiss={`.${modalName}`}
 							>
 								Close
 							</button>
-							<button type="button" class={`${theme} ${btn} ${btnPrimary}`}>
+							<button type="button" class={`${theme} ${elButton} ${btn} ${btnPrimary}`}>
 								Understood
 							</button>
 						</div>

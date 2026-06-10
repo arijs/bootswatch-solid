@@ -9,8 +9,14 @@ import {
 	formControl,
 	formControlFloating,
 	formFloating,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -28,22 +34,22 @@ const FloatingLabelsExample: Component = () => {
 				<div class={`${theme} ${formFloating} ${mb3}`}>
 					<input
 						type="email"
-						class={`${theme} ${formControl} ${formControlFloating}`}
+						class={`${theme} ${elInput} ${formControl} ${formControlFloating}`}
 						id="floatingInput"
 						placeholder="name@example.com"
 					/>
-					<label class={`${theme} ${floatingLabel}`} for="floatingInput">
+					<label class={`${theme} ${elLabel} ${floatingLabel}`} for="floatingInput">
 						Email address
 					</label>
 				</div>
 				<div class={`${theme} ${formFloating}`}>
 					<input
 						type="password"
-						class={`${theme} ${formControl} ${formControlFloating}`}
+						class={`${theme} ${elInput} ${formControl} ${formControlFloating}`}
 						id="floatingPassword"
 						placeholder="Password"
 					/>
-					<label class={`${theme} ${floatingLabel}`} for="floatingPassword">
+					<label class={`${theme} ${elLabel} ${floatingLabel}`} for="floatingPassword">
 						Password
 					</label>
 				</div>

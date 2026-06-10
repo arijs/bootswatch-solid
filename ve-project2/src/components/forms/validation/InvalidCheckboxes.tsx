@@ -4,16 +4,22 @@ import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
-	colMd6,
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
-	g3,
 	invalidFeedback,
 	isInvalid,
+} from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	colMd6,
+	g3,
 	row,
 	rowCol,
-} from '../../../theme-contract/forms/contract.css'
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -31,13 +37,13 @@ const InvalidCheckboxes: Component = () => {
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
 					<div class={`${theme} ${formCheck}`}>
 						<input
-							class={`${theme} ${formCheckInput} ${isInvalid}`}
+							class={`${theme} ${elInput} ${formCheckInput} ${isInvalid}`}
 							type="checkbox"
 							value=""
 							id="invalidCheck3"
 							required
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="invalidCheck3">
+						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="invalidCheck3">
 							Agree to terms and conditions
 						</label>
 						<div class={`${theme} ${invalidFeedback}`}>You must agree before submitting.</div>
@@ -46,14 +52,14 @@ const InvalidCheckboxes: Component = () => {
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
 					<div class={`${theme} ${formCheck}`}>
 						<input
-							class={`${theme} ${formCheckInput} ${isInvalid}`}
+							class={`${theme} ${elInput} ${formCheckInput} ${isInvalid}`}
 							type="checkbox"
 							value=""
 							id="invalidCheck4"
 							required
 							checked
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="invalidCheck4">
+						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="invalidCheck4">
 							Do NOT Agree to terms and conditions
 						</label>
 						<div class={`${theme} ${invalidFeedback}`}>You must agree before submitting.</div>

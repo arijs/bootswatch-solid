@@ -1,13 +1,18 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	blockquote,
 	blockquoteFooter,
 	paragraph,
 } from '../../../theme-contract/contents/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { clsBlockquote } from '../../../theme-contract/literal/contract.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
@@ -21,8 +26,10 @@ const Blockquote: Component = () => {
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
-			<blockquote class={`${theme} ${blockquote}`}>
-				<p class={`${theme} ${paragraph}`}>A well-known quote, contained in a blockquote element.</p>
+			<blockquote class={`${theme} ${blockquote} ${clsBlockquote}`}>
+				<p class={`${theme} ${paragraph}`}>
+					A well-known quote, contained in a blockquote element.
+				</p>
 				<footer class={`${theme} ${blockquoteFooter}`}>
 					Someone famous in <cite title="Source Title">Source Title</cite>
 				</footer>

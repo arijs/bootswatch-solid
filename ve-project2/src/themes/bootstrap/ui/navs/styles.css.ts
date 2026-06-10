@@ -35,6 +35,7 @@ import {
 import {
 	fade,
 	nav,
+	navButtonReset,
 	navItem,
 	navItemShow,
 	navLink,
@@ -71,6 +72,20 @@ globalStyle(`${bootstrapScope}${nav}`, {
 	paddingLeft: 0,
 	marginBottom: 0,
 	listStyle: "none",
+})
+
+globalStyle(`${bootstrapScope}${navButtonReset}`, {
+	margin: 0,
+	fontFamily: "inherit",
+	fontSize: "inherit",
+	lineHeight: "inherit",
+	textTransform: "none",
+	appearance: "button",
+	borderRadius: 0,
+})
+
+globalStyle(`${bootstrapScope}${navButtonReset}:not(:disabled)`, {
+	cursor: "pointer",
 })
 
 // SOURCE CSS:

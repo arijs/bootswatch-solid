@@ -61,6 +61,9 @@ const {
 	maxThemes,
 	maxThemesSpecified,
 	requestedWidth,
+	ve2StyleLoader,
+	bailOnMismatch,
+	skipToRoute,
 } = parseCaptureCli()
 
 async function main() {
@@ -202,7 +205,12 @@ async function main() {
 
 	const themeNames = parseThemeNames(themeSource)
 	let themes = filterThemes(themeNames, themeFilter)
-	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
+	let scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
+	if (skipToRoute) {
+		const normalizedSkip = skipToRoute.startsWith('/') ? skipToRoute : `/${skipToRoute}`
+		scenarios = scenarios.filter((s) => s.route >= normalizedSkip)
+		console.log(`Mode: skipping routes before ${normalizedSkip} (--skip-to-route).`)
+	}
 
 	// Apply max-themes limit for safety
 	const themesBeforeLimit = themes.length
@@ -270,6 +278,12 @@ async function main() {
 		assertVeBuildOutputExists()
 	} else if (veVerificationEnabled) {
 		console.log('Mode: Forcing VE rebuild to ensure Vanilla Extract artifacts are current.')
+		if (themeFilter != null && themeFilter.size > 0 && !process.env.VITE_LITERAL_THEMES) {
+			process.env.VITE_LITERAL_THEMES = [...themeFilter].join(',')
+			console.log(
+				`Mode: restricting literal build to themes: ${process.env.VITE_LITERAL_THEMES}`,
+			)
+		}
 		buildVe2Project()
 		assertVe2BuildOutputExists()
 	} else if (buildBeforeCapture) {
@@ -328,6 +342,9 @@ async function main() {
 			ve1VerificationEnabled,
 			veVerificationEnabled,
 			verificationMaxDiffRatio,
+			ve2StyleLoader,
+			bailOnMismatch,
+			skipToRoute,
 			previewServerManager,
 		})
 	} finally {

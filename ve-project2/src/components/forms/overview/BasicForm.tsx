@@ -8,8 +8,14 @@ import {
 	formControl,
 	formLabel,
 	formText,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -25,12 +31,12 @@ const BasicForm: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<form class={`${theme} ${form}`}>
 				<div class={`${theme} ${mb3}`}>
-					<label for="exampleInputEmail1" class={`${theme} ${formLabel}`}>
+					<label for="exampleInputEmail1" class={`${theme} ${elLabel} ${formLabel}`}>
 						Email address
 					</label>
 					<input
 						type="email"
-						class={`${theme} ${formControl} pwhook-form-control`}
+						class={`${theme} ${elInput} ${formControl} pwhook-form-control`}
 						id="exampleInputEmail1"
 						aria-describedby="emailHelp"
 					/>
@@ -39,12 +45,12 @@ const BasicForm: Component = () => {
 					</div>
 				</div>
 				<div class={`${theme} ${mb3}`}>
-					<label for="exampleInputPassword1" class={`${theme} ${formLabel}`}>
+					<label for="exampleInputPassword1" class={`${theme} ${elLabel} ${formLabel}`}>
 						Password
 					</label>
 					<input
 						type="password"
-						class={`${theme} ${formControl} pwhook-form-control`}
+						class={`${theme} ${elInput} ${formControl} pwhook-form-control`}
 						id="exampleInputPassword1"
 					/>
 				</div>

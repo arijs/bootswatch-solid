@@ -10,9 +10,9 @@ import {
 	varBsPrimaryRgb,
 	varBsSecondaryRgb,
 	varBsSuccessRgb,
-	varBsTextOpacity,
 	varBsWarningRgb,
 } from '../../../../theme-contract/_vars.css'
+import { varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 import {
 	varBsBadgeBorderRadius,
 	varBsBadgeColor,
@@ -42,6 +42,7 @@ import {
 	badgeRoundedPill,
 	badgeSecondary,
 	badgeSuccess,
+	badgeTextDark,
 	badgeWarning,
 } from '../../../../theme-contract/ui/badge/contract.css'
 import { bootstrapScope } from '../../scope.css'
@@ -144,11 +145,9 @@ globalStyle(`${bootstrapScope}${badge}:empty`, {
 	display: "none",
 })
 
-// SOURCE CSS:
-// .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
-// [UNMAPPED_VAR] --bs-text-opacity
-globalStyle(`${bootstrapScope}${badgeLight}`, {
-	color: `rgba(var(--bs-dark-rgb), ${varBsTextOpacity} ) !important`,
+globalStyle(`${bootstrapScope}${badgeTextDark}`, {
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
 })
 
 // SOURCE CSS:

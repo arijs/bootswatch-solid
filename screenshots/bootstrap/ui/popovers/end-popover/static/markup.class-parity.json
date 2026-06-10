@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "totalElements": 6,
+    "elementsChecked": 6,
+    "elementsWithGaps": 1,
+    "totalExpected": 7,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-secondary",
+        "pwhook-popover-trigger"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnSecondary"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnSecondary"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-popover-trigger"
+      ]
+    }
+  ]
+}

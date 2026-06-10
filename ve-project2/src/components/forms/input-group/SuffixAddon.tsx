@@ -7,8 +7,13 @@ import {
 	formControl,
 	inputGroup,
 	inputGroupText,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -25,7 +30,7 @@ const SuffixAddon: Component = () => {
 			<div class={`${theme} ${inputGroup} ${mb3}`}>
 				<input
 					type="text"
-					class={`${theme} ${formControl}`}
+					class={`${theme} ${elInput} ${formControl}`}
 					placeholder="Recipient's username"
 					aria-label="Recipient's username"
 					aria-describedby="basic-addon2"

@@ -43,11 +43,14 @@ import {
 	alertBtnCloseDisabledHook,
 } from '../../../../theme-contract/ui/alerts/contract.css'
 import {
+	placeholderIcon,
 	toast,
 	toastBody,
+	toastBrand,
 	toastFade,
 	toastHeader,
 	toastShow,
+	toastTimestamp,
 } from '../../../../theme-contract/ui/toasts/contract.css'
 import {
 	alignItemsCenter,
@@ -191,6 +194,11 @@ globalStyle(`${bootstrapScope}${toastHeader}`, {
 globalStyle(`${bootstrapScope}${toastHeader} ${bootstrapScope}${alertBtnClose}`, {
 	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
 	marginLeft: varBsToastPaddingX,
+	fontSize: 'inherit',
+	lineHeight: 'inherit',
+	fontFamily: 'inherit',
+	appearance: 'button',
+	WebkitAppearance: 'button',
 })
 
 // SOURCE CSS:
@@ -198,6 +206,24 @@ globalStyle(`${bootstrapScope}${toastHeader} ${bootstrapScope}${alertBtnClose}`,
 globalStyle(`${bootstrapScope}${toastBody}`, {
 	padding: varBsToastPaddingX,
 	wordWrap: "break-word",
+})
+
+globalStyle(`${bootstrapScope}${placeholderIcon}`, {
+	verticalAlign: 'middle',
+	width: '20px',
+	height: '20px',
+	borderRadius: `${varBsBorderRadius} !important`,
+	marginRight: '0.5rem !important',
+})
+
+globalStyle(`${bootstrapScope}${toastBrand}`, {
+	fontWeight: 'bolder',
+	marginRight: 'auto !important',
+})
+
+globalStyle(`${bootstrapScope}${toastTimestamp}`, {
+	fontSize: '0.875em',
+	color: `${varBsSecondaryColor} !important`,
 })
 
 // SOURCE CSS:

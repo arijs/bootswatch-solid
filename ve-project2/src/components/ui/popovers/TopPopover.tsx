@@ -1,20 +1,34 @@
+import {
+	elButton,
+} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { h3 } from '../../../theme-contract/contents/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	border,
+	bsPopoverAuto,
+	fade,
+	flexColumn,
+	justifyContentEnd,
+	popover,
+} from '../../../theme-contract/literal/contract.css'
+import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
-import { fade } from '../../../theme-contract/ui/modal/contract.css'
 import {
-frame,
-frameColumn,
-justifyEnd,
-popoverArrow,
-popoverBody,
-popoverHeader,
-popoverShow,
-popoverVe,
+	frame,
+	frameColumn,
+	justifyEnd,
+	popoverArrow,
+	popoverBody,
+	popoverHeader,
+	popoverVe,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import { createVePopover } from './ve-popover'
 
@@ -27,29 +41,31 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 ]
 
 const TopPopover: Component = () => {
-const theme = useContext(ThemeContext)
+	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-const VePopover = createVePopover({ popoverArrow, popoverHeader, popoverBody, popoverShow })
+	const VePopover = createVePopover({ popoverArrow, popoverHeader, popoverBody })
 
-return (
-<div class={`bd-example ${theme} ${containerFluid} ${frame} ${frameColumn} ${justifyEnd}`}>
-<button
-type="button"
-class={`${theme} ${btn} ${btnSecondary} pwhook-popover-trigger`}
-data-bs-container="body"
+	return (
+		<div
+			class={`bd-example ${theme} ${containerFluid} ${frame} ${frameColumn} ${justifyEnd} ${dFlex} ${flexColumn} ${alignItemsCenter} ${justifyContentEnd} ${border}`}
+		>
+			<button
+				type="button"
+				class={`${theme} ${elButton} ${btn} ${btnSecondary} pwhook-popover-trigger`}
+				data-bs-container="body"
 				data-bs-toggle="popover"
-ref={(popover) =>
-new VePopover(popover, {
-template: `<div class="${popoverVe} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
-})
-}
-data-bs-placement="top"
-data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
->
-Popover on top
-</button>
-</div>
-)
+				ref={(el) =>
+					new VePopover(el, {
+						template: `<div class="${popoverVe} ${popover} ${bsPopoverAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
+					})
+				}
+				data-bs-placement="top"
+				data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+			>
+				Popover on top
+			</button>
+		</div>
+	)
 }
 
 export default TopPopover

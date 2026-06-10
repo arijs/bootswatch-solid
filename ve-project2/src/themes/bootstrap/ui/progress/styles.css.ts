@@ -3,12 +3,13 @@ import {
 	varBsBorderRadius,
 	varBsBoxShadowInset,
 	varBsDangerRgb,
+	varBsDarkRgb,
 	varBsInfoRgb,
 	varBsSecondaryBg,
 	varBsSuccessRgb,
-	varBsTextOpacity,
 	varBsWarningRgb,
 } from '../../../../theme-contract/_vars.css'
+import { varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 import {
 	varBsProgressBarBg,
 	varBsProgressBarColor,
@@ -88,7 +89,8 @@ globalStyle(`${bootstrapScope}${progressBarSuccess}`, {
 // .text-dark { --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
 // [UNMAPPED_VAR] --bs-text-opacity
 globalStyle(`${bootstrapScope}${progressBarTextDark}`, {
-	color: `rgba(var(--bs-dark-rgb), ${varBsTextOpacity} ) !important`,
+	vars: { [varBsTextOpacity]: '1' },
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
 })
 
 // SOURCE CSS:

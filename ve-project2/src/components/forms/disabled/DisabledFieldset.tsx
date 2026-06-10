@@ -9,8 +9,15 @@ import {
 	formControl,
 	formLabel,
 	formSelect,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import {
+	elInput,
+	elLabel,
+	elSelect,
+} from '../../../theme-contract/global-elements/contract.css'
+import {
+	mb3,
+} from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -27,21 +34,21 @@ const DisabledFieldset: Component = () => {
 			<form class={`${theme} ${form}`}>
 				<fieldset class={`${theme} ${fieldset}`} disabled aria-label="Disabled fieldset example">
 					<div class={`${theme} ${mb3}`}>
-						<label for="disabledTextInput" class={`${theme} ${formLabel}`}>
+						<label for="disabledTextInput" class={`${theme} ${elLabel} ${formLabel}`}>
 							Disabled input
 						</label>
 						<input
 							type="text"
 							id="disabledTextInput"
-							class={`${theme} ${formControl}`}
+							class={`${theme} ${elInput} ${formControl}`}
 							placeholder="Disabled input"
 						/>
 					</div>
 					<div class={`${theme} ${mb3}`}>
-						<label for="disabledSelect" class={`${theme} ${formLabel}`}>
+						<label for="disabledSelect" class={`${theme} ${elLabel} ${formLabel}`}>
 							Disabled select menu
 						</label>
-						<select id="disabledSelect" class={`${theme} ${formSelect}`}>
+						<select id="disabledSelect" class={`${theme} ${elSelect} ${formSelect}`}>
 							<option>Disabled select</option>
 						</select>
 					</div>

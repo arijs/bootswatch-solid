@@ -1,19 +1,27 @@
 import { useLocation } from '@solidjs/router'
-import type { JSX } from 'solid-js'
+import { createMemo, type JSX, Show } from 'solid-js'
 import { Ve2GranularShell } from './Ve2GranularShell'
 import { Ve2Shell } from './Ve2Shell'
 
-function useGranularStyleLoaderEnabled(): boolean {
+function useStyleLoaderMode(): () => 'theme' | 'granular' | 'literal' {
 	const location = useLocation()
-	const params = new URLSearchParams(location.search)
-	const mode = params.get('style-loader') ?? params.get('styleLoader')
-	return mode !== 'theme'
+	return createMemo(() => {
+		const params = new URLSearchParams(location.search)
+		const mode = params.get('style-loader') ?? params.get('styleLoader')
+		if (mode === 'literal') return 'literal'
+		if (mode === 'granular' || mode === 'families') return 'granular'
+		return 'theme'
+	})
 }
 
 export function Ve2ShellRuntime(props: { children?: JSX.Element | undefined }) {
-	return useGranularStyleLoaderEnabled() ? (
-		<Ve2GranularShell>{props.children}</Ve2GranularShell>
-	) : (
-		<Ve2Shell>{props.children}</Ve2Shell>
+	const mode = useStyleLoaderMode()
+	return (
+		<Show
+			when={mode() === 'granular'}
+			fallback={<Ve2Shell literalStyles={mode() === 'literal'}>{props.children}</Ve2Shell>}
+		>
+			<Ve2GranularShell>{props.children}</Ve2GranularShell>
+		</Show>
 	)
 }

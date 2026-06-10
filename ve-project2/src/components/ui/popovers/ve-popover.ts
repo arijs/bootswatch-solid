@@ -1,11 +1,11 @@
 import * as bootstrap from 'bootstrap'
+import { show } from '../../../theme-contract/literal/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VePopoverRuntimeClasses {
 	popoverArrow: string
 	popoverHeader: string
 	popoverBody: string
-	popoverShow: string
 }
 
 export function createVePopover(runtime: VePopoverRuntimeClasses): typeof bootstrap.Popover {
@@ -15,6 +15,6 @@ export function createVePopover(runtime: VePopoverRuntimeClasses): typeof bootst
 		SELECTOR_ARROW: `.${runtime.popoverArrow}`,
 		SELECTOR_TITLE: `.${runtime.popoverHeader}`,
 		SELECTOR_CONTENT: `.${runtime.popoverBody}`,
-		CLASS_NAME_SHOW: runtime.popoverShow,
+		CLASS_NAME_SHOW: show,
 	}) as typeof bootstrap.Popover
 }
