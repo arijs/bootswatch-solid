@@ -19,3 +19,4 @@ dist
 /scripts/debug-*.mjs
 /scripts/tmp-*.mjs
 *.elements.xml
+/debug*.*
