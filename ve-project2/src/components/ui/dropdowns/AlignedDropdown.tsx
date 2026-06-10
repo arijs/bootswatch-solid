@@ -22,7 +22,7 @@ import {
 	dropstart,
 	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
-import { h6 } from '../../../theme-contract/contents/contract.css'
+import { h6, horizontalRule } from '../../../theme-contract/contents/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 
@@ -71,7 +71,7 @@ const AlignedDropdown: Component = () => {
 							</a>
 						</li>
 						<li>
-							<hr class={`${theme} ${dropdownDivider}`} />
+							<hr class={`${theme} ${horizontalRule} ${dropdownDivider}`} />
 						</li>
 						<li>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}

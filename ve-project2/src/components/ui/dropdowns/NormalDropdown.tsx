@@ -4,7 +4,7 @@ import {
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { h6 } from '../../../theme-contract/contents/contract.css'
+import { h6, horizontalRule } from '../../../theme-contract/contents/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import type { Ve2StyleFamily } from '../../../theme-runtime/style-families'
 import { useVe2RequiredStyleFamilies } from '../../../theme-runtime/style-loader-context'
@@ -73,7 +73,7 @@ const NormalDropdown: Component = () => {
 						</a>
 					</li>
 					<li>
-						<hr class={`${theme} ${dropdownDivider}`} />
+						<hr class={`${theme} ${horizontalRule} ${dropdownDivider}`} />
 					</li>
 					<li>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}

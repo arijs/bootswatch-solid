@@ -23,7 +23,7 @@ import {
 	parseBootstrapCss,
 	walkCssEmitUnits,
 } from '../generate-ve-theme-literal/parse-css-tree.mjs'
-import { applySplitProps, findDivergence } from './divergence-manifest.mjs'
+import { applySplitProps, findAdditions, findDivergence } from './divergence-manifest.mjs'
 import { buildLiteralRegistry } from './registry.mjs'
 import { splitByCombinators, splitSelectorList } from './selector-parser.mjs'
 import { cssPropToVeKey, formatVeValue, parseVeValue } from './value-format.mjs'
@@ -445,7 +445,7 @@ export async function emitLiteralStyles(theme, opts = {}) {
 
 		if (filter && !selector.toLowerCase().includes(filter.toLowerCase())) continue
 
-		// Divergence manifest check
+		// Primary divergence — intercepts and replaces normal processing
 		const divergence = findDivergence(selector)
 		if (divergence) {
 			if (divergence.action === 'skip') {
@@ -459,6 +459,21 @@ export async function emitLiteralStyles(theme, opts = {}) {
 					if (decls.propLines.length === 0 && decls.varLines.length === 0) continue
 					const veSelector = `${ref(scopeVarName)}${ref(contractName)}`
 					usedRootSymbols.add(contractName)
+					bodyLines.push(emitGlobalStyle(veSelector, decls, media))
+					report.emitted++
+				}
+				continue
+			}
+			if (divergence.action === 'overrideSelector') {
+				// Build VE selector from the manifest-specified contract list
+				const veSelector = ref(scopeVarName) + divergence.contracts.map(ref).join('')
+				for (const sym of divergence.contracts) {
+					if (ROOT_CONTRACT_SYMBOLS.has(sym)) usedRootSymbols.add(sym)
+					else if (ELEMENT_CONTRACT_VALUES.has(sym)) usedElementSymbols.add(sym)
+					else usedClassSymbols.add(sym)
+				}
+				const decls = translateDeclarations(declarations, cssVarToSymbol, usedVarSymbols)
+				if (decls.propLines.length > 0 || decls.varLines.length > 0) {
 					bodyLines.push(emitGlobalStyle(veSelector, decls, media))
 					report.emitted++
 				}
@@ -499,6 +514,23 @@ export async function emitLiteralStyles(theme, opts = {}) {
 				usedElementSymbols.add(sym)
 			} else {
 				usedClassSymbols.add(sym)
+			}
+		}
+
+		// Additive divergences — emit extra rules without replacing the original
+		for (const addition of findAdditions(selector)) {
+			if (addition.action === 'addMirrorRule') {
+				const fromRef = ref(addition.substitute.fromContract)
+				const toRef = ref(addition.substitute.toContract)
+				const mirrorSelector = veSelector.replaceAll(fromRef, toRef)
+				if (mirrorSelector !== veSelector) {
+					bodyLines.push(emitGlobalStyle(mirrorSelector, decls, media))
+					report.emitted++
+					const sym = addition.substitute.toContract
+					if (ROOT_CONTRACT_SYMBOLS.has(sym)) usedRootSymbols.add(sym)
+					else if (ELEMENT_CONTRACT_VALUES.has(sym)) usedElementSymbols.add(sym)
+					else usedClassSymbols.add(sym)
+				}
 			}
 		}
 	}

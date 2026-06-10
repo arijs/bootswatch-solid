@@ -20,11 +20,13 @@
 
 /**
  * @typedef {Object} Divergence
- * @property {string}     id      - Stable kebab-case identifier
- * @property {{ selector?: string }} match - Source selector to intercept
- * @property {'splitProps'|'skip'} action
- * @property {PropRoute[]} [routes] - For splitProps: where each prop group goes
- * @property {string}     reason
+ * @property {string}   id     - Stable kebab-case identifier
+ * @property {{ selector?: string, selectorContains?: string }} match
+ * @property {'splitProps'|'skip'|'overrideSelector'|'addMirrorRule'} action
+ * @property {PropRoute[]} [routes]           - splitProps: prop→contract routes
+ * @property {string[]}    [contracts]        - overrideSelector: ordered contract symbols
+ * @property {{ fromContract: string, toContract: string }} [substitute] - addMirrorRule
+ * @property {string}   reason
  */
 
 /** @type {Divergence[]} */
@@ -55,31 +57,69 @@ export const divergences = [
 			'carry ${theme} ${vars} ${bodyText} explicitly so --bs-* vars resolve outside the scope tree.',
 	},
 
-	// --------------------------------------------------------------------
-	// Future entries go here, each with a reason.
-	// Example shape:
-	// {
-	//   id: 'example-skip',
-	//   match: { selector: '.some-selector' },
-	//   action: 'skip',
-	//   reason: 'Handled entirely by the JS adapter; no static CSS needed.',
-	// },
-	// --------------------------------------------------------------------
+	// ---- JS-adapter hook remaps ----
+
+	{
+		id: 'dropdown-menu-show',
+		match: { selector: '.dropdown-menu.show' },
+		action: 'overrideSelector',
+		contracts: ['dropdownMenu', 'dropdownMenuShow'],
+		reason:
+			'VE Bootstrap JS (ve-dropdown.ts) stamps dropdownMenuShow on the visible menu, ' +
+			'not the literal show contract. The source .dropdown-menu.show rule must target ' +
+			'dropdownMenuShow so the menu becomes visible when the dropdown opens.',
+	},
+
+	{
+		id: 'btn-show-hook',
+		match: { selectorContains: '.btn.show' },
+		action: 'addMirrorRule',
+		substitute: { fromContract: 'show', toContract: 'btnShowHook' },
+		reason:
+			'VE Bootstrap JS (ve-dropdown.ts CLASS_NAME_SHOW_TRIGGER=btnShowHook) stamps ' +
+			'btnShowHook on the trigger button when a dropdown opens, not the literal show ' +
+			'contract. Mirror every .btn.show rule with btnShowHook so trigger-button active ' +
+			'styling fires.',
+	},
 ]
 
 // ---------------------------------------------------------------------------
 // Helpers used by the emitter
 // ---------------------------------------------------------------------------
 
+/** Actions that intercept (replace) normal rule processing. */
+const INTERCEPTING_ACTIONS = new Set(['skip', 'splitProps', 'overrideSelector'])
+
 /**
- * Find a divergence entry for the given CSS selector.
- * Returns the matching Divergence or null.
+ * Find the primary divergence that intercepts normal processing for a selector.
+ * Only matches entries whose action replaces the default translation.
  *
  * @param {string} cssSelector - normalized selector string
  */
 export function findDivergence(cssSelector) {
 	const trimmed = cssSelector.trim()
-	return divergences.find((d) => d.match.selector === trimmed) ?? null
+	return (
+		divergences.find(
+			(d) => INTERCEPTING_ACTIONS.has(d.action) && d.match.selector === trimmed,
+		) ?? null
+	)
+}
+
+/**
+ * Find all additive divergences for a selector.
+ * These run after normal processing and ADD extra rules without replacing it.
+ *
+ * @param {string} cssSelector - normalized selector string
+ * @returns {Divergence[]}
+ */
+export function findAdditions(cssSelector) {
+	const trimmed = cssSelector.trim()
+	return divergences.filter((d) => {
+		if (INTERCEPTING_ACTIONS.has(d.action)) return false
+		if (d.match.selector) return d.match.selector === trimmed
+		if (d.match.selectorContains) return trimmed.includes(d.match.selectorContains)
+		return false
+	})
 }
 
 /**

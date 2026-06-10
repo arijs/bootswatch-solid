@@ -1,4 +1,4 @@
-import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
+import { globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import { bootstrapScope } from '../scope.css'
 
 import {
@@ -104,7 +104,7 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
-import { containerFluid, varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
+import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
 	varBsAccordionActiveBg,
 	varBsAccordionActiveColor,
@@ -449,128 +449,21 @@ import {
 
 import {
 	blockquote,
-	blockquoteFooter,
 	horizontalRule,
 	inlineCode,
-	lead,
 	link,
 	markText,
 	paragraph,
 	small,
-	smallText,
 } from '../../../theme-contract/contents/basic/contract.css'
 import {
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
 	tableCell,
-	tableDanger,
-	tableDark,
 	tableElement,
-	tableGroupDivider,
 	tableHeaderCell,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
 	tableRow,
-	tableSecondary,
 	tableSection,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
 } from '../../../theme-contract/contents/tables/contract.css'
-import {
-	figure,
-	figureCaption,
-	figureImg,
-	imgFluid,
-	imgThumbnail,
-	rounded,
-} from '../../../theme-contract/contents/images/contract.css'
-import {
-	fieldset,
-	floatingLabel,
-	form,
-	formCheck,
-	formCheckInput,
-	formCheckLabel,
-	formControl,
-	formControlFloating,
-	formControlLg,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
-	hasValidation,
-	inputGroup,
-	inputGroupText,
-	invalidFeedback,
-	isInvalid,
-	isValid,
-	legend,
-	legendClear,
-	validFeedback,
-	wasValidated,
-} from '../../../theme-contract/forms/contract.css'
-import {
-	alignItemsCenter,
-	alignSelfStart,
-	bgDark,
-	col,
-	colMd2,
-	colMd3,
-	colMd4,
-	colMd5,
-	colMd6,
-	colMd8,
-	colSm6,
-	dFlex,
-	fwBold,
-	g0,
-	g3,
-	g4,
-	mb2,
-	mb3,
-	mbLg0,
-	mbXl2,
-	mbXl5,
-	me2,
-	meAuto,
-	mt5,
-	mtXl0,
-	overflowXHidden,
-	p5,
-	pb2,
-	pbXl3,
-	positionRelative,
-	pt3,
-	ptXl5,
-	px2,
-	px3,
-	row,
-	rowCol,
-	rowCols1,
-	rowColsMd2,
-	stickyXlTop,
-	textDark,
-	textMuted,
-	visuallyHidden,
-} from '../../../theme-contract/utilities/contract.css'
+import { fieldset } from '../../../theme-contract/forms/contract.css'
 import {
 	elAbbr,
 	elAddress,
@@ -580,7 +473,6 @@ import {
 	elDd,
 	elDl,
 	elDt,
-	elFieldset,
 	elFigure,
 	elIframe,
 	elImg,
@@ -610,34 +502,17 @@ import {
 	h4,
 	h5,
 	h6,
-} from '../../../theme-contract/contents/heading/contract.css'
-import {
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-} from '../../../theme-contract/contents/display/contract.css'
-import {
-	listBase,
-	listIndented,
-	listInline,
-	listInlineItem,
-	listNested,
-	listUnstyled,
-} from '../../../theme-contract/contents/lists/contract.css'
+} from '../../../theme-contract/utilities/generated/contract.css'
+
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
+	accordionFlush,
 	accordionHeader,
 	accordionItem,
-} from '../../../theme-contract/ui/accordion/contract.css'
-
-import {
+	active,
 	alert,
 	alertDanger,
 	alertDark,
@@ -650,169 +525,6 @@ import {
 	alertSecondary,
 	alertSuccess,
 	alertWarning,
-} from '../../../theme-contract/ui/alerts/contract.css'
-import {
-	badge,
-} from '../../../theme-contract/ui/badge/contract.css'
-import {
-	breadcrumb,
-	breadcrumbItem,
-} from '../../../theme-contract/ui/breadcrumb/contract.css'
-import {
-	btnGroup,
-	btnToolbar,
-} from '../../../theme-contract/ui/button-group/contract.css'
-import {
-	btn,
-	btnCheck,
-	btnDanger,
-	btnDark,
-	btnInfo,
-	btnLg,
-	btnLight,
-	btnLink,
-	btnOutlineDanger,
-	btnOutlineDark,
-	btnOutlineInfo,
-	btnOutlineLight,
-	btnOutlinePrimary,
-	btnOutlineSecondary,
-	btnOutlineSuccess,
-	btnOutlineWarning,
-	btnPrimary,
-	btnSecondary,
-	btnSm,
-	btnSuccess,
-	btnWarning,
-} from '../../../theme-contract/ui/buttons/contract.css'
-import {
-	cardHeaderTabs,
-} from '../../../theme-contract/ui/card-tabs/contract.css'
-import {
-	card,
-	cardBody,
-	cardFooter,
-	cardHeader,
-	cardImgTop,
-	cardLink,
-	cardText,
-	cardTitle,
-} from '../../../theme-contract/ui/card/contract.css'
-import {
-	carousel,
-	carouselCaption,
-	carouselControlNext,
-	carouselControlNextIcon,
-	carouselControlPrev,
-	carouselControlPrevIcon,
-	carouselIndicators,
-	carouselInner,
-	carouselItem,
-	carouselItemEnd,
-	carouselItemNext,
-	carouselItemPrev,
-	carouselItemStart,
-} from '../../../theme-contract/ui/carousel/contract.css'
-import {
-	btnShowHook,
-	dropdown,
-	dropdownDivider,
-	dropdownHeader,
-	dropdownItem,
-	dropdownMenu,
-	dropdownMenuEnd,
-	dropdownMenuShow,
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../theme-contract/ui/dropdowns/contract.css'
-import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
-} from '../../../theme-contract/ui/list-group/contract.css'
-import {
-	flexWrap,
-	justifyContentBetween,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFooter,
-	modalFullscreen,
-	modalHeader,
-	modalShowHook,
-	modalTitle,
-} from '../../../theme-contract/ui/modal/contract.css'
-import {
-	navbar,
-	navbarBrand,
-	navbarCollapse,
-	navbarExpandLg,
-	navbarNav,
-	navbarToggler,
-	navbarTogglerIcon,
-} from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	nav,
-	navItem,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-	tabContent,
-	tabPane,
-} from '../../../theme-contract/ui/navs/contract.css'
-import {
-	pageItem,
-	pageItemActive,
-	pageItemDisabled,
-	pageLink,
-	pagination,
-	paginationLg,
-	paginationSm,
-} from '../../../theme-contract/ui/pagination/contract.css'
-import {
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
-} from '../../../theme-contract/ui/popovers/contract.css'
-import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
-import {
-	spinnerBorder,
-	spinnerGrow,
-} from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	toast,
-	toastBody,
-	toastFade,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	tooltipArrow,
-	tooltipInner,
-} from '../../../theme-contract/ui/tooltips/contract.css'
-import { textCenter } from '../../../theme-contract/utilities/generated/contract.css'
-import {
-	accordionFlush,
-	active,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -852,6 +564,7 @@ import {
 	alignContentXxlStart,
 	alignContentXxlStretch,
 	alignItemsBaseline,
+	alignItemsCenter,
 	alignItemsEnd,
 	alignItemsLgBaseline,
 	alignItemsLgCenter,
@@ -903,6 +616,7 @@ import {
 	alignSelfSmEnd,
 	alignSelfSmStart,
 	alignSelfSmStretch,
+	alignSelfStart,
 	alignSelfStretch,
 	alignSelfXlAuto,
 	alignSelfXlBaseline,
@@ -919,12 +633,14 @@ import {
 	alignTextBottom,
 	alignTextTop,
 	alignTop,
+	badge,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
 	bgDanger,
 	bgDangerSubtle,
+	bgDark,
 	bgDarkSubtle,
 	bgGradient,
 	bgInfo,
@@ -947,6 +663,7 @@ import {
 	bgWarningSubtle,
 	bgWhite,
 	bi,
+	blockquoteFooter,
 	border,
 	border0,
 	border1,
@@ -988,6 +705,8 @@ import {
 	bottom0,
 	bottom100,
 	bottom50,
+	breadcrumb,
+	breadcrumbItem,
 	bsPopoverAuto,
 	bsPopoverBottom,
 	bsPopoverEnd,
@@ -998,20 +717,66 @@ import {
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
+	btn,
+	btnCheck,
 	btnClose,
 	btnCloseWhite,
+	btnDanger,
+	btnDark,
+	btnGroup,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	btnInfo,
+	btnLg,
+	btnLight,
+	btnLink,
+	btnOutlineDanger,
+	btnOutlineDark,
+	btnOutlineInfo,
+	btnOutlineLight,
+	btnOutlinePrimary,
+	btnOutlineSecondary,
+	btnOutlineSuccess,
+	btnOutlineWarning,
+	btnPrimary,
+	btnSecondary,
+	btnShowHook,
+	btnSm,
+	btnSuccess,
+	btnToolbar,
+	btnWarning,
 	captionTop,
+	card,
+	cardBody,
+	cardFooter,
 	cardGroup,
+	cardHeader,
 	cardHeaderPills,
+	cardHeaderTabs,
 	cardImg,
 	cardImgBottom,
 	cardImgOverlay,
+	cardImgTop,
+	cardLink,
 	cardSubtitle,
+	cardText,
+	cardTitle,
+	carousel,
+	carouselCaption,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
 	carouselDark,
 	carouselFade,
+	carouselIndicators,
+	carouselInner,
+	carouselItem,
+	carouselItemEnd,
+	carouselItemNext,
+	carouselItemPrev,
+	carouselItemStart,
 	clearfix,
 	clsBlockquote,
 	clsH1,
@@ -1021,6 +786,7 @@ import {
 	clsH5,
 	clsH6,
 	clsSmall,
+	col,
 	col1,
 	col10,
 	col11,
@@ -1056,7 +822,13 @@ import {
 	colMd10,
 	colMd11,
 	colMd12,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
 	colMd7,
+	colMd8,
 	colMd9,
 	colMdAuto,
 	colSm,
@@ -1068,6 +840,7 @@ import {
 	colSm3,
 	colSm4,
 	colSm5,
+	colSm6,
 	colSm7,
 	colSm8,
 	colSm9,
@@ -1141,12 +914,14 @@ import {
 	columnGapXxl4,
 	columnGapXxl5,
 	container,
+	containerFluid,
 	containerLg,
 	containerMd,
 	containerSm,
 	containerXl,
 	containerXxl,
 	dBlock,
+	dFlex,
 	dGrid,
 	dInline,
 	dInlineBlock,
@@ -1223,13 +998,26 @@ import {
 	dXxlTableCell,
 	dXxlTableRow,
 	disabled,
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+	dropdown,
 	dropdownCenter,
+	dropdownDivider,
+	dropdownHeader,
+	dropdownItem,
 	dropdownItemText,
+	dropdownMenu,
 	dropdownMenuDark,
+	dropdownMenuEnd,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -1237,11 +1025,19 @@ import {
 	dropdownMenuXlStart,
 	dropdownMenuXxlEnd,
 	dropdownMenuXxlStart,
+	dropdownToggle,
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
 	dropupCenter,
 	end0,
 	end100,
 	end50,
 	fade,
+	figure,
+	figureCaption,
+	figureImg,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -1290,6 +1086,7 @@ import {
 	flexSmShrink1,
 	flexSmWrap,
 	flexSmWrapReverse,
+	flexWrap,
 	flexWrapReverse,
 	flexXlColumn,
 	flexXlColumnReverse,
@@ -1343,10 +1140,24 @@ import {
 	focusRingSuccess,
 	focusRingWarning,
 	fontMonospace,
+	formCheck,
 	formCheckInline,
+	formCheckInput,
+	formCheckLabel,
 	formCheckReverse,
+	formControl,
 	formControlColor,
+	formControlLg,
 	formControlPlaintext,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
 	fs1,
 	fs2,
 	fs3,
@@ -1355,14 +1166,18 @@ import {
 	fs6,
 	fstItalic,
 	fstNormal,
+	fwBold,
 	fwBolder,
 	fwLight,
 	fwLighter,
 	fwMedium,
 	fwNormal,
 	fwSemibold,
+	g0,
 	g1,
 	g2,
+	g3,
+	g4,
 	g5,
 	gLg0,
 	gLg1,
@@ -1507,16 +1322,25 @@ import {
 	h50,
 	h75,
 	hAuto,
+	hasValidation,
 	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
+	imgFluid,
+	imgThumbnail,
 	initialism,
+	inputGroup,
 	inputGroupLg,
 	inputGroupSm,
+	inputGroupText,
+	invalidFeedback,
 	invalidTooltip,
 	invisible,
+	isInvalid,
+	isValid,
 	justifyContentAround,
+	justifyContentBetween,
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentEvenly,
@@ -1551,6 +1375,7 @@ import {
 	justifyContentXxlEnd,
 	justifyContentXxlEvenly,
 	justifyContentXxlStart,
+	lead,
 	lh1,
 	lhBase,
 	lhLg,
@@ -1601,13 +1426,28 @@ import {
 	linkUnderlineSuccess,
 	linkUnderlineWarning,
 	linkWarning,
+	listGroup,
+	listGroupFlush,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
 	listGroupHorizontalSm,
 	listGroupHorizontalXl,
 	listGroupHorizontalXxl,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
 	listGroupNumbered,
+	listInline,
+	listInlineItem,
+	listUnstyled,
 	m0,
 	m1,
 	m2,
@@ -1653,9 +1493,12 @@ import {
 	mark,
 	mb0,
 	mb1,
+	mb2,
+	mb3,
 	mb4,
 	mb5,
 	mbAuto,
+	mbLg0,
 	mbLg1,
 	mbLg2,
 	mbLg3,
@@ -1678,8 +1521,10 @@ import {
 	mbSmAuto,
 	mbXl0,
 	mbXl1,
+	mbXl2,
 	mbXl3,
 	mbXl4,
+	mbXl5,
 	mbXlAuto,
 	mbXxl0,
 	mbXxl1,
@@ -1690,9 +1535,11 @@ import {
 	mbXxlAuto,
 	me0,
 	me1,
+	me2,
 	me3,
 	me4,
 	me5,
+	meAuto,
 	meLg0,
 	meLg1,
 	meLg2,
@@ -1731,14 +1578,25 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFooter,
+	modalFullscreen,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
 	modalFullscreenXlDown,
 	modalFullscreenXxlDown,
+	modalHeader,
 	modalLg,
 	modalSm,
 	modalStatic,
+	modalTitle,
 	modalXl,
 	ms0,
 	ms1,
@@ -1787,6 +1645,7 @@ import {
 	mt2,
 	mt3,
 	mt4,
+	mt5,
 	mtAuto,
 	mtLg0,
 	mtLg1,
@@ -1809,6 +1668,7 @@ import {
 	mtSm4,
 	mtSm5,
 	mtSmAuto,
+	mtXl0,
 	mtXl1,
 	mtXl2,
 	mtXl3,
@@ -1907,17 +1767,29 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
+	nav,
 	navFill,
+	navItem,
 	navJustified,
+	navLink,
+	navPills,
+	navTabs,
 	navUnderline,
+	navbar,
+	navbarBrand,
+	navbarCollapse,
 	navbarDark,
 	navbarExpand,
+	navbarExpandLg,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	navbarNav,
 	navbarNavScroll,
 	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -2091,6 +1963,7 @@ import {
 	overflowScroll,
 	overflowVisible,
 	overflowXAuto,
+	overflowXHidden,
 	overflowXScroll,
 	overflowXVisible,
 	overflowYAuto,
@@ -2102,6 +1975,7 @@ import {
 	p2,
 	p3,
 	p4,
+	p5,
 	pLg0,
 	pLg1,
 	pLg2,
@@ -2132,8 +2006,14 @@ import {
 	pXxl3,
 	pXxl4,
 	pXxl5,
+	pageItem,
+	pageLink,
+	pagination,
+	paginationLg,
+	paginationSm,
 	pb0,
 	pb1,
+	pb2,
 	pb3,
 	pb4,
 	pb5,
@@ -2158,6 +2038,7 @@ import {
 	pbXl0,
 	pbXl1,
 	pbXl2,
+	pbXl3,
 	pbXl4,
 	pbXl5,
 	pbXxl0,
@@ -2212,8 +2093,12 @@ import {
 	placeholderXs,
 	pointerEvent,
 	popover,
+	popoverArrow,
+	popoverBody,
+	popoverHeader,
 	positionAbsolute,
 	positionFixed,
+	positionRelative,
 	positionStatic,
 	positionSticky,
 	progress,
@@ -2260,6 +2145,7 @@ import {
 	pt0,
 	pt1,
 	pt2,
+	pt3,
 	pt4,
 	pt5,
 	ptLg0,
@@ -2285,6 +2171,7 @@ import {
 	ptXl2,
 	ptXl3,
 	ptXl4,
+	ptXl5,
 	ptXxl0,
 	ptXxl1,
 	ptXxl2,
@@ -2293,6 +2180,8 @@ import {
 	ptXxl5,
 	px0,
 	px1,
+	px2,
+	px3,
 	px4,
 	px5,
 	pxLg0,
@@ -2366,6 +2255,7 @@ import {
 	ratio1x1,
 	ratio21x9,
 	ratio4x3,
+	rounded,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -2410,6 +2300,8 @@ import {
 	roundedTop5,
 	roundedTopCircle,
 	roundedTopPill,
+	row,
+	rowCols1,
 	rowCols2,
 	rowCols3,
 	rowCols4,
@@ -2424,6 +2316,7 @@ import {
 	rowColsLg6,
 	rowColsLgAuto,
 	rowColsMd1,
+	rowColsMd2,
 	rowColsMd3,
 	rowColsMd4,
 	rowColsMd5,
@@ -2492,7 +2385,9 @@ import {
 	shadowSm,
 	show,
 	showing,
+	spinnerBorder,
 	spinnerBorderSm,
+	spinnerGrow,
 	spinnerGrowSm,
 	start0,
 	start100,
@@ -2506,9 +2401,35 @@ import {
 	stickySmTop,
 	stickyTop,
 	stickyXlBottom,
+	stickyXlTop,
 	stickyXxlBottom,
 	stickyXxlTop,
 	stretchedLink,
+	tabContent,
+	tabPane,
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableDanger,
+	tableDark,
+	tableGroupDivider,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableSecondary,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
 	textBgDanger,
 	textBgDark,
 	textBgInfo,
@@ -2525,8 +2446,10 @@ import {
 	textBodyTertiary,
 	textBreak,
 	textCapitalize,
+	textCenter,
 	textDanger,
 	textDangerEmphasis,
+	textDark,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
@@ -2543,6 +2466,7 @@ import {
 	textMdCenter,
 	textMdEnd,
 	textMdStart,
+	textMuted,
 	textNowrap,
 	textOpacity100,
 	textOpacity25,
@@ -2572,8 +2496,13 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
+	toast,
+	toastBody,
 	toastContainer,
+	toastHeader,
 	tooltip,
+	tooltipArrow,
+	tooltipInner,
 	top0,
 	top100,
 	top50,
@@ -2583,9 +2512,11 @@ import {
 	userSelectAll,
 	userSelectAuto,
 	userSelectNone,
+	validFeedback,
 	validTooltip,
 	vh100,
 	visible,
+	visuallyHidden,
 	visuallyHiddenFocusable,
 	vr,
 	vstack,
@@ -2595,6 +2526,7 @@ import {
 	w50,
 	w75,
 	wAuto,
+	wasValidated,
 	z0,
 	z1,
 	z2,
@@ -2913,10 +2845,6 @@ globalStyle(`${bootstrapScope}${small}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${bootstrapScope}${smallText}`, {
-	fontSize: '0.875em',
-})
-
 globalStyle(`${bootstrapScope}${clsSmall}`, {
 	fontSize: '0.875em',
 })
@@ -3103,12 +3031,6 @@ globalStyle(`${bootstrapScope}${elLabel}`, {
 
 globalStyle(`${bootstrapScope}${elButton}`, {
 	borderRadius: '0',
-	margin: '0',
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
-	lineHeight: 'inherit',
-	textTransform: 'none',
-	overflow: 'visible',
 })
 
 globalStyle(`${bootstrapScope}${elButton}:focus:not(:focus-visible)`, {
@@ -3122,12 +3044,18 @@ globalStyle(`${bootstrapScope}${elInput}`, {
 	lineHeight: 'inherit',
 })
 
+globalStyle(`${bootstrapScope}${elButton}`, {
+	margin: '0',
+	fontFamily: 'inherit',
+	fontSize: 'inherit',
+	lineHeight: 'inherit',
+})
+
 globalStyle(`${bootstrapScope}${elSelect}`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
-	textTransform: 'none',
 })
 
 globalStyle(`${bootstrapScope}${elOptgroup}`, {
@@ -3214,26 +3142,6 @@ globalStyle(`${bootstrapScope}${fieldset}`, {
 	padding: '0',
 	margin: '0',
 	border: '0',
-})
-
-globalStyle(`${bootstrapScope}${elFieldset}`, {
-	minWidth: '0',
-	padding: '0',
-	margin: '0',
-	border: '0',
-})
-
-globalStyle(`${bootstrapScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
-})
-
-globalStyle(`${bootstrapScope}${legendClear}`, {
-	clear: 'left',
 })
 
 globalStyle(`${bootstrapScope}${elLegend}`, {
@@ -3425,19 +3333,6 @@ globalStyle(`${bootstrapScope}${display6}`, {
 			fontSize: '2.5rem',
 		},
 	},
-})
-
-globalStyle(`${bootstrapScope}${listBase}`, {
-	marginTop: '0',
-	marginBottom: '1rem',
-})
-
-globalStyle(`${bootstrapScope}${listNested}`, {
-	marginBottom: '0',
-})
-
-globalStyle(`${bootstrapScope}${listIndented}`, {
-	paddingLeft: '2rem',
 })
 
 globalStyle(`${bootstrapScope}${listUnstyled}`, {
@@ -6713,10 +6608,10 @@ globalStyle(`${bootstrapScope}${table}`, {
 
 globalStyle(`${bootstrapScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: fallbackVar(varBsTableColorState, varBsTableColorType, varBsTableColor),
+	color: varBsTableColorState,
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, varBsTableBgType)}`,
+	boxShadow: `inset 0 0 0 9999px ${varBsTableBgState}`,
 })
 
 globalStyle(`${bootstrapScope}${table} > ${bootstrapScope}${tableSection}`, {
@@ -7231,12 +7126,11 @@ globalStyle(`${bootstrapScope}${formSelect}`, {
 	fontWeight: '400',
 	lineHeight: '1.5',
 	color: varBsBodyColor,
-	wordWrap: 'normal',
 	WebkitAppearance: 'none',
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: varBsBodyBg,
-	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
+	backgroundImage: `${varBsFormSelectBgImg}, ${varBsFormSelectBgIcon}`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 0.75rem center',
 	backgroundSize: '16px 12px',
@@ -7271,7 +7165,6 @@ globalStyle(`${bootstrapScope}${formSelect}[size]:not([size="1"])`, {
 
 globalStyle(`${bootstrapScope}${formSelect}:disabled`, {
 	backgroundColor: varBsSecondaryBg,
-	opacity: '1',
 })
 
 globalStyle(`${bootstrapScope}${formSelect}:-moz-focusring`, {
@@ -7614,7 +7507,7 @@ globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formSelect}`,
 	lineHeight: '1.25',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${elLabel}`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7633,7 +7526,7 @@ globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${floatingLabel
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${elLabel}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7693,27 +7586,27 @@ globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formSelect}`,
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:focus ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:focus ~ ${bootstrapScope}${elLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:not(:placeholder-shown) ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:not(:placeholder-shown) ~ ${bootstrapScope}${elLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControlPlaintext} ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControlPlaintext} ~ ${bootstrapScope}${elLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formSelect} ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formSelect} ~ ${bootstrapScope}${elLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:-webkit-autofill ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:-webkit-autofill ~ ${bootstrapScope}${elLabel}`, {
 	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:focus ~ ${bootstrapScope}${floatingLabel}::after`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${elTextarea}:focus ~ ${bootstrapScope}${elLabel}::after`, {
 	position: 'absolute',
 	inset: '1rem 0.375rem',
 	zIndex: '-1',
@@ -7723,7 +7616,7 @@ globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:not(:placeholder-shown) ~ ${bootstrapScope}${floatingLabel}::after`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${elTextarea}:not(:placeholder-shown) ~ ${bootstrapScope}${elLabel}::after`, {
 	position: 'absolute',
 	inset: '1rem 0.375rem',
 	zIndex: '-1',
@@ -7733,19 +7626,19 @@ globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > :disabled ~ ${bootstrapScope}${floatingLabel}::after`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${elTextarea}:disabled ~ ${bootstrapScope}${elLabel}::after`, {
 	backgroundColor: varBsSecondaryBg,
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControlPlaintext} ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControlPlaintext} ~ ${bootstrapScope}${elLabel}`, {
 	borderWidth: `${varBsBorderWidth} 0`,
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > :disabled ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > :disabled ~ ${bootstrapScope}${elLabel}`, {
 	color: '#6c757d',
 })
 
-globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:disabled ~ ${bootstrapScope}${floatingLabel}`, {
+globalStyle(`${bootstrapScope}${formFloating} > ${bootstrapScope}${formControl}:disabled ~ ${bootstrapScope}${elLabel}`, {
 	color: '#6c757d',
 })
 
@@ -9292,7 +9185,6 @@ globalStyle(`${bootstrapScope}${dropdownDivider}`, {
 	height: '0',
 	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: 'hidden',
-	border: '0',
 	borderTop: `1px solid ${varBsDropdownDividerBg}`,
 	opacity: '1',
 })
@@ -9641,7 +9533,7 @@ globalStyle(`${bootstrapScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
 })
 
-globalStyle(`${bootstrapScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${bootstrapScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -9683,7 +9575,7 @@ globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -9713,7 +9605,7 @@ globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -9746,7 +9638,7 @@ globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}:focus`
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -9910,7 +9802,7 @@ globalStyle(`${bootstrapScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10673,7 +10565,7 @@ globalStyle(`${bootstrapScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -10888,13 +10780,13 @@ globalStyle(`${bootstrapScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${bootstrapScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${bootstrapScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${bootstrapScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -10958,7 +10850,7 @@ globalStyle(`${bootstrapScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${accordionItem}:last-of-type > ${bootstrapScope}${accordionHeader} ${bootstrapScope}${accordionButton}${accordionButtonCollapsed}`, {
+globalStyle(`${bootstrapScope}${accordionItem}:last-of-type > ${bootstrapScope}${accordionHeader} ${bootstrapScope}${accordionButton}${collapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -11012,7 +10904,6 @@ globalStyle(`${bootstrapScope}${breadcrumb}`, {
 		[varBsBreadcrumbMarginBottom]: '1rem',
 		[varBsBreadcrumbBg]: '',
 		[varBsBreadcrumbBorderRadius]: '',
-		[varBsBreadcrumbDivider]: '"/"',
 		[varBsBreadcrumbDividerColor]: varBsSecondaryColor,
 		[varBsBreadcrumbItemPaddingX]: '0.5rem',
 		[varBsBreadcrumbItemActiveColor]: varBsSecondaryColor,
@@ -11105,28 +10996,28 @@ globalStyle(`${bootstrapScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${bootstrapScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${bootstrapScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${pageItem}${pageItemActive} > ${bootstrapScope}${pageLink}`, {
+globalStyle(`${bootstrapScope}${active} > ${bootstrapScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${bootstrapScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${pageItem}${pageItemDisabled} > ${bootstrapScope}${pageLink}`, {
+globalStyle(`${bootstrapScope}${disabled} > ${bootstrapScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -11163,12 +11054,6 @@ globalStyle(`${bootstrapScope}${paginationSm}`, {
 		[varBsPaginationFontSize]: '0.875rem',
 		[varBsPaginationBorderRadius]: varBsBorderRadiusSm,
 	},
-})
-
-globalStyle(`${bootstrapScope}${scrollspyExample}`, {
-	height: '200px',
-	overflowY: 'auto',
-	marginTop: '0.5rem',
 })
 
 globalStyle(`${bootstrapScope}${badge}`, {
@@ -12020,19 +11905,11 @@ globalStyle(`${bootstrapScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${toastFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${bootstrapScope}${toastFade}:not(${toastShow})`, {
+globalStyle(`${bootstrapScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${bootstrapScope}${toast}${toastShowing}`, {
-	opacity: '0',
-})
-
-globalStyle(`${bootstrapScope}${toast}:not(${toastShow})`, {
+globalStyle(`${bootstrapScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 
@@ -12129,12 +12006,8 @@ globalStyle(`${bootstrapScope}${modal}${fade} ${bootstrapScope}${modalDialog}`, 
 	},
 })
 
-globalStyle(`${bootstrapScope}${modal}${modalShowHook} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${show} ${bootstrapScope}${modalDialog}`, {
 	transform: 'none',
-})
-
-globalStyle(`${bootstrapScope}${modal}${modalShowHook}`, {
-	opacity: '1',
 })
 
 globalStyle(`${bootstrapScope}${modal}${modalStatic} ${bootstrapScope}${modalDialog}`, {
@@ -12193,7 +12066,7 @@ globalStyle(`${bootstrapScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${bootstrapScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${bootstrapScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 
