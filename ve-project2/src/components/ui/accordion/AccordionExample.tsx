@@ -9,7 +9,8 @@ import {
 } from '../../../context/ThemeContext'
 import { h4, inlineCode } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapse, show } from '../../../theme-contract/literal/contract.css'
+import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
+import { show } from '../../../theme-contract/ui/navs/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
 	accordion,

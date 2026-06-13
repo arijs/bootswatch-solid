@@ -10,13 +10,15 @@ import {
 } from '../../../context/ThemeContext'
 import { paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { active, fade, show } from '../../../theme-contract/literal/contract.css'
+import { active } from '../../../theme-contract/literal/contract.css'
 import {
+	fade,
 	nav,
 	navButtonReset,
 	navLink,
 	navLinkActive,
 	navTabs,
+	show,
 	tabContent,
 	tabPane,
 	tabPaneActive,

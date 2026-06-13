@@ -741,6 +741,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1016,6 +1017,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8354,6 +8356,12 @@ globalStyle(`${vaporScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${vaporScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${vaporScope}${btnCheck}:checked + ${vaporScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8371,6 +8379,10 @@ globalStyle(`${vaporScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${vaporScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${vaporScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9265,7 +9277,7 @@ globalStyle(`${vaporScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${vaporScope}${dropdownMenu}${show}`, {
+globalStyle(`${vaporScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 

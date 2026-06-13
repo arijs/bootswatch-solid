@@ -69,6 +69,9 @@ import {
 import {
 	dFlex,
 } from '../../../../theme-contract/utilities/contract.css'
+import {
+	clsH4,
+} from '../../../../theme-contract/literal/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/modal
@@ -307,6 +310,21 @@ globalStyle(`${bootstrapScope}${modalHeader} ${bootstrapScope}${alertBtnClose}`,
 globalStyle(`${bootstrapScope}${h5}${modalTitle}`, {
 	marginBottom: 0,
 	lineHeight: varBsModalTitleLineHeight,
+})
+
+// DISAMBIGUATION: .modal-title stamped on the Bootstrap .h4 utility class (on an h5 element).
+// Literal CSS is dead code in VE — clsH4 carries no rules. The ${h5}${modalTitle} rule above
+// only fires when the heading contract's h5 class is present (as in DefaultModal). FullscreenModal
+// uses clsH4 instead, so the title renders as unstyled body text (16px, weight 400).
+// This combined rule ports the h4 heading styles + modal-title overrides for the actual
+// combination ve-project2 components stamp together.
+globalStyle(`${bootstrapScope}${clsH4}${modalTitle}`, {
+	fontSize: `calc(1.275rem + 0.3vw)`,
+	fontWeight: 500,
+	color: varBsHeadingColor,
+	lineHeight: varBsModalTitleLineHeight,
+	marginBottom: 0,
+	marginTop: 0,
 })
 
 // SOURCE CSS:

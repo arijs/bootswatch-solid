@@ -10,7 +10,7 @@ import {
 } from '../../../context/ThemeContext'
 import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btnClose, clsH4, fade } from '../../../theme-contract/literal/contract.css'
+import { btnClose, clsH4 } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
@@ -74,7 +74,7 @@ const FullscreenModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} ${fade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
 				id="exampleModalFullscreen"
 				tabindex="-1"
 				role="dialog"

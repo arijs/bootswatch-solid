@@ -6,13 +6,8 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import {
-	bgSuccess,
-	progress,
-	progressBar,
-	progressBarAnimated,
-	progressBarStriped,
-} from '../../../theme-contract/literal/contract.css'
+import { bgSuccess } from '../../../theme-contract/literal/contract.css'
+import { progress, progressBar, progressBarAnimated, progressBarStriped } from '../../../theme-contract/ui/progress/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',

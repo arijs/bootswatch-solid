@@ -745,6 +745,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1025,6 +1026,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8377,6 +8379,12 @@ globalStyle(`${sketchyScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${sketchyScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8394,6 +8402,10 @@ globalStyle(`${sketchyScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${sketchyScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sketchyScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9288,7 +9300,7 @@ globalStyle(`${sketchyScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${sketchyScope}${dropdownMenu}${show}`, {
+globalStyle(`${sketchyScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 

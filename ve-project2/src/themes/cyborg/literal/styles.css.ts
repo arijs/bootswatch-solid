@@ -741,6 +741,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1016,6 +1017,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8370,6 +8372,12 @@ globalStyle(`${cyborgScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${cyborgScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${cyborgScope}${btnCheck}:checked + ${cyborgScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8387,6 +8395,10 @@ globalStyle(`${cyborgScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${cyborgScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${cyborgScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9281,7 +9293,7 @@ globalStyle(`${cyborgScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${cyborgScope}${dropdownMenu}${show}`, {
+globalStyle(`${cyborgScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 

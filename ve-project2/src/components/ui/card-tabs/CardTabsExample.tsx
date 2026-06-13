@@ -31,7 +31,7 @@ import {
 	navTabs,
 } from '../../../theme-contract/ui/navs/contract.css'
 import { col, g4, row } from '../../../theme-contract/utilities/contract.css'
-import { textCenter } from '../../../theme-contract/utilities/generated/contract.css'
+import { textCenter } from '../../../theme-contract/literal/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card-tabs',

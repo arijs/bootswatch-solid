@@ -741,6 +741,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1016,6 +1017,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8369,6 +8371,13 @@ globalStyle(`${zephyrScope}${btn}${show}`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
+globalStyle(`${zephyrScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
+})
+
 globalStyle(`${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -8386,6 +8395,10 @@ globalStyle(`${zephyrScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${zephyrScope}${btn}${show}:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
+globalStyle(`${zephyrScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
@@ -9284,7 +9297,7 @@ globalStyle(`${zephyrScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${zephyrScope}${dropdownMenu}${show}`, {
+globalStyle(`${zephyrScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 

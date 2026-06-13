@@ -70,6 +70,7 @@ globalStyle(`${bootstrapScope}${nav}`, {
 	display: "flex",
 	flexWrap: "wrap",
 	paddingLeft: 0,
+	marginTop: 0,
 	marginBottom: 0,
 	listStyle: "none",
 })
@@ -241,7 +242,7 @@ globalStyle(`${bootstrapScope}${tabContent} > ${bootstrapScope}${tabPane}`, {
 
 // SOURCE CSS:
 // .tab-content > .active { display: block; }
-globalStyle(`${bootstrapScope}${tabContent} > ${tabPaneActive}`, {
+globalStyle(`${bootstrapScope}${tabContent} > ${bootstrapScope}${tabPaneActive}`, {
 	display: "block",
 })
 

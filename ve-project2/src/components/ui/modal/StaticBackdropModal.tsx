@@ -11,7 +11,7 @@ import {
 import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btnClose, fade } from '../../../theme-contract/literal/contract.css'
+import { btnClose } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
@@ -75,7 +75,7 @@ const StaticBackdropModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} ${fade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
 				id="staticBackdropLive"
 				data-bs-backdrop="static"
 				data-bs-keyboard="false"

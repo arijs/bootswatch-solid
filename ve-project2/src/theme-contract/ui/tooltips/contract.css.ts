@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css'
 import { varBsBorderColor, varBsBorderStyle, varBsBorderWidth } from '../../_vars.css'
 
 export const tooltipVe = style({})
+export const tooltipFade = style({})
 export const tooltipShow = style({})
 export const tooltipArrow = style({})
 export const tooltipInner = style({})

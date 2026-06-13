@@ -12,8 +12,6 @@ import { h3 } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	border,
-	bsPopoverAuto,
-	fade,
 	flexRow,
 	justifyContentStart,
 	popover,
@@ -22,11 +20,13 @@ import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contr
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
+	bsPopoverAuto,
 	frame,
 	frameRow,
 	justifyStart,
 	popoverArrow,
 	popoverBody,
+	popoverFade,
 	popoverHeader,
 	popoverVe,
 } from '../../../theme-contract/ui/popovers/contract.css'
@@ -56,7 +56,7 @@ const EndPopover: Component = () => {
 				data-bs-toggle="popover"
 				ref={(el) =>
 					new VePopover(el, {
-						template: `<div class="${popoverVe} ${popover} ${bsPopoverAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
+						template: `<div class="${popoverVe} ${popover} ${bsPopoverAuto} ${popoverFade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
 					})
 				}
 				data-bs-placement="right"

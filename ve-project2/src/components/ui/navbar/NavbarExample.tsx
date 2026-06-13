@@ -16,7 +16,6 @@ import {
 	alignTop,
 	bgLight,
 	bgPrimary,
-	collapse,
 	dInlineBlock,
 	disabled,
 	navbarDark,
@@ -26,6 +25,7 @@ import {
 	btn,
 	btnOutlineDark,
 	btnOutlineLight,
+	inputFontFamily,
 } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	dropdown,
@@ -35,6 +35,7 @@ import {
 	dropdownToggle,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
+	collapse,
 	navbar,
 	navbarBgLight,
 	navbarBrand,
@@ -89,7 +90,7 @@ const NavbarExample: Component = () => {
 						/>
 					</a>
 					<button
-						class={`${theme} ${elButton} ${navbarToggler}`}
+						class={`${theme} ${elButton} ${inputFontFamily} ${navbarToggler}`}
 						type="button"
 						aria-controls="navbarSupportedContent"
 						aria-expanded="false"
@@ -193,7 +194,7 @@ const NavbarExample: Component = () => {
 								placeholder="Search"
 								aria-label="Search"
 							/>
-							<button class={`${theme} ${elButton} ${btn} ${btnOutlineDark}`} type="submit">
+							<button class={`${theme} ${elButton} ${inputFontFamily} ${btn} ${btnOutlineDark}`} type="submit">
 								Search
 							</button>
 						</form>
@@ -221,7 +222,7 @@ const NavbarExample: Component = () => {
 						/>
 					</a>
 					<button
-						class={`${theme} ${elButton} ${navbarToggler}`}
+						class={`${theme} ${elButton} ${inputFontFamily} ${navbarToggler}`}
 						type="button"
 						aria-controls="navbarSupportedContent2"
 						aria-expanded="false"
@@ -325,7 +326,7 @@ const NavbarExample: Component = () => {
 								placeholder="Search"
 								aria-label="Search"
 							/>
-							<button class={`${theme} ${elButton} ${btn} ${btnOutlineLight}`} type="submit">
+							<button class={`${theme} ${elButton} ${inputFontFamily} ${btn} ${btnOutlineLight}`} type="submit">
 								Search
 							</button>
 						</form>

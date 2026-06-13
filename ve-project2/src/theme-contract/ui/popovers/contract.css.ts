@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css'
 import { varBsBorderColor, varBsBorderStyle, varBsBorderWidth } from '../../_vars.css'
 
 export const popoverVe = style({})
+export const popoverFade = style({})
 export const popoverShow = style({})
 export const bsPopoverTop = style({})
 export const bsPopoverEnd = style({})

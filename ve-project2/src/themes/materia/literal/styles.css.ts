@@ -741,6 +741,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1016,6 +1017,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8373,6 +8375,13 @@ globalStyle(`${materiaScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${materiaScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8390,6 +8399,10 @@ globalStyle(`${materiaScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${materiaScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9294,7 +9307,7 @@ globalStyle(`${materiaScope}${dropdownItem}:disabled`, {
 	backgroundImage: 'none',
 })
 
-globalStyle(`${materiaScope}${dropdownMenu}${show}`, {
+globalStyle(`${materiaScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 

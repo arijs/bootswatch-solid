@@ -742,6 +742,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1025,6 +1026,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8376,6 +8378,13 @@ globalStyle(`${morphScope}${btn}${show}`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
+globalStyle(`${morphScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
+})
+
 globalStyle(`${morphScope}${btnCheck}:checked + ${morphScope}${btn}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -8393,6 +8402,10 @@ globalStyle(`${morphScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${morphScope}${btn}${show}:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
+globalStyle(`${morphScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
@@ -9291,7 +9304,7 @@ globalStyle(`${morphScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${morphScope}${dropdownMenu}${show}`, {
+globalStyle(`${morphScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 

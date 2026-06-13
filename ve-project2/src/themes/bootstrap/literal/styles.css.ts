@@ -1,4 +1,4 @@
-import { globalKeyframes, globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import { bootstrapScope } from '../scope.css'
 
 import {
@@ -457,6 +457,14 @@ import {
 	small,
 } from '../../../theme-contract/contents/basic/contract.css'
 import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../theme-contract/contents/heading/contract.css'
+import {
 	tableCell,
 	tableElement,
 	tableHeaderCell,
@@ -495,36 +503,87 @@ import {
 	elTextarea,
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../theme-contract/utilities/generated/contract.css'
 
+import { blockquoteFooter, lead, smallText } from '../../../theme-contract/contents/basic/contract.css'
 import {
-	accordion,
-	accordionBody,
-	accordionButton,
-	accordionCollapse,
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+} from '../../../theme-contract/contents/display/contract.css'
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../theme-contract/contents/images/contract.css'
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../theme-contract/contents/lists/contract.css'
+import {
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableDanger,
+	tableDark,
+	tableGroupDivider,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableSecondary,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
+} from '../../../theme-contract/contents/tables/contract.css'
+import {
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	validFeedback,
+	wasValidated,
+} from '../../../theme-contract/forms/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
 	accordionFlush,
-	accordionHeader,
-	accordionItem,
 	active,
-	alert,
-	alertDanger,
-	alertDark,
-	alertDismissible,
-	alertHeading,
-	alertInfo,
-	alertLight,
-	alertLink,
-	alertPrimary,
-	alertSecondary,
-	alertSuccess,
-	alertWarning,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -564,7 +623,6 @@ import {
 	alignContentXxlStart,
 	alignContentXxlStretch,
 	alignItemsBaseline,
-	alignItemsCenter,
 	alignItemsEnd,
 	alignItemsLgBaseline,
 	alignItemsLgCenter,
@@ -616,7 +674,6 @@ import {
 	alignSelfSmEnd,
 	alignSelfSmStart,
 	alignSelfSmStretch,
-	alignSelfStart,
 	alignSelfStretch,
 	alignSelfXlAuto,
 	alignSelfXlBaseline,
@@ -633,14 +690,12 @@ import {
 	alignTextBottom,
 	alignTextTop,
 	alignTop,
-	badge,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
 	bgDanger,
 	bgDangerSubtle,
-	bgDark,
 	bgDarkSubtle,
 	bgGradient,
 	bgInfo,
@@ -663,7 +718,6 @@ import {
 	bgWarningSubtle,
 	bgWhite,
 	bi,
-	blockquoteFooter,
 	border,
 	border0,
 	border1,
@@ -705,78 +759,20 @@ import {
 	bottom0,
 	bottom100,
 	bottom50,
-	breadcrumb,
-	breadcrumbItem,
-	bsPopoverAuto,
-	bsPopoverBottom,
-	bsPopoverEnd,
-	bsPopoverStart,
-	bsPopoverTop,
 	bsTooltipAuto,
 	bsTooltipBottom,
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
-	btn,
-	btnCheck,
 	btnClose,
 	btnCloseWhite,
-	btnDanger,
-	btnDark,
-	btnGroup,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
-	btnInfo,
-	btnLg,
-	btnLight,
-	btnLink,
-	btnOutlineDanger,
-	btnOutlineDark,
-	btnOutlineInfo,
-	btnOutlineLight,
-	btnOutlinePrimary,
-	btnOutlineSecondary,
-	btnOutlineSuccess,
-	btnOutlineWarning,
-	btnPrimary,
-	btnSecondary,
-	btnShowHook,
-	btnSm,
-	btnSuccess,
-	btnToolbar,
-	btnWarning,
 	captionTop,
-	card,
-	cardBody,
-	cardFooter,
 	cardGroup,
-	cardHeader,
 	cardHeaderPills,
-	cardHeaderTabs,
-	cardImg,
-	cardImgBottom,
 	cardImgOverlay,
-	cardImgTop,
-	cardLink,
-	cardSubtitle,
-	cardText,
-	cardTitle,
-	carousel,
-	carouselCaption,
-	carouselControlNext,
-	carouselControlNextIcon,
-	carouselControlPrev,
-	carouselControlPrevIcon,
-	carouselDark,
-	carouselFade,
-	carouselIndicators,
-	carouselInner,
-	carouselItem,
-	carouselItemEnd,
-	carouselItemNext,
-	carouselItemPrev,
-	carouselItemStart,
 	clearfix,
 	clsBlockquote,
 	clsH1,
@@ -786,7 +782,6 @@ import {
 	clsH5,
 	clsH6,
 	clsSmall,
-	col,
 	col1,
 	col10,
 	col11,
@@ -822,13 +817,7 @@ import {
 	colMd10,
 	colMd11,
 	colMd12,
-	colMd2,
-	colMd3,
-	colMd4,
-	colMd5,
-	colMd6,
 	colMd7,
-	colMd8,
 	colMd9,
 	colMdAuto,
 	colSm,
@@ -840,7 +829,6 @@ import {
 	colSm3,
 	colSm4,
 	colSm5,
-	colSm6,
 	colSm7,
 	colSm8,
 	colSm9,
@@ -873,7 +861,6 @@ import {
 	colXxl8,
 	colXxl9,
 	colXxlAuto,
-	collapse,
 	collapseHorizontal,
 	collapsed,
 	collapsing,
@@ -914,14 +901,12 @@ import {
 	columnGapXxl4,
 	columnGapXxl5,
 	container,
-	containerFluid,
 	containerLg,
 	containerMd,
 	containerSm,
 	containerXl,
 	containerXxl,
 	dBlock,
-	dFlex,
 	dGrid,
 	dInline,
 	dInlineBlock,
@@ -998,46 +983,19 @@ import {
 	dXxlTableCell,
 	dXxlTableRow,
 	disabled,
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-	dropdown,
-	dropdownCenter,
-	dropdownDivider,
-	dropdownHeader,
-	dropdownItem,
-	dropdownItemText,
-	dropdownMenu,
-	dropdownMenuDark,
-	dropdownMenuEnd,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
-	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
-	dropdownMenuStart,
 	dropdownMenuXlEnd,
 	dropdownMenuXlStart,
 	dropdownMenuXxlEnd,
 	dropdownMenuXxlStart,
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-	dropupCenter,
 	end0,
 	end100,
 	end50,
-	fade,
-	figure,
-	figureCaption,
-	figureImg,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -1086,7 +1044,6 @@ import {
 	flexSmShrink1,
 	flexSmWrap,
 	flexSmWrapReverse,
-	flexWrap,
 	flexWrapReverse,
 	flexXlColumn,
 	flexXlColumnReverse,
@@ -1140,24 +1097,10 @@ import {
 	focusRingSuccess,
 	focusRingWarning,
 	fontMonospace,
-	formCheck,
 	formCheckInline,
-	formCheckInput,
-	formCheckLabel,
 	formCheckReverse,
-	formControl,
 	formControlColor,
-	formControlLg,
 	formControlPlaintext,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
 	fs1,
 	fs2,
 	fs3,
@@ -1166,18 +1109,14 @@ import {
 	fs6,
 	fstItalic,
 	fstNormal,
-	fwBold,
 	fwBolder,
 	fwLight,
 	fwLighter,
 	fwMedium,
 	fwNormal,
 	fwSemibold,
-	g0,
 	g1,
 	g2,
-	g3,
-	g4,
 	g5,
 	gLg0,
 	gLg1,
@@ -1322,25 +1261,16 @@ import {
 	h50,
 	h75,
 	hAuto,
-	hasValidation,
 	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
-	imgFluid,
-	imgThumbnail,
 	initialism,
-	inputGroup,
 	inputGroupLg,
 	inputGroupSm,
-	inputGroupText,
-	invalidFeedback,
 	invalidTooltip,
 	invisible,
-	isInvalid,
-	isValid,
 	justifyContentAround,
-	justifyContentBetween,
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentEvenly,
@@ -1375,7 +1305,6 @@ import {
 	justifyContentXxlEnd,
 	justifyContentXxlEvenly,
 	justifyContentXxlStart,
-	lead,
 	lh1,
 	lhBase,
 	lhLg,
@@ -1426,28 +1355,13 @@ import {
 	linkUnderlineSuccess,
 	linkUnderlineWarning,
 	linkWarning,
-	listGroup,
-	listGroupFlush,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
 	listGroupHorizontalSm,
 	listGroupHorizontalXl,
 	listGroupHorizontalXxl,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
 	listGroupNumbered,
-	listInline,
-	listInlineItem,
-	listUnstyled,
 	m0,
 	m1,
 	m2,
@@ -1493,12 +1407,9 @@ import {
 	mark,
 	mb0,
 	mb1,
-	mb2,
-	mb3,
 	mb4,
 	mb5,
 	mbAuto,
-	mbLg0,
 	mbLg1,
 	mbLg2,
 	mbLg3,
@@ -1521,10 +1432,8 @@ import {
 	mbSmAuto,
 	mbXl0,
 	mbXl1,
-	mbXl2,
 	mbXl3,
 	mbXl4,
-	mbXl5,
 	mbXlAuto,
 	mbXxl0,
 	mbXxl1,
@@ -1535,11 +1444,9 @@ import {
 	mbXxlAuto,
 	me0,
 	me1,
-	me2,
 	me3,
 	me4,
 	me5,
-	meAuto,
 	meLg0,
 	meLg1,
 	meLg2,
@@ -1578,25 +1485,14 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFooter,
-	modalFullscreen,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
 	modalFullscreenXlDown,
 	modalFullscreenXxlDown,
-	modalHeader,
 	modalLg,
 	modalSm,
 	modalStatic,
-	modalTitle,
 	modalXl,
 	ms0,
 	ms1,
@@ -1645,7 +1541,6 @@ import {
 	mt2,
 	mt3,
 	mt4,
-	mt5,
 	mtAuto,
 	mtLg0,
 	mtLg1,
@@ -1668,7 +1563,6 @@ import {
 	mtSm4,
 	mtSm5,
 	mtSmAuto,
-	mtXl0,
 	mtXl1,
 	mtXl2,
 	mtXl3,
@@ -1767,29 +1661,15 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
-	nav,
 	navFill,
-	navItem,
 	navJustified,
-	navLink,
-	navPills,
-	navTabs,
 	navUnderline,
-	navbar,
-	navbarBrand,
-	navbarCollapse,
 	navbarDark,
 	navbarExpand,
-	navbarExpandLg,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
-	navbarNav,
-	navbarNavScroll,
-	navbarText,
-	navbarToggler,
-	navbarTogglerIcon,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -1963,7 +1843,6 @@ import {
 	overflowScroll,
 	overflowVisible,
 	overflowXAuto,
-	overflowXHidden,
 	overflowXScroll,
 	overflowXVisible,
 	overflowYAuto,
@@ -1975,7 +1854,6 @@ import {
 	p2,
 	p3,
 	p4,
-	p5,
 	pLg0,
 	pLg1,
 	pLg2,
@@ -2006,14 +1884,8 @@ import {
 	pXxl3,
 	pXxl4,
 	pXxl5,
-	pageItem,
-	pageLink,
-	pagination,
-	paginationLg,
-	paginationSm,
 	pb0,
 	pb1,
-	pb2,
 	pb3,
 	pb4,
 	pb5,
@@ -2038,7 +1910,6 @@ import {
 	pbXl0,
 	pbXl1,
 	pbXl2,
-	pbXl3,
 	pbXl4,
 	pbXl5,
 	pbXxl0,
@@ -2093,18 +1964,10 @@ import {
 	placeholderXs,
 	pointerEvent,
 	popover,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
 	positionAbsolute,
 	positionFixed,
-	positionRelative,
 	positionStatic,
 	positionSticky,
-	progress,
-	progressBar,
-	progressBarAnimated,
-	progressBarStriped,
 	progressStacked,
 	ps0,
 	ps1,
@@ -2145,7 +2008,6 @@ import {
 	pt0,
 	pt1,
 	pt2,
-	pt3,
 	pt4,
 	pt5,
 	ptLg0,
@@ -2171,7 +2033,6 @@ import {
 	ptXl2,
 	ptXl3,
 	ptXl4,
-	ptXl5,
 	ptXxl0,
 	ptXxl1,
 	ptXxl2,
@@ -2180,8 +2041,6 @@ import {
 	ptXxl5,
 	px0,
 	px1,
-	px2,
-	px3,
 	px4,
 	px5,
 	pxLg0,
@@ -2255,7 +2114,6 @@ import {
 	ratio1x1,
 	ratio21x9,
 	ratio4x3,
-	rounded,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -2300,8 +2158,6 @@ import {
 	roundedTop5,
 	roundedTopCircle,
 	roundedTopPill,
-	row,
-	rowCols1,
 	rowCols2,
 	rowCols3,
 	rowCols4,
@@ -2316,7 +2172,6 @@ import {
 	rowColsLg6,
 	rowColsLgAuto,
 	rowColsMd1,
-	rowColsMd2,
 	rowColsMd3,
 	rowColsMd4,
 	rowColsMd5,
@@ -2383,11 +2238,8 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	show,
 	showing,
-	spinnerBorder,
 	spinnerBorderSm,
-	spinnerGrow,
 	spinnerGrowSm,
 	start0,
 	start100,
@@ -2401,35 +2253,9 @@ import {
 	stickySmTop,
 	stickyTop,
 	stickyXlBottom,
-	stickyXlTop,
 	stickyXxlBottom,
 	stickyXxlTop,
 	stretchedLink,
-	tabContent,
-	tabPane,
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
-	tableDanger,
-	tableDark,
-	tableGroupDivider,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
-	tableSecondary,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
 	textBgDanger,
 	textBgDark,
 	textBgInfo,
@@ -2449,7 +2275,6 @@ import {
 	textCenter,
 	textDanger,
 	textDangerEmphasis,
-	textDark,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
@@ -2466,7 +2291,6 @@ import {
 	textMdCenter,
 	textMdEnd,
 	textMdStart,
-	textMuted,
 	textNowrap,
 	textOpacity100,
 	textOpacity25,
@@ -2496,13 +2320,8 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
-	toast,
-	toastBody,
 	toastContainer,
-	toastHeader,
 	tooltip,
-	tooltipArrow,
-	tooltipInner,
 	top0,
 	top100,
 	top50,
@@ -2512,11 +2331,9 @@ import {
 	userSelectAll,
 	userSelectAuto,
 	userSelectNone,
-	validFeedback,
 	validTooltip,
 	vh100,
 	visible,
-	visuallyHidden,
 	visuallyHiddenFocusable,
 	vr,
 	vstack,
@@ -2526,13 +2343,253 @@ import {
 	w50,
 	w75,
 	wAuto,
-	wasValidated,
 	z0,
 	z1,
 	z2,
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import {
+	accordion,
+	accordionBody,
+	accordionButton,
+	accordionButtonCollapsed,
+	accordionCollapse,
+	accordionHeader,
+	accordionItem,
+} from '../../../theme-contract/ui/accordion/contract.css'
+import {
+	alert,
+	alertDanger,
+	alertDark,
+	alertDismissible,
+	alertHeading,
+	alertInfo,
+	alertLight,
+	alertLink,
+	alertPrimary,
+	alertSecondary,
+	alertSuccess,
+	alertWarning,
+} from '../../../theme-contract/ui/alerts/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
+import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
+import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
+import {
+	btn,
+	btnCheck,
+	btnDanger,
+	btnDark,
+	btnInfo,
+	btnLg,
+	btnLight,
+	btnLink,
+	btnOutlineDanger,
+	btnOutlineDark,
+	btnOutlineInfo,
+	btnOutlineLight,
+	btnOutlinePrimary,
+	btnOutlineSecondary,
+	btnOutlineSuccess,
+	btnOutlineWarning,
+	btnPrimary,
+	btnSecondary,
+	btnSm,
+	btnSuccess,
+	btnWarning,
+} from '../../../theme-contract/ui/buttons/contract.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
+import {
+	card,
+	cardBody,
+	cardFooter,
+	cardHeader,
+	cardImg,
+	cardImgBottom,
+	cardImgTop,
+	cardLink,
+	cardSubtitle,
+	cardText,
+	cardTitle,
+} from '../../../theme-contract/ui/card/contract.css'
+import {
+	carousel,
+	carouselCaption,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselDark,
+	carouselFade,
+	carouselIndicators,
+	carouselInner,
+	carouselItem,
+	carouselItemEnd,
+	carouselItemNext,
+	carouselItemPrev,
+	carouselItemStart,
+} from '../../../theme-contract/ui/carousel/contract.css'
+import {
+	btnShowHook,
+	dropdown,
+	dropdownCenter,
+	dropdownDivider,
+	dropdownHeader,
+	dropdownItem,
+	dropdownItemText,
+	dropdownMenu,
+	dropdownMenuDark,
+	dropdownMenuEnd,
+	dropdownMenuShow,
+	dropdownMenuStart,
+	dropdownToggle,
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+	dropupCenter,
+} from '../../../theme-contract/ui/dropdowns/contract.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../theme-contract/ui/list-group/contract.css'
+import {
+	flexWrap,
+	justifyContentBetween,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalShowHook,
+	modalTitle,
+} from '../../../theme-contract/ui/modal/contract.css'
+import {
+	collapse,
+	navbar,
+	navbarBrand,
+	navbarCollapse,
+	navbarExpandLg,
+	navbarNav,
+	navbarNavScroll,
+	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../theme-contract/ui/navbar/contract.css'
+import {
+	fade,
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../theme-contract/ui/navs/contract.css'
+import {
+	pageItem,
+	pageItemActive,
+	pageItemDisabled,
+	pageLink,
+	pagination,
+	paginationLg,
+	paginationSm,
+} from '../../../theme-contract/ui/pagination/contract.css'
+import {
+	bsPopoverAuto,
+	bsPopoverBottom,
+	bsPopoverEnd,
+	bsPopoverStart,
+	bsPopoverTop,
+	popoverArrow,
+	popoverBody,
+	popoverFade,
+	popoverHeader,
+	popoverShow,
+} from '../../../theme-contract/ui/popovers/contract.css'
+import {
+	progress,
+	progressBar,
+	progressBarAnimated,
+	progressBarStriped,
+} from '../../../theme-contract/ui/progress/contract.css'
+import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
+import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
+import {
+	toast,
+	toastBody,
+	toastHeader,
+	toastShow,
+	toastShowing,
+} from '../../../theme-contract/ui/toasts/contract.css'
+import {
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipShow,
+} from '../../../theme-contract/ui/tooltips/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`*`, {
 	boxSizing: 'border-box',
@@ -2884,7 +2941,7 @@ globalStyle(`${bootstrapScope}${elSup}`, {
 })
 
 globalStyle(`${bootstrapScope}${link}`, {
-	color: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
+	color: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')})`,
 	textDecoration: 'underline',
 })
 
@@ -6608,10 +6665,10 @@ globalStyle(`${bootstrapScope}${table}`, {
 
 globalStyle(`${bootstrapScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: varBsTableColorState,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px ${varBsTableBgState}`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
 globalStyle(`${bootstrapScope}${table} > ${bootstrapScope}${tableSection}`, {
@@ -7130,7 +7187,7 @@ globalStyle(`${bootstrapScope}${formSelect}`, {
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: varBsBodyBg,
-	backgroundImage: `${varBsFormSelectBgImg}, ${varBsFormSelectBgIcon}`,
+	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 0.75rem center',
 	backgroundSize: '16px 12px',
@@ -8745,6 +8802,18 @@ globalStyle(`${bootstrapScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
+globalStyle(`${bootstrapScope}${tooltipFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${bootstrapScope}${popoverFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${bootstrapScope}${modalFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
 globalStyle(`${bootstrapScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -8753,7 +8822,43 @@ globalStyle(`${bootstrapScope}${fade}`, {
 	},
 })
 
+globalStyle(`${bootstrapScope}${tooltipFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${popoverFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${bootstrapScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${bootstrapScope}${tooltipFade}:not(${tooltipShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${bootstrapScope}${popoverFade}:not(${popoverShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${bootstrapScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9533,7 +9638,7 @@ globalStyle(`${bootstrapScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
 })
 
-globalStyle(`${bootstrapScope}${navLink}${disabled}`, {
+globalStyle(`${bootstrapScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -9575,7 +9680,7 @@ globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${active}`, {
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -9605,7 +9710,7 @@ globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${active}`, {
+globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -9638,7 +9743,7 @@ globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}:focus`
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${active}`, {
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -9802,7 +9907,7 @@ globalStyle(`${bootstrapScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${active}`, {
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10565,7 +10670,7 @@ globalStyle(`${bootstrapScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${active}`, {
+globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -10780,13 +10885,13 @@ globalStyle(`${bootstrapScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${accordionButton}:not(${collapsed})`, {
+globalStyle(`${bootstrapScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${bootstrapScope}${accordionButton}:not(${collapsed})::after`, {
+globalStyle(`${bootstrapScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -10850,7 +10955,7 @@ globalStyle(`${bootstrapScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${accordionItem}:last-of-type > ${bootstrapScope}${accordionHeader} ${bootstrapScope}${accordionButton}${collapsed}`, {
+globalStyle(`${bootstrapScope}${accordionItem}:last-of-type > ${bootstrapScope}${accordionHeader} ${bootstrapScope}${accordionButton}${accordionButtonCollapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -10926,7 +11031,7 @@ globalStyle(`${bootstrapScope}${breadcrumbItem} + ${bootstrapScope}${breadcrumbI
 	float: 'left',
 	paddingRight: varBsBreadcrumbItemPaddingX,
 	color: varBsBreadcrumbDividerColor,
-	content: `${varBsBreadcrumbDivider} `,
+	content: `${fallbackVar(varBsBreadcrumbDivider, '"/"')} `,
 })
 
 globalStyle(`${bootstrapScope}${breadcrumbItem}${active}`, {
@@ -10996,28 +11101,28 @@ globalStyle(`${bootstrapScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${bootstrapScope}${pageLink}${active}`, {
+globalStyle(`${bootstrapScope}${pageLink}${pageItemActive}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${active} > ${bootstrapScope}${pageLink}`, {
+globalStyle(`${bootstrapScope}${pageItemActive} > ${bootstrapScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${pageLink}${disabled}`, {
+globalStyle(`${bootstrapScope}${pageLink}${pageItemDisabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${disabled} > ${bootstrapScope}${pageLink}`, {
+globalStyle(`${bootstrapScope}${pageItemDisabled} > ${bootstrapScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -11905,11 +12010,11 @@ globalStyle(`${bootstrapScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${toast}${showing}`, {
+globalStyle(`${bootstrapScope}${toast}${toastShowing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${bootstrapScope}${toast}:not(${show})`, {
+globalStyle(`${bootstrapScope}${toast}:not(${toastShow})`, {
 	display: 'none',
 })
 
@@ -11993,12 +12098,12 @@ globalStyle(`${bootstrapScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${bootstrapScope}${modal}${fade} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${modalFade} ${bootstrapScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${bootstrapScope}${modal}${fade} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${modalFade} ${bootstrapScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12006,7 +12111,7 @@ globalStyle(`${bootstrapScope}${modal}${fade} ${bootstrapScope}${modalDialog}`, 
 	},
 })
 
-globalStyle(`${bootstrapScope}${modal}${show} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${modalShowHook} ${bootstrapScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12062,11 +12167,11 @@ globalStyle(`${bootstrapScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${bootstrapScope}${modalBackdrop}${fade}`, {
+globalStyle(`${bootstrapScope}${modalBackdrop}${modalFade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${bootstrapScope}${modalBackdrop}${show}`, {
+globalStyle(`${bootstrapScope}${modalBackdrop}${modalShowHook}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -12463,7 +12568,7 @@ globalStyle(`${bootstrapScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${bootstrapScope}${tooltip}${show}`, {
+globalStyle(`${bootstrapScope}${tooltip}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -14298,204 +14403,204 @@ globalStyle(`${bootstrapScope}${clearfix}::after`, {
 
 globalStyle(`${bootstrapScope}${textBgPrimary}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgSecondary}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgSuccess}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgInfo}`, {
 	color: '#000 !important',
-	backgroundColor: `RGBA(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgWarning}`, {
 	color: '#000 !important',
-	backgroundColor: `RGBA(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgDanger}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgLight}`, {
 	color: '#000 !important',
-	backgroundColor: `RGBA(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${textBgDark}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkPrimary}`, {
-	color: `RGBA(${varBsPrimaryRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsPrimaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsPrimaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkPrimary}:hover`, {
-	color: `RGBA(10, 88, 202, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(10, 88, 202, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(10, 88, 202, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(10, 88, 202, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(10, 88, 202, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(10, 88, 202, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkPrimary}:focus`, {
-	color: `RGBA(10, 88, 202, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(10, 88, 202, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(10, 88, 202, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(10, 88, 202, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(10, 88, 202, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(10, 88, 202, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkSecondary}`, {
-	color: `RGBA(${varBsSecondaryRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsSecondaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsSecondaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkSecondary}:hover`, {
-	color: `RGBA(86, 94, 100, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(86, 94, 100, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(86, 94, 100, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(86, 94, 100, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(86, 94, 100, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(86, 94, 100, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkSecondary}:focus`, {
-	color: `RGBA(86, 94, 100, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(86, 94, 100, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(86, 94, 100, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(86, 94, 100, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(86, 94, 100, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(86, 94, 100, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkSuccess}`, {
-	color: `RGBA(${varBsSuccessRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsSuccessRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsSuccessRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkSuccess}:hover`, {
-	color: `RGBA(20, 108, 67, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(20, 108, 67, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(20, 108, 67, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(20, 108, 67, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(20, 108, 67, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(20, 108, 67, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkSuccess}:focus`, {
-	color: `RGBA(20, 108, 67, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(20, 108, 67, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(20, 108, 67, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(20, 108, 67, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(20, 108, 67, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(20, 108, 67, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkInfo}`, {
-	color: `RGBA(${varBsInfoRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsInfoRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsInfoRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkInfo}:hover`, {
-	color: `RGBA(61, 213, 243, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(61, 213, 243, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(61, 213, 243, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(61, 213, 243, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(61, 213, 243, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(61, 213, 243, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkInfo}:focus`, {
-	color: `RGBA(61, 213, 243, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(61, 213, 243, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(61, 213, 243, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(61, 213, 243, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(61, 213, 243, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(61, 213, 243, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkWarning}`, {
-	color: `RGBA(${varBsWarningRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsWarningRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsWarningRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkWarning}:hover`, {
-	color: `RGBA(255, 205, 57, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(255, 205, 57, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(255, 205, 57, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(255, 205, 57, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(255, 205, 57, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(255, 205, 57, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkWarning}:focus`, {
-	color: `RGBA(255, 205, 57, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(255, 205, 57, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(255, 205, 57, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(255, 205, 57, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(255, 205, 57, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(255, 205, 57, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkDanger}`, {
-	color: `RGBA(${varBsDangerRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsDangerRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsDangerRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkDanger}:hover`, {
-	color: `RGBA(176, 42, 55, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkDanger}:focus`, {
-	color: `RGBA(176, 42, 55, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkLight}`, {
-	color: `RGBA(${varBsLightRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsLightRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsLightRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkLight}:hover`, {
-	color: `RGBA(249, 250, 251, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkLight}:focus`, {
-	color: `RGBA(249, 250, 251, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkDark}`, {
-	color: `RGBA(${varBsDarkRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsDarkRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsDarkRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkDark}:hover`, {
-	color: `RGBA(26, 30, 33, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkDark}:focus`, {
-	color: `RGBA(26, 30, 33, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkBodyEmphasis}`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkBodyEmphasis}:hover`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.75')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkBodyEmphasis}:focus`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.75')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${focusRing}:focus`, {
@@ -14507,8 +14612,8 @@ globalStyle(`${bootstrapScope}${iconLink}`, {
 	display: 'inline-flex',
 	gap: '0.375rem',
 	alignItems: 'center',
-	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
-	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
+	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.5')})`,
+	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.5')})`,
 	textUnderlineOffset: '0.25em',
 	WebkitBackfaceVisibility: 'hidden',
 	backfaceVisibility: 'hidden',
@@ -16462,8 +16567,8 @@ globalStyle(`${bootstrapScope}${linkUnderline}`, {
 	vars: {
 		[varBsLinkUnderlineOpacity]: '1',
 	},
-	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${bootstrapScope}${linkUnderlineOpacity0}`, {
@@ -24235,4 +24340,40 @@ globalStyle(`${bootstrapScope}${dPrintNone}`, {
 			display: 'none !important',
 		},
 	},
+})
+
+globalStyle(`${bootstrapScope}${listBase}`, {
+	marginTop: '0',
+	marginBottom: '1rem',
+})
+
+globalStyle(`${bootstrapScope}${listNested}`, {
+	marginBottom: '0',
+})
+
+globalStyle(`${bootstrapScope}${listIndented}`, {
+	paddingLeft: '2rem',
+})
+
+globalStyle(`${bootstrapScope}${legend}`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
+globalStyle(`${bootstrapScope}${legendClear}`, {
+	clear: 'left',
+})
+
+globalStyle(`${bootstrapScope}${smallText}`, {
+	fontSize: '0.875em',
+})
+
+globalStyle(`${bootstrapScope}${scrollspyExample}`, {
+	height: '200px',
+	overflowY: 'auto',
+	marginTop: '0.5rem',
 })

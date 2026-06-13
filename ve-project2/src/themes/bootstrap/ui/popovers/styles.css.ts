@@ -694,3 +694,13 @@ globalStyle(`${bootstrapScope}${frameRow}`, {
 globalStyle(`${bootstrapScope}${justifyEnd}`, {
 	justifyContent: "flex-end !important",
 })
+
+// DISAMBIGUATION: .popover-header stamped on an <h3> element creates a specificity conflict.
+// Bootstrap baseline: .popover-header (0-1-0) beats h3 element (0-0-1) → margin-bottom: 0.
+// VE: both become class selectors at equal 0-2-0 (with scope). Utilities CSS loads after
+// this chunk and its ${scope}${h3} rule (0-2-0) wins by document order, restoring 0.5rem.
+// The combined selector (0-3-0) beats all 0-2-0 rules regardless of load order.
+// Only added for combinations ve-project2 components actually stamp together.
+globalStyle(`${bootstrapScope}${popoverHeader}${h3}`, {
+	marginBottom: 0,
+})

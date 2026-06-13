@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -49,6 +49,8 @@ import {
 	invalidFeedback,
 	isInvalid,
 	isValid,
+	legend,
+	legendClear,
 	mb3,
 	row,
 	validFeedback,
@@ -89,6 +91,7 @@ globalStyle(`${bootstrapScope}${formCheckInput}`, {
 		[varBsFormCheckBg]: varBsBodyBg,
 	},
 	flexShrink: 0,
+	fontSize: "inherit",
 	width: "1em",
 	height: "1em",
 	marginTop: "0.25em",
@@ -152,6 +155,13 @@ globalStyle(`${bootstrapScope}${formCheckInput}[type="checkbox"]:indeterminate`,
 	borderColor: "rgb(13, 110, 253)",
 })
 
+// Bootstrap label reboot + form-check-label base: display: inline-block; color: inherit; cursor: pointer
+globalStyle(`${bootstrapScope}${formCheckLabel}`, {
+	display: "inline-block",
+	color: "inherit",
+	cursor: "pointer",
+})
+
 // SOURCE CSS:
 // .form-check-input:disabled { pointer-events: none; filter: none; opacity: 0.5; }
 globalStyle(`${bootstrapScope}${formCheckInput}:disabled`, {
@@ -187,6 +197,21 @@ globalStyle(`${bootstrapScope}${fieldset}`, {
 	padding: 0,
 	margin: 0,
 	border: 0,
+})
+
+// Bootstrap reboot: legend { float: left; width: 100%; padding: 0; margin-bottom: .5rem; font-size: calc(1.275rem + .3vw); line-height: inherit; }
+globalStyle(`${bootstrapScope}${legend}`, {
+	float: "left",
+	width: "100%",
+	padding: 0,
+	marginBottom: "0.5rem",
+	lineHeight: "inherit",
+	fontSize: "calc(1.275rem + .3vw)",
+})
+
+// Bootstrap reboot: clear float from legend
+globalStyle(`${bootstrapScope}${legendClear}`, {
+	clear: "left",
 })
 
 // SOURCE CSS:
@@ -323,9 +348,13 @@ globalStyle(`${bootstrapScope}${formSelect}`, {
 	color: varBsBodyColor,
 	WebkitAppearance: "none",
 	MozAppearance: "none",
+	fontFamily: "inherit",
+	margin: 0,
+	textTransform: "none",
+	overflowWrap: "normal",
 	appearance: "none",
 	backgroundColor: varBsBodyBg,
-	backgroundImage: `${varBsFormSelectBgImg} , ${varBsFormSelectBgIcon}`,
+	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
 	backgroundRepeat: "no-repeat",
 	backgroundPosition: "right 0.75rem center",
 	backgroundSize: "16px 12px",

@@ -10,6 +10,14 @@ import {
 	h5,
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/contents/heading
@@ -73,6 +81,57 @@ globalStyle(`${bootstrapScope}${h2}`, {
 // SOURCE CSS:
 // h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
 globalStyle(`${bootstrapScope}${h1}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.375rem + 1.5vw)`,
+})
+
+// SOURCE CSS: Bootstrap targets both element and .hN utility class: h1, .h1 { ... }
+// The Heading component uses clsH1-6 (literal .h1-.h6 classes), so mirror all rules.
+globalStyle(`${bootstrapScope}${clsH6}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1rem",
+})
+globalStyle(`${bootstrapScope}${clsH5}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: "1.25rem",
+})
+globalStyle(`${bootstrapScope}${clsH4}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.275rem + 0.3vw)`,
+})
+globalStyle(`${bootstrapScope}${clsH3}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.3rem + 0.6vw)`,
+})
+globalStyle(`${bootstrapScope}${clsH2}`, {
+	marginTop: 0,
+	marginBottom: "0.5rem",
+	fontWeight: 500,
+	lineHeight: 1.2,
+	color: varBsHeadingColor,
+	fontSize: `calc(1.325rem + 0.9vw)`,
+})
+globalStyle(`${bootstrapScope}${clsH1}`, {
 	marginTop: 0,
 	marginBottom: "0.5rem",
 	fontWeight: 500,

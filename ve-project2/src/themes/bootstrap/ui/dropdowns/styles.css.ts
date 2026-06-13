@@ -59,6 +59,7 @@ import {
 	dropdownItemActive,
 	dropdownItemDisabled,
 	dropdownMenu,
+	dropdownMenuEnd,
 	dropdownMenuShow,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -70,6 +71,7 @@ import {
 import {
 	visuallyHidden,
 } from '../../../../theme-contract/utilities/contract.css'
+import { varBsPosition } from '../../../../theme-contract/utilities/generated/_vars.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/ui/dropdowns
@@ -326,6 +328,20 @@ globalStyle(`${bootstrapScope}${dropdownHeader}`, {
 	fontSize: "0.875rem",
 	color: varBsDropdownHeaderColor,
 	whiteSpace: "nowrap",
+})
+
+// Higher-specificity override for when dropdownHeader is on an h*-contracted element.
+// h6 heading styles share equal specificity and may cascade after dropdownHeader.
+globalStyle(`${bootstrapScope}${dropdownHeader}${h6}`, {
+	color: varBsDropdownHeaderColor,
+	marginBottom: 0,
+})
+
+// SOURCE CSS:
+// .dropdown-menu-end { --bs-position: end; }
+// Bootstrap JS reads CSS_VARIABLE_POSITION to determine popper end-placement.
+globalStyle(`${bootstrapScope}${dropdownMenuEnd}`, {
+	vars: { [varBsPosition]: "end" },
 })
 
 // SOURCE CSS:

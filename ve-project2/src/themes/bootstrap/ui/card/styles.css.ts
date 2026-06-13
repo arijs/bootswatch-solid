@@ -132,6 +132,8 @@ import {
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	col,
+	colMd4,
+	colMd8,
 	g0,
 	g4,
 	overflowXHidden,
@@ -251,6 +253,29 @@ globalStyle(`${bootstrapScope}${g0}`, {
 		[varBsGutterX]: 0,
 		[varBsGutterY]: 0,
 	},
+})
+
+// Compound selector beats any single-class .row rule from other files that may
+// appear later in the CSS bundle and re-set --bs-gutter-x to 1.5rem.
+globalStyle(`${bootstrapScope}${row}${g0}`, {
+	marginTop: 0,
+	marginRight: 0,
+	marginLeft: 0,
+})
+
+// Base column styles for colMd4/colMd8 used in HorizontalCard.
+// Bootstrap's mobile-first base: all col-md-* are full-width below the md breakpoint.
+// The @media (min-width: 768px) overrides in literal/styles.css.ts apply the fractional widths.
+globalStyle(`${bootstrapScope}${colMd4}`, {
+	flexShrink: 0,
+	width: "100%",
+	maxWidth: "100%",
+})
+
+globalStyle(`${bootstrapScope}${colMd8}`, {
+	flexShrink: 0,
+	width: "100%",
+	maxWidth: "100%",
 })
 
 // SOURCE CSS:

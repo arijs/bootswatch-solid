@@ -246,14 +246,6 @@ globalStyle(`${bootstrapScope}${btn}${btnActiveHook}`, {
 })
 
 // SOURCE CSS:
-// .btn.show { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${bootstrapScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
 // .btn-check:checked + .btn:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
 globalStyle(`${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
@@ -1014,4 +1006,13 @@ globalStyle(`${bootstrapScope}${alertBtnClose}${alertBtnCloseDisabledHook}`, {
 	MozUserSelect: "none",
 	userSelect: "none",
 	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+// SOURCE CSS:
+// .btn.show { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
+// Moved after all variant rules so it takes cascade precedence over btn-* color overrides.
+globalStyle(`${bootstrapScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
 })

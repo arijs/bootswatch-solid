@@ -1,6 +1,6 @@
+import { fieldset } from '../../../theme-contract/forms/contract.css'
 import {
 	elButton,
-	elFieldset,
 } from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
@@ -37,7 +37,7 @@ const ButtonGroupExample: Component = () => {
 				role="toolbar"
 				aria-label="Toolbar with button groups"
 			>
-				<fieldset class={`${theme} ${elFieldset} ${btnGroup} ${me2}`} aria-label="First group">
+				<fieldset class={`${theme} ${fieldset} ${btnGroup} ${me2}`} aria-label="First group">
 					<button
 						type="button"
 						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}
@@ -63,7 +63,7 @@ const ButtonGroupExample: Component = () => {
 						4
 					</button>
 				</fieldset>
-				<fieldset class={`${theme} ${elFieldset} ${btnGroup} ${me2}`} aria-label="Second group">
+				<fieldset class={`${theme} ${fieldset} ${btnGroup} ${me2}`} aria-label="Second group">
 					<button
 						type="button"
 						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}
@@ -83,7 +83,7 @@ const ButtonGroupExample: Component = () => {
 						7
 					</button>
 				</fieldset>
-				<fieldset class={`${theme} ${elFieldset} ${btnGroup}`} aria-label="Third group">
+				<fieldset class={`${theme} ${fieldset} ${btnGroup}`} aria-label="Third group">
 					<button
 						type="button"
 						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}

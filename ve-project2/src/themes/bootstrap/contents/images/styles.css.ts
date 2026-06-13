@@ -14,10 +14,23 @@ import {
 	imgThumbnail,
 	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
+import {
+	elImg,
+	elSvg,
+} from '../../../../theme-contract/global-elements/contract.css'
 import { bootstrapScope } from '../../scope.css'
 
 // AUTO-GENERATED family styles for bootstrap/contents/images
 // Review [UNMAPPED] and [DELTA] comments before committing.
+
+// SOURCE CSS:
+// img, svg { vertical-align: middle; }
+globalStyle(`${bootstrapScope}${elImg}`, {
+	verticalAlign: "middle",
+})
+globalStyle(`${bootstrapScope}${elSvg}`, {
+	verticalAlign: "middle",
+})
 
 // SOURCE CSS:
 // .img-fluid { max-width: 100%; height: auto; }

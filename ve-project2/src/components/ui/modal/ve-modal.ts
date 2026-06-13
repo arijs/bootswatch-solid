@@ -1,5 +1,5 @@
 import * as bootstrap from 'bootstrap'
-import { fade } from '../../../theme-contract/literal/contract.css'
+import { modalFade } from '../../../theme-contract/ui/modal/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeModalRuntimeClasses {
@@ -17,7 +17,7 @@ export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.
 	).extendDefaultConfig({
 		NAME: runtime.name,
 		CLASS_NAME_BACKDROP: runtime.modalBackdrop,
-		CLASS_NAME_FADE: fade,
+		CLASS_NAME_FADE: modalFade,
 		CLASS_NAME_OPEN: runtime.modalOpenHook,
 		CLASS_NAME_SHOW: runtime.modalShowHook,
 		OPEN_SELECTOR: `.pwhook-modal.${runtime.modalShowHook}`,
@@ -29,7 +29,7 @@ export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.
 			(
 				bootstrap.Backdrop as unknown as BootstrapWithDefaults<typeof bootstrap.Backdrop>
 			).extendDefaultConfig({
-				CLASS_NAME_FADE: fade,
+				CLASS_NAME_FADE: modalFade,
 				CLASS_NAME_SHOW: runtime.modalShowHook,
 				className: runtime.modalBackdrop,
 				// @ts-expect-error bootstrap runtime exposes this but types do not

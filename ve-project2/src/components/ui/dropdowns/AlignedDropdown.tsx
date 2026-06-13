@@ -7,7 +7,7 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import type { Ve2StyleFamily } from '../../../theme-runtime/style-families'
 import { useVe2RequiredStyleFamilies } from '../../../theme-runtime/style-loader-context'
 import { btnGroup } from '../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import { btn, btnSecondary, inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -43,7 +43,7 @@ const AlignedDropdown: Component = () => {
 			<div class={`${theme} ${btnGroup}`}>
 				<div class={`${theme} ${dropdown}`}>
 					<button
-						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${dropdownToggle} pwhook-dropdown-toggle`}
+						class={`${theme} ${elButton} ${inputFontFamily} ${btn} ${btnSecondary} ${dropdownToggle} pwhook-dropdown-toggle`}
 						type="button"
 						id="dropdownRightMenuButton"
 						data-bs-toggle="dropdown"

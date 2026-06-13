@@ -55,6 +55,9 @@ import {
 	flexWrap,
 } from '../../../../theme-contract/ui/modal/contract.css'
 import {
+	inputFontFamily,
+} from '../../../../theme-contract/ui/buttons/contract.css'
+import {
 	collapse,
 	collapseShow,
 	navbar,
@@ -339,6 +342,7 @@ globalStyle(`${bootstrapScope}${navbarNav}`, {
 	display: "flex",
 	flexDirection: "column",
 	paddingLeft: 0,
+	marginTop: 0,
 	marginBottom: 0,
 	listStyle: "none",
 })
@@ -380,6 +384,14 @@ globalStyle(`${bootstrapScope}${navbarToggler}`, {
 	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
 	transition: varBsNavbarTogglerTransition,
+})
+
+// Higher-specificity override when inputFontFamily is on navbarToggler — prevents button reboot
+// from overriding toggler-specific fontSize, lineHeight, and borderRadius.
+globalStyle(`${bootstrapScope}${navbarToggler}${inputFontFamily}`, {
+	fontSize: varBsNavbarTogglerFontSize,
+	lineHeight: 1,
+	borderRadius: varBsNavbarTogglerBorderRadius,
 })
 
 // SOURCE CSS:

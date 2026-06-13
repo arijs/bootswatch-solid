@@ -6,6 +6,10 @@
  *
  * From plan §6.2: parse var() properly (not regex). Must handle nesting +
  * fallbacks: `rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))`.
+ *
+ * Also handles nested var-fallback chains like:
+ *   var(--a, var(--b, var(--c)))  →  fallbackVar(varA, fallbackVar(varB, varC))
+ *   var(--a, none)                →  fallbackVar(varA, 'none')
  */
 
 /**
@@ -18,6 +22,7 @@
  * @typedef {Object} ParsedVar
  * @property {'var'} type
  * @property {string} symbol  - e.g. 'varBsBorderRadius'
+ * @property {ParsedVar|ParsedLiteral|null} fallback - optional fallback node
  */
 
 /**
@@ -25,8 +30,61 @@
  * @property {'plain'|'singleVar'|'template'} type
  * @property {string} [value]   - for 'plain'
  * @property {string} [symbol]  - for 'singleVar'
+ * @property {ParsedVar|ParsedLiteral|null} [fallback] - for 'singleVar'
  * @property {Array<ParsedLiteral|ParsedVar>} [parts]  - for 'template'
  */
+
+/**
+ * Find the index of the first top-level comma in a string (not inside parens).
+ */
+function findTopLevelComma(s) {
+	let depth = 0
+	for (let i = 0; i < s.length; i++) {
+		if (s[i] === '(') depth++
+		else if (s[i] === ')') depth--
+		else if (s[i] === ',' && depth === 0) return i
+	}
+	return -1
+}
+
+/**
+ * Parse the inner content of a var(…) call into a ParsedVar node.
+ * Recursively handles nested var() fallbacks.
+ *
+ * @param {string} innerContent - content inside `var(…)`, e.g. `--bs-x, var(--bs-y, none)`
+ * @param {(cssVar: string) => string|null} cssVarToSymbol
+ * @returns {ParsedVar|ParsedLiteral|null}
+ */
+function parseVarNode(innerContent, cssVarToSymbol) {
+	const splitIdx = findTopLevelComma(innerContent)
+	const varName = (splitIdx >= 0 ? innerContent.slice(0, splitIdx) : innerContent).trim()
+	const fallbackRaw = splitIdx >= 0 ? innerContent.slice(splitIdx + 1).trim() : null
+
+	const symbol = cssVarToSymbol(varName)
+	if (!symbol) return null // unknown var → caller emits as literal
+
+	let fallback = null
+	if (fallbackRaw !== null) {
+		if (fallbackRaw.startsWith('var(')) {
+			// Nested var() fallback — extract inner and recurse
+			let depth = 1
+			let j = 4
+			while (j < fallbackRaw.length && depth > 0) {
+				if (fallbackRaw[j] === '(') depth++
+				else if (fallbackRaw[j] === ')') depth--
+				j++
+			}
+			const nestedInner = fallbackRaw.slice(4, j - 1).trim()
+			const nestedNode = parseVarNode(nestedInner, cssVarToSymbol)
+			// If the nested var is unknown, treat the fallback raw string as a literal
+			fallback = nestedNode ?? { type: 'lit', value: fallbackRaw }
+		} else {
+			fallback = { type: 'lit', value: fallbackRaw }
+		}
+	}
+
+	return { type: 'var', symbol, fallback }
+}
 
 /**
  * Parse a CSS property value, extracting `var(--bs-*)` references.
@@ -56,18 +114,13 @@ export function parseVeValue(cssValue, cssVarToSymbol) {
 			}
 			// j is now the index AFTER the closing ')'
 
-			// Extract var name (everything before the first comma inside the parens)
 			const innerContent = cssValue.slice(i + 4, j - 1).trim()
-			const firstCommaIdx = innerContent.indexOf(',')
-			const varName = (firstCommaIdx >= 0
-				? innerContent.slice(0, firstCommaIdx)
-				: innerContent).trim()
+			const node = parseVarNode(innerContent, cssVarToSymbol)
 
-			const symbol = cssVarToSymbol(varName)
-			if (symbol) {
-				parts.push({ type: 'var', symbol })
+			if (node) {
+				parts.push(node)
 			} else {
-				// Unknown var — emit as literal (e.g. non-bs vars)
+				// Unknown var — emit the raw var() text as a literal
 				parts.push({ type: 'lit', value: cssValue.slice(i, j) })
 			}
 
@@ -91,16 +144,30 @@ export function parseVeValue(cssValue, cssVarToSymbol) {
 		return { type: 'plain', value: cssValue }
 	}
 	if (parts.length === 1 && parts[0].type === 'var') {
-		return { type: 'singleVar', symbol: parts[0].symbol }
+		const varPart = parts[0]
+		return { type: 'singleVar', symbol: varPart.symbol, fallback: varPart.fallback ?? null }
 	}
 	return { type: 'template', parts }
+}
+
+/**
+ * Format a single ParsedVar node into a TypeScript expression.
+ * Uses fallbackVar() when the node has a fallback.
+ */
+function formatVarNode(node) {
+	if (!node.fallback) return node.symbol
+	const fallbackExpr =
+		node.fallback.type === 'var'
+			? formatVarNode(node.fallback)
+			: `'${node.fallback.value.replace(/'/g, "\\'")}'`
+	return `fallbackVar(${node.symbol}, ${fallbackExpr})`
 }
 
 /**
  * Format a ParsedValue into a TypeScript source expression string.
  *
  * plain     → `'value'`  (single-quoted)
- * singleVar → `varBsSymbol`  (JS identifier, no quotes)
+ * singleVar → `varBsSymbol`  (JS identifier, no quotes; or fallbackVar(...) if fallback)
  * template  → `` `literal${symbol}literal` ``  (template literal)
  */
 export function formatVeValue(parsed) {
@@ -109,11 +176,22 @@ export function formatVeValue(parsed) {
 		return `'${parsed.value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`
 	}
 	if (parsed.type === 'singleVar') {
+		if (parsed.fallback) {
+			const fallbackExpr =
+				parsed.fallback.type === 'var'
+					? formatVarNode(parsed.fallback)
+					: `'${parsed.fallback.value.replace(/'/g, "\\'")}'`
+			return `fallbackVar(${parsed.symbol}, ${fallbackExpr})`
+		}
 		return parsed.symbol
 	}
 	// template
 	const content = parsed.parts
-		.map((p) => (p.type === 'var' ? `\${${p.symbol}}` : escapeLiteralPart(p.value)))
+		.map((p) =>
+			p.type === 'var'
+				? `\${${formatVarNode(p)}}`
+				: escapeLiteralPart(p.value),
+		)
 		.join('')
 	return '`' + content + '`'
 }

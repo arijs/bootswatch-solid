@@ -10,7 +10,8 @@ import {
 } from '../../../context/ThemeContext'
 import { link } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btnClose, fade, show } from '../../../theme-contract/literal/contract.css'
+import { btnClose } from '../../../theme-contract/literal/contract.css'
+import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 import {
 	alert,
 	alertBtnClose,

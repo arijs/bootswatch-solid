@@ -23,7 +23,7 @@ import {
 	parseBootstrapCss,
 	walkCssEmitUnits,
 } from '../generate-ve-theme-literal/parse-css-tree.mjs'
-import { applySplitProps, findAdditions, findDivergence } from './divergence-manifest.mjs'
+import { EXTRA_RULES, applySplitProps, findAdditions, findDivergence, findRemaps } from './divergence-manifest.mjs'
 import { buildLiteralRegistry } from './registry.mjs'
 import { splitByCombinators, splitSelectorList } from './selector-parser.mjs'
 import { cssPropToVeKey, formatVeValue, parseVeValue } from './value-format.mjs'
@@ -304,10 +304,51 @@ function emitKeyframes(name, steps) {
 
 // ─── import building ──────────────────────────────────────────────────────────
 
-/** Build a symbol → import path map for element contracts from contractsByFamily. */
+/** Build a symbol → import path map for element contracts from contractsByFamily.
+ *
+ * Priority (lowest → highest, later passes override earlier):
+ *   1. utilities/generated — massive catch-all; lowest priority
+ *   2. literal             — covers all Bootstrap class tokens; beats generated
+ *   3. utilities           — curated hand-written subset; beats literal
+ *   4. everything else     — specific family contracts; highest priority
+ *
+ * The literal pass sits between utilities/generated and utilities so that
+ * utility symbols absent from utilities/contract.css (e.g. mb0) resolve to
+ * literal/contract.css — matching what components stamp — while symbols
+ * that ARE in utilities/contract.css (e.g. mb3) still resolve there.
+ */
 function buildElementImportPaths(varRegistry) {
 	const symbolToPath = new Map()
+	// Pass 1: utilities/generated (lowest priority)
 	for (const [family, symbols] of varRegistry.contractsByFamily) {
+		if (family !== 'utilities/generated') continue
+		const importPath = getContractImportPath(family)
+		if (!importPath) continue
+		for (const sym of symbols) {
+			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+		}
+	}
+	// Pass 2: literal (overrides utilities/generated; gets overridden by utilities)
+	for (const [family, symbols] of varRegistry.contractsByFamily) {
+		if (family !== 'literal') continue
+		const importPath = getContractImportPath(family)
+		if (!importPath) continue
+		for (const sym of symbols) {
+			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+		}
+	}
+	// Pass 3: utilities (overrides literal for symbols also in utilities/contract.css)
+	for (const [family, symbols] of varRegistry.contractsByFamily) {
+		if (family !== 'utilities') continue
+		const importPath = getContractImportPath(family)
+		if (!importPath) continue
+		for (const sym of symbols) {
+			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+		}
+	}
+	// Pass 4: all specific families (highest priority)
+	for (const [family, symbols] of varRegistry.contractsByFamily) {
+		if (family === 'utilities/generated' || family === 'utilities' || family === 'literal') continue
 		const importPath = getContractImportPath(family)
 		if (!importPath) continue
 		for (const sym of symbols) {
@@ -337,9 +378,13 @@ function buildImportBlock(
 	usedRootSymbols,
 	varRegistry,
 	elementImportPaths,
+	usesFallbackVar = false,
 ) {
 	const lines = []
-	lines.push(`import { globalKeyframes, globalStyle } from '@vanilla-extract/css'`)
+	const veImports = usesFallbackVar
+		? 'fallbackVar, globalKeyframes, globalStyle'
+		: 'globalKeyframes, globalStyle'
+	lines.push(`import { ${veImports} } from '@vanilla-extract/css'`)
 	lines.push(`import { ${scopeVarName} } from '${REL_SCOPE}'`)
 	lines.push('')
 
@@ -386,9 +431,28 @@ function buildImportBlock(
 		lines.push('')
 	}
 
-	// Class contracts from literal/contract.css
-	if (usedClassSymbols.size > 0) {
-		emitImport(lines, [...usedClassSymbols].sort(), `${REL_CONTRACT_ROOT}/literal/contract.css`)
+	// Class contracts: route each symbol to the highest-priority family contract that
+	// defines it (per buildElementImportPaths priority). Symbols found in no family
+	// contract fall back to literal/contract.css.
+	const classByPath = new Map()
+	const literalFallbackSymbols = []
+	for (const sym of usedClassSymbols) {
+		const knownPath = elementImportPaths.get(sym)
+		if (knownPath) {
+			if (!classByPath.has(knownPath)) classByPath.set(knownPath, new Set())
+			classByPath.get(knownPath).add(sym)
+		} else {
+			literalFallbackSymbols.push(sym)
+		}
+	}
+	if (classByPath.size > 0) {
+		for (const [iPath, syms] of [...classByPath].sort()) {
+			emitImport(lines, [...syms].sort(), iPath)
+		}
+		lines.push('')
+	}
+	if (literalFallbackSymbols.length > 0) {
+		emitImport(lines, literalFallbackSymbols.sort(), `${REL_CONTRACT_ROOT}/literal/contract.css`)
 		lines.push('')
 	}
 
@@ -490,12 +554,21 @@ export async function emitLiteralStyles(theme, opts = {}) {
 			continue
 		}
 
-		const { translated: veSelector, unresolved } = result
+		const { translated: rawVeSelector, unresolved } = result
 		if (unresolved.length > 0) {
 			skipped.push({ selector, reason: `unresolved: ${unresolved.join(', ')}` })
 			report.skippedCount++
 			if (strict) console.error(`[strict] Unresolved tokens in "${selector}": ${unresolved.join(', ')}`)
 			continue
+		}
+
+		// Apply remapSymbols divergences: substitute component-specific contracts for
+		// shared state contracts (e.g. active→navLinkActive) in matching selectors.
+		let veSelector = rawVeSelector
+		for (const remap of findRemaps(selector)) {
+			for (const [from, to] of Object.entries(remap.symbolMap)) {
+				veSelector = veSelector.replaceAll(`\${${from}}`, `\${${to}}`)
+			}
 		}
 
 		const decls = translateDeclarations(declarations, cssVarToSymbol, usedVarSymbols)
@@ -520,18 +593,37 @@ export async function emitLiteralStyles(theme, opts = {}) {
 		// Additive divergences — emit extra rules without replacing the original
 		for (const addition of findAdditions(selector)) {
 			if (addition.action === 'addMirrorRule') {
-				const fromRef = ref(addition.substitute.fromContract)
-				const toRef = ref(addition.substitute.toContract)
-				const mirrorSelector = veSelector.replaceAll(fromRef, toRef)
+				const subs = addition.substitutes ?? [addition.substitute]
+				let mirrorSelector = veSelector
+				for (const sub of subs) {
+					mirrorSelector = mirrorSelector.replaceAll(ref(sub.fromContract), ref(sub.toContract))
+				}
 				if (mirrorSelector !== veSelector) {
 					bodyLines.push(emitGlobalStyle(mirrorSelector, decls, media))
 					report.emitted++
-					const sym = addition.substitute.toContract
-					if (ROOT_CONTRACT_SYMBOLS.has(sym)) usedRootSymbols.add(sym)
-					else if (ELEMENT_CONTRACT_VALUES.has(sym)) usedElementSymbols.add(sym)
-					else usedClassSymbols.add(sym)
+					for (const sub of subs) {
+						const sym = sub.toContract
+						if (ROOT_CONTRACT_SYMBOLS.has(sym)) usedRootSymbols.add(sym)
+						else if (ELEMENT_CONTRACT_VALUES.has(sym)) usedElementSymbols.add(sym)
+						else usedClassSymbols.add(sym)
+					}
 				}
 			}
+		}
+	}
+
+	// Append extra class-contract rules that have no Bootstrap CSS class selector
+	// but are stamped directly by VE2 components (mirrors of element rules).
+	for (const extra of EXTRA_RULES) {
+		const contracts = extra.contracts ?? [extra.contract]
+		const veSelector = `${ref(scopeVarName)}${contracts.map((c) => ref(c)).join('')}`
+		const propLines = Object.entries(extra.props).map(([k, v]) => `${k}: '${v}',`)
+		bodyLines.push(emitGlobalStyle(veSelector, { propLines, varLines: [] }, []))
+		report.emitted++
+		for (const sym of contracts) {
+			if (ROOT_CONTRACT_SYMBOLS.has(sym)) usedRootSymbols.add(sym)
+			else if (ELEMENT_CONTRACT_VALUES.has(sym)) usedElementSymbols.add(sym)
+			else usedClassSymbols.add(sym)
 		}
 	}
 
@@ -540,6 +632,7 @@ export async function emitLiteralStyles(theme, opts = {}) {
 	const outPath = path.join(VE2_THEMES_ROOT, theme, 'literal', 'styles.css.ts')
 
 	if (!dryRun) {
+		const usesFallbackVar = bodyLines.some((l) => l.includes('fallbackVar('))
 		const importBlock = buildImportBlock(
 			scopeVarName,
 			usedClassSymbols,
@@ -548,6 +641,7 @@ export async function emitLiteralStyles(theme, opts = {}) {
 			usedRootSymbols,
 			varRegistry,
 			elementImportPaths,
+			usesFallbackVar,
 		)
 		const content = importBlock + '\n' + bodyLines.join('\n')
 		await mkdir(path.dirname(outPath), { recursive: true })

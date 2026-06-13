@@ -12,7 +12,6 @@ import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	border,
 	bsTooltipAuto,
-	fade,
 	flexColumn,
 	justifyContentEnd,
 	tooltip,
@@ -25,6 +24,7 @@ import {
 	frameColumn,
 	justifyEnd,
 	tooltipArrow,
+	tooltipFade,
 	tooltipInner,
 	tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
@@ -53,7 +53,7 @@ const TopTooltip: Component = () => {
 				data-bs-custom-class="pwhook-tooltip"
 				ref={(el) =>
 					new VeTooltip(el, {
-						template: `<div class="${tooltipVe} ${tooltip} ${bsTooltipAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+						template: `<div class="${tooltipVe} ${tooltip} ${bsTooltipAuto} ${tooltipFade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
 					})
 				}
 				data-bs-placement="top"

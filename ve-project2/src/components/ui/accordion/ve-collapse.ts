@@ -1,5 +1,6 @@
 import * as bootstrap from 'bootstrap'
-import { collapsed, collapsing, show } from '../../../theme-contract/literal/contract.css'
+import { collapsed, collapsing } from '../../../theme-contract/literal/contract.css'
+import { show } from '../../../theme-contract/ui/navs/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeCollapseRuntimeClasses {

@@ -740,6 +740,7 @@ import {
 	btnOutlineWarning,
 	btnPrimary,
 	btnSecondary,
+	btnShowHook,
 	btnSm,
 	btnSuccess,
 	btnToolbar,
@@ -1015,6 +1016,7 @@ import {
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
 	dropdownMenuMdStart,
+	dropdownMenuShow,
 	dropdownMenuSmEnd,
 	dropdownMenuSmStart,
 	dropdownMenuStart,
@@ -8353,6 +8355,12 @@ globalStyle(`${briteScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${briteScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8370,6 +8378,10 @@ globalStyle(`${briteScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${briteScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${briteScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9264,7 +9276,7 @@ globalStyle(`${briteScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${briteScope}${dropdownMenu}${show}`, {
+globalStyle(`${briteScope}${dropdownMenu}${dropdownMenuShow}`, {
 	display: 'block',
 })
 
@@ -24566,6 +24578,12 @@ globalStyle(`${briteScope}${btn}${active}`, {
 })
 
 globalStyle(`${briteScope}${btn}${show}`, {
+	borderColor: '#000',
+	boxShadow: 'none',
+	transform: 'translate(0, 0)',
+})
+
+globalStyle(`${briteScope}${btn}${btnShowHook}`, {
 	borderColor: '#000',
 	boxShadow: 'none',
 	transform: 'translate(0, 0)',

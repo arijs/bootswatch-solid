@@ -6,12 +6,8 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import {
-	bgInfo,
-	progress,
-	progressBar,
-	w50,
-} from '../../../theme-contract/literal/contract.css'
+import { bgInfo, w50 } from '../../../theme-contract/literal/contract.css'
+import { progress, progressBar } from '../../../theme-contract/ui/progress/contract.css'
 import { textDark } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [

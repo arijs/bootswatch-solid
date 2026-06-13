@@ -104,6 +104,7 @@ function inferFamilyFromPath(filePath) {
 		if (rel === 'utilities/generated/_vars.css.ts') return 'utilities/generated-vars'
 		if (rel.startsWith('utilities/generated/')) return 'utilities/generated'
 	if (rel.startsWith('utilities/')) return 'utilities'
+	if (rel.startsWith('literal/')) return 'literal'
 	if (rel.startsWith('contents/')) {
 		const parts = rel.split('/')
 		if (parts.length >= 3) return `contents/${parts[1]}`
@@ -216,6 +217,7 @@ export function getContractImportPath(family) {
 	if (family === 'utilities/generated') return 'utilities/generated/contract.css'
 	if (family === 'utilities/generated-vars') return 'utilities/generated/_vars.css'
 	if (family === 'utilities') return 'utilities/contract.css'
+	if (family === 'literal') return 'literal/contract.css'
 	if (family.startsWith('contents/')) {
 		const sub = family.split('/')[1]
 		return `contents/${sub}/contract.css`
