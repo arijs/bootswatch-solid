@@ -92,3 +92,4 @@ export default CenteredScrollableModal
 // @screenshot bootstrap/opened-modal: 360x688 688
 // @screenshot slate/opened-modal: 360x688 688
 // @screenshot sandstone/opened-modal: 360x688 688
+// @screenshot cerulean/opened-modal: 360x688 688
