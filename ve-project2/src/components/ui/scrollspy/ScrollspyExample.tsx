@@ -5,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { h4, paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { active, bgLight, navbarLight } from '../../../theme-contract/literal/contract.css'
@@ -45,7 +46,7 @@ const ScrollspyExample: Component = () => {
 			<nav class={`${theme} ${navbar} ${navbarBgLight} ${navbarLight} ${bgLight} ${px3}`}>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
 				<a
-					class={`${theme} ${navbarBrand}`}
+					class={`${theme} ${link} ${navbarBrand}`}
 					href="#"
 					onClick={(event) => event.preventDefault()}
 				>
@@ -53,19 +54,22 @@ const ScrollspyExample: Component = () => {
 				</a>
 				<ul class={`${theme} ${nav} ${navPills}`}>
 					<li class={`${theme} ${navItem}`}>
-						<a class={`${theme} ${navLink} ${navLinkActive} ${active}`} href="#fat">
+						<a
+							class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
+							href="#fat"
+						>
 							@fat
 						</a>
 					</li>
 					<li class={`${theme} ${navItem}`}>
-						<a class={`${theme} ${navLink}`} href="#mdo">
+						<a class={`${theme} ${link} ${navLink}`} href="#mdo">
 							@mdo
 						</a>
 					</li>
 					<li class={`${theme} ${navItem} ${dropdown}`}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a
-							class={`${theme} ${navLink} ${dropdownToggle}`}
+							class={`${theme} ${link} ${navLink} ${dropdownToggle}`}
 							href="#"
 							onClick={(event) => event.preventDefault()}
 							aria-expanded="false"
@@ -74,12 +78,12 @@ const ScrollspyExample: Component = () => {
 						</a>
 						<ul class={`${theme} ${dropdownMenu}`}>
 							<li>
-								<a class={`${theme} ${dropdownItem}`} href="#one">
+								<a class={`${theme} ${link} ${dropdownItem}`} href="#one">
 									one
 								</a>
 							</li>
 							<li>
-								<a class={`${theme} ${dropdownItem}`} href="#two">
+								<a class={`${theme} ${link} ${dropdownItem}`} href="#two">
 									two
 								</a>
 							</li>
@@ -87,7 +91,7 @@ const ScrollspyExample: Component = () => {
 								<hr class={`${theme} ${dropdownDivider}`} />
 							</li>
 							<li>
-								<a class={`${theme} ${dropdownItem}`} href="#three">
+								<a class={`${theme} ${link} ${dropdownItem}`} href="#three">
 									three
 								</a>
 							</li>

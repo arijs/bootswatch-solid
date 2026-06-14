@@ -57,4 +57,4 @@ export default AlignedDropdown
 // @screenshot slate/opened-dropdown: 360x216 216
 // @screenshot sandstone/opened-dropdown: 360x196 196
 // @screenshot materia/opened-dropdown: 360x214 214
-// @screenshot brite/opened-dropdown: 360x197 197
+// @screenshot brite/opened-dropdown: 360x201 197

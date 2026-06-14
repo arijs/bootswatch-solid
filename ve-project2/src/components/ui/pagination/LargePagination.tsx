@@ -1,6 +1,11 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { flexWrap } from '../../../theme-contract/ui/modal/contract.css'
 import {
@@ -29,7 +34,7 @@ const LargePagination: Component = () => {
 						<li class={`${theme} ${pageItem} ${pageItemDisabled}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
-								class={`${theme} ${pageLink}`}
+								class={`${theme} ${link} ${pageLink}`}
 								href="#"
 								onClick={(e) => e.preventDefault()}
 								tabindex="-1"
@@ -40,25 +45,41 @@ const LargePagination: Component = () => {
 						</li>
 						<li class={`${theme} ${pageItem}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a class={`${theme} ${pageLink}`} href="#" onClick={(e) => e.preventDefault()}>
+							<a
+								class={`${theme} ${link} ${pageLink}`}
+								href="#"
+								onClick={(e) => e.preventDefault()}
+							>
 								1
 							</a>
 						</li>
 						<li class={`${theme} ${pageItem} ${pageItemActive}`} aria-current="page">
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a class={`${theme} ${pageLink}`} href="#" onClick={(e) => e.preventDefault()}>
+							<a
+								class={`${theme} ${link} ${pageLink}`}
+								href="#"
+								onClick={(e) => e.preventDefault()}
+							>
 								2
 							</a>
 						</li>
 						<li class={`${theme} ${pageItem}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a class={`${theme} ${pageLink}`} href="#" onClick={(e) => e.preventDefault()}>
+							<a
+								class={`${theme} ${link} ${pageLink}`}
+								href="#"
+								onClick={(e) => e.preventDefault()}
+							>
 								3
 							</a>
 						</li>
 						<li class={`${theme} ${pageItem}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a class={`${theme} ${pageLink}`} href="#" onClick={(e) => e.preventDefault()}>
+							<a
+								class={`${theme} ${link} ${pageLink}`}
+								href="#"
+								onClick={(e) => e.preventDefault()}
+							>
 								Next
 							</a>
 						</li>

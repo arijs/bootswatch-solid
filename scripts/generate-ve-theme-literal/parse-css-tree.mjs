@@ -40,11 +40,22 @@ function collectDeclarations(declarations) {
 	return result
 }
 
+function isDarkThemeSelector(selector) {
+	return /\[data-bs-theme=["']?dark["']?\]/.test(selector)
+}
+
 /**
  * Walk parsed CSS AST and yield emit units in source order.
- * @returns {Array<{ kind: 'rule', selector: string, declarations: Record<string,string>, media: string[] } | { kind: 'keyframes', name: string }>}
+ *
+ * `:root` / `[data-bs-theme=…]` global var blocks are dropped by default (the
+ * element-owned model has no `:root`). Pass `{ includeRootVars: true }` to surface
+ * them as `kind: 'rootVars'` units so a caller can assign them onto `${scope}${vars}`
+ * (and `${scope}${vars}[data-bs-theme=dark]` for dark) — see the v2 literal emitter.
+ * The standalone `[data-bs-theme=light]` selector is skipped as redundant with `:root`.
+ *
+ * @returns {Array<{ kind: 'rule', selector: string, declarations: Record<string,string>, media: string[] } | { kind: 'rootVars', selector: string, declarations: Record<string,string>, media: string[], variant: 'light'|'dark' } | { kind: 'keyframes', name: string }>}
  */
-export function walkCssEmitUnits(ast) {
+export function walkCssEmitUnits(ast, { includeRootVars = false } = {}) {
 	const units = []
 
 	function walk(nodes, mediaStack = []) {
@@ -65,7 +76,21 @@ export function walkCssEmitUnits(ast) {
 
 				for (const rawSelector of node.selectors ?? []) {
 					const selector = normalizeSelector(rawSelector)
-					if (isRootVarSelector(selector)) continue
+					if (isRootVarSelector(selector)) {
+						if (!includeRootVars) continue
+						const dark = isDarkThemeSelector(selector)
+						// `:root` → light vars; `[data-bs-theme=dark]` → dark vars.
+						// Standalone `[data-bs-theme=light]` is redundant with `:root` → skip.
+						if (!dark && !/:root/.test(selector)) continue
+						units.push({
+							kind: 'rootVars',
+							selector,
+							declarations,
+							media: [...mediaStack],
+							variant: dark ? 'dark' : 'light',
+						})
+						continue
+					}
 					if (isScopeOwnedSelector(selector)) continue
 					units.push({
 						kind: 'rule',

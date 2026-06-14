@@ -114,6 +114,7 @@ function translateCompoundSegment(segment, scopeVarName, registry, unresolved) {
 	let i = 0
 	let segContent = ''
 	let hasNamedParts = false
+	let isElementContract = false
 
 	// Leading element tag (e.g. `a`, `h1`, `input`)
 	if (/[a-zA-Z_]/.test(s[0])) {
@@ -123,6 +124,7 @@ function translateCompoundSegment(segment, scopeVarName, registry, unresolved) {
 		if (contract) {
 			segContent += ref(contract)
 			hasNamedParts = true
+			isElementContract = true
 		} else if (registry.isDivergenceTag(tag)) {
 			// `body` in descendant position (e.g. Quartz's `[data-bs-theme=dark] body`)
 			// Route to bodyText — same contract used by the scope.css.ts bodyText rule.
@@ -144,6 +146,14 @@ function translateCompoundSegment(segment, scopeVarName, registry, unresolved) {
 
 	// Only prefix with scope if the segment has at least one named contract ref.
 	if (!hasNamedParts) return segContent
+
+	// Pure element-tag rules (e.g. `a { }`, `h1 { }`) must use :where() to preserve
+	// Bootstrap's specificity semantics: element selectors (0,0,1) should always lose
+	// to class selectors (0,1,0+). Without :where(), both become class selectors (0,2,0)
+	// and document order determines the winner — causing incorrect cascade results.
+	if (isElementContract && !remaining.trim()) {
+		return `:where(${ref(scopeVarName)}${segContent})`
+	}
 	return ref(scopeVarName) + segContent
 }
 
@@ -478,7 +488,7 @@ export async function emitLiteralStyles(theme, opts = {}) {
 	])
 
 	const ast = parseBootstrapCss(cssText)
-	const units = walkCssEmitUnits(ast)
+	const units = walkCssEmitUnits(ast, { includeRootVars: true })
 	const scopeVarName = themeScopeExportName(theme)
 	const cssVarToSymbol = (cssVar) => varRegistry.cssVarToSymbol.get(cssVar) ?? null
 	const elementImportPaths = buildElementImportPaths(varRegistry)
@@ -501,6 +511,24 @@ export async function emitLiteralStyles(theme, opts = {}) {
 		if (unit.kind === 'keyframes') {
 			bodyLines.push(emitKeyframes(unit.name, unit.steps))
 			report.keyframesEmitted++
+			continue
+		}
+
+		// Global `--bs-*` var blocks (`:root` / `[data-bs-theme=dark]`) are assigned onto
+		// the `vars` contract so all themed descendants inherit them via the cascade — the
+		// single source of truth for root vars (plan §6.3). The registry resolves each var
+		// symbol to its owning `_vars.css` module, so component vars set at `:root`
+		// (e.g. `--bs-carousel-*` in `ui/carousel/_vars.css`) can never be misrouted.
+		if (unit.kind === 'rootVars') {
+			const decls = translateDeclarations(unit.declarations, cssVarToSymbol, usedVarSymbols)
+			if (decls.varLines.length === 0 && decls.propLines.length === 0) continue
+			const veSelector =
+				unit.variant === 'dark'
+					? `${ref(scopeVarName)}${ref('vars')}[data-bs-theme=dark]`
+					: `${ref(scopeVarName)}${ref('vars')}`
+			usedRootSymbols.add('vars')
+			bodyLines.push(emitGlobalStyle(veSelector, decls, unit.media))
+			report.emitted++
 			continue
 		}
 

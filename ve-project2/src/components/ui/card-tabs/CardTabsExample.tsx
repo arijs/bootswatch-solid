@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -8,9 +5,11 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { active, disabled } from '../../../theme-contract/literal/contract.css'
+import { active, disabled, textCenter } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -31,7 +30,6 @@ import {
 	navTabs,
 } from '../../../theme-contract/ui/navs/contract.css'
 import { col, g4, row } from '../../../theme-contract/utilities/contract.css'
-import { textCenter } from '../../../theme-contract/literal/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card-tabs',
@@ -65,7 +63,7 @@ const CardTabsExample: Component = () => {
 								<li class={`${theme} ${navItem}`}>
 									{/* biome-ignore lint: <a> is used for demonstration purposes */}
 									<a
-										class={`${theme} ${navLink}`}
+										class={`${theme} ${link} ${navLink}`}
 										href="#"
 										onClick={(e) => e.preventDefault()}
 									>
@@ -75,7 +73,7 @@ const CardTabsExample: Component = () => {
 								<li class={`${theme} ${navItem}`}>
 									{/* biome-ignore lint: <a> is used for demonstration purposes */}
 									<a
-										class={`${theme} ${navLink} ${navLinkDisabled} ${disabled}`}
+										class={`${theme} ${link} ${navLink} ${navLinkDisabled} ${disabled}`}
 										aria-disabled="true"
 										href="#"
 										onClick={(e) => e.preventDefault()}
@@ -95,7 +93,7 @@ const CardTabsExample: Component = () => {
 							<a
 								href="#"
 								onClick={(e) => e.preventDefault()}
-								class={`${theme} ${btn} ${btnPrimary}`}
+								class={`${theme} ${link} ${btn} ${btnPrimary}`}
 							>
 								Go somewhere
 							</a>

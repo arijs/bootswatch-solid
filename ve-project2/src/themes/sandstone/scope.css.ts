@@ -108,7 +108,8 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../theme-contract/forms/_vars.css'
-import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { modalOpenHook } from '../../theme-contract/ui/modal/contract.css'
 
 // Sandstone theme scope class.
 // Zero-style identifier used as a stable selector prefix.
@@ -220,10 +221,16 @@ globalStyle(`${sandstoneScope}${vars}`, {
 		[varBsFocusRingColor]: "rgba(50, 93, 136, 0.25)",
 		[varBsCarouselIndicatorActiveBg]: "#fff",
 		[varBsCarouselCaptionColor]: "#fff",
+		[varBsFormValidColor]: "#93c54b",
+		[varBsFormValidBorderColor]: "#93c54b",
+		[varBsFormInvalidColor]: "#d9534f",
+		[varBsFormInvalidBorderColor]: "#d9534f",
 	},
 })
 
 // ── Root / body styles ────────────────────────────────────────────────────────
+// bodyText = typography; bodyFrame = page canvas (Ve2Shell). Do not add padding
+// here — baseline screenshots have no padded wrapper around bd-example.
 
 globalStyle(`${sandstoneScope}${bodyText}`, {
 	fontFamily: varBsBodyFontFamily,
@@ -233,8 +240,19 @@ globalStyle(`${sandstoneScope}${bodyText}`, {
 	color: varBsBodyColor,
 })
 
-globalStyle(`${sandstoneScope}${body}`, {
+globalStyle(`${sandstoneScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
-	padding: '1rem',
-	display: 'block',
+	margin: 0,
+	minHeight: '100vh',
+})
+
+// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.
+globalStyle(`${modalOpenHook}`, {
+	fontFamily: varBsBodyFontFamily,
+	fontSize: varBsBodyFontSize,
+	fontWeight: varBsBodyFontWeight,
+	lineHeight: varBsBodyLineHeight,
+	color: varBsBodyColor,
+	backgroundColor: varBsBodyBg,
+	margin: 0,
 })

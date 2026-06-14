@@ -1,7 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import {
-	varBsAccordionBtnActiveIcon,
-	varBsAccordionBtnIcon,
 	varBsBlack,
 	varBsBlackRgb,
 	varBsBlue,
@@ -27,6 +25,7 @@ import {
 	varBsBoxShadowInset,
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
+	varBsBtnCloseFilter,
 	varBsCarouselCaptionColor,
 	varBsCarouselControlIconFilter,
 	varBsCarouselIndicatorActiveBg,
@@ -72,14 +71,6 @@ import {
 	varBsLinkDecoration,
 	varBsLinkHoverColor,
 	varBsLinkHoverColorRgb,
-	varBsNavbarActiveColor,
-	varBsNavbarBrandColor,
-	varBsNavbarBrandHoverColor,
-	varBsNavbarColor,
-	varBsNavbarDisabledColor,
-	varBsNavbarHoverColor,
-	varBsNavbarTogglerBorderColor,
-	varBsNavbarTogglerIconBg,
 	varBsOrange,
 	varBsPink,
 	varBsPrimary,
@@ -116,8 +107,6 @@ import {
 import {
 	varBsFormInvalidBorderColor,
 	varBsFormInvalidColor,
-	varBsFormSelectBgImg,
-	varBsFormSwitchBg,
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../theme-contract/forms/_vars.css'
@@ -232,19 +221,14 @@ globalStyle(`${cosmoScope}${vars}`, {
 		[varBsFocusRingWidth]: "0.25rem",
 		[varBsFocusRingOpacity]: 0.25,
 		[varBsFocusRingColor]: "rgba(39, 128, 227, 0.25)",
-		[varBsNavbarColor]: "rgba(255, 255, 255, 0.55)",
-		[varBsNavbarHoverColor]: "white",
-		[varBsNavbarDisabledColor]: "rgba(255, 255, 255, 0.25)",
-		[varBsNavbarActiveColor]: "#fff",
-		[varBsNavbarBrandColor]: "#fff",
-		[varBsNavbarBrandHoverColor]: "#fff",
-		[varBsNavbarTogglerBorderColor]: "rgba(255, 255, 255, 0.1)",
-		[varBsNavbarTogglerIconBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%237db3ee'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnActiveIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%237db3ee'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+		[varBsBtnCloseFilter]: "",
 		[varBsCarouselIndicatorActiveBg]: "#fff",
 		[varBsCarouselCaptionColor]: "#fff",
 		[varBsCarouselControlIconFilter]: "",
+		[varBsFormValidColor]: "#3fb618",
+		[varBsFormValidBorderColor]: "#3fb618",
+		[varBsFormInvalidColor]: "#ff0039",
+		[varBsFormInvalidBorderColor]: "#ff0039",
 	},
 })
 
@@ -263,6 +247,7 @@ globalStyle(`${cosmoScope}${bodyText}`, {
 globalStyle(`${cosmoScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
 	margin: 0,
+	minHeight: '100vh',
 })
 
 // Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.

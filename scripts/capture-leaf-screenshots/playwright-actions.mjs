@@ -6,6 +6,50 @@ function ensureSelector(locator, selector) {
 	}
 }
 
+/**
+ * Wait until an element's visual signature (bounding box + opacity + transform) stops
+ * changing for a few consecutive samples, so a CSS transition has finished before capture.
+ *
+ * Needed because themes like brite animate components (`.btn { transition: all 0.3s }`):
+ * after a click + mouse-out the button reverts its `transform: translate(-3px,-3px)` hover
+ * state over 300ms, which moves the Popper-anchored dropdown menu. A fixed sub-300ms settle
+ * delay captures mid-animation → non-deterministic screenshots (heights of 197/200/201 for
+ * the same scenario). Polling the signature converges as soon as the animation lands and
+ * never hangs on infinite animations (it caps at `timeout`).
+ *
+ * @param {import('playwright').Page} page
+ * @param {string|import('playwright').Locator} selectorOrLocator
+ */
+async function waitForVisualStable(
+	page,
+	selectorOrLocator,
+	{ timeout = 2000, interval = 50, stableFrames = 3 } = {},
+) {
+	const locator =
+		typeof selectorOrLocator === 'string'
+			? page.locator(selectorOrLocator).first()
+			: selectorOrLocator
+	const start = Date.now()
+	let last = null
+	let stable = 0
+	while (Date.now() - start < timeout) {
+		const sig = await locator
+			.evaluate((el) => {
+				const r = el.getBoundingClientRect()
+				const cs = getComputedStyle(el)
+				return `${r.x},${r.y},${r.width},${r.height}|${cs.opacity}|${cs.transform}`
+			})
+			.catch(() => null)
+		if (sig !== null && sig === last) {
+			if (++stable >= stableFrames) return
+		} else {
+			stable = 0
+		}
+		last = sig
+		await delay(interval)
+	}
+}
+
 function resolveCarouselTimeoutMs(rawTimeoutMs) {
 	if (rawTimeoutMs === undefined) {
 		return 2000
@@ -29,7 +73,6 @@ function assertCarouselDirection(rawDirection) {
 		throw new Error(`Invalid carousel direction: ${rawDirection}`)
 	}
 }
-
 
 async function slideCarouselToIndex(
 	locator,
@@ -470,7 +513,10 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		typeof scenarioLocator === 'string'
 			? page.locator(scenarioLocator).first()
 			: scenarioLocator.first()
-	await locator.waitFor({ state: scenario.locatorState?.(selectorContext) ?? 'visible', timeout: 5000 })
+	await locator.waitFor({
+		state: scenario.locatorState?.(selectorContext) ?? 'visible',
+		timeout: 5000,
+	})
 	ensureSelector(locator, scenario.selector)
 
 	switch (scenario.kind) {
@@ -569,6 +615,25 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 
 	if (scenario.resetMouseToCornerAfterAction) {
 		await page.mouse.move(0, 0)
+	}
+
+	// Settle CSS transitions before the fixed delay so animated components (e.g. brite's
+	// hover-out button transform that drags Popper-anchored menus) capture deterministically.
+	// Carousel kinds run their own transition synchronization, so skip them here.
+	const settleTarget = scenario.visibleSelector ?? (scenario.kind === 'hover' ? locator : null)
+	if (settleTarget) {
+		await waitForVisualStable(page, settleTarget)
+		// Floating components (dropdown/tooltip/popover/modal) are Popper-positioned and
+		// anchored ONCE — during the anchor's open animation. With brite's
+		// `.btn { transition: all 0.3s; transform: translate(-3px,-3px) }` the toggle is still
+		// mid-animation when Popper resolves, so the menu keeps a transient ~3px offset and
+		// Popper never recomputes on its own. This makes the original app itself flaky (the
+		// menu lands at either the offset or the settled position). Nudge a resize so Popper
+		// re-resolves against the now-settled anchor — deterministic across baseline and VE.
+		if (scenario.kind === 'click-visible' || scenario.kind === 'hover-visible') {
+			await page.evaluate(() => window.dispatchEvent(new Event('resize')))
+			await waitForVisualStable(page, settleTarget)
+		}
 	}
 
 	await delay(scenario.settleDelayMs ?? 180)

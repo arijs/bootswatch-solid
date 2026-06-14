@@ -1,6 +1,11 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
 import { elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
@@ -44,11 +49,15 @@ const ImageTopCard: Component = () => {
 			<div class={`${theme} ${cardBody}`}>
 				<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
 				<p class={`${theme} ${cardText} ${paragraph}`}>
-					Some quick example text to build on the card title and make up the bulk of
-					the card's content.
+					Some quick example text to build on the card title and make up the bulk of the
+					card's content.
 				</p>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
+				<a
+					href="#"
+					onClick={(e) => e.preventDefault()}
+					class={`${theme} ${link} ${btn} ${btnPrimary}`}
+				>
 					Go somewhere
 				</a>
 			</div>

@@ -48,4 +48,4 @@ export default SplitWarningDropdown
 // @screenshot slate/opened-dropdown: 360x166 166
 // @screenshot sandstone/opened-dropdown: 360x146 146
 // @screenshot materia/opened-dropdown: 360x164 164
-// @screenshot brite/opened-dropdown: 360x149 149
+// @screenshot brite/opened-dropdown: 360x153 149

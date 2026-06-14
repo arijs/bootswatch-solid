@@ -1,34 +1,37 @@
-import {
-	cssPropToVeKey,
-	extractFontImports,
-	extractRootVars,
-	formatVeValue,
-} from './css-utils.mjs'
+import { extractFontImports, formatVeValue } from './css-utils.mjs'
 import { themeScopeClassComment, themeScopeExportName } from './constants.mjs'
+import { getVarsImportPath } from './contract-registry.mjs'
 
-function groupVarsByImport(registry, rootVars) {
-	const globalVars = []
-	const formsVars = []
+const GLOBAL_VARS_PATH = '_vars.css'
 
-	for (const [cssVar, value] of Object.entries(rootVars)) {
-		const symbol = registry.cssVarToSymbol.get(cssVar)
-		if (!symbol) continue
-		const family = registry.symbolToFamily.get(symbol)
-		const entry = { symbol, cssVar, value }
-		if (family === 'forms') formsVars.push(entry)
-		else globalVars.push(entry)
+// Root `--bs-*` var blocks are NOT emitted here. The literal emitter owns the
+// `${scope}${vars}` assignment (plan §6.3): a single registry resolves each var symbol
+// to its owning `_vars.css` module, eliminating the cross-generator module-mismatch
+// class of bug (e.g. carousel vars previously imported from the global `_vars.css`,
+// which does not declare them → `undefined` key → rule silently inert). scope.css.ts
+// emits only the body/frame/modal rules, which reference a few `--bs-body-*` vars.
+
+/** Emit import blocks for the var symbols referenced by the body rules, grouped by
+ * owning `_vars.css` module (global first, then forms, then component modules). */
+function emitVarImports(lines, usedVarSymbols, registry) {
+	const byPath = new Map()
+	for (const sym of usedVarSymbols) {
+		const family = registry.symbolToFamily.get(sym)
+		const importPath = (family ? getVarsImportPath(family) : null) ?? GLOBAL_VARS_PATH
+		if (!byPath.has(importPath)) byPath.set(importPath, new Set())
+		byPath.get(importPath).add(sym)
 	}
-	return { globalVars, formsVars }
-}
-
-function emitVarAssignment(entry, registry) {
-	const veValue = formatVeValue(entry.value, registry)
-	// If value is var(--bs-x), keep as symbol reference not literal
-	if (entry.value.trim().startsWith('var(')) {
-		const parsed = formatVeValue(entry.value, registry)
-		if (!parsed.startsWith("'")) return `\t\t[${entry.symbol}]: ${parsed},`
+	const remainingPaths = [...byPath.keys()]
+		.filter((p) => p !== GLOBAL_VARS_PATH && p !== 'forms/_vars.css')
+		.sort()
+	const importOrder = [GLOBAL_VARS_PATH, 'forms/_vars.css', ...remainingPaths]
+	for (const importPath of importOrder) {
+		const syms = byPath.get(importPath)
+		if (!syms || syms.size === 0) continue
+		lines.push('import {')
+		for (const sym of [...syms].sort()) lines.push(`\t${sym},`)
+		lines.push(`} from '../../theme-contract/${importPath}'`)
 	}
-	return `\t\t[${entry.symbol}]: ${veValue},`
 }
 
 function extractBodyDeclarations(cssText) {
@@ -47,59 +50,21 @@ function extractBodyDeclarations(cssText) {
 
 /**
  * Generate scope.css.ts source for a theme.
+ *
+ * Emits only the body/frame/modal rules. Root `--bs-*` vars are emitted by the
+ * literal emitter onto `${scope}${vars}` (plan §6.3), not here.
  */
 export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 	const scopeName = themeScopeExportName(themeSlug)
-	const rootVars = extractRootVars(themeCssText)
-	const { globalVars, formsVars } = groupVarsByImport(registry, rootVars)
 	const bodyDecls = extractBodyDeclarations(themeCssText)
 
-	const globalImports = [...new Set(globalVars.map((v) => v.symbol))].sort()
-	const formsImports = [...new Set(formsVars.map((v) => v.symbol))].sort()
-
-	const lines = []
-	lines.push("import { globalStyle, style } from '@vanilla-extract/css'")
-	if (globalImports.length > 0) {
-		lines.push('import {')
-		for (const sym of globalImports) lines.push(`\t${sym},`)
-		lines.push("} from '../../theme-contract/_vars.css'")
+	// Record every `varBs*` symbol referenced by a body rule so we import exactly those.
+	const usedVarSymbols = new Set()
+	const fmt = (raw) => {
+		const out = formatVeValue(raw, registry)
+		for (const m of out.matchAll(/\bvarBs[A-Za-z0-9]+\b/g)) usedVarSymbols.add(m[0])
+		return out
 	}
-	if (formsImports.length > 0) {
-		lines.push('import {')
-		for (const sym of formsImports) lines.push(`\t${sym},`)
-		lines.push("} from '../../theme-contract/forms/_vars.css'")
-	}
-	lines.push("import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'")
-	lines.push("import { modalOpenHook } from '../../theme-contract/ui/modal/contract.css'")
-	lines.push('')
-	lines.push(`// ${themeScopeClassComment(themeSlug)}`)
-	lines.push(`// Zero-style identifier used as a stable selector prefix.`)
-	lines.push(`export const ${scopeName} = style({})`)
-	lines.push('')
-	lines.push('// Global Bootstrap CSS custom properties (`--bs-*`) are assigned on the')
-	lines.push('// dedicated vars contract class to keep root var hosting separate from body')
-	lines.push('// layout/background styles.')
-	lines.push(`globalStyle(\`\${${scopeName}}\${vars}\`, {`)
-	lines.push('\tvars: {')
-
-	// Emit grouped with comments like hand-written files
-	const semanticColors = globalVars.filter((v) =>
-		/^varBs(Primary|Secondary|Success|Info|Warning|Danger|Light|Dark)$/.test(v.symbol),
-	)
-	const emitted = new Set()
-	for (const entry of [...globalVars, ...formsVars]) {
-		if (emitted.has(entry.symbol)) continue
-		emitted.add(entry.symbol)
-		lines.push(emitVarAssignment(entry, registry))
-	}
-	lines.push('\t},')
-	lines.push('})')
-	lines.push('')
-	lines.push('// ── Root / body styles ────────────────────────────────────────────────────────')
-	lines.push('// bodyText = typography; bodyFrame = page canvas (Ve2Shell). Do not add padding')
-	lines.push('// here — baseline screenshots have no padded wrapper around bd-example.')
-	lines.push('')
-	lines.push(`globalStyle(\`\${${scopeName}}\${bodyText}\`, {`)
 
 	const typographyProps = [
 		['font-family', 'fontFamily'],
@@ -109,63 +74,76 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 		['color', 'color'],
 		['letter-spacing', 'letterSpacing'],
 	]
-	for (const [cssProp, veKey] of typographyProps) {
-		if (bodyDecls[cssProp]) {
-			lines.push(`\t${veKey}: ${formatVeValue(bodyDecls[cssProp], registry)},`)
-		}
-	}
-	if (!bodyDecls['font-family']) {
-		lines.push("\tfontFamily: 'system-ui, sans-serif',")
-		lines.push("\tfontSize: '1rem',")
-		lines.push('\tfontWeight: 400,')
-		lines.push('\tlineHeight: 1.5,')
-	}
-	lines.push('})')
-	lines.push('')
-	lines.push(`globalStyle(\`\${${scopeName}}\${bodyFrame}\`, {`)
-
 	const frameProps = [
 		['background-color', 'backgroundColor'],
 		['margin', 'margin'],
 	]
+
+	// Body section is built first so `usedVarSymbols` is populated before imports are emitted.
+	const body = []
+	body.push(`// ${themeScopeClassComment(themeSlug)}`)
+	body.push(`// Zero-style identifier used as a stable selector prefix.`)
+	body.push(`export const ${scopeName} = style({})`)
+	body.push('')
+	body.push('// ── Root / body styles ────────────────────────────────────────────────────────')
+	body.push('// bodyText = typography; bodyFrame = page canvas (Ve2Shell). Do not add padding')
+	body.push('// here — baseline screenshots have no padded wrapper around bd-example.')
+	body.push('// Root `--bs-*` vars are emitted on `${scope}${vars}` by literal/styles.css.ts.')
+	body.push('')
+	body.push(`globalStyle(\`\${${scopeName}}\${bodyText}\`, {`)
+	for (const [cssProp, veKey] of typographyProps) {
+		if (bodyDecls[cssProp]) body.push(`\t${veKey}: ${fmt(bodyDecls[cssProp])},`)
+	}
+	if (!bodyDecls['font-family']) {
+		body.push("\tfontFamily: 'system-ui, sans-serif',")
+		body.push("\tfontSize: '1rem',")
+		body.push('\tfontWeight: 400,')
+		body.push('\tlineHeight: 1.5,')
+	}
+	body.push('})')
+	body.push('')
+	body.push(`globalStyle(\`\${${scopeName}}\${bodyFrame}\`, {`)
 	let hasFrameProp = false
 	for (const [cssProp, veKey] of frameProps) {
 		if (bodyDecls[cssProp]) {
-			lines.push(`\t${veKey}: ${formatVeValue(bodyDecls[cssProp], registry)},`)
+			body.push(`\t${veKey}: ${fmt(bodyDecls[cssProp])},`)
 			hasFrameProp = true
 		}
 	}
 	if (!hasFrameProp && !bodyDecls['background-color']) {
-		lines.push("\tbackgroundColor: '#fff',")
+		body.push("\tbackgroundColor: '#fff',")
 	}
-	lines.push("\tminHeight: '100vh',")
-	lines.push('})')
-	lines.push('')
-	lines.push('// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.')
-	lines.push(`globalStyle(\`\${modalOpenHook}\`, {`)
+	body.push("\tminHeight: '100vh',")
+	body.push('})')
+	body.push('')
+	body.push('// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.')
+	body.push(`globalStyle(\`\${modalOpenHook}\`, {`)
 	for (const [cssProp, veKey] of typographyProps) {
-		if (bodyDecls[cssProp]) {
-			lines.push(`\t${veKey}: ${formatVeValue(bodyDecls[cssProp], registry)},`)
-		}
+		if (bodyDecls[cssProp]) body.push(`\t${veKey}: ${fmt(bodyDecls[cssProp])},`)
 	}
 	if (!bodyDecls['font-family']) {
-		lines.push("\tfontFamily: 'system-ui, sans-serif',")
-		lines.push("\tfontSize: '1rem',")
-		lines.push('\tfontWeight: 400,')
-		lines.push('\tlineHeight: 1.5,')
+		body.push("\tfontFamily: 'system-ui, sans-serif',")
+		body.push("\tfontSize: '1rem',")
+		body.push('\tfontWeight: 400,')
+		body.push('\tlineHeight: 1.5,')
 	}
 	for (const [cssProp, veKey] of frameProps) {
-		if (bodyDecls[cssProp]) {
-			lines.push(`\t${veKey}: ${formatVeValue(bodyDecls[cssProp], registry)},`)
-		}
+		if (bodyDecls[cssProp]) body.push(`\t${veKey}: ${fmt(bodyDecls[cssProp])},`)
 	}
 	if (!hasFrameProp && !bodyDecls['background-color']) {
-		lines.push("\tbackgroundColor: '#fff',")
+		body.push("\tbackgroundColor: '#fff',")
 	}
-	lines.push('})')
+	body.push('})')
+	body.push('')
+
+	const lines = []
+	lines.push("import { globalStyle, style } from '@vanilla-extract/css'")
+	emitVarImports(lines, usedVarSymbols, registry)
+	lines.push("import { bodyFrame, bodyText } from '../../theme-contract/theme-contract.css'")
+	lines.push("import { modalOpenHook } from '../../theme-contract/ui/modal/contract.css'")
 	lines.push('')
 
-	return lines.join('\n')
+	return [...lines, ...body].join('\n')
 }
 
 /**

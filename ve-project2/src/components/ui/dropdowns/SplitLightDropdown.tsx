@@ -1,10 +1,13 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btnGroup } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnLight } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -18,8 +21,8 @@ import {
 	dropstart,
 	dropup,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
+import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import { configureVeDropdown } from './ve-dropdown'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/button-group',
 	'ui/buttons',
@@ -31,7 +34,15 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 const SplitLightDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-	configureVeDropdown({ btnShowHook, dropdownItem, dropdownMenu, dropdownMenuShow, dropend, dropstart, dropup })
+	configureVeDropdown({
+		btnShowHook,
+		dropdownItem,
+		dropdownMenu,
+		dropdownMenuShow,
+		dropend,
+		dropstart,
+		dropup,
+	})
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<div class={`${theme} ${btnGroup}`}>
@@ -49,19 +60,31 @@ const SplitLightDropdown: Component = () => {
 				<ul class={`${theme} ${dropdownMenu} pwhook-dropdown-menu`}>
 					<li>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+						<a
+							class={`${theme} ${link} ${dropdownItem}`}
+							href="#"
+							onClick={(e) => e.preventDefault()}
+						>
 							Action
 						</a>
 					</li>
 					<li>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+						<a
+							class={`${theme} ${link} ${dropdownItem}`}
+							href="#"
+							onClick={(e) => e.preventDefault()}
+						>
 							Another action
 						</a>
 					</li>
 					<li>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
-						<a class={`${theme} ${dropdownItem}`} href="#" onClick={(e) => e.preventDefault()}>
+						<a
+							class={`${theme} ${link} ${dropdownItem}`}
+							href="#"
+							onClick={(e) => e.preventDefault()}
+						>
 							Something else here
 						</a>
 					</li>

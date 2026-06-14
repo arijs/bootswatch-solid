@@ -515,6 +515,15 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 
 **Next task.** Prerequisite: backport all `literal/styles.css.ts` fixes from T8 (dropdown display rule, hr border reset, btnShowHook rules) into the generator (`scripts/generate-ve-theme/emit-literal.mjs` or equivalent emitter) before generating theme variants.
 
+**Working method (MANDATORY — do not deviate):**
+1. Run `generate:ve-literal --theme=<slug>` for the next theme.
+2. Run verification with `--verify-ve-rendering --theme=<slug> --bail --style-loader=literal`.
+3. On the first mismatch: **stop, diagnose, and fix the root cause in the emitter/generator** (never skip the route, never work around it in the component).
+4. Regenerate the theme after each emitter fix, rerun verification from scratch (no `--skip-to-route`).
+5. Only when verification exits 0 for that theme, advance to the next theme.
+
+**Rationale:** `--bail` stops at the first mismatch intentionally. Skipping past a mismatch with `--skip-to-route` hides bugs that may affect multiple themes. Every fix must go into the generator so it fans out to all remaining themes automatically.
+
 ---
 
 **⏳ T10 — Delete v1 + update docs.** Remove `css-utils` mapping tables, color‑mirrors, supplements, `finalizeVeSelector` special cases, `*`‑cell guessing, old `generate-ve-theme-literal.mjs`. Update `ve-architecture.md` (combinators allowed when each named segment is scope+contract; `*`/pseudo passthrough; 1:1 registry; strict no‑fallback) and `ve2-literal-converter.md`.

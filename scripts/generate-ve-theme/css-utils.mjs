@@ -461,8 +461,17 @@ export function parseCssValue(value, registry) {
 	const varMatch = trimmed.match(/^var\(\s*(--bs-[^,)]+)(?:\s*,\s*([^)]+))?\s*\)$/)
 	if (varMatch) {
 		const cssVar = varMatch[1]
-		const symbol = registry?.cssVarToSymbol?.get(cssVar) ?? cssVarNameToSymbol(cssVar)
-		return { kind: 'var', symbol, cssVar, raw: trimmed }
+		const registeredSymbol = registry?.cssVarToSymbol?.get(cssVar)
+		if (registeredSymbol) {
+			return { kind: 'var', symbol: registeredSymbol, cssVar, raw: trimmed }
+		}
+		// Fall back to derived symbol only when not using a registry (e.g. literal emitter without registry).
+		// When a registry is present but lacks this var, keep as a CSS literal to avoid emitting
+		// an undefined TS identifier (e.g. varBsPrimaryColor which has no createVar() declaration).
+		if (!registry) {
+			return { kind: 'var', symbol: cssVarNameToSymbol(cssVar), cssVar, raw: trimmed }
+		}
+		return { kind: 'literal', raw: trimmed }
 	}
 	return { kind: 'literal', raw: trimmed }
 }

@@ -108,7 +108,8 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../theme-contract/forms/_vars.css'
-import { body, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
+import { modalOpenHook } from '../../theme-contract/ui/modal/contract.css'
 
 // Vapor theme scope class.
 // Zero-style identifier used as a stable selector prefix.
@@ -220,10 +221,16 @@ globalStyle(`${vaporScope}${vars}`, {
 		[varBsFocusRingColor]: "rgba(111, 66, 193, 0.25)",
 		[varBsCarouselIndicatorActiveBg]: "#fff",
 		[varBsCarouselCaptionColor]: "#fff",
+		[varBsFormValidColor]: "#3cf281",
+		[varBsFormValidBorderColor]: "#3cf281",
+		[varBsFormInvalidColor]: "#e44c55",
+		[varBsFormInvalidBorderColor]: "#e44c55",
 	},
 })
 
 // ── Root / body styles ────────────────────────────────────────────────────────
+// bodyText = typography; bodyFrame = page canvas (Ve2Shell). Do not add padding
+// here — baseline screenshots have no padded wrapper around bd-example.
 
 globalStyle(`${vaporScope}${bodyText}`, {
 	fontFamily: varBsBodyFontFamily,
@@ -233,8 +240,19 @@ globalStyle(`${vaporScope}${bodyText}`, {
 	color: varBsBodyColor,
 })
 
-globalStyle(`${vaporScope}${body}`, {
+globalStyle(`${vaporScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
-	padding: '1rem',
-	display: 'block',
+	margin: 0,
+	minHeight: '100vh',
+})
+
+// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.
+globalStyle(`${modalOpenHook}`, {
+	fontFamily: varBsBodyFontFamily,
+	fontSize: varBsBodyFontSize,
+	fontWeight: varBsBodyFontWeight,
+	lineHeight: varBsBodyLineHeight,
+	color: varBsBodyColor,
+	backgroundColor: varBsBodyBg,
+	margin: 0,
 })
