@@ -1,13 +1,18 @@
-import { globalKeyframes, globalStyle } from '@vanilla-extract/css'
-import { sketchyScope } from '../scope.css'
-
+import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import {
+	varBsBlack,
 	varBsBlackRgb,
+	varBsBlue,
 	varBsBodyBg,
 	varBsBodyBgRgb,
 	varBsBodyColor,
 	varBsBodyColorRgb,
+	varBsBodyFontFamily,
+	varBsBodyFontSize,
+	varBsBodyFontWeight,
+	varBsBodyLineHeight,
 	varBsBorderColor,
+	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusPill,
@@ -21,11 +26,13 @@ import {
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
 	varBsCodeColor,
+	varBsCyan,
 	varBsDanger,
 	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
 	varBsDangerRgb,
 	varBsDangerTextEmphasis,
+	varBsDark,
 	varBsDarkBgSubtle,
 	varBsDarkBorderSubtle,
 	varBsDarkRgb,
@@ -38,25 +45,38 @@ import {
 	varBsFontMonospace,
 	varBsFontSansSerif,
 	varBsGradient,
+	varBsGray,
+	varBsGrayDark,
+	varBsGreen,
 	varBsHeadingColor,
 	varBsHighlightBg,
 	varBsHighlightColor,
+	varBsIndigo,
+	varBsInfo,
 	varBsInfoBgSubtle,
 	varBsInfoBorderSubtle,
 	varBsInfoRgb,
 	varBsInfoTextEmphasis,
+	varBsLight,
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightRgb,
 	varBsLightTextEmphasis,
 	varBsLinkColor,
 	varBsLinkColorRgb,
+	varBsLinkDecoration,
 	varBsLinkHoverColor,
 	varBsLinkHoverColorRgb,
+	varBsOrange,
+	varBsPink,
+	varBsPrimary,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryRgb,
 	varBsPrimaryTextEmphasis,
+	varBsPurple,
+	varBsRed,
+	varBsSecondary,
 	varBsSecondaryBg,
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
@@ -68,13 +88,17 @@ import {
 	varBsSuccessBorderSubtle,
 	varBsSuccessRgb,
 	varBsSuccessTextEmphasis,
+	varBsTeal,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
+	varBsWarning,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
+	varBsWhite,
 	varBsWhiteRgb,
+	varBsYellow,
 } from '../../../theme-contract/_vars.css'
 import {
 	varBsTableAccentBg,
@@ -93,6 +117,73 @@ import {
 	varBsTableStripedColor,
 } from '../../../theme-contract/contents/_vars.css'
 import {
+	blockquote,
+	blockquoteFooter,
+	horizontalRule,
+	inlineCode,
+	lead,
+	link,
+	markText,
+	paragraph,
+	small,
+	smallText,
+} from '../../../theme-contract/contents/basic/contract.css'
+import {
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+} from '../../../theme-contract/contents/display/contract.css'
+import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/heading/contract.css'
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../theme-contract/contents/images/contract.css'
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../theme-contract/contents/lists/contract.css'
+import {
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableCell,
+	tableDanger,
+	tableDark,
+	tableElement,
+	tableGroupDivider,
+	tableHeaderCell,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableRow,
+	tableSecondary,
+	tableSection,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
+} from '../../../theme-contract/contents/tables/contract.css'
+import {
 	varBsFormCheckBg,
 	varBsFormCheckBgImage,
 	varBsFormInvalidBorderColor,
@@ -103,366 +194,33 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
-	varBsAccordionActiveBg,
-	varBsAccordionActiveColor,
-	varBsAccordionBg,
-	varBsAccordionBodyPaddingX,
-	varBsAccordionBodyPaddingY,
-	varBsAccordionBorderColor,
-	varBsAccordionBorderRadius,
-	varBsAccordionBorderWidth,
-	varBsAccordionBtnActiveIcon,
-	varBsAccordionBtnBg,
-	varBsAccordionBtnColor,
-	varBsAccordionBtnFocusBoxShadow,
-	varBsAccordionBtnIcon,
-	varBsAccordionBtnIconTransform,
-	varBsAccordionBtnIconTransition,
-	varBsAccordionBtnIconWidth,
-	varBsAccordionBtnPaddingX,
-	varBsAccordionBtnPaddingY,
-	varBsAccordionColor,
-	varBsAccordionInnerBorderRadius,
-	varBsAccordionTransition,
-} from '../../../theme-contract/ui/accordion/_vars.css'
-import {
-	varBsAlertBg,
-	varBsAlertBorder,
-	varBsAlertBorderColor,
-	varBsAlertBorderRadius,
-	varBsAlertColor,
-	varBsAlertLinkColor,
-	varBsAlertMarginBottom,
-	varBsAlertPaddingX,
-	varBsAlertPaddingY,
-	varBsBtnCloseBg,
-	varBsBtnCloseColor,
-	varBsBtnCloseDisabledOpacity,
-	varBsBtnCloseFocusOpacity,
-	varBsBtnCloseFocusShadow,
-	varBsBtnCloseHoverOpacity,
-	varBsBtnCloseOpacity,
-} from '../../../theme-contract/ui/alerts/_vars.css'
-import {
-	varBsBadgeBorderRadius,
-	varBsBadgeColor,
-	varBsBadgeFontSize,
-	varBsBadgeFontWeight,
-	varBsBadgePaddingX,
-	varBsBadgePaddingY,
-} from '../../../theme-contract/ui/badge/_vars.css'
-import {
-	varBsBreadcrumbBg,
-	varBsBreadcrumbBorderRadius,
-	varBsBreadcrumbDivider,
-	varBsBreadcrumbDividerColor,
-	varBsBreadcrumbItemActiveColor,
-	varBsBreadcrumbItemPaddingX,
-	varBsBreadcrumbMarginBottom,
-	varBsBreadcrumbPaddingX,
-	varBsBreadcrumbPaddingY,
-} from '../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnBg,
-	varBsBtnBorderColor,
-	varBsBtnBorderRadius,
-	varBsBtnBorderWidth,
-	varBsBtnBoxShadow,
-	varBsBtnColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-	varBsBtnFocusBoxShadowRgb,
-	varBsBtnFontFamily,
-	varBsBtnFontSize,
-	varBsBtnFontWeight,
-	varBsBtnHoverBg,
-	varBsBtnHoverBorderColor,
-	varBsBtnHoverColor,
-	varBsBtnLineHeight,
-	varBsBtnPaddingX,
-	varBsBtnPaddingY,
-} from '../../../theme-contract/ui/buttons/_vars.css'
-import {
-	varBsCardBg,
-	varBsCardBorderColor,
-	varBsCardBorderRadius,
-	varBsCardBorderWidth,
-	varBsCardBoxShadow,
-	varBsCardCapBg,
-	varBsCardCapColor,
-	varBsCardCapPaddingX,
-	varBsCardCapPaddingY,
-	varBsCardColor,
-	varBsCardGroupMargin,
-	varBsCardImgOverlayPadding,
-	varBsCardInnerBorderRadius,
-	varBsCardSpacerX,
-	varBsCardSpacerY,
-	varBsCardSubtitleColor,
-	varBsCardTitleColor,
-	varBsCardTitleSpacerY,
-} from '../../../theme-contract/ui/card/_vars.css'
-import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
-import {
-	varBsDropdownBg,
-	varBsDropdownBorderColor,
-	varBsDropdownBorderRadius,
-	varBsDropdownBorderWidth,
-	varBsDropdownBoxShadow,
-	varBsDropdownColor,
-	varBsDropdownDividerBg,
-	varBsDropdownDividerMarginY,
-	varBsDropdownFontSize,
-	varBsDropdownHeaderColor,
-	varBsDropdownHeaderPaddingX,
-	varBsDropdownHeaderPaddingY,
-	varBsDropdownInnerBorderRadius,
-	varBsDropdownItemPaddingX,
-	varBsDropdownItemPaddingY,
-	varBsDropdownLinkActiveBg,
-	varBsDropdownLinkActiveColor,
-	varBsDropdownLinkColor,
-	varBsDropdownLinkDisabledColor,
-	varBsDropdownLinkHoverBg,
-	varBsDropdownLinkHoverColor,
-	varBsDropdownMinWidth,
-	varBsDropdownPaddingX,
-	varBsDropdownPaddingY,
-	varBsDropdownSpacer,
-	varBsDropdownZindex,
-} from '../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
-} from '../../../theme-contract/ui/list-group/_vars.css'
-import {
-	varBsBackdropBg,
-	varBsBackdropOpacity,
-	varBsBackdropZindex,
-	varBsModalBg,
-	varBsModalBorderColor,
-	varBsModalBorderRadius,
-	varBsModalBorderWidth,
-	varBsModalBoxShadow,
-	varBsModalColor,
-	varBsModalFooterBg,
-	varBsModalFooterBorderColor,
-	varBsModalFooterBorderWidth,
-	varBsModalFooterGap,
-	varBsModalHeaderBorderColor,
-	varBsModalHeaderBorderWidth,
-	varBsModalHeaderPadding,
-	varBsModalHeaderPaddingX,
-	varBsModalHeaderPaddingY,
-	varBsModalInnerBorderRadius,
-	varBsModalMargin,
-	varBsModalPadding,
-	varBsModalTitleLineHeight,
-	varBsModalWidth,
-	varBsModalZindex,
-} from '../../../theme-contract/ui/modal/_vars.css'
-import {
-	varBsNavbarActiveColor,
-	varBsNavbarBrandColor,
-	varBsNavbarBrandFontSize,
-	varBsNavbarBrandHoverColor,
-	varBsNavbarBrandMarginEnd,
-	varBsNavbarBrandPaddingY,
-	varBsNavbarColor,
-	varBsNavbarDisabledColor,
-	varBsNavbarHoverColor,
-	varBsNavbarNavLinkPaddingX,
-	varBsNavbarPaddingX,
-	varBsNavbarPaddingY,
-	varBsNavbarTogglerBorderColor,
-	varBsNavbarTogglerBorderRadius,
-	varBsNavbarTogglerFocusWidth,
-	varBsNavbarTogglerFontSize,
-	varBsNavbarTogglerIconBg,
-	varBsNavbarTogglerPaddingX,
-	varBsNavbarTogglerPaddingY,
-	varBsNavbarTogglerTransition,
-} from '../../../theme-contract/ui/navbar/_vars.css'
-import {
-	varBsNavLinkColor,
-	varBsNavLinkDisabledColor,
-	varBsNavLinkFontSize,
-	varBsNavLinkFontWeight,
-	varBsNavLinkHoverColor,
-	varBsNavLinkPaddingX,
-	varBsNavLinkPaddingY,
-	varBsNavPillsBorderRadius,
-	varBsNavPillsLinkActiveBg,
-	varBsNavPillsLinkActiveColor,
-	varBsNavTabsBorderColor,
-	varBsNavTabsBorderRadius,
-	varBsNavTabsBorderWidth,
-	varBsNavTabsLinkActiveBg,
-	varBsNavTabsLinkActiveBorderColor,
-	varBsNavTabsLinkActiveColor,
-	varBsNavTabsLinkHoverBorderColor,
-} from '../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsPaginationActiveBg,
-	varBsPaginationActiveBorderColor,
-	varBsPaginationActiveColor,
-	varBsPaginationBg,
-	varBsPaginationBorderColor,
-	varBsPaginationBorderRadius,
-	varBsPaginationBorderWidth,
-	varBsPaginationColor,
-	varBsPaginationDisabledBg,
-	varBsPaginationDisabledBorderColor,
-	varBsPaginationDisabledColor,
-	varBsPaginationFocusBg,
-	varBsPaginationFocusBoxShadow,
-	varBsPaginationFocusColor,
-	varBsPaginationFontSize,
-	varBsPaginationHoverBg,
-	varBsPaginationHoverBorderColor,
-	varBsPaginationHoverColor,
-	varBsPaginationPaddingX,
-	varBsPaginationPaddingY,
-} from '../../../theme-contract/ui/pagination/_vars.css'
-import {
-	varBsPopoverArrowBorder,
-	varBsPopoverArrowHeight,
-	varBsPopoverArrowWidth,
-	varBsPopoverBg,
-	varBsPopoverBodyColor,
-	varBsPopoverBodyPaddingX,
-	varBsPopoverBodyPaddingY,
-	varBsPopoverBorderColor,
-	varBsPopoverBorderRadius,
-	varBsPopoverBorderWidth,
-	varBsPopoverBoxShadow,
-	varBsPopoverFontSize,
-	varBsPopoverHeaderBg,
-	varBsPopoverHeaderColor,
-	varBsPopoverHeaderFontSize,
-	varBsPopoverHeaderPaddingX,
-	varBsPopoverHeaderPaddingY,
-	varBsPopoverInnerBorderRadius,
-	varBsPopoverMaxWidth,
-	varBsPopoverZindex,
-} from '../../../theme-contract/ui/popovers/_vars.css'
-import {
-	varBsProgressBarBg,
-	varBsProgressBarColor,
-	varBsProgressBarTransition,
-	varBsProgressBg,
-	varBsProgressBorderRadius,
-	varBsProgressBoxShadow,
-	varBsProgressFontSize,
-	varBsProgressHeight,
-} from '../../../theme-contract/ui/progress/_vars.css'
-import {
-	varBsSpinnerAnimationName,
-	varBsSpinnerAnimationSpeed,
-	varBsSpinnerBorderWidth,
-	varBsSpinnerHeight,
-	varBsSpinnerVerticalAlign,
-	varBsSpinnerWidth,
-} from '../../../theme-contract/ui/spinners/_vars.css'
-import {
-	varBsToastBg,
-	varBsToastBorderColor,
-	varBsToastBorderRadius,
-	varBsToastBorderWidth,
-	varBsToastBoxShadow,
-	varBsToastColor,
-	varBsToastFontSize,
-	varBsToastHeaderBg,
-	varBsToastHeaderBorderColor,
-	varBsToastHeaderColor,
-	varBsToastMaxWidth,
-	varBsToastPaddingX,
-	varBsToastPaddingY,
-	varBsToastSpacing,
-	varBsToastZindex,
-} from '../../../theme-contract/ui/toasts/_vars.css'
-import {
-	varBsTooltipArrowHeight,
-	varBsTooltipArrowWidth,
-	varBsTooltipBg,
-	varBsTooltipBorderRadius,
-	varBsTooltipColor,
-	varBsTooltipFontSize,
-	varBsTooltipMargin,
-	varBsTooltipMaxWidth,
-	varBsTooltipOpacity,
-	varBsTooltipPaddingX,
-	varBsTooltipPaddingY,
-	varBsTooltipZindex,
-} from '../../../theme-contract/ui/tooltips/_vars.css'
-import {
-	varBsAspectRatio,
-	varBsBgOpacity,
-	varBsBorderOpacity,
-	varBsBtnCloseFilter,
-	varBsCardHeight,
-	varBsLinkOpacity,
-	varBsLinkUnderlineOpacity,
-	varBsNavUnderlineBorderWidth,
-	varBsNavUnderlineGap,
-	varBsNavUnderlineLinkActiveColor,
-	varBsOffcanvasBg,
-	varBsOffcanvasBorderColor,
-	varBsOffcanvasBorderWidth,
-	varBsOffcanvasBoxShadow,
-	varBsOffcanvasColor,
-	varBsOffcanvasHeight,
-	varBsOffcanvasPaddingX,
-	varBsOffcanvasPaddingY,
-	varBsOffcanvasTitleLineHeight,
-	varBsOffcanvasTransition,
-	varBsOffcanvasWidth,
-	varBsOffcanvasZindex,
-	varBsPosition,
-	varBsTextOpacity,
-} from '../../../theme-contract/utilities/generated/_vars.css'
-
-import {
-	blockquote,
-	horizontalRule,
-	inlineCode,
-	link,
-	markText,
-	paragraph,
-	small,
-} from '../../../theme-contract/contents/basic/contract.css'
-import {
-	tableCell,
-	tableElement,
-	tableHeaderCell,
-	tableRow,
-	tableSection,
-} from '../../../theme-contract/contents/tables/contract.css'
-import { fieldset } from '../../../theme-contract/forms/contract.css'
+	fieldset,
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	validFeedback,
+	wasValidated,
+} from '../../../theme-contract/forms/contract.css'
 import {
 	elAbbr,
 	elAddress,
@@ -495,35 +253,13 @@ import {
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../theme-contract/utilities/generated/contract.css'
-
+	containerFluid,
+	varBsGutterX,
+	varBsGutterY,
+} from '../../../theme-contract/layout/container.css'
 import {
-	accordion,
-	accordionBody,
-	accordionButton,
-	accordionCollapse,
 	accordionFlush,
-	accordionHeader,
-	accordionItem,
 	active,
-	alert,
-	alertDanger,
-	alertDark,
-	alertDismissible,
-	alertHeading,
-	alertInfo,
-	alertLight,
-	alertLink,
-	alertPrimary,
-	alertSecondary,
-	alertSuccess,
-	alertWarning,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -563,7 +299,6 @@ import {
 	alignContentXxlStart,
 	alignContentXxlStretch,
 	alignItemsBaseline,
-	alignItemsCenter,
 	alignItemsEnd,
 	alignItemsLgBaseline,
 	alignItemsLgCenter,
@@ -615,7 +350,6 @@ import {
 	alignSelfSmEnd,
 	alignSelfSmStart,
 	alignSelfSmStretch,
-	alignSelfStart,
 	alignSelfStretch,
 	alignSelfXlAuto,
 	alignSelfXlBaseline,
@@ -632,7 +366,6 @@ import {
 	alignTextBottom,
 	alignTextTop,
 	alignTop,
-	badge,
 	badgePill,
 	bgBlack,
 	bgBody,
@@ -640,7 +373,6 @@ import {
 	bgBodyTertiary,
 	bgDanger,
 	bgDangerSubtle,
-	bgDark,
 	bgDarkSubtle,
 	bgGradient,
 	bgInfo,
@@ -648,10 +380,10 @@ import {
 	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
-	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
+	bgOpacity100,
 	bgPrimary,
 	bgPrimarySubtle,
 	bgSecondary,
@@ -663,7 +395,6 @@ import {
 	bgWarningSubtle,
 	bgWhite,
 	bi,
-	blockquoteFooter,
 	border,
 	border0,
 	border1,
@@ -685,10 +416,10 @@ import {
 	borderLight,
 	borderLightSubtle,
 	borderOpacity10,
-	borderOpacity100,
 	borderOpacity25,
 	borderOpacity50,
 	borderOpacity75,
+	borderOpacity100,
 	borderPrimary,
 	borderPrimarySubtle,
 	borderSecondary,
@@ -703,15 +434,8 @@ import {
 	borderWarningSubtle,
 	borderWhite,
 	bottom0,
-	bottom100,
 	bottom50,
-	breadcrumb,
-	breadcrumbItem,
-	bsPopoverAuto,
-	bsPopoverBottom,
-	bsPopoverEnd,
-	bsPopoverStart,
-	bsPopoverTop,
+	bottom100,
 	bsTetherElementAttachedBottom,
 	bsTetherElementAttachedLeft,
 	bsTetherElementAttachedRight,
@@ -721,71 +445,20 @@ import {
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
-	btn,
-	btnCheck,
 	btnClose,
 	btnCloseWhite,
-	btnDanger,
-	btnDark,
-	btnGroup,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
-	btnInfo,
-	btnLg,
-	btnLight,
-	btnLink,
-	btnOutlineDanger,
-	btnOutlineDark,
-	btnOutlineInfo,
-	btnOutlineLight,
-	btnOutlinePrimary,
-	btnOutlineSecondary,
-	btnOutlineSuccess,
-	btnOutlineWarning,
-	btnPrimary,
-	btnSecondary,
-	btnShowHook,
-	btnSm,
-	btnSuccess,
-	btnToolbar,
-	btnWarning,
 	captionTop,
-	card,
-	cardBody,
-	cardFooter,
 	cardGroup,
-	cardHeader,
 	cardHeaderPills,
-	cardHeaderTabs,
-	cardImg,
-	cardImgBottom,
 	cardImgOverlay,
-	cardImgTop,
-	cardLink,
 	cardOutlineDanger,
 	cardOutlineInfo,
 	cardOutlinePrimary,
 	cardOutlineSuccess,
 	cardOutlineWarning,
-	cardSubtitle,
-	cardText,
-	cardTitle,
-	carousel,
-	carouselCaption,
-	carouselControlNext,
-	carouselControlNextIcon,
-	carouselControlPrev,
-	carouselControlPrevIcon,
-	carouselDark,
-	carouselFade,
-	carouselIndicators,
-	carouselInner,
-	carouselItem,
-	carouselItemEnd,
-	carouselItemNext,
-	carouselItemPrev,
-	carouselItemStart,
 	clearfix,
 	clsBlockquote,
 	clsH1,
@@ -795,11 +468,7 @@ import {
 	clsH5,
 	clsH6,
 	clsSmall,
-	col,
 	col1,
-	col10,
-	col11,
-	col12,
 	col2,
 	col3,
 	col4,
@@ -808,15 +477,15 @@ import {
 	col7,
 	col8,
 	col9,
+	col10,
+	col11,
+	col12,
 	colAuto,
 	colFormLabel,
 	colFormLabelLg,
 	colFormLabelSm,
 	colLg,
 	colLg1,
-	colLg10,
-	colLg11,
-	colLg12,
 	colLg2,
 	colLg3,
 	colLg4,
@@ -825,67 +494,34 @@ import {
 	colLg7,
 	colLg8,
 	colLg9,
+	colLg10,
+	colLg11,
+	colLg12,
 	colLgAuto,
+	collapsed,
+	collapseHorizontal,
+	collapsing,
 	colMd,
 	colMd1,
+	colMd7,
+	colMd9,
 	colMd10,
 	colMd11,
 	colMd12,
-	colMd2,
-	colMd3,
-	colMd4,
-	colMd5,
-	colMd6,
-	colMd7,
-	colMd8,
-	colMd9,
 	colMdAuto,
 	colSm,
 	colSm1,
-	colSm10,
-	colSm11,
-	colSm12,
 	colSm2,
 	colSm3,
 	colSm4,
 	colSm5,
-	colSm6,
 	colSm7,
 	colSm8,
 	colSm9,
+	colSm10,
+	colSm11,
+	colSm12,
 	colSmAuto,
-	colXl,
-	colXl1,
-	colXl10,
-	colXl11,
-	colXl12,
-	colXl2,
-	colXl3,
-	colXl4,
-	colXl5,
-	colXl6,
-	colXl7,
-	colXl8,
-	colXl9,
-	colXlAuto,
-	colXxl,
-	colXxl1,
-	colXxl10,
-	colXxl11,
-	colXxl12,
-	colXxl2,
-	colXxl3,
-	colXxl4,
-	colXxl5,
-	colXxl6,
-	colXxl7,
-	colXxl8,
-	colXxl9,
-	colXxlAuto,
-	collapse,
-	collapseHorizontal,
-	collapsed,
-	collapsing,
 	columnGap0,
 	columnGap1,
 	columnGap2,
@@ -922,20 +558,47 @@ import {
 	columnGapXxl3,
 	columnGapXxl4,
 	columnGapXxl5,
+	colXl,
+	colXl1,
+	colXl2,
+	colXl3,
+	colXl4,
+	colXl5,
+	colXl6,
+	colXl7,
+	colXl8,
+	colXl9,
+	colXl10,
+	colXl11,
+	colXl12,
+	colXlAuto,
+	colXxl,
+	colXxl1,
+	colXxl2,
+	colXxl3,
+	colXxl4,
+	colXxl5,
+	colXxl6,
+	colXxl7,
+	colXxl8,
+	colXxl9,
+	colXxl10,
+	colXxl11,
+	colXxl12,
+	colXxlAuto,
 	container,
-	containerFluid,
 	containerLg,
 	containerMd,
 	containerSm,
 	containerXl,
 	containerXxl,
 	dBlock,
-	dFlex,
 	dGrid,
 	dInline,
 	dInlineBlock,
 	dInlineFlex,
 	dInlineGrid,
+	disabled,
 	dLgBlock,
 	dLgFlex,
 	dLgGrid,
@@ -970,6 +633,16 @@ import {
 	dPrintTable,
 	dPrintTableCell,
 	dPrintTableRow,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
 	dSmBlock,
 	dSmFlex,
 	dSmGrid,
@@ -1006,47 +679,9 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
-	disabled,
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-	dropdown,
-	dropdownCenter,
-	dropdownDivider,
-	dropdownHeader,
-	dropdownItem,
-	dropdownItemText,
-	dropdownMenu,
-	dropdownMenuDark,
-	dropdownMenuEnd,
-	dropdownMenuLgEnd,
-	dropdownMenuLgStart,
-	dropdownMenuMdEnd,
-	dropdownMenuMdStart,
-	dropdownMenuShow,
-	dropdownMenuSmEnd,
-	dropdownMenuSmStart,
-	dropdownMenuStart,
-	dropdownMenuXlEnd,
-	dropdownMenuXlStart,
-	dropdownMenuXxlEnd,
-	dropdownMenuXxlStart,
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-	dropupCenter,
 	end0,
-	end100,
 	end50,
-	fade,
-	figure,
-	figureCaption,
-	figureImg,
+	end100,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -1095,7 +730,6 @@ import {
 	flexSmShrink1,
 	flexSmWrap,
 	flexSmWrapReverse,
-	flexWrap,
 	flexWrapReverse,
 	flexXlColumn,
 	flexXlColumnReverse,
@@ -1149,24 +783,10 @@ import {
 	focusRingSuccess,
 	focusRingWarning,
 	fontMonospace,
-	formCheck,
 	formCheckInline,
-	formCheckInput,
-	formCheckLabel,
 	formCheckReverse,
-	formControl,
 	formControlColor,
-	formControlLg,
 	formControlPlaintext,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
 	fs1,
 	fs2,
 	fs3,
@@ -1175,49 +795,15 @@ import {
 	fs6,
 	fstItalic,
 	fstNormal,
-	fwBold,
 	fwBolder,
 	fwLight,
 	fwLighter,
 	fwMedium,
 	fwNormal,
 	fwSemibold,
-	g0,
 	g1,
 	g2,
-	g3,
-	g4,
 	g5,
-	gLg0,
-	gLg1,
-	gLg2,
-	gLg3,
-	gLg4,
-	gLg5,
-	gMd0,
-	gMd1,
-	gMd2,
-	gMd3,
-	gMd4,
-	gMd5,
-	gSm0,
-	gSm1,
-	gSm2,
-	gSm3,
-	gSm4,
-	gSm5,
-	gXl0,
-	gXl1,
-	gXl2,
-	gXl3,
-	gXl4,
-	gXl5,
-	gXxl0,
-	gXxl1,
-	gXxl2,
-	gXxl3,
-	gXxl4,
-	gXxl5,
 	gap0,
 	gap1,
 	gap2,
@@ -1254,6 +840,36 @@ import {
 	gapXxl3,
 	gapXxl4,
 	gapXxl5,
+	gLg0,
+	gLg1,
+	gLg2,
+	gLg3,
+	gLg4,
+	gLg5,
+	gMd0,
+	gMd1,
+	gMd2,
+	gMd3,
+	gMd4,
+	gMd5,
+	gSm0,
+	gSm1,
+	gSm2,
+	gSm3,
+	gSm4,
+	gSm5,
+	gXl0,
+	gXl1,
+	gXl2,
+	gXl3,
+	gXl4,
+	gXl5,
+	gXxl0,
+	gXxl1,
+	gXxl2,
+	gXxl3,
+	gXxl4,
+	gXxl5,
 	gx0,
 	gx1,
 	gx2,
@@ -1326,30 +942,21 @@ import {
 	gyXxl3,
 	gyXxl4,
 	gyXxl5,
-	h100,
 	h25,
 	h50,
 	h75,
+	h100,
 	hAuto,
-	hasValidation,
 	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
-	imgFluid,
-	imgThumbnail,
 	initialism,
-	inputGroup,
 	inputGroupLg,
 	inputGroupSm,
-	inputGroupText,
-	invalidFeedback,
 	invalidTooltip,
 	invisible,
-	isInvalid,
-	isValid,
 	justifyContentAround,
-	justifyContentBetween,
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentEvenly,
@@ -1384,7 +991,6 @@ import {
 	justifyContentXxlEnd,
 	justifyContentXxlEvenly,
 	justifyContentXxlStart,
-	lead,
 	lh1,
 	lhBase,
 	lhLg,
@@ -1401,8 +1007,6 @@ import {
 	linkOffset3,
 	linkOffset3Hover,
 	linkOpacity10,
-	linkOpacity100,
-	linkOpacity100Hover,
 	linkOpacity10Hover,
 	linkOpacity25,
 	linkOpacity25Hover,
@@ -1410,6 +1014,8 @@ import {
 	linkOpacity50Hover,
 	linkOpacity75,
 	linkOpacity75Hover,
+	linkOpacity100,
+	linkOpacity100Hover,
 	linkPrimary,
 	linkSecondary,
 	linkSuccess,
@@ -1421,8 +1027,6 @@ import {
 	linkUnderlineOpacity0,
 	linkUnderlineOpacity0Hover,
 	linkUnderlineOpacity10,
-	linkUnderlineOpacity100,
-	linkUnderlineOpacity100Hover,
 	linkUnderlineOpacity10Hover,
 	linkUnderlineOpacity25,
 	linkUnderlineOpacity25Hover,
@@ -1430,33 +1034,20 @@ import {
 	linkUnderlineOpacity50Hover,
 	linkUnderlineOpacity75,
 	linkUnderlineOpacity75Hover,
+	linkUnderlineOpacity100,
+	linkUnderlineOpacity100Hover,
 	linkUnderlinePrimary,
 	linkUnderlineSecondary,
 	linkUnderlineSuccess,
 	linkUnderlineWarning,
 	linkWarning,
-	listGroup,
-	listGroupFlush,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
 	listGroupHorizontalSm,
 	listGroupHorizontalXl,
 	listGroupHorizontalXxl,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
 	listGroupNumbered,
-	listInline,
-	listInlineItem,
-	listUnstyled,
 	m0,
 	m1,
 	m2,
@@ -1464,50 +1055,12 @@ import {
 	m4,
 	m5,
 	mAuto,
-	mLg0,
-	mLg1,
-	mLg2,
-	mLg3,
-	mLg4,
-	mLg5,
-	mLgAuto,
-	mMd0,
-	mMd1,
-	mMd2,
-	mMd3,
-	mMd4,
-	mMd5,
-	mMdAuto,
-	mSm0,
-	mSm1,
-	mSm2,
-	mSm3,
-	mSm4,
-	mSm5,
-	mSmAuto,
-	mXl0,
-	mXl1,
-	mXl2,
-	mXl3,
-	mXl4,
-	mXl5,
-	mXlAuto,
-	mXxl0,
-	mXxl1,
-	mXxl2,
-	mXxl3,
-	mXxl4,
-	mXxl5,
-	mXxlAuto,
 	mark,
 	mb0,
 	mb1,
-	mb2,
-	mb3,
 	mb4,
 	mb5,
 	mbAuto,
-	mbLg0,
 	mbLg1,
 	mbLg2,
 	mbLg3,
@@ -1530,10 +1083,8 @@ import {
 	mbSmAuto,
 	mbXl0,
 	mbXl1,
-	mbXl2,
 	mbXl3,
 	mbXl4,
-	mbXl5,
 	mbXlAuto,
 	mbXxl0,
 	mbXxl1,
@@ -1544,11 +1095,9 @@ import {
 	mbXxlAuto,
 	me0,
 	me1,
-	me2,
 	me3,
 	me4,
 	me5,
-	meAuto,
 	meLg0,
 	meLg1,
 	meLg2,
@@ -1587,26 +1136,36 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFooter,
-	modalFullscreen,
+	mLg0,
+	mLg1,
+	mLg2,
+	mLg3,
+	mLg4,
+	mLg5,
+	mLgAuto,
+	mMd0,
+	mMd1,
+	mMd2,
+	mMd3,
+	mMd4,
+	mMd5,
+	mMdAuto,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
 	modalFullscreenXlDown,
 	modalFullscreenXxlDown,
-	modalHeader,
 	modalLg,
 	modalSm,
 	modalStatic,
-	modalTitle,
 	modalXl,
+	mSm0,
+	mSm1,
+	mSm2,
+	mSm3,
+	mSm4,
+	mSm5,
+	mSmAuto,
 	ms0,
 	ms1,
 	ms2,
@@ -1654,7 +1213,6 @@ import {
 	mt2,
 	mt3,
 	mt4,
-	mt5,
 	mtAuto,
 	mtLg0,
 	mtLg1,
@@ -1677,7 +1235,6 @@ import {
 	mtSm4,
 	mtSm5,
 	mtSmAuto,
-	mtXl0,
 	mtXl1,
 	mtXl2,
 	mtXl3,
@@ -1692,6 +1249,20 @@ import {
 	mtXxl5,
 	mtXxlAuto,
 	mw100,
+	mXl0,
+	mXl1,
+	mXl2,
+	mXl3,
+	mXl4,
+	mXl5,
+	mXlAuto,
+	mXxl0,
+	mXxl1,
+	mXxl2,
+	mXxl3,
+	mXxl4,
+	mXxl5,
+	mXxlAuto,
 	mx0,
 	mx1,
 	mx2,
@@ -1776,29 +1347,15 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
-	nav,
-	navFill,
-	navItem,
-	navJustified,
-	navLink,
-	navPills,
-	navTabs,
-	navUnderline,
-	navbar,
-	navbarBrand,
-	navbarCollapse,
 	navbarDark,
 	navbarExpand,
-	navbarExpandLg,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
-	navbarNav,
-	navbarNavScroll,
-	navbarText,
-	navbarToggler,
-	navbarTogglerIcon,
+	navFill,
+	navJustified,
+	navUnderline,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -1844,8 +1401,6 @@ import {
 	offcanvasXl,
 	offcanvasXxl,
 	offset1,
-	offset10,
-	offset11,
 	offset2,
 	offset3,
 	offset4,
@@ -1854,10 +1409,10 @@ import {
 	offset7,
 	offset8,
 	offset9,
+	offset10,
+	offset11,
 	offsetLg0,
 	offsetLg1,
-	offsetLg10,
-	offsetLg11,
 	offsetLg2,
 	offsetLg3,
 	offsetLg4,
@@ -1866,10 +1421,10 @@ import {
 	offsetLg7,
 	offsetLg8,
 	offsetLg9,
+	offsetLg10,
+	offsetLg11,
 	offsetMd0,
 	offsetMd1,
-	offsetMd10,
-	offsetMd11,
 	offsetMd2,
 	offsetMd3,
 	offsetMd4,
@@ -1878,10 +1433,10 @@ import {
 	offsetMd7,
 	offsetMd8,
 	offsetMd9,
+	offsetMd10,
+	offsetMd11,
 	offsetSm0,
 	offsetSm1,
-	offsetSm10,
-	offsetSm11,
 	offsetSm2,
 	offsetSm3,
 	offsetSm4,
@@ -1890,10 +1445,10 @@ import {
 	offsetSm7,
 	offsetSm8,
 	offsetSm9,
+	offsetSm10,
+	offsetSm11,
 	offsetXl0,
 	offsetXl1,
-	offsetXl10,
-	offsetXl11,
 	offsetXl2,
 	offsetXl3,
 	offsetXl4,
@@ -1902,10 +1457,10 @@ import {
 	offsetXl7,
 	offsetXl8,
 	offsetXl9,
+	offsetXl10,
+	offsetXl11,
 	offsetXxl0,
 	offsetXxl1,
-	offsetXxl10,
-	offsetXxl11,
 	offsetXxl2,
 	offsetXxl3,
 	offsetXxl4,
@@ -1914,11 +1469,13 @@ import {
 	offsetXxl7,
 	offsetXxl8,
 	offsetXxl9,
+	offsetXxl10,
+	offsetXxl11,
 	opacity0,
-	opacity100,
 	opacity25,
 	opacity50,
 	opacity75,
+	opacity100,
 	order0,
 	order1,
 	order2,
@@ -1972,7 +1529,6 @@ import {
 	overflowScroll,
 	overflowVisible,
 	overflowXAuto,
-	overflowXHidden,
 	overflowXScroll,
 	overflowXVisible,
 	overflowYAuto,
@@ -1984,45 +1540,8 @@ import {
 	p2,
 	p3,
 	p4,
-	p5,
-	pLg0,
-	pLg1,
-	pLg2,
-	pLg3,
-	pLg4,
-	pLg5,
-	pMd0,
-	pMd1,
-	pMd2,
-	pMd3,
-	pMd4,
-	pMd5,
-	pSm0,
-	pSm1,
-	pSm2,
-	pSm3,
-	pSm4,
-	pSm5,
-	pXl0,
-	pXl1,
-	pXl2,
-	pXl3,
-	pXl4,
-	pXl5,
-	pXxl0,
-	pXxl1,
-	pXxl2,
-	pXxl3,
-	pXxl4,
-	pXxl5,
-	pageItem,
-	pageLink,
-	pagination,
-	paginationLg,
-	paginationSm,
 	pb0,
 	pb1,
-	pb2,
 	pb3,
 	pb4,
 	pb5,
@@ -2047,7 +1566,6 @@ import {
 	pbXl0,
 	pbXl1,
 	pbXl2,
-	pbXl3,
 	pbXl4,
 	pbXl5,
 	pbXxl0,
@@ -2094,28 +1612,38 @@ import {
 	peXxl3,
 	peXxl4,
 	peXxl5,
+	pLg0,
+	pLg1,
+	pLg2,
+	pLg3,
+	pLg4,
+	pLg5,
 	placeholder,
 	placeholderGlow,
 	placeholderLg,
 	placeholderSm,
 	placeholderWave,
 	placeholderXs,
+	pMd0,
+	pMd1,
+	pMd2,
+	pMd3,
+	pMd4,
+	pMd5,
 	pointerEvent,
 	popover,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
 	popoverTitle,
 	positionAbsolute,
 	positionFixed,
-	positionRelative,
 	positionStatic,
 	positionSticky,
-	progress,
-	progressBar,
-	progressBarAnimated,
-	progressBarStriped,
 	progressStacked,
+	pSm0,
+	pSm1,
+	pSm2,
+	pSm3,
+	pSm4,
+	pSm5,
 	ps0,
 	ps1,
 	ps2,
@@ -2155,7 +1683,6 @@ import {
 	pt0,
 	pt1,
 	pt2,
-	pt3,
 	pt4,
 	pt5,
 	ptLg0,
@@ -2181,17 +1708,26 @@ import {
 	ptXl2,
 	ptXl3,
 	ptXl4,
-	ptXl5,
 	ptXxl0,
 	ptXxl1,
 	ptXxl2,
 	ptXxl3,
 	ptXxl4,
 	ptXxl5,
+	pXl0,
+	pXl1,
+	pXl2,
+	pXl3,
+	pXl4,
+	pXl5,
+	pXxl0,
+	pXxl1,
+	pXxl2,
+	pXxl3,
+	pXxl4,
+	pXxl5,
 	px0,
 	px1,
-	px2,
-	px3,
 	px4,
 	px5,
 	pxLg0,
@@ -2261,11 +1797,10 @@ import {
 	pyXxl4,
 	pyXxl5,
 	ratio,
-	ratio16x9,
 	ratio1x1,
-	ratio21x9,
 	ratio4x3,
-	rounded,
+	ratio16x9,
+	ratio21x9,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -2310,8 +1845,6 @@ import {
 	roundedTop5,
 	roundedTopCircle,
 	roundedTopPill,
-	row,
-	rowCols1,
 	rowCols2,
 	rowCols3,
 	rowCols4,
@@ -2326,7 +1859,6 @@ import {
 	rowColsLg6,
 	rowColsLgAuto,
 	rowColsMd1,
-	rowColsMd2,
 	rowColsMd3,
 	rowColsMd4,
 	rowColsMd5,
@@ -2393,15 +1925,12 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	show,
 	showing,
-	spinnerBorder,
 	spinnerBorderSm,
-	spinnerGrow,
 	spinnerGrowSm,
 	start0,
-	start100,
 	start50,
+	start100,
 	stickyBottom,
 	stickyLgBottom,
 	stickyLgTop,
@@ -2411,35 +1940,9 @@ import {
 	stickySmTop,
 	stickyTop,
 	stickyXlBottom,
-	stickyXlTop,
 	stickyXxlBottom,
 	stickyXxlTop,
 	stretchedLink,
-	tabContent,
-	tabPane,
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
-	tableDanger,
-	tableDark,
-	tableGroupDivider,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
-	tableSecondary,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
 	textBgDanger,
 	textBgDark,
 	textBgInfo,
@@ -2459,7 +1962,6 @@ import {
 	textCenter,
 	textDanger,
 	textDangerEmphasis,
-	textDark,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
@@ -2476,12 +1978,11 @@ import {
 	textMdCenter,
 	textMdEnd,
 	textMdStart,
-	textMuted,
 	textNowrap,
-	textOpacity100,
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
+	textOpacity100,
 	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
@@ -2506,43 +2007,806 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
-	toast,
-	toastBody,
 	toastContainer,
-	toastHeader,
 	tooltip,
-	tooltipArrow,
-	tooltipInner,
 	top0,
-	top100,
 	top50,
+	top100,
 	translateMiddle,
 	translateMiddleX,
 	translateMiddleY,
 	userSelectAll,
 	userSelectAuto,
 	userSelectNone,
-	validFeedback,
 	validTooltip,
 	vh100,
 	visible,
-	visuallyHidden,
 	visuallyHiddenFocusable,
 	vr,
 	vstack,
 	vw100,
-	w100,
 	w25,
 	w50,
 	w75,
+	w100,
 	wAuto,
-	wasValidated,
 	z0,
 	z1,
 	z2,
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import { vars } from '../../../theme-contract/theme-contract.css'
+import {
+	varBsAccordionActiveBg,
+	varBsAccordionActiveColor,
+	varBsAccordionBg,
+	varBsAccordionBodyPaddingX,
+	varBsAccordionBodyPaddingY,
+	varBsAccordionBorderColor,
+	varBsAccordionBorderRadius,
+	varBsAccordionBorderWidth,
+	varBsAccordionBtnActiveIcon,
+	varBsAccordionBtnBg,
+	varBsAccordionBtnColor,
+	varBsAccordionBtnFocusBoxShadow,
+	varBsAccordionBtnIcon,
+	varBsAccordionBtnIconTransform,
+	varBsAccordionBtnIconTransition,
+	varBsAccordionBtnIconWidth,
+	varBsAccordionBtnPaddingX,
+	varBsAccordionBtnPaddingY,
+	varBsAccordionColor,
+	varBsAccordionInnerBorderRadius,
+	varBsAccordionTransition,
+} from '../../../theme-contract/ui/accordion/_vars.css'
+import {
+	accordion,
+	accordionBody,
+	accordionButton,
+	accordionButtonCollapsed,
+	accordionCollapse,
+	accordionHeader,
+	accordionItem,
+} from '../../../theme-contract/ui/accordion/contract.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../theme-contract/ui/alerts/_vars.css'
+import {
+	alert,
+	alertDanger,
+	alertDark,
+	alertDismissible,
+	alertHeading,
+	alertInfo,
+	alertLight,
+	alertLink,
+	alertPrimary,
+	alertSecondary,
+	alertSuccess,
+	alertWarning,
+} from '../../../theme-contract/ui/alerts/contract.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../theme-contract/ui/badge/_vars.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
+import {
+	varBsBreadcrumbBg,
+	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
+	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbItemActiveColor,
+	varBsBreadcrumbItemPaddingX,
+	varBsBreadcrumbMarginBottom,
+	varBsBreadcrumbPaddingX,
+	varBsBreadcrumbPaddingY,
+} from '../../../theme-contract/ui/breadcrumb/_vars.css'
+import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
+import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
+	varBsBtnActiveColor,
+	varBsBtnBg,
+	varBsBtnBorderColor,
+	varBsBtnBorderRadius,
+	varBsBtnBorderWidth,
+	varBsBtnBoxShadow,
+	varBsBtnColor,
+	varBsBtnDisabledBg,
+	varBsBtnDisabledBorderColor,
+	varBsBtnDisabledColor,
+	varBsBtnDisabledOpacity,
+	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
+	varBsBtnFontFamily,
+	varBsBtnFontSize,
+	varBsBtnFontWeight,
+	varBsBtnHoverBg,
+	varBsBtnHoverBorderColor,
+	varBsBtnHoverColor,
+	varBsBtnLineHeight,
+	varBsBtnPaddingX,
+	varBsBtnPaddingY,
+} from '../../../theme-contract/ui/buttons/_vars.css'
+import {
+	btn,
+	btnCheck,
+	btnDanger,
+	btnDark,
+	btnInfo,
+	btnLg,
+	btnLight,
+	btnLink,
+	btnOutlineDanger,
+	btnOutlineDark,
+	btnOutlineInfo,
+	btnOutlineLight,
+	btnOutlinePrimary,
+	btnOutlineSecondary,
+	btnOutlineSuccess,
+	btnOutlineWarning,
+	btnPrimary,
+	btnSecondary,
+	btnSm,
+	btnSuccess,
+	btnWarning,
+} from '../../../theme-contract/ui/buttons/contract.css'
+import {
+	varBsCardBg,
+	varBsCardBorderColor,
+	varBsCardBorderRadius,
+	varBsCardBorderWidth,
+	varBsCardBoxShadow,
+	varBsCardCapBg,
+	varBsCardCapColor,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+	varBsCardColor,
+	varBsCardGroupMargin,
+	varBsCardImgOverlayPadding,
+	varBsCardInnerBorderRadius,
+	varBsCardSpacerX,
+	varBsCardSpacerY,
+	varBsCardSubtitleColor,
+	varBsCardTitleColor,
+	varBsCardTitleSpacerY,
+} from '../../../theme-contract/ui/card/_vars.css'
+import {
+	card,
+	cardBody,
+	cardFooter,
+	cardHeader,
+	cardImg,
+	cardImgBottom,
+	cardImgTop,
+	cardLink,
+	cardSubtitle,
+	cardText,
+	cardTitle,
+} from '../../../theme-contract/ui/card/contract.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
+import {
+	varBsCarouselCaptionColor,
+	varBsCarouselControlIconFilter,
+	varBsCarouselIndicatorActiveBg,
+} from '../../../theme-contract/ui/carousel/_vars.css'
+import {
+	carousel,
+	carouselCaption,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselDark,
+	carouselFade,
+	carouselIndicators,
+	carouselInner,
+	carouselItem,
+	carouselItemEnd,
+	carouselItemNext,
+	carouselItemPrev,
+	carouselItemStart,
+} from '../../../theme-contract/ui/carousel/contract.css'
+import {
+	varBsDropdownBg,
+	varBsDropdownBorderColor,
+	varBsDropdownBorderRadius,
+	varBsDropdownBorderWidth,
+	varBsDropdownBoxShadow,
+	varBsDropdownColor,
+	varBsDropdownDividerBg,
+	varBsDropdownDividerMarginY,
+	varBsDropdownFontSize,
+	varBsDropdownHeaderColor,
+	varBsDropdownHeaderPaddingX,
+	varBsDropdownHeaderPaddingY,
+	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemPaddingX,
+	varBsDropdownItemPaddingY,
+	varBsDropdownLinkActiveBg,
+	varBsDropdownLinkActiveColor,
+	varBsDropdownLinkColor,
+	varBsDropdownLinkDisabledColor,
+	varBsDropdownLinkHoverBg,
+	varBsDropdownLinkHoverColor,
+	varBsDropdownMinWidth,
+	varBsDropdownPaddingX,
+	varBsDropdownPaddingY,
+	varBsDropdownSpacer,
+	varBsDropdownZindex,
+} from '../../../theme-contract/ui/dropdowns/_vars.css'
+import {
+	btnShowHook,
+	dropdown,
+	dropdownCenter,
+	dropdownDivider,
+	dropdownHeader,
+	dropdownItem,
+	dropdownItemText,
+	dropdownMenu,
+	dropdownMenuDark,
+	dropdownMenuEnd,
+	dropdownMenuShow,
+	dropdownMenuStart,
+	dropdownToggle,
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+	dropupCenter,
+} from '../../../theme-contract/ui/dropdowns/contract.css'
+import {
+	varBsListGroupActionActiveBg,
+	varBsListGroupActionActiveColor,
+	varBsListGroupActionColor,
+	varBsListGroupActionHoverBg,
+	varBsListGroupActionHoverColor,
+	varBsListGroupActiveBg,
+	varBsListGroupActiveBorderColor,
+	varBsListGroupActiveColor,
+	varBsListGroupBg,
+	varBsListGroupBorderColor,
+	varBsListGroupBorderRadius,
+	varBsListGroupBorderWidth,
+	varBsListGroupColor,
+	varBsListGroupDisabledBg,
+	varBsListGroupDisabledColor,
+	varBsListGroupItemPaddingX,
+	varBsListGroupItemPaddingY,
+} from '../../../theme-contract/ui/list-group/_vars.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../theme-contract/ui/list-group/contract.css'
+import {
+	varBsBackdropBg,
+	varBsBackdropOpacity,
+	varBsBackdropZindex,
+	varBsModalBg,
+	varBsModalBorderColor,
+	varBsModalBorderRadius,
+	varBsModalBorderWidth,
+	varBsModalBoxShadow,
+	varBsModalColor,
+	varBsModalFooterBg,
+	varBsModalFooterBorderColor,
+	varBsModalFooterBorderWidth,
+	varBsModalFooterGap,
+	varBsModalHeaderBorderColor,
+	varBsModalHeaderBorderWidth,
+	varBsModalHeaderPadding,
+	varBsModalHeaderPaddingX,
+	varBsModalHeaderPaddingY,
+	varBsModalInnerBorderRadius,
+	varBsModalMargin,
+	varBsModalPadding,
+	varBsModalTitleLineHeight,
+	varBsModalWidth,
+	varBsModalZindex,
+} from '../../../theme-contract/ui/modal/_vars.css'
+import {
+	flexWrap,
+	justifyContentBetween,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalShowHook,
+	modalTitle,
+} from '../../../theme-contract/ui/modal/contract.css'
+import {
+	varBsNavbarActiveColor,
+	varBsNavbarBrandColor,
+	varBsNavbarBrandFontSize,
+	varBsNavbarBrandHoverColor,
+	varBsNavbarBrandMarginEnd,
+	varBsNavbarBrandPaddingY,
+	varBsNavbarColor,
+	varBsNavbarDisabledColor,
+	varBsNavbarHoverColor,
+	varBsNavbarNavLinkPaddingX,
+	varBsNavbarPaddingX,
+	varBsNavbarPaddingY,
+	varBsNavbarTogglerBorderColor,
+	varBsNavbarTogglerBorderRadius,
+	varBsNavbarTogglerFocusWidth,
+	varBsNavbarTogglerFontSize,
+	varBsNavbarTogglerIconBg,
+	varBsNavbarTogglerPaddingX,
+	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+} from '../../../theme-contract/ui/navbar/_vars.css'
+import {
+	collapse,
+	navbar,
+	navbarBrand,
+	navbarCollapse,
+	navbarExpandLg,
+	navbarNav,
+	navbarNavScroll,
+	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../theme-contract/ui/navbar/contract.css'
+import {
+	varBsNavLinkColor,
+	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
+	varBsNavLinkFontWeight,
+	varBsNavLinkHoverColor,
+	varBsNavLinkPaddingX,
+	varBsNavLinkPaddingY,
+	varBsNavPillsBorderRadius,
+	varBsNavPillsLinkActiveBg,
+	varBsNavPillsLinkActiveColor,
+	varBsNavTabsBorderColor,
+	varBsNavTabsBorderRadius,
+	varBsNavTabsBorderWidth,
+	varBsNavTabsLinkActiveBg,
+	varBsNavTabsLinkActiveBorderColor,
+	varBsNavTabsLinkActiveColor,
+	varBsNavTabsLinkHoverBorderColor,
+} from '../../../theme-contract/ui/navs/_vars.css'
+import {
+	fade,
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../theme-contract/ui/navs/contract.css'
+import {
+	varBsPaginationActiveBg,
+	varBsPaginationActiveBorderColor,
+	varBsPaginationActiveColor,
+	varBsPaginationBg,
+	varBsPaginationBorderColor,
+	varBsPaginationBorderRadius,
+	varBsPaginationBorderWidth,
+	varBsPaginationColor,
+	varBsPaginationDisabledBg,
+	varBsPaginationDisabledBorderColor,
+	varBsPaginationDisabledColor,
+	varBsPaginationFocusBg,
+	varBsPaginationFocusBoxShadow,
+	varBsPaginationFocusColor,
+	varBsPaginationFontSize,
+	varBsPaginationHoverBg,
+	varBsPaginationHoverBorderColor,
+	varBsPaginationHoverColor,
+	varBsPaginationPaddingX,
+	varBsPaginationPaddingY,
+} from '../../../theme-contract/ui/pagination/_vars.css'
+import {
+	pageItem,
+	pageItemActive,
+	pageItemDisabled,
+	pageLink,
+	pagination,
+	paginationLg,
+	paginationSm,
+} from '../../../theme-contract/ui/pagination/contract.css'
+import {
+	varBsPopoverArrowBorder,
+	varBsPopoverArrowHeight,
+	varBsPopoverArrowWidth,
+	varBsPopoverBg,
+	varBsPopoverBodyColor,
+	varBsPopoverBodyPaddingX,
+	varBsPopoverBodyPaddingY,
+	varBsPopoverBorderColor,
+	varBsPopoverBorderRadius,
+	varBsPopoverBorderWidth,
+	varBsPopoverBoxShadow,
+	varBsPopoverFontSize,
+	varBsPopoverHeaderBg,
+	varBsPopoverHeaderColor,
+	varBsPopoverHeaderFontSize,
+	varBsPopoverHeaderPaddingX,
+	varBsPopoverHeaderPaddingY,
+	varBsPopoverInnerBorderRadius,
+	varBsPopoverMaxWidth,
+	varBsPopoverZindex,
+} from '../../../theme-contract/ui/popovers/_vars.css'
+import {
+	bsPopoverAuto,
+	bsPopoverBottom,
+	bsPopoverEnd,
+	bsPopoverStart,
+	bsPopoverTop,
+	popoverArrow,
+	popoverBody,
+	popoverFade,
+	popoverHeader,
+	popoverShow,
+} from '../../../theme-contract/ui/popovers/contract.css'
+import {
+	varBsProgressBarBg,
+	varBsProgressBarColor,
+	varBsProgressBarTransition,
+	varBsProgressBg,
+	varBsProgressBorderRadius,
+	varBsProgressBoxShadow,
+	varBsProgressFontSize,
+	varBsProgressHeight,
+} from '../../../theme-contract/ui/progress/_vars.css'
+import {
+	progress,
+	progressBar,
+	progressBarAnimated,
+	progressBarStriped,
+} from '../../../theme-contract/ui/progress/contract.css'
+import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
+import {
+	varBsSpinnerAnimationName,
+	varBsSpinnerAnimationSpeed,
+	varBsSpinnerBorderWidth,
+	varBsSpinnerHeight,
+	varBsSpinnerVerticalAlign,
+	varBsSpinnerWidth,
+} from '../../../theme-contract/ui/spinners/_vars.css'
+import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
+import {
+	varBsToastBg,
+	varBsToastBorderColor,
+	varBsToastBorderRadius,
+	varBsToastBorderWidth,
+	varBsToastBoxShadow,
+	varBsToastColor,
+	varBsToastFontSize,
+	varBsToastHeaderBg,
+	varBsToastHeaderBorderColor,
+	varBsToastHeaderColor,
+	varBsToastMaxWidth,
+	varBsToastPaddingX,
+	varBsToastPaddingY,
+	varBsToastSpacing,
+	varBsToastZindex,
+} from '../../../theme-contract/ui/toasts/_vars.css'
+import {
+	toast,
+	toastBody,
+	toastHeader,
+	toastShow,
+	toastShowing,
+} from '../../../theme-contract/ui/toasts/contract.css'
+import {
+	varBsTooltipArrowHeight,
+	varBsTooltipArrowWidth,
+	varBsTooltipBg,
+	varBsTooltipBorderRadius,
+	varBsTooltipColor,
+	varBsTooltipFontSize,
+	varBsTooltipMargin,
+	varBsTooltipMaxWidth,
+	varBsTooltipOpacity,
+	varBsTooltipPaddingX,
+	varBsTooltipPaddingY,
+	varBsTooltipZindex,
+} from '../../../theme-contract/ui/tooltips/_vars.css'
+import {
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipShow,
+} from '../../../theme-contract/ui/tooltips/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
+import {
+	varBsAspectRatio,
+	varBsBgOpacity,
+	varBsBorderOpacity,
+	varBsBtnCloseFilter,
+	varBsCardHeight,
+	varBsLinkOpacity,
+	varBsLinkUnderlineOpacity,
+	varBsNavUnderlineBorderWidth,
+	varBsNavUnderlineGap,
+	varBsNavUnderlineLinkActiveColor,
+	varBsOffcanvasBg,
+	varBsOffcanvasBorderColor,
+	varBsOffcanvasBorderWidth,
+	varBsOffcanvasBoxShadow,
+	varBsOffcanvasColor,
+	varBsOffcanvasHeight,
+	varBsOffcanvasPaddingX,
+	varBsOffcanvasPaddingY,
+	varBsOffcanvasTitleLineHeight,
+	varBsOffcanvasTransition,
+	varBsOffcanvasWidth,
+	varBsOffcanvasZindex,
+	varBsPosition,
+	varBsTextOpacity,
+} from '../../../theme-contract/utilities/generated/_vars.css'
+import { sketchyScope } from '../scope.css'
+
+globalStyle(`${sketchyScope}${vars}`, {
+	vars: {
+		[varBsBlue]: '#007bff',
+		[varBsIndigo]: '#6610f2',
+		[varBsPurple]: '#6f42c1',
+		[varBsPink]: '#e83e8c',
+		[varBsRed]: '#dc3545',
+		[varBsOrange]: '#fd7e14',
+		[varBsYellow]: '#ffc107',
+		[varBsGreen]: '#28a745',
+		[varBsTeal]: '#20c997',
+		[varBsCyan]: '#17a2b8',
+		[varBsBlack]: '#000',
+		[varBsWhite]: '#fff',
+		[varBsGray]: '#868e96',
+		[varBsGrayDark]: '#333',
+		'--bs-gray-100': '#f8f9fa',
+		'--bs-gray-200': '#f7f7f9',
+		'--bs-gray-300': '#dee2e6',
+		'--bs-gray-400': '#ccc',
+		'--bs-gray-500': '#aaa',
+		'--bs-gray-600': '#868e96',
+		'--bs-gray-700': '#555',
+		'--bs-gray-800': '#333',
+		'--bs-gray-900': '#212529',
+		[varBsPrimary]: '#333',
+		[varBsSecondary]: '#555',
+		[varBsSuccess]: '#28a745',
+		[varBsInfo]: '#17a2b8',
+		[varBsWarning]: '#ffc107',
+		[varBsDanger]: '#dc3545',
+		[varBsLight]: '#fff',
+		[varBsDark]: '#555',
+		[varBsPrimaryRgb]: '51, 51, 51',
+		[varBsSecondaryRgb]: '85, 85, 85',
+		[varBsSuccessRgb]: '40, 167, 69',
+		[varBsInfoRgb]: '23, 162, 184',
+		[varBsWarningRgb]: '255, 193, 7',
+		[varBsDangerRgb]: '220, 53, 69',
+		[varBsLightRgb]: '255, 255, 255',
+		[varBsDarkRgb]: '85, 85, 85',
+		[varBsPrimaryTextEmphasis]: '#141414',
+		[varBsSecondaryTextEmphasis]: '#222222',
+		[varBsSuccessTextEmphasis]: '#10431c',
+		[varBsInfoTextEmphasis]: '#09414a',
+		[varBsWarningTextEmphasis]: '#664d03',
+		[varBsDangerTextEmphasis]: '#58151c',
+		[varBsLightTextEmphasis]: '#555',
+		[varBsDarkTextEmphasis]: '#555',
+		[varBsPrimaryBgSubtle]: '#d6d6d6',
+		[varBsSecondaryBgSubtle]: '#dddddd',
+		[varBsSuccessBgSubtle]: '#d4edda',
+		[varBsInfoBgSubtle]: '#d1ecf1',
+		[varBsWarningBgSubtle]: '#fff3cd',
+		[varBsDangerBgSubtle]: '#f8d7da',
+		[varBsLightBgSubtle]: '#fcfcfd',
+		[varBsDarkBgSubtle]: '#ccc',
+		[varBsPrimaryBorderSubtle]: '#adadad',
+		[varBsSecondaryBorderSubtle]: '#bbbbbb',
+		[varBsSuccessBorderSubtle]: '#a9dcb5',
+		[varBsInfoBorderSubtle]: '#a2dae3',
+		[varBsWarningBorderSubtle]: '#ffe69c',
+		[varBsDangerBorderSubtle]: '#f1aeb5',
+		[varBsLightBorderSubtle]: '#f7f7f9',
+		[varBsDarkBorderSubtle]: '#aaa',
+		[varBsWhiteRgb]: '255, 255, 255',
+		[varBsBlackRgb]: '0, 0, 0',
+		[varBsFontSansSerif]:
+			'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+		[varBsFontMonospace]:
+			'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+		[varBsGradient]:
+			'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
+		[varBsBodyFontFamily]: varBsFontSansSerif,
+		[varBsBodyFontSize]: '1rem',
+		[varBsBodyFontWeight]: '700',
+		[varBsBodyLineHeight]: '1.5',
+		[varBsBodyColor]: '#212529',
+		[varBsBodyColorRgb]: '33, 37, 41',
+		[varBsBodyBg]: '#fff',
+		[varBsBodyBgRgb]: '255, 255, 255',
+		[varBsEmphasisColor]: '#000',
+		[varBsEmphasisColorRgb]: '0, 0, 0',
+		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
+		'--bs-secondary-color-rgb': '33, 37, 41',
+		[varBsSecondaryBg]: '#f7f7f9',
+		'--bs-secondary-bg-rgb': '247, 247, 249',
+		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',
+		'--bs-tertiary-color-rgb': '33, 37, 41',
+		[varBsTertiaryBg]: '#f8f9fa',
+		'--bs-tertiary-bg-rgb': '248, 249, 250',
+		[varBsHeadingColor]: 'inherit',
+		[varBsLinkColor]: '#333',
+		[varBsLinkColorRgb]: '51, 51, 51',
+		[varBsLinkDecoration]: 'underline',
+		[varBsLinkHoverColor]: '#292929',
+		[varBsLinkHoverColorRgb]: '41, 41, 41',
+		[varBsCodeColor]: '#e83e8c',
+		[varBsHighlightColor]: '#212529',
+		[varBsHighlightBg]: '#fff3cd',
+		[varBsBorderWidth]: '2px',
+		[varBsBorderStyle]: 'solid',
+		[varBsBorderColor]: '#dee2e6',
+		[varBsBorderColorTranslucent]: 'rgba(0, 0, 0, 0.175)',
+		[varBsBorderRadius]: '25px',
+		[varBsBorderRadiusSm]: '15px',
+		[varBsBorderRadiusLg]: '35px',
+		[varBsBorderRadiusXl]: '1rem',
+		[varBsBorderRadiusXxl]: '2rem',
+		'--bs-border-radius-2xl': varBsBorderRadiusXxl,
+		[varBsBorderRadiusPill]: '50rem',
+		[varBsBoxShadow]: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+		[varBsBoxShadowSm]: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+		[varBsBoxShadowLg]: '0 1rem 3rem rgba(0, 0, 0, 0.175)',
+		[varBsBoxShadowInset]: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)',
+		[varBsFocusRingWidth]: '0.25rem',
+		[varBsFocusRingOpacity]: '0.25',
+		[varBsFocusRingColor]: 'rgba(51, 51, 51, 0.25)',
+		[varBsFormValidColor]: '#28a745',
+		[varBsFormValidBorderColor]: '#28a745',
+		[varBsFormInvalidColor]: '#dc3545',
+		[varBsFormInvalidBorderColor]: '#dc3545',
+	},
+})
+
+globalStyle(`${sketchyScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsBodyColor]: '#dee2e6',
+		[varBsBodyColorRgb]: '222, 226, 230',
+		[varBsBodyBg]: '#212529',
+		[varBsBodyBgRgb]: '33, 37, 41',
+		[varBsEmphasisColor]: '#fff',
+		[varBsEmphasisColorRgb]: '255, 255, 255',
+		[varBsSecondaryColor]: 'rgba(222, 226, 230, 0.75)',
+		'--bs-secondary-color-rgb': '222, 226, 230',
+		[varBsSecondaryBg]: '#333',
+		'--bs-secondary-bg-rgb': '51, 51, 51',
+		[varBsTertiaryColor]: 'rgba(222, 226, 230, 0.5)',
+		'--bs-tertiary-color-rgb': '222, 226, 230',
+		[varBsTertiaryBg]: '#2a2c2e',
+		'--bs-tertiary-bg-rgb': '42, 44, 46',
+		[varBsPrimaryTextEmphasis]: '#858585',
+		[varBsSecondaryTextEmphasis]: '#999999',
+		[varBsSuccessTextEmphasis]: '#7eca8f',
+		[varBsInfoTextEmphasis]: '#74c7d4',
+		[varBsWarningTextEmphasis]: '#ffda6a',
+		[varBsDangerTextEmphasis]: '#ea868f',
+		[varBsLightTextEmphasis]: '#f8f9fa',
+		[varBsDarkTextEmphasis]: '#dee2e6',
+		[varBsPrimaryBgSubtle]: '#0a0a0a',
+		[varBsSecondaryBgSubtle]: '#111111',
+		[varBsSuccessBgSubtle]: '#08210e',
+		[varBsInfoBgSubtle]: '#052025',
+		[varBsWarningBgSubtle]: '#332701',
+		[varBsDangerBgSubtle]: '#2c0b0e',
+		[varBsLightBgSubtle]: '#333',
+		[varBsDarkBgSubtle]: '#1a1a1a',
+		[varBsPrimaryBorderSubtle]: '#1f1f1f',
+		[varBsSecondaryBorderSubtle]: '#333333',
+		[varBsSuccessBorderSubtle]: '#186429',
+		[varBsInfoBorderSubtle]: '#0e616e',
+		[varBsWarningBorderSubtle]: '#997404',
+		[varBsDangerBorderSubtle]: '#842029',
+		[varBsLightBorderSubtle]: '#555',
+		[varBsDarkBorderSubtle]: '#333',
+		[varBsHeadingColor]: 'inherit',
+		[varBsLinkColor]: '#858585',
+		[varBsLinkHoverColor]: '#9d9d9d',
+		[varBsLinkColorRgb]: '133, 133, 133',
+		[varBsLinkHoverColorRgb]: '157, 157, 157',
+		[varBsCodeColor]: '#f18bba',
+		[varBsHighlightColor]: '#dee2e6',
+		[varBsHighlightBg]: '#664d03',
+		[varBsBorderColor]: '#555',
+		[varBsBorderColorTranslucent]: 'rgba(255, 255, 255, 0.15)',
+		[varBsFormValidColor]: '#7eca8f',
+		[varBsFormValidBorderColor]: '#7eca8f',
+		[varBsFormInvalidColor]: '#ea868f',
+		[varBsFormInvalidBorderColor]: '#ea868f',
+	},
+	colorScheme: 'dark',
+})
 
 globalStyle(`*`, {
 	boxSizing: 'border-box',
@@ -2556,7 +2820,15 @@ globalStyle(`*::after`, {
 	boxSizing: 'border-box',
 })
 
-globalStyle(`${sketchyScope}${horizontalRule}`, {
+globalStyle(`${sketchyScope}${vars}`, {
+	'@media': {
+		'(prefers-reduced-motion: no-preference)': {
+			scrollBehavior: 'smooth',
+		},
+	},
+})
+
+globalStyle(`:where(${sketchyScope}${horizontalRule})`, {
 	margin: '1rem 0',
 	color: 'inherit',
 	border: '0',
@@ -2564,7 +2836,7 @@ globalStyle(`${sketchyScope}${horizontalRule}`, {
 	opacity: '0.25',
 })
 
-globalStyle(`${sketchyScope}${h6}`, {
+globalStyle(`:where(${sketchyScope}${h6})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -2582,7 +2854,7 @@ globalStyle(`${sketchyScope}${clsH6}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${sketchyScope}${h5}`, {
+globalStyle(`:where(${sketchyScope}${h5})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -2600,7 +2872,7 @@ globalStyle(`${sketchyScope}${clsH5}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${sketchyScope}${h4}`, {
+globalStyle(`:where(${sketchyScope}${h4})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -2618,7 +2890,7 @@ globalStyle(`${sketchyScope}${clsH4}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${sketchyScope}${h3}`, {
+globalStyle(`:where(${sketchyScope}${h3})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -2636,7 +2908,7 @@ globalStyle(`${sketchyScope}${clsH3}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${sketchyScope}${h2}`, {
+globalStyle(`:where(${sketchyScope}${h2})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -2654,7 +2926,7 @@ globalStyle(`${sketchyScope}${clsH2}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${sketchyScope}${h1}`, {
+globalStyle(`:where(${sketchyScope}${h1})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -2672,7 +2944,7 @@ globalStyle(`${sketchyScope}${clsH1}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${sketchyScope}${h1}`, {
+globalStyle(`:where(${sketchyScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
@@ -2680,7 +2952,7 @@ globalStyle(`${sketchyScope}${clsH1}`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
-globalStyle(`${sketchyScope}${h1}`, {
+globalStyle(`:where(${sketchyScope}${h1})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -2696,7 +2968,7 @@ globalStyle(`${sketchyScope}${clsH1}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${h2}`, {
+globalStyle(`:where(${sketchyScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
@@ -2704,7 +2976,7 @@ globalStyle(`${sketchyScope}${clsH2}`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
-globalStyle(`${sketchyScope}${h2}`, {
+globalStyle(`:where(${sketchyScope}${h2})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -2720,7 +2992,7 @@ globalStyle(`${sketchyScope}${clsH2}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${h3}`, {
+globalStyle(`:where(${sketchyScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
@@ -2728,7 +3000,7 @@ globalStyle(`${sketchyScope}${clsH3}`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
-globalStyle(`${sketchyScope}${h3}`, {
+globalStyle(`:where(${sketchyScope}${h3})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -2744,7 +3016,7 @@ globalStyle(`${sketchyScope}${clsH3}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${h4}`, {
+globalStyle(`:where(${sketchyScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
@@ -2752,7 +3024,7 @@ globalStyle(`${sketchyScope}${clsH4}`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-globalStyle(`${sketchyScope}${h4}`, {
+globalStyle(`:where(${sketchyScope}${h4})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -2768,7 +3040,7 @@ globalStyle(`${sketchyScope}${clsH4}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${h5}`, {
+globalStyle(`:where(${sketchyScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
@@ -2776,7 +3048,7 @@ globalStyle(`${sketchyScope}${clsH5}`, {
 	fontSize: '1.25rem',
 })
 
-globalStyle(`${sketchyScope}${h6}`, {
+globalStyle(`:where(${sketchyScope}${h6})`, {
 	fontSize: '1rem',
 })
 
@@ -2784,7 +3056,7 @@ globalStyle(`${sketchyScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 
-globalStyle(`${sketchyScope}${paragraph}`, {
+globalStyle(`:where(${sketchyScope}${paragraph})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
@@ -2797,73 +3069,73 @@ globalStyle(`${sketchyScope}${elAbbr}[title]`, {
 	textDecorationSkipInk: 'none',
 })
 
-globalStyle(`${sketchyScope}${elAddress}`, {
+globalStyle(`:where(${sketchyScope}${elAddress})`, {
 	marginBottom: '1rem',
 	fontStyle: 'normal',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elOl}`, {
+globalStyle(`:where(${sketchyScope}${elOl})`, {
 	paddingLeft: '2rem',
 })
 
-globalStyle(`${sketchyScope}${elUl}`, {
+globalStyle(`:where(${sketchyScope}${elUl})`, {
 	paddingLeft: '2rem',
 })
 
-globalStyle(`${sketchyScope}${elOl}`, {
+globalStyle(`:where(${sketchyScope}${elOl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${sketchyScope}${elUl}`, {
+globalStyle(`:where(${sketchyScope}${elUl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${sketchyScope}${elDl}`, {
+globalStyle(`:where(${sketchyScope}${elDl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${sketchyScope}${elOl} ${sketchyScope}${elOl}`, {
+globalStyle(`:where(${sketchyScope}${elOl}) :where(${sketchyScope}${elOl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${elUl} ${sketchyScope}${elUl}`, {
+globalStyle(`:where(${sketchyScope}${elUl}) :where(${sketchyScope}${elUl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${elOl} ${sketchyScope}${elUl}`, {
+globalStyle(`:where(${sketchyScope}${elOl}) :where(${sketchyScope}${elUl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${elUl} ${sketchyScope}${elOl}`, {
+globalStyle(`:where(${sketchyScope}${elUl}) :where(${sketchyScope}${elOl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${elDt}`, {
+globalStyle(`:where(${sketchyScope}${elDt})`, {
 	fontWeight: '700',
 })
 
-globalStyle(`${sketchyScope}${elDd}`, {
+globalStyle(`:where(${sketchyScope}${elDd})`, {
 	marginBottom: '0.5rem',
 	marginLeft: '0',
 })
 
-globalStyle(`${sketchyScope}${blockquote}`, {
+globalStyle(`:where(${sketchyScope}${blockquote})`, {
 	margin: '0 0 1rem',
 })
 
-globalStyle(`${sketchyScope}${elB}`, {
+globalStyle(`:where(${sketchyScope}${elB})`, {
 	fontWeight: 'bolder',
 })
 
-globalStyle(`${sketchyScope}${elStrong}`, {
+globalStyle(`:where(${sketchyScope}${elStrong})`, {
 	fontWeight: 'bolder',
 })
 
-globalStyle(`${sketchyScope}${small}`, {
+globalStyle(`:where(${sketchyScope}${small})`, {
 	fontSize: '0.875em',
 })
 
@@ -2871,7 +3143,7 @@ globalStyle(`${sketchyScope}${clsSmall}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${sketchyScope}${markText}`, {
+globalStyle(`:where(${sketchyScope}${markText})`, {
 	padding: '0.1875em',
 	color: varBsHighlightColor,
 	backgroundColor: varBsHighlightBg,
@@ -2883,30 +3155,30 @@ globalStyle(`${sketchyScope}${mark}`, {
 	backgroundColor: varBsHighlightBg,
 })
 
-globalStyle(`${sketchyScope}${elSub}`, {
+globalStyle(`:where(${sketchyScope}${elSub})`, {
 	position: 'relative',
 	fontSize: '0.75em',
 	lineHeight: '0',
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`${sketchyScope}${elSup}`, {
+globalStyle(`:where(${sketchyScope}${elSup})`, {
 	position: 'relative',
 	fontSize: '0.75em',
 	lineHeight: '0',
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`${sketchyScope}${elSub}`, {
+globalStyle(`:where(${sketchyScope}${elSub})`, {
 	bottom: '-0.25em',
 })
 
-globalStyle(`${sketchyScope}${elSup}`, {
+globalStyle(`:where(${sketchyScope}${elSup})`, {
 	top: '-0.5em',
 })
 
-globalStyle(`${sketchyScope}${link}`, {
-	color: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
+globalStyle(`:where(${sketchyScope}${link})`, {
+	color: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')})`,
 	textDecoration: 'underline',
 })
 
@@ -2926,27 +3198,27 @@ globalStyle(`${sketchyScope}${link}:not([href]):not([class]):hover`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${sketchyScope}${elPre}`, {
+globalStyle(`:where(${sketchyScope}${elPre})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${sketchyScope}${inlineCode}`, {
+globalStyle(`:where(${sketchyScope}${inlineCode})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${sketchyScope}${elKbd}`, {
+globalStyle(`:where(${sketchyScope}${elKbd})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${sketchyScope}${elSamp}`, {
+globalStyle(`:where(${sketchyScope}${elSamp})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${sketchyScope}${elPre}`, {
+globalStyle(`:where(${sketchyScope}${elPre})`, {
 	display: 'block',
 	marginTop: '0',
 	marginBottom: '1rem',
@@ -2954,23 +3226,23 @@ globalStyle(`${sketchyScope}${elPre}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${sketchyScope}${elPre} ${sketchyScope}${inlineCode}`, {
+globalStyle(`:where(${sketchyScope}${elPre}) :where(${sketchyScope}${inlineCode})`, {
 	fontSize: 'inherit',
 	color: 'inherit',
 	wordBreak: 'normal',
 })
 
-globalStyle(`${sketchyScope}${inlineCode}`, {
+globalStyle(`:where(${sketchyScope}${inlineCode})`, {
 	fontSize: '0.875em',
 	color: varBsCodeColor,
 	wordWrap: 'break-word',
 })
 
-globalStyle(`${sketchyScope}${link} > ${sketchyScope}${inlineCode}`, {
+globalStyle(`:where(${sketchyScope}${link}) > :where(${sketchyScope}${inlineCode})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elKbd}`, {
+globalStyle(`:where(${sketchyScope}${elKbd})`, {
 	padding: '0.1875rem 0.375rem',
 	fontSize: '0.875em',
 	color: varBsBodyBg,
@@ -2978,80 +3250,80 @@ globalStyle(`${sketchyScope}${elKbd}`, {
 	borderRadius: '15px',
 })
 
-globalStyle(`${sketchyScope}${elKbd} ${sketchyScope}${elKbd}`, {
+globalStyle(`:where(${sketchyScope}${elKbd}) :where(${sketchyScope}${elKbd})`, {
 	padding: '0',
 	fontSize: '1em',
 })
 
-globalStyle(`${sketchyScope}${elFigure}`, {
+globalStyle(`:where(${sketchyScope}${elFigure})`, {
 	margin: '0 0 1rem',
 })
 
-globalStyle(`${sketchyScope}${elImg}`, {
+globalStyle(`:where(${sketchyScope}${elImg})`, {
 	verticalAlign: 'middle',
 })
 
-globalStyle(`${sketchyScope}${elSvg}`, {
+globalStyle(`:where(${sketchyScope}${elSvg})`, {
 	verticalAlign: 'middle',
 })
 
-globalStyle(`${sketchyScope}${tableElement}`, {
+globalStyle(`:where(${sketchyScope}${tableElement})`, {
 	captionSide: 'bottom',
 	borderCollapse: 'collapse',
 })
 
-globalStyle(`${sketchyScope}${elCaption}`, {
+globalStyle(`:where(${sketchyScope}${elCaption})`, {
 	paddingTop: '0.5rem',
 	paddingBottom: '0.5rem',
 	color: varBsSecondaryColor,
 	textAlign: 'left',
 })
 
-globalStyle(`${sketchyScope}${tableHeaderCell}`, {
+globalStyle(`:where(${sketchyScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`${sketchyScope}${tableSection}`, {
+globalStyle(`:where(${sketchyScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${tableSection}`, {
+globalStyle(`:where(${sketchyScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${tableSection}`, {
+globalStyle(`:where(${sketchyScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${tableRow}`, {
+globalStyle(`:where(${sketchyScope}${tableRow})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${tableCell}`, {
+globalStyle(`:where(${sketchyScope}${tableCell})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${tableHeaderCell}`, {
+globalStyle(`:where(${sketchyScope}${tableHeaderCell})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${elLabel}`, {
+globalStyle(`:where(${sketchyScope}${elLabel})`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${sketchyScope}${elButton}`, {
+globalStyle(`:where(${sketchyScope}${elButton})`, {
 	borderRadius: '0',
 })
 
@@ -3059,46 +3331,46 @@ globalStyle(`${sketchyScope}${elButton}:focus:not(:focus-visible)`, {
 	outline: '0',
 })
 
-globalStyle(`${sketchyScope}${elInput}`, {
+globalStyle(`:where(${sketchyScope}${elInput})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elButton}`, {
+globalStyle(`:where(${sketchyScope}${elButton})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elSelect}`, {
+globalStyle(`:where(${sketchyScope}${elSelect})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elOptgroup}`, {
+globalStyle(`:where(${sketchyScope}${elOptgroup})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elTextarea}`, {
+globalStyle(`:where(${sketchyScope}${elTextarea})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${elButton}`, {
+globalStyle(`:where(${sketchyScope}${elButton})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`${sketchyScope}${elSelect}`, {
+globalStyle(`:where(${sketchyScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
@@ -3106,7 +3378,7 @@ globalStyle(`[role=button]`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`${sketchyScope}${elSelect}`, {
+globalStyle(`:where(${sketchyScope}${elSelect})`, {
 	wordWrap: 'normal',
 })
 
@@ -3114,11 +3386,14 @@ globalStyle(`${sketchyScope}${elSelect}:disabled`, {
 	opacity: '1',
 })
 
-globalStyle(`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
-	display: 'none !important',
-})
+globalStyle(
+	`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
+	{
+		display: 'none !important',
+	},
+)
 
-globalStyle(`${sketchyScope}${elButton}`, {
+globalStyle(`:where(${sketchyScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3155,18 +3430,18 @@ globalStyle(`::-moz-focus-inner`, {
 	borderStyle: 'none',
 })
 
-globalStyle(`${sketchyScope}${elTextarea}`, {
+globalStyle(`:where(${sketchyScope}${elTextarea})`, {
 	resize: 'vertical',
 })
 
-globalStyle(`${sketchyScope}${fieldset}`, {
+globalStyle(`:where(${sketchyScope}${fieldset})`, {
 	minWidth: '0',
 	padding: '0',
 	margin: '0',
 	border: '0',
 })
 
-globalStyle(`${sketchyScope}${elLegend}`, {
+globalStyle(`:where(${sketchyScope}${elLegend})`, {
 	float: 'left',
 	width: '100%',
 	padding: '0',
@@ -3175,7 +3450,7 @@ globalStyle(`${sketchyScope}${elLegend}`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-globalStyle(`${sketchyScope}${elLegend}`, {
+globalStyle(`:where(${sketchyScope}${elLegend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -3183,7 +3458,7 @@ globalStyle(`${sketchyScope}${elLegend}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${elLegend} + *`, {
+globalStyle(`:where(${sketchyScope}${elLegend}) + *`, {
 	clear: 'left',
 })
 
@@ -3247,20 +3522,20 @@ globalStyle(`::file-selector-button`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`${sketchyScope}${elOutput}`, {
+globalStyle(`:where(${sketchyScope}${elOutput})`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${sketchyScope}${elIframe}`, {
+globalStyle(`:where(${sketchyScope}${elIframe})`, {
 	border: '0',
 })
 
-globalStyle(`${sketchyScope}${elSummary}`, {
+globalStyle(`:where(${sketchyScope}${elSummary})`, {
 	display: 'list-item',
 	cursor: 'pointer',
 })
 
-globalStyle(`${sketchyScope}${elProgress}`, {
+globalStyle(`:where(${sketchyScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
@@ -3669,6 +3944,17 @@ globalStyle(`${sketchyScope}${container}`, {
 		'(min-width: 1400px)': {
 			maxWidth: '1320px',
 		},
+	},
+})
+
+globalStyle(`${sketchyScope}${vars}`, {
+	vars: {
+		'--bs-breakpoint-xs': '0',
+		'--bs-breakpoint-sm': '576px',
+		'--bs-breakpoint-md': '768px',
+		'--bs-breakpoint-lg': '992px',
+		'--bs-breakpoint-xl': '1200px',
+		'--bs-breakpoint-xxl': '1400px',
 	},
 })
 
@@ -6630,17 +6916,17 @@ globalStyle(`${sketchyScope}${table}`, {
 
 globalStyle(`${sketchyScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: varBsTableColorState,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: '2px',
-	boxShadow: `inset 0 0 0 9999px ${varBsTableBgState}`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableSection}`, {
+globalStyle(`${sketchyScope}${table} > :where(${sketchyScope}${tableSection})`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableSection}`, {
+globalStyle(`${sketchyScope}${table} > :where(${sketchyScope}${tableSection})`, {
 	verticalAlign: 'bottom',
 })
 
@@ -6672,19 +6958,25 @@ globalStyle(`${sketchyScope}${tableBorderless} > :not(:first-child)`, {
 	borderTopWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${tableStriped} > ${sketchyScope}${tableSection} > ${sketchyScope}${tableRow}:nth-of-type(odd) > *`, {
-	vars: {
-		[varBsTableColorType]: varBsTableStripedColor,
-		[varBsTableBgType]: varBsTableStripedBg,
+globalStyle(
+	`${sketchyScope}${tableStriped} > :where(${sketchyScope}${tableSection}) > ${sketchyScope}${tableRow}:nth-of-type(odd) > *`,
+	{
+		vars: {
+			[varBsTableColorType]: varBsTableStripedColor,
+			[varBsTableBgType]: varBsTableStripedBg,
+		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${tableStripedColumns} > :not(caption) > ${sketchyScope}${tableRow} > :nth-child(even)`, {
-	vars: {
-		[varBsTableColorType]: varBsTableStripedColor,
-		[varBsTableBgType]: varBsTableStripedBg,
+globalStyle(
+	`${sketchyScope}${tableStripedColumns} > :not(caption) > :where(${sketchyScope}${tableRow}) > :nth-child(even)`,
+	{
+		vars: {
+			[varBsTableColorType]: varBsTableStripedColor,
+			[varBsTableBgType]: varBsTableStripedBg,
+		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${tableActive}`, {
 	vars: {
@@ -6693,12 +6985,15 @@ globalStyle(`${sketchyScope}${tableActive}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${tableHover} > ${sketchyScope}${tableSection} > ${sketchyScope}${tableRow}:hover > *`, {
-	vars: {
-		[varBsTableColorState]: varBsTableHoverColor,
-		[varBsTableBgState]: varBsTableHoverBg,
+globalStyle(
+	`${sketchyScope}${tableHover} > :where(${sketchyScope}${tableSection}) > ${sketchyScope}${tableRow}:hover > *`,
+	{
+		vars: {
+			[varBsTableColorState]: varBsTableHoverColor,
+			[varBsTableBgState]: varBsTableHoverBg,
+		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${tablePrimary}`, {
 	vars: {
@@ -6990,8 +7285,10 @@ globalStyle(`${sketchyScope}${formControl}::-webkit-file-upload-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${formControl}::file-selector-button`, {
@@ -7007,7 +7304,8 @@ globalStyle(`${sketchyScope}${formControl}::file-selector-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${formControl}::-webkit-file-upload-button`, {
@@ -7027,13 +7325,19 @@ globalStyle(`${sketchyScope}${formControl}::file-selector-button`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
+globalStyle(
+	`${sketchyScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
+	{
+		backgroundColor: varBsSecondaryBg,
+	},
+)
 
-globalStyle(`${sketchyScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
+globalStyle(
+	`${sketchyScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
+	{
+		backgroundColor: varBsSecondaryBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${formControlPlaintext}`, {
 	display: 'block',
@@ -7145,7 +7449,8 @@ globalStyle(`${sketchyScope}${formControlColor}${formControlLg}`, {
 
 globalStyle(`${sketchyScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23333\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgImg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 	},
 	display: 'block',
 	width: '100%',
@@ -7158,7 +7463,7 @@ globalStyle(`${sketchyScope}${formSelect}`, {
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: varBsBodyBg,
-	backgroundImage: `${varBsFormSelectBgImg}, ${varBsFormSelectBgIcon}`,
+	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 0.75rem center',
 	backgroundSize: '16px 12px',
@@ -7220,7 +7525,8 @@ globalStyle(`${sketchyScope}${formSelectLg}`, {
 
 globalStyle(`[data-bs-theme=dark] ${sketchyScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgImg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23dee2e6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -7296,19 +7602,22 @@ globalStyle(`${sketchyScope}${formCheckInput}:checked`, {
 
 globalStyle(`${sketchyScope}${formCheckInput}:checked[type=checkbox]`, {
 	vars: {
-		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'m6 10 3 3 6-6\'/%3e%3c/svg%3e")',
+		[varBsFormCheckBgImage]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`${sketchyScope}${formCheckInput}:checked[type=radio]`, {
 	vars: {
-		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'2\' fill=\'%23fff\'/%3e%3c/svg%3e")',
+		[varBsFormCheckBgImage]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`${sketchyScope}${formCheckInput}[type=checkbox]:indeterminate`, {
 	vars: {
-		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'M6 10h8\'/%3e%3c/svg%3e")',
+		[varBsFormCheckBgImage]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
 	},
 	backgroundColor: '#333',
 	borderColor: '#333',
@@ -7336,7 +7645,8 @@ globalStyle(`${sketchyScope}${formSwitch}`, {
 
 globalStyle(`${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
+		[varBsFormSwitchBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
 	},
 	width: '2em',
 	marginLeft: '-2.5em',
@@ -7356,13 +7666,15 @@ globalStyle(`${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}`, {
 
 globalStyle(`${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}:focus`, {
 	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23333\'/%3e%3c/svg%3e")',
+		[varBsFormSwitchBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23333'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}:checked`, {
 	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23fff\'/%3e%3c/svg%3e")',
+		[varBsFormSwitchBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
 	},
 	backgroundPosition: 'right center',
 })
@@ -7400,11 +7712,15 @@ globalStyle(`${sketchyScope}${btnCheck}:disabled + ${sketchyScope}${btn}`, {
 	opacity: '0.65',
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}:not(:checked):not(:focus)`, {
-	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
+globalStyle(
+	`[data-bs-theme=dark] ${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}:not(:checked):not(:focus)`,
+	{
+		vars: {
+			[varBsFormSwitchBg]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e\")",
+		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${formRange}`, {
 	width: '100%',
@@ -7441,8 +7757,10 @@ globalStyle(`${sketchyScope}${formRange}::-webkit-slider-thumb`, {
 	backgroundColor: '#333',
 	border: '0',
 	borderRadius: '1rem',
-	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${formRange}::-webkit-slider-thumb`, {
@@ -7476,8 +7794,10 @@ globalStyle(`${sketchyScope}${formRange}::-moz-range-thumb`, {
 	backgroundColor: '#333',
 	border: '0',
 	borderRadius: '1rem',
-	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	MozTransition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${formRange}::-moz-range-thumb`, {
@@ -7537,7 +7857,7 @@ globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect}`, {
 	lineHeight: '1.25',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elLabel}`, {
+globalStyle(`${sketchyScope}${formFloating} > :where(${sketchyScope}${elLabel})`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7556,7 +7876,7 @@ globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elLabel}`, {
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elLabel}`, {
+globalStyle(`${sketchyScope}${formFloating} > :where(${sketchyScope}${elLabel})`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7576,57 +7896,78 @@ globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}::-mo
 	color: 'transparent',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}::-moz-placeholder`, {
-	color: 'transparent',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}::-moz-placeholder`,
+	{
+		color: 'transparent',
+	},
+)
 
 globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}::placeholder`, {
 	color: 'transparent',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}::placeholder`, {
-	color: 'transparent',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}::placeholder`,
+	{
+		color: 'transparent',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:-moz-placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:-moz-placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:not(:placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:not(:placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:-webkit-autofill`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:-webkit-autofill`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext}:-webkit-autofill`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect}`, {
 	paddingTop: '1.625rem',
@@ -7634,75 +7975,111 @@ globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect}`, {
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:-moz-placeholder-shown) ~ ${sketchyScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:-moz-placeholder-shown) ~ :where(${sketchyScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:focus ~ ${sketchyScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:focus ~ :where(${sketchyScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:placeholder-shown) ~ ${sketchyScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:placeholder-shown) ~ :where(${sketchyScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ ${sketchyScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ :where(${sketchyScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect} ~ ${sketchyScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect} ~ :where(${sketchyScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:-webkit-autofill ~ ${sketchyScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:-webkit-autofill ~ :where(${sketchyScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${sketchyScope}${elLabel}::after`, {
-	position: 'absolute',
-	inset: '1rem 0.375rem',
-	zIndex: '-1',
-	height: '1.5em',
-	content: '""',
-	backgroundColor: varBsBodyBg,
-	borderRadius: varBsBorderRadius,
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${sketchyScope}${elLabel}::after`,
+	{
+		position: 'absolute',
+		inset: '1rem 0.375rem',
+		zIndex: '-1',
+		height: '1.5em',
+		content: '""',
+		backgroundColor: varBsBodyBg,
+		borderRadius: varBsBorderRadius,
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:focus ~ ${sketchyScope}${elLabel}::after`, {
-	position: 'absolute',
-	inset: '1rem 0.375rem',
-	zIndex: '-1',
-	height: '1.5em',
-	content: '""',
-	backgroundColor: varBsBodyBg,
-	borderRadius: varBsBorderRadius,
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:focus ~ ${sketchyScope}${elLabel}::after`,
+	{
+		position: 'absolute',
+		inset: '1rem 0.375rem',
+		zIndex: '-1',
+		height: '1.5em',
+		content: '""',
+		backgroundColor: varBsBodyBg,
+		borderRadius: varBsBorderRadius,
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:not(:placeholder-shown) ~ ${sketchyScope}${elLabel}::after`, {
-	position: 'absolute',
-	inset: '1rem 0.375rem',
-	zIndex: '-1',
-	height: '1.5em',
-	content: '""',
-	backgroundColor: varBsBodyBg,
-	borderRadius: varBsBorderRadius,
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:not(:placeholder-shown) ~ ${sketchyScope}${elLabel}::after`,
+	{
+		position: 'absolute',
+		inset: '1rem 0.375rem',
+		zIndex: '-1',
+		height: '1.5em',
+		content: '""',
+		backgroundColor: varBsBodyBg,
+		borderRadius: varBsBorderRadius,
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:disabled ~ ${sketchyScope}${elLabel}::after`, {
-	backgroundColor: varBsSecondaryBg,
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${elTextarea}:disabled ~ ${sketchyScope}${elLabel}::after`,
+	{
+		backgroundColor: varBsSecondaryBg,
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ ${sketchyScope}${elLabel}`, {
-	borderWidth: `${varBsBorderWidth} 0`,
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ :where(${sketchyScope}${elLabel})`,
+	{
+		borderWidth: `${varBsBorderWidth} 0`,
+	},
+)
 
-globalStyle(`${sketchyScope}${formFloating} > :disabled ~ ${sketchyScope}${elLabel}`, {
+globalStyle(`${sketchyScope}${formFloating} > :disabled ~ :where(${sketchyScope}${elLabel})`, {
 	color: '#868e96',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:disabled ~ ${sketchyScope}${elLabel}`, {
-	color: '#868e96',
-})
+globalStyle(
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:disabled ~ :where(${sketchyScope}${elLabel})`,
+	{
+		color: '#868e96',
+	},
+)
 
 globalStyle(`${sketchyScope}${inputGroup}`, {
 	position: 'relative',
@@ -7825,61 +8202,94 @@ globalStyle(`${sketchyScope}${inputGroupSm} > ${sketchyScope}${formSelect}`, {
 	paddingRight: '3rem',
 })
 
-globalStyle(`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}${dropdownToggle}:nth-last-child(n+3)`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}${dropdownToggle}:nth-last-child(n+3)`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}${formFloating}:not(:last-child) > ${sketchyScope}${formControl}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}${formFloating}:not(:last-child) > ${sketchyScope}${formControl}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}${formFloating}:not(:last-child) > ${sketchyScope}${formSelect}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}:not(${hasValidation}) > ${sketchyScope}${formFloating}:not(:last-child) > ${sketchyScope}${formSelect}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}${dropdownToggle}:nth-last-child(n+4)`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}${dropdownToggle}:nth-last-child(n+4)`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}${formFloating}:nth-last-child(n+3) > ${sketchyScope}${formControl}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}${formFloating}:nth-last-child(n+3) > ${sketchyScope}${formControl}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}${formFloating}:nth-last-child(n+3) > ${sketchyScope}${formSelect}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup}${hasValidation} > ${sketchyScope}${formFloating}:nth-last-child(n+3) > ${sketchyScope}${formSelect}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup} > ${sketchyScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`,
+	{
+		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:first-child) > ${sketchyScope}${formControl}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:first-child) > ${sketchyScope}${formControl}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:first-child) > ${sketchyScope}${formSelect}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:first-child) > ${sketchyScope}${formSelect}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${sketchyScope}${validFeedback}`, {
 	display: 'none',
@@ -7922,7 +8332,8 @@ globalStyle(`${sketchyScope}${isValid} ~ ${sketchyScope}${validTooltip}`, {
 globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2328a745\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -7931,7 +8342,8 @@ globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formControl}:valid`
 globalStyle(`${sketchyScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2328a745\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -7965,27 +8377,36 @@ globalStyle(`${sketchyScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:valid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2328a745\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:valid:not([multiple]):not([size])`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '4.125rem',
+		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 	},
-	paddingRight: '4.125rem',
-	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
-})
+)
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:valid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2328a745\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:valid:not([multiple])[size="1"]`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '4.125rem',
+		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 	},
-	paddingRight: '4.125rem',
-	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
-})
+)
 
 globalStyle(`${sketchyScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2328a745\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -7994,7 +8415,8 @@ globalStyle(`${sketchyScope}${formSelect}${isValid}:not([multiple]):not([size])`
 
 globalStyle(`${sketchyScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2328a745\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8043,41 +8465,59 @@ globalStyle(`${sketchyScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formCheckInput}:valid ~ ${sketchyScope}${formCheckLabel}`, {
-	color: varBsFormValidColor,
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${formCheckInput}:valid ~ ${sketchyScope}${formCheckLabel}`,
+	{
+		color: varBsFormValidColor,
+	},
+)
 
 globalStyle(`${sketchyScope}${formCheckInput}${isValid} ~ ${sketchyScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(`${sketchyScope}${formCheckInline} ${sketchyScope}${formCheckInput} ~ ${sketchyScope}${validFeedback}`, {
-	marginLeft: '0.5em',
-})
+globalStyle(
+	`${sketchyScope}${formCheckInline} ${sketchyScope}${formCheckInput} ~ ${sketchyScope}${validFeedback}`,
+	{
+		marginLeft: '0.5em',
+	},
+)
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus):valid`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus):valid`,
+	{
+		zIndex: '3',
+	},
+)
 
 globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formSelect}:not(:focus):valid`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formSelect}:not(:focus):valid`,
+	{
+		zIndex: '3',
+	},
+)
 
 globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formSelect}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within):valid`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within):valid`,
+	{
+		zIndex: '3',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within)${isValid}`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within)${isValid}`,
+	{
+		zIndex: '3',
+	},
+)
 
 globalStyle(`${sketchyScope}${invalidFeedback}`, {
 	display: 'none',
@@ -8120,7 +8560,8 @@ globalStyle(`${sketchyScope}${isInvalid} ~ ${sketchyScope}${invalidTooltip}`, {
 globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23dc3545\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23dc3545\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8129,7 +8570,8 @@ globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formControl}:invali
 globalStyle(`${sketchyScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23dc3545\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23dc3545\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8163,27 +8605,36 @@ globalStyle(`${sketchyScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:invalid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23dc3545\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23dc3545\' stroke=\'none\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:invalid:not([multiple]):not([size])`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '4.125rem',
+		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 	},
-	paddingRight: '4.125rem',
-	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
-})
+)
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23dc3545\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23dc3545\' stroke=\'none\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${formSelect}:invalid:not([multiple])[size="1"]`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '4.125rem',
+		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 	},
-	paddingRight: '4.125rem',
-	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
-})
+)
 
 globalStyle(`${sketchyScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23dc3545\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23dc3545\' stroke=\'none\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8192,7 +8643,8 @@ globalStyle(`${sketchyScope}${formSelect}${isInvalid}:not([multiple]):not([size]
 
 globalStyle(`${sketchyScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23dc3545\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23dc3545\' stroke=\'none\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8241,41 +8693,62 @@ globalStyle(`${sketchyScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${formCheckInput}:invalid ~ ${sketchyScope}${formCheckLabel}`, {
-	color: varBsFormInvalidColor,
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${formCheckInput}:invalid ~ ${sketchyScope}${formCheckLabel}`,
+	{
+		color: varBsFormInvalidColor,
+	},
+)
 
 globalStyle(`${sketchyScope}${formCheckInput}${isInvalid} ~ ${sketchyScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
-globalStyle(`${sketchyScope}${formCheckInline} ${sketchyScope}${formCheckInput} ~ ${sketchyScope}${invalidFeedback}`, {
-	marginLeft: '0.5em',
-})
+globalStyle(
+	`${sketchyScope}${formCheckInline} ${sketchyScope}${formCheckInput} ~ ${sketchyScope}${invalidFeedback}`,
+	{
+		marginLeft: '0.5em',
+	},
+)
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus):invalid`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus):invalid`,
+	{
+		zIndex: '4',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus)${isInvalid}`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup} > ${sketchyScope}${formControl}:not(:focus)${isInvalid}`,
+	{
+		zIndex: '4',
+	},
+)
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formSelect}:not(:focus):invalid`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formSelect}:not(:focus):invalid`,
+	{
+		zIndex: '4',
+	},
+)
 
 globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formSelect}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within):invalid`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${sketchyScope}${wasValidated} ${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within):invalid`,
+	{
+		zIndex: '4',
+	},
+)
 
-globalStyle(`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within)${isInvalid}`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${sketchyScope}${inputGroup} > ${sketchyScope}${formFloating}:not(:focus-within)${isInvalid}`,
+	{
+		zIndex: '4',
+	},
+)
 
 globalStyle(`${sketchyScope}${btn}`, {
 	vars: {
@@ -8291,7 +8764,8 @@ globalStyle(`${sketchyScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]:
+			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
@@ -8312,7 +8786,8 @@ globalStyle(`${sketchyScope}${btn}`, {
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${btn}`, {
@@ -8807,6 +9282,18 @@ globalStyle(`${sketchyScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
+globalStyle(`${sketchyScope}${tooltipFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${sketchyScope}${popoverFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${sketchyScope}${modalFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
 globalStyle(`${sketchyScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -8815,7 +9302,43 @@ globalStyle(`${sketchyScope}${fade}`, {
 	},
 })
 
+globalStyle(`${sketchyScope}${tooltipFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${popoverFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${sketchyScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${sketchyScope}${tooltipFade}:not(${tooltipShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${sketchyScope}${popoverFade}:not(${popoverShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${sketchyScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9358,13 +9881,19 @@ globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}`, {
 	flex: '1 1 auto',
 })
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnCheck}:focus + ${sketchyScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}${btnCheck}:focus + ${sketchyScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:hover`, {
 	zIndex: '1',
@@ -9382,13 +9911,19 @@ globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${active}`, {
 	zIndex: '1',
 })
 
-globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnCheck}:focus + ${sketchyScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnCheck}:focus + ${sketchyScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:hover`, {
 	zIndex: '1',
@@ -9420,43 +9955,61 @@ globalStyle(`${sketchyScope}${btnGroup}`, {
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}:first-child) + ${sketchyScope}${btn}`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}:first-child) + ${sketchyScope}${btn}`,
+	{
+		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+	},
+)
 
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:first-child)`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${dropdownToggleSplit}:first-child`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:last-child) > ${sketchyScope}${btn}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:last-child) > ${sketchyScope}${btn}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
 })
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}) + ${sketchyScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}) + ${sketchyScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:first-child) > ${sketchyScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:first-child) > ${sketchyScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${sketchyScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.5625rem',
@@ -9484,20 +10037,26 @@ globalStyle(`${sketchyScope}${btnSm} + ${sketchyScope}${dropdownToggleSplit}`, {
 	paddingLeft: '0.375rem',
 })
 
-globalStyle(`${sketchyScope}${btnGroupSm} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupSm} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`,
+	{
+		paddingRight: '0.375rem',
+		paddingLeft: '0.375rem',
+	},
+)
 
 globalStyle(`${sketchyScope}${btnLg} + ${sketchyScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(`${sketchyScope}${btnGroupLg} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupLg} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`,
+	{
+		paddingRight: '0.75rem',
+		paddingLeft: '0.75rem',
+	},
+)
 
 globalStyle(`${sketchyScope}${btnGroupVertical}`, {
 	flexDirection: 'column',
@@ -9521,30 +10080,42 @@ globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnGroup}:not
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`,
+	{
+		borderBottomRightRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnGroup}:not(:last-child) > ${sketchyScope}${btn}`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnGroup}:not(:last-child) > ${sketchyScope}${btn}`,
+	{
+		borderBottomRightRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderTopRightRadius: '0',
 })
 
-globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}:not(${btnCheck}) + ${sketchyScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderTopRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupVertical} > ${sketchyScope}:not(${btnCheck}) + ${sketchyScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderTopRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnGroup}:not(:first-child) > ${sketchyScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderTopRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnGroup}:not(:first-child) > ${sketchyScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderTopRightRadius: '0',
+	},
+)
 
 globalStyle(`${sketchyScope}${nav}`, {
 	vars: {
@@ -9571,7 +10142,8 @@ globalStyle(`${sketchyScope}${navLink}`, {
 	textDecoration: 'none',
 	background: 'none',
 	border: '0',
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${navLink}`, {
@@ -9595,7 +10167,7 @@ globalStyle(`${sketchyScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
 })
 
-globalStyle(`${sketchyScope}${navLink}${disabled}`, {
+globalStyle(`${sketchyScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -9637,17 +10209,20 @@ globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}${active}`, {
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navItem}${show} ${sketchyScope}${navLink}`, {
-	color: varBsNavTabsLinkActiveColor,
-	backgroundColor: varBsNavTabsLinkActiveBg,
-	borderColor: varBsNavTabsLinkActiveBorderColor,
-})
+globalStyle(
+	`${sketchyScope}${navTabs} ${sketchyScope}${navItem}${show} ${sketchyScope}${navLink}`,
+	{
+		color: varBsNavTabsLinkActiveColor,
+		backgroundColor: varBsNavTabsLinkActiveBg,
+		borderColor: varBsNavTabsLinkActiveBorderColor,
+	},
+)
 
 globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${dropdownMenu}`, {
 	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
@@ -9667,7 +10242,7 @@ globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}${active}`, {
+globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -9700,7 +10275,7 @@ globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}${active}`, {
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}${navLinkActive}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -9767,7 +10342,8 @@ globalStyle(`${sketchyScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%2833, 37, 41, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -9864,7 +10440,7 @@ globalStyle(`${sketchyScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${active}`, {
+globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -9882,7 +10458,7 @@ globalStyle(`${sketchyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${sketchyScope}${navbarText} ${sketchyScope}${link}`, {
+globalStyle(`${sketchyScope}${navbarText} :where(${sketchyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -9962,22 +10538,28 @@ globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			position: 'absolute',
+globalStyle(
+	`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+globalStyle(
+	`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				paddingRight: varBsNavbarNavLinkPaddingX,
+				paddingLeft: varBsNavbarNavLinkPaddingX,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10021,24 +10603,30 @@ globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			display: 'none',
+globalStyle(
+	`${sketchyScope}${navbarExpandSm} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${sketchyScope}${navbarExpandSm} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandMd}`, {
 	'@media': {
@@ -10057,22 +10645,28 @@ globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			position: 'absolute',
+globalStyle(
+	`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+globalStyle(
+	`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				paddingRight: varBsNavbarNavLinkPaddingX,
+				paddingLeft: varBsNavbarNavLinkPaddingX,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10116,24 +10710,30 @@ globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			display: 'none',
+globalStyle(
+	`${sketchyScope}${navbarExpandMd} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${sketchyScope}${navbarExpandMd} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandLg}`, {
 	'@media': {
@@ -10152,22 +10752,28 @@ globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			position: 'absolute',
+globalStyle(
+	`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+globalStyle(
+	`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				paddingRight: varBsNavbarNavLinkPaddingX,
+				paddingLeft: varBsNavbarNavLinkPaddingX,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10211,24 +10817,30 @@ globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			display: 'none',
+globalStyle(
+	`${sketchyScope}${navbarExpandLg} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${sketchyScope}${navbarExpandLg} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandXl}`, {
 	'@media': {
@@ -10247,22 +10859,28 @@ globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			position: 'absolute',
+globalStyle(
+	`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+globalStyle(
+	`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				paddingRight: varBsNavbarNavLinkPaddingX,
+				paddingLeft: varBsNavbarNavLinkPaddingX,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10306,24 +10924,30 @@ globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			display: 'none',
+globalStyle(
+	`${sketchyScope}${navbarExpandXl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${sketchyScope}${navbarExpandXl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandXxl}`, {
 	'@media': {
@@ -10342,22 +10966,28 @@ globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			position: 'absolute',
+globalStyle(
+	`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+globalStyle(
+	`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				paddingRight: varBsNavbarNavLinkPaddingX,
+				paddingLeft: varBsNavbarNavLinkPaddingX,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10401,24 +11031,30 @@ globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			display: 'none',
+globalStyle(
+	`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${navbarExpand}`, {
 	flexWrap: 'nowrap',
@@ -10429,14 +11065,20 @@ globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNav}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`, {
-	position: 'absolute',
-})
+globalStyle(
+	`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNav} ${sketchyScope}${dropdownMenu}`,
+	{
+		position: 'absolute',
+	},
+)
 
-globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
-	paddingRight: varBsNavbarNavLinkPaddingX,
-	paddingLeft: varBsNavbarNavLinkPaddingX,
-})
+globalStyle(
+	`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`,
+	{
+		paddingRight: varBsNavbarNavLinkPaddingX,
+		paddingLeft: varBsNavbarNavLinkPaddingX,
+	},
+)
 
 globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNavScroll}`, {
 	overflow: 'visible',
@@ -10464,16 +11106,22 @@ globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${offcanvas}`, {
 	transition: 'none',
 })
 
-globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`, {
-	display: 'none',
-})
+globalStyle(
+	`${sketchyScope}${navbarExpand} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasHeader}`,
+	{
+		display: 'none',
+	},
+)
 
-globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`, {
-	display: 'flex',
-	flexGrow: '0',
-	padding: '0',
-	overflowY: 'visible',
-})
+globalStyle(
+	`${sketchyScope}${navbarExpand} ${sketchyScope}${offcanvas} ${sketchyScope}${offcanvasBody}`,
+	{
+		display: 'flex',
+		flexGrow: '0',
+		padding: '0',
+		overflowY: 'visible',
+	},
+)
 
 globalStyle(`${sketchyScope}${navbarDark}`, {
 	vars: {
@@ -10484,7 +11132,8 @@ globalStyle(`${sketchyScope}${navbarDark}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -10497,13 +11146,15 @@ globalStyle(`${sketchyScope}${navbar}[data-bs-theme=dark]`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`[data-bs-theme=dark] ${sketchyScope}${navbarTogglerIcon}`, {
 	vars: {
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -10542,7 +11193,7 @@ globalStyle(`${sketchyScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${card} > ${sketchyScope}${horizontalRule}`, {
+globalStyle(`${sketchyScope}${card} > :where(${sketchyScope}${horizontalRule})`, {
 	marginRight: '0',
 	marginLeft: '0',
 })
@@ -10627,7 +11278,7 @@ globalStyle(`${sketchyScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${cardHeaderTabs} ${sketchyScope}${navLink}${active}`, {
+globalStyle(`${sketchyScope}${cardHeaderTabs} ${sketchyScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -10719,37 +11370,49 @@ globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-chil
 	},
 })
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardImgTop}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardImgTop}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardHeader}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardHeader}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardImgBottom}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardImgBottom}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardFooter}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:last-child) > ${sketchyScope}${cardFooter}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child)`, {
 	'@media': {
@@ -10760,43 +11423,56 @@ globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-chi
 	},
 })
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardImgTop}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardImgTop}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardHeader}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardHeader}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardImgBottom}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardImgBottom}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardFooter}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${cardGroup} > ${sketchyScope}${card}:not(:first-child) > ${sketchyScope}${cardFooter}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${accordion}`, {
 	vars: {
 		[varBsAccordionColor]: varBsBodyColor,
 		[varBsAccordionBg]: varBsBodyBg,
-		[varBsAccordionTransition]: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
+		[varBsAccordionTransition]:
+			'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
@@ -10805,11 +11481,13 @@ globalStyle(`${sketchyScope}${accordion}`, {
 		[varBsAccordionBtnPaddingY]: '1rem',
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
-		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%23212529\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23212529' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnIconWidth]: '1.25rem',
 		[varBsAccordionBtnIconTransform]: 'rotate(-180deg)',
 		[varBsAccordionBtnIconTransition]: 'transform 0.2s ease-in-out',
-		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%23141414\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnActiveIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23141414' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnFocusBoxShadow]: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
 		[varBsAccordionBodyPaddingX]: '1.25rem',
 		[varBsAccordionBodyPaddingY]: '1rem',
@@ -10842,13 +11520,13 @@ globalStyle(`${sketchyScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${accordionButton}:not(${collapsed})`, {
+globalStyle(`${sketchyScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${sketchyScope}${accordionButton}:not(${collapsed})::after`, {
+globalStyle(`${sketchyScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -10898,10 +11576,13 @@ globalStyle(`${sketchyScope}${accordionItem}:first-of-type`, {
 	borderTopRightRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${accordionItem}:first-of-type > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}`, {
-	borderTopLeftRadius: varBsAccordionInnerBorderRadius,
-	borderTopRightRadius: varBsAccordionInnerBorderRadius,
-})
+globalStyle(
+	`${sketchyScope}${accordionItem}:first-of-type > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}`,
+	{
+		borderTopLeftRadius: varBsAccordionInnerBorderRadius,
+		borderTopRightRadius: varBsAccordionInnerBorderRadius,
+	},
+)
 
 globalStyle(`${sketchyScope}${accordionItem}:not(:first-of-type)`, {
 	borderTop: '0',
@@ -10912,10 +11593,13 @@ globalStyle(`${sketchyScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${accordionItem}:last-of-type > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}${collapsed}`, {
-	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
-})
+globalStyle(
+	`${sketchyScope}${accordionItem}:last-of-type > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}${accordionButtonCollapsed}`,
+	{
+		borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+		borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
+	},
+)
 
 globalStyle(`${sketchyScope}${accordionItem}:last-of-type > ${sketchyScope}${accordionCollapse}`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
@@ -10940,22 +11624,33 @@ globalStyle(`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem}:
 	borderBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem} > ${sketchyScope}${accordionCollapse}`, {
-	borderRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem} > ${sketchyScope}${accordionCollapse}`,
+	{
+		borderRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem} > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}`, {
-	borderRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem} > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}`,
+	{
+		borderRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem} > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}${collapsed}`, {
-	borderRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${accordionFlush} > ${sketchyScope}${accordionItem} > ${sketchyScope}${accordionHeader} ${sketchyScope}${accordionButton}${collapsed}`,
+	{
+		borderRadius: '0',
+	},
+)
 
 globalStyle(`[data-bs-theme=dark] ${sketchyScope}${accordionButton}::after`, {
 	vars: {
-		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23858585\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
-		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23858585\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23858585'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnActiveIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23858585'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -10988,7 +11683,7 @@ globalStyle(`${sketchyScope}${breadcrumbItem} + ${sketchyScope}${breadcrumbItem}
 	float: 'left',
 	paddingRight: varBsBreadcrumbItemPaddingX,
 	color: varBsBreadcrumbDividerColor,
-	content: `${varBsBreadcrumbDivider} `,
+	content: `${fallbackVar(varBsBreadcrumbDivider, '"/"')} `,
 })
 
 globalStyle(`${sketchyScope}${breadcrumbItem}${active}`, {
@@ -11032,7 +11727,8 @@ globalStyle(`${sketchyScope}${pageLink}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${sketchyScope}${pageLink}`, {
@@ -11058,28 +11754,28 @@ globalStyle(`${sketchyScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${sketchyScope}${pageLink}${active}`, {
+globalStyle(`${sketchyScope}${pageLink}${pageItemActive}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${sketchyScope}${active} > ${sketchyScope}${pageLink}`, {
+globalStyle(`${sketchyScope}${pageItemActive} > ${sketchyScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${sketchyScope}${pageLink}${disabled}`, {
+globalStyle(`${sketchyScope}${pageLink}${pageItemDisabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${sketchyScope}${disabled} > ${sketchyScope}${pageLink}`, {
+globalStyle(`${sketchyScope}${pageItemDisabled} > ${sketchyScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -11327,7 +12023,8 @@ globalStyle(`${sketchyScope}${progressBar}`, {
 })
 
 globalStyle(`${sketchyScope}${progressBarStriped}`, {
-	backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
+	backgroundImage:
+		'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
 	backgroundSize: `${varBsProgressHeight} ${varBsProgressHeight}`,
 })
 
@@ -11335,9 +12032,12 @@ globalStyle(`${sketchyScope}${progressStacked} > ${sketchyScope}${progress}`, {
 	overflow: 'visible',
 })
 
-globalStyle(`${sketchyScope}${progressStacked} > ${sketchyScope}${progress} > ${sketchyScope}${progressBar}`, {
-	width: '100%',
-})
+globalStyle(
+	`${sketchyScope}${progressStacked} > ${sketchyScope}${progress} > ${sketchyScope}${progressBar}`,
+	{
+		width: '100%',
+	},
+)
 
 globalStyle(`${sketchyScope}${progressBarAnimated}`, {
 	animation: '1s linear infinite progress-bar-stripes',
@@ -11465,29 +12165,41 @@ globalStyle(`${sketchyScope}${listGroupHorizontal}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
-	borderBottomLeftRadius: varBsListGroupBorderRadius,
-	borderTopRightRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		borderBottomLeftRadius: varBsListGroupBorderRadius,
+		borderTopRightRadius: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
-	borderTopRightRadius: varBsListGroupBorderRadius,
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		borderTopRightRadius: varBsListGroupBorderRadius,
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}${active}`, {
 	marginTop: '0',
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
-	borderTopWidth: varBsListGroupBorderWidth,
-	borderLeftWidth: '0',
-})
+globalStyle(
+	`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`,
+	{
+		borderTopWidth: varBsListGroupBorderWidth,
+		borderLeftWidth: '0',
+	},
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
+globalStyle(
+	`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`,
+	{
+		marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+		borderLeftWidth: varBsListGroupBorderWidth,
+	},
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalSm}`, {
 	'@media': {
@@ -11497,23 +12209,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalSm}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11523,23 +12241,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGrou
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalMd}`, {
 	'@media': {
@@ -11549,23 +12273,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalMd}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 768px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 768px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11575,23 +12305,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGrou
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalLg}`, {
 	'@media': {
@@ -11601,23 +12337,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalLg}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 992px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 992px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11627,23 +12369,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGrou
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalXl}`, {
 	'@media': {
@@ -11653,23 +12401,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalXl}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11679,23 +12433,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGrou
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalXxl}`, {
 	'@media': {
@@ -11705,23 +12465,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalXxl}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11731,23 +12497,29 @@ globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGro
 	},
 })
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${sketchyScope}${listGroupFlush}`, {
 	borderRadius: '0',
@@ -11884,7 +12656,8 @@ globalStyle(`${sketchyScope}${listGroupItemDark}`, {
 globalStyle(`${sketchyScope}${btnClose}`, {
 	vars: {
 		[varBsBtnCloseColor]: 'inherit',
-		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'inherit\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='inherit'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
 		[varBsBtnCloseOpacity]: '1',
 		[varBsBtnCloseHoverOpacity]: '1',
 		[varBsBtnCloseFocusShadow]: 'none',
@@ -11937,6 +12710,18 @@ globalStyle(`${sketchyScope}${btnCloseWhite}`, {
 	},
 })
 
+globalStyle(`${sketchyScope}${vars}`, {
+	vars: {
+		[varBsBtnCloseFilter]: '',
+	},
+})
+
+globalStyle(`${sketchyScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
 globalStyle(`${sketchyScope}${toast}`, {
 	vars: {
 		[varBsToastZindex]: '1090',
@@ -11967,11 +12752,11 @@ globalStyle(`${sketchyScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${toast}${showing}`, {
+globalStyle(`${sketchyScope}${toast}${toastShowing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sketchyScope}${toast}:not(${show})`, {
+globalStyle(`${sketchyScope}${toast}:not(${toastShow})`, {
 	display: 'none',
 })
 
@@ -12055,12 +12840,12 @@ globalStyle(`${sketchyScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${sketchyScope}${modal}${fade} ${sketchyScope}${modalDialog}`, {
+globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${sketchyScope}${modal}${fade} ${sketchyScope}${modalDialog}`, {
+globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12068,7 +12853,7 @@ globalStyle(`${sketchyScope}${modal}${fade} ${sketchyScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${modal}${show} ${sketchyScope}${modalDialog}`, {
+globalStyle(`${sketchyScope}${modal}${modalShowHook} ${sketchyScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12124,11 +12909,11 @@ globalStyle(`${sketchyScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${sketchyScope}${modalBackdrop}${fade}`, {
+globalStyle(`${sketchyScope}${modalBackdrop}${modalFade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sketchyScope}${modalBackdrop}${show}`, {
+globalStyle(`${sketchyScope}${modalBackdrop}${modalShowHook}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -12525,7 +13310,7 @@ globalStyle(`${sketchyScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sketchyScope}${tooltip}${show}`, {
+globalStyle(`${sketchyScope}${tooltip}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -12546,9 +13331,12 @@ globalStyle(`${sketchyScope}${bsTooltipTop} ${sketchyScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=top] ${sketchyScope}${tooltipArrow}`, {
-	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=top] ${sketchyScope}${tooltipArrow}`,
+	{
+		bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipTop} ${sketchyScope}${tooltipArrow}::before`, {
 	top: '-1px',
@@ -12556,11 +13344,14 @@ globalStyle(`${sketchyScope}${bsTooltipTop} ${sketchyScope}${tooltipArrow}::befo
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=top] ${sketchyScope}${tooltipArrow}::before`, {
-	top: '-1px',
-	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-	borderTopColor: varBsTooltipBg,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=top] ${sketchyScope}${tooltipArrow}::before`,
+	{
+		top: '-1px',
+		borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+		borderTopColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipEnd} ${sketchyScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -12568,11 +13359,14 @@ globalStyle(`${sketchyScope}${bsTooltipEnd} ${sketchyScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=right] ${sketchyScope}${tooltipArrow}`, {
-	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	width: varBsTooltipArrowHeight,
-	height: varBsTooltipArrowWidth,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=right] ${sketchyScope}${tooltipArrow}`,
+	{
+		left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+		width: varBsTooltipArrowHeight,
+		height: varBsTooltipArrowWidth,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipEnd} ${sketchyScope}${tooltipArrow}::before`, {
 	right: '-1px',
@@ -12580,19 +13374,25 @@ globalStyle(`${sketchyScope}${bsTooltipEnd} ${sketchyScope}${tooltipArrow}::befo
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=right] ${sketchyScope}${tooltipArrow}::before`, {
-	right: '-1px',
-	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-	borderRightColor: varBsTooltipBg,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=right] ${sketchyScope}${tooltipArrow}::before`,
+	{
+		right: '-1px',
+		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+		borderRightColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipBottom} ${sketchyScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${sketchyScope}${tooltipArrow}`, {
-	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${sketchyScope}${tooltipArrow}`,
+	{
+		top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipBottom} ${sketchyScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
@@ -12600,11 +13400,14 @@ globalStyle(`${sketchyScope}${bsTooltipBottom} ${sketchyScope}${tooltipArrow}::b
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${sketchyScope}${tooltipArrow}::before`, {
-	bottom: '-1px',
-	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-	borderBottomColor: varBsTooltipBg,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${sketchyScope}${tooltipArrow}::before`,
+	{
+		bottom: '-1px',
+		borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+		borderBottomColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipStart} ${sketchyScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -12612,11 +13415,14 @@ globalStyle(`${sketchyScope}${bsTooltipStart} ${sketchyScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=left] ${sketchyScope}${tooltipArrow}`, {
-	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	width: varBsTooltipArrowHeight,
-	height: varBsTooltipArrowWidth,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=left] ${sketchyScope}${tooltipArrow}`,
+	{
+		right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+		width: varBsTooltipArrowHeight,
+		height: varBsTooltipArrowWidth,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsTooltipStart} ${sketchyScope}${tooltipArrow}::before`, {
 	left: '-1px',
@@ -12624,11 +13430,14 @@ globalStyle(`${sketchyScope}${bsTooltipStart} ${sketchyScope}${tooltipArrow}::be
 	borderLeftColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=left] ${sketchyScope}${tooltipArrow}::before`, {
-	left: '-1px',
-	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-	borderLeftColor: varBsTooltipBg,
-})
+globalStyle(
+	`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=left] ${sketchyScope}${tooltipArrow}::before`,
+	{
+		left: '-1px',
+		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+		borderLeftColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${tooltipInner}`, {
 	maxWidth: varBsTooltipMaxWidth,
@@ -12714,45 +13523,60 @@ globalStyle(`${sketchyScope}${bsPopoverTop} > ${sketchyScope}${popoverArrow}`, {
 	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}`, {
-	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}`,
+	{
+		bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverTop} > ${sketchyScope}${popoverArrow}::before`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::before`, {
-	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverTop} > ${sketchyScope}${popoverArrow}::after`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::after`, {
-	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverTop} > ${sketchyScope}${popoverArrow}::before`, {
 	bottom: '0',
 	borderTopColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::before`, {
-	bottom: '0',
-	borderTopColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		bottom: '0',
+		borderTopColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverTop} > ${sketchyScope}${popoverArrow}::after`, {
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::after`, {
-	bottom: varBsPopoverBorderWidth,
-	borderTopColor: varBsPopoverBg,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=top] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		bottom: varBsPopoverBorderWidth,
+		borderTopColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverEnd} > ${sketchyScope}${popoverArrow}`, {
 	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -12760,91 +13584,121 @@ globalStyle(`${sketchyScope}${bsPopoverEnd} > ${sketchyScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}`, {
-	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	width: varBsPopoverArrowHeight,
-	height: varBsPopoverArrowWidth,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}`,
+	{
+		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+		width: varBsPopoverArrowHeight,
+		height: varBsPopoverArrowWidth,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverEnd} > ${sketchyScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::before`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverEnd} > ${sketchyScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::after`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverEnd} > ${sketchyScope}${popoverArrow}::before`, {
 	left: '0',
 	borderRightColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::before`, {
-	left: '0',
-	borderRightColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		left: '0',
+		borderRightColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverEnd} > ${sketchyScope}${popoverArrow}::after`, {
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::after`, {
-	left: varBsPopoverBorderWidth,
-	borderRightColor: varBsPopoverBg,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=right] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		left: varBsPopoverBorderWidth,
+		borderRightColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverBottom} > ${sketchyScope}${popoverArrow}`, {
 	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}`, {
-	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}`,
+	{
+		top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverBottom} > ${sketchyScope}${popoverArrow}::before`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::before`, {
-	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverBottom} > ${sketchyScope}${popoverArrow}::after`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::after`, {
-	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverBottom} > ${sketchyScope}${popoverArrow}::before`, {
 	top: '0',
 	borderBottomColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::before`, {
-	top: '0',
-	borderBottomColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		top: '0',
+		borderBottomColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverBottom} > ${sketchyScope}${popoverArrow}::after`, {
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::after`, {
-	top: varBsPopoverBorderWidth,
-	borderBottomColor: varBsPopoverBg,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		top: varBsPopoverBorderWidth,
+		borderBottomColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverBottom} ${sketchyScope}${popoverHeader}::before`, {
 	position: 'absolute',
@@ -12857,16 +13711,19 @@ globalStyle(`${sketchyScope}${bsPopoverBottom} ${sketchyScope}${popoverHeader}::
 	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${sketchyScope}${popoverHeader}::before`, {
-	position: 'absolute',
-	top: '0',
-	left: '50%',
-	display: 'block',
-	width: varBsPopoverArrowWidth,
-	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
-	content: '""',
-	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${sketchyScope}${popoverHeader}::before`,
+	{
+		position: 'absolute',
+		top: '0',
+		left: '50%',
+		display: 'block',
+		width: varBsPopoverArrowWidth,
+		marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+		content: '""',
+		borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverStart} > ${sketchyScope}${popoverArrow}`, {
 	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -12874,47 +13731,62 @@ globalStyle(`${sketchyScope}${bsPopoverStart} > ${sketchyScope}${popoverArrow}`,
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}`, {
-	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	width: varBsPopoverArrowHeight,
-	height: varBsPopoverArrowWidth,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}`,
+	{
+		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+		width: varBsPopoverArrowHeight,
+		height: varBsPopoverArrowWidth,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverStart} > ${sketchyScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::before`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverStart} > ${sketchyScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::after`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverStart} > ${sketchyScope}${popoverArrow}::before`, {
 	right: '0',
 	borderLeftColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::before`, {
-	right: '0',
-	borderLeftColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::before`,
+	{
+		right: '0',
+		borderLeftColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${sketchyScope}${bsPopoverStart} > ${sketchyScope}${popoverArrow}::after`, {
 	right: varBsPopoverBorderWidth,
 	borderLeftColor: varBsPopoverBg,
 })
 
-globalStyle(`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::after`, {
-	right: varBsPopoverBorderWidth,
-	borderLeftColor: varBsPopoverBg,
-})
+globalStyle(
+	`${sketchyScope}${bsPopoverAuto}[data-popper-placement^=left] > ${sketchyScope}${popoverArrow}::after`,
+	{
+		right: varBsPopoverBorderWidth,
+		borderLeftColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${sketchyScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
@@ -13014,10 +13886,13 @@ globalStyle(`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItem}${acti
 	opacity: '1',
 })
 
-globalStyle(`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItemNext}${carouselItemStart}`, {
-	zIndex: '1',
-	opacity: '1',
-})
+globalStyle(
+	`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItemNext}${carouselItemStart}`,
+	{
+		zIndex: '1',
+		opacity: '1',
+	},
+)
 
 globalStyle(`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItemPrev}${carouselItemEnd}`, {
 	zIndex: '1',
@@ -13161,11 +14036,13 @@ globalStyle(`${sketchyScope}${carouselControlNextIcon}`, {
 })
 
 globalStyle(`${sketchyScope}${carouselControlPrevIcon}`, {
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e") ',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\") ",
 })
 
 globalStyle(`${sketchyScope}${carouselControlNextIcon}`, {
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e") ',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\") ",
 })
 
 globalStyle(`${sketchyScope}${carouselIndicators}`, {
@@ -13232,6 +14109,22 @@ globalStyle(`${sketchyScope}${carouselDark}`, {
 	},
 })
 
+globalStyle(`${sketchyScope}${vars}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#fff',
+		[varBsCarouselCaptionColor]: '#fff',
+		[varBsCarouselControlIconFilter]: '',
+	},
+})
+
+globalStyle(`${sketchyScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#000',
+		[varBsCarouselCaptionColor]: '#000',
+		[varBsCarouselControlIconFilter]: 'invert(1) grayscale(100)',
+	},
+})
+
 globalStyle(`${sketchyScope}${spinnerGrow}`, {
 	display: 'inline-block',
 	flexShrink: '0',
@@ -13253,7 +14146,7 @@ globalStyle(`${sketchyScope}${spinnerBorder}`, {
 })
 
 globalKeyframes('spinner-border', {
-	'to': {
+	to: {
 		transform: 'rotate(360deg) ',
 	},
 })
@@ -14360,204 +15253,204 @@ globalStyle(`${sketchyScope}${clearfix}::after`, {
 
 globalStyle(`${sketchyScope}${textBgPrimary}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgSecondary}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgSuccess}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgInfo}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgWarning}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgDanger}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgLight}`, {
 	color: '#000 !important',
-	backgroundColor: `RGBA(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${textBgDark}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkPrimary}`, {
-	color: `RGBA(${varBsPrimaryRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsPrimaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsPrimaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkPrimary}:hover`, {
-	color: `RGBA(41, 41, 41, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(41, 41, 41, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(41, 41, 41, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(41, 41, 41, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(41, 41, 41, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(41, 41, 41, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkPrimary}:focus`, {
-	color: `RGBA(41, 41, 41, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(41, 41, 41, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(41, 41, 41, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(41, 41, 41, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(41, 41, 41, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(41, 41, 41, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkSecondary}`, {
-	color: `RGBA(${varBsSecondaryRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsSecondaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsSecondaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkSecondary}:hover`, {
-	color: `RGBA(68, 68, 68, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkSecondary}:focus`, {
-	color: `RGBA(68, 68, 68, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkSuccess}`, {
-	color: `RGBA(${varBsSuccessRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsSuccessRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsSuccessRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkSuccess}:hover`, {
-	color: `RGBA(32, 134, 55, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(32, 134, 55, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(32, 134, 55, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(32, 134, 55, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(32, 134, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(32, 134, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkSuccess}:focus`, {
-	color: `RGBA(32, 134, 55, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(32, 134, 55, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(32, 134, 55, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(32, 134, 55, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(32, 134, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(32, 134, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkInfo}`, {
-	color: `RGBA(${varBsInfoRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsInfoRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsInfoRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkInfo}:hover`, {
-	color: `RGBA(18, 130, 147, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(18, 130, 147, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(18, 130, 147, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(18, 130, 147, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(18, 130, 147, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(18, 130, 147, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkInfo}:focus`, {
-	color: `RGBA(18, 130, 147, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(18, 130, 147, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(18, 130, 147, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(18, 130, 147, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(18, 130, 147, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(18, 130, 147, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkWarning}`, {
-	color: `RGBA(${varBsWarningRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsWarningRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsWarningRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkWarning}:hover`, {
-	color: `RGBA(204, 154, 6, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(204, 154, 6, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(204, 154, 6, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(204, 154, 6, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(204, 154, 6, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(204, 154, 6, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkWarning}:focus`, {
-	color: `RGBA(204, 154, 6, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(204, 154, 6, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(204, 154, 6, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(204, 154, 6, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(204, 154, 6, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(204, 154, 6, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkDanger}`, {
-	color: `RGBA(${varBsDangerRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsDangerRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsDangerRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkDanger}:hover`, {
-	color: `RGBA(176, 42, 55, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkDanger}:focus`, {
-	color: `RGBA(176, 42, 55, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(176, 42, 55, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(176, 42, 55, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkLight}`, {
-	color: `RGBA(${varBsLightRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsLightRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsLightRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkLight}:hover`, {
-	color: `RGBA(255, 255, 255, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkLight}:focus`, {
-	color: `RGBA(255, 255, 255, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkDark}`, {
-	color: `RGBA(${varBsDarkRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsDarkRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsDarkRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkDark}:hover`, {
-	color: `RGBA(68, 68, 68, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkDark}:focus`, {
-	color: `RGBA(68, 68, 68, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(68, 68, 68, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(68, 68, 68, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkBodyEmphasis}`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkBodyEmphasis}:hover`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.75')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkBodyEmphasis}:focus`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.75')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${focusRing}:focus`, {
@@ -14569,8 +15462,8 @@ globalStyle(`${sketchyScope}${iconLink}`, {
 	display: 'inline-flex',
 	gap: '0.375rem',
 	alignItems: 'center',
-	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
-	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
+	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.5')})`,
+	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.5')})`,
 	textUnderlineOffset: '0.25em',
 	WebkitBackfaceVisibility: 'hidden',
 	backfaceVisibility: 'hidden',
@@ -14811,9 +15704,12 @@ globalStyle(`${sketchyScope}${visuallyHidden}:not(caption)`, {
 	position: 'absolute !important',
 })
 
-globalStyle(`${sketchyScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
-	position: 'absolute !important',
-})
+globalStyle(
+	`${sketchyScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`,
+	{
+		position: 'absolute !important',
+	},
+)
 
 globalStyle(`${sketchyScope}${visuallyHidden} *`, {
 	overflow: 'hidden !important',
@@ -16524,8 +17420,8 @@ globalStyle(`${sketchyScope}${linkUnderline}`, {
 	vars: {
 		[varBsLinkUnderlineOpacity]: '1',
 	},
-	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${sketchyScope}${linkUnderlineOpacity0}`, {
@@ -24213,7 +25109,7 @@ globalStyle(`${sketchyScope}${fs4}`, {
 
 globalStyle(`${sketchyScope}${dPrintInline}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline !important',
 		},
 	},
@@ -24221,7 +25117,7 @@ globalStyle(`${sketchyScope}${dPrintInline}`, {
 
 globalStyle(`${sketchyScope}${dPrintInlineBlock}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline-block !important',
 		},
 	},
@@ -24229,7 +25125,7 @@ globalStyle(`${sketchyScope}${dPrintInlineBlock}`, {
 
 globalStyle(`${sketchyScope}${dPrintBlock}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'block !important',
 		},
 	},
@@ -24237,7 +25133,7 @@ globalStyle(`${sketchyScope}${dPrintBlock}`, {
 
 globalStyle(`${sketchyScope}${dPrintGrid}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'grid !important',
 		},
 	},
@@ -24245,7 +25141,7 @@ globalStyle(`${sketchyScope}${dPrintGrid}`, {
 
 globalStyle(`${sketchyScope}${dPrintInlineGrid}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline-grid !important',
 		},
 	},
@@ -24253,7 +25149,7 @@ globalStyle(`${sketchyScope}${dPrintInlineGrid}`, {
 
 globalStyle(`${sketchyScope}${dPrintTable}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'table !important',
 		},
 	},
@@ -24261,7 +25157,7 @@ globalStyle(`${sketchyScope}${dPrintTable}`, {
 
 globalStyle(`${sketchyScope}${dPrintTableRow}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'table-row !important',
 		},
 	},
@@ -24269,7 +25165,7 @@ globalStyle(`${sketchyScope}${dPrintTableRow}`, {
 
 globalStyle(`${sketchyScope}${dPrintTableCell}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'table-cell !important',
 		},
 	},
@@ -24277,7 +25173,7 @@ globalStyle(`${sketchyScope}${dPrintTableCell}`, {
 
 globalStyle(`${sketchyScope}${dPrintFlex}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'flex !important',
 		},
 	},
@@ -24285,7 +25181,7 @@ globalStyle(`${sketchyScope}${dPrintFlex}`, {
 
 globalStyle(`${sketchyScope}${dPrintInlineFlex}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline-flex !important',
 		},
 	},
@@ -24293,7 +25189,7 @@ globalStyle(`${sketchyScope}${dPrintInlineFlex}`, {
 
 globalStyle(`${sketchyScope}${dPrintNone}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'none !important',
 		},
 	},
@@ -24392,43 +25288,48 @@ globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnOutlineDark}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${elButton}`, {
-	fontFamily: 'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+globalStyle(`:where(${sketchyScope}${elButton})`, {
+	fontFamily:
+		'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 })
 
-globalStyle(`${sketchyScope}${elInput}`, {
-	fontFamily: 'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+globalStyle(`:where(${sketchyScope}${elInput})`, {
+	fontFamily:
+		'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 })
 
-globalStyle(`${sketchyScope}${elOptgroup}`, {
-	fontFamily: 'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+globalStyle(`:where(${sketchyScope}${elOptgroup})`, {
+	fontFamily:
+		'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 })
 
-globalStyle(`${sketchyScope}${elSelect}`, {
-	fontFamily: 'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+globalStyle(`:where(${sketchyScope}${elSelect})`, {
+	fontFamily:
+		'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 })
 
-globalStyle(`${sketchyScope}${elTextarea}`, {
-	fontFamily: 'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+globalStyle(`:where(${sketchyScope}${elTextarea})`, {
+	fontFamily:
+		'Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 })
 
-globalStyle(`${sketchyScope}${elB}`, {
+globalStyle(`:where(${sketchyScope}${elB})`, {
 	fontFamily: '"Cabin Sketch", cursive',
 })
 
-globalStyle(`${sketchyScope}${elStrong}`, {
+globalStyle(`:where(${sketchyScope}${elStrong})`, {
 	fontFamily: '"Cabin Sketch", cursive',
 })
 
-globalStyle(`${sketchyScope}${blockquote}`, {
+globalStyle(`:where(${sketchyScope}${blockquote})`, {
 	borderRadius: '15px 27px 25px 25px/25px 25px 305px 635px',
 })
 
-globalStyle(`${sketchyScope}${tableElement} ${sketchyScope}${tableHeaderCell}`, {
+globalStyle(`:where(${sketchyScope}${tableElement}) :where(${sketchyScope}${tableHeaderCell})`, {
 	backgroundColor: '#fff',
 })
 
-globalStyle(`${sketchyScope}${tableElement} ${sketchyScope}${tableCell}`, {
+globalStyle(`:where(${sketchyScope}${tableElement}) :where(${sketchyScope}${tableCell})`, {
 	backgroundColor: '#fff',
 })
 
@@ -24440,109 +25341,163 @@ globalStyle(`${sketchyScope}${tableBordered}`, {
 	borderRadius: '5px 25px 5px 25px/25px 5px 25px 5px',
 })
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableHeaderCell}`, {
+globalStyle(`${sketchyScope}${tableBordered} :where(${sketchyScope}${tableHeaderCell})`, {
 	borderRadius: '5px 5px 25px 4px/5px 4px 3px 5px',
 })
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableCell}`, {
+globalStyle(`${sketchyScope}${tableBordered} :where(${sketchyScope}${tableCell})`, {
 	borderRadius: '5px 5px 25px 4px/5px 4px 3px 5px',
 })
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#28a745',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#28a745',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#28a745',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#28a745',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#28a745',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#28a745',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#28a745',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#28a745',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#17a2b8',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#17a2b8',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#17a2b8',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#17a2b8',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#17a2b8',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#17a2b8',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#17a2b8',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#17a2b8',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#ffc107',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#ffc107',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#ffc107',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#ffc107',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#ffc107',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#ffc107',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#ffc107',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#ffc107',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#dc3545',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#dc3545',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#dc3545',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#dc3545',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover ${sketchyScope}${tableCell}`, {
-	color: '#fff',
-	backgroundColor: '#dc3545',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover :where(${sketchyScope}${tableCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#dc3545',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover ${sketchyScope}${tableHeaderCell}`, {
-	color: '#fff',
-	backgroundColor: '#dc3545',
-})
+globalStyle(
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		color: '#fff',
+		backgroundColor: '#dc3545',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableDark} ${sketchyScope}${tableHeaderCell}`, {
+globalStyle(`${sketchyScope}${tableDark} :where(${sketchyScope}${tableHeaderCell})`, {
 	backgroundColor: '#333',
 })
 
-globalStyle(`${sketchyScope}${tableDark} ${sketchyScope}${tableCell}`, {
+globalStyle(`${sketchyScope}${tableDark} :where(${sketchyScope}${tableCell})`, {
 	backgroundColor: '#333',
 })
 
-globalStyle(`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > ${sketchyScope}${tableHeaderCell}`, {
-	backgroundColor: '#333',
-})
+globalStyle(
+	`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > :where(${sketchyScope}${tableHeaderCell})`,
+	{
+		backgroundColor: '#333',
+	},
+)
 
-globalStyle(`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > ${sketchyScope}${tableCell}`, {
-	backgroundColor: '#333',
-})
+globalStyle(
+	`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > :where(${sketchyScope}${tableCell})`,
+	{
+		backgroundColor: '#333',
+	},
+)
 
 globalStyle(`${sketchyScope}${tablePrimary}`, {
 	vars: {
@@ -24586,7 +25541,7 @@ globalStyle(`${sketchyScope}${tableLight}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${elInput}`, {
+globalStyle(`:where(${sketchyScope}${elInput})`, {
 	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })
 
@@ -24598,7 +25553,7 @@ globalStyle(`${sketchyScope}${inputGroupText}`, {
 	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })
 
-globalStyle(`${sketchyScope}${elTextarea}`, {
+globalStyle(`:where(${sketchyScope}${elTextarea})`, {
 	borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px !important',
 })
 
@@ -24606,7 +25561,7 @@ globalStyle(`${sketchyScope}${elTextarea}${formControl}`, {
 	borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px !important',
 })
 
-globalStyle(`${sketchyScope}${elSelect}`, {
+globalStyle(`:where(${sketchyScope}${elSelect})`, {
 	borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px !important',
 })
 
@@ -24980,7 +25935,7 @@ globalStyle(`${sketchyScope}${tooltipInner}`, {
 	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })
 
-globalStyle(`${sketchyScope}${elPre}`, {
+globalStyle(`:where(${sketchyScope}${elPre})`, {
 	border: '2px solid #333',
 	borderRadius: '15px 5px 5px 25px/5px 25px 25px 5px',
 })
@@ -25004,4 +25959,40 @@ globalStyle(`${sketchyScope}${toastHeader} ${sketchyScope}${btnClose}::before`, 
 
 globalStyle(`${sketchyScope}${imgThumbnail}`, {
 	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
+})
+
+globalStyle(`${sketchyScope}${listBase}`, {
+	marginTop: '0',
+	marginBottom: '1rem',
+})
+
+globalStyle(`${sketchyScope}${listNested}`, {
+	marginBottom: '0',
+})
+
+globalStyle(`${sketchyScope}${listIndented}`, {
+	paddingLeft: '2rem',
+})
+
+globalStyle(`${sketchyScope}${legend}`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
+globalStyle(`${sketchyScope}${legendClear}`, {
+	clear: 'left',
+})
+
+globalStyle(`${sketchyScope}${smallText}`, {
+	fontSize: '0.875em',
+})
+
+globalStyle(`${sketchyScope}${scrollspyExample}`, {
+	height: '200px',
+	overflowY: 'auto',
+	marginTop: '0.5rem',
 })

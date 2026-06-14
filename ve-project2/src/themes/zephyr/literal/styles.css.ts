@@ -1,12 +1,16 @@
-import { globalKeyframes, globalStyle } from '@vanilla-extract/css'
-import { zephyrScope } from '../scope.css'
-
+import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import {
+	varBsBlack,
 	varBsBlackRgb,
+	varBsBlue,
 	varBsBodyBg,
 	varBsBodyBgRgb,
 	varBsBodyColor,
 	varBsBodyColorRgb,
+	varBsBodyFontFamily,
+	varBsBodyFontSize,
+	varBsBodyFontWeight,
+	varBsBodyLineHeight,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
@@ -22,11 +26,13 @@ import {
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
 	varBsCodeColor,
+	varBsCyan,
 	varBsDanger,
 	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
 	varBsDangerRgb,
 	varBsDangerTextEmphasis,
+	varBsDark,
 	varBsDarkBgSubtle,
 	varBsDarkBorderSubtle,
 	varBsDarkRgb,
@@ -39,25 +45,38 @@ import {
 	varBsFontMonospace,
 	varBsFontSansSerif,
 	varBsGradient,
+	varBsGray,
+	varBsGrayDark,
+	varBsGreen,
 	varBsHeadingColor,
 	varBsHighlightBg,
 	varBsHighlightColor,
+	varBsIndigo,
+	varBsInfo,
 	varBsInfoBgSubtle,
 	varBsInfoBorderSubtle,
 	varBsInfoRgb,
 	varBsInfoTextEmphasis,
+	varBsLight,
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightRgb,
 	varBsLightTextEmphasis,
 	varBsLinkColor,
 	varBsLinkColorRgb,
+	varBsLinkDecoration,
 	varBsLinkHoverColor,
 	varBsLinkHoverColorRgb,
+	varBsOrange,
+	varBsPink,
+	varBsPrimary,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryRgb,
 	varBsPrimaryTextEmphasis,
+	varBsPurple,
+	varBsRed,
+	varBsSecondary,
 	varBsSecondaryBg,
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
@@ -69,13 +88,17 @@ import {
 	varBsSuccessBorderSubtle,
 	varBsSuccessRgb,
 	varBsSuccessTextEmphasis,
+	varBsTeal,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
+	varBsWarning,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
+	varBsWhite,
 	varBsWhiteRgb,
+	varBsYellow,
 } from '../../../theme-contract/_vars.css'
 import {
 	varBsTableAccentBg,
@@ -94,6 +117,73 @@ import {
 	varBsTableStripedColor,
 } from '../../../theme-contract/contents/_vars.css'
 import {
+	blockquote,
+	blockquoteFooter,
+	horizontalRule,
+	inlineCode,
+	lead,
+	link,
+	markText,
+	paragraph,
+	small,
+	smallText,
+} from '../../../theme-contract/contents/basic/contract.css'
+import {
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+} from '../../../theme-contract/contents/display/contract.css'
+import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/heading/contract.css'
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../theme-contract/contents/images/contract.css'
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../theme-contract/contents/lists/contract.css'
+import {
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableCell,
+	tableDanger,
+	tableDark,
+	tableElement,
+	tableGroupDivider,
+	tableHeaderCell,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableRow,
+	tableSecondary,
+	tableSection,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
+} from '../../../theme-contract/contents/tables/contract.css'
+import {
 	varBsFormCheckBg,
 	varBsFormCheckBgImage,
 	varBsFormInvalidBorderColor,
@@ -104,366 +194,33 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
-	varBsAccordionActiveBg,
-	varBsAccordionActiveColor,
-	varBsAccordionBg,
-	varBsAccordionBodyPaddingX,
-	varBsAccordionBodyPaddingY,
-	varBsAccordionBorderColor,
-	varBsAccordionBorderRadius,
-	varBsAccordionBorderWidth,
-	varBsAccordionBtnActiveIcon,
-	varBsAccordionBtnBg,
-	varBsAccordionBtnColor,
-	varBsAccordionBtnFocusBoxShadow,
-	varBsAccordionBtnIcon,
-	varBsAccordionBtnIconTransform,
-	varBsAccordionBtnIconTransition,
-	varBsAccordionBtnIconWidth,
-	varBsAccordionBtnPaddingX,
-	varBsAccordionBtnPaddingY,
-	varBsAccordionColor,
-	varBsAccordionInnerBorderRadius,
-	varBsAccordionTransition,
-} from '../../../theme-contract/ui/accordion/_vars.css'
-import {
-	varBsAlertBg,
-	varBsAlertBorder,
-	varBsAlertBorderColor,
-	varBsAlertBorderRadius,
-	varBsAlertColor,
-	varBsAlertLinkColor,
-	varBsAlertMarginBottom,
-	varBsAlertPaddingX,
-	varBsAlertPaddingY,
-	varBsBtnCloseBg,
-	varBsBtnCloseColor,
-	varBsBtnCloseDisabledOpacity,
-	varBsBtnCloseFocusOpacity,
-	varBsBtnCloseFocusShadow,
-	varBsBtnCloseHoverOpacity,
-	varBsBtnCloseOpacity,
-} from '../../../theme-contract/ui/alerts/_vars.css'
-import {
-	varBsBadgeBorderRadius,
-	varBsBadgeColor,
-	varBsBadgeFontSize,
-	varBsBadgeFontWeight,
-	varBsBadgePaddingX,
-	varBsBadgePaddingY,
-} from '../../../theme-contract/ui/badge/_vars.css'
-import {
-	varBsBreadcrumbBg,
-	varBsBreadcrumbBorderRadius,
-	varBsBreadcrumbDivider,
-	varBsBreadcrumbDividerColor,
-	varBsBreadcrumbItemActiveColor,
-	varBsBreadcrumbItemPaddingX,
-	varBsBreadcrumbMarginBottom,
-	varBsBreadcrumbPaddingX,
-	varBsBreadcrumbPaddingY,
-} from '../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnBg,
-	varBsBtnBorderColor,
-	varBsBtnBorderRadius,
-	varBsBtnBorderWidth,
-	varBsBtnBoxShadow,
-	varBsBtnColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-	varBsBtnFocusBoxShadowRgb,
-	varBsBtnFontFamily,
-	varBsBtnFontSize,
-	varBsBtnFontWeight,
-	varBsBtnHoverBg,
-	varBsBtnHoverBorderColor,
-	varBsBtnHoverColor,
-	varBsBtnLineHeight,
-	varBsBtnPaddingX,
-	varBsBtnPaddingY,
-} from '../../../theme-contract/ui/buttons/_vars.css'
-import {
-	varBsCardBg,
-	varBsCardBorderColor,
-	varBsCardBorderRadius,
-	varBsCardBorderWidth,
-	varBsCardBoxShadow,
-	varBsCardCapBg,
-	varBsCardCapColor,
-	varBsCardCapPaddingX,
-	varBsCardCapPaddingY,
-	varBsCardColor,
-	varBsCardGroupMargin,
-	varBsCardImgOverlayPadding,
-	varBsCardInnerBorderRadius,
-	varBsCardSpacerX,
-	varBsCardSpacerY,
-	varBsCardSubtitleColor,
-	varBsCardTitleColor,
-	varBsCardTitleSpacerY,
-} from '../../../theme-contract/ui/card/_vars.css'
-import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
-import {
-	varBsDropdownBg,
-	varBsDropdownBorderColor,
-	varBsDropdownBorderRadius,
-	varBsDropdownBorderWidth,
-	varBsDropdownBoxShadow,
-	varBsDropdownColor,
-	varBsDropdownDividerBg,
-	varBsDropdownDividerMarginY,
-	varBsDropdownFontSize,
-	varBsDropdownHeaderColor,
-	varBsDropdownHeaderPaddingX,
-	varBsDropdownHeaderPaddingY,
-	varBsDropdownInnerBorderRadius,
-	varBsDropdownItemPaddingX,
-	varBsDropdownItemPaddingY,
-	varBsDropdownLinkActiveBg,
-	varBsDropdownLinkActiveColor,
-	varBsDropdownLinkColor,
-	varBsDropdownLinkDisabledColor,
-	varBsDropdownLinkHoverBg,
-	varBsDropdownLinkHoverColor,
-	varBsDropdownMinWidth,
-	varBsDropdownPaddingX,
-	varBsDropdownPaddingY,
-	varBsDropdownSpacer,
-	varBsDropdownZindex,
-} from '../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
-} from '../../../theme-contract/ui/list-group/_vars.css'
-import {
-	varBsBackdropBg,
-	varBsBackdropOpacity,
-	varBsBackdropZindex,
-	varBsModalBg,
-	varBsModalBorderColor,
-	varBsModalBorderRadius,
-	varBsModalBorderWidth,
-	varBsModalBoxShadow,
-	varBsModalColor,
-	varBsModalFooterBg,
-	varBsModalFooterBorderColor,
-	varBsModalFooterBorderWidth,
-	varBsModalFooterGap,
-	varBsModalHeaderBorderColor,
-	varBsModalHeaderBorderWidth,
-	varBsModalHeaderPadding,
-	varBsModalHeaderPaddingX,
-	varBsModalHeaderPaddingY,
-	varBsModalInnerBorderRadius,
-	varBsModalMargin,
-	varBsModalPadding,
-	varBsModalTitleLineHeight,
-	varBsModalWidth,
-	varBsModalZindex,
-} from '../../../theme-contract/ui/modal/_vars.css'
-import {
-	varBsNavbarActiveColor,
-	varBsNavbarBrandColor,
-	varBsNavbarBrandFontSize,
-	varBsNavbarBrandHoverColor,
-	varBsNavbarBrandMarginEnd,
-	varBsNavbarBrandPaddingY,
-	varBsNavbarColor,
-	varBsNavbarDisabledColor,
-	varBsNavbarHoverColor,
-	varBsNavbarNavLinkPaddingX,
-	varBsNavbarPaddingX,
-	varBsNavbarPaddingY,
-	varBsNavbarTogglerBorderColor,
-	varBsNavbarTogglerBorderRadius,
-	varBsNavbarTogglerFocusWidth,
-	varBsNavbarTogglerFontSize,
-	varBsNavbarTogglerIconBg,
-	varBsNavbarTogglerPaddingX,
-	varBsNavbarTogglerPaddingY,
-	varBsNavbarTogglerTransition,
-} from '../../../theme-contract/ui/navbar/_vars.css'
-import {
-	varBsNavLinkColor,
-	varBsNavLinkDisabledColor,
-	varBsNavLinkFontSize,
-	varBsNavLinkFontWeight,
-	varBsNavLinkHoverColor,
-	varBsNavLinkPaddingX,
-	varBsNavLinkPaddingY,
-	varBsNavPillsBorderRadius,
-	varBsNavPillsLinkActiveBg,
-	varBsNavPillsLinkActiveColor,
-	varBsNavTabsBorderColor,
-	varBsNavTabsBorderRadius,
-	varBsNavTabsBorderWidth,
-	varBsNavTabsLinkActiveBg,
-	varBsNavTabsLinkActiveBorderColor,
-	varBsNavTabsLinkActiveColor,
-	varBsNavTabsLinkHoverBorderColor,
-} from '../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsPaginationActiveBg,
-	varBsPaginationActiveBorderColor,
-	varBsPaginationActiveColor,
-	varBsPaginationBg,
-	varBsPaginationBorderColor,
-	varBsPaginationBorderRadius,
-	varBsPaginationBorderWidth,
-	varBsPaginationColor,
-	varBsPaginationDisabledBg,
-	varBsPaginationDisabledBorderColor,
-	varBsPaginationDisabledColor,
-	varBsPaginationFocusBg,
-	varBsPaginationFocusBoxShadow,
-	varBsPaginationFocusColor,
-	varBsPaginationFontSize,
-	varBsPaginationHoverBg,
-	varBsPaginationHoverBorderColor,
-	varBsPaginationHoverColor,
-	varBsPaginationPaddingX,
-	varBsPaginationPaddingY,
-} from '../../../theme-contract/ui/pagination/_vars.css'
-import {
-	varBsPopoverArrowBorder,
-	varBsPopoverArrowHeight,
-	varBsPopoverArrowWidth,
-	varBsPopoverBg,
-	varBsPopoverBodyColor,
-	varBsPopoverBodyPaddingX,
-	varBsPopoverBodyPaddingY,
-	varBsPopoverBorderColor,
-	varBsPopoverBorderRadius,
-	varBsPopoverBorderWidth,
-	varBsPopoverBoxShadow,
-	varBsPopoverFontSize,
-	varBsPopoverHeaderBg,
-	varBsPopoverHeaderColor,
-	varBsPopoverHeaderFontSize,
-	varBsPopoverHeaderPaddingX,
-	varBsPopoverHeaderPaddingY,
-	varBsPopoverInnerBorderRadius,
-	varBsPopoverMaxWidth,
-	varBsPopoverZindex,
-} from '../../../theme-contract/ui/popovers/_vars.css'
-import {
-	varBsProgressBarBg,
-	varBsProgressBarColor,
-	varBsProgressBarTransition,
-	varBsProgressBg,
-	varBsProgressBorderRadius,
-	varBsProgressBoxShadow,
-	varBsProgressFontSize,
-	varBsProgressHeight,
-} from '../../../theme-contract/ui/progress/_vars.css'
-import {
-	varBsSpinnerAnimationName,
-	varBsSpinnerAnimationSpeed,
-	varBsSpinnerBorderWidth,
-	varBsSpinnerHeight,
-	varBsSpinnerVerticalAlign,
-	varBsSpinnerWidth,
-} from '../../../theme-contract/ui/spinners/_vars.css'
-import {
-	varBsToastBg,
-	varBsToastBorderColor,
-	varBsToastBorderRadius,
-	varBsToastBorderWidth,
-	varBsToastBoxShadow,
-	varBsToastColor,
-	varBsToastFontSize,
-	varBsToastHeaderBg,
-	varBsToastHeaderBorderColor,
-	varBsToastHeaderColor,
-	varBsToastMaxWidth,
-	varBsToastPaddingX,
-	varBsToastPaddingY,
-	varBsToastSpacing,
-	varBsToastZindex,
-} from '../../../theme-contract/ui/toasts/_vars.css'
-import {
-	varBsTooltipArrowHeight,
-	varBsTooltipArrowWidth,
-	varBsTooltipBg,
-	varBsTooltipBorderRadius,
-	varBsTooltipColor,
-	varBsTooltipFontSize,
-	varBsTooltipMargin,
-	varBsTooltipMaxWidth,
-	varBsTooltipOpacity,
-	varBsTooltipPaddingX,
-	varBsTooltipPaddingY,
-	varBsTooltipZindex,
-} from '../../../theme-contract/ui/tooltips/_vars.css'
-import {
-	varBsAspectRatio,
-	varBsBgOpacity,
-	varBsBorderOpacity,
-	varBsBtnCloseFilter,
-	varBsCardHeight,
-	varBsLinkOpacity,
-	varBsLinkUnderlineOpacity,
-	varBsNavUnderlineBorderWidth,
-	varBsNavUnderlineGap,
-	varBsNavUnderlineLinkActiveColor,
-	varBsOffcanvasBg,
-	varBsOffcanvasBorderColor,
-	varBsOffcanvasBorderWidth,
-	varBsOffcanvasBoxShadow,
-	varBsOffcanvasColor,
-	varBsOffcanvasHeight,
-	varBsOffcanvasPaddingX,
-	varBsOffcanvasPaddingY,
-	varBsOffcanvasTitleLineHeight,
-	varBsOffcanvasTransition,
-	varBsOffcanvasWidth,
-	varBsOffcanvasZindex,
-	varBsPosition,
-	varBsTextOpacity,
-} from '../../../theme-contract/utilities/generated/_vars.css'
-
-import {
-	blockquote,
-	horizontalRule,
-	inlineCode,
-	link,
-	markText,
-	paragraph,
-	small,
-} from '../../../theme-contract/contents/basic/contract.css'
-import {
-	tableCell,
-	tableElement,
-	tableHeaderCell,
-	tableRow,
-	tableSection,
-} from '../../../theme-contract/contents/tables/contract.css'
-import { fieldset } from '../../../theme-contract/forms/contract.css'
+	fieldset,
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	validFeedback,
+	wasValidated,
+} from '../../../theme-contract/forms/contract.css'
 import {
 	elAbbr,
 	elAddress,
@@ -496,35 +253,13 @@ import {
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../theme-contract/utilities/generated/contract.css'
-
+	containerFluid,
+	varBsGutterX,
+	varBsGutterY,
+} from '../../../theme-contract/layout/container.css'
 import {
-	accordion,
-	accordionBody,
-	accordionButton,
-	accordionCollapse,
 	accordionFlush,
-	accordionHeader,
-	accordionItem,
 	active,
-	alert,
-	alertDanger,
-	alertDark,
-	alertDismissible,
-	alertHeading,
-	alertInfo,
-	alertLight,
-	alertLink,
-	alertPrimary,
-	alertSecondary,
-	alertSuccess,
-	alertWarning,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -564,7 +299,6 @@ import {
 	alignContentXxlStart,
 	alignContentXxlStretch,
 	alignItemsBaseline,
-	alignItemsCenter,
 	alignItemsEnd,
 	alignItemsLgBaseline,
 	alignItemsLgCenter,
@@ -616,7 +350,6 @@ import {
 	alignSelfSmEnd,
 	alignSelfSmStart,
 	alignSelfSmStretch,
-	alignSelfStart,
 	alignSelfStretch,
 	alignSelfXlAuto,
 	alignSelfXlBaseline,
@@ -633,14 +366,12 @@ import {
 	alignTextBottom,
 	alignTextTop,
 	alignTop,
-	badge,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
 	bgDanger,
 	bgDangerSubtle,
-	bgDark,
 	bgDarkSubtle,
 	bgGradient,
 	bgInfo,
@@ -648,10 +379,10 @@ import {
 	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
-	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
+	bgOpacity100,
 	bgPrimary,
 	bgPrimarySubtle,
 	bgSecondary,
@@ -663,7 +394,6 @@ import {
 	bgWarningSubtle,
 	bgWhite,
 	bi,
-	blockquoteFooter,
 	border,
 	border0,
 	border1,
@@ -685,10 +415,10 @@ import {
 	borderLight,
 	borderLightSubtle,
 	borderOpacity10,
-	borderOpacity100,
 	borderOpacity25,
 	borderOpacity50,
 	borderOpacity75,
+	borderOpacity100,
 	borderPrimary,
 	borderPrimarySubtle,
 	borderSecondary,
@@ -703,80 +433,22 @@ import {
 	borderWarningSubtle,
 	borderWhite,
 	bottom0,
-	bottom100,
 	bottom50,
-	breadcrumb,
-	breadcrumbItem,
-	bsPopoverAuto,
-	bsPopoverBottom,
-	bsPopoverEnd,
-	bsPopoverStart,
-	bsPopoverTop,
+	bottom100,
 	bsTooltipAuto,
 	bsTooltipBottom,
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
-	btn,
-	btnCheck,
 	btnClose,
 	btnCloseWhite,
-	btnDanger,
-	btnDark,
-	btnGroup,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
-	btnInfo,
-	btnLg,
-	btnLight,
-	btnLink,
-	btnOutlineDanger,
-	btnOutlineDark,
-	btnOutlineInfo,
-	btnOutlineLight,
-	btnOutlinePrimary,
-	btnOutlineSecondary,
-	btnOutlineSuccess,
-	btnOutlineWarning,
-	btnPrimary,
-	btnSecondary,
-	btnShowHook,
-	btnSm,
-	btnSuccess,
-	btnToolbar,
-	btnWarning,
 	captionTop,
-	card,
-	cardBody,
-	cardFooter,
 	cardGroup,
-	cardHeader,
 	cardHeaderPills,
-	cardHeaderTabs,
-	cardImg,
-	cardImgBottom,
 	cardImgOverlay,
-	cardImgTop,
-	cardLink,
-	cardSubtitle,
-	cardText,
-	cardTitle,
-	carousel,
-	carouselCaption,
-	carouselControlNext,
-	carouselControlNextIcon,
-	carouselControlPrev,
-	carouselControlPrevIcon,
-	carouselDark,
-	carouselFade,
-	carouselIndicators,
-	carouselInner,
-	carouselItem,
-	carouselItemEnd,
-	carouselItemNext,
-	carouselItemPrev,
-	carouselItemStart,
 	clearfix,
 	clsBlockquote,
 	clsH1,
@@ -786,11 +458,7 @@ import {
 	clsH5,
 	clsH6,
 	clsSmall,
-	col,
 	col1,
-	col10,
-	col11,
-	col12,
 	col2,
 	col3,
 	col4,
@@ -799,15 +467,15 @@ import {
 	col7,
 	col8,
 	col9,
+	col10,
+	col11,
+	col12,
 	colAuto,
 	colFormLabel,
 	colFormLabelLg,
 	colFormLabelSm,
 	colLg,
 	colLg1,
-	colLg10,
-	colLg11,
-	colLg12,
 	colLg2,
 	colLg3,
 	colLg4,
@@ -816,67 +484,34 @@ import {
 	colLg7,
 	colLg8,
 	colLg9,
+	colLg10,
+	colLg11,
+	colLg12,
 	colLgAuto,
+	collapsed,
+	collapseHorizontal,
+	collapsing,
 	colMd,
 	colMd1,
+	colMd7,
+	colMd9,
 	colMd10,
 	colMd11,
 	colMd12,
-	colMd2,
-	colMd3,
-	colMd4,
-	colMd5,
-	colMd6,
-	colMd7,
-	colMd8,
-	colMd9,
 	colMdAuto,
 	colSm,
 	colSm1,
-	colSm10,
-	colSm11,
-	colSm12,
 	colSm2,
 	colSm3,
 	colSm4,
 	colSm5,
-	colSm6,
 	colSm7,
 	colSm8,
 	colSm9,
+	colSm10,
+	colSm11,
+	colSm12,
 	colSmAuto,
-	colXl,
-	colXl1,
-	colXl10,
-	colXl11,
-	colXl12,
-	colXl2,
-	colXl3,
-	colXl4,
-	colXl5,
-	colXl6,
-	colXl7,
-	colXl8,
-	colXl9,
-	colXlAuto,
-	colXxl,
-	colXxl1,
-	colXxl10,
-	colXxl11,
-	colXxl12,
-	colXxl2,
-	colXxl3,
-	colXxl4,
-	colXxl5,
-	colXxl6,
-	colXxl7,
-	colXxl8,
-	colXxl9,
-	colXxlAuto,
-	collapse,
-	collapseHorizontal,
-	collapsed,
-	collapsing,
 	columnGap0,
 	columnGap1,
 	columnGap2,
@@ -913,20 +548,47 @@ import {
 	columnGapXxl3,
 	columnGapXxl4,
 	columnGapXxl5,
+	colXl,
+	colXl1,
+	colXl2,
+	colXl3,
+	colXl4,
+	colXl5,
+	colXl6,
+	colXl7,
+	colXl8,
+	colXl9,
+	colXl10,
+	colXl11,
+	colXl12,
+	colXlAuto,
+	colXxl,
+	colXxl1,
+	colXxl2,
+	colXxl3,
+	colXxl4,
+	colXxl5,
+	colXxl6,
+	colXxl7,
+	colXxl8,
+	colXxl9,
+	colXxl10,
+	colXxl11,
+	colXxl12,
+	colXxlAuto,
 	container,
-	containerFluid,
 	containerLg,
 	containerMd,
 	containerSm,
 	containerXl,
 	containerXxl,
 	dBlock,
-	dFlex,
 	dGrid,
 	dInline,
 	dInlineBlock,
 	dInlineFlex,
 	dInlineGrid,
+	disabled,
 	dLgBlock,
 	dLgFlex,
 	dLgGrid,
@@ -961,6 +623,16 @@ import {
 	dPrintTable,
 	dPrintTableCell,
 	dPrintTableRow,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
 	dSmBlock,
 	dSmFlex,
 	dSmGrid,
@@ -997,47 +669,9 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
-	disabled,
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-	dropdown,
-	dropdownCenter,
-	dropdownDivider,
-	dropdownHeader,
-	dropdownItem,
-	dropdownItemText,
-	dropdownMenu,
-	dropdownMenuDark,
-	dropdownMenuEnd,
-	dropdownMenuLgEnd,
-	dropdownMenuLgStart,
-	dropdownMenuMdEnd,
-	dropdownMenuMdStart,
-	dropdownMenuShow,
-	dropdownMenuSmEnd,
-	dropdownMenuSmStart,
-	dropdownMenuStart,
-	dropdownMenuXlEnd,
-	dropdownMenuXlStart,
-	dropdownMenuXxlEnd,
-	dropdownMenuXxlStart,
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-	dropupCenter,
 	end0,
-	end100,
 	end50,
-	fade,
-	figure,
-	figureCaption,
-	figureImg,
+	end100,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -1086,7 +720,6 @@ import {
 	flexSmShrink1,
 	flexSmWrap,
 	flexSmWrapReverse,
-	flexWrap,
 	flexWrapReverse,
 	flexXlColumn,
 	flexXlColumnReverse,
@@ -1140,24 +773,10 @@ import {
 	focusRingSuccess,
 	focusRingWarning,
 	fontMonospace,
-	formCheck,
 	formCheckInline,
-	formCheckInput,
-	formCheckLabel,
 	formCheckReverse,
-	formControl,
 	formControlColor,
-	formControlLg,
 	formControlPlaintext,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
 	fs1,
 	fs2,
 	fs3,
@@ -1166,49 +785,15 @@ import {
 	fs6,
 	fstItalic,
 	fstNormal,
-	fwBold,
 	fwBolder,
 	fwLight,
 	fwLighter,
 	fwMedium,
 	fwNormal,
 	fwSemibold,
-	g0,
 	g1,
 	g2,
-	g3,
-	g4,
 	g5,
-	gLg0,
-	gLg1,
-	gLg2,
-	gLg3,
-	gLg4,
-	gLg5,
-	gMd0,
-	gMd1,
-	gMd2,
-	gMd3,
-	gMd4,
-	gMd5,
-	gSm0,
-	gSm1,
-	gSm2,
-	gSm3,
-	gSm4,
-	gSm5,
-	gXl0,
-	gXl1,
-	gXl2,
-	gXl3,
-	gXl4,
-	gXl5,
-	gXxl0,
-	gXxl1,
-	gXxl2,
-	gXxl3,
-	gXxl4,
-	gXxl5,
 	gap0,
 	gap1,
 	gap2,
@@ -1245,6 +830,36 @@ import {
 	gapXxl3,
 	gapXxl4,
 	gapXxl5,
+	gLg0,
+	gLg1,
+	gLg2,
+	gLg3,
+	gLg4,
+	gLg5,
+	gMd0,
+	gMd1,
+	gMd2,
+	gMd3,
+	gMd4,
+	gMd5,
+	gSm0,
+	gSm1,
+	gSm2,
+	gSm3,
+	gSm4,
+	gSm5,
+	gXl0,
+	gXl1,
+	gXl2,
+	gXl3,
+	gXl4,
+	gXl5,
+	gXxl0,
+	gXxl1,
+	gXxl2,
+	gXxl3,
+	gXxl4,
+	gXxl5,
 	gx0,
 	gx1,
 	gx2,
@@ -1317,30 +932,21 @@ import {
 	gyXxl3,
 	gyXxl4,
 	gyXxl5,
-	h100,
 	h25,
 	h50,
 	h75,
+	h100,
 	hAuto,
-	hasValidation,
 	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
-	imgFluid,
-	imgThumbnail,
 	initialism,
-	inputGroup,
 	inputGroupLg,
 	inputGroupSm,
-	inputGroupText,
-	invalidFeedback,
 	invalidTooltip,
 	invisible,
-	isInvalid,
-	isValid,
 	justifyContentAround,
-	justifyContentBetween,
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentEvenly,
@@ -1375,7 +981,6 @@ import {
 	justifyContentXxlEnd,
 	justifyContentXxlEvenly,
 	justifyContentXxlStart,
-	lead,
 	lh1,
 	lhBase,
 	lhLg,
@@ -1392,8 +997,6 @@ import {
 	linkOffset3,
 	linkOffset3Hover,
 	linkOpacity10,
-	linkOpacity100,
-	linkOpacity100Hover,
 	linkOpacity10Hover,
 	linkOpacity25,
 	linkOpacity25Hover,
@@ -1401,6 +1004,8 @@ import {
 	linkOpacity50Hover,
 	linkOpacity75,
 	linkOpacity75Hover,
+	linkOpacity100,
+	linkOpacity100Hover,
 	linkPrimary,
 	linkSecondary,
 	linkSuccess,
@@ -1412,8 +1017,6 @@ import {
 	linkUnderlineOpacity0,
 	linkUnderlineOpacity0Hover,
 	linkUnderlineOpacity10,
-	linkUnderlineOpacity100,
-	linkUnderlineOpacity100Hover,
 	linkUnderlineOpacity10Hover,
 	linkUnderlineOpacity25,
 	linkUnderlineOpacity25Hover,
@@ -1421,33 +1024,20 @@ import {
 	linkUnderlineOpacity50Hover,
 	linkUnderlineOpacity75,
 	linkUnderlineOpacity75Hover,
+	linkUnderlineOpacity100,
+	linkUnderlineOpacity100Hover,
 	linkUnderlinePrimary,
 	linkUnderlineSecondary,
 	linkUnderlineSuccess,
 	linkUnderlineWarning,
 	linkWarning,
-	listGroup,
-	listGroupFlush,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
 	listGroupHorizontalSm,
 	listGroupHorizontalXl,
 	listGroupHorizontalXxl,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
 	listGroupNumbered,
-	listInline,
-	listInlineItem,
-	listUnstyled,
 	m0,
 	m1,
 	m2,
@@ -1455,50 +1045,12 @@ import {
 	m4,
 	m5,
 	mAuto,
-	mLg0,
-	mLg1,
-	mLg2,
-	mLg3,
-	mLg4,
-	mLg5,
-	mLgAuto,
-	mMd0,
-	mMd1,
-	mMd2,
-	mMd3,
-	mMd4,
-	mMd5,
-	mMdAuto,
-	mSm0,
-	mSm1,
-	mSm2,
-	mSm3,
-	mSm4,
-	mSm5,
-	mSmAuto,
-	mXl0,
-	mXl1,
-	mXl2,
-	mXl3,
-	mXl4,
-	mXl5,
-	mXlAuto,
-	mXxl0,
-	mXxl1,
-	mXxl2,
-	mXxl3,
-	mXxl4,
-	mXxl5,
-	mXxlAuto,
 	mark,
 	mb0,
 	mb1,
-	mb2,
-	mb3,
 	mb4,
 	mb5,
 	mbAuto,
-	mbLg0,
 	mbLg1,
 	mbLg2,
 	mbLg3,
@@ -1521,10 +1073,8 @@ import {
 	mbSmAuto,
 	mbXl0,
 	mbXl1,
-	mbXl2,
 	mbXl3,
 	mbXl4,
-	mbXl5,
 	mbXlAuto,
 	mbXxl0,
 	mbXxl1,
@@ -1535,11 +1085,9 @@ import {
 	mbXxlAuto,
 	me0,
 	me1,
-	me2,
 	me3,
 	me4,
 	me5,
-	meAuto,
 	meLg0,
 	meLg1,
 	meLg2,
@@ -1578,26 +1126,36 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFooter,
-	modalFullscreen,
+	mLg0,
+	mLg1,
+	mLg2,
+	mLg3,
+	mLg4,
+	mLg5,
+	mLgAuto,
+	mMd0,
+	mMd1,
+	mMd2,
+	mMd3,
+	mMd4,
+	mMd5,
+	mMdAuto,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
 	modalFullscreenXlDown,
 	modalFullscreenXxlDown,
-	modalHeader,
 	modalLg,
 	modalSm,
 	modalStatic,
-	modalTitle,
 	modalXl,
+	mSm0,
+	mSm1,
+	mSm2,
+	mSm3,
+	mSm4,
+	mSm5,
+	mSmAuto,
 	ms0,
 	ms1,
 	ms2,
@@ -1645,7 +1203,6 @@ import {
 	mt2,
 	mt3,
 	mt4,
-	mt5,
 	mtAuto,
 	mtLg0,
 	mtLg1,
@@ -1668,7 +1225,6 @@ import {
 	mtSm4,
 	mtSm5,
 	mtSmAuto,
-	mtXl0,
 	mtXl1,
 	mtXl2,
 	mtXl3,
@@ -1683,6 +1239,20 @@ import {
 	mtXxl5,
 	mtXxlAuto,
 	mw100,
+	mXl0,
+	mXl1,
+	mXl2,
+	mXl3,
+	mXl4,
+	mXl5,
+	mXlAuto,
+	mXxl0,
+	mXxl1,
+	mXxl2,
+	mXxl3,
+	mXxl4,
+	mXxl5,
+	mXxlAuto,
 	mx0,
 	mx1,
 	mx2,
@@ -1767,30 +1337,16 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
-	nav,
-	navFill,
-	navItem,
-	navJustified,
-	navLink,
-	navPills,
-	navTabs,
-	navUnderline,
-	navbar,
-	navbarBrand,
-	navbarCollapse,
 	navbarDark,
 	navbarExpand,
-	navbarExpandLg,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
 	navbarLight,
-	navbarNav,
-	navbarNavScroll,
-	navbarText,
-	navbarToggler,
-	navbarTogglerIcon,
+	navFill,
+	navJustified,
+	navUnderline,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -1836,8 +1392,6 @@ import {
 	offcanvasXl,
 	offcanvasXxl,
 	offset1,
-	offset10,
-	offset11,
 	offset2,
 	offset3,
 	offset4,
@@ -1846,10 +1400,10 @@ import {
 	offset7,
 	offset8,
 	offset9,
+	offset10,
+	offset11,
 	offsetLg0,
 	offsetLg1,
-	offsetLg10,
-	offsetLg11,
 	offsetLg2,
 	offsetLg3,
 	offsetLg4,
@@ -1858,10 +1412,10 @@ import {
 	offsetLg7,
 	offsetLg8,
 	offsetLg9,
+	offsetLg10,
+	offsetLg11,
 	offsetMd0,
 	offsetMd1,
-	offsetMd10,
-	offsetMd11,
 	offsetMd2,
 	offsetMd3,
 	offsetMd4,
@@ -1870,10 +1424,10 @@ import {
 	offsetMd7,
 	offsetMd8,
 	offsetMd9,
+	offsetMd10,
+	offsetMd11,
 	offsetSm0,
 	offsetSm1,
-	offsetSm10,
-	offsetSm11,
 	offsetSm2,
 	offsetSm3,
 	offsetSm4,
@@ -1882,10 +1436,10 @@ import {
 	offsetSm7,
 	offsetSm8,
 	offsetSm9,
+	offsetSm10,
+	offsetSm11,
 	offsetXl0,
 	offsetXl1,
-	offsetXl10,
-	offsetXl11,
 	offsetXl2,
 	offsetXl3,
 	offsetXl4,
@@ -1894,10 +1448,10 @@ import {
 	offsetXl7,
 	offsetXl8,
 	offsetXl9,
+	offsetXl10,
+	offsetXl11,
 	offsetXxl0,
 	offsetXxl1,
-	offsetXxl10,
-	offsetXxl11,
 	offsetXxl2,
 	offsetXxl3,
 	offsetXxl4,
@@ -1906,11 +1460,13 @@ import {
 	offsetXxl7,
 	offsetXxl8,
 	offsetXxl9,
+	offsetXxl10,
+	offsetXxl11,
 	opacity0,
-	opacity100,
 	opacity25,
 	opacity50,
 	opacity75,
+	opacity100,
 	order0,
 	order1,
 	order2,
@@ -1964,7 +1520,6 @@ import {
 	overflowScroll,
 	overflowVisible,
 	overflowXAuto,
-	overflowXHidden,
 	overflowXScroll,
 	overflowXVisible,
 	overflowYAuto,
@@ -1976,45 +1531,8 @@ import {
 	p2,
 	p3,
 	p4,
-	p5,
-	pLg0,
-	pLg1,
-	pLg2,
-	pLg3,
-	pLg4,
-	pLg5,
-	pMd0,
-	pMd1,
-	pMd2,
-	pMd3,
-	pMd4,
-	pMd5,
-	pSm0,
-	pSm1,
-	pSm2,
-	pSm3,
-	pSm4,
-	pSm5,
-	pXl0,
-	pXl1,
-	pXl2,
-	pXl3,
-	pXl4,
-	pXl5,
-	pXxl0,
-	pXxl1,
-	pXxl2,
-	pXxl3,
-	pXxl4,
-	pXxl5,
-	pageItem,
-	pageLink,
-	pagination,
-	paginationLg,
-	paginationSm,
 	pb0,
 	pb1,
-	pb2,
 	pb3,
 	pb4,
 	pb5,
@@ -2039,7 +1557,6 @@ import {
 	pbXl0,
 	pbXl1,
 	pbXl2,
-	pbXl3,
 	pbXl4,
 	pbXl5,
 	pbXxl0,
@@ -2086,27 +1603,37 @@ import {
 	peXxl3,
 	peXxl4,
 	peXxl5,
+	pLg0,
+	pLg1,
+	pLg2,
+	pLg3,
+	pLg4,
+	pLg5,
 	placeholder,
 	placeholderGlow,
 	placeholderLg,
 	placeholderSm,
 	placeholderWave,
 	placeholderXs,
+	pMd0,
+	pMd1,
+	pMd2,
+	pMd3,
+	pMd4,
+	pMd5,
 	pointerEvent,
 	popover,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
 	positionAbsolute,
 	positionFixed,
-	positionRelative,
 	positionStatic,
 	positionSticky,
-	progress,
-	progressBar,
-	progressBarAnimated,
-	progressBarStriped,
 	progressStacked,
+	pSm0,
+	pSm1,
+	pSm2,
+	pSm3,
+	pSm4,
+	pSm5,
 	ps0,
 	ps1,
 	ps2,
@@ -2146,7 +1673,6 @@ import {
 	pt0,
 	pt1,
 	pt2,
-	pt3,
 	pt4,
 	pt5,
 	ptLg0,
@@ -2172,17 +1698,26 @@ import {
 	ptXl2,
 	ptXl3,
 	ptXl4,
-	ptXl5,
 	ptXxl0,
 	ptXxl1,
 	ptXxl2,
 	ptXxl3,
 	ptXxl4,
 	ptXxl5,
+	pXl0,
+	pXl1,
+	pXl2,
+	pXl3,
+	pXl4,
+	pXl5,
+	pXxl0,
+	pXxl1,
+	pXxl2,
+	pXxl3,
+	pXxl4,
+	pXxl5,
 	px0,
 	px1,
-	px2,
-	px3,
 	px4,
 	px5,
 	pxLg0,
@@ -2252,11 +1787,10 @@ import {
 	pyXxl4,
 	pyXxl5,
 	ratio,
-	ratio16x9,
 	ratio1x1,
-	ratio21x9,
 	ratio4x3,
-	rounded,
+	ratio16x9,
+	ratio21x9,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -2301,8 +1835,6 @@ import {
 	roundedTop5,
 	roundedTopCircle,
 	roundedTopPill,
-	row,
-	rowCols1,
 	rowCols2,
 	rowCols3,
 	rowCols4,
@@ -2317,7 +1849,6 @@ import {
 	rowColsLg6,
 	rowColsLgAuto,
 	rowColsMd1,
-	rowColsMd2,
 	rowColsMd3,
 	rowColsMd4,
 	rowColsMd5,
@@ -2384,15 +1915,12 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	show,
 	showing,
-	spinnerBorder,
 	spinnerBorderSm,
-	spinnerGrow,
 	spinnerGrowSm,
 	start0,
-	start100,
 	start50,
+	start100,
 	stickyBottom,
 	stickyLgBottom,
 	stickyLgTop,
@@ -2402,35 +1930,9 @@ import {
 	stickySmTop,
 	stickyTop,
 	stickyXlBottom,
-	stickyXlTop,
 	stickyXxlBottom,
 	stickyXxlTop,
 	stretchedLink,
-	tabContent,
-	tabPane,
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
-	tableDanger,
-	tableDark,
-	tableGroupDivider,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
-	tableSecondary,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
 	textBgDanger,
 	textBgDark,
 	textBgInfo,
@@ -2450,7 +1952,6 @@ import {
 	textCenter,
 	textDanger,
 	textDangerEmphasis,
-	textDark,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
@@ -2467,12 +1968,11 @@ import {
 	textMdCenter,
 	textMdEnd,
 	textMdStart,
-	textMuted,
 	textNowrap,
-	textOpacity100,
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
+	textOpacity100,
 	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
@@ -2497,43 +1997,806 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
-	toast,
-	toastBody,
 	toastContainer,
-	toastHeader,
 	tooltip,
-	tooltipArrow,
-	tooltipInner,
 	top0,
-	top100,
 	top50,
+	top100,
 	translateMiddle,
 	translateMiddleX,
 	translateMiddleY,
 	userSelectAll,
 	userSelectAuto,
 	userSelectNone,
-	validFeedback,
 	validTooltip,
 	vh100,
 	visible,
-	visuallyHidden,
 	visuallyHiddenFocusable,
 	vr,
 	vstack,
 	vw100,
-	w100,
 	w25,
 	w50,
 	w75,
+	w100,
 	wAuto,
-	wasValidated,
 	z0,
 	z1,
 	z2,
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import { vars } from '../../../theme-contract/theme-contract.css'
+import {
+	varBsAccordionActiveBg,
+	varBsAccordionActiveColor,
+	varBsAccordionBg,
+	varBsAccordionBodyPaddingX,
+	varBsAccordionBodyPaddingY,
+	varBsAccordionBorderColor,
+	varBsAccordionBorderRadius,
+	varBsAccordionBorderWidth,
+	varBsAccordionBtnActiveIcon,
+	varBsAccordionBtnBg,
+	varBsAccordionBtnColor,
+	varBsAccordionBtnFocusBoxShadow,
+	varBsAccordionBtnIcon,
+	varBsAccordionBtnIconTransform,
+	varBsAccordionBtnIconTransition,
+	varBsAccordionBtnIconWidth,
+	varBsAccordionBtnPaddingX,
+	varBsAccordionBtnPaddingY,
+	varBsAccordionColor,
+	varBsAccordionInnerBorderRadius,
+	varBsAccordionTransition,
+} from '../../../theme-contract/ui/accordion/_vars.css'
+import {
+	accordion,
+	accordionBody,
+	accordionButton,
+	accordionButtonCollapsed,
+	accordionCollapse,
+	accordionHeader,
+	accordionItem,
+} from '../../../theme-contract/ui/accordion/contract.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../theme-contract/ui/alerts/_vars.css'
+import {
+	alert,
+	alertDanger,
+	alertDark,
+	alertDismissible,
+	alertHeading,
+	alertInfo,
+	alertLight,
+	alertLink,
+	alertPrimary,
+	alertSecondary,
+	alertSuccess,
+	alertWarning,
+} from '../../../theme-contract/ui/alerts/contract.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../theme-contract/ui/badge/_vars.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
+import {
+	varBsBreadcrumbBg,
+	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
+	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbItemActiveColor,
+	varBsBreadcrumbItemPaddingX,
+	varBsBreadcrumbMarginBottom,
+	varBsBreadcrumbPaddingX,
+	varBsBreadcrumbPaddingY,
+} from '../../../theme-contract/ui/breadcrumb/_vars.css'
+import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
+import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
+	varBsBtnActiveColor,
+	varBsBtnBg,
+	varBsBtnBorderColor,
+	varBsBtnBorderRadius,
+	varBsBtnBorderWidth,
+	varBsBtnBoxShadow,
+	varBsBtnColor,
+	varBsBtnDisabledBg,
+	varBsBtnDisabledBorderColor,
+	varBsBtnDisabledColor,
+	varBsBtnDisabledOpacity,
+	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
+	varBsBtnFontFamily,
+	varBsBtnFontSize,
+	varBsBtnFontWeight,
+	varBsBtnHoverBg,
+	varBsBtnHoverBorderColor,
+	varBsBtnHoverColor,
+	varBsBtnLineHeight,
+	varBsBtnPaddingX,
+	varBsBtnPaddingY,
+} from '../../../theme-contract/ui/buttons/_vars.css'
+import {
+	btn,
+	btnCheck,
+	btnDanger,
+	btnDark,
+	btnInfo,
+	btnLg,
+	btnLight,
+	btnLink,
+	btnOutlineDanger,
+	btnOutlineDark,
+	btnOutlineInfo,
+	btnOutlineLight,
+	btnOutlinePrimary,
+	btnOutlineSecondary,
+	btnOutlineSuccess,
+	btnOutlineWarning,
+	btnPrimary,
+	btnSecondary,
+	btnSm,
+	btnSuccess,
+	btnWarning,
+} from '../../../theme-contract/ui/buttons/contract.css'
+import {
+	varBsCardBg,
+	varBsCardBorderColor,
+	varBsCardBorderRadius,
+	varBsCardBorderWidth,
+	varBsCardBoxShadow,
+	varBsCardCapBg,
+	varBsCardCapColor,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+	varBsCardColor,
+	varBsCardGroupMargin,
+	varBsCardImgOverlayPadding,
+	varBsCardInnerBorderRadius,
+	varBsCardSpacerX,
+	varBsCardSpacerY,
+	varBsCardSubtitleColor,
+	varBsCardTitleColor,
+	varBsCardTitleSpacerY,
+} from '../../../theme-contract/ui/card/_vars.css'
+import {
+	card,
+	cardBody,
+	cardFooter,
+	cardHeader,
+	cardImg,
+	cardImgBottom,
+	cardImgTop,
+	cardLink,
+	cardSubtitle,
+	cardText,
+	cardTitle,
+} from '../../../theme-contract/ui/card/contract.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
+import {
+	varBsCarouselCaptionColor,
+	varBsCarouselControlIconFilter,
+	varBsCarouselIndicatorActiveBg,
+} from '../../../theme-contract/ui/carousel/_vars.css'
+import {
+	carousel,
+	carouselCaption,
+	carouselControlNext,
+	carouselControlNextIcon,
+	carouselControlPrev,
+	carouselControlPrevIcon,
+	carouselDark,
+	carouselFade,
+	carouselIndicators,
+	carouselInner,
+	carouselItem,
+	carouselItemEnd,
+	carouselItemNext,
+	carouselItemPrev,
+	carouselItemStart,
+} from '../../../theme-contract/ui/carousel/contract.css'
+import {
+	varBsDropdownBg,
+	varBsDropdownBorderColor,
+	varBsDropdownBorderRadius,
+	varBsDropdownBorderWidth,
+	varBsDropdownBoxShadow,
+	varBsDropdownColor,
+	varBsDropdownDividerBg,
+	varBsDropdownDividerMarginY,
+	varBsDropdownFontSize,
+	varBsDropdownHeaderColor,
+	varBsDropdownHeaderPaddingX,
+	varBsDropdownHeaderPaddingY,
+	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemPaddingX,
+	varBsDropdownItemPaddingY,
+	varBsDropdownLinkActiveBg,
+	varBsDropdownLinkActiveColor,
+	varBsDropdownLinkColor,
+	varBsDropdownLinkDisabledColor,
+	varBsDropdownLinkHoverBg,
+	varBsDropdownLinkHoverColor,
+	varBsDropdownMinWidth,
+	varBsDropdownPaddingX,
+	varBsDropdownPaddingY,
+	varBsDropdownSpacer,
+	varBsDropdownZindex,
+} from '../../../theme-contract/ui/dropdowns/_vars.css'
+import {
+	btnShowHook,
+	dropdown,
+	dropdownCenter,
+	dropdownDivider,
+	dropdownHeader,
+	dropdownItem,
+	dropdownItemText,
+	dropdownMenu,
+	dropdownMenuDark,
+	dropdownMenuEnd,
+	dropdownMenuShow,
+	dropdownMenuStart,
+	dropdownToggle,
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+	dropupCenter,
+} from '../../../theme-contract/ui/dropdowns/contract.css'
+import {
+	varBsListGroupActionActiveBg,
+	varBsListGroupActionActiveColor,
+	varBsListGroupActionColor,
+	varBsListGroupActionHoverBg,
+	varBsListGroupActionHoverColor,
+	varBsListGroupActiveBg,
+	varBsListGroupActiveBorderColor,
+	varBsListGroupActiveColor,
+	varBsListGroupBg,
+	varBsListGroupBorderColor,
+	varBsListGroupBorderRadius,
+	varBsListGroupBorderWidth,
+	varBsListGroupColor,
+	varBsListGroupDisabledBg,
+	varBsListGroupDisabledColor,
+	varBsListGroupItemPaddingX,
+	varBsListGroupItemPaddingY,
+} from '../../../theme-contract/ui/list-group/_vars.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../theme-contract/ui/list-group/contract.css'
+import {
+	varBsBackdropBg,
+	varBsBackdropOpacity,
+	varBsBackdropZindex,
+	varBsModalBg,
+	varBsModalBorderColor,
+	varBsModalBorderRadius,
+	varBsModalBorderWidth,
+	varBsModalBoxShadow,
+	varBsModalColor,
+	varBsModalFooterBg,
+	varBsModalFooterBorderColor,
+	varBsModalFooterBorderWidth,
+	varBsModalFooterGap,
+	varBsModalHeaderBorderColor,
+	varBsModalHeaderBorderWidth,
+	varBsModalHeaderPadding,
+	varBsModalHeaderPaddingX,
+	varBsModalHeaderPaddingY,
+	varBsModalInnerBorderRadius,
+	varBsModalMargin,
+	varBsModalPadding,
+	varBsModalTitleLineHeight,
+	varBsModalWidth,
+	varBsModalZindex,
+} from '../../../theme-contract/ui/modal/_vars.css'
+import {
+	flexWrap,
+	justifyContentBetween,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalShowHook,
+	modalTitle,
+} from '../../../theme-contract/ui/modal/contract.css'
+import {
+	varBsNavbarActiveColor,
+	varBsNavbarBrandColor,
+	varBsNavbarBrandFontSize,
+	varBsNavbarBrandHoverColor,
+	varBsNavbarBrandMarginEnd,
+	varBsNavbarBrandPaddingY,
+	varBsNavbarColor,
+	varBsNavbarDisabledColor,
+	varBsNavbarHoverColor,
+	varBsNavbarNavLinkPaddingX,
+	varBsNavbarPaddingX,
+	varBsNavbarPaddingY,
+	varBsNavbarTogglerBorderColor,
+	varBsNavbarTogglerBorderRadius,
+	varBsNavbarTogglerFocusWidth,
+	varBsNavbarTogglerFontSize,
+	varBsNavbarTogglerIconBg,
+	varBsNavbarTogglerPaddingX,
+	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+} from '../../../theme-contract/ui/navbar/_vars.css'
+import {
+	collapse,
+	navbar,
+	navbarBrand,
+	navbarCollapse,
+	navbarExpandLg,
+	navbarNav,
+	navbarNavScroll,
+	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../theme-contract/ui/navbar/contract.css'
+import {
+	varBsNavLinkColor,
+	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
+	varBsNavLinkFontWeight,
+	varBsNavLinkHoverColor,
+	varBsNavLinkPaddingX,
+	varBsNavLinkPaddingY,
+	varBsNavPillsBorderRadius,
+	varBsNavPillsLinkActiveBg,
+	varBsNavPillsLinkActiveColor,
+	varBsNavTabsBorderColor,
+	varBsNavTabsBorderRadius,
+	varBsNavTabsBorderWidth,
+	varBsNavTabsLinkActiveBg,
+	varBsNavTabsLinkActiveBorderColor,
+	varBsNavTabsLinkActiveColor,
+	varBsNavTabsLinkHoverBorderColor,
+} from '../../../theme-contract/ui/navs/_vars.css'
+import {
+	fade,
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../theme-contract/ui/navs/contract.css'
+import {
+	varBsPaginationActiveBg,
+	varBsPaginationActiveBorderColor,
+	varBsPaginationActiveColor,
+	varBsPaginationBg,
+	varBsPaginationBorderColor,
+	varBsPaginationBorderRadius,
+	varBsPaginationBorderWidth,
+	varBsPaginationColor,
+	varBsPaginationDisabledBg,
+	varBsPaginationDisabledBorderColor,
+	varBsPaginationDisabledColor,
+	varBsPaginationFocusBg,
+	varBsPaginationFocusBoxShadow,
+	varBsPaginationFocusColor,
+	varBsPaginationFontSize,
+	varBsPaginationHoverBg,
+	varBsPaginationHoverBorderColor,
+	varBsPaginationHoverColor,
+	varBsPaginationPaddingX,
+	varBsPaginationPaddingY,
+} from '../../../theme-contract/ui/pagination/_vars.css'
+import {
+	pageItem,
+	pageItemActive,
+	pageItemDisabled,
+	pageLink,
+	pagination,
+	paginationLg,
+	paginationSm,
+} from '../../../theme-contract/ui/pagination/contract.css'
+import {
+	varBsPopoverArrowBorder,
+	varBsPopoverArrowHeight,
+	varBsPopoverArrowWidth,
+	varBsPopoverBg,
+	varBsPopoverBodyColor,
+	varBsPopoverBodyPaddingX,
+	varBsPopoverBodyPaddingY,
+	varBsPopoverBorderColor,
+	varBsPopoverBorderRadius,
+	varBsPopoverBorderWidth,
+	varBsPopoverBoxShadow,
+	varBsPopoverFontSize,
+	varBsPopoverHeaderBg,
+	varBsPopoverHeaderColor,
+	varBsPopoverHeaderFontSize,
+	varBsPopoverHeaderPaddingX,
+	varBsPopoverHeaderPaddingY,
+	varBsPopoverInnerBorderRadius,
+	varBsPopoverMaxWidth,
+	varBsPopoverZindex,
+} from '../../../theme-contract/ui/popovers/_vars.css'
+import {
+	bsPopoverAuto,
+	bsPopoverBottom,
+	bsPopoverEnd,
+	bsPopoverStart,
+	bsPopoverTop,
+	popoverArrow,
+	popoverBody,
+	popoverFade,
+	popoverHeader,
+	popoverShow,
+} from '../../../theme-contract/ui/popovers/contract.css'
+import {
+	varBsProgressBarBg,
+	varBsProgressBarColor,
+	varBsProgressBarTransition,
+	varBsProgressBg,
+	varBsProgressBorderRadius,
+	varBsProgressBoxShadow,
+	varBsProgressFontSize,
+	varBsProgressHeight,
+} from '../../../theme-contract/ui/progress/_vars.css'
+import {
+	progress,
+	progressBar,
+	progressBarAnimated,
+	progressBarStriped,
+} from '../../../theme-contract/ui/progress/contract.css'
+import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
+import {
+	varBsSpinnerAnimationName,
+	varBsSpinnerAnimationSpeed,
+	varBsSpinnerBorderWidth,
+	varBsSpinnerHeight,
+	varBsSpinnerVerticalAlign,
+	varBsSpinnerWidth,
+} from '../../../theme-contract/ui/spinners/_vars.css'
+import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
+import {
+	varBsToastBg,
+	varBsToastBorderColor,
+	varBsToastBorderRadius,
+	varBsToastBorderWidth,
+	varBsToastBoxShadow,
+	varBsToastColor,
+	varBsToastFontSize,
+	varBsToastHeaderBg,
+	varBsToastHeaderBorderColor,
+	varBsToastHeaderColor,
+	varBsToastMaxWidth,
+	varBsToastPaddingX,
+	varBsToastPaddingY,
+	varBsToastSpacing,
+	varBsToastZindex,
+} from '../../../theme-contract/ui/toasts/_vars.css'
+import {
+	toast,
+	toastBody,
+	toastHeader,
+	toastShow,
+	toastShowing,
+} from '../../../theme-contract/ui/toasts/contract.css'
+import {
+	varBsTooltipArrowHeight,
+	varBsTooltipArrowWidth,
+	varBsTooltipBg,
+	varBsTooltipBorderRadius,
+	varBsTooltipColor,
+	varBsTooltipFontSize,
+	varBsTooltipMargin,
+	varBsTooltipMaxWidth,
+	varBsTooltipOpacity,
+	varBsTooltipPaddingX,
+	varBsTooltipPaddingY,
+	varBsTooltipZindex,
+} from '../../../theme-contract/ui/tooltips/_vars.css'
+import {
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipShow,
+} from '../../../theme-contract/ui/tooltips/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
+import {
+	varBsAspectRatio,
+	varBsBgOpacity,
+	varBsBorderOpacity,
+	varBsBtnCloseFilter,
+	varBsCardHeight,
+	varBsLinkOpacity,
+	varBsLinkUnderlineOpacity,
+	varBsNavUnderlineBorderWidth,
+	varBsNavUnderlineGap,
+	varBsNavUnderlineLinkActiveColor,
+	varBsOffcanvasBg,
+	varBsOffcanvasBorderColor,
+	varBsOffcanvasBorderWidth,
+	varBsOffcanvasBoxShadow,
+	varBsOffcanvasColor,
+	varBsOffcanvasHeight,
+	varBsOffcanvasPaddingX,
+	varBsOffcanvasPaddingY,
+	varBsOffcanvasTitleLineHeight,
+	varBsOffcanvasTransition,
+	varBsOffcanvasWidth,
+	varBsOffcanvasZindex,
+	varBsPosition,
+	varBsTextOpacity,
+} from '../../../theme-contract/utilities/generated/_vars.css'
+import { zephyrScope } from '../scope.css'
+
+globalStyle(`${zephyrScope}${vars}`, {
+	vars: {
+		[varBsBlue]: '#3459e6',
+		[varBsIndigo]: '#6610f2',
+		[varBsPurple]: '#6f42c1',
+		[varBsPink]: '#d63384',
+		[varBsRed]: '#da292e',
+		[varBsOrange]: '#f8765f',
+		[varBsYellow]: '#f4bd61',
+		[varBsGreen]: '#2fb380',
+		[varBsTeal]: '#20c997',
+		[varBsCyan]: '#287bb5',
+		[varBsBlack]: '#000',
+		[varBsWhite]: '#fff',
+		[varBsGray]: '#6c757d',
+		[varBsGrayDark]: '#343a40',
+		'--bs-gray-100': '#f8f9fa',
+		'--bs-gray-200': '#e9ecef',
+		'--bs-gray-300': '#dee2e6',
+		'--bs-gray-400': '#ced4da',
+		'--bs-gray-500': '#adb5bd',
+		'--bs-gray-600': '#6c757d',
+		'--bs-gray-700': '#495057',
+		'--bs-gray-800': '#343a40',
+		'--bs-gray-900': '#212529',
+		[varBsPrimary]: '#3459e6',
+		[varBsSecondary]: '#fff',
+		[varBsSuccess]: '#2fb380',
+		[varBsInfo]: '#287bb5',
+		[varBsWarning]: '#f4bd61',
+		[varBsDanger]: '#da292e',
+		[varBsLight]: '#f8f9fa',
+		[varBsDark]: '#212529',
+		[varBsPrimaryRgb]: '52, 89, 230',
+		[varBsSecondaryRgb]: '255, 255, 255',
+		[varBsSuccessRgb]: '47, 179, 128',
+		[varBsInfoRgb]: '40, 123, 181',
+		[varBsWarningRgb]: '244, 189, 97',
+		[varBsDangerRgb]: '218, 41, 46',
+		[varBsLightRgb]: '248, 249, 250',
+		[varBsDarkRgb]: '33, 37, 41',
+		[varBsPrimaryTextEmphasis]: '#15245c',
+		[varBsSecondaryTextEmphasis]: '#666666',
+		[varBsSuccessTextEmphasis]: '#134833',
+		[varBsInfoTextEmphasis]: '#103148',
+		[varBsWarningTextEmphasis]: '#624c27',
+		[varBsDangerTextEmphasis]: '#571012',
+		[varBsLightTextEmphasis]: '#495057',
+		[varBsDarkTextEmphasis]: '#495057',
+		[varBsPrimaryBgSubtle]: '#d6defa',
+		[varBsSecondaryBgSubtle]: 'white',
+		[varBsSuccessBgSubtle]: '#d5f0e6',
+		[varBsInfoBgSubtle]: '#d4e5f0',
+		[varBsWarningBgSubtle]: '#fdf2df',
+		[varBsDangerBgSubtle]: '#f8d4d5',
+		[varBsLightBgSubtle]: '#fcfcfd',
+		[varBsDarkBgSubtle]: '#ced4da',
+		[varBsPrimaryBorderSubtle]: '#aebdf5',
+		[varBsSecondaryBorderSubtle]: 'white',
+		[varBsSuccessBorderSubtle]: '#ace1cc',
+		[varBsInfoBorderSubtle]: '#a9cae1',
+		[varBsWarningBorderSubtle]: '#fbe5c0',
+		[varBsDangerBorderSubtle]: '#f0a9ab',
+		[varBsLightBorderSubtle]: '#e9ecef',
+		[varBsDarkBorderSubtle]: '#adb5bd',
+		[varBsWhiteRgb]: '255, 255, 255',
+		[varBsBlackRgb]: '0, 0, 0',
+		[varBsFontSansSerif]:
+			'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+		[varBsFontMonospace]:
+			'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+		[varBsGradient]:
+			'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
+		[varBsBodyFontFamily]: varBsFontSansSerif,
+		[varBsBodyFontSize]: '1rem',
+		[varBsBodyFontWeight]: '400',
+		[varBsBodyLineHeight]: '1.5',
+		[varBsBodyColor]: '#495057',
+		[varBsBodyColorRgb]: '73, 80, 87',
+		[varBsBodyBg]: '#fff',
+		[varBsBodyBgRgb]: '255, 255, 255',
+		[varBsEmphasisColor]: '#000',
+		[varBsEmphasisColorRgb]: '0, 0, 0',
+		[varBsSecondaryColor]: 'rgba(73, 80, 87, 0.75)',
+		'--bs-secondary-color-rgb': '73, 80, 87',
+		[varBsSecondaryBg]: '#e9ecef',
+		'--bs-secondary-bg-rgb': '233, 236, 239',
+		[varBsTertiaryColor]: 'rgba(73, 80, 87, 0.5)',
+		'--bs-tertiary-color-rgb': '73, 80, 87',
+		[varBsTertiaryBg]: '#f8f9fa',
+		'--bs-tertiary-bg-rgb': '248, 249, 250',
+		[varBsHeadingColor]: 'var(--bs-primary-color)',
+		[varBsLinkColor]: '#3459e6',
+		[varBsLinkColorRgb]: '52, 89, 230',
+		[varBsLinkDecoration]: 'underline',
+		[varBsLinkHoverColor]: '#2a47b8',
+		[varBsLinkHoverColorRgb]: '42, 71, 184',
+		[varBsCodeColor]: '#d63384',
+		[varBsHighlightColor]: '#495057',
+		[varBsHighlightBg]: '#fdf2df',
+		[varBsBorderWidth]: '1px',
+		[varBsBorderStyle]: 'solid',
+		[varBsBorderColor]: '#dee2e6',
+		[varBsBorderColorTranslucent]: 'rgba(0, 0, 0, 0.175)',
+		[varBsBorderRadius]: '0.375rem',
+		[varBsBorderRadiusSm]: '0.25rem',
+		[varBsBorderRadiusLg]: '0.5rem',
+		[varBsBorderRadiusXl]: '1rem',
+		[varBsBorderRadiusXxl]: '2rem',
+		'--bs-border-radius-2xl': varBsBorderRadiusXxl,
+		[varBsBorderRadiusPill]: '50rem',
+		[varBsBoxShadow]: '0 1px 2px rgba(0, 0, 0, 0.05)',
+		[varBsBoxShadowSm]: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+		[varBsBoxShadowLg]: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+		[varBsBoxShadowInset]: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)',
+		[varBsFocusRingWidth]: '0.25rem',
+		[varBsFocusRingOpacity]: '0.25',
+		[varBsFocusRingColor]: 'rgba(52, 89, 230, 0.25)',
+		[varBsFormValidColor]: '#2fb380',
+		[varBsFormValidBorderColor]: '#2fb380',
+		[varBsFormInvalidColor]: '#da292e',
+		[varBsFormInvalidBorderColor]: '#da292e',
+	},
+})
+
+globalStyle(`${zephyrScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsBodyColor]: '#dee2e6',
+		[varBsBodyColorRgb]: '222, 226, 230',
+		[varBsBodyBg]: '#212529',
+		[varBsBodyBgRgb]: '33, 37, 41',
+		[varBsEmphasisColor]: '#fff',
+		[varBsEmphasisColorRgb]: '255, 255, 255',
+		[varBsSecondaryColor]: 'rgba(222, 226, 230, 0.75)',
+		'--bs-secondary-color-rgb': '222, 226, 230',
+		[varBsSecondaryBg]: '#343a40',
+		'--bs-secondary-bg-rgb': '52, 58, 64',
+		[varBsTertiaryColor]: 'rgba(222, 226, 230, 0.5)',
+		'--bs-tertiary-color-rgb': '222, 226, 230',
+		[varBsTertiaryBg]: '#2b3035',
+		'--bs-tertiary-bg-rgb': '43, 48, 53',
+		[varBsPrimaryTextEmphasis]: '#859bf0',
+		[varBsSecondaryTextEmphasis]: 'white',
+		[varBsSuccessTextEmphasis]: '#82d1b3',
+		[varBsInfoTextEmphasis]: '#7eb0d3',
+		[varBsWarningTextEmphasis]: '#f8d7a0',
+		[varBsDangerTextEmphasis]: '#e97f82',
+		[varBsLightTextEmphasis]: '#f8f9fa',
+		[varBsDarkTextEmphasis]: '#dee2e6',
+		[varBsPrimaryBgSubtle]: '#0a122e',
+		[varBsSecondaryBgSubtle]: '#333333',
+		[varBsSuccessBgSubtle]: '#09241a',
+		[varBsInfoBgSubtle]: '#081924',
+		[varBsWarningBgSubtle]: '#312613',
+		[varBsDangerBgSubtle]: '#2c0809',
+		[varBsLightBgSubtle]: '#343a40',
+		[varBsDarkBgSubtle]: '#1a1d20',
+		[varBsPrimaryBorderSubtle]: '#1f358a',
+		[varBsSecondaryBorderSubtle]: '#999999',
+		[varBsSuccessBorderSubtle]: '#1c6b4d',
+		[varBsInfoBorderSubtle]: '#184a6d',
+		[varBsWarningBorderSubtle]: '#92713a',
+		[varBsDangerBorderSubtle]: '#83191c',
+		[varBsLightBorderSubtle]: '#495057',
+		[varBsDarkBorderSubtle]: '#343a40',
+		[varBsHeadingColor]: 'inherit',
+		[varBsLinkColor]: '#859bf0',
+		[varBsLinkHoverColor]: '#9daff3',
+		[varBsLinkColorRgb]: '133, 155, 240',
+		[varBsLinkHoverColorRgb]: '157, 175, 243',
+		[varBsCodeColor]: '#e685b5',
+		[varBsHighlightColor]: '#dee2e6',
+		[varBsHighlightBg]: '#624c27',
+		[varBsBorderColor]: '#495057',
+		[varBsBorderColorTranslucent]: 'rgba(255, 255, 255, 0.15)',
+		[varBsFormValidColor]: '#82d1b3',
+		[varBsFormValidBorderColor]: '#82d1b3',
+		[varBsFormInvalidColor]: '#e97f82',
+		[varBsFormInvalidBorderColor]: '#e97f82',
+	},
+	colorScheme: 'dark',
+})
 
 globalStyle(`*`, {
 	boxSizing: 'border-box',
@@ -2547,7 +2810,15 @@ globalStyle(`*::after`, {
 	boxSizing: 'border-box',
 })
 
-globalStyle(`${zephyrScope}${horizontalRule}`, {
+globalStyle(`${zephyrScope}${vars}`, {
+	'@media': {
+		'(prefers-reduced-motion: no-preference)': {
+			scrollBehavior: 'smooth',
+		},
+	},
+})
+
+globalStyle(`:where(${zephyrScope}${horizontalRule})`, {
 	margin: '1rem 0',
 	color: 'inherit',
 	border: '0',
@@ -2555,7 +2826,7 @@ globalStyle(`${zephyrScope}${horizontalRule}`, {
 	opacity: '0.25',
 })
 
-globalStyle(`${zephyrScope}${h6}`, {
+globalStyle(`:where(${zephyrScope}${h6})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2571,7 +2842,7 @@ globalStyle(`${zephyrScope}${clsH6}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${zephyrScope}${h5}`, {
+globalStyle(`:where(${zephyrScope}${h5})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2587,7 +2858,7 @@ globalStyle(`${zephyrScope}${clsH5}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${zephyrScope}${h4}`, {
+globalStyle(`:where(${zephyrScope}${h4})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2603,7 +2874,7 @@ globalStyle(`${zephyrScope}${clsH4}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${zephyrScope}${h3}`, {
+globalStyle(`:where(${zephyrScope}${h3})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2619,7 +2890,7 @@ globalStyle(`${zephyrScope}${clsH3}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${zephyrScope}${h2}`, {
+globalStyle(`:where(${zephyrScope}${h2})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2635,7 +2906,7 @@ globalStyle(`${zephyrScope}${clsH2}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${zephyrScope}${h1}`, {
+globalStyle(`:where(${zephyrScope}${h1})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2651,7 +2922,7 @@ globalStyle(`${zephyrScope}${clsH1}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${zephyrScope}${h1}`, {
+globalStyle(`:where(${zephyrScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
@@ -2659,7 +2930,7 @@ globalStyle(`${zephyrScope}${clsH1}`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
-globalStyle(`${zephyrScope}${h1}`, {
+globalStyle(`:where(${zephyrScope}${h1})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -2675,7 +2946,7 @@ globalStyle(`${zephyrScope}${clsH1}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${h2}`, {
+globalStyle(`:where(${zephyrScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
@@ -2683,7 +2954,7 @@ globalStyle(`${zephyrScope}${clsH2}`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
-globalStyle(`${zephyrScope}${h2}`, {
+globalStyle(`:where(${zephyrScope}${h2})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -2699,7 +2970,7 @@ globalStyle(`${zephyrScope}${clsH2}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${h3}`, {
+globalStyle(`:where(${zephyrScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
@@ -2707,7 +2978,7 @@ globalStyle(`${zephyrScope}${clsH3}`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
-globalStyle(`${zephyrScope}${h3}`, {
+globalStyle(`:where(${zephyrScope}${h3})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -2723,7 +2994,7 @@ globalStyle(`${zephyrScope}${clsH3}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${h4}`, {
+globalStyle(`:where(${zephyrScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
@@ -2731,7 +3002,7 @@ globalStyle(`${zephyrScope}${clsH4}`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-globalStyle(`${zephyrScope}${h4}`, {
+globalStyle(`:where(${zephyrScope}${h4})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -2747,7 +3018,7 @@ globalStyle(`${zephyrScope}${clsH4}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${h5}`, {
+globalStyle(`:where(${zephyrScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
@@ -2755,7 +3026,7 @@ globalStyle(`${zephyrScope}${clsH5}`, {
 	fontSize: '1.25rem',
 })
 
-globalStyle(`${zephyrScope}${h6}`, {
+globalStyle(`:where(${zephyrScope}${h6})`, {
 	fontSize: '1rem',
 })
 
@@ -2763,7 +3034,7 @@ globalStyle(`${zephyrScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 
-globalStyle(`${zephyrScope}${paragraph}`, {
+globalStyle(`:where(${zephyrScope}${paragraph})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
@@ -2776,73 +3047,73 @@ globalStyle(`${zephyrScope}${elAbbr}[title]`, {
 	textDecorationSkipInk: 'none',
 })
 
-globalStyle(`${zephyrScope}${elAddress}`, {
+globalStyle(`:where(${zephyrScope}${elAddress})`, {
 	marginBottom: '1rem',
 	fontStyle: 'normal',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elOl}`, {
+globalStyle(`:where(${zephyrScope}${elOl})`, {
 	paddingLeft: '2rem',
 })
 
-globalStyle(`${zephyrScope}${elUl}`, {
+globalStyle(`:where(${zephyrScope}${elUl})`, {
 	paddingLeft: '2rem',
 })
 
-globalStyle(`${zephyrScope}${elOl}`, {
+globalStyle(`:where(${zephyrScope}${elOl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${zephyrScope}${elUl}`, {
+globalStyle(`:where(${zephyrScope}${elUl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${zephyrScope}${elDl}`, {
+globalStyle(`:where(${zephyrScope}${elDl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${zephyrScope}${elOl} ${zephyrScope}${elOl}`, {
+globalStyle(`:where(${zephyrScope}${elOl}) :where(${zephyrScope}${elOl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${elUl} ${zephyrScope}${elUl}`, {
+globalStyle(`:where(${zephyrScope}${elUl}) :where(${zephyrScope}${elUl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${elOl} ${zephyrScope}${elUl}`, {
+globalStyle(`:where(${zephyrScope}${elOl}) :where(${zephyrScope}${elUl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${elUl} ${zephyrScope}${elOl}`, {
+globalStyle(`:where(${zephyrScope}${elUl}) :where(${zephyrScope}${elOl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${elDt}`, {
+globalStyle(`:where(${zephyrScope}${elDt})`, {
 	fontWeight: '700',
 })
 
-globalStyle(`${zephyrScope}${elDd}`, {
+globalStyle(`:where(${zephyrScope}${elDd})`, {
 	marginBottom: '0.5rem',
 	marginLeft: '0',
 })
 
-globalStyle(`${zephyrScope}${blockquote}`, {
+globalStyle(`:where(${zephyrScope}${blockquote})`, {
 	margin: '0 0 1rem',
 })
 
-globalStyle(`${zephyrScope}${elB}`, {
+globalStyle(`:where(${zephyrScope}${elB})`, {
 	fontWeight: 'bolder',
 })
 
-globalStyle(`${zephyrScope}${elStrong}`, {
+globalStyle(`:where(${zephyrScope}${elStrong})`, {
 	fontWeight: 'bolder',
 })
 
-globalStyle(`${zephyrScope}${small}`, {
+globalStyle(`:where(${zephyrScope}${small})`, {
 	fontSize: '0.875em',
 })
 
@@ -2850,7 +3121,7 @@ globalStyle(`${zephyrScope}${clsSmall}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${zephyrScope}${markText}`, {
+globalStyle(`:where(${zephyrScope}${markText})`, {
 	padding: '0.1875em',
 	color: varBsHighlightColor,
 	backgroundColor: varBsHighlightBg,
@@ -2862,30 +3133,30 @@ globalStyle(`${zephyrScope}${mark}`, {
 	backgroundColor: varBsHighlightBg,
 })
 
-globalStyle(`${zephyrScope}${elSub}`, {
+globalStyle(`:where(${zephyrScope}${elSub})`, {
 	position: 'relative',
 	fontSize: '0.75em',
 	lineHeight: '0',
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`${zephyrScope}${elSup}`, {
+globalStyle(`:where(${zephyrScope}${elSup})`, {
 	position: 'relative',
 	fontSize: '0.75em',
 	lineHeight: '0',
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`${zephyrScope}${elSub}`, {
+globalStyle(`:where(${zephyrScope}${elSub})`, {
 	bottom: '-0.25em',
 })
 
-globalStyle(`${zephyrScope}${elSup}`, {
+globalStyle(`:where(${zephyrScope}${elSup})`, {
 	top: '-0.5em',
 })
 
-globalStyle(`${zephyrScope}${link}`, {
-	color: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
+globalStyle(`:where(${zephyrScope}${link})`, {
+	color: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')})`,
 	textDecoration: 'underline',
 })
 
@@ -2905,27 +3176,27 @@ globalStyle(`${zephyrScope}${link}:not([href]):not([class]):hover`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${zephyrScope}${elPre}`, {
+globalStyle(`:where(${zephyrScope}${elPre})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${zephyrScope}${inlineCode}`, {
+globalStyle(`:where(${zephyrScope}${inlineCode})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${zephyrScope}${elKbd}`, {
+globalStyle(`:where(${zephyrScope}${elKbd})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${zephyrScope}${elSamp}`, {
+globalStyle(`:where(${zephyrScope}${elSamp})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${zephyrScope}${elPre}`, {
+globalStyle(`:where(${zephyrScope}${elPre})`, {
 	display: 'block',
 	marginTop: '0',
 	marginBottom: '1rem',
@@ -2933,23 +3204,23 @@ globalStyle(`${zephyrScope}${elPre}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${zephyrScope}${elPre} ${zephyrScope}${inlineCode}`, {
+globalStyle(`:where(${zephyrScope}${elPre}) :where(${zephyrScope}${inlineCode})`, {
 	fontSize: 'inherit',
 	color: 'inherit',
 	wordBreak: 'normal',
 })
 
-globalStyle(`${zephyrScope}${inlineCode}`, {
+globalStyle(`:where(${zephyrScope}${inlineCode})`, {
 	fontSize: '0.875em',
 	color: varBsCodeColor,
 	wordWrap: 'break-word',
 })
 
-globalStyle(`${zephyrScope}${link} > ${zephyrScope}${inlineCode}`, {
+globalStyle(`:where(${zephyrScope}${link}) > :where(${zephyrScope}${inlineCode})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elKbd}`, {
+globalStyle(`:where(${zephyrScope}${elKbd})`, {
 	padding: '0.1875rem 0.375rem',
 	fontSize: '0.875em',
 	color: varBsBodyBg,
@@ -2957,81 +3228,81 @@ globalStyle(`${zephyrScope}${elKbd}`, {
 	borderRadius: '0.25rem',
 })
 
-globalStyle(`${zephyrScope}${elKbd} ${zephyrScope}${elKbd}`, {
+globalStyle(`:where(${zephyrScope}${elKbd}) :where(${zephyrScope}${elKbd})`, {
 	padding: '0',
 	fontSize: '1em',
 })
 
-globalStyle(`${zephyrScope}${elFigure}`, {
+globalStyle(`:where(${zephyrScope}${elFigure})`, {
 	margin: '0 0 1rem',
 })
 
-globalStyle(`${zephyrScope}${elImg}`, {
+globalStyle(`:where(${zephyrScope}${elImg})`, {
 	verticalAlign: 'middle',
 })
 
-globalStyle(`${zephyrScope}${elSvg}`, {
+globalStyle(`:where(${zephyrScope}${elSvg})`, {
 	verticalAlign: 'middle',
 })
 
-globalStyle(`${zephyrScope}${tableElement}`, {
+globalStyle(`:where(${zephyrScope}${tableElement})`, {
 	captionSide: 'bottom',
 	borderCollapse: 'collapse',
 })
 
-globalStyle(`${zephyrScope}${elCaption}`, {
+globalStyle(`:where(${zephyrScope}${elCaption})`, {
 	paddingTop: '1rem',
 	paddingBottom: '1rem',
 	color: varBsSecondaryColor,
 	textAlign: 'left',
 })
 
-globalStyle(`${zephyrScope}${tableHeaderCell}`, {
+globalStyle(`:where(${zephyrScope}${tableHeaderCell})`, {
 	fontWeight: '500',
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`${zephyrScope}${tableSection}`, {
+globalStyle(`:where(${zephyrScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${tableSection}`, {
+globalStyle(`:where(${zephyrScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${tableSection}`, {
+globalStyle(`:where(${zephyrScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${tableRow}`, {
+globalStyle(`:where(${zephyrScope}${tableRow})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${tableCell}`, {
+globalStyle(`:where(${zephyrScope}${tableCell})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${tableHeaderCell}`, {
+globalStyle(`:where(${zephyrScope}${tableHeaderCell})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${elLabel}`, {
+globalStyle(`:where(${zephyrScope}${elLabel})`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${zephyrScope}${elButton}`, {
+globalStyle(`:where(${zephyrScope}${elButton})`, {
 	borderRadius: '0',
 })
 
@@ -3039,46 +3310,46 @@ globalStyle(`${zephyrScope}${elButton}:focus:not(:focus-visible)`, {
 	outline: '0',
 })
 
-globalStyle(`${zephyrScope}${elInput}`, {
+globalStyle(`:where(${zephyrScope}${elInput})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elButton}`, {
+globalStyle(`:where(${zephyrScope}${elButton})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elSelect}`, {
+globalStyle(`:where(${zephyrScope}${elSelect})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elOptgroup}`, {
+globalStyle(`:where(${zephyrScope}${elOptgroup})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elTextarea}`, {
+globalStyle(`:where(${zephyrScope}${elTextarea})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${elButton}`, {
+globalStyle(`:where(${zephyrScope}${elButton})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`${zephyrScope}${elSelect}`, {
+globalStyle(`:where(${zephyrScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
@@ -3086,7 +3357,7 @@ globalStyle(`[role=button]`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`${zephyrScope}${elSelect}`, {
+globalStyle(`:where(${zephyrScope}${elSelect})`, {
 	wordWrap: 'normal',
 })
 
@@ -3094,11 +3365,14 @@ globalStyle(`${zephyrScope}${elSelect}:disabled`, {
 	opacity: '1',
 })
 
-globalStyle(`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
-	display: 'none !important',
-})
+globalStyle(
+	`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
+	{
+		display: 'none !important',
+	},
+)
 
-globalStyle(`${zephyrScope}${elButton}`, {
+globalStyle(`:where(${zephyrScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3135,18 +3409,18 @@ globalStyle(`::-moz-focus-inner`, {
 	borderStyle: 'none',
 })
 
-globalStyle(`${zephyrScope}${elTextarea}`, {
+globalStyle(`:where(${zephyrScope}${elTextarea})`, {
 	resize: 'vertical',
 })
 
-globalStyle(`${zephyrScope}${fieldset}`, {
+globalStyle(`:where(${zephyrScope}${fieldset})`, {
 	minWidth: '0',
 	padding: '0',
 	margin: '0',
 	border: '0',
 })
 
-globalStyle(`${zephyrScope}${elLegend}`, {
+globalStyle(`:where(${zephyrScope}${elLegend})`, {
 	float: 'left',
 	width: '100%',
 	padding: '0',
@@ -3155,7 +3429,7 @@ globalStyle(`${zephyrScope}${elLegend}`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-globalStyle(`${zephyrScope}${elLegend}`, {
+globalStyle(`:where(${zephyrScope}${elLegend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -3163,7 +3437,7 @@ globalStyle(`${zephyrScope}${elLegend}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${elLegend} + *`, {
+globalStyle(`:where(${zephyrScope}${elLegend}) + *`, {
 	clear: 'left',
 })
 
@@ -3227,20 +3501,20 @@ globalStyle(`::file-selector-button`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`${zephyrScope}${elOutput}`, {
+globalStyle(`:where(${zephyrScope}${elOutput})`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${zephyrScope}${elIframe}`, {
+globalStyle(`:where(${zephyrScope}${elIframe})`, {
 	border: '0',
 })
 
-globalStyle(`${zephyrScope}${elSummary}`, {
+globalStyle(`:where(${zephyrScope}${elSummary})`, {
 	display: 'list-item',
 	cursor: 'pointer',
 })
 
-globalStyle(`${zephyrScope}${elProgress}`, {
+globalStyle(`:where(${zephyrScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
@@ -3650,6 +3924,17 @@ globalStyle(`${zephyrScope}${container}`, {
 		'(min-width: 1400px)': {
 			maxWidth: '1320px',
 		},
+	},
+})
+
+globalStyle(`${zephyrScope}${vars}`, {
+	vars: {
+		'--bs-breakpoint-xs': '0',
+		'--bs-breakpoint-sm': '576px',
+		'--bs-breakpoint-md': '768px',
+		'--bs-breakpoint-lg': '992px',
+		'--bs-breakpoint-xl': '1200px',
+		'--bs-breakpoint-xxl': '1400px',
 	},
 })
 
@@ -6611,17 +6896,17 @@ globalStyle(`${zephyrScope}${table}`, {
 
 globalStyle(`${zephyrScope}${table} > :not(caption) > * > *`, {
 	padding: '1rem 1rem',
-	color: varBsTableColorState,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px ${varBsTableBgState}`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-globalStyle(`${zephyrScope}${table} > ${zephyrScope}${tableSection}`, {
+globalStyle(`${zephyrScope}${table} > :where(${zephyrScope}${tableSection})`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${table} > ${zephyrScope}${tableSection}`, {
+globalStyle(`${zephyrScope}${table} > :where(${zephyrScope}${tableSection})`, {
 	verticalAlign: 'bottom',
 })
 
@@ -6653,19 +6938,25 @@ globalStyle(`${zephyrScope}${tableBorderless} > :not(:first-child)`, {
 	borderTopWidth: '0',
 })
 
-globalStyle(`${zephyrScope}${tableStriped} > ${zephyrScope}${tableSection} > ${zephyrScope}${tableRow}:nth-of-type(odd) > *`, {
-	vars: {
-		[varBsTableColorType]: varBsTableStripedColor,
-		[varBsTableBgType]: varBsTableStripedBg,
+globalStyle(
+	`${zephyrScope}${tableStriped} > :where(${zephyrScope}${tableSection}) > ${zephyrScope}${tableRow}:nth-of-type(odd) > *`,
+	{
+		vars: {
+			[varBsTableColorType]: varBsTableStripedColor,
+			[varBsTableBgType]: varBsTableStripedBg,
+		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${tableStripedColumns} > :not(caption) > ${zephyrScope}${tableRow} > :nth-child(even)`, {
-	vars: {
-		[varBsTableColorType]: varBsTableStripedColor,
-		[varBsTableBgType]: varBsTableStripedBg,
+globalStyle(
+	`${zephyrScope}${tableStripedColumns} > :not(caption) > :where(${zephyrScope}${tableRow}) > :nth-child(even)`,
+	{
+		vars: {
+			[varBsTableColorType]: varBsTableStripedColor,
+			[varBsTableBgType]: varBsTableStripedBg,
+		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${tableActive}`, {
 	vars: {
@@ -6674,12 +6965,15 @@ globalStyle(`${zephyrScope}${tableActive}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${tableHover} > ${zephyrScope}${tableSection} > ${zephyrScope}${tableRow}:hover > *`, {
-	vars: {
-		[varBsTableColorState]: varBsTableHoverColor,
-		[varBsTableBgState]: varBsTableHoverBg,
+globalStyle(
+	`${zephyrScope}${tableHover} > :where(${zephyrScope}${tableSection}) > ${zephyrScope}${tableRow}:hover > *`,
+	{
+		vars: {
+			[varBsTableColorState]: varBsTableHoverColor,
+			[varBsTableBgState]: varBsTableHoverBg,
+		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${tablePrimary}`, {
 	vars: {
@@ -6973,8 +7267,10 @@ globalStyle(`${zephyrScope}${formControl}::-webkit-file-upload-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${formControl}::file-selector-button`, {
@@ -6990,7 +7286,8 @@ globalStyle(`${zephyrScope}${formControl}::file-selector-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${formControl}::-webkit-file-upload-button`, {
@@ -7010,13 +7307,19 @@ globalStyle(`${zephyrScope}${formControl}::file-selector-button`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
+globalStyle(
+	`${zephyrScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
+	{
+		backgroundColor: varBsSecondaryBg,
+	},
+)
 
-globalStyle(`${zephyrScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
-	backgroundColor: varBsSecondaryBg,
-})
+globalStyle(
+	`${zephyrScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
+	{
+		backgroundColor: varBsSecondaryBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${formControlPlaintext}`, {
 	display: 'block',
@@ -7128,7 +7431,8 @@ globalStyle(`${zephyrScope}${formControlColor}${formControlLg}`, {
 
 globalStyle(`${zephyrScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23343a40\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgImg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 	},
 	display: 'block',
 	width: '100%',
@@ -7141,7 +7445,7 @@ globalStyle(`${zephyrScope}${formSelect}`, {
 	MozAppearance: 'none',
 	appearance: 'none',
 	backgroundColor: varBsBodyBg,
-	backgroundImage: `${varBsFormSelectBgImg}, ${varBsFormSelectBgIcon}`,
+	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right 1rem center',
 	backgroundSize: '16px 12px',
@@ -7202,7 +7506,8 @@ globalStyle(`${zephyrScope}${formSelectLg}`, {
 
 globalStyle(`[data-bs-theme=dark] ${zephyrScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgImg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23dee2e6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -7278,19 +7583,22 @@ globalStyle(`${zephyrScope}${formCheckInput}:checked`, {
 
 globalStyle(`${zephyrScope}${formCheckInput}:checked[type=checkbox]`, {
 	vars: {
-		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'m6 10 3 3 6-6\'/%3e%3c/svg%3e")',
+		[varBsFormCheckBgImage]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`${zephyrScope}${formCheckInput}:checked[type=radio]`, {
 	vars: {
-		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'2\' fill=\'%23fff\'/%3e%3c/svg%3e")',
+		[varBsFormCheckBgImage]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`${zephyrScope}${formCheckInput}[type=checkbox]:indeterminate`, {
 	vars: {
-		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'M6 10h8\'/%3e%3c/svg%3e")',
+		[varBsFormCheckBgImage]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
 	},
 	backgroundColor: '#3459e6',
 	borderColor: '#3459e6',
@@ -7318,7 +7626,8 @@ globalStyle(`${zephyrScope}${formSwitch}`, {
 
 globalStyle(`${zephyrScope}${formSwitch} ${zephyrScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
+		[varBsFormSwitchBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
 	},
 	width: '2em',
 	marginLeft: '-2.5em',
@@ -7338,13 +7647,15 @@ globalStyle(`${zephyrScope}${formSwitch} ${zephyrScope}${formCheckInput}`, {
 
 globalStyle(`${zephyrScope}${formSwitch} ${zephyrScope}${formCheckInput}:focus`, {
 	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%239aacf3\'/%3e%3c/svg%3e")',
+		[varBsFormSwitchBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%239aacf3'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`${zephyrScope}${formSwitch} ${zephyrScope}${formCheckInput}:checked`, {
 	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23fff\'/%3e%3c/svg%3e")',
+		[varBsFormSwitchBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
 	},
 	backgroundPosition: 'right center',
 })
@@ -7382,11 +7693,15 @@ globalStyle(`${zephyrScope}${btnCheck}:disabled + ${zephyrScope}${btn}`, {
 	opacity: '0.65',
 })
 
-globalStyle(`[data-bs-theme=dark] ${zephyrScope}${formSwitch} ${zephyrScope}${formCheckInput}:not(:checked):not(:focus)`, {
-	vars: {
-		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
+globalStyle(
+	`[data-bs-theme=dark] ${zephyrScope}${formSwitch} ${zephyrScope}${formCheckInput}:not(:checked):not(:focus)`,
+	{
+		vars: {
+			[varBsFormSwitchBg]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e\")",
+		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${formRange}`, {
 	width: '100%',
@@ -7424,8 +7739,10 @@ globalStyle(`${zephyrScope}${formRange}::-webkit-slider-thumb`, {
 	border: '0',
 	borderRadius: '1rem',
 	boxShadow: '0 0.1rem 0.25rem rgba(0, 0, 0, 0.1)',
-	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${formRange}::-webkit-slider-thumb`, {
@@ -7461,8 +7778,10 @@ globalStyle(`${zephyrScope}${formRange}::-moz-range-thumb`, {
 	border: '0',
 	borderRadius: '1rem',
 	boxShadow: '0 0.1rem 0.25rem rgba(0, 0, 0, 0.1)',
-	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	MozTransition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${formRange}::-moz-range-thumb`, {
@@ -7523,7 +7842,7 @@ globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formSelect}`, {
 	lineHeight: '1.25',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elLabel}`, {
+globalStyle(`${zephyrScope}${formFloating} > :where(${zephyrScope}${elLabel})`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7542,7 +7861,7 @@ globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elLabel}`, {
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elLabel}`, {
+globalStyle(`${zephyrScope}${formFloating} > :where(${zephyrScope}${elLabel})`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7562,9 +7881,12 @@ globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}::-moz-
 	color: 'transparent',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}::-moz-placeholder`, {
-	color: 'transparent',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}::-moz-placeholder`,
+	{
+		color: 'transparent',
+	},
+)
 
 globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}::placeholder`, {
 	color: 'transparent',
@@ -7574,45 +7896,60 @@ globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintex
 	color: 'transparent',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:-moz-placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:-moz-placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:not(:placeholder-shown)`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:not(:placeholder-shown)`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:-webkit-autofill`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:-webkit-autofill`, {
-	paddingTop: '1.625rem',
-	paddingBottom: '0.625rem',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext}:-webkit-autofill`,
+	{
+		paddingTop: '1.625rem',
+		paddingBottom: '0.625rem',
+	},
+)
 
 globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formSelect}`, {
 	paddingTop: '1.625rem',
@@ -7620,75 +7957,111 @@ globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formSelect}`, {
 	paddingLeft: '1rem',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:-moz-placeholder-shown) ~ ${zephyrScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:-moz-placeholder-shown) ~ :where(${zephyrScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:focus ~ ${zephyrScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:focus ~ :where(${zephyrScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:placeholder-shown) ~ ${zephyrScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:not(:placeholder-shown) ~ :where(${zephyrScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext} ~ ${zephyrScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext} ~ :where(${zephyrScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formSelect} ~ ${zephyrScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formSelect} ~ :where(${zephyrScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:-webkit-autofill ~ ${zephyrScope}${elLabel}`, {
-	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:-webkit-autofill ~ :where(${zephyrScope}${elLabel})`,
+	{
+		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${zephyrScope}${elLabel}::after`, {
-	position: 'absolute',
-	inset: '1rem 0.5rem',
-	zIndex: '-1',
-	height: '1.5em',
-	content: '""',
-	backgroundColor: varBsBodyBg,
-	borderRadius: varBsBorderRadius,
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${zephyrScope}${elLabel}::after`,
+	{
+		position: 'absolute',
+		inset: '1rem 0.5rem',
+		zIndex: '-1',
+		height: '1.5em',
+		content: '""',
+		backgroundColor: varBsBodyBg,
+		borderRadius: varBsBorderRadius,
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:focus ~ ${zephyrScope}${elLabel}::after`, {
-	position: 'absolute',
-	inset: '1rem 0.5rem',
-	zIndex: '-1',
-	height: '1.5em',
-	content: '""',
-	backgroundColor: varBsBodyBg,
-	borderRadius: varBsBorderRadius,
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:focus ~ ${zephyrScope}${elLabel}::after`,
+	{
+		position: 'absolute',
+		inset: '1rem 0.5rem',
+		zIndex: '-1',
+		height: '1.5em',
+		content: '""',
+		backgroundColor: varBsBodyBg,
+		borderRadius: varBsBorderRadius,
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:not(:placeholder-shown) ~ ${zephyrScope}${elLabel}::after`, {
-	position: 'absolute',
-	inset: '1rem 0.5rem',
-	zIndex: '-1',
-	height: '1.5em',
-	content: '""',
-	backgroundColor: varBsBodyBg,
-	borderRadius: varBsBorderRadius,
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:not(:placeholder-shown) ~ ${zephyrScope}${elLabel}::after`,
+	{
+		position: 'absolute',
+		inset: '1rem 0.5rem',
+		zIndex: '-1',
+		height: '1.5em',
+		content: '""',
+		backgroundColor: varBsBodyBg,
+		borderRadius: varBsBorderRadius,
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:disabled ~ ${zephyrScope}${elLabel}::after`, {
-	backgroundColor: varBsSecondaryBg,
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${elTextarea}:disabled ~ ${zephyrScope}${elLabel}::after`,
+	{
+		backgroundColor: varBsSecondaryBg,
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext} ~ ${zephyrScope}${elLabel}`, {
-	borderWidth: `${varBsBorderWidth} 0`,
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControlPlaintext} ~ :where(${zephyrScope}${elLabel})`,
+	{
+		borderWidth: `${varBsBorderWidth} 0`,
+	},
+)
 
-globalStyle(`${zephyrScope}${formFloating} > :disabled ~ ${zephyrScope}${elLabel}`, {
+globalStyle(`${zephyrScope}${formFloating} > :disabled ~ :where(${zephyrScope}${elLabel})`, {
 	color: '#6c757d',
 })
 
-globalStyle(`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:disabled ~ ${zephyrScope}${elLabel}`, {
-	color: '#6c757d',
-})
+globalStyle(
+	`${zephyrScope}${formFloating} > ${zephyrScope}${formControl}:disabled ~ :where(${zephyrScope}${elLabel})`,
+	{
+		color: '#6c757d',
+	},
+)
 
 globalStyle(`${zephyrScope}${inputGroup}`, {
 	position: 'relative',
@@ -7811,61 +8184,94 @@ globalStyle(`${zephyrScope}${inputGroupSm} > ${zephyrScope}${formSelect}`, {
 	paddingRight: '4rem',
 })
 
-globalStyle(`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${dropdownToggle}:nth-last-child(n+3)`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${dropdownToggle}:nth-last-child(n+3)`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${formFloating}:not(:last-child) > ${zephyrScope}${formControl}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${formFloating}:not(:last-child) > ${zephyrScope}${formControl}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${formFloating}:not(:last-child) > ${zephyrScope}${formSelect}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${formFloating}:not(:last-child) > ${zephyrScope}${formSelect}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${dropdownToggle}:nth-last-child(n+4)`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${dropdownToggle}:nth-last-child(n+4)`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${formFloating}:nth-last-child(n+3) > ${zephyrScope}${formControl}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${formFloating}:nth-last-child(n+3) > ${zephyrScope}${formControl}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${formFloating}:nth-last-child(n+3) > ${zephyrScope}${formSelect}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${formFloating}:nth-last-child(n+3) > ${zephyrScope}${formSelect}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup} > ${zephyrScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`,
+	{
+		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:first-child) > ${zephyrScope}${formControl}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:first-child) > ${zephyrScope}${formControl}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:first-child) > ${zephyrScope}${formSelect}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:first-child) > ${zephyrScope}${formSelect}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${validFeedback}`, {
 	display: 'none',
@@ -7908,7 +8314,8 @@ globalStyle(`${zephyrScope}${isValid} ~ ${zephyrScope}${validTooltip}`, {
 globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%232fb380\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%232fb380' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -7917,7 +8324,8 @@ globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formControl}:valid`, 
 globalStyle(`${zephyrScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%232fb380\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%232fb380' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -7951,27 +8359,36 @@ globalStyle(`${zephyrScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:valid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%232fb380\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:valid:not([multiple]):not([size])`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%232fb380' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '5.5rem',
+		backgroundPosition: 'right 1rem center, center right 3rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
 	},
-	paddingRight: '5.5rem',
-	backgroundPosition: 'right 1rem center, center right 3rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
-})
+)
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:valid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%232fb380\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:valid:not([multiple])[size="1"]`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%232fb380' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '5.5rem',
+		backgroundPosition: 'right 1rem center, center right 3rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
 	},
-	paddingRight: '5.5rem',
-	backgroundPosition: 'right 1rem center, center right 3rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
-})
+)
 
 globalStyle(`${zephyrScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%232fb380\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%232fb380' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '5.5rem',
 	backgroundPosition: 'right 1rem center, center right 3rem',
@@ -7980,7 +8397,8 @@ globalStyle(`${zephyrScope}${formSelect}${isValid}:not([multiple]):not([size])`,
 
 globalStyle(`${zephyrScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%232fb380\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%232fb380' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '5.5rem',
 	backgroundPosition: 'right 1rem center, center right 3rem',
@@ -8029,41 +8447,59 @@ globalStyle(`${zephyrScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formCheckInput}:valid ~ ${zephyrScope}${formCheckLabel}`, {
-	color: varBsFormValidColor,
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${formCheckInput}:valid ~ ${zephyrScope}${formCheckLabel}`,
+	{
+		color: varBsFormValidColor,
+	},
+)
 
 globalStyle(`${zephyrScope}${formCheckInput}${isValid} ~ ${zephyrScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(`${zephyrScope}${formCheckInline} ${zephyrScope}${formCheckInput} ~ ${zephyrScope}${validFeedback}`, {
-	marginLeft: '0.5em',
-})
+globalStyle(
+	`${zephyrScope}${formCheckInline} ${zephyrScope}${formCheckInput} ~ ${zephyrScope}${validFeedback}`,
+	{
+		marginLeft: '0.5em',
+	},
+)
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formControl}:not(:focus):valid`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formControl}:not(:focus):valid`,
+	{
+		zIndex: '3',
+	},
+)
 
 globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formControl}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formSelect}:not(:focus):valid`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formSelect}:not(:focus):valid`,
+	{
+		zIndex: '3',
+	},
+)
 
 globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formSelect}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within):valid`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within):valid`,
+	{
+		zIndex: '3',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within)${isValid}`, {
-	zIndex: '3',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within)${isValid}`,
+	{
+		zIndex: '3',
+	},
+)
 
 globalStyle(`${zephyrScope}${invalidFeedback}`, {
 	display: 'none',
@@ -8106,7 +8542,8 @@ globalStyle(`${zephyrScope}${isInvalid} ~ ${zephyrScope}${invalidTooltip}`, {
 globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23da292e\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23da292e\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23da292e'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23da292e' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -8115,7 +8552,8 @@ globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formControl}:invalid`
 globalStyle(`${zephyrScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23da292e\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23da292e\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23da292e'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23da292e' stroke='none'/%3e%3c/svg%3e\")",
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -8149,27 +8587,36 @@ globalStyle(`${zephyrScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:invalid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23da292e\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23da292e\' stroke=\'none\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:invalid:not([multiple]):not([size])`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23da292e'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23da292e' stroke='none'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '5.5rem',
+		backgroundPosition: 'right 1rem center, center right 3rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
 	},
-	paddingRight: '5.5rem',
-	backgroundPosition: 'right 1rem center, center right 3rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
-})
+)
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23da292e\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23da292e\' stroke=\'none\'/%3e%3c/svg%3e")',
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${formSelect}:invalid:not([multiple])[size="1"]`,
+	{
+		vars: {
+			[varBsFormSelectBgIcon]:
+				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23da292e'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23da292e' stroke='none'/%3e%3c/svg%3e\")",
+		},
+		paddingRight: '5.5rem',
+		backgroundPosition: 'right 1rem center, center right 3rem',
+		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
 	},
-	paddingRight: '5.5rem',
-	backgroundPosition: 'right 1rem center, center right 3rem',
-	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
-})
+)
 
 globalStyle(`${zephyrScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23da292e\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23da292e\' stroke=\'none\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23da292e'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23da292e' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '5.5rem',
 	backgroundPosition: 'right 1rem center, center right 3rem',
@@ -8178,7 +8625,8 @@ globalStyle(`${zephyrScope}${formSelect}${isInvalid}:not([multiple]):not([size])
 
 globalStyle(`${zephyrScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23da292e\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23da292e\' stroke=\'none\'/%3e%3c/svg%3e")',
+		[varBsFormSelectBgIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23da292e'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23da292e' stroke='none'/%3e%3c/svg%3e\")",
 	},
 	paddingRight: '5.5rem',
 	backgroundPosition: 'right 1rem center, center right 3rem',
@@ -8227,41 +8675,59 @@ globalStyle(`${zephyrScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${formCheckInput}:invalid ~ ${zephyrScope}${formCheckLabel}`, {
-	color: varBsFormInvalidColor,
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${formCheckInput}:invalid ~ ${zephyrScope}${formCheckLabel}`,
+	{
+		color: varBsFormInvalidColor,
+	},
+)
 
 globalStyle(`${zephyrScope}${formCheckInput}${isInvalid} ~ ${zephyrScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
-globalStyle(`${zephyrScope}${formCheckInline} ${zephyrScope}${formCheckInput} ~ ${zephyrScope}${invalidFeedback}`, {
-	marginLeft: '0.5em',
-})
+globalStyle(
+	`${zephyrScope}${formCheckInline} ${zephyrScope}${formCheckInput} ~ ${zephyrScope}${invalidFeedback}`,
+	{
+		marginLeft: '0.5em',
+	},
+)
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formControl}:not(:focus):invalid`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formControl}:not(:focus):invalid`,
+	{
+		zIndex: '4',
+	},
+)
 
 globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formControl}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formSelect}:not(:focus):invalid`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formSelect}:not(:focus):invalid`,
+	{
+		zIndex: '4',
+	},
+)
 
 globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formSelect}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within):invalid`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${zephyrScope}${wasValidated} ${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within):invalid`,
+	{
+		zIndex: '4',
+	},
+)
 
-globalStyle(`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within)${isInvalid}`, {
-	zIndex: '4',
-})
+globalStyle(
+	`${zephyrScope}${inputGroup} > ${zephyrScope}${formFloating}:not(:focus-within)${isInvalid}`,
+	{
+		zIndex: '4',
+	},
+)
 
 globalStyle(`${zephyrScope}${btn}`, {
 	vars: {
@@ -8299,7 +8765,8 @@ globalStyle(`${zephyrScope}${btn}`, {
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	boxShadow: varBsBtnBoxShadow,
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${btn}`, {
@@ -8803,6 +9270,18 @@ globalStyle(`${zephyrScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
+globalStyle(`${zephyrScope}${tooltipFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${zephyrScope}${popoverFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${zephyrScope}${modalFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
 globalStyle(`${zephyrScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -8811,7 +9290,43 @@ globalStyle(`${zephyrScope}${fade}`, {
 	},
 })
 
+globalStyle(`${zephyrScope}${tooltipFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${zephyrScope}${popoverFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${zephyrScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${zephyrScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${zephyrScope}${tooltipFade}:not(${tooltipShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${zephyrScope}${popoverFade}:not(${popoverShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${zephyrScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9355,9 +9870,12 @@ globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}`, {
 	flex: '1 1 auto',
 })
 
-globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${zephyrScope}${btnGroup} > ${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnCheck}:focus + ${zephyrScope}${btn}`, {
 	zIndex: '1',
@@ -9379,13 +9897,19 @@ globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}${active}`, {
 	zIndex: '1',
 })
 
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnCheck}:focus + ${zephyrScope}${btn}`, {
-	zIndex: '1',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnCheck}:focus + ${zephyrScope}${btn}`,
+	{
+		zIndex: '1',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:hover`, {
 	zIndex: '1',
@@ -9417,28 +9941,37 @@ globalStyle(`${zephyrScope}${btnGroup}`, {
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}:not(${btnCheck}:first-child) + ${zephyrScope}${btn}`, {
-	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-})
+globalStyle(
+	`${zephyrScope}${btnGroup} > ${zephyrScope}:not(${btnCheck}:first-child) + ${zephyrScope}${btn}`,
+	{
+		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:first-child)`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
 })
 
-globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:last-child) > ${zephyrScope}${btn}`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:last-child) > ${zephyrScope}${btn}`,
+	{
+		borderTopRightRadius: '0',
+		borderBottomRightRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
@@ -9450,10 +9983,13 @@ globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}:not(${btnCheck}) + ${zep
 	borderBottomLeftRadius: '0',
 })
 
-globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:first-child) > ${zephyrScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:first-child) > ${zephyrScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
@@ -9481,20 +10017,26 @@ globalStyle(`${zephyrScope}${btnSm} + ${zephyrScope}${dropdownToggleSplit}`, {
 	paddingLeft: '0.375rem',
 })
 
-globalStyle(`${zephyrScope}${btnGroupSm} > ${zephyrScope}${btn} + ${zephyrScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupSm} > ${zephyrScope}${btn} + ${zephyrScope}${dropdownToggleSplit}`,
+	{
+		paddingRight: '0.375rem',
+		paddingLeft: '0.375rem',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnLg} + ${zephyrScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(`${zephyrScope}${btnGroupLg} > ${zephyrScope}${btn} + ${zephyrScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupLg} > ${zephyrScope}${btn} + ${zephyrScope}${dropdownToggleSplit}`,
+	{
+		paddingRight: '0.75rem',
+		paddingLeft: '0.75rem',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroup}${show} ${zephyrScope}${dropdownToggle}`, {
 	boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
@@ -9526,30 +10068,42 @@ globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnGroup}:not(:
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`,
+	{
+		borderBottomRightRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnGroup}:not(:last-child) > ${zephyrScope}${btn}`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnGroup}:not(:last-child) > ${zephyrScope}${btn}`,
+	{
+		borderBottomRightRadius: '0',
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderTopRightRadius: '0',
 })
 
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}:not(${btnCheck}) + ${zephyrScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderTopRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupVertical} > ${zephyrScope}:not(${btnCheck}) + ${zephyrScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderTopRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnGroup}:not(:first-child) > ${zephyrScope}${btn}`, {
-	borderTopLeftRadius: '0',
-	borderTopRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnGroup}:not(:first-child) > ${zephyrScope}${btn}`,
+	{
+		borderTopLeftRadius: '0',
+		borderTopRightRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${nav}`, {
 	vars: {
@@ -9576,7 +10130,8 @@ globalStyle(`${zephyrScope}${navLink}`, {
 	textDecoration: 'none',
 	background: 'none',
 	border: '0',
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${navLink}`, {
@@ -9600,7 +10155,7 @@ globalStyle(`${zephyrScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(52, 89, 230, 0.25)',
 })
 
-globalStyle(`${zephyrScope}${navLink}${disabled}`, {
+globalStyle(`${zephyrScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -9642,7 +10197,7 @@ globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${active}`, {
+globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -9672,7 +10227,7 @@ globalStyle(`${zephyrScope}${navPills} ${zephyrScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${zephyrScope}${navPills} ${zephyrScope}${navLink}${active}`, {
+globalStyle(`${zephyrScope}${navPills} ${zephyrScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -9705,7 +10260,7 @@ globalStyle(`${zephyrScope}${navUnderline} ${zephyrScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${zephyrScope}${navUnderline} ${zephyrScope}${navLink}${active}`, {
+globalStyle(`${zephyrScope}${navUnderline} ${zephyrScope}${navLink}${navLinkActive}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -9772,7 +10327,8 @@ globalStyle(`${zephyrScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%2873, 80, 87, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2873, 80, 87, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -9869,7 +10425,7 @@ globalStyle(`${zephyrScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${active}`, {
+globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -9887,7 +10443,7 @@ globalStyle(`${zephyrScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${zephyrScope}${navbarText} ${zephyrScope}${link}`, {
+globalStyle(`${zephyrScope}${navbarText} :where(${zephyrScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -9967,13 +10523,16 @@ globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			position: 'absolute',
+globalStyle(
+	`${zephyrScope}${navbarExpandSm} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	'@media': {
@@ -10027,24 +10586,30 @@ globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			display: 'none',
+globalStyle(
+	`${zephyrScope}${navbarExpandSm} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${zephyrScope}${navbarExpandSm} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandMd}`, {
 	'@media': {
@@ -10063,13 +10628,16 @@ globalStyle(`${zephyrScope}${navbarExpandMd} ${zephyrScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandMd} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			position: 'absolute',
+globalStyle(
+	`${zephyrScope}${navbarExpandMd} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandMd} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	'@media': {
@@ -10123,24 +10691,30 @@ globalStyle(`${zephyrScope}${navbarExpandMd} ${zephyrScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandMd} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			display: 'none',
+globalStyle(
+	`${zephyrScope}${navbarExpandMd} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${navbarExpandMd} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${zephyrScope}${navbarExpandMd} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandLg}`, {
 	'@media': {
@@ -10159,13 +10733,16 @@ globalStyle(`${zephyrScope}${navbarExpandLg} ${zephyrScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandLg} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			position: 'absolute',
+globalStyle(
+	`${zephyrScope}${navbarExpandLg} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandLg} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	'@media': {
@@ -10219,24 +10796,30 @@ globalStyle(`${zephyrScope}${navbarExpandLg} ${zephyrScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandLg} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			display: 'none',
+globalStyle(
+	`${zephyrScope}${navbarExpandLg} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${navbarExpandLg} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${zephyrScope}${navbarExpandLg} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandXl}`, {
 	'@media': {
@@ -10255,13 +10838,16 @@ globalStyle(`${zephyrScope}${navbarExpandXl} ${zephyrScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandXl} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			position: 'absolute',
+globalStyle(
+	`${zephyrScope}${navbarExpandXl} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandXl} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	'@media': {
@@ -10315,24 +10901,30 @@ globalStyle(`${zephyrScope}${navbarExpandXl} ${zephyrScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandXl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			display: 'none',
+globalStyle(
+	`${zephyrScope}${navbarExpandXl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${navbarExpandXl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${zephyrScope}${navbarExpandXl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandXxl}`, {
 	'@media': {
@@ -10351,22 +10943,28 @@ globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			position: 'absolute',
+globalStyle(
+	`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				position: 'absolute',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+globalStyle(
+	`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				paddingRight: varBsNavbarNavLinkPaddingX,
+				paddingLeft: varBsNavbarNavLinkPaddingX,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10411,24 +11009,30 @@ globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			display: 'none',
+globalStyle(
+	`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				display: 'none',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			display: 'flex',
-			flexGrow: '0',
-			padding: '0',
-			overflowY: 'visible',
+globalStyle(
+	`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				display: 'flex',
+				flexGrow: '0',
+				padding: '0',
+				overflowY: 'visible',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${navbarExpand}`, {
 	flexWrap: 'nowrap',
@@ -10439,9 +11043,12 @@ globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${navbarNav}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`, {
-	position: 'absolute',
-})
+globalStyle(
+	`${zephyrScope}${navbarExpand} ${zephyrScope}${navbarNav} ${zephyrScope}${dropdownMenu}`,
+	{
+		position: 'absolute',
+	},
+)
 
 globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
@@ -10475,16 +11082,22 @@ globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${offcanvas}`, {
 	transition: 'none',
 })
 
-globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`, {
-	display: 'none',
-})
+globalStyle(
+	`${zephyrScope}${navbarExpand} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasHeader}`,
+	{
+		display: 'none',
+	},
+)
 
-globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`, {
-	display: 'flex',
-	flexGrow: '0',
-	padding: '0',
-	overflowY: 'visible',
-})
+globalStyle(
+	`${zephyrScope}${navbarExpand} ${zephyrScope}${offcanvas} ${zephyrScope}${offcanvasBody}`,
+	{
+		display: 'flex',
+		flexGrow: '0',
+		padding: '0',
+		overflowY: 'visible',
+	},
+)
 
 globalStyle(`${zephyrScope}${navbarDark}`, {
 	vars: {
@@ -10495,7 +11108,8 @@ globalStyle(`${zephyrScope}${navbarDark}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -10508,13 +11122,15 @@ globalStyle(`${zephyrScope}${navbar}[data-bs-theme=dark]`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
 })
 
 globalStyle(`[data-bs-theme=dark] ${zephyrScope}${navbarTogglerIcon}`, {
 	vars: {
-		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+		[varBsNavbarTogglerIconBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -10554,7 +11170,7 @@ globalStyle(`${zephyrScope}${card}`, {
 	boxShadow: varBsCardBoxShadow,
 })
 
-globalStyle(`${zephyrScope}${card} > ${zephyrScope}${horizontalRule}`, {
+globalStyle(`${zephyrScope}${card} > :where(${zephyrScope}${horizontalRule})`, {
 	marginRight: '0',
 	marginLeft: '0',
 })
@@ -10639,7 +11255,7 @@ globalStyle(`${zephyrScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${cardHeaderTabs} ${zephyrScope}${navLink}${active}`, {
+globalStyle(`${zephyrScope}${cardHeaderTabs} ${zephyrScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -10731,37 +11347,49 @@ globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child)
 	},
 })
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardImgTop}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardImgTop}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardHeader}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardHeader}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardImgBottom}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardImgBottom}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardFooter}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:last-child) > ${zephyrScope}${cardFooter}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child)`, {
 	'@media': {
@@ -10772,43 +11400,56 @@ globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child
 	},
 })
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardImgTop}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardImgTop}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardHeader}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardHeader}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardImgBottom}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardImgBottom}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardFooter}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${cardGroup} > ${zephyrScope}${card}:not(:first-child) > ${zephyrScope}${cardFooter}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${accordion}`, {
 	vars: {
 		[varBsAccordionColor]: varBsBodyColor,
 		[varBsAccordionBg]: varBsBodyBg,
-		[varBsAccordionTransition]: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
+		[varBsAccordionTransition]:
+			'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
@@ -10817,11 +11458,13 @@ globalStyle(`${zephyrScope}${accordion}`, {
 		[varBsAccordionBtnPaddingY]: '1rem',
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
-		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%23495057\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23495057' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnIconWidth]: '1.25rem',
 		[varBsAccordionBtnIconTransform]: 'rotate(-180deg)',
 		[varBsAccordionBtnIconTransition]: 'transform 0.2s ease-in-out',
-		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%2315245c\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnActiveIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2315245c' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
 		[varBsAccordionBtnFocusBoxShadow]: '0 1px 2px rgba(0, 0, 0, 0.05)',
 		[varBsAccordionBodyPaddingX]: '1.25rem',
 		[varBsAccordionBodyPaddingY]: '1rem',
@@ -10854,13 +11497,13 @@ globalStyle(`${zephyrScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${accordionButton}:not(${collapsed})`, {
+globalStyle(`${zephyrScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${zephyrScope}${accordionButton}:not(${collapsed})::after`, {
+globalStyle(`${zephyrScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -10910,10 +11553,13 @@ globalStyle(`${zephyrScope}${accordionItem}:first-of-type`, {
 	borderTopRightRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${zephyrScope}${accordionItem}:first-of-type > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}`, {
-	borderTopLeftRadius: varBsAccordionInnerBorderRadius,
-	borderTopRightRadius: varBsAccordionInnerBorderRadius,
-})
+globalStyle(
+	`${zephyrScope}${accordionItem}:first-of-type > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}`,
+	{
+		borderTopLeftRadius: varBsAccordionInnerBorderRadius,
+		borderTopRightRadius: varBsAccordionInnerBorderRadius,
+	},
+)
 
 globalStyle(`${zephyrScope}${accordionItem}:not(:first-of-type)`, {
 	borderTop: '0',
@@ -10924,10 +11570,13 @@ globalStyle(`${zephyrScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${zephyrScope}${accordionItem}:last-of-type > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}${collapsed}`, {
-	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
-})
+globalStyle(
+	`${zephyrScope}${accordionItem}:last-of-type > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}${accordionButtonCollapsed}`,
+	{
+		borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+		borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
+	},
+)
 
 globalStyle(`${zephyrScope}${accordionItem}:last-of-type > ${zephyrScope}${accordionCollapse}`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
@@ -10952,22 +11601,33 @@ globalStyle(`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem}:la
 	borderBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem} > ${zephyrScope}${accordionCollapse}`, {
-	borderRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem} > ${zephyrScope}${accordionCollapse}`,
+	{
+		borderRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem} > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}`, {
-	borderRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem} > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}`,
+	{
+		borderRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem} > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}${collapsed}`, {
-	borderRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${accordionFlush} > ${zephyrScope}${accordionItem} > ${zephyrScope}${accordionHeader} ${zephyrScope}${accordionButton}${collapsed}`,
+	{
+		borderRadius: '0',
+	},
+)
 
 globalStyle(`[data-bs-theme=dark] ${zephyrScope}${accordionButton}::after`, {
 	vars: {
-		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23859bf0\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
-		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23859bf0\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23859bf0'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnActiveIcon]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23859bf0'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
 	},
 })
 
@@ -11000,7 +11660,7 @@ globalStyle(`${zephyrScope}${breadcrumbItem} + ${zephyrScope}${breadcrumbItem}::
 	float: 'left',
 	paddingRight: varBsBreadcrumbItemPaddingX,
 	color: varBsBreadcrumbDividerColor,
-	content: `${varBsBreadcrumbDivider} `,
+	content: `${fallbackVar(varBsBreadcrumbDivider, '">"')} `,
 })
 
 globalStyle(`${zephyrScope}${breadcrumbItem}${active}`, {
@@ -11044,7 +11704,8 @@ globalStyle(`${zephyrScope}${pageLink}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition:
+		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${zephyrScope}${pageLink}`, {
@@ -11070,28 +11731,28 @@ globalStyle(`${zephyrScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${zephyrScope}${pageLink}${active}`, {
+globalStyle(`${zephyrScope}${pageLink}${pageItemActive}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${zephyrScope}${active} > ${zephyrScope}${pageLink}`, {
+globalStyle(`${zephyrScope}${pageItemActive} > ${zephyrScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${zephyrScope}${pageLink}${disabled}`, {
+globalStyle(`${zephyrScope}${pageLink}${pageItemDisabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${zephyrScope}${disabled} > ${zephyrScope}${pageLink}`, {
+globalStyle(`${zephyrScope}${pageItemDisabled} > ${zephyrScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -11341,7 +12002,8 @@ globalStyle(`${zephyrScope}${progressBar}`, {
 })
 
 globalStyle(`${zephyrScope}${progressBarStriped}`, {
-	backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
+	backgroundImage:
+		'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
 	backgroundSize: `${varBsProgressHeight} ${varBsProgressHeight}`,
 })
 
@@ -11349,9 +12011,12 @@ globalStyle(`${zephyrScope}${progressStacked} > ${zephyrScope}${progress}`, {
 	overflow: 'visible',
 })
 
-globalStyle(`${zephyrScope}${progressStacked} > ${zephyrScope}${progress} > ${zephyrScope}${progressBar}`, {
-	width: '100%',
-})
+globalStyle(
+	`${zephyrScope}${progressStacked} > ${zephyrScope}${progress} > ${zephyrScope}${progressBar}`,
+	{
+		width: '100%',
+	},
+)
 
 globalStyle(`${zephyrScope}${progressBarAnimated}`, {
 	animation: '1s linear infinite progress-bar-stripes',
@@ -11479,29 +12144,41 @@ globalStyle(`${zephyrScope}${listGroupHorizontal}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`, {
-	borderBottomLeftRadius: varBsListGroupBorderRadius,
-	borderTopRightRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		borderBottomLeftRadius: varBsListGroupBorderRadius,
+		borderTopRightRadius: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`, {
-	borderTopRightRadius: varBsListGroupBorderRadius,
-	borderBottomLeftRadius: '0',
-})
+globalStyle(
+	`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		borderTopRightRadius: varBsListGroupBorderRadius,
+		borderBottomLeftRadius: '0',
+	},
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem}${active}`, {
 	marginTop: '0',
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`, {
-	borderTopWidth: varBsListGroupBorderWidth,
-	borderLeftWidth: '0',
-})
+globalStyle(
+	`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`,
+	{
+		borderTopWidth: varBsListGroupBorderWidth,
+		borderLeftWidth: '0',
+	},
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
+globalStyle(
+	`${zephyrScope}${listGroupHorizontal} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`,
+	{
+		marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+		borderLeftWidth: varBsListGroupBorderWidth,
+	},
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalSm}`, {
 	'@media': {
@@ -11511,23 +12188,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalSm}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11537,23 +12220,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupI
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalSm} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 576px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalMd}`, {
 	'@media': {
@@ -11563,23 +12252,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalMd}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 768px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 768px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11589,23 +12284,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupI
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalMd} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 768px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalLg}`, {
 	'@media': {
@@ -11615,23 +12316,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalLg}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 992px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 992px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11641,23 +12348,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupI
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalLg} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 992px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalXl}`, {
 	'@media': {
@@ -11667,23 +12380,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalXl}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11693,23 +12412,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupI
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 1200px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalXxl}`, {
 	'@media': {
@@ -11719,23 +12444,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalXxl}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			borderBottomLeftRadius: varBsListGroupBorderRadius,
-			borderTopRightRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem}:first-child:not(:last-child)`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				borderBottomLeftRadius: varBsListGroupBorderRadius,
+				borderTopRightRadius: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			borderTopRightRadius: varBsListGroupBorderRadius,
-			borderBottomLeftRadius: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem}:last-child:not(:first-child)`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				borderTopRightRadius: varBsListGroupBorderRadius,
+				borderBottomLeftRadius: '0',
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -11745,23 +12476,29 @@ globalStyle(`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroup
 	},
 })
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			borderTopWidth: varBsListGroupBorderWidth,
-			borderLeftWidth: '0',
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				borderTopWidth: varBsListGroupBorderWidth,
+				borderLeftWidth: '0',
+			},
 		},
 	},
-})
+)
 
-globalStyle(`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(
+	`${zephyrScope}${listGroupHorizontalXxl} > ${zephyrScope}${listGroupItem} + ${zephyrScope}${listGroupItem}${active}`,
+	{
+		'@media': {
+			'(min-width: 1400px)': {
+				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+				borderLeftWidth: varBsListGroupBorderWidth,
+			},
 		},
 	},
-})
+)
 
 globalStyle(`${zephyrScope}${listGroupFlush}`, {
 	borderRadius: '0',
@@ -11898,7 +12635,8 @@ globalStyle(`${zephyrScope}${listGroupItemDark}`, {
 globalStyle(`${zephyrScope}${btnClose}`, {
 	vars: {
 		[varBsBtnCloseColor]: '#000',
-		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseBg]:
+			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
 		[varBsBtnCloseOpacity]: '0.5',
 		[varBsBtnCloseHoverOpacity]: '0.75',
 		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(52, 89, 230, 0.25)',
@@ -11951,6 +12689,18 @@ globalStyle(`${zephyrScope}${btnCloseWhite}`, {
 	},
 })
 
+globalStyle(`${zephyrScope}${vars}`, {
+	vars: {
+		[varBsBtnCloseFilter]: '',
+	},
+})
+
+globalStyle(`${zephyrScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
 globalStyle(`${zephyrScope}${toast}`, {
 	vars: {
 		[varBsToastZindex]: '1090',
@@ -11981,11 +12731,11 @@ globalStyle(`${zephyrScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${zephyrScope}${toast}${showing}`, {
+globalStyle(`${zephyrScope}${toast}${toastShowing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${zephyrScope}${toast}:not(${show})`, {
+globalStyle(`${zephyrScope}${toast}:not(${toastShow})`, {
 	display: 'none',
 })
 
@@ -12069,12 +12819,12 @@ globalStyle(`${zephyrScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${zephyrScope}${modal}${fade} ${zephyrScope}${modalDialog}`, {
+globalStyle(`${zephyrScope}${modal}${modalFade} ${zephyrScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${zephyrScope}${modal}${fade} ${zephyrScope}${modalDialog}`, {
+globalStyle(`${zephyrScope}${modal}${modalFade} ${zephyrScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12082,7 +12832,7 @@ globalStyle(`${zephyrScope}${modal}${fade} ${zephyrScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${modal}${show} ${zephyrScope}${modalDialog}`, {
+globalStyle(`${zephyrScope}${modal}${modalShowHook} ${zephyrScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12139,11 +12889,11 @@ globalStyle(`${zephyrScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${zephyrScope}${modalBackdrop}${fade}`, {
+globalStyle(`${zephyrScope}${modalBackdrop}${modalFade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${zephyrScope}${modalBackdrop}${show}`, {
+globalStyle(`${zephyrScope}${modalBackdrop}${modalShowHook}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -12540,7 +13290,7 @@ globalStyle(`${zephyrScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${zephyrScope}${tooltip}${show}`, {
+globalStyle(`${zephyrScope}${tooltip}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -12561,9 +13311,12 @@ globalStyle(`${zephyrScope}${bsTooltipTop} ${zephyrScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=top] ${zephyrScope}${tooltipArrow}`, {
-	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=top] ${zephyrScope}${tooltipArrow}`,
+	{
+		bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipTop} ${zephyrScope}${tooltipArrow}::before`, {
 	top: '-1px',
@@ -12571,11 +13324,14 @@ globalStyle(`${zephyrScope}${bsTooltipTop} ${zephyrScope}${tooltipArrow}::before
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=top] ${zephyrScope}${tooltipArrow}::before`, {
-	top: '-1px',
-	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-	borderTopColor: varBsTooltipBg,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=top] ${zephyrScope}${tooltipArrow}::before`,
+	{
+		top: '-1px',
+		borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+		borderTopColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipEnd} ${zephyrScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -12583,11 +13339,14 @@ globalStyle(`${zephyrScope}${bsTooltipEnd} ${zephyrScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=right] ${zephyrScope}${tooltipArrow}`, {
-	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	width: varBsTooltipArrowHeight,
-	height: varBsTooltipArrowWidth,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=right] ${zephyrScope}${tooltipArrow}`,
+	{
+		left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+		width: varBsTooltipArrowHeight,
+		height: varBsTooltipArrowWidth,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipEnd} ${zephyrScope}${tooltipArrow}::before`, {
 	right: '-1px',
@@ -12595,19 +13354,25 @@ globalStyle(`${zephyrScope}${bsTooltipEnd} ${zephyrScope}${tooltipArrow}::before
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=right] ${zephyrScope}${tooltipArrow}::before`, {
-	right: '-1px',
-	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-	borderRightColor: varBsTooltipBg,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=right] ${zephyrScope}${tooltipArrow}::before`,
+	{
+		right: '-1px',
+		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+		borderRightColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipBottom} ${zephyrScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${zephyrScope}${tooltipArrow}`, {
-	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${zephyrScope}${tooltipArrow}`,
+	{
+		top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipBottom} ${zephyrScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
@@ -12615,11 +13380,14 @@ globalStyle(`${zephyrScope}${bsTooltipBottom} ${zephyrScope}${tooltipArrow}::bef
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${zephyrScope}${tooltipArrow}::before`, {
-	bottom: '-1px',
-	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-	borderBottomColor: varBsTooltipBg,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${zephyrScope}${tooltipArrow}::before`,
+	{
+		bottom: '-1px',
+		borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+		borderBottomColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipStart} ${zephyrScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -12627,11 +13395,14 @@ globalStyle(`${zephyrScope}${bsTooltipStart} ${zephyrScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=left] ${zephyrScope}${tooltipArrow}`, {
-	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	width: varBsTooltipArrowHeight,
-	height: varBsTooltipArrowWidth,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=left] ${zephyrScope}${tooltipArrow}`,
+	{
+		right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+		width: varBsTooltipArrowHeight,
+		height: varBsTooltipArrowWidth,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsTooltipStart} ${zephyrScope}${tooltipArrow}::before`, {
 	left: '-1px',
@@ -12639,11 +13410,14 @@ globalStyle(`${zephyrScope}${bsTooltipStart} ${zephyrScope}${tooltipArrow}::befo
 	borderLeftColor: varBsTooltipBg,
 })
 
-globalStyle(`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=left] ${zephyrScope}${tooltipArrow}::before`, {
-	left: '-1px',
-	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-	borderLeftColor: varBsTooltipBg,
-})
+globalStyle(
+	`${zephyrScope}${bsTooltipAuto}[data-popper-placement^=left] ${zephyrScope}${tooltipArrow}::before`,
+	{
+		left: '-1px',
+		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+		borderLeftColor: varBsTooltipBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${tooltipInner}`, {
 	maxWidth: varBsTooltipMaxWidth,
@@ -12730,45 +13504,60 @@ globalStyle(`${zephyrScope}${bsPopoverTop} > ${zephyrScope}${popoverArrow}`, {
 	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}`, {
-	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}`,
+	{
+		bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverTop} > ${zephyrScope}${popoverArrow}::before`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::before`, {
-	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverTop} > ${zephyrScope}${popoverArrow}::after`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::after`, {
-	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverTop} > ${zephyrScope}${popoverArrow}::before`, {
 	bottom: '0',
 	borderTopColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::before`, {
-	bottom: '0',
-	borderTopColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		bottom: '0',
+		borderTopColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverTop} > ${zephyrScope}${popoverArrow}::after`, {
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::after`, {
-	bottom: varBsPopoverBorderWidth,
-	borderTopColor: varBsPopoverBg,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=top] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		bottom: varBsPopoverBorderWidth,
+		borderTopColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverEnd} > ${zephyrScope}${popoverArrow}`, {
 	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -12776,91 +13565,121 @@ globalStyle(`${zephyrScope}${bsPopoverEnd} > ${zephyrScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}`, {
-	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	width: varBsPopoverArrowHeight,
-	height: varBsPopoverArrowWidth,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}`,
+	{
+		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+		width: varBsPopoverArrowHeight,
+		height: varBsPopoverArrowWidth,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverEnd} > ${zephyrScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::before`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverEnd} > ${zephyrScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::after`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverEnd} > ${zephyrScope}${popoverArrow}::before`, {
 	left: '0',
 	borderRightColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::before`, {
-	left: '0',
-	borderRightColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		left: '0',
+		borderRightColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverEnd} > ${zephyrScope}${popoverArrow}::after`, {
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::after`, {
-	left: varBsPopoverBorderWidth,
-	borderRightColor: varBsPopoverBg,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=right] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		left: varBsPopoverBorderWidth,
+		borderRightColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverBottom} > ${zephyrScope}${popoverArrow}`, {
 	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}`, {
-	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}`,
+	{
+		top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverBottom} > ${zephyrScope}${popoverArrow}::before`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::before`, {
-	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverBottom} > ${zephyrScope}${popoverArrow}::after`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::after`, {
-	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverBottom} > ${zephyrScope}${popoverArrow}::before`, {
 	top: '0',
 	borderBottomColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::before`, {
-	top: '0',
-	borderBottomColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		top: '0',
+		borderBottomColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverBottom} > ${zephyrScope}${popoverArrow}::after`, {
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::after`, {
-	top: varBsPopoverBorderWidth,
-	borderBottomColor: varBsPopoverBg,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		top: varBsPopoverBorderWidth,
+		borderBottomColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverBottom} ${zephyrScope}${popoverHeader}::before`, {
 	position: 'absolute',
@@ -12873,16 +13692,19 @@ globalStyle(`${zephyrScope}${bsPopoverBottom} ${zephyrScope}${popoverHeader}::be
 	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${zephyrScope}${popoverHeader}::before`, {
-	position: 'absolute',
-	top: '0',
-	left: '50%',
-	display: 'block',
-	width: varBsPopoverArrowWidth,
-	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
-	content: '""',
-	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${zephyrScope}${popoverHeader}::before`,
+	{
+		position: 'absolute',
+		top: '0',
+		left: '50%',
+		display: 'block',
+		width: varBsPopoverArrowWidth,
+		marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+		content: '""',
+		borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverStart} > ${zephyrScope}${popoverArrow}`, {
 	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -12890,47 +13712,62 @@ globalStyle(`${zephyrScope}${bsPopoverStart} > ${zephyrScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}`, {
-	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	width: varBsPopoverArrowHeight,
-	height: varBsPopoverArrowWidth,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}`,
+	{
+		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+		width: varBsPopoverArrowHeight,
+		height: varBsPopoverArrowWidth,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverStart} > ${zephyrScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::before`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverStart} > ${zephyrScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::after`, {
-	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverStart} > ${zephyrScope}${popoverArrow}::before`, {
 	right: '0',
 	borderLeftColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::before`, {
-	right: '0',
-	borderLeftColor: varBsPopoverArrowBorder,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::before`,
+	{
+		right: '0',
+		borderLeftColor: varBsPopoverArrowBorder,
+	},
+)
 
 globalStyle(`${zephyrScope}${bsPopoverStart} > ${zephyrScope}${popoverArrow}::after`, {
 	right: varBsPopoverBorderWidth,
 	borderLeftColor: varBsPopoverBg,
 })
 
-globalStyle(`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::after`, {
-	right: varBsPopoverBorderWidth,
-	borderLeftColor: varBsPopoverBg,
-})
+globalStyle(
+	`${zephyrScope}${bsPopoverAuto}[data-popper-placement^=left] > ${zephyrScope}${popoverArrow}::after`,
+	{
+		right: varBsPopoverBorderWidth,
+		borderLeftColor: varBsPopoverBg,
+	},
+)
 
 globalStyle(`${zephyrScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
@@ -13177,11 +14014,13 @@ globalStyle(`${zephyrScope}${carouselControlNextIcon}`, {
 })
 
 globalStyle(`${zephyrScope}${carouselControlPrevIcon}`, {
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e") ',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\") ",
 })
 
 globalStyle(`${zephyrScope}${carouselControlNextIcon}`, {
-	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e") ',
+	backgroundImage:
+		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\") ",
 })
 
 globalStyle(`${zephyrScope}${carouselIndicators}`, {
@@ -13248,6 +14087,22 @@ globalStyle(`${zephyrScope}${carouselDark}`, {
 	},
 })
 
+globalStyle(`${zephyrScope}${vars}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#fff',
+		[varBsCarouselCaptionColor]: '#fff',
+		[varBsCarouselControlIconFilter]: '',
+	},
+})
+
+globalStyle(`${zephyrScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#000',
+		[varBsCarouselCaptionColor]: '#000',
+		[varBsCarouselControlIconFilter]: 'invert(1) grayscale(100)',
+	},
+})
+
 globalStyle(`${zephyrScope}${spinnerGrow}`, {
 	display: 'inline-block',
 	flexShrink: '0',
@@ -13269,7 +14124,7 @@ globalStyle(`${zephyrScope}${spinnerBorder}`, {
 })
 
 globalKeyframes('spinner-border', {
-	'to': {
+	to: {
 		transform: 'rotate(360deg) ',
 	},
 })
@@ -14382,204 +15237,204 @@ globalStyle(`${zephyrScope}${clearfix}::after`, {
 
 globalStyle(`${zephyrScope}${textBgPrimary}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgSecondary}`, {
 	color: '#000 !important',
-	backgroundColor: `RGBA(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgSuccess}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgInfo}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgWarning}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgDanger}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgLight}`, {
 	color: '#000 !important',
-	backgroundColor: `RGBA(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${textBgDark}`, {
 	color: '#fff !important',
-	backgroundColor: `RGBA(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+	backgroundColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsBgOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkPrimary}`, {
-	color: `RGBA(${varBsPrimaryRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsPrimaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsPrimaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsPrimaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkPrimary}:hover`, {
-	color: `RGBA(42, 71, 184, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(42, 71, 184, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(42, 71, 184, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(42, 71, 184, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(42, 71, 184, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(42, 71, 184, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkPrimary}:focus`, {
-	color: `RGBA(42, 71, 184, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(42, 71, 184, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(42, 71, 184, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(42, 71, 184, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(42, 71, 184, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(42, 71, 184, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkSecondary}`, {
-	color: `RGBA(${varBsSecondaryRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsSecondaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsSecondaryRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsSecondaryRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkSecondary}:hover`, {
-	color: `RGBA(255, 255, 255, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkSecondary}:focus`, {
-	color: `RGBA(255, 255, 255, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(255, 255, 255, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(255, 255, 255, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkSuccess}`, {
-	color: `RGBA(${varBsSuccessRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsSuccessRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsSuccessRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsSuccessRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkSuccess}:hover`, {
-	color: `RGBA(38, 143, 102, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(38, 143, 102, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(38, 143, 102, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(38, 143, 102, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(38, 143, 102, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(38, 143, 102, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkSuccess}:focus`, {
-	color: `RGBA(38, 143, 102, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(38, 143, 102, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(38, 143, 102, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(38, 143, 102, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(38, 143, 102, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(38, 143, 102, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkInfo}`, {
-	color: `RGBA(${varBsInfoRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsInfoRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsInfoRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsInfoRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkInfo}:hover`, {
-	color: `RGBA(32, 98, 145, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(32, 98, 145, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(32, 98, 145, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(32, 98, 145, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(32, 98, 145, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(32, 98, 145, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkInfo}:focus`, {
-	color: `RGBA(32, 98, 145, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(32, 98, 145, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(32, 98, 145, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(32, 98, 145, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(32, 98, 145, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(32, 98, 145, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkWarning}`, {
-	color: `RGBA(${varBsWarningRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsWarningRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsWarningRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsWarningRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkWarning}:hover`, {
-	color: `RGBA(195, 151, 78, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(195, 151, 78, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(195, 151, 78, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(195, 151, 78, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(195, 151, 78, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(195, 151, 78, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkWarning}:focus`, {
-	color: `RGBA(195, 151, 78, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(195, 151, 78, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(195, 151, 78, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(195, 151, 78, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(195, 151, 78, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(195, 151, 78, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkDanger}`, {
-	color: `RGBA(${varBsDangerRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsDangerRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsDangerRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsDangerRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkDanger}:hover`, {
-	color: `RGBA(174, 33, 37, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(174, 33, 37, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(174, 33, 37, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(174, 33, 37, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(174, 33, 37, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(174, 33, 37, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkDanger}:focus`, {
-	color: `RGBA(174, 33, 37, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(174, 33, 37, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(174, 33, 37, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(174, 33, 37, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(174, 33, 37, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(174, 33, 37, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkLight}`, {
-	color: `RGBA(${varBsLightRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsLightRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsLightRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsLightRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkLight}:hover`, {
-	color: `RGBA(249, 250, 251, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkLight}:focus`, {
-	color: `RGBA(249, 250, 251, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(249, 250, 251, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(249, 250, 251, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkDark}`, {
-	color: `RGBA(${varBsDarkRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsDarkRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsDarkRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsDarkRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkDark}:hover`, {
-	color: `RGBA(26, 30, 33, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkDark}:focus`, {
-	color: `RGBA(26, 30, 33, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(26, 30, 33, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(26, 30, 33, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkBodyEmphasis}`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkBodyEmphasis}:hover`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.75')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkBodyEmphasis}:focus`, {
-	color: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkOpacity}) !important`,
-	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	color: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.75')}) !important`,
+	WebkitTextDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
+	textDecorationColor: `RGBA(${varBsEmphasisColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '0.75')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${focusRing}:focus`, {
@@ -14591,8 +15446,8 @@ globalStyle(`${zephyrScope}${iconLink}`, {
 	display: 'inline-flex',
 	gap: '0.375rem',
 	alignItems: 'center',
-	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
-	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkOpacity})`,
+	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.5')})`,
+	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '0.5')})`,
 	textUnderlineOffset: '0.25em',
 	WebkitBackfaceVisibility: 'hidden',
 	backfaceVisibility: 'hidden',
@@ -14833,9 +15688,12 @@ globalStyle(`${zephyrScope}${visuallyHidden}:not(caption)`, {
 	position: 'absolute !important',
 })
 
-globalStyle(`${zephyrScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
-	position: 'absolute !important',
-})
+globalStyle(
+	`${zephyrScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`,
+	{
+		position: 'absolute !important',
+	},
+)
 
 globalStyle(`${zephyrScope}${visuallyHidden} *`, {
 	overflow: 'hidden !important',
@@ -16546,8 +17404,8 @@ globalStyle(`${zephyrScope}${linkUnderline}`, {
 	vars: {
 		[varBsLinkUnderlineOpacity]: '1',
 	},
-	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
-	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${varBsLinkUnderlineOpacity}) !important`,
+	WebkitTextDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
+	textDecorationColor: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkUnderlineOpacity, '1')}) !important`,
 })
 
 globalStyle(`${zephyrScope}${linkUnderlineOpacity0}`, {
@@ -24235,7 +25093,7 @@ globalStyle(`${zephyrScope}${fs4}`, {
 
 globalStyle(`${zephyrScope}${dPrintInline}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline !important',
 		},
 	},
@@ -24243,7 +25101,7 @@ globalStyle(`${zephyrScope}${dPrintInline}`, {
 
 globalStyle(`${zephyrScope}${dPrintInlineBlock}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline-block !important',
 		},
 	},
@@ -24251,7 +25109,7 @@ globalStyle(`${zephyrScope}${dPrintInlineBlock}`, {
 
 globalStyle(`${zephyrScope}${dPrintBlock}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'block !important',
 		},
 	},
@@ -24259,7 +25117,7 @@ globalStyle(`${zephyrScope}${dPrintBlock}`, {
 
 globalStyle(`${zephyrScope}${dPrintGrid}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'grid !important',
 		},
 	},
@@ -24267,7 +25125,7 @@ globalStyle(`${zephyrScope}${dPrintGrid}`, {
 
 globalStyle(`${zephyrScope}${dPrintInlineGrid}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline-grid !important',
 		},
 	},
@@ -24275,7 +25133,7 @@ globalStyle(`${zephyrScope}${dPrintInlineGrid}`, {
 
 globalStyle(`${zephyrScope}${dPrintTable}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'table !important',
 		},
 	},
@@ -24283,7 +25141,7 @@ globalStyle(`${zephyrScope}${dPrintTable}`, {
 
 globalStyle(`${zephyrScope}${dPrintTableRow}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'table-row !important',
 		},
 	},
@@ -24291,7 +25149,7 @@ globalStyle(`${zephyrScope}${dPrintTableRow}`, {
 
 globalStyle(`${zephyrScope}${dPrintTableCell}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'table-cell !important',
 		},
 	},
@@ -24299,7 +25157,7 @@ globalStyle(`${zephyrScope}${dPrintTableCell}`, {
 
 globalStyle(`${zephyrScope}${dPrintFlex}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'flex !important',
 		},
 	},
@@ -24307,7 +25165,7 @@ globalStyle(`${zephyrScope}${dPrintFlex}`, {
 
 globalStyle(`${zephyrScope}${dPrintInlineFlex}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'inline-flex !important',
 		},
 	},
@@ -24315,7 +25173,7 @@ globalStyle(`${zephyrScope}${dPrintInlineFlex}`, {
 
 globalStyle(`${zephyrScope}${dPrintNone}`, {
 	'@media': {
-		'print': {
+		print: {
 			display: 'none !important',
 		},
 	},
@@ -24335,21 +25193,33 @@ globalStyle(`${zephyrScope}${navbar} ${zephyrScope}${navbarNav} ${zephyrScope}${
 	borderRadius: '0.375rem',
 })
 
-globalStyle(`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}:hover`, {
-	backgroundColor: 'rgba(255, 255, 255, 0.1)',
-})
+globalStyle(
+	`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}:hover`,
+	{
+		backgroundColor: 'rgba(255, 255, 255, 0.1)',
+	},
+)
 
-globalStyle(`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${active}`, {
-	backgroundColor: 'rgba(0, 0, 0, 0.5)',
-})
+globalStyle(
+	`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`,
+	{
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
+)
 
-globalStyle(`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}:hover`, {
-	backgroundColor: 'rgba(0, 0, 0, 0.03)',
-})
+globalStyle(
+	`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}:hover`,
+	{
+		backgroundColor: 'rgba(0, 0, 0, 0.03)',
+	},
+)
 
-globalStyle(`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${active}`, {
-	backgroundColor: 'rgba(0, 0, 0, 0.05)',
-})
+globalStyle(
+	`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`,
+	{
+		backgroundColor: 'rgba(0, 0, 0, 0.05)',
+	},
+)
 
 globalStyle(`${zephyrScope}${navbarNav}`, {
 	vars: {
@@ -24466,7 +25336,7 @@ globalStyle(`${zephyrScope}${table}`, {
 	boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
 })
 
-globalStyle(`${zephyrScope}${tableSection} ${zephyrScope}${tableHeaderCell}`, {
+globalStyle(`:where(${zephyrScope}${tableSection}) :where(${zephyrScope}${tableHeaderCell})`, {
 	fontSize: '0.875rem',
 	textTransform: 'uppercase',
 })
@@ -24527,7 +25397,7 @@ globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}`, {
 	borderWidth: '0 0 1px',
 })
 
-globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${active}`, {
+globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${navLinkActive}`, {
 	boxShadow: 'inset 0 -2px 0 #3459e6',
 })
 
@@ -24576,27 +25446,27 @@ globalStyle(`${zephyrScope}${badge}${bgLight}`, {
 	color: '#212529',
 })
 
-globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${h1}`, {
+globalStyle(`${zephyrScope}${listGroupItem} :where(${zephyrScope}${h1})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${h2}`, {
+globalStyle(`${zephyrScope}${listGroupItem} :where(${zephyrScope}${h2})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${h3}`, {
+globalStyle(`${zephyrScope}${listGroupItem} :where(${zephyrScope}${h3})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${h4}`, {
+globalStyle(`${zephyrScope}${listGroupItem} :where(${zephyrScope}${h4})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${h5}`, {
+globalStyle(`${zephyrScope}${listGroupItem} :where(${zephyrScope}${h5})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${h6}`, {
+globalStyle(`${zephyrScope}${listGroupItem} :where(${zephyrScope}${h6})`, {
 	color: 'inherit',
 })
 
@@ -24624,27 +25494,27 @@ globalStyle(`${zephyrScope}${listGroupItem} ${zephyrScope}${clsH6}`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${card} ${zephyrScope}${h1}`, {
+globalStyle(`${zephyrScope}${card} :where(${zephyrScope}${h1})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${card} ${zephyrScope}${h2}`, {
+globalStyle(`${zephyrScope}${card} :where(${zephyrScope}${h2})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${card} ${zephyrScope}${h3}`, {
+globalStyle(`${zephyrScope}${card} :where(${zephyrScope}${h3})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${card} ${zephyrScope}${h4}`, {
+globalStyle(`${zephyrScope}${card} :where(${zephyrScope}${h4})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${card} ${zephyrScope}${h5}`, {
+globalStyle(`${zephyrScope}${card} :where(${zephyrScope}${h5})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${card} ${zephyrScope}${h6}`, {
+globalStyle(`${zephyrScope}${card} :where(${zephyrScope}${h6})`, {
 	color: 'inherit',
 })
 
@@ -24686,4 +25556,40 @@ globalStyle(`${zephyrScope}${modalFooter}`, {
 
 globalStyle(`${zephyrScope}${modalContent}`, {
 	boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+})
+
+globalStyle(`${zephyrScope}${listBase}`, {
+	marginTop: '0',
+	marginBottom: '1rem',
+})
+
+globalStyle(`${zephyrScope}${listNested}`, {
+	marginBottom: '0',
+})
+
+globalStyle(`${zephyrScope}${listIndented}`, {
+	paddingLeft: '2rem',
+})
+
+globalStyle(`${zephyrScope}${legend}`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
+globalStyle(`${zephyrScope}${legendClear}`, {
+	clear: 'left',
+})
+
+globalStyle(`${zephyrScope}${smallText}`, {
+	fontSize: '0.875em',
+})
+
+globalStyle(`${zephyrScope}${scrollspyExample}`, {
+	height: '200px',
+	overflowY: 'auto',
+	marginTop: '0.5rem',
 })

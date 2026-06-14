@@ -35,15 +35,22 @@ function emitVarImports(lines, usedVarSymbols, registry) {
 }
 
 function extractBodyDeclarations(cssText) {
-	const bodyMatch = cssText.match(/body\s*\{([^}]+)\}/)
-	if (!bodyMatch) return {}
 	const decls = {}
-	for (const part of bodyMatch[1].split(';')) {
-		const trimmed = part.trim()
-		if (!trimmed) continue
-		const colon = trimmed.indexOf(':')
-		if (colon === -1) continue
-		decls[trimmed.slice(0, colon).trim()] = trimmed.slice(colon + 1).trim()
+	// Merge ALL standalone `body { … }` rules in source order (later wins). Themes like
+	// quartz/morph/vapor add a second `body { background-image: linear-gradient(…) }` rule
+	// separate from the base reboot `body {}`. Anchor on `}` or start so we never pick up
+	// compound selectors like `[data-bs-theme=dark] body { … }`.
+	const re = /(?:^|})\s*body\s*\{([^}]*)\}/g
+	let bodyMatch = re.exec(cssText)
+	while (bodyMatch !== null) {
+		for (const part of bodyMatch[1].split(';')) {
+			const trimmed = part.trim()
+			if (!trimmed) continue
+			const colon = trimmed.indexOf(':')
+			if (colon === -1) continue
+			decls[trimmed.slice(0, colon).trim()] = trimmed.slice(colon + 1).trim()
+		}
+		bodyMatch = re.exec(cssText)
 	}
 	return decls
 }
@@ -76,6 +83,8 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 	]
 	const frameProps = [
 		['background-color', 'backgroundColor'],
+		['background-image', 'backgroundImage'],
+		['background', 'background'],
 		['margin', 'margin'],
 	]
 
@@ -113,6 +122,12 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 	if (!hasFrameProp && !bodyDecls['background-color']) {
 		body.push("\tbackgroundColor: '#fff',")
 	}
+	// `display: flow-root` makes bodyFrame a block formatting context so descendant
+	// negative margins (e.g. Bootstrap's `.row { margin-top: -gutter }`) cannot collapse
+	// up through it. Without this the wrapper is dragged upward and its `min-height: 100vh`
+	// ends short of the captured content — leaving the page background (gradient/dark body
+	// bg, which the real `<body>` propagates to the viewport canvas) uncovered at the bottom.
+	body.push("\tdisplay: 'flow-root',")
 	body.push("\tminHeight: '100vh',")
 	body.push('})')
 	body.push('')
