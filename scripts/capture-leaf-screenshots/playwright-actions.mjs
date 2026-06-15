@@ -631,7 +631,21 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		// menu lands at either the offset or the settled position). Nudge a resize so Popper
 		// re-resolves against the now-settled anchor — deterministic across baseline and VE.
 		if (scenario.kind === 'click-visible' || scenario.kind === 'hover-visible') {
-			await page.evaluate(() => window.dispatchEvent(new Event('resize')))
+			// Await web fonts BEFORE the nudge: the floating element's width is a snapshot taken
+			// when it opens, and a lazily-loaded web font can change that width afterward (e.g.
+			// sketchy's HTML tooltip swaps 'Cabin Sketch' into <b>, shrinking the box ~6px). Popper
+			// does not re-anchor on the swap, so its left stays width-stale. Whichever of
+			// {baseline, VE} happens to re-anchor before vs after the swap lands a few px off from
+			// the other. Gating the nudge on fonts.ready makes the final re-anchor use settled
+			// metrics in both apps → deterministic, matching positions.
+			await page.evaluate(async () => {
+				if (document.fonts?.ready) {
+					await document.fonts.ready
+					const stillLoading = [...document.fonts].filter((f) => f.status === 'loading')
+					await Promise.allSettled(stillLoading.map((f) => f.loaded))
+				}
+				window.dispatchEvent(new Event('resize'))
+			})
 			await waitForVisualStable(page, settleTarget)
 		}
 	}

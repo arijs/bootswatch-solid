@@ -6,6 +6,7 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { markText, paragraph, smallText } from '../../../theme-contract/contents/contract.css'
+import { elEm, elS, elStrong } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 
@@ -29,7 +30,9 @@ const TextElements: Component = () => {
 				<del>This line of text is meant to be treated as deleted text.</del>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<s>This line of text is meant to be treated as no longer accurate.</s>
+				<s class={`${theme} ${elS}`}>
+					This line of text is meant to be treated as no longer accurate.
+				</s>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
 				<ins>This line of text is meant to be treated as an addition to the document.</ins>
@@ -43,10 +46,10 @@ const TextElements: Component = () => {
 				</small>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<strong>This line rendered as bold text.</strong>
+				<strong class={`${theme} ${elStrong}`}>This line rendered as bold text.</strong>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<em>This line rendered as italicized text.</em>
+				<em class={`${theme} ${elEm}`}>This line rendered as italicized text.</em>
 			</p>
 		</div>
 	)

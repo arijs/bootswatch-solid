@@ -3374,7 +3374,7 @@ globalStyle(`:where(${sketchyScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`[role=button]`, {
+globalStyle(`${sketchyScope}[role=button]`, {
 	cursor: 'pointer',
 })
 
@@ -3387,7 +3387,7 @@ globalStyle(`${sketchyScope}${elSelect}:disabled`, {
 })
 
 globalStyle(
-	`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
+	`${sketchyScope}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
 	{
 		display: 'none !important',
 	},
@@ -3397,15 +3397,15 @@ globalStyle(`:where(${sketchyScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=button]`, {
+globalStyle(`${sketchyScope}[type=button]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=reset]`, {
+globalStyle(`${sketchyScope}[type=reset]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=submit]`, {
+globalStyle(`${sketchyScope}[type=submit]`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3413,15 +3413,15 @@ globalStyle(`${sketchyScope}${elButton}:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=button]:not(:disabled)`, {
+globalStyle(`${sketchyScope}[type=button]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=reset]:not(:disabled)`, {
+globalStyle(`${sketchyScope}[type=reset]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=submit]:not(:disabled)`, {
+globalStyle(`${sketchyScope}[type=submit]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
@@ -3494,12 +3494,12 @@ globalStyle(`::-webkit-inner-spin-button`, {
 	height: 'auto',
 })
 
-globalStyle(`[type=search]`, {
+globalStyle(`${sketchyScope}[type=search]`, {
 	WebkitAppearance: 'textfield',
 	outlineOffset: '-2px',
 })
 
-globalStyle(`[type=search]::-webkit-search-cancel-button`, {
+globalStyle(`${sketchyScope}[type=search]::-webkit-search-cancel-button`, {
 	cursor: 'pointer',
 	filter: 'grayscale(1)',
 })
@@ -3539,7 +3539,7 @@ globalStyle(`:where(${sketchyScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`[hidden]`, {
+globalStyle(`${sketchyScope}[hidden]`, {
 	display: 'none !important',
 })
 
@@ -6922,11 +6922,11 @@ globalStyle(`${sketchyScope}${table} > :not(caption) > * > *`, {
 	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-globalStyle(`${sketchyScope}${table} > :where(${sketchyScope}${tableSection})`, {
+globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${table} > :where(${sketchyScope}${tableSection})`, {
+globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableSection}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -6959,7 +6959,7 @@ globalStyle(`${sketchyScope}${tableBorderless} > :not(:first-child)`, {
 })
 
 globalStyle(
-	`${sketchyScope}${tableStriped} > :where(${sketchyScope}${tableSection}) > ${sketchyScope}${tableRow}:nth-of-type(odd) > *`,
+	`${sketchyScope}${tableStriped} > ${sketchyScope}${tableSection} > ${sketchyScope}${tableRow}:nth-of-type(odd) > *`,
 	{
 		vars: {
 			[varBsTableColorType]: varBsTableStripedColor,
@@ -6969,7 +6969,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableStripedColumns} > :not(caption) > :where(${sketchyScope}${tableRow}) > :nth-child(even)`,
+	`${sketchyScope}${tableStripedColumns} > :not(caption) > ${sketchyScope}${tableRow} > :nth-child(even)`,
 	{
 		vars: {
 			[varBsTableColorType]: varBsTableStripedColor,
@@ -6986,7 +6986,7 @@ globalStyle(`${sketchyScope}${tableActive}`, {
 })
 
 globalStyle(
-	`${sketchyScope}${tableHover} > :where(${sketchyScope}${tableSection}) > ${sketchyScope}${tableRow}:hover > *`,
+	`${sketchyScope}${tableHover} > ${sketchyScope}${tableSection} > ${sketchyScope}${tableRow}:hover > *`,
 	{
 		vars: {
 			[varBsTableColorState]: varBsTableHoverColor,
@@ -7523,7 +7523,7 @@ globalStyle(`${sketchyScope}${formSelectLg}`, {
 	borderRadius: varBsBorderRadiusLg,
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${formSelect}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${formSelect}`, {
 	vars: {
 		[varBsFormSelectBgImg]:
 			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23dee2e6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
@@ -7713,7 +7713,7 @@ globalStyle(`${sketchyScope}${btnCheck}:disabled + ${sketchyScope}${btn}`, {
 })
 
 globalStyle(
-	`[data-bs-theme=dark] ${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}:not(:checked):not(:focus)`,
+	`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${formSwitch} ${sketchyScope}${formCheckInput}:not(:checked):not(:focus)`,
 	{
 		vars: {
 			[varBsFormSwitchBg]:
@@ -7857,7 +7857,7 @@ globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect}`, {
 	lineHeight: '1.25',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > :where(${sketchyScope}${elLabel})`, {
+globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elLabel}`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7876,7 +7876,7 @@ globalStyle(`${sketchyScope}${formFloating} > :where(${sketchyScope}${elLabel})`
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${formFloating} > :where(${sketchyScope}${elLabel})`, {
+globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${elLabel}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7976,42 +7976,42 @@ globalStyle(`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect}`, {
 })
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:-moz-placeholder-shown) ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:-moz-placeholder-shown) ~ ${sketchyScope}${elLabel}`,
 	{
 		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 	},
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:focus ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:focus ~ ${sketchyScope}${elLabel}`,
 	{
 		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 	},
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:placeholder-shown) ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:not(:placeholder-shown) ~ ${sketchyScope}${elLabel}`,
 	{
 		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 	},
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ ${sketchyScope}${elLabel}`,
 	{
 		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 	},
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect} ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formSelect} ~ ${sketchyScope}${elLabel}`,
 	{
 		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 	},
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:-webkit-autofill ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:-webkit-autofill ~ ${sketchyScope}${elLabel}`,
 	{
 		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 	},
@@ -8064,18 +8064,18 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControlPlaintext} ~ ${sketchyScope}${elLabel}`,
 	{
 		borderWidth: `${varBsBorderWidth} 0`,
 	},
 )
 
-globalStyle(`${sketchyScope}${formFloating} > :disabled ~ :where(${sketchyScope}${elLabel})`, {
+globalStyle(`${sketchyScope}${formFloating} > :disabled ~ ${sketchyScope}${elLabel}`, {
 	color: '#868e96',
 })
 
 globalStyle(
-	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:disabled ~ :where(${sketchyScope}${elLabel})`,
+	`${sketchyScope}${formFloating} > ${sketchyScope}${formControl}:disabled ~ ${sketchyScope}${elLabel}`,
 	{
 		color: '#868e96',
 	},
@@ -10458,7 +10458,7 @@ globalStyle(`${sketchyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${sketchyScope}${navbarText} :where(${sketchyScope}${link})`, {
+globalStyle(`${sketchyScope}${navbarText} ${sketchyScope}${link}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -11151,7 +11151,7 @@ globalStyle(`${sketchyScope}${navbar}[data-bs-theme=dark]`, {
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${navbarTogglerIcon}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${navbarTogglerIcon}`, {
 	vars: {
 		[varBsNavbarTogglerIconBg]:
 			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
@@ -11193,7 +11193,7 @@ globalStyle(`${sketchyScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${card} > :where(${sketchyScope}${horizontalRule})`, {
+globalStyle(`${sketchyScope}${card} > ${sketchyScope}${horizontalRule}`, {
 	marginRight: '0',
 	marginLeft: '0',
 })
@@ -11645,7 +11645,7 @@ globalStyle(
 	},
 )
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${accordionButton}::after`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${accordionButton}::after`, {
 	vars: {
 		[varBsAccordionBtnIcon]:
 			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23858585'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
@@ -14059,7 +14059,7 @@ globalStyle(`${sketchyScope}${carouselIndicators}`, {
 	marginLeft: '15%',
 })
 
-globalStyle(`${sketchyScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${sketchyScope}${carouselIndicators} ${sketchyScope}[data-bs-target]`, {
 	boxSizing: 'content-box',
 	flex: '0 1 auto',
 	width: '30px',
@@ -14078,7 +14078,7 @@ globalStyle(`${sketchyScope}${carouselIndicators} [data-bs-target]`, {
 	transition: 'opacity 0.6s ease',
 })
 
-globalStyle(`${sketchyScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${sketchyScope}${carouselIndicators} ${sketchyScope}[data-bs-target]`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -25247,7 +25247,7 @@ globalStyle(`${sketchyScope}${btnCheck}`, {
 	opacity: '0',
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnPrimary}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${btnPrimary}`, {
 	vars: {
 		[varBsBtnBg]: '#f8f9fa',
 		[varBsBtnHoverBg]: '#dee2e6',
@@ -25260,7 +25260,7 @@ globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnPrimary}`, {
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnOutlinePrimary}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${btnOutlinePrimary}`, {
 	vars: {
 		[varBsBtnHoverBg]: '#dee2e6',
 		[varBsBtnActiveBg]: '#f8f9fa',
@@ -25276,13 +25276,13 @@ globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnOutlinePrimary}`, {
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnOutlineSecondary}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${btnOutlineSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${btnOutlineDark}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${btnOutlineDark}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
 	},
@@ -25341,16 +25341,16 @@ globalStyle(`${sketchyScope}${tableBordered}`, {
 	borderRadius: '5px 25px 5px 25px/25px 5px 25px 5px',
 })
 
-globalStyle(`${sketchyScope}${tableBordered} :where(${sketchyScope}${tableHeaderCell})`, {
+globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableHeaderCell}`, {
 	borderRadius: '5px 5px 25px 4px/5px 4px 3px 5px',
 })
 
-globalStyle(`${sketchyScope}${tableBordered} :where(${sketchyScope}${tableCell})`, {
+globalStyle(`${sketchyScope}${tableBordered} ${sketchyScope}${tableCell}`, {
 	borderRadius: '5px 5px 25px 4px/5px 4px 3px 5px',
 })
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#28a745',
@@ -25358,7 +25358,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess} ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#28a745',
@@ -25366,7 +25366,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#28a745',
@@ -25374,7 +25374,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableSuccess}:hover ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#28a745',
@@ -25382,7 +25382,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#17a2b8',
@@ -25390,7 +25390,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo} ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#17a2b8',
@@ -25398,7 +25398,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#17a2b8',
@@ -25406,7 +25406,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableInfo}:hover ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#17a2b8',
@@ -25414,7 +25414,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#ffc107',
@@ -25422,7 +25422,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning} ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#ffc107',
@@ -25430,7 +25430,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#ffc107',
@@ -25438,7 +25438,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableWarning}:hover ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#ffc107',
@@ -25446,7 +25446,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#dc3545',
@@ -25454,7 +25454,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger} ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#dc3545',
@@ -25462,7 +25462,7 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover ${sketchyScope}${tableCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#dc3545',
@@ -25470,30 +25470,30 @@ globalStyle(
 )
 
 globalStyle(
-	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableBordered} ${sketchyScope}${tableDanger}:hover ${sketchyScope}${tableHeaderCell}`,
 	{
 		color: '#fff',
 		backgroundColor: '#dc3545',
 	},
 )
 
-globalStyle(`${sketchyScope}${tableDark} :where(${sketchyScope}${tableHeaderCell})`, {
+globalStyle(`${sketchyScope}${tableDark} ${sketchyScope}${tableHeaderCell}`, {
 	backgroundColor: '#333',
 })
 
-globalStyle(`${sketchyScope}${tableDark} :where(${sketchyScope}${tableCell})`, {
+globalStyle(`${sketchyScope}${tableDark} ${sketchyScope}${tableCell}`, {
 	backgroundColor: '#333',
 })
 
 globalStyle(
-	`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > :where(${sketchyScope}${tableHeaderCell})`,
+	`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > ${sketchyScope}${tableHeaderCell}`,
 	{
 		backgroundColor: '#333',
 	},
 )
 
 globalStyle(
-	`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > :where(${sketchyScope}${tableCell})`,
+	`${sketchyScope}${tableDark}${tableHover} ${sketchyScope}${tableActive}:hover > ${sketchyScope}${tableCell}`,
 	{
 		backgroundColor: '#333',
 	},
@@ -25569,7 +25569,7 @@ globalStyle(`${sketchyScope}${elSelect}${formControl}`, {
 	borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px !important',
 })
 
-globalStyle(`[type=checkbox]`, {
+globalStyle(`${sketchyScope}[type=checkbox]`, {
 	position: 'relative',
 	width: '0',
 	height: '0',
@@ -25580,7 +25580,7 @@ globalStyle(`[type=checkbox]`, {
 	border: 'none',
 })
 
-globalStyle(`[type=checkbox]::before`, {
+globalStyle(`${sketchyScope}[type=checkbox]::before`, {
 	position: 'absolute',
 	top: '-0.1em',
 	left: '0',
@@ -25592,11 +25592,11 @@ globalStyle(`[type=checkbox]::before`, {
 	borderRadius: '2px 8px 2px 4px/5px 3px 5px 3px',
 })
 
-globalStyle(`[type=checkbox]:focus::before`, {
+globalStyle(`${sketchyScope}[type=checkbox]:focus::before`, {
 	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
 })
 
-globalStyle(`[type=checkbox]:checked::after`, {
+globalStyle(`${sketchyScope}[type=checkbox]:checked::after`, {
 	position: 'absolute',
 	top: '0',
 	left: '0.1em',
@@ -25605,7 +25605,7 @@ globalStyle(`[type=checkbox]:checked::after`, {
 	color: '#333',
 })
 
-globalStyle(`[type=checkbox]:indeterminate::after`, {
+globalStyle(`${sketchyScope}[type=checkbox]:indeterminate::after`, {
 	position: 'absolute',
 	top: '0',
 	left: '0.1em',
@@ -25614,20 +25614,20 @@ globalStyle(`[type=checkbox]:indeterminate::after`, {
 	color: '#333',
 })
 
-globalStyle(`[type=checkbox]:checked::after`, {
+globalStyle(`${sketchyScope}[type=checkbox]:checked::after`, {
 	content: '"x"',
 })
 
-globalStyle(`[type=checkbox]:indeterminate::after`, {
+globalStyle(`${sketchyScope}[type=checkbox]:indeterminate::after`, {
 	top: '0.1em',
 	content: '"-"',
 })
 
-globalStyle(`[type=checkbox]:disabled::before`, {
+globalStyle(`${sketchyScope}[type=checkbox]:disabled::before`, {
 	border: '2px solid #aaa',
 })
 
-globalStyle(`[type=radio]`, {
+globalStyle(`${sketchyScope}[type=radio]`, {
 	position: 'relative',
 	width: '0',
 	height: '0',
@@ -25638,7 +25638,7 @@ globalStyle(`[type=radio]`, {
 	border: 'none',
 })
 
-globalStyle(`[type=radio]::before`, {
+globalStyle(`${sketchyScope}[type=radio]::before`, {
 	position: 'absolute',
 	top: '-0.1em',
 	left: '0',
@@ -25650,41 +25650,47 @@ globalStyle(`[type=radio]::before`, {
 	borderRadius: '50% 45% 40% 50%/40% 50% 50% 45%',
 })
 
-globalStyle(`[type=radio]:focus::before`, {
+globalStyle(`${sketchyScope}[type=radio]:focus::before`, {
 	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
 })
 
-globalStyle(`[type=radio]:checked::before`, {
+globalStyle(`${sketchyScope}[type=radio]:checked::before`, {
 	backgroundColor: '#333',
 })
 
-globalStyle(`[type=radio]:disabled::before`, {
+globalStyle(`${sketchyScope}[type=radio]:disabled::before`, {
 	border: '2px solid #aaa',
 })
 
-globalStyle(`[data-bs-theme=dark] [type=radio]::before`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=radio]::before`, {
 	borderColor: '#fff',
 })
 
-globalStyle(`[data-bs-theme=dark] [type=radio]:checked::before`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=radio]:checked::before`, {
 	backgroundColor: '#fff',
 })
 
-globalStyle(`[data-bs-theme=dark] [type=checkbox]::before`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=checkbox]::before`, {
 	borderColor: '#fff',
 })
 
-globalStyle(`[data-bs-theme=dark] [type=checkbox]:checked::before`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=checkbox]:checked::before`, {
 	backgroundColor: '#fff',
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${formRange}::-webkit-slider-thumb`, {
-	backgroundColor: '#fff',
-})
+globalStyle(
+	`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${formRange}::-webkit-slider-thumb`,
+	{
+		backgroundColor: '#fff',
+	},
+)
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${formRange}:disabled::-webkit-slider-thumb`, {
-	backgroundColor: '#555',
-})
+globalStyle(
+	`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${formRange}:disabled::-webkit-slider-thumb`,
+	{
+		backgroundColor: '#555',
+	},
+)
 
 globalStyle(`${sketchyScope}${formCheckInput}:focus`, {
 	boxShadow: 'none',
@@ -25817,11 +25823,11 @@ globalStyle(`${sketchyScope}${progress}`, {
 	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${progress}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${progress}`, {
 	backgroundColor: '#555',
 })
 
-globalStyle(`[data-bs-theme=dark] ${sketchyScope}${progressStacked}`, {
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${progressStacked}`, {
 	backgroundColor: '#555',
 })
 

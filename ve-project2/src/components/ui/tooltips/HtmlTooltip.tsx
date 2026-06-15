@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -8,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { elB, elButton, elEm } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	border,
@@ -16,7 +14,6 @@ import {
 	justifyContentCenter,
 	tooltip,
 } from '../../../theme-contract/literal/contract.css'
-import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -28,6 +25,7 @@ import {
 	tooltipInner,
 	tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
+import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { createVeTooltip } from './ve-tooltip'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -54,10 +52,15 @@ const HtmlTooltip: Component = () => {
 				ref={(el) =>
 					new VeTooltip(el, {
 						template: `<div class="${tooltipVe} ${tooltip} ${bsTooltipAuto} ${tooltipFade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+						html: true,
+						// Stamp scope + element contracts so the injected <b>/<em> pick up sketchy's
+						// `b,strong{font-family:Cabin Sketch; font-weight:bolder}` element rules.
+						// Title is passed in config (not the `title` attribute) because SolidJS sets a
+						// dynamic `title={…}` in an effect AFTER this ref, so the tooltip would be
+						// constructed with an empty title and never show.
+						title: `<em class="${theme} ${elEm}">Tooltip</em> <u>with</u> <b class="${theme} ${elB}">HTML</b>`,
 					})
 				}
-				data-bs-html="true"
-				title="<em>Tooltip</em> <u>with</u> <b>HTML</b>"
 			>
 				Tooltip with HTML
 			</button>

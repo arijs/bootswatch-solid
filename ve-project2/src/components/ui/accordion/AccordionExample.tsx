@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import { type Component, useContext } from 'solid-js'
 import {
 	ThemeContext,
@@ -8,9 +5,8 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { h4, inlineCode } from '../../../theme-contract/contents/contract.css'
+import { elButton, elStrong } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
 	accordion,
@@ -21,6 +17,8 @@ import {
 	accordionHeader,
 	accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
+import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
+import { show } from '../../../theme-contract/ui/navs/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/accordion',
@@ -55,14 +53,17 @@ const AccordionExample: Component = () => {
 						data-bs-parent="#accordionExample"
 					>
 						<div class={`${theme} ${accordionBody}`}>
-							<strong>This is the first item's accordion body.</strong> It is hidden
-							by default, until the collapse plugin adds the appropriate classes that
-							we use to style each element. These classes control the overall
-							appearance, as well as the showing and hiding via CSS transitions. You
-							can modify any of this with custom CSS or overriding our default
-							variables. It's also worth noting that just about any HTML can go within
-							the <code class={`${theme} ${inlineCode}`}>.accordion-body</code>,
-							though the transition does limit overflow.
+							<strong class={`${theme} ${elStrong}`}>
+								This is the first item's accordion body.
+							</strong>{' '}
+							It is hidden by default, until the collapse plugin adds the appropriate
+							classes that we use to style each element. These classes control the
+							overall appearance, as well as the showing and hiding via CSS
+							transitions. You can modify any of this with custom CSS or overriding
+							our default variables. It's also worth noting that just about any HTML
+							can go within the{' '}
+							<code class={`${theme} ${inlineCode}`}>.accordion-body</code>, though
+							the transition does limit overflow.
 						</div>
 					</section>
 				</div>
@@ -86,14 +87,17 @@ const AccordionExample: Component = () => {
 						data-bs-parent="#accordionExample"
 					>
 						<div class={`${theme} ${accordionBody}`}>
-							<strong>This is the second item's accordion body.</strong> It is hidden
-							by default, until the collapse plugin adds the appropriate classes that
-							we use to style each element. These classes control the overall
-							appearance, as well as the showing and hiding via CSS transitions. You
-							can modify any of this with custom CSS or overriding our default
-							variables. It's also worth noting that just about any HTML can go within
-							the <code class={`${theme} ${inlineCode}`}>.accordion-body</code>,
-							though the transition does limit overflow.
+							<strong class={`${theme} ${elStrong}`}>
+								This is the second item's accordion body.
+							</strong>{' '}
+							It is hidden by default, until the collapse plugin adds the appropriate
+							classes that we use to style each element. These classes control the
+							overall appearance, as well as the showing and hiding via CSS
+							transitions. You can modify any of this with custom CSS or overriding
+							our default variables. It's also worth noting that just about any HTML
+							can go within the{' '}
+							<code class={`${theme} ${inlineCode}`}>.accordion-body</code>, though
+							the transition does limit overflow.
 						</div>
 					</section>
 				</div>
@@ -117,14 +121,17 @@ const AccordionExample: Component = () => {
 						data-bs-parent="#accordionExample"
 					>
 						<div class={`${theme} ${accordionBody}`}>
-							<strong>This is the third item's accordion body.</strong> It is hidden
-							by default, until the collapse plugin adds the appropriate classes that
-							we use to style each element. These classes control the overall
-							appearance, as well as the showing and hiding via CSS transitions. You
-							can modify any of this with custom CSS or overriding our default
-							variables. It's also worth noting that just about any HTML can go within
-							the <code class={`${theme} ${inlineCode}`}>.accordion-body</code>,
-							though the transition does limit overflow.
+							<strong class={`${theme} ${elStrong}`}>
+								This is the third item's accordion body.
+							</strong>{' '}
+							It is hidden by default, until the collapse plugin adds the appropriate
+							classes that we use to style each element. These classes control the
+							overall appearance, as well as the showing and hiding via CSS
+							transitions. You can modify any of this with custom CSS or overriding
+							our default variables. It's also worth noting that just about any HTML
+							can go within the{' '}
+							<code class={`${theme} ${inlineCode}`}>.accordion-body</code>, though
+							the transition does limit overflow.
 						</div>
 					</section>
 				</div>

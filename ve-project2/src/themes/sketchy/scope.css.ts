@@ -30,6 +30,7 @@ globalStyle(`${sketchyScope}${bodyText}`, {
 globalStyle(`${sketchyScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
 	margin: 0,
+	display: 'flow-root',
 	minHeight: '100vh',
 })
 

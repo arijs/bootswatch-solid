@@ -107,7 +107,13 @@ function translateClasses(text, registry, unresolved) {
  * Translate a single compound selector segment (no combinators).
  * Returns the VE template-literal content for this segment.
  */
-function translateCompoundSegment(segment, scopeVarName, registry, unresolved) {
+function translateCompoundSegment(
+	segment,
+	scopeVarName,
+	registry,
+	unresolved,
+	isPureElementSelector = false,
+) {
 	const s = segment.trim()
 	if (!s || s === '*') return s
 
@@ -144,14 +150,21 @@ function translateCompoundSegment(segment, scopeVarName, registry, unresolved) {
 		if (foundAny) hasNamedParts = true
 	}
 
-	// Only prefix with scope if the segment has at least one named contract ref.
-	if (!hasNamedParts) return segContent
+	// Only prefix with scope if the segment has at least one named contract ref —
+	// EXCEPT an attribute-only segment (e.g. `[type=checkbox]`, `[disabled]`), which still
+	// targets a scoped element. Scope-prefix it so it stays theme-scoped and carries
+	// class-level specificity (0,2,0), competing with `${scope}${contract}` rules instead of
+	// being a global (0,1,0) selector that loses to them. Pure `*` / bare pseudo stay unscoped.
+	if (!hasNamedParts) {
+		if (segContent.includes('[')) return ref(scopeVarName) + segContent
+		return segContent
+	}
 
-	// Pure element-tag rules (e.g. `a { }`, `h1 { }`) must use :where() to preserve
-	// Bootstrap's specificity semantics: element selectors (0,0,1) should always lose
-	// to class selectors (0,1,0+). Without :where(), both become class selectors (0,2,0)
-	// and document order determines the winner — causing incorrect cascade results.
-	if (isElementContract && !remaining.trim()) {
+	// Bare element segments of a PURE-element selector (e.g. `a`, `h1`, `table th`, `ol ol`)
+	// use :where() to keep element-level (low) specificity, so class-bearing rules win as in
+	// Bootstrap. A trailing element in a class-bearing selector (e.g. `.table-dark th`) keeps
+	// its specificity so it can beat the `.table > … > *` cell rule.
+	if (isElementContract && !remaining.trim() && isPureElementSelector) {
 		return `:where(${ref(scopeVarName)}${segContent})`
 	}
 	return ref(scopeVarName) + segContent
@@ -191,9 +204,22 @@ function translateSelector(cssSelector, scopeVarName, registry) {
 		const segments = splitByCombinators(commaPart)
 		if (segments.length === 0) continue
 		const combinators = extractCombinators(commaPart, segments)
+		// A "pure element" selector contains only tags / combinators / `*` — no class, id,
+		// attribute, or pseudo. Such selectors carry only element specificity in the source
+		// (e.g. `table th` = 0,0,2) and must STAY low so class-bearing rules win, so every
+		// element segment is wrapped in :where(). When any class/attr/etc. is present the
+		// element segments keep their specificity (e.g. `.table-dark th` must beat the
+		// `.table > … > *` cell rule).
+		const isPureElementSelector = !/[.#[:\]]/.test(commaPart)
 		const veSegs = []
 		for (const seg of segments) {
-			const t = translateCompoundSegment(seg, scopeVarName, registry, unresolved)
+			const t = translateCompoundSegment(
+				seg,
+				scopeVarName,
+				registry,
+				unresolved,
+				isPureElementSelector,
+			)
 			if (t === null) return null
 			veSegs.push(t)
 		}
