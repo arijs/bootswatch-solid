@@ -524,6 +524,44 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 
 **Rationale:** `--bail` stops at the first mismatch intentionally. Skipping past a mismatch with `--skip-to-route` hides bugs that may affect multiple themes. Every fix must go into the generator so it fans out to all remaining themes automatically.
 
+### T9 progress tracker (27 themes)
+
+`✅` = verified to zero @ `0.001` (`--style-loader=literal`). Order is the fan-out order; remaining themes are alphabetical (no fixed order required — pick the next `⏳`).
+
+| # | Theme | Status | Notes / commit |
+|---|-------|--------|----------------|
+| 1 | bootstrap | ✅ | T8 baseline — 433/433 @ 0.000000 |
+| 2 | brite | ✅ | `2ebfac03` — emitter/harness fixes; `<a>` link-contract gap; opened-dropdown flaky fix |
+| 3 | cerulean | ✅ | `c54d3b26` — fan-out fixes via regen |
+| 4 | quartz | ✅ | `a84141ca` — gradient body + `flow-root`; migrated remaining themes to new scope format |
+| 5 | sketchy | ✅ | `63205a18` — Popper font-race harness fix |
+| 6 | cosmo | ⏳ | next |
+| 7 | cyborg | ⏳ | |
+| 8 | darkly | ⏳ | |
+| 9 | flatly | ⏳ | |
+| 10 | journal | ⏳ | |
+| 11 | litera | ⏳ | no `fonts.generated.css` |
+| 12 | lumen | ⏳ | |
+| 13 | lux | ⏳ | |
+| 14 | materia | ⏳ | element-group typography (§7.2) |
+| 15 | minty | ⏳ | |
+| 16 | morph | ⏳ | |
+| 17 | pulse | ⏳ | no `fonts.generated.css` |
+| 18 | sandstone | ✅ | 433/433 @ 0.000000; font-isolation (§10.3) already handled by T5 — no emitter fix needed |
+| 19 | simplex | ⏳ | |
+| 20 | slate | ⏳ | no `fonts.generated.css` |
+| 21 | solar | ⏳ | no `fonts.generated.css` |
+| 22 | spacelab | ⏳ | |
+| 23 | superhero | ⏳ | |
+| 24 | united | ⏳ | |
+| 25 | vapor | ⏳ | |
+| 26 | yeti | ⏳ | |
+| 27 | zephyr | ⏳ | |
+
+**Done: 6/27. Next: cosmo.** Follow the mandatory working method above for each.
+
+> **Harness gotcha (learned on sandstone):** never start a second capture/verify run while another is still alive — both build and both bind the preview server to port 4175, and the browser attaches to a half-dead server → an indefinite hang with no per-scenario log. Stop the old run first (`TaskStop`), confirm port 4175 is free, then launch. A "hang right after the preview-server URL prints, before `[1/N]`" is this collision, not a theme bug.
+
 ---
 
 **⏳ T10 — Delete v1 + update docs.** Remove `css-utils` mapping tables, color‑mirrors, supplements, `finalizeVeSelector` special cases, `*`‑cell guessing, old `generate-ve-theme-literal.mjs`. Update `ve-architecture.md` (combinators allowed when each named segment is scope+contract; `*`/pseudo passthrough; 1:1 registry; strict no‑fallback) and `ve2-literal-converter.md`.
