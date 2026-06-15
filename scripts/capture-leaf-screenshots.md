@@ -809,6 +809,17 @@ fields:
 | `hover-visible` | Hover the element, then wait for `visibleSelector` to appear. |
 | `click-visible` | Click the element, then wait for `visibleSelector` to appear. |
 
+> **Floating-element re-anchor (Popper).** For `hover-visible`/`click-visible`
+> kinds the revealed element is usually Popper-anchored (tooltip/popover/dropdown/
+> modal) and is positioned **once** when it opens. After the action settles, the
+> script awaits `document.fonts.ready` and then dispatches a synthetic `resize` so
+> Popper re-anchors against the now-settled layout. The `fonts.ready` gate matters:
+> a lazily-loaded web font (e.g. sketchy's Cabin Sketch in an HTML tooltip) can
+> change the element's width *after* it opens, and without re-anchoring on settled
+> metrics the baseline and VE captures can land a few px apart depending on
+> font-load timing. See the
+> [debugging walkthrough](../docs/ve2-debugging-mismatch-walkthrough.md#walkthrough-sketchy-html-tooltip-3px-horizontal-shift-font-load-race--popper).
+
 After adding a scenario, run the script once to generate the screenshots and
 persist the measured heights as `@screenshot` directives in the component file.
 

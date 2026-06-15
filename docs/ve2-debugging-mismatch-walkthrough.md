@@ -458,6 +458,178 @@ See the checklist below.
 
 ---
 
+## Walkthrough: sketchy html-tooltip 3px horizontal shift (font-load race + Popper)
+
+This case is different from the two above: the mismatch was **not** a wrong CSS
+property. The content rendered pixel-for-pixel identically — it was just
+**positioned a few pixels off**. The technique here is pixel cross-correlation
+(to prove it's a rigid shift, not a render difference) followed by a live
+width-across-font-load probe.
+
+### 1. Observe the mismatch — and pick the right loader first
+
+Literal-loader verification reported only one of five tooltip routes failing:
+
+```
+[3/5] ... html-tooltip/opened-tooltip ... verification MISMATCH ratio=0.007552 pixels=696/92160
+       (bottom/end/start/top tooltips all matched at 0/92160)
+```
+
+**Pitfall hit first:** running the same verify with the *default* loader
+(`--style-loader` omitted ⇒ `theme`) showed a huge ~8% diff on *every* tooltip,
+with sketchy rendering as near-unstyled Bootstrap defaults. That is a separate,
+incomplete code path — a red herring. The branch under active work is the
+**literal** loader. **Always pass `--style-loader=literal`** and confirm the VE
+preview URL contains `style-loader=literal` (see Pitfall 1 above). Only after
+switching to literal did the real, small, single-route mismatch appear.
+
+### 2. Recognise the signature: outlined glyphs, not a colour band
+
+The `.verify.png` highlighted thin outlines along the left/right edges of the
+tooltip box and around each glyph, while the trigger button below it had **zero**
+diff. Outline bands around otherwise-identical content = a **whole-element
+positional shift**, not a font/colour/size change. (Compare to the figure-example
+case, which was a *vertical* shift of text; this was a *horizontal* shift of a
+floating element.)
+
+### 3. Prove it's a rigid shift with pixel cross-correlation
+
+Instead of comparing computed styles, compare the two PNGs directly: for each
+candidate horizontal offset `dx`, count how many pixels differ between
+`baseline(x)` and `ve(x+dx)` in the tooltip region. The `dx` that minimises the
+difference is the shift.
+
+```js
+// throwaway script using the pngjs dep already in the repo
+import { PNG } from 'pngjs'
+import { readFileSync } from 'node:fs'
+const base = PNG.sync.read(readFileSync(`${dir}/360x256.png`))
+const ve = PNG.sync.read(readFileSync(`${dir}/ve-360x256.png`))
+for (let dx = -3; dx <= 3; dx++) {
+  let differing = 0
+  for (let y = 60; y <= 118; y++) for (let x = 100; x <= 255; x++) {
+    const i = (base.width * y + x) << 2, j = (base.width * y + (x + dx)) << 2
+    const d = Math.abs(base.data[i] - ve.data[j])
+            + Math.abs(base.data[i+1] - ve.data[j+1])
+            + Math.abs(base.data[i+2] - ve.data[j+2])
+    if (d > 60) differing++
+  }
+  console.log(`dx=${dx}  differing=${differing}`)
+}
+```
+
+Output — a clean minimum at `dx=+3` (0 differing pixels), confirming VE sits
+**exactly 3px right** of baseline and the content is otherwise **byte-identical**:
+
+```
+dx=+0  differing=1047
+dx=+2  differing= 912
+dx=+3  differing=   0   ← perfect alignment at +3px
+```
+
+Scanning the dark box edges separately confirmed both left and right edges moved
+`+3px` with the box width unchanged (112px) — the whole tooltip translated, it
+did not resize.
+
+### 4. Find the cause with a width-across-font-load probe
+
+A rigid horizontal shift of a tooltip points at **Popper positioning**. Tooltips
+(and popovers/dropdowns) are Popper-anchored **once** when they open and do not
+re-anchor on their own. Hypothesis: a web font swaps in *after* Popper measures,
+changing the tooltip width while its left stays fixed.
+
+Probe the live VE preview, capturing the tooltip the instant it's inserted (via a
+`MutationObserver` installed with `page.addInitScript` before navigation) and
+again after `document.fonts.ready`:
+
+```
+AT INSERT : width=119.56, cabinBoldLoaded=false, fonts=loading   (Popper not yet positioned)
+frame     : width=119.56, left=120  (Popper anchors on the FALLBACK-font width)
+frame     : width=113.81, left=120  (Cabin Sketch swaps in → box shrinks ~6px, left FIXED)
+```
+
+So sketchy's `b,strong{font-family:'Cabin Sketch'}` (used by `<b>HTML</b>`) makes
+the tooltip's measured width change from **119.56px (fallback) → 113.81px (Cabin
+Sketch)** *after* it opens. Popper never re-anchors on the swap, so its `left`
+stays width-stale. Only `html-tooltip` was affected because it is the only tooltip
+whose content uses that font.
+
+### 5. Root cause: a font-load race across the two apps
+
+The capture harness already nudges Popper to re-anchor (a synthetic `resize`,
+originally added to settle brite's button-transition offset). But that nudge fired
+relative to the font swap with **different timing in baseline vs VE**: whichever app
+re-anchored *after* the swap centred on the final narrow width (`left≈123`), the
+other stayed on the wide fallback snapshot (`left=120`).
+A race — neither side is "right", and it is consistent enough to look like a
+deterministic 3px bug.
+
+### 6. The fix: gate the Popper nudge on `document.fonts.ready`
+
+In `scripts/capture-leaf-screenshots/playwright-actions.mjs`, the
+`click-visible`/`hover-visible` settle block now awaits fonts **before**
+dispatching the resize nudge, so both apps re-anchor on settled font metrics:
+
+```js
+if (scenario.kind === 'click-visible' || scenario.kind === 'hover-visible') {
+  await page.evaluate(async () => {
+    if (document.fonts?.ready) {
+      await document.fonts.ready
+      const stillLoading = [...document.fonts].filter((f) => f.status === 'loading')
+      await Promise.allSettled(stillLoading.map((f) => f.loaded))
+    }
+    window.dispatchEvent(new Event('resize'))
+  })
+  await waitForVisualStable(page, settleTarget)
+}
+```
+
+### 7. Verify
+
+Re-capture the affected baseline (so it lands at the settled position) then verify:
+
+```bash
+# rebaseline (default mode writes screenshots)
+node scripts/capture-leaf-screenshots.mjs --build --theme=sketchy \
+  "--route=/ui/tooltips/**" --state=opened-tooltip
+# verify literal
+node scripts/capture-leaf-screenshots.mjs --verify-ve-rendering --theme=sketchy \
+  --style-loader=literal "--route=/ui/tooltips/**" --state=opened-tooltip
+```
+
+Result: 5/5 tooltips at `0/92160`, and a full sketchy sweep at **433/433** with no
+regressions to the other Popper/animated states (dropdowns, popovers, modals).
+
+### Key lesson: floating elements + late-loading fonts
+
+Any Popper-anchored element (tooltip, popover, dropdown menu, modal) whose content
+uses a **lazily-loaded web font** can be mispositioned, because the element's width
+is a snapshot taken at open time and Popper does not re-anchor when the font swaps.
+The capture harness now neutralises this by awaiting `document.fonts.ready` before
+its re-anchor nudge, so it is deterministic across baseline and VE. If you add a new
+interactive floating-element scenario, you inherit this fix for free.
+
+### Pitfalls uncovered by this investigation
+
+**Pitfall 5: the default `--style-loader` is `theme`, not `literal`.** Omitting it
+silently verifies the wrong (incomplete) code path and can show a large, misleading
+diff. Always pass `--style-loader=literal` for literal verification.
+
+**Pitfall 6: a rigid positional offset is not a CSS-property bug.** When the diff is
+outline bands around byte-identical content, do **not** start comparing
+`getComputedStyle`. Prove the shift with pixel cross-correlation first, then look at
+positioning (Popper anchor, font-load timing, transitions) — not colour/size.
+
+**Pitfall 7: the static state of a floating-element route is a capture race if you
+force the element open.** When debugging, a handy trick is to force the tooltip open
+deterministically — `new Tooltip(el, { trigger: 'manual' })` + `setTimeout(() =>
+tip.show(), 1000)` in the component. But that also makes the **`static`** capture
+non-deterministic (the element auto-opens mid-capture). Scope the run to the opened
+state with `--state=opened-tooltip` while the scaffolding is in place, and revert the
+scaffolding when done (the harness fix is trigger-independent — normal hover works).
+
+---
+
 ## `el*` class checklist: prevent this class of bug
 
 Bootstrap applies many properties via **tag-based selectors** (`img`, `svg`,
@@ -493,6 +665,12 @@ class must be present.
 1. Look at the diff image (.verify.png)
    ├── Pixels differ along a text block / content is shifted vertically
    │   → check vertical-align, margin-top/bottom, display on the element ABOVE the shift
+   ├── Outline bands around otherwise-identical content (horizontal shift)
+   │   → it's a positional offset, NOT a CSS-property bug. Prove it with pixel
+   │     cross-correlation (find the dx with 0 differing pixels). If the shifted
+   │     element is Popper-anchored (tooltip/popover/dropdown/modal), suspect a
+   │     font-load race: probe its width across document.fonts.ready. The harness
+   │     gates its re-anchor nudge on fonts.ready — confirm fonts actually settle.
    ├── A colour band or tinted area
    │   → check background-color, color, opacity, CSS variables
    └── An element is missing entirely (blank area in diff)
