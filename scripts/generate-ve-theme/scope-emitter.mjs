@@ -36,21 +36,28 @@ function emitVarImports(lines, usedVarSymbols, registry) {
 
 function extractBodyDeclarations(cssText) {
 	const decls = {}
-	// Merge ALL standalone `body { … }` rules in source order (later wins). Themes like
-	// quartz/morph/vapor add a second `body { background-image: linear-gradient(…) }` rule
-	// separate from the base reboot `body {}`. Anchor on `}` or start so we never pick up
-	// compound selectors like `[data-bs-theme=dark] body { … }`.
-	const re = /(?:^|})\s*body\s*\{([^}]*)\}/g
-	let bodyMatch = re.exec(cssText)
-	while (bodyMatch !== null) {
-		for (const part of bodyMatch[1].split(';')) {
-			const trimmed = part.trim()
-			if (!trimmed) continue
-			const colon = trimmed.indexOf(':')
-			if (colon === -1) continue
-			decls[trimmed.slice(0, colon).trim()] = trimmed.slice(colon + 1).trim()
+	// Merge declarations from every rule whose selector LIST contains a standalone `body`,
+	// in source order (later wins). This covers the base reboot `body { … }`, theme
+	// additions like quartz/morph/vapor's gradient `body { background-image: … }`, AND
+	// grouped rules like Materia's `body, input, button { letter-spacing: 0.1px }` — a
+	// grouped selector applies every declaration to each member, so `body` legitimately
+	// gets the letter-spacing. Only an exact `body` comma-part qualifies, so compound /
+	// descendant selectors (`[data-bs-theme=dark] body`, `body.modal-open`) are excluded.
+	const re = /(?:^|[};])\s*([^{}]+?)\s*\{([^}]*)\}/g
+	let ruleMatch = re.exec(cssText)
+	while (ruleMatch !== null) {
+		const selectorList = ruleMatch[1]
+		const hasStandaloneBody = selectorList.split(',').some((part) => part.trim() === 'body')
+		if (hasStandaloneBody) {
+			for (const part of ruleMatch[2].split(';')) {
+				const trimmed = part.trim()
+				if (!trimmed) continue
+				const colon = trimmed.indexOf(':')
+				if (colon === -1) continue
+				decls[trimmed.slice(0, colon).trim()] = trimmed.slice(colon + 1).trim()
+			}
 		}
-		bodyMatch = re.exec(cssText)
+		ruleMatch = re.exec(cssText)
 	}
 	return decls
 }

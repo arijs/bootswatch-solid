@@ -543,7 +543,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 11 | litera | ⏳ | no `fonts.generated.css` |
 | 12 | lumen | ⏳ | |
 | 13 | lux | ⏳ | |
-| 14 | materia | ⏳ | element-group typography (§7.2) |
+| 14 | materia | ✅ | 433/433 @ 0.000000. Two general generator fixes: (a) scope-emitter now captures grouped `body, input, button { letter-spacing }` onto bodyText; (b) manifest EXTRA_RULES gives `formSwitch` `isolation:isolate` so the Material switch `z-index:-1` focus-glow composites over the bodyFrame bg (isolating bodyFrame itself traps modal dialogs — don't). |
 | 15 | minty | ⏳ | |
 | 16 | morph | ⏳ | |
 | 17 | pulse | ⏳ | no `fonts.generated.css` |
@@ -558,7 +558,9 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 26 | yeti | ⏳ | |
 | 27 | zephyr | ⏳ | |
 
-**Done: 6/27. Next: cosmo.** Follow the mandatory working method above for each.
+**Done: 7/27. Next: cosmo.** Follow the mandatory working method above for each.
+
+> **bodyFrame + `z-index:-1` (learned on materia):** the page background lives on the `bodyFrame` DIV, not the `<body>` canvas (body-split §7.1). Any Bootstrap element using `z-index:-1` to sit behind its parent but over the page bg (Materia's `.form-switch .form-check-input::after` focus-glow) paints behind the opaque bodyFrame div and vanishes. Fix by isolating the element's nearest transparent component ancestor (`formSwitch`), NOT `bodyFrame` — isolating bodyFrame makes it a stacking context that traps body-portaled modal dialogs below their backdrop (84% diff). The two generator fixes above fan out to every theme on regen and are benign where the construct is absent.
 
 > **Harness gotcha (learned on sandstone):** never start a second capture/verify run while another is still alive — both build and both bind the preview server to port 4175, and the browser attaches to a half-dead server → an indefinite hang with no per-scenario log. Stop the old run first (`TaskStop`), confirm port 4175 is free, then launch. A "hang right after the preview-server URL prints, before `[1/N]`" is this collision, not a theme bug.
 

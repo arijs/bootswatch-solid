@@ -433,4 +433,18 @@ export const EXTRA_RULES = [
 		props: { height: '200px', overflowY: 'auto', marginTop: '0.5rem' },
 		reason: 'ScrollspyExample stamps scrollspyExample; fixed dimensions needed for scrollable demo container',
 	},
+	{
+		id: 'form-switch-isolation',
+		contract: 'formSwitch',
+		props: { isolation: 'isolate' },
+		reason:
+			"Materia's `.form-switch .form-check-input::after` focus-glow uses `z-index:-1` to sit " +
+			'behind the switch knob but over the page background. In the element-owned model the page ' +
+			'background lives on the bodyFrame DIV (body-split divergence §7.1), not the <body> canvas, ' +
+			'so a negative-z descendant paints BEHIND that opaque div and vanishes. Making form-switch ' +
+			'(a transparent ancestor of the ::after, but NOT an ancestor of body-portaled modals) a ' +
+			'stacking context lets the glow composite over the bodyFrame background, matching baseline. ' +
+			'Isolating bodyFrame itself would instead trap the modal dialog below its body-level backdrop. ' +
+			'Benign for themes without the Material ::after glow (no negative-z children).',
+	},
 ]

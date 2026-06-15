@@ -25,11 +25,13 @@ globalStyle(`${materiaScope}${bodyText}`, {
 	fontWeight: varBsBodyFontWeight,
 	lineHeight: varBsBodyLineHeight,
 	color: varBsBodyColor,
+	letterSpacing: "0.1px",
 })
 
 globalStyle(`${materiaScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
 	margin: 0,
+	display: 'flow-root',
 	minHeight: '100vh',
 })
 
@@ -40,6 +42,7 @@ globalStyle(`${modalOpenHook}`, {
 	fontWeight: varBsBodyFontWeight,
 	lineHeight: varBsBodyLineHeight,
 	color: varBsBodyColor,
+	letterSpacing: "0.1px",
 	backgroundColor: varBsBodyBg,
 	margin: 0,
 })
