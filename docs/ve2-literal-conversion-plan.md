@@ -554,11 +554,13 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 22 | spacelab | ⏳ | |
 | 23 | superhero | ⏳ | |
 | 24 | united | ⏳ | |
-| 25 | vapor | ⏳ | |
+| 25 | vapor | ✅ | 433/433 @ 0.000000. Four general fixes: (a) scope-emitter captures body `text-shadow` (vapor's neon glow) onto bodyText; (b) **font isolation** — vite.config `transformIndexHtml` (order:'pre') strips non-active themes' font links so only the active theme's fonts load (else another theme's `Lato:ital` made vapor's synthesized-oblique `<cite>` render real-italic → reflow); (c) **scoped `modalOpenHook`** — fork `modal.js` splits a multi-class `CLASS_NAME_OPEN`, modal components stamp `${theme} ${modalOpenHook}` on `<body>`, scope-emitter scopes the rule `${scope}${modalOpenHook}` (else all 29 statically-imported scope.css collide on the global rule, leaking letter-spacing into modal text). Required regenerating ALL themes' scope.css. |
 | 26 | yeti | ⏳ | |
 | 27 | zephyr | ⏳ | |
 
-**Done: 7/27. Next: cosmo.** Follow the mandatory working method above for each.
+**Done: 8/27. Next: cosmo.** Follow the mandatory working method above for each.
+
+> **Cross-theme contamination (learned on vapor):** the VE app loads ALL themes' assets together (index.html links every theme's `fonts.generated.css`; `Ve2Shell` statically imports every theme's `scope.css`). Two contamination classes bit vapor: (1) **fonts** — a foreign `Lato:ital` face changed vapor's italic metrics; fixed by stripping non-active font links at build (`transformIndexHtml`, order:'pre'). (2) **the global `${modalOpenHook}` rule** — emitted unscoped by every theme's scope.css, so the body's modal-open typography was a last-wins cross-theme mix, leaking `letter-spacing` into modal text via inheritance; fixed by scoping it `${scope}${modalOpenHook}` and stamping `${theme} ${modalOpenHook}` on `<body>` (fork `modal.js` now splits a space-separated `CLASS_NAME_OPEN`). Both fixes are general; scoping required regenerating every theme's scope.css, so already-verified themes must be re-checked (modal routes at minimum). The fork is edited in `bootstrap-fork/js/src/` then rebuilt with `npm run js-compile` inside the fork.
 
 > **bodyFrame + `z-index:-1` (learned on materia):** the page background lives on the `bodyFrame` DIV, not the `<body>` canvas (body-split §7.1). Any Bootstrap element using `z-index:-1` to sit behind its parent but over the page bg (Materia's `.form-switch .form-check-input::after` focus-glow) paints behind the opaque bodyFrame div and vanishes. Fix by isolating the element's nearest transparent component ancestor (`formSwitch`), NOT `bodyFrame` — isolating bodyFrame makes it a stacking context that traps body-portaled modal dialogs below their backdrop (84% diff). The two generator fixes above fan out to every theme on regen and are benign where the construct is absent.
 

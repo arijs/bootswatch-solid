@@ -30,11 +30,12 @@ globalStyle(`${darklyScope}${bodyText}`, {
 globalStyle(`${darklyScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
 	margin: 0,
+	display: 'flow-root',
 	minHeight: '100vh',
 })
 
-// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.
-globalStyle(`${modalOpenHook}`, {
+// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> when a modal opens.
+globalStyle(`${darklyScope}${modalOpenHook}`, {
 	fontFamily: varBsBodyFontFamily,
 	fontSize: varBsBodyFontSize,
 	fontWeight: varBsBodyFontWeight,

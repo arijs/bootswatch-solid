@@ -1,4 +1,6 @@
 import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
+import { literaScope } from '../scope.css'
+
 import {
 	varBsBlack,
 	varBsBlackRgb,
@@ -117,73 +119,6 @@ import {
 	varBsTableStripedColor,
 } from '../../../theme-contract/contents/_vars.css'
 import {
-	blockquote,
-	blockquoteFooter,
-	horizontalRule,
-	inlineCode,
-	lead,
-	link,
-	markText,
-	paragraph,
-	small,
-	smallText,
-} from '../../../theme-contract/contents/basic/contract.css'
-import {
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-} from '../../../theme-contract/contents/display/contract.css'
-import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/heading/contract.css'
-import {
-	figure,
-	figureCaption,
-	figureImg,
-	imgFluid,
-	imgThumbnail,
-	rounded,
-} from '../../../theme-contract/contents/images/contract.css'
-import {
-	listBase,
-	listIndented,
-	listInline,
-	listInlineItem,
-	listNested,
-	listUnstyled,
-} from '../../../theme-contract/contents/lists/contract.css'
-import {
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
-	tableCell,
-	tableDanger,
-	tableDark,
-	tableElement,
-	tableGroupDivider,
-	tableHeaderCell,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
-	tableRow,
-	tableSecondary,
-	tableSection,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
-} from '../../../theme-contract/contents/tables/contract.css'
-import {
 	varBsFormCheckBg,
 	varBsFormCheckBgImage,
 	varBsFormInvalidBorderColor,
@@ -194,33 +129,374 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
+import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
-	fieldset,
-	formCheck,
-	formCheckInput,
-	formCheckLabel,
-	formControl,
-	formControlLg,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
-	hasValidation,
-	inputGroup,
-	inputGroupText,
-	invalidFeedback,
-	isInvalid,
-	isValid,
-	legend,
-	legendClear,
-	validFeedback,
-	wasValidated,
-} from '../../../theme-contract/forms/contract.css'
+	varBsAccordionActiveBg,
+	varBsAccordionActiveColor,
+	varBsAccordionBg,
+	varBsAccordionBodyPaddingX,
+	varBsAccordionBodyPaddingY,
+	varBsAccordionBorderColor,
+	varBsAccordionBorderRadius,
+	varBsAccordionBorderWidth,
+	varBsAccordionBtnActiveIcon,
+	varBsAccordionBtnBg,
+	varBsAccordionBtnColor,
+	varBsAccordionBtnFocusBoxShadow,
+	varBsAccordionBtnIcon,
+	varBsAccordionBtnIconTransform,
+	varBsAccordionBtnIconTransition,
+	varBsAccordionBtnIconWidth,
+	varBsAccordionBtnPaddingX,
+	varBsAccordionBtnPaddingY,
+	varBsAccordionColor,
+	varBsAccordionInnerBorderRadius,
+	varBsAccordionTransition,
+} from '../../../theme-contract/ui/accordion/_vars.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../theme-contract/ui/alerts/_vars.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../theme-contract/ui/badge/_vars.css'
+import {
+	varBsBreadcrumbBg,
+	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
+	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbItemActiveColor,
+	varBsBreadcrumbItemPaddingX,
+	varBsBreadcrumbMarginBottom,
+	varBsBreadcrumbPaddingX,
+	varBsBreadcrumbPaddingY,
+} from '../../../theme-contract/ui/breadcrumb/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
+	varBsBtnActiveColor,
+	varBsBtnBg,
+	varBsBtnBorderColor,
+	varBsBtnBorderRadius,
+	varBsBtnBorderWidth,
+	varBsBtnBoxShadow,
+	varBsBtnColor,
+	varBsBtnDisabledBg,
+	varBsBtnDisabledBorderColor,
+	varBsBtnDisabledColor,
+	varBsBtnDisabledOpacity,
+	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
+	varBsBtnFontFamily,
+	varBsBtnFontSize,
+	varBsBtnFontWeight,
+	varBsBtnHoverBg,
+	varBsBtnHoverBorderColor,
+	varBsBtnHoverColor,
+	varBsBtnLineHeight,
+	varBsBtnPaddingX,
+	varBsBtnPaddingY,
+} from '../../../theme-contract/ui/buttons/_vars.css'
+import {
+	varBsCardBg,
+	varBsCardBorderColor,
+	varBsCardBorderRadius,
+	varBsCardBorderWidth,
+	varBsCardBoxShadow,
+	varBsCardCapBg,
+	varBsCardCapColor,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+	varBsCardColor,
+	varBsCardGroupMargin,
+	varBsCardImgOverlayPadding,
+	varBsCardInnerBorderRadius,
+	varBsCardSpacerX,
+	varBsCardSpacerY,
+	varBsCardSubtitleColor,
+	varBsCardTitleColor,
+	varBsCardTitleSpacerY,
+} from '../../../theme-contract/ui/card/_vars.css'
+import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
+import {
+	varBsDropdownBg,
+	varBsDropdownBorderColor,
+	varBsDropdownBorderRadius,
+	varBsDropdownBorderWidth,
+	varBsDropdownBoxShadow,
+	varBsDropdownColor,
+	varBsDropdownDividerBg,
+	varBsDropdownDividerMarginY,
+	varBsDropdownFontSize,
+	varBsDropdownHeaderColor,
+	varBsDropdownHeaderPaddingX,
+	varBsDropdownHeaderPaddingY,
+	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemPaddingX,
+	varBsDropdownItemPaddingY,
+	varBsDropdownLinkActiveBg,
+	varBsDropdownLinkActiveColor,
+	varBsDropdownLinkColor,
+	varBsDropdownLinkDisabledColor,
+	varBsDropdownLinkHoverBg,
+	varBsDropdownLinkHoverColor,
+	varBsDropdownMinWidth,
+	varBsDropdownPaddingX,
+	varBsDropdownPaddingY,
+	varBsDropdownSpacer,
+	varBsDropdownZindex,
+} from '../../../theme-contract/ui/dropdowns/_vars.css'
+import {
+	varBsListGroupActionActiveBg,
+	varBsListGroupActionActiveColor,
+	varBsListGroupActionColor,
+	varBsListGroupActionHoverBg,
+	varBsListGroupActionHoverColor,
+	varBsListGroupActiveBg,
+	varBsListGroupActiveBorderColor,
+	varBsListGroupActiveColor,
+	varBsListGroupBg,
+	varBsListGroupBorderColor,
+	varBsListGroupBorderRadius,
+	varBsListGroupBorderWidth,
+	varBsListGroupColor,
+	varBsListGroupDisabledBg,
+	varBsListGroupDisabledColor,
+	varBsListGroupItemPaddingX,
+	varBsListGroupItemPaddingY,
+} from '../../../theme-contract/ui/list-group/_vars.css'
+import {
+	varBsBackdropBg,
+	varBsBackdropOpacity,
+	varBsBackdropZindex,
+	varBsModalBg,
+	varBsModalBorderColor,
+	varBsModalBorderRadius,
+	varBsModalBorderWidth,
+	varBsModalBoxShadow,
+	varBsModalColor,
+	varBsModalFooterBg,
+	varBsModalFooterBorderColor,
+	varBsModalFooterBorderWidth,
+	varBsModalFooterGap,
+	varBsModalHeaderBorderColor,
+	varBsModalHeaderBorderWidth,
+	varBsModalHeaderPadding,
+	varBsModalHeaderPaddingX,
+	varBsModalHeaderPaddingY,
+	varBsModalInnerBorderRadius,
+	varBsModalMargin,
+	varBsModalPadding,
+	varBsModalTitleLineHeight,
+	varBsModalWidth,
+	varBsModalZindex,
+} from '../../../theme-contract/ui/modal/_vars.css'
+import {
+	varBsNavbarActiveColor,
+	varBsNavbarBrandColor,
+	varBsNavbarBrandFontSize,
+	varBsNavbarBrandHoverColor,
+	varBsNavbarBrandMarginEnd,
+	varBsNavbarBrandPaddingY,
+	varBsNavbarColor,
+	varBsNavbarDisabledColor,
+	varBsNavbarHoverColor,
+	varBsNavbarNavLinkPaddingX,
+	varBsNavbarPaddingX,
+	varBsNavbarPaddingY,
+	varBsNavbarTogglerBorderColor,
+	varBsNavbarTogglerBorderRadius,
+	varBsNavbarTogglerFocusWidth,
+	varBsNavbarTogglerFontSize,
+	varBsNavbarTogglerIconBg,
+	varBsNavbarTogglerPaddingX,
+	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+} from '../../../theme-contract/ui/navbar/_vars.css'
+import {
+	varBsNavLinkColor,
+	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
+	varBsNavLinkFontWeight,
+	varBsNavLinkHoverColor,
+	varBsNavLinkPaddingX,
+	varBsNavLinkPaddingY,
+	varBsNavPillsBorderRadius,
+	varBsNavPillsLinkActiveBg,
+	varBsNavPillsLinkActiveColor,
+	varBsNavTabsBorderColor,
+	varBsNavTabsBorderRadius,
+	varBsNavTabsBorderWidth,
+	varBsNavTabsLinkActiveBg,
+	varBsNavTabsLinkActiveBorderColor,
+	varBsNavTabsLinkActiveColor,
+	varBsNavTabsLinkHoverBorderColor,
+} from '../../../theme-contract/ui/navs/_vars.css'
+import {
+	varBsPaginationActiveBg,
+	varBsPaginationActiveBorderColor,
+	varBsPaginationActiveColor,
+	varBsPaginationBg,
+	varBsPaginationBorderColor,
+	varBsPaginationBorderRadius,
+	varBsPaginationBorderWidth,
+	varBsPaginationColor,
+	varBsPaginationDisabledBg,
+	varBsPaginationDisabledBorderColor,
+	varBsPaginationDisabledColor,
+	varBsPaginationFocusBg,
+	varBsPaginationFocusBoxShadow,
+	varBsPaginationFocusColor,
+	varBsPaginationFontSize,
+	varBsPaginationHoverBg,
+	varBsPaginationHoverBorderColor,
+	varBsPaginationHoverColor,
+	varBsPaginationPaddingX,
+	varBsPaginationPaddingY,
+} from '../../../theme-contract/ui/pagination/_vars.css'
+import {
+	varBsPopoverArrowBorder,
+	varBsPopoverArrowHeight,
+	varBsPopoverArrowWidth,
+	varBsPopoverBg,
+	varBsPopoverBodyColor,
+	varBsPopoverBodyPaddingX,
+	varBsPopoverBodyPaddingY,
+	varBsPopoverBorderColor,
+	varBsPopoverBorderRadius,
+	varBsPopoverBorderWidth,
+	varBsPopoverBoxShadow,
+	varBsPopoverFontSize,
+	varBsPopoverHeaderBg,
+	varBsPopoverHeaderColor,
+	varBsPopoverHeaderFontSize,
+	varBsPopoverHeaderPaddingX,
+	varBsPopoverHeaderPaddingY,
+	varBsPopoverInnerBorderRadius,
+	varBsPopoverMaxWidth,
+	varBsPopoverZindex,
+} from '../../../theme-contract/ui/popovers/_vars.css'
+import {
+	varBsProgressBarBg,
+	varBsProgressBarColor,
+	varBsProgressBarTransition,
+	varBsProgressBg,
+	varBsProgressBorderRadius,
+	varBsProgressBoxShadow,
+	varBsProgressFontSize,
+	varBsProgressHeight,
+} from '../../../theme-contract/ui/progress/_vars.css'
+import {
+	varBsSpinnerAnimationName,
+	varBsSpinnerAnimationSpeed,
+	varBsSpinnerBorderWidth,
+	varBsSpinnerHeight,
+	varBsSpinnerVerticalAlign,
+	varBsSpinnerWidth,
+} from '../../../theme-contract/ui/spinners/_vars.css'
+import {
+	varBsToastBg,
+	varBsToastBorderColor,
+	varBsToastBorderRadius,
+	varBsToastBorderWidth,
+	varBsToastBoxShadow,
+	varBsToastColor,
+	varBsToastFontSize,
+	varBsToastHeaderBg,
+	varBsToastHeaderBorderColor,
+	varBsToastHeaderColor,
+	varBsToastMaxWidth,
+	varBsToastPaddingX,
+	varBsToastPaddingY,
+	varBsToastSpacing,
+	varBsToastZindex,
+} from '../../../theme-contract/ui/toasts/_vars.css'
+import {
+	varBsTooltipArrowHeight,
+	varBsTooltipArrowWidth,
+	varBsTooltipBg,
+	varBsTooltipBorderRadius,
+	varBsTooltipColor,
+	varBsTooltipFontSize,
+	varBsTooltipMargin,
+	varBsTooltipMaxWidth,
+	varBsTooltipOpacity,
+	varBsTooltipPaddingX,
+	varBsTooltipPaddingY,
+	varBsTooltipZindex,
+} from '../../../theme-contract/ui/tooltips/_vars.css'
+import {
+	varBsAspectRatio,
+	varBsBgOpacity,
+	varBsBorderOpacity,
+	varBsBtnCloseFilter,
+	varBsCardHeight,
+	varBsLinkOpacity,
+	varBsLinkUnderlineOpacity,
+	varBsNavUnderlineBorderWidth,
+	varBsNavUnderlineGap,
+	varBsNavUnderlineLinkActiveColor,
+	varBsOffcanvasBg,
+	varBsOffcanvasBorderColor,
+	varBsOffcanvasBorderWidth,
+	varBsOffcanvasBoxShadow,
+	varBsOffcanvasColor,
+	varBsOffcanvasHeight,
+	varBsOffcanvasPaddingX,
+	varBsOffcanvasPaddingY,
+	varBsOffcanvasTitleLineHeight,
+	varBsOffcanvasTransition,
+	varBsOffcanvasWidth,
+	varBsOffcanvasZindex,
+	varBsPosition,
+	varBsTextOpacity,
+} from '../../../theme-contract/utilities/generated/_vars.css'
+
+import {
+	blockquote,
+	horizontalRule,
+	inlineCode,
+	link,
+	markText,
+	paragraph,
+	small,
+} from '../../../theme-contract/contents/basic/contract.css'
+import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../theme-contract/contents/heading/contract.css'
+import {
+	tableCell,
+	tableElement,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+} from '../../../theme-contract/contents/tables/contract.css'
+import { fieldset } from '../../../theme-contract/forms/contract.css'
 import {
 	elAbbr,
 	elAddress,
@@ -253,11 +529,86 @@ import {
 	elTextarea,
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
+
+import { vars } from '../../../theme-contract/theme-contract.css'
+
+import { blockquoteFooter, lead, smallText } from '../../../theme-contract/contents/basic/contract.css'
 import {
-	containerFluid,
-	varBsGutterX,
-	varBsGutterY,
-} from '../../../theme-contract/layout/container.css'
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+} from '../../../theme-contract/contents/display/contract.css'
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../theme-contract/contents/images/contract.css'
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../theme-contract/contents/lists/contract.css'
+import {
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableDanger,
+	tableDark,
+	tableGroupDivider,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableSecondary,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
+} from '../../../theme-contract/contents/tables/contract.css'
+import {
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	validFeedback,
+	wasValidated,
+} from '../../../theme-contract/forms/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	accordionFlush,
 	active,
@@ -380,10 +731,10 @@ import {
 	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
+	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
-	bgOpacity100,
 	bgPrimary,
 	bgPrimarySubtle,
 	bgSecondary,
@@ -416,10 +767,10 @@ import {
 	borderLight,
 	borderLightSubtle,
 	borderOpacity10,
+	borderOpacity100,
 	borderOpacity25,
 	borderOpacity50,
 	borderOpacity75,
-	borderOpacity100,
 	borderPrimary,
 	borderPrimarySubtle,
 	borderSecondary,
@@ -434,8 +785,8 @@ import {
 	borderWarningSubtle,
 	borderWhite,
 	bottom0,
-	bottom50,
 	bottom100,
+	bottom50,
 	bsTooltipAuto,
 	bsTooltipBottom,
 	bsTooltipEnd,
@@ -460,6 +811,9 @@ import {
 	clsH6,
 	clsSmall,
 	col1,
+	col10,
+	col11,
+	col12,
 	col2,
 	col3,
 	col4,
@@ -468,15 +822,15 @@ import {
 	col7,
 	col8,
 	col9,
-	col10,
-	col11,
-	col12,
 	colAuto,
 	colFormLabel,
 	colFormLabelLg,
 	colFormLabelSm,
 	colLg,
 	colLg1,
+	colLg10,
+	colLg11,
+	colLg12,
 	colLg2,
 	colLg3,
 	colLg4,
@@ -485,23 +839,20 @@ import {
 	colLg7,
 	colLg8,
 	colLg9,
-	colLg10,
-	colLg11,
-	colLg12,
 	colLgAuto,
-	collapsed,
-	collapseHorizontal,
-	collapsing,
 	colMd,
 	colMd1,
-	colMd7,
-	colMd9,
 	colMd10,
 	colMd11,
 	colMd12,
+	colMd7,
+	colMd9,
 	colMdAuto,
 	colSm,
 	colSm1,
+	colSm10,
+	colSm11,
+	colSm12,
 	colSm2,
 	colSm3,
 	colSm4,
@@ -509,10 +860,38 @@ import {
 	colSm7,
 	colSm8,
 	colSm9,
-	colSm10,
-	colSm11,
-	colSm12,
 	colSmAuto,
+	colXl,
+	colXl1,
+	colXl10,
+	colXl11,
+	colXl12,
+	colXl2,
+	colXl3,
+	colXl4,
+	colXl5,
+	colXl6,
+	colXl7,
+	colXl8,
+	colXl9,
+	colXlAuto,
+	colXxl,
+	colXxl1,
+	colXxl10,
+	colXxl11,
+	colXxl12,
+	colXxl2,
+	colXxl3,
+	colXxl4,
+	colXxl5,
+	colXxl6,
+	colXxl7,
+	colXxl8,
+	colXxl9,
+	colXxlAuto,
+	collapseHorizontal,
+	collapsed,
+	collapsing,
 	columnGap0,
 	columnGap1,
 	columnGap2,
@@ -549,34 +928,6 @@ import {
 	columnGapXxl3,
 	columnGapXxl4,
 	columnGapXxl5,
-	colXl,
-	colXl1,
-	colXl2,
-	colXl3,
-	colXl4,
-	colXl5,
-	colXl6,
-	colXl7,
-	colXl8,
-	colXl9,
-	colXl10,
-	colXl11,
-	colXl12,
-	colXlAuto,
-	colXxl,
-	colXxl1,
-	colXxl2,
-	colXxl3,
-	colXxl4,
-	colXxl5,
-	colXxl6,
-	colXxl7,
-	colXxl8,
-	colXxl9,
-	colXxl10,
-	colXxl11,
-	colXxl12,
-	colXxlAuto,
 	container,
 	containerLg,
 	containerMd,
@@ -589,7 +940,6 @@ import {
 	dInlineBlock,
 	dInlineFlex,
 	dInlineGrid,
-	disabled,
 	dLgBlock,
 	dLgFlex,
 	dLgGrid,
@@ -624,16 +974,6 @@ import {
 	dPrintTable,
 	dPrintTableCell,
 	dPrintTableRow,
-	dropdownMenuLgEnd,
-	dropdownMenuLgStart,
-	dropdownMenuMdEnd,
-	dropdownMenuMdStart,
-	dropdownMenuSmEnd,
-	dropdownMenuSmStart,
-	dropdownMenuXlEnd,
-	dropdownMenuXlStart,
-	dropdownMenuXxlEnd,
-	dropdownMenuXxlStart,
 	dSmBlock,
 	dSmFlex,
 	dSmGrid,
@@ -670,9 +1010,20 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	disabled,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
 	end0,
-	end50,
 	end100,
+	end50,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -795,6 +1146,36 @@ import {
 	g1,
 	g2,
 	g5,
+	gLg0,
+	gLg1,
+	gLg2,
+	gLg3,
+	gLg4,
+	gLg5,
+	gMd0,
+	gMd1,
+	gMd2,
+	gMd3,
+	gMd4,
+	gMd5,
+	gSm0,
+	gSm1,
+	gSm2,
+	gSm3,
+	gSm4,
+	gSm5,
+	gXl0,
+	gXl1,
+	gXl2,
+	gXl3,
+	gXl4,
+	gXl5,
+	gXxl0,
+	gXxl1,
+	gXxl2,
+	gXxl3,
+	gXxl4,
+	gXxl5,
 	gap0,
 	gap1,
 	gap2,
@@ -831,36 +1212,6 @@ import {
 	gapXxl3,
 	gapXxl4,
 	gapXxl5,
-	gLg0,
-	gLg1,
-	gLg2,
-	gLg3,
-	gLg4,
-	gLg5,
-	gMd0,
-	gMd1,
-	gMd2,
-	gMd3,
-	gMd4,
-	gMd5,
-	gSm0,
-	gSm1,
-	gSm2,
-	gSm3,
-	gSm4,
-	gSm5,
-	gXl0,
-	gXl1,
-	gXl2,
-	gXl3,
-	gXl4,
-	gXl5,
-	gXxl0,
-	gXxl1,
-	gXxl2,
-	gXxl3,
-	gXxl4,
-	gXxl5,
 	gx0,
 	gx1,
 	gx2,
@@ -933,10 +1284,10 @@ import {
 	gyXxl3,
 	gyXxl4,
 	gyXxl5,
+	h100,
 	h25,
 	h50,
 	h75,
-	h100,
 	hAuto,
 	hiding,
 	hstack,
@@ -998,6 +1349,8 @@ import {
 	linkOffset3,
 	linkOffset3Hover,
 	linkOpacity10,
+	linkOpacity100,
+	linkOpacity100Hover,
 	linkOpacity10Hover,
 	linkOpacity25,
 	linkOpacity25Hover,
@@ -1005,8 +1358,6 @@ import {
 	linkOpacity50Hover,
 	linkOpacity75,
 	linkOpacity75Hover,
-	linkOpacity100,
-	linkOpacity100Hover,
 	linkPrimary,
 	linkSecondary,
 	linkSuccess,
@@ -1018,6 +1369,8 @@ import {
 	linkUnderlineOpacity0,
 	linkUnderlineOpacity0Hover,
 	linkUnderlineOpacity10,
+	linkUnderlineOpacity100,
+	linkUnderlineOpacity100Hover,
 	linkUnderlineOpacity10Hover,
 	linkUnderlineOpacity25,
 	linkUnderlineOpacity25Hover,
@@ -1025,8 +1378,6 @@ import {
 	linkUnderlineOpacity50Hover,
 	linkUnderlineOpacity75,
 	linkUnderlineOpacity75Hover,
-	linkUnderlineOpacity100,
-	linkUnderlineOpacity100Hover,
 	linkUnderlinePrimary,
 	linkUnderlineSecondary,
 	linkUnderlineSuccess,
@@ -1046,6 +1397,41 @@ import {
 	m4,
 	m5,
 	mAuto,
+	mLg0,
+	mLg1,
+	mLg2,
+	mLg3,
+	mLg4,
+	mLg5,
+	mLgAuto,
+	mMd0,
+	mMd1,
+	mMd2,
+	mMd3,
+	mMd4,
+	mMd5,
+	mMdAuto,
+	mSm0,
+	mSm1,
+	mSm2,
+	mSm3,
+	mSm4,
+	mSm5,
+	mSmAuto,
+	mXl0,
+	mXl1,
+	mXl2,
+	mXl3,
+	mXl4,
+	mXl5,
+	mXlAuto,
+	mXxl0,
+	mXxl1,
+	mXxl2,
+	mXxl3,
+	mXxl4,
+	mXxl5,
+	mXxlAuto,
 	mark,
 	mb0,
 	mb1,
@@ -1127,20 +1513,6 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
-	mLg0,
-	mLg1,
-	mLg2,
-	mLg3,
-	mLg4,
-	mLg5,
-	mLgAuto,
-	mMd0,
-	mMd1,
-	mMd2,
-	mMd3,
-	mMd4,
-	mMd5,
-	mMdAuto,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -1150,13 +1522,6 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
-	mSm0,
-	mSm1,
-	mSm2,
-	mSm3,
-	mSm4,
-	mSm5,
-	mSmAuto,
 	ms0,
 	ms1,
 	ms2,
@@ -1240,20 +1605,6 @@ import {
 	mtXxl5,
 	mtXxlAuto,
 	mw100,
-	mXl0,
-	mXl1,
-	mXl2,
-	mXl3,
-	mXl4,
-	mXl5,
-	mXlAuto,
-	mXxl0,
-	mXxl1,
-	mXxl2,
-	mXxl3,
-	mXxl4,
-	mXxl5,
-	mXxlAuto,
 	mx0,
 	mx1,
 	mx2,
@@ -1338,15 +1689,15 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
+	navFill,
+	navJustified,
+	navUnderline,
 	navbarDark,
 	navbarExpand,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
-	navFill,
-	navJustified,
-	navUnderline,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -1392,6 +1743,8 @@ import {
 	offcanvasXl,
 	offcanvasXxl,
 	offset1,
+	offset10,
+	offset11,
 	offset2,
 	offset3,
 	offset4,
@@ -1400,10 +1753,10 @@ import {
 	offset7,
 	offset8,
 	offset9,
-	offset10,
-	offset11,
 	offsetLg0,
 	offsetLg1,
+	offsetLg10,
+	offsetLg11,
 	offsetLg2,
 	offsetLg3,
 	offsetLg4,
@@ -1412,10 +1765,10 @@ import {
 	offsetLg7,
 	offsetLg8,
 	offsetLg9,
-	offsetLg10,
-	offsetLg11,
 	offsetMd0,
 	offsetMd1,
+	offsetMd10,
+	offsetMd11,
 	offsetMd2,
 	offsetMd3,
 	offsetMd4,
@@ -1424,10 +1777,10 @@ import {
 	offsetMd7,
 	offsetMd8,
 	offsetMd9,
-	offsetMd10,
-	offsetMd11,
 	offsetSm0,
 	offsetSm1,
+	offsetSm10,
+	offsetSm11,
 	offsetSm2,
 	offsetSm3,
 	offsetSm4,
@@ -1436,10 +1789,10 @@ import {
 	offsetSm7,
 	offsetSm8,
 	offsetSm9,
-	offsetSm10,
-	offsetSm11,
 	offsetXl0,
 	offsetXl1,
+	offsetXl10,
+	offsetXl11,
 	offsetXl2,
 	offsetXl3,
 	offsetXl4,
@@ -1448,10 +1801,10 @@ import {
 	offsetXl7,
 	offsetXl8,
 	offsetXl9,
-	offsetXl10,
-	offsetXl11,
 	offsetXxl0,
 	offsetXxl1,
+	offsetXxl10,
+	offsetXxl11,
 	offsetXxl2,
 	offsetXxl3,
 	offsetXxl4,
@@ -1460,13 +1813,11 @@ import {
 	offsetXxl7,
 	offsetXxl8,
 	offsetXxl9,
-	offsetXxl10,
-	offsetXxl11,
 	opacity0,
+	opacity100,
 	opacity25,
 	opacity50,
 	opacity75,
-	opacity100,
 	order0,
 	order1,
 	order2,
@@ -1531,6 +1882,36 @@ import {
 	p2,
 	p3,
 	p4,
+	pLg0,
+	pLg1,
+	pLg2,
+	pLg3,
+	pLg4,
+	pLg5,
+	pMd0,
+	pMd1,
+	pMd2,
+	pMd3,
+	pMd4,
+	pMd5,
+	pSm0,
+	pSm1,
+	pSm2,
+	pSm3,
+	pSm4,
+	pSm5,
+	pXl0,
+	pXl1,
+	pXl2,
+	pXl3,
+	pXl4,
+	pXl5,
+	pXxl0,
+	pXxl1,
+	pXxl2,
+	pXxl3,
+	pXxl4,
+	pXxl5,
 	pb0,
 	pb1,
 	pb3,
@@ -1603,24 +1984,12 @@ import {
 	peXxl3,
 	peXxl4,
 	peXxl5,
-	pLg0,
-	pLg1,
-	pLg2,
-	pLg3,
-	pLg4,
-	pLg5,
 	placeholder,
 	placeholderGlow,
 	placeholderLg,
 	placeholderSm,
 	placeholderWave,
 	placeholderXs,
-	pMd0,
-	pMd1,
-	pMd2,
-	pMd3,
-	pMd4,
-	pMd5,
 	pointerEvent,
 	popover,
 	positionAbsolute,
@@ -1628,12 +1997,6 @@ import {
 	positionStatic,
 	positionSticky,
 	progressStacked,
-	pSm0,
-	pSm1,
-	pSm2,
-	pSm3,
-	pSm4,
-	pSm5,
 	ps0,
 	ps1,
 	ps2,
@@ -1704,18 +2067,6 @@ import {
 	ptXxl3,
 	ptXxl4,
 	ptXxl5,
-	pXl0,
-	pXl1,
-	pXl2,
-	pXl3,
-	pXl4,
-	pXl5,
-	pXxl0,
-	pXxl1,
-	pXxl2,
-	pXxl3,
-	pXxl4,
-	pXxl5,
 	px0,
 	px1,
 	px4,
@@ -1787,10 +2138,10 @@ import {
 	pyXxl4,
 	pyXxl5,
 	ratio,
-	ratio1x1,
-	ratio4x3,
 	ratio16x9,
+	ratio1x1,
 	ratio21x9,
+	ratio4x3,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -1919,8 +2270,8 @@ import {
 	spinnerBorderSm,
 	spinnerGrowSm,
 	start0,
-	start50,
 	start100,
+	start50,
 	stickyBottom,
 	stickyLgBottom,
 	stickyLgTop,
@@ -1969,10 +2320,10 @@ import {
 	textMdEnd,
 	textMdStart,
 	textNowrap,
+	textOpacity100,
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
-	textOpacity100,
 	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
@@ -2000,8 +2351,8 @@ import {
 	toastContainer,
 	tooltip,
 	top0,
-	top50,
 	top100,
+	top50,
 	translateMiddle,
 	translateMiddleX,
 	translateMiddleY,
@@ -2015,10 +2366,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
 	w25,
 	w50,
 	w75,
-	w100,
 	wAuto,
 	z0,
 	z1,
@@ -2026,30 +2377,6 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
-import { vars } from '../../../theme-contract/theme-contract.css'
-import {
-	varBsAccordionActiveBg,
-	varBsAccordionActiveColor,
-	varBsAccordionBg,
-	varBsAccordionBodyPaddingX,
-	varBsAccordionBodyPaddingY,
-	varBsAccordionBorderColor,
-	varBsAccordionBorderRadius,
-	varBsAccordionBorderWidth,
-	varBsAccordionBtnActiveIcon,
-	varBsAccordionBtnBg,
-	varBsAccordionBtnColor,
-	varBsAccordionBtnFocusBoxShadow,
-	varBsAccordionBtnIcon,
-	varBsAccordionBtnIconTransform,
-	varBsAccordionBtnIconTransition,
-	varBsAccordionBtnIconWidth,
-	varBsAccordionBtnPaddingX,
-	varBsAccordionBtnPaddingY,
-	varBsAccordionColor,
-	varBsAccordionInnerBorderRadius,
-	varBsAccordionTransition,
-} from '../../../theme-contract/ui/accordion/_vars.css'
 import {
 	accordion,
 	accordionBody,
@@ -2059,24 +2386,6 @@ import {
 	accordionHeader,
 	accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
-import {
-	varBsAlertBg,
-	varBsAlertBorder,
-	varBsAlertBorderColor,
-	varBsAlertBorderRadius,
-	varBsAlertColor,
-	varBsAlertLinkColor,
-	varBsAlertMarginBottom,
-	varBsAlertPaddingX,
-	varBsAlertPaddingY,
-	varBsBtnCloseBg,
-	varBsBtnCloseColor,
-	varBsBtnCloseDisabledOpacity,
-	varBsBtnCloseFocusOpacity,
-	varBsBtnCloseFocusShadow,
-	varBsBtnCloseHoverOpacity,
-	varBsBtnCloseOpacity,
-} from '../../../theme-contract/ui/alerts/_vars.css'
 import {
 	alert,
 	alertDanger,
@@ -2091,55 +2400,9 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../theme-contract/ui/alerts/contract.css'
-import {
-	varBsBadgeBorderRadius,
-	varBsBadgeColor,
-	varBsBadgeFontSize,
-	varBsBadgeFontWeight,
-	varBsBadgePaddingX,
-	varBsBadgePaddingY,
-} from '../../../theme-contract/ui/badge/_vars.css'
 import { badge } from '../../../theme-contract/ui/badge/contract.css'
-import {
-	varBsBreadcrumbBg,
-	varBsBreadcrumbBorderRadius,
-	varBsBreadcrumbDivider,
-	varBsBreadcrumbDividerColor,
-	varBsBreadcrumbItemActiveColor,
-	varBsBreadcrumbItemPaddingX,
-	varBsBreadcrumbMarginBottom,
-	varBsBreadcrumbPaddingX,
-	varBsBreadcrumbPaddingY,
-} from '../../../theme-contract/ui/breadcrumb/_vars.css'
 import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
 import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnBg,
-	varBsBtnBorderColor,
-	varBsBtnBorderRadius,
-	varBsBtnBorderWidth,
-	varBsBtnBoxShadow,
-	varBsBtnColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-	varBsBtnFocusBoxShadowRgb,
-	varBsBtnFontFamily,
-	varBsBtnFontSize,
-	varBsBtnFontWeight,
-	varBsBtnHoverBg,
-	varBsBtnHoverBorderColor,
-	varBsBtnHoverColor,
-	varBsBtnLineHeight,
-	varBsBtnPaddingX,
-	varBsBtnPaddingY,
-} from '../../../theme-contract/ui/buttons/_vars.css'
 import {
 	btn,
 	btnCheck,
@@ -2163,26 +2426,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../theme-contract/ui/buttons/contract.css'
-import {
-	varBsCardBg,
-	varBsCardBorderColor,
-	varBsCardBorderRadius,
-	varBsCardBorderWidth,
-	varBsCardBoxShadow,
-	varBsCardCapBg,
-	varBsCardCapColor,
-	varBsCardCapPaddingX,
-	varBsCardCapPaddingY,
-	varBsCardColor,
-	varBsCardGroupMargin,
-	varBsCardImgOverlayPadding,
-	varBsCardInnerBorderRadius,
-	varBsCardSpacerX,
-	varBsCardSpacerY,
-	varBsCardSubtitleColor,
-	varBsCardTitleColor,
-	varBsCardTitleSpacerY,
-} from '../../../theme-contract/ui/card/_vars.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
 import {
 	card,
 	cardBody,
@@ -2196,12 +2440,6 @@ import {
 	cardText,
 	cardTitle,
 } from '../../../theme-contract/ui/card/contract.css'
-import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
-import {
-	varBsCarouselCaptionColor,
-	varBsCarouselControlIconFilter,
-	varBsCarouselIndicatorActiveBg,
-} from '../../../theme-contract/ui/carousel/_vars.css'
 import {
 	carousel,
 	carouselCaption,
@@ -2219,34 +2457,6 @@ import {
 	carouselItemPrev,
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
-import {
-	varBsDropdownBg,
-	varBsDropdownBorderColor,
-	varBsDropdownBorderRadius,
-	varBsDropdownBorderWidth,
-	varBsDropdownBoxShadow,
-	varBsDropdownColor,
-	varBsDropdownDividerBg,
-	varBsDropdownDividerMarginY,
-	varBsDropdownFontSize,
-	varBsDropdownHeaderColor,
-	varBsDropdownHeaderPaddingX,
-	varBsDropdownHeaderPaddingY,
-	varBsDropdownInnerBorderRadius,
-	varBsDropdownItemPaddingX,
-	varBsDropdownItemPaddingY,
-	varBsDropdownLinkActiveBg,
-	varBsDropdownLinkActiveColor,
-	varBsDropdownLinkColor,
-	varBsDropdownLinkDisabledColor,
-	varBsDropdownLinkHoverBg,
-	varBsDropdownLinkHoverColor,
-	varBsDropdownMinWidth,
-	varBsDropdownPaddingX,
-	varBsDropdownPaddingY,
-	varBsDropdownSpacer,
-	varBsDropdownZindex,
-} from '../../../theme-contract/ui/dropdowns/_vars.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -2268,25 +2478,6 @@ import {
 	dropupCenter,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
-} from '../../../theme-contract/ui/list-group/_vars.css'
-import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
@@ -2300,32 +2491,6 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../theme-contract/ui/list-group/contract.css'
-import {
-	varBsBackdropBg,
-	varBsBackdropOpacity,
-	varBsBackdropZindex,
-	varBsModalBg,
-	varBsModalBorderColor,
-	varBsModalBorderRadius,
-	varBsModalBorderWidth,
-	varBsModalBoxShadow,
-	varBsModalColor,
-	varBsModalFooterBg,
-	varBsModalFooterBorderColor,
-	varBsModalFooterBorderWidth,
-	varBsModalFooterGap,
-	varBsModalHeaderBorderColor,
-	varBsModalHeaderBorderWidth,
-	varBsModalHeaderPadding,
-	varBsModalHeaderPaddingX,
-	varBsModalHeaderPaddingY,
-	varBsModalInnerBorderRadius,
-	varBsModalMargin,
-	varBsModalPadding,
-	varBsModalTitleLineHeight,
-	varBsModalWidth,
-	varBsModalZindex,
-} from '../../../theme-contract/ui/modal/_vars.css'
 import {
 	flexWrap,
 	justifyContentBetween,
@@ -2344,28 +2509,6 @@ import {
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	varBsNavbarActiveColor,
-	varBsNavbarBrandColor,
-	varBsNavbarBrandFontSize,
-	varBsNavbarBrandHoverColor,
-	varBsNavbarBrandMarginEnd,
-	varBsNavbarBrandPaddingY,
-	varBsNavbarColor,
-	varBsNavbarDisabledColor,
-	varBsNavbarHoverColor,
-	varBsNavbarNavLinkPaddingX,
-	varBsNavbarPaddingX,
-	varBsNavbarPaddingY,
-	varBsNavbarTogglerBorderColor,
-	varBsNavbarTogglerBorderRadius,
-	varBsNavbarTogglerFocusWidth,
-	varBsNavbarTogglerFontSize,
-	varBsNavbarTogglerIconBg,
-	varBsNavbarTogglerPaddingX,
-	varBsNavbarTogglerPaddingY,
-	varBsNavbarTogglerTransition,
-} from '../../../theme-contract/ui/navbar/_vars.css'
-import {
 	collapse,
 	navbar,
 	navbarBrand,
@@ -2377,25 +2520,6 @@ import {
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	varBsNavLinkColor,
-	varBsNavLinkDisabledColor,
-	varBsNavLinkFontSize,
-	varBsNavLinkFontWeight,
-	varBsNavLinkHoverColor,
-	varBsNavLinkPaddingX,
-	varBsNavLinkPaddingY,
-	varBsNavPillsBorderRadius,
-	varBsNavPillsLinkActiveBg,
-	varBsNavPillsLinkActiveColor,
-	varBsNavTabsBorderColor,
-	varBsNavTabsBorderRadius,
-	varBsNavTabsBorderWidth,
-	varBsNavTabsLinkActiveBg,
-	varBsNavTabsLinkActiveBorderColor,
-	varBsNavTabsLinkActiveColor,
-	varBsNavTabsLinkHoverBorderColor,
-} from '../../../theme-contract/ui/navs/_vars.css'
 import {
 	fade,
 	nav,
@@ -2410,28 +2534,6 @@ import {
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
 import {
-	varBsPaginationActiveBg,
-	varBsPaginationActiveBorderColor,
-	varBsPaginationActiveColor,
-	varBsPaginationBg,
-	varBsPaginationBorderColor,
-	varBsPaginationBorderRadius,
-	varBsPaginationBorderWidth,
-	varBsPaginationColor,
-	varBsPaginationDisabledBg,
-	varBsPaginationDisabledBorderColor,
-	varBsPaginationDisabledColor,
-	varBsPaginationFocusBg,
-	varBsPaginationFocusBoxShadow,
-	varBsPaginationFocusColor,
-	varBsPaginationFontSize,
-	varBsPaginationHoverBg,
-	varBsPaginationHoverBorderColor,
-	varBsPaginationHoverColor,
-	varBsPaginationPaddingX,
-	varBsPaginationPaddingY,
-} from '../../../theme-contract/ui/pagination/_vars.css'
-import {
 	pageItem,
 	pageItemActive,
 	pageItemDisabled,
@@ -2440,28 +2542,6 @@ import {
 	paginationLg,
 	paginationSm,
 } from '../../../theme-contract/ui/pagination/contract.css'
-import {
-	varBsPopoverArrowBorder,
-	varBsPopoverArrowHeight,
-	varBsPopoverArrowWidth,
-	varBsPopoverBg,
-	varBsPopoverBodyColor,
-	varBsPopoverBodyPaddingX,
-	varBsPopoverBodyPaddingY,
-	varBsPopoverBorderColor,
-	varBsPopoverBorderRadius,
-	varBsPopoverBorderWidth,
-	varBsPopoverBoxShadow,
-	varBsPopoverFontSize,
-	varBsPopoverHeaderBg,
-	varBsPopoverHeaderColor,
-	varBsPopoverHeaderFontSize,
-	varBsPopoverHeaderPaddingX,
-	varBsPopoverHeaderPaddingY,
-	varBsPopoverInnerBorderRadius,
-	varBsPopoverMaxWidth,
-	varBsPopoverZindex,
-} from '../../../theme-contract/ui/popovers/_vars.css'
 import {
 	bsPopoverAuto,
 	bsPopoverBottom,
@@ -2475,48 +2555,13 @@ import {
 	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
-	varBsProgressBarBg,
-	varBsProgressBarColor,
-	varBsProgressBarTransition,
-	varBsProgressBg,
-	varBsProgressBorderRadius,
-	varBsProgressBoxShadow,
-	varBsProgressFontSize,
-	varBsProgressHeight,
-} from '../../../theme-contract/ui/progress/_vars.css'
-import {
 	progress,
 	progressBar,
 	progressBarAnimated,
 	progressBarStriped,
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
-import {
-	varBsSpinnerAnimationName,
-	varBsSpinnerAnimationSpeed,
-	varBsSpinnerBorderWidth,
-	varBsSpinnerHeight,
-	varBsSpinnerVerticalAlign,
-	varBsSpinnerWidth,
-} from '../../../theme-contract/ui/spinners/_vars.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	varBsToastBg,
-	varBsToastBorderColor,
-	varBsToastBorderRadius,
-	varBsToastBorderWidth,
-	varBsToastBoxShadow,
-	varBsToastColor,
-	varBsToastFontSize,
-	varBsToastHeaderBg,
-	varBsToastHeaderBorderColor,
-	varBsToastHeaderColor,
-	varBsToastMaxWidth,
-	varBsToastPaddingX,
-	varBsToastPaddingY,
-	varBsToastSpacing,
-	varBsToastZindex,
-} from '../../../theme-contract/ui/toasts/_vars.css'
 import {
 	toast,
 	toastBody,
@@ -2524,20 +2569,6 @@ import {
 	toastShow,
 	toastShowing,
 } from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	varBsTooltipArrowHeight,
-	varBsTooltipArrowWidth,
-	varBsTooltipBg,
-	varBsTooltipBorderRadius,
-	varBsTooltipColor,
-	varBsTooltipFontSize,
-	varBsTooltipMargin,
-	varBsTooltipMaxWidth,
-	varBsTooltipOpacity,
-	varBsTooltipPaddingX,
-	varBsTooltipPaddingY,
-	varBsTooltipZindex,
-} from '../../../theme-contract/ui/tooltips/_vars.css'
 import {
 	tooltipArrow,
 	tooltipFade,
@@ -2587,33 +2618,6 @@ import {
 	textMuted,
 	visuallyHidden,
 } from '../../../theme-contract/utilities/contract.css'
-import {
-	varBsAspectRatio,
-	varBsBgOpacity,
-	varBsBorderOpacity,
-	varBsBtnCloseFilter,
-	varBsCardHeight,
-	varBsLinkOpacity,
-	varBsLinkUnderlineOpacity,
-	varBsNavUnderlineBorderWidth,
-	varBsNavUnderlineGap,
-	varBsNavUnderlineLinkActiveColor,
-	varBsOffcanvasBg,
-	varBsOffcanvasBorderColor,
-	varBsOffcanvasBorderWidth,
-	varBsOffcanvasBoxShadow,
-	varBsOffcanvasColor,
-	varBsOffcanvasHeight,
-	varBsOffcanvasPaddingX,
-	varBsOffcanvasPaddingY,
-	varBsOffcanvasTitleLineHeight,
-	varBsOffcanvasTransition,
-	varBsOffcanvasWidth,
-	varBsOffcanvasZindex,
-	varBsPosition,
-	varBsTextOpacity,
-} from '../../../theme-contract/utilities/generated/_vars.css'
-import { literaScope } from '../scope.css'
 
 globalStyle(`${literaScope}${vars}`, {
 	vars: {
@@ -2682,12 +2686,9 @@ globalStyle(`${literaScope}${vars}`, {
 		[varBsDarkBorderSubtle]: '#adb5bd',
 		[varBsWhiteRgb]: '255, 255, 255',
 		[varBsBlackRgb]: '0, 0, 0',
-		[varBsFontSansSerif]:
-			'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-		[varBsFontMonospace]:
-			'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-		[varBsGradient]:
-			'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
+		[varBsFontSansSerif]: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+		[varBsFontMonospace]: 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+		[varBsGradient]: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
 		[varBsBodyFontFamily]: varBsFontSansSerif,
 		[varBsBodyFontSize]: '1.1rem',
 		[varBsBodyFontWeight]: '400',
@@ -3368,7 +3369,7 @@ globalStyle(`:where(${literaScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`[role=button]`, {
+globalStyle(`${literaScope}[role=button]`, {
 	cursor: 'pointer',
 })
 
@@ -3380,26 +3381,23 @@ globalStyle(`${literaScope}${elSelect}:disabled`, {
 	opacity: '1',
 })
 
-globalStyle(
-	`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
-	{
-		display: 'none !important',
-	},
-)
+globalStyle(`${literaScope}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
+	display: 'none !important',
+})
 
 globalStyle(`:where(${literaScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=button]`, {
+globalStyle(`${literaScope}[type=button]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=reset]`, {
+globalStyle(`${literaScope}[type=reset]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=submit]`, {
+globalStyle(`${literaScope}[type=submit]`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3407,15 +3405,15 @@ globalStyle(`${literaScope}${elButton}:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=button]:not(:disabled)`, {
+globalStyle(`${literaScope}[type=button]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=reset]:not(:disabled)`, {
+globalStyle(`${literaScope}[type=reset]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=submit]:not(:disabled)`, {
+globalStyle(`${literaScope}[type=submit]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
@@ -3488,12 +3486,12 @@ globalStyle(`::-webkit-inner-spin-button`, {
 	height: 'auto',
 })
 
-globalStyle(`[type=search]`, {
+globalStyle(`${literaScope}[type=search]`, {
 	WebkitAppearance: 'textfield',
 	outlineOffset: '-2px',
 })
 
-globalStyle(`[type=search]::-webkit-search-cancel-button`, {
+globalStyle(`${literaScope}[type=search]::-webkit-search-cancel-button`, {
 	cursor: 'pointer',
 	filter: 'grayscale(1)',
 })
@@ -3533,7 +3531,7 @@ globalStyle(`:where(${literaScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`[hidden]`, {
+globalStyle(`${literaScope}[hidden]`, {
 	display: 'none !important',
 })
 
@@ -6932,11 +6930,11 @@ globalStyle(`${literaScope}${table} > :not(caption) > * > *`, {
 	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-globalStyle(`${literaScope}${table} > :where(${literaScope}${tableSection})`, {
+globalStyle(`${literaScope}${table} > ${literaScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${literaScope}${table} > :where(${literaScope}${tableSection})`, {
+globalStyle(`${literaScope}${table} > ${literaScope}${tableSection}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -6968,25 +6966,19 @@ globalStyle(`${literaScope}${tableBorderless} > :not(:first-child)`, {
 	borderTopWidth: '0',
 })
 
-globalStyle(
-	`${literaScope}${tableStriped} > :where(${literaScope}${tableSection}) > ${literaScope}${tableRow}:nth-of-type(odd) > *`,
-	{
-		vars: {
-			[varBsTableColorType]: varBsTableStripedColor,
-			[varBsTableBgType]: varBsTableStripedBg,
-		},
+globalStyle(`${literaScope}${tableStriped} > ${literaScope}${tableSection} > ${literaScope}${tableRow}:nth-of-type(odd) > *`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${tableStripedColumns} > :not(caption) > :where(${literaScope}${tableRow}) > :nth-child(even)`,
-	{
-		vars: {
-			[varBsTableColorType]: varBsTableStripedColor,
-			[varBsTableBgType]: varBsTableStripedBg,
-		},
+globalStyle(`${literaScope}${tableStripedColumns} > :not(caption) > ${literaScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-)
+})
 
 globalStyle(`${literaScope}${tableActive}`, {
 	vars: {
@@ -6995,15 +6987,12 @@ globalStyle(`${literaScope}${tableActive}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${tableHover} > :where(${literaScope}${tableSection}) > ${literaScope}${tableRow}:hover > *`,
-	{
-		vars: {
-			[varBsTableColorState]: varBsTableHoverColor,
-			[varBsTableBgState]: varBsTableHoverBg,
-		},
+globalStyle(`${literaScope}${tableHover} > ${literaScope}${tableSection} > ${literaScope}${tableRow}:hover > *`, {
+	vars: {
+		[varBsTableColorState]: varBsTableHoverColor,
+		[varBsTableBgState]: varBsTableHoverBg,
 	},
-)
+})
 
 globalStyle(`${literaScope}${tablePrimary}`, {
 	vars: {
@@ -7302,10 +7291,8 @@ globalStyle(`${literaScope}${formControl}::-webkit-file-upload-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	WebkitTransition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${formControl}::file-selector-button`, {
@@ -7321,8 +7308,7 @@ globalStyle(`${literaScope}${formControl}::file-selector-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${formControl}::-webkit-file-upload-button`, {
@@ -7342,19 +7328,13 @@ globalStyle(`${literaScope}${formControl}::file-selector-button`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
-	{
-		backgroundColor: varBsSecondaryBg,
-	},
-)
+globalStyle(`${literaScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
+	backgroundColor: varBsSecondaryBg,
+})
 
-globalStyle(
-	`${literaScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
-	{
-		backgroundColor: varBsSecondaryBg,
-	},
-)
+globalStyle(`${literaScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
+	backgroundColor: varBsSecondaryBg,
+})
 
 globalStyle(`${literaScope}${formControlPlaintext}`, {
 	display: 'block',
@@ -7474,8 +7454,7 @@ globalStyle(`${literaScope}${formControlColor}${formControlLg}`, {
 
 globalStyle(`${literaScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23343a40\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
 	display: 'block',
 	width: '100%',
@@ -7554,10 +7533,9 @@ globalStyle(`${literaScope}${formSelectLg}`, {
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${literaScope}${formSelect}`, {
+globalStyle(`${literaScope}[data-bs-theme=dark] ${literaScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ddd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23ddd\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -7633,22 +7611,19 @@ globalStyle(`${literaScope}${formCheckInput}:checked`, {
 
 globalStyle(`${literaScope}${formCheckInput}:checked[type=checkbox]`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'m6 10 3 3 6-6\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${literaScope}${formCheckInput}:checked[type=radio]`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'2\' fill=\'%23fff\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${literaScope}${formCheckInput}[type=checkbox]:indeterminate`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'M6 10h8\'/%3e%3c/svg%3e")',
 	},
 	backgroundColor: '#4582ec',
 	borderColor: '#4582ec',
@@ -7676,8 +7651,7 @@ globalStyle(`${literaScope}${formSwitch}`, {
 
 globalStyle(`${literaScope}${formSwitch} ${literaScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
 	},
 	width: '2em',
 	marginLeft: '-2.5em',
@@ -7697,15 +7671,13 @@ globalStyle(`${literaScope}${formSwitch} ${literaScope}${formCheckInput}`, {
 
 globalStyle(`${literaScope}${formSwitch} ${literaScope}${formCheckInput}:focus`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23a2c1f6'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23a2c1f6\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${literaScope}${formSwitch} ${literaScope}${formCheckInput}:checked`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23fff\'/%3e%3c/svg%3e")',
 	},
 	backgroundPosition: 'right center',
 })
@@ -7743,15 +7715,11 @@ globalStyle(`${literaScope}${btnCheck}:disabled + ${literaScope}${btn}`, {
 	opacity: '0.65',
 })
 
-globalStyle(
-	`[data-bs-theme=dark] ${literaScope}${formSwitch} ${literaScope}${formCheckInput}:not(:checked):not(:focus)`,
-	{
-		vars: {
-			[varBsFormSwitchBg]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e\")",
-		},
+globalStyle(`${literaScope}[data-bs-theme=dark] ${literaScope}${formSwitch} ${literaScope}${formCheckInput}:not(:checked):not(:focus)`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
 	},
-)
+})
 
 globalStyle(`${literaScope}${formRange}`, {
 	width: '100%',
@@ -7788,10 +7756,8 @@ globalStyle(`${literaScope}${formRange}::-webkit-slider-thumb`, {
 	backgroundColor: '#4582ec',
 	border: '0',
 	borderRadius: '1rem',
-	WebkitTransition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${formRange}::-webkit-slider-thumb`, {
@@ -7825,10 +7791,8 @@ globalStyle(`${literaScope}${formRange}::-moz-range-thumb`, {
 	backgroundColor: '#4582ec',
 	border: '0',
 	borderRadius: '1rem',
-	MozTransition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${formRange}::-moz-range-thumb`, {
@@ -7888,7 +7852,7 @@ globalStyle(`${literaScope}${formFloating} > ${literaScope}${formSelect}`, {
 	lineHeight: '1.25',
 })
 
-globalStyle(`${literaScope}${formFloating} > :where(${literaScope}${elLabel})`, {
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${elLabel}`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7907,7 +7871,7 @@ globalStyle(`${literaScope}${formFloating} > :where(${literaScope}${elLabel})`, 
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${literaScope}${formFloating} > :where(${literaScope}${elLabel})`, {
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${elLabel}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7927,12 +7891,9 @@ globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}::-moz-
 	color: 'transparent',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}::-moz-placeholder`,
-	{
-		color: 'transparent',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}::-moz-placeholder`, {
+	color: 'transparent',
+})
 
 globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}::placeholder`, {
 	color: 'transparent',
@@ -7942,60 +7903,45 @@ globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintex
 	color: 'transparent',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:-moz-placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:not(:placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:not(:placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:-webkit-autofill`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:-webkit-autofill`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext}:-webkit-autofill`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${literaScope}${formFloating} > ${literaScope}${formSelect}`, {
 	paddingTop: '1.625rem',
@@ -8003,111 +7949,75 @@ globalStyle(`${literaScope}${formFloating} > ${literaScope}${formSelect}`, {
 	paddingLeft: '1.1rem',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:-moz-placeholder-shown) ~ :where(${literaScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:-moz-placeholder-shown) ~ ${literaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:focus ~ :where(${literaScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:focus ~ ${literaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:placeholder-shown) ~ :where(${literaScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:not(:placeholder-shown) ~ ${literaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext} ~ :where(${literaScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext} ~ ${literaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formSelect} ~ :where(${literaScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formSelect} ~ ${literaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:-webkit-autofill ~ :where(${literaScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:-webkit-autofill ~ ${literaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${literaScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.55rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: varBsBodyBg,
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${literaScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.55rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${elTextarea}:focus ~ ${literaScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.55rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: varBsBodyBg,
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${elTextarea}:focus ~ ${literaScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.55rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${elTextarea}:not(:placeholder-shown) ~ ${literaScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.55rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: varBsBodyBg,
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${elTextarea}:not(:placeholder-shown) ~ ${literaScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.55rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${elTextarea}:disabled ~ ${literaScope}${elLabel}::after`,
-	{
-		backgroundColor: varBsSecondaryBg,
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${elTextarea}:disabled ~ ${literaScope}${elLabel}::after`, {
+	backgroundColor: varBsSecondaryBg,
+})
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext} ~ :where(${literaScope}${elLabel})`,
-	{
-		borderWidth: `${varBsBorderWidth} 0`,
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControlPlaintext} ~ ${literaScope}${elLabel}`, {
+	borderWidth: `${varBsBorderWidth} 0`,
+})
 
-globalStyle(`${literaScope}${formFloating} > :disabled ~ :where(${literaScope}${elLabel})`, {
+globalStyle(`${literaScope}${formFloating} > :disabled ~ ${literaScope}${elLabel}`, {
 	color: '#868e96',
 })
 
-globalStyle(
-	`${literaScope}${formFloating} > ${literaScope}${formControl}:disabled ~ :where(${literaScope}${elLabel})`,
-	{
-		color: '#868e96',
-	},
-)
+globalStyle(`${literaScope}${formFloating} > ${literaScope}${formControl}:disabled ~ ${literaScope}${elLabel}`, {
+	color: '#868e96',
+})
 
 globalStyle(`${literaScope}${inputGroup}`, {
 	position: 'relative',
@@ -8262,94 +8172,61 @@ globalStyle(`${literaScope}${inputGroupSm} > ${literaScope}${formSelect}`, {
 	paddingRight: '4.4rem',
 })
 
-globalStyle(
-	`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}${dropdownToggle}:nth-last-child(n+3)`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}${dropdownToggle}:nth-last-child(n+3)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}${formFloating}:not(:last-child) > ${literaScope}${formControl}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}${formFloating}:not(:last-child) > ${literaScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}${formFloating}:not(:last-child) > ${literaScope}${formSelect}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}${formFloating}:not(:last-child) > ${literaScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}${hasValidation} > ${literaScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}${hasValidation} > ${literaScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${dropdownToggle}:nth-last-child(n+4)`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${formFloating}:nth-last-child(n+3) > ${literaScope}${formControl}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${formFloating}:nth-last-child(n+3) > ${literaScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${formFloating}:nth-last-child(n+3) > ${literaScope}${formSelect}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${formFloating}:nth-last-child(n+3) > ${literaScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup} > ${literaScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`,
-	{
-		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup} > ${literaScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:first-child) > ${literaScope}${formControl}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:first-child) > ${literaScope}${formControl}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:first-child) > ${literaScope}${formSelect}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:first-child) > ${literaScope}${formSelect}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${literaScope}${validFeedback}`, {
 	display: 'none',
@@ -8392,8 +8269,7 @@ globalStyle(`${literaScope}${isValid} ~ ${literaScope}${validTooltip}`, {
 globalStyle(`${literaScope}${wasValidated} ${literaScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2302b875' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2302b875\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -8402,8 +8278,7 @@ globalStyle(`${literaScope}${wasValidated} ${literaScope}${formControl}:valid`, 
 globalStyle(`${literaScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2302b875' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2302b875\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -8437,36 +8312,27 @@ globalStyle(`${literaScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${formSelect}:valid:not([multiple]):not([size])`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2302b875' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '6.05rem',
-		backgroundPosition: 'right 1.1rem center, center right 3.3rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${formSelect}:valid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2302b875\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '6.05rem',
+	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+})
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${formSelect}:valid:not([multiple])[size="1"]`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2302b875' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '6.05rem',
-		backgroundPosition: 'right 1.1rem center, center right 3.3rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${formSelect}:valid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2302b875\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '6.05rem',
+	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+})
 
 globalStyle(`${literaScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2302b875' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2302b875\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '6.05rem',
 	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
@@ -8475,8 +8341,7 @@ globalStyle(`${literaScope}${formSelect}${isValid}:not([multiple]):not([size])`,
 
 globalStyle(`${literaScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2302b875' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2302b875\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '6.05rem',
 	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
@@ -8525,59 +8390,41 @@ globalStyle(`${literaScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${formCheckInput}:valid ~ ${literaScope}${formCheckLabel}`,
-	{
-		color: varBsFormValidColor,
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${formCheckInput}:valid ~ ${literaScope}${formCheckLabel}`, {
+	color: varBsFormValidColor,
+})
 
 globalStyle(`${literaScope}${formCheckInput}${isValid} ~ ${literaScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(
-	`${literaScope}${formCheckInline} ${literaScope}${formCheckInput} ~ ${literaScope}${validFeedback}`,
-	{
-		marginLeft: '0.5em',
-	},
-)
+globalStyle(`${literaScope}${formCheckInline} ${literaScope}${formCheckInput} ~ ${literaScope}${validFeedback}`, {
+	marginLeft: '0.5em',
+})
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formControl}:not(:focus):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formControl}:not(:focus):valid`, {
+	zIndex: '3',
+})
 
 globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formControl}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formSelect}:not(:focus):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formSelect}:not(:focus):valid`, {
+	zIndex: '3',
+})
 
 globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formSelect}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within):valid`, {
+	zIndex: '3',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within)${isValid}`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within)${isValid}`, {
+	zIndex: '3',
+})
 
 globalStyle(`${literaScope}${invalidFeedback}`, {
 	display: 'none',
@@ -8620,8 +8467,7 @@ globalStyle(`${literaScope}${isInvalid} ~ ${literaScope}${invalidTooltip}`, {
 globalStyle(`${literaScope}${wasValidated} ${literaScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d9534f'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d9534f' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23d9534f\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23d9534f\' stroke=\'none\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -8630,8 +8476,7 @@ globalStyle(`${literaScope}${wasValidated} ${literaScope}${formControl}:invalid`
 globalStyle(`${literaScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 1rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d9534f'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d9534f' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23d9534f\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23d9534f\' stroke=\'none\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.25rem) center',
 	backgroundSize: 'calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
@@ -8665,36 +8510,27 @@ globalStyle(`${literaScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${formSelect}:invalid:not([multiple]):not([size])`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d9534f'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d9534f' stroke='none'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '6.05rem',
-		backgroundPosition: 'right 1.1rem center, center right 3.3rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${formSelect}:invalid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23d9534f\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23d9534f\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '6.05rem',
+	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+})
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${formSelect}:invalid:not([multiple])[size="1"]`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d9534f'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d9534f' stroke='none'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '6.05rem',
-		backgroundPosition: 'right 1.1rem center, center right 3.3rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23d9534f\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23d9534f\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '6.05rem',
+	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.5rem) calc(0.75em + 0.5rem)',
+})
 
 globalStyle(`${literaScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d9534f'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d9534f' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23d9534f\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23d9534f\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '6.05rem',
 	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
@@ -8703,8 +8539,7 @@ globalStyle(`${literaScope}${formSelect}${isInvalid}:not([multiple]):not([size])
 
 globalStyle(`${literaScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d9534f'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d9534f' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23d9534f\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23d9534f\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '6.05rem',
 	backgroundPosition: 'right 1.1rem center, center right 3.3rem',
@@ -8753,66 +8588,47 @@ globalStyle(`${literaScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${formCheckInput}:invalid ~ ${literaScope}${formCheckLabel}`,
-	{
-		color: varBsFormInvalidColor,
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${formCheckInput}:invalid ~ ${literaScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
 
 globalStyle(`${literaScope}${formCheckInput}${isInvalid} ~ ${literaScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
-globalStyle(
-	`${literaScope}${formCheckInline} ${literaScope}${formCheckInput} ~ ${literaScope}${invalidFeedback}`,
-	{
-		marginLeft: '0.5em',
-	},
-)
+globalStyle(`${literaScope}${formCheckInline} ${literaScope}${formCheckInput} ~ ${literaScope}${invalidFeedback}`, {
+	marginLeft: '0.5em',
+})
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formControl}:not(:focus):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formControl}:not(:focus):invalid`, {
+	zIndex: '4',
+})
 
 globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formControl}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formSelect}:not(:focus):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formSelect}:not(:focus):invalid`, {
+	zIndex: '4',
+})
 
 globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formSelect}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(
-	`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${literaScope}${wasValidated} ${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within):invalid`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within)${isInvalid}`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${literaScope}${inputGroup} > ${literaScope}${formFloating}:not(:focus-within)${isInvalid}`, {
+	zIndex: '4',
+})
 
 globalStyle(`${literaScope}${btn}`, {
 	vars: {
 		[varBsBtnPaddingX]: '1.1rem',
 		[varBsBtnPaddingY]: '0.5rem',
-		[varBsBtnFontFamily]:
-			'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji',
+		[varBsBtnFontFamily]: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji',
 		[varBsBtnFontSize]: '0.875rem',
 		[varBsBtnFontWeight]: '400',
 		[varBsBtnLineHeight]: '1.5',
@@ -8822,8 +8638,7 @@ globalStyle(`${literaScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: '1.078em',
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
@@ -8844,8 +8659,7 @@ globalStyle(`${literaScope}${btn}`, {
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${btn}`, {
@@ -9959,12 +9773,9 @@ globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}`, {
 	flex: '1 1 auto',
 })
 
-globalStyle(
-	`${literaScope}${btnGroup} > ${literaScope}${btnCheck}:checked + ${literaScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnCheck}:checked + ${literaScope}${btn}`, {
+	zIndex: '1',
+})
 
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnCheck}:focus + ${literaScope}${btn}`, {
 	zIndex: '1',
@@ -9986,19 +9797,13 @@ globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}${active}`, {
 	zIndex: '1',
 })
 
-globalStyle(
-	`${literaScope}${btnGroupVertical} > ${literaScope}${btnCheck}:checked + ${literaScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnCheck}:checked + ${literaScope}${btn}`, {
+	zIndex: '1',
+})
 
-globalStyle(
-	`${literaScope}${btnGroupVertical} > ${literaScope}${btnCheck}:focus + ${literaScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnCheck}:focus + ${literaScope}${btn}`, {
+	zIndex: '1',
+})
 
 globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:hover`, {
 	zIndex: '1',
@@ -10030,37 +9835,28 @@ globalStyle(`${literaScope}${btnGroup}`, {
 	borderRadius: '1.078em',
 })
 
-globalStyle(
-	`${literaScope}${btnGroup} > ${literaScope}:not(${btnCheck}:first-child) + ${literaScope}${btn}`,
-	{
-		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	},
-)
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}:not(${btnCheck}:first-child) + ${literaScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
 
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:first-child)`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(
-	`${literaScope}${btnGroup} > ${literaScope}${btn}:not(:last-child):not(${dropdownToggle})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
 })
 
-globalStyle(
-	`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:last-child) > ${literaScope}${btn}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:last-child) > ${literaScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
@@ -10072,13 +9868,10 @@ globalStyle(`${literaScope}${btnGroup} > ${literaScope}:not(${btnCheck}) + ${lit
 	borderBottomLeftRadius: '0',
 })
 
-globalStyle(
-	`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:first-child) > ${literaScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:first-child) > ${literaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${literaScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.825rem',
@@ -10106,26 +9899,20 @@ globalStyle(`${literaScope}${btnSm} + ${literaScope}${dropdownToggleSplit}`, {
 	paddingLeft: '0.375rem',
 })
 
-globalStyle(
-	`${literaScope}${btnGroupSm} > ${literaScope}${btn} + ${literaScope}${dropdownToggleSplit}`,
-	{
-		paddingRight: '0.375rem',
-		paddingLeft: '0.375rem',
-	},
-)
+globalStyle(`${literaScope}${btnGroupSm} > ${literaScope}${btn} + ${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
 
 globalStyle(`${literaScope}${btnLg} + ${literaScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(
-	`${literaScope}${btnGroupLg} > ${literaScope}${btn} + ${literaScope}${dropdownToggleSplit}`,
-	{
-		paddingRight: '0.75rem',
-		paddingLeft: '0.75rem',
-	},
-)
+globalStyle(`${literaScope}${btnGroupLg} > ${literaScope}${btn} + ${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
 
 globalStyle(`${literaScope}${btnGroupVertical}`, {
 	flexDirection: 'column',
@@ -10149,42 +9936,30 @@ globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnGroup}:not(:
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(
-	`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:not(:last-child):not(${dropdownToggle})`,
-	{
-		borderBottomRightRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${btnGroupVertical} > ${literaScope}${btnGroup}:not(:last-child) > ${literaScope}${btn}`,
-	{
-		borderBottomRightRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnGroup}:not(:last-child) > ${literaScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderTopRightRadius: '0',
 })
 
-globalStyle(
-	`${literaScope}${btnGroupVertical} > ${literaScope}:not(${btnCheck}) + ${literaScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}:not(${btnCheck}) + ${literaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${btnGroupVertical} > ${literaScope}${btnGroup}:not(:first-child) > ${literaScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnGroup}:not(:first-child) > ${literaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
 
 globalStyle(`${literaScope}${nav}`, {
 	vars: {
@@ -10211,8 +9986,7 @@ globalStyle(`${literaScope}${navLink}`, {
 	textDecoration: 'none',
 	background: 'none',
 	border: '0',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${navLink}`, {
@@ -10408,8 +10182,7 @@ globalStyle(`${literaScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.375rem',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2852, 58, 64, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%2852, 58, 64, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: '1.078em',
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -10524,7 +10297,7 @@ globalStyle(`${literaScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${literaScope}${navbarText} :where(${literaScope}${link})`, {
+globalStyle(`${literaScope}${navbarText} ${literaScope}${link}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10604,16 +10377,13 @@ globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandSm} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				position: 'absolute',
-			},
+globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
 	'@media': {
@@ -10666,30 +10436,24 @@ globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandSm} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				display: 'none',
-			},
+globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${navbarExpandSm} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandMd}`, {
 	'@media': {
@@ -10708,16 +10472,13 @@ globalStyle(`${literaScope}${navbarExpandMd} ${literaScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandMd} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				position: 'absolute',
-			},
+globalStyle(`${literaScope}${navbarExpandMd} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandMd} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
 	'@media': {
@@ -10770,30 +10531,24 @@ globalStyle(`${literaScope}${navbarExpandMd} ${literaScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandMd} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				display: 'none',
-			},
+globalStyle(`${literaScope}${navbarExpandMd} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${navbarExpandMd} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${literaScope}${navbarExpandMd} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandLg}`, {
 	'@media': {
@@ -10812,16 +10567,13 @@ globalStyle(`${literaScope}${navbarExpandLg} ${literaScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandLg} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				position: 'absolute',
-			},
+globalStyle(`${literaScope}${navbarExpandLg} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandLg} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
 	'@media': {
@@ -10874,30 +10626,24 @@ globalStyle(`${literaScope}${navbarExpandLg} ${literaScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandLg} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				display: 'none',
-			},
+globalStyle(`${literaScope}${navbarExpandLg} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${navbarExpandLg} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${literaScope}${navbarExpandLg} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandXl}`, {
 	'@media': {
@@ -10916,16 +10662,13 @@ globalStyle(`${literaScope}${navbarExpandXl} ${literaScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandXl} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				position: 'absolute',
-			},
+globalStyle(`${literaScope}${navbarExpandXl} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandXl} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
 	'@media': {
@@ -10978,30 +10721,24 @@ globalStyle(`${literaScope}${navbarExpandXl} ${literaScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandXl} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				display: 'none',
-			},
+globalStyle(`${literaScope}${navbarExpandXl} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${navbarExpandXl} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${literaScope}${navbarExpandXl} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandXxl}`, {
 	'@media': {
@@ -11020,28 +10757,22 @@ globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandXxl} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				position: 'absolute',
-			},
+globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${navbarExpandXxl} ${literaScope}${navbarNav} ${literaScope}${navLink}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				paddingRight: varBsNavbarNavLinkPaddingX,
-				paddingLeft: varBsNavbarNavLinkPaddingX,
-			},
+globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${navbarNavScroll}`, {
 	'@media': {
@@ -11085,30 +10816,24 @@ globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${navbarExpandXxl} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				display: 'none',
-			},
+globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${navbarExpandXxl} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${literaScope}${navbarExpandXxl} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${navbarExpand}`, {
 	flexWrap: 'nowrap',
@@ -11119,12 +10844,9 @@ globalStyle(`${literaScope}${navbarExpand} ${literaScope}${navbarNav}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(
-	`${literaScope}${navbarExpand} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`,
-	{
-		position: 'absolute',
-	},
-)
+globalStyle(`${literaScope}${navbarExpand} ${literaScope}${navbarNav} ${literaScope}${dropdownMenu}`, {
+	position: 'absolute',
+})
 
 globalStyle(`${literaScope}${navbarExpand} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
@@ -11157,22 +10879,16 @@ globalStyle(`${literaScope}${navbarExpand} ${literaScope}${offcanvas}`, {
 	transition: 'none',
 })
 
-globalStyle(
-	`${literaScope}${navbarExpand} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`,
-	{
-		display: 'none',
-	},
-)
+globalStyle(`${literaScope}${navbarExpand} ${literaScope}${offcanvas} ${literaScope}${offcanvasHeader}`, {
+	display: 'none',
+})
 
-globalStyle(
-	`${literaScope}${navbarExpand} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`,
-	{
-		display: 'flex',
-		flexGrow: '0',
-		padding: '0',
-		overflowY: 'visible',
-	},
-)
+globalStyle(`${literaScope}${navbarExpand} ${literaScope}${offcanvas} ${literaScope}${offcanvasBody}`, {
+	display: 'flex',
+	flexGrow: '0',
+	padding: '0',
+	overflowY: 'visible',
+})
 
 globalStyle(`${literaScope}${navbarDark}`, {
 	vars: {
@@ -11183,8 +10899,7 @@ globalStyle(`${literaScope}${navbarDark}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11197,15 +10912,13 @@ globalStyle(`${literaScope}${navbar}[data-bs-theme=dark]`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${literaScope}${navbarTogglerIcon}`, {
+globalStyle(`${literaScope}[data-bs-theme=dark] ${literaScope}${navbarTogglerIcon}`, {
 	vars: {
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11244,7 +10957,7 @@ globalStyle(`${literaScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-globalStyle(`${literaScope}${card} > :where(${literaScope}${horizontalRule})`, {
+globalStyle(`${literaScope}${card} > ${literaScope}${horizontalRule}`, {
 	marginRight: '0',
 	marginLeft: '0',
 })
@@ -11421,49 +11134,37 @@ globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child)
 	},
 })
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardImgTop}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardImgBottom}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomRightRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardFooter}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomRightRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:last-child) > ${literaScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child)`, {
 	'@media': {
@@ -11474,56 +11175,43 @@ globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child
 	},
 })
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardImgTop}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardImgBottom}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardFooter}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${cardGroup} > ${literaScope}${card}:not(:first-child) > ${literaScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${accordion}`, {
 	vars: {
 		[varBsAccordionColor]: varBsBodyColor,
 		[varBsAccordionBg]: varBsBodyBg,
-		[varBsAccordionTransition]:
-			'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
+		[varBsAccordionTransition]: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
@@ -11532,13 +11220,11 @@ globalStyle(`${literaScope}${accordion}`, {
 		[varBsAccordionBtnPaddingY]: '1rem',
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
-		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%23343a40\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnIconWidth]: '1.25rem',
 		[varBsAccordionBtnIconTransform]: 'rotate(-180deg)',
 		[varBsAccordionBtnIconTransition]: 'transform 0.2s ease-in-out',
-		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%231c345e' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%231c345e\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnFocusBoxShadow]: '0 0 0 0.25rem rgba(69, 130, 236, 0.25)',
 		[varBsAccordionBodyPaddingX]: '1.25rem',
 		[varBsAccordionBodyPaddingY]: '1rem',
@@ -11627,13 +11313,10 @@ globalStyle(`${literaScope}${accordionItem}:first-of-type`, {
 	borderTopRightRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(
-	`${literaScope}${accordionItem}:first-of-type > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}`,
-	{
-		borderTopLeftRadius: varBsAccordionInnerBorderRadius,
-		borderTopRightRadius: varBsAccordionInnerBorderRadius,
-	},
-)
+globalStyle(`${literaScope}${accordionItem}:first-of-type > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}`, {
+	borderTopLeftRadius: varBsAccordionInnerBorderRadius,
+	borderTopRightRadius: varBsAccordionInnerBorderRadius,
+})
 
 globalStyle(`${literaScope}${accordionItem}:not(:first-of-type)`, {
 	borderTop: '0',
@@ -11644,13 +11327,10 @@ globalStyle(`${literaScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(
-	`${literaScope}${accordionItem}:last-of-type > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${accordionButtonCollapsed}`,
-	{
-		borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-		borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
-	},
-)
+globalStyle(`${literaScope}${accordionItem}:last-of-type > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${accordionButtonCollapsed}`, {
+	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
+})
 
 globalStyle(`${literaScope}${accordionItem}:last-of-type > ${literaScope}${accordionCollapse}`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
@@ -11675,33 +11355,22 @@ globalStyle(`${literaScope}${accordionFlush} > ${literaScope}${accordionItem}:la
 	borderBottom: '0',
 })
 
-globalStyle(
-	`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionCollapse}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionCollapse}`, {
+	borderRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}`, {
+	borderRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${collapsed}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
 
-globalStyle(`[data-bs-theme=dark] ${literaScope}${accordionButton}::after`, {
+globalStyle(`${literaScope}[data-bs-theme=dark] ${literaScope}${accordionButton}::after`, {
 	vars: {
-		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%238fb4f4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%238fb4f4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%238fb4f4\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%238fb4f4\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11778,8 +11447,7 @@ globalStyle(`${literaScope}${pageLink}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${literaScope}${pageLink}`, {
@@ -12084,8 +11752,7 @@ globalStyle(`${literaScope}${progressBar}`, {
 })
 
 globalStyle(`${literaScope}${progressBarStriped}`, {
-	backgroundImage:
-		'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
+	backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
 	backgroundSize: `${varBsProgressHeight} ${varBsProgressHeight}`,
 })
 
@@ -12093,12 +11760,9 @@ globalStyle(`${literaScope}${progressStacked} > ${literaScope}${progress}`, {
 	overflow: 'visible',
 })
 
-globalStyle(
-	`${literaScope}${progressStacked} > ${literaScope}${progress} > ${literaScope}${progressBar}`,
-	{
-		width: '100%',
-	},
-)
+globalStyle(`${literaScope}${progressStacked} > ${literaScope}${progress} > ${literaScope}${progressBar}`, {
+	width: '100%',
+})
 
 globalStyle(`${literaScope}${progressBarAnimated}`, {
 	animation: '1s linear infinite progress-bar-stripes',
@@ -12226,41 +11890,29 @@ globalStyle(`${literaScope}${listGroupHorizontal}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		borderBottomLeftRadius: varBsListGroupBorderRadius,
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		borderTopRightRadius: varBsListGroupBorderRadius,
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem}${active}`, {
 	marginTop: '0',
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`,
-	{
-		borderTopWidth: varBsListGroupBorderWidth,
-		borderLeftWidth: '0',
-	},
-)
+globalStyle(`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`,
-	{
-		marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-		borderLeftWidth: varBsListGroupBorderWidth,
-	},
-)
+globalStyle(`${literaScope}${listGroupHorizontal} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalSm}`, {
 	'@media': {
@@ -12270,29 +11922,23 @@ globalStyle(`${literaScope}${listGroupHorizontalSm}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12302,29 +11948,23 @@ globalStyle(`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupI
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${literaScope}${listGroupHorizontalSm} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalMd}`, {
 	'@media': {
@@ -12334,29 +11974,23 @@ globalStyle(`${literaScope}${listGroupHorizontalMd}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12366,29 +12000,23 @@ globalStyle(`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupI
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${literaScope}${listGroupHorizontalMd} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalLg}`, {
 	'@media': {
@@ -12398,29 +12026,23 @@ globalStyle(`${literaScope}${listGroupHorizontalLg}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12430,29 +12052,23 @@ globalStyle(`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupI
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${literaScope}${listGroupHorizontalLg} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalXl}`, {
 	'@media': {
@@ -12462,29 +12078,23 @@ globalStyle(`${literaScope}${listGroupHorizontalXl}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12494,29 +12104,23 @@ globalStyle(`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupI
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalXxl}`, {
 	'@media': {
@@ -12526,29 +12130,23 @@ globalStyle(`${literaScope}${listGroupHorizontalXxl}`, {
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12558,29 +12156,23 @@ globalStyle(`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroup
 	},
 })
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${literaScope}${listGroupHorizontalXxl} > ${literaScope}${listGroupItem} + ${literaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${literaScope}${listGroupFlush}`, {
 	borderRadius: '0',
@@ -12717,8 +12309,7 @@ globalStyle(`${literaScope}${listGroupItemDark}`, {
 globalStyle(`${literaScope}${btnClose}`, {
 	vars: {
 		[varBsBtnCloseColor]: '#000',
-		[varBsBtnCloseBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
 		[varBsBtnCloseOpacity]: '0.5',
 		[varBsBtnCloseHoverOpacity]: '0.75',
 		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(69, 130, 236, 0.25)',
@@ -13392,12 +12983,9 @@ globalStyle(`${literaScope}${bsTooltipTop} ${literaScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=top] ${literaScope}${tooltipArrow}`,
-	{
-		bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=top] ${literaScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
 
 globalStyle(`${literaScope}${bsTooltipTop} ${literaScope}${tooltipArrow}::before`, {
 	top: '-1px',
@@ -13405,14 +12993,11 @@ globalStyle(`${literaScope}${bsTooltipTop} ${literaScope}${tooltipArrow}::before
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=top] ${literaScope}${tooltipArrow}::before`,
-	{
-		top: '-1px',
-		borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-		borderTopColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=top] ${literaScope}${tooltipArrow}::before`, {
+	top: '-1px',
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
 
 globalStyle(`${literaScope}${bsTooltipEnd} ${literaScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -13420,14 +13005,11 @@ globalStyle(`${literaScope}${bsTooltipEnd} ${literaScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=right] ${literaScope}${tooltipArrow}`,
-	{
-		left: `calc(-1 * ${varBsTooltipArrowHeight})`,
-		width: varBsTooltipArrowHeight,
-		height: varBsTooltipArrowWidth,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=right] ${literaScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
 
 globalStyle(`${literaScope}${bsTooltipEnd} ${literaScope}${tooltipArrow}::before`, {
 	right: '-1px',
@@ -13435,25 +13017,19 @@ globalStyle(`${literaScope}${bsTooltipEnd} ${literaScope}${tooltipArrow}::before
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=right] ${literaScope}${tooltipArrow}::before`,
-	{
-		right: '-1px',
-		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-		borderRightColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=right] ${literaScope}${tooltipArrow}::before`, {
+	right: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
 
 globalStyle(`${literaScope}${bsTooltipBottom} ${literaScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${literaScope}${tooltipArrow}`,
-	{
-		top: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${literaScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
 
 globalStyle(`${literaScope}${bsTooltipBottom} ${literaScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
@@ -13461,14 +13037,11 @@ globalStyle(`${literaScope}${bsTooltipBottom} ${literaScope}${tooltipArrow}::bef
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${literaScope}${tooltipArrow}::before`,
-	{
-		bottom: '-1px',
-		borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-		borderBottomColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${literaScope}${tooltipArrow}::before`, {
+	bottom: '-1px',
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
+})
 
 globalStyle(`${literaScope}${bsTooltipStart} ${literaScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -13476,14 +13049,11 @@ globalStyle(`${literaScope}${bsTooltipStart} ${literaScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=left] ${literaScope}${tooltipArrow}`,
-	{
-		right: `calc(-1 * ${varBsTooltipArrowHeight})`,
-		width: varBsTooltipArrowHeight,
-		height: varBsTooltipArrowWidth,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=left] ${literaScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
 
 globalStyle(`${literaScope}${bsTooltipStart} ${literaScope}${tooltipArrow}::before`, {
 	left: '-1px',
@@ -13491,14 +13061,11 @@ globalStyle(`${literaScope}${bsTooltipStart} ${literaScope}${tooltipArrow}::befo
 	borderLeftColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${literaScope}${bsTooltipAuto}[data-popper-placement^=left] ${literaScope}${tooltipArrow}::before`,
-	{
-		left: '-1px',
-		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-		borderLeftColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${literaScope}${bsTooltipAuto}[data-popper-placement^=left] ${literaScope}${tooltipArrow}::before`, {
+	left: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderLeftColor: varBsTooltipBg,
+})
 
 globalStyle(`${literaScope}${tooltipInner}`, {
 	maxWidth: varBsTooltipMaxWidth,
@@ -13584,60 +13151,45 @@ globalStyle(`${literaScope}${bsPopoverTop} > ${literaScope}${popoverArrow}`, {
 	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}`,
-	{
-		bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
 globalStyle(`${literaScope}${bsPopoverTop} > ${literaScope}${popoverArrow}::before`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::before`,
-	{
-		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${literaScope}${bsPopoverTop} > ${literaScope}${popoverArrow}::after`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::after`,
-	{
-		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${literaScope}${bsPopoverTop} > ${literaScope}${popoverArrow}::before`, {
 	bottom: '0',
 	borderTopColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::before`,
-	{
-		bottom: '0',
-		borderTopColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${literaScope}${bsPopoverTop} > ${literaScope}${popoverArrow}::after`, {
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::after`,
-	{
-		bottom: varBsPopoverBorderWidth,
-		borderTopColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${literaScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
 
 globalStyle(`${literaScope}${bsPopoverEnd} > ${literaScope}${popoverArrow}`, {
 	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -13645,121 +13197,91 @@ globalStyle(`${literaScope}${bsPopoverEnd} > ${literaScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}`,
-	{
-		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
 
 globalStyle(`${literaScope}${bsPopoverEnd} > ${literaScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::before`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${literaScope}${bsPopoverEnd} > ${literaScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${literaScope}${bsPopoverEnd} > ${literaScope}${popoverArrow}::before`, {
 	left: '0',
 	borderRightColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::before`,
-	{
-		left: '0',
-		borderRightColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${literaScope}${bsPopoverEnd} > ${literaScope}${popoverArrow}::after`, {
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::after`,
-	{
-		left: varBsPopoverBorderWidth,
-		borderRightColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${literaScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
 
 globalStyle(`${literaScope}${bsPopoverBottom} > ${literaScope}${popoverArrow}`, {
 	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}`,
-	{
-		top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
 globalStyle(`${literaScope}${bsPopoverBottom} > ${literaScope}${popoverArrow}::before`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::before`,
-	{
-		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${literaScope}${bsPopoverBottom} > ${literaScope}${popoverArrow}::after`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::after`,
-	{
-		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${literaScope}${bsPopoverBottom} > ${literaScope}${popoverArrow}::before`, {
 	top: '0',
 	borderBottomColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::before`,
-	{
-		top: '0',
-		borderBottomColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${literaScope}${bsPopoverBottom} > ${literaScope}${popoverArrow}::after`, {
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::after`,
-	{
-		top: varBsPopoverBorderWidth,
-		borderBottomColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${literaScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
 
 globalStyle(`${literaScope}${bsPopoverBottom} ${literaScope}${popoverHeader}::before`, {
 	position: 'absolute',
@@ -13772,19 +13294,16 @@ globalStyle(`${literaScope}${bsPopoverBottom} ${literaScope}${popoverHeader}::be
 	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${literaScope}${popoverHeader}::before`,
-	{
-		position: 'absolute',
-		top: '0',
-		left: '50%',
-		display: 'block',
-		width: varBsPopoverArrowWidth,
-		marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
-		content: '""',
-		borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${literaScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
 
 globalStyle(`${literaScope}${bsPopoverStart} > ${literaScope}${popoverArrow}`, {
 	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -13792,62 +13311,47 @@ globalStyle(`${literaScope}${bsPopoverStart} > ${literaScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}`,
-	{
-		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
 
 globalStyle(`${literaScope}${bsPopoverStart} > ${literaScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::before`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${literaScope}${bsPopoverStart} > ${literaScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${literaScope}${bsPopoverStart} > ${literaScope}${popoverArrow}::before`, {
 	right: '0',
 	borderLeftColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::before`,
-	{
-		right: '0',
-		borderLeftColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${literaScope}${bsPopoverStart} > ${literaScope}${popoverArrow}::after`, {
 	right: varBsPopoverBorderWidth,
 	borderLeftColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::after`,
-	{
-		right: varBsPopoverBorderWidth,
-		borderLeftColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${literaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${literaScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
 
 globalStyle(`${literaScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
@@ -14094,13 +13598,11 @@ globalStyle(`${literaScope}${carouselControlNextIcon}`, {
 })
 
 globalStyle(`${literaScope}${carouselControlPrevIcon}`, {
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\") ",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e") ',
 })
 
 globalStyle(`${literaScope}${carouselControlNextIcon}`, {
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\") ",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e") ',
 })
 
 globalStyle(`${literaScope}${carouselIndicators}`, {
@@ -14117,7 +13619,7 @@ globalStyle(`${literaScope}${carouselIndicators}`, {
 	marginLeft: '15%',
 })
 
-globalStyle(`${literaScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${literaScope}${carouselIndicators} ${literaScope}[data-bs-target]`, {
 	boxSizing: 'content-box',
 	flex: '0 1 auto',
 	width: '30px',
@@ -14136,7 +13638,7 @@ globalStyle(`${literaScope}${carouselIndicators} [data-bs-target]`, {
 	transition: 'opacity 0.6s ease',
 })
 
-globalStyle(`${literaScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${literaScope}${carouselIndicators} ${literaScope}[data-bs-target]`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -14204,7 +13706,7 @@ globalStyle(`${literaScope}${spinnerBorder}`, {
 })
 
 globalKeyframes('spinner-border', {
-	to: {
+	'to': {
 		transform: 'rotate(360deg) ',
 	},
 })
@@ -15762,12 +15264,9 @@ globalStyle(`${literaScope}${visuallyHidden}:not(caption)`, {
 	position: 'absolute !important',
 })
 
-globalStyle(
-	`${literaScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`,
-	{
-		position: 'absolute !important',
-	},
-)
+globalStyle(`${literaScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
+	position: 'absolute !important',
+})
 
 globalStyle(`${literaScope}${visuallyHidden} *`, {
 	overflow: 'hidden !important',
@@ -25175,7 +24674,7 @@ globalStyle(`${literaScope}${fs5}`, {
 
 globalStyle(`${literaScope}${dPrintInline}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline !important',
 		},
 	},
@@ -25183,7 +24682,7 @@ globalStyle(`${literaScope}${dPrintInline}`, {
 
 globalStyle(`${literaScope}${dPrintInlineBlock}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-block !important',
 		},
 	},
@@ -25191,7 +24690,7 @@ globalStyle(`${literaScope}${dPrintInlineBlock}`, {
 
 globalStyle(`${literaScope}${dPrintBlock}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'block !important',
 		},
 	},
@@ -25199,7 +24698,7 @@ globalStyle(`${literaScope}${dPrintBlock}`, {
 
 globalStyle(`${literaScope}${dPrintGrid}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'grid !important',
 		},
 	},
@@ -25207,7 +24706,7 @@ globalStyle(`${literaScope}${dPrintGrid}`, {
 
 globalStyle(`${literaScope}${dPrintInlineGrid}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-grid !important',
 		},
 	},
@@ -25215,7 +24714,7 @@ globalStyle(`${literaScope}${dPrintInlineGrid}`, {
 
 globalStyle(`${literaScope}${dPrintTable}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table !important',
 		},
 	},
@@ -25223,7 +24722,7 @@ globalStyle(`${literaScope}${dPrintTable}`, {
 
 globalStyle(`${literaScope}${dPrintTableRow}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table-row !important',
 		},
 	},
@@ -25231,7 +24730,7 @@ globalStyle(`${literaScope}${dPrintTableRow}`, {
 
 globalStyle(`${literaScope}${dPrintTableCell}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table-cell !important',
 		},
 	},
@@ -25239,7 +24738,7 @@ globalStyle(`${literaScope}${dPrintTableCell}`, {
 
 globalStyle(`${literaScope}${dPrintFlex}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'flex !important',
 		},
 	},
@@ -25247,7 +24746,7 @@ globalStyle(`${literaScope}${dPrintFlex}`, {
 
 globalStyle(`${literaScope}${dPrintInlineFlex}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-flex !important',
 		},
 	},
@@ -25255,7 +24754,7 @@ globalStyle(`${literaScope}${dPrintInlineFlex}`, {
 
 globalStyle(`${literaScope}${dPrintNone}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'none !important',
 		},
 	},
@@ -25278,8 +24777,7 @@ globalStyle(`:where(${literaScope}${elFooter})`, {
 })
 
 globalStyle(`${literaScope}${lead}`, {
-	fontFamily:
-		'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+	fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 	color: '#868e96',
 })
 
@@ -25313,16 +24811,14 @@ globalStyle(`${literaScope}${alert}`, {
 })
 
 globalStyle(`${literaScope}${alert}`, {
-	fontFamily:
-		'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+	fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 })
 
-globalStyle(`${literaScope}${alert} :where(${literaScope}${paragraph})`, {
-	fontFamily:
-		'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+globalStyle(`${literaScope}${alert} ${literaScope}${paragraph}`, {
+	fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 })
 
-globalStyle(`${literaScope}${alert} :where(${literaScope}${link})`, {
+globalStyle(`${literaScope}${alert} ${literaScope}${link}`, {
 	fontWeight: '400',
 	color: '#fff',
 	textDecoration: 'underline',
@@ -25370,7 +24866,7 @@ globalStyle(`${literaScope}${alertLight}`, {
 	color: '#343a40',
 })
 
-globalStyle(`${literaScope}${alertLight} :where(${literaScope}${link})`, {
+globalStyle(`${literaScope}${alertLight} ${literaScope}${link}`, {
 	color: '#343a40',
 })
 
@@ -25420,4 +24916,8 @@ globalStyle(`${literaScope}${scrollspyExample}`, {
 	height: '200px',
 	overflowY: 'auto',
 	marginTop: '0.5rem',
+})
+
+globalStyle(`${literaScope}${formSwitch}`, {
+	isolation: 'isolate',
 })

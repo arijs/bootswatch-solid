@@ -1,4 +1,6 @@
 import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../scope.css'
+
 import {
 	varBsBlack,
 	varBsBlackRgb,
@@ -117,73 +119,6 @@ import {
 	varBsTableStripedColor,
 } from '../../../theme-contract/contents/_vars.css'
 import {
-	blockquote,
-	blockquoteFooter,
-	horizontalRule,
-	inlineCode,
-	lead,
-	link,
-	markText,
-	paragraph,
-	small,
-	smallText,
-} from '../../../theme-contract/contents/basic/contract.css'
-import {
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-} from '../../../theme-contract/contents/display/contract.css'
-import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/heading/contract.css'
-import {
-	figure,
-	figureCaption,
-	figureImg,
-	imgFluid,
-	imgThumbnail,
-	rounded,
-} from '../../../theme-contract/contents/images/contract.css'
-import {
-	listBase,
-	listIndented,
-	listInline,
-	listInlineItem,
-	listNested,
-	listUnstyled,
-} from '../../../theme-contract/contents/lists/contract.css'
-import {
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
-	tableCell,
-	tableDanger,
-	tableDark,
-	tableElement,
-	tableGroupDivider,
-	tableHeaderCell,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
-	tableRow,
-	tableSecondary,
-	tableSection,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
-} from '../../../theme-contract/contents/tables/contract.css'
-import {
 	varBsFormCheckBg,
 	varBsFormCheckBgImage,
 	varBsFormInvalidBorderColor,
@@ -194,33 +129,374 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
+import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
-	fieldset,
-	formCheck,
-	formCheckInput,
-	formCheckLabel,
-	formControl,
-	formControlLg,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
-	hasValidation,
-	inputGroup,
-	inputGroupText,
-	invalidFeedback,
-	isInvalid,
-	isValid,
-	legend,
-	legendClear,
-	validFeedback,
-	wasValidated,
-} from '../../../theme-contract/forms/contract.css'
+	varBsAccordionActiveBg,
+	varBsAccordionActiveColor,
+	varBsAccordionBg,
+	varBsAccordionBodyPaddingX,
+	varBsAccordionBodyPaddingY,
+	varBsAccordionBorderColor,
+	varBsAccordionBorderRadius,
+	varBsAccordionBorderWidth,
+	varBsAccordionBtnActiveIcon,
+	varBsAccordionBtnBg,
+	varBsAccordionBtnColor,
+	varBsAccordionBtnFocusBoxShadow,
+	varBsAccordionBtnIcon,
+	varBsAccordionBtnIconTransform,
+	varBsAccordionBtnIconTransition,
+	varBsAccordionBtnIconWidth,
+	varBsAccordionBtnPaddingX,
+	varBsAccordionBtnPaddingY,
+	varBsAccordionColor,
+	varBsAccordionInnerBorderRadius,
+	varBsAccordionTransition,
+} from '../../../theme-contract/ui/accordion/_vars.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../theme-contract/ui/alerts/_vars.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../theme-contract/ui/badge/_vars.css'
+import {
+	varBsBreadcrumbBg,
+	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
+	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbItemActiveColor,
+	varBsBreadcrumbItemPaddingX,
+	varBsBreadcrumbMarginBottom,
+	varBsBreadcrumbPaddingX,
+	varBsBreadcrumbPaddingY,
+} from '../../../theme-contract/ui/breadcrumb/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
+	varBsBtnActiveColor,
+	varBsBtnBg,
+	varBsBtnBorderColor,
+	varBsBtnBorderRadius,
+	varBsBtnBorderWidth,
+	varBsBtnBoxShadow,
+	varBsBtnColor,
+	varBsBtnDisabledBg,
+	varBsBtnDisabledBorderColor,
+	varBsBtnDisabledColor,
+	varBsBtnDisabledOpacity,
+	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
+	varBsBtnFontFamily,
+	varBsBtnFontSize,
+	varBsBtnFontWeight,
+	varBsBtnHoverBg,
+	varBsBtnHoverBorderColor,
+	varBsBtnHoverColor,
+	varBsBtnLineHeight,
+	varBsBtnPaddingX,
+	varBsBtnPaddingY,
+} from '../../../theme-contract/ui/buttons/_vars.css'
+import {
+	varBsCardBg,
+	varBsCardBorderColor,
+	varBsCardBorderRadius,
+	varBsCardBorderWidth,
+	varBsCardBoxShadow,
+	varBsCardCapBg,
+	varBsCardCapColor,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+	varBsCardColor,
+	varBsCardGroupMargin,
+	varBsCardImgOverlayPadding,
+	varBsCardInnerBorderRadius,
+	varBsCardSpacerX,
+	varBsCardSpacerY,
+	varBsCardSubtitleColor,
+	varBsCardTitleColor,
+	varBsCardTitleSpacerY,
+} from '../../../theme-contract/ui/card/_vars.css'
+import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
+import {
+	varBsDropdownBg,
+	varBsDropdownBorderColor,
+	varBsDropdownBorderRadius,
+	varBsDropdownBorderWidth,
+	varBsDropdownBoxShadow,
+	varBsDropdownColor,
+	varBsDropdownDividerBg,
+	varBsDropdownDividerMarginY,
+	varBsDropdownFontSize,
+	varBsDropdownHeaderColor,
+	varBsDropdownHeaderPaddingX,
+	varBsDropdownHeaderPaddingY,
+	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemPaddingX,
+	varBsDropdownItemPaddingY,
+	varBsDropdownLinkActiveBg,
+	varBsDropdownLinkActiveColor,
+	varBsDropdownLinkColor,
+	varBsDropdownLinkDisabledColor,
+	varBsDropdownLinkHoverBg,
+	varBsDropdownLinkHoverColor,
+	varBsDropdownMinWidth,
+	varBsDropdownPaddingX,
+	varBsDropdownPaddingY,
+	varBsDropdownSpacer,
+	varBsDropdownZindex,
+} from '../../../theme-contract/ui/dropdowns/_vars.css'
+import {
+	varBsListGroupActionActiveBg,
+	varBsListGroupActionActiveColor,
+	varBsListGroupActionColor,
+	varBsListGroupActionHoverBg,
+	varBsListGroupActionHoverColor,
+	varBsListGroupActiveBg,
+	varBsListGroupActiveBorderColor,
+	varBsListGroupActiveColor,
+	varBsListGroupBg,
+	varBsListGroupBorderColor,
+	varBsListGroupBorderRadius,
+	varBsListGroupBorderWidth,
+	varBsListGroupColor,
+	varBsListGroupDisabledBg,
+	varBsListGroupDisabledColor,
+	varBsListGroupItemPaddingX,
+	varBsListGroupItemPaddingY,
+} from '../../../theme-contract/ui/list-group/_vars.css'
+import {
+	varBsBackdropBg,
+	varBsBackdropOpacity,
+	varBsBackdropZindex,
+	varBsModalBg,
+	varBsModalBorderColor,
+	varBsModalBorderRadius,
+	varBsModalBorderWidth,
+	varBsModalBoxShadow,
+	varBsModalColor,
+	varBsModalFooterBg,
+	varBsModalFooterBorderColor,
+	varBsModalFooterBorderWidth,
+	varBsModalFooterGap,
+	varBsModalHeaderBorderColor,
+	varBsModalHeaderBorderWidth,
+	varBsModalHeaderPadding,
+	varBsModalHeaderPaddingX,
+	varBsModalHeaderPaddingY,
+	varBsModalInnerBorderRadius,
+	varBsModalMargin,
+	varBsModalPadding,
+	varBsModalTitleLineHeight,
+	varBsModalWidth,
+	varBsModalZindex,
+} from '../../../theme-contract/ui/modal/_vars.css'
+import {
+	varBsNavbarActiveColor,
+	varBsNavbarBrandColor,
+	varBsNavbarBrandFontSize,
+	varBsNavbarBrandHoverColor,
+	varBsNavbarBrandMarginEnd,
+	varBsNavbarBrandPaddingY,
+	varBsNavbarColor,
+	varBsNavbarDisabledColor,
+	varBsNavbarHoverColor,
+	varBsNavbarNavLinkPaddingX,
+	varBsNavbarPaddingX,
+	varBsNavbarPaddingY,
+	varBsNavbarTogglerBorderColor,
+	varBsNavbarTogglerBorderRadius,
+	varBsNavbarTogglerFocusWidth,
+	varBsNavbarTogglerFontSize,
+	varBsNavbarTogglerIconBg,
+	varBsNavbarTogglerPaddingX,
+	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+} from '../../../theme-contract/ui/navbar/_vars.css'
+import {
+	varBsNavLinkColor,
+	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
+	varBsNavLinkFontWeight,
+	varBsNavLinkHoverColor,
+	varBsNavLinkPaddingX,
+	varBsNavLinkPaddingY,
+	varBsNavPillsBorderRadius,
+	varBsNavPillsLinkActiveBg,
+	varBsNavPillsLinkActiveColor,
+	varBsNavTabsBorderColor,
+	varBsNavTabsBorderRadius,
+	varBsNavTabsBorderWidth,
+	varBsNavTabsLinkActiveBg,
+	varBsNavTabsLinkActiveBorderColor,
+	varBsNavTabsLinkActiveColor,
+	varBsNavTabsLinkHoverBorderColor,
+} from '../../../theme-contract/ui/navs/_vars.css'
+import {
+	varBsPaginationActiveBg,
+	varBsPaginationActiveBorderColor,
+	varBsPaginationActiveColor,
+	varBsPaginationBg,
+	varBsPaginationBorderColor,
+	varBsPaginationBorderRadius,
+	varBsPaginationBorderWidth,
+	varBsPaginationColor,
+	varBsPaginationDisabledBg,
+	varBsPaginationDisabledBorderColor,
+	varBsPaginationDisabledColor,
+	varBsPaginationFocusBg,
+	varBsPaginationFocusBoxShadow,
+	varBsPaginationFocusColor,
+	varBsPaginationFontSize,
+	varBsPaginationHoverBg,
+	varBsPaginationHoverBorderColor,
+	varBsPaginationHoverColor,
+	varBsPaginationPaddingX,
+	varBsPaginationPaddingY,
+} from '../../../theme-contract/ui/pagination/_vars.css'
+import {
+	varBsPopoverArrowBorder,
+	varBsPopoverArrowHeight,
+	varBsPopoverArrowWidth,
+	varBsPopoverBg,
+	varBsPopoverBodyColor,
+	varBsPopoverBodyPaddingX,
+	varBsPopoverBodyPaddingY,
+	varBsPopoverBorderColor,
+	varBsPopoverBorderRadius,
+	varBsPopoverBorderWidth,
+	varBsPopoverBoxShadow,
+	varBsPopoverFontSize,
+	varBsPopoverHeaderBg,
+	varBsPopoverHeaderColor,
+	varBsPopoverHeaderFontSize,
+	varBsPopoverHeaderPaddingX,
+	varBsPopoverHeaderPaddingY,
+	varBsPopoverInnerBorderRadius,
+	varBsPopoverMaxWidth,
+	varBsPopoverZindex,
+} from '../../../theme-contract/ui/popovers/_vars.css'
+import {
+	varBsProgressBarBg,
+	varBsProgressBarColor,
+	varBsProgressBarTransition,
+	varBsProgressBg,
+	varBsProgressBorderRadius,
+	varBsProgressBoxShadow,
+	varBsProgressFontSize,
+	varBsProgressHeight,
+} from '../../../theme-contract/ui/progress/_vars.css'
+import {
+	varBsSpinnerAnimationName,
+	varBsSpinnerAnimationSpeed,
+	varBsSpinnerBorderWidth,
+	varBsSpinnerHeight,
+	varBsSpinnerVerticalAlign,
+	varBsSpinnerWidth,
+} from '../../../theme-contract/ui/spinners/_vars.css'
+import {
+	varBsToastBg,
+	varBsToastBorderColor,
+	varBsToastBorderRadius,
+	varBsToastBorderWidth,
+	varBsToastBoxShadow,
+	varBsToastColor,
+	varBsToastFontSize,
+	varBsToastHeaderBg,
+	varBsToastHeaderBorderColor,
+	varBsToastHeaderColor,
+	varBsToastMaxWidth,
+	varBsToastPaddingX,
+	varBsToastPaddingY,
+	varBsToastSpacing,
+	varBsToastZindex,
+} from '../../../theme-contract/ui/toasts/_vars.css'
+import {
+	varBsTooltipArrowHeight,
+	varBsTooltipArrowWidth,
+	varBsTooltipBg,
+	varBsTooltipBorderRadius,
+	varBsTooltipColor,
+	varBsTooltipFontSize,
+	varBsTooltipMargin,
+	varBsTooltipMaxWidth,
+	varBsTooltipOpacity,
+	varBsTooltipPaddingX,
+	varBsTooltipPaddingY,
+	varBsTooltipZindex,
+} from '../../../theme-contract/ui/tooltips/_vars.css'
+import {
+	varBsAspectRatio,
+	varBsBgOpacity,
+	varBsBorderOpacity,
+	varBsBtnCloseFilter,
+	varBsCardHeight,
+	varBsLinkOpacity,
+	varBsLinkUnderlineOpacity,
+	varBsNavUnderlineBorderWidth,
+	varBsNavUnderlineGap,
+	varBsNavUnderlineLinkActiveColor,
+	varBsOffcanvasBg,
+	varBsOffcanvasBorderColor,
+	varBsOffcanvasBorderWidth,
+	varBsOffcanvasBoxShadow,
+	varBsOffcanvasColor,
+	varBsOffcanvasHeight,
+	varBsOffcanvasPaddingX,
+	varBsOffcanvasPaddingY,
+	varBsOffcanvasTitleLineHeight,
+	varBsOffcanvasTransition,
+	varBsOffcanvasWidth,
+	varBsOffcanvasZindex,
+	varBsPosition,
+	varBsTextOpacity,
+} from '../../../theme-contract/utilities/generated/_vars.css'
+
+import {
+	blockquote,
+	horizontalRule,
+	inlineCode,
+	link,
+	markText,
+	paragraph,
+	small,
+} from '../../../theme-contract/contents/basic/contract.css'
+import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../theme-contract/contents/heading/contract.css'
+import {
+	tableCell,
+	tableElement,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+} from '../../../theme-contract/contents/tables/contract.css'
+import { fieldset } from '../../../theme-contract/forms/contract.css'
 import {
 	elAbbr,
 	elAddress,
@@ -252,11 +528,86 @@ import {
 	elTextarea,
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
+
+import { vars } from '../../../theme-contract/theme-contract.css'
+
+import { blockquoteFooter, lead, smallText } from '../../../theme-contract/contents/basic/contract.css'
 import {
-	containerFluid,
-	varBsGutterX,
-	varBsGutterY,
-} from '../../../theme-contract/layout/container.css'
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+} from '../../../theme-contract/contents/display/contract.css'
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../theme-contract/contents/images/contract.css'
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../theme-contract/contents/lists/contract.css'
+import {
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableDanger,
+	tableDark,
+	tableGroupDivider,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableSecondary,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
+} from '../../../theme-contract/contents/tables/contract.css'
+import {
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	validFeedback,
+	wasValidated,
+} from '../../../theme-contract/forms/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	accordionFlush,
 	active,
@@ -380,10 +731,10 @@ import {
 	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
+	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
-	bgOpacity100,
 	bgPrimary,
 	bgPrimarySubtle,
 	bgSecondary,
@@ -416,10 +767,10 @@ import {
 	borderLight,
 	borderLightSubtle,
 	borderOpacity10,
+	borderOpacity100,
 	borderOpacity25,
 	borderOpacity50,
 	borderOpacity75,
-	borderOpacity100,
 	borderPrimary,
 	borderPrimarySubtle,
 	borderSecondary,
@@ -434,8 +785,8 @@ import {
 	borderWarningSubtle,
 	borderWhite,
 	bottom0,
-	bottom50,
 	bottom100,
+	bottom50,
 	bsTooltipAuto,
 	bsTooltipBottom,
 	bsTooltipEnd,
@@ -460,6 +811,9 @@ import {
 	clsH6,
 	clsSmall,
 	col1,
+	col10,
+	col11,
+	col12,
 	col2,
 	col3,
 	col4,
@@ -468,15 +822,15 @@ import {
 	col7,
 	col8,
 	col9,
-	col10,
-	col11,
-	col12,
 	colAuto,
 	colFormLabel,
 	colFormLabelLg,
 	colFormLabelSm,
 	colLg,
 	colLg1,
+	colLg10,
+	colLg11,
+	colLg12,
 	colLg2,
 	colLg3,
 	colLg4,
@@ -485,23 +839,20 @@ import {
 	colLg7,
 	colLg8,
 	colLg9,
-	colLg10,
-	colLg11,
-	colLg12,
 	colLgAuto,
-	collapsed,
-	collapseHorizontal,
-	collapsing,
 	colMd,
 	colMd1,
-	colMd7,
-	colMd9,
 	colMd10,
 	colMd11,
 	colMd12,
+	colMd7,
+	colMd9,
 	colMdAuto,
 	colSm,
 	colSm1,
+	colSm10,
+	colSm11,
+	colSm12,
 	colSm2,
 	colSm3,
 	colSm4,
@@ -509,10 +860,38 @@ import {
 	colSm7,
 	colSm8,
 	colSm9,
-	colSm10,
-	colSm11,
-	colSm12,
 	colSmAuto,
+	colXl,
+	colXl1,
+	colXl10,
+	colXl11,
+	colXl12,
+	colXl2,
+	colXl3,
+	colXl4,
+	colXl5,
+	colXl6,
+	colXl7,
+	colXl8,
+	colXl9,
+	colXlAuto,
+	colXxl,
+	colXxl1,
+	colXxl10,
+	colXxl11,
+	colXxl12,
+	colXxl2,
+	colXxl3,
+	colXxl4,
+	colXxl5,
+	colXxl6,
+	colXxl7,
+	colXxl8,
+	colXxl9,
+	colXxlAuto,
+	collapseHorizontal,
+	collapsed,
+	collapsing,
 	columnGap0,
 	columnGap1,
 	columnGap2,
@@ -549,34 +928,6 @@ import {
 	columnGapXxl3,
 	columnGapXxl4,
 	columnGapXxl5,
-	colXl,
-	colXl1,
-	colXl2,
-	colXl3,
-	colXl4,
-	colXl5,
-	colXl6,
-	colXl7,
-	colXl8,
-	colXl9,
-	colXl10,
-	colXl11,
-	colXl12,
-	colXlAuto,
-	colXxl,
-	colXxl1,
-	colXxl2,
-	colXxl3,
-	colXxl4,
-	colXxl5,
-	colXxl6,
-	colXxl7,
-	colXxl8,
-	colXxl9,
-	colXxl10,
-	colXxl11,
-	colXxl12,
-	colXxlAuto,
 	container,
 	containerLg,
 	containerMd,
@@ -589,7 +940,6 @@ import {
 	dInlineBlock,
 	dInlineFlex,
 	dInlineGrid,
-	disabled,
 	dLgBlock,
 	dLgFlex,
 	dLgGrid,
@@ -624,16 +974,6 @@ import {
 	dPrintTable,
 	dPrintTableCell,
 	dPrintTableRow,
-	dropdownMenuLgEnd,
-	dropdownMenuLgStart,
-	dropdownMenuMdEnd,
-	dropdownMenuMdStart,
-	dropdownMenuSmEnd,
-	dropdownMenuSmStart,
-	dropdownMenuXlEnd,
-	dropdownMenuXlStart,
-	dropdownMenuXxlEnd,
-	dropdownMenuXxlStart,
 	dSmBlock,
 	dSmFlex,
 	dSmGrid,
@@ -670,9 +1010,20 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	disabled,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
 	end0,
-	end50,
 	end100,
+	end50,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -795,6 +1146,36 @@ import {
 	g1,
 	g2,
 	g5,
+	gLg0,
+	gLg1,
+	gLg2,
+	gLg3,
+	gLg4,
+	gLg5,
+	gMd0,
+	gMd1,
+	gMd2,
+	gMd3,
+	gMd4,
+	gMd5,
+	gSm0,
+	gSm1,
+	gSm2,
+	gSm3,
+	gSm4,
+	gSm5,
+	gXl0,
+	gXl1,
+	gXl2,
+	gXl3,
+	gXl4,
+	gXl5,
+	gXxl0,
+	gXxl1,
+	gXxl2,
+	gXxl3,
+	gXxl4,
+	gXxl5,
 	gap0,
 	gap1,
 	gap2,
@@ -831,36 +1212,6 @@ import {
 	gapXxl3,
 	gapXxl4,
 	gapXxl5,
-	gLg0,
-	gLg1,
-	gLg2,
-	gLg3,
-	gLg4,
-	gLg5,
-	gMd0,
-	gMd1,
-	gMd2,
-	gMd3,
-	gMd4,
-	gMd5,
-	gSm0,
-	gSm1,
-	gSm2,
-	gSm3,
-	gSm4,
-	gSm5,
-	gXl0,
-	gXl1,
-	gXl2,
-	gXl3,
-	gXl4,
-	gXl5,
-	gXxl0,
-	gXxl1,
-	gXxl2,
-	gXxl3,
-	gXxl4,
-	gXxl5,
 	gx0,
 	gx1,
 	gx2,
@@ -933,10 +1284,10 @@ import {
 	gyXxl3,
 	gyXxl4,
 	gyXxl5,
+	h100,
 	h25,
 	h50,
 	h75,
-	h100,
 	hAuto,
 	hiding,
 	hstack,
@@ -998,6 +1349,8 @@ import {
 	linkOffset3,
 	linkOffset3Hover,
 	linkOpacity10,
+	linkOpacity100,
+	linkOpacity100Hover,
 	linkOpacity10Hover,
 	linkOpacity25,
 	linkOpacity25Hover,
@@ -1005,8 +1358,6 @@ import {
 	linkOpacity50Hover,
 	linkOpacity75,
 	linkOpacity75Hover,
-	linkOpacity100,
-	linkOpacity100Hover,
 	linkPrimary,
 	linkSecondary,
 	linkSuccess,
@@ -1018,6 +1369,8 @@ import {
 	linkUnderlineOpacity0,
 	linkUnderlineOpacity0Hover,
 	linkUnderlineOpacity10,
+	linkUnderlineOpacity100,
+	linkUnderlineOpacity100Hover,
 	linkUnderlineOpacity10Hover,
 	linkUnderlineOpacity25,
 	linkUnderlineOpacity25Hover,
@@ -1025,8 +1378,6 @@ import {
 	linkUnderlineOpacity50Hover,
 	linkUnderlineOpacity75,
 	linkUnderlineOpacity75Hover,
-	linkUnderlineOpacity100,
-	linkUnderlineOpacity100Hover,
 	linkUnderlinePrimary,
 	linkUnderlineSecondary,
 	linkUnderlineSuccess,
@@ -1046,6 +1397,41 @@ import {
 	m4,
 	m5,
 	mAuto,
+	mLg0,
+	mLg1,
+	mLg2,
+	mLg3,
+	mLg4,
+	mLg5,
+	mLgAuto,
+	mMd0,
+	mMd1,
+	mMd2,
+	mMd3,
+	mMd4,
+	mMd5,
+	mMdAuto,
+	mSm0,
+	mSm1,
+	mSm2,
+	mSm3,
+	mSm4,
+	mSm5,
+	mSmAuto,
+	mXl0,
+	mXl1,
+	mXl2,
+	mXl3,
+	mXl4,
+	mXl5,
+	mXlAuto,
+	mXxl0,
+	mXxl1,
+	mXxl2,
+	mXxl3,
+	mXxl4,
+	mXxl5,
+	mXxlAuto,
 	mark,
 	mb0,
 	mb1,
@@ -1127,20 +1513,6 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
-	mLg0,
-	mLg1,
-	mLg2,
-	mLg3,
-	mLg4,
-	mLg5,
-	mLgAuto,
-	mMd0,
-	mMd1,
-	mMd2,
-	mMd3,
-	mMd4,
-	mMd5,
-	mMdAuto,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -1150,13 +1522,6 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
-	mSm0,
-	mSm1,
-	mSm2,
-	mSm3,
-	mSm4,
-	mSm5,
-	mSmAuto,
 	ms0,
 	ms1,
 	ms2,
@@ -1240,20 +1605,6 @@ import {
 	mtXxl5,
 	mtXxlAuto,
 	mw100,
-	mXl0,
-	mXl1,
-	mXl2,
-	mXl3,
-	mXl4,
-	mXl5,
-	mXlAuto,
-	mXxl0,
-	mXxl1,
-	mXxl2,
-	mXxl3,
-	mXxl4,
-	mXxl5,
-	mXxlAuto,
 	mx0,
 	mx1,
 	mx2,
@@ -1338,15 +1689,15 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
+	navFill,
+	navJustified,
+	navUnderline,
 	navbarDark,
 	navbarExpand,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
-	navFill,
-	navJustified,
-	navUnderline,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -1392,6 +1743,8 @@ import {
 	offcanvasXl,
 	offcanvasXxl,
 	offset1,
+	offset10,
+	offset11,
 	offset2,
 	offset3,
 	offset4,
@@ -1400,10 +1753,10 @@ import {
 	offset7,
 	offset8,
 	offset9,
-	offset10,
-	offset11,
 	offsetLg0,
 	offsetLg1,
+	offsetLg10,
+	offsetLg11,
 	offsetLg2,
 	offsetLg3,
 	offsetLg4,
@@ -1412,10 +1765,10 @@ import {
 	offsetLg7,
 	offsetLg8,
 	offsetLg9,
-	offsetLg10,
-	offsetLg11,
 	offsetMd0,
 	offsetMd1,
+	offsetMd10,
+	offsetMd11,
 	offsetMd2,
 	offsetMd3,
 	offsetMd4,
@@ -1424,10 +1777,10 @@ import {
 	offsetMd7,
 	offsetMd8,
 	offsetMd9,
-	offsetMd10,
-	offsetMd11,
 	offsetSm0,
 	offsetSm1,
+	offsetSm10,
+	offsetSm11,
 	offsetSm2,
 	offsetSm3,
 	offsetSm4,
@@ -1436,10 +1789,10 @@ import {
 	offsetSm7,
 	offsetSm8,
 	offsetSm9,
-	offsetSm10,
-	offsetSm11,
 	offsetXl0,
 	offsetXl1,
+	offsetXl10,
+	offsetXl11,
 	offsetXl2,
 	offsetXl3,
 	offsetXl4,
@@ -1448,10 +1801,10 @@ import {
 	offsetXl7,
 	offsetXl8,
 	offsetXl9,
-	offsetXl10,
-	offsetXl11,
 	offsetXxl0,
 	offsetXxl1,
+	offsetXxl10,
+	offsetXxl11,
 	offsetXxl2,
 	offsetXxl3,
 	offsetXxl4,
@@ -1460,13 +1813,11 @@ import {
 	offsetXxl7,
 	offsetXxl8,
 	offsetXxl9,
-	offsetXxl10,
-	offsetXxl11,
 	opacity0,
+	opacity100,
 	opacity25,
 	opacity50,
 	opacity75,
-	opacity100,
 	order0,
 	order1,
 	order2,
@@ -1531,6 +1882,36 @@ import {
 	p2,
 	p3,
 	p4,
+	pLg0,
+	pLg1,
+	pLg2,
+	pLg3,
+	pLg4,
+	pLg5,
+	pMd0,
+	pMd1,
+	pMd2,
+	pMd3,
+	pMd4,
+	pMd5,
+	pSm0,
+	pSm1,
+	pSm2,
+	pSm3,
+	pSm4,
+	pSm5,
+	pXl0,
+	pXl1,
+	pXl2,
+	pXl3,
+	pXl4,
+	pXl5,
+	pXxl0,
+	pXxl1,
+	pXxl2,
+	pXxl3,
+	pXxl4,
+	pXxl5,
 	pb0,
 	pb1,
 	pb3,
@@ -1603,24 +1984,12 @@ import {
 	peXxl3,
 	peXxl4,
 	peXxl5,
-	pLg0,
-	pLg1,
-	pLg2,
-	pLg3,
-	pLg4,
-	pLg5,
 	placeholder,
 	placeholderGlow,
 	placeholderLg,
 	placeholderSm,
 	placeholderWave,
 	placeholderXs,
-	pMd0,
-	pMd1,
-	pMd2,
-	pMd3,
-	pMd4,
-	pMd5,
 	pointerEvent,
 	popover,
 	positionAbsolute,
@@ -1628,12 +1997,6 @@ import {
 	positionStatic,
 	positionSticky,
 	progressStacked,
-	pSm0,
-	pSm1,
-	pSm2,
-	pSm3,
-	pSm4,
-	pSm5,
 	ps0,
 	ps1,
 	ps2,
@@ -1704,18 +2067,6 @@ import {
 	ptXxl3,
 	ptXxl4,
 	ptXxl5,
-	pXl0,
-	pXl1,
-	pXl2,
-	pXl3,
-	pXl4,
-	pXl5,
-	pXxl0,
-	pXxl1,
-	pXxl2,
-	pXxl3,
-	pXxl4,
-	pXxl5,
 	px0,
 	px1,
 	px4,
@@ -1787,10 +2138,10 @@ import {
 	pyXxl4,
 	pyXxl5,
 	ratio,
-	ratio1x1,
-	ratio4x3,
 	ratio16x9,
+	ratio1x1,
 	ratio21x9,
+	ratio4x3,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -1919,8 +2270,8 @@ import {
 	spinnerBorderSm,
 	spinnerGrowSm,
 	start0,
-	start50,
 	start100,
+	start50,
 	stickyBottom,
 	stickyLgBottom,
 	stickyLgTop,
@@ -1969,10 +2320,10 @@ import {
 	textMdEnd,
 	textMdStart,
 	textNowrap,
+	textOpacity100,
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
-	textOpacity100,
 	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
@@ -2000,8 +2351,8 @@ import {
 	toastContainer,
 	tooltip,
 	top0,
-	top50,
 	top100,
+	top50,
 	translateMiddle,
 	translateMiddleX,
 	translateMiddleY,
@@ -2015,10 +2366,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
 	w25,
 	w50,
 	w75,
-	w100,
 	wAuto,
 	z0,
 	z1,
@@ -2026,30 +2377,6 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
-import { vars } from '../../../theme-contract/theme-contract.css'
-import {
-	varBsAccordionActiveBg,
-	varBsAccordionActiveColor,
-	varBsAccordionBg,
-	varBsAccordionBodyPaddingX,
-	varBsAccordionBodyPaddingY,
-	varBsAccordionBorderColor,
-	varBsAccordionBorderRadius,
-	varBsAccordionBorderWidth,
-	varBsAccordionBtnActiveIcon,
-	varBsAccordionBtnBg,
-	varBsAccordionBtnColor,
-	varBsAccordionBtnFocusBoxShadow,
-	varBsAccordionBtnIcon,
-	varBsAccordionBtnIconTransform,
-	varBsAccordionBtnIconTransition,
-	varBsAccordionBtnIconWidth,
-	varBsAccordionBtnPaddingX,
-	varBsAccordionBtnPaddingY,
-	varBsAccordionColor,
-	varBsAccordionInnerBorderRadius,
-	varBsAccordionTransition,
-} from '../../../theme-contract/ui/accordion/_vars.css'
 import {
 	accordion,
 	accordionBody,
@@ -2059,24 +2386,6 @@ import {
 	accordionHeader,
 	accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
-import {
-	varBsAlertBg,
-	varBsAlertBorder,
-	varBsAlertBorderColor,
-	varBsAlertBorderRadius,
-	varBsAlertColor,
-	varBsAlertLinkColor,
-	varBsAlertMarginBottom,
-	varBsAlertPaddingX,
-	varBsAlertPaddingY,
-	varBsBtnCloseBg,
-	varBsBtnCloseColor,
-	varBsBtnCloseDisabledOpacity,
-	varBsBtnCloseFocusOpacity,
-	varBsBtnCloseFocusShadow,
-	varBsBtnCloseHoverOpacity,
-	varBsBtnCloseOpacity,
-} from '../../../theme-contract/ui/alerts/_vars.css'
 import {
 	alert,
 	alertDanger,
@@ -2091,55 +2400,9 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../theme-contract/ui/alerts/contract.css'
-import {
-	varBsBadgeBorderRadius,
-	varBsBadgeColor,
-	varBsBadgeFontSize,
-	varBsBadgeFontWeight,
-	varBsBadgePaddingX,
-	varBsBadgePaddingY,
-} from '../../../theme-contract/ui/badge/_vars.css'
 import { badge } from '../../../theme-contract/ui/badge/contract.css'
-import {
-	varBsBreadcrumbBg,
-	varBsBreadcrumbBorderRadius,
-	varBsBreadcrumbDivider,
-	varBsBreadcrumbDividerColor,
-	varBsBreadcrumbItemActiveColor,
-	varBsBreadcrumbItemPaddingX,
-	varBsBreadcrumbMarginBottom,
-	varBsBreadcrumbPaddingX,
-	varBsBreadcrumbPaddingY,
-} from '../../../theme-contract/ui/breadcrumb/_vars.css'
 import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
 import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnBg,
-	varBsBtnBorderColor,
-	varBsBtnBorderRadius,
-	varBsBtnBorderWidth,
-	varBsBtnBoxShadow,
-	varBsBtnColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-	varBsBtnFocusBoxShadowRgb,
-	varBsBtnFontFamily,
-	varBsBtnFontSize,
-	varBsBtnFontWeight,
-	varBsBtnHoverBg,
-	varBsBtnHoverBorderColor,
-	varBsBtnHoverColor,
-	varBsBtnLineHeight,
-	varBsBtnPaddingX,
-	varBsBtnPaddingY,
-} from '../../../theme-contract/ui/buttons/_vars.css'
 import {
 	btn,
 	btnCheck,
@@ -2163,26 +2426,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../theme-contract/ui/buttons/contract.css'
-import {
-	varBsCardBg,
-	varBsCardBorderColor,
-	varBsCardBorderRadius,
-	varBsCardBorderWidth,
-	varBsCardBoxShadow,
-	varBsCardCapBg,
-	varBsCardCapColor,
-	varBsCardCapPaddingX,
-	varBsCardCapPaddingY,
-	varBsCardColor,
-	varBsCardGroupMargin,
-	varBsCardImgOverlayPadding,
-	varBsCardInnerBorderRadius,
-	varBsCardSpacerX,
-	varBsCardSpacerY,
-	varBsCardSubtitleColor,
-	varBsCardTitleColor,
-	varBsCardTitleSpacerY,
-} from '../../../theme-contract/ui/card/_vars.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
 import {
 	card,
 	cardBody,
@@ -2196,12 +2440,6 @@ import {
 	cardText,
 	cardTitle,
 } from '../../../theme-contract/ui/card/contract.css'
-import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
-import {
-	varBsCarouselCaptionColor,
-	varBsCarouselControlIconFilter,
-	varBsCarouselIndicatorActiveBg,
-} from '../../../theme-contract/ui/carousel/_vars.css'
 import {
 	carousel,
 	carouselCaption,
@@ -2219,34 +2457,6 @@ import {
 	carouselItemPrev,
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
-import {
-	varBsDropdownBg,
-	varBsDropdownBorderColor,
-	varBsDropdownBorderRadius,
-	varBsDropdownBorderWidth,
-	varBsDropdownBoxShadow,
-	varBsDropdownColor,
-	varBsDropdownDividerBg,
-	varBsDropdownDividerMarginY,
-	varBsDropdownFontSize,
-	varBsDropdownHeaderColor,
-	varBsDropdownHeaderPaddingX,
-	varBsDropdownHeaderPaddingY,
-	varBsDropdownInnerBorderRadius,
-	varBsDropdownItemPaddingX,
-	varBsDropdownItemPaddingY,
-	varBsDropdownLinkActiveBg,
-	varBsDropdownLinkActiveColor,
-	varBsDropdownLinkColor,
-	varBsDropdownLinkDisabledColor,
-	varBsDropdownLinkHoverBg,
-	varBsDropdownLinkHoverColor,
-	varBsDropdownMinWidth,
-	varBsDropdownPaddingX,
-	varBsDropdownPaddingY,
-	varBsDropdownSpacer,
-	varBsDropdownZindex,
-} from '../../../theme-contract/ui/dropdowns/_vars.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -2268,25 +2478,6 @@ import {
 	dropupCenter,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
-} from '../../../theme-contract/ui/list-group/_vars.css'
-import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
@@ -2300,32 +2491,6 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../theme-contract/ui/list-group/contract.css'
-import {
-	varBsBackdropBg,
-	varBsBackdropOpacity,
-	varBsBackdropZindex,
-	varBsModalBg,
-	varBsModalBorderColor,
-	varBsModalBorderRadius,
-	varBsModalBorderWidth,
-	varBsModalBoxShadow,
-	varBsModalColor,
-	varBsModalFooterBg,
-	varBsModalFooterBorderColor,
-	varBsModalFooterBorderWidth,
-	varBsModalFooterGap,
-	varBsModalHeaderBorderColor,
-	varBsModalHeaderBorderWidth,
-	varBsModalHeaderPadding,
-	varBsModalHeaderPaddingX,
-	varBsModalHeaderPaddingY,
-	varBsModalInnerBorderRadius,
-	varBsModalMargin,
-	varBsModalPadding,
-	varBsModalTitleLineHeight,
-	varBsModalWidth,
-	varBsModalZindex,
-} from '../../../theme-contract/ui/modal/_vars.css'
 import {
 	flexWrap,
 	justifyContentBetween,
@@ -2344,28 +2509,6 @@ import {
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	varBsNavbarActiveColor,
-	varBsNavbarBrandColor,
-	varBsNavbarBrandFontSize,
-	varBsNavbarBrandHoverColor,
-	varBsNavbarBrandMarginEnd,
-	varBsNavbarBrandPaddingY,
-	varBsNavbarColor,
-	varBsNavbarDisabledColor,
-	varBsNavbarHoverColor,
-	varBsNavbarNavLinkPaddingX,
-	varBsNavbarPaddingX,
-	varBsNavbarPaddingY,
-	varBsNavbarTogglerBorderColor,
-	varBsNavbarTogglerBorderRadius,
-	varBsNavbarTogglerFocusWidth,
-	varBsNavbarTogglerFontSize,
-	varBsNavbarTogglerIconBg,
-	varBsNavbarTogglerPaddingX,
-	varBsNavbarTogglerPaddingY,
-	varBsNavbarTogglerTransition,
-} from '../../../theme-contract/ui/navbar/_vars.css'
-import {
 	collapse,
 	navbar,
 	navbarBrand,
@@ -2377,25 +2520,6 @@ import {
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	varBsNavLinkColor,
-	varBsNavLinkDisabledColor,
-	varBsNavLinkFontSize,
-	varBsNavLinkFontWeight,
-	varBsNavLinkHoverColor,
-	varBsNavLinkPaddingX,
-	varBsNavLinkPaddingY,
-	varBsNavPillsBorderRadius,
-	varBsNavPillsLinkActiveBg,
-	varBsNavPillsLinkActiveColor,
-	varBsNavTabsBorderColor,
-	varBsNavTabsBorderRadius,
-	varBsNavTabsBorderWidth,
-	varBsNavTabsLinkActiveBg,
-	varBsNavTabsLinkActiveBorderColor,
-	varBsNavTabsLinkActiveColor,
-	varBsNavTabsLinkHoverBorderColor,
-} from '../../../theme-contract/ui/navs/_vars.css'
 import {
 	fade,
 	nav,
@@ -2410,28 +2534,6 @@ import {
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
 import {
-	varBsPaginationActiveBg,
-	varBsPaginationActiveBorderColor,
-	varBsPaginationActiveColor,
-	varBsPaginationBg,
-	varBsPaginationBorderColor,
-	varBsPaginationBorderRadius,
-	varBsPaginationBorderWidth,
-	varBsPaginationColor,
-	varBsPaginationDisabledBg,
-	varBsPaginationDisabledBorderColor,
-	varBsPaginationDisabledColor,
-	varBsPaginationFocusBg,
-	varBsPaginationFocusBoxShadow,
-	varBsPaginationFocusColor,
-	varBsPaginationFontSize,
-	varBsPaginationHoverBg,
-	varBsPaginationHoverBorderColor,
-	varBsPaginationHoverColor,
-	varBsPaginationPaddingX,
-	varBsPaginationPaddingY,
-} from '../../../theme-contract/ui/pagination/_vars.css'
-import {
 	pageItem,
 	pageItemActive,
 	pageItemDisabled,
@@ -2440,28 +2542,6 @@ import {
 	paginationLg,
 	paginationSm,
 } from '../../../theme-contract/ui/pagination/contract.css'
-import {
-	varBsPopoverArrowBorder,
-	varBsPopoverArrowHeight,
-	varBsPopoverArrowWidth,
-	varBsPopoverBg,
-	varBsPopoverBodyColor,
-	varBsPopoverBodyPaddingX,
-	varBsPopoverBodyPaddingY,
-	varBsPopoverBorderColor,
-	varBsPopoverBorderRadius,
-	varBsPopoverBorderWidth,
-	varBsPopoverBoxShadow,
-	varBsPopoverFontSize,
-	varBsPopoverHeaderBg,
-	varBsPopoverHeaderColor,
-	varBsPopoverHeaderFontSize,
-	varBsPopoverHeaderPaddingX,
-	varBsPopoverHeaderPaddingY,
-	varBsPopoverInnerBorderRadius,
-	varBsPopoverMaxWidth,
-	varBsPopoverZindex,
-} from '../../../theme-contract/ui/popovers/_vars.css'
 import {
 	bsPopoverAuto,
 	bsPopoverBottom,
@@ -2475,48 +2555,13 @@ import {
 	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
-	varBsProgressBarBg,
-	varBsProgressBarColor,
-	varBsProgressBarTransition,
-	varBsProgressBg,
-	varBsProgressBorderRadius,
-	varBsProgressBoxShadow,
-	varBsProgressFontSize,
-	varBsProgressHeight,
-} from '../../../theme-contract/ui/progress/_vars.css'
-import {
 	progress,
 	progressBar,
 	progressBarAnimated,
 	progressBarStriped,
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
-import {
-	varBsSpinnerAnimationName,
-	varBsSpinnerAnimationSpeed,
-	varBsSpinnerBorderWidth,
-	varBsSpinnerHeight,
-	varBsSpinnerVerticalAlign,
-	varBsSpinnerWidth,
-} from '../../../theme-contract/ui/spinners/_vars.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	varBsToastBg,
-	varBsToastBorderColor,
-	varBsToastBorderRadius,
-	varBsToastBorderWidth,
-	varBsToastBoxShadow,
-	varBsToastColor,
-	varBsToastFontSize,
-	varBsToastHeaderBg,
-	varBsToastHeaderBorderColor,
-	varBsToastHeaderColor,
-	varBsToastMaxWidth,
-	varBsToastPaddingX,
-	varBsToastPaddingY,
-	varBsToastSpacing,
-	varBsToastZindex,
-} from '../../../theme-contract/ui/toasts/_vars.css'
 import {
 	toast,
 	toastBody,
@@ -2524,20 +2569,6 @@ import {
 	toastShow,
 	toastShowing,
 } from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	varBsTooltipArrowHeight,
-	varBsTooltipArrowWidth,
-	varBsTooltipBg,
-	varBsTooltipBorderRadius,
-	varBsTooltipColor,
-	varBsTooltipFontSize,
-	varBsTooltipMargin,
-	varBsTooltipMaxWidth,
-	varBsTooltipOpacity,
-	varBsTooltipPaddingX,
-	varBsTooltipPaddingY,
-	varBsTooltipZindex,
-} from '../../../theme-contract/ui/tooltips/_vars.css'
 import {
 	tooltipArrow,
 	tooltipFade,
@@ -2587,33 +2618,6 @@ import {
 	textMuted,
 	visuallyHidden,
 } from '../../../theme-contract/utilities/contract.css'
-import {
-	varBsAspectRatio,
-	varBsBgOpacity,
-	varBsBorderOpacity,
-	varBsBtnCloseFilter,
-	varBsCardHeight,
-	varBsLinkOpacity,
-	varBsLinkUnderlineOpacity,
-	varBsNavUnderlineBorderWidth,
-	varBsNavUnderlineGap,
-	varBsNavUnderlineLinkActiveColor,
-	varBsOffcanvasBg,
-	varBsOffcanvasBorderColor,
-	varBsOffcanvasBorderWidth,
-	varBsOffcanvasBoxShadow,
-	varBsOffcanvasColor,
-	varBsOffcanvasHeight,
-	varBsOffcanvasPaddingX,
-	varBsOffcanvasPaddingY,
-	varBsOffcanvasTitleLineHeight,
-	varBsOffcanvasTransition,
-	varBsOffcanvasWidth,
-	varBsOffcanvasZindex,
-	varBsPosition,
-	varBsTextOpacity,
-} from '../../../theme-contract/utilities/generated/_vars.css'
-import { vaporScope } from '../scope.css'
 
 globalStyle(`${vaporScope}${vars}`, {
 	vars: {
@@ -2682,12 +2686,9 @@ globalStyle(`${vaporScope}${vars}`, {
 		[varBsDarkBorderSubtle]: '#adb5bd',
 		[varBsWhiteRgb]: '255, 255, 255',
 		[varBsBlackRgb]: '0, 0, 0',
-		[varBsFontSansSerif]:
-			'Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-		[varBsFontMonospace]:
-			'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-		[varBsGradient]:
-			'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
+		[varBsFontSansSerif]: 'Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+		[varBsFontMonospace]: 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+		[varBsGradient]: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
 		[varBsBodyFontFamily]: varBsFontSansSerif,
 		[varBsBodyFontSize]: '1rem',
 		[varBsBodyFontWeight]: '400',
@@ -3352,7 +3353,7 @@ globalStyle(`:where(${vaporScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`[role=button]`, {
+globalStyle(`${vaporScope}[role=button]`, {
 	cursor: 'pointer',
 })
 
@@ -3364,26 +3365,23 @@ globalStyle(`${vaporScope}${elSelect}:disabled`, {
 	opacity: '1',
 })
 
-globalStyle(
-	`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
-	{
-		display: 'none !important',
-	},
-)
+globalStyle(`${vaporScope}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
+	display: 'none !important',
+})
 
 globalStyle(`:where(${vaporScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=button]`, {
+globalStyle(`${vaporScope}[type=button]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=reset]`, {
+globalStyle(`${vaporScope}[type=reset]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=submit]`, {
+globalStyle(`${vaporScope}[type=submit]`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3391,15 +3389,15 @@ globalStyle(`${vaporScope}${elButton}:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=button]:not(:disabled)`, {
+globalStyle(`${vaporScope}[type=button]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=reset]:not(:disabled)`, {
+globalStyle(`${vaporScope}[type=reset]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=submit]:not(:disabled)`, {
+globalStyle(`${vaporScope}[type=submit]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
@@ -3472,12 +3470,12 @@ globalStyle(`::-webkit-inner-spin-button`, {
 	height: 'auto',
 })
 
-globalStyle(`[type=search]`, {
+globalStyle(`${vaporScope}[type=search]`, {
 	WebkitAppearance: 'textfield',
 	outlineOffset: '-2px',
 })
 
-globalStyle(`[type=search]::-webkit-search-cancel-button`, {
+globalStyle(`${vaporScope}[type=search]::-webkit-search-cancel-button`, {
 	cursor: 'pointer',
 	filter: 'grayscale(1)',
 })
@@ -3517,7 +3515,7 @@ globalStyle(`:where(${vaporScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`[hidden]`, {
+globalStyle(`${vaporScope}[hidden]`, {
 	display: 'none !important',
 })
 
@@ -6900,11 +6898,11 @@ globalStyle(`${vaporScope}${table} > :not(caption) > * > *`, {
 	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-globalStyle(`${vaporScope}${table} > :where(${vaporScope}${tableSection})`, {
+globalStyle(`${vaporScope}${table} > ${vaporScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${vaporScope}${table} > :where(${vaporScope}${tableSection})`, {
+globalStyle(`${vaporScope}${table} > ${vaporScope}${tableSection}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -6936,25 +6934,19 @@ globalStyle(`${vaporScope}${tableBorderless} > :not(:first-child)`, {
 	borderTopWidth: '0',
 })
 
-globalStyle(
-	`${vaporScope}${tableStriped} > :where(${vaporScope}${tableSection}) > ${vaporScope}${tableRow}:nth-of-type(odd) > *`,
-	{
-		vars: {
-			[varBsTableColorType]: varBsTableStripedColor,
-			[varBsTableBgType]: varBsTableStripedBg,
-		},
+globalStyle(`${vaporScope}${tableStriped} > ${vaporScope}${tableSection} > ${vaporScope}${tableRow}:nth-of-type(odd) > *`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${tableStripedColumns} > :not(caption) > :where(${vaporScope}${tableRow}) > :nth-child(even)`,
-	{
-		vars: {
-			[varBsTableColorType]: varBsTableStripedColor,
-			[varBsTableBgType]: varBsTableStripedBg,
-		},
+globalStyle(`${vaporScope}${tableStripedColumns} > :not(caption) > ${vaporScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-)
+})
 
 globalStyle(`${vaporScope}${tableActive}`, {
 	vars: {
@@ -6963,15 +6955,12 @@ globalStyle(`${vaporScope}${tableActive}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${tableHover} > :where(${vaporScope}${tableSection}) > ${vaporScope}${tableRow}:hover > *`,
-	{
-		vars: {
-			[varBsTableColorState]: varBsTableHoverColor,
-			[varBsTableBgState]: varBsTableHoverBg,
-		},
+globalStyle(`${vaporScope}${tableHover} > ${vaporScope}${tableSection} > ${vaporScope}${tableRow}:hover > *`, {
+	vars: {
+		[varBsTableColorState]: varBsTableHoverColor,
+		[varBsTableBgState]: varBsTableHoverBg,
 	},
-)
+})
 
 globalStyle(`${vaporScope}${tablePrimary}`, {
 	vars: {
@@ -7263,10 +7252,8 @@ globalStyle(`${vaporScope}${formControl}::-webkit-file-upload-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	WebkitTransition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${formControl}::file-selector-button`, {
@@ -7282,8 +7269,7 @@ globalStyle(`${vaporScope}${formControl}::file-selector-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${formControl}::-webkit-file-upload-button`, {
@@ -7303,19 +7289,13 @@ globalStyle(`${vaporScope}${formControl}::file-selector-button`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
-	{
-		backgroundColor: '#210b40',
-	},
-)
+globalStyle(`${vaporScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
+	backgroundColor: '#210b40',
+})
 
-globalStyle(
-	`${vaporScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
-	{
-		backgroundColor: '#210b40',
-	},
-)
+globalStyle(`${vaporScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
+	backgroundColor: '#210b40',
+})
 
 globalStyle(`${vaporScope}${formControlPlaintext}`, {
 	display: 'block',
@@ -7427,8 +7407,7 @@ globalStyle(`${vaporScope}${formControlColor}${formControlLg}`, {
 
 globalStyle(`${vaporScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23343a40\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
 	display: 'block',
 	width: '100%',
@@ -7500,10 +7479,9 @@ globalStyle(`${vaporScope}${formSelectLg}`, {
 	borderRadius: varBsBorderRadiusLg,
 })
 
-globalStyle(`[data-bs-theme=dark] ${vaporScope}${formSelect}`, {
+globalStyle(`${vaporScope}[data-bs-theme=dark] ${vaporScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23dee2e6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -7579,22 +7557,19 @@ globalStyle(`${vaporScope}${formCheckInput}:checked`, {
 
 globalStyle(`${vaporScope}${formCheckInput}:checked[type=checkbox]`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'m6 10 3 3 6-6\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${vaporScope}${formCheckInput}:checked[type=radio]`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'2\' fill=\'%23fff\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${vaporScope}${formCheckInput}[type=checkbox]:indeterminate`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'M6 10h8\'/%3e%3c/svg%3e")',
 	},
 	backgroundColor: '#ea39b8',
 	borderColor: '#ea39b8',
@@ -7622,8 +7597,7 @@ globalStyle(`${vaporScope}${formSwitch}`, {
 
 globalStyle(`${vaporScope}${formSwitch} ${vaporScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
 	},
 	width: '2em',
 	marginLeft: '-2.5em',
@@ -7643,15 +7617,13 @@ globalStyle(`${vaporScope}${formSwitch} ${vaporScope}${formCheckInput}`, {
 
 globalStyle(`${vaporScope}${formSwitch} ${vaporScope}${formCheckInput}:focus`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23f59cdc'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23f59cdc\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${vaporScope}${formSwitch} ${vaporScope}${formCheckInput}:checked`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23fff\'/%3e%3c/svg%3e")',
 	},
 	backgroundPosition: 'right center',
 })
@@ -7689,15 +7661,11 @@ globalStyle(`${vaporScope}${btnCheck}:disabled + ${vaporScope}${btn}`, {
 	opacity: '0.65',
 })
 
-globalStyle(
-	`[data-bs-theme=dark] ${vaporScope}${formSwitch} ${vaporScope}${formCheckInput}:not(:checked):not(:focus)`,
-	{
-		vars: {
-			[varBsFormSwitchBg]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e\")",
-		},
+globalStyle(`${vaporScope}[data-bs-theme=dark] ${vaporScope}${formSwitch} ${vaporScope}${formCheckInput}:not(:checked):not(:focus)`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
 	},
-)
+})
 
 globalStyle(`${vaporScope}${formRange}`, {
 	width: '100%',
@@ -7734,10 +7702,8 @@ globalStyle(`${vaporScope}${formRange}::-webkit-slider-thumb`, {
 	backgroundColor: '#ea39b8',
 	border: '0',
 	borderRadius: '1rem',
-	WebkitTransition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${formRange}::-webkit-slider-thumb`, {
@@ -7771,10 +7737,8 @@ globalStyle(`${vaporScope}${formRange}::-moz-range-thumb`, {
 	backgroundColor: '#ea39b8',
 	border: '0',
 	borderRadius: '1rem',
-	MozTransition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${formRange}::-moz-range-thumb`, {
@@ -7834,7 +7798,7 @@ globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formSelect}`, {
 	lineHeight: '1.25',
 })
 
-globalStyle(`${vaporScope}${formFloating} > :where(${vaporScope}${elLabel})`, {
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${elLabel}`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7853,7 +7817,7 @@ globalStyle(`${vaporScope}${formFloating} > :where(${vaporScope}${elLabel})`, {
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${vaporScope}${formFloating} > :where(${vaporScope}${elLabel})`, {
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${elLabel}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7873,12 +7837,9 @@ globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}::-moz-pl
 	color: 'transparent',
 })
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}::-moz-placeholder`,
-	{
-		color: 'transparent',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}::-moz-placeholder`, {
+	color: 'transparent',
+})
 
 globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}::placeholder`, {
 	color: 'transparent',
@@ -7888,21 +7849,15 @@ globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}
 	color: 'transparent',
 })
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControl}:not(:-moz-placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:focus`, {
 	paddingTop: '1.625rem',
@@ -7919,26 +7874,20 @@ globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}:not(:placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}:not(:placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:-webkit-autofill`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}:-webkit-autofill`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext}:-webkit-autofill`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formSelect}`, {
 	paddingTop: '1.625rem',
@@ -7946,111 +7895,75 @@ globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formSelect}`, {
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControl}:not(:-moz-placeholder-shown) ~ :where(${vaporScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:not(:-moz-placeholder-shown) ~ ${vaporScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControl}:focus ~ :where(${vaporScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:focus ~ ${vaporScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControl}:not(:placeholder-shown) ~ :where(${vaporScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:not(:placeholder-shown) ~ ${vaporScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext} ~ :where(${vaporScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext} ~ ${vaporScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formSelect} ~ :where(${vaporScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formSelect} ~ ${vaporScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControl}:-webkit-autofill ~ :where(${vaporScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:-webkit-autofill ~ ${vaporScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${vaporScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.375rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: '#30115e',
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${vaporScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: '#30115e',
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:focus ~ ${vaporScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.375rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: '#30115e',
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:focus ~ ${vaporScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: '#30115e',
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:not(:placeholder-shown) ~ ${vaporScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.375rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: '#30115e',
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:not(:placeholder-shown) ~ ${vaporScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: '#30115e',
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:disabled ~ ${vaporScope}${elLabel}::after`,
-	{
-		backgroundColor: '#250d49',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${elTextarea}:disabled ~ ${vaporScope}${elLabel}::after`, {
+	backgroundColor: '#250d49',
+})
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext} ~ :where(${vaporScope}${elLabel})`,
-	{
-		borderWidth: `${varBsBorderWidth} 0`,
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControlPlaintext} ~ ${vaporScope}${elLabel}`, {
+	borderWidth: `${varBsBorderWidth} 0`,
+})
 
-globalStyle(`${vaporScope}${formFloating} > :disabled ~ :where(${vaporScope}${elLabel})`, {
+globalStyle(`${vaporScope}${formFloating} > :disabled ~ ${vaporScope}${elLabel}`, {
 	color: '#6c757d',
 })
 
-globalStyle(
-	`${vaporScope}${formFloating} > ${vaporScope}${formControl}:disabled ~ :where(${vaporScope}${elLabel})`,
-	{
-		color: '#6c757d',
-	},
-)
+globalStyle(`${vaporScope}${formFloating} > ${vaporScope}${formControl}:disabled ~ ${vaporScope}${elLabel}`, {
+	color: '#6c757d',
+})
 
 globalStyle(`${vaporScope}${inputGroup}`, {
 	position: 'relative',
@@ -8173,94 +8086,61 @@ globalStyle(`${vaporScope}${inputGroupSm} > ${vaporScope}${formSelect}`, {
 	paddingRight: '3rem',
 })
 
-globalStyle(
-	`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}${dropdownToggle}:nth-last-child(n+3)`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}${dropdownToggle}:nth-last-child(n+3)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}${formFloating}:not(:last-child) > ${vaporScope}${formControl}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}${formFloating}:not(:last-child) > ${vaporScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}${formFloating}:not(:last-child) > ${vaporScope}${formSelect}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}:not(${hasValidation}) > ${vaporScope}${formFloating}:not(:last-child) > ${vaporScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}${dropdownToggle}:nth-last-child(n+4)`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}${formFloating}:nth-last-child(n+3) > ${vaporScope}${formControl}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}${formFloating}:nth-last-child(n+3) > ${vaporScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}${formFloating}:nth-last-child(n+3) > ${vaporScope}${formSelect}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup}${hasValidation} > ${vaporScope}${formFloating}:nth-last-child(n+3) > ${vaporScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup} > ${vaporScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`,
-	{
-		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:first-child) > ${vaporScope}${formControl}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:first-child) > ${vaporScope}${formControl}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:first-child) > ${vaporScope}${formSelect}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:first-child) > ${vaporScope}${formSelect}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${vaporScope}${validFeedback}`, {
 	display: 'none',
@@ -8303,8 +8183,7 @@ globalStyle(`${vaporScope}${isValid} ~ ${vaporScope}${validTooltip}`, {
 globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233cf281' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233cf281\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8313,8 +8192,7 @@ globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formControl}:valid`, {
 globalStyle(`${vaporScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233cf281' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233cf281\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8348,36 +8226,27 @@ globalStyle(`${vaporScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:valid:not([multiple]):not([size])`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233cf281' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:valid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233cf281\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:valid:not([multiple])[size="1"]`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233cf281' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:valid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233cf281\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
 globalStyle(`${vaporScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233cf281' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233cf281\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8386,8 +8255,7 @@ globalStyle(`${vaporScope}${formSelect}${isValid}:not([multiple]):not([size])`, 
 
 globalStyle(`${vaporScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233cf281' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233cf281\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8436,59 +8304,41 @@ globalStyle(`${vaporScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${formCheckInput}:valid ~ ${vaporScope}${formCheckLabel}`,
-	{
-		color: varBsFormValidColor,
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formCheckInput}:valid ~ ${vaporScope}${formCheckLabel}`, {
+	color: varBsFormValidColor,
+})
 
 globalStyle(`${vaporScope}${formCheckInput}${isValid} ~ ${vaporScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(
-	`${vaporScope}${formCheckInline} ${vaporScope}${formCheckInput} ~ ${vaporScope}${validFeedback}`,
-	{
-		marginLeft: '0.5em',
-	},
-)
+globalStyle(`${vaporScope}${formCheckInline} ${vaporScope}${formCheckInput} ~ ${vaporScope}${validFeedback}`, {
+	marginLeft: '0.5em',
+})
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formControl}:not(:focus):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formControl}:not(:focus):valid`, {
+	zIndex: '3',
+})
 
 globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formControl}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formSelect}:not(:focus):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formSelect}:not(:focus):valid`, {
+	zIndex: '3',
+})
 
 globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formSelect}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within):valid`, {
+	zIndex: '3',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within)${isValid}`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within)${isValid}`, {
+	zIndex: '3',
+})
 
 globalStyle(`${vaporScope}${invalidFeedback}`, {
 	display: 'none',
@@ -8531,8 +8381,7 @@ globalStyle(`${vaporScope}${isInvalid} ~ ${vaporScope}${invalidTooltip}`, {
 globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e44c55'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e44c55' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e44c55\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e44c55\' stroke=\'none\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8541,8 +8390,7 @@ globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formControl}:invalid`, 
 globalStyle(`${vaporScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e44c55'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e44c55' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e44c55\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e44c55\' stroke=\'none\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8576,36 +8424,27 @@ globalStyle(`${vaporScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:invalid:not([multiple]):not([size])`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e44c55'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e44c55' stroke='none'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:invalid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e44c55\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e44c55\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:invalid:not([multiple])[size="1"]`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e44c55'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e44c55' stroke='none'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e44c55\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e44c55\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
 globalStyle(`${vaporScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e44c55'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e44c55' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e44c55\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e44c55\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8614,8 +8453,7 @@ globalStyle(`${vaporScope}${formSelect}${isInvalid}:not([multiple]):not([size])`
 
 globalStyle(`${vaporScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e44c55'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e44c55' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e44c55\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e44c55\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8664,59 +8502,41 @@ globalStyle(`${vaporScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${formCheckInput}:invalid ~ ${vaporScope}${formCheckLabel}`,
-	{
-		color: varBsFormInvalidColor,
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${formCheckInput}:invalid ~ ${vaporScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
 
 globalStyle(`${vaporScope}${formCheckInput}${isInvalid} ~ ${vaporScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
-globalStyle(
-	`${vaporScope}${formCheckInline} ${vaporScope}${formCheckInput} ~ ${vaporScope}${invalidFeedback}`,
-	{
-		marginLeft: '0.5em',
-	},
-)
+globalStyle(`${vaporScope}${formCheckInline} ${vaporScope}${formCheckInput} ~ ${vaporScope}${invalidFeedback}`, {
+	marginLeft: '0.5em',
+})
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formControl}:not(:focus):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formControl}:not(:focus):invalid`, {
+	zIndex: '4',
+})
 
 globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formControl}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formSelect}:not(:focus):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formSelect}:not(:focus):invalid`, {
+	zIndex: '4',
+})
 
 globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formSelect}:not(:focus)${isInvalid}`, {
 	zIndex: '4',
 })
 
-globalStyle(
-	`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${vaporScope}${wasValidated} ${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within):invalid`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within)${isInvalid}`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${vaporScope}${inputGroup} > ${vaporScope}${formFloating}:not(:focus-within)${isInvalid}`, {
+	zIndex: '4',
+})
 
 globalStyle(`${vaporScope}${btn}`, {
 	vars: {
@@ -8732,8 +8552,7 @@ globalStyle(`${vaporScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
@@ -8754,8 +8573,7 @@ globalStyle(`${vaporScope}${btn}`, {
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${btn}`, {
@@ -9873,19 +9691,13 @@ globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btn}${active}`, {
 	zIndex: '1',
 })
 
-globalStyle(
-	`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnCheck}:checked + ${vaporScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnCheck}:checked + ${vaporScope}${btn}`, {
+	zIndex: '1',
+})
 
-globalStyle(
-	`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnCheck}:focus + ${vaporScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnCheck}:focus + ${vaporScope}${btn}`, {
+	zIndex: '1',
+})
 
 globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btn}:hover`, {
 	zIndex: '1',
@@ -9917,37 +9729,28 @@ globalStyle(`${vaporScope}${btnGroup}`, {
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(
-	`${vaporScope}${btnGroup} > ${vaporScope}:not(${btnCheck}:first-child) + ${vaporScope}${btn}`,
-	{
-		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	},
-)
+globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}:not(${btnCheck}:first-child) + ${vaporScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
 
 globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btnGroup}:not(:first-child)`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(
-	`${vaporScope}${btnGroup} > ${vaporScope}${btn}:not(:last-child):not(${dropdownToggle})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
 globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
 })
 
-globalStyle(
-	`${vaporScope}${btnGroup} > ${vaporScope}${btnGroup}:not(:last-child) > ${vaporScope}${btn}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btnGroup}:not(:last-child) > ${vaporScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
 globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
@@ -9959,13 +9762,10 @@ globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}:not(${btnCheck}) + ${vapor
 	borderBottomLeftRadius: '0',
 })
 
-globalStyle(
-	`${vaporScope}${btnGroup} > ${vaporScope}${btnGroup}:not(:first-child) > ${vaporScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btnGroup}:not(:first-child) > ${vaporScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${vaporScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.5625rem',
@@ -9993,26 +9793,20 @@ globalStyle(`${vaporScope}${btnSm} + ${vaporScope}${dropdownToggleSplit}`, {
 	paddingLeft: '0.375rem',
 })
 
-globalStyle(
-	`${vaporScope}${btnGroupSm} > ${vaporScope}${btn} + ${vaporScope}${dropdownToggleSplit}`,
-	{
-		paddingRight: '0.375rem',
-		paddingLeft: '0.375rem',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupSm} > ${vaporScope}${btn} + ${vaporScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
 
 globalStyle(`${vaporScope}${btnLg} + ${vaporScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(
-	`${vaporScope}${btnGroupLg} > ${vaporScope}${btn} + ${vaporScope}${dropdownToggleSplit}`,
-	{
-		paddingRight: '0.75rem',
-		paddingLeft: '0.75rem',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupLg} > ${vaporScope}${btn} + ${vaporScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
 
 globalStyle(`${vaporScope}${btnGroupVertical}`, {
 	flexDirection: 'column',
@@ -10036,42 +9830,30 @@ globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnGroup}:not(:fi
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(
-	`${vaporScope}${btnGroupVertical} > ${vaporScope}${btn}:not(:last-child):not(${dropdownToggle})`,
-	{
-		borderBottomRightRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnGroup}:not(:last-child) > ${vaporScope}${btn}`,
-	{
-		borderBottomRightRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnGroup}:not(:last-child) > ${vaporScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderTopRightRadius: '0',
 })
 
-globalStyle(
-	`${vaporScope}${btnGroupVertical} > ${vaporScope}:not(${btnCheck}) + ${vaporScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}:not(${btnCheck}) + ${vaporScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnGroup}:not(:first-child) > ${vaporScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btnGroup}:not(:first-child) > ${vaporScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
 
 globalStyle(`${vaporScope}${nav}`, {
 	vars: {
@@ -10098,8 +9880,7 @@ globalStyle(`${vaporScope}${navLink}`, {
 	textDecoration: 'none',
 	background: 'none',
 	border: '0',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${navLink}`, {
@@ -10295,8 +10076,7 @@ globalStyle(`${vaporScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2850, 251, 226, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%2850, 251, 226, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -10411,7 +10191,7 @@ globalStyle(`${vaporScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${vaporScope}${navbarText} :where(${vaporScope}${link})`, {
+globalStyle(`${vaporScope}${navbarText} ${vaporScope}${link}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10491,16 +10271,13 @@ globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandSm} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				position: 'absolute',
-			},
+globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
 	'@media': {
@@ -10553,30 +10330,24 @@ globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandSm} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				display: 'none',
-			},
+globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${navbarExpandSm} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandMd}`, {
 	'@media': {
@@ -10595,16 +10366,13 @@ globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandMd} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				position: 'absolute',
-			},
+globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
 	'@media': {
@@ -10657,30 +10425,24 @@ globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandMd} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				display: 'none',
-			},
+globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${navbarExpandMd} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandLg}`, {
 	'@media': {
@@ -10699,16 +10461,13 @@ globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandLg} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				position: 'absolute',
-			},
+globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
 	'@media': {
@@ -10761,30 +10520,24 @@ globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandLg} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				display: 'none',
-			},
+globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${navbarExpandLg} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandXl}`, {
 	'@media': {
@@ -10803,16 +10556,13 @@ globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandXl} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				position: 'absolute',
-			},
+globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
 	'@media': {
@@ -10865,30 +10615,24 @@ globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandXl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				display: 'none',
-			},
+globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${navbarExpandXl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandXxl}`, {
 	'@media': {
@@ -10907,16 +10651,13 @@ globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandXxl} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				position: 'absolute',
-			},
+globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${navbarNav} ${vaporScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
 	'@media': {
@@ -10969,30 +10710,24 @@ globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpandXxl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				display: 'none',
-			},
+globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${navbarExpandXxl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${navbarExpand}`, {
 	flexWrap: 'nowrap',
@@ -11038,22 +10773,16 @@ globalStyle(`${vaporScope}${navbarExpand} ${vaporScope}${offcanvas}`, {
 	transition: 'none',
 })
 
-globalStyle(
-	`${vaporScope}${navbarExpand} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`,
-	{
-		display: 'none',
-	},
-)
+globalStyle(`${vaporScope}${navbarExpand} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasHeader}`, {
+	display: 'none',
+})
 
-globalStyle(
-	`${vaporScope}${navbarExpand} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`,
-	{
-		display: 'flex',
-		flexGrow: '0',
-		padding: '0',
-		overflowY: 'visible',
-	},
-)
+globalStyle(`${vaporScope}${navbarExpand} ${vaporScope}${offcanvas} ${vaporScope}${offcanvasBody}`, {
+	display: 'flex',
+	flexGrow: '0',
+	padding: '0',
+	overflowY: 'visible',
+})
 
 globalStyle(`${vaporScope}${navbarDark}`, {
 	vars: {
@@ -11064,8 +10793,7 @@ globalStyle(`${vaporScope}${navbarDark}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11078,15 +10806,13 @@ globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark]`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${vaporScope}${navbarTogglerIcon}`, {
+globalStyle(`${vaporScope}[data-bs-theme=dark] ${vaporScope}${navbarTogglerIcon}`, {
 	vars: {
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11125,7 +10851,7 @@ globalStyle(`${vaporScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-globalStyle(`${vaporScope}${card} > :where(${vaporScope}${horizontalRule})`, {
+globalStyle(`${vaporScope}${card} > ${vaporScope}${horizontalRule}`, {
 	marginRight: '0',
 	marginLeft: '0',
 })
@@ -11302,49 +11028,37 @@ globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child)`,
 	},
 })
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardImgTop}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardImgBottom}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardFooter}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:last-child) > ${vaporScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child)`, {
 	'@media': {
@@ -11355,56 +11069,43 @@ globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child)`
 	},
 })
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardImgTop}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardImgBottom}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardFooter}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${cardGroup} > ${vaporScope}${card}:not(:first-child) > ${vaporScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${accordion}`, {
 	vars: {
 		[varBsAccordionColor]: varBsBodyColor,
 		[varBsAccordionBg]: varBsBodyBg,
-		[varBsAccordionTransition]:
-			'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
+		[varBsAccordionTransition]: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
@@ -11413,13 +11114,11 @@ globalStyle(`${vaporScope}${accordion}`, {
 		[varBsAccordionBtnPaddingY]: '1rem',
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
-		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2332fbe2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%2332fbe2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnIconWidth]: '1.25rem',
 		[varBsAccordionBtnIconTransform]: 'rotate(-180deg)',
 		[varBsAccordionBtnIconTransition]: 'transform 0.2s ease-in-out',
-		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%232c1a4d' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%232c1a4d\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnFocusBoxShadow]: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
 		[varBsAccordionBodyPaddingX]: '1.25rem',
 		[varBsAccordionBodyPaddingY]: '1rem',
@@ -11508,13 +11207,10 @@ globalStyle(`${vaporScope}${accordionItem}:first-of-type`, {
 	borderTopRightRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(
-	`${vaporScope}${accordionItem}:first-of-type > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}`,
-	{
-		borderTopLeftRadius: varBsAccordionInnerBorderRadius,
-		borderTopRightRadius: varBsAccordionInnerBorderRadius,
-	},
-)
+globalStyle(`${vaporScope}${accordionItem}:first-of-type > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}`, {
+	borderTopLeftRadius: varBsAccordionInnerBorderRadius,
+	borderTopRightRadius: varBsAccordionInnerBorderRadius,
+})
 
 globalStyle(`${vaporScope}${accordionItem}:not(:first-of-type)`, {
 	borderTop: '0',
@@ -11525,13 +11221,10 @@ globalStyle(`${vaporScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(
-	`${vaporScope}${accordionItem}:last-of-type > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}${accordionButtonCollapsed}`,
-	{
-		borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-		borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
-	},
-)
+globalStyle(`${vaporScope}${accordionItem}:last-of-type > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}${accordionButtonCollapsed}`, {
+	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
+})
 
 globalStyle(`${vaporScope}${accordionItem}:last-of-type > ${vaporScope}${accordionCollapse}`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
@@ -11556,33 +11249,22 @@ globalStyle(`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem}:last
 	borderBottom: '0',
 })
 
-globalStyle(
-	`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionCollapse}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionCollapse}`, {
+	borderRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}`, {
+	borderRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}${collapsed}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
 
-globalStyle(`[data-bs-theme=dark] ${vaporScope}${accordionButton}::after`, {
+globalStyle(`${vaporScope}[data-bs-theme=dark] ${vaporScope}${accordionButton}::after`, {
 	vars: {
-		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23a98eda'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23a98eda'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23a98eda\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23a98eda\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11659,8 +11341,7 @@ globalStyle(`${vaporScope}${pageLink}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${vaporScope}${pageLink}`, {
@@ -11955,8 +11636,7 @@ globalStyle(`${vaporScope}${progressBar}`, {
 })
 
 globalStyle(`${vaporScope}${progressBarStriped}`, {
-	backgroundImage:
-		'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
+	backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
 	backgroundSize: `${varBsProgressHeight} ${varBsProgressHeight}`,
 })
 
@@ -11964,12 +11644,9 @@ globalStyle(`${vaporScope}${progressStacked} > ${vaporScope}${progress}`, {
 	overflow: 'visible',
 })
 
-globalStyle(
-	`${vaporScope}${progressStacked} > ${vaporScope}${progress} > ${vaporScope}${progressBar}`,
-	{
-		width: '100%',
-	},
-)
+globalStyle(`${vaporScope}${progressStacked} > ${vaporScope}${progress} > ${vaporScope}${progressBar}`, {
+	width: '100%',
+})
 
 globalStyle(`${vaporScope}${progressBarAnimated}`, {
 	animation: '1s linear infinite progress-bar-stripes',
@@ -12097,41 +11774,29 @@ globalStyle(`${vaporScope}${listGroupHorizontal}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		borderBottomLeftRadius: varBsListGroupBorderRadius,
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		borderTopRightRadius: varBsListGroupBorderRadius,
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}${active}`, {
 	marginTop: '0',
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`,
-	{
-		borderTopWidth: varBsListGroupBorderWidth,
-		borderLeftWidth: '0',
-	},
-)
+globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`,
-	{
-		marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-		borderLeftWidth: varBsListGroupBorderWidth,
-	},
-)
+globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalSm}`, {
 	'@media': {
@@ -12141,29 +11806,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalSm}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12173,29 +11832,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupIte
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalMd}`, {
 	'@media': {
@@ -12205,29 +11858,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalMd}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12237,29 +11884,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupIte
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalLg}`, {
 	'@media': {
@@ -12269,29 +11910,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalLg}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12301,29 +11936,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupIte
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalXl}`, {
 	'@media': {
@@ -12333,29 +11962,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalXl}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12365,29 +11988,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupIte
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalXxl}`, {
 	'@media': {
@@ -12397,29 +12014,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalXxl}`, {
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}${active}`, {
 	'@media': {
@@ -12429,29 +12040,23 @@ globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupIt
 	},
 })
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${vaporScope}${listGroupFlush}`, {
 	borderRadius: '0',
@@ -12588,8 +12193,7 @@ globalStyle(`${vaporScope}${listGroupItemDark}`, {
 globalStyle(`${vaporScope}${btnClose}`, {
 	vars: {
 		[varBsBtnCloseColor]: '#000',
-		[varBsBtnCloseBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
 		[varBsBtnCloseOpacity]: '0.5',
 		[varBsBtnCloseHoverOpacity]: '0.75',
 		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
@@ -13263,12 +12867,9 @@ globalStyle(`${vaporScope}${bsTooltipTop} ${vaporScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=top] ${vaporScope}${tooltipArrow}`,
-	{
-		bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=top] ${vaporScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
 
 globalStyle(`${vaporScope}${bsTooltipTop} ${vaporScope}${tooltipArrow}::before`, {
 	top: '-1px',
@@ -13276,14 +12877,11 @@ globalStyle(`${vaporScope}${bsTooltipTop} ${vaporScope}${tooltipArrow}::before`,
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=top] ${vaporScope}${tooltipArrow}::before`,
-	{
-		top: '-1px',
-		borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-		borderTopColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=top] ${vaporScope}${tooltipArrow}::before`, {
+	top: '-1px',
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
 
 globalStyle(`${vaporScope}${bsTooltipEnd} ${vaporScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -13291,14 +12889,11 @@ globalStyle(`${vaporScope}${bsTooltipEnd} ${vaporScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=right] ${vaporScope}${tooltipArrow}`,
-	{
-		left: `calc(-1 * ${varBsTooltipArrowHeight})`,
-		width: varBsTooltipArrowHeight,
-		height: varBsTooltipArrowWidth,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=right] ${vaporScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
 
 globalStyle(`${vaporScope}${bsTooltipEnd} ${vaporScope}${tooltipArrow}::before`, {
 	right: '-1px',
@@ -13306,25 +12901,19 @@ globalStyle(`${vaporScope}${bsTooltipEnd} ${vaporScope}${tooltipArrow}::before`,
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=right] ${vaporScope}${tooltipArrow}::before`,
-	{
-		right: '-1px',
-		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-		borderRightColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=right] ${vaporScope}${tooltipArrow}::before`, {
+	right: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
 
 globalStyle(`${vaporScope}${bsTooltipBottom} ${vaporScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${vaporScope}${tooltipArrow}`,
-	{
-		top: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${vaporScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
 
 globalStyle(`${vaporScope}${bsTooltipBottom} ${vaporScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
@@ -13332,14 +12921,11 @@ globalStyle(`${vaporScope}${bsTooltipBottom} ${vaporScope}${tooltipArrow}::befor
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${vaporScope}${tooltipArrow}::before`,
-	{
-		bottom: '-1px',
-		borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-		borderBottomColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${vaporScope}${tooltipArrow}::before`, {
+	bottom: '-1px',
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
+})
 
 globalStyle(`${vaporScope}${bsTooltipStart} ${vaporScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -13347,14 +12933,11 @@ globalStyle(`${vaporScope}${bsTooltipStart} ${vaporScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=left] ${vaporScope}${tooltipArrow}`,
-	{
-		right: `calc(-1 * ${varBsTooltipArrowHeight})`,
-		width: varBsTooltipArrowHeight,
-		height: varBsTooltipArrowWidth,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=left] ${vaporScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
 
 globalStyle(`${vaporScope}${bsTooltipStart} ${vaporScope}${tooltipArrow}::before`, {
 	left: '-1px',
@@ -13362,14 +12945,11 @@ globalStyle(`${vaporScope}${bsTooltipStart} ${vaporScope}${tooltipArrow}::before
 	borderLeftColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsTooltipAuto}[data-popper-placement^=left] ${vaporScope}${tooltipArrow}::before`,
-	{
-		left: '-1px',
-		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-		borderLeftColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=left] ${vaporScope}${tooltipArrow}::before`, {
+	left: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderLeftColor: varBsTooltipBg,
+})
 
 globalStyle(`${vaporScope}${tooltipInner}`, {
 	maxWidth: varBsTooltipMaxWidth,
@@ -13455,60 +13035,45 @@ globalStyle(`${vaporScope}${bsPopoverTop} > ${vaporScope}${popoverArrow}`, {
 	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}`,
-	{
-		bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverTop} > ${vaporScope}${popoverArrow}::before`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::before`,
-	{
-		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverTop} > ${vaporScope}${popoverArrow}::after`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::after`,
-	{
-		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverTop} > ${vaporScope}${popoverArrow}::before`, {
 	bottom: '0',
 	borderTopColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::before`,
-	{
-		bottom: '0',
-		borderTopColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${vaporScope}${bsPopoverTop} > ${vaporScope}${popoverArrow}::after`, {
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::after`,
-	{
-		bottom: varBsPopoverBorderWidth,
-		borderTopColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=top] > ${vaporScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
 
 globalStyle(`${vaporScope}${bsPopoverEnd} > ${vaporScope}${popoverArrow}`, {
 	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -13516,121 +13081,91 @@ globalStyle(`${vaporScope}${bsPopoverEnd} > ${vaporScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}`,
-	{
-		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
 
 globalStyle(`${vaporScope}${bsPopoverEnd} > ${vaporScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::before`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverEnd} > ${vaporScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverEnd} > ${vaporScope}${popoverArrow}::before`, {
 	left: '0',
 	borderRightColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::before`,
-	{
-		left: '0',
-		borderRightColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${vaporScope}${bsPopoverEnd} > ${vaporScope}${popoverArrow}::after`, {
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::after`,
-	{
-		left: varBsPopoverBorderWidth,
-		borderRightColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=right] > ${vaporScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
 
 globalStyle(`${vaporScope}${bsPopoverBottom} > ${vaporScope}${popoverArrow}`, {
 	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}`,
-	{
-		top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverBottom} > ${vaporScope}${popoverArrow}::before`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::before`,
-	{
-		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverBottom} > ${vaporScope}${popoverArrow}::after`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::after`,
-	{
-		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverBottom} > ${vaporScope}${popoverArrow}::before`, {
 	top: '0',
 	borderBottomColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::before`,
-	{
-		top: '0',
-		borderBottomColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${vaporScope}${bsPopoverBottom} > ${vaporScope}${popoverArrow}::after`, {
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::after`,
-	{
-		top: varBsPopoverBorderWidth,
-		borderBottomColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${vaporScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
 
 globalStyle(`${vaporScope}${bsPopoverBottom} ${vaporScope}${popoverHeader}::before`, {
 	position: 'absolute',
@@ -13643,19 +13178,16 @@ globalStyle(`${vaporScope}${bsPopoverBottom} ${vaporScope}${popoverHeader}::befo
 	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${vaporScope}${popoverHeader}::before`,
-	{
-		position: 'absolute',
-		top: '0',
-		left: '50%',
-		display: 'block',
-		width: varBsPopoverArrowWidth,
-		marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
-		content: '""',
-		borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${vaporScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverStart} > ${vaporScope}${popoverArrow}`, {
 	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -13663,62 +13195,47 @@ globalStyle(`${vaporScope}${bsPopoverStart} > ${vaporScope}${popoverArrow}`, {
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}`,
-	{
-		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
 
 globalStyle(`${vaporScope}${bsPopoverStart} > ${vaporScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::before`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverStart} > ${vaporScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${vaporScope}${bsPopoverStart} > ${vaporScope}${popoverArrow}::before`, {
 	right: '0',
 	borderLeftColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::before`,
-	{
-		right: '0',
-		borderLeftColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${vaporScope}${bsPopoverStart} > ${vaporScope}${popoverArrow}::after`, {
 	right: varBsPopoverBorderWidth,
 	borderLeftColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::after`,
-	{
-		right: varBsPopoverBorderWidth,
-		borderLeftColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${vaporScope}${bsPopoverAuto}[data-popper-placement^=left] > ${vaporScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
 
 globalStyle(`${vaporScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
@@ -13965,13 +13482,11 @@ globalStyle(`${vaporScope}${carouselControlNextIcon}`, {
 })
 
 globalStyle(`${vaporScope}${carouselControlPrevIcon}`, {
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\") ",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e") ',
 })
 
 globalStyle(`${vaporScope}${carouselControlNextIcon}`, {
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\") ",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e") ',
 })
 
 globalStyle(`${vaporScope}${carouselIndicators}`, {
@@ -13988,7 +13503,7 @@ globalStyle(`${vaporScope}${carouselIndicators}`, {
 	marginLeft: '15%',
 })
 
-globalStyle(`${vaporScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${vaporScope}${carouselIndicators} ${vaporScope}[data-bs-target]`, {
 	boxSizing: 'content-box',
 	flex: '0 1 auto',
 	width: '30px',
@@ -14007,7 +13522,7 @@ globalStyle(`${vaporScope}${carouselIndicators} [data-bs-target]`, {
 	transition: 'opacity 0.6s ease',
 })
 
-globalStyle(`${vaporScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${vaporScope}${carouselIndicators} ${vaporScope}[data-bs-target]`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -14075,7 +13590,7 @@ globalStyle(`${vaporScope}${spinnerBorder}`, {
 })
 
 globalKeyframes('spinner-border', {
-	to: {
+	'to': {
 		transform: 'rotate(360deg) ',
 	},
 })
@@ -25035,7 +24550,7 @@ globalStyle(`${vaporScope}${fs4}`, {
 
 globalStyle(`${vaporScope}${dPrintInline}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline !important',
 		},
 	},
@@ -25043,7 +24558,7 @@ globalStyle(`${vaporScope}${dPrintInline}`, {
 
 globalStyle(`${vaporScope}${dPrintInlineBlock}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-block !important',
 		},
 	},
@@ -25051,7 +24566,7 @@ globalStyle(`${vaporScope}${dPrintInlineBlock}`, {
 
 globalStyle(`${vaporScope}${dPrintBlock}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'block !important',
 		},
 	},
@@ -25059,7 +24574,7 @@ globalStyle(`${vaporScope}${dPrintBlock}`, {
 
 globalStyle(`${vaporScope}${dPrintGrid}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'grid !important',
 		},
 	},
@@ -25067,7 +24582,7 @@ globalStyle(`${vaporScope}${dPrintGrid}`, {
 
 globalStyle(`${vaporScope}${dPrintInlineGrid}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-grid !important',
 		},
 	},
@@ -25075,7 +24590,7 @@ globalStyle(`${vaporScope}${dPrintInlineGrid}`, {
 
 globalStyle(`${vaporScope}${dPrintTable}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table !important',
 		},
 	},
@@ -25083,7 +24598,7 @@ globalStyle(`${vaporScope}${dPrintTable}`, {
 
 globalStyle(`${vaporScope}${dPrintTableRow}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table-row !important',
 		},
 	},
@@ -25091,7 +24606,7 @@ globalStyle(`${vaporScope}${dPrintTableRow}`, {
 
 globalStyle(`${vaporScope}${dPrintTableCell}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table-cell !important',
 		},
 	},
@@ -25099,7 +24614,7 @@ globalStyle(`${vaporScope}${dPrintTableCell}`, {
 
 globalStyle(`${vaporScope}${dPrintFlex}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'flex !important',
 		},
 	},
@@ -25107,7 +24622,7 @@ globalStyle(`${vaporScope}${dPrintFlex}`, {
 
 globalStyle(`${vaporScope}${dPrintInlineFlex}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-flex !important',
 		},
 	},
@@ -25115,222 +24630,180 @@ globalStyle(`${vaporScope}${dPrintInlineFlex}`, {
 
 globalStyle(`${vaporScope}${dPrintNone}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'none !important',
 		},
 	},
 })
 
 globalStyle(`:where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textPrimary}`, {
-	textShadow:
-		'0 0 1px rgba(111, 66, 193, 0.3), 0 0 2px rgba(111, 66, 193, 0.3), 0 0 5px rgba(111, 66, 193, 0.2)',
+	textShadow: '0 0 1px rgba(111, 66, 193, 0.3), 0 0 2px rgba(111, 66, 193, 0.3), 0 0 5px rgba(111, 66, 193, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textSecondary}`, {
-	textShadow:
-		'0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textSuccess}`, {
-	textShadow:
-		'0 0 1px rgba(60, 242, 129, 0.3), 0 0 2px rgba(60, 242, 129, 0.3), 0 0 5px rgba(60, 242, 129, 0.2)',
+	textShadow: '0 0 1px rgba(60, 242, 129, 0.3), 0 0 2px rgba(60, 242, 129, 0.3), 0 0 5px rgba(60, 242, 129, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textInfo}`, {
-	textShadow:
-		'0 0 1px rgba(27, 162, 246, 0.3), 0 0 2px rgba(27, 162, 246, 0.3), 0 0 5px rgba(27, 162, 246, 0.2)',
+	textShadow: '0 0 1px rgba(27, 162, 246, 0.3), 0 0 2px rgba(27, 162, 246, 0.3), 0 0 5px rgba(27, 162, 246, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWarning}`, {
-	textShadow:
-		'0 0 1px rgba(255, 193, 7, 0.3), 0 0 2px rgba(255, 193, 7, 0.3), 0 0 5px rgba(255, 193, 7, 0.2)',
+	textShadow: '0 0 1px rgba(255, 193, 7, 0.3), 0 0 2px rgba(255, 193, 7, 0.3), 0 0 5px rgba(255, 193, 7, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textDanger}`, {
-	textShadow:
-		'0 0 1px rgba(228, 76, 85, 0.3), 0 0 2px rgba(228, 76, 85, 0.3), 0 0 5px rgba(228, 76, 85, 0.2)',
+	textShadow: '0 0 1px rgba(228, 76, 85, 0.3), 0 0 2px rgba(228, 76, 85, 0.3), 0 0 5px rgba(228, 76, 85, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textLight}`, {
-	textShadow:
-		'0 0 1px rgba(68, 217, 232, 0.3), 0 0 2px rgba(68, 217, 232, 0.3), 0 0 5px rgba(68, 217, 232, 0.2)',
+	textShadow: '0 0 1px rgba(68, 217, 232, 0.3), 0 0 2px rgba(68, 217, 232, 0.3), 0 0 5px rgba(68, 217, 232, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textDark}`, {
-	textShadow:
-		'0 0 1px rgba(23, 2, 41, 0.3), 0 0 2px rgba(23, 2, 41, 0.3), 0 0 5px rgba(23, 2, 41, 0.2)',
+	textShadow: '0 0 1px rgba(23, 2, 41, 0.3), 0 0 2px rgba(23, 2, 41, 0.3), 0 0 5px rgba(23, 2, 41, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${textWhite} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${textWhite} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${textWhite} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${textWhite} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${textWhite} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${textWhite} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${textMuted}`, {
-	textShadow:
-		'0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
+	textShadow: '0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${link})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${blockquoteFooter}`, {
-	textShadow:
-		'0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
+	textShadow: '0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${horizontalRule})`, {
 	borderTop: '1px solid #6f42c1',
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 	opacity: '1',
 })
 
 globalStyle(`:where(${vaporScope}${tableElement})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${table}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnPrimary}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlinePrimary}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnPrimary}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlinePrimary}`, {
@@ -25339,18 +24812,15 @@ globalStyle(`${vaporScope}${btnOutlinePrimary}`, {
 })
 
 globalStyle(`${vaporScope}${btnSecondary}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineSecondary}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnSecondary}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineSecondary}`, {
@@ -25359,18 +24829,15 @@ globalStyle(`${vaporScope}${btnOutlineSecondary}`, {
 })
 
 globalStyle(`${vaporScope}${btnSuccess}`, {
-	boxShadow:
-		'0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
+	boxShadow: '0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineSuccess}`, {
-	boxShadow:
-		'0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
+	boxShadow: '0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnSuccess}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineSuccess}`, {
@@ -25379,18 +24846,15 @@ globalStyle(`${vaporScope}${btnOutlineSuccess}`, {
 })
 
 globalStyle(`${vaporScope}${btnInfo}`, {
-	boxShadow:
-		'0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
+	boxShadow: '0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineInfo}`, {
-	boxShadow:
-		'0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
+	boxShadow: '0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnInfo}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineInfo}`, {
@@ -25399,18 +24863,15 @@ globalStyle(`${vaporScope}${btnOutlineInfo}`, {
 })
 
 globalStyle(`${vaporScope}${btnWarning}`, {
-	boxShadow:
-		'0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
+	boxShadow: '0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineWarning}`, {
-	boxShadow:
-		'0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
+	boxShadow: '0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnWarning}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineWarning}`, {
@@ -25419,18 +24880,15 @@ globalStyle(`${vaporScope}${btnOutlineWarning}`, {
 })
 
 globalStyle(`${vaporScope}${btnDanger}`, {
-	boxShadow:
-		'0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
+	boxShadow: '0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineDanger}`, {
-	boxShadow:
-		'0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
+	boxShadow: '0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnDanger}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineDanger}`, {
@@ -25439,18 +24897,15 @@ globalStyle(`${vaporScope}${btnOutlineDanger}`, {
 })
 
 globalStyle(`${vaporScope}${btnLight}`, {
-	boxShadow:
-		'0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
+	boxShadow: '0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineLight}`, {
-	boxShadow:
-		'0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
+	boxShadow: '0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnLight}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineLight}`, {
@@ -25459,18 +24914,15 @@ globalStyle(`${vaporScope}${btnOutlineLight}`, {
 })
 
 globalStyle(`${vaporScope}${btnDark}`, {
-	boxShadow:
-		'0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
+	boxShadow: '0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineDark}`, {
-	boxShadow:
-		'0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
+	boxShadow: '0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnDark}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineDark}`, {
@@ -25479,14 +24931,12 @@ globalStyle(`${vaporScope}${btnOutlineDark}`, {
 })
 
 globalStyle(`${vaporScope}${btnDark}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${btnLink}`, {
 	boxShadow: 'none',
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${btnOutlineDark}`, {
@@ -25494,108 +24944,87 @@ globalStyle(`${vaporScope}${btnOutlineDark}`, {
 })
 
 globalStyle(`${vaporScope}${navbar}${bgPrimary}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgSecondary}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgSuccess}`, {
-	boxShadow:
-		'0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
+	boxShadow: '0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgInfo}`, {
-	boxShadow:
-		'0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
+	boxShadow: '0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgWarning}`, {
-	boxShadow:
-		'0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
+	boxShadow: '0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgDanger}`, {
-	boxShadow:
-		'0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
+	boxShadow: '0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgLight}`, {
-	boxShadow:
-		'0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
+	boxShadow: '0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}${bgDark}`, {
-	boxShadow:
-		'0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
+	boxShadow: '0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark]`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark] :where(${vaporScope}${link})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark] ${vaporScope}${link}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark] ${vaporScope}${navbarBrand}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navbar}[data-bs-theme=light]`, {
-	textShadow:
-		'0 0 1px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.2)',
+	textShadow: '0 0 1px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${vaporScope}${navbar}[data-bs-theme=light] :where(${vaporScope}${link})`, {
-	textShadow:
-		'0 0 1px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.2)',
+globalStyle(`${vaporScope}${navbar}[data-bs-theme=light] ${vaporScope}${link}`, {
+	textShadow: '0 0 1px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navbar}[data-bs-theme=light] ${vaporScope}${navbarBrand}`, {
-	textShadow:
-		'0 0 1px rgba(0, 0, 0, 0.6), 0 0 3px rgba(0, 0, 0, 0.5), 0 0 0.5rem rgba(0, 0, 0, 0.3), 0 0 2rem rgba(0, 0, 0, 0.2)',
+	textShadow: '0 0 1px rgba(0, 0, 0, 0.6), 0 0 3px rgba(0, 0, 0, 0.5), 0 0 0.5rem rgba(0, 0, 0, 0.3), 0 0 2rem rgba(0, 0, 0, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navLink}${navLinkDisabled}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${navLinkActive}`, {
-	textShadow:
-		'0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navItem}${show} ${vaporScope}${navLink}`, {
-	textShadow:
-		'0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
 globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${navLinkActive}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navPills} ${vaporScope}${show} > ${vaporScope}${navLink}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${breadcrumbItem}${active}`, {
-	textShadow:
-		'0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
 globalStyle(`${vaporScope}${breadcrumbItem} + ${vaporScope}${breadcrumbItem}::before`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${pageLink}`, {
@@ -25603,91 +25032,78 @@ globalStyle(`${vaporScope}${pageLink}`, {
 })
 
 globalStyle(`${vaporScope}${pageItem}${pageItemActive} ${vaporScope}${pageLink}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${navLinkActive}`, {
-	textShadow:
-		'0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
 globalStyle(`:where(${vaporScope}${elLegend})`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
 globalStyle(`${vaporScope}${validFeedback}`, {
-	textShadow:
-		'0 0 1px rgba(60, 242, 129, 0.3), 0 0 2px rgba(60, 242, 129, 0.3), 0 0 5px rgba(60, 242, 129, 0.2)',
+	textShadow: '0 0 1px rgba(60, 242, 129, 0.3), 0 0 2px rgba(60, 242, 129, 0.3), 0 0 5px rgba(60, 242, 129, 0.2)',
 })
 
 globalStyle(`${vaporScope}${invalidFeedback}`, {
-	textShadow:
-		'0 0 1px rgba(228, 76, 85, 0.3), 0 0 2px rgba(228, 76, 85, 0.3), 0 0 5px rgba(228, 76, 85, 0.2)',
+	textShadow: '0 0 1px rgba(228, 76, 85, 0.3), 0 0 2px rgba(228, 76, 85, 0.3), 0 0 5px rgba(228, 76, 85, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alertPrimary}`, {
 	color: '#fff',
 	backgroundColor: '#6f42c1',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(125, 85, 199, 0.4), 0 0 8rem rgba(125, 85, 199, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertSecondary}`, {
 	color: '#fff',
 	backgroundColor: '#ea39b8',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(236, 77, 191, 0.4), 0 0 8rem rgba(236, 77, 191, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertSuccess}`, {
 	color: '#fff',
 	backgroundColor: '#3cf281',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(80, 243, 142, 0.4), 0 0 8rem rgba(80, 243, 142, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertInfo}`, {
 	color: '#fff',
 	backgroundColor: '#1ba2f6',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(50, 171, 247, 0.4), 0 0 8rem rgba(50, 171, 247, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertWarning}`, {
 	color: '#fff',
 	backgroundColor: '#ffc107',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(255, 199, 32, 0.4), 0 0 8rem rgba(255, 199, 32, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertDanger}`, {
 	color: '#fff',
 	backgroundColor: '#e44c55',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(231, 94, 102, 0.4), 0 0 8rem rgba(231, 94, 102, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertLight}`, {
 	color: '#fff',
 	backgroundColor: '#44d9e8',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(87, 221, 234, 0.4), 0 0 8rem rgba(87, 221, 234, 0.3)',
 })
 
 globalStyle(`${vaporScope}${alertDark}`, {
 	color: '#fff',
 	backgroundColor: '#170229',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 	boxShadow: '0 0 2rem rgba(46, 27, 62, 0.4), 0 0 8rem rgba(46, 27, 62, 0.3)',
 })
 
@@ -25695,68 +25111,56 @@ globalStyle(`${vaporScope}${alert} ${vaporScope}${alertLink}`, {
 	color: '#fff',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${link})`, {
+globalStyle(`${vaporScope}${alert} ${vaporScope}${link}`, {
 	color: '#fff',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${alert} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${alert} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${alert} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${alert} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${alert} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${alert} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${alert} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alert} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alert} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alert} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alert} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alert} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${alert} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${progress}`, {
@@ -25764,48 +25168,39 @@ globalStyle(`${vaporScope}${progress}`, {
 })
 
 globalStyle(`${vaporScope}${progressBar}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgPrimary}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgSecondary}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgSuccess}`, {
-	boxShadow:
-		'0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
+	boxShadow: '0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgInfo}`, {
-	boxShadow:
-		'0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
+	boxShadow: '0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgWarning}`, {
-	boxShadow:
-		'0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
+	boxShadow: '0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgDanger}`, {
-	boxShadow:
-		'0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
+	boxShadow: '0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgLight}`, {
-	boxShadow:
-		'0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
+	boxShadow: '0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
 })
 
 globalStyle(`${vaporScope}${progressBar}${bgDark}`, {
-	boxShadow:
-		'0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
+	boxShadow: '0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
 })
 
 globalStyle(`${vaporScope}${tooltip}`, {
@@ -25824,198 +25219,159 @@ globalStyle(`${vaporScope}${tooltip} ${vaporScope}${arrow}`, {
 })
 
 globalStyle(`${vaporScope}${modal}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${modal} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${modal} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${modal} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${modal} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${modal} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${modal} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${popover} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${popover} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${popover} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${popover} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${popover} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${popover} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${popover} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${popover} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${popover} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${popover} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${popover} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${popover} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toast} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toast} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toast} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toast} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toast} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toast} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${popover}`, {
@@ -26030,170 +25386,137 @@ globalStyle(`${vaporScope}${modalContent}`, {
 	boxShadow: '0 0 2rem rgba(125, 85, 199, 0.4), 0 0 8rem rgba(125, 85, 199, 0.3)',
 })
 
-globalStyle(`${vaporScope}${listGroupItem}${active} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${listGroupItem}${active} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${listGroupItem}${active} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${listGroupItem}${active} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${listGroupItem}${active} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${listGroupItem}${active} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card}`, {
 	backgroundColor: 'transparent',
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card}${borderPrimary}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderSecondary}`, {
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderSuccess}`, {
-	boxShadow:
-		'0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
+	boxShadow: '0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderInfo}`, {
-	boxShadow:
-		'0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
+	boxShadow: '0 0 2px rgba(27, 162, 246, 0.9), 0 0 4px rgba(27, 162, 246, 0.4), 0 0 1rem rgba(27, 162, 246, 0.3), 0 0 4rem rgba(27, 162, 246, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderWarning}`, {
-	boxShadow:
-		'0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
+	boxShadow: '0 0 2px rgba(255, 193, 7, 0.9), 0 0 4px rgba(255, 193, 7, 0.4), 0 0 1rem rgba(255, 193, 7, 0.3), 0 0 4rem rgba(255, 193, 7, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderDanger}`, {
-	boxShadow:
-		'0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
+	boxShadow: '0 0 2px rgba(228, 76, 85, 0.9), 0 0 4px rgba(228, 76, 85, 0.4), 0 0 1rem rgba(228, 76, 85, 0.3), 0 0 4rem rgba(228, 76, 85, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderLight}`, {
-	boxShadow:
-		'0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
+	boxShadow: '0 0 2px rgba(68, 217, 232, 0.9), 0 0 4px rgba(68, 217, 232, 0.4), 0 0 1rem rgba(68, 217, 232, 0.3), 0 0 4rem rgba(68, 217, 232, 0.1)',
 })
 
 globalStyle(`${vaporScope}${card}${borderDark}`, {
-	boxShadow:
-		'0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
+	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
 
-globalStyle(`${vaporScope}${card} :where(${vaporScope}${h1})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${card} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${card} :where(${vaporScope}${h2})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${card} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${card} :where(${vaporScope}${h3})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${card} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${card} :where(${vaporScope}${h4})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${card} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${card} :where(${vaporScope}${h5})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${card} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${card} :where(${vaporScope}${h6})`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${card} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card} ${vaporScope}${clsH1}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card} ${vaporScope}${clsH2}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card} ${vaporScope}${clsH3}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card} ${vaporScope}${clsH4}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card} ${vaporScope}${clsH5}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card} ${vaporScope}${clsH6}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${listBase}`, {
@@ -26230,4 +25553,8 @@ globalStyle(`${vaporScope}${scrollspyExample}`, {
 	height: '200px',
 	overflowY: 'auto',
 	marginTop: '0.5rem',
+})
+
+globalStyle(`${vaporScope}${formSwitch}`, {
+	isolation: 'isolate',
 })

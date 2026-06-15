@@ -2,11 +2,17 @@ import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import { bootstrapScope } from '../scope.css'
 
 import {
+	varBsBlack,
 	varBsBlackRgb,
+	varBsBlue,
 	varBsBodyBg,
 	varBsBodyBgRgb,
 	varBsBodyColor,
 	varBsBodyColorRgb,
+	varBsBodyFontFamily,
+	varBsBodyFontSize,
+	varBsBodyFontWeight,
+	varBsBodyLineHeight,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
@@ -22,11 +28,13 @@ import {
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
 	varBsCodeColor,
+	varBsCyan,
 	varBsDanger,
 	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
 	varBsDangerRgb,
 	varBsDangerTextEmphasis,
+	varBsDark,
 	varBsDarkBgSubtle,
 	varBsDarkBorderSubtle,
 	varBsDarkRgb,
@@ -39,25 +47,38 @@ import {
 	varBsFontMonospace,
 	varBsFontSansSerif,
 	varBsGradient,
+	varBsGray,
+	varBsGrayDark,
+	varBsGreen,
 	varBsHeadingColor,
 	varBsHighlightBg,
 	varBsHighlightColor,
+	varBsIndigo,
+	varBsInfo,
 	varBsInfoBgSubtle,
 	varBsInfoBorderSubtle,
 	varBsInfoRgb,
 	varBsInfoTextEmphasis,
+	varBsLight,
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightRgb,
 	varBsLightTextEmphasis,
 	varBsLinkColor,
 	varBsLinkColorRgb,
+	varBsLinkDecoration,
 	varBsLinkHoverColor,
 	varBsLinkHoverColorRgb,
+	varBsOrange,
+	varBsPink,
+	varBsPrimary,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryRgb,
 	varBsPrimaryTextEmphasis,
+	varBsPurple,
+	varBsRed,
+	varBsSecondary,
 	varBsSecondaryBg,
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
@@ -69,13 +90,17 @@ import {
 	varBsSuccessBorderSubtle,
 	varBsSuccessRgb,
 	varBsSuccessTextEmphasis,
+	varBsTeal,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
+	varBsWarning,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
 	varBsWarningRgb,
 	varBsWarningTextEmphasis,
+	varBsWhite,
 	varBsWhiteRgb,
+	varBsYellow,
 } from '../../../theme-contract/_vars.css'
 import {
 	varBsTableAccentBg,
@@ -503,6 +528,8 @@ import {
 	elTextarea,
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
+
+import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { blockquoteFooter, lead, smallText } from '../../../theme-contract/contents/basic/contract.css'
 import {
@@ -2591,6 +2618,186 @@ import {
 	visuallyHidden,
 } from '../../../theme-contract/utilities/contract.css'
 
+globalStyle(`${bootstrapScope}${vars}`, {
+	vars: {
+		[varBsBlue]: '#0d6efd',
+		[varBsIndigo]: '#6610f2',
+		[varBsPurple]: '#6f42c1',
+		[varBsPink]: '#d63384',
+		[varBsRed]: '#dc3545',
+		[varBsOrange]: '#fd7e14',
+		[varBsYellow]: '#ffc107',
+		[varBsGreen]: '#198754',
+		[varBsTeal]: '#20c997',
+		[varBsCyan]: '#0dcaf0',
+		[varBsBlack]: '#000',
+		[varBsWhite]: '#fff',
+		[varBsGray]: '#6c757d',
+		[varBsGrayDark]: '#343a40',
+		'--bs-gray-100': '#f8f9fa',
+		'--bs-gray-200': '#e9ecef',
+		'--bs-gray-300': '#dee2e6',
+		'--bs-gray-400': '#ced4da',
+		'--bs-gray-500': '#adb5bd',
+		'--bs-gray-600': '#6c757d',
+		'--bs-gray-700': '#495057',
+		'--bs-gray-800': '#343a40',
+		'--bs-gray-900': '#212529',
+		[varBsPrimary]: '#0d6efd',
+		[varBsSecondary]: '#6c757d',
+		[varBsSuccess]: '#198754',
+		[varBsInfo]: '#0dcaf0',
+		[varBsWarning]: '#ffc107',
+		[varBsDanger]: '#dc3545',
+		[varBsLight]: '#f8f9fa',
+		[varBsDark]: '#212529',
+		[varBsPrimaryRgb]: '13, 110, 253',
+		[varBsSecondaryRgb]: '108, 117, 125',
+		[varBsSuccessRgb]: '25, 135, 84',
+		[varBsInfoRgb]: '13, 202, 240',
+		[varBsWarningRgb]: '255, 193, 7',
+		[varBsDangerRgb]: '220, 53, 69',
+		[varBsLightRgb]: '248, 249, 250',
+		[varBsDarkRgb]: '33, 37, 41',
+		[varBsPrimaryTextEmphasis]: '#052c65',
+		[varBsSecondaryTextEmphasis]: '#2b2f32',
+		[varBsSuccessTextEmphasis]: '#0a3622',
+		[varBsInfoTextEmphasis]: '#055160',
+		[varBsWarningTextEmphasis]: '#664d03',
+		[varBsDangerTextEmphasis]: '#58151c',
+		[varBsLightTextEmphasis]: '#495057',
+		[varBsDarkTextEmphasis]: '#495057',
+		[varBsPrimaryBgSubtle]: '#cfe2ff',
+		[varBsSecondaryBgSubtle]: '#e2e3e5',
+		[varBsSuccessBgSubtle]: '#d1e7dd',
+		[varBsInfoBgSubtle]: '#cff4fc',
+		[varBsWarningBgSubtle]: '#fff3cd',
+		[varBsDangerBgSubtle]: '#f8d7da',
+		[varBsLightBgSubtle]: '#fcfcfd',
+		[varBsDarkBgSubtle]: '#ced4da',
+		[varBsPrimaryBorderSubtle]: '#9ec5fe',
+		[varBsSecondaryBorderSubtle]: '#c4c8cb',
+		[varBsSuccessBorderSubtle]: '#a3cfbb',
+		[varBsInfoBorderSubtle]: '#9eeaf9',
+		[varBsWarningBorderSubtle]: '#ffe69c',
+		[varBsDangerBorderSubtle]: '#f1aeb5',
+		[varBsLightBorderSubtle]: '#e9ecef',
+		[varBsDarkBorderSubtle]: '#adb5bd',
+		[varBsWhiteRgb]: '255, 255, 255',
+		[varBsBlackRgb]: '0, 0, 0',
+		[varBsFontSansSerif]: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+		[varBsFontMonospace]: 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+		[varBsGradient]: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
+		[varBsBodyFontFamily]: varBsFontSansSerif,
+		[varBsBodyFontSize]: '1rem',
+		[varBsBodyFontWeight]: '400',
+		[varBsBodyLineHeight]: '1.5',
+		[varBsBodyColor]: '#212529',
+		[varBsBodyColorRgb]: '33, 37, 41',
+		[varBsBodyBg]: '#fff',
+		[varBsBodyBgRgb]: '255, 255, 255',
+		[varBsEmphasisColor]: '#000',
+		[varBsEmphasisColorRgb]: '0, 0, 0',
+		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
+		'--bs-secondary-color-rgb': '33, 37, 41',
+		[varBsSecondaryBg]: '#e9ecef',
+		'--bs-secondary-bg-rgb': '233, 236, 239',
+		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',
+		'--bs-tertiary-color-rgb': '33, 37, 41',
+		[varBsTertiaryBg]: '#f8f9fa',
+		'--bs-tertiary-bg-rgb': '248, 249, 250',
+		[varBsHeadingColor]: 'inherit',
+		[varBsLinkColor]: '#0d6efd',
+		[varBsLinkColorRgb]: '13, 110, 253',
+		[varBsLinkDecoration]: 'underline',
+		[varBsLinkHoverColor]: '#0a58ca',
+		[varBsLinkHoverColorRgb]: '10, 88, 202',
+		[varBsCodeColor]: '#d63384',
+		[varBsHighlightColor]: '#212529',
+		[varBsHighlightBg]: '#fff3cd',
+		[varBsBorderWidth]: '1px',
+		[varBsBorderStyle]: 'solid',
+		[varBsBorderColor]: '#dee2e6',
+		[varBsBorderColorTranslucent]: 'rgba(0, 0, 0, 0.175)',
+		[varBsBorderRadius]: '0.375rem',
+		[varBsBorderRadiusSm]: '0.25rem',
+		[varBsBorderRadiusLg]: '0.5rem',
+		[varBsBorderRadiusXl]: '1rem',
+		[varBsBorderRadiusXxl]: '2rem',
+		'--bs-border-radius-2xl': varBsBorderRadiusXxl,
+		[varBsBorderRadiusPill]: '50rem',
+		[varBsBoxShadow]: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+		[varBsBoxShadowSm]: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+		[varBsBoxShadowLg]: '0 1rem 3rem rgba(0, 0, 0, 0.175)',
+		[varBsBoxShadowInset]: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)',
+		[varBsFocusRingWidth]: '0.25rem',
+		[varBsFocusRingOpacity]: '0.25',
+		[varBsFocusRingColor]: 'rgba(13, 110, 253, 0.25)',
+		[varBsFormValidColor]: '#198754',
+		[varBsFormValidBorderColor]: '#198754',
+		[varBsFormInvalidColor]: '#dc3545',
+		[varBsFormInvalidBorderColor]: '#dc3545',
+	},
+})
+
+globalStyle(`${bootstrapScope}${vars}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsBodyColor]: '#dee2e6',
+		[varBsBodyColorRgb]: '222, 226, 230',
+		[varBsBodyBg]: '#212529',
+		[varBsBodyBgRgb]: '33, 37, 41',
+		[varBsEmphasisColor]: '#fff',
+		[varBsEmphasisColorRgb]: '255, 255, 255',
+		[varBsSecondaryColor]: 'rgba(222, 226, 230, 0.75)',
+		'--bs-secondary-color-rgb': '222, 226, 230',
+		[varBsSecondaryBg]: '#343a40',
+		'--bs-secondary-bg-rgb': '52, 58, 64',
+		[varBsTertiaryColor]: 'rgba(222, 226, 230, 0.5)',
+		'--bs-tertiary-color-rgb': '222, 226, 230',
+		[varBsTertiaryBg]: '#2b3035',
+		'--bs-tertiary-bg-rgb': '43, 48, 53',
+		[varBsPrimaryTextEmphasis]: '#6ea8fe',
+		[varBsSecondaryTextEmphasis]: '#a7acb1',
+		[varBsSuccessTextEmphasis]: '#75b798',
+		[varBsInfoTextEmphasis]: '#6edff6',
+		[varBsWarningTextEmphasis]: '#ffda6a',
+		[varBsDangerTextEmphasis]: '#ea868f',
+		[varBsLightTextEmphasis]: '#f8f9fa',
+		[varBsDarkTextEmphasis]: '#dee2e6',
+		[varBsPrimaryBgSubtle]: '#031633',
+		[varBsSecondaryBgSubtle]: '#161719',
+		[varBsSuccessBgSubtle]: '#051b11',
+		[varBsInfoBgSubtle]: '#032830',
+		[varBsWarningBgSubtle]: '#332701',
+		[varBsDangerBgSubtle]: '#2c0b0e',
+		[varBsLightBgSubtle]: '#343a40',
+		[varBsDarkBgSubtle]: '#1a1d20',
+		[varBsPrimaryBorderSubtle]: '#084298',
+		[varBsSecondaryBorderSubtle]: '#41464b',
+		[varBsSuccessBorderSubtle]: '#0f5132',
+		[varBsInfoBorderSubtle]: '#087990',
+		[varBsWarningBorderSubtle]: '#997404',
+		[varBsDangerBorderSubtle]: '#842029',
+		[varBsLightBorderSubtle]: '#495057',
+		[varBsDarkBorderSubtle]: '#343a40',
+		[varBsHeadingColor]: 'inherit',
+		[varBsLinkColor]: '#6ea8fe',
+		[varBsLinkHoverColor]: '#8bb9fe',
+		[varBsLinkColorRgb]: '110, 168, 254',
+		[varBsLinkHoverColorRgb]: '139, 185, 254',
+		[varBsCodeColor]: '#e685b5',
+		[varBsHighlightColor]: '#dee2e6',
+		[varBsHighlightBg]: '#664d03',
+		[varBsBorderColor]: '#495057',
+		[varBsBorderColorTranslucent]: 'rgba(255, 255, 255, 0.15)',
+		[varBsFormValidColor]: '#75b798',
+		[varBsFormValidBorderColor]: '#75b798',
+		[varBsFormInvalidColor]: '#ea868f',
+		[varBsFormInvalidBorderColor]: '#ea868f',
+	},
+	colorScheme: 'dark',
+})
+
 globalStyle(`*`, {
 	boxSizing: 'border-box',
 })
@@ -2603,7 +2810,15 @@ globalStyle(`*::after`, {
 	boxSizing: 'border-box',
 })
 
-globalStyle(`${bootstrapScope}${horizontalRule}`, {
+globalStyle(`${bootstrapScope}${vars}`, {
+	'@media': {
+		'(prefers-reduced-motion: no-preference)': {
+			scrollBehavior: 'smooth',
+		},
+	},
+})
+
+globalStyle(`:where(${bootstrapScope}${horizontalRule})`, {
 	margin: '1rem 0',
 	color: 'inherit',
 	border: '0',
@@ -2611,7 +2826,7 @@ globalStyle(`${bootstrapScope}${horizontalRule}`, {
 	opacity: '0.25',
 })
 
-globalStyle(`${bootstrapScope}${h6}`, {
+globalStyle(`:where(${bootstrapScope}${h6})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2627,7 +2842,7 @@ globalStyle(`${bootstrapScope}${clsH6}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${bootstrapScope}${h5}`, {
+globalStyle(`:where(${bootstrapScope}${h5})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2643,7 +2858,7 @@ globalStyle(`${bootstrapScope}${clsH5}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${bootstrapScope}${h4}`, {
+globalStyle(`:where(${bootstrapScope}${h4})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2659,7 +2874,7 @@ globalStyle(`${bootstrapScope}${clsH4}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${bootstrapScope}${h3}`, {
+globalStyle(`:where(${bootstrapScope}${h3})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2675,7 +2890,7 @@ globalStyle(`${bootstrapScope}${clsH3}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${bootstrapScope}${h2}`, {
+globalStyle(`:where(${bootstrapScope}${h2})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2691,7 +2906,7 @@ globalStyle(`${bootstrapScope}${clsH2}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${bootstrapScope}${h1}`, {
+globalStyle(`:where(${bootstrapScope}${h1})`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -2707,7 +2922,7 @@ globalStyle(`${bootstrapScope}${clsH1}`, {
 	color: varBsHeadingColor,
 })
 
-globalStyle(`${bootstrapScope}${h1}`, {
+globalStyle(`:where(${bootstrapScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
@@ -2715,7 +2930,7 @@ globalStyle(`${bootstrapScope}${clsH1}`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
-globalStyle(`${bootstrapScope}${h1}`, {
+globalStyle(`:where(${bootstrapScope}${h1})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -2731,7 +2946,7 @@ globalStyle(`${bootstrapScope}${clsH1}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${h2}`, {
+globalStyle(`:where(${bootstrapScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
@@ -2739,7 +2954,7 @@ globalStyle(`${bootstrapScope}${clsH2}`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
-globalStyle(`${bootstrapScope}${h2}`, {
+globalStyle(`:where(${bootstrapScope}${h2})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -2755,7 +2970,7 @@ globalStyle(`${bootstrapScope}${clsH2}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${h3}`, {
+globalStyle(`:where(${bootstrapScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
@@ -2763,7 +2978,7 @@ globalStyle(`${bootstrapScope}${clsH3}`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
-globalStyle(`${bootstrapScope}${h3}`, {
+globalStyle(`:where(${bootstrapScope}${h3})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -2779,7 +2994,7 @@ globalStyle(`${bootstrapScope}${clsH3}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${h4}`, {
+globalStyle(`:where(${bootstrapScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
@@ -2787,7 +3002,7 @@ globalStyle(`${bootstrapScope}${clsH4}`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-globalStyle(`${bootstrapScope}${h4}`, {
+globalStyle(`:where(${bootstrapScope}${h4})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -2803,7 +3018,7 @@ globalStyle(`${bootstrapScope}${clsH4}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${h5}`, {
+globalStyle(`:where(${bootstrapScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
@@ -2811,7 +3026,7 @@ globalStyle(`${bootstrapScope}${clsH5}`, {
 	fontSize: '1.25rem',
 })
 
-globalStyle(`${bootstrapScope}${h6}`, {
+globalStyle(`:where(${bootstrapScope}${h6})`, {
 	fontSize: '1rem',
 })
 
@@ -2819,7 +3034,7 @@ globalStyle(`${bootstrapScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 
-globalStyle(`${bootstrapScope}${paragraph}`, {
+globalStyle(`:where(${bootstrapScope}${paragraph})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
@@ -2832,73 +3047,73 @@ globalStyle(`${bootstrapScope}${elAbbr}[title]`, {
 	textDecorationSkipInk: 'none',
 })
 
-globalStyle(`${bootstrapScope}${elAddress}`, {
+globalStyle(`:where(${bootstrapScope}${elAddress})`, {
 	marginBottom: '1rem',
 	fontStyle: 'normal',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elOl}`, {
+globalStyle(`:where(${bootstrapScope}${elOl})`, {
 	paddingLeft: '2rem',
 })
 
-globalStyle(`${bootstrapScope}${elUl}`, {
+globalStyle(`:where(${bootstrapScope}${elUl})`, {
 	paddingLeft: '2rem',
 })
 
-globalStyle(`${bootstrapScope}${elOl}`, {
+globalStyle(`:where(${bootstrapScope}${elOl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${bootstrapScope}${elUl}`, {
+globalStyle(`:where(${bootstrapScope}${elUl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${bootstrapScope}${elDl}`, {
+globalStyle(`:where(${bootstrapScope}${elDl})`, {
 	marginTop: '0',
 	marginBottom: '1rem',
 })
 
-globalStyle(`${bootstrapScope}${elOl} ${bootstrapScope}${elOl}`, {
+globalStyle(`:where(${bootstrapScope}${elOl}) :where(${bootstrapScope}${elOl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${elUl} ${bootstrapScope}${elUl}`, {
+globalStyle(`:where(${bootstrapScope}${elUl}) :where(${bootstrapScope}${elUl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${elOl} ${bootstrapScope}${elUl}`, {
+globalStyle(`:where(${bootstrapScope}${elOl}) :where(${bootstrapScope}${elUl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${elUl} ${bootstrapScope}${elOl}`, {
+globalStyle(`:where(${bootstrapScope}${elUl}) :where(${bootstrapScope}${elOl})`, {
 	marginBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${elDt}`, {
+globalStyle(`:where(${bootstrapScope}${elDt})`, {
 	fontWeight: '700',
 })
 
-globalStyle(`${bootstrapScope}${elDd}`, {
+globalStyle(`:where(${bootstrapScope}${elDd})`, {
 	marginBottom: '0.5rem',
 	marginLeft: '0',
 })
 
-globalStyle(`${bootstrapScope}${blockquote}`, {
+globalStyle(`:where(${bootstrapScope}${blockquote})`, {
 	margin: '0 0 1rem',
 })
 
-globalStyle(`${bootstrapScope}${elB}`, {
+globalStyle(`:where(${bootstrapScope}${elB})`, {
 	fontWeight: 'bolder',
 })
 
-globalStyle(`${bootstrapScope}${elStrong}`, {
+globalStyle(`:where(${bootstrapScope}${elStrong})`, {
 	fontWeight: 'bolder',
 })
 
-globalStyle(`${bootstrapScope}${small}`, {
+globalStyle(`:where(${bootstrapScope}${small})`, {
 	fontSize: '0.875em',
 })
 
@@ -2906,7 +3121,7 @@ globalStyle(`${bootstrapScope}${clsSmall}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${bootstrapScope}${markText}`, {
+globalStyle(`:where(${bootstrapScope}${markText})`, {
 	padding: '0.1875em',
 	color: varBsHighlightColor,
 	backgroundColor: varBsHighlightBg,
@@ -2918,29 +3133,29 @@ globalStyle(`${bootstrapScope}${mark}`, {
 	backgroundColor: varBsHighlightBg,
 })
 
-globalStyle(`${bootstrapScope}${elSub}`, {
+globalStyle(`:where(${bootstrapScope}${elSub})`, {
 	position: 'relative',
 	fontSize: '0.75em',
 	lineHeight: '0',
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`${bootstrapScope}${elSup}`, {
+globalStyle(`:where(${bootstrapScope}${elSup})`, {
 	position: 'relative',
 	fontSize: '0.75em',
 	lineHeight: '0',
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`${bootstrapScope}${elSub}`, {
+globalStyle(`:where(${bootstrapScope}${elSub})`, {
 	bottom: '-0.25em',
 })
 
-globalStyle(`${bootstrapScope}${elSup}`, {
+globalStyle(`:where(${bootstrapScope}${elSup})`, {
 	top: '-0.5em',
 })
 
-globalStyle(`${bootstrapScope}${link}`, {
+globalStyle(`:where(${bootstrapScope}${link})`, {
 	color: `rgba(${varBsLinkColorRgb}, ${fallbackVar(varBsLinkOpacity, '1')})`,
 	textDecoration: 'underline',
 })
@@ -2961,27 +3176,27 @@ globalStyle(`${bootstrapScope}${link}:not([href]):not([class]):hover`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${bootstrapScope}${elPre}`, {
+globalStyle(`:where(${bootstrapScope}${elPre})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${bootstrapScope}${inlineCode}`, {
+globalStyle(`:where(${bootstrapScope}${inlineCode})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${bootstrapScope}${elKbd}`, {
+globalStyle(`:where(${bootstrapScope}${elKbd})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${bootstrapScope}${elSamp}`, {
+globalStyle(`:where(${bootstrapScope}${elSamp})`, {
 	fontFamily: varBsFontMonospace,
 	fontSize: '1em',
 })
 
-globalStyle(`${bootstrapScope}${elPre}`, {
+globalStyle(`:where(${bootstrapScope}${elPre})`, {
 	display: 'block',
 	marginTop: '0',
 	marginBottom: '1rem',
@@ -2989,23 +3204,23 @@ globalStyle(`${bootstrapScope}${elPre}`, {
 	fontSize: '0.875em',
 })
 
-globalStyle(`${bootstrapScope}${elPre} ${bootstrapScope}${inlineCode}`, {
+globalStyle(`:where(${bootstrapScope}${elPre}) :where(${bootstrapScope}${inlineCode})`, {
 	fontSize: 'inherit',
 	color: 'inherit',
 	wordBreak: 'normal',
 })
 
-globalStyle(`${bootstrapScope}${inlineCode}`, {
+globalStyle(`:where(${bootstrapScope}${inlineCode})`, {
 	fontSize: '0.875em',
 	color: varBsCodeColor,
 	wordWrap: 'break-word',
 })
 
-globalStyle(`${bootstrapScope}${link} > ${bootstrapScope}${inlineCode}`, {
+globalStyle(`:where(${bootstrapScope}${link}) > :where(${bootstrapScope}${inlineCode})`, {
 	color: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elKbd}`, {
+globalStyle(`:where(${bootstrapScope}${elKbd})`, {
 	padding: '0.1875rem 0.375rem',
 	fontSize: '0.875em',
 	color: varBsBodyBg,
@@ -3013,80 +3228,80 @@ globalStyle(`${bootstrapScope}${elKbd}`, {
 	borderRadius: '0.25rem',
 })
 
-globalStyle(`${bootstrapScope}${elKbd} ${bootstrapScope}${elKbd}`, {
+globalStyle(`:where(${bootstrapScope}${elKbd}) :where(${bootstrapScope}${elKbd})`, {
 	padding: '0',
 	fontSize: '1em',
 })
 
-globalStyle(`${bootstrapScope}${elFigure}`, {
+globalStyle(`:where(${bootstrapScope}${elFigure})`, {
 	margin: '0 0 1rem',
 })
 
-globalStyle(`${bootstrapScope}${elImg}`, {
+globalStyle(`:where(${bootstrapScope}${elImg})`, {
 	verticalAlign: 'middle',
 })
 
-globalStyle(`${bootstrapScope}${elSvg}`, {
+globalStyle(`:where(${bootstrapScope}${elSvg})`, {
 	verticalAlign: 'middle',
 })
 
-globalStyle(`${bootstrapScope}${tableElement}`, {
+globalStyle(`:where(${bootstrapScope}${tableElement})`, {
 	captionSide: 'bottom',
 	borderCollapse: 'collapse',
 })
 
-globalStyle(`${bootstrapScope}${elCaption}`, {
+globalStyle(`:where(${bootstrapScope}${elCaption})`, {
 	paddingTop: '0.5rem',
 	paddingBottom: '0.5rem',
 	color: varBsSecondaryColor,
 	textAlign: 'left',
 })
 
-globalStyle(`${bootstrapScope}${tableHeaderCell}`, {
+globalStyle(`:where(${bootstrapScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`${bootstrapScope}${tableSection}`, {
+globalStyle(`:where(${bootstrapScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${bootstrapScope}${tableSection}`, {
+globalStyle(`:where(${bootstrapScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${bootstrapScope}${tableSection}`, {
+globalStyle(`:where(${bootstrapScope}${tableSection})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${bootstrapScope}${tableRow}`, {
+globalStyle(`:where(${bootstrapScope}${tableRow})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${bootstrapScope}${tableCell}`, {
+globalStyle(`:where(${bootstrapScope}${tableCell})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${bootstrapScope}${tableHeaderCell}`, {
+globalStyle(`:where(${bootstrapScope}${tableHeaderCell})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
 })
 
-globalStyle(`${bootstrapScope}${elLabel}`, {
+globalStyle(`:where(${bootstrapScope}${elLabel})`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${bootstrapScope}${elButton}`, {
+globalStyle(`:where(${bootstrapScope}${elButton})`, {
 	borderRadius: '0',
 })
 
@@ -3094,54 +3309,54 @@ globalStyle(`${bootstrapScope}${elButton}:focus:not(:focus-visible)`, {
 	outline: '0',
 })
 
-globalStyle(`${bootstrapScope}${elInput}`, {
+globalStyle(`:where(${bootstrapScope}${elInput})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elButton}`, {
+globalStyle(`:where(${bootstrapScope}${elButton})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elSelect}`, {
+globalStyle(`:where(${bootstrapScope}${elSelect})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elOptgroup}`, {
+globalStyle(`:where(${bootstrapScope}${elOptgroup})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elTextarea}`, {
+globalStyle(`:where(${bootstrapScope}${elTextarea})`, {
 	margin: '0',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
 	lineHeight: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${elButton}`, {
+globalStyle(`:where(${bootstrapScope}${elButton})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`${bootstrapScope}${elSelect}`, {
+globalStyle(`:where(${bootstrapScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`[role=button]`, {
+globalStyle(`${bootstrapScope}[role=button]`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`${bootstrapScope}${elSelect}`, {
+globalStyle(`:where(${bootstrapScope}${elSelect})`, {
 	wordWrap: 'normal',
 })
 
@@ -3149,23 +3364,23 @@ globalStyle(`${bootstrapScope}${elSelect}:disabled`, {
 	opacity: '1',
 })
 
-globalStyle(`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
+globalStyle(`${bootstrapScope}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
 	display: 'none !important',
 })
 
-globalStyle(`${bootstrapScope}${elButton}`, {
+globalStyle(`:where(${bootstrapScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=button]`, {
+globalStyle(`${bootstrapScope}[type=button]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=reset]`, {
+globalStyle(`${bootstrapScope}[type=reset]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=submit]`, {
+globalStyle(`${bootstrapScope}[type=submit]`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3173,15 +3388,15 @@ globalStyle(`${bootstrapScope}${elButton}:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=button]:not(:disabled)`, {
+globalStyle(`${bootstrapScope}[type=button]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=reset]:not(:disabled)`, {
+globalStyle(`${bootstrapScope}[type=reset]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=submit]:not(:disabled)`, {
+globalStyle(`${bootstrapScope}[type=submit]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
@@ -3190,18 +3405,18 @@ globalStyle(`::-moz-focus-inner`, {
 	borderStyle: 'none',
 })
 
-globalStyle(`${bootstrapScope}${elTextarea}`, {
+globalStyle(`:where(${bootstrapScope}${elTextarea})`, {
 	resize: 'vertical',
 })
 
-globalStyle(`${bootstrapScope}${fieldset}`, {
+globalStyle(`:where(${bootstrapScope}${fieldset})`, {
 	minWidth: '0',
 	padding: '0',
 	margin: '0',
 	border: '0',
 })
 
-globalStyle(`${bootstrapScope}${elLegend}`, {
+globalStyle(`:where(${bootstrapScope}${elLegend})`, {
 	float: 'left',
 	width: '100%',
 	padding: '0',
@@ -3210,7 +3425,7 @@ globalStyle(`${bootstrapScope}${elLegend}`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-globalStyle(`${bootstrapScope}${elLegend}`, {
+globalStyle(`:where(${bootstrapScope}${elLegend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -3218,7 +3433,7 @@ globalStyle(`${bootstrapScope}${elLegend}`, {
 	},
 })
 
-globalStyle(`${bootstrapScope}${elLegend} + *`, {
+globalStyle(`:where(${bootstrapScope}${elLegend}) + *`, {
 	clear: 'left',
 })
 
@@ -3254,12 +3469,12 @@ globalStyle(`::-webkit-inner-spin-button`, {
 	height: 'auto',
 })
 
-globalStyle(`[type=search]`, {
+globalStyle(`${bootstrapScope}[type=search]`, {
 	WebkitAppearance: 'textfield',
 	outlineOffset: '-2px',
 })
 
-globalStyle(`[type=search]::-webkit-search-cancel-button`, {
+globalStyle(`${bootstrapScope}[type=search]::-webkit-search-cancel-button`, {
 	cursor: 'pointer',
 	filter: 'grayscale(1)',
 })
@@ -3282,24 +3497,24 @@ globalStyle(`::file-selector-button`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`${bootstrapScope}${elOutput}`, {
+globalStyle(`:where(${bootstrapScope}${elOutput})`, {
 	display: 'inline-block',
 })
 
-globalStyle(`${bootstrapScope}${elIframe}`, {
+globalStyle(`:where(${bootstrapScope}${elIframe})`, {
 	border: '0',
 })
 
-globalStyle(`${bootstrapScope}${elSummary}`, {
+globalStyle(`:where(${bootstrapScope}${elSummary})`, {
 	display: 'list-item',
 	cursor: 'pointer',
 })
 
-globalStyle(`${bootstrapScope}${elProgress}`, {
+globalStyle(`:where(${bootstrapScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`[hidden]`, {
+globalStyle(`${bootstrapScope}[hidden]`, {
 	display: 'none !important',
 })
 
@@ -3704,6 +3919,17 @@ globalStyle(`${bootstrapScope}${container}`, {
 		'(min-width: 1400px)': {
 			maxWidth: '1320px',
 		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${vars}`, {
+	vars: {
+		'--bs-breakpoint-xs': '0',
+		'--bs-breakpoint-sm': '576px',
+		'--bs-breakpoint-md': '768px',
+		'--bs-breakpoint-lg': '992px',
+		'--bs-breakpoint-xl': '1200px',
+		'--bs-breakpoint-xxl': '1400px',
 	},
 })
 
@@ -7245,7 +7471,7 @@ globalStyle(`${bootstrapScope}${formSelectLg}`, {
 	borderRadius: varBsBorderRadiusLg,
 })
 
-globalStyle(`[data-bs-theme=dark] ${bootstrapScope}${formSelect}`, {
+globalStyle(`${bootstrapScope}[data-bs-theme=dark] ${bootstrapScope}${formSelect}`, {
 	vars: {
 		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
@@ -7427,7 +7653,7 @@ globalStyle(`${bootstrapScope}${btnCheck}:disabled + ${bootstrapScope}${btn}`, {
 	opacity: '0.65',
 })
 
-globalStyle(`[data-bs-theme=dark] ${bootstrapScope}${formSwitch} ${bootstrapScope}${formCheckInput}:not(:checked):not(:focus)`, {
+globalStyle(`${bootstrapScope}[data-bs-theme=dark] ${bootstrapScope}${formSwitch} ${bootstrapScope}${formCheckInput}:not(:checked):not(:focus)`, {
 	vars: {
 		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
 	},
@@ -10544,7 +10770,7 @@ globalStyle(`${bootstrapScope}${navbar}[data-bs-theme=dark]`, {
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${bootstrapScope}${navbarTogglerIcon}`, {
+globalStyle(`${bootstrapScope}[data-bs-theme=dark] ${bootstrapScope}${navbarTogglerIcon}`, {
 	vars: {
 		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
@@ -10995,7 +11221,7 @@ globalStyle(`${bootstrapScope}${accordionFlush} > ${bootstrapScope}${accordionIt
 	borderRadius: '0',
 })
 
-globalStyle(`[data-bs-theme=dark] ${bootstrapScope}${accordionButton}::after`, {
+globalStyle(`${bootstrapScope}[data-bs-theme=dark] ${bootstrapScope}${accordionButton}::after`, {
 	vars: {
 		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%236ea8fe\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%236ea8fe\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
@@ -11975,6 +12201,18 @@ globalStyle(`${bootstrapScope}${btnClose}${disabled}`, {
 })
 
 globalStyle(`${bootstrapScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
+globalStyle(`${bootstrapScope}${vars}`, {
+	vars: {
+		[varBsBtnCloseFilter]: '',
+	},
+})
+
+globalStyle(`${bootstrapScope}${vars}[data-bs-theme=dark]`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
 	},
@@ -13225,7 +13463,7 @@ globalStyle(`${bootstrapScope}${carouselIndicators}`, {
 	marginLeft: '15%',
 })
 
-globalStyle(`${bootstrapScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${bootstrapScope}${carouselIndicators} ${bootstrapScope}[data-bs-target]`, {
 	boxSizing: 'content-box',
 	flex: '0 1 auto',
 	width: '30px',
@@ -13244,7 +13482,7 @@ globalStyle(`${bootstrapScope}${carouselIndicators} [data-bs-target]`, {
 	transition: 'opacity 0.6s ease',
 })
 
-globalStyle(`${bootstrapScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${bootstrapScope}${carouselIndicators} ${bootstrapScope}[data-bs-target]`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -13268,6 +13506,22 @@ globalStyle(`${bootstrapScope}${carouselCaption}`, {
 })
 
 globalStyle(`${bootstrapScope}${carouselDark}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#000',
+		[varBsCarouselCaptionColor]: '#000',
+		[varBsCarouselControlIconFilter]: 'invert(1) grayscale(100)',
+	},
+})
+
+globalStyle(`${bootstrapScope}${vars}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#fff',
+		[varBsCarouselCaptionColor]: '#fff',
+		[varBsCarouselControlIconFilter]: '',
+	},
+})
+
+globalStyle(`${bootstrapScope}${vars}[data-bs-theme=dark]`, {
 	vars: {
 		[varBsCarouselIndicatorActiveBg]: '#000',
 		[varBsCarouselCaptionColor]: '#000',
@@ -24376,4 +24630,8 @@ globalStyle(`${bootstrapScope}${scrollspyExample}`, {
 	height: '200px',
 	overflowY: 'auto',
 	marginTop: '0.5rem',
+})
+
+globalStyle(`${bootstrapScope}${formSwitch}`, {
+	isolation: 'isolate',
 })

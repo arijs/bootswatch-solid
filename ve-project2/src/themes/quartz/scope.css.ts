@@ -29,20 +29,20 @@ globalStyle(`${quartzScope}${bodyText}`, {
 
 globalStyle(`${quartzScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
-	backgroundImage: 'linear-gradient(90deg, #33b7e2, #5e62b0, #dc307c)',
+	backgroundImage: "linear-gradient(90deg, #33b7e2, #5e62b0, #dc307c)",
 	margin: 0,
 	display: 'flow-root',
 	minHeight: '100vh',
 })
 
-// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.
-globalStyle(`${modalOpenHook}`, {
+// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> when a modal opens.
+globalStyle(`${quartzScope}${modalOpenHook}`, {
 	fontFamily: varBsBodyFontFamily,
 	fontSize: varBsBodyFontSize,
 	fontWeight: varBsBodyFontWeight,
 	lineHeight: varBsBodyLineHeight,
 	color: varBsBodyColor,
 	backgroundColor: varBsBodyBg,
-	backgroundImage: 'linear-gradient(90deg, #33b7e2, #5e62b0, #dc307c)',
+	backgroundImage: "linear-gradient(90deg, #33b7e2, #5e62b0, #dc307c)",
 	margin: 0,
 })

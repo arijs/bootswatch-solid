@@ -87,6 +87,9 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 		['line-height', 'lineHeight'],
 		['color', 'color'],
 		['letter-spacing', 'letterSpacing'],
+		// Vapor's body sets a neon `text-shadow` glow inherited by all text; without it
+		// VE text renders crisp and every glyph diffs against the glowing baseline.
+		['text-shadow', 'textShadow'],
 	]
 	const frameProps = [
 		['background-color', 'backgroundColor'],
@@ -138,8 +141,14 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 	body.push("\tminHeight: '100vh',")
 	body.push('})')
 	body.push('')
-	body.push('// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.')
-	body.push(`globalStyle(\`\${modalOpenHook}\`, {`)
+	// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> (the ve-modal adapter
+	// passes both classes via CLASS_NAME_OPEN, and the fork splits them). Scoping this rule to
+	// the active theme prevents cross-theme contamination: every theme's scope.css.ts is loaded
+	// (Ve2Shell imports all scope classes), so a GLOBAL `${modalOpenHook}` rule would let the
+	// last-loaded theme's body typography win on <body> and leak (e.g. letter-spacing) into the
+	// modal content via inheritance.
+	body.push('// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> when a modal opens.')
+	body.push(`globalStyle(\`\${${scopeName}}\${modalOpenHook}\`, {`)
 	for (const [cssProp, veKey] of typographyProps) {
 		if (bodyDecls[cssProp]) body.push(`\t${veKey}: ${fmt(bodyDecls[cssProp])},`)
 	}

@@ -25,21 +25,26 @@ globalStyle(`${vaporScope}${bodyText}`, {
 	fontWeight: varBsBodyFontWeight,
 	lineHeight: varBsBodyLineHeight,
 	color: varBsBodyColor,
+	textShadow: "0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)",
 })
 
 globalStyle(`${vaporScope}${bodyFrame}`, {
 	backgroundColor: varBsBodyBg,
+	backgroundImage: "linear-gradient(#17082e 0%, #1a0933 7%, #1a0933 80%, #0c1f4c 100%)",
 	margin: 0,
+	display: 'flow-root',
 	minHeight: '100vh',
 })
 
-// Bootstrap Modal JS adds modalOpenHook to <body> without theme scope.
-globalStyle(`${modalOpenHook}`, {
+// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> when a modal opens.
+globalStyle(`${vaporScope}${modalOpenHook}`, {
 	fontFamily: varBsBodyFontFamily,
 	fontSize: varBsBodyFontSize,
 	fontWeight: varBsBodyFontWeight,
 	lineHeight: varBsBodyLineHeight,
 	color: varBsBodyColor,
+	textShadow: "0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)",
 	backgroundColor: varBsBodyBg,
+	backgroundImage: "linear-gradient(#17082e 0%, #1a0933 7%, #1a0933 80%, #0c1f4c 100%)",
 	margin: 0,
 })

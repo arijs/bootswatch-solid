@@ -26,6 +26,24 @@ function literalThemeFilterPlugin(): Plugin | null {
 		load(id) {
 			if (id.startsWith('\0literal-theme-stub:')) return 'export default {}'
 		},
+		// `order: 'pre'` so this runs on the RAW index.html before Vite resolves the
+		// `/src/themes/.../fonts.generated.css` links into bundled assets — otherwise the
+		// regex (which matches the source paths) never fires.
+		transformIndexHtml: {
+			order: 'pre',
+			handler(html: string) {
+				// index.html statically links EVERY theme's fonts.generated.css. Loading all
+				// 27 themes' @import fonts into one document causes cross-theme contamination
+				// (§10.3): e.g. another theme's `Lato:ital` face makes Vapor's synthesized-oblique
+				// <cite> render as REAL italic (narrower) and mismatch the baseline, which loads
+				// only the active theme's fonts. When building a single theme, strip the font
+				// links for every other theme so only the active theme's fonts load.
+				return html.replace(
+					/[ \t]*<link\b[^>]*\/src\/themes\/([^/]+)\/fonts\.generated\.css[^>]*>\s*\n?/g,
+					(full, theme) => (allowed.has(theme) ? full : ''),
+				)
+			},
+		},
 	}
 }
 

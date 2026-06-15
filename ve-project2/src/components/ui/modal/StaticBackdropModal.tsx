@@ -57,7 +57,7 @@ const StaticBackdropModal: Component = () => {
 		modalBackdrop: `${theme} ${modalBackdrop}`,
 		modalBody,
 		modalDialog,
-		modalOpenHook,
+		modalOpenHook: `${theme} ${modalOpenHook}`,
 		modalShowHook,
 	})
 	return (

@@ -25013,3 +25013,7 @@ globalStyle(`${sandstoneScope}${scrollspyExample}`, {
 	overflowY: 'auto',
 	marginTop: '0.5rem',
 })
+
+globalStyle(`${sandstoneScope}${formSwitch}`, {
+	isolation: 'isolate',
+})

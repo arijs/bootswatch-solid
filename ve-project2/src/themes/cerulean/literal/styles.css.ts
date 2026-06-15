@@ -1,4 +1,6 @@
 import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
+import { ceruleanScope } from '../scope.css'
+
 import {
 	varBsBlack,
 	varBsBlackRgb,
@@ -117,73 +119,6 @@ import {
 	varBsTableStripedColor,
 } from '../../../theme-contract/contents/_vars.css'
 import {
-	blockquote,
-	blockquoteFooter,
-	horizontalRule,
-	inlineCode,
-	lead,
-	link,
-	markText,
-	paragraph,
-	small,
-	smallText,
-} from '../../../theme-contract/contents/basic/contract.css'
-import {
-	display1,
-	display2,
-	display3,
-	display4,
-	display5,
-	display6,
-} from '../../../theme-contract/contents/display/contract.css'
-import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/heading/contract.css'
-import {
-	figure,
-	figureCaption,
-	figureImg,
-	imgFluid,
-	imgThumbnail,
-	rounded,
-} from '../../../theme-contract/contents/images/contract.css'
-import {
-	listBase,
-	listIndented,
-	listInline,
-	listInlineItem,
-	listNested,
-	listUnstyled,
-} from '../../../theme-contract/contents/lists/contract.css'
-import {
-	table,
-	tableActive,
-	tableBordered,
-	tableBorderless,
-	tableCell,
-	tableDanger,
-	tableDark,
-	tableElement,
-	tableGroupDivider,
-	tableHeaderCell,
-	tableHover,
-	tableInfo,
-	tableLight,
-	tablePrimary,
-	tableResponsive,
-	tableResponsiveLg,
-	tableResponsiveMd,
-	tableResponsiveSm,
-	tableResponsiveXl,
-	tableResponsiveXxl,
-	tableRow,
-	tableSecondary,
-	tableSection,
-	tableSm,
-	tableStriped,
-	tableStripedColumns,
-	tableSuccess,
-	tableWarning,
-} from '../../../theme-contract/contents/tables/contract.css'
-import {
 	varBsFormCheckBg,
 	varBsFormCheckBgImage,
 	varBsFormInvalidBorderColor,
@@ -194,33 +129,374 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
+import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
-	fieldset,
-	formCheck,
-	formCheckInput,
-	formCheckLabel,
-	formControl,
-	formControlLg,
-	formControlSm,
-	formFloating,
-	formLabel,
-	formRange,
-	formSelect,
-	formSelectLg,
-	formSelectSm,
-	formSwitch,
-	formText,
-	hasValidation,
-	inputGroup,
-	inputGroupText,
-	invalidFeedback,
-	isInvalid,
-	isValid,
-	legend,
-	legendClear,
-	validFeedback,
-	wasValidated,
-} from '../../../theme-contract/forms/contract.css'
+	varBsAccordionActiveBg,
+	varBsAccordionActiveColor,
+	varBsAccordionBg,
+	varBsAccordionBodyPaddingX,
+	varBsAccordionBodyPaddingY,
+	varBsAccordionBorderColor,
+	varBsAccordionBorderRadius,
+	varBsAccordionBorderWidth,
+	varBsAccordionBtnActiveIcon,
+	varBsAccordionBtnBg,
+	varBsAccordionBtnColor,
+	varBsAccordionBtnFocusBoxShadow,
+	varBsAccordionBtnIcon,
+	varBsAccordionBtnIconTransform,
+	varBsAccordionBtnIconTransition,
+	varBsAccordionBtnIconWidth,
+	varBsAccordionBtnPaddingX,
+	varBsAccordionBtnPaddingY,
+	varBsAccordionColor,
+	varBsAccordionInnerBorderRadius,
+	varBsAccordionTransition,
+} from '../../../theme-contract/ui/accordion/_vars.css'
+import {
+	varBsAlertBg,
+	varBsAlertBorder,
+	varBsAlertBorderColor,
+	varBsAlertBorderRadius,
+	varBsAlertColor,
+	varBsAlertLinkColor,
+	varBsAlertMarginBottom,
+	varBsAlertPaddingX,
+	varBsAlertPaddingY,
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../theme-contract/ui/alerts/_vars.css'
+import {
+	varBsBadgeBorderRadius,
+	varBsBadgeColor,
+	varBsBadgeFontSize,
+	varBsBadgeFontWeight,
+	varBsBadgePaddingX,
+	varBsBadgePaddingY,
+} from '../../../theme-contract/ui/badge/_vars.css'
+import {
+	varBsBreadcrumbBg,
+	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
+	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbItemActiveColor,
+	varBsBreadcrumbItemPaddingX,
+	varBsBreadcrumbMarginBottom,
+	varBsBreadcrumbPaddingX,
+	varBsBreadcrumbPaddingY,
+} from '../../../theme-contract/ui/breadcrumb/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
+	varBsBtnActiveColor,
+	varBsBtnBg,
+	varBsBtnBorderColor,
+	varBsBtnBorderRadius,
+	varBsBtnBorderWidth,
+	varBsBtnBoxShadow,
+	varBsBtnColor,
+	varBsBtnDisabledBg,
+	varBsBtnDisabledBorderColor,
+	varBsBtnDisabledColor,
+	varBsBtnDisabledOpacity,
+	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
+	varBsBtnFontFamily,
+	varBsBtnFontSize,
+	varBsBtnFontWeight,
+	varBsBtnHoverBg,
+	varBsBtnHoverBorderColor,
+	varBsBtnHoverColor,
+	varBsBtnLineHeight,
+	varBsBtnPaddingX,
+	varBsBtnPaddingY,
+} from '../../../theme-contract/ui/buttons/_vars.css'
+import {
+	varBsCardBg,
+	varBsCardBorderColor,
+	varBsCardBorderRadius,
+	varBsCardBorderWidth,
+	varBsCardBoxShadow,
+	varBsCardCapBg,
+	varBsCardCapColor,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+	varBsCardColor,
+	varBsCardGroupMargin,
+	varBsCardImgOverlayPadding,
+	varBsCardInnerBorderRadius,
+	varBsCardSpacerX,
+	varBsCardSpacerY,
+	varBsCardSubtitleColor,
+	varBsCardTitleColor,
+	varBsCardTitleSpacerY,
+} from '../../../theme-contract/ui/card/_vars.css'
+import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
+import {
+	varBsDropdownBg,
+	varBsDropdownBorderColor,
+	varBsDropdownBorderRadius,
+	varBsDropdownBorderWidth,
+	varBsDropdownBoxShadow,
+	varBsDropdownColor,
+	varBsDropdownDividerBg,
+	varBsDropdownDividerMarginY,
+	varBsDropdownFontSize,
+	varBsDropdownHeaderColor,
+	varBsDropdownHeaderPaddingX,
+	varBsDropdownHeaderPaddingY,
+	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemPaddingX,
+	varBsDropdownItemPaddingY,
+	varBsDropdownLinkActiveBg,
+	varBsDropdownLinkActiveColor,
+	varBsDropdownLinkColor,
+	varBsDropdownLinkDisabledColor,
+	varBsDropdownLinkHoverBg,
+	varBsDropdownLinkHoverColor,
+	varBsDropdownMinWidth,
+	varBsDropdownPaddingX,
+	varBsDropdownPaddingY,
+	varBsDropdownSpacer,
+	varBsDropdownZindex,
+} from '../../../theme-contract/ui/dropdowns/_vars.css'
+import {
+	varBsListGroupActionActiveBg,
+	varBsListGroupActionActiveColor,
+	varBsListGroupActionColor,
+	varBsListGroupActionHoverBg,
+	varBsListGroupActionHoverColor,
+	varBsListGroupActiveBg,
+	varBsListGroupActiveBorderColor,
+	varBsListGroupActiveColor,
+	varBsListGroupBg,
+	varBsListGroupBorderColor,
+	varBsListGroupBorderRadius,
+	varBsListGroupBorderWidth,
+	varBsListGroupColor,
+	varBsListGroupDisabledBg,
+	varBsListGroupDisabledColor,
+	varBsListGroupItemPaddingX,
+	varBsListGroupItemPaddingY,
+} from '../../../theme-contract/ui/list-group/_vars.css'
+import {
+	varBsBackdropBg,
+	varBsBackdropOpacity,
+	varBsBackdropZindex,
+	varBsModalBg,
+	varBsModalBorderColor,
+	varBsModalBorderRadius,
+	varBsModalBorderWidth,
+	varBsModalBoxShadow,
+	varBsModalColor,
+	varBsModalFooterBg,
+	varBsModalFooterBorderColor,
+	varBsModalFooterBorderWidth,
+	varBsModalFooterGap,
+	varBsModalHeaderBorderColor,
+	varBsModalHeaderBorderWidth,
+	varBsModalHeaderPadding,
+	varBsModalHeaderPaddingX,
+	varBsModalHeaderPaddingY,
+	varBsModalInnerBorderRadius,
+	varBsModalMargin,
+	varBsModalPadding,
+	varBsModalTitleLineHeight,
+	varBsModalWidth,
+	varBsModalZindex,
+} from '../../../theme-contract/ui/modal/_vars.css'
+import {
+	varBsNavbarActiveColor,
+	varBsNavbarBrandColor,
+	varBsNavbarBrandFontSize,
+	varBsNavbarBrandHoverColor,
+	varBsNavbarBrandMarginEnd,
+	varBsNavbarBrandPaddingY,
+	varBsNavbarColor,
+	varBsNavbarDisabledColor,
+	varBsNavbarHoverColor,
+	varBsNavbarNavLinkPaddingX,
+	varBsNavbarPaddingX,
+	varBsNavbarPaddingY,
+	varBsNavbarTogglerBorderColor,
+	varBsNavbarTogglerBorderRadius,
+	varBsNavbarTogglerFocusWidth,
+	varBsNavbarTogglerFontSize,
+	varBsNavbarTogglerIconBg,
+	varBsNavbarTogglerPaddingX,
+	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+} from '../../../theme-contract/ui/navbar/_vars.css'
+import {
+	varBsNavLinkColor,
+	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
+	varBsNavLinkFontWeight,
+	varBsNavLinkHoverColor,
+	varBsNavLinkPaddingX,
+	varBsNavLinkPaddingY,
+	varBsNavPillsBorderRadius,
+	varBsNavPillsLinkActiveBg,
+	varBsNavPillsLinkActiveColor,
+	varBsNavTabsBorderColor,
+	varBsNavTabsBorderRadius,
+	varBsNavTabsBorderWidth,
+	varBsNavTabsLinkActiveBg,
+	varBsNavTabsLinkActiveBorderColor,
+	varBsNavTabsLinkActiveColor,
+	varBsNavTabsLinkHoverBorderColor,
+} from '../../../theme-contract/ui/navs/_vars.css'
+import {
+	varBsPaginationActiveBg,
+	varBsPaginationActiveBorderColor,
+	varBsPaginationActiveColor,
+	varBsPaginationBg,
+	varBsPaginationBorderColor,
+	varBsPaginationBorderRadius,
+	varBsPaginationBorderWidth,
+	varBsPaginationColor,
+	varBsPaginationDisabledBg,
+	varBsPaginationDisabledBorderColor,
+	varBsPaginationDisabledColor,
+	varBsPaginationFocusBg,
+	varBsPaginationFocusBoxShadow,
+	varBsPaginationFocusColor,
+	varBsPaginationFontSize,
+	varBsPaginationHoverBg,
+	varBsPaginationHoverBorderColor,
+	varBsPaginationHoverColor,
+	varBsPaginationPaddingX,
+	varBsPaginationPaddingY,
+} from '../../../theme-contract/ui/pagination/_vars.css'
+import {
+	varBsPopoverArrowBorder,
+	varBsPopoverArrowHeight,
+	varBsPopoverArrowWidth,
+	varBsPopoverBg,
+	varBsPopoverBodyColor,
+	varBsPopoverBodyPaddingX,
+	varBsPopoverBodyPaddingY,
+	varBsPopoverBorderColor,
+	varBsPopoverBorderRadius,
+	varBsPopoverBorderWidth,
+	varBsPopoverBoxShadow,
+	varBsPopoverFontSize,
+	varBsPopoverHeaderBg,
+	varBsPopoverHeaderColor,
+	varBsPopoverHeaderFontSize,
+	varBsPopoverHeaderPaddingX,
+	varBsPopoverHeaderPaddingY,
+	varBsPopoverInnerBorderRadius,
+	varBsPopoverMaxWidth,
+	varBsPopoverZindex,
+} from '../../../theme-contract/ui/popovers/_vars.css'
+import {
+	varBsProgressBarBg,
+	varBsProgressBarColor,
+	varBsProgressBarTransition,
+	varBsProgressBg,
+	varBsProgressBorderRadius,
+	varBsProgressBoxShadow,
+	varBsProgressFontSize,
+	varBsProgressHeight,
+} from '../../../theme-contract/ui/progress/_vars.css'
+import {
+	varBsSpinnerAnimationName,
+	varBsSpinnerAnimationSpeed,
+	varBsSpinnerBorderWidth,
+	varBsSpinnerHeight,
+	varBsSpinnerVerticalAlign,
+	varBsSpinnerWidth,
+} from '../../../theme-contract/ui/spinners/_vars.css'
+import {
+	varBsToastBg,
+	varBsToastBorderColor,
+	varBsToastBorderRadius,
+	varBsToastBorderWidth,
+	varBsToastBoxShadow,
+	varBsToastColor,
+	varBsToastFontSize,
+	varBsToastHeaderBg,
+	varBsToastHeaderBorderColor,
+	varBsToastHeaderColor,
+	varBsToastMaxWidth,
+	varBsToastPaddingX,
+	varBsToastPaddingY,
+	varBsToastSpacing,
+	varBsToastZindex,
+} from '../../../theme-contract/ui/toasts/_vars.css'
+import {
+	varBsTooltipArrowHeight,
+	varBsTooltipArrowWidth,
+	varBsTooltipBg,
+	varBsTooltipBorderRadius,
+	varBsTooltipColor,
+	varBsTooltipFontSize,
+	varBsTooltipMargin,
+	varBsTooltipMaxWidth,
+	varBsTooltipOpacity,
+	varBsTooltipPaddingX,
+	varBsTooltipPaddingY,
+	varBsTooltipZindex,
+} from '../../../theme-contract/ui/tooltips/_vars.css'
+import {
+	varBsAspectRatio,
+	varBsBgOpacity,
+	varBsBorderOpacity,
+	varBsBtnCloseFilter,
+	varBsCardHeight,
+	varBsLinkOpacity,
+	varBsLinkUnderlineOpacity,
+	varBsNavUnderlineBorderWidth,
+	varBsNavUnderlineGap,
+	varBsNavUnderlineLinkActiveColor,
+	varBsOffcanvasBg,
+	varBsOffcanvasBorderColor,
+	varBsOffcanvasBorderWidth,
+	varBsOffcanvasBoxShadow,
+	varBsOffcanvasColor,
+	varBsOffcanvasHeight,
+	varBsOffcanvasPaddingX,
+	varBsOffcanvasPaddingY,
+	varBsOffcanvasTitleLineHeight,
+	varBsOffcanvasTransition,
+	varBsOffcanvasWidth,
+	varBsOffcanvasZindex,
+	varBsPosition,
+	varBsTextOpacity,
+} from '../../../theme-contract/utilities/generated/_vars.css'
+
+import {
+	blockquote,
+	horizontalRule,
+	inlineCode,
+	link,
+	markText,
+	paragraph,
+	small,
+} from '../../../theme-contract/contents/basic/contract.css'
+import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../theme-contract/contents/heading/contract.css'
+import {
+	tableCell,
+	tableElement,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+} from '../../../theme-contract/contents/tables/contract.css'
+import { fieldset } from '../../../theme-contract/forms/contract.css'
 import {
 	elAbbr,
 	elAddress,
@@ -252,11 +528,86 @@ import {
 	elTextarea,
 	elUl,
 } from '../../../theme-contract/global-elements/contract.css'
+
+import { vars } from '../../../theme-contract/theme-contract.css'
+
+import { blockquoteFooter, lead, smallText } from '../../../theme-contract/contents/basic/contract.css'
 import {
-	containerFluid,
-	varBsGutterX,
-	varBsGutterY,
-} from '../../../theme-contract/layout/container.css'
+	display1,
+	display2,
+	display3,
+	display4,
+	display5,
+	display6,
+} from '../../../theme-contract/contents/display/contract.css'
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../theme-contract/contents/images/contract.css'
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../theme-contract/contents/lists/contract.css'
+import {
+	table,
+	tableActive,
+	tableBordered,
+	tableBorderless,
+	tableDanger,
+	tableDark,
+	tableGroupDivider,
+	tableHover,
+	tableInfo,
+	tableLight,
+	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
+	tableSecondary,
+	tableSm,
+	tableStriped,
+	tableStripedColumns,
+	tableSuccess,
+	tableWarning,
+} from '../../../theme-contract/contents/tables/contract.css'
+import {
+	formCheck,
+	formCheckInput,
+	formCheckLabel,
+	formControl,
+	formControlLg,
+	formControlSm,
+	formFloating,
+	formLabel,
+	formRange,
+	formSelect,
+	formSelectLg,
+	formSelectSm,
+	formSwitch,
+	formText,
+	hasValidation,
+	inputGroup,
+	inputGroupText,
+	invalidFeedback,
+	isInvalid,
+	isValid,
+	legend,
+	legendClear,
+	validFeedback,
+	wasValidated,
+} from '../../../theme-contract/forms/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	accordionFlush,
 	active,
@@ -379,10 +730,10 @@ import {
 	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
+	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
-	bgOpacity100,
 	bgPrimary,
 	bgPrimarySubtle,
 	bgSecondary,
@@ -415,10 +766,10 @@ import {
 	borderLight,
 	borderLightSubtle,
 	borderOpacity10,
+	borderOpacity100,
 	borderOpacity25,
 	borderOpacity50,
 	borderOpacity75,
-	borderOpacity100,
 	borderPrimary,
 	borderPrimarySubtle,
 	borderSecondary,
@@ -433,8 +784,8 @@ import {
 	borderWarningSubtle,
 	borderWhite,
 	bottom0,
-	bottom50,
 	bottom100,
+	bottom50,
 	bsTooltipAuto,
 	bsTooltipBottom,
 	bsTooltipEnd,
@@ -459,6 +810,9 @@ import {
 	clsH6,
 	clsSmall,
 	col1,
+	col10,
+	col11,
+	col12,
 	col2,
 	col3,
 	col4,
@@ -467,15 +821,15 @@ import {
 	col7,
 	col8,
 	col9,
-	col10,
-	col11,
-	col12,
 	colAuto,
 	colFormLabel,
 	colFormLabelLg,
 	colFormLabelSm,
 	colLg,
 	colLg1,
+	colLg10,
+	colLg11,
+	colLg12,
 	colLg2,
 	colLg3,
 	colLg4,
@@ -484,23 +838,20 @@ import {
 	colLg7,
 	colLg8,
 	colLg9,
-	colLg10,
-	colLg11,
-	colLg12,
 	colLgAuto,
-	collapsed,
-	collapseHorizontal,
-	collapsing,
 	colMd,
 	colMd1,
-	colMd7,
-	colMd9,
 	colMd10,
 	colMd11,
 	colMd12,
+	colMd7,
+	colMd9,
 	colMdAuto,
 	colSm,
 	colSm1,
+	colSm10,
+	colSm11,
+	colSm12,
 	colSm2,
 	colSm3,
 	colSm4,
@@ -508,10 +859,38 @@ import {
 	colSm7,
 	colSm8,
 	colSm9,
-	colSm10,
-	colSm11,
-	colSm12,
 	colSmAuto,
+	colXl,
+	colXl1,
+	colXl10,
+	colXl11,
+	colXl12,
+	colXl2,
+	colXl3,
+	colXl4,
+	colXl5,
+	colXl6,
+	colXl7,
+	colXl8,
+	colXl9,
+	colXlAuto,
+	colXxl,
+	colXxl1,
+	colXxl10,
+	colXxl11,
+	colXxl12,
+	colXxl2,
+	colXxl3,
+	colXxl4,
+	colXxl5,
+	colXxl6,
+	colXxl7,
+	colXxl8,
+	colXxl9,
+	colXxlAuto,
+	collapseHorizontal,
+	collapsed,
+	collapsing,
 	columnGap0,
 	columnGap1,
 	columnGap2,
@@ -548,34 +927,6 @@ import {
 	columnGapXxl3,
 	columnGapXxl4,
 	columnGapXxl5,
-	colXl,
-	colXl1,
-	colXl2,
-	colXl3,
-	colXl4,
-	colXl5,
-	colXl6,
-	colXl7,
-	colXl8,
-	colXl9,
-	colXl10,
-	colXl11,
-	colXl12,
-	colXlAuto,
-	colXxl,
-	colXxl1,
-	colXxl2,
-	colXxl3,
-	colXxl4,
-	colXxl5,
-	colXxl6,
-	colXxl7,
-	colXxl8,
-	colXxl9,
-	colXxl10,
-	colXxl11,
-	colXxl12,
-	colXxlAuto,
 	container,
 	containerLg,
 	containerMd,
@@ -588,7 +939,6 @@ import {
 	dInlineBlock,
 	dInlineFlex,
 	dInlineGrid,
-	disabled,
 	dLgBlock,
 	dLgFlex,
 	dLgGrid,
@@ -623,16 +973,6 @@ import {
 	dPrintTable,
 	dPrintTableCell,
 	dPrintTableRow,
-	dropdownMenuLgEnd,
-	dropdownMenuLgStart,
-	dropdownMenuMdEnd,
-	dropdownMenuMdStart,
-	dropdownMenuSmEnd,
-	dropdownMenuSmStart,
-	dropdownMenuXlEnd,
-	dropdownMenuXlStart,
-	dropdownMenuXxlEnd,
-	dropdownMenuXxlStart,
 	dSmBlock,
 	dSmFlex,
 	dSmGrid,
@@ -669,9 +1009,20 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	disabled,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
 	end0,
-	end50,
 	end100,
+	end50,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -794,6 +1145,36 @@ import {
 	g1,
 	g2,
 	g5,
+	gLg0,
+	gLg1,
+	gLg2,
+	gLg3,
+	gLg4,
+	gLg5,
+	gMd0,
+	gMd1,
+	gMd2,
+	gMd3,
+	gMd4,
+	gMd5,
+	gSm0,
+	gSm1,
+	gSm2,
+	gSm3,
+	gSm4,
+	gSm5,
+	gXl0,
+	gXl1,
+	gXl2,
+	gXl3,
+	gXl4,
+	gXl5,
+	gXxl0,
+	gXxl1,
+	gXxl2,
+	gXxl3,
+	gXxl4,
+	gXxl5,
 	gap0,
 	gap1,
 	gap2,
@@ -830,36 +1211,6 @@ import {
 	gapXxl3,
 	gapXxl4,
 	gapXxl5,
-	gLg0,
-	gLg1,
-	gLg2,
-	gLg3,
-	gLg4,
-	gLg5,
-	gMd0,
-	gMd1,
-	gMd2,
-	gMd3,
-	gMd4,
-	gMd5,
-	gSm0,
-	gSm1,
-	gSm2,
-	gSm3,
-	gSm4,
-	gSm5,
-	gXl0,
-	gXl1,
-	gXl2,
-	gXl3,
-	gXl4,
-	gXl5,
-	gXxl0,
-	gXxl1,
-	gXxl2,
-	gXxl3,
-	gXxl4,
-	gXxl5,
 	gx0,
 	gx1,
 	gx2,
@@ -932,10 +1283,10 @@ import {
 	gyXxl3,
 	gyXxl4,
 	gyXxl5,
+	h100,
 	h25,
 	h50,
 	h75,
-	h100,
 	hAuto,
 	hiding,
 	hstack,
@@ -997,6 +1348,8 @@ import {
 	linkOffset3,
 	linkOffset3Hover,
 	linkOpacity10,
+	linkOpacity100,
+	linkOpacity100Hover,
 	linkOpacity10Hover,
 	linkOpacity25,
 	linkOpacity25Hover,
@@ -1004,8 +1357,6 @@ import {
 	linkOpacity50Hover,
 	linkOpacity75,
 	linkOpacity75Hover,
-	linkOpacity100,
-	linkOpacity100Hover,
 	linkPrimary,
 	linkSecondary,
 	linkSuccess,
@@ -1017,6 +1368,8 @@ import {
 	linkUnderlineOpacity0,
 	linkUnderlineOpacity0Hover,
 	linkUnderlineOpacity10,
+	linkUnderlineOpacity100,
+	linkUnderlineOpacity100Hover,
 	linkUnderlineOpacity10Hover,
 	linkUnderlineOpacity25,
 	linkUnderlineOpacity25Hover,
@@ -1024,8 +1377,6 @@ import {
 	linkUnderlineOpacity50Hover,
 	linkUnderlineOpacity75,
 	linkUnderlineOpacity75Hover,
-	linkUnderlineOpacity100,
-	linkUnderlineOpacity100Hover,
 	linkUnderlinePrimary,
 	linkUnderlineSecondary,
 	linkUnderlineSuccess,
@@ -1045,6 +1396,41 @@ import {
 	m4,
 	m5,
 	mAuto,
+	mLg0,
+	mLg1,
+	mLg2,
+	mLg3,
+	mLg4,
+	mLg5,
+	mLgAuto,
+	mMd0,
+	mMd1,
+	mMd2,
+	mMd3,
+	mMd4,
+	mMd5,
+	mMdAuto,
+	mSm0,
+	mSm1,
+	mSm2,
+	mSm3,
+	mSm4,
+	mSm5,
+	mSmAuto,
+	mXl0,
+	mXl1,
+	mXl2,
+	mXl3,
+	mXl4,
+	mXl5,
+	mXlAuto,
+	mXxl0,
+	mXxl1,
+	mXxl2,
+	mXxl3,
+	mXxl4,
+	mXxl5,
+	mXxlAuto,
 	mark,
 	mb0,
 	mb1,
@@ -1126,20 +1512,6 @@ import {
 	mh100,
 	minVh100,
 	minVw100,
-	mLg0,
-	mLg1,
-	mLg2,
-	mLg3,
-	mLg4,
-	mLg5,
-	mLgAuto,
-	mMd0,
-	mMd1,
-	mMd2,
-	mMd3,
-	mMd4,
-	mMd5,
-	mMdAuto,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -1149,13 +1521,6 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
-	mSm0,
-	mSm1,
-	mSm2,
-	mSm3,
-	mSm4,
-	mSm5,
-	mSmAuto,
 	ms0,
 	ms1,
 	ms2,
@@ -1239,20 +1604,6 @@ import {
 	mtXxl5,
 	mtXxlAuto,
 	mw100,
-	mXl0,
-	mXl1,
-	mXl2,
-	mXl3,
-	mXl4,
-	mXl5,
-	mXlAuto,
-	mXxl0,
-	mXxl1,
-	mXxl2,
-	mXxl3,
-	mXxl4,
-	mXxl5,
-	mXxlAuto,
 	mx0,
 	mx1,
 	mx2,
@@ -1337,15 +1688,15 @@ import {
 	myXxl4,
 	myXxl5,
 	myXxlAuto,
+	navFill,
+	navJustified,
+	navUnderline,
 	navbarDark,
 	navbarExpand,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
-	navFill,
-	navJustified,
-	navUnderline,
 	objectFitContain,
 	objectFitCover,
 	objectFitFill,
@@ -1391,6 +1742,8 @@ import {
 	offcanvasXl,
 	offcanvasXxl,
 	offset1,
+	offset10,
+	offset11,
 	offset2,
 	offset3,
 	offset4,
@@ -1399,10 +1752,10 @@ import {
 	offset7,
 	offset8,
 	offset9,
-	offset10,
-	offset11,
 	offsetLg0,
 	offsetLg1,
+	offsetLg10,
+	offsetLg11,
 	offsetLg2,
 	offsetLg3,
 	offsetLg4,
@@ -1411,10 +1764,10 @@ import {
 	offsetLg7,
 	offsetLg8,
 	offsetLg9,
-	offsetLg10,
-	offsetLg11,
 	offsetMd0,
 	offsetMd1,
+	offsetMd10,
+	offsetMd11,
 	offsetMd2,
 	offsetMd3,
 	offsetMd4,
@@ -1423,10 +1776,10 @@ import {
 	offsetMd7,
 	offsetMd8,
 	offsetMd9,
-	offsetMd10,
-	offsetMd11,
 	offsetSm0,
 	offsetSm1,
+	offsetSm10,
+	offsetSm11,
 	offsetSm2,
 	offsetSm3,
 	offsetSm4,
@@ -1435,10 +1788,10 @@ import {
 	offsetSm7,
 	offsetSm8,
 	offsetSm9,
-	offsetSm10,
-	offsetSm11,
 	offsetXl0,
 	offsetXl1,
+	offsetXl10,
+	offsetXl11,
 	offsetXl2,
 	offsetXl3,
 	offsetXl4,
@@ -1447,10 +1800,10 @@ import {
 	offsetXl7,
 	offsetXl8,
 	offsetXl9,
-	offsetXl10,
-	offsetXl11,
 	offsetXxl0,
 	offsetXxl1,
+	offsetXxl10,
+	offsetXxl11,
 	offsetXxl2,
 	offsetXxl3,
 	offsetXxl4,
@@ -1459,13 +1812,11 @@ import {
 	offsetXxl7,
 	offsetXxl8,
 	offsetXxl9,
-	offsetXxl10,
-	offsetXxl11,
 	opacity0,
+	opacity100,
 	opacity25,
 	opacity50,
 	opacity75,
-	opacity100,
 	order0,
 	order1,
 	order2,
@@ -1530,6 +1881,36 @@ import {
 	p2,
 	p3,
 	p4,
+	pLg0,
+	pLg1,
+	pLg2,
+	pLg3,
+	pLg4,
+	pLg5,
+	pMd0,
+	pMd1,
+	pMd2,
+	pMd3,
+	pMd4,
+	pMd5,
+	pSm0,
+	pSm1,
+	pSm2,
+	pSm3,
+	pSm4,
+	pSm5,
+	pXl0,
+	pXl1,
+	pXl2,
+	pXl3,
+	pXl4,
+	pXl5,
+	pXxl0,
+	pXxl1,
+	pXxl2,
+	pXxl3,
+	pXxl4,
+	pXxl5,
 	pb0,
 	pb1,
 	pb3,
@@ -1602,24 +1983,12 @@ import {
 	peXxl3,
 	peXxl4,
 	peXxl5,
-	pLg0,
-	pLg1,
-	pLg2,
-	pLg3,
-	pLg4,
-	pLg5,
 	placeholder,
 	placeholderGlow,
 	placeholderLg,
 	placeholderSm,
 	placeholderWave,
 	placeholderXs,
-	pMd0,
-	pMd1,
-	pMd2,
-	pMd3,
-	pMd4,
-	pMd5,
 	pointerEvent,
 	popover,
 	positionAbsolute,
@@ -1627,12 +1996,6 @@ import {
 	positionStatic,
 	positionSticky,
 	progressStacked,
-	pSm0,
-	pSm1,
-	pSm2,
-	pSm3,
-	pSm4,
-	pSm5,
 	ps0,
 	ps1,
 	ps2,
@@ -1703,18 +2066,6 @@ import {
 	ptXxl3,
 	ptXxl4,
 	ptXxl5,
-	pXl0,
-	pXl1,
-	pXl2,
-	pXl3,
-	pXl4,
-	pXl5,
-	pXxl0,
-	pXxl1,
-	pXxl2,
-	pXxl3,
-	pXxl4,
-	pXxl5,
 	px0,
 	px1,
 	px4,
@@ -1786,10 +2137,10 @@ import {
 	pyXxl4,
 	pyXxl5,
 	ratio,
-	ratio1x1,
-	ratio4x3,
 	ratio16x9,
+	ratio1x1,
 	ratio21x9,
+	ratio4x3,
 	rounded0,
 	rounded1,
 	rounded2,
@@ -1918,8 +2269,8 @@ import {
 	spinnerBorderSm,
 	spinnerGrowSm,
 	start0,
-	start50,
 	start100,
+	start50,
 	stickyBottom,
 	stickyLgBottom,
 	stickyLgTop,
@@ -1968,10 +2319,10 @@ import {
 	textMdEnd,
 	textMdStart,
 	textNowrap,
+	textOpacity100,
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
-	textOpacity100,
 	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
@@ -1999,8 +2350,8 @@ import {
 	toastContainer,
 	tooltip,
 	top0,
-	top50,
 	top100,
+	top50,
 	translateMiddle,
 	translateMiddleX,
 	translateMiddleY,
@@ -2014,10 +2365,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
 	w25,
 	w50,
 	w75,
-	w100,
 	wAuto,
 	z0,
 	z1,
@@ -2025,30 +2376,6 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
-import { vars } from '../../../theme-contract/theme-contract.css'
-import {
-	varBsAccordionActiveBg,
-	varBsAccordionActiveColor,
-	varBsAccordionBg,
-	varBsAccordionBodyPaddingX,
-	varBsAccordionBodyPaddingY,
-	varBsAccordionBorderColor,
-	varBsAccordionBorderRadius,
-	varBsAccordionBorderWidth,
-	varBsAccordionBtnActiveIcon,
-	varBsAccordionBtnBg,
-	varBsAccordionBtnColor,
-	varBsAccordionBtnFocusBoxShadow,
-	varBsAccordionBtnIcon,
-	varBsAccordionBtnIconTransform,
-	varBsAccordionBtnIconTransition,
-	varBsAccordionBtnIconWidth,
-	varBsAccordionBtnPaddingX,
-	varBsAccordionBtnPaddingY,
-	varBsAccordionColor,
-	varBsAccordionInnerBorderRadius,
-	varBsAccordionTransition,
-} from '../../../theme-contract/ui/accordion/_vars.css'
 import {
 	accordion,
 	accordionBody,
@@ -2058,24 +2385,6 @@ import {
 	accordionHeader,
 	accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
-import {
-	varBsAlertBg,
-	varBsAlertBorder,
-	varBsAlertBorderColor,
-	varBsAlertBorderRadius,
-	varBsAlertColor,
-	varBsAlertLinkColor,
-	varBsAlertMarginBottom,
-	varBsAlertPaddingX,
-	varBsAlertPaddingY,
-	varBsBtnCloseBg,
-	varBsBtnCloseColor,
-	varBsBtnCloseDisabledOpacity,
-	varBsBtnCloseFocusOpacity,
-	varBsBtnCloseFocusShadow,
-	varBsBtnCloseHoverOpacity,
-	varBsBtnCloseOpacity,
-} from '../../../theme-contract/ui/alerts/_vars.css'
 import {
 	alert,
 	alertDanger,
@@ -2090,55 +2399,9 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../theme-contract/ui/alerts/contract.css'
-import {
-	varBsBadgeBorderRadius,
-	varBsBadgeColor,
-	varBsBadgeFontSize,
-	varBsBadgeFontWeight,
-	varBsBadgePaddingX,
-	varBsBadgePaddingY,
-} from '../../../theme-contract/ui/badge/_vars.css'
 import { badge } from '../../../theme-contract/ui/badge/contract.css'
-import {
-	varBsBreadcrumbBg,
-	varBsBreadcrumbBorderRadius,
-	varBsBreadcrumbDivider,
-	varBsBreadcrumbDividerColor,
-	varBsBreadcrumbItemActiveColor,
-	varBsBreadcrumbItemPaddingX,
-	varBsBreadcrumbMarginBottom,
-	varBsBreadcrumbPaddingX,
-	varBsBreadcrumbPaddingY,
-} from '../../../theme-contract/ui/breadcrumb/_vars.css'
 import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
 import { btnGroup, btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnBg,
-	varBsBtnBorderColor,
-	varBsBtnBorderRadius,
-	varBsBtnBorderWidth,
-	varBsBtnBoxShadow,
-	varBsBtnColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-	varBsBtnFocusBoxShadowRgb,
-	varBsBtnFontFamily,
-	varBsBtnFontSize,
-	varBsBtnFontWeight,
-	varBsBtnHoverBg,
-	varBsBtnHoverBorderColor,
-	varBsBtnHoverColor,
-	varBsBtnLineHeight,
-	varBsBtnPaddingX,
-	varBsBtnPaddingY,
-} from '../../../theme-contract/ui/buttons/_vars.css'
 import {
 	btn,
 	btnCheck,
@@ -2162,26 +2425,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../theme-contract/ui/buttons/contract.css'
-import {
-	varBsCardBg,
-	varBsCardBorderColor,
-	varBsCardBorderRadius,
-	varBsCardBorderWidth,
-	varBsCardBoxShadow,
-	varBsCardCapBg,
-	varBsCardCapColor,
-	varBsCardCapPaddingX,
-	varBsCardCapPaddingY,
-	varBsCardColor,
-	varBsCardGroupMargin,
-	varBsCardImgOverlayPadding,
-	varBsCardInnerBorderRadius,
-	varBsCardSpacerX,
-	varBsCardSpacerY,
-	varBsCardSubtitleColor,
-	varBsCardTitleColor,
-	varBsCardTitleSpacerY,
-} from '../../../theme-contract/ui/card/_vars.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
 import {
 	card,
 	cardBody,
@@ -2195,12 +2439,6 @@ import {
 	cardText,
 	cardTitle,
 } from '../../../theme-contract/ui/card/contract.css'
-import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
-import {
-	varBsCarouselCaptionColor,
-	varBsCarouselControlIconFilter,
-	varBsCarouselIndicatorActiveBg,
-} from '../../../theme-contract/ui/carousel/_vars.css'
 import {
 	carousel,
 	carouselCaption,
@@ -2218,34 +2456,6 @@ import {
 	carouselItemPrev,
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
-import {
-	varBsDropdownBg,
-	varBsDropdownBorderColor,
-	varBsDropdownBorderRadius,
-	varBsDropdownBorderWidth,
-	varBsDropdownBoxShadow,
-	varBsDropdownColor,
-	varBsDropdownDividerBg,
-	varBsDropdownDividerMarginY,
-	varBsDropdownFontSize,
-	varBsDropdownHeaderColor,
-	varBsDropdownHeaderPaddingX,
-	varBsDropdownHeaderPaddingY,
-	varBsDropdownInnerBorderRadius,
-	varBsDropdownItemPaddingX,
-	varBsDropdownItemPaddingY,
-	varBsDropdownLinkActiveBg,
-	varBsDropdownLinkActiveColor,
-	varBsDropdownLinkColor,
-	varBsDropdownLinkDisabledColor,
-	varBsDropdownLinkHoverBg,
-	varBsDropdownLinkHoverColor,
-	varBsDropdownMinWidth,
-	varBsDropdownPaddingX,
-	varBsDropdownPaddingY,
-	varBsDropdownSpacer,
-	varBsDropdownZindex,
-} from '../../../theme-contract/ui/dropdowns/_vars.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -2267,25 +2477,6 @@ import {
 	dropupCenter,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
-} from '../../../theme-contract/ui/list-group/_vars.css'
-import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
@@ -2299,32 +2490,6 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../theme-contract/ui/list-group/contract.css'
-import {
-	varBsBackdropBg,
-	varBsBackdropOpacity,
-	varBsBackdropZindex,
-	varBsModalBg,
-	varBsModalBorderColor,
-	varBsModalBorderRadius,
-	varBsModalBorderWidth,
-	varBsModalBoxShadow,
-	varBsModalColor,
-	varBsModalFooterBg,
-	varBsModalFooterBorderColor,
-	varBsModalFooterBorderWidth,
-	varBsModalFooterGap,
-	varBsModalHeaderBorderColor,
-	varBsModalHeaderBorderWidth,
-	varBsModalHeaderPadding,
-	varBsModalHeaderPaddingX,
-	varBsModalHeaderPaddingY,
-	varBsModalInnerBorderRadius,
-	varBsModalMargin,
-	varBsModalPadding,
-	varBsModalTitleLineHeight,
-	varBsModalWidth,
-	varBsModalZindex,
-} from '../../../theme-contract/ui/modal/_vars.css'
 import {
 	flexWrap,
 	justifyContentBetween,
@@ -2343,28 +2508,6 @@ import {
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	varBsNavbarActiveColor,
-	varBsNavbarBrandColor,
-	varBsNavbarBrandFontSize,
-	varBsNavbarBrandHoverColor,
-	varBsNavbarBrandMarginEnd,
-	varBsNavbarBrandPaddingY,
-	varBsNavbarColor,
-	varBsNavbarDisabledColor,
-	varBsNavbarHoverColor,
-	varBsNavbarNavLinkPaddingX,
-	varBsNavbarPaddingX,
-	varBsNavbarPaddingY,
-	varBsNavbarTogglerBorderColor,
-	varBsNavbarTogglerBorderRadius,
-	varBsNavbarTogglerFocusWidth,
-	varBsNavbarTogglerFontSize,
-	varBsNavbarTogglerIconBg,
-	varBsNavbarTogglerPaddingX,
-	varBsNavbarTogglerPaddingY,
-	varBsNavbarTogglerTransition,
-} from '../../../theme-contract/ui/navbar/_vars.css'
-import {
 	collapse,
 	navbar,
 	navbarBrand,
@@ -2376,25 +2519,6 @@ import {
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	varBsNavLinkColor,
-	varBsNavLinkDisabledColor,
-	varBsNavLinkFontSize,
-	varBsNavLinkFontWeight,
-	varBsNavLinkHoverColor,
-	varBsNavLinkPaddingX,
-	varBsNavLinkPaddingY,
-	varBsNavPillsBorderRadius,
-	varBsNavPillsLinkActiveBg,
-	varBsNavPillsLinkActiveColor,
-	varBsNavTabsBorderColor,
-	varBsNavTabsBorderRadius,
-	varBsNavTabsBorderWidth,
-	varBsNavTabsLinkActiveBg,
-	varBsNavTabsLinkActiveBorderColor,
-	varBsNavTabsLinkActiveColor,
-	varBsNavTabsLinkHoverBorderColor,
-} from '../../../theme-contract/ui/navs/_vars.css'
 import {
 	fade,
 	nav,
@@ -2409,28 +2533,6 @@ import {
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
 import {
-	varBsPaginationActiveBg,
-	varBsPaginationActiveBorderColor,
-	varBsPaginationActiveColor,
-	varBsPaginationBg,
-	varBsPaginationBorderColor,
-	varBsPaginationBorderRadius,
-	varBsPaginationBorderWidth,
-	varBsPaginationColor,
-	varBsPaginationDisabledBg,
-	varBsPaginationDisabledBorderColor,
-	varBsPaginationDisabledColor,
-	varBsPaginationFocusBg,
-	varBsPaginationFocusBoxShadow,
-	varBsPaginationFocusColor,
-	varBsPaginationFontSize,
-	varBsPaginationHoverBg,
-	varBsPaginationHoverBorderColor,
-	varBsPaginationHoverColor,
-	varBsPaginationPaddingX,
-	varBsPaginationPaddingY,
-} from '../../../theme-contract/ui/pagination/_vars.css'
-import {
 	pageItem,
 	pageItemActive,
 	pageItemDisabled,
@@ -2439,28 +2541,6 @@ import {
 	paginationLg,
 	paginationSm,
 } from '../../../theme-contract/ui/pagination/contract.css'
-import {
-	varBsPopoverArrowBorder,
-	varBsPopoverArrowHeight,
-	varBsPopoverArrowWidth,
-	varBsPopoverBg,
-	varBsPopoverBodyColor,
-	varBsPopoverBodyPaddingX,
-	varBsPopoverBodyPaddingY,
-	varBsPopoverBorderColor,
-	varBsPopoverBorderRadius,
-	varBsPopoverBorderWidth,
-	varBsPopoverBoxShadow,
-	varBsPopoverFontSize,
-	varBsPopoverHeaderBg,
-	varBsPopoverHeaderColor,
-	varBsPopoverHeaderFontSize,
-	varBsPopoverHeaderPaddingX,
-	varBsPopoverHeaderPaddingY,
-	varBsPopoverInnerBorderRadius,
-	varBsPopoverMaxWidth,
-	varBsPopoverZindex,
-} from '../../../theme-contract/ui/popovers/_vars.css'
 import {
 	bsPopoverAuto,
 	bsPopoverBottom,
@@ -2474,48 +2554,13 @@ import {
 	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
-	varBsProgressBarBg,
-	varBsProgressBarColor,
-	varBsProgressBarTransition,
-	varBsProgressBg,
-	varBsProgressBorderRadius,
-	varBsProgressBoxShadow,
-	varBsProgressFontSize,
-	varBsProgressHeight,
-} from '../../../theme-contract/ui/progress/_vars.css'
-import {
 	progress,
 	progressBar,
 	progressBarAnimated,
 	progressBarStriped,
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
-import {
-	varBsSpinnerAnimationName,
-	varBsSpinnerAnimationSpeed,
-	varBsSpinnerBorderWidth,
-	varBsSpinnerHeight,
-	varBsSpinnerVerticalAlign,
-	varBsSpinnerWidth,
-} from '../../../theme-contract/ui/spinners/_vars.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	varBsToastBg,
-	varBsToastBorderColor,
-	varBsToastBorderRadius,
-	varBsToastBorderWidth,
-	varBsToastBoxShadow,
-	varBsToastColor,
-	varBsToastFontSize,
-	varBsToastHeaderBg,
-	varBsToastHeaderBorderColor,
-	varBsToastHeaderColor,
-	varBsToastMaxWidth,
-	varBsToastPaddingX,
-	varBsToastPaddingY,
-	varBsToastSpacing,
-	varBsToastZindex,
-} from '../../../theme-contract/ui/toasts/_vars.css'
 import {
 	toast,
 	toastBody,
@@ -2523,20 +2568,6 @@ import {
 	toastShow,
 	toastShowing,
 } from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	varBsTooltipArrowHeight,
-	varBsTooltipArrowWidth,
-	varBsTooltipBg,
-	varBsTooltipBorderRadius,
-	varBsTooltipColor,
-	varBsTooltipFontSize,
-	varBsTooltipMargin,
-	varBsTooltipMaxWidth,
-	varBsTooltipOpacity,
-	varBsTooltipPaddingX,
-	varBsTooltipPaddingY,
-	varBsTooltipZindex,
-} from '../../../theme-contract/ui/tooltips/_vars.css'
 import {
 	tooltipArrow,
 	tooltipFade,
@@ -2586,33 +2617,6 @@ import {
 	textMuted,
 	visuallyHidden,
 } from '../../../theme-contract/utilities/contract.css'
-import {
-	varBsAspectRatio,
-	varBsBgOpacity,
-	varBsBorderOpacity,
-	varBsBtnCloseFilter,
-	varBsCardHeight,
-	varBsLinkOpacity,
-	varBsLinkUnderlineOpacity,
-	varBsNavUnderlineBorderWidth,
-	varBsNavUnderlineGap,
-	varBsNavUnderlineLinkActiveColor,
-	varBsOffcanvasBg,
-	varBsOffcanvasBorderColor,
-	varBsOffcanvasBorderWidth,
-	varBsOffcanvasBoxShadow,
-	varBsOffcanvasColor,
-	varBsOffcanvasHeight,
-	varBsOffcanvasPaddingX,
-	varBsOffcanvasPaddingY,
-	varBsOffcanvasTitleLineHeight,
-	varBsOffcanvasTransition,
-	varBsOffcanvasWidth,
-	varBsOffcanvasZindex,
-	varBsPosition,
-	varBsTextOpacity,
-} from '../../../theme-contract/utilities/generated/_vars.css'
-import { ceruleanScope } from '../scope.css'
 
 globalStyle(`${ceruleanScope}${vars}`, {
 	vars: {
@@ -2681,12 +2685,9 @@ globalStyle(`${ceruleanScope}${vars}`, {
 		[varBsDarkBorderSubtle]: '#adb5bd',
 		[varBsWhiteRgb]: '255, 255, 255',
 		[varBsBlackRgb]: '0, 0, 0',
-		[varBsFontSansSerif]:
-			'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-		[varBsFontMonospace]:
-			'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-		[varBsGradient]:
-			'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
+		[varBsFontSansSerif]: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+		[varBsFontMonospace]: 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+		[varBsGradient]: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))',
 		[varBsBodyFontFamily]: varBsFontSansSerif,
 		[varBsBodyFontSize]: '1rem',
 		[varBsBodyFontWeight]: '400',
@@ -3351,7 +3352,7 @@ globalStyle(`:where(${ceruleanScope}${elSelect})`, {
 	textTransform: 'none',
 })
 
-globalStyle(`[role=button]`, {
+globalStyle(`${ceruleanScope}[role=button]`, {
 	cursor: 'pointer',
 })
 
@@ -3363,26 +3364,23 @@ globalStyle(`${ceruleanScope}${elSelect}:disabled`, {
 	opacity: '1',
 })
 
-globalStyle(
-	`[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`,
-	{
-		display: 'none !important',
-	},
-)
+globalStyle(`${ceruleanScope}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator`, {
+	display: 'none !important',
+})
 
 globalStyle(`:where(${ceruleanScope}${elButton})`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=button]`, {
+globalStyle(`${ceruleanScope}[type=button]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=reset]`, {
+globalStyle(`${ceruleanScope}[type=reset]`, {
 	WebkitAppearance: 'button',
 })
 
-globalStyle(`[type=submit]`, {
+globalStyle(`${ceruleanScope}[type=submit]`, {
 	WebkitAppearance: 'button',
 })
 
@@ -3390,15 +3388,15 @@ globalStyle(`${ceruleanScope}${elButton}:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=button]:not(:disabled)`, {
+globalStyle(`${ceruleanScope}[type=button]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=reset]:not(:disabled)`, {
+globalStyle(`${ceruleanScope}[type=reset]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
-globalStyle(`[type=submit]:not(:disabled)`, {
+globalStyle(`${ceruleanScope}[type=submit]:not(:disabled)`, {
 	cursor: 'pointer',
 })
 
@@ -3471,12 +3469,12 @@ globalStyle(`::-webkit-inner-spin-button`, {
 	height: 'auto',
 })
 
-globalStyle(`[type=search]`, {
+globalStyle(`${ceruleanScope}[type=search]`, {
 	WebkitAppearance: 'textfield',
 	outlineOffset: '-2px',
 })
 
-globalStyle(`[type=search]::-webkit-search-cancel-button`, {
+globalStyle(`${ceruleanScope}[type=search]::-webkit-search-cancel-button`, {
 	cursor: 'pointer',
 	filter: 'grayscale(1)',
 })
@@ -3516,7 +3514,7 @@ globalStyle(`:where(${ceruleanScope}${elProgress})`, {
 	verticalAlign: 'baseline',
 })
 
-globalStyle(`[hidden]`, {
+globalStyle(`${ceruleanScope}[hidden]`, {
 	display: 'none !important',
 })
 
@@ -6899,11 +6897,11 @@ globalStyle(`${ceruleanScope}${table} > :not(caption) > * > *`, {
 	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-globalStyle(`${ceruleanScope}${table} > :where(${ceruleanScope}${tableSection})`, {
+globalStyle(`${ceruleanScope}${table} > ${ceruleanScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${ceruleanScope}${table} > :where(${ceruleanScope}${tableSection})`, {
+globalStyle(`${ceruleanScope}${table} > ${ceruleanScope}${tableSection}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -6935,25 +6933,19 @@ globalStyle(`${ceruleanScope}${tableBorderless} > :not(:first-child)`, {
 	borderTopWidth: '0',
 })
 
-globalStyle(
-	`${ceruleanScope}${tableStriped} > :where(${ceruleanScope}${tableSection}) > ${ceruleanScope}${tableRow}:nth-of-type(odd) > *`,
-	{
-		vars: {
-			[varBsTableColorType]: varBsTableStripedColor,
-			[varBsTableBgType]: varBsTableStripedBg,
-		},
+globalStyle(`${ceruleanScope}${tableStriped} > ${ceruleanScope}${tableSection} > ${ceruleanScope}${tableRow}:nth-of-type(odd) > *`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${tableStripedColumns} > :not(caption) > :where(${ceruleanScope}${tableRow}) > :nth-child(even)`,
-	{
-		vars: {
-			[varBsTableColorType]: varBsTableStripedColor,
-			[varBsTableBgType]: varBsTableStripedBg,
-		},
+globalStyle(`${ceruleanScope}${tableStripedColumns} > :not(caption) > ${ceruleanScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${tableActive}`, {
 	vars: {
@@ -6962,15 +6954,12 @@ globalStyle(`${ceruleanScope}${tableActive}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${tableHover} > :where(${ceruleanScope}${tableSection}) > ${ceruleanScope}${tableRow}:hover > *`,
-	{
-		vars: {
-			[varBsTableColorState]: varBsTableHoverColor,
-			[varBsTableBgState]: varBsTableHoverBg,
-		},
+globalStyle(`${ceruleanScope}${tableHover} > ${ceruleanScope}${tableSection} > ${ceruleanScope}${tableRow}:hover > *`, {
+	vars: {
+		[varBsTableColorState]: varBsTableHoverColor,
+		[varBsTableBgState]: varBsTableHoverBg,
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${tablePrimary}`, {
 	vars: {
@@ -7261,10 +7250,8 @@ globalStyle(`${ceruleanScope}${formControl}::-webkit-file-upload-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	WebkitTransition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${formControl}::file-selector-button`, {
@@ -7280,8 +7267,7 @@ globalStyle(`${ceruleanScope}${formControl}::file-selector-button`, {
 	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
 	borderRadius: '0',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${formControl}::-webkit-file-upload-button`, {
@@ -7301,19 +7287,13 @@ globalStyle(`${ceruleanScope}${formControl}::file-selector-button`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`,
-	{
-		backgroundColor: varBsSecondaryBg,
-	},
-)
+globalStyle(`${ceruleanScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
+	backgroundColor: varBsSecondaryBg,
+})
 
-globalStyle(
-	`${ceruleanScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`,
-	{
-		backgroundColor: varBsSecondaryBg,
-	},
-)
+globalStyle(`${ceruleanScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
+	backgroundColor: varBsSecondaryBg,
+})
 
 globalStyle(`${ceruleanScope}${formControlPlaintext}`, {
 	display: 'block',
@@ -7425,8 +7405,7 @@ globalStyle(`${ceruleanScope}${formControlColor}${formControlLg}`, {
 
 globalStyle(`${ceruleanScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23343a40\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
 	display: 'block',
 	width: '100%',
@@ -7497,10 +7476,9 @@ globalStyle(`${ceruleanScope}${formSelectLg}`, {
 	borderRadius: varBsBorderRadiusLg,
 })
 
-globalStyle(`[data-bs-theme=dark] ${ceruleanScope}${formSelect}`, {
+globalStyle(`${ceruleanScope}[data-bs-theme=dark] ${ceruleanScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23dee2e6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -7576,22 +7554,19 @@ globalStyle(`${ceruleanScope}${formCheckInput}:checked`, {
 
 globalStyle(`${ceruleanScope}${formCheckInput}:checked[type=checkbox]`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'m6 10 3 3 6-6\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${ceruleanScope}${formCheckInput}:checked[type=radio]`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'2\' fill=\'%23fff\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${ceruleanScope}${formCheckInput}[type=checkbox]:indeterminate`, {
 	vars: {
-		[varBsFormCheckBgImage]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'M6 10h8\'/%3e%3c/svg%3e")',
 	},
 	backgroundColor: '#2fa4e7',
 	borderColor: '#2fa4e7',
@@ -7619,8 +7594,7 @@ globalStyle(`${ceruleanScope}${formSwitch}`, {
 
 globalStyle(`${ceruleanScope}${formSwitch} ${ceruleanScope}${formCheckInput}`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
 	},
 	width: '2em',
 	marginLeft: '-2.5em',
@@ -7640,15 +7614,13 @@ globalStyle(`${ceruleanScope}${formSwitch} ${ceruleanScope}${formCheckInput}`, {
 
 globalStyle(`${ceruleanScope}${formSwitch} ${ceruleanScope}${formCheckInput}:focus`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2397d2f3'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%2397d2f3\'/%3e%3c/svg%3e")',
 	},
 })
 
 globalStyle(`${ceruleanScope}${formSwitch} ${ceruleanScope}${formCheckInput}:checked`, {
 	vars: {
-		[varBsFormSwitchBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23fff\'/%3e%3c/svg%3e")',
 	},
 	backgroundPosition: 'right center',
 })
@@ -7686,15 +7658,11 @@ globalStyle(`${ceruleanScope}${btnCheck}:disabled + ${ceruleanScope}${btn}`, {
 	opacity: '0.65',
 })
 
-globalStyle(
-	`[data-bs-theme=dark] ${ceruleanScope}${formSwitch} ${ceruleanScope}${formCheckInput}:not(:checked):not(:focus)`,
-	{
-		vars: {
-			[varBsFormSwitchBg]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e\")",
-		},
+globalStyle(`${ceruleanScope}[data-bs-theme=dark] ${ceruleanScope}${formSwitch} ${ceruleanScope}${formCheckInput}:not(:checked):not(:focus)`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${formRange}`, {
 	width: '100%',
@@ -7731,10 +7699,8 @@ globalStyle(`${ceruleanScope}${formRange}::-webkit-slider-thumb`, {
 	backgroundColor: '#2fa4e7',
 	border: '0',
 	borderRadius: '1rem',
-	WebkitTransition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${formRange}::-webkit-slider-thumb`, {
@@ -7768,10 +7734,8 @@ globalStyle(`${ceruleanScope}${formRange}::-moz-range-thumb`, {
 	backgroundColor: '#2fa4e7',
 	border: '0',
 	borderRadius: '1rem',
-	MozTransition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-	transition:
-		'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${formRange}::-moz-range-thumb`, {
@@ -7831,7 +7795,7 @@ globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formSelect}`, {
 	lineHeight: '1.25',
 })
 
-globalStyle(`${ceruleanScope}${formFloating} > :where(${ceruleanScope}${elLabel})`, {
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${elLabel}`, {
 	position: 'absolute',
 	top: '0',
 	left: '0',
@@ -7850,7 +7814,7 @@ globalStyle(`${ceruleanScope}${formFloating} > :where(${ceruleanScope}${elLabel}
 	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-globalStyle(`${ceruleanScope}${formFloating} > :where(${ceruleanScope}${elLabel})`, {
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${elLabel}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -7870,78 +7834,57 @@ globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}::-
 	color: 'transparent',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}::-moz-placeholder`,
-	{
-		color: 'transparent',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}::-moz-placeholder`, {
+	color: 'transparent',
+})
 
 globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}::placeholder`, {
 	color: 'transparent',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}::placeholder`,
-	{
-		color: 'transparent',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}::placeholder`, {
+	color: 'transparent',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:-moz-placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:focus`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:not(:placeholder-shown)`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:not(:placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:-webkit-autofill`, {
 	paddingTop: '1.625rem',
 	paddingBottom: '0.625rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:-webkit-autofill`,
-	{
-		paddingTop: '1.625rem',
-		paddingBottom: '0.625rem',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext}:-webkit-autofill`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+})
 
 globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formSelect}`, {
 	paddingTop: '1.625rem',
@@ -7949,111 +7892,75 @@ globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formSelect}`, {
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:-moz-placeholder-shown) ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:-moz-placeholder-shown) ~ ${ceruleanScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:focus ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:focus ~ ${ceruleanScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:placeholder-shown) ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:not(:placeholder-shown) ~ ${ceruleanScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext} ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext} ~ ${ceruleanScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formSelect} ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formSelect} ~ ${ceruleanScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:-webkit-autofill ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:-webkit-autofill ~ ${ceruleanScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${ceruleanScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.375rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: varBsBodyBg,
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${ceruleanScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:focus ~ ${ceruleanScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.375rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: varBsBodyBg,
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:focus ~ ${ceruleanScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:not(:placeholder-shown) ~ ${ceruleanScope}${elLabel}::after`,
-	{
-		position: 'absolute',
-		inset: '1rem 0.375rem',
-		zIndex: '-1',
-		height: '1.5em',
-		content: '""',
-		backgroundColor: varBsBodyBg,
-		borderRadius: varBsBorderRadius,
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:not(:placeholder-shown) ~ ${ceruleanScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+	borderRadius: varBsBorderRadius,
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:disabled ~ ${ceruleanScope}${elLabel}::after`,
-	{
-		backgroundColor: varBsSecondaryBg,
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${elTextarea}:disabled ~ ${ceruleanScope}${elLabel}::after`, {
+	backgroundColor: varBsSecondaryBg,
+})
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext} ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		borderWidth: `${varBsBorderWidth} 0`,
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControlPlaintext} ~ ${ceruleanScope}${elLabel}`, {
+	borderWidth: `${varBsBorderWidth} 0`,
+})
 
-globalStyle(`${ceruleanScope}${formFloating} > :disabled ~ :where(${ceruleanScope}${elLabel})`, {
+globalStyle(`${ceruleanScope}${formFloating} > :disabled ~ ${ceruleanScope}${elLabel}`, {
 	color: '#868e96',
 })
 
-globalStyle(
-	`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:disabled ~ :where(${ceruleanScope}${elLabel})`,
-	{
-		color: '#868e96',
-	},
-)
+globalStyle(`${ceruleanScope}${formFloating} > ${ceruleanScope}${formControl}:disabled ~ ${ceruleanScope}${elLabel}`, {
+	color: '#868e96',
+})
 
 globalStyle(`${ceruleanScope}${inputGroup}`, {
 	position: 'relative',
@@ -8176,94 +8083,61 @@ globalStyle(`${ceruleanScope}${inputGroupSm} > ${ceruleanScope}${formSelect}`, {
 	paddingRight: '3rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}${dropdownToggle}:nth-last-child(n+3)`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}${dropdownToggle}:nth-last-child(n+3)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}${formFloating}:not(:last-child) > ${ceruleanScope}${formControl}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}${formFloating}:not(:last-child) > ${ceruleanScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}${formFloating}:not(:last-child) > ${ceruleanScope}${formSelect}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}:not(${hasValidation}) > ${ceruleanScope}${formFloating}:not(:last-child) > ${ceruleanScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}${dropdownToggle}:nth-last-child(n+4)`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}${formFloating}:nth-last-child(n+3) > ${ceruleanScope}${formControl}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}${formFloating}:nth-last-child(n+3) > ${ceruleanScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}${formFloating}:nth-last-child(n+3) > ${ceruleanScope}${formSelect}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup}${hasValidation} > ${ceruleanScope}${formFloating}:nth-last-child(n+3) > ${ceruleanScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`,
-	{
-		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:first-child) > ${ceruleanScope}${formControl}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:first-child) > ${ceruleanScope}${formControl}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:first-child) > ${ceruleanScope}${formSelect}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:first-child) > ${ceruleanScope}${formSelect}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${ceruleanScope}${validFeedback}`, {
 	display: 'none',
@@ -8306,8 +8180,7 @@ globalStyle(`${ceruleanScope}${isValid} ~ ${ceruleanScope}${validTooltip}`, {
 globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formControl}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2373a839' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2373a839\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8316,8 +8189,7 @@ globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formControl}:vali
 globalStyle(`${ceruleanScope}${formControl}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2373a839' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2373a839\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8351,36 +8223,27 @@ globalStyle(`${ceruleanScope}${formSelect}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:valid:not([multiple]):not([size])`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2373a839' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:valid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2373a839\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:valid:not([multiple])[size="1"]`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2373a839' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:valid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2373a839\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
 globalStyle(`${ceruleanScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2373a839' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2373a839\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8389,8 +8252,7 @@ globalStyle(`${ceruleanScope}${formSelect}${isValid}:not([multiple]):not([size])
 
 globalStyle(`${ceruleanScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2373a839' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%2373a839\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8439,62 +8301,41 @@ globalStyle(`${ceruleanScope}${formCheckInput}${isValid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${formCheckInput}:valid ~ ${ceruleanScope}${formCheckLabel}`,
-	{
-		color: varBsFormValidColor,
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formCheckInput}:valid ~ ${ceruleanScope}${formCheckLabel}`, {
+	color: varBsFormValidColor,
+})
 
 globalStyle(`${ceruleanScope}${formCheckInput}${isValid} ~ ${ceruleanScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-globalStyle(
-	`${ceruleanScope}${formCheckInline} ${ceruleanScope}${formCheckInput} ~ ${ceruleanScope}${validFeedback}`,
-	{
-		marginLeft: '0.5em',
-	},
-)
+globalStyle(`${ceruleanScope}${formCheckInline} ${ceruleanScope}${formCheckInput} ~ ${ceruleanScope}${validFeedback}`, {
+	marginLeft: '0.5em',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus):valid`, {
+	zIndex: '3',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus)${isValid}`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus)${isValid}`, {
+	zIndex: '3',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus):valid`, {
+	zIndex: '3',
+})
 
 globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus)${isValid}`, {
 	zIndex: '3',
 })
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within):valid`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within):valid`, {
+	zIndex: '3',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within)${isValid}`,
-	{
-		zIndex: '3',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within)${isValid}`, {
+	zIndex: '3',
+})
 
 globalStyle(`${ceruleanScope}${invalidFeedback}`, {
 	display: 'none',
@@ -8537,8 +8378,7 @@ globalStyle(`${ceruleanScope}${isInvalid} ~ ${ceruleanScope}${invalidTooltip}`, 
 globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formControl}:invalid`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23c71c22'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23c71c22' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23c71c22\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23c71c22\' stroke=\'none\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8547,8 +8387,7 @@ globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formControl}:inva
 globalStyle(`${ceruleanScope}${formControl}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 	paddingRight: 'calc(1.5em + 0.75rem)',
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23c71c22'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23c71c22' stroke='none'/%3e%3c/svg%3e\")",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23c71c22\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23c71c22\' stroke=\'none\'/%3e%3c/svg%3e")',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
 	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
@@ -8582,36 +8421,27 @@ globalStyle(`${ceruleanScope}${formSelect}${isInvalid}`, {
 	borderColor: varBsFormInvalidBorderColor,
 })
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:invalid:not([multiple]):not([size])`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23c71c22'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23c71c22' stroke='none'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:invalid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23c71c22\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23c71c22\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:invalid:not([multiple])[size="1"]`,
-	{
-		vars: {
-			[varBsFormSelectBgIcon]:
-				"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23c71c22'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23c71c22' stroke='none'/%3e%3c/svg%3e\")",
-		},
-		paddingRight: '4.125rem',
-		backgroundPosition: 'right 0.75rem center, center right 2.25rem',
-		backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23c71c22\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23c71c22\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-)
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
 
 globalStyle(`${ceruleanScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23c71c22'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23c71c22' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23c71c22\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23c71c22\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8620,8 +8450,7 @@ globalStyle(`${ceruleanScope}${formSelect}${isInvalid}:not([multiple]):not([size
 
 globalStyle(`${ceruleanScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormSelectBgIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23c71c22'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23c71c22' stroke='none'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23c71c22\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23c71c22\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
 	paddingRight: '4.125rem',
 	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
@@ -8670,65 +8499,41 @@ globalStyle(`${ceruleanScope}${formCheckInput}${isInvalid}:focus`, {
 	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${formCheckInput}:invalid ~ ${ceruleanScope}${formCheckLabel}`,
-	{
-		color: varBsFormInvalidColor,
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${formCheckInput}:invalid ~ ${ceruleanScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
 
 globalStyle(`${ceruleanScope}${formCheckInput}${isInvalid} ~ ${ceruleanScope}${formCheckLabel}`, {
 	color: varBsFormInvalidColor,
 })
 
-globalStyle(
-	`${ceruleanScope}${formCheckInline} ${ceruleanScope}${formCheckInput} ~ ${ceruleanScope}${invalidFeedback}`,
-	{
-		marginLeft: '0.5em',
-	},
-)
+globalStyle(`${ceruleanScope}${formCheckInline} ${ceruleanScope}${formCheckInput} ~ ${ceruleanScope}${invalidFeedback}`, {
+	marginLeft: '0.5em',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus):invalid`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus)${isInvalid}`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formControl}:not(:focus)${isInvalid}`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus):invalid`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus)${isInvalid}`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formSelect}:not(:focus)${isInvalid}`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within):invalid`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${ceruleanScope}${wasValidated} ${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within):invalid`, {
+	zIndex: '4',
+})
 
-globalStyle(
-	`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within)${isInvalid}`,
-	{
-		zIndex: '4',
-	},
-)
+globalStyle(`${ceruleanScope}${inputGroup} > ${ceruleanScope}${formFloating}:not(:focus-within)${isInvalid}`, {
+	zIndex: '4',
+})
 
 globalStyle(`${ceruleanScope}${btn}`, {
 	vars: {
@@ -8744,8 +8549,7 @@ globalStyle(`${ceruleanScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
@@ -8766,8 +8570,7 @@ globalStyle(`${ceruleanScope}${btn}`, {
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${btn}`, {
@@ -9861,19 +9664,13 @@ globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btn}`, {
 	flex: '1 1 auto',
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnCheck}:checked + ${ceruleanScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnCheck}:checked + ${ceruleanScope}${btn}`, {
+	zIndex: '1',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnCheck}:focus + ${ceruleanScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnCheck}:focus + ${ceruleanScope}${btn}`, {
+	zIndex: '1',
+})
 
 globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}:hover`, {
 	zIndex: '1',
@@ -9891,19 +9688,13 @@ globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}${active}`, {
 	zIndex: '1',
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnCheck}:checked + ${ceruleanScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnCheck}:checked + ${ceruleanScope}${btn}`, {
+	zIndex: '1',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnCheck}:focus + ${ceruleanScope}${btn}`,
-	{
-		zIndex: '1',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnCheck}:focus + ${ceruleanScope}${btn}`, {
+	zIndex: '1',
+})
 
 globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btn}:hover`, {
 	zIndex: '1',
@@ -9935,61 +9726,43 @@ globalStyle(`${ceruleanScope}${btnGroup}`, {
 	borderRadius: varBsBorderRadius,
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}:not(${btnCheck}:first-child) + ${ceruleanScope}${btn}`,
-	{
-		marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}:not(${btnCheck}:first-child) + ${ceruleanScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
 
 globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnGroup}:not(:first-child)`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}:not(:last-child):not(${dropdownToggle})`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}${dropdownToggleSplit}:first-child`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnGroup}:not(:last-child) > ${ceruleanScope}${btn}`,
-	{
-		borderTopRightRadius: '0',
-		borderBottomRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnGroup}:not(:last-child) > ${ceruleanScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
 globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}:not(${btnCheck}) + ${ceruleanScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}:not(${btnCheck}) + ${ceruleanScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnGroup}:not(:first-child) > ${ceruleanScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btnGroup}:not(:first-child) > ${ceruleanScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${ceruleanScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.5625rem',
@@ -10017,26 +9790,20 @@ globalStyle(`${ceruleanScope}${btnSm} + ${ceruleanScope}${dropdownToggleSplit}`,
 	paddingLeft: '0.375rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroupSm} > ${ceruleanScope}${btn} + ${ceruleanScope}${dropdownToggleSplit}`,
-	{
-		paddingRight: '0.375rem',
-		paddingLeft: '0.375rem',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupSm} > ${ceruleanScope}${btn} + ${ceruleanScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
 
 globalStyle(`${ceruleanScope}${btnLg} + ${ceruleanScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroupLg} > ${ceruleanScope}${btn} + ${ceruleanScope}${dropdownToggleSplit}`,
-	{
-		paddingRight: '0.75rem',
-		paddingLeft: '0.75rem',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupLg} > ${ceruleanScope}${btn} + ${ceruleanScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
 
 globalStyle(`${ceruleanScope}${btnGroupVertical}`, {
 	flexDirection: 'column',
@@ -10060,42 +9827,30 @@ globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnGroup}:n
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btn}:not(:last-child):not(${dropdownToggle})`,
-	{
-		borderBottomRightRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnGroup}:not(:last-child) > ${ceruleanScope}${btn}`,
-	{
-		borderBottomRightRadius: '0',
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnGroup}:not(:last-child) > ${ceruleanScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btn}:nth-child(n+3)`, {
 	borderTopLeftRadius: '0',
 	borderTopRightRadius: '0',
 })
 
-globalStyle(
-	`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}:not(${btnCheck}) + ${ceruleanScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}:not(${btnCheck}) + ${ceruleanScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnGroup}:not(:first-child) > ${ceruleanScope}${btn}`,
-	{
-		borderTopLeftRadius: '0',
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btnGroup}:not(:first-child) > ${ceruleanScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
 
 globalStyle(`${ceruleanScope}${nav}`, {
 	vars: {
@@ -10122,8 +9877,7 @@ globalStyle(`${ceruleanScope}${navLink}`, {
 	textDecoration: 'none',
 	background: 'none',
 	border: '0',
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${navLink}`, {
@@ -10195,14 +9949,11 @@ globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${navLink}${navLinkActiv
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-globalStyle(
-	`${ceruleanScope}${navTabs} ${ceruleanScope}${navItem}${show} ${ceruleanScope}${navLink}`,
-	{
-		color: varBsNavTabsLinkActiveColor,
-		backgroundColor: varBsNavTabsLinkActiveBg,
-		borderColor: varBsNavTabsLinkActiveBorderColor,
-	},
-)
+globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${navItem}${show} ${ceruleanScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
 globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${dropdownMenu}`, {
 	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
@@ -10261,14 +10012,11 @@ globalStyle(`${ceruleanScope}${navUnderline} ${ceruleanScope}${navLink}${navLink
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(
-	`${ceruleanScope}${navUnderline} ${ceruleanScope}${show} > ${ceruleanScope}${navLink}`,
-	{
-		fontWeight: '700',
-		color: varBsNavUnderlineLinkActiveColor,
-		borderBottomColor: 'currentcolor',
-	},
-)
+globalStyle(`${ceruleanScope}${navUnderline} ${ceruleanScope}${show} > ${ceruleanScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
 
 globalStyle(`${ceruleanScope}${navFill} > ${ceruleanScope}${navLink}`, {
 	flex: '1 1 auto',
@@ -10296,12 +10044,9 @@ globalStyle(`${ceruleanScope}${navFill} ${ceruleanScope}${navItem} ${ceruleanSco
 	width: '100%',
 })
 
-globalStyle(
-	`${ceruleanScope}${navJustified} ${ceruleanScope}${navItem} ${ceruleanScope}${navLink}`,
-	{
-		width: '100%',
-	},
-)
+globalStyle(`${ceruleanScope}${navJustified} ${ceruleanScope}${navItem} ${ceruleanScope}${navLink}`, {
+	width: '100%',
+})
 
 globalStyle(`${ceruleanScope}${tabContent} > ${ceruleanScope}${tabPane}`, {
 	display: 'none',
@@ -10328,8 +10073,7 @@ globalStyle(`${ceruleanScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2873, 80, 87, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%2873, 80, 87, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -10444,7 +10188,7 @@ globalStyle(`${ceruleanScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${ceruleanScope}${navbarText} :where(${ceruleanScope}${link})`, {
+globalStyle(`${ceruleanScope}${navbarText} ${ceruleanScope}${link}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10524,28 +10268,22 @@ globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				position: 'absolute',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				paddingRight: varBsNavbarNavLinkPaddingX,
-				paddingLeft: varBsNavbarNavLinkPaddingX,
-			},
+globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10589,30 +10327,24 @@ globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				display: 'none',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandMd}`, {
 	'@media': {
@@ -10631,28 +10363,22 @@ globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				position: 'absolute',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				paddingRight: varBsNavbarNavLinkPaddingX,
-				paddingLeft: varBsNavbarNavLinkPaddingX,
-			},
+globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10696,30 +10422,24 @@ globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				display: 'none',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandMd} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandLg}`, {
 	'@media': {
@@ -10738,28 +10458,22 @@ globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				position: 'absolute',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				paddingRight: varBsNavbarNavLinkPaddingX,
-				paddingLeft: varBsNavbarNavLinkPaddingX,
-			},
+globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10803,30 +10517,24 @@ globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				display: 'none',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandLg} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandXl}`, {
 	'@media': {
@@ -10845,28 +10553,22 @@ globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				position: 'absolute',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				paddingRight: varBsNavbarNavLinkPaddingX,
-				paddingLeft: varBsNavbarNavLinkPaddingX,
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${navbarNavScroll}`, {
 	'@media': {
@@ -10910,30 +10612,24 @@ globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				display: 'none',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandXxl}`, {
 	'@media': {
@@ -10952,28 +10648,22 @@ globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${navbarNav}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				position: 'absolute',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			position: 'absolute',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				paddingRight: varBsNavbarNavLinkPaddingX,
-				paddingLeft: varBsNavbarNavLinkPaddingX,
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${navbarNavScroll}`, {
 	'@media': {
@@ -11017,30 +10707,24 @@ globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${offcanvas}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				display: 'none',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'none',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				display: 'flex',
-				flexGrow: '0',
-				padding: '0',
-				overflowY: 'visible',
-			},
+globalStyle(`${ceruleanScope}${navbarExpandXxl} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'flex',
+			flexGrow: '0',
+			padding: '0',
+			overflowY: 'visible',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${navbarExpand}`, {
 	flexWrap: 'nowrap',
@@ -11051,20 +10735,14 @@ globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${navbarNav}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpand} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`,
-	{
-		position: 'absolute',
-	},
-)
+globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${navbarNav} ${ceruleanScope}${dropdownMenu}`, {
+	position: 'absolute',
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpand} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`,
-	{
-		paddingRight: varBsNavbarNavLinkPaddingX,
-		paddingLeft: varBsNavbarNavLinkPaddingX,
-	},
-)
+globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
 
 globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${navbarNavScroll}`, {
 	overflow: 'visible',
@@ -11092,22 +10770,16 @@ globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${offcanvas}`, {
 	transition: 'none',
 })
 
-globalStyle(
-	`${ceruleanScope}${navbarExpand} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`,
-	{
-		display: 'none',
-	},
-)
+globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasHeader}`, {
+	display: 'none',
+})
 
-globalStyle(
-	`${ceruleanScope}${navbarExpand} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`,
-	{
-		display: 'flex',
-		flexGrow: '0',
-		padding: '0',
-		overflowY: 'visible',
-	},
-)
+globalStyle(`${ceruleanScope}${navbarExpand} ${ceruleanScope}${offcanvas} ${ceruleanScope}${offcanvasBody}`, {
+	display: 'flex',
+	flexGrow: '0',
+	padding: '0',
+	overflowY: 'visible',
+})
 
 globalStyle(`${ceruleanScope}${navbarDark}`, {
 	vars: {
@@ -11118,8 +10790,7 @@ globalStyle(`${ceruleanScope}${navbarDark}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.8%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11132,15 +10803,13 @@ globalStyle(`${ceruleanScope}${navbar}[data-bs-theme=dark]`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.8%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
-globalStyle(`[data-bs-theme=dark] ${ceruleanScope}${navbarTogglerIcon}`, {
+globalStyle(`${ceruleanScope}[data-bs-theme=dark] ${ceruleanScope}${navbarTogglerIcon}`, {
 	vars: {
-		[varBsNavbarTogglerIconBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.8%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11179,7 +10848,7 @@ globalStyle(`${ceruleanScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-globalStyle(`${ceruleanScope}${card} > :where(${ceruleanScope}${horizontalRule})`, {
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${horizontalRule}`, {
 	marginRight: '0',
 	marginLeft: '0',
 })
@@ -11201,19 +10870,13 @@ globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${listGroup}:last-child`,
 	borderBottomLeftRadius: varBsCardInnerBorderRadius,
 })
 
-globalStyle(
-	`${ceruleanScope}${card} > ${ceruleanScope}${cardHeader} + ${ceruleanScope}${listGroup}`,
-	{
-		borderTop: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${cardHeader} + ${ceruleanScope}${listGroup}`, {
+	borderTop: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${card} > ${ceruleanScope}${listGroup} + ${ceruleanScope}${cardFooter}`,
-	{
-		borderTop: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${listGroup} + ${ceruleanScope}${cardFooter}`, {
+	borderTop: '0',
+})
 
 globalStyle(`${ceruleanScope}${cardBody}`, {
 	flex: '1 1 auto',
@@ -11362,49 +11025,37 @@ globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-ch
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardImgTop}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardImgBottom}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardFooter}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:last-child) > ${ceruleanScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child)`, {
 	'@media': {
@@ -11415,56 +11066,43 @@ globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-c
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardImgTop}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardHeader}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardImgBottom}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardFooter}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${cardGroup} > ${ceruleanScope}${card}:not(:first-child) > ${ceruleanScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${accordion}`, {
 	vars: {
 		[varBsAccordionColor]: varBsBodyColor,
 		[varBsAccordionBg]: varBsBodyBg,
-		[varBsAccordionTransition]:
-			'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
+		[varBsAccordionTransition]: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease',
 		[varBsAccordionBorderColor]: varBsBorderColor,
 		[varBsAccordionBorderWidth]: varBsBorderWidth,
 		[varBsAccordionBorderRadius]: varBsBorderRadius,
@@ -11473,13 +11111,11 @@ globalStyle(`${ceruleanScope}${accordion}`, {
 		[varBsAccordionBtnPaddingY]: '1rem',
 		[varBsAccordionBtnColor]: varBsBodyColor,
 		[varBsAccordionBtnBg]: varBsAccordionBg,
-		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23495057' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%23495057\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnIconWidth]: '1.25rem',
 		[varBsAccordionBtnIconTransform]: 'rotate(-180deg)',
 		[varBsAccordionBtnIconTransition]: 'transform 0.2s ease-in-out',
-		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2313425c' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'%2313425c\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpath d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 		[varBsAccordionBtnFocusBoxShadow]: '0 0 0 0.25rem rgba(47, 164, 231, 0.25)',
 		[varBsAccordionBodyPaddingX]: '1.25rem',
 		[varBsAccordionBodyPaddingY]: '1rem',
@@ -11568,13 +11204,10 @@ globalStyle(`${ceruleanScope}${accordionItem}:first-of-type`, {
 	borderTopRightRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(
-	`${ceruleanScope}${accordionItem}:first-of-type > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}`,
-	{
-		borderTopLeftRadius: varBsAccordionInnerBorderRadius,
-		borderTopRightRadius: varBsAccordionInnerBorderRadius,
-	},
-)
+globalStyle(`${ceruleanScope}${accordionItem}:first-of-type > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}`, {
+	borderTopLeftRadius: varBsAccordionInnerBorderRadius,
+	borderTopRightRadius: varBsAccordionInnerBorderRadius,
+})
 
 globalStyle(`${ceruleanScope}${accordionItem}:not(:first-of-type)`, {
 	borderTop: '0',
@@ -11585,21 +11218,15 @@ globalStyle(`${ceruleanScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(
-	`${ceruleanScope}${accordionItem}:last-of-type > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}${accordionButtonCollapsed}`,
-	{
-		borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-		borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
-	},
-)
+globalStyle(`${ceruleanScope}${accordionItem}:last-of-type > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}${accordionButtonCollapsed}`, {
+	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
+})
 
-globalStyle(
-	`${ceruleanScope}${accordionItem}:last-of-type > ${ceruleanScope}${accordionCollapse}`,
-	{
-		borderBottomRightRadius: varBsAccordionBorderRadius,
-		borderBottomLeftRadius: varBsAccordionBorderRadius,
-	},
-)
+globalStyle(`${ceruleanScope}${accordionItem}:last-of-type > ${ceruleanScope}${accordionCollapse}`, {
+	borderBottomRightRadius: varBsAccordionBorderRadius,
+	borderBottomLeftRadius: varBsAccordionBorderRadius,
+})
 
 globalStyle(`${ceruleanScope}${accordionBody}`, {
 	padding: `${varBsAccordionBodyPaddingY} ${varBsAccordionBodyPaddingX}`,
@@ -11619,33 +11246,22 @@ globalStyle(`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem
 	borderBottom: '0',
 })
 
-globalStyle(
-	`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionCollapse}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionCollapse}`, {
+	borderRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}`, {
+	borderRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}${collapsed}`,
-	{
-		borderRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
 
-globalStyle(`[data-bs-theme=dark] ${ceruleanScope}${accordionButton}::after`, {
+globalStyle(`${ceruleanScope}[data-bs-theme=dark] ${ceruleanScope}${accordionButton}::after`, {
 	vars: {
-		[varBsAccordionBtnIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2382c8f1'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
-		[varBsAccordionBtnActiveIcon]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2382c8f1'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+		[varBsAccordionBtnIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%2382c8f1\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
+		[varBsAccordionBtnActiveIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%2382c8f1\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e")',
 	},
 })
 
@@ -11722,8 +11338,7 @@ globalStyle(`${ceruleanScope}${pageLink}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
 globalStyle(`${ceruleanScope}${pageLink}`, {
@@ -12018,8 +11633,7 @@ globalStyle(`${ceruleanScope}${progressBar}`, {
 })
 
 globalStyle(`${ceruleanScope}${progressBarStriped}`, {
-	backgroundImage:
-		'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
+	backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
 	backgroundSize: `${varBsProgressHeight} ${varBsProgressHeight}`,
 })
 
@@ -12027,12 +11641,9 @@ globalStyle(`${ceruleanScope}${progressStacked} > ${ceruleanScope}${progress}`, 
 	overflow: 'visible',
 })
 
-globalStyle(
-	`${ceruleanScope}${progressStacked} > ${ceruleanScope}${progress} > ${ceruleanScope}${progressBar}`,
-	{
-		width: '100%',
-	},
-)
+globalStyle(`${ceruleanScope}${progressStacked} > ${ceruleanScope}${progress} > ${ceruleanScope}${progressBar}`, {
+	width: '100%',
+})
 
 globalStyle(`${ceruleanScope}${progressBarAnimated}`, {
 	animation: '1s linear infinite progress-bar-stripes',
@@ -12160,41 +11771,29 @@ globalStyle(`${ceruleanScope}${listGroupHorizontal}`, {
 	flexDirection: 'row',
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		borderBottomLeftRadius: varBsListGroupBorderRadius,
-		borderTopRightRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		borderTopRightRadius: varBsListGroupBorderRadius,
-		borderBottomLeftRadius: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
 
 globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}${active}`, {
 	marginTop: '0',
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`,
-	{
-		borderTopWidth: varBsListGroupBorderWidth,
-		borderLeftWidth: '0',
-	},
-)
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-		borderLeftWidth: varBsListGroupBorderWidth,
-	},
-)
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
 
 globalStyle(`${ceruleanScope}${listGroupHorizontalSm}`, {
 	'@media': {
@@ -12204,64 +11803,49 @@ globalStyle(`${ceruleanScope}${listGroupHorizontalSm}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				marginTop: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 576px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${listGroupHorizontalMd}`, {
 	'@media': {
@@ -12271,64 +11855,49 @@ globalStyle(`${ceruleanScope}${listGroupHorizontalMd}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				marginTop: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 768px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${listGroupHorizontalLg}`, {
 	'@media': {
@@ -12338,64 +11907,49 @@ globalStyle(`${ceruleanScope}${listGroupHorizontalLg}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				marginTop: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 992px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${listGroupHorizontalXl}`, {
 	'@media': {
@@ -12405,64 +11959,49 @@ globalStyle(`${ceruleanScope}${listGroupHorizontalXl}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				marginTop: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1200px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${listGroupHorizontalXxl}`, {
 	'@media': {
@@ -12472,64 +12011,49 @@ globalStyle(`${ceruleanScope}${listGroupHorizontalXxl}`, {
 	},
 })
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderBottomLeftRadius: varBsListGroupBorderRadius,
-				borderTopRightRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderTopRightRadius: varBsListGroupBorderRadius,
-				borderBottomLeftRadius: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				marginTop: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				borderTopWidth: varBsListGroupBorderWidth,
-				borderLeftWidth: '0',
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
 		},
 	},
-)
+})
 
-globalStyle(
-	`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`,
-	{
-		'@media': {
-			'(min-width: 1400px)': {
-				marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-				borderLeftWidth: varBsListGroupBorderWidth,
-			},
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
-)
+})
 
 globalStyle(`${ceruleanScope}${listGroupFlush}`, {
 	borderRadius: '0',
@@ -12666,8 +12190,7 @@ globalStyle(`${ceruleanScope}${listGroupItemDark}`, {
 globalStyle(`${ceruleanScope}${btnClose}`, {
 	vars: {
 		[varBsBtnCloseColor]: '#000',
-		[varBsBtnCloseBg]:
-			"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
 		[varBsBtnCloseOpacity]: '0.5',
 		[varBsBtnCloseHoverOpacity]: '0.75',
 		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(47, 164, 231, 0.25)',
@@ -13341,12 +12864,9 @@ globalStyle(`${ceruleanScope}${bsTooltipTop} ${ceruleanScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=top] ${ceruleanScope}${tooltipArrow}`,
-	{
-		bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=top] ${ceruleanScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipTop} ${ceruleanScope}${tooltipArrow}::before`, {
 	top: '-1px',
@@ -13354,14 +12874,11 @@ globalStyle(`${ceruleanScope}${bsTooltipTop} ${ceruleanScope}${tooltipArrow}::be
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=top] ${ceruleanScope}${tooltipArrow}::before`,
-	{
-		top: '-1px',
-		borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-		borderTopColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=top] ${ceruleanScope}${tooltipArrow}::before`, {
+	top: '-1px',
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipEnd} ${ceruleanScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -13369,14 +12886,11 @@ globalStyle(`${ceruleanScope}${bsTooltipEnd} ${ceruleanScope}${tooltipArrow}`, {
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=right] ${ceruleanScope}${tooltipArrow}`,
-	{
-		left: `calc(-1 * ${varBsTooltipArrowHeight})`,
-		width: varBsTooltipArrowHeight,
-		height: varBsTooltipArrowWidth,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=right] ${ceruleanScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipEnd} ${ceruleanScope}${tooltipArrow}::before`, {
 	right: '-1px',
@@ -13384,25 +12898,19 @@ globalStyle(`${ceruleanScope}${bsTooltipEnd} ${ceruleanScope}${tooltipArrow}::be
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=right] ${ceruleanScope}${tooltipArrow}::before`,
-	{
-		right: '-1px',
-		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
-		borderRightColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=right] ${ceruleanScope}${tooltipArrow}::before`, {
+	right: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipBottom} ${ceruleanScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${ceruleanScope}${tooltipArrow}`,
-	{
-		top: `calc(-1 * ${varBsTooltipArrowHeight})`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${ceruleanScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipBottom} ${ceruleanScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
@@ -13410,14 +12918,11 @@ globalStyle(`${ceruleanScope}${bsTooltipBottom} ${ceruleanScope}${tooltipArrow}:
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${ceruleanScope}${tooltipArrow}::before`,
-	{
-		bottom: '-1px',
-		borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-		borderBottomColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${ceruleanScope}${tooltipArrow}::before`, {
+	bottom: '-1px',
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipStart} ${ceruleanScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
@@ -13425,14 +12930,11 @@ globalStyle(`${ceruleanScope}${bsTooltipStart} ${ceruleanScope}${tooltipArrow}`,
 	height: varBsTooltipArrowWidth,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=left] ${ceruleanScope}${tooltipArrow}`,
-	{
-		right: `calc(-1 * ${varBsTooltipArrowHeight})`,
-		width: varBsTooltipArrowHeight,
-		height: varBsTooltipArrowWidth,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=left] ${ceruleanScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
 
 globalStyle(`${ceruleanScope}${bsTooltipStart} ${ceruleanScope}${tooltipArrow}::before`, {
 	left: '-1px',
@@ -13440,14 +12942,11 @@ globalStyle(`${ceruleanScope}${bsTooltipStart} ${ceruleanScope}${tooltipArrow}::
 	borderLeftColor: varBsTooltipBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=left] ${ceruleanScope}${tooltipArrow}::before`,
-	{
-		left: '-1px',
-		borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
-		borderLeftColor: varBsTooltipBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsTooltipAuto}[data-popper-placement^=left] ${ceruleanScope}${tooltipArrow}::before`, {
+	left: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderLeftColor: varBsTooltipBg,
+})
 
 globalStyle(`${ceruleanScope}${tooltipInner}`, {
 	maxWidth: varBsTooltipMaxWidth,
@@ -13533,60 +13032,45 @@ globalStyle(`${ceruleanScope}${bsPopoverTop} > ${ceruleanScope}${popoverArrow}`,
 	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}`,
-	{
-		bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverTop} > ${ceruleanScope}${popoverArrow}::before`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverTop} > ${ceruleanScope}${popoverArrow}::after`, {
 	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverTop} > ${ceruleanScope}${popoverArrow}::before`, {
 	bottom: '0',
 	borderTopColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		bottom: '0',
-		borderTopColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverTop} > ${ceruleanScope}${popoverArrow}::after`, {
 	bottom: varBsPopoverBorderWidth,
 	borderTopColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		bottom: varBsPopoverBorderWidth,
-		borderTopColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=top] > ${ceruleanScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverEnd} > ${ceruleanScope}${popoverArrow}`, {
 	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -13594,121 +13078,91 @@ globalStyle(`${ceruleanScope}${bsPopoverEnd} > ${ceruleanScope}${popoverArrow}`,
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}`,
-	{
-		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverEnd} > ${ceruleanScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverEnd} > ${ceruleanScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverEnd} > ${ceruleanScope}${popoverArrow}::before`, {
 	left: '0',
 	borderRightColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		left: '0',
-		borderRightColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverEnd} > ${ceruleanScope}${popoverArrow}::after`, {
 	left: varBsPopoverBorderWidth,
 	borderRightColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		left: varBsPopoverBorderWidth,
-		borderRightColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=right] > ${ceruleanScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverBottom} > ${ceruleanScope}${popoverArrow}`, {
 	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}`,
-	{
-		top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverBottom} > ${ceruleanScope}${popoverArrow}::before`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverBottom} > ${ceruleanScope}${popoverArrow}::after`, {
 	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverBottom} > ${ceruleanScope}${popoverArrow}::before`, {
 	top: '0',
 	borderBottomColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		top: '0',
-		borderBottomColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverBottom} > ${ceruleanScope}${popoverArrow}::after`, {
 	top: varBsPopoverBorderWidth,
 	borderBottomColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		top: varBsPopoverBorderWidth,
-		borderBottomColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${ceruleanScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverBottom} ${ceruleanScope}${popoverHeader}::before`, {
 	position: 'absolute',
@@ -13721,19 +13175,16 @@ globalStyle(`${ceruleanScope}${bsPopoverBottom} ${ceruleanScope}${popoverHeader}
 	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${ceruleanScope}${popoverHeader}::before`,
-	{
-		position: 'absolute',
-		top: '0',
-		left: '50%',
-		display: 'block',
-		width: varBsPopoverArrowWidth,
-		marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
-		content: '""',
-		borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${ceruleanScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverStart} > ${ceruleanScope}${popoverArrow}`, {
 	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
@@ -13741,62 +13192,47 @@ globalStyle(`${ceruleanScope}${bsPopoverStart} > ${ceruleanScope}${popoverArrow}
 	height: varBsPopoverArrowWidth,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}`,
-	{
-		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverStart} > ${ceruleanScope}${popoverArrow}::before`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverStart} > ${ceruleanScope}${popoverArrow}::after`, {
 	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverStart} > ${ceruleanScope}${popoverArrow}::before`, {
 	right: '0',
 	borderLeftColor: varBsPopoverArrowBorder,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::before`,
-	{
-		right: '0',
-		borderLeftColor: varBsPopoverArrowBorder,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
 
 globalStyle(`${ceruleanScope}${bsPopoverStart} > ${ceruleanScope}${popoverArrow}::after`, {
 	right: varBsPopoverBorderWidth,
 	borderLeftColor: varBsPopoverBg,
 })
 
-globalStyle(
-	`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::after`,
-	{
-		right: varBsPopoverBorderWidth,
-		borderLeftColor: varBsPopoverBg,
-	},
-)
+globalStyle(`${ceruleanScope}${bsPopoverAuto}[data-popper-placement^=left] > ${ceruleanScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
 
 globalStyle(`${ceruleanScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
@@ -13896,21 +13332,15 @@ globalStyle(`${ceruleanScope}${carouselFade} ${ceruleanScope}${carouselItem}${ac
 	opacity: '1',
 })
 
-globalStyle(
-	`${ceruleanScope}${carouselFade} ${ceruleanScope}${carouselItemNext}${carouselItemStart}`,
-	{
-		zIndex: '1',
-		opacity: '1',
-	},
-)
+globalStyle(`${ceruleanScope}${carouselFade} ${ceruleanScope}${carouselItemNext}${carouselItemStart}`, {
+	zIndex: '1',
+	opacity: '1',
+})
 
-globalStyle(
-	`${ceruleanScope}${carouselFade} ${ceruleanScope}${carouselItemPrev}${carouselItemEnd}`,
-	{
-		zIndex: '1',
-		opacity: '1',
-	},
-)
+globalStyle(`${ceruleanScope}${carouselFade} ${ceruleanScope}${carouselItemPrev}${carouselItemEnd}`, {
+	zIndex: '1',
+	opacity: '1',
+})
 
 globalStyle(`${ceruleanScope}${carouselFade} ${ceruleanScope}${active}${carouselItemStart}`, {
 	zIndex: '0',
@@ -14049,13 +13479,11 @@ globalStyle(`${ceruleanScope}${carouselControlNextIcon}`, {
 })
 
 globalStyle(`${ceruleanScope}${carouselControlPrevIcon}`, {
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\") ",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e") ',
 })
 
 globalStyle(`${ceruleanScope}${carouselControlNextIcon}`, {
-	backgroundImage:
-		"url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\") ",
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e") ',
 })
 
 globalStyle(`${ceruleanScope}${carouselIndicators}`, {
@@ -14072,7 +13500,7 @@ globalStyle(`${ceruleanScope}${carouselIndicators}`, {
 	marginLeft: '15%',
 })
 
-globalStyle(`${ceruleanScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${ceruleanScope}${carouselIndicators} ${ceruleanScope}[data-bs-target]`, {
 	boxSizing: 'content-box',
 	flex: '0 1 auto',
 	width: '30px',
@@ -14091,7 +13519,7 @@ globalStyle(`${ceruleanScope}${carouselIndicators} [data-bs-target]`, {
 	transition: 'opacity 0.6s ease',
 })
 
-globalStyle(`${ceruleanScope}${carouselIndicators} [data-bs-target]`, {
+globalStyle(`${ceruleanScope}${carouselIndicators} ${ceruleanScope}[data-bs-target]`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -14159,7 +13587,7 @@ globalStyle(`${ceruleanScope}${spinnerBorder}`, {
 })
 
 globalKeyframes('spinner-border', {
-	to: {
+	'to': {
 		transform: 'rotate(360deg) ',
 	},
 })
@@ -15717,12 +15145,9 @@ globalStyle(`${ceruleanScope}${visuallyHidden}:not(caption)`, {
 	position: 'absolute !important',
 })
 
-globalStyle(
-	`${ceruleanScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`,
-	{
-		position: 'absolute !important',
-	},
-)
+globalStyle(`${ceruleanScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
+	position: 'absolute !important',
+})
 
 globalStyle(`${ceruleanScope}${visuallyHidden} *`, {
 	overflow: 'hidden !important',
@@ -25122,7 +24547,7 @@ globalStyle(`${ceruleanScope}${fs4}`, {
 
 globalStyle(`${ceruleanScope}${dPrintInline}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline !important',
 		},
 	},
@@ -25130,7 +24555,7 @@ globalStyle(`${ceruleanScope}${dPrintInline}`, {
 
 globalStyle(`${ceruleanScope}${dPrintInlineBlock}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-block !important',
 		},
 	},
@@ -25138,7 +24563,7 @@ globalStyle(`${ceruleanScope}${dPrintInlineBlock}`, {
 
 globalStyle(`${ceruleanScope}${dPrintBlock}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'block !important',
 		},
 	},
@@ -25146,7 +24571,7 @@ globalStyle(`${ceruleanScope}${dPrintBlock}`, {
 
 globalStyle(`${ceruleanScope}${dPrintGrid}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'grid !important',
 		},
 	},
@@ -25154,7 +24579,7 @@ globalStyle(`${ceruleanScope}${dPrintGrid}`, {
 
 globalStyle(`${ceruleanScope}${dPrintInlineGrid}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-grid !important',
 		},
 	},
@@ -25162,7 +24587,7 @@ globalStyle(`${ceruleanScope}${dPrintInlineGrid}`, {
 
 globalStyle(`${ceruleanScope}${dPrintTable}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table !important',
 		},
 	},
@@ -25170,7 +24595,7 @@ globalStyle(`${ceruleanScope}${dPrintTable}`, {
 
 globalStyle(`${ceruleanScope}${dPrintTableRow}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table-row !important',
 		},
 	},
@@ -25178,7 +24603,7 @@ globalStyle(`${ceruleanScope}${dPrintTableRow}`, {
 
 globalStyle(`${ceruleanScope}${dPrintTableCell}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'table-cell !important',
 		},
 	},
@@ -25186,7 +24611,7 @@ globalStyle(`${ceruleanScope}${dPrintTableCell}`, {
 
 globalStyle(`${ceruleanScope}${dPrintFlex}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'flex !important',
 		},
 	},
@@ -25194,7 +24619,7 @@ globalStyle(`${ceruleanScope}${dPrintFlex}`, {
 
 globalStyle(`${ceruleanScope}${dPrintInlineFlex}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'inline-flex !important',
 		},
 	},
@@ -25202,7 +24627,7 @@ globalStyle(`${ceruleanScope}${dPrintInlineFlex}`, {
 
 globalStyle(`${ceruleanScope}${dPrintNone}`, {
 	'@media': {
-		print: {
+		'print': {
 			display: 'none !important',
 		},
 	},
@@ -25434,7 +24859,7 @@ globalStyle(`${ceruleanScope}${textSecondary}`, {
 	color: '#adb5bd !important',
 })
 
-globalStyle(`${ceruleanScope}${bgPrimary} :where(${ceruleanScope}${h1})`, {
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
@@ -25442,7 +24867,7 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH1}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgPrimary} :where(${ceruleanScope}${h2})`, {
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h2}`, {
 	color: '#fff',
 })
 
@@ -25450,7 +24875,7 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgPrimary} :where(${ceruleanScope}${h3})`, {
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
@@ -25458,7 +24883,7 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH3}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgPrimary} :where(${ceruleanScope}${h4})`, {
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h4}`, {
 	color: '#fff',
 })
 
@@ -25466,7 +24891,7 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgPrimary} :where(${ceruleanScope}${h5})`, {
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
@@ -25474,7 +24899,7 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH5}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgPrimary} :where(${ceruleanScope}${h6})`, {
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h6}`, {
 	color: '#fff',
 })
 
@@ -25482,7 +24907,7 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgSuccess} :where(${ceruleanScope}${h1})`, {
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
@@ -25490,7 +24915,7 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH1}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgSuccess} :where(${ceruleanScope}${h2})`, {
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h2}`, {
 	color: '#fff',
 })
 
@@ -25498,7 +24923,7 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgSuccess} :where(${ceruleanScope}${h3})`, {
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
@@ -25506,7 +24931,7 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH3}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgSuccess} :where(${ceruleanScope}${h4})`, {
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h4}`, {
 	color: '#fff',
 })
 
@@ -25514,7 +24939,7 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgSuccess} :where(${ceruleanScope}${h5})`, {
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
@@ -25522,7 +24947,7 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH5}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgSuccess} :where(${ceruleanScope}${h6})`, {
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h6}`, {
 	color: '#fff',
 })
 
@@ -25530,7 +24955,7 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgInfo} :where(${ceruleanScope}${h1})`, {
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
@@ -25538,7 +24963,7 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH1}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgInfo} :where(${ceruleanScope}${h2})`, {
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h2}`, {
 	color: '#fff',
 })
 
@@ -25546,7 +24971,7 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgInfo} :where(${ceruleanScope}${h3})`, {
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
@@ -25554,7 +24979,7 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH3}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgInfo} :where(${ceruleanScope}${h4})`, {
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h4}`, {
 	color: '#fff',
 })
 
@@ -25562,7 +24987,7 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgInfo} :where(${ceruleanScope}${h5})`, {
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
@@ -25570,7 +24995,7 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH5}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgInfo} :where(${ceruleanScope}${h6})`, {
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h6}`, {
 	color: '#fff',
 })
 
@@ -25578,7 +25003,7 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgWarning} :where(${ceruleanScope}${h1})`, {
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
@@ -25586,7 +25011,7 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH1}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgWarning} :where(${ceruleanScope}${h2})`, {
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h2}`, {
 	color: '#fff',
 })
 
@@ -25594,7 +25019,7 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgWarning} :where(${ceruleanScope}${h3})`, {
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
@@ -25602,7 +25027,7 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH3}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgWarning} :where(${ceruleanScope}${h4})`, {
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h4}`, {
 	color: '#fff',
 })
 
@@ -25610,7 +25035,7 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgWarning} :where(${ceruleanScope}${h5})`, {
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
@@ -25618,7 +25043,7 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH5}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgWarning} :where(${ceruleanScope}${h6})`, {
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h6}`, {
 	color: '#fff',
 })
 
@@ -25626,7 +25051,7 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDanger} :where(${ceruleanScope}${h1})`, {
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
@@ -25634,7 +25059,7 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH1}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDanger} :where(${ceruleanScope}${h2})`, {
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h2}`, {
 	color: '#fff',
 })
 
@@ -25642,7 +25067,7 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDanger} :where(${ceruleanScope}${h3})`, {
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
@@ -25650,7 +25075,7 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH3}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDanger} :where(${ceruleanScope}${h4})`, {
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h4}`, {
 	color: '#fff',
 })
 
@@ -25658,7 +25083,7 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDanger} :where(${ceruleanScope}${h5})`, {
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
@@ -25666,7 +25091,7 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH5}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDanger} :where(${ceruleanScope}${h6})`, {
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h6}`, {
 	color: '#fff',
 })
 
@@ -25674,7 +25099,7 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDark} :where(${ceruleanScope}${h1})`, {
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
@@ -25682,7 +25107,7 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH1}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDark} :where(${ceruleanScope}${h2})`, {
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h2}`, {
 	color: '#fff',
 })
 
@@ -25690,7 +25115,7 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDark} :where(${ceruleanScope}${h3})`, {
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
@@ -25698,7 +25123,7 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH3}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDark} :where(${ceruleanScope}${h4})`, {
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h4}`, {
 	color: '#fff',
 })
 
@@ -25706,7 +25131,7 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDark} :where(${ceruleanScope}${h5})`, {
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
@@ -25714,7 +25139,7 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH5}`, {
 	color: '#fff',
 })
 
-globalStyle(`${ceruleanScope}${bgDark} :where(${ceruleanScope}${h6})`, {
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h6}`, {
 	color: '#fff',
 })
 
@@ -25768,4 +25193,8 @@ globalStyle(`${ceruleanScope}${scrollspyExample}`, {
 	height: '200px',
 	overflowY: 'auto',
 	marginTop: '0.5rem',
+})
+
+globalStyle(`${ceruleanScope}${formSwitch}`, {
+	isolation: 'isolate',
 })
