@@ -3434,7 +3434,24 @@ globalStyle(`:where(${morphScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${morphScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${morphScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${morphScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -26164,15 +26181,6 @@ globalStyle(`${morphScope}${listNested}`, {
 
 globalStyle(`${morphScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${morphScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${morphScope}${legendClear}`, {

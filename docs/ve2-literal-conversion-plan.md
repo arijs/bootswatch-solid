@@ -545,7 +545,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 13 | lux | ⏳ | |
 | 14 | materia | ✅ | 433/433 @ 0.000000. Two general generator fixes: (a) scope-emitter now captures grouped `body, input, button { letter-spacing }` onto bodyText; (b) manifest EXTRA_RULES gives `formSwitch` `isolation:isolate` so the Material switch `z-index:-1` focus-glow composites over the bodyFrame bg (isolating bodyFrame itself traps modal dialogs — don't). |
 | 15 | minty | ⏳ | |
-| 16 | morph | ⏳ | |
+| 16 | morph | ✅ | 433/433 @ 0.000000. No emitter fix — the only mismatch was a stale `navbar-example` baseline (captured with the lazy-loaded brand logo broken/unloaded; all other themes show the clean "B"). Rebuilt the morph navbar baseline; VE already rendered correctly. |
 | 17 | pulse | ⏳ | no `fonts.generated.css` |
 | 18 | sandstone | ✅ | 433/433 @ 0.000000; font-isolation (§10.3) already handled by T5 — no emitter fix needed |
 | 19 | simplex | ⏳ | |
@@ -558,7 +558,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 26 | yeti | ⏳ | |
 | 27 | zephyr | ⏳ | |
 
-**Done: 9/27. Next: cosmo.** Follow the mandatory working method above for each.
+**Done: 10/27. Next: cosmo.** Follow the mandatory working method above for each.
 
 > **Cross-theme contamination (learned on vapor):** the VE app loads ALL themes' assets together (index.html links every theme's `fonts.generated.css`; `Ve2Shell` statically imports every theme's `scope.css`). Two contamination classes bit vapor: (1) **fonts** — a foreign `Lato:ital` face changed vapor's italic metrics; fixed by stripping non-active font links at build (`transformIndexHtml`, order:'pre'). (2) **the global `${modalOpenHook}` rule** — emitted unscoped by every theme's scope.css, so the body's modal-open typography was a last-wins cross-theme mix, leaking `letter-spacing` into modal text via inheritance; fixed by scoping it `${scope}${modalOpenHook}` and stamping `${theme} ${modalOpenHook}` on `<body>` (fork `modal.js` now splits a space-separated `CLASS_NAME_OPEN`). Both fixes are general; scoping required regenerating every theme's scope.css, so already-verified themes must be re-checked (modal routes at minimum). The fork is edited in `bootstrap-fork/js/src/` then rebuilt with `npm run js-compile` inside the fork.
 
