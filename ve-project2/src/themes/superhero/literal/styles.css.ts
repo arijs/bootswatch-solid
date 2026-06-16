@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3266,7 +3267,7 @@ globalStyle(`:where(${superheroScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${superheroScope}${tableSection})`, {
+globalStyle(`:where(${superheroScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3430,7 +3431,24 @@ globalStyle(`:where(${superheroScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${superheroScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${superheroScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${superheroScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6906,7 +6924,7 @@ globalStyle(`${superheroScope}${table} > ${superheroScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${superheroScope}${table} > ${superheroScope}${tableSection}`, {
+globalStyle(`${superheroScope}${table} > ${superheroScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24861,15 +24879,6 @@ globalStyle(`${superheroScope}${listNested}`, {
 
 globalStyle(`${superheroScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${superheroScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${superheroScope}${legendClear}`, {

@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3262,7 +3263,7 @@ globalStyle(`:where(${darklyScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${darklyScope}${tableSection})`, {
+globalStyle(`:where(${darklyScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3426,7 +3427,24 @@ globalStyle(`:where(${darklyScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${darklyScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${darklyScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${darklyScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6902,7 +6920,7 @@ globalStyle(`${darklyScope}${table} > ${darklyScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${darklyScope}${table} > ${darklyScope}${tableSection}`, {
+globalStyle(`${darklyScope}${table} > ${darklyScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24732,15 +24750,6 @@ globalStyle(`${darklyScope}${listNested}`, {
 
 globalStyle(`${darklyScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${darklyScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${darklyScope}${legendClear}`, {

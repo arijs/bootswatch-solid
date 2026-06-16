@@ -58,3 +58,4 @@ export default StartDropdown
 // @screenshot sandstone/opened-dropdown: 360x188 188
 // @screenshot materia/opened-dropdown: 360x194 194
 // @screenshot brite/opened-dropdown: 360x184 184
+// @screenshot lux/opened-dropdown: 360x182 182

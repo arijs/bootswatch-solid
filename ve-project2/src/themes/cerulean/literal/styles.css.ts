@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3261,7 +3262,7 @@ globalStyle(`:where(${ceruleanScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${ceruleanScope}${tableSection})`, {
+globalStyle(`:where(${ceruleanScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3425,7 +3426,24 @@ globalStyle(`:where(${ceruleanScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${ceruleanScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${ceruleanScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${ceruleanScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6901,7 +6919,7 @@ globalStyle(`${ceruleanScope}${table} > ${ceruleanScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${ceruleanScope}${table} > ${ceruleanScope}${tableSection}`, {
+globalStyle(`${ceruleanScope}${table} > ${ceruleanScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -25170,15 +25188,6 @@ globalStyle(`${ceruleanScope}${listNested}`, {
 
 globalStyle(`${ceruleanScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${ceruleanScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${ceruleanScope}${legendClear}`, {

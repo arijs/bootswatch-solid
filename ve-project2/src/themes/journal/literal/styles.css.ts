@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3273,7 +3274,7 @@ globalStyle(`:where(${journalScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${journalScope}${tableSection})`, {
+globalStyle(`:where(${journalScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3437,7 +3438,24 @@ globalStyle(`:where(${journalScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${journalScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${journalScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${journalScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6913,7 +6931,7 @@ globalStyle(`${journalScope}${table} > ${journalScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${journalScope}${table} > ${journalScope}${tableSection}`, {
+globalStyle(`${journalScope}${table} > ${journalScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24728,15 +24746,6 @@ globalStyle(`${journalScope}${listNested}`, {
 
 globalStyle(`${journalScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${journalScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${journalScope}${legendClear}`, {

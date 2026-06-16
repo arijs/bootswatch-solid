@@ -58,3 +58,4 @@ export default LargeDropdown
 // @screenshot sandstone/opened-dropdown: 360x230 230
 // @screenshot materia/opened-dropdown: 360x242 242
 // @screenshot brite/opened-dropdown: 360x238 235
+// @screenshot lux/opened-dropdown: 360x272 272

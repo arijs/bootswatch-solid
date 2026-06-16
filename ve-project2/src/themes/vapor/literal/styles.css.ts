@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3262,7 +3263,7 @@ globalStyle(`:where(${vaporScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${vaporScope}${tableSection})`, {
+globalStyle(`:where(${vaporScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3426,7 +3427,24 @@ globalStyle(`:where(${vaporScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${vaporScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${vaporScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${vaporScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6902,7 +6920,7 @@ globalStyle(`${vaporScope}${table} > ${vaporScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${vaporScope}${table} > ${vaporScope}${tableSection}`, {
+globalStyle(`${vaporScope}${table} > ${vaporScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -25043,6 +25061,10 @@ globalStyle(`:where(${vaporScope}${elLegend})`, {
 	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
+globalStyle(`:where(${vaporScope}${legend})`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
 globalStyle(`${vaporScope}${validFeedback}`, {
 	textShadow: '0 0 1px rgba(60, 242, 129, 0.3), 0 0 2px rgba(60, 242, 129, 0.3), 0 0 5px rgba(60, 242, 129, 0.2)',
 })
@@ -25530,15 +25552,6 @@ globalStyle(`${vaporScope}${listNested}`, {
 
 globalStyle(`${vaporScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${vaporScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${vaporScope}${legendClear}`, {

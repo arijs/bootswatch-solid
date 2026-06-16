@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3273,7 +3274,7 @@ globalStyle(`:where(${mintyScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${mintyScope}${tableSection})`, {
+globalStyle(`:where(${mintyScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3437,7 +3438,24 @@ globalStyle(`:where(${mintyScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${mintyScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${mintyScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${mintyScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6913,7 +6931,7 @@ globalStyle(`${mintyScope}${table} > ${mintyScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${mintyScope}${table} > ${mintyScope}${tableSection}`, {
+globalStyle(`${mintyScope}${table} > ${mintyScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24723,6 +24741,10 @@ globalStyle(`:where(${mintyScope}${elLegend})`, {
 	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 })
 
+globalStyle(`:where(${mintyScope}${legend})`, {
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+})
+
 globalStyle(`${mintyScope}${dropdownMenu}`, {
 	fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 })
@@ -24871,15 +24893,6 @@ globalStyle(`${mintyScope}${listNested}`, {
 
 globalStyle(`${mintyScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${mintyScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${mintyScope}${legendClear}`, {

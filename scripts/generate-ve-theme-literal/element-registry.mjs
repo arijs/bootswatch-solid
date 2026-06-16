@@ -64,7 +64,7 @@ export const TAG_TO_CONTRACT = {
 	textarea: 'elTextarea',
 	tfoot: 'tableSection',
 	th: 'tableHeaderCell',
-	thead: 'tableSection',
+	thead: 'tableHead',
 	tr: 'tableRow',
 	ul: 'elUl',
 	a: 'link',

@@ -26,6 +26,10 @@ export const tableResponsiveLg = style({})
 export const tableResponsiveXl = style({})
 export const tableResponsiveXxl = style({})
 export const tableSection = style({})
+// thead gets its own contract (distinct from tbody/tfoot's tableSection) so the
+// `.table > thead { vertical-align: bottom }` and `.table > tbody { vertical-align:
+// inherit }` rules don't collapse onto one selector (last-wins). See element-registry.
+export const tableHead = style({})
 export const tableRow = style({})
 export const tableHeaderCell = style({})
 export const tableCell = style({})

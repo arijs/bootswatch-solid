@@ -59,3 +59,4 @@ export default UpDropdown
 // @screenshot sandstone/opened-dropdown: 360x226 226
 // @screenshot materia/opened-dropdown: 360x246 246
 // @screenshot brite/opened-dropdown: 360x227 225
+// @screenshot lux/opened-dropdown: 360x232 232

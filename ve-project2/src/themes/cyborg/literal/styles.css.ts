@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3279,7 +3280,7 @@ globalStyle(`:where(${cyborgScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${cyborgScope}${tableSection})`, {
+globalStyle(`:where(${cyborgScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3443,7 +3444,24 @@ globalStyle(`:where(${cyborgScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${cyborgScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${cyborgScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${cyborgScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6919,7 +6937,7 @@ globalStyle(`${cyborgScope}${table} > ${cyborgScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${cyborgScope}${table} > ${cyborgScope}${tableSection}`, {
+globalStyle(`${cyborgScope}${table} > ${cyborgScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24716,6 +24734,10 @@ globalStyle(`:where(${cyborgScope}${elLegend})`, {
 	color: '#fff',
 })
 
+globalStyle(`:where(${cyborgScope}${legend})`, {
+	color: '#fff',
+})
+
 globalStyle(`${cyborgScope}${formControl}:disabled`, {
 	borderColor: 'transparent',
 })
@@ -24853,15 +24875,6 @@ globalStyle(`${cyborgScope}${listNested}`, {
 
 globalStyle(`${cyborgScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${cyborgScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${cyborgScope}${legendClear}`, {

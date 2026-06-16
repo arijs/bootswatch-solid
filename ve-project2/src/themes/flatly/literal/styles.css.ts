@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3261,7 +3262,7 @@ globalStyle(`:where(${flatlyScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${flatlyScope}${tableSection})`, {
+globalStyle(`:where(${flatlyScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3425,7 +3426,24 @@ globalStyle(`:where(${flatlyScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${flatlyScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${flatlyScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${flatlyScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6901,7 +6919,7 @@ globalStyle(`${flatlyScope}${table} > ${flatlyScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${flatlyScope}${table} > ${flatlyScope}${tableSection}`, {
+globalStyle(`${flatlyScope}${table} > ${flatlyScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24723,15 +24741,6 @@ globalStyle(`${flatlyScope}${listNested}`, {
 
 globalStyle(`${flatlyScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${flatlyScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${flatlyScope}${legendClear}`, {

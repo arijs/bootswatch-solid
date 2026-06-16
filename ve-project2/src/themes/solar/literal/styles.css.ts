@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3262,7 +3263,7 @@ globalStyle(`:where(${solarScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${solarScope}${tableSection})`, {
+globalStyle(`:where(${solarScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3426,7 +3427,24 @@ globalStyle(`:where(${solarScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${solarScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${solarScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${solarScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6902,7 +6920,7 @@ globalStyle(`${solarScope}${table} > ${solarScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${solarScope}${table} > ${solarScope}${tableSection}`, {
+globalStyle(`${solarScope}${table} > ${solarScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24749,15 +24767,6 @@ globalStyle(`${solarScope}${listNested}`, {
 
 globalStyle(`${solarScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${solarScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${solarScope}${legendClear}`, {

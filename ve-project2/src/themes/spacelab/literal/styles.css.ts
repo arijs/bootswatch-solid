@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3261,7 +3262,7 @@ globalStyle(`:where(${spacelabScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${spacelabScope}${tableSection})`, {
+globalStyle(`:where(${spacelabScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3425,7 +3426,24 @@ globalStyle(`:where(${spacelabScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${spacelabScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${spacelabScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${spacelabScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6901,7 +6919,7 @@ globalStyle(`${spacelabScope}${table} > ${spacelabScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${spacelabScope}${table} > ${spacelabScope}${tableSection}`, {
+globalStyle(`${spacelabScope}${table} > ${spacelabScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24968,15 +24986,6 @@ globalStyle(`${spacelabScope}${listNested}`, {
 
 globalStyle(`${spacelabScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${spacelabScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${spacelabScope}${legendClear}`, {

@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3263,7 +3264,7 @@ globalStyle(`:where(${simplexScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${simplexScope}${tableSection})`, {
+globalStyle(`:where(${simplexScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3427,7 +3428,24 @@ globalStyle(`:where(${simplexScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${simplexScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${simplexScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${simplexScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6903,7 +6921,7 @@ globalStyle(`${simplexScope}${table} > ${simplexScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${simplexScope}${table} > ${simplexScope}${tableSection}`, {
+globalStyle(`${simplexScope}${table} > ${simplexScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24829,6 +24847,10 @@ globalStyle(`:where(${simplexScope}${elLegend})`, {
 	color: 'inherit',
 })
 
+globalStyle(`:where(${simplexScope}${legend})`, {
+	color: 'inherit',
+})
+
 globalStyle(`:where(${simplexScope}${elLabel})`, {
 	color: 'inherit',
 })
@@ -24860,15 +24882,6 @@ globalStyle(`${simplexScope}${listNested}`, {
 
 globalStyle(`${simplexScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${simplexScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${simplexScope}${legendClear}`, {

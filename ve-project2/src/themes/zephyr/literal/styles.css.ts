@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3263,7 +3264,7 @@ globalStyle(`:where(${zephyrScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${zephyrScope}${tableSection})`, {
+globalStyle(`:where(${zephyrScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3427,7 +3428,24 @@ globalStyle(`:where(${zephyrScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${zephyrScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${zephyrScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${zephyrScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6904,7 +6922,7 @@ globalStyle(`${zephyrScope}${table} > ${zephyrScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${zephyrScope}${table} > ${zephyrScope}${tableSection}`, {
+globalStyle(`${zephyrScope}${table} > ${zephyrScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24825,7 +24843,7 @@ globalStyle(`${zephyrScope}${table}`, {
 	boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
 })
 
-globalStyle(`:where(${zephyrScope}${tableSection}) :where(${zephyrScope}${tableHeaderCell})`, {
+globalStyle(`:where(${zephyrScope}${tableHead}) :where(${zephyrScope}${tableHeaderCell})`, {
 	fontSize: '0.875rem',
 	textTransform: 'uppercase',
 })
@@ -25058,15 +25076,6 @@ globalStyle(`${zephyrScope}${listNested}`, {
 
 globalStyle(`${zephyrScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${zephyrScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${zephyrScope}${legendClear}`, {

@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3261,7 +3262,7 @@ globalStyle(`:where(${bootstrapScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${bootstrapScope}${tableSection})`, {
+globalStyle(`:where(${bootstrapScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3425,7 +3426,24 @@ globalStyle(`:where(${bootstrapScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${bootstrapScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${bootstrapScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${bootstrapScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6901,7 +6919,7 @@ globalStyle(`${bootstrapScope}${table} > ${bootstrapScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${bootstrapScope}${table} > ${bootstrapScope}${tableSection}`, {
+globalStyle(`${bootstrapScope}${table} > ${bootstrapScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24607,15 +24625,6 @@ globalStyle(`${bootstrapScope}${listNested}`, {
 
 globalStyle(`${bootstrapScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${bootstrapScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${bootstrapScope}${legendClear}`, {

@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3257,7 +3258,7 @@ globalStyle(`:where(${cosmoScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${cosmoScope}${tableSection})`, {
+globalStyle(`:where(${cosmoScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3421,7 +3422,24 @@ globalStyle(`:where(${cosmoScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${cosmoScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${cosmoScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${cosmoScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6896,7 +6914,7 @@ globalStyle(`${cosmoScope}${table} > ${cosmoScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${cosmoScope}${table} > ${cosmoScope}${tableSection}`, {
+globalStyle(`${cosmoScope}${table} > ${cosmoScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24151,15 +24169,6 @@ globalStyle(`${cosmoScope}${listNested}`, {
 
 globalStyle(`${cosmoScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${cosmoScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${cosmoScope}${legendClear}`, {

@@ -192,6 +192,40 @@ function extractCombinators(selector, segments) {
 }
 
 /**
+ * Expand a lone substring/prefix class-attribute selector (`[class*=btn-outline-]`,
+ * `[class^=col-]`, …) into the contract classes it matches. In the element-owned model
+ * the real DOM classes are hashed, so such attribute selectors can never match by passing
+ * through verbatim — they must be rewritten to the set of contract refs whose Bootstrap
+ * class name matches. Returns an array of `${scope}${contract}` strings, or null if the
+ * comma-part is not a lone class-attribute selector.
+ *
+ * ponytail: only the standalone single-segment form occurs in the 27 themes
+ * (`[class*=btn-outline-]`). A compound like `.x [class*=y]` would need a cartesian
+ * expansion — add that only if such a selector ever appears.
+ */
+function expandClassAttrSelector(commaPart, scopeVarName, registry) {
+	const m = /^\[class([*^$~|]?)=(['"]?)([^'"\]]+)\2\]$/.exec(commaPart.trim())
+	if (!m) return null
+	const [, op, , value] = m
+	const matches = (cls) => {
+		switch (op) {
+			case '*': return cls.includes(value)
+			case '^': return cls.startsWith(value)
+			case '$': return cls.endsWith(value)
+			case '|': return cls === value || cls.startsWith(`${value}-`)
+			default: return cls === value // '' (exact) and '~' (single-word class)
+		}
+	}
+	const syms = []
+	for (const [cls, sym] of registry.classMap) {
+		if (matches(cls)) syms.push(sym)
+	}
+	if (syms.length === 0) return null
+	// Dedupe symbols (distinct classes can map to the same contract) and emit one ref each.
+	return [...new Set(syms)].map((sym) => `${ref(scopeVarName)}${ref(sym)}`)
+}
+
+/**
  * Translate a full CSS selector to its VE template-literal content.
  * Returns { translated, unresolved } or null if untranslatable.
  */
@@ -201,6 +235,13 @@ function translateSelector(cssSelector, scopeVarName, registry) {
 	const veParts = []
 
 	for (const commaPart of commaParts) {
+		// Substring/prefix class-attribute selectors expand to the matching contracts.
+		const expanded = expandClassAttrSelector(commaPart, scopeVarName, registry)
+		if (expanded) {
+			veParts.push(...expanded)
+			continue
+		}
+
 		const segments = splitByCombinators(commaPart)
 		if (segments.length === 0) continue
 		const combinators = extractCombinators(commaPart, segments)

@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3284,7 +3285,7 @@ globalStyle(`:where(${sketchyScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${sketchyScope}${tableSection})`, {
+globalStyle(`:where(${sketchyScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3448,7 +3449,24 @@ globalStyle(`:where(${sketchyScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${sketchyScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${sketchyScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${sketchyScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6924,7 +6942,7 @@ globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableSection}`, {
+globalStyle(`${sketchyScope}${table} > ${sketchyScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -25377,15 +25395,6 @@ globalStyle(`${sketchyScope}${listNested}`, {
 
 globalStyle(`${sketchyScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${sketchyScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${sketchyScope}${legendClear}`, {

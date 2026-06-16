@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3265,7 +3266,7 @@ globalStyle(`:where(${slateScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${slateScope}${tableSection})`, {
+globalStyle(`:where(${slateScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -6922,7 +6923,7 @@ globalStyle(`${slateScope}${table} > ${slateScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${slateScope}${table} > ${slateScope}${tableSection}`, {
+globalStyle(`${slateScope}${table} > ${slateScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 

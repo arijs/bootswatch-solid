@@ -49,3 +49,4 @@ export default SplitLightDropdown
 // @screenshot sandstone/opened-dropdown: 360x146 146
 // @screenshot materia/opened-dropdown: 360x164 164
 // @screenshot brite/opened-dropdown: 360x153 148
+// @screenshot lux/opened-dropdown: 360x153 153

@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3262,7 +3263,7 @@ globalStyle(`:where(${quartzScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${quartzScope}${tableSection})`, {
+globalStyle(`:where(${quartzScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3426,7 +3427,24 @@ globalStyle(`:where(${quartzScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${quartzScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${quartzScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${quartzScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6902,7 +6920,7 @@ globalStyle(`${quartzScope}${table} > ${quartzScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${quartzScope}${table} > ${quartzScope}${tableSection}`, {
+globalStyle(`${quartzScope}${table} > ${quartzScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -25344,15 +25362,6 @@ globalStyle(`${quartzScope}${listNested}`, {
 
 globalStyle(`${quartzScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${quartzScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${quartzScope}${legendClear}`, {

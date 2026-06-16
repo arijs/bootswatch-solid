@@ -492,6 +492,7 @@ import {
 import {
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableRow,
 	tableSection,
@@ -3244,7 +3245,7 @@ globalStyle(`:where(${luxScope}${tableHeaderCell})`, {
 	textAlign: '-webkit-match-parent',
 })
 
-globalStyle(`:where(${luxScope}${tableSection})`, {
+globalStyle(`:where(${luxScope}${tableHead})`, {
 	borderColor: 'inherit',
 	borderStyle: 'solid',
 	borderWidth: '0',
@@ -3408,7 +3409,24 @@ globalStyle(`:where(${luxScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${luxScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${luxScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${luxScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -6883,7 +6901,7 @@ globalStyle(`${luxScope}${table} > ${luxScope}${tableSection}`, {
 	verticalAlign: 'inherit',
 })
 
-globalStyle(`${luxScope}${table} > ${luxScope}${tableSection}`, {
+globalStyle(`${luxScope}${table} > ${luxScope}${tableHead}`, {
 	verticalAlign: 'bottom',
 })
 
@@ -24161,7 +24179,7 @@ globalStyle(`${luxScope}${btnOutlineLight}`, {
 	color: varBsBtnActiveColor,
 })
 
-globalStyle(`${luxScope}[class*=btn-outline-]`, {
+globalStyle(`${luxScope}${btnOutlineDanger}, ${luxScope}${btnOutlineDark}, ${luxScope}${btnOutlineInfo}, ${luxScope}${btnOutlineLight}, ${luxScope}${btnOutlinePrimary}, ${luxScope}${btnOutlineSecondary}, ${luxScope}${btnOutlineSuccess}, ${luxScope}${btnOutlineWarning}`, {
 	borderWidth: '2px',
 })
 
@@ -24571,15 +24589,6 @@ globalStyle(`${luxScope}${listNested}`, {
 
 globalStyle(`${luxScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${luxScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${luxScope}${legendClear}`, {
