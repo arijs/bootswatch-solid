@@ -262,6 +262,22 @@ export const divergences = [
 			've-modal uses modalFade+modalShowHook; mirror .fade:not(.show) opacity:0 rule ' +
 			'so the modal is invisible until modalShowHook is stamped.',
 	},
+
+	// ---- <legend> element rules → legend class contract ----
+	// RadioButtons/DisabledRadioButtons stamp the `legend` class contract on <legend>,
+	// not the `elLegend` element contract, so the bare `legend {…}` element rules (which
+	// translate to elLegend) never apply. Mirror every legend element rule onto the
+	// legend class contract so the reboot props AND theme overrides (e.g. slate's
+	// `legend { color:#fff }`) reach the stamped element. Fans out to all themes.
+	{
+		id: 'legend-element-mirror',
+		match: { selector: 'legend' },
+		action: 'addMirrorRule',
+		substitute: { fromContract: 'elLegend', toContract: 'legend' },
+		reason:
+			'Components stamp the legend class contract (not elLegend) on <legend>; mirror ' +
+			'legend element rules (reboot + theme color override) onto the legend class contract.',
+	},
 ]
 
 // ---------------------------------------------------------------------------
@@ -401,19 +417,6 @@ export const EXTRA_RULES = [
 		contract: 'listIndented',
 		props: { paddingLeft: '2rem' },
 		reason: 'UnstyledList stamps listIndented on nested lists; mirrors ol,ul { padding-left:2rem }',
-	},
-	{
-		id: 'legend-class',
-		contract: 'legend',
-		props: {
-			float: 'left',
-			width: '100%',
-			padding: '0',
-			marginBottom: '0.5rem',
-			lineHeight: 'inherit',
-			fontSize: 'calc(1.275rem + 0.3vw)',
-		},
-		reason: 'RadioButtons/DisabledRadioButtons stamp legend class contract on <legend>; mirrors legend element rule',
 	},
 	{
 		id: 'legend-clear',

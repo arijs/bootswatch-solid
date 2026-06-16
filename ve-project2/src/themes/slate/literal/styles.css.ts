@@ -3429,7 +3429,24 @@ globalStyle(`:where(${slateScope}${elLegend})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`:where(${slateScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${slateScope}${elLegend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`:where(${slateScope}${legend})`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -25150,6 +25167,10 @@ globalStyle(`:where(${slateScope}${elLegend})`, {
 	color: '#fff',
 })
 
+globalStyle(`:where(${slateScope}${legend})`, {
+	color: '#fff',
+})
+
 globalStyle(`${slateScope}${inputGroupAddon}`, {
 	backgroundImage: 'linear-gradient(#81888e, #7a8288 20%, #62686d)',
 	filter: 'none',
@@ -25406,15 +25427,6 @@ globalStyle(`${slateScope}${listNested}`, {
 
 globalStyle(`${slateScope}${listIndented}`, {
 	paddingLeft: '2rem',
-})
-
-globalStyle(`${slateScope}${legend}`, {
-	float: 'left',
-	width: '100%',
-	padding: '0',
-	marginBottom: '0.5rem',
-	lineHeight: 'inherit',
-	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
 globalStyle(`${slateScope}${legendClear}`, {
