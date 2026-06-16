@@ -59,3 +59,4 @@ export default AlignedDropdown
 // @screenshot materia/opened-dropdown: 360x214 214
 // @screenshot brite/opened-dropdown: 360x201 197
 // @screenshot lux/opened-dropdown: 360x203 203
+// @screenshot superhero/opened-dropdown: 360x195 195

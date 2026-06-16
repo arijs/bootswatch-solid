@@ -339,6 +339,24 @@ export async function stabilizeForScreenshot(page) {
 			),
 		)
 
+		// Stop auto-cycling carousels FIRST — before the (potentially multi-second) font
+		// wait below. A `data-bs-ride="carousel"` autoplays on a 5s timer from init; if the
+		// font wait runs first, a slow-font theme's carousel advances a slide mid-wait and
+		// pause() then freezes it on the wrong slide (baseline, with faster fonts, stays on
+		// slide 0 → mismatch). Pausing before the wait freezes it on the current (initial)
+		// slide for every theme. Interactive scenarios set their slide before prepareForCapture,
+		// so pausing here preserves their selection too.
+		try {
+			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
+			if (CarouselClass) {
+				for (const element of document.querySelectorAll('.pwhook-carousel')) {
+					CarouselClass.getOrCreateInstance(element).pause()
+				}
+			}
+		} catch {
+			// Ignore if Bootstrap JS is unavailable for this route.
+		}
+
 		try {
 			if (document.fonts?.ready) {
 				await document.fonts.ready
@@ -352,16 +370,27 @@ export async function stabilizeForScreenshot(page) {
 			// Continue even if the browser cannot resolve font loading state.
 		}
 
-		// Stop auto-cycling carousels so static captures keep the same active slide.
+		// Wait for images (esp. `loading="lazy"` navbar brand logos) to finish loading and
+		// decoding before capture. Lazy images can paint blank/broken on the first frame, so a
+		// theme whose capture lands before the logo decodes shows the broken-image placeholder
+		// while the other side shows the logo → mismatch (and it races on either side). Force
+		// eager loading and await decode so every capture has the fully-rendered image.
 		try {
-			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
-			if (CarouselClass) {
-				for (const element of document.querySelectorAll('.pwhook-carousel')) {
-					CarouselClass.getOrCreateInstance(element).pause()
-				}
+			const images = [...document.querySelectorAll('img')]
+			for (const img of images) {
+				if (img.loading === 'lazy') img.loading = 'eager'
 			}
+			await Promise.allSettled(
+				images.map((img) => {
+					if (img.complete && img.naturalWidth > 0) return img.decode().catch(() => {})
+					return new Promise((resolve) => {
+						img.addEventListener('load', resolve, { once: true })
+						img.addEventListener('error', resolve, { once: true })
+					}).then(() => img.decode().catch(() => {}))
+				}),
+			)
 		} catch {
-			// Ignore if Bootstrap JS is unavailable for this route.
+			// Continue even if image loading state cannot be resolved.
 		}
 
 		// Carousels can transiently mark multiple indicators as active during hydration/ride init.

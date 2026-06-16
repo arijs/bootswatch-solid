@@ -59,3 +59,4 @@ export default SmallDropdown
 // @screenshot materia/opened-dropdown: 360x225 225
 // @screenshot brite/opened-dropdown: 360x219 219
 // @screenshot lux/opened-dropdown: 360x224 224
+// @screenshot superhero/opened-dropdown: 360x217 217

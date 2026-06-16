@@ -59,3 +59,4 @@ export default EndDropdown
 // @screenshot materia/opened-dropdown: 360x194 194
 // @screenshot brite/opened-dropdown: 360x184 184
 // @screenshot lux/opened-dropdown: 360x182 182
+// @screenshot superhero/opened-dropdown: 360x184 184

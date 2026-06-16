@@ -60,3 +60,4 @@ export default NormalDropdown
 // @screenshot materia/opened-dropdown: 360x246 246
 // @screenshot brite/opened-dropdown: 360x230 225
 // @screenshot lux/opened-dropdown: 360x232 232
+// @screenshot superhero/opened-dropdown: 360x224 224

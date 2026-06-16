@@ -50,3 +50,4 @@ export default SplitLightDropdown
 // @screenshot materia/opened-dropdown: 360x164 164
 // @screenshot brite/opened-dropdown: 360x153 148
 // @screenshot lux/opened-dropdown: 360x153 153
+// @screenshot superhero/opened-dropdown: 360x145 145
