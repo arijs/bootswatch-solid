@@ -24829,7 +24829,7 @@ globalStyle(`${spacelabScope}${btnDark}:not(${disabled}):hover`, {
 	border: '1px solid #262626',
 })
 
-globalStyle(`${spacelabScope}[class*=btn-outline-]`, {
+globalStyle(`${spacelabScope}${btnOutlineDanger}, ${spacelabScope}${btnOutlineDark}, ${spacelabScope}${btnOutlineInfo}, ${spacelabScope}${btnOutlineLight}, ${spacelabScope}${btnOutlinePrimary}, ${spacelabScope}${btnOutlineSecondary}, ${spacelabScope}${btnOutlineSuccess}, ${spacelabScope}${btnOutlineWarning}`, {
 	textShadow: 'none',
 })
 
