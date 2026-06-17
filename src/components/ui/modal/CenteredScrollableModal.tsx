@@ -95,3 +95,4 @@ export default CenteredScrollableModal
 // @screenshot cerulean/opened-modal: 360x688 688
 // @screenshot superhero/opened-modal: 360x688 688
 // @screenshot journal/opened-modal: 360x688 688
+// @screenshot darkly/opened-modal: 360x688 688
