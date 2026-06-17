@@ -6,6 +6,7 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { link } from '../../../theme-contract/contents/basic/contract.css'
+import { elLi } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { flexWrap } from '../../../theme-contract/ui/modal/contract.css'
 import {
@@ -31,7 +32,7 @@ const LargePagination: Component = () => {
 			<div class={`${theme} ${containerFluid}`}>
 				<nav aria-label="Another pagination example">
 					<ul class={`${theme} ${pagination} ${paginationLg} ${flexWrap}`}>
-						<li class={`${theme} ${pageItem} ${pageItemDisabled}`}>
+						<li class={`${theme} ${pageItem} ${elLi} ${pageItemDisabled}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -43,7 +44,7 @@ const LargePagination: Component = () => {
 								Previous
 							</a>
 						</li>
-						<li class={`${theme} ${pageItem}`}>
+						<li class={`${theme} ${pageItem} ${elLi}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -53,7 +54,10 @@ const LargePagination: Component = () => {
 								1
 							</a>
 						</li>
-						<li class={`${theme} ${pageItem} ${pageItemActive}`} aria-current="page">
+						<li
+							class={`${theme} ${pageItem} ${elLi} ${pageItemActive}`}
+							aria-current="page"
+						>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -63,7 +67,7 @@ const LargePagination: Component = () => {
 								2
 							</a>
 						</li>
-						<li class={`${theme} ${pageItem}`}>
+						<li class={`${theme} ${pageItem} ${elLi}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -73,7 +77,7 @@ const LargePagination: Component = () => {
 								3
 							</a>
 						</li>
-						<li class={`${theme} ${pageItem}`}>
+						<li class={`${theme} ${pageItem} ${elLi}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}

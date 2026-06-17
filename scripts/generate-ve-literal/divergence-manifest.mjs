@@ -281,6 +281,36 @@ export const divergences = [
 ]
 
 // ---------------------------------------------------------------------------
+// Specificity normalization (plan §10.2)
+// ---------------------------------------------------------------------------
+//
+// The element-owned model maps element TAGS to contract CLASSES and prefixes every
+// named segment with the scope class. A selector therefore gains roughly one class of
+// specificity PER SEGMENT versus its source. For most rules this is harmless (it shifts
+// all competing VE rules equally), but it breaks when two source rules of DIFFERENT
+// segment counts compete: the longer selector wins in VE even though the shorter, higher-
+// class-count selector won in the source.
+//
+// Concrete case (lumen only): the legacy `.pagination > li > a { color:#555 }` (source
+// specificity 0,1,2) becomes `${scope}${pagination} > ${scope}${elLi} > ${scope}${link}`
+// = 0,6,0 in VE, which OUTRANKS `.disabled > .page-link { color:#999 }`
+// (`${scope}${pageItemDisabled} > ${scope}${pageLink}` = 0,4,0) — so the disabled Previous
+// link rendered #555 instead of #999. In the source the disabled rule (0,3,0) beat the
+// legacy rule (0,1,2), so #999 won.
+//
+// Fix: for selectors listed here, wrap each PURE-element segment (a bare tag → element
+// contract, no class) in `:where()` so it contributes 0 specificity — restoring the source
+// ordering (only true class segments count). Scoped to the listed selector substrings so it
+// can't disturb cases that legitimately rely on the inflated specificity (e.g. sketchy's
+// `.table-dark th`, which must out-specify the `.table > … > *` cell rule by source order).
+export const LOWER_ELEMENT_SPECIFICITY_SELECTORS = ['.pagination > li']
+
+/** True if the element segments of this selector should be `:where()`-wrapped (see above). */
+export function shouldLowerElementSpecificity(cssSelector) {
+	return LOWER_ELEMENT_SPECIFICITY_SELECTORS.some((p) => cssSelector.includes(p))
+}
+
+// ---------------------------------------------------------------------------
 // Helpers used by the emitter
 // ---------------------------------------------------------------------------
 

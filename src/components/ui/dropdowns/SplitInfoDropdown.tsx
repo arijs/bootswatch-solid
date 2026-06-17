@@ -51,3 +51,4 @@ export default SplitInfoDropdown
 // @screenshot brite/opened-dropdown: 360x153 135
 // @screenshot lux/opened-dropdown: 360x153 153
 // @screenshot superhero/opened-dropdown: 360x145 145
+// @screenshot lumen/opened-dropdown: 360x159 159

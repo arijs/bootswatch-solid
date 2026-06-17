@@ -23,7 +23,14 @@ import {
 	parseBootstrapCss,
 	walkCssEmitUnits,
 } from '../generate-ve-theme-literal/parse-css-tree.mjs'
-import { EXTRA_RULES, applySplitProps, findAdditions, findDivergence, findRemaps } from './divergence-manifest.mjs'
+import {
+	EXTRA_RULES,
+	applySplitProps,
+	findAdditions,
+	findDivergence,
+	findRemaps,
+	shouldLowerElementSpecificity,
+} from './divergence-manifest.mjs'
 import { buildLiteralRegistry } from './registry.mjs'
 import { splitByCombinators, splitSelectorList } from './selector-parser.mjs'
 import { cssPropToVeKey, formatVeValue, parseVeValue } from './value-format.mjs'
@@ -113,6 +120,7 @@ function translateCompoundSegment(
 	registry,
 	unresolved,
 	isPureElementSelector = false,
+	forceWhereElement = false,
 ) {
 	const s = segment.trim()
 	if (!s || s === '*') return s
@@ -164,7 +172,7 @@ function translateCompoundSegment(
 	// use :where() to keep element-level (low) specificity, so class-bearing rules win as in
 	// Bootstrap. A trailing element in a class-bearing selector (e.g. `.table-dark th`) keeps
 	// its specificity so it can beat the `.table > … > *` cell rule.
-	if (isElementContract && !remaining.trim() && isPureElementSelector) {
+	if (isElementContract && !remaining.trim() && (isPureElementSelector || forceWhereElement)) {
 		return `:where(${ref(scopeVarName)}${segContent})`
 	}
 	return ref(scopeVarName) + segContent
@@ -252,6 +260,9 @@ function translateSelector(cssSelector, scopeVarName, registry) {
 		// element segments keep their specificity (e.g. `.table-dark th` must beat the
 		// `.table > … > *` cell rule).
 		const isPureElementSelector = !/[.#[:\]]/.test(commaPart)
+		// §10.2: for listed selectors, force-wrap pure-element segments in :where() so the
+		// scope-per-segment specificity inflation doesn't flip the source cascade.
+		const forceWhereElement = shouldLowerElementSpecificity(commaPart)
 		const veSegs = []
 		for (const seg of segments) {
 			const t = translateCompoundSegment(
@@ -260,6 +271,7 @@ function translateSelector(cssSelector, scopeVarName, registry) {
 				registry,
 				unresolved,
 				isPureElementSelector,
+				forceWhereElement,
 			)
 			if (t === null) return null
 			veSegs.push(t)

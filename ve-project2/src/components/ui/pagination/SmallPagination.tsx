@@ -6,6 +6,7 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { link } from '../../../theme-contract/contents/basic/contract.css'
+import { elLi } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	pageItem,
@@ -29,7 +30,7 @@ const SmallPagination: Component = () => {
 			<div class={`${theme} ${containerFluid}`}>
 				<nav aria-label="Pagination example">
 					<ul class={`${theme} ${pagination} ${paginationSm}`}>
-						<li class={`${theme} ${pageItem}`}>
+						<li class={`${theme} ${pageItem} ${elLi}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -39,7 +40,10 @@ const SmallPagination: Component = () => {
 								1
 							</a>
 						</li>
-						<li class={`${theme} ${pageItem} ${pageItemActive}`} aria-current="page">
+						<li
+							class={`${theme} ${pageItem} ${elLi} ${pageItemActive}`}
+							aria-current="page"
+						>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -49,7 +53,7 @@ const SmallPagination: Component = () => {
 								2
 							</a>
 						</li>
-						<li class={`${theme} ${pageItem}`}>
+						<li class={`${theme} ${pageItem} ${elLi}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}

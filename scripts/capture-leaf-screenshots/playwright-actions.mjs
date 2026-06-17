@@ -157,6 +157,9 @@ async function slideCarouselToIndex(
 					`Carousel settled at index ${settledIndex}, expected ${config.targetIndex}`,
 				)
 			}
+			// Mark as interactively controlled so stabilizeForScreenshot preserves this slide
+			// instead of forcing slide 0 (the static-capture default).
+			carouselElement.setAttribute('data-pw-carousel-controlled', 'true')
 		},
 		{
 			targetIndex,
@@ -298,6 +301,9 @@ async function clickCarouselControl(
 					`Carousel settled at index ${settledIndex}, expected ${targetIndex}`,
 				)
 			}
+			// Mark as interactively controlled so stabilizeForScreenshot preserves this slide
+			// instead of forcing slide 0 (the static-capture default).
+			carouselElement.setAttribute('data-pw-carousel-controlled', 'true')
 		},
 		{
 			startIndex,
@@ -427,8 +433,16 @@ export async function stabilizeForScreenshot(page) {
 						indicator.getAttribute('aria-current') === 'true' ||
 						hasAnyToken(indicator, effectiveActiveClassTokens),
 				)
-				const activeIndex =
-					activeItemIndex >= 0
+				// Static captures: a `data-bs-ride` carousel may have auto-advanced before we
+				// could pause it (especially on slow-to-hydrate VE pages, where the 5s autoplay
+				// timer elapses during hydration — before stabilizeForScreenshot even runs). Force
+				// slide 0 UNLESS an interactive scenario explicitly selected a slide (those mark the
+				// carousel `data-pw-carousel-controlled`). This makes the static slide deterministic
+				// for every theme regardless of capture timing.
+				const controlled = carousel.hasAttribute('data-pw-carousel-controlled')
+				const activeIndex = !controlled
+					? 0
+					: activeItemIndex >= 0
 						? activeItemIndex
 						: activeIndicatorIndex >= 0
 							? activeIndicatorIndex

@@ -24944,7 +24944,7 @@ globalStyle(`${lumenScope}${btnOutlineSecondary}`, {
 	color: varBsTertiaryColor,
 })
 
-globalStyle(`${lumenScope}[class*=btn-outline]`, {
+globalStyle(`${lumenScope}${btnOutlineDanger}, ${lumenScope}${btnOutlineDark}, ${lumenScope}${btnOutlineInfo}, ${lumenScope}${btnOutlineLight}, ${lumenScope}${btnOutlinePrimary}, ${lumenScope}${btnOutlineSecondary}, ${lumenScope}${btnOutlineSuccess}, ${lumenScope}${btnOutlineWarning}`, {
 	borderTopWidth: '1px',
 })
 
@@ -25060,7 +25060,7 @@ globalStyle(`${lumenScope}${breadcrumb}`, {
 	borderWidth: '0 1px 4px 1px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > :where(${lumenScope}${link})`, {
 	position: 'relative',
 	top: '0',
 	fontWeight: '700',
@@ -25070,7 +25070,7 @@ globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${
 	borderWidth: '0 1px 4px 1px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${elSpan}`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > :where(${lumenScope}${elSpan})`, {
 	position: 'relative',
 	top: '0',
 	fontWeight: '700',
@@ -25080,36 +25080,36 @@ globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${
 	borderWidth: '0 1px 4px 1px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${link}:hover`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumenScope}${link}:hover`, {
 	top: '1px',
 	textDecoration: 'none',
 	borderBottomWidth: '3px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${link}:focus`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumenScope}${link}:focus`, {
 	top: '1px',
 	textDecoration: 'none',
 	borderBottomWidth: '3px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${elSpan}:hover`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumenScope}${elSpan}:hover`, {
 	top: '1px',
 	textDecoration: 'none',
 	borderBottomWidth: '3px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${elSpan}:focus`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumenScope}${elSpan}:focus`, {
 	top: '1px',
 	textDecoration: 'none',
 	borderBottomWidth: '3px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${link}:active`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumenScope}${link}:active`, {
 	top: '2px',
 	borderBottomWidth: '2px',
 })
 
-globalStyle(`${lumenScope}${pagination} > ${lumenScope}${elLi} > ${lumenScope}${elSpan}:active`, {
+globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumenScope}${elSpan}:active`, {
 	top: '2px',
 	borderBottomWidth: '2px',
 })

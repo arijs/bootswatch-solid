@@ -60,3 +60,4 @@ export default EndDropdown
 // @screenshot brite/opened-dropdown: 360x184 184
 // @screenshot lux/opened-dropdown: 360x182 182
 // @screenshot superhero/opened-dropdown: 360x184 184
+// @screenshot lumen/opened-dropdown: 360x199 199

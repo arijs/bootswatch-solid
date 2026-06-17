@@ -60,3 +60,4 @@ export default AlignedDropdown
 // @screenshot brite/opened-dropdown: 360x201 197
 // @screenshot lux/opened-dropdown: 360x203 203
 // @screenshot superhero/opened-dropdown: 360x195 195
+// @screenshot lumen/opened-dropdown: 360x209 209
