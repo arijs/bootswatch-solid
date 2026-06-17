@@ -62,3 +62,4 @@ export default UpDropdown
 // @screenshot lux/opened-dropdown: 360x232 232
 // @screenshot superhero/opened-dropdown: 360x224 224
 // @screenshot lumen/opened-dropdown: 360x241 241
+// @screenshot journal/opened-dropdown: 360x235 235

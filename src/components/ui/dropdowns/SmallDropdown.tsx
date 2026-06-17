@@ -61,3 +61,4 @@ export default SmallDropdown
 // @screenshot lux/opened-dropdown: 360x224 224
 // @screenshot superhero/opened-dropdown: 360x217 217
 // @screenshot lumen/opened-dropdown: 360x234 234
+// @screenshot journal/opened-dropdown: 360x228 228
