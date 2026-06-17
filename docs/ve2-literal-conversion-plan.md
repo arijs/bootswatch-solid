@@ -548,7 +548,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 16 | morph | ✅ | 433/433 @ 0.000000. No emitter fix — the only mismatch was a stale `navbar-example` baseline (captured with the lazy-loaded brand logo broken/unloaded; all other themes show the clean "B"). Rebuilt the morph navbar baseline; VE already rendered correctly. |
 | 17 | pulse | ⏳ | no `fonts.generated.css` |
 | 18 | sandstone | ✅ | 433/433 @ 0.000000; font-isolation (§10.3) already handled by T5 — no emitter fix needed |
-| 19 | simplex | ⏳ | |
+| 19 | simplex | ✅ | 433/433 @ 0.000000. No emitter fix — baselines regenerated (stale), VE already rendered correctly. |
 | 20 | slate | ✅ | 433/433 @ 0.000000. General fix: `legend-element-mirror` divergence mirrors bare `legend {…}` element rules (which map to `elLegend`) onto the `legend` class contract the component actually stamps — so slate's `legend { color:#fff }` override (and any theme's) reaches `<legend>`. Replaced the static `legend-class` EXTRA_RULE (it copied only reboot props, missing theme color). |
 | 21 | solar | ✅ | 433/433 @ 0.000000. No emitter fix — the only mismatch was a stale `html-tooltip/opened-tooltip` baseline (Popper-settled at a slightly different position than the fresh VE capture; computed-style/rect comparison confirmed baseline and VE render the tooltip pixel-identically — same rect, same em/u/b metrics). Re-captured that one baseline. |
 | 22 | spacelab | ✅ | 433/433 @ 0.000000. No emitter fix — baselines regenerated (stale), VE already rendered correctly. |
@@ -558,7 +558,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 26 | yeti | ⏳ | |
 | 27 | zephyr | ⏳ | |
 
-**Done: 17/27. Next: cosmo.** Follow the mandatory working method above for each.
+**Done: 18/27. Next: cosmo.** Follow the mandatory working method above for each.
 
 > **Cross-theme contamination (learned on vapor):** the VE app loads ALL themes' assets together (index.html links every theme's `fonts.generated.css`; `Ve2Shell` statically imports every theme's `scope.css`). Two contamination classes bit vapor: (1) **fonts** — a foreign `Lato:ital` face changed vapor's italic metrics; fixed by stripping non-active font links at build (`transformIndexHtml`, order:'pre'). (2) **the global `${modalOpenHook}` rule** — emitted unscoped by every theme's scope.css, so the body's modal-open typography was a last-wins cross-theme mix, leaking `letter-spacing` into modal text via inheritance; fixed by scoping it `${scope}${modalOpenHook}` and stamping `${theme} ${modalOpenHook}` on `<body>` (fork `modal.js` now splits a space-separated `CLASS_NAME_OPEN`). Both fixes are general; scoping required regenerating every theme's scope.css, so already-verified themes must be re-checked (modal routes at minimum). The fork is edited in `bootstrap-fork/js/src/` then rebuilt with `npm run js-compile` inside the fork.
 
