@@ -1,0 +1,21 @@
+p { margin-top: 0; margin-bottom: 1rem; }
+
+blockquote { margin: 0 0 1rem; }
+
+.blockquote { margin-bottom: 1rem; font-size: calc(1.2625rem + 0.15vw); }
+
+@media (min-width: 1200px) {
+.blockquote { font-size: 1.375rem; }
+}
+
+.blockquote > :last-child { margin-bottom: 0; }
+
+.blockquote-footer { margin-top: -1rem; margin-bottom: 1rem; font-size: 0.875em; color: #868e96; }
+
+.blockquote-footer::before { content: "— "; }
+
+p { font-family: Georgia, Cambria, "Times New Roman", Times, serif; }
+
+blockquote { font-style: italic; }
+
+footer { font-size: 0.9625rem; }

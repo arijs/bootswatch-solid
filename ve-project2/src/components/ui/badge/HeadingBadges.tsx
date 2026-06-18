@@ -5,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	bgDanger,
@@ -37,29 +38,29 @@ const HeadingBadges: Component = () => {
 
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<p class={`${theme} ${clsH1}`}>
+			<p class={`${theme} ${paragraph} ${clsH1}`}>
 				Example heading <span class={`${theme} ${badge} ${bgPrimary}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH2}`}>
+			<p class={`${theme} ${paragraph} ${clsH2}`}>
 				Example heading <span class={`${theme} ${badge} ${bgSecondary}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH3}`}>
+			<p class={`${theme} ${paragraph} ${clsH3}`}>
 				Example heading <span class={`${theme} ${badge} ${bgSuccess}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH4}`}>
+			<p class={`${theme} ${paragraph} ${clsH4}`}>
 				Example heading <span class={`${theme} ${badge} ${bgDanger}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH5}`}>
+			<p class={`${theme} ${paragraph} ${clsH5}`}>
 				Example heading{' '}
 				<span class={`${theme} ${badge} ${bgWarning} ${textDark}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH6}`}>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>
 				Example heading <span class={`${theme} ${badge} ${bgInfo} ${textDark}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH6}`}>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>
 				Example heading <span class={`${theme} ${badge} ${bgLight} ${textDark}`}>New</span>
 			</p>
-			<p class={`${theme} ${clsH6}`}>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>
 				Example heading <span class={`${theme} ${badge} ${bgDark}`}>New</span>
 			</p>
 		</div>

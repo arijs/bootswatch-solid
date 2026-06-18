@@ -5,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	clsH1,
@@ -28,12 +29,12 @@ const Heading: Component = () => {
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
-			<p class={`${theme} ${clsH1}`}>Heading 1</p>
-			<p class={`${theme} ${clsH2}`}>Heading 2</p>
-			<p class={`${theme} ${clsH3}`}>Heading 3</p>
-			<p class={`${theme} ${clsH4}`}>Heading 4</p>
-			<p class={`${theme} ${clsH5}`}>Heading 5</p>
-			<p class={`${theme} ${clsH6}`}>Heading 6</p>
+			<p class={`${theme} ${paragraph} ${clsH1}`}>Heading 1</p>
+			<p class={`${theme} ${paragraph} ${clsH2}`}>Heading 2</p>
+			<p class={`${theme} ${paragraph} ${clsH3}`}>Heading 3</p>
+			<p class={`${theme} ${paragraph} ${clsH4}`}>Heading 4</p>
+			<p class={`${theme} ${paragraph} ${clsH5}`}>Heading 5</p>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>Heading 6</p>
 		</div>
 	)
 }
