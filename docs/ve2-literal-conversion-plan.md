@@ -536,7 +536,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 4 | quartz | ✅ | `a84141ca` — gradient body + `flow-root`; migrated remaining themes to new scope format |
 | 5 | sketchy | ✅ | `63205a18` — Popper font-race harness fix |
 | 6 | cosmo | ⏳ | next |
-| 7 | cyborg | ⏳ | |
+| 7 | cyborg | ✅ | 433/433 @ 0.000000. No emitter fix — baselines regenerated (stale), VE already rendered correctly. (Capture initially failed on the preview-server 45s cold-start readiness timeout — slow `externalize-deps` plugin; warming Vite's preview cache once fixed it.) |
 | 8 | darkly | ✅ | 433/433 @ 0.000000. No emitter fix — baselines regenerated (stale), VE already rendered correctly. |
 | 9 | flatly | ⏳ | |
 | 10 | journal | ✅ | 433/433 @ 0.000000. No emitter fix — baselines regenerated (stale), VE already rendered correctly. |
@@ -558,7 +558,7 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 | 26 | yeti | ⏳ | |
 | 27 | zephyr | ⏳ | |
 
-**Done: 18/27. Next: cosmo.** Follow the mandatory working method above for each.
+**Done: 19/27. Next: cosmo.** Follow the mandatory working method above for each.
 
 > **Cross-theme contamination (learned on vapor):** the VE app loads ALL themes' assets together (index.html links every theme's `fonts.generated.css`; `Ve2Shell` statically imports every theme's `scope.css`). Two contamination classes bit vapor: (1) **fonts** — a foreign `Lato:ital` face changed vapor's italic metrics; fixed by stripping non-active font links at build (`transformIndexHtml`, order:'pre'). (2) **the global `${modalOpenHook}` rule** — emitted unscoped by every theme's scope.css, so the body's modal-open typography was a last-wins cross-theme mix, leaking `letter-spacing` into modal text via inheritance; fixed by scoping it `${scope}${modalOpenHook}` and stamping `${theme} ${modalOpenHook}` on `<body>` (fork `modal.js` now splits a space-separated `CLASS_NAME_OPEN`). Both fixes are general; scoping required regenerating every theme's scope.css, so already-verified themes must be re-checked (modal routes at minimum). The fork is edited in `bootstrap-fork/js/src/` then rebuilt with `npm run js-compile` inside the fork.
 
