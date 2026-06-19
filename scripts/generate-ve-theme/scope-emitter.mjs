@@ -1,6 +1,6 @@
-import { extractFontImports, formatVeValue } from './css-utils.mjs'
 import { themeScopeClassComment, themeScopeExportName } from './constants.mjs'
 import { getVarsImportPath } from './contract-registry.mjs'
+import { extractFontImports, formatVeValue, parseCssRules } from './css-utils.mjs'
 
 const GLOBAL_VARS_PATH = '_vars.css'
 
@@ -36,28 +36,24 @@ function emitVarImports(lines, usedVarSymbols, registry) {
 
 function extractBodyDeclarations(cssText) {
 	const decls = {}
-	// Merge declarations from every rule whose selector LIST contains a standalone `body`,
-	// in source order (later wins). This covers the base reboot `body { … }`, theme
-	// additions like quartz/morph/vapor's gradient `body { background-image: … }`, AND
-	// grouped rules like Materia's `body, input, button { letter-spacing: 0.1px }` — a
-	// grouped selector applies every declaration to each member, so `body` legitimately
-	// gets the letter-spacing. Only an exact `body` comma-part qualifies, so compound /
-	// descendant selectors (`[data-bs-theme=dark] body`, `body.modal-open`) are excluded.
-	const re = /(?:^|[};])\s*([^{}]+?)\s*\{([^}]*)\}/g
-	let ruleMatch = re.exec(cssText)
-	while (ruleMatch !== null) {
-		const selectorList = ruleMatch[1]
-		const hasStandaloneBody = selectorList.split(',').some((part) => part.trim() === 'body')
-		if (hasStandaloneBody) {
-			for (const part of ruleMatch[2].split(';')) {
-				const trimmed = part.trim()
-				if (!trimmed) continue
-				const colon = trimmed.indexOf(':')
-				if (colon === -1) continue
-				decls[trimmed.slice(0, colon).trim()] = trimmed.slice(colon + 1).trim()
-			}
+	// Merge declarations from every top-level rule whose selector LIST contains a standalone
+	// `body`, in source order (later wins). This covers the base reboot `body { … }`, theme
+	// additions like quartz/morph/vapor's gradient `body { background-image: … }`, lux's
+	// separate `body { letter-spacing: 1px }` block, AND grouped rules like Materia's
+	// `body, input, button { letter-spacing: 0.1px }` — a grouped selector applies every
+	// declaration to each member, so `body` legitimately gets the letter-spacing. Only an
+	// exact `body` comma-part qualifies, so compound / descendant selectors
+	// (`[data-bs-theme=dark] body`, `body.modal-open`) and `@media`-nested body are excluded.
+	//
+	// Uses the AST walk (parseCssRules) rather than a hand-rolled brace regex: the regex
+	// consumed each rule's boundary `}` and desynced after the first match, silently skipping
+	// later rules — so a theme's *second* standalone `body {}` block (lux) was dropped.
+	for (const rule of parseCssRules(cssText)) {
+		if (rule.type !== 'rule' || rule.media) continue
+		if (!rule.selectors.some((sel) => sel.trim() === 'body')) continue
+		for (const [prop, value] of Object.entries(rule.declarations)) {
+			decls[prop] = value
 		}
-		ruleMatch = re.exec(cssText)
 	}
 	return decls
 }
@@ -147,7 +143,9 @@ export function emitScopeCssTs(themeSlug, themeCssText, registry) {
 	// (Ve2Shell imports all scope classes), so a GLOBAL `${modalOpenHook}` rule would let the
 	// last-loaded theme's body typography win on <body> and leak (e.g. letter-spacing) into the
 	// modal content via inheritance.
-	body.push('// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> when a modal opens.')
+	body.push(
+		'// Bootstrap Modal JS stamps `${scope} ${modalOpenHook}` on <body> when a modal opens.',
+	)
 	body.push(`globalStyle(\`\${${scopeName}}\${modalOpenHook}\`, {`)
 	for (const [cssProp, veKey] of typographyProps) {
 		if (bodyDecls[cssProp]) body.push(`\t${veKey}: ${fmt(bodyDecls[cssProp])},`)
