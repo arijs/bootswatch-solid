@@ -1,5 +1,7 @@
 # VE2 Theme Generator — Audit & Improvement Playbook
 
+> **⚠️ Superseded (T10).** This playbook targets the **heuristic family-emit generator**, removed in T10. The `--mode=families|report|scaffold` workflows below no longer exist; only `--mode=scope` survives (`scripts/generate-ve-theme.mjs`). Current theme conversion runs through the literal converter — see [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md) (verification method, fix‑in‑emitter loop) and [`docs/ve2-literal-converter.md`](./ve2-literal-converter.md). Kept as historical reference for the element‑owned debugging techniques.
+
 **Use this document** at the start of a new session when continuing automated theme conversion, family-scoped verification, and generator improvements.
 
 Companion references (read as needed):

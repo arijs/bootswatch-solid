@@ -21,7 +21,6 @@
 		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",
 		"screenshots:diff-markup": "node scripts/diff-scenario-markup.mjs",
 		"generate:ve-theme": "node scripts/generate-ve-theme.mjs",
-		"generate:ve-theme-literal": "node scripts/generate-ve-theme-literal.mjs",
 		"generate:ve-literal": "node scripts/generate-ve-literal.mjs",
 		"format": "biome format --write",
 		"lint": "biome lint --write",

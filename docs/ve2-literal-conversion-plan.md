@@ -568,8 +568,24 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 
 ---
 
-**⏳ T10 — Delete v1 + update docs.** Remove `css-utils` mapping tables, color‑mirrors, supplements, `finalizeVeSelector` special cases, `*`‑cell guessing, old `generate-ve-theme-literal.mjs`. Update `ve-architecture.md` (combinators allowed when each named segment is scope+contract; `*`/pseudo passthrough; 1:1 registry; strict no‑fallback) and `ve2-literal-converter.md`.
+**✅ T10 — Delete v1 + update docs.** Remove `css-utils` mapping tables, color‑mirrors, supplements, `finalizeVeSelector` special cases, `*`‑cell guessing, old `generate-ve-theme-literal.mjs`. Update `ve-architecture.md` (combinators allowed when each named segment is scope+contract; `*`/pseudo passthrough; 1:1 registry; strict no‑fallback) and `ve2-literal-converter.md`.
 *Gate:* repo builds; no references to deleted modules; docs match behavior.
+
+**Done.** Scoped to the **generator/script layer + docs** — the runtime `theme`/`granular` loaders are **deliberately kept** (next milestone re‑enables granular family loading on the literal foundation; see note below).
+
+*Deleted (dead heuristic generators):*
+- The **v1 literal pipeline**: `scripts/generate-ve-theme-literal.mjs` + `emit-literal.mjs`, `auto-contract.mjs`, `auto-vars.mjs`, `emit-keyframes.mjs`, `emit-nav-button-reset-supplement.mjs`, `emit-toast-contract-supplement.mjs`, `badge-/progress-/spinner-color-mirror.mjs`, `summarize-skips.mjs`. **Kept** (reused by v2): `parse-css-tree.mjs`, `element-registry.mjs`, `constants.mjs` in that dir.
+- The **heuristic family-emit chain** in `scripts/generate-ve-theme/`: `families-emitter.mjs`, `import-emitter.mjs`, `scaffold-emitter.mjs`, `two-pass-hydrate.mjs`, `css-source.mjs`, `rule-transpiler.mjs` (holds `finalizeVeSelector`), `batch-generate-and-verify.mjs`. Removed the per‑family special‑case tables from `css-utils.mjs` (`FAMILY_CLASS_TO_CONTRACT`, `STATE_CLASS_BY_PARENT_SELECTOR`, `ORPHAN_STATE_SEGMENT_BY_FAMILY`, `FAMILY_STATE_CLASS_BY_PARENT`, `SKIP_SELECTORS_BY_FAMILY`, `ELEMENT_SELECTOR_BY_FAMILY`, `resolveTableWildcardContract`, the family‑skip/`isScopedFamilySelector` helpers); kept the general CSS/value helpers used by `contract-registry.mjs`/`scope-emitter.mjs`/`scope-generate.mjs` and the live `css-extraction.mjs`.
+
+*Relocated:* scope.css.ts + fonts.generated.css generation moved from `families-emitter.mjs` into a new slim `scripts/generate-ve-theme/scope-generate.mjs` (verbatim logic — verified **byte‑identical** output for 26/27 themes on force‑regen; the 1 diff, `lux` `letterSpacing`, is a **pre‑existing** stale‑committed‑file discrepancy independent of this change — the old `--mode=scope` CLI would reproduce it; lux stays at its verified‑green committed state). `scripts/generate-ve-theme.mjs` is now a scope‑only CLI (`--theme`/`--all-themes`/`--mode=scope`/`--dry-run`/`--force`); `--mode=families|report|scaffold` exit with a pointer to the literal generator.
+
+*package.json:* dropped `generate:ve-theme-literal`; `generate:ve-theme` → scope‑only; `generate:ve-literal` unchanged.
+
+*Kept frozen (NOT retired — future granular milestone):* the `theme-runtime/` granular loader, `Ve2GranularShell`, `Ve2ShellRuntime`, the `Ve2Shell` `theme` branch, the 342 `useVe2RequiredStyleFamilies` component hooks, and the committed family artifacts (`themes/*/{contents,forms,ui,utilities,theme.ts}`). These still load today; the granular re‑enablement will replace the heuristic family CSS with a **literal‑based per‑family split** built on the same scope foundation.
+
+*Docs:* `ve-architecture.md` updated (combinators/passthrough/1:1 registry/no‑fallback); `ve2-literal-converter.md`, `ve2-theme-generator.md`, `ve2-theme-generator-audit-playbook.md` carry T10 superseded headers.
+
+> **Next milestone — granular re‑enablement.** Goal: divide each theme into per‑family style chunks so the app loads only the families a route uses (the granular runtime already exists and is wired through `useVe2RequiredStyleFamilies`). Build it as a **literal‑based family split** (reuse `scripts/generate-ve-literal/` translation, partition emitted rules by family) rather than reviving the deleted heuristic emitter — the heuristic mapping was the root cause of the mismatches this whole rewrite eliminated.
 
 ---
 

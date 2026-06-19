@@ -2,7 +2,9 @@
 
 Automated pipeline that converts screenshot-derived Bootstrap CSS into Vanilla Extract theme source files under `ve-project2/src/themes/{theme}/`.
 
-Implementation: [`scripts/generate-ve-theme.mjs`](../scripts/generate-ve-theme.mjs)
+> **⚠️ Superseded (T10).** The **heuristic family-emit generator** described here (`--mode=families|scaffold|report|all`, `finalizeVeSelector`, the per‑family contract tables, two‑pass hydration) was **removed in T10** — it was the root cause of the CSS↔VE mismatches the literal rewrite eliminated. `scripts/generate-ve-theme.mjs` is now **scope‑only** (`--mode=scope`, generating `scope.css.ts` + `fonts.generated.css`, the shared infra). For per‑theme styles use the deterministic literal converter [`scripts/generate-ve-literal.mjs`](../scripts/generate-ve-literal.mjs) (see [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md)). The granular re‑enablement will add a **literal‑based** per‑family split — not a revival of this pipeline. Sections below are retained as historical reference.
+
+Implementation: [`scripts/generate-ve-theme.mjs`](../scripts/generate-ve-theme.mjs) (scope‑only as of T10)
 
 Companion documents:
 

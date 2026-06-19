@@ -1,10 +1,11 @@
 import { parse as parseCss } from '@adobe/css-tools'
 
-import { LITERAL_ELEMENT_SELECTOR_MAP } from '../generate-ve-theme-literal/element-registry.mjs'
-
 /** Normalize selector text for lookup keys. */
 export function normalizeSelector(selectorText) {
-	return selectorText.replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim()
+	return selectorText
+		.replace(/\s+/g, ' ')
+		.replace(/\s*,\s*/g, ', ')
+		.trim()
 }
 
 /** Normalize selector for familyMap lookup (unquoted attribute values). */
@@ -105,184 +106,6 @@ export const CLASS_TO_CONTRACT_OVERRIDES = {
 	'.rounded-pill': 'badgeRoundedPill',
 }
 
-/** Family-specific Bootstrap class → contract (e.g. `.fade` in toasts vs modals). */
-export const FAMILY_CLASS_TO_CONTRACT = {
-	'ui/toasts': {
-		'.fade': 'toastFade',
-	},
-	'ui/modal': {
-		'.fade': 'fade',
-	},
-	'ui/navbar': {
-		// Compound navbar variants — one contract class absorbs multiple Bootstrap classes.
-		'.navbar-light': 'navbarBgLight',
-		'.bg-light': 'navbarBgLight',
-		'.navbar-dark': 'navbarDarkBgPrimary',
-		'.bg-primary': 'navbarDarkBgPrimary',
-		'.collapse': 'collapse',
-	},
-	'ui/badge': {
-		'.bg-primary': 'badgePrimary',
-		'.bg-secondary': 'badgeSecondary',
-		'.bg-success': 'badgeSuccess',
-		'.bg-danger': 'badgeDanger',
-		'.bg-warning': 'badgeWarning',
-		'.bg-info': 'badgeInfo',
-		'.bg-light': 'badgeLight',
-		'.bg-dark': 'badgeDark',
-		'.text-dark': 'badgeLight',
-	},
-	'ui/tooltips': {
-		'.fade': 'fade',
-		'.d-flex': 'frame',
-		'.flex-column': 'frameColumn',
-		'.flex-row': 'frameRow',
-		'.align-items-center': 'alignItemsCenter',
-		'.justify-content-center': 'justifyCenter',
-		'.justify-content-start': 'justifyStart',
-		'.justify-content-end': 'justifyEnd',
-		'.border': 'frame',
-	},
-	'ui/popovers': {
-		'.fade': 'fade',
-		'.d-flex': 'frame',
-		'.flex-column': 'frameColumn',
-		'.flex-row': 'frameRow',
-		'.align-items-center': 'alignItemsCenter',
-		'.justify-content-center': 'justifyCenter',
-		'.justify-content-start': 'justifyStart',
-		'.justify-content-end': 'justifyEnd',
-		'.border': 'frame',
-	},
-	'ui/navs': {
-		'.tab-content': 'tabContent',
-		'.tab-pane': 'tabPane',
-		'.fade': 'fade',
-	},
-	'ui/progress': {
-		'.bg-success': 'progressBarSuccess',
-		'.bg-info': 'progressBarInfo',
-		'.bg-warning': 'progressBarWarning',
-		'.bg-danger': 'progressBarDanger',
-		'.text-dark': 'progressBarTextDark',
-	},
-}
-
-/**
- * Map Bootstrap state classes to contract symbols given a parent class selector.
- * Used for compound selectors like `.carousel-item.active`.
- */
-export const STATE_CLASS_BY_PARENT_SELECTOR = {
-	'.carousel-item': { '.active': 'carouselActive' },
-	'.carousel-indicators': { '.active': 'carouselActive' },
-	'.nav-link': { '.active': 'navLinkActive', '.disabled': 'navLinkDisabled' },
-	'.nav-tabs': { '.active': 'navLinkActive' },
-	'.nav-pills': { '.active': 'navLinkActive' },
-	'.page-item': { '.active': 'pageItemActive', '.disabled': 'pageItemDisabled' },
-	'.page-link': { '.active': 'pageItemActive', '.disabled': 'pageItemDisabled' },
-	'.dropdown-item': { '.active': 'dropdownItemActive', '.disabled': 'dropdownItemDisabled' },
-	'.breadcrumb-item': { '.active': 'breadcrumbItemActive' },
-	'.list-group-item': { '.active': 'listGroupItemActive', '.disabled': 'listGroupItemDisabled' },
-	'.list-group-item-action': { '.active': 'listGroupItemActive', '.disabled': 'listGroupItemDisabled' },
-	'.accordion-button': { '.collapsed': 'accordionButtonCollapsed' },
-	'.collapse': { '.show': 'accordionCollapseShow' },
-	'.fade': { '.show': 'modalShowHook' },
-	'.modal': { '.show': 'modalShowHook' },
-	'.modal-backdrop': { '.show': 'modalShowHook' },
-	'.toast': { '.show': 'toastShow', '.showing': 'toastShowing' },
-	'.dropdown-menu': { '.show': 'dropdownMenuShow' },
-	'.btn': { '.show': 'btnShowHook', '.active': 'btnActiveHook', '.disabled': 'btnDisabledHook' },
-	'.btn-close': { '.disabled': 'alertBtnCloseDisabledHook' },
-}
-
-/**
- * Standalone state-only parent segments (e.g. pagination `.active > .page-link` where
- * Bootstrap omits `.page-item` on the parent).
- */
-export const ORPHAN_STATE_SEGMENT_BY_FAMILY = {
-	'ui/pagination': {
-		'.active': ['pageItem', 'pageItemActive'],
-		'.disabled': ['pageItem', 'pageItemDisabled'],
-	},
-}
-
-/** Family-specific state class overrides (e.g. `.fade.show` in toasts vs modals). */
-export const FAMILY_STATE_CLASS_BY_PARENT = {
-	'ui/toasts': { '.fade': { '.show': 'toastShow' } },
-	'ui/modal': { '.fade': { '.show': 'modalShowHook' } },
-	'ui/navbar': { '.collapse': { '.show': 'collapseShow' } },
-	'ui/navs': {
-		'.fade': { '.show': 'show' },
-		'.tab-content': { '.active': 'tabPaneActive' },
-		'.nav-item': { '.show': 'navItemShow' },
-	},
-	'ui/tooltips': {
-		'.tooltip': { '.show': 'tooltipShow' },
-		'.fade': { '.show': 'tooltipShow' },
-	},
-	'ui/popovers': {
-		'.popover': { '.show': 'popoverShow' },
-		'.fade': { '.show': 'popoverShow' },
-	},
-}
-
-/**
- * Bootstrap bundle bleed — selectors pulled in via @import that a family never uses.
- * Emitting them causes cross-family collisions (e.g. alerts `.fade:not(.show)` vs modal backdrop).
- */
-export const SKIP_SELECTORS_BY_FAMILY = {
-	'ui/alerts': ['.fade', '.fade:not(.show)'],
-}
-
-/** Bare `.form-control` / `.input-group*` selectors owned exclusively by the forms family. */
-export function isBareFormsOwnedSelector(selector) {
-	const normalized = normalizeSelector(selector)
-	if (/[\s>+~]/.test(normalized)) return false
-	return /^\.(?:form-(?:control|select|check|input|range|floating|text|label|switch)|input-group(?:-text|-lg|-sm)?)(?:$|[:\[.])/i.test(
-		normalized,
-	)
-}
-
-/** Bare `h1`–`h6` reboot selectors owned exclusively by contents/heading. */
-export function isBareHeadingOwnedSelector(selector) {
-	const normalized = normalizeSelector(selector)
-	if (/[\s>+~]/.test(normalized)) return false
-	const base = normalized.split(/[:[\s]/)[0]
-	return /^h[1-6]$/i.test(base)
-}
-
-export function shouldSkipFamilySelector(family, selector) {
-	if (family && family !== 'forms' && isBareFormsOwnedSelector(selector)) return true
-	if (family && family !== 'contents/heading' && isBareHeadingOwnedSelector(selector)) return true
-	const skipList = family ? SKIP_SELECTORS_BY_FAMILY[family] : null
-	if (!skipList) return false
-	const normalized = normalizeSelector(selector)
-	return skipList.some((entry) => normalized === normalizeSelector(entry))
-}
-
-/**
- * VE2 architecture: family theme files must only emit `${scope}${contract}` compound selectors.
- * Raw element selectors (`button`, `p`) and unmapped utility classes (`.w-100`) are skipped.
- */
-const LITERAL_BOOTSTRAP_STATE_CLASS = /\.(show|disabled|active|collapsed)(?:[^a-z0-9_-]|$)/
-
-export function isScopedFamilySelector(veSelector, scopeName) {
-	if (!veSelector || typeof veSelector !== 'string') return false
-	const compound = `\${${scopeName}}\${`
-	if (!veSelector.includes(compound)) return false
-	// Bootstrap state tokens must map to VE contract symbols — never literal `.show` / `.disabled`.
-	if (LITERAL_BOOTSTRAP_STATE_CLASS.test(veSelector)) return false
-	return true
-}
-
-export const STATE_ONLY_CLASSES = new Set([
-	'.active',
-	'.show',
-	'.showing',
-	'.disabled',
-	'.collapsed',
-])
-
 /** Parse CSS text into flat rule list: { selectors, declarations, type, media? } */
 export function parseCssRules(cssText) {
 	const ast = parseCss(cssText)
@@ -381,70 +204,6 @@ export function extractRootVars(cssText) {
 		}
 	}
 	return vars
-}
-
-/** Map bare HTML element selectors to contract symbols per VE family. */
-export const ELEMENT_SELECTOR_BY_FAMILY = {
-	'contents/tables': {
-		table: 'tableElement',
-		thead: 'tableSection',
-		tbody: 'tableSection',
-		tfoot: 'tableSection',
-		tr: 'tableRow',
-		th: 'tableHeaderCell',
-		td: 'tableCell',
-		'*': 'tableCell',
-	},
-	'ui/toasts': {
-		strong: 'toastBrand',
-		b: 'toastBrand',
-		small: 'small',
-		svg: 'placeholderIcon',
-		img: 'bdPlaceholderImg',
-	},
-	'ui/navs': {
-		button: 'navButtonReset',
-	},
-	'ui/buttons': {
-		button: 'inputFontFamily',
-		input: 'inputFontFamily',
-		select: 'inputFontFamily',
-		textarea: 'inputFontFamily',
-		optgroup: 'inputFontFamily',
-	},
-	'forms': {
-		fieldset: 'fieldset',
-	},
-	'contents/basic': {
-		a: 'link',
-		code: 'inlineCode',
-	},
-	'contents/images': {
-		img: 'bdPlaceholderImg',
-		svg: 'bdPlaceholderImg',
-	},
-	'contents/lists': {
-		ol: 'listUnstyled',
-		ul: 'listUnstyled',
-	},
-	literal: {
-		...LITERAL_ELEMENT_SELECTOR_MAP,
-		'*': 'tableCell',
-	},
-}
-
-/** Resolve a `*` segment within a tables-family selector. */
-export function resolveTableWildcardContract(starIndex, totalStars, previousSegment) {
-	if (totalStars === 2) {
-		return starIndex === 0 ? 'tableRow' : 'tableCell'
-	}
-	if (totalStars === 1) {
-		if (/^tr\b|\$\{[^}]+\}\$\{tableRow\}/.test(previousSegment)) {
-			return 'tableCell'
-		}
-		return 'tableSection'
-	}
-	return 'tableCell'
 }
 
 /** Extract top-level @import lines from CSS text. */
@@ -561,7 +320,8 @@ export function formatVeValue(value, registry) {
 	)
 	if (rgbaBgUtilityMatch) {
 		const symbol =
-			registry?.cssVarToSymbol?.get(rgbaBgUtilityMatch[1]) ?? cssVarNameToSymbol(rgbaBgUtilityMatch[1])
+			registry?.cssVarToSymbol?.get(rgbaBgUtilityMatch[1]) ??
+			cssVarNameToSymbol(rgbaBgUtilityMatch[1])
 		return `\`rgba(\${${symbol}}, 1)${suffix}\``
 	}
 
@@ -569,7 +329,8 @@ export function formatVeValue(value, registry) {
 	const rgbaRgbVarMatch = trimmed.match(/^rgba\(\s*var\(\s*(--bs-[^)]+)\s*\)\s*,\s*(.+)\s*\)$/i)
 	if (rgbaRgbVarMatch) {
 		const symbol =
-			registry?.cssVarToSymbol?.get(rgbaRgbVarMatch[1]) ?? cssVarNameToSymbol(rgbaRgbVarMatch[1])
+			registry?.cssVarToSymbol?.get(rgbaRgbVarMatch[1]) ??
+			cssVarNameToSymbol(rgbaRgbVarMatch[1])
 		const alphaRaw = rgbaRgbVarMatch[2].trim()
 		const alphaVarMatch = alphaRaw.match(/^var\(\s*(--bs-[^,)]+)(?:\s*,\s*[^)]+)?\s*\)$/i)
 		const alpha =
@@ -578,7 +339,6 @@ export function formatVeValue(value, registry) {
 				: alphaRaw
 		return `\`rgba(\${${symbol}}, ${alpha})${suffix}\``
 	}
-
 
 	// Compound values: var(--a) var(--b), var(--a) solid var(--b), etc.
 	const tokens = tokenizeCssValue(trimmed)
@@ -604,7 +364,8 @@ export function formatVeValue(value, registry) {
 	const varFallbackMatch = trimmed.match(/^var\(\s*(--bs-[^,)]+)\s*,\s*([^)]+)\s*\)$/i)
 	if (varFallbackMatch) {
 		const symbol =
-			registry?.cssVarToSymbol?.get(varFallbackMatch[1]) ?? cssVarNameToSymbol(varFallbackMatch[1])
+			registry?.cssVarToSymbol?.get(varFallbackMatch[1]) ??
+			cssVarNameToSymbol(varFallbackMatch[1])
 		return `\`var(\${${symbol}}, ${varFallbackMatch[2].trim()})${suffix}\``
 	}
 

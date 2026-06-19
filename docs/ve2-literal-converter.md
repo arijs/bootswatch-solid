@@ -2,7 +2,7 @@
 
 Parallel pipeline that translates full `screenshots/{theme}/bootstrap.css` into a single Vanilla Extract monolith per theme, preserving source rule order and `@media` nesting.
 
-Implementation: [`scripts/generate-ve-theme-literal.mjs`](../scripts/generate-ve-theme-literal.mjs)
+> **⚠️ Superseded (T10).** This page documents the **v1 heuristic** literal converter (`scripts/generate-ve-theme-literal.mjs` + its `auto-contract`/`supplement`/`color-mirror` modules), which was **deleted in T10**. The shipping converter is the deterministic **v2** at [`scripts/generate-ve-literal.mjs`](../scripts/generate-ve-literal.mjs) — see [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md) for the authoritative design (1:1 registry, uniform translation, divergence manifest). The v1‑specific flags below (`--no-scope`, `--auto-contracts`, color‑mirror/supplement behavior) no longer exist; the sections after Quick start are kept as historical background on the element‑owned selector model only.
 
 Companion: [`docs/ve-architecture.md`](./ve-architecture.md) (scope + contract compound selectors)
 
@@ -11,11 +11,17 @@ Companion: [`docs/ve-architecture.md`](./ve-architecture.md) (scope + contract c
 ## Quick start
 
 ```bash
-# Bootstrap buttons slice (fast iteration)
-pnpm generate:ve-theme-literal -- --theme=bootstrap --filter=.btn --no-scope
+# Emit one theme's literal monolith (v2)
+pnpm generate:ve-literal -- --theme=bootstrap
 
-# Full bootstrap.css → literal bundle (with auto-generated utility contracts)
-pnpm generate:ve-theme-literal -- --theme=bootstrap --auto-contracts
+# Fast iteration: only selectors matching a substring
+pnpm generate:ve-literal -- --theme=bootstrap --filter=.btn
+
+# All 27 themes
+pnpm generate:ve-literal -- --all-themes
+
+# scope.css.ts + fonts.generated.css (shared infra, separate scope-only CLI)
+pnpm generate:ve-theme -- --theme=bootstrap --mode=scope --force
 
 # Preview in ve-project2
 pnpm ve2:dev
