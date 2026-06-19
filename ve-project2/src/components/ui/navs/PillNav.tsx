@@ -7,6 +7,7 @@ import {
 } from '../../../context/ThemeContext'
 import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { active } from '../../../theme-contract/literal/contract.css'
 import {
 	nav,
 	navItem,
@@ -32,7 +33,7 @@ const PillNav: Component = () => {
 					<li class={`${theme} ${navItem}`}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a
-							class={`${theme} ${link} ${navLink} ${navLinkActive}`}
+							class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
 							aria-current="page"
 							href="#"
 							onClick={(e) => e.preventDefault()}
