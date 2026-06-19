@@ -1,0 +1,13 @@
+.spinner-grow, .spinner-border { display: inline-block; flex-shrink: 0; width: var(--bs-spinner-width); height: var(--bs-spinner-height); vertical-align: var(--bs-spinner-vertical-align); border-radius: 50%; animation: var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name); }
+
+.spinner-grow { --bs-spinner-width: 2rem; --bs-spinner-height: 2rem; --bs-spinner-vertical-align: -0.125em; --bs-spinner-animation-speed: 0.75s; --bs-spinner-animation-name: spinner-grow; background-color: currentcolor; opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+.spinner-border, .spinner-grow { --bs-spinner-animation-speed: 1.5s; }
+}
+
+.visually-hidden, .visually-hidden-focusable:not(:focus):not(:focus-within) { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+
+.visually-hidden:not(caption), .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) { position: absolute !important; }
+
+.text-light { --bs-text-opacity: 1; color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important; }
