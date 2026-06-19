@@ -63,3 +63,6 @@ export default NormalDropdown
 // @screenshot superhero/opened-dropdown: 360x224 224
 // @screenshot lumen/opened-dropdown: 360x241 241
 // @screenshot journal/opened-dropdown: 360x235 235
+// @screenshot litera/opened-dropdown: 360x235 235
+// @screenshot zephyr/opened-dropdown: 360x257 257
+// @screenshot yeti/opened-dropdown: 360x288 288

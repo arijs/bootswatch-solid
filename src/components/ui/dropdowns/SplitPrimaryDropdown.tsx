@@ -52,3 +52,6 @@ export default SplitPrimaryDropdown
 // @screenshot lux/opened-dropdown: 360x153 153
 // @screenshot superhero/opened-dropdown: 360x145 145
 // @screenshot lumen/opened-dropdown: 360x159 159
+// @screenshot litera/opened-dropdown: 360x153 153
+// @screenshot zephyr/opened-dropdown: 360x170 170
+// @screenshot yeti/opened-dropdown: 360x192 192

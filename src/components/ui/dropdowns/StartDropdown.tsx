@@ -62,3 +62,6 @@ export default StartDropdown
 // @screenshot superhero/opened-dropdown: 360x184 184
 // @screenshot lumen/opened-dropdown: 360x199 199
 // @screenshot journal/opened-dropdown: 360x195 195
+// @screenshot litera/opened-dropdown: 360x194 194
+// @screenshot zephyr/opened-dropdown: 360x216 216
+// @screenshot yeti/opened-dropdown: 360x248 248

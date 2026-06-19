@@ -62,3 +62,5 @@ export default AlignedDropdown
 // @screenshot superhero/opened-dropdown: 360x195 195
 // @screenshot lumen/opened-dropdown: 360x209 209
 // @screenshot journal/opened-dropdown: 360x203 203
+// @screenshot zephyr/opened-dropdown: 360x220 220
+// @screenshot yeti/opened-dropdown: 360x242 242
