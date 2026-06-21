@@ -10,13 +10,16 @@
 
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-
+import {
+	familyToRelativePath,
+	themeScopeExportName,
+	VE2_THEMES_ROOT,
+} from '../generate-ve-theme/constants.mjs'
 import {
 	buildContractRegistry,
 	getContractImportPath,
 	getVarsImportPath,
 } from '../generate-ve-theme/contract-registry.mjs'
-import { VE2_THEMES_ROOT, themeScopeExportName } from '../generate-ve-theme/constants.mjs'
 import { TAG_TO_CONTRACT } from '../generate-ve-theme-literal/element-registry.mjs'
 import {
 	loadBootstrapCss,
@@ -24,13 +27,14 @@ import {
 	walkCssEmitUnits,
 } from '../generate-ve-theme-literal/parse-css-tree.mjs'
 import {
-	EXTRA_RULES,
 	applySplitProps,
+	EXTRA_RULES,
 	findAdditions,
 	findDivergence,
 	findRemaps,
 	shouldLowerElementSpecificity,
 } from './divergence-manifest.mjs'
+import { buildFamilyTable, GLOBAL_FAMILY } from './family-table.mjs'
 import { buildLiteralRegistry } from './registry.mjs'
 import { splitByCombinators, splitSelectorList } from './selector-parser.mjs'
 import { cssPropToVeKey, formatVeValue, parseVeValue } from './value-format.mjs'
@@ -217,11 +221,16 @@ function expandClassAttrSelector(commaPart, scopeVarName, registry) {
 	const [, op, , value] = m
 	const matches = (cls) => {
 		switch (op) {
-			case '*': return cls.includes(value)
-			case '^': return cls.startsWith(value)
-			case '$': return cls.endsWith(value)
-			case '|': return cls === value || cls.startsWith(`${value}-`)
-			default: return cls === value // '' (exact) and '~' (single-word class)
+			case '*':
+				return cls.includes(value)
+			case '^':
+				return cls.startsWith(value)
+			case '$':
+				return cls.endsWith(value)
+			case '|':
+				return cls === value || cls.startsWith(`${value}-`)
+			default:
+				return cls === value // '' (exact) and '~' (single-word class)
 		}
 	}
 	const syms = []
@@ -333,7 +342,7 @@ function translateDeclarations(declarations, cssVarToSymbol, usedVarSymbols) {
  */
 function emitGlobalStyle(veSelector, { propLines, varLines }, mediaStack) {
 	if (propLines.length === 0 && varLines.length === 0) return ''
-	const selectorLiteral = '`' + veSelector + '`'
+	const selectorLiteral = `\`${veSelector}\``
 
 	if (mediaStack.length === 0) {
 		const body = []
@@ -349,7 +358,9 @@ function emitGlobalStyle(veSelector, { propLines, varLines }, mediaStack) {
 	const raw = mediaStack[0]
 	const atRuleType = raw.startsWith('supports ')
 		? '@supports'
-		: raw.startsWith('container ') ? '@container' : '@media'
+		: raw.startsWith('container ')
+			? '@container'
+			: '@media'
 	const query = raw.replace(/^(supports|container) /, '')
 
 	const inner = []
@@ -382,8 +393,9 @@ function emitKeyframes(name, steps) {
 		else pct = String(step.value ?? '0%')
 
 		lines.push(`\t'${pct}': {`)
-		for (const d of (step.declarations ?? [])) {
-			if (d.type === 'declaration') lines.push(`\t\t${cssPropToVeKey(d.property)}: '${d.value}',`)
+		for (const d of step.declarations ?? []) {
+			if (d.type === 'declaration')
+				lines.push(`\t\t${cssPropToVeKey(d.property)}: '${d.value}',`)
 		}
 		lines.push('\t},')
 	}
@@ -406,7 +418,7 @@ function emitKeyframes(name, steps) {
  * literal/contract.css — matching what components stamp — while symbols
  * that ARE in utilities/contract.css (e.g. mb3) still resolve there.
  */
-function buildElementImportPaths(varRegistry) {
+function buildElementImportPaths(varRegistry, relContractRoot = REL_CONTRACT_ROOT) {
 	const symbolToPath = new Map()
 	// Pass 1: utilities/generated (lowest priority)
 	for (const [family, symbols] of varRegistry.contractsByFamily) {
@@ -414,7 +426,7 @@ function buildElementImportPaths(varRegistry) {
 		const importPath = getContractImportPath(family)
 		if (!importPath) continue
 		for (const sym of symbols) {
-			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+			symbolToPath.set(sym, `${relContractRoot}/${importPath}`)
 		}
 	}
 	// Pass 2: literal (overrides utilities/generated; gets overridden by utilities)
@@ -423,7 +435,7 @@ function buildElementImportPaths(varRegistry) {
 		const importPath = getContractImportPath(family)
 		if (!importPath) continue
 		for (const sym of symbols) {
-			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+			symbolToPath.set(sym, `${relContractRoot}/${importPath}`)
 		}
 	}
 	// Pass 3: utilities (overrides literal for symbols also in utilities/contract.css)
@@ -432,16 +444,17 @@ function buildElementImportPaths(varRegistry) {
 		const importPath = getContractImportPath(family)
 		if (!importPath) continue
 		for (const sym of symbols) {
-			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+			symbolToPath.set(sym, `${relContractRoot}/${importPath}`)
 		}
 	}
 	// Pass 4: all specific families (highest priority)
 	for (const [family, symbols] of varRegistry.contractsByFamily) {
-		if (family === 'utilities/generated' || family === 'utilities' || family === 'literal') continue
+		if (family === 'utilities/generated' || family === 'utilities' || family === 'literal')
+			continue
 		const importPath = getContractImportPath(family)
 		if (!importPath) continue
 		for (const sym of symbols) {
-			symbolToPath.set(sym, `${REL_CONTRACT_ROOT}/${importPath}`)
+			symbolToPath.set(sym, `${relContractRoot}/${importPath}`)
 		}
 	}
 	return symbolToPath
@@ -468,13 +481,26 @@ function buildImportBlock(
 	varRegistry,
 	elementImportPaths,
 	usesFallbackVar = false,
+	opts = {},
 ) {
+	const {
+		relScope = REL_SCOPE,
+		relContractRoot = REL_CONTRACT_ROOT,
+		// Defaults preserve the monolith's behavior (it always has both); per-family
+		// chunks pass real flags so a chunk with no keyframes doesn't import an unused
+		// `globalKeyframes` (Biome would flag it).
+		usesKeyframes = true,
+		usesGlobalStyle = true,
+		usesScope = true,
+	} = opts
+
 	const lines = []
-	const veImports = usesFallbackVar
-		? 'fallbackVar, globalKeyframes, globalStyle'
-		: 'globalKeyframes, globalStyle'
-	lines.push(`import { ${veImports} } from '@vanilla-extract/css'`)
-	lines.push(`import { ${scopeVarName} } from '${REL_SCOPE}'`)
+	const veNamed = []
+	if (usesFallbackVar) veNamed.push('fallbackVar')
+	if (usesKeyframes) veNamed.push('globalKeyframes')
+	if (usesGlobalStyle) veNamed.push('globalStyle')
+	lines.push(`import { ${veNamed.join(', ')} } from '@vanilla-extract/css'`)
+	if (usesScope) lines.push(`import { ${scopeVarName} } from '${relScope}'`)
 	lines.push('')
 
 	// Var symbols grouped by _vars.css import path
@@ -484,7 +510,7 @@ function buildImportBlock(
 		if (!family) continue
 		const vPath = getVarsImportPath(family)
 		if (!vPath) continue
-		const full = `${REL_CONTRACT_ROOT}/${vPath}`
+		const full = `${relContractRoot}/${vPath}`
 		if (!varsByPath.has(full)) varsByPath.set(full, new Set())
 		varsByPath.get(full).add(sym)
 	}
@@ -516,7 +542,7 @@ function buildImportBlock(
 	// Root contracts (bodyText/bodyFrame) from theme-contract.css
 	if (usedRootSymbols.size > 0) {
 		const sorted = [...usedRootSymbols].sort()
-		emitImport(lines, sorted, `${REL_CONTRACT_ROOT}/theme-contract.css`)
+		emitImport(lines, sorted, `${relContractRoot}/theme-contract.css`)
 		lines.push('')
 	}
 
@@ -541,11 +567,154 @@ function buildImportBlock(
 		lines.push('')
 	}
 	if (literalFallbackSymbols.length > 0) {
-		emitImport(lines, literalFallbackSymbols.sort(), `${REL_CONTRACT_ROOT}/literal/contract.css`)
+		emitImport(lines, literalFallbackSymbols.sort(), `${relContractRoot}/literal/contract.css`)
 		lines.push('')
 	}
 
 	return lines.join('\n')
+}
+
+// ─── family partition (G2) ─────────────────────────────────────────────────────
+
+/** Depth-aware relative paths for a family file at themes/{theme}/{family}/styles.css.ts. */
+function relPathsForFamily(family) {
+	const depth = family.split('/').length // 'forms' → 1, 'ui/buttons' → 2, 'utilities/used' → 2
+	return {
+		relScope: `${'../'.repeat(depth)}scope.css`,
+		relContractRoot: `${'../'.repeat(depth + 2)}theme-contract`,
+	}
+}
+
+/** Split a VE selector on top-level commas (paren-aware; `${}` carries no parens). */
+function splitVeSelectorList(sel) {
+	const parts = []
+	let depth = 0
+	let start = 0
+	for (let i = 0; i < sel.length; i++) {
+		const c = sel[i]
+		if (c === '(') depth++
+		else if (c === ')') depth--
+		else if (c === ',' && depth === 0) {
+			parts.push(sel.slice(start, i))
+			start = i + 1
+		}
+	}
+	parts.push(sel.slice(start))
+	return parts.map((p) => p.trim()).filter(Boolean)
+}
+
+/** Owning family of one comma-part: rightmost CLASS-contract symbol's family (§4.1/§4.2). */
+function partSubjectFamily(part, scopeVarName, table) {
+	const syms = [...part.matchAll(/\$\{(\w+)\}/g)].map((m) => m[1])
+	for (let k = syms.length - 1; k >= 0; k--) {
+		const sym = syms[k]
+		if (sym === scopeVarName) continue
+		if (ROOT_CONTRACT_SYMBOLS.has(sym)) continue
+		if (ELEMENT_CONTRACT_VALUES.has(sym)) continue
+		const fam = table.familyForSymbol(sym)
+		if (fam) return fam
+	}
+	// No class subject (pure element/reboot/root-var rule) → always-loaded baseline.
+	return GLOBAL_FAMILY
+}
+
+/**
+ * Family that owns one emitted rule block. keyframes → global. A grouped selector
+ * whose comma-parts span families → global (always loaded ⇒ no under-load, §4.2).
+ */
+function blockFamily(block, scopeVarName, table) {
+	if (block.startsWith('globalKeyframes(')) return GLOBAL_FAMILY
+	const m = block.match(/^globalStyle\(`([^`]*)`/)
+	if (!m) return GLOBAL_FAMILY
+	const fams = new Set(
+		splitVeSelectorList(m[1]).map((p) => partSubjectFamily(p, scopeVarName, table)),
+	)
+	return fams.size === 1 ? [...fams][0] : GLOBAL_FAMILY
+}
+
+/** Collect one block's used contract symbols into the family's import buckets. */
+function collectBlockSymbols(block, scopeVarName, sets, allVarSymbols) {
+	// Selector interpolations `${sym}` are class/element/root contracts.
+	const sel = block.match(/^globalStyle\(`([^`]*)`/)
+	if (sel) {
+		for (const m of sel[1].matchAll(/\$\{(\w+)\}/g)) {
+			const sym = m[1]
+			if (sym === scopeVarName) continue
+			if (ROOT_CONTRACT_SYMBOLS.has(sym)) sets.usedRoot.add(sym)
+			else if (ELEMENT_CONTRACT_VALUES.has(sym)) sets.usedElement.add(sym)
+			else sets.usedClass.add(sym)
+		}
+	}
+	// Var contracts appear as bare identifiers in the body (`[varX]:`, `fallbackVar(varX)`, values).
+	for (const m of block.matchAll(/[A-Za-z_$][\w$]*/g)) {
+		if (allVarSymbols.has(m[0])) sets.usedVar.add(m[0])
+	}
+}
+
+/**
+ * G2 — partition the monolith's emitted blocks into per-family `styles.css.ts`
+ * files. Pure repartition: every block is assigned to exactly one family by the
+ * deterministic family table, so the union of family files is rule-equivalent to
+ * the monolith by construction. The monolith is still written (literal loader).
+ *
+ * @returns {Promise<Array<{ family: string, blocks: number }>>}
+ */
+async function emitFamilyChunks({ theme, bodyLines, varRegistry, scopeVarName, table, dryRun }) {
+	const elementPathCache = new Map() // relContractRoot → elementImportPaths
+	const byFamily = new Map()
+	const newSet = () => ({
+		lines: [],
+		usedClass: new Set(),
+		usedElement: new Set(),
+		usedRoot: new Set(),
+		usedVar: new Set(),
+	})
+
+	for (const block of bodyLines) {
+		if (!block.trim()) continue
+		const family = blockFamily(block, scopeVarName, table)
+		if (!byFamily.has(family)) byFamily.set(family, newSet())
+		const b = byFamily.get(family)
+		b.lines.push(block)
+		collectBlockSymbols(block, scopeVarName, b, varRegistry.allVarSymbols)
+	}
+
+	const families = []
+	for (const [family, b] of byFamily) {
+		const { relScope, relContractRoot } = relPathsForFamily(family)
+		if (!elementPathCache.has(relContractRoot)) {
+			elementPathCache.set(
+				relContractRoot,
+				buildElementImportPaths(varRegistry, relContractRoot),
+			)
+		}
+		const importBlock = buildImportBlock(
+			scopeVarName,
+			b.usedClass,
+			b.usedElement,
+			b.usedVar,
+			b.usedRoot,
+			varRegistry,
+			elementPathCache.get(relContractRoot),
+			b.lines.some((l) => l.includes('fallbackVar(')),
+			{
+				relScope,
+				relContractRoot,
+				usesKeyframes: b.lines.some((l) => l.startsWith('globalKeyframes(')),
+				usesGlobalStyle: b.lines.some((l) => l.startsWith('globalStyle(')),
+				usesScope: b.lines.some((l) => l.includes(ref(scopeVarName))),
+			},
+		)
+		const content = `${importBlock}\n${b.lines.join('\n')}`
+		const outPath = path.join(VE2_THEMES_ROOT, theme, familyToRelativePath(family))
+		if (!dryRun) {
+			await mkdir(path.dirname(outPath), { recursive: true })
+			await writeFile(outPath, content, 'utf8')
+		}
+		families.push({ family, blocks: b.lines.length })
+	}
+	families.sort((a, b) => a.family.localeCompare(b.family))
+	return families
 }
 
 // ─── main emitter ─────────────────────────────────────────────────────────────
@@ -558,7 +727,7 @@ function buildImportBlock(
  * @returns {Promise<{ report: object, outPath: string, exitCode: number }>}
  */
 export async function emitLiteralStyles(theme, opts = {}) {
-	const { filter, dryRun = false, strict = false } = opts
+	const { filter, dryRun = false, strict = false, families = false } = opts
 
 	const [cssText, literalRegistry, varRegistry] = await Promise.all([
 		loadBootstrapCss(theme),
@@ -665,7 +834,10 @@ export async function emitLiteralStyles(theme, opts = {}) {
 		if (unresolved.length > 0) {
 			skipped.push({ selector, reason: `unresolved: ${unresolved.join(', ')}` })
 			report.skippedCount++
-			if (strict) console.error(`[strict] Unresolved tokens in "${selector}": ${unresolved.join(', ')}`)
+			if (strict)
+				console.error(
+					`[strict] Unresolved tokens in "${selector}": ${unresolved.join(', ')}`,
+				)
 			continue
 		}
 
@@ -703,7 +875,10 @@ export async function emitLiteralStyles(theme, opts = {}) {
 				const subs = addition.substitutes ?? [addition.substitute]
 				let mirrorSelector = veSelector
 				for (const sub of subs) {
-					mirrorSelector = mirrorSelector.replaceAll(ref(sub.fromContract), ref(sub.toContract))
+					mirrorSelector = mirrorSelector.replaceAll(
+						ref(sub.fromContract),
+						ref(sub.toContract),
+					)
 				}
 				if (mirrorSelector !== veSelector) {
 					bodyLines.push(emitGlobalStyle(mirrorSelector, decls, media))
@@ -750,9 +925,22 @@ export async function emitLiteralStyles(theme, opts = {}) {
 			elementImportPaths,
 			usesFallbackVar,
 		)
-		const content = importBlock + '\n' + bodyLines.join('\n')
+		const content = `${importBlock}\n${bodyLines.join('\n')}`
 		await mkdir(path.dirname(outPath), { recursive: true })
 		await writeFile(outPath, content, 'utf8')
+	}
+
+	// G2 — partition the same blocks into per-family chunks (additive; monolith stays).
+	if (families) {
+		const table = await buildFamilyTable()
+		report.families = await emitFamilyChunks({
+			theme,
+			bodyLines,
+			varRegistry,
+			scopeVarName,
+			table,
+			dryRun,
+		})
 	}
 
 	const exitCode = strict && report.skippedCount > 0 ? 1 : 0

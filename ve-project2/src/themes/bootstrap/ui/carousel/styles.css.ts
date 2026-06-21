@@ -1,28 +1,17 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsHeadingColor,
-} from '../../../../theme-contract/_vars.css'
-import {
-	varBsCarouselCaptionColor,
-	varBsCarouselControlIconFilter,
-	varBsCarouselIndicatorActiveBg,
-} from '../../../../theme-contract/ui/carousel/_vars.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
+import { bootstrapScope } from '../../scope.css'
+
+import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../../theme-contract/ui/carousel/_vars.css'
+
+import { active } from '../../../../theme-contract/literal/contract.css'
 import {
 	carousel,
-	carouselActive,
 	carouselCaption,
 	carouselControlNext,
 	carouselControlNextIcon,
 	carouselControlPrev,
 	carouselControlPrevIcon,
+	carouselDark,
 	carouselFade,
 	carouselIndicators,
 	carouselInner,
@@ -32,357 +21,282 @@ import {
 	carouselItemPrev,
 	carouselItemStart,
 } from '../../../../theme-contract/ui/carousel/contract.css'
-import {
-	fade,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import {
-	visuallyHidden,
-} from '../../../../theme-contract/utilities/contract.css'
-import { bootstrapScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/carousel
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${bootstrapScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${bootstrapScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
-// SOURCE CSS:
-// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${bootstrapScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${bootstrapScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${bootstrapScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${bootstrapScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .carousel { position: relative; }
 globalStyle(`${bootstrapScope}${carousel}`, {
-	position: "relative",
+	position: 'relative',
 })
 
-// SOURCE CSS:
-// .carousel-inner { position: relative; width: 100%; overflow: hidden; }
 globalStyle(`${bootstrapScope}${carouselInner}`, {
-	position: "relative",
-	width: "100%",
-	overflow: "hidden",
+	position: 'relative',
+	width: '100%',
+	overflow: 'hidden',
 })
 
-// SOURCE CSS:
-// .carousel-inner::after { display: block; clear: both; content: ""; }
 globalStyle(`${bootstrapScope}${carouselInner}::after`, {
-	display: "block",
-	clear: "both",
-	content: "\"\"",
+	display: 'block',
+	clear: 'both',
+	content: '""',
 })
 
-// SOURCE CSS:
-// .carousel-item { position: relative; display: none; float: left; width: 100%; margin-right: -100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: transform 0.6s ease-in-out; }
 globalStyle(`${bootstrapScope}${carouselItem}`, {
-	position: "relative",
-	display: "none",
-	float: "left",
-	width: "100%",
-	marginRight: "-100%",
-	WebkitBackfaceVisibility: "hidden",
-	backfaceVisibility: "hidden",
-	transition: "transform 0.6s ease-in-out",
+	position: 'relative',
+	display: 'none',
+	float: 'left',
+	width: '100%',
+	marginRight: '-100%',
+	WebkitBackfaceVisibility: 'hidden',
+	backfaceVisibility: 'hidden',
+	transition: 'transform 0.6s ease-in-out',
 })
 
-// SOURCE CSS:
-// .carousel-item.active { display: block; }
-globalStyle(`${bootstrapScope}${carouselItem}${carouselActive}`, {
-	display: "block",
+globalStyle(`${bootstrapScope}${carouselItem}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .carousel-item-next { display: block; }
 globalStyle(`${bootstrapScope}${carouselItemNext}`, {
-	display: "block",
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .carousel-item-prev { display: block; }
 globalStyle(`${bootstrapScope}${carouselItemPrev}`, {
-	display: "block",
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .carousel-item-next:not(.carousel-item-start) { transform: translateX(100%); }
-globalStyle(`${bootstrapScope}${carouselItemNext}:not(${bootstrapScope}${carouselItemStart})`, {
-	transform: "translateX(100%)",
+globalStyle(`${bootstrapScope}${carouselItemNext}:not(${carouselItemStart})`, {
+	transform: 'translateX(100%)',
 })
 
-// SOURCE CSS:
-// .carousel-item-prev:not(.carousel-item-end) { transform: translateX(-100%); }
-globalStyle(`${bootstrapScope}${carouselItemPrev}:not(${bootstrapScope}${carouselItemEnd})`, {
-	transform: "translateX(-100%)",
+globalStyle(`${bootstrapScope}${active}${carouselItemEnd}`, {
+	transform: 'translateX(100%)',
 })
 
-// SOURCE CSS:
-// .carousel-fade .carousel-item.active { z-index: 1; opacity: 1; }
-globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${carouselItem}${carouselActive}`, {
-	zIndex: 1,
-	opacity: 1,
+globalStyle(`${bootstrapScope}${carouselItemPrev}:not(${carouselItemEnd})`, {
+	transform: 'translateX(-100%)',
 })
 
-// SOURCE CSS:
-// .carousel-fade .carousel-item-next.carousel-item-start { z-index: 1; opacity: 1; }
+globalStyle(`${bootstrapScope}${active}${carouselItemStart}`, {
+	transform: 'translateX(-100%)',
+})
+
+globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${carouselItem}`, {
+	opacity: '0',
+	transitionProperty: 'opacity',
+	transform: 'none',
+})
+
 globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${carouselItemNext}${carouselItemStart}`, {
-	zIndex: 1,
-	opacity: 1,
+	zIndex: '1',
+	opacity: '1',
 })
 
-// SOURCE CSS:
-// .carousel-fade .carousel-item-prev.carousel-item-end { z-index: 1; opacity: 1; }
 globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${carouselItemPrev}${carouselItemEnd}`, {
-	zIndex: 1,
-	opacity: 1,
+	zIndex: '1',
+	opacity: '1',
 })
 
-// SOURCE CSS:
-// .carousel-fade .active.carousel-item-start { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
-globalStyle(`${bootstrapScope}${carouselFade} ${carouselActive}${carouselItemStart}`, {
-	zIndex: 0,
-	opacity: 0,
-	transition: "opacity 0s 0.6s",
+globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${active}${carouselItemStart}`, {
+	zIndex: '0',
+	opacity: '0',
+	transition: 'opacity 0s 0.6s',
 })
 
-// SOURCE CSS:
-// .carousel-fade .active.carousel-item-end { z-index: 0; opacity: 0; transition: opacity 0s 0.6s; }
-globalStyle(`${bootstrapScope}${carouselFade} ${carouselActive}${carouselItemEnd}`, {
-	zIndex: 0,
-	opacity: 0,
-	transition: "opacity 0s 0.6s",
+globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${active}${carouselItemEnd}`, {
+	zIndex: '0',
+	opacity: '0',
+	transition: 'opacity 0s 0.6s',
 })
 
-// SOURCE CSS:
-// .carousel-control-prev { position: absolute; top: 0; bottom: 0; z-index: 1; display: flex; align-items: center; justify-content: center; width: 15%; padding: 0; color: #fff; text-align: center; background: none; filter: var(--bs-carousel-control-icon-filter); border: 0; opacity: 0.5; transition: opacity 0.15s ease; left: 0; }
+globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${active}${carouselItemStart}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${carouselFade} ${bootstrapScope}${active}${carouselItemEnd}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${bootstrapScope}${carouselControlPrev}`, {
-	position: "absolute",
-	top: 0,
-	bottom: 0,
-	zIndex: 1,
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-	width: "15%",
-	padding: 0,
-	color: "#fff",
-	textAlign: "center",
-	background: "none",
+	position: 'absolute',
+	top: '0',
+	bottom: '0',
+	zIndex: '1',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	width: '15%',
+	padding: '0',
+	color: '#fff',
+	textAlign: 'center',
+	background: 'none',
 	filter: varBsCarouselControlIconFilter,
-	border: 0,
-	opacity: 0.5,
-	transition: "opacity 0.15s ease",
-	left: 0,
+	border: '0',
+	opacity: '0.5',
+	transition: 'opacity 0.15s ease',
 })
 
-// SOURCE CSS:
-// .carousel-control-next { position: absolute; top: 0; bottom: 0; z-index: 1; display: flex; align-items: center; justify-content: center; width: 15%; padding: 0; color: #fff; text-align: center; background: none; filter: var(--bs-carousel-control-icon-filter); border: 0; opacity: 0.5; transition: opacity 0.15s ease; right: 0; }
 globalStyle(`${bootstrapScope}${carouselControlNext}`, {
-	position: "absolute",
-	top: 0,
-	bottom: 0,
-	zIndex: 1,
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-	width: "15%",
-	padding: 0,
-	color: "#fff",
-	textAlign: "center",
-	background: "none",
+	position: 'absolute',
+	top: '0',
+	bottom: '0',
+	zIndex: '1',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	width: '15%',
+	padding: '0',
+	color: '#fff',
+	textAlign: 'center',
+	background: 'none',
 	filter: varBsCarouselControlIconFilter,
-	border: 0,
-	opacity: 0.5,
-	transition: "opacity 0.15s ease",
-	right: 0,
+	border: '0',
+	opacity: '0.5',
+	transition: 'opacity 0.15s ease',
 })
 
-// SOURCE CSS:
-// .carousel-control-prev:hover { color: #fff; text-decoration: none; outline: 0; opacity: 0.9; }
+globalStyle(`${bootstrapScope}${carouselControlPrev}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${carouselControlNext}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${bootstrapScope}${carouselControlPrev}:hover`, {
-	color: "#fff",
-	textDecoration: "none",
-	outline: 0,
-	opacity: 0.9,
+	color: '#fff',
+	textDecoration: 'none',
+	outline: '0',
+	opacity: '0.9',
 })
 
-// SOURCE CSS:
-// .carousel-control-prev:focus { color: #fff; text-decoration: none; outline: 0; opacity: 0.9; }
 globalStyle(`${bootstrapScope}${carouselControlPrev}:focus`, {
-	color: "#fff",
-	textDecoration: "none",
-	outline: 0,
-	opacity: 0.9,
+	color: '#fff',
+	textDecoration: 'none',
+	outline: '0',
+	opacity: '0.9',
 })
 
-// SOURCE CSS:
-// .carousel-control-next:hover { color: #fff; text-decoration: none; outline: 0; opacity: 0.9; }
 globalStyle(`${bootstrapScope}${carouselControlNext}:hover`, {
-	color: "#fff",
-	textDecoration: "none",
-	outline: 0,
-	opacity: 0.9,
+	color: '#fff',
+	textDecoration: 'none',
+	outline: '0',
+	opacity: '0.9',
 })
 
-// SOURCE CSS:
-// .carousel-control-next:focus { color: #fff; text-decoration: none; outline: 0; opacity: 0.9; }
 globalStyle(`${bootstrapScope}${carouselControlNext}:focus`, {
-	color: "#fff",
-	textDecoration: "none",
-	outline: 0,
-	opacity: 0.9,
+	color: '#fff',
+	textDecoration: 'none',
+	outline: '0',
+	opacity: '0.9',
 })
 
-// SOURCE CSS:
-// .carousel-control-prev-icon { display: inline-block; width: 2rem; height: 2rem; background-repeat: no-repeat; background-position: 50%; background-size: 100% 100%; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e"); }
+globalStyle(`${bootstrapScope}${carouselControlPrev}`, {
+	left: '0',
+})
+
+globalStyle(`${bootstrapScope}${carouselControlNext}`, {
+	right: '0',
+})
+
 globalStyle(`${bootstrapScope}${carouselControlPrevIcon}`, {
-	display: "inline-block",
-	width: "2rem",
-	height: "2rem",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "50%",
-	backgroundSize: "100% 100%",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e\")",
+	display: 'inline-block',
+	width: '2rem',
+	height: '2rem',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: '50%',
+	backgroundSize: '100% 100%',
 })
 
-// SOURCE CSS:
-// .carousel-control-next-icon { display: inline-block; width: 2rem; height: 2rem; background-repeat: no-repeat; background-position: 50%; background-size: 100% 100%; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e"); }
 globalStyle(`${bootstrapScope}${carouselControlNextIcon}`, {
-	display: "inline-block",
-	width: "2rem",
-	height: "2rem",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "50%",
-	backgroundSize: "100% 100%",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/%3e%3c/svg%3e\")",
+	display: 'inline-block',
+	width: '2rem',
+	height: '2rem',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: '50%',
+	backgroundSize: '100% 100%',
 })
 
-// SOURCE CSS:
-// .carousel-indicators { position: absolute; right: 0; bottom: 0; left: 0; z-index: 2; display: flex; justify-content: center; padding: 0; margin-right: 15%; margin-bottom: 1rem; margin-left: 15%; }
+globalStyle(`${bootstrapScope}${carouselControlPrevIcon}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\'/%3e%3c/svg%3e") ',
+})
+
+globalStyle(`${bootstrapScope}${carouselControlNextIcon}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\'/%3e%3c/svg%3e") ',
+})
+
 globalStyle(`${bootstrapScope}${carouselIndicators}`, {
-	position: "absolute",
-	right: 0,
-	bottom: 0,
-	left: 0,
-	zIndex: 2,
-	display: "flex",
-	justifyContent: "center",
-	padding: 0,
-	marginRight: "15%",
-	marginBottom: "1rem",
-	marginLeft: "15%",
+	position: 'absolute',
+	right: '0',
+	bottom: '0',
+	left: '0',
+	zIndex: '2',
+	display: 'flex',
+	justifyContent: 'center',
+	padding: '0',
+	marginRight: '15%',
+	marginBottom: '1rem',
+	marginLeft: '15%',
 })
 
-// SOURCE CSS:
-// .carousel-indicators [data-bs-target] { box-sizing: content-box; flex: 0 1 auto; width: 30px; height: 3px; padding: 0; margin-right: 3px; margin-left: 3px; text-indent: -999px; cursor: pointer; background-color: var(--bs-carousel-indicator-active-bg); background-clip: padding-box; border: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; opacity: 0.5; transition: opacity 0.6s ease; }
-// [UNMAPPED_SELECTOR] element selector "[data-bs-target]" — map to a contract class
-globalStyle(`${bootstrapScope}${carouselIndicators} [data-bs-target]`, {
-	boxSizing: "content-box",
-	flex: "0 1 auto",
-	width: "30px",
-	height: "3px",
-	padding: 0,
-	marginRight: "3px",
-	marginLeft: "3px",
-	textIndent: "-999px",
-	cursor: "pointer",
+globalStyle(`${bootstrapScope}${carouselIndicators} ${bootstrapScope}[data-bs-target]`, {
+	boxSizing: 'content-box',
+	flex: '0 1 auto',
+	width: '30px',
+	height: '3px',
+	padding: '0',
+	marginRight: '3px',
+	marginLeft: '3px',
+	textIndent: '-999px',
+	cursor: 'pointer',
 	backgroundColor: varBsCarouselIndicatorActiveBg,
-	backgroundClip: "padding-box",
-	border: 0,
-	borderTop: "10px solid transparent",
-	borderBottom: "10px solid transparent",
-	opacity: 0.5,
-	transition: "opacity 0.6s ease",
+	backgroundClip: 'padding-box',
+	border: '0',
+	borderTop: '10px solid transparent',
+	borderBottom: '10px solid transparent',
+	opacity: '0.5',
+	transition: 'opacity 0.6s ease',
 })
 
-// SOURCE CSS:
-// .carousel-indicators .active { opacity: 1; }
-globalStyle(`${bootstrapScope}${carouselIndicators} ${carouselActive}`, {
-	opacity: 1,
+globalStyle(`${bootstrapScope}${carouselIndicators} ${bootstrapScope}[data-bs-target]`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .carousel-caption { position: absolute; right: 15%; bottom: 1.25rem; left: 15%; padding-top: 1.25rem; padding-bottom: 1.25rem; color: var(--bs-carousel-caption-color); text-align: center; }
 globalStyle(`${bootstrapScope}${carouselCaption}`, {
-	position: "absolute",
-	right: "15%",
-	bottom: "1.25rem",
-	left: "15%",
-	paddingTop: "1.25rem",
-	paddingBottom: "1.25rem",
+	position: 'absolute',
+	right: '15%',
+	bottom: '1.25rem',
+	left: '15%',
+	paddingTop: '1.25rem',
+	paddingBottom: '1.25rem',
 	color: varBsCarouselCaptionColor,
-	textAlign: "center",
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// .visually-hidden { width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-globalStyle(`${bootstrapScope}${visuallyHidden}`, {
-	width: "1px !important",
-	height: "1px !important",
-	padding: "0 !important",
-	margin: "-1px !important",
-	overflow: "hidden !important",
-	clip: "rect(0, 0, 0, 0) !important",
-	whiteSpace: "nowrap !important",
-	border: "0 !important",
-})
-
-// SOURCE CSS:
-// .visually-hidden:not(caption) { position: absolute !important; }
-// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
-globalStyle(`${bootstrapScope}${visuallyHidden}:not(caption)`, {
-	position: "absolute !important",
+globalStyle(`${bootstrapScope}${carouselDark}`, {
+	vars: {
+		[varBsCarouselIndicatorActiveBg]: '#000',
+		[varBsCarouselCaptionColor]: '#000',
+		[varBsCarouselControlIconFilter]: 'invert(1) grayscale(100)',
+	},
 })

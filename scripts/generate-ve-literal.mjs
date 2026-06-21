@@ -15,6 +15,7 @@
  *   --strict          Exit non-zero if any selectors were skipped
  *   --filter=<str>    Only process selectors containing <str> (debug)
  *   --show-skipped    Print every skipped selector to stdout
+ *   --families        Also partition the monolith into per-family chunks (G2)
  */
 
 import process from 'node:process'
@@ -29,8 +30,10 @@ function parseArgs(argv) {
 		dryRun: args.includes('--dry-run'),
 		strict: args.includes('--strict'),
 		showSkipped: args.includes('--show-skipped'),
+		families: args.includes('--families'),
 		theme: (args.find((a) => a.startsWith('--theme=')) ?? '').slice('--theme='.length) || null,
-		filter: (args.find((a) => a.startsWith('--filter=')) ?? '').slice('--filter='.length) || null,
+		filter:
+			(args.find((a) => a.startsWith('--filter=')) ?? '').slice('--filter='.length) || null,
 	}
 }
 
@@ -39,8 +42,17 @@ function printReport(theme, report, outPath, dryRun) {
 	const dest = dryRun ? '' : `  → ${outPath}`
 	console.log(
 		`${tag} ${theme.padEnd(12)} emitted=${report.emitted}  ` +
-		`skipped=${report.skippedCount}  keyframes=${report.keyframesEmitted}${dest}`,
+			`skipped=${report.skippedCount}  keyframes=${report.keyframesEmitted}${dest}`,
 	)
+}
+
+function printFamilies(report) {
+	const fams = report.families
+	const total = fams.reduce((n, f) => n + f.blocks, 0)
+	console.log(`  families: ${fams.length} chunks, ${total} blocks partitioned`)
+	for (const { family, blocks } of fams) {
+		console.log(`    ${family.padEnd(20)} ${blocks}`)
+	}
 }
 
 function printSkipped(theme, report) {
@@ -52,10 +64,14 @@ function printSkipped(theme, report) {
 }
 
 async function main() {
-	const { allThemes, dryRun, strict, showSkipped, theme, filter } = parseArgs(process.argv)
+	const { allThemes, dryRun, strict, showSkipped, theme, filter, families } = parseArgs(
+		process.argv,
+	)
 
 	if (!theme && !allThemes) {
-		console.error('Usage: node scripts/generate-ve-literal.mjs --theme=<slug> | --all-themes [--dry-run] [--strict]')
+		console.error(
+			'Usage: node scripts/generate-ve-literal.mjs --theme=<slug> | --all-themes [--dry-run] [--strict]',
+		)
 		process.exit(1)
 	}
 
@@ -67,10 +83,16 @@ async function main() {
 
 	for (const t of themes) {
 		try {
-			const { report, outPath, exitCode } = await emitLiteralStyles(t, { filter, dryRun, strict })
+			const { report, outPath, exitCode } = await emitLiteralStyles(t, {
+				filter,
+				dryRun,
+				strict,
+				families,
+			})
 			totalEmitted += report.emitted
 			totalSkipped += report.skippedCount
 			printReport(t, report, outPath, dryRun)
+			if (report.families) printFamilies(report)
 			if (showSkipped) printSkipped(t, report)
 			if (exitCode !== 0) anyFailed = true
 		} catch (err) {
@@ -80,7 +102,9 @@ async function main() {
 	}
 
 	if (themes.length > 1) {
-		console.log(`\nTotal: emitted=${totalEmitted}  skipped=${totalSkipped} across ${themes.length} themes`)
+		console.log(
+			`\nTotal: emitted=${totalEmitted}  skipped=${totalSkipped} across ${themes.length} themes`,
+		)
 	}
 
 	process.exit(anyFailed ? 1 : 0)

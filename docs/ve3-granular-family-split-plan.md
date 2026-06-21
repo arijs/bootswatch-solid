@@ -27,7 +27,7 @@ The granular machinery to feed **already exists and is complete** — it is froz
 
 | Piece | File | State |
 |---|---|---|
-| Family taxonomy (33 ids: `global` + `contents` parent + 28 leaf families) | [`theme-runtime/style-families.ts`](../ve-project2/src/theme-runtime/style-families.ts) | frozen, authoritative |
+| Family taxonomy (33 ids: `global` + `contents` parent + 31 leaf families, incl. `ui/offcanvas` + `utilities/used`) | [`theme-runtime/style-families.ts`](../ve-project2/src/theme-runtime/style-families.ts) | authoritative; `ui/offcanvas` + `utilities/used` added since freeze |
 | On-demand loader (dynamic import, caching, in-flight dedup) | [`Ve2GranularShell.tsx`](../ve-project2/src/components/shell/Ve2GranularShell.tsx) | works; resolves only **8** themes today |
 | Static import map `ve2ThemeFamilyLoaders` | [`theme-runtime/theme-runtime.ts`](../ve-project2/src/theme-runtime/theme-runtime.ts) | only **8** themes wired |
 | Demand signal `useVe2RequiredStyleFamilies()` | [`theme-runtime/style-loader-context.tsx`](../ve-project2/src/theme-runtime/style-loader-context.tsx) | **342** component declarations in place |
@@ -104,12 +104,22 @@ Mirrors the conversion plan's task style. Each task has an acceptance gate; do n
 
 Census (`--census --all-themes`): **2069 class symbols, 0 unmapped, 0 invalid** across all 27 themes, via **105 `FAMILY_OVERRIDES`** + the dir structure.
 
-**Audit finding (utilities sanity check).** The first pass put **1796/2069 (86.8%)** symbols in `utilities`, which looked suspiciously high. Investigation confirmed the *magnitude* is legitimate — 1754 come from Bootstrap's combinatorial utility API (`utilities/generated/contract.css`: the `m/p-{side}-{bp}-{0..5}` spacing matrix, `align-*`, `text-*`, `w-*`, `z-*`, etc.) and **0 symbols were wrongly stolen from a specific family** (priority order intact). **But** the inherited `utilities/generated` catch-all had swept in **65 genuine component classes** (`.modal-lg`, `.modal-fullscreen-*`, `.dropdown-menu-{bp}-{start,end}`, `.navbar-expand*`, `.list-group-horizontal*`, `.btn-group-vertical`, `.valid-tooltip`, `.accordion-flush`, `.toast-container`, …) — exactly the "catch-all dumping" this rewrite removes. **51** were reclassified to their real family via overrides (semantically correct + avoids dragging `.modal-lg` onto every route). The remaining **14 `.offcanvas*`** are left in `utilities` as **dead CSS** — there is no `offcanvas` family in the taxonomy and no offcanvas component/scenario exists. Final utilities count: **1745**.
+**Audit finding (utilities sanity check).** The first pass put **1796/2069 (86.8%)** symbols in `utilities`, which looked suspiciously high. Investigation confirmed the *magnitude* is legitimate — ~1740 come from Bootstrap's combinatorial utility API (`utilities/generated/contract.css`: the `m/p-{side}-{bp}-{0..5}` spacing matrix, `align-*`, `text-*`, `w-*`, `z-*`, etc.) and **0 symbols were wrongly stolen from a specific family** (priority order intact). **But** the inherited `utilities/generated` catch-all had swept in **65 genuine component classes** (`.modal-lg`, `.modal-fullscreen-*`, `.dropdown-menu-{bp}-{start,end}`, `.navbar-expand*`, `.list-group-horizontal*`, `.btn-group-vertical`, `.valid-tooltip`, `.accordion-flush`, `.toast-container`, …) — exactly the "catch-all dumping" this rewrite removes. **51** were reclassified to their real family via overrides (semantically correct + avoids dragging `.modal-lg` onto every route).
+
+The remaining **14 `.offcanvas*`** were originally parked in `utilities` as dead CSS. **That is now fixed:** the `ui/offcanvas` family exists (taxonomy + `theme-contract/ui/offcanvas/contract.css` + the `/ui/offcanvas` scenario family, verified to zero across all 27 themes — commit `a57d4903`). The dir structure now resolves `.offcanvas*` to `ui/offcanvas` via the specific-family priority pass, so **no override is needed** for it. Current census (`--census --all-themes`): **2069 class symbols, 0 unmapped, 0 invalid**, **105 overrides**. The former 1731-symbol `utilities` family is now split **1636 `utilities` (dead) + 95 `utilities/used`** by the manual tree-shake in [§10.6](#106-decision-taken--manual-utilitiesused-family) (see [§10](#10-utilities-is-83-of-symbols-but-5-of-it-is-used) for the full analysis).
 
 The override table (105 entries) covers: literal-only legacy/Bootswatch classes (Bootswatch card variants → `ui/card`; `.h1`–`.h6` → `contents/heading`; BS3 form/navbar/table shims → their families; Tether/popover positioning → `ui/popovers`; `.rounded-pill` → `utilities`; sandstone's grouped `.sandstone` → `global`), plus the 51 catch-all reclassifications above. Lint clean (Biome).
 
-**G2 — Partition emitter.** Map-keyed accumulator + per-family `buildImportBlock` + `@layer` ordering; emit `themes/{theme}/{family}/styles.css.ts`. (Mirrors T4.)
+**✅ G2 — Partition emitter.** Per-family `buildImportBlock` + per-family `styles.css.ts`; emit `themes/{theme}/{family}/styles.css.ts`. (Mirrors T4.)
 *Gate:* bootstrap emits all families with 0 skipped; union of family files is rule-equivalent to the monolith.
+
+**Done.** Implemented as a **2-pass repartition** in [`emit.mjs`](../scripts/generate-ve-literal/emit.mjs) (opt-in `--families` flag on [`generate-ve-literal.mjs`](../scripts/generate-ve-literal.mjs)): the 8 monolith push-sites are untouched; after the monolith is built, `emitFamilyChunks()` buckets each finished rule-block by `table.familyForSymbol(subject)` and writes one file per family. Because it repartitions the *same* blocks, **union ≡ monolith holds by construction**. The monolith is still written (literal loader keeps it).
+
+- **Subject rule (§4.1/§4.2):** a block's family = the rightmost CLASS-contract symbol's family (so `.navbar .nav-link` → `ui/navs`, `.table-dark th` → `contents/tables`). keyframes / root-var / pure-element blocks → `global`. A **grouped selector whose comma-parts span families → `global`** (always loaded ⇒ no under-load).
+- **Depth-aware imports:** `relPathsForFamily()` computes `../` depth per family (`forms/`=1, `ui/buttons/` & `utilities/used/`=2), and `buildImportBlock`/`buildElementImportPaths` were parameterized on `relScope`/`relContractRoot`. Per-family VE imports are conditional (a chunk with no keyframes doesn't import `globalKeyframes`).
+- **Result (bootstrap `--families`):** 32 chunks, **2982 blocks = 2977 emitted + 5 keyframes**, 0 skipped. Largest: `utilities` 1756 (dead, loaded by nothing), `utilities/used` 131, `forms` 200, `ui/dropdowns` 82, `ui/offcanvas` 79, `ui/buttons` 78; `global` 131 (reboot + keyframes + root-vars + cross-family grouped). New dirs created: `global/`, `ui/offcanvas/`, `utilities/used/`.
+- **Gate check:** [`validate-family-chunks.mjs`](../scripts/generate-ve-literal/validate-family-chunks.mjs) confirms **rule-equivalent: YES** (2982 = 2982) and **0 import problems** (every referenced symbol imported; no unused imports) across all 32 chunks.
+- **Deferred:** `@layer` cross-family ordering (§4.1) is left to G5 — the G2 gate doesn't need it, and within each family the cascade is already monolith-identical (blocks kept in source order). Generated chunk files are not Biome-clean, **matching the committed monolith** (same generator; these artifacts are tolerated by repo convention). Emitting all 27 themes is one `--all-themes --families` run, sequenced with G3's loader regeneration.
 
 **G3 — Regenerate loader map.** Regenerate `ve2ThemeFamilyLoaders` for all **27** themes; expand `Ve2GranularShell` theme resolution beyond the current 8. (Mirrors T5.)
 *Gate:* `?style-loader=granular&theme=<t>` loads each theme's family chunks for every theme.
@@ -134,3 +144,162 @@ The override table (105 entries) covers: literal-only legacy/Bootswatch classes 
 ## 9. Why this keeps faith with the rewrite
 
 The milestone reduces to **one deterministic table + a partition step + a closure check**. Family assignment becomes a curated registry problem (like the §5.3 element table), not a guessing problem — so granular loading is layered on top of the verified literal foundation without reintroducing the heuristic mapping the rewrite was built to remove.
+
+---
+
+## 10. `utilities` is 83% of symbols — but ~5% of it is used
+
+`utilities` holds **1731 / 2069 (83.7%)** of all class symbols, dwarfing every component family. Before subdividing the monolith we sanity-checked whether that 83% is real weight or an accounting artifact. **It is almost entirely an artifact.**
+
+### 10.1 The measurement
+
+Two audits were added (kept as reusable tools):
+- [`scripts/generate-ve-literal/utilities-usage-audit.mjs`](../scripts/generate-ve-literal/utilities-usage-audit.mjs) — tokenizes every `class=` in the demo source (`src/components/**`, `ve-project2/src/components/**`) and intersects with the utility-class set.
+- [`scripts/generate-ve-literal/utilities-rendered-check.mjs`](../scripts/generate-ve-literal/utilities-rendered-check.mjs) — the ground truth: extracts every contract symbol actually stamped in the **433 rendered VE DOM captures** (`dist/theme/bootstrap/**/markup-ve.html`) and counts those resolving to `utilities`.
+
+| Metric | Count | % of 1731 |
+|---|---:|---:|
+| Utility symbols **defined** (full Bootstrap combinatorial API) | 1731 | 100% |
+| **Authored** in demo source (incl. non-screenshotted variants) | 95 | 5.5% |
+| **Actually rendered** across all 433 scenarios × 27 themes | **64** | **3.7%** |
+
+The other **~1667 utility symbols are dead in this project** — they exist because Bootstrap's compiled CSS ships the entire `m/p-{side}-{bp}-{0..5}` spacing matrix, every `align-content-*`, `order-*`, `row-cols-*`, etc., and the contract registry faithfully mirrors all of them. No demo route touches them.
+
+### 10.2 What the 1731 is made of (and the used subset)
+
+`categorize()` in the usage-audit groups the utility classes into Bootstrap's own utility axes. `used` is the count authored in demo source (95-set); `total` is defined:
+
+| Sub-family | used / total | Used members (representative) |
+|---|---:|---|
+| **spacing** (`m*`/`p*`/`g*`) | 31 / 655 | `mb-3 my-3 me-auto px-3 pt-4 g-3 …` |
+| **flex-display** (`d-flex`,`justify-*`,`align-*`,`flex-*`,`gap`,`order`) | 15 / 369 | `d-flex flex-column justify-content-center align-items-center …` |
+| **grid** (`row`/`col*`/`container*`/`row-cols*`/`offset*`) | 10 / 282 | `row col col-md-6 row-cols-1 g-4 …` |
+| **typography** (`text-*`,`fw`,`fs`,`fst`,`lh`,`font-*`) | 13 / 86 | `text-center fw-bold fs-4 text-muted text-primary …` |
+| **borders** (`border*`,`rounded*`) | 4 / 82 | `border border-bottom rounded-pill …` |
+| **other / state** | 2 / 121 | `active disabled` |
+| **display-visibility** (`d-none/block/inline`,`overflow`,`float`,`visually-hidden`) | 2 / 35 | `d-none overflow-x-hidden visually-hidden` |
+| **position** (`position-*`,`top/bottom/start/end`,`sticky/fixed`,`translate`) | 5 / 34 | `position-relative sticky-xl-top top-0 end-0 …` |
+| **color-bg** (`bg-*`,`text-bg-*`) | 8 / 28 | `bg-primary bg-dark bg-light …` |
+| **sizing** (`w-*`/`h-*`/`mw`/`mh`/`vw`/`vh`) | 4 / 15 | `w-100 w-75 w-50 w-25` |
+| **effects** (`shadow`,`opacity`,`user-select`,`pe-*`) | 0 / 13 | — (entirely dead) |
+| **vertical-align** | 1 / 6 | `align-top` |
+| **ratio** | 0 / 5 | — (entirely dead) |
+
+`spacing + flex + grid = 1306 (75% of all utilities)` and are also the three most-used axes. `effects` and `ratio` are 100% dead.
+
+#### 10.2.1 The full 95 authored utilities, by sub-family
+
+The complete set the demo source authors (output of `utilities-usage-audit.mjs --` "USED utilities by sub-family"), sorted by sub-family size. Reading these the patterns are obvious: spacing is almost entirely `m*`/`p*` at a handful of step values (`0,2,3,4,5`) plus a few `xl`-breakpoint overrides; the color axes (`bg-*`, `text-*`) are just the theme's semantic palette; everything else is a thin slice of each axis.
+
+**spacing (31)** — margins/padding/gutters, steps `0–5`, a few responsive overrides:
+```
+g-0  g-3  g-4
+mb-0  mb-2  mb-3  mb-4  mb-5   mb-lg-0  mb-xl-2  mb-xl-5
+mt-3  mt-5   mt-xl-0
+me-2  me-auto   ms-3
+my-2  my-3
+p-5
+pb-2  pb-3  pb-5   pb-xl-3
+ps-3
+pt-3  pt-4   pt-xl-5
+px-2  px-3
+py-3
+```
+
+**flex-display (15)** — `d-*` display + flex direction/justify/align:
+```
+d-block  d-inline-block  d-inline-flex  d-flex  d-none   d-md-block  d-lg-none
+flex-column  flex-row
+justify-content-start  justify-content-center  justify-content-end
+align-items-center  align-items-stretch
+align-self-start
+```
+
+**typography (13)** — text alignment, weight/size, semantic text colors:
+```
+text-center
+fw-bold  fs-4
+text-muted  text-white  text-dark  text-light
+text-primary  text-secondary  text-success  text-info  text-warning  text-danger
+```
+
+**grid (10)** — row/column layout primitives (`collapsed` is a navbar-toggler state swept in by the catch-all):
+```
+row  col
+col-sm-6  col-md-3  col-md-4  col-md-6  col-md-8
+row-cols-1  row-cols-md-2
+collapsed
+```
+
+**color-bg (8)** — semantic background palette:
+```
+bg-primary  bg-secondary  bg-success  bg-info  bg-warning  bg-danger  bg-light  bg-dark
+```
+
+**position (5)** — positioning + offsets + a sticky:
+```
+position-relative  position-absolute
+top-0  end-0
+sticky-xl-top
+```
+
+**borders (4)**:
+```
+border  border-bottom  border-dark  rounded-pill
+```
+
+**sizing (4)** — width percentages only:
+```
+w-25  w-50  w-75  w-100
+```
+
+**display-visibility (2)**:
+```
+overflow-x-hidden  visually-hidden
+```
+
+**other / state (2)** — generic state classes the catch-all owns:
+```
+active  disabled
+```
+
+**vertical-align (1)**:
+```
+align-top
+```
+
+> Note: this is the **95-set authored in source**; the **64-set actually rendered** (§10.1) is a subset — the difference is variant components present in source but not screenshotted, plus a few source-only tokens. Both tell the same story: a thin, predictable slice of each axis. The exact rendered list is in `utilities-rendered-check.mjs`.
+
+### 10.3 The two levers (and which one matters)
+
+There are two independent ways to keep a route from loading 1731 rules:
+
+**Lever A — Tree-shake to the used set.** Emit into the granular `utilities` chunk only the rules whose subject class is actually stamped by some scenario (the 64-symbol set). This is **pixel-safe**: granular loading is demand-driven and the whole foundation is verified-to-zero against the 433 scenarios, so a rule no scenario stamps cannot move a pixel. Effect: `utilities` chunk drops from **1731 → ~64 rules (−96%)** in one step.
+
+**Lever B — Subdivide into per-axis sub-families.** Split `utilities` into the ~10 axes above so a route loads only the axes it touches. Proposed taxonomy (add to `VE2_STYLE_FAMILIES`, resolve via `contractFamilyToStyleFamily`/overrides):
+`utilities/spacing`, `utilities/flex`, `utilities/grid`, `utilities/typography`, `utilities/color`, `utilities/sizing`, `utilities/borders`, `utilities/position`, `utilities/display`, `utilities/effects`.
+
+**These levers are not equal.** Subdivision alone still ships all 1731 rules — just spread across 10 chunks — and a single `mb-3` would pull the entire 655-rule `utilities/spacing` chunk. Tree-shaking alone shrinks the whole family to ~64 rules, at which point **subdivision is cosmetic** (64 rules in one always-loadable chunk is negligible). **Lever A dominates; Lever B is optional hygiene on top of it.**
+
+### 10.4 Recommendation
+
+1. **Tree-shake (Lever A) — do this.** Build a `usedUtilityClasses` set from the scenario-stamped contracts (the rendered-check already computes it; the G4 closure infra already walks every scenario's stamped symbols, so this is free there). In the G2 partition, route utility rules whose subject ∉ the used set to a **dropped bucket that is logged, not emitted** (no-silent-caps: report the dropped count). The literal monolith keeps all 1731 for the literal loader; only the granular chunk is shaken. This relaxes G2's gate from "union ≡ monolith" to "union ≡ monolith restricted to demo-reachable classes."
+2. **Promote `grid` utilities to `global` (Lever B, the one worthwhile split).** `row`/`col*`/`container*` are structural layout primitives on nearly every aggregator page — the same §4.2 reasoning that already sends the `layout/` contract dir to `global`. Moving the ~10 used grid utilities to the always-loaded baseline removes the largest single source of cross-route utility demand. The remaining used utilities (~54) stay in one `utilities` chunk.
+3. **Skip full per-axis subdivision** unless a concrete route shows utility weight is still a problem after (1)+(2). With ~54 rules left, ten sub-families add taxonomy/loader surface for no measurable payoff.
+
+### 10.5 The one decision to confirm
+
+Tree-shaking narrows the granular `utilities` chunk to **what the demo renders**. That is correct *iff* the granular output's contract is "the 433 verified scenarios" (which is exactly what every gate in this plan and the conversion plan asserts). If the granular bundle is ever meant to be consumed by an **external app** that authors its own utility classes, tree-shaking would break it and Lever B (full subdivision, no shake) becomes mandatory instead. Pin this down before G2: **internal-demo-only ⇒ tree-shake; external-consumer ⇒ subdivide.** The literal monolith stays complete either way, so this is reversible.
+
+### 10.6 Decision taken — manual `utilities/used` family
+
+To avoid building an automatic per-route tree-shaker before it's needed, we took the **manual, curated** form of Lever A: a new emit family **`utilities/used`** holding exactly the 95 demo-authored symbols, leaving the 1636 dead symbols in `utilities` (loaded by nothing).
+
+Implemented in G1 (no new machinery, just the table):
+- `utilities/used` added to `EMIT_FAMILIES` ([`constants.mjs`](../scripts/generate-ve-theme/constants.mjs)) and `VE2_STYLE_FAMILIES` ([`style-families.ts`](../ve-project2/src/theme-runtime/style-families.ts)).
+- `USED_UTILITY_SYMBOLS` — the curated 95-symbol set, grouped by §10.2 sub-family — added to [`family-table.mjs`](../scripts/generate-ve-literal/family-table.mjs); a final pass lifts those symbols from `utilities` → `utilities/used` (runs last, so it also wins over `FAMILY_OVERRIDES`, e.g. `roundedPill`).
+- Census clean: **utilities 1636 + utilities/used 95 = 1731**, 0 unmapped / 0 invalid across all 27 themes.
+
+Regenerate the set with `node scripts/generate-ve-literal/utilities-usage-audit.mjs` — it writes `used-utility-symbols.generated.txt`, the grouped symbol dump that seeds `USED_UTILITY_SYMBOLS`. When an automatic shaker is eventually justified, it replaces this curated set; nothing else changes.
+
+This is the explicit, auditable analog of the contract registry — a hand-maintained list, not a heuristic — so it keeps faith with the rewrite (§9). **Trade-off accepted:** the set is maintained by hand, so a newly-authored utility class in the demo must be added here (the G4 closure check will flag it as a gap if forgotten — it's caught, not silent).

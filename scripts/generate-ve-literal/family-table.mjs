@@ -188,6 +188,131 @@ export const FAMILY_OVERRIDES = {
 }
 
 /**
+ * The `utilities/used` family — manual tree-shaking, deferred-automation edition.
+ *
+ * `utilities` carries the full Bootstrap combinatorial utility API (~1731 class
+ * symbols), but only ~95 are authored anywhere in the demo (see the granular
+ * plan §10). Rather than building an automatic per-route tree-shaker now, we
+ * split the *used* slice into its own family by hand: every symbol below is
+ * reassigned from `utilities` → `utilities/used`. Granular routes then declare
+ * `utilities/used` (a ~95-rule chunk) instead of the 1731-rule `utilities`
+ * monolith; the dead remainder stays in `utilities`, loaded by nothing.
+ *
+ * This is the explicit, curated analog of FAMILY_OVERRIDES — when an automatic
+ * shaker is actually needed, it replaces this set (granular plan §10.4 Lever A).
+ * Regenerate the list with `node utilities-usage-audit.mjs` (it writes the
+ * grouped symbol dump used to seed this set). Grouped by §10.2 sub-family.
+ */
+export const USED_UTILITY_SYMBOLS = new Set([
+	// borders (4)
+	'border',
+	'borderBottom',
+	'borderDark',
+	'roundedPill',
+	// color-bg (8)
+	'bgDanger',
+	'bgDark',
+	'bgInfo',
+	'bgLight',
+	'bgPrimary',
+	'bgSecondary',
+	'bgSuccess',
+	'bgWarning',
+	// display-visibility (2)
+	'overflowXHidden',
+	'visuallyHidden',
+	// flex-display (15)
+	'alignItemsCenter',
+	'alignItemsStretch',
+	'alignSelfStart',
+	'dBlock',
+	'dFlex',
+	'dInlineBlock',
+	'dInlineFlex',
+	'dLgNone',
+	'dMdBlock',
+	'dNone',
+	'flexColumn',
+	'flexRow',
+	'justifyContentCenter',
+	'justifyContentEnd',
+	'justifyContentStart',
+	// grid (10) — `collapsed` is a navbar-toggler state swept in by the catch-all
+	'col',
+	'colMd3',
+	'colMd4',
+	'colMd6',
+	'colMd8',
+	'colSm6',
+	'collapsed',
+	'row',
+	'rowCols1',
+	'rowColsMd2',
+	// other / state (2)
+	'active',
+	'disabled',
+	// position (5)
+	'end0',
+	'positionAbsolute',
+	'positionRelative',
+	'stickyXlTop',
+	'top0',
+	// sizing (4)
+	'w100',
+	'w25',
+	'w50',
+	'w75',
+	// spacing (31)
+	'g0',
+	'g3',
+	'g4',
+	'mb0',
+	'mb2',
+	'mb3',
+	'mb4',
+	'mb5',
+	'mbLg0',
+	'mbXl2',
+	'mbXl5',
+	'me2',
+	'meAuto',
+	'ms3',
+	'mt3',
+	'mt5',
+	'mtXl0',
+	'my2',
+	'my3',
+	'p5',
+	'pb2',
+	'pb3',
+	'pb5',
+	'pbXl3',
+	'ps3',
+	'pt3',
+	'pt4',
+	'ptXl5',
+	'px2',
+	'px3',
+	'py3',
+	// typography (13)
+	'fs4',
+	'fwBold',
+	'textCenter',
+	'textDanger',
+	'textDark',
+	'textInfo',
+	'textLight',
+	'textMuted',
+	'textPrimary',
+	'textSecondary',
+	'textSuccess',
+	'textWarning',
+	'textWhite',
+	// vertical-align (1)
+	'alignTop',
+])
+
+/**
  * Map a contract-registry family namespace (from inferFamilyFromPath) onto the
  * granular style-family taxonomy (VE2_STYLE_FAMILIES). Returns null for the
  * `literal` namespace (no family dir → must be resolved via FAMILY_OVERRIDES).
@@ -249,6 +374,13 @@ export async function buildFamilyTable() {
 	// Curated overrides win.
 	for (const [sym, family] of Object.entries(FAMILY_OVERRIDES)) {
 		symbolToFamily.set(sym, family)
+	}
+
+	// Manual tree-shake: lift the demo-used utility slice into `utilities/used`.
+	// Runs last so it wins over both the dir-structure passes and the overrides
+	// (e.g. roundedPill, which FAMILY_OVERRIDES pins to `utilities`).
+	for (const sym of USED_UTILITY_SYMBOLS) {
+		symbolToFamily.set(sym, 'utilities/used')
 	}
 
 	return {
