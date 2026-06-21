@@ -23,6 +23,7 @@ export const VE2_STYLE_FAMILIES = [
 	'ui/modal',
 	'ui/navbar',
 	'ui/navs',
+	'ui/offcanvas',
 	'ui/pagination',
 	'ui/popovers',
 	'ui/progress',

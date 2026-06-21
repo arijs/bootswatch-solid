@@ -36,6 +36,12 @@ const INITIAL_NAVIGATION_WARMUP_OVERRIDES = [
 		state: 'opened-modal',
 		delayMs: 600,
 	},
+	{
+		// Same hydration race as opened-modal: give the offcanvas JS time to bind
+		// (configureVeOffcanvas + data-API destroy/init) before the trigger is clicked.
+		state: 'opened-offcanvas',
+		delayMs: 600,
+	},
 ]
 
 export function resolveScreenshotSettleDelayMs({ themeSlug, route, stateFolder, scenario }) {

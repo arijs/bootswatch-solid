@@ -3,6 +3,7 @@ import {
 	CONTEXTUAL_LIST_GROUP_COLOR_ROUTES,
 	DROPDOWN_ROUTES,
 	MODAL_ROUTES,
+	OFFCANVAS_ROUTES,
 	POPOVER_ROUTES,
 	TABLE_HOVER_COLOR_ROUTES,
 	TOOLTIP_ROUTES,
@@ -51,14 +52,16 @@ export const INTERACTIVE_SCENARIOS = [
 		route: '/forms/overview/checkbox',
 		state: 'focus-checkbox',
 		kind: 'focus-check',
-		selector: (_, {theme}) => (theme === 'sketchy' ? 'label.pwhook-checkbox-label' :'input.pwhook-checkbox'),
+		selector: (_, { theme }) =>
+			theme === 'sketchy' ? 'label.pwhook-checkbox-label' : 'input.pwhook-checkbox',
 		// locatorState: ({theme}) => (theme === 'sketchy' ? 'attached' : undefined),
 	},
 	{
 		route: '/forms/overview/radio-buttons',
 		state: 'focus-radio',
 		kind: 'focus-check',
-		selector: (_, {theme}) => (theme === 'sketchy' ? 'label.pwhook-radio-label' :'input.pwhook-radio'),
+		selector: (_, { theme }) =>
+			theme === 'sketchy' ? 'label.pwhook-radio-label' : 'input.pwhook-radio',
 		// locatorState: ({theme}) => (theme === 'sketchy' ? 'attached' : undefined),
 	},
 	{
@@ -66,7 +69,7 @@ export const INTERACTIVE_SCENARIOS = [
 		state: 'focus-switch',
 		kind: 'focus-check',
 		selector: 'input.pwhook-checkbox',
-		locatorState: ({theme}) => (theme === 'sketchy' ? 'attached' : undefined),
+		locatorState: ({ theme }) => (theme === 'sketchy' ? 'attached' : undefined),
 		settleDelayMs: 320,
 	},
 	{
@@ -104,6 +107,14 @@ export const INTERACTIVE_SCENARIOS = [
 		kind: 'click-visible',
 		selector: '.pwhook-modal-trigger',
 		visibleSelector: '.pwhook-modal:not([aria-hidden="true"])',
+		settleDelayMs: 450,
+	})),
+	...OFFCANVAS_ROUTES.map((route) => ({
+		route,
+		state: 'opened-offcanvas',
+		kind: 'click-visible',
+		selector: '.pwhook-offcanvas-trigger',
+		visibleSelector: '.pwhook-offcanvas[aria-modal="true"]',
 		settleDelayMs: 450,
 	})),
 	{

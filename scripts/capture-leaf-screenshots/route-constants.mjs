@@ -85,3 +85,14 @@ export const MODAL_ROUTES = [
 	'/ui/modal/centered-scrollable-modal',
 	'/ui/modal/fullscreen-modal',
 ]
+
+export const OFFCANVAS_ROUTES = [
+	'/ui/offcanvas/default-offcanvas',
+	'/ui/offcanvas/top-offcanvas',
+	'/ui/offcanvas/end-offcanvas',
+	'/ui/offcanvas/bottom-offcanvas',
+	'/ui/offcanvas/body-scrolling-offcanvas',
+	'/ui/offcanvas/scrolling-backdrop-offcanvas',
+	'/ui/offcanvas/static-backdrop-offcanvas',
+	'/ui/offcanvas/responsive-offcanvas',
+]

@@ -32,6 +32,7 @@ export const EMIT_FAMILIES = [
 	'ui/modal',
 	'ui/navbar',
 	'ui/navs',
+	'ui/offcanvas',
 	'ui/pagination',
 	'ui/popovers',
 	'ui/progress',

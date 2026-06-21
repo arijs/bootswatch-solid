@@ -23,6 +23,7 @@ const UI_ROUTE_FAMILY_MAP: Array<readonly [prefix: string, families: readonly Ve
 	['/ui/modal/', ['ui/modal', 'ui/buttons']],
 	['/ui/navbar/', ['ui/navbar', 'ui/navs', 'ui/dropdowns', 'ui/buttons']],
 	['/ui/navs/', ['ui/navs']],
+	['/ui/offcanvas/', ['ui/offcanvas', 'ui/buttons', 'ui/dropdowns']],
 	['/ui/pagination/', ['ui/pagination']],
 	['/ui/popovers/', ['ui/popovers']],
 	['/ui/progress/', ['ui/progress']],

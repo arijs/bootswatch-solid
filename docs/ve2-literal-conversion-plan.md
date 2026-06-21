@@ -586,6 +586,8 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 *Docs:* `ve-architecture.md` updated (combinators/passthrough/1:1 registry/no‑fallback); `ve2-literal-converter.md`, `ve2-theme-generator.md`, `ve2-theme-generator-audit-playbook.md` carry T10 superseded headers.
 
 > **Next milestone — granular re‑enablement.** Goal: divide each theme into per‑family style chunks so the app loads only the families a route uses (the granular runtime already exists and is wired through `useVe2RequiredStyleFamilies`). Build it as a **literal‑based family split** (reuse `scripts/generate-ve-literal/` translation, partition emitted rules by family) rather than reviving the deleted heuristic emitter — the heuristic mapping was the root cause of the mismatches this whole rewrite eliminated.
+>
+> **→ Full design:** [`docs/ve3-granular-family-split-plan.md`](./ve3-granular-family-split-plan.md) — partition the literal monoliths via one deterministic `contract → family` table (not heuristics), `@layer`‑ordered chunks for cross‑family cascade, and a closure check over the 342 `useVe2RequiredStyleFamilies` declarations. Tasks G1–G5.
 
 ---
 
