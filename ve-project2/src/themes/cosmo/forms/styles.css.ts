@@ -1,17 +1,18 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { cosmoScope } from '../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
 	varBsBodyColorRgb,
 	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderRadiusLg,
-	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsGutterX,
-	varBsGutterY,
+	varBsDanger,
+	varBsDangerRgb,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
+	varBsSuccess,
+	varBsSuccessRgb,
 	varBsTertiaryBg,
 } from '../../../theme-contract/_vars.css'
 import {
@@ -25,9 +26,10 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
+
+import { elLabel, elTextarea } from '../../../theme-contract/global-elements/contract.css'
+
 import {
-	fieldset,
-	form,
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
@@ -42,1654 +44,1213 @@ import {
 	formSelectSm,
 	formSwitch,
 	formText,
-	g3,
-	hasValidation,
 	inputGroup,
 	inputGroupText,
 	invalidFeedback,
 	isInvalid,
 	isValid,
-	mb3,
-	row,
+	legend,
+	legendClear,
 	validFeedback,
 	wasValidated,
 } from '../../../theme-contract/forms/contract.css'
 import {
-	dropdown,
-	dropdownToggle,
-} from '../../../theme-contract/ui/dropdowns/contract.css'
-import {
-	flexWrap,
-} from '../../../theme-contract/ui/modal/contract.css'
-import { cosmoScope } from '../scope.css'
+	formCheckInline,
+	formCheckReverse,
+	formControlColor,
+	formControlPlaintext,
+	inputGroupLg,
+	inputGroupSm,
+	invalidTooltip,
+	validTooltip,
+} from '../../../theme-contract/literal/contract.css'
+import { btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
+import { dropdownMenu } from '../../../theme-contract/ui/dropdowns/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/forms
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// .form-check { display: block; min-height: 1.5rem; padding-left: 1.5em; margin-bottom: 0.125rem; }
-globalStyle(`${cosmoScope}${formCheck}`, {
-	display: "block",
-	minHeight: "1.5rem",
-	paddingLeft: "1.5em",
-	marginBottom: "0.125rem",
+globalStyle(`:where(${cosmoScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-// SOURCE CSS:
-// .form-check .form-check-input { float: left; margin-left: -1.5em; }
-globalStyle(`${cosmoScope}${formCheck} ${cosmoScope}${formCheckInput}`, {
-	float: "left",
-	marginLeft: "-1.5em",
-})
-
-// SOURCE CSS:
-// .form-check-input { --bs-form-check-bg: var(--bs-body-bg); flex-shrink: 0; width: 1em; height: 1em; margin-top: 0.25em; vertical-align: top; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-form-check-bg); background-image: var(--bs-form-check-bg-image); background-repeat: no-repeat; background-position: center; background-size: contain; border: var(--bs-border-width) solid var(--bs-border-color); -webkit-print-color-adjust: exact; color-adjust: exact; print-color-adjust: exact; }
-globalStyle(`${cosmoScope}${formCheckInput}`, {
-	vars: {
-		[varBsFormCheckBg]: varBsBodyBg,
+globalStyle(`:where(${cosmoScope}${legend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
 	},
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsFormCheckBg,
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
 })
 
-// SOURCE CSS:
-// .form-check-input[type="checkbox"] { border-radius: 0.25em; }
-globalStyle(`${cosmoScope}${formCheckInput}[type="checkbox"]`, {
-	borderRadius: "0.25em",
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsFormCheckBg,
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
-})
-
-// SOURCE CSS:
-// .form-check-input:active { filter: brightness(90%); }
-globalStyle(`${cosmoScope}${formCheckInput}:active`, {
-	filter: "brightness(90%)",
-})
-
-// SOURCE CSS:
-// .form-check-input:focus { border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
-globalStyle(`${cosmoScope}${formCheckInput}:focus`, {
-	borderColor: "#93c0f1",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(39, 128, 227, 0.25)",
-})
-
-// SOURCE CSS:
-// .form-check-input:checked { background-color: #0d6efd; border-color: #0d6efd; }
-globalStyle(`${cosmoScope}${formCheckInput}:checked`, {
-	backgroundColor: "#2780e3",
-	borderColor: "#2780e3",
-})
-
-// SOURCE CSS:
-// .form-check-input:checked[type="checkbox"] { --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e"); }
-globalStyle(`${cosmoScope}${formCheckInput}:checked[type="checkbox"]`, {
-	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
-	},
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsFormCheckBg,
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
-})
-
-// SOURCE CSS:
-// .form-check-input[type="checkbox"]:indeterminate { background-color: rgb(13, 110, 253); border-color: rgb(13, 110, 253); --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e"); }
-globalStyle(`${cosmoScope}${formCheckInput}[type="checkbox"]:indeterminate`, {
-	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
-	},
-	backgroundColor: varBsFormCheckBg,
-	borderColor: "rgb(13, 110, 253)",
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
-})
-
-// SOURCE CSS:
-// .form-check-input:disabled { pointer-events: none; filter: none; opacity: 0.5; }
-globalStyle(`${cosmoScope}${formCheckInput}:disabled`, {
-	pointerEvents: "none",
-	filter: "none",
-	opacity: 0.5,
-})
-
-// SOURCE CSS:
-// .form-check-input[disabled] ~ .form-check-label { cursor: default; opacity: 0.5; }
-globalStyle(`${cosmoScope}${formCheckInput}[disabled] ~ ${cosmoScope}${formCheckLabel}`, {
-	cursor: "default",
-	opacity: 0.5,
-})
-
-// SOURCE CSS:
-// .form-check-input:disabled ~ .form-check-label { cursor: default; opacity: 0.5; }
-globalStyle(`${cosmoScope}${formCheckInput}:disabled ~ ${cosmoScope}${formCheckLabel}`, {
-	cursor: "default",
-	opacity: 0.5,
-})
-
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-globalStyle(`${cosmoScope}${mb3}`, {
-	marginBottom: "1rem !important",
-})
-
-// SOURCE CSS:
-// fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
-globalStyle(`${cosmoScope}${fieldset}`, {
-	minWidth: 0,
-	padding: 0,
-	margin: 0,
-	border: 0,
-})
-
-// SOURCE CSS:
-// .form-label { margin-bottom: 0.5rem; }
 globalStyle(`${cosmoScope}${formLabel}`, {
-	marginBottom: "0.5rem",
-	display: "inline-block",
+	marginBottom: '0.5rem',
 })
 
-// SOURCE CSS:
-// .form-control { display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-clip: padding-box; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${cosmoScope}${formText}`, {
+	marginTop: '0.25rem',
+	fontSize: '0.875em',
+	color: varBsSecondaryColor,
+})
+
 globalStyle(`${cosmoScope}${formControl}`, {
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	fontFamily: "inherit",
-	margin: 0,
+	display: 'block',
+	width: '100%',
+	padding: '0.375rem 0.75rem',
+	fontSize: '1rem',
+	fontWeight: '400',
+	lineHeight: '1.5',
 	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
 	backgroundColor: varBsBodyBg,
-	backgroundClip: "padding-box",
+	backgroundClip: 'padding-box',
 	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	borderRadius: 0,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	borderRadius: '0',
+	transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-control:focus { color: var(--bs-body-color); background-color: var(--bs-body-bg); border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
+globalStyle(`${cosmoScope}${formControl}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${formControl}[type=file]`, {
+	overflow: 'hidden',
+})
+
+globalStyle(`${cosmoScope}${formControl}[type=file]:not(:disabled):not([readonly])`, {
+	cursor: 'pointer',
+})
+
 globalStyle(`${cosmoScope}${formControl}:focus`, {
 	color: varBsBodyColor,
 	backgroundColor: varBsBodyBg,
-	borderColor: "#93c0f1",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(39, 128, 227, 0.25)",
+	borderColor: '#93c0f1',
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(39, 128, 227, 0.25)',
 })
 
-// SOURCE CSS:
-// .form-control::-webkit-date-and-time-value { min-width: 85px; height: 1.5em; margin: 0; }
 globalStyle(`${cosmoScope}${formControl}::-webkit-date-and-time-value`, {
-	minWidth: "85px",
-	height: "1.5em",
-	margin: 0,
+	minWidth: '85px',
+	height: '1.5em',
+	margin: '0',
 })
 
-// SOURCE CSS:
-// .form-control::-webkit-datetime-edit { display: block; padding: 0; }
 globalStyle(`${cosmoScope}${formControl}::-webkit-datetime-edit`, {
-	display: "block",
-	padding: 0,
+	display: 'block',
+	padding: '0',
 })
 
-// SOURCE CSS:
-// .form-control::placeholder { color: var(--bs-secondary-color); opacity: 1; }
+globalStyle(`${cosmoScope}${formControl}::-moz-placeholder`, {
+	color: varBsSecondaryColor,
+	opacity: '1',
+})
+
 globalStyle(`${cosmoScope}${formControl}::placeholder`, {
 	color: varBsSecondaryColor,
-	opacity: 1,
+	opacity: '1',
 })
 
-// SOURCE CSS:
-// .form-control:disabled { background-color: var(--bs-secondary-bg); opacity: 1; }
 globalStyle(`${cosmoScope}${formControl}:disabled`, {
 	backgroundColor: varBsSecondaryBg,
-	opacity: 1,
+	opacity: '1',
 })
 
-// SOURCE CSS:
-// .form-control::-webkit-file-upload-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${cosmoScope}${formControl}::-webkit-file-upload-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
+	padding: '0.375rem 0.75rem',
+	margin: '-0.375rem -0.75rem',
+	WebkitMarginEnd: '0.75rem',
+	marginInlineEnd: '0.75rem',
 	color: varBsBodyColor,
 	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
+	pointerEvents: 'none',
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	WebkitTransition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	borderRadius: '0',
+	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-control::file-selector-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${cosmoScope}${formControl}::file-selector-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
+	padding: '0.375rem 0.75rem',
+	margin: '-0.375rem -0.75rem',
+	WebkitMarginEnd: '0.75rem',
+	marginInlineEnd: '0.75rem',
 	color: varBsBodyColor,
 	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
+	pointerEvents: 'none',
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: '0',
 	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	borderRadius: '0',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button { background-color: var(--bs-secondary-bg); }
-// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
+globalStyle(`${cosmoScope}${formControl}::-webkit-file-upload-button`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			WebkitTransition: 'none',
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${formControl}::file-selector-button`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
 	backgroundColor: varBsSecondaryBg,
 })
 
-// SOURCE CSS:
-// .form-control:hover:not(:disabled):not([readonly])::file-selector-button { background-color: var(--bs-secondary-bg); }
-// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
 globalStyle(`${cosmoScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
 	backgroundColor: varBsSecondaryBg,
 })
 
-// SOURCE CSS:
-// .form-select { --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); display: block; width: 100%; padding: 0.375rem 2.25rem 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 16px 12px; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${cosmoScope}${formControlPlaintext}${formControlSm}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+})
+
+globalStyle(`${cosmoScope}${formControlPlaintext}${formControlLg}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+})
+
+globalStyle(`${cosmoScope}${formControlSm}`, {
+	minHeight: `calc(1.5em + 0.5rem + calc(${varBsBorderWidth} * 2))`,
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+})
+
+globalStyle(`${cosmoScope}${formControlSm}::-webkit-file-upload-button`, {
+	padding: '0.25rem 0.5rem',
+	margin: '-0.25rem -0.5rem',
+	WebkitMarginEnd: '0.5rem',
+	marginInlineEnd: '0.5rem',
+})
+
+globalStyle(`${cosmoScope}${formControlSm}::file-selector-button`, {
+	padding: '0.25rem 0.5rem',
+	margin: '-0.25rem -0.5rem',
+	WebkitMarginEnd: '0.5rem',
+	marginInlineEnd: '0.5rem',
+})
+
+globalStyle(`${cosmoScope}${formControlLg}`, {
+	minHeight: `calc(1.5em + 1rem + calc(${varBsBorderWidth} * 2))`,
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
+})
+
+globalStyle(`${cosmoScope}${formControlLg}::-webkit-file-upload-button`, {
+	padding: '0.5rem 1rem',
+	margin: '-0.5rem -1rem',
+	WebkitMarginEnd: '1rem',
+	marginInlineEnd: '1rem',
+})
+
+globalStyle(`${cosmoScope}${formControlLg}::file-selector-button`, {
+	padding: '0.5rem 1rem',
+	margin: '-0.5rem -1rem',
+	WebkitMarginEnd: '1rem',
+	marginInlineEnd: '1rem',
+})
+
+globalStyle(`${cosmoScope}${elTextarea}${formControl}`, {
+	minHeight: `calc(1.5em + 0.75rem + calc(${varBsBorderWidth} * 2))`,
+})
+
+globalStyle(`${cosmoScope}${elTextarea}${formControlSm}`, {
+	minHeight: `calc(1.5em + 0.5rem + calc(${varBsBorderWidth} * 2))`,
+})
+
+globalStyle(`${cosmoScope}${elTextarea}${formControlLg}`, {
+	minHeight: `calc(1.5em + 1rem + calc(${varBsBorderWidth} * 2))`,
+})
+
+globalStyle(`${cosmoScope}${formControlColor}${formControlSm}`, {
+	height: `calc(1.5em + 0.5rem + calc(${varBsBorderWidth} * 2))`,
+})
+
+globalStyle(`${cosmoScope}${formControlColor}${formControlLg}`, {
+	height: `calc(1.5em + 1rem + calc(${varBsBorderWidth} * 2))`,
+})
+
 globalStyle(`${cosmoScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23373a3c' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23373a3c\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 2.25rem 0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
+	display: 'block',
+	width: '100%',
+	padding: '0.375rem 2.25rem 0.375rem 0.75rem',
+	fontSize: '1rem',
+	fontWeight: '400',
+	lineHeight: '1.5',
 	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
 	backgroundColor: varBsBodyBg,
-	backgroundImage: `${varBsFormSelectBgImg} , ${varBsFormSelectBgIcon}`,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right 0.75rem center",
-	backgroundSize: "16px 12px",
+	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right 0.75rem center',
+	backgroundSize: '16px 12px',
 	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	borderRadius: 0,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	borderRadius: '0',
+	transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-select:focus { border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
+globalStyle(`${cosmoScope}${formSelect}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${formSelect}:focus`, {
-	borderColor: "#93c0f1",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(39, 128, 227, 0.25)",
+	borderColor: '#93c0f1',
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(39, 128, 227, 0.25)',
 })
 
-// SOURCE CSS:
-// .form-select:disabled { background-color: var(--bs-secondary-bg); }
+globalStyle(`${cosmoScope}${formSelect}[multiple]`, {
+	paddingRight: '0.75rem',
+	backgroundImage: 'none',
+})
+
+globalStyle(`${cosmoScope}${formSelect}[size]:not([size="1"])`, {
+	paddingRight: '0.75rem',
+	backgroundImage: 'none',
+})
+
 globalStyle(`${cosmoScope}${formSelect}:disabled`, {
 	backgroundColor: varBsSecondaryBg,
 })
 
-// SOURCE CSS:
-// .form-control[type="file"] { overflow: hidden; }
-globalStyle(`${cosmoScope}${formControl}[type="file"]`, {
-	overflow: "hidden",
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsBodyBg,
-	backgroundClip: "padding-box",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	borderRadius: 0,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+globalStyle(`${cosmoScope}${formSelect}:-moz-focusring`, {
+	color: 'transparent',
+	textShadow: `0 0 0 ${varBsBodyColor}`,
 })
 
-// SOURCE CSS:
-// .form-control[type="file"]:not(:disabled):not([readonly]) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
-globalStyle(`${cosmoScope}${formControl}[type="file"]:not(:disabled):not([readonly])`, {
-	cursor: "pointer",
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsBodyBg,
-	backgroundClip: "padding-box",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	borderRadius: 0,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+globalStyle(`${cosmoScope}${formSelectSm}`, {
+	paddingTop: '0.25rem',
+	paddingBottom: '0.25rem',
+	paddingLeft: '0.5rem',
+	fontSize: '0.875rem',
 })
 
-// SOURCE CSS:
-// .form-range { width: 100%; height: 1.5rem; padding: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: transparent; }
+globalStyle(`${cosmoScope}${formSelectLg}`, {
+	paddingTop: '0.5rem',
+	paddingBottom: '0.5rem',
+	paddingLeft: '1rem',
+	fontSize: '1.25rem',
+})
+
+globalStyle(`${cosmoScope}[data-bs-theme=dark] ${cosmoScope}${formSelect}`, {
+	vars: {
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${cosmoScope}${formCheck}`, {
+	display: 'block',
+	minHeight: '1.5rem',
+	paddingLeft: '1.5em',
+	marginBottom: '0.125rem',
+})
+
+globalStyle(`${cosmoScope}${formCheck} ${cosmoScope}${formCheckInput}`, {
+	float: 'left',
+	marginLeft: '-1.5em',
+})
+
+globalStyle(`${cosmoScope}${formCheckReverse} ${cosmoScope}${formCheckInput}`, {
+	float: 'right',
+	marginRight: '-1.5em',
+	marginLeft: '0',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}`, {
+	vars: {
+		[varBsFormCheckBg]: varBsBodyBg,
+	},
+	flexShrink: '0',
+	width: '1em',
+	height: '1em',
+	marginTop: '0.25em',
+	verticalAlign: 'top',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: varBsFormCheckBg,
+	backgroundImage: varBsFormCheckBgImage,
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'center',
+	backgroundSize: 'contain',
+	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	WebkitPrintColorAdjust: 'exact',
+	colorAdjust: 'exact',
+	printColorAdjust: 'exact',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}[type=radio]`, {
+	borderRadius: '50%',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:active`, {
+	filter: 'brightness(90%)',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:focus`, {
+	borderColor: '#93c0f1',
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(39, 128, 227, 0.25)',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:checked`, {
+	backgroundColor: '#2780e3',
+	borderColor: '#2780e3',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:checked[type=checkbox]`, {
+	vars: {
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'m6 10 3 3 6-6\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:checked[type=radio]`, {
+	vars: {
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'2\' fill=\'%23fff\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}[type=checkbox]:indeterminate`, {
+	vars: {
+		[varBsFormCheckBgImage]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\'%3e%3cpath fill=\'none\' stroke=\'%23fff\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'3\' d=\'M6 10h8\'/%3e%3c/svg%3e")',
+	},
+	backgroundColor: '#2780e3',
+	borderColor: '#2780e3',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:disabled`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.5',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}[disabled] ~ ${cosmoScope}${formCheckLabel}`, {
+	cursor: 'default',
+	opacity: '0.5',
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}:disabled ~ ${cosmoScope}${formCheckLabel}`, {
+	cursor: 'default',
+	opacity: '0.5',
+})
+
+globalStyle(`${cosmoScope}${formSwitch}`, {
+	paddingLeft: '2.5em',
+})
+
+globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
+	},
+	width: '2em',
+	marginLeft: '-2.5em',
+	backgroundImage: varBsFormSwitchBg,
+	backgroundPosition: 'left center',
+	borderRadius: '0',
+	transition: 'background-position 0.15s ease-in-out',
+})
+
+globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}:focus`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%2393c0f1\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}:checked`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%23fff\'/%3e%3c/svg%3e")',
+	},
+	backgroundPosition: 'right center',
+})
+
+globalStyle(`${cosmoScope}${formSwitch}${formCheckReverse} ${cosmoScope}${formCheckInput}`, {
+	marginRight: '-2.5em',
+	marginLeft: '0',
+})
+
+globalStyle(`${cosmoScope}[data-bs-theme=dark] ${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}:not(:checked):not(:focus)`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
+	},
+})
+
 globalStyle(`${cosmoScope}${formRange}`, {
-	width: "100%",
-	height: "1.5rem",
-	padding: 0,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: "transparent",
+	width: '100%',
+	height: '1.5rem',
+	padding: '0',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: 'transparent',
 })
 
-// SOURCE CSS:
-// .form-range:focus { outline: 0; }
 globalStyle(`${cosmoScope}${formRange}:focus`, {
-	outline: 0,
+	outline: '0',
 })
 
-// SOURCE CSS:
-// .form-range:focus::-webkit-slider-thumb { box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${cosmoScope}${formRange}:focus::-webkit-slider-thumb`, {
-	boxShadow: "0 0 0 1px #fff, 0 0 0 0.25rem rgba(39, 128, 227, 0.25)",
+	boxShadow: '0 0 0 1px #fff, 0 0 0 0.25rem rgba(39, 128, 227, 0.25)',
 })
 
-// SOURCE CSS:
-// .form-range::-webkit-slider-thumb { width: 1rem; height: 1rem; margin-top: -0.25rem; -webkit-appearance: none; appearance: none; background-color: #0d6efd; border: 0; border-radius: 1rem; -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${cosmoScope}${formRange}:focus::-moz-range-thumb`, {
+	boxShadow: '0 0 0 1px #fff, 0 0 0 0.25rem rgba(39, 128, 227, 0.25)',
+})
+
+globalStyle(`${cosmoScope}${formRange}::-moz-focus-outer`, {
+	border: '0',
+})
+
 globalStyle(`${cosmoScope}${formRange}::-webkit-slider-thumb`, {
-	width: "1rem",
-	height: "1rem",
-	marginTop: "-0.25rem",
-	WebkitAppearance: "none",
-	appearance: "none",
-	backgroundColor: "#2780e3",
-	border: 0,
-	borderRadius: "1rem",
-	WebkitTransition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	width: '1rem',
+	height: '1rem',
+	marginTop: '-0.25rem',
+	WebkitAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: '#2780e3',
+	border: '0',
+	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-range::-webkit-slider-thumb:active { background-color: #b6d4fe; }
+globalStyle(`${cosmoScope}${formRange}::-webkit-slider-thumb`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			WebkitTransition: 'none',
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${formRange}::-webkit-slider-thumb:active`, {
-	backgroundColor: "#bed9f7",
+	backgroundColor: '#bed9f7',
 })
 
-// SOURCE CSS:
-// .form-range::-webkit-slider-runnable-track { width: 100%; height: 0.5rem; color: transparent; cursor: pointer; background-color: var(--bs-secondary-bg); border-color: transparent; border-radius: 1rem; }
 globalStyle(`${cosmoScope}${formRange}::-webkit-slider-runnable-track`, {
-	width: "100%",
-	height: "0.5rem",
-	color: "transparent",
-	cursor: "pointer",
+	width: '100%',
+	height: '0.5rem',
+	color: 'transparent',
+	cursor: 'pointer',
 	backgroundColor: varBsSecondaryBg,
-	borderColor: "transparent",
-	borderRadius: "1rem",
+	borderColor: 'transparent',
 })
 
-// SOURCE CSS:
-// .form-range:disabled { pointer-events: none; }
+globalStyle(`${cosmoScope}${formRange}::-moz-range-thumb`, {
+	width: '1rem',
+	height: '1rem',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: '#2780e3',
+	border: '0',
+	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${cosmoScope}${formRange}::-moz-range-thumb`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			MozTransition: 'none',
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${formRange}::-moz-range-thumb:active`, {
+	backgroundColor: '#bed9f7',
+})
+
+globalStyle(`${cosmoScope}${formRange}::-moz-range-track`, {
+	width: '100%',
+	height: '0.5rem',
+	color: 'transparent',
+	cursor: 'pointer',
+	backgroundColor: varBsSecondaryBg,
+	borderColor: 'transparent',
+})
+
 globalStyle(`${cosmoScope}${formRange}:disabled`, {
-	pointerEvents: "none",
+	pointerEvents: 'none',
 })
 
-// SOURCE CSS:
-// .form-range:disabled::-webkit-slider-thumb { background-color: var(--bs-secondary-color); }
 globalStyle(`${cosmoScope}${formRange}:disabled::-webkit-slider-thumb`, {
 	backgroundColor: varBsSecondaryColor,
 })
 
-// SOURCE CSS:
-// .form-check-input[type="radio"] { border-radius: 50%; }
-globalStyle(`${cosmoScope}${formCheckInput}[type="radio"]`, {
-	borderRadius: "50%",
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsFormCheckBg,
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
+globalStyle(`${cosmoScope}${formRange}:disabled::-moz-range-thumb`, {
+	backgroundColor: varBsSecondaryColor,
 })
 
-// SOURCE CSS:
-// .form-check-input:checked[type="radio"] { --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e"); }
-globalStyle(`${cosmoScope}${formCheckInput}:checked[type="radio"]`, {
-	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
-	},
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsFormCheckBg,
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
-})
-
-// SOURCE CSS:
-// .form-switch { padding-left: 2.5em; }
-globalStyle(`${cosmoScope}${formSwitch}`, {
-	paddingLeft: "2.5em",
-})
-
-// SOURCE CSS:
-// .form-switch .form-check-input { --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e"); width: 2em; margin-left: -2.5em; background-image: var(--bs-form-switch-bg); background-position: left center; border-radius: 2em; transition: background-position 0.15s ease-in-out; }
-globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}`, {
-	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
-	},
-	width: "2em",
-	marginLeft: "-2.5em",
-	backgroundImage: varBsFormSwitchBg,
-	backgroundPosition: "left center",
-	borderRadius: 0,
-	transition: "background-position 0.15s ease-in-out",
-})
-
-// SOURCE CSS:
-// .form-switch .form-check-input:focus { --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e"); }
-globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}:focus`, {
-	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2393c0f1'/%3e%3c/svg%3e\")",
-	},
-})
-
-// SOURCE CSS:
-// .form-switch .form-check-input:checked { background-position: right center; --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); }
-globalStyle(`${cosmoScope}${formSwitch} ${cosmoScope}${formCheckInput}:checked`, {
-	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
-	},
-	backgroundPosition: "right center",
-})
-
-// SOURCE CSS:
-// .form-floating { position: relative; }
 globalStyle(`${cosmoScope}${formFloating}`, {
-	position: "relative",
+	position: 'relative',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}`, {
 	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
-	lineHeight: 1.25,
-	padding: "1rem 0.75rem",
+	lineHeight: '1.25',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext`, {
-	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
-	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
-	lineHeight: 1.25,
-	padding: "1rem 0.75rem",
-})
-
-// SOURCE CSS:
-// .form-floating > .form-select { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; }
 globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formSelect}`, {
 	height: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
 	minHeight: `calc(3.5rem + calc(${varBsBorderWidth} * 2))`,
-	lineHeight: 1.25,
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-	paddingLeft: "0.75rem",
+	lineHeight: '1.25',
 })
 
-// SOURCE CSS:
-// .form-floating > label { position: absolute; top: 0; left: 0; z-index: 2; max-width: 100%; height: 100%; padding: 1rem 0.75rem; overflow: hidden; color: rgba(var(--bs-body-color-rgb), 0.65); text-align: start; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; border: var(--bs-border-width) solid transparent; transform-origin: 0 0; transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > label`, {
-	position: "absolute",
-	top: 0,
-	left: 0,
-	zIndex: 2,
-	maxWidth: "100%",
-	height: "100%",
-	padding: "1rem 0.75rem",
-	overflow: "hidden",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${elLabel}`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	zIndex: '2',
+	maxWidth: '100%',
+	height: '100%',
+	padding: '1rem 0.75rem',
+	overflow: 'hidden',
 	color: `rgba(${varBsBodyColorRgb}, 0.65)`,
-	textAlign: "start",
-	textOverflow: "ellipsis",
-	whiteSpace: "nowrap",
-	pointerEvents: "none",
+	textAlign: 'start',
+	textOverflow: 'ellipsis',
+	whiteSpace: 'nowrap',
+	pointerEvents: 'none',
 	border: `${varBsBorderWidth} solid transparent`,
-	transformOrigin: "0 0",
-	transition: "opacity 0.1s ease-in-out, transform 0.1s ease-in-out",
+	transformOrigin: '0 0',
+	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control::placeholder { color: transparent; }
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${elLabel}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}`, {
+	padding: '1rem 0.75rem',
+})
+
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}::-moz-placeholder`, {
+	color: 'transparent',
+})
+
 globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}::placeholder`, {
-	color: "transparent",
+	color: 'transparent',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext::placeholder { color: transparent; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext::placeholder`, {
-	color: "transparent",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:focus { padding-top: 1.625rem; padding-bottom: 0.625rem; }
 globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:focus`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:not(:placeholder-shown) { padding-top: 1.625rem; padding-bottom: 0.625rem; }
 globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:placeholder-shown)`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:focus { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext:focus`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-})
-
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:not(:placeholder-shown) { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext:not(:placeholder-shown)`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-})
-
-// SOURCE CSS:
-// .form-floating > .form-control:-webkit-autofill { padding-top: 1.625rem; padding-bottom: 0.625rem; }
 globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:-webkit-autofill`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:-webkit-autofill { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext:-webkit-autofill`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formSelect}`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+	paddingLeft: '0.75rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:focus ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:focus ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:-moz-placeholder-shown) ~ ${cosmoScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:not(:placeholder-shown) ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:placeholder-shown) ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:focus ~ ${cosmoScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
-	borderWidth: `${varBsBorderWidth} 0`,
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:placeholder-shown) ~ ${cosmoScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-select ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formSelect} ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formSelect} ~ ${cosmoScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:-webkit-autofill ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:-webkit-autofill ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:-webkit-autofill ~ ${cosmoScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > :disabled ~ label { color: #6c757d; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > :disabled ~ label`, {
-	color: "#868e96",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${cosmoScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:disabled ~ label { color: #6c757d; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:disabled ~ label`, {
-	color: "#868e96",
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${elTextarea}:focus ~ ${cosmoScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
 })
 
-// SOURCE CSS:
-// .input-group { position: relative; display: flex; flex-wrap: wrap; align-items: stretch; width: 100%; }
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${elTextarea}:not(:placeholder-shown) ~ ${cosmoScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0.375rem',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: varBsBodyBg,
+})
+
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${elTextarea}:disabled ~ ${cosmoScope}${elLabel}::after`, {
+	backgroundColor: varBsSecondaryBg,
+})
+
+globalStyle(`${cosmoScope}${formFloating} > :disabled ~ ${cosmoScope}${elLabel}`, {
+	color: '#868e96',
+})
+
+globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:disabled ~ ${cosmoScope}${elLabel}`, {
+	color: '#868e96',
+})
+
 globalStyle(`${cosmoScope}${inputGroup}`, {
-	position: "relative",
-	display: "flex",
-	flexWrap: "wrap",
-	alignItems: "stretch",
-	width: "100%",
+	position: 'relative',
+	display: 'flex',
+	flexWrap: 'wrap',
+	alignItems: 'stretch',
+	width: '100%',
 })
 
-// SOURCE CSS:
-// .input-group > .form-control { position: relative; flex: 1 1 auto; width: 1%; min-width: 0; }
 globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	width: "1%",
-	minWidth: 0,
+	position: 'relative',
+	flex: '1 1 auto',
+	width: '1%',
+	minWidth: '0',
 })
 
-// SOURCE CSS:
-// .input-group > .form-select { position: relative; flex: 1 1 auto; width: 1%; min-width: 0; }
 globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	width: "1%",
-	minWidth: 0,
+	position: 'relative',
+	flex: '1 1 auto',
+	width: '1%',
+	minWidth: '0',
 })
 
-// SOURCE CSS:
-// .input-group > .form-floating { position: relative; flex: 1 1 auto; width: 1%; min-width: 0; }
 globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	width: "1%",
-	minWidth: 0,
+	position: 'relative',
+	flex: '1 1 auto',
+	width: '1%',
+	minWidth: '0',
 })
 
-// SOURCE CSS:
-// .input-group > .form-control:focus { z-index: 5; }
 globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:focus`, {
-	zIndex: 5,
+	zIndex: '5',
 })
 
-// SOURCE CSS:
-// .input-group > .form-select:focus { z-index: 5; }
 globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:focus`, {
-	zIndex: 5,
+	zIndex: '5',
 })
 
-// SOURCE CSS:
-// .input-group > .form-floating:focus-within { z-index: 5; }
 globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:focus-within`, {
-	zIndex: 5,
+	zIndex: '5',
 })
 
-// SOURCE CSS:
-// .input-group-text { display: flex; align-items: center; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); text-align: center; white-space: nowrap; background-color: var(--bs-tertiary-bg); border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); }
 globalStyle(`${cosmoScope}${inputGroupText}`, {
-	display: "flex",
-	alignItems: "center",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
+	display: 'flex',
+	alignItems: 'center',
+	padding: '0.375rem 0.75rem',
+	fontSize: '1rem',
+	fontWeight: '400',
+	lineHeight: '1.5',
 	color: varBsBodyColor,
-	textAlign: "center",
-	whiteSpace: "nowrap",
+	textAlign: 'center',
+	whiteSpace: 'nowrap',
 	backgroundColor: varBsTertiaryBg,
 	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
-	borderRadius: varBsBorderRadius,
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${cosmoScope}${inputGroup}:not(${cosmoScope}${hasValidation}) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${cosmoScope}${inputGroupLg} > ${cosmoScope}${formControl}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${cosmoScope}${inputGroup}:not(${cosmoScope}${hasValidation}) > ${cosmoScope}${dropdownToggle}:nth-last-child(n+3)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${cosmoScope}${inputGroupLg} > ${cosmoScope}${formSelect}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${cosmoScope}${inputGroup}:not(${cosmoScope}${hasValidation}) > ${cosmoScope}${formFloating}:not(:last-child) > ${cosmoScope}${formControl}`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${cosmoScope}${inputGroupLg} > ${cosmoScope}${inputGroupText}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${cosmoScope}${inputGroup}:not(${cosmoScope}${hasValidation}) > ${cosmoScope}${formFloating}:not(:last-child) > ${cosmoScope}${formSelect}`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${cosmoScope}${inputGroupSm} > ${cosmoScope}${formControl}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
 })
 
-// SOURCE CSS:
-// .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) { margin-left: calc(-1 * var(--bs-border-width)); border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${cosmoScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`, {
+globalStyle(`${cosmoScope}${inputGroupSm} > ${cosmoScope}${formSelect}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+})
+
+globalStyle(`${cosmoScope}${inputGroupSm} > ${cosmoScope}${inputGroupText}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+})
+
+globalStyle(`${cosmoScope}${inputGroupLg} > ${cosmoScope}${formSelect}`, {
+	paddingRight: '3rem',
+})
+
+globalStyle(`${cosmoScope}${inputGroupSm} > ${cosmoScope}${formSelect}`, {
+	paddingRight: '3rem',
+})
+
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
 })
 
-// SOURCE CSS:
-// .form-text { margin-top: 0.25rem; font-size: 0.875em; color: var(--bs-secondary-color); }
-globalStyle(`${cosmoScope}${formText}`, {
-	marginTop: "0.25rem",
-	fontSize: "0.875em",
-	color: varBsSecondaryColor,
-})
-
-// SOURCE CSS:
-// .form-control-lg { min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2)); padding: 0.5rem 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${cosmoScope}${formControl}${formControlLg}`, {
-	minHeight: `calc(1.5em + 1rem + calc(${varBsBorderWidth} * 2))`,
-	padding: "0.5rem 1rem",
-	fontSize: "1.25rem",
-	borderRadius: varBsBorderRadiusLg,
-})
-
-// SOURCE CSS:
-// .form-control-lg::-webkit-file-upload-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${cosmoScope}${formControl}${formControlLg}::-webkit-file-upload-button`, {
-	padding: "0.5rem 1rem",
-	margin: "-0.5rem -1rem",
-	WebkitMarginEnd: "1rem",
-	marginInlineEnd: "1rem",
-})
-
-// SOURCE CSS:
-// .form-control-lg::file-selector-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${cosmoScope}${formControl}${formControlLg}::file-selector-button`, {
-	padding: "0.5rem 1rem",
-	margin: "-0.5rem -1rem",
-	WebkitMarginEnd: "1rem",
-	marginInlineEnd: "1rem",
-})
-
-// SOURCE CSS:
-// .form-select-lg { padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${cosmoScope}${formSelectLg}`, {
-	paddingTop: "0.5rem",
-	paddingBottom: "0.5rem",
-	paddingLeft: "1rem",
-	fontSize: "1.25rem",
-	borderRadius: varBsBorderRadiusLg,
-})
-
-// SOURCE CSS:
-// .form-control-sm { min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2)); padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${cosmoScope}${formControl}${formControlSm}`, {
-	minHeight: `calc(1.5em + 0.5rem + calc(${varBsBorderWidth} * 2))`,
-	padding: "0.25rem 0.5rem",
-	fontSize: "0.875rem",
-	fontFamily: "inherit",
-	margin: 0,
-	borderRadius: varBsBorderRadiusSm,
-})
-
-// SOURCE CSS:
-// .form-control-sm::-webkit-file-upload-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${cosmoScope}${formControl}${formControlSm}::-webkit-file-upload-button`, {
-	padding: "0.25rem 0.5rem",
-	margin: "-0.25rem -0.5rem",
-	WebkitMarginEnd: "0.5rem",
-	marginInlineEnd: "0.5rem",
-})
-
-// SOURCE CSS:
-// .form-control-sm::file-selector-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${cosmoScope}${formControl}${formControlSm}::file-selector-button`, {
-	padding: "0.25rem 0.5rem",
-	margin: "-0.25rem -0.5rem",
-	WebkitMarginEnd: "0.5rem",
-	marginInlineEnd: "0.5rem",
-})
-
-// SOURCE CSS:
-// .form-select-sm { padding-top: 0.25rem; padding-bottom: 0.25rem; padding-left: 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${cosmoScope}${formSelectSm}`, {
-	paddingTop: "0.25rem",
-	paddingBottom: "0.25rem",
-	paddingLeft: "0.5rem",
-	fontSize: "0.875rem",
-	fontFamily: "inherit",
-	borderRadius: varBsBorderRadiusSm,
-})
-
-// SOURCE CSS:
-// .row { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; display: flex; flex-wrap: wrap; margin-top: calc(-1 * var(--bs-gutter-y)); margin-right: calc(-0.5 * var(--bs-gutter-x)); margin-left: calc(-0.5 * var(--bs-gutter-x)); }
-globalStyle(`${cosmoScope}${row}`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	display: "flex",
-	flexWrap: "wrap",
-	marginTop: `calc(-1 * ${varBsGutterY})`,
-	marginRight: `calc(-0.5 * ${varBsGutterX})`,
-	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
-})
-
-// SOURCE CSS:
-// .row > * { flex-shrink: 0; width: 100%; max-width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-top: var(--bs-gutter-y); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${cosmoScope}${row} > *`, {
-	flexShrink: 0,
-	width: "100%",
-	maxWidth: "100%",
-	paddingRight: `calc(${varBsGutterX} * 0.5)`,
-	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
-	marginTop: varBsGutterY,
-})
-
-// SOURCE CSS:
-// .g-3 { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
-globalStyle(`${cosmoScope}${g3}`, {
-	vars: {
-		[varBsGutterX]: "1rem",
-		[varBsGutterY]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .invalid-feedback { display: none; width: 100%; margin-top: 0.25rem; font-size: 0.875em; color: var(--bs-form-invalid-color); }
-globalStyle(`${cosmoScope}${invalidFeedback}`, {
-	display: "none",
-	width: "100%",
-	marginTop: "0.25rem",
-	fontSize: "0.875em",
-	color: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .was-validated :invalid ~ .invalid-feedback { display: block; }
-globalStyle(`${cosmoScope}${wasValidated} :invalid ~ ${cosmoScope}${invalidFeedback}`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .was-validated :invalid ~ .invalid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".invalid-tooltip" — no contract mapping
-globalStyle(`${cosmoScope}${wasValidated} :invalid ~ .invalid-tooltip`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .is-invalid ~ .invalid-feedback { display: block; }
-globalStyle(`${cosmoScope}${isInvalid} ~ ${cosmoScope}${invalidFeedback}`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .is-invalid ~ .invalid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".invalid-tooltip" — no contract mapping
-globalStyle(`${cosmoScope}${isInvalid} ~ .invalid-tooltip`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${cosmoScope}${formCheckInput}${isInvalid}`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid:checked`, {
-	backgroundColor: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${cosmoScope}${formCheckInput}${isInvalid}:checked`, {
-	backgroundColor: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${cosmoScope}${formCheckInput}${isInvalid}:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid ~ ${cosmoScope}${formCheckLabel}`, {
-	color: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${cosmoScope}${formCheckInput}${isInvalid} ~ ${cosmoScope}${formCheckLabel}`, {
-	color: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-control:invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: `calc(1.5em + 0.75rem)`,
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0039'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0039' stroke='none'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
-})
-
-// SOURCE CSS:
-// .form-control.is-invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${cosmoScope}${formControl}${isInvalid}`, {
-	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: `calc(1.5em + 0.75rem)`,
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0039'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0039' stroke='none'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
-})
-
-// SOURCE CSS:
-// .was-validated .form-control:invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:invalid:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .form-control.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${cosmoScope}${formControl}${isInvalid}:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${cosmoScope}${formSelect}${isInvalid}`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "[size]" — map to a contract class
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0039'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0039' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0039'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0039' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "[size]" — map to a contract class
-globalStyle(`${cosmoScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0039'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0039' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-globalStyle(`${cosmoScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0039'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0039' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${cosmoScope}${formSelect}${isInvalid}:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .was-validated .input-group > .form-control:not(:focus):invalid { z-index: 4; }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:not(:focus):invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .input-group > .form-control:not(:focus).is-invalid { z-index: 4; }
-globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:not(:focus).is-invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .was-validated .input-group > .form-select:not(:focus):invalid { z-index: 4; }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:not(:focus):invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .input-group > .form-select:not(:focus).is-invalid { z-index: 4; }
-globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:not(:focus).is-invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .was-validated .input-group > .form-floating:not(:focus-within):invalid { z-index: 4; }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:not(:focus-within):invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .input-group > .form-floating:not(:focus-within).is-invalid { z-index: 4; }
-globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:not(:focus-within).is-invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .valid-feedback { display: none; width: 100%; margin-top: 0.25rem; font-size: 0.875em; color: var(--bs-form-valid-color); }
 globalStyle(`${cosmoScope}${validFeedback}`, {
-	display: "none",
-	width: "100%",
-	marginTop: "0.25rem",
-	fontSize: "0.875em",
+	display: 'none',
+	width: '100%',
+	marginTop: '0.25rem',
+	fontSize: '0.875em',
 	color: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .was-validated :valid ~ .valid-feedback { display: block; }
+globalStyle(`${cosmoScope}${validTooltip}`, {
+	position: 'absolute',
+	top: '100%',
+	zIndex: '5',
+	display: 'none',
+	maxWidth: '100%',
+	padding: '0.25rem 0.5rem',
+	marginTop: '0.1rem',
+	fontSize: '0.875rem',
+	color: '#fff',
+	backgroundColor: varBsSuccess,
+})
+
 globalStyle(`${cosmoScope}${wasValidated} :valid ~ ${cosmoScope}${validFeedback}`, {
-	display: "block",
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .was-validated :valid ~ .valid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".valid-tooltip" — no contract mapping
-globalStyle(`${cosmoScope}${wasValidated} :valid ~ .valid-tooltip`, {
-	display: "block",
+globalStyle(`${cosmoScope}${wasValidated} :valid ~ ${cosmoScope}${validTooltip}`, {
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .is-valid ~ .valid-feedback { display: block; }
 globalStyle(`${cosmoScope}${isValid} ~ ${cosmoScope}${validFeedback}`, {
-	display: "block",
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .is-valid ~ .valid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".valid-tooltip" — no contract mapping
-globalStyle(`${cosmoScope}${isValid} ~ .valid-tooltip`, {
-	display: "block",
+globalStyle(`${cosmoScope}${isValid} ~ ${cosmoScope}${validTooltip}`, {
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid { border-color: var(--bs-form-valid-border-color); }
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:valid`, {
+	borderColor: varBsFormValidBorderColor,
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233fb618\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
+	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${formControl}${isValid}`, {
+	borderColor: varBsFormValidBorderColor,
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233fb618\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
+	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:valid:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${formControl}${isValid}:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${elTextarea}${formControl}:valid`, {
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundPosition: 'top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem)',
+})
+
+globalStyle(`${cosmoScope}${elTextarea}${formControl}${isValid}`, {
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundPosition: 'top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem)',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid`, {
+	borderColor: varBsFormValidBorderColor,
+})
+
+globalStyle(`${cosmoScope}${formSelect}${isValid}`, {
+	borderColor: varBsFormValidBorderColor,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233fb618\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233fb618\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233fb618\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%233fb618\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${formSelect}${isValid}:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${formControlColor}${isValid}`, {
+	width: 'calc(3rem + calc(1.5em + 0.75rem))',
+})
+
 globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid { border-color: var(--bs-form-valid-border-color); }
 globalStyle(`${cosmoScope}${formCheckInput}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid:checked { background-color: var(--bs-form-valid-color); }
 globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:valid:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid:checked { background-color: var(--bs-form-valid-color); }
 globalStyle(`${cosmoScope}${formCheckInput}${isValid}:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
 globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:valid:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
 globalStyle(`${cosmoScope}${formCheckInput}${isValid}:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid ~ .form-check-label { color: var(--bs-form-valid-color); }
 globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:valid ~ ${cosmoScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid ~ .form-check-label { color: var(--bs-form-valid-color); }
 globalStyle(`${cosmoScope}${formCheckInput}${isValid} ~ ${cosmoScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .was-validated .form-control:valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:valid`, {
-	borderColor: varBsFormValidBorderColor,
-	paddingRight: `calc(1.5em + 0.75rem)`,
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
+globalStyle(`${cosmoScope}${formCheckInline} ${cosmoScope}${formCheckInput} ~ ${cosmoScope}${validFeedback}`, {
+	marginLeft: '0.5em',
 })
 
-// SOURCE CSS:
-// .form-control.is-valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${cosmoScope}${formControl}${isValid}`, {
-	borderColor: varBsFormValidBorderColor,
-	paddingRight: `calc(1.5em + 0.75rem)`,
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: `calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)`,
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:not(:focus):valid`, {
+	zIndex: '3',
 })
 
-// SOURCE CSS:
-// .was-validated .form-control:valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:valid:focus`, {
-	borderColor: varBsFormValidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:not(:focus)${isValid}`, {
+	zIndex: '3',
 })
 
-// SOURCE CSS:
-// .form-control.is-valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${cosmoScope}${formControl}${isValid}:focus`, {
-	borderColor: varBsFormValidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:not(:focus):valid`, {
+	zIndex: '3',
 })
 
-// ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// .form-control[type=file] { overflow: hidden; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formControl}[type=file]`, {
-	overflow: "hidden",
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:not(:focus)${isValid}`, {
+	zIndex: '3',
 })
-// SOURCE CSS:
-// .form-control[type=file]:not(:disabled):not([readonly]) { cursor: pointer; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "[readonly]" — map to a contract class
-globalStyle(`${cosmoScope}${formControl}[type=file]:not(:disabled):not([readonly])`, {
-	cursor: "pointer",
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:not(:focus-within):valid`, {
+	zIndex: '3',
 })
-// SOURCE CSS:
-// .form-control::-moz-placeholder { color: var(--bs-secondary-color); opacity: 1; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formControl}::-moz-placeholder`, {
-	color: varBsSecondaryColor,
-	opacity: 1,
+
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:not(:focus-within)${isValid}`, {
+	zIndex: '3',
 })
-// SOURCE CSS:
-// .form-select[multiple] { padding-right: 0.75rem; background-image: none; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formSelect}[multiple]`, {
-	paddingRight: "0.75rem",
-	backgroundImage: "none",
+
+globalStyle(`${cosmoScope}${invalidFeedback}`, {
+	display: 'none',
+	width: '100%',
+	marginTop: '0.25rem',
+	fontSize: '0.875em',
+	color: varBsFormInvalidColor,
 })
-// SOURCE CSS:
-// .form-select[size]:not([size="1"]) { padding-right: 0.75rem; background-image: none; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "[size="1"]" — map to a contract class
-globalStyle(`${cosmoScope}${formSelect}[size]:not([size="1"])`, {
-	paddingRight: "0.75rem",
-	backgroundImage: "none",
+
+globalStyle(`${cosmoScope}${invalidTooltip}`, {
+	position: 'absolute',
+	top: '100%',
+	zIndex: '5',
+	display: 'none',
+	maxWidth: '100%',
+	padding: '0.25rem 0.5rem',
+	marginTop: '0.1rem',
+	fontSize: '0.875rem',
+	color: '#fff',
+	backgroundColor: varBsDanger,
 })
-// SOURCE CSS:
-// .form-select:-moz-focusring { color: transparent; text-shadow: 0 0 0 var(--bs-body-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formSelect}:-moz-focusring`, {
-	color: "transparent",
-	textShadow: `0 0 0 ${varBsBodyColor}`,
+
+globalStyle(`${cosmoScope}${wasValidated} :invalid ~ ${cosmoScope}${invalidFeedback}`, {
+	display: 'block',
 })
-// SOURCE CSS:
-// .form-check-reverse .form-check-input { float: right; margin-right: -1.5em; margin-left: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-check-reverse" — no contract mapping
-globalStyle(`.form-check-reverse ${cosmoScope}${formCheckInput}`, {
-	float: "right",
-	marginRight: "-1.5em",
-	marginLeft: 0,
+
+globalStyle(`${cosmoScope}${wasValidated} :invalid ~ ${cosmoScope}${invalidTooltip}`, {
+	display: 'block',
 })
-// SOURCE CSS:
-// .form-check-input[type=radio] { border-radius: 50%; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formCheckInput}[type=radio]`, {
-	borderRadius: "50%",
+
+globalStyle(`${cosmoScope}${isInvalid} ~ ${cosmoScope}${invalidFeedback}`, {
+	display: 'block',
 })
-// SOURCE CSS:
-// .form-check-input:checked[type=checkbox] { --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e"); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formCheckInput}:checked[type=checkbox]`, {
+
+globalStyle(`${cosmoScope}${isInvalid} ~ ${cosmoScope}${invalidTooltip}`, {
+	display: 'block',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:invalid`, {
+	borderColor: varBsFormInvalidBorderColor,
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ff0039\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ff0039\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
+	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${formControl}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ff0039\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ff0039\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.1875rem) center',
+	backgroundSize: 'calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formControl}:invalid:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${formControl}${isInvalid}:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${elTextarea}${formControl}:invalid`, {
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundPosition: 'top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem)',
+})
+
+globalStyle(`${cosmoScope}${elTextarea}${formControl}${isInvalid}`, {
+	paddingRight: 'calc(1.5em + 0.75rem)',
+	backgroundPosition: 'top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem)',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${cosmoScope}${formSelect}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ff0039\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ff0039\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 })
-// SOURCE CSS:
-// .form-check-input:checked[type=radio] { --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e"); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formCheckInput}:checked[type=radio]`, {
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
 	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ff0039\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ff0039\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 })
-// SOURCE CSS:
-// .form-check-input[type=checkbox]:indeterminate { background-color: #2780e3; border-color: #2780e3; --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e"); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formCheckInput}[type=checkbox]:indeterminate`, {
+
+globalStyle(`${cosmoScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
 	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ff0039\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ff0039\' stroke=\'none\'/%3e%3c/svg%3e")',
 	},
-	backgroundColor: "#2780e3",
-	borderColor: "#2780e3",
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 })
-// SOURCE CSS:
-// .form-switch.form-check-reverse { padding-right: 2.5em; padding-left: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-check-reverse" — no contract mapping
-globalStyle(`${cosmoScope}${formSwitch}.form-check-reverse`, {
-	paddingRight: "2.5em",
-	paddingLeft: 0,
+
+globalStyle(`${cosmoScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ff0039\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ff0039\' stroke=\'none\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '4.125rem',
+	backgroundPosition: 'right 0.75rem center, center right 2.25rem',
+	backgroundSize: '16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)',
 })
-// SOURCE CSS:
-// .form-switch.form-check-reverse .form-check-input { margin-right: -2.5em; margin-left: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-check-reverse" — no contract mapping
-globalStyle(`${cosmoScope}${formSwitch}.form-check-reverse ${cosmoScope}${formCheckInput}`, {
-	marginRight: "-2.5em",
-	marginLeft: 0,
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:invalid:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
-// SOURCE CSS:
-// .form-range:focus::-moz-range-thumb { box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(39, 128, 227, 0.25); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formRange}:focus::-moz-range-thumb`, {
-	boxShadow: "0 0 0 1px #fff, 0 0 0 0.25rem rgba(39, 128, 227, 0.25)",
+
+globalStyle(`${cosmoScope}${formSelect}${isInvalid}:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
 })
-// SOURCE CSS:
-// .form-range::-moz-focus-outer { border: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formRange}::-moz-focus-outer`, {
-	border: 0,
+
+globalStyle(`${cosmoScope}${formControlColor}${isInvalid}`, {
+	width: 'calc(3rem + calc(1.5em + 0.75rem))',
 })
-// SOURCE CSS:
-// .form-range::-moz-range-thumb { width: 1rem; height: 1rem; -moz-appearance: none; appearance: none; background-color: #2780e3; border: 0; -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; border-radius: inherit; }
-// [DELTA] theme-specific rule not in bootstrap structure
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid:checked`, {
+	backgroundColor: varBsFormInvalidColor,
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}${isInvalid}:checked`, {
+	backgroundColor: varBsFormInvalidColor,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid:focus`, {
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}${isInvalid}:focus`, {
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formCheckInput}:invalid ~ ${cosmoScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
+
+globalStyle(`${cosmoScope}${formCheckInput}${isInvalid} ~ ${cosmoScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
+
+globalStyle(`${cosmoScope}${formCheckInline} ${cosmoScope}${formCheckInput} ~ ${cosmoScope}${invalidFeedback}`, {
+	marginLeft: '0.5em',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:not(:focus):invalid`, {
+	zIndex: '4',
+})
+
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formControl}:not(:focus)${isInvalid}`, {
+	zIndex: '4',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:not(:focus):invalid`, {
+	zIndex: '4',
+})
+
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formSelect}:not(:focus)${isInvalid}`, {
+	zIndex: '4',
+})
+
+globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:not(:focus-within):invalid`, {
+	zIndex: '4',
+})
+
+globalStyle(`${cosmoScope}${inputGroup} > ${cosmoScope}${formFloating}:not(:focus-within)${isInvalid}`, {
+	zIndex: '4',
+})
+
+globalStyle(`${cosmoScope}${btnToolbar} ${cosmoScope}${inputGroup}`, {
+	width: 'auto',
+})
+
 globalStyle(`${cosmoScope}${formRange}::-moz-range-thumb`, {
-	width: "1rem",
-	height: "1rem",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: "#2780e3",
-	border: 0,
-	MozTransition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	borderRadius: "inherit",
+	borderRadius: 'inherit',
 })
-// SOURCE CSS:
-// .form-range::-moz-range-thumb:active { background-color: #bed9f7; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formRange}::-moz-range-thumb:active`, {
-	backgroundColor: "#bed9f7",
+
+globalStyle(`${cosmoScope}${legendClear}`, {
+	clear: 'left',
 })
-// SOURCE CSS:
-// .form-range::-moz-range-track { width: 100%; height: 0.5rem; color: transparent; cursor: pointer; background-color: var(--bs-secondary-bg); border-color: transparent; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formRange}::-moz-range-track`, {
-	width: "100%",
-	height: "0.5rem",
-	color: "transparent",
-	cursor: "pointer",
-	backgroundColor: varBsSecondaryBg,
-	borderColor: "transparent",
-})
-// SOURCE CSS:
-// .form-range:disabled::-moz-range-thumb { background-color: var(--bs-secondary-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formRange}:disabled::-moz-range-thumb`, {
-	backgroundColor: varBsSecondaryColor,
-})
-// SOURCE CSS:
-// .form-floating > .form-control::-moz-placeholder { color: transparent; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}::-moz-placeholder`, {
-	color: "transparent",
-})
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext::-moz-placeholder { color: transparent; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext::-moz-placeholder`, {
-	color: "transparent",
-})
-// SOURCE CSS:
-// .form-floating > .form-control:not(:-moz-placeholder-shown) { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:-moz-placeholder-shown)`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-})
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${cosmoScope}${formFloating} > .form-control-plaintext:not(:-moz-placeholder-shown)`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-})
-// SOURCE CSS:
-// .form-floating > .form-control:not(:-moz-placeholder-shown) ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > ${cosmoScope}${formControl}:not(:-moz-placeholder-shown) ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
-})
-// SOURCE CSS:
-// .form-floating > textarea:not(:-moz-placeholder-shown) ~ label::after { position: absolute; inset: 1rem 0.375rem; z-index: -1; height: 1.5em; content: ""; background-color: var(--bs-body-bg); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea:not(:-moz-placeholder-shown)" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "label::after" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > textarea:not(:-moz-placeholder-shown) ~ label::after`, {
-	position: "absolute",
-	inset: "1rem 0.375rem",
-	zIndex: -1,
-	height: "1.5em",
-	content: "\"\"",
-	backgroundColor: varBsBodyBg,
-})
-// SOURCE CSS:
-// .form-floating > textarea:focus ~ label::after { position: absolute; inset: 1rem 0.375rem; z-index: -1; height: 1.5em; content: ""; background-color: var(--bs-body-bg); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea:focus" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "label::after" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > textarea:focus ~ label::after`, {
-	position: "absolute",
-	inset: "1rem 0.375rem",
-	zIndex: -1,
-	height: "1.5em",
-	content: "\"\"",
-	backgroundColor: varBsBodyBg,
-})
-// SOURCE CSS:
-// .form-floating > textarea:not(:placeholder-shown) ~ label::after { position: absolute; inset: 1rem 0.375rem; z-index: -1; height: 1.5em; content: ""; background-color: var(--bs-body-bg); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea:not(:placeholder-shown)" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "label::after" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > textarea:not(:placeholder-shown) ~ label::after`, {
-	position: "absolute",
-	inset: "1rem 0.375rem",
-	zIndex: -1,
-	height: "1.5em",
-	content: "\"\"",
-	backgroundColor: varBsBodyBg,
-})
-// SOURCE CSS:
-// .form-floating > textarea:disabled ~ label::after { background-color: var(--bs-secondary-bg); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea:disabled" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "label::after" — map to a contract class
-globalStyle(`${cosmoScope}${formFloating} > textarea:disabled ~ label::after`, {
-	backgroundColor: varBsSecondaryBg,
-})
-// SOURCE CSS:
-// .was-validated textarea.form-control:valid { padding-right: calc(1.5em + 0.75rem); background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea.form-control:valid" — map to a contract class
-globalStyle(`${cosmoScope}${wasValidated} textarea.form-control:valid`, {
-	paddingRight: `calc(1.5em + 0.75rem)`,
-	backgroundPosition: "top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem)",
-})
-// SOURCE CSS:
-// .was-validated .form-select:valid { border-color: var(--bs-form-valid-border-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid`, {
-	borderColor: varBsFormValidBorderColor,
-})
-// SOURCE CSS:
-// .form-select.is-valid { border-color: var(--bs-form-valid-border-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formSelect}${isValid}`, {
-	borderColor: varBsFormValidBorderColor,
-})
-// SOURCE CSS:
-// .was-validated .form-select:valid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "[size]" — map to a contract class
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-// SOURCE CSS:
-// .was-validated .form-select:valid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-// SOURCE CSS:
-// .form-select.is-valid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "[size]" — map to a contract class
-globalStyle(`${cosmoScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-// SOURCE CSS:
-// .form-select.is-valid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "[multiple]" — map to a contract class
-globalStyle(`${cosmoScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%233fb618' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-// SOURCE CSS:
-// .was-validated .form-select:valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${wasValidated} ${cosmoScope}${formSelect}:valid:focus`, {
-	borderColor: varBsFormValidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
-})
-// SOURCE CSS:
-// .form-select.is-valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${cosmoScope}${formSelect}${isValid}:focus`, {
-	borderColor: varBsFormValidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
-})
-// SOURCE CSS:
-// .was-validated .form-control-color:valid { width: calc(3rem + calc(1.5em + 0.75rem)); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-control-color" — no contract mapping
-globalStyle(`${cosmoScope}${wasValidated} .form-control-color:valid`, {
-	width: `calc(3rem + calc(1.5em + 0.75rem))`,
-})
-// SOURCE CSS:
-// .form-check-inline .form-check-input ~ .valid-feedback { margin-left: 0.5em; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-check-inline" — no contract mapping
-globalStyle(`.form-check-inline ${cosmoScope}${formCheckInput} ~ ${cosmoScope}${validFeedback}`, {
-	marginLeft: "0.5em",
-})
-// SOURCE CSS:
-// .was-validated textarea.form-control:invalid { padding-right: calc(1.5em + 0.75rem); background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] element selector "textarea.form-control:invalid" — map to a contract class
-globalStyle(`${cosmoScope}${wasValidated} textarea.form-control:invalid`, {
-	paddingRight: `calc(1.5em + 0.75rem)`,
-	backgroundPosition: "top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem)",
-})
-// SOURCE CSS:
-// .was-validated .form-control-color:invalid { width: calc(3rem + calc(1.5em + 0.75rem)); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-control-color" — no contract mapping
-globalStyle(`${cosmoScope}${wasValidated} .form-control-color:invalid`, {
-	width: `calc(3rem + calc(1.5em + 0.75rem))`,
-})
-// SOURCE CSS:
-// .form-check-inline .form-check-input ~ .invalid-feedback { margin-left: 0.5em; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".form-check-inline" — no contract mapping
-globalStyle(`.form-check-inline ${cosmoScope}${formCheckInput} ~ ${cosmoScope}${invalidFeedback}`, {
-	marginLeft: "0.5em",
+
+globalStyle(`${cosmoScope}${formSwitch}`, {
+	isolation: 'isolate',
 })

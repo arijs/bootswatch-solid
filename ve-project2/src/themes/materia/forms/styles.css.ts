@@ -1,16 +1,18 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../scope.css'
+
 import {
-	varBsBodyBg,
-	varBsBodyColor,
 	varBsBodyColorRgb,
+	varBsBorderColor,
 	varBsBorderRadius,
-	varBsBorderRadiusLg,
-	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsGutterX,
-	varBsGutterY,
+	varBsDanger,
+	varBsDangerRgb,
+	varBsGradient,
 	varBsSecondaryBg,
 	varBsSecondaryColor,
+	varBsSuccess,
+	varBsSuccessRgb,
 	varBsTertiaryBg,
 } from '../../../theme-contract/_vars.css'
 import {
@@ -24,9 +26,15 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
+
 import {
-	fieldset,
-	form,
+	elInput,
+	elLabel,
+	elSelect,
+	elTextarea,
+} from '../../../theme-contract/global-elements/contract.css'
+
+import {
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
@@ -41,1307 +49,1745 @@ import {
 	formSelectSm,
 	formSwitch,
 	formText,
+	hasValidation,
 	inputGroup,
 	inputGroupText,
 	invalidFeedback,
 	isInvalid,
 	isValid,
 	legend,
-	row,
+	legendClear,
 	validFeedback,
 	wasValidated,
 } from '../../../theme-contract/forms/contract.css'
 import {
-	dropdown,
-	dropdownToggle,
-} from '../../../theme-contract/ui/dropdowns/contract.css'
-import {
-	flexWrap,
-} from '../../../theme-contract/ui/modal/contract.css'
-import { materiaScope } from '../scope.css'
+	formCheckInline,
+	formCheckReverse,
+	formControlColor,
+	formControlPlaintext,
+	formGroupLg,
+	hasDanger,
+	hasSuccess,
+	hasWarning,
+	inputGroupAddon,
+	inputGroupLg,
+	inputGroupSm,
+	inputLg,
+	inputSm,
+	invalidTooltip,
+	validTooltip,
+} from '../../../theme-contract/literal/contract.css'
+import { btnToolbar } from '../../../theme-contract/ui/button-group/contract.css'
+import { dropdownMenu, dropdownToggle } from '../../../theme-contract/ui/dropdowns/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/forms
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// label { display: inline-block; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`label`, {
-	display: "inline-block",
+globalStyle(`:where(${materiaScope}${legend})`, {
+	float: 'left',
+	width: '100%',
+	padding: '0',
+	marginBottom: '0.5rem',
+	lineHeight: 'inherit',
+	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// button { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; word-wrap: normal; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	wordWrap: "normal",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; resize: vertical; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	resize: "vertical",
-})
-
-// SOURCE CSS:
-// .form-check { display: block; min-height: 1.5rem; padding-left: 1.5em; margin-bottom: 0.125rem; }
-globalStyle(`${materiaScope}${formCheck}`, {
-	display: "block",
-	minHeight: "1.5rem",
-	paddingLeft: "1.5em",
-	marginBottom: "0.125rem",
-})
-
-// SOURCE CSS:
-// .form-check .form-check-input { float: left; margin-left: -1.5em; }
-globalStyle(`${materiaScope}${formCheck} ${materiaScope}${formCheckInput}`, {
-	float: "left",
-	marginLeft: "-1.5em",
-})
-
-// SOURCE CSS:
-// .form-check-input { --bs-form-check-bg: var(--bs-body-bg); flex-shrink: 0; width: 1em; height: 1em; margin-top: 0.25em; vertical-align: top; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-form-check-bg); background-image: var(--bs-form-check-bg-image); background-repeat: no-repeat; background-position: center; background-size: contain; border: var(--bs-border-width) solid var(--bs-border-color); -webkit-print-color-adjust: exact; color-adjust: exact; print-color-adjust: exact; }
-globalStyle(`${materiaScope}${formCheckInput}`, {
-	vars: {
-		[varBsFormCheckBg]: varBsBodyBg,
-	},
-	flexShrink: 0,
-	width: "1em",
-	height: "1em",
-	marginTop: "0.25em",
-	verticalAlign: "top",
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsFormCheckBg,
-	backgroundImage: varBsFormCheckBgImage,
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "center",
-	backgroundSize: "contain",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
-	WebkitPrintColorAdjust: "exact",
-	colorAdjust: "exact",
-	printColorAdjust: "exact",
-})
-
-// SOURCE CSS:
-// .form-check-input[type="checkbox"] { border-radius: 0.25em; }
-globalStyle(`${materiaScope}${formCheckInput}[type="checkbox"]`, {
-	borderRadius: "0.25em",
-})
-
-// SOURCE CSS:
-// .form-check-input:active { filter: brightness(90%); }
-globalStyle(`${materiaScope}${formCheckInput}:active`, {
-	filter: "brightness(90%)",
-})
-
-// SOURCE CSS:
-// .form-check-input:focus { border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
-globalStyle(`${materiaScope}${formCheckInput}:focus`, {
-	borderColor: "#86b7fe",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
-})
-
-// SOURCE CSS:
-// .form-check-input:checked { background-color: #0d6efd; border-color: #0d6efd; }
-globalStyle(`${materiaScope}${formCheckInput}:checked`, {
-	backgroundColor: "#0d6efd",
-	borderColor: "#0d6efd",
-})
-
-// SOURCE CSS:
-// .form-check-input:checked[type="checkbox"] { --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e"); }
-globalStyle(`${materiaScope}${formCheckInput}:checked[type="checkbox"]`, {
-	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
+globalStyle(`:where(${materiaScope}${legend})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
 	},
 })
 
-// SOURCE CSS:
-// .form-check-input[type="checkbox"]:indeterminate { background-color: rgb(13, 110, 253); border-color: rgb(13, 110, 253); --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e"); }
-globalStyle(`${materiaScope}${formCheckInput}[type="checkbox"]:indeterminate`, {
-	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e\")",
-	},
-	backgroundColor: "rgb(13, 110, 253)",
-	borderColor: "rgb(13, 110, 253)",
-})
-
-// SOURCE CSS:
-// .form-check-input:disabled { pointer-events: none; filter: none; opacity: 0.5; }
-globalStyle(`${materiaScope}${formCheckInput}:disabled`, {
-	pointerEvents: "none",
-	filter: "none",
-	opacity: 0.5,
-})
-
-// SOURCE CSS:
-// .form-check-input[disabled] ~ .form-check-label { cursor: default; opacity: 0.5; }
-globalStyle(`${materiaScope}${formCheckInput}[disabled] ~ ${materiaScope}${formCheckLabel}`, {
-	cursor: "default",
-	opacity: 0.5,
-})
-
-// SOURCE CSS:
-// .form-check-input:disabled ~ .form-check-label { cursor: default; opacity: 0.5; }
-globalStyle(`${materiaScope}${formCheckInput}:disabled ~ ${materiaScope}${formCheckLabel}`, {
-	cursor: "default",
-	opacity: 0.5,
-})
-
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
-	marginBottom: "1rem !important",
-})
-
-// SOURCE CSS:
-// select:disabled { opacity: 1; }
-// [UNMAPPED_SELECTOR] element selector "select:disabled" — map to a contract class
-globalStyle(`select:disabled`, {
-	opacity: 1,
-})
-
-// SOURCE CSS:
-// fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
-globalStyle(`fieldset`, {
-	minWidth: 0,
-	padding: 0,
-	margin: 0,
-	border: 0,
-})
-
-// SOURCE CSS:
-// .form-label { margin-bottom: 0.5rem; }
 globalStyle(`${materiaScope}${formLabel}`, {
-	marginBottom: "0.5rem",
+	marginBottom: '0.5rem',
 })
 
-// SOURCE CSS:
-// .form-control { display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-clip: padding-box; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-globalStyle(`${materiaScope}${formControl}`, {
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsBodyBg,
-	backgroundClip: "padding-box",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
-	borderRadius: varBsBorderRadius,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-})
-
-// SOURCE CSS:
-// .form-control:focus { color: var(--bs-body-color); background-color: var(--bs-body-bg); border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
-globalStyle(`${materiaScope}${formControl}:focus`, {
-	color: varBsBodyColor,
-	backgroundColor: varBsBodyBg,
-	borderColor: "#86b7fe",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
-})
-
-// SOURCE CSS:
-// .form-control::-webkit-date-and-time-value { min-width: 85px; height: 1.5em; margin: 0; }
-globalStyle(`${materiaScope}${formControl}::-webkit-date-and-time-value`, {
-	minWidth: "85px",
-	height: "1.5em",
-	margin: 0,
-})
-
-// SOURCE CSS:
-// .form-control::-webkit-datetime-edit { display: block; padding: 0; }
-globalStyle(`${materiaScope}${formControl}::-webkit-datetime-edit`, {
-	display: "block",
-	padding: 0,
-})
-
-// SOURCE CSS:
-// .form-control::placeholder { color: var(--bs-secondary-color); opacity: 1; }
-globalStyle(`${materiaScope}${formControl}::placeholder`, {
+globalStyle(`${materiaScope}${formText}`, {
+	marginTop: '0.25rem',
+	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-	opacity: 1,
 })
 
-// SOURCE CSS:
-// .form-control:disabled { background-color: var(--bs-secondary-bg); opacity: 1; }
+globalStyle(`${materiaScope}${formControl}`, {
+	display: 'block',
+	width: '100%',
+	padding: '1rem 0',
+	fontSize: '1rem',
+	fontWeight: '400',
+	lineHeight: '1.5',
+	color: '#666',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: 'transparent',
+	backgroundClip: 'padding-box',
+	border: '0 solid transparent',
+	borderRadius: '0',
+	transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${materiaScope}${formControl}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${formControl}[type=file]`, {
+	overflow: 'hidden',
+})
+
+globalStyle(`${materiaScope}${formControl}[type=file]:not(:disabled):not([readonly])`, {
+	cursor: 'pointer',
+})
+
+globalStyle(`${materiaScope}${formControl}:focus`, {
+	color: '#666',
+	backgroundColor: 'transparent',
+	borderColor: '#90cbf9',
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
+})
+
+globalStyle(`${materiaScope}${formControl}::-webkit-date-and-time-value`, {
+	minWidth: '85px',
+	height: '1.5em',
+	margin: '0',
+})
+
+globalStyle(`${materiaScope}${formControl}::-webkit-datetime-edit`, {
+	display: 'block',
+	padding: '0',
+})
+
+globalStyle(`${materiaScope}${formControl}::-moz-placeholder`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	opacity: '1',
+})
+
+globalStyle(`${materiaScope}${formControl}::placeholder`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	opacity: '1',
+})
+
 globalStyle(`${materiaScope}${formControl}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
-	opacity: 1,
+	backgroundColor: 'transparent',
+	opacity: '1',
 })
 
-// SOURCE CSS:
-// .form-control::-webkit-file-upload-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${materiaScope}${formControl}::-webkit-file-upload-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
+	padding: '1rem 0',
+	margin: '-1rem 0',
+	WebkitMarginEnd: '0',
+	marginInlineEnd: '0',
+	color: '#666',
 	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	WebkitTransition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	backgroundImage: varBsGradient,
+	pointerEvents: 'none',
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: '0',
+	borderInlineEndWidth: '0',
+	borderRadius: '0',
+	WebkitTransition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-control::file-selector-button { padding: 0.375rem 0.75rem; margin: -0.375rem -0.75rem; -webkit-margin-end: 0.75rem; margin-inline-end: 0.75rem; color: var(--bs-body-color); background-color: var(--bs-tertiary-bg); pointer-events: none; border-color: inherit; border-style: solid; border-width: 0; border-inline-end-width: var(--bs-border-width); border-radius: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 globalStyle(`${materiaScope}${formControl}::file-selector-button`, {
-	padding: "0.375rem 0.75rem",
-	margin: "-0.375rem -0.75rem",
-	WebkitMarginEnd: "0.75rem",
-	marginInlineEnd: "0.75rem",
-	color: varBsBodyColor,
+	padding: '1rem 0',
+	margin: '-1rem 0',
+	WebkitMarginEnd: '0',
+	marginInlineEnd: '0',
+	color: '#666',
 	backgroundColor: varBsTertiaryBg,
-	pointerEvents: "none",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-	borderInlineEndWidth: varBsBorderWidth,
-	borderRadius: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	backgroundImage: varBsGradient,
+	pointerEvents: 'none',
+	borderColor: 'inherit',
+	borderStyle: 'solid',
+	borderWidth: '0',
+	borderInlineEndWidth: '0',
+	borderRadius: '0',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button { background-color: var(--bs-secondary-bg); }
+globalStyle(`${materiaScope}${formControl}::-webkit-file-upload-button`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			WebkitTransition: 'none',
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${formControl}::file-selector-button`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${materiaScope}${formControl}:hover:not(:disabled):not([readonly])::-webkit-file-upload-button`, {
 	backgroundColor: varBsSecondaryBg,
 })
 
-// SOURCE CSS:
-// .form-control:hover:not(:disabled):not([readonly])::file-selector-button { background-color: var(--bs-secondary-bg); }
 globalStyle(`${materiaScope}${formControl}:hover:not(:disabled):not([readonly])::file-selector-button`, {
 	backgroundColor: varBsSecondaryBg,
 })
 
-// SOURCE CSS:
-// .form-select { --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); display: block; width: 100%; padding: 0.375rem 2.25rem 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: var(--bs-body-bg); background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 16px 12px; border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${materiaScope}${formControlPlaintext}${formControlSm}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+})
+
+globalStyle(`${materiaScope}${formControlPlaintext}${formControlLg}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+})
+
+globalStyle(`${materiaScope}${formControlSm}`, {
+	minHeight: '1.5em',
+	padding: '0 0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
+})
+
+globalStyle(`${materiaScope}${formControlSm}::-webkit-file-upload-button`, {
+	padding: '0 0',
+	margin: '0 0',
+	WebkitMarginEnd: '0',
+	marginInlineEnd: '0',
+})
+
+globalStyle(`${materiaScope}${formControlSm}::file-selector-button`, {
+	padding: '0 0',
+	margin: '0 0',
+	WebkitMarginEnd: '0',
+	marginInlineEnd: '0',
+})
+
+globalStyle(`${materiaScope}${formControlLg}`, {
+	minHeight: 'calc(1.5em + 2.5rem)',
+	padding: '1.25rem 0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
+})
+
+globalStyle(`${materiaScope}${formControlLg}::-webkit-file-upload-button`, {
+	padding: '1.25rem 0',
+	margin: '-1.25rem 0',
+	WebkitMarginEnd: '0',
+	marginInlineEnd: '0',
+})
+
+globalStyle(`${materiaScope}${formControlLg}::file-selector-button`, {
+	padding: '1.25rem 0',
+	margin: '-1.25rem 0',
+	WebkitMarginEnd: '0',
+	marginInlineEnd: '0',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}`, {
+	minHeight: 'calc(1.5em + 2rem)',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControlSm}`, {
+	minHeight: '1.5em',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControlLg}`, {
+	minHeight: 'calc(1.5em + 2.5rem)',
+})
+
+globalStyle(`${materiaScope}${formControlColor}${formControlSm}`, {
+	height: '1.5em',
+})
+
+globalStyle(`${materiaScope}${formControlColor}${formControlLg}`, {
+	height: 'calc(1.5em + 2.5rem)',
+})
+
 globalStyle(`${materiaScope}${formSelect}`, {
 	vars: {
-		[varBsFormSelectBgImg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23222\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
 	},
-	display: "block",
-	width: "100%",
-	padding: "0.375rem 2.25rem 0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: varBsBodyBg,
-	backgroundImage: "var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none)",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right 0.75rem center",
-	backgroundSize: "16px 12px",
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
-	borderRadius: varBsBorderRadius,
-	transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	display: 'block',
+	width: '100%',
+	padding: '1rem 0 1rem 0',
+	fontSize: '1rem',
+	fontWeight: '400',
+	lineHeight: '1.5',
+	color: '#666',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: 'transparent',
+	backgroundImage: `${varBsFormSelectBgImg}, ${fallbackVar(varBsFormSelectBgIcon, 'none')}`,
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right 0 center',
+	backgroundSize: '16px 12px',
+	border: '0 solid transparent',
+	borderRadius: '0',
+	transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-select:focus { border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
+globalStyle(`${materiaScope}${formSelect}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${materiaScope}${formSelect}:focus`, {
-	borderColor: "#86b7fe",
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	borderColor: '#90cbf9',
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
 })
 
-// SOURCE CSS:
-// .form-select:disabled { background-color: var(--bs-secondary-bg); }
+globalStyle(`${materiaScope}${formSelect}[multiple]`, {
+	paddingRight: '0',
+	backgroundImage: 'none',
+})
+
+globalStyle(`${materiaScope}${formSelect}[size]:not([size="1"])`, {
+	paddingRight: '0',
+	backgroundImage: 'none',
+})
+
 globalStyle(`${materiaScope}${formSelect}:disabled`, {
-	backgroundColor: varBsSecondaryBg,
+	backgroundColor: 'transparent',
 })
 
-// SOURCE CSS:
-// ::file-selector-button { font: inherit; appearance: button; }
-globalStyle(`::file-selector-button`, {
-	font: "inherit",
-	appearance: "button",
+globalStyle(`${materiaScope}${formSelect}:-moz-focusring`, {
+	color: 'transparent',
+	textShadow: '0 0 0 #666',
 })
 
-// SOURCE CSS:
-// ::-webkit-file-upload-button { font: inherit; -webkit-appearance: button; }
-globalStyle(`::-webkit-file-upload-button`, {
-	font: "inherit",
-	WebkitAppearance: "button",
+globalStyle(`${materiaScope}${formSelectSm}`, {
+	paddingTop: '0',
+	paddingBottom: '0',
+	paddingLeft: '0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-control[type="file"] { overflow: hidden; }
-globalStyle(`${materiaScope}${formControl}[type="file"]`, {
-	overflow: "hidden",
+globalStyle(`${materiaScope}${formSelectLg}`, {
+	paddingTop: '1.25rem',
+	paddingBottom: '1.25rem',
+	paddingLeft: '0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-control[type="file"]:not(:disabled):not([readonly]) { cursor: pointer; }
-globalStyle(`${materiaScope}${formControl}[type="file"]:not(:disabled):not([readonly])`, {
-	cursor: "pointer",
+globalStyle(`${materiaScope}[data-bs-theme=dark] ${materiaScope}${formSelect}`, {
+	vars: {
+		[varBsFormSelectBgImg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'none\' stroke=\'%23dee2e6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'m2 5 6 6 6-6\'/%3e%3c/svg%3e")',
+	},
 })
 
-// SOURCE CSS:
-// .form-range { width: 100%; height: 1.5rem; padding: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: transparent; }
+globalStyle(`${materiaScope}${formCheck}`, {
+	display: 'block',
+	minHeight: '1.5rem',
+	paddingLeft: '1.5em',
+	marginBottom: '0.125rem',
+})
+
+globalStyle(`${materiaScope}${formCheck} ${materiaScope}${formCheckInput}`, {
+	float: 'left',
+	marginLeft: '-1.5em',
+})
+
+globalStyle(`${materiaScope}${formCheckReverse} ${materiaScope}${formCheckInput}`, {
+	float: 'right',
+	marginRight: '-1.5em',
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}`, {
+	vars: {
+		[varBsFormCheckBg]: 'transparent',
+	},
+	flexShrink: '0',
+	width: '1em',
+	height: '1em',
+	marginTop: '0.25em',
+	verticalAlign: 'top',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: varBsFormCheckBg,
+	backgroundImage: varBsFormCheckBgImage,
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'center',
+	backgroundSize: 'contain',
+	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	WebkitPrintColorAdjust: 'exact',
+	colorAdjust: 'exact',
+	printColorAdjust: 'exact',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}[type=checkbox]`, {
+	borderRadius: '0.25em',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}[type=radio]`, {
+	borderRadius: '50%',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:active`, {
+	filter: 'brightness(90%)',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:focus`, {
+	borderColor: '#90cbf9',
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:checked`, {
+	backgroundColor: '#2196f3',
+	borderColor: '#2196f3',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:checked[type=checkbox]`, {
+	vars: {
+		[varBsFormCheckBgImage]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e"), ${varBsGradient}`,
+	},
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:checked[type=radio]`, {
+	vars: {
+		[varBsFormCheckBgImage]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e"), ${varBsGradient}`,
+	},
+})
+
+globalStyle(`${materiaScope}${formCheckInput}[type=checkbox]:indeterminate`, {
+	vars: {
+		[varBsFormCheckBgImage]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e"), ${varBsGradient}`,
+	},
+	backgroundColor: '#2196f3',
+	borderColor: '#2196f3',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:disabled`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.5',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}[disabled] ~ ${materiaScope}${formCheckLabel}`, {
+	cursor: 'default',
+	opacity: '0.5',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}:disabled ~ ${materiaScope}${formCheckLabel}`, {
+	cursor: 'default',
+	opacity: '0.5',
+})
+
+globalStyle(`${materiaScope}${formSwitch}`, {
+	paddingLeft: '2.5em',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%280, 0, 0, 0.25%29\'/%3e%3c/svg%3e")',
+	},
+	width: '2em',
+	marginLeft: '-2.5em',
+	backgroundImage: varBsFormSwitchBg,
+	backgroundPosition: 'left center',
+	borderRadius: '2em',
+	transition: 'background-position 0.15s ease-in-out',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'%2390cbf9\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked`, {
+	vars: {
+		[varBsFormSwitchBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"), ${varBsGradient}`,
+	},
+	backgroundPosition: 'right center',
+})
+
+globalStyle(`${materiaScope}${formSwitch}${formCheckReverse} ${materiaScope}${formCheckInput}`, {
+	marginRight: '-2.5em',
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}[data-bs-theme=dark] ${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:not(:checked):not(:focus)`, {
+	vars: {
+		[varBsFormSwitchBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'%3e%3ccircle r=\'3\' fill=\'rgba%28255, 255, 255, 0.25%29\'/%3e%3c/svg%3e")',
+	},
+})
+
 globalStyle(`${materiaScope}${formRange}`, {
-	width: "100%",
-	height: "1.5rem",
-	padding: 0,
-	WebkitAppearance: "none",
-	MozAppearance: "none",
-	appearance: "none",
-	backgroundColor: "transparent",
+	width: '100%',
+	height: '1.5rem',
+	padding: '0',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: 'transparent',
 })
 
-// SOURCE CSS:
-// .form-range:focus { outline: 0; }
 globalStyle(`${materiaScope}${formRange}:focus`, {
-	outline: 0,
+	outline: '0',
 })
 
-// SOURCE CSS:
-// .form-range:focus::-webkit-slider-thumb { box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${materiaScope}${formRange}:focus::-webkit-slider-thumb`, {
-	boxShadow: "0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	boxShadow: '0 0 0 1px #fff, 0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
 })
 
-// SOURCE CSS:
-// .form-range::-webkit-slider-thumb { width: 1rem; height: 1rem; margin-top: -0.25rem; -webkit-appearance: none; appearance: none; background-color: #0d6efd; border: 0; border-radius: 1rem; -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${materiaScope}${formRange}:focus::-moz-range-thumb`, {
+	boxShadow: '0 0 0 1px #fff, 0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
+})
+
+globalStyle(`${materiaScope}${formRange}::-moz-focus-outer`, {
+	border: '0',
+})
+
 globalStyle(`${materiaScope}${formRange}::-webkit-slider-thumb`, {
-	width: "1rem",
-	height: "1rem",
-	marginTop: "-0.25rem",
-	WebkitAppearance: "none",
-	appearance: "none",
-	backgroundColor: "#0d6efd",
-	border: 0,
-	borderRadius: "1rem",
-	WebkitTransition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-	transition: "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	width: '1rem',
+	height: '1rem',
+	marginTop: '-0.25rem',
+	WebkitAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: '#2196f3',
+	backgroundImage: varBsGradient,
+	border: '0',
+	borderRadius: '1rem',
+	WebkitTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-range::-webkit-slider-thumb:active { background-color: #b6d4fe; }
+globalStyle(`${materiaScope}${formRange}::-webkit-slider-thumb`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			WebkitTransition: 'none',
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${materiaScope}${formRange}::-webkit-slider-thumb:active`, {
-	backgroundColor: "#b6d4fe",
+	backgroundColor: '#bce0fb',
+	backgroundImage: varBsGradient,
 })
 
-// SOURCE CSS:
-// .form-range::-webkit-slider-runnable-track { width: 100%; height: 0.5rem; color: transparent; cursor: pointer; background-color: var(--bs-secondary-bg); border-color: transparent; border-radius: 1rem; }
 globalStyle(`${materiaScope}${formRange}::-webkit-slider-runnable-track`, {
-	width: "100%",
-	height: "0.5rem",
-	color: "transparent",
-	cursor: "pointer",
+	width: '100%',
+	height: '0.5rem',
+	color: 'transparent',
+	cursor: 'pointer',
 	backgroundColor: varBsSecondaryBg,
-	borderColor: "transparent",
-	borderRadius: "1rem",
+	borderColor: 'transparent',
+	borderRadius: '1rem',
 })
 
-// SOURCE CSS:
-// .form-range:disabled { pointer-events: none; }
+globalStyle(`${materiaScope}${formRange}::-moz-range-thumb`, {
+	width: '1rem',
+	height: '1rem',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundColor: '#2196f3',
+	backgroundImage: varBsGradient,
+	border: '0',
+	borderRadius: '1rem',
+	MozTransition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${materiaScope}${formRange}::-moz-range-thumb`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			MozTransition: 'none',
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${formRange}::-moz-range-thumb:active`, {
+	backgroundColor: '#bce0fb',
+	backgroundImage: varBsGradient,
+})
+
+globalStyle(`${materiaScope}${formRange}::-moz-range-track`, {
+	width: '100%',
+	height: '0.5rem',
+	color: 'transparent',
+	cursor: 'pointer',
+	backgroundColor: varBsSecondaryBg,
+	borderColor: 'transparent',
+	borderRadius: '1rem',
+})
+
 globalStyle(`${materiaScope}${formRange}:disabled`, {
-	pointerEvents: "none",
+	pointerEvents: 'none',
 })
 
-// SOURCE CSS:
-// .form-range:disabled::-webkit-slider-thumb { background-color: var(--bs-secondary-color); }
 globalStyle(`${materiaScope}${formRange}:disabled::-webkit-slider-thumb`, {
 	backgroundColor: varBsSecondaryColor,
 })
 
-// SOURCE CSS:
-// legend { float: left; width: 100%; padding: 0; margin-bottom: 0.5rem; line-height: inherit; font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] element selector "legend" — map to a contract class
-globalStyle(`legend`, {
-	float: "left",
-	width: "100%",
-	padding: 0,
-	marginBottom: "0.5rem",
-	lineHeight: "inherit",
-	fontSize: "calc(1.275rem + 0.3vw)",
+globalStyle(`${materiaScope}${formRange}:disabled::-moz-range-thumb`, {
+	backgroundColor: varBsSecondaryColor,
 })
 
-// SOURCE CSS:
-// legend + * { clear: left; }
-// [UNMAPPED_SELECTOR] element selector "legend" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`legend + *`, {
-	clear: "left",
-})
-
-// SOURCE CSS:
-// .form-check-input[type="radio"] { border-radius: 50%; }
-globalStyle(`${materiaScope}${formCheckInput}[type="radio"]`, {
-	borderRadius: "50%",
-})
-
-// SOURCE CSS:
-// .form-check-input:checked[type="radio"] { --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e"); }
-globalStyle(`${materiaScope}${formCheckInput}:checked[type="radio"]`, {
-	vars: {
-		[varBsFormCheckBgImage]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e\")",
-	},
-})
-
-// SOURCE CSS:
-// .form-switch { padding-left: 2.5em; }
-globalStyle(`${materiaScope}${formSwitch}`, {
-	paddingLeft: "2.5em",
-})
-
-// SOURCE CSS:
-// .form-switch .form-check-input { --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e"); width: 2em; margin-left: -2.5em; background-image: var(--bs-form-switch-bg); background-position: left center; border-radius: 2em; transition: background-position 0.15s ease-in-out; }
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}`, {
-	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
-	},
-	width: "2em",
-	marginLeft: "-2.5em",
-	backgroundImage: varBsFormSwitchBg,
-	backgroundPosition: "left center",
-	borderRadius: "2em",
-	transition: "background-position 0.15s ease-in-out",
-})
-
-// SOURCE CSS:
-// .form-switch .form-check-input:focus { --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e"); }
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus`, {
-	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e\")",
-	},
-})
-
-// SOURCE CSS:
-// .form-switch .form-check-input:checked { background-position: right center; --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); }
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked`, {
-	vars: {
-		[varBsFormSwitchBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e\")",
-	},
-	backgroundPosition: "right center",
-})
-
-// SOURCE CSS:
-// .form-floating { position: relative; }
 globalStyle(`${materiaScope}${formFloating}`, {
-	position: "relative",
+	position: 'relative',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
 globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	lineHeight: 1.25,
-	padding: "1rem 0.75rem",
+	height: '3.5rem',
+	minHeight: '3.5rem',
+	lineHeight: '1.25',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; padding: 1rem 0.75rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${materiaScope}${formFloating} > .form-control-plaintext`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	lineHeight: 1.25,
-	padding: "1rem 0.75rem",
-})
-
-// SOURCE CSS:
-// .form-floating > .form-select { height: calc(3.5rem + calc(var(--bs-border-width) * 2)); min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); line-height: 1.25; }
 globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formSelect}`, {
-	height: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	minHeight: "calc(3.5rem + calc(var(--bs-border-width) * 2))",
-	lineHeight: 1.25,
+	height: '3.5rem',
+	minHeight: '3.5rem',
+	lineHeight: '1.25',
 })
 
-// SOURCE CSS:
-// .form-floating > label { position: absolute; top: 0; left: 0; z-index: 2; max-width: 100%; height: 100%; padding: 1rem 0.75rem; overflow: hidden; color: rgba(var(--bs-body-color-rgb), 0.65); text-align: start; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; border: var(--bs-border-width) solid transparent; transform-origin: 0 0; transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > label`, {
-	position: "absolute",
-	top: 0,
-	left: 0,
-	zIndex: 2,
-	maxWidth: "100%",
-	height: "100%",
-	padding: "1rem 0.75rem",
-	overflow: "hidden",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${elLabel}`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	zIndex: '2',
+	maxWidth: '100%',
+	height: '100%',
+	padding: '1rem 0',
+	overflow: 'hidden',
 	color: `rgba(${varBsBodyColorRgb}, 0.65)`,
-	textAlign: "start",
-	textOverflow: "ellipsis",
-	whiteSpace: "nowrap",
-	pointerEvents: "none",
-	border: "var(--bs-border-width) solid transparent",
-	transformOrigin: "0 0",
-	transition: "opacity 0.1s ease-in-out, transform 0.1s ease-in-out",
+	textAlign: 'start',
+	textOverflow: 'ellipsis',
+	whiteSpace: 'nowrap',
+	pointerEvents: 'none',
+	border: '0 solid transparent',
+	transformOrigin: '0 0',
+	transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control::placeholder { color: transparent; }
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${elLabel}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}`, {
+	padding: '1rem 0',
+})
+
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}::-moz-placeholder`, {
+	color: 'transparent',
+})
+
 globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}::placeholder`, {
-	color: "transparent",
+	color: 'transparent',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext::placeholder { color: transparent; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${materiaScope}${formFloating} > .form-control-plaintext::placeholder`, {
-	color: "transparent",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:not(:-moz-placeholder-shown)`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:focus { padding-top: 1.625rem; padding-bottom: 0.625rem; }
 globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:focus`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:not(:placeholder-shown) { padding-top: 1.625rem; padding-bottom: 0.625rem; }
 globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:not(:placeholder-shown)`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:focus { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${materiaScope}${formFloating} > .form-control-plaintext:focus`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-})
-
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:not(:placeholder-shown) { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${materiaScope}${formFloating} > .form-control-plaintext:not(:placeholder-shown)`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
-})
-
-// SOURCE CSS:
-// .form-floating > .form-control:-webkit-autofill { padding-top: 1.625rem; padding-bottom: 0.625rem; }
 globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:-webkit-autofill`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext:-webkit-autofill { padding-top: 1.625rem; padding-bottom: 0.625rem; }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-globalStyle(`${materiaScope}${formFloating} > .form-control-plaintext:-webkit-autofill`, {
-	paddingTop: "1.625rem",
-	paddingBottom: "0.625rem",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formSelect}`, {
+	paddingTop: '1.625rem',
+	paddingBottom: '0.625rem',
+	paddingLeft: '0',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:focus ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:focus ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:not(:-moz-placeholder-shown) ~ ${materiaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:not(:placeholder-shown) ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:not(:placeholder-shown) ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:focus ~ ${materiaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control-plaintext ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] class ".form-control-plaintext" — no contract mapping
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > .form-control-plaintext ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:not(:placeholder-shown) ~ ${materiaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-select ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formSelect} ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formSelect} ~ ${materiaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:-webkit-autofill ~ label { transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem); }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:-webkit-autofill ~ label`, {
-	transform: "scale(0.85) translateY(-0.5rem) translateX(0.15rem)",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:-webkit-autofill ~ ${materiaScope}${elLabel}`, {
+	transform: 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)',
 })
 
-// SOURCE CSS:
-// .form-floating > :disabled ~ label { color: #6c757d; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > :disabled ~ label`, {
-	color: "#6c757d",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${elTextarea}:not(:-moz-placeholder-shown) ~ ${materiaScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: 'transparent',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-floating > .form-control:disabled ~ label { color: #6c757d; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:disabled ~ label`, {
-	color: "#6c757d",
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${elTextarea}:focus ~ ${materiaScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: 'transparent',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .input-group { position: relative; display: flex; flex-wrap: wrap; align-items: stretch; width: 100%; }
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${elTextarea}:not(:placeholder-shown) ~ ${materiaScope}${elLabel}::after`, {
+	position: 'absolute',
+	inset: '1rem 0',
+	zIndex: '-1',
+	height: '1.5em',
+	content: '""',
+	backgroundColor: 'transparent',
+	borderRadius: '0',
+})
+
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${elTextarea}:disabled ~ ${materiaScope}${elLabel}::after`, {
+	backgroundColor: 'transparent',
+})
+
+globalStyle(`${materiaScope}${formFloating} > :disabled ~ ${materiaScope}${elLabel}`, {
+	color: '#666',
+})
+
+globalStyle(`${materiaScope}${formFloating} > ${materiaScope}${formControl}:disabled ~ ${materiaScope}${elLabel}`, {
+	color: '#666',
+})
+
 globalStyle(`${materiaScope}${inputGroup}`, {
-	position: "relative",
-	display: "flex",
-	flexWrap: "wrap",
-	alignItems: "stretch",
-	width: "100%",
+	position: 'relative',
+	display: 'flex',
+	flexWrap: 'wrap',
+	alignItems: 'stretch',
+	width: '100%',
 })
 
-// SOURCE CSS:
-// .input-group > .form-control { position: relative; flex: 1 1 auto; width: 1%; min-width: 0; }
 globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formControl}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	width: "1%",
-	minWidth: 0,
+	position: 'relative',
+	flex: '1 1 auto',
+	width: '1%',
+	minWidth: '0',
 })
 
-// SOURCE CSS:
-// .input-group > .form-select { position: relative; flex: 1 1 auto; width: 1%; min-width: 0; }
 globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formSelect}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	width: "1%",
-	minWidth: 0,
+	position: 'relative',
+	flex: '1 1 auto',
+	width: '1%',
+	minWidth: '0',
 })
 
-// SOURCE CSS:
-// .input-group > .form-floating { position: relative; flex: 1 1 auto; width: 1%; min-width: 0; }
 globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	width: "1%",
-	minWidth: 0,
+	position: 'relative',
+	flex: '1 1 auto',
+	width: '1%',
+	minWidth: '0',
 })
 
-// SOURCE CSS:
-// .input-group > .form-control:focus { z-index: 5; }
 globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formControl}:focus`, {
-	zIndex: 5,
+	zIndex: '5',
 })
 
-// SOURCE CSS:
-// .input-group > .form-select:focus { z-index: 5; }
 globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:focus`, {
-	zIndex: 5,
+	zIndex: '5',
 })
 
-// SOURCE CSS:
-// .input-group > .form-floating:focus-within { z-index: 5; }
 globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:focus-within`, {
-	zIndex: 5,
+	zIndex: '5',
 })
 
-// SOURCE CSS:
-// .input-group-text { display: flex; align-items: center; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: var(--bs-body-color); text-align: center; white-space: nowrap; background-color: var(--bs-tertiary-bg); border: var(--bs-border-width) solid var(--bs-border-color); border-radius: var(--bs-border-radius); }
 globalStyle(`${materiaScope}${inputGroupText}`, {
-	display: "flex",
-	alignItems: "center",
-	padding: "0.375rem 0.75rem",
-	fontSize: "1rem",
-	fontWeight: 400,
-	lineHeight: 1.5,
-	color: varBsBodyColor,
-	textAlign: "center",
-	whiteSpace: "nowrap",
-	backgroundColor: varBsTertiaryBg,
-	border: "var(--bs-border-width) solid var(--bs-border-color)",
-	borderRadius: varBsBorderRadius,
+	display: 'flex',
+	alignItems: 'center',
+	padding: '1rem 0',
+	fontSize: '1rem',
+	fontWeight: '400',
+	lineHeight: '1.5',
+	color: '#666',
+	textAlign: 'center',
+	whiteSpace: 'nowrap',
+	backgroundColor: 'transparent',
+	border: '0 solid transparent',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${inputGroup}:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${materiaScope}${inputGroupLg} > ${materiaScope}${formControl}`, {
+	padding: '1.25rem 0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${inputGroup}:not(.has-validation) > ${materiaScope}${dropdownToggle}:nth-last-child(n+3)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${materiaScope}${inputGroupLg} > ${materiaScope}${formSelect}`, {
+	padding: '1.25rem 0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${inputGroup}:not(.has-validation) > ${materiaScope}${formFloating}:not(:last-child) > ${materiaScope}${formControl}`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${materiaScope}${inputGroupLg} > ${materiaScope}${inputGroupText}`, {
+	padding: '1.25rem 0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${inputGroup}:not(.has-validation) > ${materiaScope}${formFloating}:not(:last-child) > ${materiaScope}${formSelect}`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
+globalStyle(`${materiaScope}${inputGroupSm} > ${materiaScope}${formControl}`, {
+	padding: '0 0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) { margin-left: calc(-1 * var(--bs-border-width)); border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${materiaScope}${inputGroup} > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback)`, {
-	marginLeft: "calc(-1 * var(--bs-border-width))",
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
+globalStyle(`${materiaScope}${inputGroupSm} > ${materiaScope}${formSelect}`, {
+	padding: '0 0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// textarea.form-control { min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)); }
-// [UNMAPPED_SELECTOR] element selector "textarea.form-control" — map to a contract class
-globalStyle(`textarea.form-control`, {
-	minHeight: "calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2))",
+globalStyle(`${materiaScope}${inputGroupSm} > ${materiaScope}${inputGroupText}`, {
+	padding: '0 0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-text { margin-top: 0.25rem; font-size: 0.875em; color: var(--bs-secondary-color); }
-globalStyle(`${materiaScope}${formText}`, {
-	marginTop: "0.25rem",
-	fontSize: "0.875em",
-	color: varBsSecondaryColor,
+globalStyle(`${materiaScope}${inputGroupLg} > ${materiaScope}${formSelect}`, {
+	paddingRight: '0',
 })
 
-// SOURCE CSS:
-// .form-control-lg { min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2)); padding: 0.5rem 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${materiaScope}${formControlLg}`, {
-	minHeight: "calc(1.5em + 1rem + calc(var(--bs-border-width) * 2))",
-	padding: "0.5rem 1rem",
-	fontSize: "1.25rem",
-	borderRadius: varBsBorderRadiusLg,
+globalStyle(`${materiaScope}${inputGroupSm} > ${materiaScope}${formSelect}`, {
+	paddingRight: '0',
 })
 
-// SOURCE CSS:
-// .form-control-lg::-webkit-file-upload-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${materiaScope}${formControlLg}::-webkit-file-upload-button`, {
-	padding: "0.5rem 1rem",
-	margin: "-0.5rem -1rem",
-	WebkitMarginEnd: "1rem",
-	marginInlineEnd: "1rem",
+globalStyle(`${materiaScope}${inputGroup}:not(${hasValidation}) > ${materiaScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-control-lg::file-selector-button { padding: 0.5rem 1rem; margin: -0.5rem -1rem; -webkit-margin-end: 1rem; margin-inline-end: 1rem; }
-globalStyle(`${materiaScope}${formControlLg}::file-selector-button`, {
-	padding: "0.5rem 1rem",
-	margin: "-0.5rem -1rem",
-	WebkitMarginEnd: "1rem",
-	marginInlineEnd: "1rem",
+globalStyle(`${materiaScope}${inputGroup}:not(${hasValidation}) > ${materiaScope}${formFloating}:not(:last-child) > ${materiaScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-select-lg { padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; font-size: 1.25rem; border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${materiaScope}${formSelectLg}`, {
-	paddingTop: "0.5rem",
-	paddingBottom: "0.5rem",
-	paddingLeft: "1rem",
-	fontSize: "1.25rem",
-	borderRadius: varBsBorderRadiusLg,
+globalStyle(`${materiaScope}${inputGroup}:not(${hasValidation}) > ${materiaScope}${formFloating}:not(:last-child) > ${materiaScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-control-sm { min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2)); padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${materiaScope}${formControlSm}`, {
-	minHeight: "calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2))",
-	padding: "0.25rem 0.5rem",
-	fontSize: "0.875rem",
-	borderRadius: varBsBorderRadiusSm,
+globalStyle(`${materiaScope}${inputGroup}${hasValidation} > ${materiaScope}:nth-last-child(n+3):not(${dropdownToggle}):not(${dropdownMenu}):not(${formFloating})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-control-sm::-webkit-file-upload-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${materiaScope}${formControlSm}::-webkit-file-upload-button`, {
-	padding: "0.25rem 0.5rem",
-	margin: "-0.25rem -0.5rem",
-	WebkitMarginEnd: "0.5rem",
-	marginInlineEnd: "0.5rem",
+globalStyle(`${materiaScope}${inputGroup}${hasValidation} > ${materiaScope}${formFloating}:nth-last-child(n+3) > ${materiaScope}${formControl}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-control-sm::file-selector-button { padding: 0.25rem 0.5rem; margin: -0.25rem -0.5rem; -webkit-margin-end: 0.5rem; margin-inline-end: 0.5rem; }
-globalStyle(`${materiaScope}${formControlSm}::file-selector-button`, {
-	padding: "0.25rem 0.5rem",
-	margin: "-0.25rem -0.5rem",
-	WebkitMarginEnd: "0.5rem",
-	marginInlineEnd: "0.5rem",
+globalStyle(`${materiaScope}${inputGroup}${hasValidation} > ${materiaScope}${formFloating}:nth-last-child(n+3) > ${materiaScope}${formSelect}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
-// SOURCE CSS:
-// .form-select-sm { padding-top: 0.25rem; padding-bottom: 0.25rem; padding-left: 0.5rem; font-size: 0.875rem; border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${materiaScope}${formSelectSm}`, {
-	paddingTop: "0.25rem",
-	paddingBottom: "0.25rem",
-	paddingLeft: "0.5rem",
-	fontSize: "0.875rem",
-	borderRadius: varBsBorderRadiusSm,
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}:not(:first-child):not(${dropdownMenu}):not(${validTooltip}):not(${validFeedback}):not(${invalidTooltip}):not(${invalidFeedback})`, {
+	marginLeft: 'calc(-1 * 0)',
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
-// SOURCE CSS:
-// .row { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; display: flex; flex-wrap: wrap; margin-top: calc(-1 * var(--bs-gutter-y)); margin-right: calc(-0.5 * var(--bs-gutter-x)); margin-left: calc(-0.5 * var(--bs-gutter-x)); }
-globalStyle(`${materiaScope}${row}`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	display: "flex",
-	flexWrap: "wrap",
-	marginTop: "calc(-1 * var(--bs-gutter-y))",
-	marginRight: "calc(-0.5 * var(--bs-gutter-x))",
-	marginLeft: "calc(-0.5 * var(--bs-gutter-x))",
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:first-child) > ${materiaScope}${formControl}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
-// SOURCE CSS:
-// .row > * { flex-shrink: 0; width: 100%; max-width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-top: var(--bs-gutter-y); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${materiaScope}${row} > *`, {
-	flexShrink: 0,
-	width: "100%",
-	maxWidth: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginTop: varBsGutterY,
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:first-child) > ${materiaScope}${formSelect}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
-// SOURCE CSS:
-// .g-3 { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".g-3" — no contract mapping
-globalStyle(`.g-3`, {
-	vars: {
-		[varBsGutterX]: "1rem",
-		[varBsGutterY]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .gx-3 { --bs-gutter-x: 1rem; }
-// [UNMAPPED_SELECTOR] class ".gx-3" — no contract mapping
-globalStyle(`.gx-3`, {
-	vars: {
-		[varBsGutterX]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .gy-3 { --bs-gutter-y: 1rem; }
-// [UNMAPPED_SELECTOR] class ".gy-3" — no contract mapping
-globalStyle(`.gy-3`, {
-	vars: {
-		[varBsGutterY]: "1rem",
-	},
-})
-
-// SOURCE CSS:
-// .invalid-feedback { display: none; width: 100%; margin-top: 0.25rem; font-size: 0.875em; color: var(--bs-form-invalid-color); }
-globalStyle(`${materiaScope}${invalidFeedback}`, {
-	display: "none",
-	width: "100%",
-	marginTop: "0.25rem",
-	fontSize: "0.875em",
-	color: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .was-validated :invalid ~ .invalid-feedback { display: block; }
-globalStyle(`${materiaScope}${wasValidated} :invalid ~ ${materiaScope}${invalidFeedback}`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .was-validated :invalid ~ .invalid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".invalid-tooltip" — no contract mapping
-globalStyle(`${materiaScope}${wasValidated} :invalid ~ .invalid-tooltip`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .is-invalid ~ .invalid-feedback { display: block; }
-globalStyle(`${materiaScope}${isInvalid} ~ ${materiaScope}${invalidFeedback}`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .is-invalid ~ .invalid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".invalid-tooltip" — no contract mapping
-globalStyle(`${materiaScope}${isInvalid} ~ .invalid-tooltip`, {
-	display: "block",
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${materiaScope}${formCheckInput}.is-invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid:checked`, {
-	backgroundColor: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid:checked { background-color: var(--bs-form-invalid-color); }
-globalStyle(`${materiaScope}${formCheckInput}.is-invalid:checked`, {
-	backgroundColor: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${materiaScope}${formCheckInput}.is-invalid:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-check-input:invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid ~ ${materiaScope}${formCheckLabel}`, {
-	color: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .form-check-input.is-invalid ~ .form-check-label { color: var(--bs-form-invalid-color); }
-globalStyle(`${materiaScope}${formCheckInput}.is-invalid ~ ${materiaScope}${formCheckLabel}`, {
-	color: varBsFormInvalidColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-control:invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .form-control.is-invalid { border-color: var(--bs-form-invalid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${formControl}.is-invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-control:invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:invalid:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .form-control.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${materiaScope}${formControl}.is-invalid:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid { border-color: var(--bs-form-invalid-border-color); }
-globalStyle(`${materiaScope}${formSelect}.is-invalid`, {
-	borderColor: varBsFormInvalidBorderColor,
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid:not([multiple]):not([size]) { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${formSelect}.is-invalid:not([multiple]):not([size])`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid:not([multiple])[size="1"] { --bs-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); padding-right: 4.125rem; background-position: right 0.75rem center, center right 2.25rem; background-size: 16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${formSelect}.is-invalid:not([multiple])[size="1"]`, {
-	vars: {
-		[varBsFormSelectBgIcon]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e\")",
-	},
-	paddingRight: "4.125rem",
-	backgroundPosition: "right 0.75rem center, center right 2.25rem",
-	backgroundSize: "16px 12px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
-})
-
-// SOURCE CSS:
-// .was-validated .form-select:invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .form-select.is-invalid:focus { border-color: var(--bs-form-invalid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25); }
-globalStyle(`${materiaScope}${formSelect}.is-invalid:focus`, {
-	borderColor: varBsFormInvalidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25)",
-})
-
-// SOURCE CSS:
-// .was-validated .input-group > .form-control:not(:focus):invalid { z-index: 4; }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formControl}:not(:focus):invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .input-group > .form-control:not(:focus).is-invalid { z-index: 4; }
-globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formControl}:not(:focus).is-invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .was-validated .input-group > .form-select:not(:focus):invalid { z-index: 4; }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:not(:focus):invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .input-group > .form-select:not(:focus).is-invalid { z-index: 4; }
-globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:not(:focus).is-invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .was-validated .input-group > .form-floating:not(:focus-within):invalid { z-index: 4; }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:focus-within):invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .input-group > .form-floating:not(:focus-within).is-invalid { z-index: 4; }
-globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:focus-within).is-invalid`, {
-	zIndex: 4,
-})
-
-// SOURCE CSS:
-// .valid-feedback { display: none; width: 100%; margin-top: 0.25rem; font-size: 0.875em; color: var(--bs-form-valid-color); }
 globalStyle(`${materiaScope}${validFeedback}`, {
-	display: "none",
-	width: "100%",
-	marginTop: "0.25rem",
-	fontSize: "0.875em",
+	display: 'none',
+	width: '100%',
+	marginTop: '0.25rem',
+	fontSize: '0.875em',
 	color: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .was-validated :valid ~ .valid-feedback { display: block; }
+globalStyle(`${materiaScope}${validTooltip}`, {
+	position: 'absolute',
+	top: '100%',
+	zIndex: '5',
+	display: 'none',
+	maxWidth: '100%',
+	padding: '0.25rem 0.5rem',
+	marginTop: '0.1rem',
+	fontSize: '0.875rem',
+	color: '#fff',
+	backgroundColor: varBsSuccess,
+	borderRadius: varBsBorderRadius,
+})
+
 globalStyle(`${materiaScope}${wasValidated} :valid ~ ${materiaScope}${validFeedback}`, {
-	display: "block",
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .was-validated :valid ~ .valid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".valid-tooltip" — no contract mapping
-globalStyle(`${materiaScope}${wasValidated} :valid ~ .valid-tooltip`, {
-	display: "block",
+globalStyle(`${materiaScope}${wasValidated} :valid ~ ${materiaScope}${validTooltip}`, {
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .is-valid ~ .valid-feedback { display: block; }
 globalStyle(`${materiaScope}${isValid} ~ ${materiaScope}${validFeedback}`, {
-	display: "block",
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .is-valid ~ .valid-tooltip { display: block; }
-// [UNMAPPED_SELECTOR] class ".valid-tooltip" — no contract mapping
-globalStyle(`${materiaScope}${isValid} ~ .valid-tooltip`, {
-	display: "block",
+globalStyle(`${materiaScope}${isValid} ~ ${materiaScope}${validTooltip}`, {
+	display: 'block',
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid { border-color: var(--bs-form-valid-border-color); }
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:valid`, {
+	borderColor: varBsFormValidBorderColor,
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%234caf50\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.5rem) center',
+	backgroundSize: 'calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${formControl}${isValid}`, {
+	borderColor: varBsFormValidBorderColor,
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%234caf50\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.5rem) center',
+	backgroundSize: 'calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:valid:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formControl}${isValid}:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${elTextarea}${formControl}:valid`, {
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundPosition: 'top calc(0.375em + 0.5rem) right calc(0.375em + 0.5rem)',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}${isValid}`, {
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundPosition: 'top calc(0.375em + 0.5rem) right calc(0.375em + 0.5rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:valid`, {
+	borderColor: varBsFormValidBorderColor,
+})
+
+globalStyle(`${materiaScope}${formSelect}${isValid}`, {
+	borderColor: varBsFormValidBorderColor,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:valid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%234caf50\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:valid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%234caf50\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${formSelect}${isValid}:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%234caf50\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${formSelect}${isValid}:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%234caf50\' d=\'M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:valid:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formSelect}${isValid}:focus`, {
+	borderColor: varBsFormValidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formControlColor}${isValid}`, {
+	width: 'calc(3rem + calc(1.5em + 2rem))',
+})
+
 globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:valid`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid { border-color: var(--bs-form-valid-border-color); }
-globalStyle(`${materiaScope}${formCheckInput}.is-valid`, {
+globalStyle(`${materiaScope}${formCheckInput}${isValid}`, {
 	borderColor: varBsFormValidBorderColor,
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid:checked { background-color: var(--bs-form-valid-color); }
 globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:valid:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid:checked { background-color: var(--bs-form-valid-color); }
-globalStyle(`${materiaScope}${formCheckInput}.is-valid:checked`, {
+globalStyle(`${materiaScope}${formCheckInput}${isValid}:checked`, {
 	backgroundColor: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
 globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:valid:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${materiaScope}${formCheckInput}.is-valid:focus`, {
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+globalStyle(`${materiaScope}${formCheckInput}${isValid}:focus`, {
+	boxShadow: `0 0 0 0.25rem rgba(${varBsSuccessRgb}, 0.25)`,
 })
 
-// SOURCE CSS:
-// .was-validated .form-check-input:valid ~ .form-check-label { color: var(--bs-form-valid-color); }
 globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:valid ~ ${materiaScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .form-check-input.is-valid ~ .form-check-label { color: var(--bs-form-valid-color); }
-globalStyle(`${materiaScope}${formCheckInput}.is-valid ~ ${materiaScope}${formCheckLabel}`, {
+globalStyle(`${materiaScope}${formCheckInput}${isValid} ~ ${materiaScope}${formCheckLabel}`, {
 	color: varBsFormValidColor,
 })
 
-// SOURCE CSS:
-// .was-validated .form-control:valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:valid`, {
-	borderColor: varBsFormValidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
+globalStyle(`${materiaScope}${formCheckInline} ${materiaScope}${formCheckInput} ~ ${materiaScope}${validFeedback}`, {
+	marginLeft: '0.5em',
 })
 
-// SOURCE CSS:
-// .form-control.is-valid { border-color: var(--bs-form-valid-border-color); padding-right: calc(1.5em + 0.75rem); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right calc(0.375em + 0.1875rem) center; background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-globalStyle(`${materiaScope}${formControl}.is-valid`, {
-	borderColor: varBsFormValidBorderColor,
-	paddingRight: "calc(1.5em + 0.75rem)",
-	backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "right calc(0.375em + 0.1875rem) center",
-	backgroundSize: "calc(0.75em + 0.375rem) calc(0.75em + 0.375rem)",
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formControl}:not(:focus):valid`, {
+	zIndex: '3',
 })
 
-// SOURCE CSS:
-// .was-validated .form-control:valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:valid:focus`, {
-	borderColor: varBsFormValidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formControl}:not(:focus)${isValid}`, {
+	zIndex: '3',
 })
 
-// SOURCE CSS:
-// .form-control.is-valid:focus { border-color: var(--bs-form-valid-border-color); box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25); }
-globalStyle(`${materiaScope}${formControl}.is-valid:focus`, {
-	borderColor: varBsFormValidBorderColor,
-	boxShadow: "0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25)",
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:not(:focus):valid`, {
+	zIndex: '3',
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .form-check:not(.form-switch) .form-check-input:checked[type="checkbox"]
-// [DELTA] unmapped selector: .form-switch .form-check-input::before
-// [DELTA] unmapped selector: .form-switch .form-check-input::after
-// [DELTA] unmapped selector: .form-switch .form-check-input:hover:not(.disabled)::after
-// [DELTA] unmapped selector: .form-switch .form-check-input:focus:not(.disabled)::after
-// [DELTA] unmapped selector: .form-switch .form-check-input:checked::before
-// [DELTA] unmapped selector: .form-switch .form-check-input:checked::after
-// [DELTA] unmapped selector: .form-switch .form-check-input:checked:hover:not(.disabled)::after
-// [DELTA] unmapped selector: .form-switch .form-check-input:checked:focus:not(.disabled)::after
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:not(:focus)${isValid}`, {
+	zIndex: '3',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:focus-within):valid`, {
+	zIndex: '3',
+})
+
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:focus-within)${isValid}`, {
+	zIndex: '3',
+})
+
+globalStyle(`${materiaScope}${invalidFeedback}`, {
+	display: 'none',
+	width: '100%',
+	marginTop: '0.25rem',
+	fontSize: '0.875em',
+	color: varBsFormInvalidColor,
+})
+
+globalStyle(`${materiaScope}${invalidTooltip}`, {
+	position: 'absolute',
+	top: '100%',
+	zIndex: '5',
+	display: 'none',
+	maxWidth: '100%',
+	padding: '0.25rem 0.5rem',
+	marginTop: '0.1rem',
+	fontSize: '0.875rem',
+	color: '#fff',
+	backgroundColor: varBsDanger,
+	borderRadius: varBsBorderRadius,
+})
+
+globalStyle(`${materiaScope}${wasValidated} :invalid ~ ${materiaScope}${invalidFeedback}`, {
+	display: 'block',
+})
+
+globalStyle(`${materiaScope}${wasValidated} :invalid ~ ${materiaScope}${invalidTooltip}`, {
+	display: 'block',
+})
+
+globalStyle(`${materiaScope}${isInvalid} ~ ${materiaScope}${invalidFeedback}`, {
+	display: 'block',
+})
+
+globalStyle(`${materiaScope}${isInvalid} ~ ${materiaScope}${invalidTooltip}`, {
+	display: 'block',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:invalid`, {
+	borderColor: varBsFormInvalidBorderColor,
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e51c23\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e51c23\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.5rem) center',
+	backgroundSize: 'calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${formControl}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e51c23\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e51c23\' stroke=\'none\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right calc(0.375em + 0.5rem) center',
+	backgroundSize: 'calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formControl}:invalid:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formControl}${isInvalid}:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${elTextarea}${formControl}:invalid`, {
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundPosition: 'top calc(0.375em + 0.5rem) right calc(0.375em + 0.5rem)',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}${isInvalid}`, {
+	paddingRight: 'calc(1.5em + 2rem)',
+	backgroundPosition: 'top calc(0.375em + 0.5rem) right calc(0.375em + 0.5rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${materiaScope}${formSelect}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e51c23\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e51c23\' stroke=\'none\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e51c23\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e51c23\' stroke=\'none\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${formSelect}${isInvalid}:not([multiple]):not([size])`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e51c23\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e51c23\' stroke=\'none\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${formSelect}${isInvalid}:not([multiple])[size="1"]`, {
+	vars: {
+		[varBsFormSelectBgIcon]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23e51c23\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23e51c23\' stroke=\'none\'/%3e%3c/svg%3e")',
+	},
+	paddingRight: '0',
+	backgroundPosition: 'right 0 center, center right 0',
+	backgroundSize: '16px 12px, calc(0.75em + 1rem) calc(0.75em + 1rem)',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formSelect}:invalid:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formSelect}${isInvalid}:focus`, {
+	borderColor: varBsFormInvalidBorderColor,
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formControlColor}${isInvalid}`, {
+	width: 'calc(3rem + calc(1.5em + 2rem))',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${materiaScope}${formCheckInput}${isInvalid}`, {
+	borderColor: varBsFormInvalidBorderColor,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid:checked`, {
+	backgroundColor: varBsFormInvalidColor,
+})
+
+globalStyle(`${materiaScope}${formCheckInput}${isInvalid}:checked`, {
+	backgroundColor: varBsFormInvalidColor,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid:focus`, {
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${formCheckInput}${isInvalid}:focus`, {
+	boxShadow: `0 0 0 0.25rem rgba(${varBsDangerRgb}, 0.25)`,
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${formCheckInput}:invalid ~ ${materiaScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
+
+globalStyle(`${materiaScope}${formCheckInput}${isInvalid} ~ ${materiaScope}${formCheckLabel}`, {
+	color: varBsFormInvalidColor,
+})
+
+globalStyle(`${materiaScope}${formCheckInline} ${materiaScope}${formCheckInput} ~ ${materiaScope}${invalidFeedback}`, {
+	marginLeft: '0.5em',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formControl}:not(:focus):invalid`, {
+	zIndex: '4',
+})
+
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formControl}:not(:focus)${isInvalid}`, {
+	zIndex: '4',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:not(:focus):invalid`, {
+	zIndex: '4',
+})
+
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formSelect}:not(:focus)${isInvalid}`, {
+	zIndex: '4',
+})
+
+globalStyle(`${materiaScope}${wasValidated} ${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:focus-within):invalid`, {
+	zIndex: '4',
+})
+
+globalStyle(`${materiaScope}${inputGroup} > ${materiaScope}${formFloating}:not(:focus-within)${isInvalid}`, {
+	zIndex: '4',
+})
+
+globalStyle(`${materiaScope}${btnToolbar} ${materiaScope}${inputGroup}`, {
+	width: 'auto',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}`, {
+	boxShadow: 'inset 0 -1px 0 #ddd',
+	transition: 'box-shadow 0.2s',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}:focus`, {
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}[disabled]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}[readonly]`, {
+	borderBottom: '1px dotted #ddd',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}[disabled]::-moz-placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}${elTextarea}${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}${elInput}${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=text]${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=password]${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=email]${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[type=tel]${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}[disabled]`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}[contenteditable]${formControl}[disabled]::placeholder`, {
+	color: '#ddd',
+})
+
+globalStyle(`${materiaScope}${elSelect}${formControl}`, {
+	padding: '0.5rem 0',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 4\'%3e%3cpath fill=\'%23666\' d=\'M8 0 4 4 0 0z\'/%3e%3c/svg%3e")',
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: 'right center',
+	backgroundSize: '8px 4px',
+	boxShadow: 'inset 0 -1px 0 #ddd',
+})
+
+globalStyle(`${materiaScope}${elSelect}${inputSm}`, {
+	fontSize: '0.875rem',
+})
+
+globalStyle(`${materiaScope}${elSelect}${formControl}${inputSm}`, {
+	fontSize: '0.875rem',
+})
+
+globalStyle(`${materiaScope}${elSelect}${inputLg}`, {
+	fontSize: '1.25rem',
+})
+
+globalStyle(`${materiaScope}${elSelect}${formControl}${inputLg}`, {
+	fontSize: '1.25rem',
+})
+
+globalStyle(`${materiaScope}${elSelect}${formControl}:focus`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 4\'%3e%3cpath fill=\'%23212121\' d=\'M8 0 4 4 0 0z\'/%3e%3c/svg%3e")',
+	boxShadow: 'inset 0 -2px 0 #2196f3',
+})
+
+globalStyle(`${materiaScope}${elSelect}${formControl}[multiple]`, {
+	background: 'none',
+})
+
+globalStyle(`${materiaScope}${formCheckInput}`, {
+	width: '1.25em',
+	height: '1.25em',
+	marginTop: '1px',
+	border: '2px solid #ced4da',
+})
+
+globalStyle(`${materiaScope}:not(${formCheck}) > ${materiaScope}${formCheckInput}:checked[type=radio]`, {
+	backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%232196f3' stroke='%23fff'/%3e%3c/svg%3e"), ${varBsGradient}`,
+	backgroundSize: '1.8em',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}`, {
+	position: 'relative',
+	height: '0.8em',
+	marginTop: '0.29em',
+	backgroundColor: '#ced4da',
+	backgroundImage: 'none',
+	border: 'none',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus`, {
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}::before`, {
+	position: 'absolute',
+	top: '-0.2em',
+	left: '-0.2em',
+	width: '1.2em',
+	height: '1.2em',
+	content: '""',
+	backgroundColor: '#fff',
+	borderRadius: '50%',
+	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.3)',
+	transition: 'left 0.15s ease-in-out',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}::after`, {
+	position: 'absolute',
+	top: '-0.2em',
+	left: '-0.2em',
+	zIndex: '-1',
+	width: '1.2em',
+	height: '1.2em',
+	content: '""',
+	borderRadius: '50%',
+	boxShadow: '0 0 0 9px rgba(0, 0, 0, 0.05)',
+	transition: 'left 0.15s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transform: 'scale(0)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked`, {
+	backgroundColor: 'rgba(33, 150, 243, 0.3)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked::before`, {
+	left: 'calc(100% - 0.8em)',
+	backgroundColor: 'rgb(33, 150, 243)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked::after`, {
+	left: 'calc(100% - 0.8em)',
+	boxShadow: '0 0 0 9px rgba(33, 150, 243, 0.1)',
+})
+
+globalStyle(`${materiaScope}${formCheck}:not(${formSwitch}) ${materiaScope}${formCheckInput}:checked[type=checkbox]`, {
+	backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-width='2' d='m6 10 3 3 6-6'/%3e%3c/svg%3e"), ${varBsGradient}`,
+	backgroundSize: '1.6em',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${elInput}:not([type=checkbox])`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${formControl}`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${elInput}${formControl}[readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${elInput}[type=text][readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}[type=text]${formControl}[readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${elInput}:not([type=checkbox]):focus`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${formControl}:focus`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #ff9800',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${elInput}:not([type=checkbox])`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${formControl}`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${elInput}${formControl}[readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${elInput}[type=text][readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}[type=text]${formControl}[readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${elInput}:not([type=checkbox]):focus`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${formControl}:focus`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #e51c23',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${elInput}:not([type=checkbox])`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${formControl}`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${elInput}${formControl}[readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${elInput}[type=text][readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}[type=text]${formControl}[readonly]`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${elInput}:not([type=checkbox]):focus`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${formControl}:focus`, {
+	borderBottom: 'none',
+	boxShadow: 'inset 0 -2px 0 #4caf50',
+})
+
+globalStyle(`${materiaScope}${hasWarning} ${materiaScope}${inputGroupAddon}`, {
+	color: '#666',
+	backgroundColor: 'transparent',
+	borderColor: 'transparent',
+})
+
+globalStyle(`${materiaScope}${hasDanger} ${materiaScope}${inputGroupAddon}`, {
+	color: '#666',
+	backgroundColor: 'transparent',
+	borderColor: 'transparent',
+})
+
+globalStyle(`${materiaScope}${hasSuccess} ${materiaScope}${inputGroupAddon}`, {
+	color: '#666',
+	backgroundColor: 'transparent',
+	borderColor: 'transparent',
+})
+
+globalStyle(`${materiaScope}${formGroupLg} ${materiaScope}${elSelect}`, {
+	lineHeight: '1.5',
+})
+
+globalStyle(`${materiaScope}${formGroupLg} ${materiaScope}${elSelect}${formControl}`, {
+	lineHeight: '1.5',
+})
+
+globalStyle(`${materiaScope}${legendClear}`, {
+	clear: 'left',
+})
+
+globalStyle(`${materiaScope}${formSwitch}`, {
+	isolation: 'isolate',
+})

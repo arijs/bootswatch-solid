@@ -1,16 +1,22 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { morphScope } from '../../scope.css'
+
 import {
-	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsEmphasisColor,
-	varBsLinkColor,
-	varBsLinkColorRgb,
-	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
-	varBsSecondaryColor,
+	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
@@ -30,406 +36,439 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	link,
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	dropdown,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
 	fade,
-	flexWrap,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import {
 	nav,
 	navItem,
 	navLink,
+	navLinkActive,
+	navLinkDisabled,
 	navPills,
 	navTabs,
+	show,
+	tabContent,
+	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import { morphScope } from '../../scope.css'
+import {
+	offcanvas,
+	offcanvasBackdrop,
+	offcanvasLg,
+	offcanvasMd,
+	offcanvasSm,
+	offcanvasXl,
+	offcanvasXxl,
+} from '../../../../theme-contract/ui/offcanvas/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/navs
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// .nav { --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem; --bs-nav-link-font-weight: ; --bs-nav-link-color: var(--bs-link-color); --bs-nav-link-hover-color: var(--bs-link-hover-color); --bs-nav-link-disabled-color: var(--bs-secondary-color); display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none; }
-globalStyle(`${morphScope}${nav}`, {
-	vars: {
-		[varBsNavLinkPaddingX]: "1rem",
-		[varBsNavLinkPaddingY]: "0.5rem",
-		[varBsNavLinkFontWeight]: "",
-		[varBsNavLinkColor]: varBsLinkColor,
-		[varBsNavLinkHoverColor]: varBsLinkHoverColor,
-		[varBsNavLinkDisabledColor]: varBsSecondaryColor,
-	},
-	display: "flex",
-	flexWrap: "wrap",
-	paddingLeft: 0,
-	marginBottom: 0,
-	listStyle: "none",
+globalStyle(`${morphScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
 })
 
-// SOURCE CSS:
-// .nav-link { display: block; padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); font-size: var(--bs-nav-link-font-size); font-weight: var(--bs-nav-link-font-weight); color: var(--bs-nav-link-color); text-decoration: none; background: none; border: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
+globalStyle(`${morphScope}${btn}${show}:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
+globalStyle(`${morphScope}${fade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${morphScope}${fade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${morphScope}${collapse}:not(${show})`, {
+	display: 'none',
+})
+
+globalStyle(`${morphScope}${nav}`, {
+	vars: {
+		[varBsNavLinkPaddingX]: '1rem',
+		[varBsNavLinkPaddingY]: '0.5rem',
+		[varBsNavLinkFontWeight]: '',
+		[varBsNavLinkColor]: '#7b8ab8',
+		[varBsNavLinkHoverColor]: '#7b8ab8',
+		[varBsNavLinkDisabledColor]: '#adb6d3',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	paddingLeft: '0',
+	marginBottom: '0',
+	listStyle: 'none',
+})
+
 globalStyle(`${morphScope}${navLink}`, {
-	display: "block",
-	padding: "var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x)",
+	display: 'block',
+	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
 	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
 	color: varBsNavLinkColor,
-	textDecoration: "none",
-	background: "none",
-	border: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out",
+	textDecoration: 'none',
+	background: 'none',
+	border: '0',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .nav-link:hover { color: var(--bs-nav-link-hover-color); }
+globalStyle(`${morphScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${morphScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link:focus { color: var(--bs-nav-link-hover-color); }
 globalStyle(`${morphScope}${navLink}:focus`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link:focus-visible { outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${morphScope}${navLink}:focus-visible`, {
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(55, 141, 252, 0.25)',
 })
 
-// SOURCE CSS:
-// .nav-link.disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(`${morphScope}${navLink}.disabled`, {
+globalStyle(`${morphScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
-	pointerEvents: "none",
-	cursor: "default",
+	pointerEvents: 'none',
+	cursor: 'default',
 })
 
-// SOURCE CSS:
-// .nav-link:disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
 globalStyle(`${morphScope}${navLink}:disabled`, {
 	color: varBsNavLinkDisabledColor,
-	pointerEvents: "none",
-	cursor: "default",
+	pointerEvents: 'none',
+	cursor: 'default',
 })
 
-// SOURCE CSS:
-// .nav-tabs { --bs-nav-tabs-border-width: var(--bs-border-width); --bs-nav-tabs-border-color: var(--bs-border-color); --bs-nav-tabs-border-radius: var(--bs-border-radius); --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color); --bs-nav-tabs-link-active-color: var(--bs-emphasis-color); --bs-nav-tabs-link-active-bg: var(--bs-body-bg); --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg); border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color); }
 globalStyle(`${morphScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
 		[varBsNavTabsBorderColor]: varBsBorderColor,
-		[varBsNavTabsBorderRadius]: varBsBorderRadius,
-		[varBsNavTabsLinkHoverBorderColor]: "var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color)",
-		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
-		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: "var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg)",
+		[varBsNavTabsBorderRadius]: '0',
+		[varBsNavTabsLinkHoverBorderColor]: `${varBsSecondaryBg} ${varBsSecondaryBg} ${varBsBorderColor}`,
+		[varBsNavTabsLinkActiveColor]: '#fff',
+		[varBsNavTabsLinkActiveBg]: '#378dfc',
+		[varBsNavTabsLinkActiveBorderColor]: `${varBsBorderColor} ${varBsBorderColor} #378dfc`,
 	},
-	borderBottom: "var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color)",
+	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); border: var(--bs-nav-tabs-border-width) solid transparent; border-top-left-radius: var(--bs-nav-tabs-border-radius); border-top-right-radius: var(--bs-nav-tabs-border-radius); }
 globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}`, {
-	marginBottom: "calc(-1 * var(--bs-nav-tabs-border-width))",
-	border: "var(--bs-nav-tabs-border-width) solid transparent",
+	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover { isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
 globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}:hover`, {
-	isolation: "isolate",
+	isolation: 'isolate',
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:focus { isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
 globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}:focus`, {
-	isolation: "isolate",
+	isolation: 'isolate',
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}.active`, {
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-item.show .nav-link { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}.show ${morphScope}${navLink}`, {
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}${show} ${morphScope}${navLink}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// .nav-pills { --bs-nav-pills-border-radius: var(--bs-border-radius); --bs-nav-pills-link-active-color: #fff; --bs-nav-pills-link-active-bg: #0d6efd; }
 globalStyle(`${morphScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
-		[varBsNavPillsLinkActiveColor]: "#fff",
-		[varBsNavPillsLinkActiveBg]: "#0d6efd",
+		[varBsNavPillsLinkActiveColor]: '#fff',
+		[varBsNavPillsLinkActiveBg]: '#378dfc',
 	},
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
 globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}.active`, {
+globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS:
-// .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-// [UNMAPPED_SELECTOR] class ".show" — no contract mapping
-globalStyle(`${morphScope}${navPills} .show > ${morphScope}${navLink}`, {
+globalStyle(`${morphScope}${navPills} ${morphScope}${show} > ${morphScope}${navLink}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${morphScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${morphScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: varBsEmphasisColor,
+	},
+	gap: varBsNavUnderlineGap,
 })
 
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
 })
 
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${show} > ${morphScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${morphScope}${navFill} > ${morphScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
+globalStyle(`${morphScope}${navFill} ${morphScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
+globalStyle(`${morphScope}${navJustified} > ${morphScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
+globalStyle(`${morphScope}${navJustified} ${morphScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${morphScope}${navFill} ${morphScope}${navItem} ${morphScope}${navLink}`, {
+	width: '100%',
 })
 
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${morphScope}${navJustified} ${morphScope}${navItem} ${morphScope}${navLink}`, {
+	width: '100%',
 })
 
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${morphScope}${tabContent} > ${morphScope}${tabPane}`, {
+	display: 'none',
 })
 
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
 })
 
-// SOURCE CSS:
-// .fade { transition: opacity 0.15s linear; }
-globalStyle(`${morphScope}${fade}`, {
-	transition: "opacity 0.15s linear",
+globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
 })
 
-// SOURCE CSS:
-// .fade:not(.show) { opacity: 0; }
-globalStyle(`${morphScope}${fade}:not(.show)`, {
-	opacity: 0,
+globalStyle(`${morphScope}${navbarExpandSm} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .tab-content > .tab-pane { display: none; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".tab-pane" — no contract mapping
-globalStyle(`.tab-content > .tab-pane`, {
-	display: "none",
+globalStyle(`${morphScope}${navbarExpandMd} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .tab-content > .active { display: block; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.tab-content > .active`, {
-	display: "block",
+globalStyle(`${morphScope}${navbarExpandLg} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
-	marginBottom: "1rem !important",
+globalStyle(`${morphScope}${navbarExpandXl} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .nav-tabs .dropdown-menu
-// [DELTA] unmapped selector: .nav-underline
-// [DELTA] unmapped selector: .nav-underline .nav-link
-// [DELTA] unmapped selector: .nav-underline .nav-link:hover
-// [DELTA] unmapped selector: .nav-underline .nav-link:focus
-// [DELTA] unmapped selector: .nav-underline .nav-link.active
-// [DELTA] unmapped selector: .nav-underline .show > .nav-link
-// [DELTA] unmapped selector: .nav-fill > .nav-link
-// [DELTA] unmapped selector: .nav-fill .nav-item
-// [DELTA] unmapped selector: .nav-justified > .nav-link
-// [DELTA] unmapped selector: .nav-justified .nav-item
-// [DELTA] unmapped selector: .nav-fill .nav-item .nav-link
-// [DELTA] unmapped selector: .nav-justified .nav-item .nav-link
-// [DELTA] unmapped selector: .nav-tabs .nav-item
-// [DELTA] unmapped selector: .nav-tabs .nav-item:first-child .nav-link
-// [DELTA] unmapped selector: .nav-tabs .nav-item:last-child .nav-link
+globalStyle(`${morphScope}${navbarExpandXxl} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${morphScope}${navbarExpand} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${morphScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${morphScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${morphScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
+})
+
+globalStyle(`${morphScope}${navTabs}`, {
+	backgroundColor: '#d9e3f1',
+	border: 'none',
+	boxShadow: '5px 5px 10px rgba(55, 94, 148, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.4)',
+	transition: 'background-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out, color 0.15s ease-in-out',
+	borderRadius: '0.375rem',
+})
+
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}`, {
+	boxShadow: '1px 0 rgba(55, 94, 148, 0.1)',
+})
+
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}:first-child ${morphScope}${navLink}`, {
+	borderTopLeftRadius: '0.375rem',
+	borderBottomLeftRadius: '0.375rem',
+})
+
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}:last-child ${morphScope}${navLink}`, {
+	borderTopRightRadius: '0.375rem',
+	borderBottomRightRadius: '0.375rem',
+})
+
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${navLinkActive}`, {
+	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}${show} ${morphScope}${navLink}`, {
+	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${morphScope}${navPills}`, {
+	backgroundColor: '#d9e3f1',
+	border: 'none',
+	boxShadow: '5px 5px 10px rgba(55, 94, 148, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.4)',
+	transition: 'background-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out, color 0.15s ease-in-out',
+	padding: '1rem',
+	borderRadius: '0.375rem',
+})
+
+globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${navLinkActive}`, {
+	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${morphScope}[data-bs-theme=dark] ${morphScope}${navTabs}`, {
+	backgroundColor: '#212529',
+	border: 'none',
+	boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.05)',
+	transition: 'background-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out, color 0.15s ease-in-out',
+	color: 'rgba(255, 255, 255, 0.75)',
+})
+
+globalStyle(`${morphScope}[data-bs-theme=dark] ${morphScope}${navPills}`, {
+	backgroundColor: '#212529',
+	border: 'none',
+	boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.05)',
+	transition: 'background-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out, color 0.15s ease-in-out',
+	color: 'rgba(255, 255, 255, 0.75)',
+})

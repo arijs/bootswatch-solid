@@ -1,111 +1,38 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsBorderWidth,
-	varBsCodeColor,
-	varBsFontMonospace,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
-	varBsLinkOpacity,
-} from '../../../../theme-contract/_vars.css'
-import {
-	varBsGutterX,
-	varBsGutterY,
-} from '../../../../theme-contract/layout/container.css'
-import {
-	horizontalRule,
-	inlineCode,
-	link,
-	paragraph,
-	small,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	containerFluid,
-} from '../../../../theme-contract/layout/container.css'
 import { cosmoScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/contents/basic
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { blockquoteFooter, lead, smallText } from '../../../../theme-contract/contents/basic/contract.css'
+import { clsBlockquote, clsSmall } from '../../../../theme-contract/literal/contract.css'
 
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${cosmoScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${cosmoScope}${clsSmall}`, {
+	fontSize: '0.875em',
 })
 
-// SOURCE CSS:
-// small { font-size: 0.875em; }
-globalStyle(`${cosmoScope}${small}`, {
-	fontSize: "0.875em",
+globalStyle(`${cosmoScope}${lead}`, {
+	fontSize: '1.25rem',
+	fontWeight: '300',
 })
 
-// SOURCE CSS:
-// .small { font-size: 0.875em; }
-globalStyle(`${cosmoScope}${small}`, {
-	fontSize: "0.875em",
+globalStyle(`${cosmoScope}${clsBlockquote}`, {
+	marginBottom: '1rem',
+	fontSize: '1.25rem',
 })
 
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-globalStyle(`${cosmoScope}${link}`, {
-	color: `rgba(var(--bs-link-color-rgb), ${varBsLinkOpacity} )`,
-	textDecoration: "underline",
+globalStyle(`${cosmoScope}${clsBlockquote} > :last-child`, {
+	marginBottom: '0',
 })
 
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-globalStyle(`${cosmoScope}${link}:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
+globalStyle(`${cosmoScope}${blockquoteFooter}`, {
+	marginTop: '-1rem',
+	marginBottom: '1rem',
+	fontSize: '0.875em',
+	color: '#868e96',
 })
 
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-globalStyle(`${cosmoScope}${link}:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${cosmoScope}${blockquoteFooter}::before`, {
+	content: '"— "',
 })
 
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-globalStyle(`${cosmoScope}${link}:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${cosmoScope}${smallText}`, {
+	fontSize: '0.875em',
 })
-
-// SOURCE CSS:
-// hr { margin: 1rem 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0.25; }
-globalStyle(`${cosmoScope}${horizontalRule}`, {
-	margin: "1rem 0",
-	color: "inherit",
-	border: 0,
-	borderTop: `${varBsBorderWidth} solid`,
-	opacity: 0.25,
-})
-
-// SOURCE CSS:
-// pre, code, kbd, samp { font-family: var(--bs-font-monospace); font-size: 1em; }
-// code { font-size: 0.875em; color: var(--bs-code-color); word-wrap: break-word; }
-globalStyle(`${cosmoScope}${inlineCode}`, {
-	fontFamily: varBsFontMonospace,
-	fontSize: "0.875em",
-	color: varBsCodeColor,
-	wordWrap: "break-word",
-})
-
-// SOURCE CSS:
-// .container-fluid { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-globalStyle(`${cosmoScope}${containerFluid}`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	width: "100%",
-	paddingRight: `calc(${varBsGutterX} * 0.5)`,
-	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
-	marginRight: "auto",
-	marginLeft: "auto",
-})
-
-// ── Delta rules (theme-specific overrides) ───────────────────────────────────

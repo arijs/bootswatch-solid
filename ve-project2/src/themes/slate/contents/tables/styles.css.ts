@@ -1,11 +1,7 @@
-import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsBodyBg,
-	varBsBorderColor,
-	varBsBorderWidth,
-	varBsEmphasisColor,
-	varBsEmphasisColorRgb,
-} from '../../../../theme-contract/_vars.css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { slateScope } from '../../scope.css'
+
+import { varBsBodyBg, varBsBorderWidth, varBsEmphasisColorRgb } from '../../../../theme-contract/_vars.css'
 import {
 	varBsTableAccentBg,
 	varBsTableActiveBg,
@@ -22,347 +18,300 @@ import {
 	varBsTableStripedBg,
 	varBsTableStripedColor,
 } from '../../../../theme-contract/contents/_vars.css'
+
+import { tableHead, tableRow, tableSection } from '../../../../theme-contract/contents/tables/contract.css'
+
 import {
 	table,
+	tableActive,
 	tableBordered,
 	tableBorderless,
 	tableDanger,
 	tableDark,
+	tableGroupDivider,
 	tableHover,
 	tableInfo,
 	tableLight,
 	tablePrimary,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
 	tableSecondary,
 	tableSm,
 	tableStriped,
+	tableStripedColumns,
 	tableSuccess,
 	tableWarning,
 } from '../../../../theme-contract/contents/tables/contract.css'
-import { slateScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/contents/tables
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// table { caption-side: bottom; border-collapse: collapse; }
-// [UNMAPPED_SELECTOR] element selector "table" — map to a contract class
-globalStyle(`table`, {
-	captionSide: "bottom",
-	borderCollapse: "collapse",
-})
-
-// SOURCE CSS:
-// th { text-align: -webkit-match-parent; border-color: inherit; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "th" — map to a contract class
-globalStyle(`th`, {
-	textAlign: "-webkit-match-parent",
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// thead { border-color: inherit; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "thead" — map to a contract class
-globalStyle(`thead`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// tbody { border-color: inherit; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "tbody" — map to a contract class
-globalStyle(`tbody`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// tfoot { border-color: inherit; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "tfoot" — map to a contract class
-globalStyle(`tfoot`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// tr { border-color: inherit; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "tr" — map to a contract class
-globalStyle(`tr`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// td { border-color: inherit; border-style: solid; border-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "td" — map to a contract class
-globalStyle(`td`, {
-	borderColor: "inherit",
-	borderStyle: "solid",
-	borderWidth: 0,
-})
-
-// SOURCE CSS:
-// .table { --bs-table-color-type: initial; --bs-table-bg-type: initial; --bs-table-color-state: initial; --bs-table-bg-state: initial; --bs-table-color: var(--bs-emphasis-color); --bs-table-bg: var(--bs-body-bg); --bs-table-border-color: var(--bs-border-color); --bs-table-accent-bg: transparent; --bs-table-striped-color: var(--bs-emphasis-color); --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05); --bs-table-active-color: var(--bs-emphasis-color); --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1); --bs-table-hover-color: var(--bs-emphasis-color); --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075); width: 100%; margin-bottom: 1rem; vertical-align: top; border-color: var(--bs-table-border-color); }
 globalStyle(`${slateScope}${table}`, {
 	vars: {
-		[varBsTableColorType]: "initial",
-		[varBsTableBgType]: "initial",
-		[varBsTableColorState]: "initial",
-		[varBsTableBgState]: "initial",
-		[varBsTableColor]: varBsEmphasisColor,
+		[varBsTableColorType]: 'initial',
+		[varBsTableBgType]: 'initial',
+		[varBsTableColorState]: 'initial',
+		[varBsTableBgState]: 'initial',
+		[varBsTableColor]: 'initial',
 		[varBsTableBg]: varBsBodyBg,
-		[varBsTableBorderColor]: varBsBorderColor,
-		[varBsTableAccentBg]: "transparent",
-		[varBsTableStripedColor]: varBsEmphasisColor,
+		[varBsTableBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsTableAccentBg]: 'rgba(255, 255, 255, 0.05)',
+		[varBsTableStripedColor]: 'initial',
 		[varBsTableStripedBg]: `rgba(${varBsEmphasisColorRgb}, 0.05)`,
-		[varBsTableActiveColor]: varBsEmphasisColor,
+		[varBsTableActiveColor]: 'initial',
 		[varBsTableActiveBg]: `rgba(${varBsEmphasisColorRgb}, 0.1)`,
-		[varBsTableHoverColor]: varBsEmphasisColor,
-		[varBsTableHoverBg]: `rgba(${varBsEmphasisColorRgb}, 0.075)`,
+		[varBsTableHoverColor]: 'initial',
+		[varBsTableHoverBg]: 'rgba(255, 255, 255, 0.075)',
 	},
-	width: "100%",
-	marginBottom: "1rem",
-	verticalAlign: "top",
+	width: '100%',
+	marginBottom: '1rem',
+	verticalAlign: 'top',
 	borderColor: varBsTableBorderColor,
 })
 
-// SOURCE CSS:
-// .table > :not(caption) > * > * { padding: 0.5rem 0.5rem; color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color))); background-color: var(--bs-table-bg); border-bottom-width: var(--bs-border-width); box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg))); }
-// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
 globalStyle(`${slateScope}${table} > :not(caption) > * > *`, {
-	padding: "0.5rem 0.5rem",
-	color: "var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)))",
+	padding: '0.5rem 0.5rem',
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: "inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)))",
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
 })
 
-// SOURCE CSS:
-// .table > tbody { vertical-align: inherit; }
-// [UNMAPPED_SELECTOR] element selector "tbody" — map to a contract class
-globalStyle(`${slateScope}${table} > tbody`, {
-	verticalAlign: "inherit",
+globalStyle(`${slateScope}${table} > ${slateScope}${tableSection}`, {
+	verticalAlign: 'inherit',
 })
 
-// SOURCE CSS:
-// .table > thead { vertical-align: bottom; }
-// [UNMAPPED_SELECTOR] element selector "thead" — map to a contract class
-globalStyle(`${slateScope}${table} > thead`, {
-	verticalAlign: "bottom",
+globalStyle(`${slateScope}${table} > ${slateScope}${tableHead}`, {
+	verticalAlign: 'bottom',
 })
 
-// SOURCE CSS:
-// .table-borderless > :not(caption) > * > * { border-bottom-width: 0; }
-// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
+globalStyle(`${slateScope}${tableGroupDivider}`, {
+	borderTop: `calc(${varBsBorderWidth} * 2) solid currentcolor`,
+})
+
+globalStyle(`${slateScope}${tableSm} > :not(caption) > * > *`, {
+	padding: '0.25rem 0.25rem',
+})
+
+globalStyle(`${slateScope}${tableBordered} > :not(caption) > *`, {
+	borderWidth: `${varBsBorderWidth} 0`,
+})
+
+globalStyle(`${slateScope}${tableBordered} > :not(caption) > * > *`, {
+	borderWidth: `0 ${varBsBorderWidth}`,
+})
+
 globalStyle(`${slateScope}${tableBorderless} > :not(caption) > * > *`, {
-	borderBottomWidth: 0,
+	borderBottomWidth: '0',
 })
 
-// SOURCE CSS:
-// .table-borderless > :not(:first-child) { border-top-width: 0; }
 globalStyle(`${slateScope}${tableBorderless} > :not(:first-child)`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-// SOURCE CSS:
-// .table-dark { --bs-table-color: #fff; --bs-table-bg: #212529; --bs-table-border-color: #4d5154; --bs-table-striped-bg: #2c3034; --bs-table-striped-color: #fff; --bs-table-active-bg: #373b3e; --bs-table-active-color: #fff; --bs-table-hover-bg: #323539; --bs-table-hover-color: #fff; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
-globalStyle(`${slateScope}${tableDark}`, {
+globalStyle(`${slateScope}${tableStriped} > ${slateScope}${tableSection} > ${slateScope}${tableRow}:nth-of-type(odd) > *`, {
 	vars: {
-		[varBsTableColor]: "#fff",
-		[varBsTableBg]: "#212529",
-		[varBsTableBorderColor]: "#4d5154",
-		[varBsTableStripedBg]: "#2c3034",
-		[varBsTableStripedColor]: "#fff",
-		[varBsTableActiveBg]: "#373b3e",
-		[varBsTableActiveColor]: "#fff",
-		[varBsTableHoverBg]: "#323539",
-		[varBsTableHoverColor]: "#fff",
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
-// SOURCE CSS:
-// .table-hover > tbody > tr:hover > * { --bs-table-color-state: var(--bs-table-hover-color); --bs-table-bg-state: var(--bs-table-hover-bg); }
-// [UNMAPPED_SELECTOR] element selector "tbody" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "tr:hover" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${slateScope}${tableHover} > tbody > tr:hover > *`, {
+globalStyle(`${slateScope}${tableStripedColumns} > :not(caption) > ${slateScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
+	},
+})
+
+globalStyle(`${slateScope}${tableActive}`, {
+	vars: {
+		[varBsTableColorState]: varBsTableActiveColor,
+		[varBsTableBgState]: varBsTableActiveBg,
+	},
+})
+
+globalStyle(`${slateScope}${tableHover} > ${slateScope}${tableSection} > ${slateScope}${tableRow}:hover > *`, {
 	vars: {
 		[varBsTableColorState]: varBsTableHoverColor,
 		[varBsTableBgState]: varBsTableHoverBg,
 	},
 })
 
-// SOURCE CSS:
-// .table-danger { --bs-table-color: #000; --bs-table-bg: #f8d7da; --bs-table-border-color: #c6acae; --bs-table-striped-bg: #eccccf; --bs-table-striped-color: #000; --bs-table-active-bg: #dfc2c4; --bs-table-active-color: #000; --bs-table-hover-bg: #e5c7ca; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
-globalStyle(`${slateScope}${tableDanger}`, {
-	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#f8d7da",
-		[varBsTableBorderColor]: "#c6acae",
-		[varBsTableStripedBg]: "#eccccf",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#dfc2c4",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#e5c7ca",
-		[varBsTableHoverColor]: "#000",
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
-// SOURCE CSS:
-// .table-info { --bs-table-color: #000; --bs-table-bg: #cff4fc; --bs-table-border-color: #a6c3ca; --bs-table-striped-bg: #c5e8ef; --bs-table-striped-color: #000; --bs-table-active-bg: #badce3; --bs-table-active-color: #000; --bs-table-hover-bg: #bfe2e9; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
-globalStyle(`${slateScope}${tableInfo}`, {
-	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#cff4fc",
-		[varBsTableBorderColor]: "#a6c3ca",
-		[varBsTableStripedBg]: "#c5e8ef",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#badce3",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#bfe2e9",
-		[varBsTableHoverColor]: "#000",
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
-// SOURCE CSS:
-// .table-light { --bs-table-color: #000; --bs-table-bg: #f8f9fa; --bs-table-border-color: #c6c7c8; --bs-table-striped-bg: #ecedee; --bs-table-striped-color: #000; --bs-table-active-bg: #dfe0e1; --bs-table-active-color: #000; --bs-table-hover-bg: #e5e6e7; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
-globalStyle(`${slateScope}${tableLight}`, {
-	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#f8f9fa",
-		[varBsTableBorderColor]: "#c6c7c8",
-		[varBsTableStripedBg]: "#ecedee",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#dfe0e1",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#e5e6e7",
-		[varBsTableHoverColor]: "#000",
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
-// SOURCE CSS:
-// .table-primary { --bs-table-color: #000; --bs-table-bg: #cfe2ff; --bs-table-border-color: #a6b5cc; --bs-table-striped-bg: #c5d7f2; --bs-table-striped-color: #000; --bs-table-active-bg: #bacbe6; --bs-table-active-color: #000; --bs-table-hover-bg: #bfd1ec; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
 globalStyle(`${slateScope}${tablePrimary}`, {
 	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#cfe2ff",
-		[varBsTableBorderColor]: "#a6b5cc",
-		[varBsTableStripedBg]: "#c5d7f2",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#bacbe6",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#bfd1ec",
-		[varBsTableHoverColor]: "#000",
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#3a3f44',
+		[varBsTableBorderColor]: '#616569',
+		[varBsTableStripedBg]: '#44494d',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#4e5257',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#494d52',
+		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
 
-// SOURCE CSS:
-// .table-secondary { --bs-table-color: #000; --bs-table-bg: #e2e3e5; --bs-table-border-color: #b5b6b7; --bs-table-striped-bg: #d7d8da; --bs-table-striped-color: #000; --bs-table-active-bg: #cbccce; --bs-table-active-color: #000; --bs-table-hover-bg: #d1d2d4; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
 globalStyle(`${slateScope}${tableSecondary}`, {
 	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#e2e3e5",
-		[varBsTableBorderColor]: "#b5b6b7",
-		[varBsTableStripedBg]: "#d7d8da",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#cbccce",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#d1d2d4",
-		[varBsTableHoverColor]: "#000",
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#7a8288',
+		[varBsTableBorderColor]: '#959ba0',
+		[varBsTableStripedBg]: '#81888e',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#878f94',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#848b91',
+		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
 
-// SOURCE CSS:
-// .table-success { --bs-table-color: #000; --bs-table-bg: #d1e7dd; --bs-table-border-color: #a7b9b1; --bs-table-striped-bg: #c7dbd2; --bs-table-striped-color: #000; --bs-table-active-bg: #bcd0c7; --bs-table-active-color: #000; --bs-table-hover-bg: #c1d6cc; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
 globalStyle(`${slateScope}${tableSuccess}`, {
 	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#d1e7dd",
-		[varBsTableBorderColor]: "#a7b9b1",
-		[varBsTableStripedBg]: "#c7dbd2",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#bcd0c7",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#c1d6cc",
-		[varBsTableHoverColor]: "#000",
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#62c462',
+		[varBsTableBorderColor]: '#81d081',
+		[varBsTableStripedBg]: '#6ac76a',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#72ca72',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#6ec86e',
+		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
 
-// SOURCE CSS:
-// .table-warning { --bs-table-color: #000; --bs-table-bg: #fff3cd; --bs-table-border-color: #ccc2a4; --bs-table-striped-bg: #f2e7c3; --bs-table-striped-color: #000; --bs-table-active-bg: #e6dbb9; --bs-table-active-color: #000; --bs-table-hover-bg: #ece1be; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+globalStyle(`${slateScope}${tableInfo}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#5bc0de',
+		[varBsTableBorderColor]: '#7ccde5',
+		[varBsTableStripedBg]: '#63c3e0',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#6bc6e1',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#67c5e0',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
 globalStyle(`${slateScope}${tableWarning}`, {
 	vars: {
-		[varBsTableColor]: "#000",
-		[varBsTableBg]: "#fff3cd",
-		[varBsTableBorderColor]: "#ccc2a4",
-		[varBsTableStripedBg]: "#f2e7c3",
-		[varBsTableStripedColor]: "#000",
-		[varBsTableActiveBg]: "#e6dbb9",
-		[varBsTableActiveColor]: "#000",
-		[varBsTableHoverBg]: "#ece1be",
-		[varBsTableHoverColor]: "#000",
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#f89406',
+		[varBsTableBorderColor]: '#f9a938',
+		[varBsTableStripedBg]: '#f89912',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#f99f1f',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#f99c19',
+		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
 
-// SOURCE CSS:
-// .table-sm > :not(caption) > * > * { padding: 0.25rem 0.25rem; }
-// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${slateScope}${tableSm} > :not(caption) > * > *`, {
-	padding: "0.25rem 0.25rem",
-})
-
-// SOURCE CSS:
-// .table-bordered > :not(caption) > * { border-width: var(--bs-border-width) 0; }
-// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${slateScope}${tableBordered} > :not(caption) > *`, {
-	borderWidth: "var(--bs-border-width) 0",
-})
-
-// SOURCE CSS:
-// .table-bordered > :not(caption) > * > * { border-width: 0 var(--bs-border-width); }
-// [UNMAPPED_SELECTOR] element selector "caption" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${slateScope}${tableBordered} > :not(caption) > * > *`, {
-	borderWidth: "0 var(--bs-border-width)",
-})
-
-// SOURCE CSS:
-// .table-striped > tbody > tr:nth-of-type(2n+1) > * { --bs-table-color-type: var(--bs-table-striped-color); --bs-table-bg-type: var(--bs-table-striped-bg); }
-// [UNMAPPED_SELECTOR] element selector "tbody" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "tr:nth-of-type(2n+1)" — map to a contract class
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
-globalStyle(`${slateScope}${tableStriped} > tbody > tr:nth-of-type(2n+1) > *`, {
+globalStyle(`${slateScope}${tableDanger}`, {
 	vars: {
-		[varBsTableColorType]: varBsTableStripedColor,
-		[varBsTableBgType]: varBsTableStripedBg,
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#ee5f5b',
+		[varBsTableBorderColor]: '#f17f7c',
+		[varBsTableStripedBg]: '#ef6763',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#f06f6b',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#ef6b67',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${slateScope}${tableLight}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#e9ecef',
+		[varBsTableBorderColor]: '#babdbf',
+		[varBsTableStripedBg]: '#dde0e3',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#d2d4d7',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#d8dadd',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${slateScope}${tableDark}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#272b30',
+		[varBsTableBorderColor]: '#525559',
+		[varBsTableStripedBg]: '#32363a',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#3d4045',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#373b40',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${slateScope}${tableResponsive}`, {
+	overflowX: 'auto',
+	WebkitOverflowScrolling: 'touch',
+})
+
+globalStyle(`${slateScope}${tableResponsiveSm}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveMd}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveLg}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveXl}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveXxl}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
 	},
 })

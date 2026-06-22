@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { ceruleanScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -34,6 +36,7 @@ import {
 	varBsWarningBorderSubtle,
 	varBsWarningTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 	varBsListGroupActionActiveBg,
 	varBsListGroupActionActiveColor,
@@ -53,15 +56,24 @@ import {
 	varBsListGroupItemPaddingX,
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
+
+import {
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
 import {
 	listGroup,
 	listGroupFlush,
 	listGroupItem,
 	listGroupItemAction,
-	listGroupItemActive,
 	listGroupItemDanger,
 	listGroupItemDark,
-	listGroupItemDisabled,
 	listGroupItemInfo,
 	listGroupItemLight,
 	listGroupItemPrimary,
@@ -69,13 +81,28 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../../theme-contract/ui/list-group/contract.css'
-import { ceruleanScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/list-group
-// Review [UNMAPPED] and [DELTA] comments before committing.
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
+})
 
-// SOURCE CSS:
-// .list-group { --bs-list-group-color: var(--bs-body-color); --bs-list-group-bg: var(--bs-body-bg); --bs-list-group-border-color: var(--bs-border-color); --bs-list-group-border-width: var(--bs-border-width); --bs-list-group-border-radius: var(--bs-border-radius); --bs-list-group-item-padding-x: 1rem; --bs-list-group-item-padding-y: 0.5rem; --bs-list-group-action-color: var(--bs-secondary-color); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-tertiary-bg); --bs-list-group-action-active-color: var(--bs-body-color); --bs-list-group-action-active-bg: var(--bs-secondary-bg); --bs-list-group-disabled-color: var(--bs-secondary-color); --bs-list-group-disabled-bg: var(--bs-body-bg); --bs-list-group-active-color: #fff; --bs-list-group-active-bg: #0d6efd; --bs-list-group-active-border-color: #0d6efd; display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0; border-radius: var(--bs-list-group-border-radius); }
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${ceruleanScope}${card} > ${ceruleanScope}${cardHeader} + ${ceruleanScope}${listGroup}`, {
+	borderTop: '0',
+})
+
 globalStyle(`${ceruleanScope}${listGroup}`, {
 	vars: {
 		[varBsListGroupColor]: varBsBodyColor,
@@ -83,8 +110,8 @@ globalStyle(`${ceruleanScope}${listGroup}`, {
 		[varBsListGroupBorderColor]: varBsBorderColor,
 		[varBsListGroupBorderWidth]: varBsBorderWidth,
 		[varBsListGroupBorderRadius]: varBsBorderRadius,
-		[varBsListGroupItemPaddingX]: "1rem",
-		[varBsListGroupItemPaddingY]: "0.5rem",
+		[varBsListGroupItemPaddingX]: '1rem',
+		[varBsListGroupItemPaddingY]: '0.5rem',
 		[varBsListGroupActionColor]: varBsSecondaryColor,
 		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
 		[varBsListGroupActionHoverBg]: varBsTertiaryBg,
@@ -92,168 +119,269 @@ globalStyle(`${ceruleanScope}${listGroup}`, {
 		[varBsListGroupActionActiveBg]: varBsSecondaryBg,
 		[varBsListGroupDisabledColor]: varBsSecondaryColor,
 		[varBsListGroupDisabledBg]: varBsBodyBg,
-		[varBsListGroupActiveColor]: "#fff",
-		[varBsListGroupActiveBg]: "#2fa4e7",
-		[varBsListGroupActiveBorderColor]: "#2fa4e7",
+		[varBsListGroupActiveColor]: '#fff',
+		[varBsListGroupActiveBg]: '#2fa4e7',
+		[varBsListGroupActiveBorderColor]: '#2fa4e7',
 	},
-	display: "flex",
-	flexDirection: "column",
-	paddingLeft: 0,
-	marginBottom: 0,
+	display: 'flex',
+	flexDirection: 'column',
+	paddingLeft: '0',
+	marginBottom: '0',
 	borderRadius: varBsListGroupBorderRadius,
 })
 
-// SOURCE CSS:
-// .list-group-item { position: relative; display: block; padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x); color: var(--bs-list-group-color); text-decoration: none; background-color: var(--bs-list-group-bg); border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color); }
+globalStyle(`${ceruleanScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
+})
+
+globalStyle(`${ceruleanScope}${listGroupNumbered} > ${ceruleanScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
+})
+
 globalStyle(`${ceruleanScope}${listGroupItem}`, {
-	position: "relative",
-	display: "block",
+	position: 'relative',
+	display: 'block',
 	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
 	color: varBsListGroupColor,
-	textDecoration: "none",
+	textDecoration: 'none',
 	backgroundColor: varBsListGroupBg,
 	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
-// SOURCE CSS:
-// .list-group-item:first-child { border-top-left-radius: inherit; border-top-right-radius: inherit; }
 globalStyle(`${ceruleanScope}${listGroupItem}:first-child`, {
-	borderTopLeftRadius: "inherit",
-	borderTopRightRadius: "inherit",
+	borderTopLeftRadius: 'inherit',
+	borderTopRightRadius: 'inherit',
 })
 
-// SOURCE CSS:
-// .list-group-item:last-child { border-bottom-right-radius: inherit; border-bottom-left-radius: inherit; }
 globalStyle(`${ceruleanScope}${listGroupItem}:last-child`, {
-	borderBottomRightRadius: "inherit",
-	borderBottomLeftRadius: "inherit",
+	borderBottomRightRadius: 'inherit',
+	borderBottomLeftRadius: 'inherit',
 })
 
-// SOURCE CSS:
-// .list-group-item.disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
-globalStyle(`${ceruleanScope}${listGroupItem}${listGroupItemDisabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-// SOURCE CSS:
-// .list-group-item:disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
 globalStyle(`${ceruleanScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
-	pointerEvents: "none",
+	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
-// SOURCE CSS:
-// .list-group-item-action { width: 100%; color: var(--bs-list-group-action-color); text-align: inherit; }
-globalStyle(`${ceruleanScope}${listGroupItemAction}`, {
-	width: "100%",
-	color: varBsListGroupActionColor,
-	textAlign: "inherit",
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):hover { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${ceruleanScope}${listGroupItemAction}:not(${listGroupItemActive}):hover`, {
-	zIndex: 1,
-	color: varBsListGroupActionHoverColor,
-	textDecoration: "none",
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):focus { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${ceruleanScope}${listGroupItemAction}:not(${listGroupItemActive}):focus`, {
-	zIndex: 1,
-	color: varBsListGroupActionHoverColor,
-	textDecoration: "none",
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):active { color: var(--bs-list-group-action-active-color); background-color: var(--bs-list-group-action-active-bg); }
-globalStyle(`${ceruleanScope}${listGroupItemAction}:not(${listGroupItemActive}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-danger { --bs-list-group-color: var(--bs-danger-text-emphasis); --bs-list-group-bg: var(--bs-danger-bg-subtle); --bs-list-group-border-color: var(--bs-danger-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-danger-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-danger-border-subtle); --bs-list-group-active-color: var(--bs-danger-bg-subtle); --bs-list-group-active-bg: var(--bs-danger-text-emphasis); --bs-list-group-active-border-color: var(--bs-danger-text-emphasis); }
-globalStyle(`${ceruleanScope}${listGroupItemDanger}`, {
-	vars: {
-		[varBsListGroupColor]: varBsDangerTextEmphasis,
-		[varBsListGroupBg]: varBsDangerBgSubtle,
-		[varBsListGroupBorderColor]: varBsDangerBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsDangerBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsDangerBorderSubtle,
-		[varBsListGroupActiveColor]: varBsDangerBgSubtle,
-		[varBsListGroupActiveBg]: varBsDangerTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsDangerTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-dark { --bs-list-group-color: var(--bs-dark-text-emphasis); --bs-list-group-bg: var(--bs-dark-bg-subtle); --bs-list-group-border-color: var(--bs-dark-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-dark-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-dark-border-subtle); --bs-list-group-active-color: var(--bs-dark-bg-subtle); --bs-list-group-active-bg: var(--bs-dark-text-emphasis); --bs-list-group-active-border-color: var(--bs-dark-text-emphasis); }
-globalStyle(`${ceruleanScope}${listGroupItemDark}`, {
-	vars: {
-		[varBsListGroupColor]: varBsDarkTextEmphasis,
-		[varBsListGroupBg]: varBsDarkBgSubtle,
-		[varBsListGroupBorderColor]: varBsDarkBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsDarkBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsDarkBorderSubtle,
-		[varBsListGroupActiveColor]: varBsDarkBgSubtle,
-		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-info { --bs-list-group-color: var(--bs-info-text-emphasis); --bs-list-group-bg: var(--bs-info-bg-subtle); --bs-list-group-border-color: var(--bs-info-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-info-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-info-border-subtle); --bs-list-group-active-color: var(--bs-info-bg-subtle); --bs-list-group-active-bg: var(--bs-info-text-emphasis); --bs-list-group-active-border-color: var(--bs-info-text-emphasis); }
-globalStyle(`${ceruleanScope}${listGroupItemInfo}`, {
-	vars: {
-		[varBsListGroupColor]: varBsInfoTextEmphasis,
-		[varBsListGroupBg]: varBsInfoBgSubtle,
-		[varBsListGroupBorderColor]: varBsInfoBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsInfoBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsInfoBorderSubtle,
-		[varBsListGroupActiveColor]: varBsInfoBgSubtle,
-		[varBsListGroupActiveBg]: varBsInfoTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsInfoTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-light { --bs-list-group-color: var(--bs-light-text-emphasis); --bs-list-group-bg: var(--bs-light-bg-subtle); --bs-list-group-border-color: var(--bs-light-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-light-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-light-border-subtle); --bs-list-group-active-color: var(--bs-light-bg-subtle); --bs-list-group-active-bg: var(--bs-light-text-emphasis); --bs-list-group-active-border-color: var(--bs-light-text-emphasis); }
-globalStyle(`${ceruleanScope}${listGroupItemLight}`, {
-	vars: {
-		[varBsListGroupColor]: varBsLightTextEmphasis,
-		[varBsListGroupBg]: varBsLightBgSubtle,
-		[varBsListGroupBorderColor]: varBsLightBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsLightBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsLightBorderSubtle,
-		[varBsListGroupActiveColor]: varBsLightBgSubtle,
-		[varBsListGroupActiveBg]: varBsLightTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsLightTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item + .list-group-item { border-top-width: 0; }
 globalStyle(`${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-// SOURCE CSS:
-// .list-group-item-primary { --bs-list-group-color: var(--bs-primary-text-emphasis); --bs-list-group-bg: var(--bs-primary-bg-subtle); --bs-list-group-border-color: var(--bs-primary-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-primary-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-primary-border-subtle); --bs-list-group-active-color: var(--bs-primary-bg-subtle); --bs-list-group-active-bg: var(--bs-primary-text-emphasis); --bs-list-group-active-border-color: var(--bs-primary-text-emphasis); }
+globalStyle(`${ceruleanScope}${listGroupItemAction}`, {
+	width: '100%',
+	color: varBsListGroupActionColor,
+	textAlign: 'inherit',
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${ceruleanScope}${listGroupFlush} > ${ceruleanScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${ceruleanScope}${listGroupFlush} > ${ceruleanScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
+})
+
 globalStyle(`${ceruleanScope}${listGroupItemPrimary}`, {
 	vars: {
 		[varBsListGroupColor]: varBsPrimaryTextEmphasis,
@@ -269,8 +397,6 @@ globalStyle(`${ceruleanScope}${listGroupItemPrimary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-secondary { --bs-list-group-color: var(--bs-secondary-text-emphasis); --bs-list-group-bg: var(--bs-secondary-bg-subtle); --bs-list-group-border-color: var(--bs-secondary-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-secondary-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-secondary-border-subtle); --bs-list-group-active-color: var(--bs-secondary-bg-subtle); --bs-list-group-active-bg: var(--bs-secondary-text-emphasis); --bs-list-group-active-border-color: var(--bs-secondary-text-emphasis); }
 globalStyle(`${ceruleanScope}${listGroupItemSecondary}`, {
 	vars: {
 		[varBsListGroupColor]: varBsSecondaryTextEmphasis,
@@ -286,8 +412,6 @@ globalStyle(`${ceruleanScope}${listGroupItemSecondary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-success { --bs-list-group-color: var(--bs-success-text-emphasis); --bs-list-group-bg: var(--bs-success-bg-subtle); --bs-list-group-border-color: var(--bs-success-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-success-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-success-border-subtle); --bs-list-group-active-color: var(--bs-success-bg-subtle); --bs-list-group-active-bg: var(--bs-success-text-emphasis); --bs-list-group-active-border-color: var(--bs-success-text-emphasis); }
 globalStyle(`${ceruleanScope}${listGroupItemSuccess}`, {
 	vars: {
 		[varBsListGroupColor]: varBsSuccessTextEmphasis,
@@ -303,8 +427,21 @@ globalStyle(`${ceruleanScope}${listGroupItemSuccess}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-warning { --bs-list-group-color: var(--bs-warning-text-emphasis); --bs-list-group-bg: var(--bs-warning-bg-subtle); --bs-list-group-border-color: var(--bs-warning-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-warning-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-warning-border-subtle); --bs-list-group-active-color: var(--bs-warning-bg-subtle); --bs-list-group-active-bg: var(--bs-warning-text-emphasis); --bs-list-group-active-border-color: var(--bs-warning-text-emphasis); }
+globalStyle(`${ceruleanScope}${listGroupItemInfo}`, {
+	vars: {
+		[varBsListGroupColor]: varBsInfoTextEmphasis,
+		[varBsListGroupBg]: varBsInfoBgSubtle,
+		[varBsListGroupBorderColor]: varBsInfoBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsInfoBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsInfoBorderSubtle,
+		[varBsListGroupActiveColor]: varBsInfoBgSubtle,
+		[varBsListGroupActiveBg]: varBsInfoTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsInfoTextEmphasis,
+	},
+})
+
 globalStyle(`${ceruleanScope}${listGroupItemWarning}`, {
 	vars: {
 		[varBsListGroupColor]: varBsWarningTextEmphasis,
@@ -320,85 +457,47 @@ globalStyle(`${ceruleanScope}${listGroupItemWarning}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-flush { border-radius: 0; }
-globalStyle(`${ceruleanScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${ceruleanScope}${listGroupItemDanger}`, {
+	vars: {
+		[varBsListGroupColor]: varBsDangerTextEmphasis,
+		[varBsListGroupBg]: varBsDangerBgSubtle,
+		[varBsListGroupBorderColor]: varBsDangerBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsDangerBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsDangerBorderSubtle,
+		[varBsListGroupActiveColor]: varBsDangerBgSubtle,
+		[varBsListGroupActiveBg]: varBsDangerTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsDangerTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// .list-group-flush > .list-group-item { border-width: 0 0 var(--bs-list-group-border-width); }
-globalStyle(`${ceruleanScope}${listGroupFlush} > ${ceruleanScope}${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+globalStyle(`${ceruleanScope}${listGroupItemLight}`, {
+	vars: {
+		[varBsListGroupColor]: varBsLightTextEmphasis,
+		[varBsListGroupBg]: varBsLightBgSubtle,
+		[varBsListGroupBorderColor]: varBsLightBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsLightBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsLightBorderSubtle,
+		[varBsListGroupActiveColor]: varBsLightBgSubtle,
+		[varBsListGroupActiveBg]: varBsLightTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsLightTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// .list-group-flush > .list-group-item:last-child { border-bottom-width: 0; }
-globalStyle(`${ceruleanScope}${listGroupFlush} > ${ceruleanScope}${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
-})
-
-// ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// .list-group-numbered > .list-group-item::before { content: counters(section, ".") ". "; counter-increment: section; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".list-group-numbered" — no contract mapping
-globalStyle(`.list-group-numbered > ${ceruleanScope}${listGroupItem}::before`, {
-	content: "counters(section, \".\") \". \"",
-	counterIncrement: "section",
-})
-// SOURCE CSS:
-// .list-group-item.active { z-index: 2; color: var(--bs-list-group-active-color); background-color: var(--bs-list-group-active-bg); border-color: var(--bs-list-group-active-border-color); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${ceruleanScope}${listGroupItem}${listGroupItemActive}`, {
-	zIndex: 2,
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-// SOURCE CSS:
-// .list-group-item + .list-group-item.active { margin-top: calc(-1 * var(--bs-list-group-border-width)); border-top-width: var(--bs-list-group-border-width); }
-// [DELTA] theme-specific rule not in bootstrap structure
-globalStyle(`${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${listGroupItemActive}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-// SOURCE CSS:
-// .list-group-horizontal > .list-group-item:first-child:not(:last-child) { border-bottom-left-radius: var(--bs-list-group-border-radius); border-top-right-radius: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
-globalStyle(`.list-group-horizontal > ${ceruleanScope}${listGroupItem}:first-child:not(:last-child)`, {
-	borderBottomLeftRadius: varBsListGroupBorderRadius,
-	borderTopRightRadius: 0,
-})
-// SOURCE CSS:
-// .list-group-horizontal > .list-group-item:last-child:not(:first-child) { border-top-right-radius: var(--bs-list-group-border-radius); border-bottom-left-radius: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
-globalStyle(`.list-group-horizontal > ${ceruleanScope}${listGroupItem}:last-child:not(:first-child)`, {
-	borderTopRightRadius: varBsListGroupBorderRadius,
-	borderBottomLeftRadius: 0,
-})
-// SOURCE CSS:
-// .list-group-horizontal > .list-group-item.active { margin-top: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
-globalStyle(`.list-group-horizontal > ${ceruleanScope}${listGroupItem}${listGroupItemActive}`, {
-	marginTop: 0,
-})
-// SOURCE CSS:
-// .list-group-horizontal > .list-group-item + .list-group-item { border-top-width: var(--bs-list-group-border-width); border-left-width: 0; }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
-globalStyle(`.list-group-horizontal > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}`, {
-	borderTopWidth: varBsListGroupBorderWidth,
-	borderLeftWidth: 0,
-})
-// SOURCE CSS:
-// .list-group-horizontal > .list-group-item + .list-group-item.active { margin-left: calc(-1 * var(--bs-list-group-border-width)); border-left-width: var(--bs-list-group-border-width); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".list-group-horizontal" — no contract mapping
-globalStyle(`.list-group-horizontal > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${listGroupItemActive}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
+globalStyle(`${ceruleanScope}${listGroupItemDark}`, {
+	vars: {
+		[varBsListGroupColor]: varBsDarkTextEmphasis,
+		[varBsListGroupBg]: varBsDarkBgSubtle,
+		[varBsListGroupBorderColor]: varBsDarkBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsDarkBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsDarkBorderSubtle,
+		[varBsListGroupActiveColor]: varBsDarkBgSubtle,
+		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
+	},
 })

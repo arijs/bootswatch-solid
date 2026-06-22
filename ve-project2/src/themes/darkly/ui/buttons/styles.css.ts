@@ -1,11 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { darklyScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsBtnCloseFilter,
 	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
@@ -22,6 +23,7 @@ import {
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
 	varBsBtnActiveColor,
 	varBsBtnBg,
 	varBsBtnBorderColor,
@@ -34,6 +36,7 @@ import {
 	varBsBtnDisabledColor,
 	varBsBtnDisabledOpacity,
 	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
 	varBsBtnFontFamily,
 	varBsBtnFontSize,
 	varBsBtnFontWeight,
@@ -44,22 +47,27 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	fieldset,
-} from '../../../../theme-contract/forms/contract.css'
-import {
-	badge,
-} from '../../../../theme-contract/ui/badge/contract.css'
-import {
-	btnGroup,
-	btnToolbar,
-} from '../../../../theme-contract/ui/button-group/contract.css'
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
@@ -81,1035 +89,717 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	btnShowHook,
-	dropdown,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
-import {
-	flexWrap,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import { darklyScope } from '../../scope.css'
+import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/buttons
-// Review [UNMAPPED] and [DELTA] comments before committing.
+globalStyle(`${darklyScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
+})
 
-// SOURCE CSS:
-// .btn { --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem; --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400; --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color); --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width); --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius); --bs-btn-hover-border-color: transparent; --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); --bs-btn-disabled-opacity: 0.65; --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5); display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x); font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size); font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height); color: var(--bs-btn-color); text-align: center; text-decoration: none; vertical-align: middle; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none; border: var(--bs-btn-border-width) solid var(--bs-btn-border-color); border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg); transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${darklyScope}${btnCheck}[disabled] + ${darklyScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${darklyScope}${btnCheck}:disabled + ${darklyScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${darklyScope}${inputGroup} ${darklyScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${darklyScope}${inputGroup} ${darklyScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${darklyScope}${inputGroupLg} > ${darklyScope}${btn}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
+	borderRadius: varBsBorderRadiusLg,
+})
+
+globalStyle(`${darklyScope}${inputGroupSm} > ${darklyScope}${btn}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+	borderRadius: varBsBorderRadiusSm,
+})
+
 globalStyle(`${darklyScope}${btn}`, {
 	vars: {
-		[varBsBtnPaddingX]: "0.75rem",
-		[varBsBtnPaddingY]: "0.375rem",
-		[varBsBtnFontFamily]: "",
-		[varBsBtnFontSize]: "1rem",
-		[varBsBtnFontWeight]: 400,
-		[varBsBtnLineHeight]: 1.5,
+		[varBsBtnPaddingX]: '0.75rem',
+		[varBsBtnPaddingY]: '0.375rem',
+		[varBsBtnFontFamily]: '',
+		[varBsBtnFontSize]: '1rem',
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnLineHeight]: '1.5',
 		[varBsBtnColor]: varBsBodyColor,
-		[varBsBtnBg]: "transparent",
+		[varBsBtnBg]: 'transparent',
 		[varBsBtnBorderWidth]: varBsBorderWidth,
-		[varBsBtnBorderColor]: "transparent",
+		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
-		[varBsBtnHoverBorderColor]: "transparent",
-		[varBsBtnBoxShadow]: "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
-		[varBsBtnDisabledOpacity]: 0.65,
-		[varBsBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)",
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnDisabledOpacity]: '0.65',
+		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	display: "inline-block",
-	padding: "0.375rem 0.75rem",
+	display: 'inline-block',
+	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
 	fontSize: varBsBtnFontSize,
 	fontWeight: varBsBtnFontWeight,
 	lineHeight: varBsBtnLineHeight,
 	color: varBsBtnColor,
-	textAlign: "center",
-	textDecoration: "none",
-	verticalAlign: "middle",
-	cursor: "pointer",
-	WebkitUserSelect: "none",
-	MozUserSelect: "none",
-	userSelect: "none",
-	border: "1px solid transparent",
+	textAlign: 'center',
+	textDecoration: 'none',
+	verticalAlign: 'middle',
+	cursor: 'pointer',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .btn:hover { color: var(--bs-btn-hover-color); background-color: var(--bs-btn-hover-bg); border-color: var(--bs-btn-hover-border-color); }
+globalStyle(`${darklyScope}${btn}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${darklyScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .btn:focus-visible { color: var(--bs-btn-hover-color); background-color: var(--bs-btn-hover-bg); border-color: var(--bs-btn-hover-border-color); outline: 0; box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${darklyScope}${btn}:focus-visible`, {
-	color: varBsBtnHoverColor,
-	backgroundColor: varBsBtnHoverBg,
-	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn-check:checked + .btn { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// :not(.btn-check) + .btn:active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`:not(${darklyScope}${btnCheck}) + ${darklyScope}${btn}:active`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn:first-child:active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${darklyScope}${btn}:first-child:active`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn.active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${darklyScope}${btn}${btnActiveHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn.show { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${darklyScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn-check:checked + .btn:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// :not(.btn-check) + .btn:active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`:not(${darklyScope}${btnCheck}) + ${darklyScope}${btn}:active:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn:first-child:active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${darklyScope}${btn}:first-child:active:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn.active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${darklyScope}${btn}.active:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn.show:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${darklyScope}${btn}${btnShowHook}`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn:disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(`${darklyScope}${btn}:disabled`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-// SOURCE CSS:
-// .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(`${darklyScope}${btn}.disabled`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-// SOURCE CSS:
-// fieldset:disabled .btn { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-// [UNMAPPED_SELECTOR] element selector "fieldset:disabled" — map to a contract class
-globalStyle(`fieldset:disabled ${darklyScope}${btn}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-// SOURCE CSS:
-// .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #6c757d; --bs-btn-border-color: #6c757d; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64; --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff; --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #6c757d; --bs-btn-disabled-border-color: #6c757d; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btn}${btnSecondary}`, {
-	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#444",
-		[varBsBtnBorderColor]: "#444",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#3a3a3a",
-		[varBsBtnHoverBorderColor]: "#363636",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#363636",
-		[varBsBtnActiveBorderColor]: "#333333",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#444",
-		[varBsBtnDisabledBorderColor]: "#444",
-	},
-	color: "#fff",
-	backgroundColor: "#444",
-	border: "1px solid #444",
-	padding: "0.375rem 0.75rem",
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// .btn-group { position: relative; display: inline-flex; vertical-align: middle; border-radius: var(--bs-border-radius); }
-globalStyle(`${darklyScope}${btnGroup}`, {
-	position: "relative",
-	display: "inline-flex",
-	verticalAlign: "middle",
-	borderRadius: varBsBorderRadius,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical { position: relative; display: inline-flex; vertical-align: middle; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical`, {
-	position: "relative",
-	display: "inline-flex",
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn { position: relative; flex: 1 1 auto; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}`, {
-	position: "relative",
-	flex: "1 1 auto",
-	padding: "0.375rem 0.75rem",
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn { position: relative; flex: 1 1 auto; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btn}`, {
-	position: "relative",
-	flex: "1 1 auto",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-check:checked + .btn { z-index: 1; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-check:focus + .btn { z-index: 1; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnCheck}:focus + ${darklyScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:hover { z-index: 1; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:hover`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:focus { z-index: 1; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:focus`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:active { z-index: 1; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:active`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn.active { z-index: 1; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}${btnActiveHook}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn-check:checked + .btn { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn-check:focus + .btn { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btnCheck}:focus + ${darklyScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn:hover { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btn}:hover`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn:focus { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btn}:focus`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn:active { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btn}:active`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn.active { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${darklyScope}${btn}${btnActiveHook}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-toolbar { display: flex; flex-wrap: wrap; justify-content: flex-start; }
-globalStyle(`${darklyScope}${btnToolbar}`, {
-	display: "flex",
-	flexWrap: "wrap",
-	justifyContent: "flex-start",
-})
-
-// SOURCE CSS:
-// .btn-group > :not(.btn-check:first-child) + .btn { margin-left: calc(-1 * var(--bs-border-width)); }
-globalStyle(`${darklyScope}${btnGroup} > :not(${darklyScope}${btnCheck}:first-child) + ${darklyScope}${btn}`, {
-	marginLeft: "calc(-1 * var(--bs-border-width))",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-group:not(:first-child) { margin-left: calc(-1 * var(--bs-border-width)); }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnGroup}:not(:first-child)`, {
-	marginLeft: "calc(-1 * var(--bs-border-width))",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:not(:last-child):not(.dropdown-toggle) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:not(:last-child):not(.dropdown-toggle)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn.dropdown-toggle-split:first-child { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}.dropdown-toggle-split:first-child`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-group:not(:last-child) > .btn { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnGroup}:not(:last-child) > ${darklyScope}${btn}`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:nth-child(n+3) { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:nth-child(n+3)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > :not(.btn-check) + .btn { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${darklyScope}${btnGroup} > :not(${darklyScope}${btnCheck}) + ${darklyScope}${btn}`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-group:not(:first-child) > .btn { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnGroup}:not(:first-child) > ${darklyScope}${btn}`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// .btn-outline-danger { --bs-btn-color: #dc3545; --bs-btn-border-color: #dc3545; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #dc3545; --bs-btn-hover-border-color: #dc3545; --bs-btn-focus-shadow-rgb: 220, 53, 69; --bs-btn-active-color: #fff; --bs-btn-active-bg: #dc3545; --bs-btn-active-border-color: #dc3545; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #dc3545; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #dc3545; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineDanger}`, {
-	vars: {
-		[varBsBtnColor]: "#dc3545",
-		[varBsBtnBorderColor]: "#dc3545",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#dc3545",
-		[varBsBtnHoverBorderColor]: "#dc3545",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#dc3545",
-		[varBsBtnActiveBorderColor]: "#dc3545",
-		[varBsBtnDisabledColor]: "#dc3545",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#dc3545",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-dark { --bs-btn-color: #212529; --bs-btn-border-color: #212529; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #212529; --bs-btn-hover-border-color: #212529; --bs-btn-focus-shadow-rgb: 33, 37, 41; --bs-btn-active-color: #fff; --bs-btn-active-bg: #212529; --bs-btn-active-border-color: #212529; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #212529; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #212529; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineDark}`, {
-	vars: {
-		[varBsBtnColor]: "#212529",
-		[varBsBtnBorderColor]: "#212529",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#212529",
-		[varBsBtnHoverBorderColor]: "#212529",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#212529",
-		[varBsBtnActiveBorderColor]: "#212529",
-		[varBsBtnDisabledColor]: "#212529",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#212529",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-info { --bs-btn-color: #0dcaf0; --bs-btn-border-color: #0dcaf0; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #0dcaf0; --bs-btn-hover-border-color: #0dcaf0; --bs-btn-focus-shadow-rgb: 13, 202, 240; --bs-btn-active-color: #000; --bs-btn-active-bg: #0dcaf0; --bs-btn-active-border-color: #0dcaf0; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #0dcaf0; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #0dcaf0; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineInfo}`, {
-	vars: {
-		[varBsBtnColor]: "#0dcaf0",
-		[varBsBtnBorderColor]: "#0dcaf0",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#0dcaf0",
-		[varBsBtnHoverBorderColor]: "#0dcaf0",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#0dcaf0",
-		[varBsBtnActiveBorderColor]: "#0dcaf0",
-		[varBsBtnDisabledColor]: "#0dcaf0",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#0dcaf0",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-light { --bs-btn-color: #f8f9fa; --bs-btn-border-color: #f8f9fa; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #f8f9fa; --bs-btn-hover-border-color: #f8f9fa; --bs-btn-focus-shadow-rgb: 248, 249, 250; --bs-btn-active-color: #000; --bs-btn-active-bg: #f8f9fa; --bs-btn-active-border-color: #f8f9fa; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #f8f9fa; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #f8f9fa; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineLight}`, {
-	vars: {
-		[varBsBtnColor]: "#f8f9fa",
-		[varBsBtnBorderColor]: "#f8f9fa",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#f8f9fa",
-		[varBsBtnHoverBorderColor]: "#f8f9fa",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#f8f9fa",
-		[varBsBtnActiveBorderColor]: "#f8f9fa",
-		[varBsBtnDisabledColor]: "#f8f9fa",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#f8f9fa",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-primary { --bs-btn-color: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0d6efd; --bs-btn-hover-border-color: #0d6efd; --bs-btn-focus-shadow-rgb: 13, 110, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0d6efd; --bs-btn-active-border-color: #0d6efd; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #0d6efd; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #0d6efd; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlinePrimary}`, {
-	vars: {
-		[varBsBtnColor]: "#0d6efd",
-		[varBsBtnBorderColor]: "#0d6efd",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#0d6efd",
-		[varBsBtnHoverBorderColor]: "#0d6efd",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#0d6efd",
-		[varBsBtnActiveBorderColor]: "#0d6efd",
-		[varBsBtnDisabledColor]: "#0d6efd",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#0d6efd",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-secondary { --bs-btn-color: #6c757d; --bs-btn-border-color: #6c757d; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #6c757d; --bs-btn-hover-border-color: #6c757d; --bs-btn-focus-shadow-rgb: 108, 117, 125; --bs-btn-active-color: #fff; --bs-btn-active-bg: #6c757d; --bs-btn-active-border-color: #6c757d; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #6c757d; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineSecondary}`, {
-	vars: {
-		[varBsBtnColor]: "#6c757d",
-		[varBsBtnBorderColor]: "#6c757d",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#6c757d",
-		[varBsBtnHoverBorderColor]: "#6c757d",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#6c757d",
-		[varBsBtnActiveBorderColor]: "#6c757d",
-		[varBsBtnDisabledColor]: "#6c757d",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#6c757d",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-success { --bs-btn-color: #198754; --bs-btn-border-color: #198754; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #198754; --bs-btn-hover-border-color: #198754; --bs-btn-focus-shadow-rgb: 25, 135, 84; --bs-btn-active-color: #fff; --bs-btn-active-bg: #198754; --bs-btn-active-border-color: #198754; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #198754; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #198754; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineSuccess}`, {
-	vars: {
-		[varBsBtnColor]: "#198754",
-		[varBsBtnBorderColor]: "#198754",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#198754",
-		[varBsBtnHoverBorderColor]: "#198754",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#198754",
-		[varBsBtnActiveBorderColor]: "#198754",
-		[varBsBtnDisabledColor]: "#198754",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#198754",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-warning { --bs-btn-color: #ffc107; --bs-btn-border-color: #ffc107; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffc107; --bs-btn-hover-border-color: #ffc107; --bs-btn-focus-shadow-rgb: 255, 193, 7; --bs-btn-active-color: #000; --bs-btn-active-bg: #ffc107; --bs-btn-active-border-color: #ffc107; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #ffc107; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #ffc107; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnOutlineWarning}`, {
-	vars: {
-		[varBsBtnColor]: "#ffc107",
-		[varBsBtnBorderColor]: "#ffc107",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#ffc107",
-		[varBsBtnHoverBorderColor]: "#ffc107",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#ffc107",
-		[varBsBtnActiveBorderColor]: "#ffc107",
-		[varBsBtnDisabledColor]: "#ffc107",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#ffc107",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// label { display: inline-block; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`label`, {
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// .btn-check { position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
-globalStyle(`${darklyScope}${btnCheck}`, {
-	position: "absolute",
-	clip: "rect(0, 0, 0, 0)",
-	pointerEvents: "none",
-})
-
-// SOURCE CSS:
-// .btn-check[disabled] + .btn { pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(`${darklyScope}${btnCheck}[disabled] + ${darklyScope}${btn}`, {
-	pointerEvents: "none",
-	filter: "none",
-	opacity: 0.65,
-})
-
-// SOURCE CSS:
-// .btn-check:disabled + .btn { pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(`${darklyScope}${btnCheck}:disabled + ${darklyScope}${btn}`, {
-	pointerEvents: "none",
-	filter: "none",
-	opacity: 0.65,
-})
-
-// SOURCE CSS:
-// .btn-check + .btn:hover { color: var(--bs-btn-color); background-color: var(--bs-btn-bg); border-color: var(--bs-btn-border-color); }
 globalStyle(`${darklyScope}${btnCheck} + ${darklyScope}${btn}:hover`, {
 	color: varBsBtnColor,
 	backgroundColor: varBsBtnBg,
 	borderColor: varBsBtnBorderColor,
 })
 
-// SOURCE CSS:
-// .btn-check:focus-visible + .btn { border-color: var(--bs-btn-hover-border-color); outline: 0; box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${darklyScope}${btnCheck}:focus-visible + ${darklyScope}${btn}`, {
+globalStyle(`${darklyScope}${btn}:focus-visible`, {
+	color: varBsBtnHoverColor,
+	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-check:checked:focus-visible + .btn { box-shadow: var(--bs-btn-focus-box-shadow); }
+globalStyle(`${darklyScope}${btnCheck}:focus-visible + ${darklyScope}${btn}`, {
+	borderColor: varBsBtnHoverBorderColor,
+	outline: '0',
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${darklyScope}:not(${btnCheck}) + ${darklyScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${darklyScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${darklyScope}:not(${btnCheck}) + ${darklyScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${darklyScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${darklyScope}${btnCheck}:checked:focus-visible + ${darklyScope}${btn}`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca; --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd; --bs-btn-disabled-border-color: #0d6efd; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btn}${btnPrimary}`, {
+globalStyle(`${darklyScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${darklyScope}${fieldset}:disabled ${darklyScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${darklyScope}${btnPrimary}`, {
 	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#375a7f",
-		[varBsBtnBorderColor]: "#375a7f",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#2f4d6c",
-		[varBsBtnHoverBorderColor]: "#2c4866",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#2c4866",
-		[varBsBtnActiveBorderColor]: "#29445f",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#375a7f",
-		[varBsBtnDisabledBorderColor]: "#375a7f",
-	},
-	color: "#fff",
-	backgroundColor: "#375a7f",
-	border: "1px solid #375a7f",
-	padding: "0.375rem 0.75rem",
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// .btn-lg { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${darklyScope}${btn}${btnLg}`, {
-	padding: "0.5rem 1rem",
-	fontSize: "1.25rem",
-	lineHeight: 1.5,
-	borderRadius: varBsBorderRadiusLg,
-	display: "inline-block",
-})
-
-globalStyle(`${darklyScope}${btn}${btnLg}${btnDanger}`, {
-	padding: "0.5rem 1rem",
-	fontSize: "1.25rem",
-	lineHeight: 1.5,
-})
-
-globalStyle(`${darklyScope}${btnLg}`, {
-	vars: {
-		[varBsBtnPaddingY]: "0.5rem",
-		[varBsBtnPaddingX]: "1rem",
-		[varBsBtnFontSize]: "1.25rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#375a7f',
+		[varBsBtnBorderColor]: '#375a7f',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#2f4d6c',
+		[varBsBtnHoverBorderColor]: '#2c4866',
+		[varBsBtnFocusBoxShadowRgb]: '85, 115, 146',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#2c4866',
+		[varBsBtnActiveBorderColor]: '#29445f',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#375a7f',
+		[varBsBtnDisabledBorderColor]: '#375a7f',
 	},
 })
 
-// SOURCE CSS:
-// .btn-group-lg > .btn { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-// [UNMAPPED_SELECTOR] class ".btn-group-lg" — no contract mapping
-globalStyle(`.btn-group-lg > ${darklyScope}${btn}`, {
+globalStyle(`${darklyScope}${btnSecondary}`, {
 	vars: {
-		[varBsBtnPaddingY]: "0.5rem",
-		[varBsBtnPaddingX]: "1rem",
-		[varBsBtnFontSize]: "1.25rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#444',
+		[varBsBtnBorderColor]: '#444',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#3a3a3a',
+		[varBsBtnHoverBorderColor]: '#363636',
+		[varBsBtnFocusBoxShadowRgb]: '96, 96, 96',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#363636',
+		[varBsBtnActiveBorderColor]: '#333333',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#444',
+		[varBsBtnDisabledBorderColor]: '#444',
 	},
 })
 
-// SOURCE CSS:
-// .btn-sm { --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem; --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${darklyScope}${btnSm}`, {
+globalStyle(`${darklyScope}${btnSuccess}`, {
 	vars: {
-		[varBsBtnPaddingY]: "0.25rem",
-		[varBsBtnPaddingX]: "0.5rem",
-		[varBsBtnFontSize]: "0.875rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#00bc8c',
+		[varBsBtnBorderColor]: '#00bc8c',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#00a077',
+		[varBsBtnHoverBorderColor]: '#009670',
+		[varBsBtnFocusBoxShadowRgb]: '38, 198, 157',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#009670',
+		[varBsBtnActiveBorderColor]: '#008d69',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#00bc8c',
+		[varBsBtnDisabledBorderColor]: '#00bc8c',
 	},
 })
 
-// SOURCE CSS:
-// .btn-group-sm > .btn { --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem; --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-// [UNMAPPED_SELECTOR] class ".btn-group-sm" — no contract mapping
-globalStyle(`.btn-group-sm > ${darklyScope}${btn}`, {
-	vars: {
-		[varBsBtnPaddingY]: "0.25rem",
-		[varBsBtnPaddingX]: "0.5rem",
-		[varBsBtnFontSize]: "0.875rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
-})
-
-// SOURCE CSS:
-// .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #dc3545; --bs-btn-border-color: #dc3545; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37; --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff; --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #dc3545; --bs-btn-disabled-border-color: #dc3545; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btn}${btnDanger}`, {
-	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#e74c3c",
-		[varBsBtnBorderColor]: "#e74c3c",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#c44133",
-		[varBsBtnHoverBorderColor]: "#b93d30",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#b93d30",
-		[varBsBtnActiveBorderColor]: "#ad392d",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#e74c3c",
-		[varBsBtnDisabledBorderColor]: "#e74c3c",
-	},
-	color: "#fff",
-	backgroundColor: "#e74c3c",
-	border: "1px solid #e74c3c",
-	padding: "0.375rem 0.75rem",
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// .btn-dark { --bs-btn-color: #fff; --bs-btn-bg: #212529; --bs-btn-border-color: #212529; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #424649; --bs-btn-hover-border-color: #373b3e; --bs-btn-focus-shadow-rgb: 66, 70, 73; --bs-btn-active-color: #fff; --bs-btn-active-bg: #4d5154; --bs-btn-active-border-color: #373b3e; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #212529; --bs-btn-disabled-border-color: #212529; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnDark}`, {
-	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#212529",
-		[varBsBtnBorderColor]: "#212529",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#424649",
-		[varBsBtnHoverBorderColor]: "#373b3e",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#4d5154",
-		[varBsBtnActiveBorderColor]: "#373b3e",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#212529",
-		[varBsBtnDisabledBorderColor]: "#212529",
-	},
-})
-
-// SOURCE CSS:
-// .btn-info { --bs-btn-color: #000; --bs-btn-bg: #0dcaf0; --bs-btn-border-color: #0dcaf0; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #31d2f2; --bs-btn-hover-border-color: #25cff2; --bs-btn-focus-shadow-rgb: 11, 172, 204; --bs-btn-active-color: #000; --bs-btn-active-bg: #3dd5f3; --bs-btn-active-border-color: #25cff2; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #0dcaf0; --bs-btn-disabled-border-color: #0dcaf0; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
 globalStyle(`${darklyScope}${btnInfo}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#0dcaf0",
-		[varBsBtnBorderColor]: "#0dcaf0",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#31d2f2",
-		[varBsBtnHoverBorderColor]: "#25cff2",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#3dd5f3",
-		[varBsBtnActiveBorderColor]: "#25cff2",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#0dcaf0",
-		[varBsBtnDisabledBorderColor]: "#0dcaf0",
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#3498db',
+		[varBsBtnBorderColor]: '#3498db',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#2c81ba',
+		[varBsBtnHoverBorderColor]: '#2a7aaf',
+		[varBsBtnFocusBoxShadowRgb]: '82, 167, 224',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#2a7aaf',
+		[varBsBtnActiveBorderColor]: '#2772a4',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#3498db',
+		[varBsBtnDisabledBorderColor]: '#3498db',
 	},
 })
 
-// SOURCE CSS:
-// .btn-light { --bs-btn-color: #000; --bs-btn-bg: #f8f9fa; --bs-btn-border-color: #f8f9fa; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #d3d4d5; --bs-btn-hover-border-color: #c6c7c8; --bs-btn-focus-shadow-rgb: 211, 212, 213; --bs-btn-active-color: #000; --bs-btn-active-bg: #c6c7c8; --bs-btn-active-border-color: #babbbc; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #f8f9fa; --bs-btn-disabled-border-color: #f8f9fa; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
+globalStyle(`${darklyScope}${btnWarning}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#f39c12',
+		[varBsBtnBorderColor]: '#f39c12',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#cf850f',
+		[varBsBtnHoverBorderColor]: '#c27d0e',
+		[varBsBtnFocusBoxShadowRgb]: '245, 171, 54',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#c27d0e',
+		[varBsBtnActiveBorderColor]: '#b6750e',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#f39c12',
+		[varBsBtnDisabledBorderColor]: '#f39c12',
+	},
+})
+
+globalStyle(`${darklyScope}${btnDanger}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#e74c3c',
+		[varBsBtnBorderColor]: '#e74c3c',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#c44133',
+		[varBsBtnHoverBorderColor]: '#b93d30',
+		[varBsBtnFocusBoxShadowRgb]: '235, 103, 89',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#b93d30',
+		[varBsBtnActiveBorderColor]: '#ad392d',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#e74c3c',
+		[varBsBtnDisabledBorderColor]: '#e74c3c',
+	},
+})
+
 globalStyle(`${darklyScope}${btnLight}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#f8f9fa",
-		[varBsBtnBorderColor]: "#f8f9fa",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#d3d4d5",
-		[varBsBtnHoverBorderColor]: "#c6c7c8",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#c6c7c8",
-		[varBsBtnActiveBorderColor]: "#babbbc",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#f8f9fa",
-		[varBsBtnDisabledBorderColor]: "#f8f9fa",
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#adb5bd',
+		[varBsBtnBorderColor]: '#adb5bd',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#939aa1',
+		[varBsBtnHoverBorderColor]: '#8a9197',
+		[varBsBtnFocusBoxShadowRgb]: '185, 192, 199',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#8a9197',
+		[varBsBtnActiveBorderColor]: '#82888e',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#adb5bd',
+		[varBsBtnDisabledBorderColor]: '#adb5bd',
 	},
 })
 
-// SOURCE CSS:
-// .btn-link { --bs-btn-font-weight: 400; --bs-btn-color: var(--bs-link-color); --bs-btn-bg: transparent; --bs-btn-border-color: transparent; --bs-btn-hover-color: var(--bs-link-hover-color); --bs-btn-hover-border-color: transparent; --bs-btn-active-color: var(--bs-link-hover-color); --bs-btn-active-border-color: transparent; --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-border-color: transparent; --bs-btn-box-shadow: 0 0 0 #000; --bs-btn-focus-shadow-rgb: 49, 132, 253; text-decoration: underline; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
+globalStyle(`${darklyScope}${btnDark}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#303030',
+		[varBsBtnBorderColor]: '#303030',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#4f4f4f',
+		[varBsBtnHoverBorderColor]: '#454545',
+		[varBsBtnFocusBoxShadowRgb]: '79, 79, 79',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#595959',
+		[varBsBtnActiveBorderColor]: '#454545',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#303030',
+		[varBsBtnDisabledBorderColor]: '#303030',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlinePrimary}`, {
+	vars: {
+		[varBsBtnColor]: '#375a7f',
+		[varBsBtnBorderColor]: '#375a7f',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#375a7f',
+		[varBsBtnHoverBorderColor]: '#375a7f',
+		[varBsBtnFocusBoxShadowRgb]: '55, 90, 127',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#375a7f',
+		[varBsBtnActiveBorderColor]: '#375a7f',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#375a7f',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#375a7f',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineSecondary}`, {
+	vars: {
+		[varBsBtnColor]: '#444',
+		[varBsBtnBorderColor]: '#444',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#444',
+		[varBsBtnHoverBorderColor]: '#444',
+		[varBsBtnFocusBoxShadowRgb]: '68, 68, 68',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#444',
+		[varBsBtnActiveBorderColor]: '#444',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#444',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#444',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineSuccess}`, {
+	vars: {
+		[varBsBtnColor]: '#00bc8c',
+		[varBsBtnBorderColor]: '#00bc8c',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#00bc8c',
+		[varBsBtnHoverBorderColor]: '#00bc8c',
+		[varBsBtnFocusBoxShadowRgb]: '0, 188, 140',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#00bc8c',
+		[varBsBtnActiveBorderColor]: '#00bc8c',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#00bc8c',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#00bc8c',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineInfo}`, {
+	vars: {
+		[varBsBtnColor]: '#3498db',
+		[varBsBtnBorderColor]: '#3498db',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#3498db',
+		[varBsBtnHoverBorderColor]: '#3498db',
+		[varBsBtnFocusBoxShadowRgb]: '52, 152, 219',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#3498db',
+		[varBsBtnActiveBorderColor]: '#3498db',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#3498db',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#3498db',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineWarning}`, {
+	vars: {
+		[varBsBtnColor]: '#f39c12',
+		[varBsBtnBorderColor]: '#f39c12',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#f39c12',
+		[varBsBtnHoverBorderColor]: '#f39c12',
+		[varBsBtnFocusBoxShadowRgb]: '243, 156, 18',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#f39c12',
+		[varBsBtnActiveBorderColor]: '#f39c12',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#f39c12',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#f39c12',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineDanger}`, {
+	vars: {
+		[varBsBtnColor]: '#e74c3c',
+		[varBsBtnBorderColor]: '#e74c3c',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#e74c3c',
+		[varBsBtnHoverBorderColor]: '#e74c3c',
+		[varBsBtnFocusBoxShadowRgb]: '231, 76, 60',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#e74c3c',
+		[varBsBtnActiveBorderColor]: '#e74c3c',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#e74c3c',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#e74c3c',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineLight}`, {
+	vars: {
+		[varBsBtnColor]: '#adb5bd',
+		[varBsBtnBorderColor]: '#adb5bd',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#adb5bd',
+		[varBsBtnHoverBorderColor]: '#adb5bd',
+		[varBsBtnFocusBoxShadowRgb]: '173, 181, 189',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#adb5bd',
+		[varBsBtnActiveBorderColor]: '#adb5bd',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#adb5bd',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#adb5bd',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${darklyScope}${btnOutlineDark}`, {
+	vars: {
+		[varBsBtnColor]: '#303030',
+		[varBsBtnBorderColor]: '#303030',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#303030',
+		[varBsBtnHoverBorderColor]: '#303030',
+		[varBsBtnFocusBoxShadowRgb]: '48, 48, 48',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#303030',
+		[varBsBtnActiveBorderColor]: '#303030',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#303030',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#303030',
+		[varBsGradient]: 'none',
+	},
+})
+
 globalStyle(`${darklyScope}${btnLink}`, {
 	vars: {
-		[varBsBtnFontWeight]: 400,
+		[varBsBtnFontWeight]: '400',
 		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: "transparent",
-		[varBsBtnBorderColor]: "transparent",
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: "transparent",
+		[varBsBtnHoverBorderColor]: 'transparent',
 		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: "transparent",
-		[varBsBtnDisabledColor]: "#6c757d",
-		[varBsBtnDisabledBorderColor]: "transparent",
-		[varBsBtnBoxShadow]: "0 0 0 #000",
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#888',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '38, 198, 157',
 	},
-	textDecoration: "underline",
+	textDecoration: 'underline',
 })
 
-// SOURCE CSS:
-// .btn-link:focus-visible { color: var(--bs-btn-color); }
 globalStyle(`${darklyScope}${btnLink}:focus-visible`, {
 	color: varBsBtnColor,
 })
 
-// SOURCE CSS:
-// .btn-link:hover { color: var(--bs-btn-hover-color); }
 globalStyle(`${darklyScope}${btnLink}:hover`, {
 	color: varBsBtnHoverColor,
 })
 
-// SOURCE CSS:
-// .btn-success { --bs-btn-color: #fff; --bs-btn-bg: #198754; --bs-btn-border-color: #198754; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #157347; --bs-btn-hover-border-color: #146c43; --bs-btn-focus-shadow-rgb: 60, 153, 110; --bs-btn-active-color: #fff; --bs-btn-active-bg: #146c43; --bs-btn-active-border-color: #13653f; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #198754; --bs-btn-disabled-border-color: #198754; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnSuccess}`, {
+globalStyle(`${darklyScope}${btnLg}`, {
 	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#198754",
-		[varBsBtnBorderColor]: "#198754",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#157347",
-		[varBsBtnHoverBorderColor]: "#146c43",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#146c43",
-		[varBsBtnActiveBorderColor]: "#13653f",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#198754",
-		[varBsBtnDisabledBorderColor]: "#198754",
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
 	},
 })
 
-// SOURCE CSS:
-// .btn-warning { --bs-btn-color: #000; --bs-btn-bg: #ffc107; --bs-btn-border-color: #ffc107; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffca2c; --bs-btn-hover-border-color: #ffc720; --bs-btn-focus-shadow-rgb: 217, 164, 6; --bs-btn-active-color: #000; --bs-btn-active-bg: #ffcd39; --bs-btn-active-border-color: #ffc720; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #ffc107; --bs-btn-disabled-border-color: #ffc107; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${darklyScope}${btnWarning}`, {
+globalStyle(`${darklyScope}${btnGroupLg} > ${darklyScope}${btn}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#ffc107",
-		[varBsBtnBorderColor]: "#ffc107",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#ffca2c",
-		[varBsBtnHoverBorderColor]: "#ffc720",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#ffcd39",
-		[varBsBtnActiveBorderColor]: "#ffc720",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#ffc107",
-		[varBsBtnDisabledBorderColor]: "#ffc107",
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
 	},
 })
 
-// SOURCE CSS:
-// .btn-close { --bs-btn-close-color: #000; --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e"); --bs-btn-close-opacity: 0.5; --bs-btn-close-hover-opacity: 0.75; --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-btn-close-focus-opacity: 1; --bs-btn-close-disabled-opacity: 0.25; box-sizing: content-box; width: 1em; height: 1em; padding: 0.25em 0.25em; color: var(--bs-btn-close-color); background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat; filter: var(--bs-btn-close-filter); border: 0; border-radius: 0.375rem; opacity: var(--bs-btn-close-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close`, {
+globalStyle(`${darklyScope}${btnSm}`, {
 	vars: {
-		[varBsBtnCloseColor]: "#fff",
-		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
-		[varBsBtnCloseOpacity]: 0.5,
-		[varBsBtnCloseHoverOpacity]: 0.75,
-		[varBsBtnCloseFocusShadow]: "0 0 0 0.25rem rgba(55, 90, 127, 0.25)",
-		[varBsBtnCloseFocusOpacity]: 1,
-		[varBsBtnCloseDisabledOpacity]: 0.25,
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
 	},
-	boxSizing: "content-box",
-	width: "1em",
-	height: "1em",
-	padding: "0.25em 0.25em",
+})
+
+globalStyle(`${darklyScope}${btnGroupSm} > ${darklyScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnCheck}:focus + ${darklyScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btnCheck}:checked + ${darklyScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btnCheck}:focus + ${darklyScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}:not(${btnCheck}:first-child) + ${darklyScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnGroup}:not(:last-child) > ${darklyScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}:not(${btnCheck}) + ${darklyScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btnGroup}:not(:first-child) > ${darklyScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btnGroup}:not(:last-child) > ${darklyScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}:not(${btnCheck}) + ${darklyScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btnGroup}:not(:first-child) > ${darklyScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${darklyScope}${alertDismissible} ${darklyScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '1.25rem 1rem',
+})
+
+globalStyle(`${darklyScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#fff',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.4',
+		[varBsBtnCloseHoverOpacity]: '1',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(55, 90, 127, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
 	color: varBsBtnCloseColor,
-	background: "transparent var(--bs-btn-close-bg) center/1em auto no-repeat",
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
 	filter: varBsBtnCloseFilter,
-	border: 0,
-	borderRadius: "0.375rem",
+	border: '0',
+	borderRadius: '0.375rem',
 	opacity: varBsBtnCloseOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:hover { color: var(--bs-btn-close-color); text-decoration: none; opacity: var(--bs-btn-close-hover-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:hover`, {
+globalStyle(`${darklyScope}${btnClose}:hover`, {
 	color: varBsBtnCloseColor,
-	textDecoration: "none",
+	textDecoration: 'none',
 	opacity: varBsBtnCloseHoverOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:focus { outline: 0; box-shadow: var(--bs-btn-close-focus-shadow); opacity: var(--bs-btn-close-focus-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:focus`, {
-	outline: 0,
+globalStyle(`${darklyScope}${btnClose}:focus`, {
+	outline: '0',
 	boxShadow: varBsBtnCloseFocusShadow,
 	opacity: varBsBtnCloseFocusOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:disabled`, {
-	pointerEvents: "none",
-	WebkitUserSelect: "none",
-	MozUserSelect: "none",
-	userSelect: "none",
+globalStyle(`${darklyScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close.disabled`, {
-	pointerEvents: "none",
-	WebkitUserSelect: "none",
-	MozUserSelect: "none",
-	userSelect: "none",
-	opacity: varBsBtnCloseDisabledOpacity,
+globalStyle(`${darklyScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .btn-toolbar .input-group
-// [DELTA] unmapped selector: .btn-sm + .dropdown-toggle-split
-// [DELTA] unmapped selector: .btn-group-sm > .btn + .dropdown-toggle-split
-// [DELTA] unmapped selector: .btn-lg + .dropdown-toggle-split
-// [DELTA] unmapped selector: .btn-group-lg > .btn + .dropdown-toggle-split
-// [DELTA] unmapped selector: .btn-group-vertical > .btn-group
-// [DELTA] unmapped selector: .btn-group-vertical > .btn:not(:first-child)
-// [DELTA] unmapped selector: .btn-group-vertical > .btn-group:not(:first-child)
-// [DELTA] unmapped selector: .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle)
-// [DELTA] unmapped selector: .btn-group-vertical > .btn-group:not(:last-child) > .btn
-// [DELTA] unmapped selector: .btn-group-vertical > .btn:nth-child(n+3)
-// [DELTA] unmapped selector: .btn-group-vertical > :not(.btn-check) + .btn
-// [DELTA] unmapped selector: .btn-group-vertical > .btn-group:not(:first-child) > .btn
-// [DELTA] unmapped selector: .btn .badge
-// [DELTA] unmapped selector: .btn-close-white
+globalStyle(`${darklyScope}${toastHeader} ${darklyScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${darklyScope}${modalHeader} ${darklyScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${darklyScope}${offcanvasHeader} ${darklyScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${darklyScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
+})

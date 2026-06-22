@@ -1,164 +1,193 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsHeadingColor,
-} from '../../../../theme-contract/_vars.css'
-import {
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
 import { materiaScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/contents/heading
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { varBsHeadingColor } from '../../../../theme-contract/_vars.css'
 
-// SOURCE CSS:
-// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
-globalStyle(`${materiaScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+import {
+	active,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
+import { alert } from '../../../../theme-contract/ui/alerts/contract.css'
+import { carouselCaption } from '../../../../theme-contract/ui/carousel/contract.css'
+import { listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
+
+globalStyle(`${materiaScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1rem",
 })
 
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${materiaScope}${clsH5}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1rem",
 })
 
-// SOURCE CSS:
-// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${materiaScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${materiaScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1.25rem",
 })
 
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${materiaScope}${clsH3}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1.25rem",
 })
 
-// SOURCE CSS:
-// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`${materiaScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${materiaScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
 })
 
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${materiaScope}${clsH1}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
 })
 
-// SOURCE CSS:
-// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
-globalStyle(`${materiaScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.3rem + 0.6vw)",
+globalStyle(`${materiaScope}${clsH1}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.3rem + 0.6vw)",
+globalStyle(`${materiaScope}${clsH1}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
 })
 
-// SOURCE CSS:
-// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
-globalStyle(`${materiaScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.325rem + 0.9vw)",
+globalStyle(`${materiaScope}${clsH2}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.325rem + 0.9vw)",
+globalStyle(`${materiaScope}${clsH2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
 })
 
-// SOURCE CSS:
-// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
-globalStyle(`${materiaScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.375rem + 1.5vw)",
+globalStyle(`${materiaScope}${clsH3}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.375rem + 1.5vw)",
+globalStyle(`${materiaScope}${clsH3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
 })
 
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${materiaScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${materiaScope}${clsH4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
+globalStyle(`${materiaScope}${clsH4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${clsH5}`, {
+	fontSize: '1.25rem',
+})
+
+globalStyle(`${materiaScope}${clsH6}`, {
+	fontSize: '1rem',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH1}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH3}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH5}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH1}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH3}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH5}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH1}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH3}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH5}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH6}`, {
+	color: 'inherit',
 })

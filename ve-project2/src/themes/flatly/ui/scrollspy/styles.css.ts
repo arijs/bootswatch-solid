@@ -1,7 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { flatlyScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for flatly/ui/scrollspy
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { scrollspyExample } from '../../../../theme-contract/ui/scrollspy/contract.css'
 
-export {}
+globalStyle(`${flatlyScope}${scrollspyExample}`, {
+	height: '200px',
+	overflowY: 'auto',
+	marginTop: '0.5rem',
+})

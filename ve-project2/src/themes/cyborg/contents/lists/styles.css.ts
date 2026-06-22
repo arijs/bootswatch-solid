@@ -1,76 +1,42 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	listInline,
-	listInlineItem,
-	listUnstyled,
-} from '../../../../theme-contract/contents/lists/contract.css'
 import { cyborgScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/contents/lists
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../../theme-contract/contents/lists/contract.css'
 
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
 globalStyle(`${cyborgScope}${listUnstyled}`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
+	paddingLeft: '0',
+	listStyle: 'none',
 })
 
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${cyborgScope}${listUnstyled}`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// .list-inline { padding-left: 0; list-style: none; }
 globalStyle(`${cyborgScope}${listInline}`, {
-	paddingLeft: 0,
-	listStyle: "none",
+	paddingLeft: '0',
+	listStyle: 'none',
 })
 
-// SOURCE CSS:
-// .list-inline-item { display: inline-block; }
 globalStyle(`${cyborgScope}${listInlineItem}`, {
-	display: "inline-block",
+	display: 'inline-block',
 })
 
-// SOURCE CSS:
-// .list-inline-item:not(:last-child) { margin-right: 0.5rem; }
 globalStyle(`${cyborgScope}${listInlineItem}:not(:last-child)`, {
-	marginRight: "0.5rem",
+	marginRight: '0.5rem',
 })
 
-// SOURCE CSS:
-// ol ol { margin-bottom: 0; }
-globalStyle(`${cyborgScope}${listUnstyled} ${cyborgScope}${listUnstyled}`, {
-	marginBottom: 0,
+globalStyle(`${cyborgScope}${listBase}`, {
+	marginTop: '0',
+	marginBottom: '1rem',
 })
 
-// SOURCE CSS:
-// ul ul { margin-bottom: 0; }
-globalStyle(`${cyborgScope}${listUnstyled} ${cyborgScope}${listUnstyled}`, {
-	marginBottom: 0,
+globalStyle(`${cyborgScope}${listNested}`, {
+	marginBottom: '0',
 })
 
-// SOURCE CSS:
-// ol ul { margin-bottom: 0; }
-globalStyle(`${cyborgScope}${listUnstyled} ${cyborgScope}${listUnstyled}`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// ul ol { margin-bottom: 0; }
-globalStyle(`${cyborgScope}${listUnstyled} ${cyborgScope}${listUnstyled}`, {
-	marginBottom: 0,
-})
-
-// SOURCE CSS:
-// .list-unstyled { padding-left: 0; list-style: none; }
-globalStyle(`${cyborgScope}${listUnstyled}`, {
-	paddingLeft: 0,
-	listStyle: "none",
+globalStyle(`${cyborgScope}${listIndented}`, {
+	paddingLeft: '2rem',
 })

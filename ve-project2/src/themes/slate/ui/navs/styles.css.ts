@@ -1,16 +1,22 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { slateScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
-	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsEmphasisColor,
 	varBsLinkColor,
-	varBsLinkColorRgb,
 	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
@@ -30,395 +36,634 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	link,
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	active,
+	bgDanger,
+	bgInfo,
+	bgLight,
+	bgPrimary,
+	bgSecondary,
+	bgSuccess,
+	bgWarning,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import {
+	collapse,
+	navbar,
+	navbarExpandLg,
+	navbarNav,
+} from '../../../../theme-contract/ui/navbar/contract.css'
 import {
 	fade,
-	flexWrap,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import {
 	nav,
 	navItem,
 	navLink,
+	navLinkActive,
+	navLinkDisabled,
 	navPills,
 	navTabs,
+	show,
+	tabContent,
+	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import { slateScope } from '../../scope.css'
+import {
+	offcanvas,
+	offcanvasBackdrop,
+	offcanvasLg,
+	offcanvasMd,
+	offcanvasSm,
+	offcanvasXl,
+	offcanvasXxl,
+} from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { bgDark } from '../../../../theme-contract/utilities/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/navs
-// Review [UNMAPPED] and [DELTA] comments before committing.
+globalStyle(`${slateScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .nav { --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem; --bs-nav-link-font-weight: ; --bs-nav-link-color: var(--bs-link-color); --bs-nav-link-hover-color: var(--bs-link-hover-color); --bs-nav-link-disabled-color: var(--bs-secondary-color); display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none; }
+globalStyle(`${slateScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${slateScope}${fade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${slateScope}${fade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${slateScope}${collapse}:not(${show})`, {
+	display: 'none',
+})
+
 globalStyle(`${slateScope}${nav}`, {
 	vars: {
-		[varBsNavLinkPaddingX]: "1rem",
-		[varBsNavLinkPaddingY]: "0.5rem",
-		[varBsNavLinkFontWeight]: "",
+		[varBsNavLinkPaddingX]: '1rem',
+		[varBsNavLinkPaddingY]: '0.5rem',
+		[varBsNavLinkFontWeight]: '',
 		[varBsNavLinkColor]: varBsLinkColor,
 		[varBsNavLinkHoverColor]: varBsLinkHoverColor,
 		[varBsNavLinkDisabledColor]: varBsSecondaryColor,
 	},
-	display: "flex",
-	flexWrap: "wrap",
-	paddingLeft: 0,
-	marginBottom: 0,
-	listStyle: "none",
+	display: 'flex',
+	flexWrap: 'wrap',
+	paddingLeft: '0',
+	marginBottom: '0',
+	listStyle: 'none',
 })
 
-// SOURCE CSS:
-// .nav-link { display: block; padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); font-size: var(--bs-nav-link-font-size); font-weight: var(--bs-nav-link-font-weight); color: var(--bs-nav-link-color); text-decoration: none; background: none; border: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
 globalStyle(`${slateScope}${navLink}`, {
-	display: "block",
-	padding: "var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x)",
+	display: 'block',
+	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
 	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
 	color: varBsNavLinkColor,
-	textDecoration: "none",
-	background: "none",
-	border: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out",
+	textDecoration: 'none',
+	background: 'none',
+	border: '0',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .nav-link:hover { color: var(--bs-nav-link-hover-color); }
+globalStyle(`${slateScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link:focus { color: var(--bs-nav-link-hover-color); }
 globalStyle(`${slateScope}${navLink}:focus`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link:focus-visible { outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${slateScope}${navLink}:focus-visible`, {
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
 })
 
-// SOURCE CSS:
-// .nav-link.disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(`${slateScope}${navLink}.disabled`, {
+globalStyle(`${slateScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
-	pointerEvents: "none",
-	cursor: "default",
+	pointerEvents: 'none',
+	cursor: 'default',
 })
 
-// SOURCE CSS:
-// .nav-link:disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
 globalStyle(`${slateScope}${navLink}:disabled`, {
 	color: varBsNavLinkDisabledColor,
-	pointerEvents: "none",
-	cursor: "default",
+	pointerEvents: 'none',
+	cursor: 'default',
 })
 
-// SOURCE CSS:
-// .nav-tabs { --bs-nav-tabs-border-width: var(--bs-border-width); --bs-nav-tabs-border-color: var(--bs-border-color); --bs-nav-tabs-border-radius: var(--bs-border-radius); --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color); --bs-nav-tabs-link-active-color: var(--bs-emphasis-color); --bs-nav-tabs-link-active-bg: var(--bs-body-bg); --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg); border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color); }
 globalStyle(`${slateScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
-		[varBsNavTabsBorderColor]: varBsBorderColor,
+		[varBsNavTabsBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsNavTabsBorderRadius]: varBsBorderRadius,
-		[varBsNavTabsLinkHoverBorderColor]: "var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color)",
-		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
+		[varBsNavTabsLinkHoverBorderColor]: 'rgba(0, 0, 0, 0.6)',
+		[varBsNavTabsLinkActiveColor]: '#fff',
 		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: "var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg)",
+		[varBsNavTabsLinkActiveBorderColor]: 'rgba(0, 0, 0, 0.6)',
 	},
-	borderBottom: "var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color)",
+	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); border: var(--bs-nav-tabs-border-width) solid transparent; border-top-left-radius: var(--bs-nav-tabs-border-radius); border-top-right-radius: var(--bs-nav-tabs-border-radius); }
 globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
-	marginBottom: "calc(-1 * var(--bs-nav-tabs-border-width))",
-	border: "var(--bs-nav-tabs-border-width) solid transparent",
+	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover { isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
 globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:hover`, {
-	isolation: "isolate",
+	isolation: 'isolate',
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:focus { isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
 globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:focus`, {
-	isolation: "isolate",
+	isolation: 'isolate',
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}.active`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-item.show .nav-link { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${slateScope}${navTabs} ${slateScope}${navItem}.show ${slateScope}${navLink}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navItem}${show} ${slateScope}${navLink}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// .nav-pills { --bs-nav-pills-border-radius: var(--bs-border-radius); --bs-nav-pills-link-active-color: #fff; --bs-nav-pills-link-active-bg: #0d6efd; }
 globalStyle(`${slateScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
-		[varBsNavPillsLinkActiveColor]: "#fff",
-		[varBsNavPillsLinkActiveBg]: "#0d6efd",
+		[varBsNavPillsLinkActiveColor]: '#fff',
+		[varBsNavPillsLinkActiveBg]: '#3a3f44',
 	},
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
 globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}.active`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS:
-// .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-// [UNMAPPED_SELECTOR] class ".show" — no contract mapping
-globalStyle(`${slateScope}${navPills} .show > ${slateScope}${navLink}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${show} > ${slateScope}${navLink}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${slateScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${slateScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: '#fff',
+	},
+	gap: varBsNavUnderlineGap,
 })
 
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
 })
 
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${show} > ${slateScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${slateScope}${navFill} > ${slateScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
+globalStyle(`${slateScope}${navFill} ${slateScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
+globalStyle(`${slateScope}${navJustified} > ${slateScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
+globalStyle(`${slateScope}${navJustified} ${slateScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${slateScope}${navFill} ${slateScope}${navItem} ${slateScope}${navLink}`, {
+	width: '100%',
 })
 
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${slateScope}${navJustified} ${slateScope}${navItem} ${slateScope}${navLink}`, {
+	width: '100%',
 })
 
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${slateScope}${tabContent} > ${slateScope}${tabPane}`, {
+	display: 'none',
 })
 
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
 })
 
-// SOURCE CSS:
-// .fade { transition: opacity 0.15s linear; }
-globalStyle(`${slateScope}${fade}`, {
-	transition: "opacity 0.15s linear",
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
 })
 
-// SOURCE CSS:
-// .fade:not(.show) { opacity: 0; }
-globalStyle(`${slateScope}${fade}:not(.show)`, {
-	opacity: 0,
+globalStyle(`${slateScope}${navbarExpandSm} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .tab-content > .tab-pane { display: none; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".tab-pane" — no contract mapping
-globalStyle(`.tab-content > .tab-pane`, {
-	display: "none",
+globalStyle(`${slateScope}${navbarExpandMd} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .tab-content > .active { display: block; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.tab-content > .active`, {
-	display: "block",
+globalStyle(`${slateScope}${navbarExpandLg} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
-	marginBottom: "1rem !important",
+globalStyle(`${slateScope}${navbarExpandXl} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .nav-tabs .nav-link:not([disabled]):not(.disabled):hover
-// [DELTA] unmapped selector: .nav-tabs .nav-link:not([disabled]):not(.disabled):focus
-// [DELTA] unmapped selector: .nav-tabs .nav-link:not([disabled]):not(.disabled):active
-// [DELTA] unmapped selector: .nav-tabs .nav-link:not([disabled]):not(.disabled).active
-// [DELTA] unmapped selector: .nav-tabs .nav-link.disabled
-// [DELTA] unmapped selector: .nav-pills .nav-link:hover
-// [DELTA] unmapped selector: .nav-pills .nav-link.disabled
-// [DELTA] unmapped selector: .nav-pills .nav-link.disabled:hover
+globalStyle(`${slateScope}${navbarExpandXxl} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpand} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${slateScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${slateScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${slateScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
+})
+
+globalStyle(`${slateScope}${navbar} ${slateScope}${navLink}`, {
+	padding: '1rem',
+	borderRight: '1px solid rgba(0, 0, 0, 0.2)',
+	borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+})
+
+globalStyle(`${slateScope}${navbar} ${slateScope}${navItem}${active} ${slateScope}${navLink}`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.3)',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navItem} + ${slateScope}${navItem}`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#666d72, #6e757a 40%, #737a80)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#52a552, #58b058 40%, #5cb85c)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#4ca1ba, #52adc8 40%, #56b4d1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#d07c05, #df8505 40%, #e98b06)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#c8504c, #d65652 40%, #e05956)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#c4c6c9, #d2d4d7 40%, #dbdee1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#212428, #23272b 40%, #25282d)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbarExpandSm} ${slateScope}${navLink}`, {
+	'@media': {
+		'(max-width: 576px)': {
+			border: 'none !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandMd} ${slateScope}${navLink}`, {
+	'@media': {
+		'(max-width: 768px)': {
+			border: 'none !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandLg} ${slateScope}${navLink}`, {
+	'@media': {
+		'(max-width: 992px)': {
+			border: 'none !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkDisabled}`, {
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
+	color: '#fff',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:hover`, {
+	color: '#fff',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+	color: '#fff',
+	textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)',
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+	color: varBsSecondaryColor,
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}:hover`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+	color: varBsSecondaryColor,
+})

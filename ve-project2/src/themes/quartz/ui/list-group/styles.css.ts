@@ -1,10 +1,9 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
-	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
 	varBsBorderRadius,
-	varBsBorderWidth,
 	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
 	varBsDangerTextEmphasis,
@@ -18,24 +17,21 @@ import {
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightTextEmphasis,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryTextEmphasis,
 	varBsSecondaryBg,
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
-	varBsSecondaryColor,
 	varBsSecondaryTextEmphasis,
 	varBsSuccessBgSubtle,
 	varBsSuccessBorderSubtle,
 	varBsSuccessTextEmphasis,
-	varBsTertiaryBg,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
 	varBsWarningTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 	varBsListGroupActionActiveBg,
 	varBsListGroupActionActiveColor,
@@ -55,9 +51,19 @@ import {
 	varBsListGroupItemPaddingX,
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
+
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
 import {
 	listGroup,
 	listGroupFlush,
@@ -72,224 +78,307 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../../theme-contract/ui/list-group/contract.css'
-import { quartzScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/list-group
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
+globalStyle(`${quartzScope}${card} > ${quartzScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
 })
 
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
+globalStyle(`${quartzScope}${card} > ${quartzScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${quartzScope}${card} > ${quartzScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${quartzScope}${card} > ${quartzScope}${cardHeader} + ${quartzScope}${listGroup}`, {
+	borderTop: '0',
 })
 
-// SOURCE CSS:
-// .list-group { --bs-list-group-color: var(--bs-body-color); --bs-list-group-bg: var(--bs-body-bg); --bs-list-group-border-color: var(--bs-border-color); --bs-list-group-border-width: var(--bs-border-width); --bs-list-group-border-radius: var(--bs-border-radius); --bs-list-group-item-padding-x: 1rem; --bs-list-group-item-padding-y: 0.5rem; --bs-list-group-action-color: var(--bs-secondary-color); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-tertiary-bg); --bs-list-group-action-active-color: var(--bs-body-color); --bs-list-group-action-active-bg: var(--bs-secondary-bg); --bs-list-group-disabled-color: var(--bs-secondary-color); --bs-list-group-disabled-bg: var(--bs-body-bg); --bs-list-group-active-color: #fff; --bs-list-group-active-bg: #0d6efd; --bs-list-group-active-border-color: #0d6efd; display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0; border-radius: var(--bs-list-group-border-radius); }
 globalStyle(`${quartzScope}${listGroup}`, {
 	vars: {
-		[varBsListGroupColor]: varBsBodyColor,
-		[varBsListGroupBg]: varBsBodyBg,
-		[varBsListGroupBorderColor]: varBsBorderColor,
-		[varBsListGroupBorderWidth]: varBsBorderWidth,
+		[varBsListGroupColor]: '#fff',
+		[varBsListGroupBg]: 'transparent',
+		[varBsListGroupBorderColor]: 'rgba(255, 255, 255, 0.2)',
+		[varBsListGroupBorderWidth]: '0',
 		[varBsListGroupBorderRadius]: varBsBorderRadius,
-		[varBsListGroupItemPaddingX]: "1rem",
-		[varBsListGroupItemPaddingY]: "0.5rem",
-		[varBsListGroupActionColor]: varBsSecondaryColor,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsTertiaryBg,
+		[varBsListGroupItemPaddingX]: '2rem',
+		[varBsListGroupItemPaddingY]: '1rem',
+		[varBsListGroupActionColor]: '#fff',
+		[varBsListGroupActionHoverColor]: '#fff',
+		[varBsListGroupActionHoverBg]: 'rgba(255, 255, 255, 0.4)',
 		[varBsListGroupActionActiveColor]: varBsBodyColor,
 		[varBsListGroupActionActiveBg]: varBsSecondaryBg,
-		[varBsListGroupDisabledColor]: varBsSecondaryColor,
-		[varBsListGroupDisabledBg]: varBsBodyBg,
-		[varBsListGroupActiveColor]: "#fff",
-		[varBsListGroupActiveBg]: "#0d6efd",
-		[varBsListGroupActiveBorderColor]: "#0d6efd",
+		[varBsListGroupDisabledColor]: 'rgba(255, 255, 255, 0.7)',
+		[varBsListGroupDisabledBg]: 'transparent',
+		[varBsListGroupActiveColor]: '#fff',
+		[varBsListGroupActiveBg]: '#e83283',
+		[varBsListGroupActiveBorderColor]: '#e83283',
 	},
-	display: "flex",
-	flexDirection: "column",
-	paddingLeft: 0,
-	marginBottom: 0,
+	display: 'flex',
+	flexDirection: 'column',
+	paddingLeft: '0',
+	marginBottom: '0',
 	borderRadius: varBsListGroupBorderRadius,
 })
 
-// SOURCE CSS:
-// .list-group-item { position: relative; display: block; padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x); color: var(--bs-list-group-color); text-decoration: none; background-color: var(--bs-list-group-bg); border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color); }
+globalStyle(`${quartzScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
+})
+
+globalStyle(`${quartzScope}${listGroupNumbered} > ${quartzScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
+})
+
 globalStyle(`${quartzScope}${listGroupItem}`, {
-	position: "relative",
-	display: "block",
-	padding: "var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x)",
+	position: 'relative',
+	display: 'block',
+	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
 	color: varBsListGroupColor,
-	textDecoration: "none",
+	textDecoration: 'none',
 	backgroundColor: varBsListGroupBg,
-	border: "var(--bs-list-group-border-width) solid var(--bs-list-group-border-color)",
+	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
-// SOURCE CSS:
-// .list-group-item:first-child { border-top-left-radius: inherit; border-top-right-radius: inherit; }
 globalStyle(`${quartzScope}${listGroupItem}:first-child`, {
-	borderTopLeftRadius: "inherit",
-	borderTopRightRadius: "inherit",
+	borderTopLeftRadius: 'inherit',
+	borderTopRightRadius: 'inherit',
 })
 
-// SOURCE CSS:
-// .list-group-item:last-child { border-bottom-right-radius: inherit; border-bottom-left-radius: inherit; }
 globalStyle(`${quartzScope}${listGroupItem}:last-child`, {
-	borderBottomRightRadius: "inherit",
-	borderBottomLeftRadius: "inherit",
+	borderBottomRightRadius: 'inherit',
+	borderBottomLeftRadius: 'inherit',
 })
 
-// SOURCE CSS:
-// .list-group-item.disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
-globalStyle(`${quartzScope}${listGroupItem}.disabled`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-// SOURCE CSS:
-// .list-group-item:disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
 globalStyle(`${quartzScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
-	pointerEvents: "none",
+	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
-// SOURCE CSS:
-// .list-group-item-action { width: 100%; color: var(--bs-list-group-action-color); text-align: inherit; }
-globalStyle(`${quartzScope}${listGroupItemAction}`, {
-	width: "100%",
-	color: varBsListGroupActionColor,
-	textAlign: "inherit",
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):hover { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${quartzScope}${listGroupItemAction}:not(.active):hover`, {
-	zIndex: 1,
-	color: varBsListGroupActionHoverColor,
-	textDecoration: "none",
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):focus { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${quartzScope}${listGroupItemAction}:not(.active):focus`, {
-	zIndex: 1,
-	color: varBsListGroupActionHoverColor,
-	textDecoration: "none",
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):active { color: var(--bs-list-group-action-active-color); background-color: var(--bs-list-group-action-active-bg); }
-globalStyle(`${quartzScope}${listGroupItemAction}:not(.active):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-danger { --bs-list-group-color: var(--bs-danger-text-emphasis); --bs-list-group-bg: var(--bs-danger-bg-subtle); --bs-list-group-border-color: var(--bs-danger-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-danger-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-danger-border-subtle); --bs-list-group-active-color: var(--bs-danger-bg-subtle); --bs-list-group-active-bg: var(--bs-danger-text-emphasis); --bs-list-group-active-border-color: var(--bs-danger-text-emphasis); }
-globalStyle(`${quartzScope}${listGroupItemDanger}`, {
-	vars: {
-		[varBsListGroupColor]: varBsDangerTextEmphasis,
-		[varBsListGroupBg]: varBsDangerBgSubtle,
-		[varBsListGroupBorderColor]: varBsDangerBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsDangerBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsDangerBorderSubtle,
-		[varBsListGroupActiveColor]: varBsDangerBgSubtle,
-		[varBsListGroupActiveBg]: varBsDangerTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsDangerTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-dark { --bs-list-group-color: var(--bs-dark-text-emphasis); --bs-list-group-bg: var(--bs-dark-bg-subtle); --bs-list-group-border-color: var(--bs-dark-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-dark-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-dark-border-subtle); --bs-list-group-active-color: var(--bs-dark-bg-subtle); --bs-list-group-active-bg: var(--bs-dark-text-emphasis); --bs-list-group-active-border-color: var(--bs-dark-text-emphasis); }
-globalStyle(`${quartzScope}${listGroupItemDark}`, {
-	vars: {
-		[varBsListGroupColor]: varBsDarkTextEmphasis,
-		[varBsListGroupBg]: varBsDarkBgSubtle,
-		[varBsListGroupBorderColor]: varBsDarkBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsDarkBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsDarkBorderSubtle,
-		[varBsListGroupActiveColor]: varBsDarkBgSubtle,
-		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-info { --bs-list-group-color: var(--bs-info-text-emphasis); --bs-list-group-bg: var(--bs-info-bg-subtle); --bs-list-group-border-color: var(--bs-info-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-info-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-info-border-subtle); --bs-list-group-active-color: var(--bs-info-bg-subtle); --bs-list-group-active-bg: var(--bs-info-text-emphasis); --bs-list-group-active-border-color: var(--bs-info-text-emphasis); }
-globalStyle(`${quartzScope}${listGroupItemInfo}`, {
-	vars: {
-		[varBsListGroupColor]: varBsInfoTextEmphasis,
-		[varBsListGroupBg]: varBsInfoBgSubtle,
-		[varBsListGroupBorderColor]: varBsInfoBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsInfoBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsInfoBorderSubtle,
-		[varBsListGroupActiveColor]: varBsInfoBgSubtle,
-		[varBsListGroupActiveBg]: varBsInfoTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsInfoTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-light { --bs-list-group-color: var(--bs-light-text-emphasis); --bs-list-group-bg: var(--bs-light-bg-subtle); --bs-list-group-border-color: var(--bs-light-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-light-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-light-border-subtle); --bs-list-group-active-color: var(--bs-light-bg-subtle); --bs-list-group-active-bg: var(--bs-light-text-emphasis); --bs-list-group-active-border-color: var(--bs-light-text-emphasis); }
-globalStyle(`${quartzScope}${listGroupItemLight}`, {
-	vars: {
-		[varBsListGroupColor]: varBsLightTextEmphasis,
-		[varBsListGroupBg]: varBsLightBgSubtle,
-		[varBsListGroupBorderColor]: varBsLightBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsLightBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsLightBorderSubtle,
-		[varBsListGroupActiveColor]: varBsLightBgSubtle,
-		[varBsListGroupActiveBg]: varBsLightTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsLightTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item + .list-group-item { border-top-width: 0; }
 globalStyle(`${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-// SOURCE CSS:
-// .list-group-item-primary { --bs-list-group-color: var(--bs-primary-text-emphasis); --bs-list-group-bg: var(--bs-primary-bg-subtle); --bs-list-group-border-color: var(--bs-primary-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-primary-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-primary-border-subtle); --bs-list-group-active-color: var(--bs-primary-bg-subtle); --bs-list-group-active-bg: var(--bs-primary-text-emphasis); --bs-list-group-active-border-color: var(--bs-primary-text-emphasis); }
+globalStyle(`${quartzScope}${listGroupItemAction}`, {
+	width: '100%',
+	color: varBsListGroupActionColor,
+	textAlign: 'inherit',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupFlush} > ${quartzScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${quartzScope}${listGroupFlush} > ${quartzScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
+})
+
 globalStyle(`${quartzScope}${listGroupItemPrimary}`, {
 	vars: {
 		[varBsListGroupColor]: varBsPrimaryTextEmphasis,
@@ -305,8 +394,6 @@ globalStyle(`${quartzScope}${listGroupItemPrimary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-secondary { --bs-list-group-color: var(--bs-secondary-text-emphasis); --bs-list-group-bg: var(--bs-secondary-bg-subtle); --bs-list-group-border-color: var(--bs-secondary-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-secondary-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-secondary-border-subtle); --bs-list-group-active-color: var(--bs-secondary-bg-subtle); --bs-list-group-active-bg: var(--bs-secondary-text-emphasis); --bs-list-group-active-border-color: var(--bs-secondary-text-emphasis); }
 globalStyle(`${quartzScope}${listGroupItemSecondary}`, {
 	vars: {
 		[varBsListGroupColor]: varBsSecondaryTextEmphasis,
@@ -322,8 +409,6 @@ globalStyle(`${quartzScope}${listGroupItemSecondary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-success { --bs-list-group-color: var(--bs-success-text-emphasis); --bs-list-group-bg: var(--bs-success-bg-subtle); --bs-list-group-border-color: var(--bs-success-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-success-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-success-border-subtle); --bs-list-group-active-color: var(--bs-success-bg-subtle); --bs-list-group-active-bg: var(--bs-success-text-emphasis); --bs-list-group-active-border-color: var(--bs-success-text-emphasis); }
 globalStyle(`${quartzScope}${listGroupItemSuccess}`, {
 	vars: {
 		[varBsListGroupColor]: varBsSuccessTextEmphasis,
@@ -339,8 +424,21 @@ globalStyle(`${quartzScope}${listGroupItemSuccess}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-warning { --bs-list-group-color: var(--bs-warning-text-emphasis); --bs-list-group-bg: var(--bs-warning-bg-subtle); --bs-list-group-border-color: var(--bs-warning-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-warning-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-warning-border-subtle); --bs-list-group-active-color: var(--bs-warning-bg-subtle); --bs-list-group-active-bg: var(--bs-warning-text-emphasis); --bs-list-group-active-border-color: var(--bs-warning-text-emphasis); }
+globalStyle(`${quartzScope}${listGroupItemInfo}`, {
+	vars: {
+		[varBsListGroupColor]: varBsInfoTextEmphasis,
+		[varBsListGroupBg]: varBsInfoBgSubtle,
+		[varBsListGroupBorderColor]: varBsInfoBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsInfoBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsInfoBorderSubtle,
+		[varBsListGroupActiveColor]: varBsInfoBgSubtle,
+		[varBsListGroupActiveBg]: varBsInfoTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsInfoTextEmphasis,
+	},
+})
+
 globalStyle(`${quartzScope}${listGroupItemWarning}`, {
 	vars: {
 		[varBsListGroupColor]: varBsWarningTextEmphasis,
@@ -356,49 +454,60 @@ globalStyle(`${quartzScope}${listGroupItemWarning}`, {
 	},
 })
 
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${quartzScope}${listGroupItemDanger}`, {
+	vars: {
+		[varBsListGroupColor]: varBsDangerTextEmphasis,
+		[varBsListGroupBg]: varBsDangerBgSubtle,
+		[varBsListGroupBorderColor]: varBsDangerBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsDangerBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsDangerBorderSubtle,
+		[varBsListGroupActiveColor]: varBsDangerBgSubtle,
+		[varBsListGroupActiveBg]: varBsDangerTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsDangerTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${quartzScope}${listGroupItemLight}`, {
+	vars: {
+		[varBsListGroupColor]: varBsLightTextEmphasis,
+		[varBsListGroupBg]: varBsLightBgSubtle,
+		[varBsListGroupBorderColor]: varBsLightBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsLightBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsLightBorderSubtle,
+		[varBsListGroupActiveColor]: varBsLightBgSubtle,
+		[varBsListGroupActiveBg]: varBsLightTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsLightTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${quartzScope}${listGroupItemDark}`, {
+	vars: {
+		[varBsListGroupColor]: varBsDarkTextEmphasis,
+		[varBsListGroupBg]: varBsDarkBgSubtle,
+		[varBsListGroupBorderColor]: varBsDarkBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsDarkBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsDarkBorderSubtle,
+		[varBsListGroupActiveColor]: varBsDarkBgSubtle,
+		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// .list-group-flush { border-radius: 0; }
-globalStyle(`${quartzScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${quartzScope}${listGroup}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
 })
 
-// SOURCE CSS:
-// .list-group-flush > .list-group-item { border-width: 0 0 var(--bs-list-group-border-width); }
-globalStyle(`${quartzScope}${listGroupFlush} > ${quartzScope}${listGroupItem}`, {
-	borderWidth: "0 0 var(--bs-list-group-border-width)",
+globalStyle(`${quartzScope}${listGroup} ${quartzScope}${link}`, {
+	color: '#fff',
 })
-
-// SOURCE CSS:
-// .list-group-flush > .list-group-item:last-child { border-bottom-width: 0; }
-globalStyle(`${quartzScope}${listGroupFlush} > ${quartzScope}${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
-})
-
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .list-group a

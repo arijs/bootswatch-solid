@@ -1,11 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
-	varBsBtnCloseFilter,
 	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
@@ -22,6 +23,7 @@ import {
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
+	varBsBtnActiveBoxShadow,
 	varBsBtnActiveColor,
 	varBsBtnBg,
 	varBsBtnBorderColor,
@@ -34,6 +36,7 @@ import {
 	varBsBtnDisabledColor,
 	varBsBtnDisabledOpacity,
 	varBsBtnFocusBoxShadow,
+	varBsBtnFocusBoxShadowRgb,
 	varBsBtnFontFamily,
 	varBsBtnFontSize,
 	varBsBtnFontWeight,
@@ -44,19 +47,33 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
 import {
-	fieldset,
-} from '../../../../theme-contract/forms/contract.css'
-import {
-	btnGroup,
-	btnToolbar,
-} from '../../../../theme-contract/ui/button-group/contract.css'
+	alert,
+	alertDismissible,
+	alertLight,
+	alertSecondary,
+} from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
@@ -78,1011 +95,1497 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	btnShowHook,
-	dropdown,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
-import {
-	flexWrap,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import { materiaScope } from '../../scope.css'
+import { modal, modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { offcanvas, offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toast, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/buttons
-// Review [UNMAPPED] and [DELTA] comments before committing.
+globalStyle(`${materiaScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
+})
 
-// SOURCE CSS:
-// .btn { --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem; --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400; --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color); --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width); --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius); --bs-btn-hover-border-color: transparent; --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); --bs-btn-disabled-opacity: 0.65; --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5); display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x); font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size); font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height); color: var(--bs-btn-color); text-align: center; text-decoration: none; vertical-align: middle; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none; border: var(--bs-btn-border-width) solid var(--bs-btn-border-color); border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg); transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+globalStyle(`${materiaScope}${btnCheck}[disabled] + ${materiaScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${materiaScope}${btnCheck}:disabled + ${materiaScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${materiaScope}${inputGroup} ${materiaScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${materiaScope}${inputGroup} ${materiaScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${materiaScope}${inputGroupLg} > ${materiaScope}${btn}`, {
+	padding: '1.25rem 0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
+})
+
+globalStyle(`${materiaScope}${inputGroupSm} > ${materiaScope}${btn}`, {
+	padding: '0 0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
+})
+
 globalStyle(`${materiaScope}${btn}`, {
 	vars: {
-		[varBsBtnPaddingX]: "0.75rem",
-		[varBsBtnPaddingY]: "0.375rem",
-		[varBsBtnFontFamily]: "",
-		[varBsBtnFontSize]: "1rem",
-		[varBsBtnFontWeight]: 400,
-		[varBsBtnLineHeight]: 1.5,
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnPaddingY]: '0.8rem',
+		[varBsBtnFontFamily]: '',
+		[varBsBtnFontSize]: '1rem',
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnLineHeight]: '1.5',
 		[varBsBtnColor]: varBsBodyColor,
-		[varBsBtnBg]: "transparent",
+		[varBsBtnBg]: 'transparent',
 		[varBsBtnBorderWidth]: varBsBorderWidth,
-		[varBsBtnBorderColor]: "transparent",
+		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
-		[varBsBtnHoverBorderColor]: "transparent",
-		[varBsBtnBoxShadow]: "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
-		[varBsBtnDisabledOpacity]: 0.65,
-		[varBsBtnFocusBoxShadow]: "0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)",
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnDisabledOpacity]: '0.65',
+		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	display: "inline-block",
-	padding: "var(--bs-btn-padding-y) var(--bs-btn-padding-x)",
+	display: 'inline-block',
+	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
 	fontSize: varBsBtnFontSize,
 	fontWeight: varBsBtnFontWeight,
 	lineHeight: varBsBtnLineHeight,
 	color: varBsBtnColor,
-	textAlign: "center",
-	textDecoration: "none",
-	verticalAlign: "middle",
-	cursor: "pointer",
-	WebkitUserSelect: "none",
-	MozUserSelect: "none",
-	userSelect: "none",
-	border: "var(--bs-btn-border-width) solid var(--bs-btn-border-color)",
+	textAlign: 'center',
+	textDecoration: 'none',
+	verticalAlign: 'middle',
+	cursor: 'pointer',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+	backgroundImage: varBsGradient,
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .btn:hover { color: var(--bs-btn-hover-color); background-color: var(--bs-btn-hover-bg); border-color: var(--bs-btn-hover-border-color); }
+globalStyle(`${materiaScope}${btn}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${materiaScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .btn:focus-visible { color: var(--bs-btn-hover-color); background-color: var(--bs-btn-hover-bg); border-color: var(--bs-btn-hover-border-color); outline: 0; box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${materiaScope}${btn}:focus-visible`, {
-	color: varBsBtnHoverColor,
-	backgroundColor: varBsBtnHoverBg,
-	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn-check:checked + .btn { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// :not(.btn-check) + .btn:active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`:not(${materiaScope}${btnCheck}) + ${materiaScope}${btn}:active`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn:first-child:active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${materiaScope}${btn}:first-child:active`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn.active { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${materiaScope}${btn}${btnActiveHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn.show { color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg); border-color: var(--bs-btn-active-border-color); }
-globalStyle(`${materiaScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-// SOURCE CSS:
-// .btn-check:checked + .btn:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// :not(.btn-check) + .btn:active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`:not(${materiaScope}${btnCheck}) + ${materiaScope}${btn}:active:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn:first-child:active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${materiaScope}${btn}:first-child:active:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn.active:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${materiaScope}${btn}.active:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn.show:focus-visible { box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${materiaScope}${btn}${btnShowHook}`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-// SOURCE CSS:
-// .btn:disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(`${materiaScope}${btn}:disabled`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-// SOURCE CSS:
-// .btn.disabled { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(`${materiaScope}${btn}.disabled`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-// SOURCE CSS:
-// fieldset:disabled .btn { color: var(--bs-btn-disabled-color); pointer-events: none; background-color: var(--bs-btn-disabled-bg); border-color: var(--bs-btn-disabled-border-color); opacity: var(--bs-btn-disabled-opacity); }
-// [UNMAPPED_SELECTOR] element selector "fieldset:disabled" — map to a contract class
-globalStyle(`fieldset:disabled ${materiaScope}${btn}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-// SOURCE CSS:
-// .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #6c757d; --bs-btn-border-color: #6c757d; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64; --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff; --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #6c757d; --bs-btn-disabled-border-color: #6c757d; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnSecondary}`, {
-	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#6c757d",
-		[varBsBtnBorderColor]: "#6c757d",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#5c636a",
-		[varBsBtnHoverBorderColor]: "#565e64",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#565e64",
-		[varBsBtnActiveBorderColor]: "#51585e",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#6c757d",
-		[varBsBtnDisabledBorderColor]: "#6c757d",
-	},
-})
-
-// SOURCE CSS:
-// .btn-group { position: relative; display: inline-flex; vertical-align: middle; border-radius: var(--bs-border-radius); }
-globalStyle(`${materiaScope}${btnGroup}`, {
-	position: "relative",
-	display: "inline-flex",
-	verticalAlign: "middle",
-	borderRadius: varBsBorderRadius,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical { position: relative; display: inline-flex; vertical-align: middle; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical`, {
-	position: "relative",
-	display: "inline-flex",
-	verticalAlign: "middle",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn { position: relative; flex: 1 1 auto; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}`, {
-	position: "relative",
-	flex: "1 1 auto",
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn { position: relative; flex: 1 1 auto; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btn}`, {
-	position: "relative",
-	flex: "1 1 auto",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-check:checked + .btn { z-index: 1; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-check:focus + .btn { z-index: 1; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnCheck}:focus + ${materiaScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:hover { z-index: 1; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:hover`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:focus { z-index: 1; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:focus`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:active { z-index: 1; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:active`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn.active { z-index: 1; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}${btnActiveHook}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn-check:checked + .btn { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn-check:focus + .btn { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btnCheck}:focus + ${materiaScope}${btn}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn:hover { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btn}:hover`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn:focus { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btn}:focus`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn:active { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btn}:active`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-group-vertical > .btn.active { z-index: 1; }
-// [UNMAPPED_SELECTOR] class ".btn-group-vertical" — no contract mapping
-globalStyle(`.btn-group-vertical > ${materiaScope}${btn}${btnActiveHook}`, {
-	zIndex: 1,
-})
-
-// SOURCE CSS:
-// .btn-toolbar { display: flex; flex-wrap: wrap; justify-content: flex-start; }
-globalStyle(`${materiaScope}${btnToolbar}`, {
-	display: "flex",
-	flexWrap: "wrap",
-	justifyContent: "flex-start",
-})
-
-// SOURCE CSS:
-// .btn-group > :not(.btn-check:first-child) + .btn { margin-left: calc(-1 * var(--bs-border-width)); }
-globalStyle(`${materiaScope}${btnGroup} > :not(${materiaScope}${btnCheck}:first-child) + ${materiaScope}${btn}`, {
-	marginLeft: "calc(-1 * var(--bs-border-width))",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-group:not(:first-child) { margin-left: calc(-1 * var(--bs-border-width)); }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:first-child)`, {
-	marginLeft: "calc(-1 * var(--bs-border-width))",
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:not(:last-child):not(.dropdown-toggle) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:not(:last-child):not(.dropdown-toggle)`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn.dropdown-toggle-split:first-child { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}.dropdown-toggle-split:first-child`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-group:not(:last-child) > .btn { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:last-child) > ${materiaScope}${btn}`, {
-	borderTopRightRadius: 0,
-	borderBottomRightRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn:nth-child(n+3) { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:nth-child(n+3)`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > :not(.btn-check) + .btn { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${materiaScope}${btnGroup} > :not(${materiaScope}${btnCheck}) + ${materiaScope}${btn}`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// .btn-group > .btn-group:not(:first-child) > .btn { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:first-child) > ${materiaScope}${btn}`, {
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// .btn-outline-danger { --bs-btn-color: #dc3545; --bs-btn-border-color: #dc3545; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #dc3545; --bs-btn-hover-border-color: #dc3545; --bs-btn-focus-shadow-rgb: 220, 53, 69; --bs-btn-active-color: #fff; --bs-btn-active-bg: #dc3545; --bs-btn-active-border-color: #dc3545; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #dc3545; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #dc3545; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineDanger}`, {
-	vars: {
-		[varBsBtnColor]: "#dc3545",
-		[varBsBtnBorderColor]: "#dc3545",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#dc3545",
-		[varBsBtnHoverBorderColor]: "#dc3545",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#dc3545",
-		[varBsBtnActiveBorderColor]: "#dc3545",
-		[varBsBtnDisabledColor]: "#dc3545",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#dc3545",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-dark { --bs-btn-color: #212529; --bs-btn-border-color: #212529; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #212529; --bs-btn-hover-border-color: #212529; --bs-btn-focus-shadow-rgb: 33, 37, 41; --bs-btn-active-color: #fff; --bs-btn-active-bg: #212529; --bs-btn-active-border-color: #212529; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #212529; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #212529; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineDark}`, {
-	vars: {
-		[varBsBtnColor]: "#212529",
-		[varBsBtnBorderColor]: "#212529",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#212529",
-		[varBsBtnHoverBorderColor]: "#212529",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#212529",
-		[varBsBtnActiveBorderColor]: "#212529",
-		[varBsBtnDisabledColor]: "#212529",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#212529",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-info { --bs-btn-color: #0dcaf0; --bs-btn-border-color: #0dcaf0; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #0dcaf0; --bs-btn-hover-border-color: #0dcaf0; --bs-btn-focus-shadow-rgb: 13, 202, 240; --bs-btn-active-color: #000; --bs-btn-active-bg: #0dcaf0; --bs-btn-active-border-color: #0dcaf0; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #0dcaf0; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #0dcaf0; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineInfo}`, {
-	vars: {
-		[varBsBtnColor]: "#0dcaf0",
-		[varBsBtnBorderColor]: "#0dcaf0",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#0dcaf0",
-		[varBsBtnHoverBorderColor]: "#0dcaf0",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#0dcaf0",
-		[varBsBtnActiveBorderColor]: "#0dcaf0",
-		[varBsBtnDisabledColor]: "#0dcaf0",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#0dcaf0",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-light { --bs-btn-color: #f8f9fa; --bs-btn-border-color: #f8f9fa; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #f8f9fa; --bs-btn-hover-border-color: #f8f9fa; --bs-btn-focus-shadow-rgb: 248, 249, 250; --bs-btn-active-color: #000; --bs-btn-active-bg: #f8f9fa; --bs-btn-active-border-color: #f8f9fa; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #f8f9fa; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #f8f9fa; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineLight}`, {
-	vars: {
-		[varBsBtnColor]: "#f8f9fa",
-		[varBsBtnBorderColor]: "#f8f9fa",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#f8f9fa",
-		[varBsBtnHoverBorderColor]: "#f8f9fa",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#f8f9fa",
-		[varBsBtnActiveBorderColor]: "#f8f9fa",
-		[varBsBtnDisabledColor]: "#f8f9fa",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#f8f9fa",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-primary { --bs-btn-color: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0d6efd; --bs-btn-hover-border-color: #0d6efd; --bs-btn-focus-shadow-rgb: 13, 110, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0d6efd; --bs-btn-active-border-color: #0d6efd; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #0d6efd; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #0d6efd; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlinePrimary}`, {
-	vars: {
-		[varBsBtnColor]: "#0d6efd",
-		[varBsBtnBorderColor]: "#0d6efd",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#0d6efd",
-		[varBsBtnHoverBorderColor]: "#0d6efd",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#0d6efd",
-		[varBsBtnActiveBorderColor]: "#0d6efd",
-		[varBsBtnDisabledColor]: "#0d6efd",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#0d6efd",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-secondary { --bs-btn-color: #6c757d; --bs-btn-border-color: #6c757d; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #6c757d; --bs-btn-hover-border-color: #6c757d; --bs-btn-focus-shadow-rgb: 108, 117, 125; --bs-btn-active-color: #fff; --bs-btn-active-bg: #6c757d; --bs-btn-active-border-color: #6c757d; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #6c757d; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineSecondary}`, {
-	vars: {
-		[varBsBtnColor]: "#6c757d",
-		[varBsBtnBorderColor]: "#6c757d",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#6c757d",
-		[varBsBtnHoverBorderColor]: "#6c757d",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#6c757d",
-		[varBsBtnActiveBorderColor]: "#6c757d",
-		[varBsBtnDisabledColor]: "#6c757d",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#6c757d",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-success { --bs-btn-color: #198754; --bs-btn-border-color: #198754; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #198754; --bs-btn-hover-border-color: #198754; --bs-btn-focus-shadow-rgb: 25, 135, 84; --bs-btn-active-color: #fff; --bs-btn-active-bg: #198754; --bs-btn-active-border-color: #198754; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #198754; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #198754; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineSuccess}`, {
-	vars: {
-		[varBsBtnColor]: "#198754",
-		[varBsBtnBorderColor]: "#198754",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#198754",
-		[varBsBtnHoverBorderColor]: "#198754",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#198754",
-		[varBsBtnActiveBorderColor]: "#198754",
-		[varBsBtnDisabledColor]: "#198754",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#198754",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// .btn-outline-warning { --bs-btn-color: #ffc107; --bs-btn-border-color: #ffc107; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffc107; --bs-btn-hover-border-color: #ffc107; --bs-btn-focus-shadow-rgb: 255, 193, 7; --bs-btn-active-color: #000; --bs-btn-active-bg: #ffc107; --bs-btn-active-border-color: #ffc107; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #ffc107; --bs-btn-disabled-bg: transparent; --bs-btn-disabled-border-color: #ffc107; --bs-gradient: none; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnOutlineWarning}`, {
-	vars: {
-		[varBsBtnColor]: "#ffc107",
-		[varBsBtnBorderColor]: "#ffc107",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#ffc107",
-		[varBsBtnHoverBorderColor]: "#ffc107",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#ffc107",
-		[varBsBtnActiveBorderColor]: "#ffc107",
-		[varBsBtnDisabledColor]: "#ffc107",
-		[varBsBtnDisabledBg]: "transparent",
-		[varBsBtnDisabledBorderColor]: "#ffc107",
-		[varBsGradient]: "none",
-	},
-})
-
-// SOURCE CSS:
-// label { display: inline-block; }
-// [UNMAPPED_SELECTOR] element selector "label" — map to a contract class
-globalStyle(`label`, {
-	display: "inline-block",
-})
-
-// SOURCE CSS:
-// .btn-check { position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
-globalStyle(`${materiaScope}${btnCheck}`, {
-	position: "absolute",
-	clip: "rect(0, 0, 0, 0)",
-	pointerEvents: "none",
-})
-
-// SOURCE CSS:
-// .btn-check[disabled] + .btn { pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(`${materiaScope}${btnCheck}[disabled] + ${materiaScope}${btn}`, {
-	pointerEvents: "none",
-	filter: "none",
-	opacity: 0.65,
-})
-
-// SOURCE CSS:
-// .btn-check:disabled + .btn { pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(`${materiaScope}${btnCheck}:disabled + ${materiaScope}${btn}`, {
-	pointerEvents: "none",
-	filter: "none",
-	opacity: 0.65,
-})
-
-// SOURCE CSS:
-// .btn-check + .btn:hover { color: var(--bs-btn-color); background-color: var(--bs-btn-bg); border-color: var(--bs-btn-border-color); }
 globalStyle(`${materiaScope}${btnCheck} + ${materiaScope}${btn}:hover`, {
 	color: varBsBtnColor,
 	backgroundColor: varBsBtnBg,
 	borderColor: varBsBtnBorderColor,
 })
 
-// SOURCE CSS:
-// .btn-check:focus-visible + .btn { border-color: var(--bs-btn-hover-border-color); outline: 0; box-shadow: var(--bs-btn-focus-box-shadow); }
-globalStyle(`${materiaScope}${btnCheck}:focus-visible + ${materiaScope}${btn}`, {
+globalStyle(`${materiaScope}${btn}:focus-visible`, {
+	color: varBsBtnHoverColor,
+	backgroundColor: varBsBtnHoverBg,
+	backgroundImage: varBsGradient,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-check:checked:focus-visible + .btn { box-shadow: var(--bs-btn-focus-box-shadow); }
+globalStyle(`${materiaScope}${btnCheck}:focus-visible + ${materiaScope}${btn}`, {
+	borderColor: varBsBtnHoverBorderColor,
+	outline: '0',
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${materiaScope}${btnCheck}:checked:focus-visible + ${materiaScope}${btn}`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca; --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff; --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd; --bs-btn-disabled-border-color: #0d6efd; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
+globalStyle(`${materiaScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${materiaScope}${fieldset}:disabled ${materiaScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
 globalStyle(`${materiaScope}${btnPrimary}`, {
 	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#0d6efd",
-		[varBsBtnBorderColor]: "#0d6efd",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#0b5ed7",
-		[varBsBtnHoverBorderColor]: "#0a58ca",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#0a58ca",
-		[varBsBtnActiveBorderColor]: "#0a53be",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#0d6efd",
-		[varBsBtnDisabledBorderColor]: "#0d6efd",
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#2196f3',
+		[varBsBtnBorderColor]: '#2196f3',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#1c80cf',
+		[varBsBtnHoverBorderColor]: '#1a78c2',
+		[varBsBtnFocusBoxShadowRgb]: '66, 166, 245',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#1a78c2',
+		[varBsBtnActiveBorderColor]: '#1971b6',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#2196f3',
+		[varBsBtnDisabledBorderColor]: '#2196f3',
 	},
 })
 
-// SOURCE CSS:
-// .btn-lg { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${materiaScope}${btnLg}`, {
+globalStyle(`${materiaScope}${btnSecondary}`, {
 	vars: {
-		[varBsBtnPaddingY]: "0.5rem",
-		[varBsBtnPaddingX]: "1rem",
-		[varBsBtnFontSize]: "1.25rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+		[varBsBtnColor]: '#000',
+		[varBsBtnBg]: '#fff',
+		[varBsBtnBorderColor]: '#fff',
+		[varBsBtnHoverColor]: '#000',
+		[varBsBtnHoverBg]: 'white',
+		[varBsBtnHoverBorderColor]: 'white',
+		[varBsBtnFocusBoxShadowRgb]: '217, 217, 217',
+		[varBsBtnActiveColor]: '#000',
+		[varBsBtnActiveBg]: 'white',
+		[varBsBtnActiveBorderColor]: 'white',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#000',
+		[varBsBtnDisabledBg]: '#fff',
+		[varBsBtnDisabledBorderColor]: '#fff',
 	},
 })
 
-// SOURCE CSS:
-// .btn-group-lg > .btn { --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-// [UNMAPPED_SELECTOR] class ".btn-group-lg" — no contract mapping
-globalStyle(`.btn-group-lg > ${materiaScope}${btn}`, {
+globalStyle(`${materiaScope}${btnSuccess}`, {
 	vars: {
-		[varBsBtnPaddingY]: "0.5rem",
-		[varBsBtnPaddingX]: "1rem",
-		[varBsBtnFontSize]: "1.25rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#4caf50',
+		[varBsBtnBorderColor]: '#4caf50',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#419544',
+		[varBsBtnHoverBorderColor]: '#3d8c40',
+		[varBsBtnFocusBoxShadowRgb]: '103, 187, 106',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#3d8c40',
+		[varBsBtnActiveBorderColor]: '#39833c',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#4caf50',
+		[varBsBtnDisabledBorderColor]: '#4caf50',
 	},
 })
 
-// SOURCE CSS:
-// .btn-sm { --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem; --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${materiaScope}${btnSm}`, {
-	vars: {
-		[varBsBtnPaddingY]: "0.25rem",
-		[varBsBtnPaddingX]: "0.5rem",
-		[varBsBtnFontSize]: "0.875rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
-})
-
-// SOURCE CSS:
-// .btn-group-sm > .btn { --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem; --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-// [UNMAPPED_SELECTOR] class ".btn-group-sm" — no contract mapping
-globalStyle(`.btn-group-sm > ${materiaScope}${btn}`, {
-	vars: {
-		[varBsBtnPaddingY]: "0.25rem",
-		[varBsBtnPaddingX]: "0.5rem",
-		[varBsBtnFontSize]: "0.875rem",
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
-})
-
-// SOURCE CSS:
-// .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #dc3545; --bs-btn-border-color: #dc3545; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37; --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff; --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #dc3545; --bs-btn-disabled-border-color: #dc3545; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnDanger}`, {
-	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#dc3545",
-		[varBsBtnBorderColor]: "#dc3545",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#bb2d3b",
-		[varBsBtnHoverBorderColor]: "#b02a37",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#b02a37",
-		[varBsBtnActiveBorderColor]: "#a52834",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#dc3545",
-		[varBsBtnDisabledBorderColor]: "#dc3545",
-	},
-})
-
-// SOURCE CSS:
-// .btn-dark { --bs-btn-color: #fff; --bs-btn-bg: #212529; --bs-btn-border-color: #212529; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #424649; --bs-btn-hover-border-color: #373b3e; --bs-btn-focus-shadow-rgb: 66, 70, 73; --bs-btn-active-color: #fff; --bs-btn-active-bg: #4d5154; --bs-btn-active-border-color: #373b3e; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #212529; --bs-btn-disabled-border-color: #212529; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnDark}`, {
-	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#212529",
-		[varBsBtnBorderColor]: "#212529",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#424649",
-		[varBsBtnHoverBorderColor]: "#373b3e",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#4d5154",
-		[varBsBtnActiveBorderColor]: "#373b3e",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#212529",
-		[varBsBtnDisabledBorderColor]: "#212529",
-	},
-})
-
-// SOURCE CSS:
-// .btn-info { --bs-btn-color: #000; --bs-btn-bg: #0dcaf0; --bs-btn-border-color: #0dcaf0; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #31d2f2; --bs-btn-hover-border-color: #25cff2; --bs-btn-focus-shadow-rgb: 11, 172, 204; --bs-btn-active-color: #000; --bs-btn-active-bg: #3dd5f3; --bs-btn-active-border-color: #25cff2; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #0dcaf0; --bs-btn-disabled-border-color: #0dcaf0; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
 globalStyle(`${materiaScope}${btnInfo}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#0dcaf0",
-		[varBsBtnBorderColor]: "#0dcaf0",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#31d2f2",
-		[varBsBtnHoverBorderColor]: "#25cff2",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#3dd5f3",
-		[varBsBtnActiveBorderColor]: "#25cff2",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#0dcaf0",
-		[varBsBtnDisabledBorderColor]: "#0dcaf0",
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#9c27b0',
+		[varBsBtnBorderColor]: '#9c27b0',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#852196',
+		[varBsBtnHoverBorderColor]: '#7d1f8d',
+		[varBsBtnFocusBoxShadowRgb]: '171, 71, 188',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#7d1f8d',
+		[varBsBtnActiveBorderColor]: '#751d84',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#9c27b0',
+		[varBsBtnDisabledBorderColor]: '#9c27b0',
 	},
 })
 
-// SOURCE CSS:
-// .btn-light { --bs-btn-color: #000; --bs-btn-bg: #f8f9fa; --bs-btn-border-color: #f8f9fa; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #d3d4d5; --bs-btn-hover-border-color: #c6c7c8; --bs-btn-focus-shadow-rgb: 211, 212, 213; --bs-btn-active-color: #000; --bs-btn-active-bg: #c6c7c8; --bs-btn-active-border-color: #babbbc; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #f8f9fa; --bs-btn-disabled-border-color: #f8f9fa; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
+globalStyle(`${materiaScope}${btnWarning}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#ff9800',
+		[varBsBtnBorderColor]: '#ff9800',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#d98100',
+		[varBsBtnHoverBorderColor]: '#cc7a00',
+		[varBsBtnFocusBoxShadowRgb]: '255, 167, 38',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#cc7a00',
+		[varBsBtnActiveBorderColor]: '#bf7200',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#ff9800',
+		[varBsBtnDisabledBorderColor]: '#ff9800',
+	},
+})
+
+globalStyle(`${materiaScope}${btnDanger}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#e51c23',
+		[varBsBtnBorderColor]: '#e51c23',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#c3181e',
+		[varBsBtnHoverBorderColor]: '#b7161c',
+		[varBsBtnFocusBoxShadowRgb]: '233, 62, 68',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#b7161c',
+		[varBsBtnActiveBorderColor]: '#ac151a',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#e51c23',
+		[varBsBtnDisabledBorderColor]: '#e51c23',
+	},
+})
+
 globalStyle(`${materiaScope}${btnLight}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#f8f9fa",
-		[varBsBtnBorderColor]: "#f8f9fa",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#d3d4d5",
-		[varBsBtnHoverBorderColor]: "#c6c7c8",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#c6c7c8",
-		[varBsBtnActiveBorderColor]: "#babbbc",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#f8f9fa",
-		[varBsBtnDisabledBorderColor]: "#f8f9fa",
+		[varBsBtnColor]: '#000',
+		[varBsBtnBg]: '#f8f9fa',
+		[varBsBtnBorderColor]: '#f8f9fa',
+		[varBsBtnHoverColor]: '#000',
+		[varBsBtnHoverBg]: '#d3d4d5',
+		[varBsBtnHoverBorderColor]: '#c6c7c8',
+		[varBsBtnFocusBoxShadowRgb]: '211, 212, 213',
+		[varBsBtnActiveColor]: '#000',
+		[varBsBtnActiveBg]: '#c6c7c8',
+		[varBsBtnActiveBorderColor]: '#babbbc',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#000',
+		[varBsBtnDisabledBg]: '#f8f9fa',
+		[varBsBtnDisabledBorderColor]: '#f8f9fa',
 	},
 })
 
-// SOURCE CSS:
-// .btn-link { --bs-btn-font-weight: 400; --bs-btn-color: var(--bs-link-color); --bs-btn-bg: transparent; --bs-btn-border-color: transparent; --bs-btn-hover-color: var(--bs-link-hover-color); --bs-btn-hover-border-color: transparent; --bs-btn-active-color: var(--bs-link-hover-color); --bs-btn-active-border-color: transparent; --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-border-color: transparent; --bs-btn-box-shadow: 0 0 0 #000; --bs-btn-focus-shadow-rgb: 49, 132, 253; text-decoration: underline; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
+globalStyle(`${materiaScope}${btnDark}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBg]: '#222',
+		[varBsBtnBorderColor]: '#222',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#434343',
+		[varBsBtnHoverBorderColor]: '#383838',
+		[varBsBtnFocusBoxShadowRgb]: '67, 67, 67',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#4e4e4e',
+		[varBsBtnActiveBorderColor]: '#383838',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: '#222',
+		[varBsBtnDisabledBorderColor]: '#222',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}`, {
+	vars: {
+		[varBsBtnColor]: '#2196f3',
+		[varBsBtnBorderColor]: '#2196f3',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#2196f3',
+		[varBsBtnHoverBorderColor]: '#2196f3',
+		[varBsBtnFocusBoxShadowRgb]: '33, 150, 243',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#2196f3',
+		[varBsBtnActiveBorderColor]: '#2196f3',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#2196f3',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#2196f3',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}`, {
+	vars: {
+		[varBsBtnColor]: '#fff',
+		[varBsBtnBorderColor]: '#fff',
+		[varBsBtnHoverColor]: '#000',
+		[varBsBtnHoverBg]: '#fff',
+		[varBsBtnHoverBorderColor]: '#fff',
+		[varBsBtnFocusBoxShadowRgb]: '255, 255, 255',
+		[varBsBtnActiveColor]: '#000',
+		[varBsBtnActiveBg]: '#fff',
+		[varBsBtnActiveBorderColor]: '#fff',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#fff',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#fff',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}`, {
+	vars: {
+		[varBsBtnColor]: '#4caf50',
+		[varBsBtnBorderColor]: '#4caf50',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#4caf50',
+		[varBsBtnHoverBorderColor]: '#4caf50',
+		[varBsBtnFocusBoxShadowRgb]: '76, 175, 80',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#4caf50',
+		[varBsBtnActiveBorderColor]: '#4caf50',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#4caf50',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#4caf50',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}`, {
+	vars: {
+		[varBsBtnColor]: '#9c27b0',
+		[varBsBtnBorderColor]: '#9c27b0',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#9c27b0',
+		[varBsBtnHoverBorderColor]: '#9c27b0',
+		[varBsBtnFocusBoxShadowRgb]: '156, 39, 176',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#9c27b0',
+		[varBsBtnActiveBorderColor]: '#9c27b0',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#9c27b0',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#9c27b0',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}`, {
+	vars: {
+		[varBsBtnColor]: '#ff9800',
+		[varBsBtnBorderColor]: '#ff9800',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#ff9800',
+		[varBsBtnHoverBorderColor]: '#ff9800',
+		[varBsBtnFocusBoxShadowRgb]: '255, 152, 0',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#ff9800',
+		[varBsBtnActiveBorderColor]: '#ff9800',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#ff9800',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#ff9800',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}`, {
+	vars: {
+		[varBsBtnColor]: '#e51c23',
+		[varBsBtnBorderColor]: '#e51c23',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#e51c23',
+		[varBsBtnHoverBorderColor]: '#e51c23',
+		[varBsBtnFocusBoxShadowRgb]: '229, 28, 35',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#e51c23',
+		[varBsBtnActiveBorderColor]: '#e51c23',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#e51c23',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#e51c23',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}`, {
+	vars: {
+		[varBsBtnColor]: '#f8f9fa',
+		[varBsBtnBorderColor]: '#f8f9fa',
+		[varBsBtnHoverColor]: '#000',
+		[varBsBtnHoverBg]: '#f8f9fa',
+		[varBsBtnHoverBorderColor]: '#f8f9fa',
+		[varBsBtnFocusBoxShadowRgb]: '248, 249, 250',
+		[varBsBtnActiveColor]: '#000',
+		[varBsBtnActiveBg]: '#f8f9fa',
+		[varBsBtnActiveBorderColor]: '#f8f9fa',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#f8f9fa',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#f8f9fa',
+		[varBsGradient]: 'none',
+	},
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}`, {
+	vars: {
+		[varBsBtnColor]: '#222',
+		[varBsBtnBorderColor]: '#222',
+		[varBsBtnHoverColor]: '#fff',
+		[varBsBtnHoverBg]: '#222',
+		[varBsBtnHoverBorderColor]: '#222',
+		[varBsBtnFocusBoxShadowRgb]: '34, 34, 34',
+		[varBsBtnActiveColor]: '#fff',
+		[varBsBtnActiveBg]: '#222',
+		[varBsBtnActiveBorderColor]: '#222',
+		[varBsBtnActiveBoxShadow]: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
+		[varBsBtnDisabledColor]: '#222',
+		[varBsBtnDisabledBg]: 'transparent',
+		[varBsBtnDisabledBorderColor]: '#222',
+		[varBsGradient]: 'none',
+	},
+})
+
 globalStyle(`${materiaScope}${btnLink}`, {
 	vars: {
-		[varBsBtnFontWeight]: 400,
+		[varBsBtnFontWeight]: '400',
 		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: "transparent",
-		[varBsBtnBorderColor]: "transparent",
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: "transparent",
+		[varBsBtnHoverBorderColor]: 'transparent',
 		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: "transparent",
-		[varBsBtnDisabledColor]: "#6c757d",
-		[varBsBtnDisabledBorderColor]: "transparent",
-		[varBsBtnBoxShadow]: "0 0 0 #000",
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#666',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '66, 166, 245',
 	},
-	textDecoration: "underline",
+	textDecoration: 'underline',
+	backgroundImage: 'none',
 })
 
-// SOURCE CSS:
-// .btn-link:focus-visible { color: var(--bs-btn-color); }
 globalStyle(`${materiaScope}${btnLink}:focus-visible`, {
 	color: varBsBtnColor,
 })
 
-// SOURCE CSS:
-// .btn-link:hover { color: var(--bs-btn-hover-color); }
 globalStyle(`${materiaScope}${btnLink}:hover`, {
 	color: varBsBtnHoverColor,
 })
 
-// SOURCE CSS:
-// .btn-success { --bs-btn-color: #fff; --bs-btn-bg: #198754; --bs-btn-border-color: #198754; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #157347; --bs-btn-hover-border-color: #146c43; --bs-btn-focus-shadow-rgb: 60, 153, 110; --bs-btn-active-color: #fff; --bs-btn-active-bg: #146c43; --bs-btn-active-border-color: #13653f; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #198754; --bs-btn-disabled-border-color: #198754; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnSuccess}`, {
+globalStyle(`${materiaScope}${btnLg}`, {
 	vars: {
-		[varBsBtnColor]: "#fff",
-		[varBsBtnBg]: "#198754",
-		[varBsBtnBorderColor]: "#198754",
-		[varBsBtnHoverColor]: "#fff",
-		[varBsBtnHoverBg]: "#157347",
-		[varBsBtnHoverBorderColor]: "#146c43",
-		[varBsBtnActiveColor]: "#fff",
-		[varBsBtnActiveBg]: "#146c43",
-		[varBsBtnActiveBorderColor]: "#13653f",
-		[varBsBtnDisabledColor]: "#fff",
-		[varBsBtnDisabledBg]: "#198754",
-		[varBsBtnDisabledBorderColor]: "#198754",
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
 	},
 })
 
-// SOURCE CSS:
-// .btn-warning { --bs-btn-color: #000; --bs-btn-bg: #ffc107; --bs-btn-border-color: #ffc107; --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffca2c; --bs-btn-hover-border-color: #ffc720; --bs-btn-focus-shadow-rgb: 217, 164, 6; --bs-btn-active-color: #000; --bs-btn-active-bg: #ffcd39; --bs-btn-active-border-color: #ffc720; --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #ffc107; --bs-btn-disabled-border-color: #ffc107; }
-// [UNMAPPED_VAR] --bs-btn-focus-shadow-rgb
-// [UNMAPPED_VAR] --bs-btn-active-shadow
-globalStyle(`${materiaScope}${btnWarning}`, {
+globalStyle(`${materiaScope}${btnGroupLg} > ${materiaScope}${btn}`, {
 	vars: {
-		[varBsBtnColor]: "#000",
-		[varBsBtnBg]: "#ffc107",
-		[varBsBtnBorderColor]: "#ffc107",
-		[varBsBtnHoverColor]: "#000",
-		[varBsBtnHoverBg]: "#ffca2c",
-		[varBsBtnHoverBorderColor]: "#ffc720",
-		[varBsBtnActiveColor]: "#000",
-		[varBsBtnActiveBg]: "#ffcd39",
-		[varBsBtnActiveBorderColor]: "#ffc720",
-		[varBsBtnDisabledColor]: "#000",
-		[varBsBtnDisabledBg]: "#ffc107",
-		[varBsBtnDisabledBorderColor]: "#ffc107",
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
 	},
 })
 
-// SOURCE CSS:
-// .btn-close { --bs-btn-close-color: #000; --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e"); --bs-btn-close-opacity: 0.5; --bs-btn-close-hover-opacity: 0.75; --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); --bs-btn-close-focus-opacity: 1; --bs-btn-close-disabled-opacity: 0.25; box-sizing: content-box; width: 1em; height: 1em; padding: 0.25em 0.25em; color: var(--bs-btn-close-color); background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat; filter: var(--bs-btn-close-filter); border: 0; border-radius: 0.375rem; opacity: var(--bs-btn-close-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close`, {
+globalStyle(`${materiaScope}${btnSm}`, {
 	vars: {
-		[varBsBtnCloseColor]: "#fff",
-		[varBsBtnCloseBg]: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
-		[varBsBtnCloseOpacity]: 0.5,
-		[varBsBtnCloseHoverOpacity]: 0.75,
-		[varBsBtnCloseFocusShadow]: "0 0 0 0.25rem rgba(33, 150, 243, 0.25)",
-		[varBsBtnCloseFocusOpacity]: 1,
-		[varBsBtnCloseDisabledOpacity]: 0.25,
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
 	},
-	boxSizing: "content-box",
-	width: "1em",
-	height: "1em",
-	padding: "0.25em 0.25em",
+})
+
+globalStyle(`${materiaScope}${btnGroupSm} > ${materiaScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnCheck}:focus + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnCheck}:focus + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}:not(${btnCheck}:first-child) + ${materiaScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:last-child) > ${materiaScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:first-child) > ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup}:not(:last-child) > ${materiaScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup}:not(:first-child) > ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${alertDismissible} ${materiaScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '1.25rem 1rem',
+})
+
+globalStyle(`${materiaScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#fff',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.6',
+		[varBsBtnCloseHoverOpacity]: '1',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
 	color: varBsBtnCloseColor,
-	background: "transparent var(--bs-btn-close-bg) center/1em auto no-repeat",
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
 	filter: varBsBtnCloseFilter,
-	border: 0,
-	borderRadius: "0.375rem",
+	border: '0',
+	borderRadius: '0.375rem',
 	opacity: varBsBtnCloseOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:hover { color: var(--bs-btn-close-color); text-decoration: none; opacity: var(--bs-btn-close-hover-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:hover`, {
+globalStyle(`${materiaScope}${btnClose}:hover`, {
 	color: varBsBtnCloseColor,
-	textDecoration: "none",
+	textDecoration: 'none',
 	opacity: varBsBtnCloseHoverOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:focus { outline: 0; box-shadow: var(--bs-btn-close-focus-shadow); opacity: var(--bs-btn-close-focus-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:focus`, {
-	outline: 0,
+globalStyle(`${materiaScope}${btnClose}:focus`, {
+	outline: '0',
 	boxShadow: varBsBtnCloseFocusShadow,
 	opacity: varBsBtnCloseFocusOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close:disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close:disabled`, {
-	pointerEvents: "none",
-	WebkitUserSelect: "none",
-	MozUserSelect: "none",
-	userSelect: "none",
+globalStyle(`${materiaScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-close.disabled { pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; opacity: var(--bs-btn-close-disabled-opacity); }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`.btn-close.disabled`, {
-	pointerEvents: "none",
-	WebkitUserSelect: "none",
-	MozUserSelect: "none",
-	userSelect: "none",
-	opacity: varBsBtnCloseDisabledOpacity,
+globalStyle(`${materiaScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .btn-secondary:focus
-// [DELTA] unmapped selector: .btn-secondary:hover
-// [DELTA] unmapped selector: .btn-secondary:active:hover
-// [DELTA] unmapped selector: .btn-secondary:active
-// [DELTA] unmapped selector: .btn-secondary::before
-// [DELTA] unmapped selector: .btn-secondary:active::before
-// [DELTA] unmapped selector: .btn-group .btn + .btn
-// [DELTA] unmapped selector: .btn-group .btn + .btn-group
-// [DELTA] unmapped selector: .btn-group .btn-group + .btn
-// [DELTA] unmapped selector: .btn-group .btn-group + .btn-group
-// [DELTA] unmapped selector: .btn-group .btn + .btn-group > .dropdown-toggle
-// [DELTA] unmapped selector: .btn-outline-danger::before
-// [DELTA] unmapped selector: .btn-outline-danger:active::before
-// [DELTA] unmapped selector: .btn-outline-dark::before
-// [DELTA] unmapped selector: .btn-outline-dark:active::before
-// [DELTA] unmapped selector: .btn-outline-danger.disabled::before
-// [DELTA] unmapped selector: .btn-outline-danger[disabled]::before
-// [DELTA] unmapped selector: .btn-outline-dark.disabled::before
-// [DELTA] unmapped selector: .btn-outline-dark[disabled]::before
-// [DELTA] unmapped selector: .btn-outline-info::before
-// [DELTA] ... and 92 more unmapped selectors
+globalStyle(`${materiaScope}${toastHeader} ${materiaScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${materiaScope}${modalHeader} ${materiaScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${materiaScope}${offcanvasHeader} ${materiaScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${materiaScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:focus`, {
+	backgroundColor: '#2196f3',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:hover`, {
+	backgroundColor: '#1d84d6',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:active:hover`, {
+	backgroundColor: '#1d84d6',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:focus`, {
+	backgroundColor: '#fff',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:hover`, {
+	backgroundColor: '#e0e0e0',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:active:hover`, {
+	backgroundColor: '#e0e0e0',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #bbb 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #bbb 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:focus`, {
+	backgroundColor: '#4caf50',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:hover`, {
+	backgroundColor: '#439a46',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:active:hover`, {
+	backgroundColor: '#439a46',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnInfo}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:focus`, {
+	backgroundColor: '#9c27b0',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:hover`, {
+	backgroundColor: '#89229b',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:active:hover`, {
+	backgroundColor: '#89229b',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnInfo}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnInfo}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnWarning}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:focus`, {
+	backgroundColor: '#ff9800',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:hover`, {
+	backgroundColor: '#e08600',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:active:hover`, {
+	backgroundColor: '#e08600',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnWarning}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnWarning}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDanger}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:focus`, {
+	backgroundColor: '#e51c23',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:hover`, {
+	backgroundColor: '#ca191f',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:active:hover`, {
+	backgroundColor: '#ca191f',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnDanger}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDanger}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDark}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnDark}:focus`, {
+	backgroundColor: '#222',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnDark}:hover`, {
+	backgroundColor: '#1e1e1e',
+})
+
+globalStyle(`${materiaScope}${btnDark}:active:hover`, {
+	backgroundColor: '#1e1e1e',
+})
+
+globalStyle(`${materiaScope}${btnDark}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnDark}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnDark}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDark}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLight}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnLight}:focus`, {
+	backgroundColor: '#f8f9fa',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnLight}:hover`, {
+	backgroundColor: '#dadbdc',
+})
+
+globalStyle(`${materiaScope}${btnLight}:active:hover`, {
+	backgroundColor: '#dadbdc',
+})
+
+globalStyle(`${materiaScope}${btnLight}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnLight}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnLight}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLight}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btn}`, {
+	textTransform: 'uppercase',
+	border: 'none',
+	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)',
+	transition: 'color 0.4s, background-color 0.4s, border-color 0.4s, box-shadow 0.4s',
+})
+
+globalStyle(`${materiaScope}${btnLink}`, {
+	color: '#2196f3',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}:hover`, {
+	color: '#1a78c2',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}:focus`, {
+	color: '#1a78c2',
+	boxShadow: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}[disabled]:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}[disabled]:active:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnLink}:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnLink}:active:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+	opacity: '1',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnSecondary}`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+	opacity: '1',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]:hover`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]:focus`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnSecondary}:hover`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnSecondary}:focus`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}`, {
+	color: '#dee2e6',
+	borderColor: '#eee',
+})
+
+globalStyle(`${materiaScope}${btnWarning}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btn} + ${materiaScope}${btn}`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btnGroup} + ${materiaScope}${btn}`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn} + ${materiaScope}${btn}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup} + ${materiaScope}${btn}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btn} + ${materiaScope}${btn}`, {
+	boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${link}:not(${btn})`, {
+	fontWeight: '700',
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alertSecondary} ${materiaScope}${link}:not(${btn})`, {
+	color: '#444',
+})
+
+globalStyle(`${materiaScope}${alertLight} ${materiaScope}${link}:not(${btn})`, {
+	color: '#444',
+})
+
+globalStyle(`${materiaScope}${modal} ${materiaScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
+})
+
+globalStyle(`${materiaScope}${toast} ${materiaScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
+})
+
+globalStyle(`${materiaScope}${offcanvas} ${materiaScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
+})

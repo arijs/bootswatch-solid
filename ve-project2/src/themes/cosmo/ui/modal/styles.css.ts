@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { cosmoScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -6,8 +8,8 @@ import {
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
 	varBsBorderWidth,
+	varBsBoxShadow,
 	varBsBoxShadowSm,
-	varBsHeadingColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBackdropBg,
@@ -35,19 +37,19 @@ import {
 	varBsModalWidth,
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
+
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
+	modalFullscreenLgDown,
+	modalFullscreenMdDown,
+	modalFullscreenSmDown,
+	modalFullscreenXlDown,
+	modalFullscreenXxlDown,
+	modalLg,
+	modalSm,
+	modalStatic,
+	modalXl,
+} from '../../../../theme-contract/literal/contract.css'
 import {
-	alertBtnClose,
-} from '../../../../theme-contract/ui/alerts/contract.css'
-import {
-	fade,
 	flexWrap,
 	justifyContentBetween,
 	modal,
@@ -57,102 +59,36 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
+	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
 	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-import {
-	dFlex,
-} from '../../../../theme-contract/utilities/contract.css'
-import { cosmoScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/modal
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cosmoScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
+globalStyle(`${cosmoScope}${modalFade}`, {
+	transition: 'opacity 0.15s linear',
 })
 
-// SOURCE CSS:
-// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${cosmoScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
+globalStyle(`${cosmoScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
-// SOURCE CSS:
-// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`${cosmoScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: `calc(1.275rem + 0.3vw)`,
+globalStyle(`${cosmoScope}${modalFade}:not(${modalShowHook})`, {
+	opacity: '0',
 })
 
-// SOURCE CSS:
-// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cosmoScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cosmoScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${cosmoScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .fade { transition: opacity 0.15s linear; }
-globalStyle(`${cosmoScope}${fade}`, {
-	transition: "opacity 0.15s linear",
-})
-
-// SOURCE CSS:
-// .fade:not(.show) { opacity: 0; }
-globalStyle(`${cosmoScope}${fade}:not(${modalShowHook})`, {
-	opacity: 0,
-})
-
-// SOURCE CSS:
-// .modal { --bs-modal-zindex: 1055; --bs-modal-width: 500px; --bs-modal-padding: 1rem; --bs-modal-margin: 0.5rem; --bs-modal-color: var(--bs-body-color); --bs-modal-bg: var(--bs-body-bg); --bs-modal-border-color: var(--bs-border-color-translucent); --bs-modal-border-width: var(--bs-border-width); --bs-modal-border-radius: var(--bs-border-radius-lg); --bs-modal-box-shadow: var(--bs-box-shadow-sm); --bs-modal-inner-border-radius: calc(var(--bs-border-radius-lg) - (var(--bs-border-width))); --bs-modal-header-padding-x: 1rem; --bs-modal-header-padding-y: 1rem; --bs-modal-header-padding: 1rem 1rem; --bs-modal-header-border-color: var(--bs-border-color); --bs-modal-header-border-width: var(--bs-border-width); --bs-modal-title-line-height: 1.5; --bs-modal-footer-gap: 0.5rem; --bs-modal-footer-bg: ; --bs-modal-footer-border-color: var(--bs-border-color); --bs-modal-footer-border-width: var(--bs-border-width); position: fixed; top: 0; left: 0; z-index: var(--bs-modal-zindex); display: none; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; outline: 0; }
 globalStyle(`${cosmoScope}${modal}`, {
 	vars: {
-		[varBsModalZindex]: 1055,
-		[varBsModalWidth]: "500px",
-		[varBsModalPadding]: "1rem",
-		[varBsModalMargin]: "0.5rem",
+		[varBsModalZindex]: '1055',
+		[varBsModalWidth]: '500px',
+		[varBsModalPadding]: '1rem',
+		[varBsModalMargin]: '0.5rem',
 		[varBsModalColor]: varBsBodyColor,
 		[varBsModalBg]: varBsBodyBg,
 		[varBsModalBorderColor]: varBsBorderColorTranslucent,
@@ -160,248 +96,367 @@ globalStyle(`${cosmoScope}${modal}`, {
 		[varBsModalBorderRadius]: varBsBorderRadiusLg,
 		[varBsModalBoxShadow]: varBsBoxShadowSm,
 		[varBsModalInnerBorderRadius]: `calc(${varBsBorderRadiusLg} - (${varBsBorderWidth}))`,
-		[varBsModalHeaderPaddingX]: "1rem",
-		[varBsModalHeaderPaddingY]: "1rem",
-		[varBsModalHeaderPadding]: "1rem 1rem",
+		[varBsModalHeaderPaddingX]: '1rem',
+		[varBsModalHeaderPaddingY]: '1rem',
+		[varBsModalHeaderPadding]: '1rem 1rem',
 		[varBsModalHeaderBorderColor]: varBsBorderColor,
 		[varBsModalHeaderBorderWidth]: varBsBorderWidth,
-		[varBsModalTitleLineHeight]: 1.5,
-		[varBsModalFooterGap]: "0.5rem",
-		[varBsModalFooterBg]: "",
+		[varBsModalTitleLineHeight]: '1.5',
+		[varBsModalFooterGap]: '0.5rem',
+		[varBsModalFooterBg]: '',
 		[varBsModalFooterBorderColor]: varBsBorderColor,
 		[varBsModalFooterBorderWidth]: varBsBorderWidth,
 	},
-	position: "fixed",
-	top: 0,
-	left: 0,
+	position: 'fixed',
+	top: '0',
+	left: '0',
 	zIndex: varBsModalZindex,
-	display: "none",
-	width: "100%",
-	height: "100%",
-	overflowX: "hidden",
-	overflowY: "auto",
-	outline: 0,
+	display: 'none',
+	width: '100%',
+	height: '100%',
+	overflowX: 'hidden',
+	overflowY: 'auto',
+	outline: '0',
 })
 
-// SOURCE CSS:
-// .modal-dialog { position: relative; width: auto; margin: var(--bs-modal-margin); pointer-events: none; }
 globalStyle(`${cosmoScope}${modalDialog}`, {
-	position: "relative",
-	width: "auto",
+	position: 'relative',
+	width: 'auto',
 	margin: varBsModalMargin,
-	pointerEvents: "none",
+	pointerEvents: 'none',
 })
 
-// SOURCE CSS:
-// .modal.fade .modal-dialog { transform: translate(0, -50px); transition: transform 0.3s ease-out; }
-globalStyle(`${cosmoScope}${modal}${fade} ${cosmoScope}${modalDialog}`, {
-	transform: "translate(0, -50px)",
-	transition: "transform 0.3s ease-out",
+globalStyle(`${cosmoScope}${modal}${modalFade} ${cosmoScope}${modalDialog}`, {
+	transform: 'translate(0, -50px)',
+	transition: 'transform 0.3s ease-out',
 })
 
-// SOURCE CSS:
-// .modal.show .modal-dialog { transform: none; }
+globalStyle(`${cosmoScope}${modal}${modalFade} ${cosmoScope}${modalDialog}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${modal}${modalShowHook} ${cosmoScope}${modalDialog}`, {
-	transform: "none",
+	transform: 'none',
 })
 
-// SOURCE CSS:
-// .modal-dialog-scrollable { height: calc(100% - var(--bs-modal-margin) * 2); }
+globalStyle(`${cosmoScope}${modal}${modalStatic} ${cosmoScope}${modalDialog}`, {
+	transform: 'scale(1.02)',
+})
+
 globalStyle(`${cosmoScope}${modalDialogScrollable}`, {
 	height: `calc(100% - ${varBsModalMargin} * 2)`,
 })
 
-// SOURCE CSS:
-// .modal-dialog-scrollable .modal-content { max-height: 100%; overflow: hidden; }
 globalStyle(`${cosmoScope}${modalDialogScrollable} ${cosmoScope}${modalContent}`, {
-	maxHeight: "100%",
-	overflow: "hidden",
+	maxHeight: '100%',
+	overflow: 'hidden',
 })
 
-// SOURCE CSS:
-// .modal-dialog-scrollable .modal-body { overflow-y: auto; }
 globalStyle(`${cosmoScope}${modalDialogScrollable} ${cosmoScope}${modalBody}`, {
-	overflowY: "auto",
+	overflowY: 'auto',
 })
 
-// SOURCE CSS:
-// .modal-dialog-centered { display: flex; align-items: center; min-height: calc(100% - var(--bs-modal-margin) * 2); }
 globalStyle(`${cosmoScope}${modalDialogCentered}`, {
-	display: "flex",
-	alignItems: "center",
+	display: 'flex',
+	alignItems: 'center',
 	minHeight: `calc(100% - ${varBsModalMargin} * 2)`,
 })
 
-// SOURCE CSS:
-// .modal-content { position: relative; display: flex; flex-direction: column; width: 100%; color: var(--bs-modal-color); pointer-events: auto; background-color: var(--bs-modal-bg); background-clip: padding-box; border: var(--bs-modal-border-width) solid var(--bs-modal-border-color); border-radius: var(--bs-modal-border-radius); outline: 0; }
 globalStyle(`${cosmoScope}${modalContent}`, {
-	position: "relative",
-	display: "flex",
-	flexDirection: "column",
-	width: "100%",
+	position: 'relative',
+	display: 'flex',
+	flexDirection: 'column',
+	width: '100%',
 	color: varBsModalColor,
-	pointerEvents: "auto",
+	pointerEvents: 'auto',
 	backgroundColor: varBsModalBg,
-	backgroundClip: "padding-box",
+	backgroundClip: 'padding-box',
 	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
-	borderRadius: varBsModalBorderRadius,
-	outline: 0,
+	outline: '0',
 })
 
-// SOURCE CSS:
-// .modal-backdrop { --bs-backdrop-zindex: 1050; --bs-backdrop-bg: #000; --bs-backdrop-opacity: 0.5; position: fixed; top: 0; left: 0; z-index: var(--bs-backdrop-zindex); width: 100vw; height: 100vh; background-color: var(--bs-backdrop-bg); }
 globalStyle(`${cosmoScope}${modalBackdrop}`, {
 	vars: {
-		[varBsBackdropZindex]: 1050,
-		[varBsBackdropBg]: "#000",
-		[varBsBackdropOpacity]: 0.5,
+		[varBsBackdropZindex]: '1050',
+		[varBsBackdropBg]: '#000',
+		[varBsBackdropOpacity]: '0.5',
 	},
-	position: "fixed",
-	top: 0,
-	left: 0,
+	position: 'fixed',
+	top: '0',
+	left: '0',
 	zIndex: varBsBackdropZindex,
-	width: "100vw",
-	height: "100vh",
+	width: '100vw',
+	height: '100vh',
 	backgroundColor: varBsBackdropBg,
 })
 
-// SOURCE CSS:
-// .modal-backdrop.fade { opacity: 0; }
-globalStyle(`${cosmoScope}${modalBackdrop}${fade}:not(${modalShowHook})`, {
-	opacity: 0,
+globalStyle(`${cosmoScope}${modalBackdrop}${modalFade}`, {
+	opacity: '0',
 })
 
-// SOURCE CSS:
-// .modal-backdrop.show { opacity: var(--bs-backdrop-opacity); }
 globalStyle(`${cosmoScope}${modalBackdrop}${modalShowHook}`, {
 	opacity: varBsBackdropOpacity,
 })
 
-// SOURCE CSS:
-// .modal-header { display: flex; flex-shrink: 0; align-items: center; padding: var(--bs-modal-header-padding); border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); border-top-left-radius: var(--bs-modal-inner-border-radius); border-top-right-radius: var(--bs-modal-inner-border-radius); }
 globalStyle(`${cosmoScope}${modalHeader}`, {
-	display: "flex",
-	flexShrink: 0,
-	alignItems: "center",
+	display: 'flex',
+	flexShrink: '0',
+	alignItems: 'center',
 	padding: varBsModalHeaderPadding,
 	borderBottom: `${varBsModalHeaderBorderWidth} solid ${varBsModalHeaderBorderColor}`,
-	borderTopLeftRadius: varBsModalInnerBorderRadius,
-	borderTopRightRadius: varBsModalInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// .modal-header .btn-close { padding: calc(var(--bs-modal-header-padding-y) * 0.5) calc(var(--bs-modal-header-padding-x) * 0.5); margin-top: calc(-0.5 * var(--bs-modal-header-padding-y)); margin-right: calc(-0.5 * var(--bs-modal-header-padding-x)); margin-bottom: calc(-0.5 * var(--bs-modal-header-padding-y)); margin-left: auto; }
-globalStyle(`${cosmoScope}${modalHeader} ${cosmoScope}${alertBtnClose}`, {
-	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
-	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
-	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginLeft: "auto",
-})
-
-// SOURCE CSS:
-// .modal-title { margin-bottom: 0; line-height: var(--bs-modal-title-line-height); }
-globalStyle(`${cosmoScope}${h5}${modalTitle}`, {
-	marginBottom: 0,
+globalStyle(`${cosmoScope}${modalTitle}`, {
+	marginBottom: '0',
 	lineHeight: varBsModalTitleLineHeight,
 })
 
-// SOURCE CSS:
-// .modal-body { position: relative; flex: 1 1 auto; padding: var(--bs-modal-padding); }
 globalStyle(`${cosmoScope}${modalBody}`, {
-	position: "relative",
-	flex: "1 1 auto",
+	position: 'relative',
+	flex: '1 1 auto',
 	padding: varBsModalPadding,
 })
 
-// SOURCE CSS:
-// .modal-footer { display: flex; flex-shrink: 0; flex-wrap: wrap; align-items: center; justify-content: flex-end; padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5); background-color: var(--bs-modal-footer-bg); border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color); border-bottom-right-radius: var(--bs-modal-inner-border-radius); border-bottom-left-radius: var(--bs-modal-inner-border-radius); }
 globalStyle(`${cosmoScope}${modalFooter}`, {
-	display: "flex",
-	flexShrink: 0,
-	flexWrap: "wrap",
-	alignItems: "center",
-	justifyContent: "flex-end",
+	display: 'flex',
+	flexShrink: '0',
+	flexWrap: 'wrap',
+	alignItems: 'center',
+	justifyContent: 'flex-end',
 	padding: `calc(${varBsModalPadding} - ${varBsModalFooterGap} * 0.5)`,
 	backgroundColor: varBsModalFooterBg,
 	borderTop: `${varBsModalFooterBorderWidth} solid ${varBsModalFooterBorderColor}`,
-	borderBottomRightRadius: varBsModalInnerBorderRadius,
-	borderBottomLeftRadius: varBsModalInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// .modal-footer > * { margin: calc(var(--bs-modal-footer-gap) * 0.5); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
 globalStyle(`${cosmoScope}${modalFooter} > *`, {
 	margin: `calc(${varBsModalFooterGap} * 0.5)`,
 })
 
-// SOURCE CSS:
-// .d-flex { display: flex !important; }
-globalStyle(`${cosmoScope}${dFlex}`, {
-	display: "flex !important",
+globalStyle(`${cosmoScope}${modal}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsModalMargin]: '1.75rem',
+				[varBsModalBoxShadow]: varBsBoxShadow,
+			},
+		},
+	},
 })
 
-// SOURCE CSS:
-// .flex-wrap { flex-wrap: wrap !important; }
-globalStyle(`${cosmoScope}${flexWrap}`, {
-	flexWrap: "wrap !important",
+globalStyle(`${cosmoScope}${modalDialog}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			maxWidth: varBsModalWidth,
+			marginRight: 'auto',
+			marginLeft: 'auto',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .justify-content-between { justify-content: space-between !important; }
-globalStyle(`${cosmoScope}${justifyContentBetween}`, {
-	justifyContent: "space-between !important",
+globalStyle(`${cosmoScope}${modalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsModalWidth]: '300px',
+			},
+		},
+	},
 })
 
-// SOURCE CSS:
-// .modal-fullscreen { width: 100vw; max-width: none; height: 100%; margin: 0; }
+globalStyle(`${cosmoScope}${modalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsModalWidth]: '1140px',
+			},
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${modalFullscreen}`, {
-	width: "100vw",
-	maxWidth: "none",
-	height: "100%",
-	margin: 0,
+	width: '100vw',
+	maxWidth: 'none',
+	height: '100%',
+	margin: '0',
 })
 
-// SOURCE CSS:
-// .modal-fullscreen .modal-content { height: 100%; border: 0; border-radius: 0; }
 globalStyle(`${cosmoScope}${modalFullscreen} ${cosmoScope}${modalContent}`, {
-	height: "100%",
-	border: 0,
-	borderRadius: 0,
+	height: '100%',
+	border: '0',
 })
 
-// SOURCE CSS:
-// .modal-fullscreen .modal-header { border-radius: 0; }
-globalStyle(`${cosmoScope}${modalFullscreen} ${cosmoScope}${modalHeader}`, {
-	borderRadius: 0,
-	width: "100vw",
-	maxWidth: "none",
-	height: "100%",
-	margin: 0,
-})
-
-// SOURCE CSS:
-// .modal-fullscreen .modal-footer { border-radius: 0; }
-globalStyle(`${cosmoScope}${modalFullscreen} ${cosmoScope}${modalFooter}`, {
-	borderRadius: 0,
-	width: "100vw",
-	maxWidth: "none",
-	height: "100%",
-	margin: 0,
-})
-
-// SOURCE CSS:
-// .modal-fullscreen .modal-body { overflow-y: auto; }
 globalStyle(`${cosmoScope}${modalFullscreen} ${cosmoScope}${modalBody}`, {
-	overflowY: "auto",
+	overflowY: 'auto',
 })
 
-// ── Delta rules (theme-specific overrides) ───────────────────────────────────
-// SOURCE CSS:
-// .modal.modal-static .modal-dialog { transform: scale(1.02); }
-// [DELTA] theme-specific rule not in bootstrap structure
-// [UNMAPPED_SELECTOR] class ".modal-static" — no contract mapping
-globalStyle(`${cosmoScope}${modal}.modal-static ${cosmoScope}${modalDialog}`, {
-	transform: "scale(1.02)",
+globalStyle(`${cosmoScope}${modalFullscreenSmDown}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenSmDown} ${cosmoScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			height: '100%',
+			border: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenSmDown} ${cosmoScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenMdDown}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenMdDown} ${cosmoScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			height: '100%',
+			border: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenMdDown} ${cosmoScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenLgDown}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenLgDown} ${cosmoScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			height: '100%',
+			border: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenLgDown} ${cosmoScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenXlDown}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenXlDown} ${cosmoScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			height: '100%',
+			border: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenXlDown} ${cosmoScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenXxlDown}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenXxlDown} ${cosmoScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			height: '100%',
+			border: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${modalFullscreenXxlDown} ${cosmoScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
+globalStyle(`${cosmoScope}${justifyContentBetween}`, {
+	justifyContent: 'space-between !important',
 })

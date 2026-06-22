@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { morphScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -18,12 +20,9 @@ import {
 	varBsLightBgSubtle,
 	varBsLightBorderSubtle,
 	varBsLightTextEmphasis,
-	varBsLinkColorRgb,
-	varBsLinkHoverColorRgb,
 	varBsPrimaryBgSubtle,
 	varBsPrimaryBorderSubtle,
 	varBsPrimaryTextEmphasis,
-	varBsSecondaryBg,
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
 	varBsSecondaryColor,
@@ -31,11 +30,11 @@ import {
 	varBsSuccessBgSubtle,
 	varBsSuccessBorderSubtle,
 	varBsSuccessTextEmphasis,
-	varBsTertiaryBg,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
 	varBsWarningTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 	varBsListGroupActionActiveBg,
 	varBsListGroupActionActiveColor,
@@ -55,9 +54,17 @@ import {
 	varBsListGroupItemPaddingX,
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
+
 import {
-	link,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
 import {
 	listGroup,
 	listGroupFlush,
@@ -72,46 +79,28 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../../theme-contract/ui/list-group/contract.css'
-import { morphScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/list-group
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: "rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))",
-	textDecoration: "underline",
+globalStyle(`${morphScope}${card} > ${morphScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
 })
 
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
+globalStyle(`${morphScope}${card} > ${morphScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${morphScope}${card} > ${morphScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
+globalStyle(`${morphScope}${card} > ${morphScope}${cardHeader} + ${morphScope}${listGroup}`, {
+	borderTop: '0',
 })
 
-// SOURCE CSS:
-// .list-group { --bs-list-group-color: var(--bs-body-color); --bs-list-group-bg: var(--bs-body-bg); --bs-list-group-border-color: var(--bs-border-color); --bs-list-group-border-width: var(--bs-border-width); --bs-list-group-border-radius: var(--bs-border-radius); --bs-list-group-item-padding-x: 1rem; --bs-list-group-item-padding-y: 0.5rem; --bs-list-group-action-color: var(--bs-secondary-color); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-tertiary-bg); --bs-list-group-action-active-color: var(--bs-body-color); --bs-list-group-action-active-bg: var(--bs-secondary-bg); --bs-list-group-disabled-color: var(--bs-secondary-color); --bs-list-group-disabled-bg: var(--bs-body-bg); --bs-list-group-active-color: #fff; --bs-list-group-active-bg: #0d6efd; --bs-list-group-active-border-color: #0d6efd; display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0; border-radius: var(--bs-list-group-border-radius); }
 globalStyle(`${morphScope}${listGroup}`, {
 	vars: {
 		[varBsListGroupColor]: varBsBodyColor,
@@ -119,177 +108,278 @@ globalStyle(`${morphScope}${listGroup}`, {
 		[varBsListGroupBorderColor]: varBsBorderColor,
 		[varBsListGroupBorderWidth]: varBsBorderWidth,
 		[varBsListGroupBorderRadius]: varBsBorderRadius,
-		[varBsListGroupItemPaddingX]: "1rem",
-		[varBsListGroupItemPaddingY]: "0.5rem",
+		[varBsListGroupItemPaddingX]: '1rem',
+		[varBsListGroupItemPaddingY]: '0.5rem',
 		[varBsListGroupActionColor]: varBsSecondaryColor,
 		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsTertiaryBg,
-		[varBsListGroupActionActiveColor]: varBsBodyColor,
-		[varBsListGroupActionActiveBg]: varBsSecondaryBg,
-		[varBsListGroupDisabledColor]: varBsSecondaryColor,
-		[varBsListGroupDisabledBg]: varBsBodyBg,
-		[varBsListGroupActiveColor]: "#fff",
-		[varBsListGroupActiveBg]: "#0d6efd",
-		[varBsListGroupActiveBorderColor]: "#0d6efd",
+		[varBsListGroupActionHoverBg]: 'transparent',
+		[varBsListGroupActionActiveColor]: '#485785',
+		[varBsListGroupActionActiveBg]: 'transparent',
+		[varBsListGroupDisabledColor]: '#adb6d3',
+		[varBsListGroupDisabledBg]: 'transparent',
+		[varBsListGroupActiveColor]: '#485785',
+		[varBsListGroupActiveBg]: 'transparent',
+		[varBsListGroupActiveBorderColor]: 'transparent',
 	},
-	display: "flex",
-	flexDirection: "column",
-	paddingLeft: 0,
-	marginBottom: 0,
+	display: 'flex',
+	flexDirection: 'column',
+	paddingLeft: '0',
+	marginBottom: '0',
 	borderRadius: varBsListGroupBorderRadius,
 })
 
-// SOURCE CSS:
-// .list-group-item { position: relative; display: block; padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x); color: var(--bs-list-group-color); text-decoration: none; background-color: var(--bs-list-group-bg); border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color); }
+globalStyle(`${morphScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
+})
+
+globalStyle(`${morphScope}${listGroupNumbered} > ${morphScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
+})
+
 globalStyle(`${morphScope}${listGroupItem}`, {
-	position: "relative",
-	display: "block",
-	padding: "var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x)",
+	position: 'relative',
+	display: 'block',
+	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
 	color: varBsListGroupColor,
-	textDecoration: "none",
+	textDecoration: 'none',
 	backgroundColor: varBsListGroupBg,
-	border: "var(--bs-list-group-border-width) solid var(--bs-list-group-border-color)",
+	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
-// SOURCE CSS:
-// .list-group-item:first-child { border-top-left-radius: inherit; border-top-right-radius: inherit; }
 globalStyle(`${morphScope}${listGroupItem}:first-child`, {
-	borderTopLeftRadius: "inherit",
-	borderTopRightRadius: "inherit",
+	borderTopLeftRadius: 'inherit',
+	borderTopRightRadius: 'inherit',
 })
 
-// SOURCE CSS:
-// .list-group-item:last-child { border-bottom-right-radius: inherit; border-bottom-left-radius: inherit; }
 globalStyle(`${morphScope}${listGroupItem}:last-child`, {
-	borderBottomRightRadius: "inherit",
-	borderBottomLeftRadius: "inherit",
+	borderBottomRightRadius: 'inherit',
+	borderBottomLeftRadius: 'inherit',
 })
 
-// SOURCE CSS:
-// .list-group-item.disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
-globalStyle(`${morphScope}${listGroupItem}.disabled`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: "none",
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-// SOURCE CSS:
-// .list-group-item:disabled { color: var(--bs-list-group-disabled-color); pointer-events: none; background-color: var(--bs-list-group-disabled-bg); }
 globalStyle(`${morphScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
-	pointerEvents: "none",
+	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
-// SOURCE CSS:
-// .list-group-item-action { width: 100%; color: var(--bs-list-group-action-color); text-align: inherit; }
-globalStyle(`${morphScope}${listGroupItemAction}`, {
-	width: "100%",
-	color: varBsListGroupActionColor,
-	textAlign: "inherit",
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):hover { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${morphScope}${listGroupItemAction}:not(.active):hover`, {
-	zIndex: 1,
-	color: varBsListGroupActionHoverColor,
-	textDecoration: "none",
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):focus { z-index: 1; color: var(--bs-list-group-action-hover-color); text-decoration: none; background-color: var(--bs-list-group-action-hover-bg); }
-globalStyle(`${morphScope}${listGroupItemAction}:not(.active):focus`, {
-	zIndex: 1,
-	color: varBsListGroupActionHoverColor,
-	textDecoration: "none",
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-action:not(.active):active { color: var(--bs-list-group-action-active-color); background-color: var(--bs-list-group-action-active-bg); }
-globalStyle(`${morphScope}${listGroupItemAction}:not(.active):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-// SOURCE CSS:
-// .list-group-item-danger { --bs-list-group-color: var(--bs-danger-text-emphasis); --bs-list-group-bg: var(--bs-danger-bg-subtle); --bs-list-group-border-color: var(--bs-danger-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-danger-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-danger-border-subtle); --bs-list-group-active-color: var(--bs-danger-bg-subtle); --bs-list-group-active-bg: var(--bs-danger-text-emphasis); --bs-list-group-active-border-color: var(--bs-danger-text-emphasis); }
-globalStyle(`${morphScope}${listGroupItemDanger}`, {
-	vars: {
-		[varBsListGroupColor]: varBsDangerTextEmphasis,
-		[varBsListGroupBg]: varBsDangerBgSubtle,
-		[varBsListGroupBorderColor]: varBsDangerBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsDangerBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsDangerBorderSubtle,
-		[varBsListGroupActiveColor]: varBsDangerBgSubtle,
-		[varBsListGroupActiveBg]: varBsDangerTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsDangerTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-dark { --bs-list-group-color: var(--bs-dark-text-emphasis); --bs-list-group-bg: var(--bs-dark-bg-subtle); --bs-list-group-border-color: var(--bs-dark-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-dark-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-dark-border-subtle); --bs-list-group-active-color: var(--bs-dark-bg-subtle); --bs-list-group-active-bg: var(--bs-dark-text-emphasis); --bs-list-group-active-border-color: var(--bs-dark-text-emphasis); }
-globalStyle(`${morphScope}${listGroupItemDark}`, {
-	vars: {
-		[varBsListGroupColor]: varBsDarkTextEmphasis,
-		[varBsListGroupBg]: varBsDarkBgSubtle,
-		[varBsListGroupBorderColor]: varBsDarkBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsDarkBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsDarkBorderSubtle,
-		[varBsListGroupActiveColor]: varBsDarkBgSubtle,
-		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-info { --bs-list-group-color: var(--bs-info-text-emphasis); --bs-list-group-bg: var(--bs-info-bg-subtle); --bs-list-group-border-color: var(--bs-info-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-info-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-info-border-subtle); --bs-list-group-active-color: var(--bs-info-bg-subtle); --bs-list-group-active-bg: var(--bs-info-text-emphasis); --bs-list-group-active-border-color: var(--bs-info-text-emphasis); }
-globalStyle(`${morphScope}${listGroupItemInfo}`, {
-	vars: {
-		[varBsListGroupColor]: varBsInfoTextEmphasis,
-		[varBsListGroupBg]: varBsInfoBgSubtle,
-		[varBsListGroupBorderColor]: varBsInfoBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsInfoBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsInfoBorderSubtle,
-		[varBsListGroupActiveColor]: varBsInfoBgSubtle,
-		[varBsListGroupActiveBg]: varBsInfoTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsInfoTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item-light { --bs-list-group-color: var(--bs-light-text-emphasis); --bs-list-group-bg: var(--bs-light-bg-subtle); --bs-list-group-border-color: var(--bs-light-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-light-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-light-border-subtle); --bs-list-group-active-color: var(--bs-light-bg-subtle); --bs-list-group-active-bg: var(--bs-light-text-emphasis); --bs-list-group-active-border-color: var(--bs-light-text-emphasis); }
-globalStyle(`${morphScope}${listGroupItemLight}`, {
-	vars: {
-		[varBsListGroupColor]: varBsLightTextEmphasis,
-		[varBsListGroupBg]: varBsLightBgSubtle,
-		[varBsListGroupBorderColor]: varBsLightBorderSubtle,
-		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
-		[varBsListGroupActionHoverBg]: varBsLightBorderSubtle,
-		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
-		[varBsListGroupActionActiveBg]: varBsLightBorderSubtle,
-		[varBsListGroupActiveColor]: varBsLightBgSubtle,
-		[varBsListGroupActiveBg]: varBsLightTextEmphasis,
-		[varBsListGroupActiveBorderColor]: varBsLightTextEmphasis,
-	},
-})
-
-// SOURCE CSS:
-// .list-group-item + .list-group-item { border-top-width: 0; }
 globalStyle(`${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-// SOURCE CSS:
-// .list-group-item-primary { --bs-list-group-color: var(--bs-primary-text-emphasis); --bs-list-group-bg: var(--bs-primary-bg-subtle); --bs-list-group-border-color: var(--bs-primary-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-primary-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-primary-border-subtle); --bs-list-group-active-color: var(--bs-primary-bg-subtle); --bs-list-group-active-bg: var(--bs-primary-text-emphasis); --bs-list-group-active-border-color: var(--bs-primary-text-emphasis); }
+globalStyle(`${morphScope}${listGroupItemAction}`, {
+	width: '100%',
+	color: varBsListGroupActionColor,
+	textAlign: 'inherit',
+})
+
+globalStyle(`${morphScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${morphScope}${listGroupFlush} > ${morphScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${morphScope}${listGroupFlush} > ${morphScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
+})
+
 globalStyle(`${morphScope}${listGroupItemPrimary}`, {
 	vars: {
 		[varBsListGroupColor]: varBsPrimaryTextEmphasis,
@@ -305,8 +395,6 @@ globalStyle(`${morphScope}${listGroupItemPrimary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-secondary { --bs-list-group-color: var(--bs-secondary-text-emphasis); --bs-list-group-bg: var(--bs-secondary-bg-subtle); --bs-list-group-border-color: var(--bs-secondary-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-secondary-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-secondary-border-subtle); --bs-list-group-active-color: var(--bs-secondary-bg-subtle); --bs-list-group-active-bg: var(--bs-secondary-text-emphasis); --bs-list-group-active-border-color: var(--bs-secondary-text-emphasis); }
 globalStyle(`${morphScope}${listGroupItemSecondary}`, {
 	vars: {
 		[varBsListGroupColor]: varBsSecondaryTextEmphasis,
@@ -322,8 +410,6 @@ globalStyle(`${morphScope}${listGroupItemSecondary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-success { --bs-list-group-color: var(--bs-success-text-emphasis); --bs-list-group-bg: var(--bs-success-bg-subtle); --bs-list-group-border-color: var(--bs-success-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-success-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-success-border-subtle); --bs-list-group-active-color: var(--bs-success-bg-subtle); --bs-list-group-active-bg: var(--bs-success-text-emphasis); --bs-list-group-active-border-color: var(--bs-success-text-emphasis); }
 globalStyle(`${morphScope}${listGroupItemSuccess}`, {
 	vars: {
 		[varBsListGroupColor]: varBsSuccessTextEmphasis,
@@ -339,8 +425,21 @@ globalStyle(`${morphScope}${listGroupItemSuccess}`, {
 	},
 })
 
-// SOURCE CSS:
-// .list-group-item-warning { --bs-list-group-color: var(--bs-warning-text-emphasis); --bs-list-group-bg: var(--bs-warning-bg-subtle); --bs-list-group-border-color: var(--bs-warning-border-subtle); --bs-list-group-action-hover-color: var(--bs-emphasis-color); --bs-list-group-action-hover-bg: var(--bs-warning-border-subtle); --bs-list-group-action-active-color: var(--bs-emphasis-color); --bs-list-group-action-active-bg: var(--bs-warning-border-subtle); --bs-list-group-active-color: var(--bs-warning-bg-subtle); --bs-list-group-active-bg: var(--bs-warning-text-emphasis); --bs-list-group-active-border-color: var(--bs-warning-text-emphasis); }
+globalStyle(`${morphScope}${listGroupItemInfo}`, {
+	vars: {
+		[varBsListGroupColor]: varBsInfoTextEmphasis,
+		[varBsListGroupBg]: varBsInfoBgSubtle,
+		[varBsListGroupBorderColor]: varBsInfoBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsInfoBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsInfoBorderSubtle,
+		[varBsListGroupActiveColor]: varBsInfoBgSubtle,
+		[varBsListGroupActiveBg]: varBsInfoTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsInfoTextEmphasis,
+	},
+})
+
 globalStyle(`${morphScope}${listGroupItemWarning}`, {
 	vars: {
 		[varBsListGroupColor]: varBsWarningTextEmphasis,
@@ -356,58 +455,61 @@ globalStyle(`${morphScope}${listGroupItemWarning}`, {
 	},
 })
 
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${morphScope}${listGroupItemDanger}`, {
+	vars: {
+		[varBsListGroupColor]: varBsDangerTextEmphasis,
+		[varBsListGroupBg]: varBsDangerBgSubtle,
+		[varBsListGroupBorderColor]: varBsDangerBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsDangerBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsDangerBorderSubtle,
+		[varBsListGroupActiveColor]: varBsDangerBgSubtle,
+		[varBsListGroupActiveBg]: varBsDangerTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsDangerTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${morphScope}${listGroupItemLight}`, {
+	vars: {
+		[varBsListGroupColor]: varBsLightTextEmphasis,
+		[varBsListGroupBg]: varBsLightBgSubtle,
+		[varBsListGroupBorderColor]: varBsLightBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsLightBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsLightBorderSubtle,
+		[varBsListGroupActiveColor]: varBsLightBgSubtle,
+		[varBsListGroupActiveBg]: varBsLightTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsLightTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${morphScope}${listGroupItemDark}`, {
+	vars: {
+		[varBsListGroupColor]: varBsDarkTextEmphasis,
+		[varBsListGroupBg]: varBsDarkBgSubtle,
+		[varBsListGroupBorderColor]: varBsDarkBorderSubtle,
+		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
+		[varBsListGroupActionHoverBg]: varBsDarkBorderSubtle,
+		[varBsListGroupActionActiveColor]: varBsEmphasisColor,
+		[varBsListGroupActionActiveBg]: varBsDarkBorderSubtle,
+		[varBsListGroupActiveColor]: varBsDarkBgSubtle,
+		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
+		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
+	},
 })
 
-// SOURCE CSS:
-// .list-group-flush { border-radius: 0; }
-globalStyle(`${morphScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${morphScope}${listGroup}`, {
+	backgroundColor: varBsBodyBg,
+	boxShadow: 'inset 2px 2px 6px rgba(109, 114, 121, 0.2), inset -3px -2px 4px rgba(255, 255, 255, 0.2)',
 })
 
-// SOURCE CSS:
-// .list-group-flush > .list-group-item { border-width: 0 0 var(--bs-list-group-border-width); }
-globalStyle(`${morphScope}${listGroupFlush} > ${morphScope}${listGroupItem}`, {
-	borderWidth: "0 0 var(--bs-list-group-border-width)",
+globalStyle(`${morphScope}${listGroupItem}`, {
+	backgroundColor: 'transparent',
 })
 
-// SOURCE CSS:
-// .list-group-flush > .list-group-item:last-child { border-bottom-width: 0; }
-globalStyle(`${morphScope}${listGroupFlush} > ${morphScope}${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
+globalStyle(`${morphScope}[data-bs-theme=dark] ${morphScope}${listGroup}`, {
+	backgroundColor: '#202428',
+	boxShadow: 'inset 2px 2px 6px rgba(17, 19, 21, 0.2), inset -3px -2px 4px rgba(255, 255, 255, 0.05)',
 })
-
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .list-group-numbered
-// [DELTA] unmapped selector: .list-group-numbered > .list-group-item::before
-// [DELTA] unmapped selector: .list-group-item.active
-// [DELTA] unmapped selector: .list-group-item + .list-group-item.active
-// [DELTA] unmapped selector: .list-group-horizontal
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item:first-child:not(:last-child)
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item:last-child:not(:first-child)
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item.active
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item + .list-group-item
-// [DELTA] unmapped selector: .list-group-horizontal > .list-group-item + .list-group-item.active

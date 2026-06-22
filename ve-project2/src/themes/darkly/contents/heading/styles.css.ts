@@ -1,69 +1,117 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsHeadingColor,
-} from '../../../../theme-contract/_vars.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
 import { darklyScope } from '../../scope.css'
 
-// Darkly Bootswatch heading sizes (screenshots/darkly/bootstrap.css ~225–275).
+import { varBsHeadingColor } from '../../../../theme-contract/_vars.css'
 
-globalStyle(`${darklyScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
+
+globalStyle(`${darklyScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1rem",
 })
 
-globalStyle(`${darklyScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${darklyScope}${clsH5}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1.25rem",
 })
 
-globalStyle(`${darklyScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${darklyScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
 })
 
-globalStyle(`${darklyScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${darklyScope}${clsH3}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "calc(1.325rem + 0.9vw)",
 })
 
-globalStyle(`${darklyScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${darklyScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "calc(1.375rem + 1.5vw)",
 })
 
-globalStyle(`${darklyScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${darklyScope}${clsH1}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "calc(1.425rem + 2.1vw)",
+})
+
+globalStyle(`${darklyScope}${clsH1}`, {
+	fontSize: 'calc(1.425rem + 2.1vw)',
+})
+
+globalStyle(`${darklyScope}${clsH1}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '3rem',
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${clsH2}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
+})
+
+globalStyle(`${darklyScope}${clsH2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${clsH3}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
+globalStyle(`${darklyScope}${clsH3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${clsH4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
+globalStyle(`${darklyScope}${clsH4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${darklyScope}${clsH5}`, {
+	fontSize: '1.25rem',
+})
+
+globalStyle(`${darklyScope}${clsH6}`, {
+	fontSize: '1rem',
 })

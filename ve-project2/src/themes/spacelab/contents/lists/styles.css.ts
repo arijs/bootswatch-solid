@@ -1,7 +1,42 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { spacelabScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for spacelab/contents/lists
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../../theme-contract/contents/lists/contract.css'
 
-export {}
+globalStyle(`${spacelabScope}${listUnstyled}`, {
+	paddingLeft: '0',
+	listStyle: 'none',
+})
+
+globalStyle(`${spacelabScope}${listInline}`, {
+	paddingLeft: '0',
+	listStyle: 'none',
+})
+
+globalStyle(`${spacelabScope}${listInlineItem}`, {
+	display: 'inline-block',
+})
+
+globalStyle(`${spacelabScope}${listInlineItem}:not(:last-child)`, {
+	marginRight: '0.5rem',
+})
+
+globalStyle(`${spacelabScope}${listBase}`, {
+	marginTop: '0',
+	marginBottom: '1rem',
+})
+
+globalStyle(`${spacelabScope}${listNested}`, {
+	marginBottom: '0',
+})
+
+globalStyle(`${spacelabScope}${listIndented}`, {
+	paddingLeft: '2rem',
+})

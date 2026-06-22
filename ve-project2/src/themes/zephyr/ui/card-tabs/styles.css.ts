@@ -1,10 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	card,
-} from '../../../../theme-contract/ui/card/contract.css'
 import { zephyrScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for zephyr/ui/card-tabs
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 
-export {}
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+
+globalStyle(`${zephyrScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})

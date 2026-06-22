@@ -1,84 +1,125 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsHeadingColor,
-} from '../../../../theme-contract/_vars.css'
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
 import { cyborgScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/contents/heading
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { varBsHeadingColor } from '../../../../theme-contract/_vars.css'
 
-// SOURCE CSS:
-// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1rem; }
-globalStyle(`${cyborgScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
+
+globalStyle(`${cyborgScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: "1rem",
 })
 
-// SOURCE CSS:
-// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${cyborgScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${cyborgScope}${clsH5}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: `calc(1.275rem + 0.3vw)`,
 })
 
-// SOURCE CSS:
-// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`${cyborgScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${cyborgScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: `calc(1.325rem + 0.9vw)`,
 })
 
-// SOURCE CSS:
-// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.3rem + 0.6vw); }
-globalStyle(`${cyborgScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${cyborgScope}${clsH3}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: `calc(1.375rem + 1.5vw)`,
 })
 
-// SOURCE CSS:
-// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.325rem + 0.9vw); }
-globalStyle(`${cyborgScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${cyborgScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: `calc(1.425rem + 2.1vw)`,
 })
 
-// SOURCE CSS:
-// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.375rem + 1.5vw); }
-globalStyle(`${cyborgScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
+globalStyle(`${cyborgScope}${clsH1}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
 	color: varBsHeadingColor,
-	fontSize: `calc(1.525rem + 3.3vw)`,
 })
 
-// ── Delta rules (theme-specific overrides) ───────────────────────────────────
+globalStyle(`${cyborgScope}${clsH1}`, {
+	fontSize: 'calc(1.525rem + 3.3vw)',
+})
+
+globalStyle(`${cyborgScope}${clsH1}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '4rem',
+		},
+	},
+})
+
+globalStyle(`${cyborgScope}${clsH2}`, {
+	fontSize: 'calc(1.425rem + 2.1vw)',
+})
+
+globalStyle(`${cyborgScope}${clsH2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '3rem',
+		},
+	},
+})
+
+globalStyle(`${cyborgScope}${clsH3}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
+})
+
+globalStyle(`${cyborgScope}${clsH3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
+})
+
+globalStyle(`${cyborgScope}${clsH4}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
+globalStyle(`${cyborgScope}${clsH4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${cyborgScope}${clsH5}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
+globalStyle(`${cyborgScope}${clsH5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${cyborgScope}${clsH6}`, {
+	fontSize: '1rem',
+})

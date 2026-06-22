@@ -1,114 +1,59 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsGutterX,
-	varBsGutterY,
-} from '../../../../theme-contract/_vars.css'
 import { literaScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/contents/basic
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { blockquoteFooter, lead, smallText } from '../../../../theme-contract/contents/basic/contract.css'
+import { clsBlockquote, clsSmall } from '../../../../theme-contract/literal/contract.css'
 
-// SOURCE CSS:
-// .container { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container" — no contract mapping
-globalStyle(`.container`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
+globalStyle(`${literaScope}${clsSmall}`, {
+	fontSize: '0.875em',
 })
 
-// SOURCE CSS:
-// .container-fluid { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container-fluid" — no contract mapping
-globalStyle(`.container-fluid`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
+globalStyle(`${literaScope}${lead}`, {
+	fontSize: 'calc(1.2625rem + 0.15vw)',
+	fontWeight: '300',
 })
 
-// SOURCE CSS:
-// .container-xxl { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container-xxl" — no contract mapping
-globalStyle(`.container-xxl`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
+globalStyle(`${literaScope}${lead}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.375rem',
+		},
 	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
 })
 
-// SOURCE CSS:
-// .container-xl { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container-xl" — no contract mapping
-globalStyle(`.container-xl`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
+globalStyle(`${literaScope}${clsBlockquote}`, {
+	marginBottom: '1rem',
+	fontSize: 'calc(1.2625rem + 0.15vw)',
 })
 
-// SOURCE CSS:
-// .container-lg { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container-lg" — no contract mapping
-globalStyle(`.container-lg`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
+globalStyle(`${literaScope}${clsBlockquote}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.375rem',
+		},
 	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
 })
 
-// SOURCE CSS:
-// .container-md { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container-md" — no contract mapping
-globalStyle(`.container-md`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
+globalStyle(`${literaScope}${clsBlockquote} > :last-child`, {
+	marginBottom: '0',
 })
 
-// SOURCE CSS:
-// .container-sm { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * 0.5); padding-left: calc(var(--bs-gutter-x) * 0.5); margin-right: auto; margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".container-sm" — no contract mapping
-globalStyle(`.container-sm`, {
-	vars: {
-		[varBsGutterX]: "1.5rem",
-		[varBsGutterY]: 0,
-	},
-	width: "100%",
-	paddingRight: "calc(var(--bs-gutter-x) * 0.5)",
-	paddingLeft: "calc(var(--bs-gutter-x) * 0.5)",
-	marginRight: "auto",
-	marginLeft: "auto",
+globalStyle(`${literaScope}${blockquoteFooter}`, {
+	marginTop: '-1rem',
+	marginBottom: '1rem',
+	fontSize: '0.875em',
+	color: '#868e96',
+})
+
+globalStyle(`${literaScope}${blockquoteFooter}::before`, {
+	content: '"— "',
+})
+
+globalStyle(`${literaScope}${lead}`, {
+	fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+	color: '#868e96',
+})
+
+globalStyle(`${literaScope}${smallText}`, {
+	fontSize: '0.875em',
 })

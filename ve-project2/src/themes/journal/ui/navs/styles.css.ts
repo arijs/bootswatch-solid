@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { journalScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBorderColor,
@@ -6,11 +8,18 @@ import {
 	varBsBorderWidth,
 	varBsEmphasisColor,
 	varBsLinkColor,
-	varBsLinkColorRgb,
 	varBsLinkHoverColor,
-	varBsLinkHoverColorRgb,
+	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
@@ -30,403 +39,379 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	link,
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
-import {
-	dropdown,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
 	fade,
-	flexWrap,
-} from '../../../../theme-contract/ui/modal/contract.css'
-import {
 	nav,
 	navItem,
 	navLink,
+	navLinkActive,
+	navLinkDisabled,
 	navPills,
 	navTabs,
+	show,
+	tabContent,
+	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import { journalScope } from '../../scope.css'
+import {
+	offcanvas,
+	offcanvasBackdrop,
+	offcanvasLg,
+	offcanvasMd,
+	offcanvasSm,
+	offcanvasXl,
+	offcanvasXxl,
+} from '../../../../theme-contract/ui/offcanvas/contract.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/navs
-// Review [UNMAPPED] and [DELTA] comments before committing.
+globalStyle(`${journalScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .nav { --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem; --bs-nav-link-font-weight: ; --bs-nav-link-color: var(--bs-link-color); --bs-nav-link-hover-color: var(--bs-link-hover-color); --bs-nav-link-disabled-color: var(--bs-secondary-color); display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none; }
+globalStyle(`${journalScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${journalScope}${fade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${journalScope}${fade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${journalScope}${collapse}:not(${show})`, {
+	display: 'none',
+})
+
 globalStyle(`${journalScope}${nav}`, {
 	vars: {
-		[varBsNavLinkPaddingX]: "1rem",
-		[varBsNavLinkPaddingY]: "0.5rem",
-		[varBsNavLinkFontWeight]: "",
+		[varBsNavLinkPaddingX]: '1rem',
+		[varBsNavLinkPaddingY]: '0.5rem',
+		[varBsNavLinkFontWeight]: '',
 		[varBsNavLinkColor]: varBsLinkColor,
 		[varBsNavLinkHoverColor]: varBsLinkHoverColor,
 		[varBsNavLinkDisabledColor]: varBsSecondaryColor,
 	},
-	display: "flex",
-	flexWrap: "wrap",
-	paddingLeft: 0,
-	marginBottom: 0,
-	listStyle: "none",
+	display: 'flex',
+	flexWrap: 'wrap',
+	paddingLeft: '0',
+	marginBottom: '0',
+	listStyle: 'none',
 })
 
-// SOURCE CSS:
-// .nav-link { display: block; padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); font-size: var(--bs-nav-link-font-size); font-weight: var(--bs-nav-link-font-weight); color: var(--bs-nav-link-color); text-decoration: none; background: none; border: 0; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
 globalStyle(`${journalScope}${navLink}`, {
-	display: "block",
-	padding: "var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x)",
+	display: 'block',
+	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
 	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
 	color: varBsNavLinkColor,
-	textDecoration: "none",
-	background: "none",
-	border: 0,
-	transition: "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out",
+	textDecoration: 'none',
+	background: 'none',
+	border: '0',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS:
-// .nav-link:hover { color: var(--bs-nav-link-hover-color); }
+globalStyle(`${journalScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
 globalStyle(`${journalScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link:focus { color: var(--bs-nav-link-hover-color); }
 globalStyle(`${journalScope}${navLink}:focus`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link:focus-visible { outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
 globalStyle(`${journalScope}${navLink}:focus-visible`, {
-	outline: 0,
-	boxShadow: "0 0 0 0.25rem rgba(13, 110, 253, 0.25)",
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(235, 104, 100, 0.25)',
 })
 
-// SOURCE CSS:
-// .nav-link.disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(`${journalScope}${navLink}.disabled`, {
+globalStyle(`${journalScope}${navLink}${navLinkDisabled}`, {
 	color: varBsNavLinkDisabledColor,
-	pointerEvents: "none",
-	cursor: "default",
+	pointerEvents: 'none',
+	cursor: 'default',
 })
 
-// SOURCE CSS:
-// .nav-link:disabled { color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
 globalStyle(`${journalScope}${navLink}:disabled`, {
 	color: varBsNavLinkDisabledColor,
-	pointerEvents: "none",
-	cursor: "default",
+	pointerEvents: 'none',
+	cursor: 'default',
 })
 
-// SOURCE CSS:
-// .nav-tabs { --bs-nav-tabs-border-width: var(--bs-border-width); --bs-nav-tabs-border-color: var(--bs-border-color); --bs-nav-tabs-border-radius: var(--bs-border-radius); --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color); --bs-nav-tabs-link-active-color: var(--bs-emphasis-color); --bs-nav-tabs-link-active-bg: var(--bs-body-bg); --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg); border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color); }
 globalStyle(`${journalScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
 		[varBsNavTabsBorderColor]: varBsBorderColor,
 		[varBsNavTabsBorderRadius]: varBsBorderRadius,
-		[varBsNavTabsLinkHoverBorderColor]: "var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color)",
+		[varBsNavTabsLinkHoverBorderColor]: `${varBsSecondaryBg} ${varBsSecondaryBg} ${varBsBorderColor}`,
 		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
 		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: "var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg)",
+		[varBsNavTabsLinkActiveBorderColor]: `${varBsBorderColor} ${varBsBorderColor} ${varBsBodyBg}`,
 	},
-	borderBottom: "var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color)",
+	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); border: var(--bs-nav-tabs-border-width) solid transparent; border-top-left-radius: var(--bs-nav-tabs-border-radius); border-top-right-radius: var(--bs-nav-tabs-border-radius); }
 globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}`, {
-	marginBottom: "calc(-1 * var(--bs-nav-tabs-border-width))",
-	border: "var(--bs-nav-tabs-border-width) solid transparent",
+	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover { isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
 globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}:hover`, {
-	isolation: "isolate",
+	isolation: 'isolate',
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:focus { isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
 globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}:focus`, {
-	isolation: "isolate",
+	isolation: 'isolate',
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}.active`, {
+globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-item.show .nav-link { color: var(--bs-nav-tabs-link-active-color); background-color: var(--bs-nav-tabs-link-active-bg); border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${journalScope}${navTabs} ${journalScope}${navItem}.show ${journalScope}${navLink}`, {
+globalStyle(`${journalScope}${navTabs} ${journalScope}${navItem}${show} ${journalScope}${navLink}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// a { color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); text-decoration: underline; }
-// [UNMAPPED_SELECTOR] element selector "a" — map to a contract class
-globalStyle(`a`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "underline",
-})
-
-// SOURCE CSS:
-// a:hover { --bs-link-color-rgb: var(--bs-link-hover-color-rgb); }
-// [UNMAPPED_SELECTOR] element selector "a:hover" — map to a contract class
-globalStyle(`a:hover`, {
-	vars: {
-		[varBsLinkColorRgb]: varBsLinkHoverColorRgb,
-	},
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]) { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class])" — map to a contract class
-globalStyle(`a:not([href]):not([class])`, {
-	color: varBsNavTabsLinkActiveColor,
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
-// [UNMAPPED_SELECTOR] element selector "a:not([href]):not([class]):hover" — map to a contract class
-globalStyle(`a:not([href]):not([class]):hover`, {
-	color: "inherit",
-	textDecoration: "none",
-})
-
-// SOURCE CSS:
-// ol { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ol" — map to a contract class
-globalStyle(`ol`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// ul { padding-left: 2rem; margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "ul" — map to a contract class
-globalStyle(`ul`, {
-	paddingLeft: "2rem",
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// dl { margin-top: 0; margin-bottom: 1rem; }
-// [UNMAPPED_SELECTOR] element selector "dl" — map to a contract class
-globalStyle(`dl`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// .nav-pills { --bs-nav-pills-border-radius: var(--bs-border-radius); --bs-nav-pills-link-active-color: #fff; --bs-nav-pills-link-active-bg: #0d6efd; }
 globalStyle(`${journalScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
-		[varBsNavPillsLinkActiveColor]: "#fff",
-		[varBsNavPillsLinkActiveBg]: "#0d6efd",
+		[varBsNavPillsLinkActiveColor]: '#fff',
+		[varBsNavPillsLinkActiveBg]: '#eb6864',
 	},
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
 globalStyle(`${journalScope}${navPills} ${journalScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${journalScope}${navPills} ${journalScope}${navLink}.active`, {
+globalStyle(`${journalScope}${navPills} ${journalScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS:
-// .nav-pills .show > .nav-link { color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-nav-pills-link-active-bg); }
-// [UNMAPPED_SELECTOR] class ".show" — no contract mapping
-globalStyle(`${journalScope}${navPills} .show > ${journalScope}${navLink}`, {
+globalStyle(`${journalScope}${navPills} ${journalScope}${show} > ${journalScope}${navLink}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${journalScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
+globalStyle(`${journalScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: varBsEmphasisColor,
+	},
+	gap: varBsNavUnderlineGap,
 })
 
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-	appearance: "button",
+globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
 })
 
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
+globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
+globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${journalScope}${navUnderline} ${journalScope}${show} > ${journalScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
 })
 
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
+globalStyle(`${journalScope}${navFill} > ${journalScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
+globalStyle(`${journalScope}${navFill} ${journalScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
+globalStyle(`${journalScope}${navJustified} > ${journalScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
+globalStyle(`${journalScope}${navJustified} ${journalScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
 })
 
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${journalScope}${navFill} ${journalScope}${navItem} ${journalScope}${navLink}`, {
+	width: '100%',
 })
 
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${journalScope}${navJustified} ${journalScope}${navItem} ${journalScope}${navLink}`, {
+	width: '100%',
 })
 
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${journalScope}${tabContent} > ${journalScope}${tabPane}`, {
+	display: 'none',
 })
 
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
+globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
 })
 
-// SOURCE CSS:
-// .fade { transition: opacity 0.15s linear; }
-globalStyle(`${journalScope}${fade}`, {
-	transition: "opacity 0.15s linear",
+globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
 })
 
-// SOURCE CSS:
-// .fade:not(.show) { opacity: 0; }
-globalStyle(`${journalScope}${fade}:not(.show)`, {
-	opacity: 0,
+globalStyle(`${journalScope}${navbarExpandSm} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .tab-content > .tab-pane { display: none; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".tab-pane" — no contract mapping
-globalStyle(`.tab-content > .tab-pane`, {
-	display: "none",
+globalStyle(`${journalScope}${navbarExpandMd} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .tab-content > .active { display: block; }
-// [UNMAPPED_SELECTOR] class ".tab-content" — no contract mapping
-// [UNMAPPED_SELECTOR] class ".active" — no contract mapping
-globalStyle(`.tab-content > .active`, {
-	display: "block",
+globalStyle(`${journalScope}${navbarExpandLg} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// SOURCE CSS:
-// .mb-3 { margin-bottom: 1rem !important; }
-// [UNMAPPED_SELECTOR] class ".mb-3" — no contract mapping
-globalStyle(`.mb-3`, {
-	marginBottom: "1rem !important",
+globalStyle(`${journalScope}${navbarExpandXl} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
 })
 
-// ── Delta rules (theme-specific, not in bootstrap structure) ─────────────────
-// [DELTA] unmapped selector: .nav-tabs .dropdown-menu
-// [DELTA] unmapped selector: .nav-underline
-// [DELTA] unmapped selector: .nav-underline .nav-link
-// [DELTA] unmapped selector: .nav-underline .nav-link:hover
-// [DELTA] unmapped selector: .nav-underline .nav-link:focus
-// [DELTA] unmapped selector: .nav-underline .nav-link.active
-// [DELTA] unmapped selector: .nav-underline .show > .nav-link
-// [DELTA] unmapped selector: .nav-fill > .nav-link
-// [DELTA] unmapped selector: .nav-fill .nav-item
-// [DELTA] unmapped selector: .nav-justified > .nav-link
-// [DELTA] unmapped selector: .nav-justified .nav-item
-// [DELTA] unmapped selector: .nav-fill .nav-item .nav-link
-// [DELTA] unmapped selector: .nav-justified .nav-item .nav-link
+globalStyle(`${journalScope}${navbarExpandXxl} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${journalScope}${navbarExpand} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${journalScope}${cardHeaderTabs} ${journalScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${journalScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${journalScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${journalScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
+})

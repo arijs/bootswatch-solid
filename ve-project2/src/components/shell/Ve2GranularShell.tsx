@@ -3,17 +3,17 @@ import { createMemo, createRenderEffect, type JSX } from 'solid-js'
 import { ThemeContext } from '../../context/ThemeContext'
 import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
 import { getVe2RouteStyleLoadPlan } from '../../theme-runtime/route-style-families'
+import { normalizeVe2StyleFamilies, type Ve2StyleFamily } from '../../theme-runtime/style-families'
 import {
-	type Ve2StyleFamily,
-	normalizeVe2StyleFamilies,
-} from '../../theme-runtime/style-families'
-import { Ve2StyleLoaderContext, type Ve2StyleLoaderApi } from '../../theme-runtime/style-loader-context'
+	type Ve2StyleLoaderApi,
+	Ve2StyleLoaderContext,
+} from '../../theme-runtime/style-loader-context'
 import {
-	type Ve2ThemeKey,
 	resolveVe2ThemeClass,
 	resolveVe2ThemeKey,
-	ve2ThemeLoaders,
+	type Ve2ThemeKey,
 	ve2ThemeFamilyLoaders,
+	ve2ThemeLoaders,
 } from '../../theme-runtime/theme-runtime'
 // Layout class for screenshot demo containers
 import '../../styles/bd-example.css'
@@ -40,15 +40,12 @@ async function ensureFamilyLoaded(theme: Ve2ThemeKey, family: Ve2StyleFamily): P
 	const loadedFamilies = getThemeLoadedFamilies(theme)
 	if (loadedFamilies.has(family)) return
 
-	if (family === 'global') {
-		loadedFamilies.add('global')
-		return
-	}
-
 	const loader = ve2ThemeFamilyLoaders[theme][family]
 	if (!loader) {
 		if (import.meta.env.DEV) {
-			console.warn(`[Ve2GranularShell] No loader found for family "${family}" in theme "${theme}".`)
+			console.warn(
+				`[Ve2GranularShell] No loader found for family "${family}" in theme "${theme}".`,
+			)
 		}
 		return
 	}
@@ -72,7 +69,10 @@ async function ensureFamilyLoaded(theme: Ve2ThemeKey, family: Ve2StyleFamily): P
 	await loadPromise
 }
 
-async function requestThemeFamilies(theme: Ve2ThemeKey, families: readonly string[]): Promise<void> {
+async function requestThemeFamilies(
+	theme: Ve2ThemeKey,
+	families: readonly string[],
+): Promise<void> {
 	if (fullyLoadedThemes.has(theme)) return
 
 	const normalizedFamilies = normalizeVe2StyleFamilies(families, true)
@@ -132,7 +132,7 @@ export function Ve2GranularShell(props: { children: JSX.Element }) {
 		() => themeKey(),
 		(theme) => {
 			void requestThemeFamilies(theme, ['global'])
-		}
+		},
 	)
 
 	// Route-driven preload keeps granular mode working across non-migrated routes.
@@ -145,13 +145,15 @@ export function Ve2GranularShell(props: { children: JSX.Element }) {
 			}
 
 			void requestThemeFamilies(theme, plan.families)
-		}
+		},
 	)
 
 	return (
 		<ThemeContext value={themeClass()}>
 			<Ve2StyleLoaderContext value={styleLoaderApi}>
-				<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>{props.children}</div>
+				<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>
+					{props.children}
+				</div>
 			</Ve2StyleLoaderContext>
 		</ThemeContext>
 	)

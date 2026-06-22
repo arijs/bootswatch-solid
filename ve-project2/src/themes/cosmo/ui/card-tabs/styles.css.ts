@@ -1,7 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { cosmoScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for cosmo/ui/card-tabs
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import { varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 
-export {}
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+
+globalStyle(`${cosmoScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})

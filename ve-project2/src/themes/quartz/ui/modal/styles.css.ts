@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -6,8 +8,8 @@ import {
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
 	varBsBorderWidth,
+	varBsBoxShadow,
 	varBsBoxShadowSm,
-	varBsHeadingColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBackdropBg,
@@ -35,22 +37,21 @@ import {
 	varBsModalWidth,
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
+
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
 import {
-	paragraph,
-} from '../../../../theme-contract/contents/basic/contract.css'
+	modalFullscreenLgDown,
+	modalFullscreenMdDown,
+	modalFullscreenSmDown,
+	modalFullscreenXlDown,
+	modalFullscreenXxlDown,
+	modalLg,
+	modalSm,
+	modalStatic,
+	modalXl,
+} from '../../../../theme-contract/literal/contract.css'
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
-import {
-	btn,
-} from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	fade,
 	flexWrap,
 	justifyContentBetween,
 	modal,
@@ -60,519 +61,516 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
+	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
+	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-import {
-	dFlex,
-} from '../../../../theme-contract/utilities/contract.css'
-import { quartzScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for bootstrap/ui/modal
-// Review [UNMAPPED] and [DELTA] comments before committing.
-
-// SOURCE CSS:
-// h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${quartzScope}${h6}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
+globalStyle(`${quartzScope}${modalFade}`, {
+	transition: 'opacity 0.15s linear',
 })
 
-// SOURCE CSS:
-// .h6 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h6" — no contract mapping
-globalStyle(`.h6`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
+globalStyle(`${quartzScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
-// SOURCE CSS:
-// h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-globalStyle(`${quartzScope}${h5}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
+globalStyle(`${quartzScope}${modalFade}:not(${modalShowHook})`, {
+	opacity: '0',
 })
 
-// SOURCE CSS:
-// .h5 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: 1.25rem; }
-// [UNMAPPED_SELECTOR] class ".h5" — no contract mapping
-globalStyle(`.h5`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "1.25rem",
-})
-
-// SOURCE CSS:
-// h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-globalStyle(`${quartzScope}${h4}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
-// SOURCE CSS:
-// .h4 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); font-size: calc(1.275rem + 0.3vw); }
-// [UNMAPPED_SELECTOR] class ".h4" — no contract mapping
-globalStyle(`.h4`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-	fontSize: "calc(1.275rem + 0.3vw)",
-})
-
-// SOURCE CSS:
-// h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${quartzScope}${h3}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h3" — no contract mapping
-globalStyle(`.h3`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${quartzScope}${h2}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h2" — no contract mapping
-globalStyle(`.h2`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-globalStyle(`${quartzScope}${h1}`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// .h1 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; color: var(--bs-heading-color); }
-// [UNMAPPED_SELECTOR] class ".h1" — no contract mapping
-globalStyle(`.h1`, {
-	marginTop: 0,
-	marginBottom: "0.5rem",
-	fontWeight: 500,
-	lineHeight: 1.2,
-	color: varBsHeadingColor,
-})
-
-// SOURCE CSS:
-// p { margin-top: 0; margin-bottom: 1rem; }
-globalStyle(`${quartzScope}${paragraph}`, {
-	marginTop: 0,
-	marginBottom: "1rem",
-})
-
-// SOURCE CSS:
-// button { border-radius: 0; margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "button" — map to a contract class
-globalStyle(`button`, {
-	borderRadius: 0,
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: 1.2,
-	textTransform: "none",
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:focus:not(:focus-visible) { outline: 0; }
-// [UNMAPPED_SELECTOR] element selector "button:focus:not(:focus-visible)" — map to a contract class
-globalStyle(`button:focus:not(:focus-visible)`, {
-	outline: 0,
-})
-
-// SOURCE CSS:
-// input { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "input" — map to a contract class
-globalStyle(`input`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// select { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; text-transform: none; }
-// [UNMAPPED_SELECTOR] element selector "select" — map to a contract class
-globalStyle(`select`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-	textTransform: "none",
-})
-
-// SOURCE CSS:
-// optgroup { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "optgroup" — map to a contract class
-globalStyle(`optgroup`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
-// [UNMAPPED_SELECTOR] element selector "textarea" — map to a contract class
-globalStyle(`textarea`, {
-	margin: 0,
-	fontFamily: "inherit",
-	fontSize: "inherit",
-	lineHeight: "inherit",
-})
-
-// SOURCE CSS:
-// [type="button"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]" — map to a contract class
-globalStyle(`[type="button"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="reset"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]" — map to a contract class
-globalStyle(`[type="reset"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// [type="submit"] { appearance: button; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]" — map to a contract class
-globalStyle(`[type="submit"]`, {
-	appearance: "button",
-})
-
-// SOURCE CSS:
-// button:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "button:not(:disabled)" — map to a contract class
-globalStyle(`button:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="button"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="button"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="button"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="reset"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="reset"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="reset"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// [type="submit"]:not(:disabled) { cursor: pointer; }
-// [UNMAPPED_SELECTOR] element selector "[type="submit"]:not(:disabled)" — map to a contract class
-globalStyle(`[type="submit"]:not(:disabled)`, {
-	cursor: "pointer",
-})
-
-// SOURCE CSS:
-// .fade { transition: opacity 0.15s linear; }
-globalStyle(`${quartzScope}${fade}`, {
-	transition: "opacity 0.15s linear",
-})
-
-// SOURCE CSS:
-// .fade:not(.show) { opacity: 0; }
-globalStyle(`${quartzScope}${fade}:not(.show)`, {
-	opacity: 0,
-})
-
-// SOURCE CSS:
-// .modal { --bs-modal-zindex: 1055; --bs-modal-width: 500px; --bs-modal-padding: 1rem; --bs-modal-margin: 0.5rem; --bs-modal-color: var(--bs-body-color); --bs-modal-bg: var(--bs-body-bg); --bs-modal-border-color: var(--bs-border-color-translucent); --bs-modal-border-width: var(--bs-border-width); --bs-modal-border-radius: var(--bs-border-radius-lg); --bs-modal-box-shadow: var(--bs-box-shadow-sm); --bs-modal-inner-border-radius: calc(var(--bs-border-radius-lg) - (var(--bs-border-width))); --bs-modal-header-padding-x: 1rem; --bs-modal-header-padding-y: 1rem; --bs-modal-header-padding: 1rem 1rem; --bs-modal-header-border-color: var(--bs-border-color); --bs-modal-header-border-width: var(--bs-border-width); --bs-modal-title-line-height: 1.5; --bs-modal-footer-gap: 0.5rem; --bs-modal-footer-bg: ; --bs-modal-footer-border-color: var(--bs-border-color); --bs-modal-footer-border-width: var(--bs-border-width); position: fixed; top: 0; left: 0; z-index: var(--bs-modal-zindex); display: none; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; outline: 0; }
 globalStyle(`${quartzScope}${modal}`, {
 	vars: {
-		[varBsModalZindex]: 1055,
-		[varBsModalWidth]: "500px",
-		[varBsModalPadding]: "1rem",
-		[varBsModalMargin]: "0.5rem",
+		[varBsModalZindex]: '1055',
+		[varBsModalWidth]: '500px',
+		[varBsModalPadding]: '2rem',
+		[varBsModalMargin]: '0.5rem',
 		[varBsModalColor]: varBsBodyColor,
 		[varBsModalBg]: varBsBodyBg,
 		[varBsModalBorderColor]: varBsBorderColorTranslucent,
 		[varBsModalBorderWidth]: varBsBorderWidth,
 		[varBsModalBorderRadius]: varBsBorderRadiusLg,
 		[varBsModalBoxShadow]: varBsBoxShadowSm,
-		[varBsModalInnerBorderRadius]: "calc(var(--bs-border-radius-lg) - (var(--bs-border-width)))",
-		[varBsModalHeaderPaddingX]: "1rem",
-		[varBsModalHeaderPaddingY]: "1rem",
-		[varBsModalHeaderPadding]: "1rem 1rem",
+		[varBsModalInnerBorderRadius]: `calc(${varBsBorderRadiusLg} - (${varBsBorderWidth}))`,
+		[varBsModalHeaderPaddingX]: '2rem',
+		[varBsModalHeaderPaddingY]: '2rem',
+		[varBsModalHeaderPadding]: '2rem 2rem',
 		[varBsModalHeaderBorderColor]: varBsBorderColor,
 		[varBsModalHeaderBorderWidth]: varBsBorderWidth,
-		[varBsModalTitleLineHeight]: 1.5,
-		[varBsModalFooterGap]: "0.5rem",
-		[varBsModalFooterBg]: "",
+		[varBsModalTitleLineHeight]: '1.5',
+		[varBsModalFooterGap]: '0.5rem',
+		[varBsModalFooterBg]: '',
 		[varBsModalFooterBorderColor]: varBsBorderColor,
 		[varBsModalFooterBorderWidth]: varBsBorderWidth,
 	},
-	position: "fixed",
-	top: 0,
-	left: 0,
+	position: 'fixed',
+	top: '0',
+	left: '0',
 	zIndex: varBsModalZindex,
-	display: "none",
-	width: "100%",
-	height: "100%",
-	overflowX: "hidden",
-	overflowY: "auto",
-	outline: 0,
+	display: 'none',
+	width: '100%',
+	height: '100%',
+	overflowX: 'hidden',
+	overflowY: 'auto',
+	outline: '0',
 })
 
-// SOURCE CSS:
-// .modal-dialog { position: relative; width: auto; margin: var(--bs-modal-margin); pointer-events: none; }
 globalStyle(`${quartzScope}${modalDialog}`, {
-	position: "relative",
-	width: "auto",
+	position: 'relative',
+	width: 'auto',
 	margin: varBsModalMargin,
-	pointerEvents: "none",
+	pointerEvents: 'none',
 })
 
-// SOURCE CSS:
-// .modal.fade .modal-dialog { transform: translate(0, -50px); transition: transform 0.3s ease-out; }
-globalStyle(`${quartzScope}${modal}.fade ${quartzScope}${modalDialog}`, {
-	transform: "translate(0, -50px)",
-	transition: "transform 0.3s ease-out",
+globalStyle(`${quartzScope}${modal}${modalFade} ${quartzScope}${modalDialog}`, {
+	transform: 'translate(0, -50px)',
+	transition: 'transform 0.3s ease-out',
 })
 
-// SOURCE CSS:
-// .modal.show .modal-dialog { transform: none; }
-globalStyle(`${quartzScope}${modal}.show ${quartzScope}${modalDialog}`, {
-	transform: "none",
+globalStyle(`${quartzScope}${modal}${modalFade} ${quartzScope}${modalDialog}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .modal-dialog-scrollable { height: calc(100% - var(--bs-modal-margin) * 2); }
+globalStyle(`${quartzScope}${modal}${modalShowHook} ${quartzScope}${modalDialog}`, {
+	transform: 'none',
+})
+
+globalStyle(`${quartzScope}${modal}${modalStatic} ${quartzScope}${modalDialog}`, {
+	transform: 'scale(1.02)',
+})
+
 globalStyle(`${quartzScope}${modalDialogScrollable}`, {
-	height: "calc(100% - var(--bs-modal-margin) * 2)",
+	height: `calc(100% - ${varBsModalMargin} * 2)`,
 })
 
-// SOURCE CSS:
-// .modal-dialog-scrollable .modal-content { max-height: 100%; overflow: hidden; }
 globalStyle(`${quartzScope}${modalDialogScrollable} ${quartzScope}${modalContent}`, {
-	maxHeight: "100%",
-	overflow: "hidden",
+	maxHeight: '100%',
+	overflow: 'hidden',
 })
 
-// SOURCE CSS:
-// .modal-dialog-scrollable .modal-body { overflow-y: auto; }
 globalStyle(`${quartzScope}${modalDialogScrollable} ${quartzScope}${modalBody}`, {
-	overflowY: "auto",
+	overflowY: 'auto',
 })
 
-// SOURCE CSS:
-// .modal-dialog-centered { display: flex; align-items: center; min-height: calc(100% - var(--bs-modal-margin) * 2); }
 globalStyle(`${quartzScope}${modalDialogCentered}`, {
-	display: "flex",
-	alignItems: "center",
-	minHeight: "calc(100% - var(--bs-modal-margin) * 2)",
+	display: 'flex',
+	alignItems: 'center',
+	minHeight: `calc(100% - ${varBsModalMargin} * 2)`,
 })
 
-// SOURCE CSS:
-// .modal-content { position: relative; display: flex; flex-direction: column; width: 100%; color: var(--bs-modal-color); pointer-events: auto; background-color: var(--bs-modal-bg); background-clip: padding-box; border: var(--bs-modal-border-width) solid var(--bs-modal-border-color); border-radius: var(--bs-modal-border-radius); outline: 0; }
 globalStyle(`${quartzScope}${modalContent}`, {
-	position: "relative",
-	display: "flex",
-	flexDirection: "column",
-	width: "100%",
+	position: 'relative',
+	display: 'flex',
+	flexDirection: 'column',
+	width: '100%',
 	color: varBsModalColor,
-	pointerEvents: "auto",
+	pointerEvents: 'auto',
 	backgroundColor: varBsModalBg,
-	backgroundClip: "padding-box",
-	border: "var(--bs-modal-border-width) solid var(--bs-modal-border-color)",
+	backgroundClip: 'padding-box',
+	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
-	outline: 0,
+	outline: '0',
 })
 
-// SOURCE CSS:
-// .modal-backdrop { --bs-backdrop-zindex: 1050; --bs-backdrop-bg: #000; --bs-backdrop-opacity: 0.5; position: fixed; top: 0; left: 0; z-index: var(--bs-backdrop-zindex); width: 100vw; height: 100vh; background-color: var(--bs-backdrop-bg); }
 globalStyle(`${quartzScope}${modalBackdrop}`, {
 	vars: {
-		[varBsBackdropZindex]: 1050,
-		[varBsBackdropBg]: "#000",
-		[varBsBackdropOpacity]: 0.5,
+		[varBsBackdropZindex]: '1050',
+		[varBsBackdropBg]: '#000',
+		[varBsBackdropOpacity]: '0.5',
 	},
-	position: "fixed",
-	top: 0,
-	left: 0,
+	position: 'fixed',
+	top: '0',
+	left: '0',
 	zIndex: varBsBackdropZindex,
-	width: "100vw",
-	height: "100vh",
+	width: '100vw',
+	height: '100vh',
 	backgroundColor: varBsBackdropBg,
 })
 
-// SOURCE CSS:
-// .modal-backdrop.fade { opacity: 0; }
-globalStyle(`${quartzScope}${modalBackdrop}.fade`, {
-	opacity: 0,
+globalStyle(`${quartzScope}${modalBackdrop}${modalFade}`, {
+	opacity: '0',
 })
 
-// SOURCE CSS:
-// .modal-backdrop.show { opacity: var(--bs-backdrop-opacity); }
-globalStyle(`${quartzScope}${modalBackdrop}.show`, {
+globalStyle(`${quartzScope}${modalBackdrop}${modalShowHook}`, {
 	opacity: varBsBackdropOpacity,
 })
 
-// SOURCE CSS:
-// .modal-header { display: flex; flex-shrink: 0; align-items: center; padding: var(--bs-modal-header-padding); border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); border-top-left-radius: var(--bs-modal-inner-border-radius); border-top-right-radius: var(--bs-modal-inner-border-radius); }
 globalStyle(`${quartzScope}${modalHeader}`, {
-	display: "flex",
-	flexShrink: 0,
-	alignItems: "center",
+	display: 'flex',
+	flexShrink: '0',
+	alignItems: 'center',
 	padding: varBsModalHeaderPadding,
-	borderBottom: "var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color)",
+	borderBottom: `${varBsModalHeaderBorderWidth} solid ${varBsModalHeaderBorderColor}`,
 	borderTopLeftRadius: varBsModalInnerBorderRadius,
 	borderTopRightRadius: varBsModalInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// .modal-header .btn-close { padding: calc(var(--bs-modal-header-padding-y) * 0.5) calc(var(--bs-modal-header-padding-x) * 0.5); margin-top: calc(-0.5 * var(--bs-modal-header-padding-y)); margin-right: calc(-0.5 * var(--bs-modal-header-padding-x)); margin-bottom: calc(-0.5 * var(--bs-modal-header-padding-y)); margin-left: auto; }
-// [UNMAPPED_SELECTOR] class ".btn-close" — no contract mapping
-globalStyle(`${quartzScope}${modalHeader} .btn-close`, {
-	padding: "calc(var(--bs-modal-header-padding-y) * 0.5) calc(var(--bs-modal-header-padding-x) * 0.5)",
-	marginTop: "calc(-0.5 * var(--bs-modal-header-padding-y))",
-	marginRight: "calc(-0.5 * var(--bs-modal-header-padding-x))",
-	marginBottom: "calc(-0.5 * var(--bs-modal-header-padding-y))",
-	marginLeft: "auto",
-})
-
-// SOURCE CSS:
-// .modal-title { margin-bottom: 0; line-height: var(--bs-modal-title-line-height); }
 globalStyle(`${quartzScope}${modalTitle}`, {
-	marginBottom: 0,
+	marginBottom: '0',
 	lineHeight: varBsModalTitleLineHeight,
 })
 
-// SOURCE CSS:
-// .modal-body { position: relative; flex: 1 1 auto; padding: var(--bs-modal-padding); }
 globalStyle(`${quartzScope}${modalBody}`, {
-	position: "relative",
-	flex: "1 1 auto",
+	position: 'relative',
+	flex: '1 1 auto',
 	padding: varBsModalPadding,
 })
 
-// SOURCE CSS:
-// .modal-footer { display: flex; flex-shrink: 0; flex-wrap: wrap; align-items: center; justify-content: flex-end; padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5); background-color: var(--bs-modal-footer-bg); border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color); border-bottom-right-radius: var(--bs-modal-inner-border-radius); border-bottom-left-radius: var(--bs-modal-inner-border-radius); }
 globalStyle(`${quartzScope}${modalFooter}`, {
-	display: "flex",
-	flexShrink: 0,
-	flexWrap: "wrap",
-	alignItems: "center",
-	justifyContent: "flex-end",
-	padding: "calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5)",
+	display: 'flex',
+	flexShrink: '0',
+	flexWrap: 'wrap',
+	alignItems: 'center',
+	justifyContent: 'flex-end',
+	padding: `calc(${varBsModalPadding} - ${varBsModalFooterGap} * 0.5)`,
 	backgroundColor: varBsModalFooterBg,
-	borderTop: "var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color)",
+	borderTop: `${varBsModalFooterBorderWidth} solid ${varBsModalFooterBorderColor}`,
 	borderBottomRightRadius: varBsModalInnerBorderRadius,
 	borderBottomLeftRadius: varBsModalInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// .modal-footer > * { margin: calc(var(--bs-modal-footer-gap) * 0.5); }
-// [UNMAPPED_SELECTOR] element selector "*" — map to a contract class
 globalStyle(`${quartzScope}${modalFooter} > *`, {
-	margin: "calc(var(--bs-modal-footer-gap) * 0.5)",
+	margin: `calc(${varBsModalFooterGap} * 0.5)`,
 })
 
-// SOURCE CSS:
-// .d-flex { display: flex !important; }
-globalStyle(`${quartzScope}${dFlex}`, {
-	display: "flex !important",
+globalStyle(`${quartzScope}${modal}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsModalMargin]: '1.75rem',
+				[varBsModalBoxShadow]: varBsBoxShadow,
+			},
+		},
+	},
 })
 
-// SOURCE CSS:
-// .flex-wrap { flex-wrap: wrap !important; }
-globalStyle(`${quartzScope}${flexWrap}`, {
-	flexWrap: "wrap !important",
+globalStyle(`${quartzScope}${modalDialog}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			maxWidth: varBsModalWidth,
+			marginRight: 'auto',
+			marginLeft: 'auto',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .justify-content-between { justify-content: space-between !important; }
-globalStyle(`${quartzScope}${justifyContentBetween}`, {
-	justifyContent: "space-between !important",
+globalStyle(`${quartzScope}${modalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsModalWidth]: '300px',
+			},
+		},
+	},
 })
 
-// SOURCE CSS:
-// .modal-fullscreen { width: 100vw; max-width: none; height: 100%; margin: 0; }
+globalStyle(`${quartzScope}${modalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsModalWidth]: '1140px',
+			},
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${modalFullscreen}`, {
-	width: "100vw",
-	maxWidth: "none",
-	height: "100%",
-	margin: 0,
+	width: '100vw',
+	maxWidth: 'none',
+	height: '100%',
+	margin: '0',
 })
 
-// SOURCE CSS:
-// .modal-fullscreen .modal-content { height: 100%; border: 0; border-radius: 0; }
 globalStyle(`${quartzScope}${modalFullscreen} ${quartzScope}${modalContent}`, {
-	height: "100%",
-	border: 0,
-	borderRadius: 0,
+	height: '100%',
+	border: '0',
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .modal-fullscreen .modal-header { border-radius: 0; }
 globalStyle(`${quartzScope}${modalFullscreen} ${quartzScope}${modalHeader}`, {
-	borderRadius: 0,
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .modal-fullscreen .modal-footer { border-radius: 0; }
 globalStyle(`${quartzScope}${modalFullscreen} ${quartzScope}${modalFooter}`, {
-	borderRadius: 0,
+	borderRadius: '0',
 })
 
-// SOURCE CSS:
-// .modal-fullscreen .modal-body { overflow-y: auto; }
 globalStyle(`${quartzScope}${modalFullscreen} ${quartzScope}${modalBody}`, {
-	overflowY: "auto",
+	overflowY: 'auto',
+})
+
+globalStyle(`${quartzScope}${modalFullscreenSmDown}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenSmDown} ${quartzScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenSmDown} ${quartzScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenSmDown} ${quartzScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenSmDown} ${quartzScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenMdDown}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenMdDown} ${quartzScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenMdDown} ${quartzScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenMdDown} ${quartzScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenMdDown} ${quartzScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenLgDown}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenLgDown} ${quartzScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenLgDown} ${quartzScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenLgDown} ${quartzScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenLgDown} ${quartzScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXlDown}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXlDown} ${quartzScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXlDown} ${quartzScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXlDown} ${quartzScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXlDown} ${quartzScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXxlDown}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXxlDown} ${quartzScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXxlDown} ${quartzScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXxlDown} ${quartzScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${modalFullscreenXxlDown} ${quartzScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
+globalStyle(`${quartzScope}${justifyContentBetween}`, {
+	justifyContent: 'space-between !important',
+})
+
+globalStyle(`${quartzScope}${modalContent}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
+})
+
+globalStyle(`${quartzScope}${modalContent} ${quartzScope}${link}`, {
+	color: '#fff',
 })

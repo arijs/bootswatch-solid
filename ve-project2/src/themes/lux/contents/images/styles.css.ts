@@ -1,7 +1,50 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { luxScope } from '../../scope.css'
 
-// AUTO-GENERATED family styles for lux/contents/images
-// Review [UNMAPPED] and [DELTA] comments before committing.
+import {
+	varBsBodyBg,
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsSecondaryColor,
+} from '../../../../theme-contract/_vars.css'
 
-export {}
+import {
+	figure,
+	figureCaption,
+	figureImg,
+	imgFluid,
+	imgThumbnail,
+	rounded,
+} from '../../../../theme-contract/contents/images/contract.css'
+
+globalStyle(`${luxScope}${imgFluid}`, {
+	maxWidth: '100%',
+	height: 'auto',
+})
+
+globalStyle(`${luxScope}${imgThumbnail}`, {
+	padding: '0.25rem',
+	backgroundColor: varBsBodyBg,
+	border: `${varBsBorderWidth} solid ${varBsBorderColor}`,
+	maxWidth: '100%',
+	height: 'auto',
+})
+
+globalStyle(`${luxScope}${figure}`, {
+	display: 'inline-block',
+})
+
+globalStyle(`${luxScope}${figureImg}`, {
+	marginBottom: '0.5rem',
+	lineHeight: '1',
+})
+
+globalStyle(`${luxScope}${figureCaption}`, {
+	fontSize: '0.875em',
+	color: varBsSecondaryColor,
+})
+
+globalStyle(`${luxScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
+})
