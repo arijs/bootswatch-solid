@@ -121,8 +121,12 @@ The override table (105 entries) covers: literal-only legacy/Bootswatch classes 
 - **Gate check:** [`validate-family-chunks.mjs`](../scripts/generate-ve-literal/validate-family-chunks.mjs) confirms **rule-equivalent: YES** (2982 = 2982) and **0 import problems** (every referenced symbol imported; no unused imports) across all 32 chunks.
 - **Deferred:** `@layer` cross-family ordering (§4.1) is left to G5 — the G2 gate doesn't need it, and within each family the cascade is already monolith-identical (blocks kept in source order). Generated chunk files are not Biome-clean, **matching the committed monolith** (same generator; these artifacts are tolerated by repo convention). Emitting all 27 themes is one `--all-themes --families` run, sequenced with G3's loader regeneration.
 
-**G3 — Regenerate loader map.** Regenerate `ve2ThemeFamilyLoaders` for all **27** themes; expand `Ve2GranularShell` theme resolution beyond the current 8. (Mirrors T5.)
+**✅ G3 — Regenerate loader map.** Regenerate `ve2ThemeFamilyLoaders` for all **27** themes; expand `Ve2GranularShell` theme resolution beyond the current 8. (Mirrors T5.)
 *Gate:* `?style-loader=granular&theme=<t>` loads each theme's family chunks for every theme.
+
+**Done.** Ran the deferred `--all-themes --families` emit: all 27 themes now carry the 32-family partition (`global` + 31 `EMIT_FAMILIES`, incl. `ui/offcanvas` + `utilities/used`), each validated **rule-equivalent to the monolith, 0 import problems** ([`validate-family-chunks.mjs`](../scripts/generate-ve-literal/validate-family-chunks.mjs) across all 27). New generator [`generate-granular-loaders.mjs`](../scripts/generate-ve-theme/generate-granular-loaders.mjs) emits `theme-runtime.ts` (`VE2_THEME_KEYS`, `themeScopes`, `ve2ThemeLoaders`, `ve2ThemeFamilyLoaders`, `resolveVe2ThemeKey`) for **27 themes × 32 loadable families** plus the 27 `theme.ts` full-theme aggregators — replacing the stale 8-theme/heuristic-chunk maps. [`Ve2GranularShell`](../ve-project2/src/components/shell/Ve2GranularShell.tsx) now **loads the `global` chunk for real** (reboot/root-vars/keyframes moved there in G2) instead of the old no-op special-case. The dead bare `contents/styles.css.ts` barrel (superseded by the 6 content-leaf chunks; not in the validated set) was deleted across all 27 themes.
+
+*Gate check:* all **864** referenced chunk files (27 × 32) exist and resolve; `tsc` clean on every changed file. Commit `c17a1c75`.
 
 **G4 — Closure check.** Family-coverage assertion on top of markup-parity; fix `ve2RequiredStyleFamilies` gaps. (Mirrors Phase 3.)
 *Gate:* closure report empty for the families being verified.
