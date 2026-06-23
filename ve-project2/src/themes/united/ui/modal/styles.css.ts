@@ -50,7 +50,6 @@ import {
 	modalXl,
 } from '../../../../theme-contract/literal/contract.css'
 import {
-	flexWrap,
 	justifyContentBetween,
 	modal,
 	modalBackdrop,
@@ -550,10 +549,6 @@ globalStyle(`${unitedScope}${modalFullscreenXxlDown} ${unitedScope}${modalBody}`
 			overflowY: 'auto',
 		},
 	},
-})
-
-globalStyle(`${unitedScope}${flexWrap}`, {
-	flexWrap: 'wrap !important',
 })
 
 globalStyle(`${unitedScope}${justifyContentBetween}`, {

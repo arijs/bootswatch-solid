@@ -8,12 +8,6 @@ import {
 	varBsLinkHoverColor,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
@@ -47,11 +41,9 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
-import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
@@ -63,45 +55,6 @@ import {
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasBackdrop,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../../theme-contract/ui/offcanvas/contract.css'
-
-globalStyle(`${cyborgScope}${btn}${show}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${cyborgScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${cyborgScope}${fade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${cyborgScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${cyborgScope}${collapse}:not(${show})`, {
-	display: 'none',
-})
 
 globalStyle(`${cyborgScope}${nav}`, {
 	vars: {
@@ -301,10 +254,6 @@ globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
-globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${show}`, {
-	color: varBsNavbarActiveColor,
-})
-
 globalStyle(`${cyborgScope}${navbarExpandSm} ${cyborgScope}${navbarNav} ${cyborgScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -358,58 +307,6 @@ globalStyle(`${cyborgScope}${navbarExpand} ${cyborgScope}${navbarNav} ${cyborgSc
 globalStyle(`${cyborgScope}${cardHeaderTabs} ${cyborgScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
-})
-
-globalStyle(`${cyborgScope}${offcanvasSm}${show}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${offcanvasMd}${show}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${offcanvasLg}${show}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${offcanvasXl}${show}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${offcanvasXxl}${show}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${offcanvas}${show}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${cyborgScope}${offcanvasBackdrop}${fade}`, {
-	opacity: '0',
-})
-
-globalStyle(`${cyborgScope}${offcanvasBackdrop}${show}`, {
-	opacity: '0.5',
 })
 
 globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}`, {

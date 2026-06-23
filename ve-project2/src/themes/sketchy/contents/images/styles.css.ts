@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${sketchyScope}${imgFluid}`, {
@@ -44,10 +43,6 @@ globalStyle(`${sketchyScope}${figureImg}`, {
 globalStyle(`${sketchyScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${sketchyScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${sketchyScope}${imgThumbnail}`, {

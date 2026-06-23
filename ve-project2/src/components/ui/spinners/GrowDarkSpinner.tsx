@@ -12,7 +12,7 @@ import { textDark, visuallyHidden } from '../../../theme-contract/utilities/cont
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/spinners',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const GrowDarkSpinner: Component = () => {

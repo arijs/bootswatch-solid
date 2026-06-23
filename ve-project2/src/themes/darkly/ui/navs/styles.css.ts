@@ -2,12 +2,6 @@ import { globalStyle } from '@vanilla-extract/css'
 import { darklyScope } from '../../scope.css'
 
 import { varBsBodyBg, varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
@@ -41,11 +35,9 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
-import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
@@ -57,45 +49,6 @@ import {
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasBackdrop,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../../theme-contract/ui/offcanvas/contract.css'
-
-globalStyle(`${darklyScope}${btn}${show}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${darklyScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${darklyScope}${fade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${darklyScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${darklyScope}${collapse}:not(${show})`, {
-	display: 'none',
-})
 
 globalStyle(`${darklyScope}${nav}`, {
 	vars: {
@@ -295,10 +248,6 @@ globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
-globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${show}`, {
-	color: varBsNavbarActiveColor,
-})
-
 globalStyle(`${darklyScope}${navbarExpandSm} ${darklyScope}${navbarNav} ${darklyScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -352,56 +301,4 @@ globalStyle(`${darklyScope}${navbarExpand} ${darklyScope}${navbarNav} ${darklySc
 globalStyle(`${darklyScope}${cardHeaderTabs} ${darklyScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
-})
-
-globalStyle(`${darklyScope}${offcanvasSm}${show}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasMd}${show}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasLg}${show}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXl}${show}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXxl}${show}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvas}${show}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${darklyScope}${offcanvasBackdrop}${fade}`, {
-	opacity: '0',
-})
-
-globalStyle(`${darklyScope}${offcanvasBackdrop}${show}`, {
-	opacity: '0.5',
 })

@@ -52,7 +52,6 @@ import {
 	modalXl,
 } from '../../../../theme-contract/literal/contract.css'
 import {
-	flexWrap,
 	justifyContentBetween,
 	modal,
 	modalBackdrop,
@@ -552,10 +551,6 @@ globalStyle(`${quartzScope}${modalFullscreenXxlDown} ${quartzScope}${modalBody}`
 			overflowY: 'auto',
 		},
 	},
-})
-
-globalStyle(`${quartzScope}${flexWrap}`, {
-	flexWrap: 'wrap !important',
 })
 
 globalStyle(`${quartzScope}${justifyContentBetween}`, {

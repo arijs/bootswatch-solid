@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${ceruleanScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${ceruleanScope}${figureImg}`, {
 globalStyle(`${ceruleanScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${ceruleanScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

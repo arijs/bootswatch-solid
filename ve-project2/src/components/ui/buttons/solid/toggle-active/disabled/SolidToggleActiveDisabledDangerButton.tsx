@@ -14,7 +14,7 @@ import { btn, btnCheck, btnDanger } from '../../../../../../theme-contract/ui/bu
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SolidToggleActiveDisabledDangerButton: Component = () => {

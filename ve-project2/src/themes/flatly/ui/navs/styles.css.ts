@@ -9,12 +9,6 @@ import {
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
@@ -48,11 +42,9 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
-import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
@@ -64,45 +56,6 @@ import {
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasBackdrop,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../../theme-contract/ui/offcanvas/contract.css'
-
-globalStyle(`${flatlyScope}${btn}${show}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${flatlyScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${flatlyScope}${fade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${flatlyScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${flatlyScope}${collapse}:not(${show})`, {
-	display: 'none',
-})
 
 globalStyle(`${flatlyScope}${nav}`, {
 	vars: {
@@ -302,10 +255,6 @@ globalStyle(`${flatlyScope}${navbarNav} ${flatlyScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
-globalStyle(`${flatlyScope}${navbarNav} ${flatlyScope}${navLink}${show}`, {
-	color: varBsNavbarActiveColor,
-})
-
 globalStyle(`${flatlyScope}${navbarExpandSm} ${flatlyScope}${navbarNav} ${flatlyScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -359,56 +308,4 @@ globalStyle(`${flatlyScope}${navbarExpand} ${flatlyScope}${navbarNav} ${flatlySc
 globalStyle(`${flatlyScope}${cardHeaderTabs} ${flatlyScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
-})
-
-globalStyle(`${flatlyScope}${offcanvasSm}${show}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${offcanvasMd}${show}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${offcanvasLg}${show}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${offcanvasXl}${show}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${offcanvasXxl}${show}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${offcanvas}${show}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${flatlyScope}${offcanvasBackdrop}${fade}`, {
-	opacity: '0',
-})
-
-globalStyle(`${flatlyScope}${offcanvasBackdrop}${show}`, {
-	opacity: '0.5',
 })

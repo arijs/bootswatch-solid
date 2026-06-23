@@ -109,7 +109,14 @@ import {
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
+import { varBsNavbarActiveColor } from '../../../theme-contract/ui/navbar/_vars.css'
 import { varBsBtnCloseFilter, varBsLinkOpacity } from '../../../theme-contract/utilities/generated/_vars.css'
 
 import {
@@ -173,7 +180,18 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
+import { btn } from '../../../theme-contract/ui/buttons/contract.css'
+import { collapse, navbar, navbarNav } from '../../../theme-contract/ui/navbar/contract.css'
+import { fade, navLink, show } from '../../../theme-contract/ui/navs/contract.css'
+import {
+	offcanvas,
+	offcanvasBackdrop,
+	offcanvasLg,
+	offcanvasMd,
+	offcanvasSm,
+	offcanvasXl,
+	offcanvasXxl,
+} from '../../../theme-contract/ui/offcanvas/contract.css'
 
 globalStyle(`${ceruleanScope}${vars}`, {
 	vars: {
@@ -984,11 +1002,45 @@ globalStyle(`${ceruleanScope}${vars}`, {
 	},
 })
 
+globalStyle(`${ceruleanScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${ceruleanScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${ceruleanScope}${fade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${ceruleanScope}${fade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${ceruleanScope}${collapse}:not(${show})`, {
+	display: 'none',
+})
+
 globalStyle(`${ceruleanScope}${navbar} > ${ceruleanScope}${containerFluid}`, {
 	display: 'flex',
 	flexWrap: 'inherit',
 	alignItems: 'center',
 	justifyContent: 'space-between',
+})
+
+globalStyle(`${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
 })
 
 globalKeyframes('progress-bar-stripes', {
@@ -1039,6 +1091,58 @@ globalKeyframes('spinner-grow', {
 		opacity: '1',
 		transform: 'none',
 	},
+})
+
+globalStyle(`${ceruleanScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${ceruleanScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${ceruleanScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
 })
 
 globalKeyframes('placeholder-glow', {

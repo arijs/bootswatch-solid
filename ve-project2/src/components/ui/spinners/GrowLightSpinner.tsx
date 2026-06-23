@@ -13,7 +13,7 @@ import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/spinners',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const GrowLightSpinner: Component = () => {

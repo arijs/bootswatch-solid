@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${mintyScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${mintyScope}${figureImg}`, {
 globalStyle(`${mintyScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${mintyScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

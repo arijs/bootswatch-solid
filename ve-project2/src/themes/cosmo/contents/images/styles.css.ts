@@ -4,7 +4,6 @@ import { cosmoScope } from '../../scope.css'
 import {
 	varBsBodyBg,
 	varBsBorderColor,
-	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
@@ -15,7 +14,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${cosmoScope}${imgFluid}`, {
@@ -43,8 +41,4 @@ globalStyle(`${cosmoScope}${figureImg}`, {
 globalStyle(`${cosmoScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${cosmoScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

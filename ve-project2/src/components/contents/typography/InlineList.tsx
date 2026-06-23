@@ -12,7 +12,7 @@ import { bodyText } from '../../../theme-contract/theme-contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/lists',
-	'utilities',
+	'utilities/used',
 ]
 
 const InlineList: Component = () => {

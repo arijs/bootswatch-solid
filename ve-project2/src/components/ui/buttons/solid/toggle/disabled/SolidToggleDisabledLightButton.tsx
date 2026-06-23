@@ -14,7 +14,7 @@ import { btn, btnCheck, btnLight } from '../../../../../../theme-contract/ui/but
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SolidToggleDisabledLightButton: Component = () => {

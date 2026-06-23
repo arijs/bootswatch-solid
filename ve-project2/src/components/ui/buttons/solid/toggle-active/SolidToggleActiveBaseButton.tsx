@@ -14,7 +14,7 @@ import { btn, btnCheck } from '../../../../../theme-contract/ui/buttons/contract
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SolidToggleActiveBaseButton: Component = () => {

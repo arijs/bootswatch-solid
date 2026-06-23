@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${unitedScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${unitedScope}${figureImg}`, {
 globalStyle(`${unitedScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${unitedScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

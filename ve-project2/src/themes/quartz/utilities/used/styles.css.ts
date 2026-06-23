@@ -3,6 +3,7 @@ import { quartzScope } from '../../scope.css'
 
 import {
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -47,6 +48,7 @@ import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../.
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
 	active,
@@ -132,7 +134,7 @@ import { card } from '../../../../theme-contract/ui/card/contract.css'
 import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
 import { dropdownItem, dropdownMenu } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroup, listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
-import { modalContent } from '../../../../theme-contract/ui/modal/contract.css'
+import { flexWrap, modalContent } from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	navItem,
 	navLink,
@@ -619,6 +621,10 @@ globalStyle(`${quartzScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${quartzScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${quartzScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -872,6 +878,10 @@ globalStyle(`${quartzScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${quartzScope}${roundedPill}`, {

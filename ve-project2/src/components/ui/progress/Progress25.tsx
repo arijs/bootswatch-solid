@@ -12,7 +12,7 @@ import { progress, progressBar } from '../../../theme-contract/ui/progress/contr
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const Progress25: Component = () => {

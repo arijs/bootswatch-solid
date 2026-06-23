@@ -94,6 +94,7 @@ export const FAMILY_OVERRIDES = {
 	bsTetherElementAttachedLeft: 'ui/popovers',
 	bsTetherElementAttachedRight: 'ui/popovers',
 	tooltip: 'ui/tooltips',
+	bsTooltipAuto: 'ui/tooltips', // .bs-tooltip-auto positioning (was caught by utilities/generated)
 
 	// BS3-era form shim classes shipped by some Bootswatch themes.
 	checkbox: 'forms',
@@ -126,6 +127,26 @@ export const FAMILY_OVERRIDES = {
 
 	// Sandstone's theme-wide grouped typography class (`.sandstone, .tooltip, …`).
 	sandstone: 'global',
+
+	// ── Shared generic component classes → global ──
+	// `.collapse`/`.fade`/`.show` are foundational display/transition classes the
+	// dir structure parks in one component (navbar/navs/modal), but they are stamped
+	// across many unrelated families (accordion uses `.collapse`; alerts/toasts use
+	// `.fade .show`). They are baseline, so they belong in the always-loaded chunk
+	// rather than dragging an unrelated family onto every route that animates.
+	collapse: 'global',
+	fade: 'global',
+	show: 'global',
+
+	// Demo positioning scaffolding shared verbatim by the popovers AND tooltips
+	// example pages (same symbol name in both contract dirs → the name-keyed table
+	// can only pick one family). Pin to global so both demos load it (G4 closure).
+	frame: 'global',
+	frameColumn: 'global',
+	frameRow: 'global',
+	justifyStart: 'global',
+	justifyCenter: 'global',
+	justifyEnd: 'global',
 
 	// ── Component classes the inherited `utilities/generated` catch-all swept up ──
 	// These are component modifiers/sizes, NOT utilities. The override pulls them
@@ -204,10 +225,11 @@ export const FAMILY_OVERRIDES = {
  * grouped symbol dump used to seed this set). Grouped by §10.2 sub-family.
  */
 export const USED_UTILITY_SYMBOLS = new Set([
-	// borders (4)
+	// borders (5)
 	'border',
 	'borderBottom',
 	'borderDark',
+	'rounded',
 	'roundedPill',
 	// color-bg (8)
 	'bgDanger',
@@ -221,7 +243,7 @@ export const USED_UTILITY_SYMBOLS = new Set([
 	// display-visibility (2)
 	'overflowXHidden',
 	'visuallyHidden',
-	// flex-display (15)
+	// flex-display (16)
 	'alignItemsCenter',
 	'alignItemsStretch',
 	'alignSelfStart',
@@ -234,11 +256,14 @@ export const USED_UTILITY_SYMBOLS = new Set([
 	'dNone',
 	'flexColumn',
 	'flexRow',
+	'flexWrap',
 	'justifyContentCenter',
 	'justifyContentEnd',
 	'justifyContentStart',
-	// grid (10) — `collapsed` is a navbar-toggler state swept in by the catch-all
+	// grid (11) — `collapsed` is a navbar-toggler state swept in by the catch-all;
+	// `rowCol` (.row-cols-auto / row-col wrapper) is rendered by the forms validation rows
 	'col',
+	'rowCol',
 	'colMd3',
 	'colMd4',
 	'colMd6',
@@ -365,10 +390,15 @@ export async function buildFamilyTable() {
 		}
 	}
 
-	// Element contracts (reboot) → global, explicitly (also covered via
-	// global-elements above, but assert it here so it can never drift).
+	// Element contracts (reboot) → global, UNCONDITIONALLY. A reboot rule
+	// (`h6{}`, `fieldset{}`, the `<a>` link contract, the table elements) is
+	// baseline and must live in the always-loaded chunk — it is stamped on bare
+	// elements across every route, not just the family whose dir happens to also
+	// declare the symbol. Without the unconditional pin the dir-structure passes
+	// steal element contracts into a leaf family (e.g. `h6`→contents/heading,
+	// `fieldset`→forms), producing closure gaps on unrelated routes (G4).
 	for (const sym of Object.values(TAG_TO_CONTRACT)) {
-		if (!symbolToFamily.has(sym)) symbolToFamily.set(sym, GLOBAL_FAMILY)
+		symbolToFamily.set(sym, GLOBAL_FAMILY)
 	}
 
 	// Curated overrides win.

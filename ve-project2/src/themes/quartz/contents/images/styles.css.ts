@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${quartzScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${quartzScope}${figureImg}`, {
 globalStyle(`${quartzScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${quartzScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

@@ -17,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/list-group',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const ContextualDarkListGroup: Component = () => {

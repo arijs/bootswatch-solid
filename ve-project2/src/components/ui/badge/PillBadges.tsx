@@ -22,7 +22,7 @@ import { bgDark, textDark } from '../../../theme-contract/utilities/contract.css
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/badge',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const PillBadges: Component = () => {

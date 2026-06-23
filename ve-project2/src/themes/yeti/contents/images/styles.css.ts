@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${yetiScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${yetiScope}${figureImg}`, {
 globalStyle(`${yetiScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${yetiScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

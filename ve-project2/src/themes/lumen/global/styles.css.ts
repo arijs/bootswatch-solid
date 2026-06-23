@@ -109,7 +109,14 @@ import {
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
+import { varBsNavbarActiveColor } from '../../../theme-contract/ui/navbar/_vars.css'
 import { varBsBtnCloseFilter, varBsLinkOpacity } from '../../../theme-contract/utilities/generated/_vars.css'
 
 import {
@@ -173,7 +180,18 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
+import { btn } from '../../../theme-contract/ui/buttons/contract.css'
+import { collapse, navbar, navbarNav } from '../../../theme-contract/ui/navbar/contract.css'
+import { fade, navLink, show } from '../../../theme-contract/ui/navs/contract.css'
+import {
+	offcanvas,
+	offcanvasBackdrop,
+	offcanvasLg,
+	offcanvasMd,
+	offcanvasSm,
+	offcanvasXl,
+	offcanvasXxl,
+} from '../../../theme-contract/ui/offcanvas/contract.css'
 
 globalStyle(`${lumenScope}${vars}`, {
 	vars: {
@@ -984,11 +1002,45 @@ globalStyle(`${lumenScope}${vars}`, {
 	},
 })
 
+globalStyle(`${lumenScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${lumenScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${lumenScope}${fade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${lumenScope}${fade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${lumenScope}${fade}:not(${show})`, {
+	opacity: '0',
+})
+
+globalStyle(`${lumenScope}${collapse}:not(${show})`, {
+	display: 'none',
+})
+
 globalStyle(`${lumenScope}${navbar} > ${lumenScope}${containerFluid}`, {
 	display: 'flex',
 	flexWrap: 'inherit',
 	alignItems: 'center',
 	justifyContent: 'space-between',
+})
+
+globalStyle(`${lumenScope}${navbarNav} ${lumenScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
 })
 
 globalKeyframes('progress-bar-stripes', {
@@ -1039,6 +1091,58 @@ globalKeyframes('spinner-grow', {
 		opacity: '1',
 		transform: 'none',
 	},
+})
+
+globalStyle(`${lumenScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${lumenScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${lumenScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${lumenScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${lumenScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${lumenScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${lumenScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${lumenScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
 })
 
 globalKeyframes('placeholder-glow', {

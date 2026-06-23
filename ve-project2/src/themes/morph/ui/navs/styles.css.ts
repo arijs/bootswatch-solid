@@ -8,13 +8,6 @@ import {
 	varBsEmphasisColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
@@ -48,11 +41,9 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
-import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
@@ -64,46 +55,6 @@ import {
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasBackdrop,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../../theme-contract/ui/offcanvas/contract.css'
-
-globalStyle(`${morphScope}${btn}${show}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-	boxShadow: varBsBtnActiveBoxShadow,
-})
-
-globalStyle(`${morphScope}${btn}${show}:focus-visible`, {
-	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
-})
-
-globalStyle(`${morphScope}${fade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${morphScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${morphScope}${collapse}:not(${show})`, {
-	display: 'none',
-})
 
 globalStyle(`${morphScope}${nav}`, {
 	vars: {
@@ -303,10 +254,6 @@ globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
-globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${show}`, {
-	color: varBsNavbarActiveColor,
-})
-
 globalStyle(`${morphScope}${navbarExpandSm} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -360,58 +307,6 @@ globalStyle(`${morphScope}${navbarExpand} ${morphScope}${navbarNav} ${morphScope
 globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
-})
-
-globalStyle(`${morphScope}${offcanvasSm}${show}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${offcanvasMd}${show}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${offcanvasLg}${show}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${offcanvasXl}${show}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${offcanvasXxl}${show}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${offcanvas}${show}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${morphScope}${offcanvasBackdrop}${fade}`, {
-	opacity: '0',
-})
-
-globalStyle(`${morphScope}${offcanvasBackdrop}${show}`, {
-	opacity: '0.5',
 })
 
 globalStyle(`${morphScope}${navTabs}`, {

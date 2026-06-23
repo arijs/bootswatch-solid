@@ -12,12 +12,6 @@ import {
 	varBsLinkHoverColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
@@ -51,11 +45,9 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
-import { collapse, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
@@ -67,46 +59,6 @@ import {
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasBackdrop,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../../theme-contract/ui/offcanvas/contract.css'
-
-globalStyle(`${materiaScope}${btn}${show}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	backgroundImage: 'none',
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${materiaScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${materiaScope}${fade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${materiaScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${materiaScope}${collapse}:not(${show})`, {
-	display: 'none',
-})
 
 globalStyle(`${materiaScope}${nav}`, {
 	vars: {
@@ -308,10 +260,6 @@ globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}${navLinkActiv
 	color: varBsNavbarActiveColor,
 })
 
-globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}${show}`, {
-	color: varBsNavbarActiveColor,
-})
-
 globalStyle(`${materiaScope}${navbarExpandSm} ${materiaScope}${navbarNav} ${materiaScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -365,58 +313,6 @@ globalStyle(`${materiaScope}${navbarExpand} ${materiaScope}${navbarNav} ${materi
 globalStyle(`${materiaScope}${cardHeaderTabs} ${materiaScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
-})
-
-globalStyle(`${materiaScope}${offcanvasSm}${show}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${offcanvasMd}${show}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${offcanvasLg}${show}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${offcanvasXl}${show}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${offcanvasXxl}${show}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${offcanvas}${show}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${materiaScope}${offcanvasBackdrop}${fade}`, {
-	opacity: '0',
-})
-
-globalStyle(`${materiaScope}${offcanvasBackdrop}${show}`, {
-	opacity: '0.5',
 })
 
 globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}`, {

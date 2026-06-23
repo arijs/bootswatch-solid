@@ -3,6 +3,7 @@ import { simplexScope } from '../../scope.css'
 
 import {
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -45,6 +46,7 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
 	active,
@@ -120,6 +122,7 @@ import { btn, btnSecondary } from '../../../../theme-contract/ui/buttons/contrac
 import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
 import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
 import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
@@ -598,6 +601,10 @@ globalStyle(`${simplexScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${simplexScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${simplexScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -851,6 +858,10 @@ globalStyle(`${simplexScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${simplexScope}${roundedPill}`, {

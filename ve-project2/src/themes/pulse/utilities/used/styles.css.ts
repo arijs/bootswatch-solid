@@ -3,6 +3,7 @@ import { pulseScope } from '../../scope.css'
 
 import {
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -45,6 +46,7 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	active,
 	alignItemsStretch,
@@ -117,6 +119,7 @@ import { btn, btnSecondary } from '../../../../theme-contract/ui/buttons/contrac
 import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
 import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
@@ -590,6 +593,10 @@ globalStyle(`${pulseScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${pulseScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${pulseScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -843,6 +850,10 @@ globalStyle(`${pulseScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${pulseScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${pulseScope}${roundedPill}`, {

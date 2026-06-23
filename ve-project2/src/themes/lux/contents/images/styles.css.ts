@@ -4,7 +4,6 @@ import { luxScope } from '../../scope.css'
 import {
 	varBsBodyBg,
 	varBsBorderColor,
-	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
@@ -15,7 +14,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${luxScope}${imgFluid}`, {
@@ -43,8 +41,4 @@ globalStyle(`${luxScope}${figureImg}`, {
 globalStyle(`${luxScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${luxScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

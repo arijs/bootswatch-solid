@@ -128,8 +128,21 @@ The override table (105 entries) covers: literal-only legacy/Bootswatch classes 
 
 *Gate check:* all **864** referenced chunk files (27 × 32) exist and resolve; `tsc` clean on every changed file. Commit `c17a1c75`.
 
-**G4 — Closure check.** Family-coverage assertion on top of markup-parity; fix `ve2RequiredStyleFamilies` gaps. (Mirrors Phase 3.)
+**✅ G4 — Closure check.** Family-coverage assertion on top of markup-parity; fix `ve2RequiredStyleFamilies` gaps. (Mirrors Phase 3.)
 *Gate:* closure report empty for the families being verified.
+
+**Done.** New checker [`scripts/generate-ve-literal/family-closure-check.mjs`](../scripts/generate-ve-literal/family-closure-check.mjs) **simulates the Ve2GranularShell runtime exactly** per route — `loaded(route) = {global} ∪ getVe2RouteStyleLoadPlan(route) ∪ component ve2RequiredStyleFamilies` (composed sibling examples included) — then for each of the **433** rendered VE captures maps every stamped contract symbol → family (G1 table) and asserts the family is loaded. It imports the real `route-style-families.ts` via `node --experimental-strip-types` (no logic duplication / drift) and ignores shell symbols (`*Scope`/`vars`/`bodyFrame`/`bodyText`, always-loaded baseline). Result: **433 captures, 0 captures with gaps, 0 families with gaps, 0 unmapped symbols**.
+
+*Gate check:* `node --experimental-strip-types scripts/generate-ve-literal/family-closure-check.mjs` → **closure clean**.
+
+The first run surfaced gaps in **8 families**; all were fixed in **the table or the declarations, never per-family CSS** (§9):
+
+- **Element reboot leak → `global` (the structural fix).** `h6`/`fieldset` (and 18 more reboot contracts: `h1`–`h6`, `link`, `paragraph`, `small`, `blockquote`, `horizontalRule`, `inlineCode`, `markText`, the 6 `table*` elements) were stolen into a leaf family (`contents/heading`, `forms`, `contents/basic`, `contents/tables`) by the dir-structure pass because those dirs also declare the symbol. A reboot rule is baseline and stamped on bare elements across every route, so [`family-table.mjs`](../scripts/generate-ve-literal/family-table.mjs) now pins `TAG_TO_CONTRACT` values to `global` **unconditionally** (was `if (!has)`), eliminating closure gaps on unrelated routes (e.g. `<h6>` in a dropdown header, `<fieldset>` in a button-group).
+- **Shared generic classes → `global`** (`FAMILY_OVERRIDES`). `.collapse`/`.fade`/`.show` are foundational display/transition classes the dir structure parked in navbar/navs/modal but are stamped by accordion/alerts/toasts; the popover↔tooltip demo scaffolding (`frame`/`frameColumn`/`frameRow`/`justify{Start,Center,End}`) is the same symbol name in **both** contract dirs (the name-keyed table can pick only one family). All pinned to the always-loaded `global` chunk.
+- **Misfiled utilities → `utilities/used`.** `bsTooltipAuto` (`.bs-tooltip-auto`, was `utilities/generated`→dead `utilities`) → `ui/tooltips`; `rowCol`, `rounded`, `flexWrap` added to `USED_UTILITY_SYMBOLS`. After these, **0** rendered symbols resolve to the dead `utilities` family ([`utilities-rendered-check.mjs`](../scripts/generate-ve-literal/utilities-rendered-check.mjs)).
+- **The 342 declarations were stale (risk §8.2).** They declared the dead `utilities` family (1731 rules, loaded by nothing) instead of the new `utilities/used`. Bulk-replaced `'utilities'` → `'utilities/used'` across all **350** component `ve2RequiredStyleFamilies` decls and `DEFAULT_FAMILIES` in [`route-style-families.ts`](../ve-project2/src/theme-runtime/route-style-families.ts). This is the dominant gap (124 routes) and the only declaration churn needed.
+
+Census stays clean (**2069 symbols, 0 unmapped/invalid**, 115 overrides). Because the table changed, the chunks were **re-emitted** (`--all-themes --families`) and re-validated: all 27 themes **rule-equivalent to the monolith, 0 import problems** ([`validate-family-chunks.mjs`](../scripts/generate-ve-literal/validate-family-chunks.mjs)). The 32-family set is unchanged, so loader regeneration (G3) is not needed — only symbol→chunk membership shifted (`global` 131→146; `contents/basic`/`contents/heading`/`ui/navs`/`ui/navbar` shrank as their reboots/shared classes moved to `global`). Biome clean.
 
 **G5 — Verify to zero.** `--style-loader=granular`, all 27 themes; fixes go to the table or the closure declarations, **never per-family CSS**. (Mirrors T8/T9.)
 *Gate:* all 27 themes, all families, 0 over `0.001` in granular mode.

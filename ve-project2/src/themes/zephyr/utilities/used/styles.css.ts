@@ -3,6 +3,7 @@ import { zephyrScope } from '../../scope.css'
 
 import {
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -46,6 +47,7 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
 	active,
@@ -127,6 +129,7 @@ import {
 import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
 import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
@@ -606,6 +609,10 @@ globalStyle(`${zephyrScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${zephyrScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${zephyrScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -859,6 +866,10 @@ globalStyle(`${zephyrScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${zephyrScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${zephyrScope}${roundedPill}`, {

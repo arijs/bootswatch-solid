@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${slateScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${slateScope}${figureImg}`, {
 globalStyle(`${slateScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${slateScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

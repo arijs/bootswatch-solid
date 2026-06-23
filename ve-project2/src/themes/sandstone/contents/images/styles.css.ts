@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${sandstoneScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${sandstoneScope}${figureImg}`, {
 globalStyle(`${sandstoneScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${sandstoneScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

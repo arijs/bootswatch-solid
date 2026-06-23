@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${superheroScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${superheroScope}${figureImg}`, {
 globalStyle(`${superheroScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${superheroScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

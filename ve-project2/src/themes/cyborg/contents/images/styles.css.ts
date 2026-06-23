@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${cyborgScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${cyborgScope}${figureImg}`, {
 globalStyle(`${cyborgScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${cyborgScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

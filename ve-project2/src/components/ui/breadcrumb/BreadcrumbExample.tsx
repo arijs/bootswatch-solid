@@ -18,7 +18,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/breadcrumb',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const BreadcrumbExample: Component = () => {

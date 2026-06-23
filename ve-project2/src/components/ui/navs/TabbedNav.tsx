@@ -28,7 +28,7 @@ import { mb3 } from '../../../theme-contract/utilities/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const TabbedNav: Component = () => {

@@ -22,7 +22,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/heading',
 	'contents/images',
-	'utilities',
+	'utilities/used',
 ]
 
 const CardsGrid: Component = () => {

@@ -3,6 +3,7 @@ import { materiaScope } from '../../scope.css'
 
 import {
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -56,6 +57,7 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 import { elInput } from '../../../../theme-contract/global-elements/contract.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import { formCheckInput, formSwitch } from '../../../../theme-contract/forms/contract.css'
 import {
 	accordionFlush,
@@ -152,6 +154,7 @@ import { card } from '../../../../theme-contract/ui/card/contract.css'
 import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
 import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
 import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
@@ -634,6 +637,10 @@ globalStyle(`${materiaScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${materiaScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${materiaScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -887,6 +894,10 @@ globalStyle(`${materiaScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${materiaScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${materiaScope}${roundedPill}`, {

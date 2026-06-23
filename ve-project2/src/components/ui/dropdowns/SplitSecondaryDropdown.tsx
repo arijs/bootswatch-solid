@@ -28,7 +28,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/dropdowns',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SplitSecondaryDropdown: Component = () => {

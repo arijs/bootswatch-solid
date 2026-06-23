@@ -12,7 +12,7 @@ import { progress, progressBar, progressBarAnimated, progressBarStriped } from '
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const StripedProgress: Component = () => {

@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${spacelabScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${spacelabScope}${figureImg}`, {
 globalStyle(`${spacelabScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${spacelabScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

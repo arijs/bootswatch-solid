@@ -29,7 +29,7 @@ import { bodyText } from '../../../theme-contract/theme-contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/tables',
-	'utilities',
+	'utilities/used',
 ]
 
 const HoverVariants: Component = () => {

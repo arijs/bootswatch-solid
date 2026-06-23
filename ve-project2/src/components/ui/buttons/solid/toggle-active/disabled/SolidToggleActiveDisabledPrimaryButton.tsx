@@ -14,7 +14,7 @@ import { btn, btnCheck, btnPrimary } from '../../../../../../theme-contract/ui/b
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SolidToggleActiveDisabledPrimaryButton: Component = () => {

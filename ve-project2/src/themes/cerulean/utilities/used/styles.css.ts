@@ -3,6 +3,7 @@ import { ceruleanScope } from '../../scope.css'
 
 import {
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -54,6 +55,7 @@ import {
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
 	active,
@@ -129,6 +131,7 @@ import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
 import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
 import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
@@ -607,6 +610,10 @@ globalStyle(`${ceruleanScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${ceruleanScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${ceruleanScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -860,6 +867,10 @@ globalStyle(`${ceruleanScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${ceruleanScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${ceruleanScope}${roundedPill}`, {

@@ -13,7 +13,7 @@ import { btn, inputFontFamily } from '../../../../theme-contract/ui/buttons/cont
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SolidBaseButton: Component = () => {

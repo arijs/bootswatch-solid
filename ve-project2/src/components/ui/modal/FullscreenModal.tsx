@@ -44,7 +44,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/alerts',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const FullscreenModal: Component = () => {

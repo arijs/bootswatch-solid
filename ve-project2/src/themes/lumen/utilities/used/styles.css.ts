@@ -4,6 +4,7 @@ import { lumenScope } from '../../scope.css'
 import {
 	varBsBodyColor,
 	varBsBorderColor,
+	varBsBorderRadius,
 	varBsBorderRadiusPill,
 	varBsBorderStyle,
 	varBsBorderWidth,
@@ -49,6 +50,7 @@ import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../.
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { elSpan } from '../../../../theme-contract/global-elements/contract.css'
 
+import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
 	active,
@@ -141,6 +143,7 @@ import {
 	listGroupItemSuccess,
 	listGroupItemWarning,
 } from '../../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
 import { navLink, navTabs, tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import { pagination } from '../../../../theme-contract/ui/pagination/contract.css'
@@ -620,6 +623,10 @@ globalStyle(`${lumenScope}${flexColumn}`, {
 	flexDirection: 'column !important',
 })
 
+globalStyle(`${lumenScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${lumenScope}${justifyContentStart}`, {
 	justifyContent: 'flex-start !important',
 })
@@ -873,6 +880,10 @@ globalStyle(`${lumenScope}${bgDark}`, {
 		[varBsBgOpacity]: '1',
 	},
 	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${lumenScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
 })
 
 globalStyle(`${lumenScope}${roundedPill}`, {

@@ -5,7 +5,7 @@ export interface Ve2RouteStyleLoadPlan {
 	fullThemeFallback: boolean
 }
 
-const DEFAULT_FAMILIES: readonly Ve2StyleFamily[] = ['contents/basic', 'utilities']
+const DEFAULT_FAMILIES: readonly Ve2StyleFamily[] = ['contents/basic', 'utilities/used']
 
 const UI_ROUTE_FAMILY_MAP: Array<readonly [prefix: string, families: readonly Ve2StyleFamily[]]> = [
 	['/ui/accordion/', ['ui/accordion']],

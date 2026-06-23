@@ -15,7 +15,6 @@ import {
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	rounded,
 } from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${solarScope}${imgFluid}`, {
@@ -44,8 +43,4 @@ globalStyle(`${solarScope}${figureImg}`, {
 globalStyle(`${solarScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-globalStyle(`${solarScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })
