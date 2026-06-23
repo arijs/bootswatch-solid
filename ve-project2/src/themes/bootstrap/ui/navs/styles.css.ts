@@ -258,6 +258,10 @@ globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${navLinkA
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${bootstrapScope}${navbarExpandSm} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

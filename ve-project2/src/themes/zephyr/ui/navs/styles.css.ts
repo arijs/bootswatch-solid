@@ -258,6 +258,10 @@ globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${zephyrScope}${navbarExpandSm} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

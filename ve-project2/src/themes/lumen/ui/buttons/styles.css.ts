@@ -91,6 +91,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import { modal, modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvas, offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
 import { toast, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
@@ -223,6 +224,12 @@ globalStyle(`${lumenScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${lumenScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${lumenScope}${btnCheck}:checked + ${lumenScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -232,6 +239,10 @@ globalStyle(`${lumenScope}:not(${btnCheck}) + ${lumenScope}${btn}:active:focus-v
 })
 
 globalStyle(`${lumenScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${lumenScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 

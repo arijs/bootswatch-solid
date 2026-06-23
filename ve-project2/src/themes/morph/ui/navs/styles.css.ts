@@ -254,6 +254,10 @@ globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${morphScope}${navbarExpandSm} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

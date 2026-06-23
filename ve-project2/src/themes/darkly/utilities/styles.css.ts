@@ -700,7 +700,6 @@ import {
 	h50,
 	h75,
 	hAuto,
-	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
@@ -1616,7 +1615,6 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	showing,
 	start0,
 	start100,
 	start50,
@@ -1710,15 +1708,6 @@ import {
 } from '../../../theme-contract/literal/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../theme-contract/ui/offcanvas/contract.css'
 import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${darklyScope}${mark}`, {
@@ -4907,20 +4896,6 @@ globalStyle(`${darklyScope}${wasValidated} ${darklyScope}${formControlColor}:inv
 	width: 'calc(3rem + calc(1.5em + 0.75rem))',
 })
 
-globalStyle(`${darklyScope}${collapsing}`, {
-	height: '0',
-	overflow: 'hidden',
-	transition: 'height 0.35s ease',
-})
-
-globalStyle(`${darklyScope}${collapsing}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${darklyScope}${collapsing}${collapseHorizontal}`, {
 	width: '0',
 	height: 'auto',
@@ -4979,182 +4954,6 @@ globalStyle(`${darklyScope}${navbar} > ${darklyScope}${containerXxl}`, {
 
 globalStyle(`${darklyScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
-})
-
-globalStyle(`${darklyScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasSm}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasSm}${hiding}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasMd}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasMd}${hiding}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasLg}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasLg}${hiding}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXl}${hiding}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXxl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvasXxl}${hiding}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${offcanvas}${showing}`, {
-	transform: 'none',
-})
-
-globalStyle(`${darklyScope}${offcanvas}${show}:not(${hiding})`, {
-	transform: 'none',
-})
-
-globalStyle(`${darklyScope}${offcanvas}${showing}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${darklyScope}${offcanvas}${hiding}`, {
-	visibility: 'visible',
 })
 
 globalStyle(`${darklyScope}${placeholder}`, {

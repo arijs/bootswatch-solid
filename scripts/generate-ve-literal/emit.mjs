@@ -606,16 +606,30 @@ function splitVeSelectorList(sel) {
 /** Owning family of one comma-part: rightmost CLASS-contract symbol's family (§4.1/§4.2). */
 function partSubjectFamily(part, scopeVarName, table) {
 	const syms = [...part.matchAll(/\$\{(\w+)\}/g)].map((m) => m[1])
+	// §4.2 tie-break: a generic state/shared class promoted to the always-loaded
+	// `global` baseline (`.show`, `.fade`, `.collapse`, the popover/tooltip demo
+	// frames) must NOT own a compound rule that also targets a component class.
+	// A bare `.show{}` rule is global, but `.offcanvas.show{transform:none}` belongs
+	// with its component's base rule (`.offcanvas{…}` in ui/offcanvas) so the whole
+	// cascade lives in one chunk/layer. So prefer the rightmost NON-global class;
+	// fall back to global only when every class symbol is itself global.
+	let globalFallback = null
 	for (let k = syms.length - 1; k >= 0; k--) {
 		const sym = syms[k]
 		if (sym === scopeVarName) continue
 		if (ROOT_CONTRACT_SYMBOLS.has(sym)) continue
 		if (ELEMENT_CONTRACT_VALUES.has(sym)) continue
 		const fam = table.familyForSymbol(sym)
-		if (fam) return fam
+		if (!fam) continue
+		if (fam === GLOBAL_FAMILY) {
+			if (globalFallback === null) globalFallback = fam
+			continue
+		}
+		return fam
 	}
-	// No class subject (pure element/reboot/root-var rule) → always-loaded baseline.
-	return GLOBAL_FAMILY
+	// No component class subject (pure element/reboot/root-var, or only global
+	// classes) → always-loaded baseline.
+	return globalFallback ?? GLOBAL_FAMILY
 }
 
 /**

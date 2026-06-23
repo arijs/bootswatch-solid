@@ -35,6 +35,7 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import {
 	bgLight,
 	navbarDark,
@@ -85,6 +86,13 @@ globalStyle(`${spacelabScope}${navbar}`, {
 	alignItems: 'center',
 	justifyContent: 'space-between',
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+})
+
+globalStyle(`${spacelabScope}${navbar} > ${spacelabScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 })
 
 globalStyle(`${spacelabScope}${navbarBrand}`, {

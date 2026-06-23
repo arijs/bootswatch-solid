@@ -228,6 +228,13 @@ globalStyle(`${zephyrScope}${btn}:first-child:active`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
+globalStyle(`${zephyrScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
+})
+
 globalStyle(`${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -237,6 +244,10 @@ globalStyle(`${zephyrScope}:not(${btnCheck}) + ${zephyrScope}${btn}:active:focus
 })
 
 globalStyle(`${zephyrScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
+globalStyle(`${zephyrScope}${btn}${show}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 

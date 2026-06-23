@@ -254,6 +254,10 @@ globalStyle(`${superheroScope}${navbarNav} ${superheroScope}${navLink}${navLinkA
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${superheroScope}${navbarNav} ${superheroScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${superheroScope}${navbarExpandSm} ${superheroScope}${navbarNav} ${superheroScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

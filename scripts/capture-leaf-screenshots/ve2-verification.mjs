@@ -100,13 +100,19 @@ export async function verifyScenarioVe2Rendering({
 	const page = await context.newPage()
 
 	try {
-		const loader = ve2StyleLoader === 'literal' ? 'literal' : 'theme'
+		const loader =
+			ve2StyleLoader === 'literal'
+				? 'literal'
+				: ve2StyleLoader === 'granular'
+					? 'granular'
+					: 'theme'
 		const ve2Url = `${VE2_BASE_URL}${route}?theme=${encodeURIComponent(themeSlug)}&style-loader=${encodeURIComponent(loader)}`
 		await gotoWithPreviewRecovery(page, ve2Url, previewServerManager)
-		if (ve2StyleLoader === 'literal') {
-			// Literal theme CSS is loaded via a dynamic import() after page load.
-			// Wait for network idle so the CSS chunk is fully applied before capture.
-			// Short timeout so Google Fonts @imports don't block indefinitely.
+		if (ve2StyleLoader === 'literal' || ve2StyleLoader === 'granular') {
+			// Literal & granular theme CSS is loaded via dynamic import() after page
+			// load (granular pulls per-family chunks on demand). Wait for network idle
+			// so the CSS chunks are fully applied before capture. Short timeout so
+			// Google Fonts @imports don't block indefinitely.
 			await page.waitForLoadState('networkidle', { timeout: 2000 }).catch(() => {})
 		}
 		await delay(150)

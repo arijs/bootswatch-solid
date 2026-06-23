@@ -135,8 +135,17 @@ export const FAMILY_OVERRIDES = {
 	// `.fade .show`). They are baseline, so they belong in the always-loaded chunk
 	// rather than dragging an unrelated family onto every route that animates.
 	collapse: 'global',
+	collapsing: 'global', // `.collapsing` transition state (navbar/accordion), JS-stamped
 	fade: 'global',
 	show: 'global',
+	// Offcanvas/modal transition states stamped by the JS adapters (ve-offcanvas.ts
+	// CLASS_NAME_SHOWING/HIDING). They were swept into the `utilities/generated`
+	// catch-all, so a compound like `.offcanvas.show:not(.hiding)` keyed on the
+	// rightmost class (`hiding`) → dead `utilities` chunk (never loaded by the
+	// offcanvas route). As global generics the §4.2 subject tie-break routes the
+	// compound back to its component family (ui/offcanvas), with the bare rule global.
+	showing: 'global',
+	hiding: 'global',
 
 	// Demo positioning scaffolding shared verbatim by the popovers AND tooltips
 	// example pages (same symbol name in both contract dirs → the name-keyed table

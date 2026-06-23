@@ -700,7 +700,6 @@ import {
 	h50,
 	h75,
 	hAuto,
-	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
@@ -1616,7 +1615,6 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	showing,
 	start0,
 	start100,
 	start50,
@@ -1710,15 +1708,6 @@ import {
 } from '../../../theme-contract/literal/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../theme-contract/ui/offcanvas/contract.css'
 import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${yetiScope}${mark}`, {
@@ -4907,20 +4896,6 @@ globalStyle(`${yetiScope}${wasValidated} ${yetiScope}${formControlColor}:invalid
 	width: 'calc(3rem + calc(1.5em + 0.75rem))',
 })
 
-globalStyle(`${yetiScope}${collapsing}`, {
-	height: '0',
-	overflow: 'hidden',
-	transition: 'height 0.35s ease',
-})
-
-globalStyle(`${yetiScope}${collapsing}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${yetiScope}${collapsing}${collapseHorizontal}`, {
 	width: '0',
 	height: 'auto',
@@ -4979,182 +4954,6 @@ globalStyle(`${yetiScope}${navbar} > ${yetiScope}${containerXxl}`, {
 
 globalStyle(`${yetiScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
-})
-
-globalStyle(`${yetiScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasSm}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasSm}${hiding}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasMd}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasMd}${hiding}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasLg}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasLg}${hiding}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXl}${hiding}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXxl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvasXxl}${hiding}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${offcanvas}${showing}`, {
-	transform: 'none',
-})
-
-globalStyle(`${yetiScope}${offcanvas}${show}:not(${hiding})`, {
-	transform: 'none',
-})
-
-globalStyle(`${yetiScope}${offcanvas}${showing}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${yetiScope}${offcanvas}${hiding}`, {
-	visibility: 'visible',
 })
 
 globalStyle(`${yetiScope}${placeholder}`, {

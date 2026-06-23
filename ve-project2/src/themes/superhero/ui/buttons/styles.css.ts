@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
 import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
@@ -224,6 +225,12 @@ globalStyle(`${superheroScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${superheroScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${superheroScope}${btnCheck}:checked + ${superheroScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -233,6 +240,10 @@ globalStyle(`${superheroScope}:not(${btnCheck}) + ${superheroScope}${btn}:active
 })
 
 globalStyle(`${superheroScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${superheroScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 

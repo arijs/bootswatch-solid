@@ -90,6 +90,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import { modal, modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvas, offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
 import { toast, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
@@ -222,6 +223,12 @@ globalStyle(`${flatlyScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${flatlyScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${flatlyScope}${btnCheck}:checked + ${flatlyScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -231,6 +238,10 @@ globalStyle(`${flatlyScope}:not(${btnCheck}) + ${flatlyScope}${btn}:active:focus
 })
 
 globalStyle(`${flatlyScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${flatlyScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 

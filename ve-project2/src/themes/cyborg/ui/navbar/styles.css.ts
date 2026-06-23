@@ -35,6 +35,7 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import {
 	navbarDark,
 	navbarExpand,
@@ -84,6 +85,13 @@ globalStyle(`${cyborgScope}${navbar}`, {
 	alignItems: 'center',
 	justifyContent: 'space-between',
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+})
+
+globalStyle(`${cyborgScope}${navbar} > ${cyborgScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 })
 
 globalStyle(`${cyborgScope}${navbarBrand}`, {

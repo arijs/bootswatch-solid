@@ -248,6 +248,10 @@ globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${darklyScope}${navbarExpandSm} ${darklyScope}${navbarNav} ${darklyScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

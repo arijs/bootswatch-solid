@@ -254,6 +254,10 @@ globalStyle(`${solarScope}${navbarNav} ${solarScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${solarScope}${navbarNav} ${solarScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

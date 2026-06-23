@@ -700,7 +700,6 @@ import {
 	h50,
 	h75,
 	hAuto,
-	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
@@ -1616,7 +1615,6 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	showing,
 	start0,
 	start100,
 	start50,
@@ -1710,15 +1708,6 @@ import {
 } from '../../../theme-contract/literal/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../theme-contract/ui/offcanvas/contract.css'
 import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${unitedScope}${mark}`, {
@@ -4907,20 +4896,6 @@ globalStyle(`${unitedScope}${wasValidated} ${unitedScope}${formControlColor}:inv
 	width: 'calc(3rem + calc(1.5em + 0.75rem))',
 })
 
-globalStyle(`${unitedScope}${collapsing}`, {
-	height: '0',
-	overflow: 'hidden',
-	transition: 'height 0.35s ease',
-})
-
-globalStyle(`${unitedScope}${collapsing}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${unitedScope}${collapsing}${collapseHorizontal}`, {
 	width: '0',
 	height: 'auto',
@@ -4979,182 +4954,6 @@ globalStyle(`${unitedScope}${navbar} > ${unitedScope}${containerXxl}`, {
 
 globalStyle(`${unitedScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
-})
-
-globalStyle(`${unitedScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasSm}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasSm}${hiding}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasMd}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasMd}${hiding}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasLg}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasLg}${hiding}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXl}${hiding}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXxl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvasXxl}${hiding}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${offcanvas}${showing}`, {
-	transform: 'none',
-})
-
-globalStyle(`${unitedScope}${offcanvas}${show}:not(${hiding})`, {
-	transform: 'none',
-})
-
-globalStyle(`${unitedScope}${offcanvas}${showing}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${unitedScope}${offcanvas}${hiding}`, {
-	visibility: 'visible',
 })
 
 globalStyle(`${unitedScope}${placeholder}`, {

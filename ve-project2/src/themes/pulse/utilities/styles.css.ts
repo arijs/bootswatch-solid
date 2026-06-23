@@ -700,7 +700,6 @@ import {
 	h50,
 	h75,
 	hAuto,
-	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
@@ -1616,7 +1615,6 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	showing,
 	start0,
 	start100,
 	start50,
@@ -1710,15 +1708,6 @@ import {
 } from '../../../theme-contract/literal/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../theme-contract/ui/offcanvas/contract.css'
 import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${pulseScope}${mark}`, {
@@ -4905,20 +4894,6 @@ globalStyle(`${pulseScope}${wasValidated} ${pulseScope}${formControlColor}:inval
 	width: 'calc(3rem + calc(1.5em + 0.75rem))',
 })
 
-globalStyle(`${pulseScope}${collapsing}`, {
-	height: '0',
-	overflow: 'hidden',
-	transition: 'height 0.35s ease',
-})
-
-globalStyle(`${pulseScope}${collapsing}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${pulseScope}${collapsing}${collapseHorizontal}`, {
 	width: '0',
 	height: 'auto',
@@ -4977,182 +4952,6 @@ globalStyle(`${pulseScope}${navbar} > ${pulseScope}${containerXxl}`, {
 
 globalStyle(`${pulseScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
-})
-
-globalStyle(`${pulseScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasSm}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasSm}${hiding}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasMd}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasMd}${hiding}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasLg}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasLg}${hiding}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXl}${hiding}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXxl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvasXxl}${hiding}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${offcanvas}${showing}`, {
-	transform: 'none',
-})
-
-globalStyle(`${pulseScope}${offcanvas}${show}:not(${hiding})`, {
-	transform: 'none',
-})
-
-globalStyle(`${pulseScope}${offcanvas}${showing}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${pulseScope}${offcanvas}${hiding}`, {
-	visibility: 'visible',
 })
 
 globalStyle(`${pulseScope}${placeholder}`, {

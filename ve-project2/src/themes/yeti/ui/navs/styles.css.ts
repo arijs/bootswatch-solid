@@ -258,6 +258,10 @@ globalStyle(`${yetiScope}${navbarNav} ${yetiScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${yetiScope}${navbarNav} ${yetiScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${yetiScope}${navbarExpandSm} ${yetiScope}${navbarNav} ${yetiScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

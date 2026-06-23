@@ -255,6 +255,10 @@ globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${quartzScope}${navbarExpandSm} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

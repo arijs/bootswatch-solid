@@ -257,6 +257,10 @@ globalStyle(`${simplexScope}${navbarNav} ${simplexScope}${navLink}${navLinkActiv
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${simplexScope}${navbarNav} ${simplexScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${simplexScope}${navbarExpandSm} ${simplexScope}${navbarNav} ${simplexScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

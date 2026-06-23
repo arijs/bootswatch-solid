@@ -24,13 +24,16 @@ import {
 } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	hiding,
 	navbarExpand,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	showing,
 } from '../../../../theme-contract/literal/contract.css'
 import { navbarExpandLg } from '../../../../theme-contract/ui/navbar/contract.css'
+import { fade, show } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	offcanvas,
 	offcanvasBackdrop,
@@ -432,6 +435,46 @@ globalStyle(`${slateScope}${offcanvasSm}${offcanvasBottom}`, {
 	},
 })
 
+globalStyle(`${slateScope}${offcanvasSm}${showing}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasSm}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasSm}${showing}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasSm}${hiding}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${offcanvasSm}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -538,6 +581,46 @@ globalStyle(`${slateScope}${offcanvasMd}${offcanvasBottom}`, {
 			maxHeight: '100%',
 			borderTop: `${varBsOffcanvasBorderWidth} solid ${varBsOffcanvasBorderColor}`,
 			transform: 'translateY(100%)',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasMd}${showing}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasMd}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasMd}${showing}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasMd}${hiding}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
 		},
 	},
 })
@@ -652,6 +735,46 @@ globalStyle(`${slateScope}${offcanvasLg}${offcanvasBottom}`, {
 	},
 })
 
+globalStyle(`${slateScope}${offcanvasLg}${showing}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasLg}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasLg}${showing}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasLg}${hiding}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${offcanvasLg}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -758,6 +881,46 @@ globalStyle(`${slateScope}${offcanvasXl}${offcanvasBottom}`, {
 			maxHeight: '100%',
 			borderTop: `${varBsOffcanvasBorderWidth} solid ${varBsOffcanvasBorderColor}`,
 			transform: 'translateY(100%)',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXl}${showing}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXl}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXl}${showing}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXl}${hiding}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
 		},
 	},
 })
@@ -872,6 +1035,46 @@ globalStyle(`${slateScope}${offcanvasXxl}${offcanvasBottom}`, {
 	},
 })
 
+globalStyle(`${slateScope}${offcanvasXxl}${showing}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXxl}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXxl}${showing}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXxl}${hiding}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${offcanvasXxl}`, {
 	'@media': {
 		'(min-width: 1400px)': {
@@ -962,6 +1165,26 @@ globalStyle(`${slateScope}${offcanvas}${offcanvasBottom}`, {
 	transform: 'translateY(100%)',
 })
 
+globalStyle(`${slateScope}${offcanvas}${showing}`, {
+	transform: 'none',
+})
+
+globalStyle(`${slateScope}${offcanvas}${show}:not(${hiding})`, {
+	transform: 'none',
+})
+
+globalStyle(`${slateScope}${offcanvas}${showing}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${slateScope}${offcanvas}${hiding}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${slateScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
 globalStyle(`${slateScope}${offcanvasBackdrop}`, {
 	position: 'fixed',
 	top: '0',
@@ -970,6 +1193,14 @@ globalStyle(`${slateScope}${offcanvasBackdrop}`, {
 	width: '100vw',
 	height: '100vh',
 	backgroundColor: '#000',
+})
+
+globalStyle(`${slateScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${slateScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
 })
 
 globalStyle(`${slateScope}${offcanvasHeader}`, {

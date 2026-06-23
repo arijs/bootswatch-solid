@@ -700,7 +700,6 @@ import {
 	h50,
 	h75,
 	hAuto,
-	hiding,
 	hstack,
 	iconLink,
 	iconLinkHover,
@@ -1616,7 +1615,6 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
-	showing,
 	start0,
 	start100,
 	start50,
@@ -1710,15 +1708,6 @@ import {
 } from '../../../theme-contract/literal/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../theme-contract/ui/offcanvas/contract.css'
 import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${spacelabScope}${mark}`, {
@@ -4907,20 +4896,6 @@ globalStyle(`${spacelabScope}${wasValidated} ${spacelabScope}${formControlColor}
 	width: 'calc(3rem + calc(1.5em + 0.75rem))',
 })
 
-globalStyle(`${spacelabScope}${collapsing}`, {
-	height: '0',
-	overflow: 'hidden',
-	transition: 'height 0.35s ease',
-})
-
-globalStyle(`${spacelabScope}${collapsing}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${spacelabScope}${collapsing}${collapseHorizontal}`, {
 	width: '0',
 	height: 'auto',
@@ -4979,182 +4954,6 @@ globalStyle(`${spacelabScope}${navbar} > ${spacelabScope}${containerXxl}`, {
 
 globalStyle(`${spacelabScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
-})
-
-globalStyle(`${spacelabScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasSm}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasSm}${showing}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasSm}${hiding}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasMd}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasMd}${showing}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasMd}${hiding}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasLg}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasLg}${showing}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasLg}${hiding}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXl}${showing}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXl}${hiding}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXxl}${show}:not(${hiding})`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			transform: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXxl}${showing}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvasXxl}${hiding}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${offcanvas}${showing}`, {
-	transform: 'none',
-})
-
-globalStyle(`${spacelabScope}${offcanvas}${show}:not(${hiding})`, {
-	transform: 'none',
-})
-
-globalStyle(`${spacelabScope}${offcanvas}${showing}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${spacelabScope}${offcanvas}${hiding}`, {
-	visibility: 'visible',
 })
 
 globalStyle(`${spacelabScope}${placeholder}`, {

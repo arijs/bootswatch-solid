@@ -255,6 +255,10 @@ globalStyle(`${flatlyScope}${navbarNav} ${flatlyScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${flatlyScope}${navbarNav} ${flatlyScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${flatlyScope}${navbarExpandSm} ${flatlyScope}${navbarNav} ${flatlyScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

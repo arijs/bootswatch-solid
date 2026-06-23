@@ -256,6 +256,10 @@ globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${navLinkActiv
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

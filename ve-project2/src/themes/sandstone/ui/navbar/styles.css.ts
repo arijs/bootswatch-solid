@@ -36,6 +36,7 @@ import {
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { elInput } from '../../../../theme-contract/global-elements/contract.css'
 
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import {
 	navbarDark,
 	navbarExpand,
@@ -86,6 +87,13 @@ globalStyle(`${sandstoneScope}${navbar}`, {
 	alignItems: 'center',
 	justifyContent: 'space-between',
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+})
+
+globalStyle(`${sandstoneScope}${navbar} > ${sandstoneScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 })
 
 globalStyle(`${sandstoneScope}${navbarBrand}`, {

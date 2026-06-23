@@ -24,13 +24,16 @@ import {
 } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	hiding,
 	navbarExpand,
 	navbarExpandMd,
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	showing,
 } from '../../../../theme-contract/literal/contract.css'
 import { navbarExpandLg } from '../../../../theme-contract/ui/navbar/contract.css'
+import { fade, show } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	offcanvas,
 	offcanvasBackdrop,
@@ -432,6 +435,46 @@ globalStyle(`${journalScope}${offcanvasSm}${offcanvasBottom}`, {
 	},
 })
 
+globalStyle(`${journalScope}${offcanvasSm}${showing}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasSm}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasSm}${showing}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasSm}${hiding}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasSm}${show}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
 globalStyle(`${journalScope}${offcanvasSm}`, {
 	'@media': {
 		'(min-width: 576px)': {
@@ -538,6 +581,46 @@ globalStyle(`${journalScope}${offcanvasMd}${offcanvasBottom}`, {
 			maxHeight: '100%',
 			borderTop: `${varBsOffcanvasBorderWidth} solid ${varBsOffcanvasBorderColor}`,
 			transform: 'translateY(100%)',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasMd}${showing}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasMd}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasMd}${showing}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasMd}${hiding}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasMd}${show}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			visibility: 'visible',
 		},
 	},
 })
@@ -652,6 +735,46 @@ globalStyle(`${journalScope}${offcanvasLg}${offcanvasBottom}`, {
 	},
 })
 
+globalStyle(`${journalScope}${offcanvasLg}${showing}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasLg}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasLg}${showing}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasLg}${hiding}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasLg}${show}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
 globalStyle(`${journalScope}${offcanvasLg}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -758,6 +881,46 @@ globalStyle(`${journalScope}${offcanvasXl}${offcanvasBottom}`, {
 			maxHeight: '100%',
 			borderTop: `${varBsOffcanvasBorderWidth} solid ${varBsOffcanvasBorderColor}`,
 			transform: 'translateY(100%)',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXl}${showing}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXl}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXl}${showing}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXl}${hiding}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXl}${show}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			visibility: 'visible',
 		},
 	},
 })
@@ -872,6 +1035,46 @@ globalStyle(`${journalScope}${offcanvasXxl}${offcanvasBottom}`, {
 	},
 })
 
+globalStyle(`${journalScope}${offcanvasXxl}${showing}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXxl}${show}:not(${hiding})`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			transform: 'none',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXxl}${showing}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXxl}${hiding}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
+globalStyle(`${journalScope}${offcanvasXxl}${show}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			visibility: 'visible',
+		},
+	},
+})
+
 globalStyle(`${journalScope}${offcanvasXxl}`, {
 	'@media': {
 		'(min-width: 1400px)': {
@@ -962,6 +1165,26 @@ globalStyle(`${journalScope}${offcanvas}${offcanvasBottom}`, {
 	transform: 'translateY(100%)',
 })
 
+globalStyle(`${journalScope}${offcanvas}${showing}`, {
+	transform: 'none',
+})
+
+globalStyle(`${journalScope}${offcanvas}${show}:not(${hiding})`, {
+	transform: 'none',
+})
+
+globalStyle(`${journalScope}${offcanvas}${showing}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${journalScope}${offcanvas}${hiding}`, {
+	visibility: 'visible',
+})
+
+globalStyle(`${journalScope}${offcanvas}${show}`, {
+	visibility: 'visible',
+})
+
 globalStyle(`${journalScope}${offcanvasBackdrop}`, {
 	position: 'fixed',
 	top: '0',
@@ -970,6 +1193,14 @@ globalStyle(`${journalScope}${offcanvasBackdrop}`, {
 	width: '100vw',
 	height: '100vh',
 	backgroundColor: '#000',
+})
+
+globalStyle(`${journalScope}${offcanvasBackdrop}${fade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${journalScope}${offcanvasBackdrop}${show}`, {
+	opacity: '0.5',
 })
 
 globalStyle(`${journalScope}${offcanvasHeader}`, {

@@ -109,14 +109,7 @@ import {
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../theme-contract/ui/buttons/_vars.css'
 import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
-import { varBsNavbarActiveColor } from '../../../theme-contract/ui/navbar/_vars.css'
 import { varBsBtnCloseFilter, varBsLinkOpacity } from '../../../theme-contract/utilities/generated/_vars.css'
 
 import {
@@ -180,18 +173,9 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btn } from '../../../theme-contract/ui/buttons/contract.css'
-import { collapse, navbar, navbarNav } from '../../../theme-contract/ui/navbar/contract.css'
-import { fade, navLink, show } from '../../../theme-contract/ui/navs/contract.css'
-import {
-	offcanvas,
-	offcanvasBackdrop,
-	offcanvasLg,
-	offcanvasMd,
-	offcanvasSm,
-	offcanvasXl,
-	offcanvasXxl,
-} from '../../../theme-contract/ui/offcanvas/contract.css'
+import { collapsing } from '../../../theme-contract/literal/contract.css'
+import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
+import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
 globalStyle(`${superheroScope}${vars}`, {
 	vars: {
@@ -1003,16 +987,6 @@ globalStyle(`${superheroScope}${vars}`, {
 	},
 })
 
-globalStyle(`${superheroScope}${btn}${show}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${superheroScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
 globalStyle(`${superheroScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
@@ -1033,15 +1007,18 @@ globalStyle(`${superheroScope}${collapse}:not(${show})`, {
 	display: 'none',
 })
 
-globalStyle(`${superheroScope}${navbar} > ${superheroScope}${containerFluid}`, {
-	display: 'flex',
-	flexWrap: 'inherit',
-	alignItems: 'center',
-	justifyContent: 'space-between',
+globalStyle(`${superheroScope}${collapsing}`, {
+	height: '0',
+	overflow: 'hidden',
+	transition: 'height 0.35s ease',
 })
 
-globalStyle(`${superheroScope}${navbarNav} ${superheroScope}${navLink}${show}`, {
-	color: varBsNavbarActiveColor,
+globalStyle(`${superheroScope}${collapsing}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
 globalKeyframes('progress-bar-stripes', {
@@ -1092,58 +1069,6 @@ globalKeyframes('spinner-grow', {
 		opacity: '1',
 		transform: 'none',
 	},
-})
-
-globalStyle(`${superheroScope}${offcanvasSm}${show}`, {
-	'@media': {
-		'(max-width: 575.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${superheroScope}${offcanvasMd}${show}`, {
-	'@media': {
-		'(max-width: 767.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${superheroScope}${offcanvasLg}${show}`, {
-	'@media': {
-		'(max-width: 991.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${superheroScope}${offcanvasXl}${show}`, {
-	'@media': {
-		'(max-width: 1199.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${superheroScope}${offcanvasXxl}${show}`, {
-	'@media': {
-		'(max-width: 1399.98px)': {
-			visibility: 'visible',
-		},
-	},
-})
-
-globalStyle(`${superheroScope}${offcanvas}${show}`, {
-	visibility: 'visible',
-})
-
-globalStyle(`${superheroScope}${offcanvasBackdrop}${fade}`, {
-	opacity: '0',
-})
-
-globalStyle(`${superheroScope}${offcanvasBackdrop}${show}`, {
-	opacity: '0.5',
 })
 
 globalKeyframes('placeholder-glow', {

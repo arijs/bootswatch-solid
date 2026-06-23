@@ -261,6 +261,10 @@ globalStyle(`${lumenScope}${navbarNav} ${lumenScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${lumenScope}${navbarNav} ${lumenScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${lumenScope}${navbarExpandSm} ${lumenScope}${navbarNav} ${lumenScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

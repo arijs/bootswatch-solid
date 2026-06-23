@@ -35,6 +35,7 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import {
 	bgLight,
 	navbarBottomTop,
@@ -87,6 +88,13 @@ globalStyle(`${luxScope}${navbar}`, {
 	alignItems: 'center',
 	justifyContent: 'space-between',
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+})
+
+globalStyle(`${luxScope}${navbar} > ${luxScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 })
 
 globalStyle(`${luxScope}${navbarBrand}`, {

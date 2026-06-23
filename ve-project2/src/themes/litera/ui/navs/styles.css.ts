@@ -258,6 +258,10 @@ globalStyle(`${literaScope}${navbarNav} ${literaScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${literaScope}${navbarNav} ${literaScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${literaScope}${navbarExpandSm} ${literaScope}${navbarNav} ${literaScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

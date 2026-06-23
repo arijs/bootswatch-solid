@@ -227,6 +227,13 @@ globalStyle(`${morphScope}${btn}:first-child:active`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
+globalStyle(`${morphScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
+})
+
 globalStyle(`${morphScope}${btnCheck}:checked + ${morphScope}${btn}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -236,6 +243,10 @@ globalStyle(`${morphScope}:not(${btnCheck}) + ${morphScope}${btn}:active:focus-v
 })
 
 globalStyle(`${morphScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
+globalStyle(`${morphScope}${btn}${show}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 

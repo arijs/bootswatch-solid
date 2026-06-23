@@ -258,6 +258,10 @@ globalStyle(`${unitedScope}${navbarNav} ${unitedScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${unitedScope}${navbarNav} ${unitedScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${unitedScope}${navbarExpandSm} ${unitedScope}${navbarNav} ${unitedScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

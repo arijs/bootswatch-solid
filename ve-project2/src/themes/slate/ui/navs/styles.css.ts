@@ -264,6 +264,10 @@ globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${slateScope}${navbarExpandSm} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

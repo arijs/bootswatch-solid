@@ -35,6 +35,7 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import {
 	navbarDark,
 	navbarExpand,
@@ -84,6 +85,13 @@ globalStyle(`${superheroScope}${navbar}`, {
 	alignItems: 'center',
 	justifyContent: 'space-between',
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
+})
+
+globalStyle(`${superheroScope}${navbar} > ${superheroScope}${containerFluid}`, {
+	display: 'flex',
+	flexWrap: 'inherit',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 })
 
 globalStyle(`${superheroScope}${navbarBrand}`, {

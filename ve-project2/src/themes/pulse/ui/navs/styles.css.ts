@@ -251,6 +251,10 @@ globalStyle(`${pulseScope}${navbarNav} ${pulseScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${pulseScope}${navbarNav} ${pulseScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${pulseScope}${navbarExpandSm} ${pulseScope}${navbarNav} ${pulseScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

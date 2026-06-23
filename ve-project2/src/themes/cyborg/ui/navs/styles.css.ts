@@ -254,6 +254,10 @@ globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${navLinkActive}
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${cyborgScope}${navbarExpandSm} ${cyborgScope}${navbarNav} ${cyborgScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

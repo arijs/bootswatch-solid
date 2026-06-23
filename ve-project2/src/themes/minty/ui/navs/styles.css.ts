@@ -258,6 +258,10 @@ globalStyle(`${mintyScope}${navbarNav} ${mintyScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${mintyScope}${navbarNav} ${mintyScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${mintyScope}${navbarExpandSm} ${mintyScope}${navbarNav} ${mintyScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

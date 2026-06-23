@@ -256,6 +256,10 @@ globalStyle(`${vaporScope}${navbarNav} ${vaporScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${vaporScope}${navbarNav} ${vaporScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

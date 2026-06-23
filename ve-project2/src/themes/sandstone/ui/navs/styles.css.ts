@@ -255,6 +255,10 @@ globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${navLinkA
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

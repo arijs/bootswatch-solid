@@ -259,6 +259,10 @@ globalStyle(`${spacelabScope}${navbarNav} ${spacelabScope}${navLink}${navLinkAct
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${spacelabScope}${navbarNav} ${spacelabScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${spacelabScope}${navbarExpandSm} ${spacelabScope}${navbarNav} ${spacelabScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

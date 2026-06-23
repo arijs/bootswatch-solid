@@ -258,6 +258,10 @@ globalStyle(`${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}${navLinkAct
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${ceruleanScope}${navbarExpandSm} ${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

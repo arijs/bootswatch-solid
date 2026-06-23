@@ -258,6 +258,10 @@ globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${navLinkActiv
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${journalScope}${navbarExpandSm} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

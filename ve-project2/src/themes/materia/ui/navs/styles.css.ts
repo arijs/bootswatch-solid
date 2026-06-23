@@ -260,6 +260,10 @@ globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}${navLinkActiv
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${materiaScope}${navbarExpandSm} ${materiaScope}${navbarNav} ${materiaScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

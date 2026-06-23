@@ -90,6 +90,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
 import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
@@ -222,6 +223,12 @@ globalStyle(`${briteScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${briteScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${briteScope}${btnCheck}:checked + ${briteScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -231,6 +238,10 @@ globalStyle(`${briteScope}:not(${btnCheck}) + ${briteScope}${btn}:active:focus-v
 })
 
 globalStyle(`${briteScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${briteScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -1058,6 +1069,12 @@ globalStyle(`${briteScope}:not(${btnCheck}) + ${briteScope}${btn}:active`, {
 })
 
 globalStyle(`${briteScope}${btn}:first-child:active`, {
+	borderColor: '#000',
+	boxShadow: 'none',
+	transform: 'translate(0, 0)',
+})
+
+globalStyle(`${briteScope}${btn}${show}`, {
 	borderColor: '#000',
 	boxShadow: 'none',
 	transform: 'translate(0, 0)',

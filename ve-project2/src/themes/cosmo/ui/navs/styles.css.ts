@@ -252,6 +252,10 @@ globalStyle(`${cosmoScope}${navbarNav} ${cosmoScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${cosmoScope}${navbarNav} ${cosmoScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${cosmoScope}${navbarExpandSm} ${cosmoScope}${navbarNav} ${cosmoScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {

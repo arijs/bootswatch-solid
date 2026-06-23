@@ -255,6 +255,10 @@ globalStyle(`${briteScope}${navbarNav} ${briteScope}${navLink}${navLinkActive}`,
 	color: varBsNavbarActiveColor,
 })
 
+globalStyle(`${briteScope}${navbarNav} ${briteScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${briteScope}${navbarExpandSm} ${briteScope}${navbarNav} ${briteScope}${navLink}`, {
 	'@media': {
 		'(min-width: 576px)': {
