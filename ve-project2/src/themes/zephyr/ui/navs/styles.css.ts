@@ -10,7 +10,7 @@ import {
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -34,6 +34,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -254,6 +255,10 @@ globalStyle(`${zephyrScope}${tabContent} > ${zephyrScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${zephyrScope}${tabContent} > ${zephyrScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -310,6 +315,13 @@ globalStyle(`${zephyrScope}${navbarExpandXxl} ${zephyrScope}${navbarNav} ${zephy
 globalStyle(`${zephyrScope}${navbarExpand} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${zephyrScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${zephyrScope}${cardHeaderTabs} ${zephyrScope}${navLink}${navLinkActive}`, {

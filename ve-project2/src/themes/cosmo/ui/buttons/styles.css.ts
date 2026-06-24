@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -220,6 +228,12 @@ globalStyle(`${cosmoScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${cosmoScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${cosmoScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -238,6 +252,10 @@ globalStyle(`${cosmoScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${cosmoScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${cosmoScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -247,6 +265,14 @@ globalStyle(`${cosmoScope}${btnCheck}:checked:focus-visible + ${cosmoScope}${btn
 })
 
 globalStyle(`${cosmoScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${cosmoScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -658,6 +684,10 @@ globalStyle(`${cosmoScope}${btnGroup} > ${cosmoScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${cosmoScope}${btnGroup} > ${cosmoScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${cosmoScope}${btnGroupVertical} > ${cosmoScope}${btnCheck}:checked + ${cosmoScope}${btn}`, {
 	zIndex: '1',
 })
@@ -678,8 +708,53 @@ globalStyle(`${cosmoScope}${btnGroupVertical} > ${cosmoScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${cosmoScope}${btnGroupVertical} > ${cosmoScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${cosmoScope}${btnGroup} > ${cosmoScope}:not(${btnCheck}:first-child) + ${cosmoScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${cosmoScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${cosmoScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${cosmoScope}${dropup} ${cosmoScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${cosmoScope}${dropend} ${cosmoScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${cosmoScope}${dropstart} ${cosmoScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${cosmoScope}${btnSm} + ${cosmoScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${cosmoScope}${btnGroupSm} > ${cosmoScope}${btn} + ${cosmoScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${cosmoScope}${btnLg} + ${cosmoScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${cosmoScope}${btnGroupLg} > ${cosmoScope}${btn} + ${cosmoScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${cosmoScope}${btnGroupVertical} > ${cosmoScope}${btn}`, {
@@ -732,6 +807,14 @@ globalStyle(`${cosmoScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${cosmoScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${cosmoScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',

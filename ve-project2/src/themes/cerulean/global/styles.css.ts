@@ -173,7 +173,15 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapsing } from '../../../theme-contract/literal/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	collapsing,
+} from '../../../theme-contract/literal/contract.css'
 import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
 import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
@@ -393,7 +401,23 @@ globalStyle(`:where(${ceruleanScope}${h6})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${ceruleanScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${ceruleanScope}${h5})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${ceruleanScope}${clsH5}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -409,7 +433,23 @@ globalStyle(`:where(${ceruleanScope}${h4})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${ceruleanScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${ceruleanScope}${h3})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${ceruleanScope}${clsH3}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -425,7 +465,23 @@ globalStyle(`:where(${ceruleanScope}${h2})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${ceruleanScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${ceruleanScope}${h1})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${ceruleanScope}${clsH1}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -437,7 +493,19 @@ globalStyle(`:where(${ceruleanScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
+globalStyle(`${ceruleanScope}${clsH1}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
+})
+
 globalStyle(`:where(${ceruleanScope}${h1})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${clsH1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -449,7 +517,19 @@ globalStyle(`:where(${ceruleanScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
+globalStyle(`${ceruleanScope}${clsH2}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
 globalStyle(`:where(${ceruleanScope}${h2})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${clsH2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -461,7 +541,19 @@ globalStyle(`:where(${ceruleanScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
+globalStyle(`${ceruleanScope}${clsH3}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
+})
+
 globalStyle(`:where(${ceruleanScope}${h3})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${clsH3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -473,7 +565,19 @@ globalStyle(`:where(${ceruleanScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`${ceruleanScope}${clsH4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${ceruleanScope}${h4})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${ceruleanScope}${clsH4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -485,7 +589,15 @@ globalStyle(`:where(${ceruleanScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
+globalStyle(`${ceruleanScope}${clsH5}`, {
+	fontSize: '1.25rem',
+})
+
 globalStyle(`:where(${ceruleanScope}${h6})`, {
+	fontSize: '1rem',
+})
+
+globalStyle(`${ceruleanScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 

@@ -48,9 +48,9 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
 	btnGroupVertical,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -68,7 +68,7 @@ import {
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -83,7 +83,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -537,10 +536,22 @@ globalStyle(`${solarScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${solarScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${solarScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${solarScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${solarScope}${dropdownItem}:disabled`, {
@@ -588,52 +599,6 @@ globalStyle(`${solarScope}${dropdownMenuDark}`, {
 globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${solarScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-})
-
-globalStyle(`${solarScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${solarScope}${dropup} ${solarScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${solarScope}${btnSm} + ${solarScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${solarScope}${btnGroupSm} > ${solarScope}${btn} + ${solarScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${solarScope}${btnLg} + ${solarScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${solarScope}${btnGroupLg} > ${solarScope}${btn} + ${solarScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:not(:last-child):not(${dropdownToggle})`, {

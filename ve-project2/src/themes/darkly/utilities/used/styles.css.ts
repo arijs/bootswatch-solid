@@ -19,37 +19,11 @@ import {
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
-import { varBsBtnCloseDisabledOpacity } from '../../../../theme-contract/ui/alerts/_vars.css'
-import { varBsBreadcrumbItemActiveColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import { varBsDropdownLinkActiveBg, varBsDropdownLinkActiveColor, varBsDropdownLinkDisabledColor } from '../../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBorderWidth,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
-	active,
 	alignItemsStretch,
 	alignTop,
 	bgDanger,
@@ -62,8 +36,6 @@ import {
 	border,
 	borderBottom,
 	borderDark,
-	btnClose,
-	btnGroupVertical,
 	collapsed,
 	dBlock,
 	dInlineBlock,
@@ -71,7 +43,6 @@ import {
 	dLgNone,
 	dMdBlock,
 	dNone,
-	disabled,
 	end0,
 	flexColumn,
 	flexRow,
@@ -79,12 +50,6 @@ import {
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentStart,
-	listGroupHorizontal,
-	listGroupHorizontalLg,
-	listGroupHorizontalMd,
-	listGroupHorizontalSm,
-	listGroupHorizontalXl,
-	listGroupHorizontalXxl,
 	mb0,
 	mb4,
 	mb5,
@@ -115,14 +80,7 @@ import {
 	w75,
 } from '../../../../theme-contract/literal/contract.css'
 import { accordionButton, accordionHeader, accordionItem } from '../../../../theme-contract/ui/accordion/contract.css'
-import { breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
-import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
-import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
-import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -285,206 +243,8 @@ globalStyle(`${darklyScope}${colMd8}`, {
 	},
 })
 
-globalStyle(`${darklyScope}${btn}${active}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${darklyScope}${btn}${active}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${darklyScope}${btn}${disabled}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-globalStyle(`${darklyScope}${dropdownItem}${active}`, {
-	color: varBsDropdownLinkActiveColor,
-	textDecoration: 'none',
-	backgroundColor: varBsDropdownLinkActiveBg,
-})
-
-globalStyle(`${darklyScope}${dropdownItem}${disabled}`, {
-	color: varBsDropdownLinkDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: 'transparent',
-})
-
-globalStyle(`${darklyScope}${btnGroup} > ${darklyScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${darklyScope}${btnGroupVertical} > ${darklyScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${darklyScope}${tabContent} > ${darklyScope}${active}`, {
-	display: 'block',
-})
-
 globalStyle(`${darklyScope}${accordionFlush} > ${darklyScope}${accordionItem} > ${darklyScope}${accordionHeader} ${darklyScope}${accordionButton}${collapsed}`, {
 	borderRadius: '0',
-})
-
-globalStyle(`${darklyScope}${breadcrumbItem}${active}`, {
-	color: varBsBreadcrumbItemActiveColor,
-})
-
-globalStyle(`${darklyScope}${listGroupItem}${disabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-globalStyle(`${darklyScope}${listGroupItem}${active}`, {
-	zIndex: '2',
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-
-globalStyle(`${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${darklyScope}${listGroupItemAction}:not(${active}):hover`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${darklyScope}${listGroupItemAction}:not(${active}):focus`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${darklyScope}${listGroupItemAction}:not(${active}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontal} > ${darklyScope}${listGroupItem}${active}`, {
-	marginTop: '0',
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontal} > ${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalSm} > ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalSm} > ${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalMd} > ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalMd} > ${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalLg} > ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalLg} > ${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalXl} > ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalXl} > ${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalXxl} > ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${listGroupHorizontalXxl} > ${darklyScope}${listGroupItem} + ${darklyScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${darklyScope}${btnClose}${disabled}`, {
-	pointerEvents: 'none',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-	opacity: varBsBtnCloseDisabledOpacity,
-})
-
-globalStyle(`${darklyScope}${carouselItem}${active}`, {
-	display: 'block',
-})
-
-globalStyle(`${darklyScope}${carouselFade} ${darklyScope}${carouselItem}${active}`, {
-	zIndex: '1',
-	opacity: '1',
-})
-
-globalStyle(`${darklyScope}${carouselIndicators} ${darklyScope}${active}`, {
-	opacity: '1',
 })
 
 globalStyle(`${darklyScope}${stickyXlTop}`, {

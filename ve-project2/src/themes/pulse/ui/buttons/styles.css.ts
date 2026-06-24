@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -220,6 +228,12 @@ globalStyle(`${pulseScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${pulseScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${pulseScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -238,6 +252,10 @@ globalStyle(`${pulseScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${pulseScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${pulseScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -247,6 +265,14 @@ globalStyle(`${pulseScope}${btnCheck}:checked:focus-visible + ${pulseScope}${btn
 })
 
 globalStyle(`${pulseScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${pulseScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -658,6 +684,10 @@ globalStyle(`${pulseScope}${btnGroup} > ${pulseScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${pulseScope}${btnGroup} > ${pulseScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${pulseScope}${btnGroupVertical} > ${pulseScope}${btnCheck}:checked + ${pulseScope}${btn}`, {
 	zIndex: '1',
 })
@@ -678,8 +708,53 @@ globalStyle(`${pulseScope}${btnGroupVertical} > ${pulseScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${pulseScope}${btnGroupVertical} > ${pulseScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${pulseScope}${btnGroup} > ${pulseScope}:not(${btnCheck}:first-child) + ${pulseScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${pulseScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${pulseScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${pulseScope}${dropup} ${pulseScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${pulseScope}${dropend} ${pulseScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${pulseScope}${dropstart} ${pulseScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${pulseScope}${btnSm} + ${pulseScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${pulseScope}${btnGroupSm} > ${pulseScope}${btn} + ${pulseScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${pulseScope}${btnLg} + ${pulseScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${pulseScope}${btnGroupLg} > ${pulseScope}${btn} + ${pulseScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${pulseScope}${btnGroupVertical} > ${pulseScope}${btn}`, {
@@ -739,6 +814,14 @@ globalStyle(`${pulseScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${pulseScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${pulseScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -783,6 +866,10 @@ globalStyle(`${pulseScope}${btn}:active:focus`, {
 	outline: 'none',
 })
 
+globalStyle(`${pulseScope}${btn}${active}:focus`, {
+	outline: 'none',
+})
+
 globalStyle(`${pulseScope}${btnSecondary}`, {
 	color: '#17141f',
 	backgroundColor: '#fff',
@@ -793,6 +880,12 @@ globalStyle(`${pulseScope}${btnSecondary}:hover`, {
 	color: '#17141f',
 	backgroundColor: '#ededed',
 	borderColor: '#adb5bd',
+})
+
+globalStyle(`${pulseScope}${btnSecondary}${disabled}`, {
+	color: '#23202a',
+	backgroundColor: '#fff',
+	borderColor: '#cfcfcf',
 })
 
 globalStyle(`${pulseScope}${btnWarning}`, {
@@ -821,4 +914,8 @@ globalStyle(`${pulseScope}${btnWarning}:focus`, {
 
 globalStyle(`${pulseScope}${btnDanger}:focus`, {
 	boxShadow: '0 0 5px #fc4d4d',
+})
+
+globalStyle(`${pulseScope}${btn}${disabled}:focus`, {
+	boxShadow: 'none',
 })

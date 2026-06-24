@@ -173,7 +173,15 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapsing } from '../../../theme-contract/literal/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	collapsing,
+} from '../../../theme-contract/literal/contract.css'
 import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
 import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
@@ -394,7 +402,25 @@ globalStyle(`:where(${mintyScope}${h6})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${mintyScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${mintyScope}${h5})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${mintyScope}${clsH5}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -412,7 +438,25 @@ globalStyle(`:where(${mintyScope}${h4})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${mintyScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${mintyScope}${h3})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${mintyScope}${clsH3}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -430,7 +474,25 @@ globalStyle(`:where(${mintyScope}${h2})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${mintyScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${mintyScope}${h1})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${mintyScope}${clsH1}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: 'Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -443,7 +505,19 @@ globalStyle(`:where(${mintyScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
+globalStyle(`${mintyScope}${clsH1}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
+})
+
 globalStyle(`:where(${mintyScope}${h1})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
+})
+
+globalStyle(`${mintyScope}${clsH1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -455,7 +529,19 @@ globalStyle(`:where(${mintyScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
+globalStyle(`${mintyScope}${clsH2}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
 globalStyle(`:where(${mintyScope}${h2})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${mintyScope}${clsH2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -467,7 +553,19 @@ globalStyle(`:where(${mintyScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
+globalStyle(`${mintyScope}${clsH3}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
+})
+
 globalStyle(`:where(${mintyScope}${h3})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
+})
+
+globalStyle(`${mintyScope}${clsH3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -479,7 +577,19 @@ globalStyle(`:where(${mintyScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`${mintyScope}${clsH4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${mintyScope}${h4})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${mintyScope}${clsH4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -491,7 +601,15 @@ globalStyle(`:where(${mintyScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
+globalStyle(`${mintyScope}${clsH5}`, {
+	fontSize: '1.25rem',
+})
+
 globalStyle(`:where(${mintyScope}${h6})`, {
+	fontSize: '1rem',
+})
+
+globalStyle(`${mintyScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 

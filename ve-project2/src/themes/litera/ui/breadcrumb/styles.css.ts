@@ -14,6 +14,7 @@ import {
 	varBsBreadcrumbPaddingY,
 } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 
+import { active } from '../../../../theme-contract/literal/contract.css'
 import { breadcrumb, breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
 
 globalStyle(`${literaScope}${breadcrumb}`, {
@@ -46,6 +47,10 @@ globalStyle(`${literaScope}${breadcrumbItem} + ${literaScope}${breadcrumbItem}::
 	paddingRight: varBsBreadcrumbItemPaddingX,
 	color: varBsBreadcrumbDividerColor,
 	content: `${fallbackVar(varBsBreadcrumbDivider, '"/"')} `,
+})
+
+globalStyle(`${literaScope}${breadcrumbItem}${active}`, {
+	color: varBsBreadcrumbItemActiveColor,
 })
 
 globalStyle(`${literaScope}${breadcrumb}`, {

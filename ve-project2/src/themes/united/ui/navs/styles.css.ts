@@ -12,7 +12,7 @@ import {
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -36,6 +36,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -254,6 +255,10 @@ globalStyle(`${unitedScope}${tabContent} > ${unitedScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${unitedScope}${tabContent} > ${unitedScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${unitedScope}${navbarNav} ${unitedScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -310,6 +315,13 @@ globalStyle(`${unitedScope}${navbarExpandXxl} ${unitedScope}${navbarNav} ${unite
 globalStyle(`${unitedScope}${navbarExpand} ${unitedScope}${navbarNav} ${unitedScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${unitedScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${unitedScope}${cardHeaderTabs} ${unitedScope}${navLink}${navLinkActive}`, {

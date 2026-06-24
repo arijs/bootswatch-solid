@@ -54,6 +54,23 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 
 import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../../theme-contract/contents/heading/contract.css'
+
+import {
+	active,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	disabled,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
@@ -156,20 +173,57 @@ globalStyle(`${vaporScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
+globalStyle(`${vaporScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
 globalStyle(`${vaporScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
+globalStyle(`${vaporScope}${listGroupItem}${active}`, {
+	zIndex: '2',
+	color: varBsListGroupActiveColor,
+	backgroundColor: varBsListGroupActiveBg,
+	borderColor: varBsListGroupActiveBorderColor,
+})
+
 globalStyle(`${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	borderTopWidth: '0',
+})
+
+globalStyle(`${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderTopWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${vaporScope}${listGroupItemAction}`, {
 	width: '100%',
 	color: varBsListGroupActionColor,
 	textAlign: 'inherit',
+})
+
+globalStyle(`${vaporScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${vaporScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${vaporScope}${listGroupItemAction}:not(${active}):active`, {
+	color: varBsListGroupActionActiveColor,
+	backgroundColor: varBsListGroupActionActiveBg,
 })
 
 globalStyle(`${vaporScope}${listGroupHorizontal}`, {
@@ -186,9 +240,18 @@ globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}
 	borderBottomLeftRadius: '0',
 })
 
+globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
 globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	borderTopWidth: varBsListGroupBorderWidth,
 	borderLeftWidth: '0',
+})
+
+globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${vaporScope}${listGroupHorizontalSm}`, {
@@ -217,11 +280,28 @@ globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupIte
 	},
 })
 
+globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 576px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -252,11 +332,28 @@ globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupIte
 	},
 })
 
+globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -287,11 +384,28 @@ globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupIte
 	},
 })
 
+globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -322,11 +436,28 @@ globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupIte
 	},
 })
 
+globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -357,11 +488,28 @@ globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupIt
 	},
 })
 
+globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1400px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -496,4 +644,52 @@ globalStyle(`${vaporScope}${listGroupItemDark}`, {
 		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
 		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
 	},
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${clsH6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })

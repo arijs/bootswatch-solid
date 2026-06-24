@@ -56,6 +56,8 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 
 import {
+	active,
+	disabled,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
@@ -158,20 +160,57 @@ globalStyle(`${morphScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
+globalStyle(`${morphScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
 globalStyle(`${morphScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
+globalStyle(`${morphScope}${listGroupItem}${active}`, {
+	zIndex: '2',
+	color: varBsListGroupActiveColor,
+	backgroundColor: varBsListGroupActiveBg,
+	borderColor: varBsListGroupActiveBorderColor,
+})
+
 globalStyle(`${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	borderTopWidth: '0',
+})
+
+globalStyle(`${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderTopWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${morphScope}${listGroupItemAction}`, {
 	width: '100%',
 	color: varBsListGroupActionColor,
 	textAlign: 'inherit',
+})
+
+globalStyle(`${morphScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${morphScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${morphScope}${listGroupItemAction}:not(${active}):active`, {
+	color: varBsListGroupActionActiveColor,
+	backgroundColor: varBsListGroupActionActiveBg,
 })
 
 globalStyle(`${morphScope}${listGroupHorizontal}`, {
@@ -188,9 +227,18 @@ globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem}
 	borderBottomLeftRadius: '0',
 })
 
+globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
 globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	borderTopWidth: varBsListGroupBorderWidth,
 	borderLeftWidth: '0',
+})
+
+globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${morphScope}${listGroupHorizontalSm}`, {
@@ -219,11 +267,28 @@ globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupIte
 	},
 })
 
+globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 576px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -254,11 +319,28 @@ globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupIte
 	},
 })
 
+globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -289,11 +371,28 @@ globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupIte
 	},
 })
 
+globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -324,11 +423,28 @@ globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupIte
 	},
 })
 
+globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -359,11 +475,28 @@ globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupIt
 	},
 })
 
+globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1400px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })

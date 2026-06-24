@@ -48,9 +48,9 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
 	btnGroupVertical,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -68,7 +68,7 @@ import {
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -83,7 +83,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -537,10 +536,22 @@ globalStyle(`${cyborgScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${cyborgScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${cyborgScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${cyborgScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${cyborgScope}${dropdownItem}:disabled`, {
@@ -588,52 +599,6 @@ globalStyle(`${cyborgScope}${dropdownMenuDark}`, {
 globalStyle(`${cyborgScope}${btnGroup} > ${cyborgScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${cyborgScope}${btnGroup} > ${cyborgScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${cyborgScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${cyborgScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cyborgScope}${dropup} ${cyborgScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cyborgScope}${dropend} ${cyborgScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cyborgScope}${dropstart} ${cyborgScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${cyborgScope}${btnSm} + ${cyborgScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${cyborgScope}${btnGroupSm} > ${cyborgScope}${btn} + ${cyborgScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${cyborgScope}${btnLg} + ${cyborgScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${cyborgScope}${btnGroupLg} > ${cyborgScope}${btn} + ${cyborgScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${cyborgScope}${btnGroupVertical} > ${cyborgScope}${btn}:not(:last-child):not(${dropdownToggle})`, {

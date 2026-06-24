@@ -1,13 +1,1 @@
-import { globalStyle } from '@vanilla-extract/css'
-import { unitedScope } from '../../scope.css'
-
-import { varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
-
-import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
-
-globalStyle(`${unitedScope}${cardHeaderTabs}`, {
-	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
-	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
-	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
-	borderBottom: '0',
-})
+// ui/card-tabs — no rules (all moved to other families).

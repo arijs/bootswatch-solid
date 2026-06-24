@@ -41,7 +41,17 @@ import {
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 
-import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
+import {
+	cardGroup,
+	cardHeaderPills,
+	cardImgOverlay,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
 	cardBody,
@@ -331,6 +341,30 @@ globalStyle(`${zephyrScope}${card} ${zephyrScope}${h5}`, {
 })
 
 globalStyle(`${zephyrScope}${card} ${zephyrScope}${h6}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${zephyrScope}${card} ${zephyrScope}${clsH1}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${zephyrScope}${card} ${zephyrScope}${clsH2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${zephyrScope}${card} ${zephyrScope}${clsH3}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${zephyrScope}${card} ${zephyrScope}${clsH4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${zephyrScope}${card} ${zephyrScope}${clsH5}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${zephyrScope}${card} ${zephyrScope}${clsH6}`, {
 	color: 'inherit',
 })
 

@@ -11,6 +11,7 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import {
+	EMIT_FAMILIES,
 	familyToRelativePath,
 	themeScopeExportName,
 	VE2_THEMES_ROOT,
@@ -727,6 +728,20 @@ async function emitFamilyChunks({ theme, bodyLines, varRegistry, scopeVarName, t
 		}
 		families.push({ family, blocks: b.lines.length })
 	}
+
+	// A family can end up with zero blocks (e.g. all of `contents/heading`'s `.hN`
+	// rules moved to `global`). The loader map still references every family, so
+	// write an empty placeholder chunk to keep the dynamic import resolvable
+	// instead of leaving a stale file or a 404.
+	for (const family of [...EMIT_FAMILIES, GLOBAL_FAMILY]) {
+		if (byFamily.has(family)) continue
+		families.push({ family, blocks: 0 })
+		if (dryRun) continue
+		const outPath = path.join(VE2_THEMES_ROOT, theme, familyToRelativePath(family))
+		await mkdir(path.dirname(outPath), { recursive: true })
+		await writeFile(outPath, `// ${family} — no rules (all moved to other families).\n`, 'utf8')
+	}
+
 	families.sort((a, b) => a.family.localeCompare(b.family))
 	return families
 }

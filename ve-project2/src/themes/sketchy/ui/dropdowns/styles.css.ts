@@ -48,9 +48,9 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
 	btnGroupVertical,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -68,7 +68,7 @@ import {
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -83,7 +83,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -537,10 +536,22 @@ globalStyle(`${sketchyScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${sketchyScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${sketchyScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${sketchyScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${sketchyScope}${dropdownItem}:disabled`, {
@@ -588,52 +599,6 @@ globalStyle(`${sketchyScope}${dropdownMenuDark}`, {
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-})
-
-globalStyle(`${sketchyScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${sketchyScope}${dropup} ${sketchyScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${sketchyScope}${dropend} ${sketchyScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${sketchyScope}${dropstart} ${sketchyScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${sketchyScope}${btnSm} + ${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${sketchyScope}${btnGroupSm} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${sketchyScope}${btnLg} + ${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${sketchyScope}${btnGroupLg} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {

@@ -173,7 +173,15 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapsing } from '../../../theme-contract/literal/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	collapsing,
+} from '../../../theme-contract/literal/contract.css'
 import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
 import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
@@ -393,7 +401,23 @@ globalStyle(`:where(${vaporScope}${h6})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${vaporScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${vaporScope}${h5})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${vaporScope}${clsH5}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -409,7 +433,23 @@ globalStyle(`:where(${vaporScope}${h4})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${vaporScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${vaporScope}${h3})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${vaporScope}${clsH3}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -425,7 +465,23 @@ globalStyle(`:where(${vaporScope}${h2})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${vaporScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${vaporScope}${h1})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${vaporScope}${clsH1}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -437,7 +493,19 @@ globalStyle(`:where(${vaporScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
+globalStyle(`${vaporScope}${clsH1}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
+})
+
 globalStyle(`:where(${vaporScope}${h1})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${clsH1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -449,7 +517,19 @@ globalStyle(`:where(${vaporScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
+globalStyle(`${vaporScope}${clsH2}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
 globalStyle(`:where(${vaporScope}${h2})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${clsH2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -461,7 +541,19 @@ globalStyle(`:where(${vaporScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
+globalStyle(`${vaporScope}${clsH3}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
+})
+
 globalStyle(`:where(${vaporScope}${h3})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${clsH3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -473,7 +565,19 @@ globalStyle(`:where(${vaporScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`${vaporScope}${clsH4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${vaporScope}${h4})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${clsH4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -485,7 +589,15 @@ globalStyle(`:where(${vaporScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
+globalStyle(`${vaporScope}${clsH5}`, {
+	fontSize: '1.25rem',
+})
+
 globalStyle(`:where(${vaporScope}${h6})`, {
+	fontSize: '1rem',
+})
+
+globalStyle(`${vaporScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 
@@ -1087,6 +1199,10 @@ globalStyle(`:where(${vaporScope}${h1})`, {
 	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 
+globalStyle(`${vaporScope}${clsH1}`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
 globalStyle(`:where(${vaporScope}${h2})`, {
 	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
@@ -1104,6 +1220,26 @@ globalStyle(`:where(${vaporScope}${h5})`, {
 })
 
 globalStyle(`:where(${vaporScope}${h6})`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
+globalStyle(`${vaporScope}${clsH2}`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
+globalStyle(`${vaporScope}${clsH3}`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
+globalStyle(`${vaporScope}${clsH4}`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
+globalStyle(`${vaporScope}${clsH5}`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+})
+
+globalStyle(`${vaporScope}${clsH6}`, {
 	textShadow: '0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
 })
 

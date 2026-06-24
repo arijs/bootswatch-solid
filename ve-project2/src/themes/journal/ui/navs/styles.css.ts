@@ -12,7 +12,7 @@ import {
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -36,6 +36,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -254,6 +255,10 @@ globalStyle(`${journalScope}${tabContent} > ${journalScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${journalScope}${tabContent} > ${journalScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -310,6 +315,13 @@ globalStyle(`${journalScope}${navbarExpandXxl} ${journalScope}${navbarNav} ${jou
 globalStyle(`${journalScope}${navbarExpand} ${journalScope}${navbarNav} ${journalScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${journalScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${journalScope}${cardHeaderTabs} ${journalScope}${navLink}${navLinkActive}`, {

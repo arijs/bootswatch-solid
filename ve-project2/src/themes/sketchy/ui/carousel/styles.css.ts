@@ -57,6 +57,10 @@ globalStyle(`${sketchyScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${sketchyScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${sketchyScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -85,6 +89,11 @@ globalStyle(`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItem}`, {
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${sketchyScope}${carouselFade} ${sketchyScope}${carouselItemNext}${carouselItemStart}`, {
@@ -280,6 +289,10 @@ globalStyle(`${sketchyScope}${carouselIndicators} ${sketchyScope}[data-bs-target
 			transition: 'none',
 		},
 	},
+})
+
+globalStyle(`${sketchyScope}${carouselIndicators} ${sketchyScope}${active}`, {
+	opacity: '1',
 })
 
 globalStyle(`${sketchyScope}${carouselCaption}`, {

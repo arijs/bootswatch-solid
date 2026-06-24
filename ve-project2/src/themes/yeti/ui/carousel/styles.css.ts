@@ -57,6 +57,10 @@ globalStyle(`${yetiScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${yetiScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${yetiScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -85,6 +89,11 @@ globalStyle(`${yetiScope}${carouselFade} ${yetiScope}${carouselItem}`, {
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${yetiScope}${carouselFade} ${yetiScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${yetiScope}${carouselFade} ${yetiScope}${carouselItemNext}${carouselItemStart}`, {
@@ -280,6 +289,10 @@ globalStyle(`${yetiScope}${carouselIndicators} ${yetiScope}[data-bs-target]`, {
 			transition: 'none',
 		},
 	},
+})
+
+globalStyle(`${yetiScope}${carouselIndicators} ${yetiScope}${active}`, {
+	opacity: '1',
 })
 
 globalStyle(`${yetiScope}${carouselCaption}`, {

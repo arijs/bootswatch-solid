@@ -19,38 +19,11 @@ import {
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
-import { varBsBtnCloseDisabledOpacity } from '../../../../theme-contract/ui/alerts/_vars.css'
-import { varBsBreadcrumbItemActiveColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import { varBsDropdownLinkActiveBg, varBsDropdownLinkActiveColor, varBsDropdownLinkDisabledColor } from '../../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBorderWidth,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
-	active,
 	alignItemsStretch,
 	alignTop,
 	bgDanger,
@@ -63,8 +36,6 @@ import {
 	border,
 	borderBottom,
 	borderDark,
-	btnClose,
-	btnGroupVertical,
 	collapsed,
 	dBlock,
 	dInlineBlock,
@@ -72,7 +43,6 @@ import {
 	dLgNone,
 	dMdBlock,
 	dNone,
-	disabled,
 	end0,
 	flexColumn,
 	flexRow,
@@ -80,12 +50,6 @@ import {
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentStart,
-	listGroupHorizontal,
-	listGroupHorizontalLg,
-	listGroupHorizontalMd,
-	listGroupHorizontalSm,
-	listGroupHorizontalXl,
-	listGroupHorizontalXxl,
 	mb0,
 	mb4,
 	mb5,
@@ -117,15 +81,8 @@ import {
 } from '../../../../theme-contract/literal/contract.css'
 import { accordionButton, accordionHeader, accordionItem } from '../../../../theme-contract/ui/accordion/contract.css'
 import { badge } from '../../../../theme-contract/ui/badge/contract.css'
-import { breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { card } from '../../../../theme-contract/ui/card/contract.css'
-import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
-import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
-import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -288,208 +245,8 @@ globalStyle(`${morphScope}${colMd8}`, {
 	},
 })
 
-globalStyle(`${morphScope}${btn}${active}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-	boxShadow: varBsBtnActiveBoxShadow,
-})
-
-globalStyle(`${morphScope}${btn}${active}:focus-visible`, {
-	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
-})
-
-globalStyle(`${morphScope}${btn}${disabled}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-	boxShadow: 'none',
-})
-
-globalStyle(`${morphScope}${dropdownItem}${active}`, {
-	color: varBsDropdownLinkActiveColor,
-	textDecoration: 'none',
-	backgroundColor: varBsDropdownLinkActiveBg,
-})
-
-globalStyle(`${morphScope}${dropdownItem}${disabled}`, {
-	color: varBsDropdownLinkDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: 'transparent',
-})
-
-globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${morphScope}${tabContent} > ${morphScope}${active}`, {
-	display: 'block',
-})
-
 globalStyle(`${morphScope}${accordionFlush} > ${morphScope}${accordionItem} > ${morphScope}${accordionHeader} ${morphScope}${accordionButton}${collapsed}`, {
 	borderRadius: '0',
-})
-
-globalStyle(`${morphScope}${breadcrumbItem}${active}`, {
-	color: varBsBreadcrumbItemActiveColor,
-})
-
-globalStyle(`${morphScope}${listGroupItem}${disabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-globalStyle(`${morphScope}${listGroupItem}${active}`, {
-	zIndex: '2',
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-
-globalStyle(`${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${morphScope}${listGroupItemAction}:not(${active}):hover`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${morphScope}${listGroupItemAction}:not(${active}):focus`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${morphScope}${listGroupItemAction}:not(${active}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem}${active}`, {
-	marginTop: '0',
-})
-
-globalStyle(`${morphScope}${listGroupHorizontal} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalSm} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalMd} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalLg} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalXl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${listGroupHorizontalXxl} > ${morphScope}${listGroupItem} + ${morphScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${morphScope}${btnClose}${disabled}`, {
-	pointerEvents: 'none',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-	opacity: varBsBtnCloseDisabledOpacity,
-})
-
-globalStyle(`${morphScope}${carouselItem}${active}`, {
-	display: 'block',
-})
-
-globalStyle(`${morphScope}${carouselFade} ${morphScope}${carouselItem}${active}`, {
-	zIndex: '1',
-	opacity: '1',
-})
-
-globalStyle(`${morphScope}${carouselIndicators} ${morphScope}${active}`, {
-	opacity: '1',
 })
 
 globalStyle(`${morphScope}${stickyXlTop}`, {
@@ -941,12 +698,6 @@ globalStyle(`${morphScope}${fs4}`, {
 			fontSize: '1.5rem !important',
 		},
 	},
-})
-
-globalStyle(`${morphScope}${btn}${disabled}`, {
-	color: '#7b8ab8',
-	backgroundColor: '#d9e3f1',
-	boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 0.5)',
 })
 
 globalStyle(`${morphScope}${badge}${bgSecondary}`, {

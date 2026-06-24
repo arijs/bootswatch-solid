@@ -68,13 +68,18 @@ export const FAMILY_OVERRIDES = {
 	cardOutlineWarning: 'ui/card',
 	cardOutlineDanger: 'ui/card',
 
-	// Heading *sizing* classes (.h1–.h6) and inline-typography classes.
-	clsH1: 'contents/heading',
-	clsH2: 'contents/heading',
-	clsH3: 'contents/heading',
-	clsH4: 'contents/heading',
-	clsH5: 'contents/heading',
-	clsH6: 'contents/heading',
+	// Heading *sizing* classes (.h1–.h6): early in Bootstrap source (_type.scss) and
+	// stamped alongside component classes on the SAME element (e.g. `.h4.modal-title`,
+	// `.h5.offcanvas-title`). The component rule must win the shared-specificity margin
+	// reset, which holds by source order in the monolith. Across granular chunks that
+	// flips with load order, so pin the `.hN` rules to the always-first `global` chunk
+	// — earliest layer ⇒ later component families win deterministically (§4.1).
+	clsH1: 'global',
+	clsH2: 'global',
+	clsH3: 'global',
+	clsH4: 'global',
+	clsH5: 'global',
+	clsH6: 'global',
 	clsBlockquote: 'contents/basic',
 	clsSmall: 'contents/basic',
 
@@ -117,6 +122,19 @@ export const FAMILY_OVERRIDES = {
 	navbarFixedBottom: 'ui/navbar',
 	navbarBottomTop: 'ui/navbar',
 
+	// `.dropdown-toggle-split` (Bootstrap defines it in _button-group.scss) shares
+	// `.btn`'s specificity for padding; split chunks resolve that tie by load order,
+	// flipping it. Co-locate in `ui/buttons` (already loaded by every dropdown route)
+	// so source order — `.btn` then the split override — is preserved in one chunk.
+	dropdownToggleSplit: 'ui/buttons',
+
+	// `.card-header-tabs` must override `.nav { margin-bottom: 0 }` with its negative
+	// margin (it pulls the tabs onto the card-header's bottom edge). Same element,
+	// equal specificity → source order decides (`.nav` before `.card-header-tabs`),
+	// which chunk load order flips. Co-locate in `ui/navs` (already loaded by the
+	// card-tabs route) so `.nav` then `.card-header-tabs` stay source-ordered.
+	cardHeaderTabs: 'ui/navs',
+
 	// BS3 dropdown open-state / pager.
 	open: 'ui/dropdowns', // BS3 .open
 	pager: 'ui/pagination', // BS3 .pager
@@ -146,6 +164,14 @@ export const FAMILY_OVERRIDES = {
 	// compound back to its component family (ui/offcanvas), with the bare rule global.
 	showing: 'global',
 	hiding: 'global',
+	// `.active` / `.disabled` are generic state classes stamped in compounds across
+	// many components (`.btn.active`, `.nav-link.active`, `.page-item.disabled`).
+	// As `global` (always-loaded baseline) the §4.2 subject tie-break routes each
+	// compound to its COMPONENT family (so `.btn.active` lands in `ui/buttons` beside
+	// `.btn`, source-ordered) instead of the separate `utilities/used` chunk where
+	// load order flipped the cascade. Bare `.active`/`.disabled` rules stay in global.
+	active: 'global',
+	disabled: 'global',
 
 	// Demo positioning scaffolding shared verbatim by the popovers AND tooltips
 	// example pages (same symbol name in both contract dirs → the name-keyed table
@@ -282,9 +308,8 @@ export const USED_UTILITY_SYMBOLS = new Set([
 	'row',
 	'rowCols1',
 	'rowColsMd2',
-	// other / state (2)
-	'active',
-	'disabled',
+	// other / state — `active`/`disabled` now pinned to `global` via FAMILY_OVERRIDES
+	// (generic state classes; their compounds defer to the component family).
 	// position (5)
 	'end0',
 	'positionAbsolute',

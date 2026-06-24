@@ -14,6 +14,7 @@ import {
 	varBsBreadcrumbPaddingY,
 } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
 
+import { active } from '../../../../theme-contract/literal/contract.css'
 import { breadcrumb, breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
 
 globalStyle(`${cosmoScope}${breadcrumb}`, {
@@ -45,4 +46,8 @@ globalStyle(`${cosmoScope}${breadcrumbItem} + ${cosmoScope}${breadcrumbItem}::be
 	paddingRight: varBsBreadcrumbItemPaddingX,
 	color: varBsBreadcrumbDividerColor,
 	content: `${fallbackVar(varBsBreadcrumbDivider, '"/"')} `,
+})
+
+globalStyle(`${cosmoScope}${breadcrumbItem}${active}`, {
+	color: varBsBreadcrumbItemActiveColor,
 })

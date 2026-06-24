@@ -56,11 +56,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -90,6 +92,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -224,6 +232,12 @@ globalStyle(`${slateScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${slateScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${slateScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -242,6 +256,10 @@ globalStyle(`${slateScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${slateScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${slateScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -251,6 +269,14 @@ globalStyle(`${slateScope}${btnCheck}:checked:focus-visible + ${slateScope}${btn
 })
 
 globalStyle(`${slateScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${slateScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -662,6 +688,10 @@ globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btnCheck}:checked + ${slateScope}${btn}`, {
 	zIndex: '1',
 })
@@ -682,8 +712,17 @@ globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${slateScope}${btnGroup} > ${slateScope}:not(${btnCheck}:first-child) + ${slateScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btnGroup}:not(:last-child) > ${slateScope}${btn}`, {
@@ -704,6 +743,47 @@ globalStyle(`${slateScope}${btnGroup} > ${slateScope}:not(${btnCheck}) + ${slate
 globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btnGroup}:not(:first-child) > ${slateScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${slateScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${slateScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${slateScope}${dropup} ${slateScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${slateScope}${dropend} ${slateScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${slateScope}${dropstart} ${slateScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${slateScope}${btnSm} + ${slateScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${slateScope}${btnGroupSm} > ${slateScope}${btn} + ${slateScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${slateScope}${btnLg} + ${slateScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${slateScope}${btnGroupLg} > ${slateScope}${btn} + ${slateScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btn}`, {
@@ -784,6 +864,14 @@ globalStyle(`${slateScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${slateScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${slateScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -821,6 +909,16 @@ globalStyle(`${slateScope}${btn}`, {
 	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
+globalStyle(`${slateScope}${btn}:not([disabled]):not(${disabled})${active}`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+	boxShadow: 'none',
+})
+
+globalStyle(`${slateScope}${btn}${disabled}`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+	boxShadow: 'none',
+})
+
 globalStyle(`${slateScope}${btn}:hover`, {
 	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
@@ -829,8 +927,35 @@ globalStyle(`${slateScope}${btn}:focus`, {
 	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
+globalStyle(`${slateScope}${btn}:not([disabled]):not(${disabled}):active`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${btn}:not([disabled]):not(${disabled}):active:hover`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${btn}:not([disabled]):not(${disabled})${active}:hover`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+})
+
 globalStyle(`${slateScope}${btnPrimary}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnPrimary}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnPrimary}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnPrimary}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
 	filter: 'none',
 })
 
@@ -839,8 +964,38 @@ globalStyle(`${slateScope}${btnSecondary}`, {
 	filter: 'none',
 })
 
+globalStyle(`${slateScope}${btnSecondary}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#666d72, #6e757a 40%, #737a80)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnSecondary}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnSecondary}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
+	filter: 'none',
+})
+
 globalStyle(`${slateScope}${btnSuccess}`, {
 	backgroundImage: 'linear-gradient(#6ac76a, #62c462 20%, #4e9d4e)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnSuccess}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#52a552, #58b058 40%, #5cb85c)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnSuccess}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnSuccess}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
 	filter: 'none',
 })
 
@@ -849,8 +1004,38 @@ globalStyle(`${slateScope}${btnInfo}`, {
 	filter: 'none',
 })
 
+globalStyle(`${slateScope}${btnInfo}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#4ca1ba, #52adc8 40%, #56b4d1)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnInfo}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnInfo}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
+	filter: 'none',
+})
+
 globalStyle(`${slateScope}${btnWarning}`, {
 	backgroundImage: 'linear-gradient(#f89912, #f89406 20%, #c67605)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnWarning}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#d07c05, #df8505 40%, #e98b06)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnWarning}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnWarning}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
 	filter: 'none',
 })
 
@@ -859,13 +1044,58 @@ globalStyle(`${slateScope}${btnDanger}`, {
 	filter: 'none',
 })
 
+globalStyle(`${slateScope}${btnDanger}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#c8504c, #d65652 40%, #e05956)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnDanger}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnDanger}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
+	filter: 'none',
+})
+
 globalStyle(`${slateScope}${btnLight}`, {
 	backgroundImage: 'linear-gradient(#eaedf0, #e9ecef 20%, #babdbf)',
 	filter: 'none',
 })
 
+globalStyle(`${slateScope}${btnLight}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#c4c6c9, #d2d4d7 40%, #dbdee1)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnLight}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnLight}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+})
+
 globalStyle(`${slateScope}${btnDark}`, {
 	backgroundImage: 'linear-gradient(#32363a, #272b30 20%, #1f2226)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnDark}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#212428, #23272b 40%, #25282d)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnDark}:not([disabled]):not(${disabled}):active:hover`, {
+	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${btnDark}:not([disabled]):not(${disabled})${active}:hover`, {
+	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
 	filter: 'none',
 })
 
@@ -879,6 +1109,14 @@ globalStyle(`${slateScope}${btnLink}`, {
 
 globalStyle(`${slateScope}${btnLink}:hover`, {
 	borderColor: 'transparent',
+})
+
+globalStyle(`${slateScope}${btnGroup} ${slateScope}${btn}${active}`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${btnGroupVertical} ${slateScope}${btn}${active}`, {
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${btnCheck}:checked + ${slateScope}${btn}`, {

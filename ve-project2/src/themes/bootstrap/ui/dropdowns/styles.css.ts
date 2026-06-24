@@ -50,9 +50,9 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
 	btnGroupVertical,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -70,7 +70,7 @@ import {
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -85,7 +85,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -539,10 +538,22 @@ globalStyle(`${bootstrapScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${bootstrapScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${bootstrapScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${bootstrapScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${bootstrapScope}${dropdownItem}:disabled`, {
@@ -590,52 +601,6 @@ globalStyle(`${bootstrapScope}${dropdownMenuDark}`, {
 globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${bootstrapScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-})
-
-globalStyle(`${bootstrapScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${bootstrapScope}${dropup} ${bootstrapScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${bootstrapScope}${dropend} ${bootstrapScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${bootstrapScope}${dropstart} ${bootstrapScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${bootstrapScope}${btnSm} + ${bootstrapScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${bootstrapScope}${btnGroupSm} > ${bootstrapScope}${btn} + ${bootstrapScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${bootstrapScope}${btnLg} + ${bootstrapScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${bootstrapScope}${btnGroupLg} > ${bootstrapScope}${btn} + ${bootstrapScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:not(:last-child):not(${dropdownToggle})`, {

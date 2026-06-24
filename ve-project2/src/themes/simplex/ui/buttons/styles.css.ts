@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -223,6 +231,12 @@ globalStyle(`${simplexScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${simplexScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${simplexScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -241,6 +255,10 @@ globalStyle(`${simplexScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${simplexScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${simplexScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -250,6 +268,14 @@ globalStyle(`${simplexScope}${btnCheck}:checked:focus-visible + ${simplexScope}$
 })
 
 globalStyle(`${simplexScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${simplexScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -661,6 +687,10 @@ globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btnCheck}:checked + ${simplexScope}${btn}`, {
 	zIndex: '1',
 })
@@ -681,8 +711,17 @@ globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}:active`,
 	zIndex: '1',
 })
 
+globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}:not(${btnCheck}:first-child) + ${simplexScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btnGroup}:not(:last-child) > ${simplexScope}${btn}`, {
@@ -703,6 +742,47 @@ globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}:not(${btnCheck}) + ${s
 globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btnGroup}:not(:first-child) > ${simplexScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${simplexScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${simplexScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${simplexScope}${dropup} ${simplexScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${simplexScope}${dropend} ${simplexScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${simplexScope}${dropstart} ${simplexScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${simplexScope}${btnSm} + ${simplexScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${simplexScope}${btnGroupSm} > ${simplexScope}${btn} + ${simplexScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${simplexScope}${btnLg} + ${simplexScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${simplexScope}${btnGroupLg} > ${simplexScope}${btn} + ${simplexScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}`, {
@@ -783,6 +863,14 @@ globalStyle(`${simplexScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${simplexScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${simplexScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -840,6 +928,14 @@ globalStyle(`${simplexScope}${btnSecondary}:hover`, {
 })
 
 globalStyle(`${simplexScope}${btnSecondary}:focus`, {
+	boxShadow: '0 0 0 0.2rem rgba(221, 221, 221, 0.5)',
+})
+
+globalStyle(`${simplexScope}${btnSecondary}:not([disabled]):not(${disabled}):active`, {
+	boxShadow: '0 0 0 0.2rem rgba(221, 221, 221, 0.5)',
+})
+
+globalStyle(`${simplexScope}${btnSecondary}:not([disabled]):not(${disabled})${active}`, {
 	boxShadow: '0 0 0 0.2rem rgba(221, 221, 221, 0.5)',
 })
 

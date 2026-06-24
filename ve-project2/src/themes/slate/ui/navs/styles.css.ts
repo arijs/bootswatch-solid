@@ -9,7 +9,7 @@ import {
 	varBsLinkHoverColor,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -41,6 +41,7 @@ import {
 	bgSecondary,
 	bgSuccess,
 	bgWarning,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -260,6 +261,10 @@ globalStyle(`${slateScope}${tabContent} > ${slateScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${slateScope}${tabContent} > ${slateScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -316,6 +321,13 @@ globalStyle(`${slateScope}${navbarExpandXxl} ${slateScope}${navbarNav} ${slateSc
 globalStyle(`${slateScope}${navbarExpand} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${slateScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${navLinkActive}`, {
@@ -510,6 +522,26 @@ globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled}):focus`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled}):active`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled})${active}`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
 })
 
 globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkDisabled}`, {

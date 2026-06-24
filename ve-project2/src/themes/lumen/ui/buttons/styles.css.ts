@@ -56,11 +56,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -90,6 +92,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modal, modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvas, offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -224,6 +232,12 @@ globalStyle(`${lumenScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${lumenScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${lumenScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -242,6 +256,10 @@ globalStyle(`${lumenScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${lumenScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${lumenScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -251,6 +269,14 @@ globalStyle(`${lumenScope}${btnCheck}:checked:focus-visible + ${lumenScope}${btn
 })
 
 globalStyle(`${lumenScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${lumenScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -662,6 +688,10 @@ globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btnCheck}:checked + ${lumenScope}${btn}`, {
 	zIndex: '1',
 })
@@ -682,8 +712,17 @@ globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}:not(${btnCheck}:first-child) + ${lumenScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btnGroup}:not(:last-child) > ${lumenScope}${btn}`, {
@@ -704,6 +743,47 @@ globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}:not(${btnCheck}) + ${lumen
 globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btnGroup}:not(:first-child) > ${lumenScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${lumenScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${lumenScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${lumenScope}${dropup} ${lumenScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${lumenScope}${dropend} ${lumenScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${lumenScope}${dropstart} ${lumenScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${lumenScope}${btnSm} + ${lumenScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${lumenScope}${btnGroupSm} > ${lumenScope}${btn} + ${lumenScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${lumenScope}${btnLg} + ${lumenScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${lumenScope}${btnGroupLg} > ${lumenScope}${btn} + ${lumenScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}`, {
@@ -784,6 +864,14 @@ globalStyle(`${lumenScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${lumenScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${lumenScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -822,6 +910,16 @@ globalStyle(`${lumenScope}${btn}`, {
 	textTransform: 'uppercase',
 })
 
+globalStyle(`${lumenScope}${btn}:not(${disabled}):hover`, {
+	marginTop: '1px',
+	borderBottomWidth: '3px',
+})
+
+globalStyle(`${lumenScope}${btn}:not(${disabled}):active`, {
+	marginTop: '2px',
+	borderBottomWidth: '2px',
+})
+
 globalStyle(`${lumenScope}${btnPrimary}:hover`, {
 	backgroundColor: '#158cba',
 })
@@ -835,6 +933,14 @@ globalStyle(`${lumenScope}${btnPrimary}:focus`, {
 })
 
 globalStyle(`${lumenScope}${btnPrimary}`, {
+	borderColor: '#137ea7',
+})
+
+globalStyle(`${lumenScope}${btnPrimary}:not(${disabled}):hover`, {
+	borderColor: '#137ea7',
+})
+
+globalStyle(`${lumenScope}${btnPrimary}:not(${disabled}):active`, {
 	borderColor: '#137ea7',
 })
 
@@ -858,6 +964,14 @@ globalStyle(`${lumenScope}${btnSecondary}`, {
 	borderColor: '#d8d8d8',
 })
 
+globalStyle(`${lumenScope}${btnSecondary}:not(${disabled}):hover`, {
+	borderColor: '#d8d8d8',
+})
+
+globalStyle(`${lumenScope}${btnSecondary}:not(${disabled}):active`, {
+	borderColor: '#d8d8d8',
+})
+
 globalStyle(`${lumenScope}${btnSecondary}:focus`, {
 	borderColor: '#d8d8d8',
 })
@@ -875,6 +989,14 @@ globalStyle(`${lumenScope}${btnSuccess}:focus`, {
 })
 
 globalStyle(`${lumenScope}${btnSuccess}`, {
+	borderColor: '#24a428',
+})
+
+globalStyle(`${lumenScope}${btnSuccess}:not(${disabled}):hover`, {
+	borderColor: '#24a428',
+})
+
+globalStyle(`${lumenScope}${btnSuccess}:not(${disabled}):active`, {
 	borderColor: '#24a428',
 })
 
@@ -898,6 +1020,14 @@ globalStyle(`${lumenScope}${btnInfo}`, {
 	borderColor: '#69b6d4',
 })
 
+globalStyle(`${lumenScope}${btnInfo}:not(${disabled}):hover`, {
+	borderColor: '#69b6d4',
+})
+
+globalStyle(`${lumenScope}${btnInfo}:not(${disabled}):active`, {
+	borderColor: '#69b6d4',
+})
+
 globalStyle(`${lumenScope}${btnInfo}:focus`, {
 	borderColor: '#69b6d4',
 })
@@ -915,6 +1045,14 @@ globalStyle(`${lumenScope}${btnWarning}:focus`, {
 })
 
 globalStyle(`${lumenScope}${btnWarning}`, {
+	borderColor: '#e67818',
+})
+
+globalStyle(`${lumenScope}${btnWarning}:not(${disabled}):hover`, {
+	borderColor: '#e67818',
+})
+
+globalStyle(`${lumenScope}${btnWarning}:not(${disabled}):active`, {
 	borderColor: '#e67818',
 })
 
@@ -938,6 +1076,14 @@ globalStyle(`${lumenScope}${btnDanger}`, {
 	borderColor: '#e63b31',
 })
 
+globalStyle(`${lumenScope}${btnDanger}:not(${disabled}):hover`, {
+	borderColor: '#e63b31',
+})
+
+globalStyle(`${lumenScope}${btnDanger}:not(${disabled}):active`, {
+	borderColor: '#e63b31',
+})
+
 globalStyle(`${lumenScope}${btnDanger}:focus`, {
 	borderColor: '#e63b31',
 })
@@ -958,6 +1104,14 @@ globalStyle(`${lumenScope}${btnLight}`, {
 	borderColor: '#dddddd',
 })
 
+globalStyle(`${lumenScope}${btnLight}:not(${disabled}):hover`, {
+	borderColor: '#dddddd',
+})
+
+globalStyle(`${lumenScope}${btnLight}:not(${disabled}):active`, {
+	borderColor: '#dddddd',
+})
+
 globalStyle(`${lumenScope}${btnLight}:focus`, {
 	borderColor: '#dddddd',
 })
@@ -975,6 +1129,14 @@ globalStyle(`${lumenScope}${btnDark}:focus`, {
 })
 
 globalStyle(`${lumenScope}${btnDark}`, {
+	borderColor: '#4d4d4d',
+})
+
+globalStyle(`${lumenScope}${btnDark}:not(${disabled}):hover`, {
+	borderColor: '#4d4d4d',
+})
+
+globalStyle(`${lumenScope}${btnDark}:not(${disabled}):active`, {
 	borderColor: '#4d4d4d',
 })
 

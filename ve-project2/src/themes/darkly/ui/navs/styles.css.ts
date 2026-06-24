@@ -2,7 +2,7 @@ import { globalStyle } from '@vanilla-extract/css'
 import { darklyScope } from '../../scope.css'
 
 import { varBsBodyBg, varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -26,6 +26,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -244,6 +245,10 @@ globalStyle(`${darklyScope}${tabContent} > ${darklyScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${darklyScope}${tabContent} > ${darklyScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -300,6 +305,13 @@ globalStyle(`${darklyScope}${navbarExpandXxl} ${darklyScope}${navbarNav} ${darkl
 globalStyle(`${darklyScope}${navbarExpand} ${darklyScope}${navbarNav} ${darklyScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${darklyScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${darklyScope}${cardHeaderTabs} ${darklyScope}${navLink}${navLinkActive}`, {

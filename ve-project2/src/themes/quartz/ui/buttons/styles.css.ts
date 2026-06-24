@@ -55,12 +55,14 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	bgLight,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -90,6 +92,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -224,6 +232,12 @@ globalStyle(`${quartzScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${quartzScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${quartzScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -242,6 +256,10 @@ globalStyle(`${quartzScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${quartzScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${quartzScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -251,6 +269,14 @@ globalStyle(`${quartzScope}${btnCheck}:checked:focus-visible + ${quartzScope}${b
 })
 
 globalStyle(`${quartzScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${quartzScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -662,6 +688,10 @@ globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}`, {
 	zIndex: '1',
 })
@@ -682,8 +712,17 @@ globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}:not(${btnCheck}:first-child) + ${quartzScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnGroup}:not(:last-child) > ${quartzScope}${btn}`, {
@@ -704,6 +743,47 @@ globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}:not(${btnCheck}) + ${qua
 globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnGroup}:not(:first-child) > ${quartzScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.125rem',
+	paddingLeft: '1.125rem',
+})
+
+globalStyle(`${quartzScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${quartzScope}${dropup} ${quartzScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${quartzScope}${dropend} ${quartzScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${quartzScope}${dropstart} ${quartzScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${quartzScope}${btnSm} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${quartzScope}${btnGroupSm} > ${quartzScope}${btn} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${quartzScope}${btnLg} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${quartzScope}${btnGroupLg} > ${quartzScope}${btn} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}`, {
@@ -784,6 +864,14 @@ globalStyle(`${quartzScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${quartzScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${quartzScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -826,6 +914,10 @@ globalStyle(`${quartzScope}${btnSecondary}:hover`, {
 })
 
 globalStyle(`${quartzScope}${btnSecondary}:focus`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${btnSecondary}${disabled}`, {
 	color: '#fff',
 })
 

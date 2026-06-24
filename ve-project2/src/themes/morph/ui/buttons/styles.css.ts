@@ -54,11 +54,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -88,7 +90,13 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { dropdownToggle } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import {
+	dropdownToggle,
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -227,6 +235,13 @@ globalStyle(`${morphScope}${btn}:first-child:active`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
+globalStyle(`${morphScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
+})
+
 globalStyle(`${morphScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -246,6 +261,10 @@ globalStyle(`${morphScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
+globalStyle(`${morphScope}${btn}${active}:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
 globalStyle(`${morphScope}${btn}${show}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -255,6 +274,15 @@ globalStyle(`${morphScope}${btnCheck}:checked:focus-visible + ${morphScope}${btn
 })
 
 globalStyle(`${morphScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+	boxShadow: 'none',
+})
+
+globalStyle(`${morphScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -668,6 +696,10 @@ globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btnCheck}:checked + ${morphScope}${btn}`, {
 	zIndex: '1',
 })
@@ -688,8 +720,17 @@ globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${morphScope}${btnGroup} > ${morphScope}:not(${btnCheck}:first-child) + ${morphScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btnGroup}:not(:last-child) > ${morphScope}${btn}`, {
@@ -710,6 +751,47 @@ globalStyle(`${morphScope}${btnGroup} > ${morphScope}:not(${btnCheck}) + ${morph
 globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btnGroup}:not(:first-child) > ${morphScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${morphScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.125rem',
+	paddingLeft: '1.125rem',
+})
+
+globalStyle(`${morphScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${morphScope}${dropup} ${morphScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${morphScope}${dropend} ${morphScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${morphScope}${dropstart} ${morphScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${morphScope}${btnSm} + ${morphScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${morphScope}${btnGroupSm} > ${morphScope}${btn} + ${morphScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${morphScope}${btnLg} + ${morphScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.6875rem',
+	paddingLeft: '1.6875rem',
+})
+
+globalStyle(`${morphScope}${btnGroupLg} > ${morphScope}${btn} + ${morphScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.6875rem',
+	paddingLeft: '1.6875rem',
 })
 
 globalStyle(`${morphScope}${btnGroup}${show} ${morphScope}${dropdownToggle}${btnLink}`, {
@@ -787,6 +869,14 @@ globalStyle(`${morphScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${morphScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${morphScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',
@@ -976,6 +1066,12 @@ globalStyle(`${morphScope}${btnLink}:active`, {
 
 globalStyle(`${morphScope}${btnLink}:active:focus`, {
 	color: '#212529',
+})
+
+globalStyle(`${morphScope}${btn}${disabled}`, {
+	color: '#7b8ab8',
+	backgroundColor: '#d9e3f1',
+	boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 0.5)',
 })
 
 globalStyle(`${morphScope}[data-bs-theme=dark] ${morphScope}${btn}`, {

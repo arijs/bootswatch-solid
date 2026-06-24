@@ -173,7 +173,15 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapsing } from '../../../theme-contract/literal/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	collapsing,
+} from '../../../theme-contract/literal/contract.css'
 import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
 import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
@@ -394,7 +402,25 @@ globalStyle(`:where(${sketchyScope}${h6})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${sketchyScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${sketchyScope}${h5})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${sketchyScope}${clsH5}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -412,7 +438,25 @@ globalStyle(`:where(${sketchyScope}${h4})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${sketchyScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${sketchyScope}${h3})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${sketchyScope}${clsH3}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -430,7 +474,25 @@ globalStyle(`:where(${sketchyScope}${h2})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${sketchyScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${sketchyScope}${h1})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontFamily: '"Cabin Sketch", cursive',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${sketchyScope}${clsH1}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontFamily: '"Cabin Sketch", cursive',
@@ -443,7 +505,19 @@ globalStyle(`:where(${sketchyScope}${h1})`, {
 	fontSize: 'calc(1.375rem + 1.5vw)',
 })
 
+globalStyle(`${sketchyScope}${clsH1}`, {
+	fontSize: 'calc(1.375rem + 1.5vw)',
+})
+
 globalStyle(`:where(${sketchyScope}${h1})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${clsH1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.5rem',
@@ -455,7 +529,19 @@ globalStyle(`:where(${sketchyScope}${h2})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
+globalStyle(`${sketchyScope}${clsH2}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
 globalStyle(`:where(${sketchyScope}${h2})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${clsH2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -467,7 +553,19 @@ globalStyle(`:where(${sketchyScope}${h3})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
+globalStyle(`${sketchyScope}${clsH3}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
+})
+
 globalStyle(`:where(${sketchyScope}${h3})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${clsH3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -479,7 +577,19 @@ globalStyle(`:where(${sketchyScope}${h4})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`${sketchyScope}${clsH4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${sketchyScope}${h4})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${clsH4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -491,7 +601,15 @@ globalStyle(`:where(${sketchyScope}${h5})`, {
 	fontSize: '1.25rem',
 })
 
+globalStyle(`${sketchyScope}${clsH5}`, {
+	fontSize: '1.25rem',
+})
+
 globalStyle(`:where(${sketchyScope}${h6})`, {
+	fontSize: '1rem',
+})
+
+globalStyle(`${sketchyScope}${clsH6}`, {
 	fontSize: '1rem',
 })
 

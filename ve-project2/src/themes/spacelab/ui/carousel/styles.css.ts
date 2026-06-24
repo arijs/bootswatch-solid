@@ -57,6 +57,10 @@ globalStyle(`${spacelabScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${spacelabScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${spacelabScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -85,6 +89,11 @@ globalStyle(`${spacelabScope}${carouselFade} ${spacelabScope}${carouselItem}`, {
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${spacelabScope}${carouselFade} ${spacelabScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${spacelabScope}${carouselFade} ${spacelabScope}${carouselItemNext}${carouselItemStart}`, {
@@ -280,6 +289,10 @@ globalStyle(`${spacelabScope}${carouselIndicators} ${spacelabScope}[data-bs-targ
 			transition: 'none',
 		},
 	},
+})
+
+globalStyle(`${spacelabScope}${carouselIndicators} ${spacelabScope}${active}`, {
+	opacity: '1',
 })
 
 globalStyle(`${spacelabScope}${carouselCaption}`, {

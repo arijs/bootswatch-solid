@@ -57,6 +57,10 @@ globalStyle(`${sandstoneScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${sandstoneScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${sandstoneScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -85,6 +89,11 @@ globalStyle(`${sandstoneScope}${carouselFade} ${sandstoneScope}${carouselItem}`,
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${sandstoneScope}${carouselFade} ${sandstoneScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${sandstoneScope}${carouselFade} ${sandstoneScope}${carouselItemNext}${carouselItemStart}`, {
@@ -280,6 +289,10 @@ globalStyle(`${sandstoneScope}${carouselIndicators} ${sandstoneScope}[data-bs-ta
 			transition: 'none',
 		},
 	},
+})
+
+globalStyle(`${sandstoneScope}${carouselIndicators} ${sandstoneScope}${active}`, {
+	opacity: '1',
 })
 
 globalStyle(`${sandstoneScope}${carouselCaption}`, {

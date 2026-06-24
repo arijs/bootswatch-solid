@@ -19,31 +19,6 @@ import {
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
-import { varBsBtnCloseDisabledOpacity } from '../../../../theme-contract/ui/alerts/_vars.css'
-import { varBsBreadcrumbItemActiveColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import { varBsDropdownLinkActiveBg, varBsDropdownLinkActiveColor, varBsDropdownLinkDisabledColor } from '../../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBorderWidth,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
@@ -58,7 +33,6 @@ import {
 import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
-	active,
 	alignItemsStretch,
 	alignTop,
 	bgDanger,
@@ -71,8 +45,12 @@ import {
 	border,
 	borderBottom,
 	borderDark,
-	btnClose,
-	btnGroupVertical,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
 	collapsed,
 	dBlock,
 	dInlineBlock,
@@ -80,7 +58,6 @@ import {
 	dLgNone,
 	dMdBlock,
 	dNone,
-	disabled,
 	end0,
 	flexColumn,
 	flexRow,
@@ -88,12 +65,6 @@ import {
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentStart,
-	listGroupHorizontal,
-	listGroupHorizontalLg,
-	listGroupHorizontalMd,
-	listGroupHorizontalSm,
-	listGroupHorizontalXl,
-	listGroupHorizontalXxl,
 	mb0,
 	mb4,
 	mb5,
@@ -124,16 +95,9 @@ import {
 	w75,
 } from '../../../../theme-contract/literal/contract.css'
 import { accordionButton, accordionHeader, accordionItem } from '../../../../theme-contract/ui/accordion/contract.css'
-import { breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import { card } from '../../../../theme-contract/ui/card/contract.css'
-import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
-import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
-import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import { progressBar } from '../../../../theme-contract/ui/progress/contract.css'
 import {
 	alignItemsCenter,
@@ -297,206 +261,8 @@ globalStyle(`${vaporScope}${colMd8}`, {
 	},
 })
 
-globalStyle(`${vaporScope}${btn}${active}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${vaporScope}${btn}${active}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${vaporScope}${btn}${disabled}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-globalStyle(`${vaporScope}${dropdownItem}${active}`, {
-	color: varBsDropdownLinkActiveColor,
-	textDecoration: 'none',
-	backgroundColor: varBsDropdownLinkActiveBg,
-})
-
-globalStyle(`${vaporScope}${dropdownItem}${disabled}`, {
-	color: varBsDropdownLinkDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: 'transparent',
-})
-
-globalStyle(`${vaporScope}${btnGroup} > ${vaporScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${vaporScope}${btnGroupVertical} > ${vaporScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${vaporScope}${tabContent} > ${vaporScope}${active}`, {
-	display: 'block',
-})
-
 globalStyle(`${vaporScope}${accordionFlush} > ${vaporScope}${accordionItem} > ${vaporScope}${accordionHeader} ${vaporScope}${accordionButton}${collapsed}`, {
 	borderRadius: '0',
-})
-
-globalStyle(`${vaporScope}${breadcrumbItem}${active}`, {
-	color: varBsBreadcrumbItemActiveColor,
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${disabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active}`, {
-	zIndex: '2',
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-
-globalStyle(`${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${vaporScope}${listGroupItemAction}:not(${active}):hover`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${vaporScope}${listGroupItemAction}:not(${active}):focus`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${vaporScope}${listGroupItemAction}:not(${active}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem}${active}`, {
-	marginTop: '0',
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontal} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalSm} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalMd} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalLg} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalXl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${listGroupHorizontalXxl} > ${vaporScope}${listGroupItem} + ${vaporScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${btnClose}${disabled}`, {
-	pointerEvents: 'none',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-	opacity: varBsBtnCloseDisabledOpacity,
-})
-
-globalStyle(`${vaporScope}${carouselItem}${active}`, {
-	display: 'block',
-})
-
-globalStyle(`${vaporScope}${carouselFade} ${vaporScope}${carouselItem}${active}`, {
-	zIndex: '1',
-	opacity: '1',
-})
-
-globalStyle(`${vaporScope}${carouselIndicators} ${vaporScope}${active}`, {
-	opacity: '1',
 })
 
 globalStyle(`${vaporScope}${stickyXlTop}`, {
@@ -1010,6 +776,30 @@ globalStyle(`${vaporScope}${textWhite} ${vaporScope}${h6}`, {
 	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${textWhite} ${vaporScope}${clsH6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
 globalStyle(`${vaporScope}${textMuted}`, {
 	textShadow: '0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
 })
@@ -1046,10 +836,6 @@ globalStyle(`${vaporScope}${navbar}${bgDark}`, {
 	boxShadow: '0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
 })
 
-globalStyle(`${vaporScope}${breadcrumbItem}${active}`, {
-	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
-})
-
 globalStyle(`${vaporScope}${progressBar}${bgPrimary}`, {
 	boxShadow: '0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1)',
 })
@@ -1080,30 +866,6 @@ globalStyle(`${vaporScope}${progressBar}${bgLight}`, {
 
 globalStyle(`${vaporScope}${progressBar}${bgDark}`, {
 	boxShadow: '0 0 2px rgba(23, 2, 41, 0.9), 0 0 4px rgba(23, 2, 41, 0.4), 0 0 1rem rgba(23, 2, 41, 0.3), 0 0 4rem rgba(23, 2, 41, 0.1)',
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h1}`, {
-	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h2}`, {
-	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h3}`, {
-	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h4}`, {
-	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h5}`, {
-	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
-})
-
-globalStyle(`${vaporScope}${listGroupItem}${active} ${vaporScope}${h6}`, {
-	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${card}${borderDark}`, {

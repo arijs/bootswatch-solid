@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -223,6 +231,12 @@ globalStyle(`${sketchyScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${sketchyScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${sketchyScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -241,6 +255,10 @@ globalStyle(`${sketchyScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${sketchyScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${sketchyScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -250,6 +268,14 @@ globalStyle(`${sketchyScope}${btnCheck}:checked:focus-visible + ${sketchyScope}$
 })
 
 globalStyle(`${sketchyScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${sketchyScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -661,6 +687,10 @@ globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnCheck}:checked + ${sketchyScope}${btn}`, {
 	zIndex: '1',
 })
@@ -681,8 +711,17 @@ globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:active`,
 	zIndex: '1',
 })
 
+globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}:first-child) + ${sketchyScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:last-child) > ${sketchyScope}${btn}`, {
@@ -703,6 +742,47 @@ globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}) + ${s
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btnGroup}:not(:first-child) > ${sketchyScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${sketchyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sketchyScope}${dropup} ${sketchyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sketchyScope}${dropend} ${sketchyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sketchyScope}${dropstart} ${sketchyScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${sketchyScope}${btnSm} + ${sketchyScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${sketchyScope}${btnGroupSm} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${sketchyScope}${btnLg} + ${sketchyScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${sketchyScope}${btnGroupLg} > ${sketchyScope}${btn} + ${sketchyScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}`, {
@@ -776,6 +856,14 @@ globalStyle(`${sketchyScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${sketchyScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${sketchyScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',

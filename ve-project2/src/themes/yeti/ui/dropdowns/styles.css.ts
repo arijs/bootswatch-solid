@@ -50,11 +50,11 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	bgLight,
 	bgPrimary,
-	btnGroupLg,
-	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -76,10 +76,8 @@ import {
 	btn,
 	btnDanger,
 	btnInfo,
-	btnLg,
 	btnPrimary,
 	btnSecondary,
-	btnSm,
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
@@ -97,7 +95,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -552,10 +549,22 @@ globalStyle(`${yetiScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${yetiScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${yetiScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${yetiScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${yetiScope}${dropdownItem}:disabled`, {
@@ -603,52 +612,6 @@ globalStyle(`${yetiScope}${dropdownMenuDark}`, {
 globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${yetiScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${yetiScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${yetiScope}${dropup} ${yetiScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${yetiScope}${dropend} ${yetiScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${yetiScope}${dropstart} ${yetiScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${yetiScope}${btnSm} + ${yetiScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${yetiScope}${btnGroupSm} > ${yetiScope}${btn} + ${yetiScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${yetiScope}${btnLg} + ${yetiScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${yetiScope}${btnGroupLg} > ${yetiScope}${btn} + ${yetiScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
@@ -722,6 +685,11 @@ globalStyle(`${yetiScope}${bgPrimary} ${yetiScope}${dropdownMenu} ${yetiScope}${
 	color: 'rgba(255, 255, 255, 0.7)',
 })
 
+globalStyle(`${yetiScope}${bgPrimary} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}${active}`, {
+	color: '#fff',
+	backgroundColor: '#007ea7',
+})
+
 globalStyle(`${yetiScope}${bgPrimary} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}:hover`, {
 	color: '#fff',
 	backgroundColor: '#007ea7',
@@ -744,6 +712,11 @@ globalStyle(`${yetiScope}${bgDark} ${yetiScope}${dropdownMenu} ${yetiScope}${dro
 	color: 'rgba(255, 255, 255, 0.7)',
 })
 
+globalStyle(`${yetiScope}${bgDark} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}${active}`, {
+	color: '#fff',
+	backgroundColor: '#2e2e2e',
+})
+
 globalStyle(`${yetiScope}${bgDark} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}:hover`, {
 	color: '#fff',
 	backgroundColor: '#2e2e2e',
@@ -764,6 +737,11 @@ globalStyle(`${yetiScope}${bgLight} ${yetiScope}${dropdownMenu} ${yetiScope}${dr
 
 globalStyle(`${yetiScope}${bgLight} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}:focus`, {
 	color: `rgba(${varBsEmphasisColorRgb}, 0.65)`,
+})
+
+globalStyle(`${yetiScope}${bgLight} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}${active}`, {
+	color: `rgba(${varBsEmphasisColorRgb}, 0.8)`,
+	backgroundColor: '#f0f0f0',
 })
 
 globalStyle(`${yetiScope}${bgLight} ${yetiScope}${dropdownMenu} ${yetiScope}${dropdownItem}:hover`, {

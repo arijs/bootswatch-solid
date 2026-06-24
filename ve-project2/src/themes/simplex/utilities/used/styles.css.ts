@@ -19,37 +19,11 @@ import {
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
-import { varBsBtnCloseDisabledOpacity } from '../../../../theme-contract/ui/alerts/_vars.css'
-import { varBsBreadcrumbItemActiveColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import { varBsDropdownLinkActiveBg, varBsDropdownLinkActiveColor, varBsDropdownLinkDisabledColor } from '../../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBorderWidth,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
-	active,
 	alignItemsStretch,
 	alignTop,
 	bgDanger,
@@ -62,8 +36,6 @@ import {
 	border,
 	borderBottom,
 	borderDark,
-	btnClose,
-	btnGroupVertical,
 	collapsed,
 	dBlock,
 	dInlineBlock,
@@ -71,7 +43,6 @@ import {
 	dLgNone,
 	dMdBlock,
 	dNone,
-	disabled,
 	end0,
 	flexColumn,
 	flexRow,
@@ -79,12 +50,6 @@ import {
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentStart,
-	listGroupHorizontal,
-	listGroupHorizontalLg,
-	listGroupHorizontalMd,
-	listGroupHorizontalSm,
-	listGroupHorizontalXl,
-	listGroupHorizontalXxl,
 	mb0,
 	mb4,
 	mb5,
@@ -116,15 +81,8 @@ import {
 } from '../../../../theme-contract/literal/contract.css'
 import { accordionButton, accordionHeader, accordionItem } from '../../../../theme-contract/ui/accordion/contract.css'
 import { badge } from '../../../../theme-contract/ui/badge/contract.css'
-import { breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnSecondary } from '../../../../theme-contract/ui/buttons/contract.css'
-import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
-import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
-import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -287,206 +245,8 @@ globalStyle(`${simplexScope}${colMd8}`, {
 	},
 })
 
-globalStyle(`${simplexScope}${btn}${active}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${simplexScope}${btn}${active}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${simplexScope}${btn}${disabled}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-globalStyle(`${simplexScope}${dropdownItem}${active}`, {
-	color: varBsDropdownLinkActiveColor,
-	textDecoration: 'none',
-	backgroundColor: varBsDropdownLinkActiveBg,
-})
-
-globalStyle(`${simplexScope}${dropdownItem}${disabled}`, {
-	color: varBsDropdownLinkDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: 'transparent',
-})
-
-globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${simplexScope}${tabContent} > ${simplexScope}${active}`, {
-	display: 'block',
-})
-
 globalStyle(`${simplexScope}${accordionFlush} > ${simplexScope}${accordionItem} > ${simplexScope}${accordionHeader} ${simplexScope}${accordionButton}${collapsed}`, {
 	borderRadius: '0',
-})
-
-globalStyle(`${simplexScope}${breadcrumbItem}${active}`, {
-	color: varBsBreadcrumbItemActiveColor,
-})
-
-globalStyle(`${simplexScope}${listGroupItem}${disabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-globalStyle(`${simplexScope}${listGroupItem}${active}`, {
-	zIndex: '2',
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-
-globalStyle(`${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${simplexScope}${listGroupItemAction}:not(${active}):hover`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${simplexScope}${listGroupItemAction}:not(${active}):focus`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${simplexScope}${listGroupItemAction}:not(${active}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontal} > ${simplexScope}${listGroupItem}${active}`, {
-	marginTop: '0',
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontal} > ${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalSm} > ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalSm} > ${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalMd} > ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalMd} > ${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalLg} > ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalLg} > ${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalXl} > ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalXl} > ${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalXxl} > ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${listGroupHorizontalXxl} > ${simplexScope}${listGroupItem} + ${simplexScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${btnClose}${disabled}`, {
-	pointerEvents: 'none',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-	opacity: varBsBtnCloseDisabledOpacity,
-})
-
-globalStyle(`${simplexScope}${carouselItem}${active}`, {
-	display: 'block',
-})
-
-globalStyle(`${simplexScope}${carouselFade} ${simplexScope}${carouselItem}${active}`, {
-	zIndex: '1',
-	opacity: '1',
-})
-
-globalStyle(`${simplexScope}${carouselIndicators} ${simplexScope}${active}`, {
-	opacity: '1',
 })
 
 globalStyle(`${simplexScope}${stickyXlTop}`, {
@@ -950,14 +710,6 @@ globalStyle(`${simplexScope}${navbar}${bgDark}`, {
 
 globalStyle(`${simplexScope}${navbar}${bgLight}`, {
 	borderColor: '#dedede',
-})
-
-globalStyle(`${simplexScope}${btnSecondary}:not([disabled]):not(${disabled}):active`, {
-	boxShadow: '0 0 0 0.2rem rgba(221, 221, 221, 0.5)',
-})
-
-globalStyle(`${simplexScope}${btnSecondary}:not([disabled]):not(${disabled})${active}`, {
-	boxShadow: '0 0 0 0.2rem rgba(221, 221, 221, 0.5)',
 })
 
 globalStyle(`${simplexScope}${textSecondary}`, {

@@ -13,7 +13,7 @@ import {
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -39,6 +39,8 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 import { elLi } from '../../../../theme-contract/global-elements/contract.css'
 
 import {
+	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -257,6 +259,10 @@ globalStyle(`${lumenScope}${tabContent} > ${lumenScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${lumenScope}${tabContent} > ${lumenScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${lumenScope}${navbarNav} ${lumenScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -315,6 +321,13 @@ globalStyle(`${lumenScope}${navbarExpand} ${lumenScope}${navbarNav} ${lumenScope
 	paddingLeft: varBsNavbarNavLinkPaddingX,
 })
 
+globalStyle(`${lumenScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
 globalStyle(`${lumenScope}${cardHeaderTabs} ${lumenScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
@@ -346,6 +359,20 @@ globalStyle(`${lumenScope}${navTabs} ${lumenScope}${navLink}${navLinkDisabled}:f
 	marginTop: '6px',
 	borderColor: varBsBorderColor,
 	transition: 'padding-bottom 0.2s ease-in-out, margin-top 0.2s ease-in-out, border-bottom 0.2s ease-in-out',
+})
+
+globalStyle(`${lumenScope}${navTabs} ${lumenScope}${navLink}:not(${disabled}):hover`, {
+	paddingBottom: 'calc(0.5rem + 6px)',
+	marginTop: '0',
+	color: varBsBodyColor,
+	borderBottomColor: 'transparent',
+})
+
+globalStyle(`${lumenScope}${navTabs} ${lumenScope}${navLink}:not(${disabled}):focus`, {
+	paddingBottom: 'calc(0.5rem + 6px)',
+	marginTop: '0',
+	color: varBsBodyColor,
+	borderBottomColor: 'transparent',
 })
 
 globalStyle(`${lumenScope}${navTabs} ${lumenScope}${navLink}${navLinkActive}`, {

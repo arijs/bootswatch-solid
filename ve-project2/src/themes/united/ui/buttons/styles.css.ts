@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -223,6 +231,12 @@ globalStyle(`${unitedScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${unitedScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${unitedScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -241,6 +255,10 @@ globalStyle(`${unitedScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${unitedScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${unitedScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -250,6 +268,14 @@ globalStyle(`${unitedScope}${btnCheck}:checked:focus-visible + ${unitedScope}${b
 })
 
 globalStyle(`${unitedScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${unitedScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -661,6 +687,10 @@ globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btnCheck}:checked + ${unitedScope}${btn}`, {
 	zIndex: '1',
 })
@@ -681,8 +711,17 @@ globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}:not(${btnCheck}:first-child) + ${unitedScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btnGroup}:not(:last-child) > ${unitedScope}${btn}`, {
@@ -703,6 +742,47 @@ globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}:not(${btnCheck}) + ${uni
 globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btnGroup}:not(:first-child) > ${unitedScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${unitedScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${unitedScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${unitedScope}${dropup} ${unitedScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${unitedScope}${dropend} ${unitedScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${unitedScope}${dropstart} ${unitedScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${unitedScope}${btnSm} + ${unitedScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${unitedScope}${btnGroupSm} > ${unitedScope}${btn} + ${unitedScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${unitedScope}${btnLg} + ${unitedScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${unitedScope}${btnGroupLg} > ${unitedScope}${btn} + ${unitedScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btn}`, {
@@ -776,6 +856,14 @@ globalStyle(`${unitedScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${unitedScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${unitedScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',

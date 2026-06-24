@@ -12,7 +12,7 @@ import {
 	varBsSecondaryBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -36,6 +36,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -254,6 +255,10 @@ globalStyle(`${yetiScope}${tabContent} > ${yetiScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${yetiScope}${tabContent} > ${yetiScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${yetiScope}${navbarNav} ${yetiScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -312,7 +317,18 @@ globalStyle(`${yetiScope}${navbarExpand} ${yetiScope}${navbarNav} ${yetiScope}${
 	paddingLeft: varBsNavbarNavLinkPaddingX,
 })
 
+globalStyle(`${yetiScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
 globalStyle(`${yetiScope}${cardHeaderTabs} ${yetiScope}${navLink}${navLinkActive}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${yetiScope}${navPills} ${yetiScope}${active}`, {
+	border: '1px solid #007ea7',
 })

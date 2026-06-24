@@ -9,7 +9,7 @@ import {
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -33,6 +33,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -251,6 +252,10 @@ globalStyle(`${sandstoneScope}${tabContent} > ${sandstoneScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${sandstoneScope}${tabContent} > ${sandstoneScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -307,6 +312,13 @@ globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarNav} $
 globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${sandstoneScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${sandstoneScope}${cardHeaderTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {

@@ -11,7 +11,7 @@ import {
 	varBsLinkHoverColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -35,6 +35,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -253,6 +254,10 @@ globalStyle(`${simplexScope}${tabContent} > ${simplexScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${simplexScope}${tabContent} > ${simplexScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${simplexScope}${navbarNav} ${simplexScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -309,6 +314,13 @@ globalStyle(`${simplexScope}${navbarExpandXxl} ${simplexScope}${navbarNav} ${sim
 globalStyle(`${simplexScope}${navbarExpand} ${simplexScope}${navbarNav} ${simplexScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${simplexScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${simplexScope}${cardHeaderTabs} ${simplexScope}${navLink}${navLinkActive}`, {

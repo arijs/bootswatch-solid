@@ -41,7 +41,17 @@ import {
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 
-import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
+import {
+	cardGroup,
+	cardHeaderPills,
+	cardImgOverlay,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
 	cardBody,
@@ -313,7 +323,15 @@ globalStyle(`${spacelabScope}${card} ${spacelabScope}${h1}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${spacelabScope}${card} ${spacelabScope}${clsH1}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${spacelabScope}${card} ${spacelabScope}${h2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${spacelabScope}${card} ${spacelabScope}${clsH2}`, {
 	color: 'inherit',
 })
 
@@ -321,7 +339,15 @@ globalStyle(`${spacelabScope}${card} ${spacelabScope}${h3}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${spacelabScope}${card} ${spacelabScope}${clsH3}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${spacelabScope}${card} ${spacelabScope}${h4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${spacelabScope}${card} ${spacelabScope}${clsH4}`, {
 	color: 'inherit',
 })
 
@@ -329,6 +355,14 @@ globalStyle(`${spacelabScope}${card} ${spacelabScope}${h5}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${spacelabScope}${card} ${spacelabScope}${clsH5}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${spacelabScope}${card} ${spacelabScope}${h6}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${spacelabScope}${card} ${spacelabScope}${clsH6}`, {
 	color: 'inherit',
 })

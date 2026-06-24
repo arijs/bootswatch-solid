@@ -58,6 +58,8 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 
 import {
+	active,
+	disabled,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
@@ -160,20 +162,57 @@ globalStyle(`${yetiScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
+globalStyle(`${yetiScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
 globalStyle(`${yetiScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
+globalStyle(`${yetiScope}${listGroupItem}${active}`, {
+	zIndex: '2',
+	color: varBsListGroupActiveColor,
+	backgroundColor: varBsListGroupActiveBg,
+	borderColor: varBsListGroupActiveBorderColor,
+})
+
 globalStyle(`${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	borderTopWidth: '0',
+})
+
+globalStyle(`${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderTopWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${yetiScope}${listGroupItemAction}`, {
 	width: '100%',
 	color: varBsListGroupActionColor,
 	textAlign: 'inherit',
+})
+
+globalStyle(`${yetiScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${yetiScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${yetiScope}${listGroupItemAction}:not(${active}):active`, {
+	color: varBsListGroupActionActiveColor,
+	backgroundColor: varBsListGroupActionActiveBg,
 })
 
 globalStyle(`${yetiScope}${listGroupHorizontal}`, {
@@ -190,9 +229,18 @@ globalStyle(`${yetiScope}${listGroupHorizontal} > ${yetiScope}${listGroupItem}:l
 	borderBottomLeftRadius: '0',
 })
 
+globalStyle(`${yetiScope}${listGroupHorizontal} > ${yetiScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
 globalStyle(`${yetiScope}${listGroupHorizontal} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	borderTopWidth: varBsListGroupBorderWidth,
 	borderLeftWidth: '0',
+})
+
+globalStyle(`${yetiScope}${listGroupHorizontal} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${yetiScope}${listGroupHorizontalSm}`, {
@@ -221,11 +269,28 @@ globalStyle(`${yetiScope}${listGroupHorizontalSm} > ${yetiScope}${listGroupItem}
 	},
 })
 
+globalStyle(`${yetiScope}${listGroupHorizontalSm} > ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${yetiScope}${listGroupHorizontalSm} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 576px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${listGroupHorizontalSm} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -256,11 +321,28 @@ globalStyle(`${yetiScope}${listGroupHorizontalMd} > ${yetiScope}${listGroupItem}
 	},
 })
 
+globalStyle(`${yetiScope}${listGroupHorizontalMd} > ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${yetiScope}${listGroupHorizontalMd} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${listGroupHorizontalMd} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -291,11 +373,28 @@ globalStyle(`${yetiScope}${listGroupHorizontalLg} > ${yetiScope}${listGroupItem}
 	},
 })
 
+globalStyle(`${yetiScope}${listGroupHorizontalLg} > ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${yetiScope}${listGroupHorizontalLg} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${listGroupHorizontalLg} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -326,11 +425,28 @@ globalStyle(`${yetiScope}${listGroupHorizontalXl} > ${yetiScope}${listGroupItem}
 	},
 })
 
+globalStyle(`${yetiScope}${listGroupHorizontalXl} > ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${yetiScope}${listGroupHorizontalXl} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${listGroupHorizontalXl} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -361,11 +477,28 @@ globalStyle(`${yetiScope}${listGroupHorizontalXxl} > ${yetiScope}${listGroupItem
 	},
 })
 
+globalStyle(`${yetiScope}${listGroupHorizontalXxl} > ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${yetiScope}${listGroupHorizontalXxl} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1400px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${listGroupHorizontalXxl} > ${yetiScope}${listGroupItem} + ${yetiScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -505,6 +638,10 @@ globalStyle(`${yetiScope}${listGroupItemDark}`, {
 globalStyle(`${yetiScope}${listGroup}`, {
 	fontSize: '0.875rem',
 	fontWeight: '300',
+})
+
+globalStyle(`${yetiScope}${listGroupItem}${disabled}`, {
+	backgroundColor: varBsSecondaryBg,
 })
 
 globalStyle(`${yetiScope}${listGroupItem}:disabled`, {

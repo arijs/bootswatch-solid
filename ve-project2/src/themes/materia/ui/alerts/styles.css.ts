@@ -51,6 +51,14 @@ import {
 } from '../../../../theme-contract/contents/heading/contract.css'
 
 import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
+import {
 	alert,
 	alertDanger,
 	alertDark,
@@ -184,7 +192,15 @@ globalStyle(`${materiaScope}${alert} ${materiaScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${materiaScope}${alert} ${materiaScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -192,7 +208,15 @@ globalStyle(`${materiaScope}${alert} ${materiaScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${materiaScope}${alert} ${materiaScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -200,7 +224,15 @@ globalStyle(`${materiaScope}${alert} ${materiaScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${materiaScope}${alert} ${materiaScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${alert} ${materiaScope}${clsH6}`, {
 	color: '#fff',
 })
 

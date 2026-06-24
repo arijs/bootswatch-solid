@@ -37,7 +37,7 @@ import {
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { elLi, elSpan } from '../../../../theme-contract/global-elements/contract.css'
 
-import { pager } from '../../../../theme-contract/literal/contract.css'
+import { disabled, pager } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
 	pageItemActive,
@@ -225,6 +225,30 @@ globalStyle(`${lumenScope}${pagination} > :where(${lumenScope}${elLi}) > ${lumen
 	borderBottomWidth: '2px',
 })
 
+globalStyle(`${lumenScope}${pagination} > ${lumenScope}${disabled} > ${lumenScope}${link}:hover`, {
+	top: '0',
+	borderStyle: 'solid',
+	borderWidth: '0 1px 4px 1px',
+})
+
+globalStyle(`${lumenScope}${pagination} > ${lumenScope}${disabled} > ${lumenScope}${elSpan}:hover`, {
+	top: '0',
+	borderStyle: 'solid',
+	borderWidth: '0 1px 4px 1px',
+})
+
+globalStyle(`${lumenScope}${pagination} > ${lumenScope}${disabled} > ${lumenScope}${link}:active`, {
+	top: '0',
+	borderStyle: 'solid',
+	borderWidth: '0 1px 4px 1px',
+})
+
+globalStyle(`${lumenScope}${pagination} > ${lumenScope}${disabled} > ${lumenScope}${elSpan}:active`, {
+	top: '0',
+	borderStyle: 'solid',
+	borderWidth: '0 1px 4px 1px',
+})
+
 globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${link}`, {
 	borderRightWidth: '2px',
 	borderLeftWidth: '2px',
@@ -251,6 +275,36 @@ globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${elSpa
 })
 
 globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${elSpan}:active`, {
+	borderRightWidth: '2px',
+	borderLeftWidth: '2px',
+})
+
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${link}`, {
+	borderRightWidth: '2px',
+	borderLeftWidth: '2px',
+})
+
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${link}:hover`, {
+	borderRightWidth: '2px',
+	borderLeftWidth: '2px',
+})
+
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${link}:active`, {
+	borderRightWidth: '2px',
+	borderLeftWidth: '2px',
+})
+
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${elSpan}`, {
+	borderRightWidth: '2px',
+	borderLeftWidth: '2px',
+})
+
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${elSpan}:hover`, {
+	borderRightWidth: '2px',
+	borderLeftWidth: '2px',
+})
+
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${elSpan}:active`, {
 	borderRightWidth: '2px',
 	borderLeftWidth: '2px',
 })

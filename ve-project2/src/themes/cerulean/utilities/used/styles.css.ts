@@ -19,31 +19,6 @@ import {
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
-import { varBsBtnCloseDisabledOpacity } from '../../../../theme-contract/ui/alerts/_vars.css'
-import { varBsBreadcrumbItemActiveColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import { varBsDropdownLinkActiveBg, varBsDropdownLinkActiveColor, varBsDropdownLinkDisabledColor } from '../../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBorderWidth,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
@@ -58,7 +33,6 @@ import {
 import { rounded } from '../../../../theme-contract/contents/images/contract.css'
 import {
 	accordionFlush,
-	active,
 	alignItemsStretch,
 	alignTop,
 	bgDanger,
@@ -71,8 +45,12 @@ import {
 	border,
 	borderBottom,
 	borderDark,
-	btnClose,
-	btnGroupVertical,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
 	collapsed,
 	dBlock,
 	dInlineBlock,
@@ -80,7 +58,6 @@ import {
 	dLgNone,
 	dMdBlock,
 	dNone,
-	disabled,
 	end0,
 	flexColumn,
 	flexRow,
@@ -88,12 +65,6 @@ import {
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentStart,
-	listGroupHorizontal,
-	listGroupHorizontalLg,
-	listGroupHorizontalMd,
-	listGroupHorizontalSm,
-	listGroupHorizontalXl,
-	listGroupHorizontalXxl,
 	mb0,
 	mb4,
 	mb5,
@@ -125,15 +96,8 @@ import {
 } from '../../../../theme-contract/literal/contract.css'
 import { accordionButton, accordionHeader, accordionItem } from '../../../../theme-contract/ui/accordion/contract.css'
 import { badge } from '../../../../theme-contract/ui/badge/contract.css'
-import { breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
-import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
-import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
-import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -296,206 +260,8 @@ globalStyle(`${ceruleanScope}${colMd8}`, {
 	},
 })
 
-globalStyle(`${ceruleanScope}${btn}${active}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${ceruleanScope}${btn}${active}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${ceruleanScope}${btn}${disabled}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsBtnDisabledBg,
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-globalStyle(`${ceruleanScope}${dropdownItem}${active}`, {
-	color: varBsDropdownLinkActiveColor,
-	textDecoration: 'none',
-	backgroundColor: varBsDropdownLinkActiveBg,
-})
-
-globalStyle(`${ceruleanScope}${dropdownItem}${disabled}`, {
-	color: varBsDropdownLinkDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: 'transparent',
-})
-
-globalStyle(`${ceruleanScope}${btnGroup} > ${ceruleanScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${ceruleanScope}${btnGroupVertical} > ${ceruleanScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${ceruleanScope}${tabContent} > ${ceruleanScope}${active}`, {
-	display: 'block',
-})
-
 globalStyle(`${ceruleanScope}${accordionFlush} > ${ceruleanScope}${accordionItem} > ${ceruleanScope}${accordionHeader} ${ceruleanScope}${accordionButton}${collapsed}`, {
 	borderRadius: '0',
-})
-
-globalStyle(`${ceruleanScope}${breadcrumbItem}${active}`, {
-	color: varBsBreadcrumbItemActiveColor,
-})
-
-globalStyle(`${ceruleanScope}${listGroupItem}${disabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-globalStyle(`${ceruleanScope}${listGroupItem}${active}`, {
-	zIndex: '2',
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-
-globalStyle(`${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${ceruleanScope}${listGroupItemAction}:not(${active}):hover`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${ceruleanScope}${listGroupItemAction}:not(${active}):focus`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${ceruleanScope}${listGroupItemAction}:not(${active}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem}${active}`, {
-	marginTop: '0',
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontal} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalSm} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalMd} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalLg} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalXl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${listGroupHorizontalXxl} > ${ceruleanScope}${listGroupItem} + ${ceruleanScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${btnClose}${disabled}`, {
-	pointerEvents: 'none',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-	opacity: varBsBtnCloseDisabledOpacity,
-})
-
-globalStyle(`${ceruleanScope}${carouselItem}${active}`, {
-	display: 'block',
-})
-
-globalStyle(`${ceruleanScope}${carouselFade} ${ceruleanScope}${carouselItem}${active}`, {
-	zIndex: '1',
-	opacity: '1',
-})
-
-globalStyle(`${ceruleanScope}${carouselIndicators} ${ceruleanScope}${active}`, {
-	opacity: '1',
 })
 
 globalStyle(`${ceruleanScope}${stickyXlTop}`, {
@@ -989,7 +755,15 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -997,7 +771,15 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -1005,7 +787,15 @@ globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgPrimary} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
@@ -1013,7 +803,15 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -1021,7 +819,15 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -1029,7 +835,15 @@ globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgSuccess} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
@@ -1037,7 +851,15 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -1045,7 +867,15 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -1053,7 +883,15 @@ globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgInfo} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
@@ -1061,7 +899,15 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -1069,7 +915,15 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -1077,7 +931,15 @@ globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgWarning} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
@@ -1085,7 +947,15 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -1093,7 +963,15 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -1101,7 +979,15 @@ globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgDanger} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 
@@ -1109,7 +995,15 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h1}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH1}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH2}`, {
 	color: '#fff',
 })
 
@@ -1117,7 +1011,15 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h3}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH3}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH4}`, {
 	color: '#fff',
 })
 
@@ -1125,7 +1027,15 @@ globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h5}`, {
 	color: '#fff',
 })
 
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH5}`, {
+	color: '#fff',
+})
+
 globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${ceruleanScope}${bgDark} ${ceruleanScope}${clsH6}`, {
 	color: '#fff',
 })
 

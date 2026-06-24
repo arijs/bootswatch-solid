@@ -56,11 +56,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -90,6 +92,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -224,6 +232,12 @@ globalStyle(`${solarScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${solarScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${solarScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -242,6 +256,10 @@ globalStyle(`${solarScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${solarScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${solarScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -251,6 +269,14 @@ globalStyle(`${solarScope}${btnCheck}:checked:focus-visible + ${solarScope}${btn
 })
 
 globalStyle(`${solarScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${solarScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -662,6 +688,10 @@ globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btnCheck}:checked + ${solarScope}${btn}`, {
 	zIndex: '1',
 })
@@ -682,8 +712,17 @@ globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${solarScope}${btnGroup} > ${solarScope}:not(${btnCheck}:first-child) + ${solarScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btnGroup}:not(:last-child) > ${solarScope}${btn}`, {
@@ -704,6 +743,47 @@ globalStyle(`${solarScope}${btnGroup} > ${solarScope}:not(${btnCheck}) + ${solar
 globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btnGroup}:not(:first-child) > ${solarScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${solarScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${solarScope}${dropup} ${solarScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${solarScope}${btnSm} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${solarScope}${btnGroupSm} > ${solarScope}${btn} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${solarScope}${btnLg} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${solarScope}${btnGroupLg} > ${solarScope}${btn} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}`, {
@@ -777,6 +857,14 @@ globalStyle(`${solarScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${solarScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${solarScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',

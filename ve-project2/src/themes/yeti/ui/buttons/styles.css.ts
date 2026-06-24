@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -223,6 +231,12 @@ globalStyle(`${yetiScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${yetiScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${yetiScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -241,6 +255,10 @@ globalStyle(`${yetiScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${yetiScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${yetiScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -250,6 +268,14 @@ globalStyle(`${yetiScope}${btnCheck}:checked:focus-visible + ${yetiScope}${btn}`
 })
 
 globalStyle(`${yetiScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${yetiScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -661,6 +687,10 @@ globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btnCheck}:checked + ${yetiScope}${btn}`, {
 	zIndex: '1',
 })
@@ -681,8 +711,17 @@ globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}:not(${btnCheck}:first-child) + ${yetiScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btnGroup}:not(:last-child) > ${yetiScope}${btn}`, {
@@ -703,6 +742,47 @@ globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}:not(${btnCheck}) + ${yetiSco
 globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btnGroup}:not(:first-child) > ${yetiScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${yetiScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${yetiScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${dropup} ${yetiScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${dropend} ${yetiScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${dropstart} ${yetiScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${yetiScope}${btnSm} + ${yetiScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${yetiScope}${btnGroupSm} > ${yetiScope}${btn} + ${yetiScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${yetiScope}${btnLg} + ${yetiScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${yetiScope}${btnGroupLg} > ${yetiScope}${btn} + ${yetiScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}`, {
@@ -776,6 +856,14 @@ globalStyle(`${yetiScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${yetiScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${yetiScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',

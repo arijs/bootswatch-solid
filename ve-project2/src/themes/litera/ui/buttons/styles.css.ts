@@ -54,11 +54,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -88,6 +90,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -230,6 +238,12 @@ globalStyle(`${literaScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${literaScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${literaScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -248,6 +262,10 @@ globalStyle(`${literaScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${literaScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${literaScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -257,6 +275,14 @@ globalStyle(`${literaScope}${btnCheck}:checked:focus-visible + ${literaScope}${b
 })
 
 globalStyle(`${literaScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${literaScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -688,6 +714,10 @@ globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnCheck}:checked + ${literaScope}${btn}`, {
 	zIndex: '1',
 })
@@ -708,8 +738,17 @@ globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}:not(${btnCheck}:first-child) + ${literaScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:last-child) > ${literaScope}${btn}`, {
@@ -730,6 +769,47 @@ globalStyle(`${literaScope}${btnGroup} > ${literaScope}:not(${btnCheck}) + ${lit
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btnGroup}:not(:first-child) > ${literaScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.825rem',
+	paddingLeft: '0.825rem',
+})
+
+globalStyle(`${literaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${literaScope}${dropup} ${literaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${literaScope}${dropend} ${literaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${literaScope}${dropstart} ${literaScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${literaScope}${btnSm} + ${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${literaScope}${btnGroupSm} > ${literaScope}${btn} + ${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${literaScope}${btnLg} + ${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${literaScope}${btnGroupLg} > ${literaScope}${btn} + ${literaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}`, {
@@ -803,6 +883,14 @@ globalStyle(`${literaScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${literaScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${literaScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',

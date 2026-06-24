@@ -7,7 +7,7 @@ import {
 	varBsLinkHoverColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -33,6 +33,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -251,6 +252,10 @@ globalStyle(`${quartzScope}${tabContent} > ${quartzScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${quartzScope}${tabContent} > ${quartzScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -307,6 +312,13 @@ globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarNav} ${quart
 globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${quartzScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${quartzScope}${cardHeaderTabs} ${quartzScope}${navLink}${navLinkActive}`, {

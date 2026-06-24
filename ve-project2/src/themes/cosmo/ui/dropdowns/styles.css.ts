@@ -49,8 +49,8 @@ import { varBsNavTabsBorderWidth } from '../../../../theme-contract/ui/navs/_var
 import { varBsPosition } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -67,7 +67,7 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -82,7 +82,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -524,10 +523,22 @@ globalStyle(`${cosmoScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${cosmoScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${cosmoScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${cosmoScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${cosmoScope}${dropdownItem}:disabled`, {
@@ -570,47 +581,6 @@ globalStyle(`${cosmoScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
-})
-
-globalStyle(`${cosmoScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-})
-
-globalStyle(`${cosmoScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cosmoScope}${dropup} ${cosmoScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cosmoScope}${dropend} ${cosmoScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cosmoScope}${dropstart} ${cosmoScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${cosmoScope}${btnSm} + ${cosmoScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${cosmoScope}${btnGroupSm} > ${cosmoScope}${btn} + ${cosmoScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${cosmoScope}${btnLg} + ${cosmoScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${cosmoScope}${btnGroupLg} > ${cosmoScope}${btn} + ${cosmoScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${cosmoScope}${navTabs} ${cosmoScope}${dropdownMenu}`, {

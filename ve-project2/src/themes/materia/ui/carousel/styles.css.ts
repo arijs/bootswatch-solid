@@ -12,7 +12,15 @@ import {
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 
-import { active } from '../../../../theme-contract/literal/contract.css'
+import {
+	active,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
 import {
 	carousel,
 	carouselCaption,
@@ -66,6 +74,10 @@ globalStyle(`${materiaScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${materiaScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${materiaScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -94,6 +106,11 @@ globalStyle(`${materiaScope}${carouselFade} ${materiaScope}${carouselItem}`, {
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${materiaScope}${carouselFade} ${materiaScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${materiaScope}${carouselFade} ${materiaScope}${carouselItemNext}${carouselItemStart}`, {
@@ -293,6 +310,10 @@ globalStyle(`${materiaScope}${carouselIndicators} ${materiaScope}[data-bs-target
 	},
 })
 
+globalStyle(`${materiaScope}${carouselIndicators} ${materiaScope}${active}`, {
+	opacity: '1',
+})
+
 globalStyle(`${materiaScope}${carouselCaption}`, {
 	position: 'absolute',
 	right: '15%',
@@ -316,7 +337,15 @@ globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${h1}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH1}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${h2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH2}`, {
 	color: 'inherit',
 })
 
@@ -324,7 +353,15 @@ globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${h3}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH3}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${h4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH4}`, {
 	color: 'inherit',
 })
 
@@ -332,6 +369,14 @@ globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${h5}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH5}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${h6}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${materiaScope}${carouselCaption} ${materiaScope}${clsH6}`, {
 	color: 'inherit',
 })

@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,7 +91,13 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { dropdownToggle } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import {
+	dropdownToggle,
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -228,6 +236,13 @@ globalStyle(`${zephyrScope}${btn}:first-child:active`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
+globalStyle(`${zephyrScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+	boxShadow: varBsBtnActiveBoxShadow,
+})
+
 globalStyle(`${zephyrScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -247,6 +262,10 @@ globalStyle(`${zephyrScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
+globalStyle(`${zephyrScope}${btn}${active}:focus-visible`, {
+	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
+})
+
 globalStyle(`${zephyrScope}${btn}${show}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -256,6 +275,15 @@ globalStyle(`${zephyrScope}${btnCheck}:checked:focus-visible + ${zephyrScope}${b
 })
 
 globalStyle(`${zephyrScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+	boxShadow: 'none',
+})
+
+globalStyle(`${zephyrScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -669,6 +697,10 @@ globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnCheck}:checked + ${zephyrScope}${btn}`, {
 	zIndex: '1',
 })
@@ -689,8 +721,17 @@ globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}:not(${btnCheck}:first-child) + ${zephyrScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:last-child) > ${zephyrScope}${btn}`, {
@@ -711,6 +752,47 @@ globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}:not(${btnCheck}) + ${zep
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:first-child) > ${zephyrScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${zephyrScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${zephyrScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${zephyrScope}${dropup} ${zephyrScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${zephyrScope}${dropend} ${zephyrScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${zephyrScope}${dropstart} ${zephyrScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${zephyrScope}${btnSm} + ${zephyrScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${zephyrScope}${btnGroupSm} > ${zephyrScope}${btn} + ${zephyrScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${zephyrScope}${btnLg} + ${zephyrScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${zephyrScope}${btnGroupLg} > ${zephyrScope}${btn} + ${zephyrScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${zephyrScope}${btnGroup}${show} ${zephyrScope}${dropdownToggle}${btnLink}`, {
@@ -795,6 +877,14 @@ globalStyle(`${zephyrScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${zephyrScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${zephyrScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -847,7 +937,15 @@ globalStyle(`${zephyrScope}${btnSecondary}:disabled`, {
 	border: '1px solid #e6e6e6',
 })
 
+globalStyle(`${zephyrScope}${btnSecondary}${disabled}`, {
+	border: '1px solid #e6e6e6',
+})
+
 globalStyle(`${zephyrScope}${btnLight}:disabled`, {
+	border: '1px solid #e6e6e6',
+})
+
+globalStyle(`${zephyrScope}${btnLight}${disabled}`, {
 	border: '1px solid #e6e6e6',
 })
 
@@ -855,7 +953,15 @@ globalStyle(`${zephyrScope}${btnOutlineSecondary}:disabled`, {
 	border: '1px solid #e6e6e6',
 })
 
+globalStyle(`${zephyrScope}${btnOutlineSecondary}${disabled}`, {
+	border: '1px solid #e6e6e6',
+})
+
 globalStyle(`${zephyrScope}${btnOutlineLight}:disabled`, {
+	border: '1px solid #e6e6e6',
+})
+
+globalStyle(`${zephyrScope}${btnOutlineLight}${disabled}`, {
 	border: '1px solid #e6e6e6',
 })
 

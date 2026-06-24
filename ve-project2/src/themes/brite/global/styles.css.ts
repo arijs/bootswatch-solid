@@ -173,7 +173,15 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapsing } from '../../../theme-contract/literal/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	collapsing,
+} from '../../../theme-contract/literal/contract.css'
 import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
 import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
@@ -393,7 +401,23 @@ globalStyle(`:where(${briteScope}${h6})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${briteScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${briteScope}${h5})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${briteScope}${clsH5}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -409,7 +433,23 @@ globalStyle(`:where(${briteScope}${h4})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${briteScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${briteScope}${h3})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${briteScope}${clsH3}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -425,7 +465,23 @@ globalStyle(`:where(${briteScope}${h2})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${briteScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${briteScope}${h1})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '500',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${briteScope}${clsH1}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '500',
@@ -437,7 +493,19 @@ globalStyle(`:where(${briteScope}${h1})`, {
 	fontSize: 'calc(1.34375rem + 1.125vw)',
 })
 
+globalStyle(`${briteScope}${clsH1}`, {
+	fontSize: 'calc(1.34375rem + 1.125vw)',
+})
+
 globalStyle(`:where(${briteScope}${h1})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.1875rem',
+		},
+	},
+})
+
+globalStyle(`${briteScope}${clsH1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2.1875rem',
@@ -449,7 +517,19 @@ globalStyle(`:where(${briteScope}${h2})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
+globalStyle(`${briteScope}${clsH2}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
+})
+
 globalStyle(`:where(${briteScope}${h2})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
+})
+
+globalStyle(`${briteScope}${clsH2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -461,7 +541,19 @@ globalStyle(`:where(${briteScope}${h3})`, {
 	fontSize: 'calc(1.278125rem + 0.3375vw)',
 })
 
+globalStyle(`${briteScope}${clsH3}`, {
+	fontSize: 'calc(1.278125rem + 0.3375vw)',
+})
+
 globalStyle(`:where(${briteScope}${h3})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.53125rem',
+		},
+	},
+})
+
+globalStyle(`${briteScope}${clsH3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.53125rem',
@@ -473,7 +565,19 @@ globalStyle(`:where(${briteScope}${h4})`, {
 	fontSize: 'calc(1.25625rem + 0.075vw)',
 })
 
+globalStyle(`${briteScope}${clsH4}`, {
+	fontSize: 'calc(1.25625rem + 0.075vw)',
+})
+
 globalStyle(`:where(${briteScope}${h4})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.3125rem',
+		},
+	},
+})
+
+globalStyle(`${briteScope}${clsH4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.3125rem',
@@ -485,7 +589,15 @@ globalStyle(`:where(${briteScope}${h5})`, {
 	fontSize: '1.09375rem',
 })
 
+globalStyle(`${briteScope}${clsH5}`, {
+	fontSize: '1.09375rem',
+})
+
 globalStyle(`:where(${briteScope}${h6})`, {
+	fontSize: '0.875rem',
+})
+
+globalStyle(`${briteScope}${clsH6}`, {
 	fontSize: '0.875rem',
 })
 

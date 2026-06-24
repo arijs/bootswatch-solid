@@ -57,6 +57,10 @@ globalStyle(`${solarScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${solarScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${solarScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -85,6 +89,11 @@ globalStyle(`${solarScope}${carouselFade} ${solarScope}${carouselItem}`, {
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${solarScope}${carouselFade} ${solarScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${solarScope}${carouselFade} ${solarScope}${carouselItemNext}${carouselItemStart}`, {
@@ -280,6 +289,10 @@ globalStyle(`${solarScope}${carouselIndicators} ${solarScope}[data-bs-target]`, 
 			transition: 'none',
 		},
 	},
+})
+
+globalStyle(`${solarScope}${carouselIndicators} ${solarScope}${active}`, {
+	opacity: '1',
 })
 
 globalStyle(`${solarScope}${carouselCaption}`, {

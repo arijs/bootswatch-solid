@@ -49,8 +49,8 @@ import { varBsNavTabsBorderWidth } from '../../../../theme-contract/ui/navs/_var
 import { varBsPosition } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -67,7 +67,7 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -82,7 +82,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -524,10 +523,22 @@ globalStyle(`${luxScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${luxScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${luxScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${luxScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${luxScope}${dropdownItem}:disabled`, {
@@ -570,47 +581,6 @@ globalStyle(`${luxScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
-})
-
-globalStyle(`${luxScope}${dropdownToggleSplit}`, {
-	paddingRight: '1.125rem',
-	paddingLeft: '1.125rem',
-})
-
-globalStyle(`${luxScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${luxScope}${dropup} ${luxScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${luxScope}${dropend} ${luxScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${luxScope}${dropstart} ${luxScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${luxScope}${btnSm} + ${luxScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${luxScope}${btnGroupSm} > ${luxScope}${btn} + ${luxScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${luxScope}${btnLg} + ${luxScope}${dropdownToggleSplit}`, {
-	paddingRight: '1.5rem',
-	paddingLeft: '1.5rem',
-})
-
-globalStyle(`${luxScope}${btnGroupLg} > ${luxScope}${btn} + ${luxScope}${dropdownToggleSplit}`, {
-	paddingRight: '1.5rem',
-	paddingLeft: '1.5rem',
 })
 
 globalStyle(`${luxScope}${navTabs} ${luxScope}${dropdownMenu}`, {

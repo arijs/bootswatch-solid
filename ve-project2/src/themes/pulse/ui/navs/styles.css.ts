@@ -11,7 +11,7 @@ import {
 	varBsLinkHoverColor,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -35,6 +35,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -247,6 +248,10 @@ globalStyle(`${pulseScope}${tabContent} > ${pulseScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${pulseScope}${tabContent} > ${pulseScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${pulseScope}${navbarNav} ${pulseScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -303,6 +308,13 @@ globalStyle(`${pulseScope}${navbarExpandXxl} ${pulseScope}${navbarNav} ${pulseSc
 globalStyle(`${pulseScope}${navbarExpand} ${pulseScope}${navbarNav} ${pulseScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${pulseScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${pulseScope}${cardHeaderTabs} ${pulseScope}${navLink}${navLinkActive}`, {

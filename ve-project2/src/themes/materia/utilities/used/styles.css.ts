@@ -9,7 +9,6 @@ import {
 	varBsBorderWidth,
 	varBsDangerRgb,
 	varBsDarkRgb,
-	varBsGradient,
 	varBsInfoRgb,
 	varBsLightRgb,
 	varBsPrimaryRgb,
@@ -20,48 +19,13 @@ import {
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
 import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
-import { varBsBtnCloseDisabledOpacity } from '../../../../theme-contract/ui/alerts/_vars.css'
-import { varBsBreadcrumbItemActiveColor } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnDisabledBg,
-	varBsBtnDisabledBorderColor,
-	varBsBtnDisabledColor,
-	varBsBtnDisabledOpacity,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import { varBsDropdownLinkActiveBg, varBsDropdownLinkActiveColor, varBsDropdownLinkDisabledColor } from '../../../../theme-contract/ui/dropdowns/_vars.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBorderWidth,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-} from '../../../../theme-contract/contents/heading/contract.css'
 import { elInput } from '../../../../theme-contract/global-elements/contract.css'
 
 import { rounded } from '../../../../theme-contract/contents/images/contract.css'
-import { formCheckInput, formSwitch } from '../../../../theme-contract/forms/contract.css'
 import {
 	accordionFlush,
-	active,
 	alignItemsStretch,
 	alignTop,
 	bgDanger,
@@ -74,8 +38,6 @@ import {
 	border,
 	borderBottom,
 	borderDark,
-	btnClose,
-	btnGroupVertical,
 	collapsed,
 	dBlock,
 	dInlineBlock,
@@ -83,7 +45,6 @@ import {
 	dLgNone,
 	dMdBlock,
 	dNone,
-	disabled,
 	end0,
 	flexColumn,
 	flexRow,
@@ -91,12 +52,6 @@ import {
 	justifyContentCenter,
 	justifyContentEnd,
 	justifyContentStart,
-	listGroupHorizontal,
-	listGroupHorizontalLg,
-	listGroupHorizontalMd,
-	listGroupHorizontalSm,
-	listGroupHorizontalXl,
-	listGroupHorizontalXxl,
 	mb0,
 	mb4,
 	mb5,
@@ -128,35 +83,9 @@ import {
 } from '../../../../theme-contract/literal/contract.css'
 import { accordionButton, accordionHeader, accordionItem } from '../../../../theme-contract/ui/accordion/contract.css'
 import { badge } from '../../../../theme-contract/ui/badge/contract.css'
-import { breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import {
-	btn,
-	btnDanger,
-	btnDark,
-	btnInfo,
-	btnLight,
-	btnLink,
-	btnOutlineDanger,
-	btnOutlineDark,
-	btnOutlineInfo,
-	btnOutlineLight,
-	btnOutlinePrimary,
-	btnOutlineSecondary,
-	btnOutlineSuccess,
-	btnOutlineWarning,
-	btnPrimary,
-	btnSecondary,
-	btnSuccess,
-	btnWarning,
-} from '../../../../theme-contract/ui/buttons/contract.css'
 import { card } from '../../../../theme-contract/ui/card/contract.css'
-import { carouselFade, carouselIndicators, carouselItem } from '../../../../theme-contract/ui/carousel/contract.css'
-import { dropdownItem } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { listGroupItem, listGroupItemAction } from '../../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap } from '../../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../../theme-contract/ui/navbar/contract.css'
-import { tabContent } from '../../../../theme-contract/ui/navs/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -319,210 +248,8 @@ globalStyle(`${materiaScope}${colMd8}`, {
 	},
 })
 
-globalStyle(`${materiaScope}${btn}${active}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	backgroundImage: 'none',
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${materiaScope}${btn}${active}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${materiaScope}${btn}${disabled}`, {
-	color: varBsBtnDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsBtnDisabledBg,
-	backgroundImage: 'none',
-	borderColor: varBsBtnDisabledBorderColor,
-	opacity: varBsBtnDisabledOpacity,
-})
-
-globalStyle(`${materiaScope}${dropdownItem}${active}`, {
-	color: varBsDropdownLinkActiveColor,
-	textDecoration: 'none',
-	backgroundColor: varBsDropdownLinkActiveBg,
-	backgroundImage: varBsGradient,
-})
-
-globalStyle(`${materiaScope}${dropdownItem}${disabled}`, {
-	color: varBsDropdownLinkDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: 'transparent',
-	backgroundImage: 'none',
-})
-
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}${active}`, {
-	zIndex: '1',
-})
-
-globalStyle(`${materiaScope}${tabContent} > ${materiaScope}${active}`, {
-	display: 'block',
-})
-
 globalStyle(`${materiaScope}${accordionFlush} > ${materiaScope}${accordionItem} > ${materiaScope}${accordionHeader} ${materiaScope}${accordionButton}${collapsed}`, {
 	borderRadius: '0',
-})
-
-globalStyle(`${materiaScope}${breadcrumbItem}${active}`, {
-	color: varBsBreadcrumbItemActiveColor,
-})
-
-globalStyle(`${materiaScope}${listGroupItem}${disabled}`, {
-	color: varBsListGroupDisabledColor,
-	pointerEvents: 'none',
-	backgroundColor: varBsListGroupDisabledBg,
-})
-
-globalStyle(`${materiaScope}${listGroupItem}${active}`, {
-	zIndex: '2',
-	color: varBsListGroupActiveColor,
-	backgroundColor: varBsListGroupActiveBg,
-	borderColor: varBsListGroupActiveBorderColor,
-})
-
-globalStyle(`${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderTopWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}:not(${active}):hover`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}:not(${active}):focus`, {
-	zIndex: '1',
-	color: varBsListGroupActionHoverColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupActionHoverBg,
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}:not(${active}):active`, {
-	color: varBsListGroupActionActiveColor,
-	backgroundColor: varBsListGroupActionActiveBg,
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem}${active}`, {
-	marginTop: '0',
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-	borderLeftWidth: varBsListGroupBorderWidth,
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 576px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 768px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 992px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1200px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginTop: '0',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
-	'@media': {
-		'(min-width: 1400px)': {
-			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
-			borderLeftWidth: varBsListGroupBorderWidth,
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${btnClose}${disabled}`, {
-	pointerEvents: 'none',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-	opacity: varBsBtnCloseDisabledOpacity,
-})
-
-globalStyle(`${materiaScope}${carouselItem}${active}`, {
-	display: 'block',
-})
-
-globalStyle(`${materiaScope}${carouselFade} ${materiaScope}${carouselItem}${active}`, {
-	zIndex: '1',
-	opacity: '1',
-})
-
-globalStyle(`${materiaScope}${carouselIndicators} ${materiaScope}${active}`, {
-	opacity: '1',
 })
 
 globalStyle(`${materiaScope}${stickyXlTop}`, {
@@ -1180,120 +907,8 @@ globalStyle(`${materiaScope}${navbar}${bgPrimary} ${materiaScope}${elInput}[type
 	color: 'rgba(255, 255, 255, 0.5)',
 })
 
-globalStyle(`${materiaScope}${btnPrimary}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlinePrimary}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnSecondary}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineSecondary}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnSuccess}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineSuccess}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnInfo}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineInfo}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnWarning}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineWarning}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnDanger}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineDanger}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnDark}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineDark}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnLight}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnOutlineLight}${disabled}::before`, {
-	display: 'none',
-})
-
-globalStyle(`${materiaScope}${btnLink}${disabled}:hover`, {
-	color: '#666',
-	textDecoration: 'none',
-})
-
-globalStyle(`${materiaScope}${btnLink}${disabled}:active:hover`, {
-	color: '#666',
-	textDecoration: 'none',
-})
-
-globalStyle(`${materiaScope}${btnSecondary}${disabled}`, {
-	color: 'rgba(0, 0, 0, 0.4)',
-	backgroundColor: 'rgba(0, 0, 0, 0.1)',
-	opacity: '1',
-})
-
-globalStyle(`${materiaScope}${btnSecondary}${disabled}:hover`, {
-	backgroundColor: 'rgba(0, 0, 0, 0.1)',
-})
-
-globalStyle(`${materiaScope}${btnSecondary}${disabled}:focus`, {
-	backgroundColor: 'rgba(0, 0, 0, 0.1)',
-})
-
 globalStyle(`${materiaScope}${textSecondary}`, {
 	color: '#bbb !important',
-})
-
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:hover:not(${disabled})::after`, {
-	transform: 'scale(0.9)',
-})
-
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus:not(${disabled})::after`, {
-	transform: 'scale(0.9)',
-})
-
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus:not(${disabled})::after`, {
-	boxShadow: '0 0 0 9px rgba(0, 0, 0, 0.1)',
-})
-
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked:hover:not(${disabled})::after`, {
-	transform: 'scale(0.9)',
-})
-
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked:focus:not(${disabled})::after`, {
-	transform: 'scale(0.9)',
-})
-
-globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked:focus:not(${disabled})::after`, {
-	boxShadow: '0 0 0 9px rgba(33, 150, 243, 0.2)',
 })
 
 globalStyle(`${materiaScope}${badge}${bgSecondary}`, {
@@ -1306,28 +921,4 @@ globalStyle(`${materiaScope}${badge}${bgLight}`, {
 
 globalStyle(`${materiaScope}${card}${borderDark}`, {
 	borderWidth: '1px',
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h1}`, {
-	color: '#fff',
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h2}`, {
-	color: '#fff',
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h3}`, {
-	color: '#fff',
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h4}`, {
-	color: '#fff',
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h5}`, {
-	color: '#fff',
-})
-
-globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h6}`, {
-	color: '#fff',
 })

@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -223,6 +231,12 @@ globalStyle(`${spacelabScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${spacelabScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${spacelabScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -241,6 +255,10 @@ globalStyle(`${spacelabScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${spacelabScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${spacelabScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -250,6 +268,14 @@ globalStyle(`${spacelabScope}${btnCheck}:checked:focus-visible + ${spacelabScope
 })
 
 globalStyle(`${spacelabScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${spacelabScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -661,6 +687,10 @@ globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btnCheck}:checked + ${spacelabScope}${btn}`, {
 	zIndex: '1',
 })
@@ -681,8 +711,17 @@ globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}:active
 	zIndex: '1',
 })
 
+globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}:not(${btnCheck}:first-child) + ${spacelabScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
 })
 
 globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btnGroup}:not(:last-child) > ${spacelabScope}${btn}`, {
@@ -703,6 +742,47 @@ globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}:not(${btnCheck}) + $
 globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btnGroup}:not(:first-child) > ${spacelabScope}${btn}`, {
 	borderTopLeftRadius: '0',
 	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${spacelabScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${spacelabScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${spacelabScope}${dropup} ${spacelabScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${spacelabScope}${dropend} ${spacelabScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${spacelabScope}${dropstart} ${spacelabScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${spacelabScope}${btnSm} + ${spacelabScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${spacelabScope}${btnGroupSm} > ${spacelabScope}${btn} + ${spacelabScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${spacelabScope}${btnLg} + ${spacelabScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${spacelabScope}${btnGroupLg} > ${spacelabScope}${btn} + ${spacelabScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
 })
 
 globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}`, {
@@ -783,6 +863,14 @@ globalStyle(`${spacelabScope}${btnClose}:disabled`, {
 	opacity: varBsBtnCloseDisabledOpacity,
 })
 
+globalStyle(`${spacelabScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
 globalStyle(`${spacelabScope}${btnCloseWhite}`, {
 	vars: {
 		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
@@ -829,10 +917,22 @@ globalStyle(`${spacelabScope}${btnPrimary}`, {
 	border: '1px solid #36587c',
 })
 
+globalStyle(`${spacelabScope}${btnPrimary}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#6d8aaa, #3f658f 50%, #3a5d84)',
+	filter: 'none',
+	border: '1px solid #325172',
+})
+
 globalStyle(`${spacelabScope}${btnSecondary}`, {
 	backgroundImage: 'linear-gradient(#b1b1b1, #999 50%, #8d8d8d)',
 	filter: 'none',
 	border: '1px solid #7a7a7a',
+})
+
+globalStyle(`${spacelabScope}${btnSecondary}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#a8a8a8, #8d8d8d 50%, #828282)',
+	filter: 'none',
+	border: '1px solid #717171',
 })
 
 globalStyle(`${spacelabScope}${btnSuccess}`, {
@@ -841,10 +941,22 @@ globalStyle(`${spacelabScope}${btnSuccess}`, {
 	border: '1px solid #30911a',
 })
 
+globalStyle(`${spacelabScope}${btnSuccess}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#67bc54, #37a71e 50%, #339a1c)',
+	filter: 'none',
+	border: '1px solid #2c8618',
+})
+
 globalStyle(`${spacelabScope}${btnInfo}`, {
 	backgroundImage: 'linear-gradient(#64b1f6, #3399f3 50%, #2f8de0)',
 	filter: 'none',
 	border: '1px solid #297ac2',
+})
+
+globalStyle(`${spacelabScope}${btnInfo}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#61a8e7, #2f8de0 50%, #2b82ce)',
+	filter: 'none',
+	border: '1px solid #2671b3',
 })
 
 globalStyle(`${spacelabScope}${btnWarning}`, {
@@ -853,10 +965,22 @@ globalStyle(`${spacelabScope}${btnWarning}`, {
 	border: '1px solid #aa5e00',
 })
 
+globalStyle(`${spacelabScope}${btnWarning}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#d18f3d, #c36c00 50%, #b36300)',
+	filter: 'none',
+	border: '1px solid #9c5600',
+})
+
 globalStyle(`${spacelabScope}${btnDanger}`, {
 	backgroundImage: 'linear-gradient(#d93f3d, #cd0200 50%, #bd0200)',
 	filter: 'none',
 	border: '1px solid #a40200',
+})
+
+globalStyle(`${spacelabScope}${btnDanger}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#cd3f3d, #bd0200 50%, #ae0200)',
+	filter: 'none',
+	border: '1px solid #970200',
 })
 
 globalStyle(`${spacelabScope}${btnLight}`, {
@@ -865,10 +989,22 @@ globalStyle(`${spacelabScope}${btnLight}`, {
 	border: '1px solid #bebebe',
 })
 
+globalStyle(`${spacelabScope}${btnLight}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#e4e4e4, #dbdbdb 50%, #c9c9c9)',
+	filter: 'none',
+	border: '1px solid #afafaf',
+})
+
 globalStyle(`${spacelabScope}${btnDark}`, {
 	backgroundImage: 'linear-gradient(#646464, #333 50%, #2f2f2f)',
 	filter: 'none',
 	border: '1px solid #292929',
+})
+
+globalStyle(`${spacelabScope}${btnDark}:not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#616161, #2f2f2f 50%, #2b2b2b)',
+	filter: 'none',
+	border: '1px solid #262626',
 })
 
 globalStyle(`${spacelabScope}${btnOutlineDanger}, ${spacelabScope}${btnOutlineDark}, ${spacelabScope}${btnOutlineInfo}, ${spacelabScope}${btnOutlineLight}, ${spacelabScope}${btnOutlinePrimary}, ${spacelabScope}${btnOutlineSecondary}, ${spacelabScope}${btnOutlineSuccess}, ${spacelabScope}${btnOutlineWarning}`, {

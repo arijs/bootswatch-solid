@@ -57,6 +57,8 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 
 import {
+	active,
+	disabled,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
@@ -144,14 +146,32 @@ globalStyle(`${cosmoScope}${listGroupItem}`, {
 	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
 })
 
+globalStyle(`${cosmoScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
 globalStyle(`${cosmoScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
+globalStyle(`${cosmoScope}${listGroupItem}${active}`, {
+	zIndex: '2',
+	color: varBsListGroupActiveColor,
+	backgroundColor: varBsListGroupActiveBg,
+	borderColor: varBsListGroupActiveBorderColor,
+})
+
 globalStyle(`${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}`, {
 	borderTopWidth: '0',
+})
+
+globalStyle(`${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderTopWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${cosmoScope}${listGroupItemAction}`, {
@@ -160,8 +180,31 @@ globalStyle(`${cosmoScope}${listGroupItemAction}`, {
 	textAlign: 'inherit',
 })
 
+globalStyle(`${cosmoScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${cosmoScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${cosmoScope}${listGroupItemAction}:not(${active}):active`, {
+	color: varBsListGroupActionActiveColor,
+	backgroundColor: varBsListGroupActionActiveBg,
+})
+
 globalStyle(`${cosmoScope}${listGroupHorizontal}`, {
 	flexDirection: 'row',
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontal} > ${cosmoScope}${listGroupItem}${active}`, {
+	marginTop: '0',
 })
 
 globalStyle(`${cosmoScope}${listGroupHorizontal} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}`, {
@@ -169,10 +212,23 @@ globalStyle(`${cosmoScope}${listGroupHorizontal} > ${cosmoScope}${listGroupItem}
 	borderLeftWidth: '0',
 })
 
+globalStyle(`${cosmoScope}${listGroupHorizontal} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
+
 globalStyle(`${cosmoScope}${listGroupHorizontalSm}`, {
 	'@media': {
 		'(min-width: 576px)': {
 			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontalSm} > ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
 		},
 	},
 })
@@ -186,10 +242,27 @@ globalStyle(`${cosmoScope}${listGroupHorizontalSm} > ${cosmoScope}${listGroupIte
 	},
 })
 
+globalStyle(`${cosmoScope}${listGroupHorizontalSm} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${listGroupHorizontalMd}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontalMd} > ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
 		},
 	},
 })
@@ -203,10 +276,27 @@ globalStyle(`${cosmoScope}${listGroupHorizontalMd} > ${cosmoScope}${listGroupIte
 	},
 })
 
+globalStyle(`${cosmoScope}${listGroupHorizontalMd} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${listGroupHorizontalLg}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontalLg} > ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
 		},
 	},
 })
@@ -220,10 +310,27 @@ globalStyle(`${cosmoScope}${listGroupHorizontalLg} > ${cosmoScope}${listGroupIte
 	},
 })
 
+globalStyle(`${cosmoScope}${listGroupHorizontalLg} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${listGroupHorizontalXl}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontalXl} > ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
 		},
 	},
 })
@@ -237,10 +344,27 @@ globalStyle(`${cosmoScope}${listGroupHorizontalXl} > ${cosmoScope}${listGroupIte
 	},
 })
 
+globalStyle(`${cosmoScope}${listGroupHorizontalXl} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
 globalStyle(`${cosmoScope}${listGroupHorizontalXxl}`, {
 	'@media': {
 		'(min-width: 1400px)': {
 			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontalXxl} > ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
 		},
 	},
 })
@@ -250,6 +374,15 @@ globalStyle(`${cosmoScope}${listGroupHorizontalXxl} > ${cosmoScope}${listGroupIt
 		'(min-width: 1400px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${cosmoScope}${listGroupHorizontalXxl} > ${cosmoScope}${listGroupItem} + ${cosmoScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })

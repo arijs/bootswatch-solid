@@ -8,7 +8,7 @@ import {
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -32,6 +32,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -250,6 +251,10 @@ globalStyle(`${superheroScope}${tabContent} > ${superheroScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${superheroScope}${tabContent} > ${superheroScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${superheroScope}${navbarNav} ${superheroScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -306,6 +311,13 @@ globalStyle(`${superheroScope}${navbarExpandXxl} ${superheroScope}${navbarNav} $
 globalStyle(`${superheroScope}${navbarExpand} ${superheroScope}${navbarNav} ${superheroScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${superheroScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${superheroScope}${cardHeaderTabs} ${superheroScope}${navLink}${navLinkActive}`, {

@@ -41,7 +41,17 @@ import {
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 
-import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
+import {
+	cardGroup,
+	cardHeaderPills,
+	cardImgOverlay,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
 	cardBody,
@@ -218,5 +228,29 @@ globalStyle(`${luxScope}${card} ${luxScope}${h5}`, {
 })
 
 globalStyle(`${luxScope}${card} ${luxScope}${h6}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${luxScope}${card} ${luxScope}${clsH1}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${luxScope}${card} ${luxScope}${clsH2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${luxScope}${card} ${luxScope}${clsH3}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${luxScope}${card} ${luxScope}${clsH4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${luxScope}${card} ${luxScope}${clsH5}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${luxScope}${card} ${luxScope}${clsH6}`, {
 	color: 'inherit',
 })

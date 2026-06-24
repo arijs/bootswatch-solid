@@ -173,7 +173,15 @@ import {
 import { vars } from '../../../theme-contract/theme-contract.css'
 
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { collapsing } from '../../../theme-contract/literal/contract.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	collapsing,
+} from '../../../theme-contract/literal/contract.css'
 import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
 import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
@@ -393,7 +401,23 @@ globalStyle(`:where(${luxScope}${h6})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${luxScope}${clsH6}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '600',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${luxScope}${h5})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '600',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${luxScope}${clsH5}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '600',
@@ -409,7 +433,23 @@ globalStyle(`:where(${luxScope}${h4})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${luxScope}${clsH4}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '600',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${luxScope}${h3})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '600',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${luxScope}${clsH3}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '600',
@@ -425,7 +465,23 @@ globalStyle(`:where(${luxScope}${h2})`, {
 	color: varBsHeadingColor,
 })
 
+globalStyle(`${luxScope}${clsH2}`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '600',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
 globalStyle(`:where(${luxScope}${h1})`, {
+	marginTop: '0',
+	marginBottom: '0.5rem',
+	fontWeight: '600',
+	lineHeight: '1.2',
+	color: varBsHeadingColor,
+})
+
+globalStyle(`${luxScope}${clsH1}`, {
 	marginTop: '0',
 	marginBottom: '0.5rem',
 	fontWeight: '600',
@@ -437,7 +493,19 @@ globalStyle(`:where(${luxScope}${h1})`, {
 	fontSize: 'calc(1.325rem + 0.9vw)',
 })
 
+globalStyle(`${luxScope}${clsH1}`, {
+	fontSize: 'calc(1.325rem + 0.9vw)',
+})
+
 globalStyle(`:where(${luxScope}${h1})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2rem',
+		},
+	},
+})
+
+globalStyle(`${luxScope}${clsH1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '2rem',
@@ -449,7 +517,19 @@ globalStyle(`:where(${luxScope}${h2})`, {
 	fontSize: 'calc(1.3rem + 0.6vw)',
 })
 
+globalStyle(`${luxScope}${clsH2}`, {
+	fontSize: 'calc(1.3rem + 0.6vw)',
+})
+
 globalStyle(`:where(${luxScope}${h2})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.75rem',
+		},
+	},
+})
+
+globalStyle(`${luxScope}${clsH2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.75rem',
@@ -461,7 +541,19 @@ globalStyle(`:where(${luxScope}${h3})`, {
 	fontSize: 'calc(1.275rem + 0.3vw)',
 })
 
+globalStyle(`${luxScope}${clsH3}`, {
+	fontSize: 'calc(1.275rem + 0.3vw)',
+})
+
 globalStyle(`:where(${luxScope}${h3})`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem',
+		},
+	},
+})
+
+globalStyle(`${luxScope}${clsH3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			fontSize: '1.5rem',
@@ -473,11 +565,23 @@ globalStyle(`:where(${luxScope}${h4})`, {
 	fontSize: '1.25rem',
 })
 
+globalStyle(`${luxScope}${clsH4}`, {
+	fontSize: '1.25rem',
+})
+
 globalStyle(`:where(${luxScope}${h5})`, {
 	fontSize: '1rem',
 })
 
+globalStyle(`${luxScope}${clsH5}`, {
+	fontSize: '1rem',
+})
+
 globalStyle(`:where(${luxScope}${h6})`, {
+	fontSize: '0.75rem',
+})
+
+globalStyle(`${luxScope}${clsH6}`, {
 	fontSize: '0.75rem',
 })
 
@@ -1085,7 +1189,17 @@ globalStyle(`:where(${luxScope}${h1})`, {
 	letterSpacing: '3px',
 })
 
+globalStyle(`${luxScope}${clsH1}`, {
+	textTransform: 'uppercase',
+	letterSpacing: '3px',
+})
+
 globalStyle(`:where(${luxScope}${h2})`, {
+	textTransform: 'uppercase',
+	letterSpacing: '3px',
+})
+
+globalStyle(`${luxScope}${clsH2}`, {
 	textTransform: 'uppercase',
 	letterSpacing: '3px',
 })
@@ -1095,7 +1209,17 @@ globalStyle(`:where(${luxScope}${h3})`, {
 	letterSpacing: '3px',
 })
 
+globalStyle(`${luxScope}${clsH3}`, {
+	textTransform: 'uppercase',
+	letterSpacing: '3px',
+})
+
 globalStyle(`:where(${luxScope}${h4})`, {
+	textTransform: 'uppercase',
+	letterSpacing: '3px',
+})
+
+globalStyle(`${luxScope}${clsH4}`, {
 	textTransform: 'uppercase',
 	letterSpacing: '3px',
 })
@@ -1105,7 +1229,17 @@ globalStyle(`:where(${luxScope}${h5})`, {
 	letterSpacing: '3px',
 })
 
+globalStyle(`${luxScope}${clsH5}`, {
+	textTransform: 'uppercase',
+	letterSpacing: '3px',
+})
+
 globalStyle(`:where(${luxScope}${h6})`, {
+	textTransform: 'uppercase',
+	letterSpacing: '3px',
+})
+
+globalStyle(`${luxScope}${clsH6}`, {
 	textTransform: 'uppercase',
 	letterSpacing: '3px',
 })

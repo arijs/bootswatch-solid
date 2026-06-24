@@ -47,9 +47,9 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
-	btnGroupLg,
-	btnGroupSm,
+	active,
 	btnGroupVertical,
+	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
 	dropdownMenuMdEnd,
@@ -67,7 +67,7 @@ import {
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn, btnLg, btnSm } from '../../../../theme-contract/ui/buttons/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
 	dropdown,
@@ -82,7 +82,6 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
-	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -538,10 +537,22 @@ globalStyle(`${morphScope}${dropdownItem}:focus`, {
 	backgroundColor: varBsDropdownLinkHoverBg,
 })
 
+globalStyle(`${morphScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
 globalStyle(`${morphScope}${dropdownItem}:active`, {
 	color: varBsDropdownLinkActiveColor,
 	textDecoration: 'none',
 	backgroundColor: varBsDropdownLinkActiveBg,
+})
+
+globalStyle(`${morphScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
 })
 
 globalStyle(`${morphScope}${dropdownItem}:disabled`, {
@@ -589,52 +600,6 @@ globalStyle(`${morphScope}${dropdownMenuDark}`, {
 globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}${dropdownToggleSplit}:first-child`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${morphScope}${dropdownToggleSplit}`, {
-	paddingRight: '1.125rem',
-	paddingLeft: '1.125rem',
-})
-
-globalStyle(`${morphScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${morphScope}${dropup} ${morphScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${morphScope}${dropend} ${morphScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${morphScope}${dropstart} ${morphScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
-globalStyle(`${morphScope}${btnSm} + ${morphScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${morphScope}${btnGroupSm} > ${morphScope}${btn} + ${morphScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.375rem',
-	paddingLeft: '0.375rem',
-})
-
-globalStyle(`${morphScope}${btnLg} + ${morphScope}${dropdownToggleSplit}`, {
-	paddingRight: '1.6875rem',
-	paddingLeft: '1.6875rem',
-})
-
-globalStyle(`${morphScope}${btnGroupLg} > ${morphScope}${btn} + ${morphScope}${dropdownToggleSplit}`, {
-	paddingRight: '1.6875rem',
-	paddingLeft: '1.6875rem',
 })
 
 globalStyle(`${morphScope}${btnGroup}${show} ${morphScope}${dropdownToggle}`, {

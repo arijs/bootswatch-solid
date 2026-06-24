@@ -9,7 +9,7 @@ import {
 	varBsEmphasisColor,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -33,6 +33,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -251,6 +252,10 @@ globalStyle(`${briteScope}${tabContent} > ${briteScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${briteScope}${tabContent} > ${briteScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${briteScope}${navbarNav} ${briteScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -307,6 +312,13 @@ globalStyle(`${briteScope}${navbarExpandXxl} ${briteScope}${navbarNav} ${briteSc
 globalStyle(`${briteScope}${navbarExpand} ${briteScope}${navbarNav} ${briteScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${briteScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${briteScope}${cardHeaderTabs} ${briteScope}${navLink}${navLinkActive}`, {

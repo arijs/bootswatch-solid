@@ -52,6 +52,12 @@ import {
 	cardSecondary,
 	cardSuccess,
 	cardWarning,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
@@ -365,7 +371,15 @@ globalStyle(`${morphScope}${card} ${morphScope}${h1}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${morphScope}${card} ${morphScope}${clsH1}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${morphScope}${card} ${morphScope}${h2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${morphScope}${card} ${morphScope}${clsH2}`, {
 	color: 'inherit',
 })
 
@@ -373,7 +387,15 @@ globalStyle(`${morphScope}${card} ${morphScope}${h3}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${morphScope}${card} ${morphScope}${clsH3}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${morphScope}${card} ${morphScope}${h4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${morphScope}${card} ${morphScope}${clsH4}`, {
 	color: 'inherit',
 })
 
@@ -381,7 +403,15 @@ globalStyle(`${morphScope}${card} ${morphScope}${h5}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${morphScope}${card} ${morphScope}${clsH5}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${morphScope}${card} ${morphScope}${h6}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${morphScope}${card} ${morphScope}${clsH6}`, {
 	color: 'inherit',
 })
 

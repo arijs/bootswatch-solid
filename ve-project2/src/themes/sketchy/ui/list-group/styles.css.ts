@@ -56,6 +56,8 @@ import {
 } from '../../../../theme-contract/ui/list-group/_vars.css'
 
 import {
+	active,
+	disabled,
 	listGroupHorizontal,
 	listGroupHorizontalLg,
 	listGroupHorizontalMd,
@@ -158,20 +160,57 @@ globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
+globalStyle(`${sketchyScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
 globalStyle(`${sketchyScope}${listGroupItem}:disabled`, {
 	color: varBsListGroupDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsListGroupDisabledBg,
 })
 
+globalStyle(`${sketchyScope}${listGroupItem}${active}`, {
+	zIndex: '2',
+	color: varBsListGroupActiveColor,
+	backgroundColor: varBsListGroupActiveBg,
+	borderColor: varBsListGroupActiveBorderColor,
+})
+
 globalStyle(`${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	borderTopWidth: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderTopWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${sketchyScope}${listGroupItemAction}`, {
 	width: '100%',
 	color: varBsListGroupActionColor,
 	textAlign: 'inherit',
+})
+
+globalStyle(`${sketchyScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${sketchyScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${sketchyScope}${listGroupItemAction}:not(${active}):active`, {
+	color: varBsListGroupActionActiveColor,
+	backgroundColor: varBsListGroupActionActiveBg,
 })
 
 globalStyle(`${sketchyScope}${listGroupHorizontal}`, {
@@ -188,9 +227,18 @@ globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupI
 	borderBottomLeftRadius: '0',
 })
 
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
 globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	borderTopWidth: varBsListGroupBorderWidth,
 	borderLeftWidth: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
 })
 
 globalStyle(`${sketchyScope}${listGroupHorizontalSm}`, {
@@ -219,11 +267,28 @@ globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGrou
 	},
 })
 
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 576px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -254,11 +319,28 @@ globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGrou
 	},
 })
 
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -289,11 +371,28 @@ globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGrou
 	},
 })
 
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -324,11 +423,28 @@ globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGrou
 	},
 })
 
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })
@@ -359,11 +475,28 @@ globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGro
 	},
 })
 
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
 globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
 	'@media': {
 		'(min-width: 1400px)': {
 			borderTopWidth: varBsListGroupBorderWidth,
 			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
 		},
 	},
 })

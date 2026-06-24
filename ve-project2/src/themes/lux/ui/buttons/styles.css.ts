@@ -55,11 +55,13 @@ import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
 	btnClose,
 	btnCloseWhite,
 	btnGroupLg,
 	btnGroupSm,
 	btnGroupVertical,
+	disabled,
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
@@ -89,6 +91,12 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	dropdownToggleSplit,
+	dropend,
+	dropstart,
+	dropup,
+} from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -220,6 +228,12 @@ globalStyle(`${luxScope}${btn}:first-child:active`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
+globalStyle(`${luxScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
 globalStyle(`${luxScope}${btn}${show}`, {
 	color: varBsBtnActiveColor,
 	backgroundColor: varBsBtnActiveBg,
@@ -238,6 +252,10 @@ globalStyle(`${luxScope}${btn}:first-child:active:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
+globalStyle(`${luxScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
 globalStyle(`${luxScope}${btn}${show}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -247,6 +265,14 @@ globalStyle(`${luxScope}${btnCheck}:checked:focus-visible + ${luxScope}${btn}`, 
 })
 
 globalStyle(`${luxScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
+})
+
+globalStyle(`${luxScope}${btn}${disabled}`, {
 	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsBtnDisabledBg,
@@ -658,6 +684,10 @@ globalStyle(`${luxScope}${btnGroup} > ${luxScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${luxScope}${btnGroup} > ${luxScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${luxScope}${btnGroupVertical} > ${luxScope}${btnCheck}:checked + ${luxScope}${btn}`, {
 	zIndex: '1',
 })
@@ -678,8 +708,53 @@ globalStyle(`${luxScope}${btnGroupVertical} > ${luxScope}${btn}:active`, {
 	zIndex: '1',
 })
 
+globalStyle(`${luxScope}${btnGroupVertical} > ${luxScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
 globalStyle(`${luxScope}${btnGroup} > ${luxScope}:not(${btnCheck}:first-child) + ${luxScope}${btn}`, {
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${luxScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.125rem',
+	paddingLeft: '1.125rem',
+})
+
+globalStyle(`${luxScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${luxScope}${dropup} ${luxScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${luxScope}${dropend} ${luxScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${luxScope}${dropstart} ${luxScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${luxScope}${btnSm} + ${luxScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${luxScope}${btnGroupSm} > ${luxScope}${btn} + ${luxScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${luxScope}${btnLg} + ${luxScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.5rem',
+	paddingLeft: '1.5rem',
+})
+
+globalStyle(`${luxScope}${btnGroupLg} > ${luxScope}${btn} + ${luxScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.5rem',
+	paddingLeft: '1.5rem',
 })
 
 globalStyle(`${luxScope}${btnGroupVertical} > ${luxScope}${btn}`, {
@@ -732,6 +807,14 @@ globalStyle(`${luxScope}${btnClose}:focus`, {
 })
 
 globalStyle(`${luxScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${luxScope}${btnClose}${disabled}`, {
 	pointerEvents: 'none',
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',
@@ -862,6 +945,18 @@ globalStyle(`${luxScope}[data-bs-theme=dark] ${luxScope}${btnOutlineSecondary}`,
 
 globalStyle(`${luxScope}[data-bs-theme=dark] ${luxScope}${btnOutlineLight}`, {
 	color: '#fff',
+})
+
+globalStyle(`${luxScope}[data-bs-theme=dark] ${luxScope}${btnOutlineLight}:not([disabled]):not(${disabled}):hover`, {
+	color: varBsBtnActiveColor,
+})
+
+globalStyle(`${luxScope}[data-bs-theme=dark] ${luxScope}${btnOutlineLight}:not([disabled]):not(${disabled}):focus`, {
+	color: varBsBtnActiveColor,
+})
+
+globalStyle(`${luxScope}[data-bs-theme=dark] ${luxScope}${btnOutlineLight}:not([disabled]):not(${disabled}):active`, {
+	color: varBsBtnActiveColor,
 })
 
 globalStyle(`${luxScope}[data-bs-theme=dark] ${luxScope}${btnOutlineDark}`, {

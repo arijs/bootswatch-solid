@@ -8,7 +8,7 @@ import {
 	varBsEmphasisColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import { varBsCardBg } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
 import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -32,6 +32,7 @@ import {
 import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import {
+	active,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -250,6 +251,10 @@ globalStyle(`${morphScope}${tabContent} > ${morphScope}${tabPane}`, {
 	display: 'none',
 })
 
+globalStyle(`${morphScope}${tabContent} > ${morphScope}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${navLinkActive}`, {
 	color: varBsNavbarActiveColor,
 })
@@ -306,6 +311,13 @@ globalStyle(`${morphScope}${navbarExpandXxl} ${morphScope}${navbarNav} ${morphSc
 globalStyle(`${morphScope}${navbarExpand} ${morphScope}${navbarNav} ${morphScope}${navLink}`, {
 	paddingRight: varBsNavbarNavLinkPaddingX,
 	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${morphScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
 })
 
 globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${navLinkActive}`, {

@@ -61,6 +61,7 @@ import {
 	wasValidated,
 } from '../../../theme-contract/forms/contract.css'
 import {
+	disabled,
 	formCheckInline,
 	formCheckReverse,
 	formControlColor,
@@ -1634,6 +1635,18 @@ globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}::afte
 	transform: 'scale(0)',
 })
 
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:hover:not(${disabled})::after`, {
+	transform: 'scale(0.9)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus:not(${disabled})::after`, {
+	transform: 'scale(0.9)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:focus:not(${disabled})::after`, {
+	boxShadow: '0 0 0 9px rgba(0, 0, 0, 0.1)',
+})
+
 globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked`, {
 	backgroundColor: 'rgba(33, 150, 243, 0.3)',
 })
@@ -1646,6 +1659,18 @@ globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:check
 globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked::after`, {
 	left: 'calc(100% - 0.8em)',
 	boxShadow: '0 0 0 9px rgba(33, 150, 243, 0.1)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked:hover:not(${disabled})::after`, {
+	transform: 'scale(0.9)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked:focus:not(${disabled})::after`, {
+	transform: 'scale(0.9)',
+})
+
+globalStyle(`${materiaScope}${formSwitch} ${materiaScope}${formCheckInput}:checked:focus:not(${disabled})::after`, {
+	boxShadow: '0 0 0 9px rgba(33, 150, 243, 0.2)',
 })
 
 globalStyle(`${materiaScope}${formCheck}:not(${formSwitch}) ${materiaScope}${formCheckInput}:checked[type=checkbox]`, {

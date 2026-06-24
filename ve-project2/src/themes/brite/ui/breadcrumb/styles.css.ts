@@ -15,6 +15,7 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { active } from '../../../../theme-contract/literal/contract.css'
 import { breadcrumb, breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
 
 globalStyle(`${briteScope}${breadcrumb}`, {
@@ -49,6 +50,10 @@ globalStyle(`${briteScope}${breadcrumbItem} + ${briteScope}${breadcrumbItem}::be
 	content: `${fallbackVar(varBsBreadcrumbDivider, '"/"')} `,
 })
 
+globalStyle(`${briteScope}${breadcrumbItem}${active}`, {
+	color: varBsBreadcrumbItemActiveColor,
+})
+
 globalStyle(`${briteScope}${breadcrumb}`, {
 	fontWeight: '500',
 	border: '2px solid #000',
@@ -60,4 +65,10 @@ globalStyle(`${briteScope}${breadcrumb} ${briteScope}${link}`, {
 
 globalStyle(`${briteScope}[data-bs-theme=dark] ${briteScope}${breadcrumb} ${briteScope}${link}`, {
 	color: '#fff',
+})
+
+globalStyle(`${briteScope}[data-bs-theme=dark] ${briteScope}${breadcrumbItem}${active}`, {
+	vars: {
+		[varBsBreadcrumbItemActiveColor]: '#fff',
+	},
 })

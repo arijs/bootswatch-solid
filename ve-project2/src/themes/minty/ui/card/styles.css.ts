@@ -41,7 +41,17 @@ import {
 	h6,
 } from '../../../../theme-contract/contents/heading/contract.css'
 
-import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
+import {
+	cardGroup,
+	cardHeaderPills,
+	cardImgOverlay,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
 	cardBody,
@@ -313,7 +323,15 @@ globalStyle(`${mintyScope}${card} ${mintyScope}${h1}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${mintyScope}${card} ${mintyScope}${clsH1}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${mintyScope}${card} ${mintyScope}${h2}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${mintyScope}${card} ${mintyScope}${clsH2}`, {
 	color: 'inherit',
 })
 
@@ -321,7 +339,15 @@ globalStyle(`${mintyScope}${card} ${mintyScope}${h3}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${mintyScope}${card} ${mintyScope}${clsH3}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${mintyScope}${card} ${mintyScope}${h4}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${mintyScope}${card} ${mintyScope}${clsH4}`, {
 	color: 'inherit',
 })
 
@@ -329,6 +355,14 @@ globalStyle(`${mintyScope}${card} ${mintyScope}${h5}`, {
 	color: 'inherit',
 })
 
+globalStyle(`${mintyScope}${card} ${mintyScope}${clsH5}`, {
+	color: 'inherit',
+})
+
 globalStyle(`${mintyScope}${card} ${mintyScope}${h6}`, {
+	color: 'inherit',
+})
+
+globalStyle(`${mintyScope}${card} ${mintyScope}${clsH6}`, {
 	color: 'inherit',
 })

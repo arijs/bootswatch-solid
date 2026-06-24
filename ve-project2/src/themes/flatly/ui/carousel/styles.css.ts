@@ -57,6 +57,10 @@ globalStyle(`${flatlyScope}${carouselItem}`, {
 	},
 })
 
+globalStyle(`${flatlyScope}${carouselItem}${active}`, {
+	display: 'block',
+})
+
 globalStyle(`${flatlyScope}${carouselItemNext}`, {
 	display: 'block',
 })
@@ -85,6 +89,11 @@ globalStyle(`${flatlyScope}${carouselFade} ${flatlyScope}${carouselItem}`, {
 	opacity: '0',
 	transitionProperty: 'opacity',
 	transform: 'none',
+})
+
+globalStyle(`${flatlyScope}${carouselFade} ${flatlyScope}${carouselItem}${active}`, {
+	zIndex: '1',
+	opacity: '1',
 })
 
 globalStyle(`${flatlyScope}${carouselFade} ${flatlyScope}${carouselItemNext}${carouselItemStart}`, {
@@ -280,6 +289,10 @@ globalStyle(`${flatlyScope}${carouselIndicators} ${flatlyScope}[data-bs-target]`
 			transition: 'none',
 		},
 	},
+})
+
+globalStyle(`${flatlyScope}${carouselIndicators} ${flatlyScope}${active}`, {
+	opacity: '1',
 })
 
 globalStyle(`${flatlyScope}${carouselCaption}`, {
