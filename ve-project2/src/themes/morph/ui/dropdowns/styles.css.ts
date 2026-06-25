@@ -48,7 +48,6 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -597,18 +596,8 @@ globalStyle(`${morphScope}${dropdownMenuDark}`, {
 	},
 })
 
-globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
 globalStyle(`${morphScope}${btnGroup}${show} ${morphScope}${dropdownToggle}`, {
 	boxShadow: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)',
-})
-
-globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${morphScope}${navTabs} ${morphScope}${dropdownMenu}`, {
@@ -663,31 +652,6 @@ globalStyle(`${morphScope}${navbarExpandXxl} ${morphScope}${navbarNav} ${morphSc
 
 globalStyle(`${morphScope}${navbarExpand} ${morphScope}${navbarNav} ${morphScope}${dropdownMenu}`, {
 	position: 'absolute',
-})
-
-globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
-
-globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle}):hover`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
-
-globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle}):active`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
-
-globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle}):active:focus`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${morphScope}${dropdownMenu}`, {

@@ -91,6 +91,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -746,6 +747,11 @@ globalStyle(`${literaScope}${btnGroup} > ${literaScope}:not(${btnCheck}:first-ch
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${literaScope}${btnGroup} > ${literaScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -818,6 +824,11 @@ globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}`, {
 
 globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${literaScope}${btnGroupVertical} > ${literaScope}${btnGroup}:not(:last-child) > ${literaScope}${btn}`, {

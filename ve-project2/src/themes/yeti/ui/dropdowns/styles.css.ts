@@ -53,7 +53,6 @@ import {
 	active,
 	bgLight,
 	bgPrimary,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -607,16 +606,6 @@ globalStyle(`${yetiScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
-})
-
-globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${yetiScope}${navTabs} ${yetiScope}${dropdownMenu}`, {

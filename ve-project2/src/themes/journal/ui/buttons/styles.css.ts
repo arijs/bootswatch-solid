@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${journalScope}${btnGroup} > ${journalScope}:not(${btnCheck}:first-
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${journalScope}${btnGroup} > ${journalScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${journalScope}${btnGroup} > ${journalScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${journalScope}${btnGroupVertical} > ${journalScope}${btn}`, {
 
 globalStyle(`${journalScope}${btnGroupVertical} > ${journalScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${journalScope}${btnGroupVertical} > ${journalScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${journalScope}${btnGroupVertical} > ${journalScope}${btnGroup}:not(:last-child) > ${journalScope}${btn}`, {

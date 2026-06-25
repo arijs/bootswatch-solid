@@ -50,7 +50,6 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -599,18 +598,8 @@ globalStyle(`${zephyrScope}${dropdownMenuDark}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
 globalStyle(`${zephyrScope}${btnGroup}${show} ${zephyrScope}${dropdownToggle}`, {
 	boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
-})
-
-globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${dropdownMenu}`, {

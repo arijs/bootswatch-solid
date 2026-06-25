@@ -52,7 +52,6 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -604,16 +603,6 @@ globalStyle(`${materiaScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#bbb',
 		[varBsDropdownHeaderColor]: '#bbb',
 	},
-})
-
-globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${materiaScope}${navTabs} ${materiaScope}${dropdownMenu}`, {

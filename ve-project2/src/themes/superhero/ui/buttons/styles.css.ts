@@ -51,10 +51,8 @@ import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../
 import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
 import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
-import { table } from '../../../../theme-contract/contents/tables/contract.css'
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
@@ -94,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -721,6 +720,11 @@ globalStyle(`${superheroScope}${btnGroup} > ${superheroScope}:not(${btnCheck}:fi
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${superheroScope}${btnGroup} > ${superheroScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${superheroScope}${btnGroup} > ${superheroScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -793,6 +797,11 @@ globalStyle(`${superheroScope}${btnGroupVertical} > ${superheroScope}${btn}`, {
 
 globalStyle(`${superheroScope}${btnGroupVertical} > ${superheroScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${superheroScope}${btnGroupVertical} > ${superheroScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${superheroScope}${btnGroupVertical} > ${superheroScope}${btnGroup}:not(:last-child) > ${superheroScope}${btn}`, {
@@ -935,9 +944,4 @@ globalStyle(`${superheroScope}${btnLight}`, {
 
 globalStyle(`${superheroScope}${btnDark}`, {
 	backgroundColor: '#20374c',
-})
-
-globalStyle(`${superheroScope}${table} ${superheroScope}${link}:not(${btn})`, {
-	color: '#fff',
-	textDecoration: 'underline',
 })

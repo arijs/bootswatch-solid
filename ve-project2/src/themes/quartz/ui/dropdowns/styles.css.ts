@@ -51,7 +51,6 @@ import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -69,7 +68,6 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
@@ -598,16 +596,6 @@ globalStyle(`${quartzScope}${dropdownMenuDark}`, {
 	},
 })
 
-globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
-})
-
 globalStyle(`${quartzScope}${navTabs} ${quartzScope}${dropdownMenu}`, {
 	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	borderTopLeftRadius: '0',
@@ -660,10 +648,6 @@ globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarNav} ${quart
 
 globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarNav} ${quartzScope}${dropdownMenu}`, {
 	position: 'absolute',
-})
-
-globalStyle(`${quartzScope}${inputGroup}:not(${hasValidation}) > ${quartzScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu})`, {
-	borderRight: 'none',
 })
 
 globalStyle(`${quartzScope}${inputGroup}:not(${hasValidation}) > ${quartzScope}${dropdownToggle}:nth-last-child(n+3)`, {

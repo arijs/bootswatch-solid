@@ -729,6 +729,11 @@ globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}:not(${btnCheck}:first-ch
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -805,6 +810,11 @@ globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}`, {
 
 globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${zephyrScope}${btnGroupVertical} > ${zephyrScope}${btnGroup}:not(:last-child) > ${zephyrScope}${btn}`, {

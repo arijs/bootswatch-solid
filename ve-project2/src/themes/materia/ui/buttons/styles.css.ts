@@ -51,7 +51,6 @@ import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../
 import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
 import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
@@ -67,12 +66,7 @@ import {
 	inputGroupSm,
 	placeholder,
 } from '../../../../theme-contract/literal/contract.css'
-import {
-	alert,
-	alertDismissible,
-	alertLight,
-	alertSecondary,
-} from '../../../../theme-contract/ui/alerts/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
@@ -98,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -736,6 +731,11 @@ globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}:not(${btnCheck}:first-
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -808,6 +808,11 @@ globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}`, {
 
 globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup}:not(:last-child) > ${materiaScope}${btn}`, {
@@ -1753,19 +1758,6 @@ globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup} + $
 
 globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btn} + ${materiaScope}${btn}`, {
 	boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.4)',
-})
-
-globalStyle(`${materiaScope}${alert} ${materiaScope}${link}:not(${btn})`, {
-	fontWeight: '700',
-	color: '#fff',
-})
-
-globalStyle(`${materiaScope}${alertSecondary} ${materiaScope}${link}:not(${btn})`, {
-	color: '#444',
-})
-
-globalStyle(`${materiaScope}${alertLight} ${materiaScope}${link}:not(${btn})`, {
-	color: '#444',
 })
 
 globalStyle(`${materiaScope}${modal} ${materiaScope}${btnClose}`, {

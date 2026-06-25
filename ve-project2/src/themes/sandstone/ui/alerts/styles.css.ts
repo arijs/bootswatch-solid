@@ -58,6 +58,7 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
 globalStyle(`${sandstoneScope}${alert}`, {
 	vars: {
@@ -276,6 +277,10 @@ globalStyle(`${sandstoneScope}${alertLight} > ${sandstoneScope}${tableCell}`, {
 })
 
 globalStyle(`${sandstoneScope}${alertLight}`, {
+	color: '#3e3f3a',
+})
+
+globalStyle(`${sandstoneScope}${alertLight} ${sandstoneScope}${link}:not(${btn})`, {
 	color: '#3e3f3a',
 })
 

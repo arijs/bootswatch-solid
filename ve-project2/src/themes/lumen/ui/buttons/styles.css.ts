@@ -93,6 +93,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -720,6 +721,11 @@ globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}:not(${btnCheck}:first-chil
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -792,6 +798,11 @@ globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}`, {
 
 globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btnGroup}:not(:last-child) > ${lumenScope}${btn}`, {

@@ -19,6 +19,7 @@ import {
 	varBsTableStripedColor,
 } from '../../../../theme-contract/contents/_vars.css'
 
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import {
 	tableHead,
 	tableHeaderCell,
@@ -52,6 +53,7 @@ import {
 	tableWarning,
 } from '../../../../theme-contract/contents/tables/contract.css'
 import { theadDark } from '../../../../theme-contract/literal/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
 globalStyle(`${superheroScope}${table}`, {
 	vars: {
@@ -328,4 +330,9 @@ globalStyle(`${superheroScope}${table}`, {
 
 globalStyle(`${superheroScope}${table} ${superheroScope}${theadDark} ${superheroScope}${tableHeaderCell}`, {
 	color: '#fff',
+})
+
+globalStyle(`${superheroScope}${table} ${superheroScope}${link}:not(${btn})`, {
+	color: '#fff',
+	textDecoration: 'underline',
 })

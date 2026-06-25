@@ -41,6 +41,7 @@ import {
 	varBsAlertPaddingY,
 } from '../../../../theme-contract/ui/alerts/_vars.css'
 
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import {
 	h1,
 	h2,
@@ -72,6 +73,7 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
 globalStyle(`${materiaScope}${alert}`, {
 	vars: {
@@ -268,6 +270,11 @@ globalStyle(`${materiaScope}${alertDark}`, {
 	background: '#222 linear-gradient(180deg, #434343, #222) repeat-x',
 })
 
+globalStyle(`${materiaScope}${alert} ${materiaScope}${link}:not(${btn})`, {
+	fontWeight: '700',
+	color: '#fff',
+})
+
 globalStyle(`${materiaScope}${alert} ${materiaScope}${alertLink}`, {
 	fontWeight: '700',
 	color: '#fff',
@@ -277,11 +284,19 @@ globalStyle(`${materiaScope}${alertSecondary}`, {
 	color: '#444',
 })
 
+globalStyle(`${materiaScope}${alertSecondary} ${materiaScope}${link}:not(${btn})`, {
+	color: '#444',
+})
+
 globalStyle(`${materiaScope}${alertSecondary} ${materiaScope}${alertLink}`, {
 	color: '#444',
 })
 
 globalStyle(`${materiaScope}${alertLight}`, {
+	color: '#444',
+})
+
+globalStyle(`${materiaScope}${alertLight} ${materiaScope}${link}:not(${btn})`, {
 	color: '#444',
 })
 

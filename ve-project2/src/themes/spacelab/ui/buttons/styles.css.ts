@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}:not(${btnCheck}:firs
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}`, {
 
 globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btnGroup}:not(:last-child) > ${spacelabScope}${btn}`, {

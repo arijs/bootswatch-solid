@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}:not(${btnCheck}:first-ch
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${unitedScope}${btnGroup} > ${unitedScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btn}`, {
 
 globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${unitedScope}${btnGroupVertical} > ${unitedScope}${btnGroup}:not(:last-child) > ${unitedScope}${btn}`, {

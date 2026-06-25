@@ -93,6 +93,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -720,6 +721,11 @@ globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}:not(${btnCheck}:first-ch
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -792,6 +798,11 @@ globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}`, {
 
 globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btnGroup}:not(:last-child) > ${quartzScope}${btn}`, {

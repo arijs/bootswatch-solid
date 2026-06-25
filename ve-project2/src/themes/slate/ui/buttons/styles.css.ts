@@ -51,7 +51,6 @@ import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../
 import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
 import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
@@ -67,7 +66,7 @@ import {
 	inputGroupSm,
 	placeholder,
 } from '../../../../theme-contract/literal/contract.css'
-import { alertDismissible, alertLight } from '../../../../theme-contract/ui/alerts/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
@@ -93,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -720,6 +720,11 @@ globalStyle(`${slateScope}${btnGroup} > ${slateScope}:not(${btnCheck}:first-chil
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -792,6 +797,11 @@ globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btn}`, {
 
 globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${slateScope}${btnGroupVertical} > ${slateScope}${btnGroup}:not(:last-child) > ${slateScope}${btn}`, {
@@ -1127,8 +1137,4 @@ globalStyle(`${slateScope}${btnCheck}:checked + ${slateScope}${btn}`, {
 globalStyle(`${slateScope}${btnCheck} + ${slateScope}${btn}:hover`, {
 	color: '#fff',
 	borderColor: 'rgba(0, 0, 0, 0.6)',
-})
-
-globalStyle(`${slateScope}${alertLight} ${slateScope}${link}:not(${btn})`, {
-	color: '#272b30',
 })

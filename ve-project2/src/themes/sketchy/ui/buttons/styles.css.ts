@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}:not(${btnCheck}:first-
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${sketchyScope}${btnGroup} > ${sketchyScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}`, {
 
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${sketchyScope}${btnGroupVertical} > ${sketchyScope}${btnGroup}:not(:last-child) > ${sketchyScope}${btn}`, {

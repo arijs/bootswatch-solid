@@ -51,7 +51,6 @@ import { varBsPosition } from '../../../../theme-contract/utilities/generated/_v
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -69,7 +68,6 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 } from '../../../../theme-contract/literal/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
@@ -596,16 +594,6 @@ globalStyle(`${spacelabScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#999',
 		[varBsDropdownHeaderColor]: '#999',
 	},
-})
-
-globalStyle(`${spacelabScope}${btnGroup} > ${spacelabScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${spacelabScope}${btnGroupVertical} > ${spacelabScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${spacelabScope}${navTabs} ${spacelabScope}${dropdownMenu}`, {

@@ -1353,6 +1353,10 @@ globalStyle(`${quartzScope}${inputGroup} > ${quartzScope}:not(:first-child):not(
 	borderLeft: 'none',
 })
 
+globalStyle(`${quartzScope}${inputGroup}:not(${hasValidation}) > ${quartzScope}:not(:last-child):not(${dropdownToggle}):not(${dropdownMenu})`, {
+	borderRight: 'none',
+})
+
 globalStyle(`${quartzScope}${formSelect}:not([multiple])`, {
 	transition: 'border-color 0.15s ease-in-out',
 })

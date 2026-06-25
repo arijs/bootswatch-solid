@@ -728,6 +728,11 @@ globalStyle(`${morphScope}${btnGroup} > ${morphScope}:not(${btnCheck}:first-chil
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -804,6 +809,11 @@ globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}`, {
 
 globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btnGroup}:not(:last-child) > ${morphScope}${btn}`, {
@@ -1460,6 +1470,11 @@ globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btnGroup}:not(:first-chil
 	borderLeft: '1px solid rgba(55, 94, 148, 0.1)',
 })
 
+globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${morphScope}${btnGroup} > ${morphScope}${btnGroup}:not(:last-child) > ${morphScope}${btn}`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -1557,7 +1572,27 @@ globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btnGroup}:not(:fi
 	borderTopRightRadius: '0',
 })
 
+globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
 globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btnGroup}:not(:last-child) > ${morphScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle}):hover`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle}):active`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${morphScope}${btnGroupVertical} > ${morphScope}${btn}:not(:last-child):not(${dropdownToggle}):active:focus`, {
 	borderBottomRightRadius: '0',
 	borderBottomLeftRadius: '0',
 })

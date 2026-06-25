@@ -53,7 +53,6 @@ import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
 	active,
-	btnGroupVertical,
 	disabled,
 	dropdownMenuLgEnd,
 	dropdownMenuLgStart,
@@ -72,7 +71,6 @@ import {
 	navbarExpandXxl,
 	open,
 } from '../../../../theme-contract/literal/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
 	btnShowHook,
@@ -599,16 +597,6 @@ globalStyle(`${lumenScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
-})
-
-globalStyle(`${lumenScope}${btnGroup} > ${lumenScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderTopRightRadius: '0',
-	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${lumenScope}${btnGroupVertical} > ${lumenScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
-	borderBottomRightRadius: '0',
-	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${lumenScope}${navTabs} ${lumenScope}${dropdownMenu}`, {

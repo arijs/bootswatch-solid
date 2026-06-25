@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${cyborgScope}${btnGroup} > ${cyborgScope}:not(${btnCheck}:first-ch
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${cyborgScope}${btnGroup} > ${cyborgScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${cyborgScope}${btnGroup} > ${cyborgScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${cyborgScope}${btnGroupVertical} > ${cyborgScope}${btn}`, {
 
 globalStyle(`${cyborgScope}${btnGroupVertical} > ${cyborgScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${cyborgScope}${btnGroupVertical} > ${cyborgScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${cyborgScope}${btnGroupVertical} > ${cyborgScope}${btnGroup}:not(:last-child) > ${cyborgScope}${btn}`, {

@@ -57,6 +57,7 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
 globalStyle(`${mintyScope}${alert}`, {
 	vars: {
@@ -173,6 +174,10 @@ globalStyle(`${mintyScope}${alert} ${mintyScope}${alertLink}`, {
 })
 
 globalStyle(`${mintyScope}${alertLight}`, {
+	color: '#888',
+})
+
+globalStyle(`${mintyScope}${alertLight} ${mintyScope}${link}:not(${btn})`, {
 	color: '#888',
 })
 

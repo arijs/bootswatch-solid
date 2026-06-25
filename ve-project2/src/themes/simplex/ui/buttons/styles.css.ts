@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}:not(${btnCheck}:first-
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}`, {
 
 globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${simplexScope}${btnGroupVertical} > ${simplexScope}${btnGroup}:not(:last-child) > ${simplexScope}${btn}`, {

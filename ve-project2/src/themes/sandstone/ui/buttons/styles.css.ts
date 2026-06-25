@@ -51,7 +51,6 @@ import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../
 import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
 import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
@@ -67,7 +66,7 @@ import {
 	inputGroupSm,
 	placeholder,
 } from '../../../../theme-contract/literal/contract.css'
-import { alertDismissible, alertLight } from '../../../../theme-contract/ui/alerts/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
@@ -93,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -720,6 +720,11 @@ globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}:not(${btnCheck}:fi
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -792,6 +797,11 @@ globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}`, {
 
 globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btnGroup}:not(:last-child) > ${sandstoneScope}${btn}`, {
@@ -921,10 +931,6 @@ globalStyle(`${sandstoneScope}${btnSuccess}`, {
 
 globalStyle(`${sandstoneScope}${btnWarning}`, {
 	color: '#fff',
-})
-
-globalStyle(`${sandstoneScope}${alertLight} ${sandstoneScope}${link}:not(${btn})`, {
-	color: '#3e3f3a',
 })
 
 globalStyle(`${sandstoneScope}${modal} ${sandstoneScope}${btnClose}`, {

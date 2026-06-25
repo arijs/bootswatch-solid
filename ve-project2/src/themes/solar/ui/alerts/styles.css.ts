@@ -57,6 +57,7 @@ import {
 	alertSuccess,
 	alertWarning,
 } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
 globalStyle(`${solarScope}${alert}`, {
 	vars: {
@@ -212,6 +213,10 @@ globalStyle(`${solarScope}${alertDark}`, {
 })
 
 globalStyle(`${solarScope}${alertLight}`, {
+	color: '#002b36',
+})
+
+globalStyle(`${solarScope}${alertLight} ${solarScope}${link}:not(${btn})`, {
 	color: '#002b36',
 })
 

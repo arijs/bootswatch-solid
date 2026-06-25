@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}:not(${btnCheck}:first-child)
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${yetiScope}${btnGroup} > ${yetiScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}`, {
 
 globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${yetiScope}${btnGroupVertical} > ${yetiScope}${btnGroup}:not(:last-child) > ${yetiScope}${btn}`, {

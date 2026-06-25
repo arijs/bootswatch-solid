@@ -606,7 +606,11 @@ function splitVeSelectorList(sel) {
 
 /** Owning family of one comma-part: rightmost CLASS-contract symbol's family (§4.1/§4.2). */
 function partSubjectFamily(part, scopeVarName, table) {
-	const syms = [...part.matchAll(/\$\{(\w+)\}/g)].map((m) => m[1])
+	// `:not(.x)` negations constrain the subject but are not the subject — a class
+	// inside `:not()` must never own the rule (e.g. `.btn-group > .btn:not(.dropdown-toggle)`
+	// is a button rule, not a dropdown rule). Strip negations before picking the subject.
+	const subject = part.replace(/:not\([^)]*\)/g, '')
+	const syms = [...subject.matchAll(/\$\{(\w+)\}/g)].map((m) => m[1])
 	// §4.2 tie-break: a generic state/shared class promoted to the always-loaded
 	// `global` baseline (`.show`, `.fade`, `.collapse`, the popover/tooltip demo
 	// frames) must NOT own a compound rule that also targets a component class.

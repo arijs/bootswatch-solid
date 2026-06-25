@@ -51,7 +51,6 @@ import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../
 import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
 import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { fieldset } from '../../../../theme-contract/forms/contract.css'
 
 import { inputGroup } from '../../../../theme-contract/forms/contract.css'
@@ -67,7 +66,7 @@ import {
 	inputGroupSm,
 	placeholder,
 } from '../../../../theme-contract/literal/contract.css'
-import { alertDismissible, alertLight } from '../../../../theme-contract/ui/alerts/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
@@ -93,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -720,6 +720,11 @@ globalStyle(`${mintyScope}${btnGroup} > ${mintyScope}:not(${btnCheck}:first-chil
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${mintyScope}${btnGroup} > ${mintyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${mintyScope}${btnGroup} > ${mintyScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -792,6 +797,11 @@ globalStyle(`${mintyScope}${btnGroupVertical} > ${mintyScope}${btn}`, {
 
 globalStyle(`${mintyScope}${btnGroupVertical} > ${mintyScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${mintyScope}${btnGroupVertical} > ${mintyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${mintyScope}${btnGroupVertical} > ${mintyScope}${btnGroup}:not(:last-child) > ${mintyScope}${btn}`, {
@@ -966,8 +976,4 @@ globalStyle(`${mintyScope}${btnOutlineDark}`, {
 
 globalStyle(`${mintyScope}${btnOutlineLight}`, {
 	color: '#f8f9fa',
-})
-
-globalStyle(`${mintyScope}${alertLight} ${mintyScope}${link}:not(${btn})`, {
-	color: '#888',
 })

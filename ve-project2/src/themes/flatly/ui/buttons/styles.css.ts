@@ -92,6 +92,7 @@ import {
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
+	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
 	dropstart,
@@ -719,6 +720,11 @@ globalStyle(`${flatlyScope}${btnGroup} > ${flatlyScope}:not(${btnCheck}:first-ch
 	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
 })
 
+globalStyle(`${flatlyScope}${btnGroup} > ${flatlyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
 globalStyle(`${flatlyScope}${btnGroup} > ${flatlyScope}${btn}${dropdownToggleSplit}:first-child`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
@@ -791,6 +797,11 @@ globalStyle(`${flatlyScope}${btnGroupVertical} > ${flatlyScope}${btn}`, {
 
 globalStyle(`${flatlyScope}${btnGroupVertical} > ${flatlyScope}${btn}:not(:first-child)`, {
 	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${flatlyScope}${btnGroupVertical} > ${flatlyScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
 })
 
 globalStyle(`${flatlyScope}${btnGroupVertical} > ${flatlyScope}${btnGroup}:not(:last-child) > ${flatlyScope}${btn}`, {
