@@ -147,6 +147,19 @@ Census stays clean (**2069 symbols, 0 unmapped/invalid**, 115 overrides). Becaus
 **G5 — Verify to zero.** `--style-loader=granular`, all 27 themes; fixes go to the table or the closure declarations, **never per-family CSS**. (Mirrors T8/T9.)
 *Gate:* all 27 themes, all families, 0 over `0.001` in granular mode.
 
+**In progress.** **Bootstrap: all 31 families verify to zero in granular mode** (0 over 0.001). The §4.1 cross-family cascade risk is real and was the bulk of G5: split into separately-loaded chunks, two equal-specificity rules resolve by (nondeterministic) load order instead of source order. **`@layer` (the planned primary defense) was attempted and abandoned** — wrapping chunk rules while `scope.css`'s `bodyText`/`bodyFrame` stayed unlayered let those baseline rules beat every layered component (risk §8.3 materialised broadly). Instead each conflict is resolved the §4.1 *case-by-case* way, by **co-locating the overriding rule into the chunk it must beat** (so source order is preserved within one chunk) — all via the family table, never per-family CSS:
+
+- `dropdownToggleSplit` → `ui/buttons` (`.dropdown-toggle-split` padding vs `.btn`).
+- `cardHeaderTabs` → `ui/navs` (`.card-header-tabs` negative margin vs `.nav { margin-bottom: 0 }`).
+- `clsH1`–`clsH6` → `global` (`.hN` sizing loads first ⇒ `.modal-title`/`.offcanvas-title` margin resets win on the shared element). This empties `contents/heading`; the emitter now writes an **empty placeholder chunk** for any emptied family so its loader still resolves.
+- `active` / `disabled` → `global` (generic state classes). The §4.2 subject tie-break (rightmost NON-global class owns a compound) then routes `.btn.active` / `.btn.disabled` to `ui/buttons` beside `.btn` — **zero bare rules added to global**, every compound co-locates with its component. Same mechanism already handles `show`/`fade`/`collapse`/`showing`/`hiding`.
+
+These are structural (theme-independent) Bootstrap source-order facts, so they also fixed the equivalent **theme-mode** failures that G3 introduced by importing chunks alphabetically (`theme.ts`) rather than in source order.
+
+*Harness:* `verify-ve-family.mjs` is **disabled** (it re-ran whole families/all-families per call — the expensive full re-validation). Use [`capture-leaf-screenshots.mjs`](../scripts/capture-leaf-screenshots.mjs) with **`--skip-to-route=<route>`** (now required) to resume route-by-route from where you left off; pair with `--bail-on-mismatch`. From scratch, start at the first route `/contents/figures/figure-example`.
+
+*Remaining:* verify the other 26 themes in granular. The fixes are structural/theme-independent, so theme-specific churn should be minimal (darkly was clean through `ui/navs` before its sweep was cut short).
+
 ---
 
 ## 8. Open risks

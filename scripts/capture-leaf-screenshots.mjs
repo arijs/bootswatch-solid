@@ -203,6 +203,18 @@ async function main() {
 		return
 	}
 
+	// Guard against accidental expensive full re-validations: every capture/verify
+	// run must declare where it resumes from. Process routes in order from
+	// --skip-to-route forward; start a from-scratch run with the first route.
+	if (!skipToRoute) {
+		throw new Error(
+			'--skip-to-route=<route> is required (refusing a full capture/verification run).\n' +
+				'Resume where you left off, e.g. --skip-to-route=/ui/modal/default-modal\n' +
+				'Start from scratch (process every route) with the first route:\n' +
+				'  --skip-to-route=/contents/figures/figure-example',
+		)
+	}
+
 	const themeNames = parseThemeNames(themeSource)
 	let themes = filterThemes(themeNames, themeFilter)
 	let scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
