@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import micromatch from 'micromatch'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
 import {
 	BASE_URL,
@@ -220,8 +221,24 @@ async function main() {
 	let scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
 	if (skipToRoute) {
 		const normalizedSkip = skipToRoute.startsWith('/') ? skipToRoute : `/${skipToRoute}`
-		scenarios = scenarios.filter((s) => s.route >= normalizedSkip)
-		console.log(`Mode: skipping routes before ${normalizedSkip} (--skip-to-route).`)
+		// Accept an exact leaf route, OR a micromatch glob that matches ≥1 route.
+		// Resume forward from the (first, sorted) matching route.
+		let anchor = leafRoutes.includes(normalizedSkip) ? normalizedSkip : null
+		if (!anchor) {
+			const matches = leafRoutes.filter((r) => micromatch.isMatch(r, normalizedSkip)).sort()
+			anchor = matches[0] ?? null
+		}
+		if (!anchor) {
+			throw new Error(
+				`--skip-to-route=${skipToRoute} matches no route (resolved to "${normalizedSkip}").\n` +
+					'It must be an exact leaf route or a glob matching at least one route. Note:\n' +
+					'Git Bash mangles a leading "/ui/..." into a Windows path (e.g.\n' +
+					'"/C:/Program Files/Git/ui/...") — run via PowerShell or prefix MSYS_NO_PATHCONV=1.\n' +
+					`The first route (start from scratch) is ${leafRoutes[0]}.`,
+			)
+		}
+		scenarios = scenarios.filter((s) => s.route >= anchor)
+		console.log(`Mode: skipping routes before ${anchor} (--skip-to-route=${skipToRoute}).`)
 	}
 
 	// Apply max-themes limit for safety
