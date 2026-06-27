@@ -1332,6 +1332,115 @@ globalStyle(`${sketchyScope}${elSelect}${formControl}`, {
 	borderRadius: '55px 225px 15px 25px/25px 25px 35px 355px !important',
 })
 
+globalStyle(`${sketchyScope}[type=checkbox]`, {
+	position: 'relative',
+	width: '0',
+	height: '0',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	cursor: 'pointer',
+	border: 'none',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]::before`, {
+	position: 'absolute',
+	top: '-0.1em',
+	left: '0',
+	display: 'inline-block',
+	width: '15px',
+	height: '16px',
+	content: '""',
+	border: '2px solid #333',
+	borderRadius: '2px 8px 2px 4px/5px 3px 5px 3px',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]:focus::before`, {
+	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]:checked::after`, {
+	position: 'absolute',
+	top: '0',
+	left: '0.1em',
+	fontSize: '1.5rem',
+	lineHeight: '0.5',
+	color: '#333',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]:indeterminate::after`, {
+	position: 'absolute',
+	top: '0',
+	left: '0.1em',
+	fontSize: '1.5rem',
+	lineHeight: '0.5',
+	color: '#333',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]:checked::after`, {
+	content: '"x"',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]:indeterminate::after`, {
+	top: '0.1em',
+	content: '"-"',
+})
+
+globalStyle(`${sketchyScope}[type=checkbox]:disabled::before`, {
+	border: '2px solid #aaa',
+})
+
+globalStyle(`${sketchyScope}[type=radio]`, {
+	position: 'relative',
+	width: '0',
+	height: '0',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	appearance: 'none',
+	cursor: 'pointer',
+	border: 'none',
+})
+
+globalStyle(`${sketchyScope}[type=radio]::before`, {
+	position: 'absolute',
+	top: '-0.1em',
+	left: '0',
+	display: 'inline-block',
+	width: '16px',
+	height: '16px',
+	content: '""',
+	border: '2px solid #333',
+	borderRadius: '50% 45% 40% 50%/40% 50% 50% 45%',
+})
+
+globalStyle(`${sketchyScope}[type=radio]:focus::before`, {
+	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+})
+
+globalStyle(`${sketchyScope}[type=radio]:checked::before`, {
+	backgroundColor: '#333',
+})
+
+globalStyle(`${sketchyScope}[type=radio]:disabled::before`, {
+	border: '2px solid #aaa',
+})
+
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=radio]::before`, {
+	borderColor: '#fff',
+})
+
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=radio]:checked::before`, {
+	backgroundColor: '#fff',
+})
+
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=checkbox]::before`, {
+	borderColor: '#fff',
+})
+
+globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}[type=checkbox]:checked::before`, {
+	backgroundColor: '#fff',
+})
+
 globalStyle(`${sketchyScope}[data-bs-theme=dark] ${sketchyScope}${formRange}::-webkit-slider-thumb`, {
 	backgroundColor: '#fff',
 })

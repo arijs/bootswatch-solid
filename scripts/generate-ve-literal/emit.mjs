@@ -641,6 +641,15 @@ function partSubjectFamily(part, scopeVarName, table) {
 		}
 		return fam
 	}
+	// A bare `[type=checkbox]`/`[type=radio]` subject (no class contract) is a form
+	// control. Themes that hand-draw checkboxes (e.g. sketchy) put their custom
+	// `[type=checkbox]{appearance:none;…}` / `::before` rules here; at (0,2,0) they tie
+	// `.form-check-input` and must beat it by source order. In the monolith the theme
+	// override follows Bootstrap's `.form-check-input`, but in granular the always-first
+	// `global` chunk loses to the later-loaded `forms` chunk. Co-locate these into `forms`
+	// so the tie resolves by source order as in the monolith. (`.btn-check[type=checkbox]`
+	// carries the btnCheck class and is handled above, so it's unaffected.)
+	if (/\[type=(checkbox|radio)\]/.test(subject)) return 'forms'
 	// No component class subject (pure element/reboot/root-var, or only global
 	// classes) → always-loaded baseline.
 	return globalFallback ?? GLOBAL_FAMILY
