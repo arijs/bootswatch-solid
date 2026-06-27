@@ -10208,7 +10208,7 @@ globalStyle(`${ceruleanScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${ceruleanScope}${navbarText} ${ceruleanScope}${link}`, {
+globalStyle(`${ceruleanScope}${navbarText} :where(${ceruleanScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

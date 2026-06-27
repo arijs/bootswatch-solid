@@ -135,7 +135,7 @@ globalStyle(`${spacelabScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${spacelabScope}${navbarText} ${spacelabScope}${link}`, {
+globalStyle(`${spacelabScope}${navbarText} :where(${spacelabScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

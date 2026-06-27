@@ -10220,7 +10220,7 @@ globalStyle(`${mintyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${mintyScope}${navbarText} ${mintyScope}${link}`, {
+globalStyle(`${mintyScope}${navbarText} :where(${mintyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24751,7 +24751,7 @@ globalStyle(`${mintyScope}${dropdownMenu}`, {
 	fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 })
 
-globalStyle(`${mintyScope}${breadcrumb} ${mintyScope}${link}`, {
+globalStyle(`${mintyScope}${breadcrumb} :where(${mintyScope}${link})`, {
 	color: 'rgba(255, 255, 255, 0.55)',
 })
 
@@ -24760,7 +24760,7 @@ globalStyle(`${mintyScope}${breadcrumb} ${mintyScope}${link}:hover`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${mintyScope}${alert} ${mintyScope}${link}`, {
+globalStyle(`${mintyScope}${alert} :where(${mintyScope}${link})`, {
 	color: '#fff',
 })
 

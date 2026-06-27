@@ -653,7 +653,7 @@ globalStyle(`${lumenScope}${navbarExpand} ${lumenScope}${navbarNav} ${lumenScope
 	position: 'absolute',
 })
 
-globalStyle(`${lumenScope}${nav} ${lumenScope}${open} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${nav} ${lumenScope}${open} > :where(${lumenScope}${link})`, {
 	borderColor: 'transparent',
 })
 

@@ -140,7 +140,7 @@ globalStyle(`${materiaScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${materiaScope}${navbarText} ${materiaScope}${link}`, {
+globalStyle(`${materiaScope}${navbarText} :where(${materiaScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

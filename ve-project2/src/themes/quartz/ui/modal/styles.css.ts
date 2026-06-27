@@ -566,6 +566,6 @@ globalStyle(`${quartzScope}${modalContent}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${modalContent} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${modalContent} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })

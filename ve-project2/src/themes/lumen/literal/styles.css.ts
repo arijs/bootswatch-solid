@@ -10212,7 +10212,7 @@ globalStyle(`${lumenScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${lumenScope}${navbarText} ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${navbarText} :where(${lumenScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24984,7 +24984,7 @@ globalStyle(`${lumenScope}${formControl}`, {
 	boxShadow: 'inset 0 2px 0 rgba(0, 0, 0, 0.075)',
 })
 
-globalStyle(`${lumenScope}${nav} ${lumenScope}${open} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${nav} ${lumenScope}${open} > :where(${lumenScope}${link})`, {
 	borderColor: 'transparent',
 })
 
@@ -25140,7 +25140,7 @@ globalStyle(`${lumenScope}${pagination} > ${lumenScope}${disabled} > ${lumenScop
 	borderWidth: '0 1px 4px 1px',
 })
 
-globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > :where(${lumenScope}${link})`, {
 	borderRightWidth: '2px',
 	borderLeftWidth: '2px',
 })
@@ -25170,7 +25170,7 @@ globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${elSpa
 	borderLeftWidth: '2px',
 })
 
-globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > :where(${lumenScope}${link})`, {
 	borderRightWidth: '2px',
 	borderLeftWidth: '2px',
 })
@@ -25269,7 +25269,7 @@ globalStyle(`${lumenScope}${alertSecondary}`, {
 	color: '#222',
 })
 
-globalStyle(`${lumenScope}${alertSecondary} ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${alertSecondary} :where(${lumenScope}${link})`, {
 	color: '#222',
 })
 
@@ -25281,7 +25281,7 @@ globalStyle(`${lumenScope}${alertLight}`, {
 	color: '#222',
 })
 
-globalStyle(`${lumenScope}${alertLight} ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${alertLight} :where(${lumenScope}${link})`, {
 	color: '#222',
 })
 

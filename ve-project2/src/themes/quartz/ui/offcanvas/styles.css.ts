@@ -1231,6 +1231,6 @@ globalStyle(`${quartzScope}${offcanvas}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${offcanvas} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${offcanvas} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })

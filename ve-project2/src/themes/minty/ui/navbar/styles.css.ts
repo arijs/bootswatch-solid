@@ -134,7 +134,7 @@ globalStyle(`${mintyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${mintyScope}${navbarText} ${mintyScope}${link}`, {
+globalStyle(`${mintyScope}${navbarText} :where(${mintyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

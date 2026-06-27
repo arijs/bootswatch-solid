@@ -10211,7 +10211,7 @@ globalStyle(`${sandstoneScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${sandstoneScope}${navbarText} ${sandstoneScope}${link}`, {
+globalStyle(`${sandstoneScope}${navbarText} :where(${sandstoneScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24864,7 +24864,7 @@ globalStyle(`${sandstoneScope}${alert}`, {
 	color: '#fff',
 })
 
-globalStyle(`${sandstoneScope}${alert} ${sandstoneScope}${link}`, {
+globalStyle(`${sandstoneScope}${alert} :where(${sandstoneScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

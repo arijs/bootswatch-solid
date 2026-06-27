@@ -136,7 +136,7 @@ globalStyle(`${sandstoneScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${sandstoneScope}${navbarText} ${sandstoneScope}${link}`, {
+globalStyle(`${sandstoneScope}${navbarText} :where(${sandstoneScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

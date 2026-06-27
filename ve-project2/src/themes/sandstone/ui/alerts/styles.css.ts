@@ -170,7 +170,7 @@ globalStyle(`${sandstoneScope}${alert}`, {
 	color: '#fff',
 })
 
-globalStyle(`${sandstoneScope}${alert} ${sandstoneScope}${link}`, {
+globalStyle(`${sandstoneScope}${alert} :where(${sandstoneScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

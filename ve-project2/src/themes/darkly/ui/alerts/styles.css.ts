@@ -169,7 +169,7 @@ globalStyle(`${darklyScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${darklyScope}${alert} ${darklyScope}${link}`, {
+globalStyle(`${darklyScope}${alert} :where(${darklyScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

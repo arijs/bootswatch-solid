@@ -134,7 +134,7 @@ globalStyle(`${darklyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${darklyScope}${navbarText} ${darklyScope}${link}`, {
+globalStyle(`${darklyScope}${navbarText} :where(${darklyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

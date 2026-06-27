@@ -10208,7 +10208,7 @@ globalStyle(`${unitedScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${unitedScope}${navbarText} ${unitedScope}${link}`, {
+globalStyle(`${unitedScope}${navbarText} :where(${unitedScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

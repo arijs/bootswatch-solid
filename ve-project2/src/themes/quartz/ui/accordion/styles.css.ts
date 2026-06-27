@@ -217,6 +217,6 @@ globalStyle(`${quartzScope}${accordionItem}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${accordionItem} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${accordionItem} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })

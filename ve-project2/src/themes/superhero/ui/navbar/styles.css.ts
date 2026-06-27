@@ -134,7 +134,7 @@ globalStyle(`${superheroScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${superheroScope}${navbarText} ${superheroScope}${link}`, {
+globalStyle(`${superheroScope}${navbarText} :where(${superheroScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

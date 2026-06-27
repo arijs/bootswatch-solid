@@ -10220,7 +10220,7 @@ globalStyle(`${journalScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${journalScope}${navbarText} ${journalScope}${link}`, {
+globalStyle(`${journalScope}${navbarText} :where(${journalScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

@@ -116,6 +116,6 @@ globalStyle(`${quartzScope}${toast}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${toast} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${toast} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })

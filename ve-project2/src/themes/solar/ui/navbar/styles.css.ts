@@ -134,7 +134,7 @@ globalStyle(`${solarScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${solarScope}${navbarText} ${solarScope}${link}`, {
+globalStyle(`${solarScope}${navbarText} :where(${solarScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

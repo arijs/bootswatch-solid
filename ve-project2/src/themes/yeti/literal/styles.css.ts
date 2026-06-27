@@ -10213,7 +10213,7 @@ globalStyle(`${yetiScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${yetiScope}${navbarText} ${yetiScope}${link}`, {
+globalStyle(`${yetiScope}${navbarText} :where(${yetiScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

@@ -10245,7 +10245,7 @@ globalStyle(`${morphScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${morphScope}${navbarText} ${morphScope}${link}`, {
+globalStyle(`${morphScope}${navbarText} :where(${morphScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

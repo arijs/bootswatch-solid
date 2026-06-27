@@ -10238,7 +10238,7 @@ globalStyle(`${zephyrScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${zephyrScope}${navbarText} ${zephyrScope}${link}`, {
+globalStyle(`${zephyrScope}${navbarText} :where(${zephyrScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

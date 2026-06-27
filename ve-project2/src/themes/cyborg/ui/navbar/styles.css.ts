@@ -134,7 +134,7 @@ globalStyle(`${cyborgScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${cyborgScope}${navbarText} ${cyborgScope}${link}`, {
+globalStyle(`${cyborgScope}${navbarText} :where(${cyborgScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

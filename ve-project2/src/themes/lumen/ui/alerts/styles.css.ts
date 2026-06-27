@@ -220,7 +220,7 @@ globalStyle(`${lumenScope}${alertSecondary}`, {
 	color: '#222',
 })
 
-globalStyle(`${lumenScope}${alertSecondary} ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${alertSecondary} :where(${lumenScope}${link})`, {
 	color: '#222',
 })
 
@@ -232,7 +232,7 @@ globalStyle(`${lumenScope}${alertLight}`, {
 	color: '#222',
 })
 
-globalStyle(`${lumenScope}${alertLight} ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${alertLight} :where(${lumenScope}${link})`, {
 	color: '#222',
 })
 

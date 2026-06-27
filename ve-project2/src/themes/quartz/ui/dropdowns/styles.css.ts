@@ -663,7 +663,7 @@ globalStyle(`${quartzScope}${dropdownMenu}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${dropdownMenu} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${dropdownMenu} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 

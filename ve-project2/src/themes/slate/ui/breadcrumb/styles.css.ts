@@ -63,7 +63,7 @@ globalStyle(`${slateScope}${breadcrumb}`, {
 	filter: 'none',
 })
 
-globalStyle(`${slateScope}${breadcrumb} ${slateScope}${link}`, {
+globalStyle(`${slateScope}${breadcrumb} :where(${slateScope}${link})`, {
 	color: '#fff',
 })
 

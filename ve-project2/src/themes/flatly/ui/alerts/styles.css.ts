@@ -169,7 +169,7 @@ globalStyle(`${flatlyScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${flatlyScope}${alert} ${flatlyScope}${link}`, {
+globalStyle(`${flatlyScope}${alert} :where(${flatlyScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })
@@ -215,7 +215,7 @@ globalStyle(`${flatlyScope}${alertLight}`, {
 	color: '#212529',
 })
 
-globalStyle(`${flatlyScope}${alertLight} ${flatlyScope}${link}`, {
+globalStyle(`${flatlyScope}${alertLight} :where(${flatlyScope}${link})`, {
 	color: '#212529',
 })
 

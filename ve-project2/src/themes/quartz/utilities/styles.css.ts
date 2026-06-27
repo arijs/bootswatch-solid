@@ -14492,7 +14492,7 @@ globalStyle(`${quartzScope}${card}${borderPrimary}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderPrimary} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderPrimary} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -14505,7 +14505,7 @@ globalStyle(`${quartzScope}${card}${borderSecondary}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderSecondary} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderSecondary} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -14518,7 +14518,7 @@ globalStyle(`${quartzScope}${card}${borderSuccess}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderSuccess} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderSuccess} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -14531,7 +14531,7 @@ globalStyle(`${quartzScope}${card}${borderInfo}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderInfo} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderInfo} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -14544,7 +14544,7 @@ globalStyle(`${quartzScope}${card}${borderWarning}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderWarning} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderWarning} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -14557,7 +14557,7 @@ globalStyle(`${quartzScope}${card}${borderDanger}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderDanger} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderDanger} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -14570,6 +14570,6 @@ globalStyle(`${quartzScope}${card}${borderLight}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderLight} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderLight} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })

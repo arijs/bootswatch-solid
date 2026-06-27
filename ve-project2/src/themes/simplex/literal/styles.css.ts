@@ -10210,7 +10210,7 @@ globalStyle(`${simplexScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${simplexScope}${navbarText} ${simplexScope}${link}`, {
+globalStyle(`${simplexScope}${navbarText} :where(${simplexScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

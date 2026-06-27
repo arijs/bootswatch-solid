@@ -169,7 +169,7 @@ globalStyle(`${superheroScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${superheroScope}${alert} ${superheroScope}${link}`, {
+globalStyle(`${superheroScope}${alert} :where(${superheroScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

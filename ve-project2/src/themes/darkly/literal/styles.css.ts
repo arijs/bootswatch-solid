@@ -10210,7 +10210,7 @@ globalStyle(`${darklyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${darklyScope}${navbarText} ${darklyScope}${link}`, {
+globalStyle(`${darklyScope}${navbarText} :where(${darklyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24679,7 +24679,7 @@ globalStyle(`${darklyScope}${formFloating} > ${darklyScope}${formControl}:not(:p
 	color: '#888',
 })
 
-globalStyle(`${darklyScope}${breadcrumb} ${darklyScope}${link}`, {
+globalStyle(`${darklyScope}${breadcrumb} :where(${darklyScope}${link})`, {
 	color: '#fff',
 })
 
@@ -24692,7 +24692,7 @@ globalStyle(`${darklyScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${darklyScope}${alert} ${darklyScope}${link}`, {
+globalStyle(`${darklyScope}${alert} :where(${darklyScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

@@ -134,7 +134,7 @@ globalStyle(`${bootstrapScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${bootstrapScope}${navbarText} ${bootstrapScope}${link}`, {
+globalStyle(`${bootstrapScope}${navbarText} :where(${bootstrapScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

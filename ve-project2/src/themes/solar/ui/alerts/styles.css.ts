@@ -170,7 +170,7 @@ globalStyle(`${solarScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${solarScope}${alert} ${solarScope}${link}`, {
+globalStyle(`${solarScope}${alert} :where(${solarScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

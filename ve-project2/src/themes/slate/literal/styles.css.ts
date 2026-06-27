@@ -10214,7 +10214,7 @@ globalStyle(`${slateScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${slateScope}${navbarText} ${slateScope}${link}`, {
+globalStyle(`${slateScope}${navbarText} :where(${slateScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -25289,7 +25289,7 @@ globalStyle(`${slateScope}${breadcrumb}`, {
 	filter: 'none',
 })
 
-globalStyle(`${slateScope}${breadcrumb} ${slateScope}${link}`, {
+globalStyle(`${slateScope}${breadcrumb} :where(${slateScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25302,7 +25302,7 @@ globalStyle(`${slateScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${slateScope}${alert} ${slateScope}${link}`, {
+globalStyle(`${slateScope}${alert} :where(${slateScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

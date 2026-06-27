@@ -134,7 +134,7 @@ globalStyle(`${briteScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${briteScope}${navbarText} ${briteScope}${link}`, {
+globalStyle(`${briteScope}${navbarText} :where(${briteScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

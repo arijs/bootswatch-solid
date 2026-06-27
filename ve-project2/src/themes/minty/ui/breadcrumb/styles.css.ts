@@ -54,7 +54,7 @@ globalStyle(`${mintyScope}${breadcrumbItem}${active}`, {
 	color: varBsBreadcrumbItemActiveColor,
 })
 
-globalStyle(`${mintyScope}${breadcrumb} ${mintyScope}${link}`, {
+globalStyle(`${mintyScope}${breadcrumb} :where(${mintyScope}${link})`, {
 	color: 'rgba(255, 255, 255, 0.55)',
 })
 

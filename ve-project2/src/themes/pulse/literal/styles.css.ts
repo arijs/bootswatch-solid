@@ -10054,7 +10054,7 @@ globalStyle(`${pulseScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${pulseScope}${navbarText} ${pulseScope}${link}`, {
+globalStyle(`${pulseScope}${navbarText} :where(${pulseScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

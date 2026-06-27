@@ -170,7 +170,7 @@ globalStyle(`${slateScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${slateScope}${alert} ${slateScope}${link}`, {
+globalStyle(`${slateScope}${alert} :where(${slateScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

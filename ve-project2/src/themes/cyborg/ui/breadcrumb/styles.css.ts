@@ -55,6 +55,6 @@ globalStyle(`${cyborgScope}${breadcrumbItem}${active}`, {
 	color: varBsBreadcrumbItemActiveColor,
 })
 
-globalStyle(`${cyborgScope}${breadcrumb} ${cyborgScope}${link}`, {
+globalStyle(`${cyborgScope}${breadcrumb} :where(${cyborgScope}${link})`, {
 	color: '#fff',
 })

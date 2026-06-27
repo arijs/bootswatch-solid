@@ -641,6 +641,6 @@ globalStyle(`${quartzScope}${listGroup}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${listGroup} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${listGroup} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })

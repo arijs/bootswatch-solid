@@ -10215,7 +10215,7 @@ globalStyle(`${superheroScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${superheroScope}${navbarText} ${superheroScope}${link}`, {
+globalStyle(`${superheroScope}${navbarText} :where(${superheroScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24721,7 +24721,7 @@ globalStyle(`${superheroScope}${table} ${superheroScope}${link}:not(${btn})`, {
 	textDecoration: 'underline',
 })
 
-globalStyle(`${superheroScope}${table} ${superheroScope}${dropdownMenu} ${superheroScope}${link}`, {
+globalStyle(`${superheroScope}${table} ${superheroScope}${dropdownMenu} :where(${superheroScope}${link})`, {
 	textDecoration: 'none',
 })
 
@@ -24800,7 +24800,7 @@ globalStyle(`${superheroScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${superheroScope}${alert} ${superheroScope}${link}`, {
+globalStyle(`${superheroScope}${alert} :where(${superheroScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

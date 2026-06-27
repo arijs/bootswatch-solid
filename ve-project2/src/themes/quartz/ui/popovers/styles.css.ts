@@ -370,7 +370,7 @@ globalStyle(`${quartzScope}${popover}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${popover} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${popover} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 

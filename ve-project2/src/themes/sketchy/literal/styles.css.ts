@@ -10234,7 +10234,7 @@ globalStyle(`${sketchyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${sketchyScope}${navbarText} ${sketchyScope}${link}`, {
+globalStyle(`${sketchyScope}${navbarText} :where(${sketchyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

@@ -10226,7 +10226,7 @@ globalStyle(`${cyborgScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${cyborgScope}${navbarText} ${cyborgScope}${link}`, {
+globalStyle(`${cyborgScope}${navbarText} :where(${cyborgScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24792,7 +24792,7 @@ globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkActive}`
 	backgroundColor: '#2a9fd6',
 })
 
-globalStyle(`${cyborgScope}${breadcrumb} ${cyborgScope}${link}`, {
+globalStyle(`${cyborgScope}${breadcrumb} :where(${cyborgScope}${link})`, {
 	color: '#fff',
 })
 
@@ -24805,7 +24805,7 @@ globalStyle(`${cyborgScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${cyborgScope}${alert} ${cyborgScope}${link}`, {
+globalStyle(`${cyborgScope}${alert} :where(${cyborgScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

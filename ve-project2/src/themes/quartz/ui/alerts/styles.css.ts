@@ -176,7 +176,7 @@ globalStyle(`${quartzScope}${alert}`, {
 	color: '#fff',
 })
 
-globalStyle(`${quartzScope}${alert} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${alert} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 

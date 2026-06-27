@@ -55,6 +55,6 @@ globalStyle(`${darklyScope}${breadcrumbItem}${active}`, {
 	color: varBsBreadcrumbItemActiveColor,
 })
 
-globalStyle(`${darklyScope}${breadcrumb} ${darklyScope}${link}`, {
+globalStyle(`${darklyScope}${breadcrumb} :where(${darklyScope}${link})`, {
 	color: '#fff',
 })

@@ -134,7 +134,7 @@ globalStyle(`${vaporScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${vaporScope}${navbarText} ${vaporScope}${link}`, {
+globalStyle(`${vaporScope}${navbarText} :where(${vaporScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -465,7 +465,7 @@ globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark]`, {
 	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark] ${vaporScope}${link}`, {
+globalStyle(`${vaporScope}${navbar}[data-bs-theme=dark] :where(${vaporScope}${link})`, {
 	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
@@ -477,7 +477,7 @@ globalStyle(`${vaporScope}${navbar}[data-bs-theme=light]`, {
 	textShadow: '0 0 1px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${vaporScope}${navbar}[data-bs-theme=light] ${vaporScope}${link}`, {
+globalStyle(`${vaporScope}${navbar}[data-bs-theme=light] :where(${vaporScope}${link})`, {
 	textShadow: '0 0 1px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.2)',
 })
 

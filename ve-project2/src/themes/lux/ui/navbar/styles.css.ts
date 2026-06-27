@@ -137,7 +137,7 @@ globalStyle(`${luxScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${luxScope}${navbarText} ${luxScope}${link}`, {
+globalStyle(`${luxScope}${navbarText} :where(${luxScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

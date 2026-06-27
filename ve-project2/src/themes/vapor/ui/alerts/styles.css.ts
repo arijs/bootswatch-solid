@@ -240,7 +240,7 @@ globalStyle(`${vaporScope}${alert} ${vaporScope}${alertLink}`, {
 	color: '#fff',
 })
 
-globalStyle(`${vaporScope}${alert} ${vaporScope}${link}`, {
+globalStyle(`${vaporScope}${alert} :where(${vaporScope}${link})`, {
 	color: '#fff',
 })
 

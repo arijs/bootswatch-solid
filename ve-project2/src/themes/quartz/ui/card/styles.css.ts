@@ -324,7 +324,7 @@ globalStyle(`${quartzScope}${card}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 

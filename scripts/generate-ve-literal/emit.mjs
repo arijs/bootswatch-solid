@@ -134,6 +134,7 @@ function translateCompoundSegment(
 	let segContent = ''
 	let hasNamedParts = false
 	let isElementContract = false
+	let isAnchorElement = false
 
 	// Leading element tag (e.g. `a`, `h1`, `input`)
 	if (/[a-zA-Z_]/.test(s[0])) {
@@ -144,6 +145,7 @@ function translateCompoundSegment(
 			segContent += ref(contract)
 			hasNamedParts = true
 			isElementContract = true
+			if (tag === 'a') isAnchorElement = true
 		} else if (registry.isDivergenceTag(tag)) {
 			// `body` in descendant position (e.g. Quartz's `[data-bs-theme=dark] body`)
 			// Route to bodyText — same contract used by the scope.css.ts bodyText rule.
@@ -176,8 +178,15 @@ function translateCompoundSegment(
 	// Bare element segments of a PURE-element selector (e.g. `a`, `h1`, `table th`, `ol ol`)
 	// use :where() to keep element-level (low) specificity, so class-bearing rules win as in
 	// Bootstrap. A trailing element in a class-bearing selector (e.g. `.table-dark th`) keeps
-	// its specificity so it can beat the `.table > … > *` cell rule.
-	if (isElementContract && !remaining.trim() && (isPureElementSelector || forceWhereElement)) {
+	// its specificity so it can beat the `.table > … > *` cell rule — EXCEPT a trailing `a`:
+	// anchor color is reboot-level and must stay overridable by component cascades (e.g. quartz's
+	// `.list-group a{color:#fff}` must not out-specify `.list-group-item-action:hover`), so a
+	// trailing anchor is always :where()-wrapped even in a class-bearing selector.
+	if (
+		isElementContract &&
+		!remaining.trim() &&
+		(isPureElementSelector || forceWhereElement || isAnchorElement)
+	) {
 		return `:where(${ref(scopeVarName)}${segContent})`
 	}
 	return ref(scopeVarName) + segContent

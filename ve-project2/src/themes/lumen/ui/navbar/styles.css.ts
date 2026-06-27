@@ -134,7 +134,7 @@ globalStyle(`${lumenScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${lumenScope}${navbarText} ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${navbarText} :where(${lumenScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

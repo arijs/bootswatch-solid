@@ -10317,7 +10317,7 @@ globalStyle(`${literaScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${literaScope}${navbarText} ${literaScope}${link}`, {
+globalStyle(`${literaScope}${navbarText} :where(${literaScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24838,7 +24838,7 @@ globalStyle(`${literaScope}${alert} ${literaScope}${paragraph}`, {
 	fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 })
 
-globalStyle(`${literaScope}${alert} ${literaScope}${link}`, {
+globalStyle(`${literaScope}${alert} :where(${literaScope}${link})`, {
 	fontWeight: '400',
 	color: '#fff',
 	textDecoration: 'underline',
@@ -24886,7 +24886,7 @@ globalStyle(`${literaScope}${alertLight}`, {
 	color: '#343a40',
 })
 
-globalStyle(`${literaScope}${alertLight} ${literaScope}${link}`, {
+globalStyle(`${literaScope}${alertLight} :where(${literaScope}${link})`, {
 	color: '#343a40',
 })
 

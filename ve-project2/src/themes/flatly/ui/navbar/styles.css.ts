@@ -134,7 +134,7 @@ globalStyle(`${flatlyScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${flatlyScope}${navbarText} ${flatlyScope}${link}`, {
+globalStyle(`${flatlyScope}${navbarText} :where(${flatlyScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

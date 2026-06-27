@@ -249,7 +249,7 @@ globalStyle(`${lumenScope}${pagination} > ${lumenScope}${disabled} > ${lumenScop
 	borderWidth: '0 1px 4px 1px',
 })
 
-globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > :where(${lumenScope}${link})`, {
 	borderRightWidth: '2px',
 	borderLeftWidth: '2px',
 })
@@ -279,7 +279,7 @@ globalStyle(`${lumenScope}${pager} > ${lumenScope}${elLi} > ${lumenScope}${elSpa
 	borderLeftWidth: '2px',
 })
 
-globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > ${lumenScope}${link}`, {
+globalStyle(`${lumenScope}${pager} > ${lumenScope}${disabled} > :where(${lumenScope}${link})`, {
 	borderRightWidth: '2px',
 	borderLeftWidth: '2px',
 })

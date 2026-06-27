@@ -10210,7 +10210,7 @@ globalStyle(`${quartzScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${quartzScope}${navbarText} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${navbarText} :where(${quartzScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24781,7 +24781,7 @@ globalStyle(`${quartzScope}${dropdownMenu}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${dropdownMenu} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${dropdownMenu} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -24841,11 +24841,11 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzSc
 	transform: 'scale(1.1)',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -24903,7 +24903,7 @@ globalStyle(`${quartzScope}${alert}`, {
 	color: '#fff',
 })
 
-globalStyle(`${quartzScope}${alert} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${alert} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25014,7 +25014,7 @@ globalStyle(`${quartzScope}${listGroup}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${listGroup} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${listGroup} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25034,7 +25034,7 @@ globalStyle(`${quartzScope}${card}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25087,7 +25087,7 @@ globalStyle(`${quartzScope}${card}${borderPrimary}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderPrimary} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderPrimary} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25109,7 +25109,7 @@ globalStyle(`${quartzScope}${card}${borderSecondary}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderSecondary} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderSecondary} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25131,7 +25131,7 @@ globalStyle(`${quartzScope}${card}${borderSuccess}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderSuccess} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderSuccess} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25153,7 +25153,7 @@ globalStyle(`${quartzScope}${card}${borderInfo}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderInfo} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderInfo} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25175,7 +25175,7 @@ globalStyle(`${quartzScope}${card}${borderWarning}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderWarning} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderWarning} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25197,7 +25197,7 @@ globalStyle(`${quartzScope}${card}${borderDanger}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderDanger} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderDanger} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25219,7 +25219,7 @@ globalStyle(`${quartzScope}${card}${borderLight}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderLight} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderLight} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25242,7 +25242,7 @@ globalStyle(`${quartzScope}${card}${borderDark}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${card}${borderDark} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${card}${borderDark} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25268,7 +25268,7 @@ globalStyle(`${quartzScope}${accordionItem}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${accordionItem} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${accordionItem} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25285,7 +25285,7 @@ globalStyle(`${quartzScope}${toast}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${toast} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${toast} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25302,7 +25302,7 @@ globalStyle(`${quartzScope}${popover}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${popover} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${popover} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25328,7 +25328,7 @@ globalStyle(`${quartzScope}${modalContent}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${modalContent} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${modalContent} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -25345,7 +25345,7 @@ globalStyle(`${quartzScope}${offcanvas}`, {
 	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${offcanvas} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${offcanvas} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 

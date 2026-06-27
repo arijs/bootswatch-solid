@@ -10053,7 +10053,7 @@ globalStyle(`${cosmoScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${cosmoScope}${navbarText} ${cosmoScope}${link}`, {
+globalStyle(`${cosmoScope}${navbarText} :where(${cosmoScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

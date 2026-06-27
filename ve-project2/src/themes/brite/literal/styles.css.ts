@@ -10210,7 +10210,7 @@ globalStyle(`${briteScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${briteScope}${navbarText} ${briteScope}${link}`, {
+globalStyle(`${briteScope}${navbarText} :where(${briteScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -25076,7 +25076,7 @@ globalStyle(`${briteScope}${breadcrumb}`, {
 	border: '2px solid #000',
 })
 
-globalStyle(`${briteScope}${breadcrumb} ${briteScope}${link}`, {
+globalStyle(`${briteScope}${breadcrumb} :where(${briteScope}${link})`, {
 	color: '#000',
 })
 
@@ -25215,7 +25215,7 @@ globalStyle(`${briteScope}[data-bs-theme=dark] ${briteScope}${nav} ${briteScope}
 	},
 })
 
-globalStyle(`${briteScope}[data-bs-theme=dark] ${briteScope}${breadcrumb} ${briteScope}${link}`, {
+globalStyle(`${briteScope}[data-bs-theme=dark] ${briteScope}${breadcrumb} :where(${briteScope}${link})`, {
 	color: '#fff',
 })
 

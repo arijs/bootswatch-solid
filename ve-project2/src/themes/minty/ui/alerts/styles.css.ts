@@ -165,7 +165,7 @@ globalStyle(`${mintyScope}${alertDark}`, {
 	},
 })
 
-globalStyle(`${mintyScope}${alert} ${mintyScope}${link}`, {
+globalStyle(`${mintyScope}${alert} :where(${mintyScope}${link})`, {
 	color: '#fff',
 })
 

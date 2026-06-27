@@ -378,11 +378,11 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzSc
 	transform: 'scale(1.1)',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 

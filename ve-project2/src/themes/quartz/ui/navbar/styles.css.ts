@@ -134,7 +134,7 @@ globalStyle(`${quartzScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${quartzScope}${navbarText} ${quartzScope}${link}`, {
+globalStyle(`${quartzScope}${navbarText} :where(${quartzScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 

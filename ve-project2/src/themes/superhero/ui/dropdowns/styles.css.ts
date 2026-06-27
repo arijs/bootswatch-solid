@@ -659,6 +659,6 @@ globalStyle(`${superheroScope}${dropdownHeader}`, {
 	fontSize: '0.875rem',
 })
 
-globalStyle(`${superheroScope}${table} ${superheroScope}${dropdownMenu} ${superheroScope}${link}`, {
+globalStyle(`${superheroScope}${table} ${superheroScope}${dropdownMenu} :where(${superheroScope}${link})`, {
 	textDecoration: 'none',
 })

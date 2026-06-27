@@ -10211,7 +10211,7 @@ globalStyle(`${solarScope}${navbarText}`, {
 	color: varBsNavbarColor,
 })
 
-globalStyle(`${solarScope}${navbarText} ${solarScope}${link}`, {
+globalStyle(`${solarScope}${navbarText} :where(${solarScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -24693,7 +24693,7 @@ globalStyle(`${solarScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${solarScope}${alert} ${solarScope}${link}`, {
+globalStyle(`${solarScope}${alert} :where(${solarScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })

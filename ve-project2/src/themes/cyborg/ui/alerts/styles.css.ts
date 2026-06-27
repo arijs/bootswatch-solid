@@ -169,7 +169,7 @@ globalStyle(`${cyborgScope}${alert}`, {
 	border: 'none',
 })
 
-globalStyle(`${cyborgScope}${alert} ${cyborgScope}${link}`, {
+globalStyle(`${cyborgScope}${alert} :where(${cyborgScope}${link})`, {
 	color: '#fff',
 	textDecoration: 'underline',
 })
