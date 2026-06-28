@@ -1,6 +1,6 @@
 # VE3 Granular Family Split — Implementation Plan
 
-**Status:** Proposed. Next milestone after the literal conversion (T1–T10) reached zero across all 27 themes.
+**Status:** ✅ Complete. G1–G5 all landed; all 27 themes verify to zero in `--style-loader=granular`. Built on the literal conversion (T1–T10).
 **Audience:** The engineer/agent implementing the per-family split end-to-end.
 **Builds on:** [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md) — the literal monoliths this plan partitions (see its §12 "Next milestone" note).
 
@@ -144,11 +144,12 @@ The first run surfaced gaps in **8 families**; all were fixed in **the table or 
 
 Census stays clean (**2069 symbols, 0 unmapped/invalid**, 115 overrides). Because the table changed, the chunks were **re-emitted** (`--all-themes --families`) and re-validated: all 27 themes **rule-equivalent to the monolith, 0 import problems** ([`validate-family-chunks.mjs`](../scripts/generate-ve-literal/validate-family-chunks.mjs)). The 32-family set is unchanged, so loader regeneration (G3) is not needed — only symbol→chunk membership shifted (`global` 131→146; `contents/basic`/`contents/heading`/`ui/navs`/`ui/navbar` shrank as their reboots/shared classes moved to `global`). Biome clean.
 
-**G5 — Verify to zero.** `--style-loader=granular`, all 27 themes; fixes go to the table or the closure declarations, **never per-family CSS**. (Mirrors T8/T9.)
+**✅ G5 — Verify to zero.** `--style-loader=granular`, all 27 themes; fixes go to the table or the closure declarations / emitter selector logic, **never per-family CSS**. (Mirrors T8/T9.)
 *Gate:* all 27 themes, all families, 0 over `0.001` in granular mode.
 
-**In progress.** **Bootstrap: all 31 families verify to zero in granular mode** (0 over 0.001). The §4.1 cross-family cascade risk is real and was the bulk of G5: split into separately-loaded chunks, two equal-specificity rules resolve by (nondeterministic) load order instead of source order. **`@layer` (the planned primary defense) was attempted and abandoned** — wrapping chunk rules while `scope.css`'s `bodyText`/`bodyFrame` stayed unlayered let those baseline rules beat every layered component (risk §8.3 materialised broadly). Instead each conflict is resolved the §4.1 *case-by-case* way, by **co-locating the overriding rule into the chunk it must beat** (so source order is preserved within one chunk) — all via the family table, never per-family CSS:
+**Done. All 27 themes verify to zero in granular mode (0 over 0.001).** The §4.1 cross-family cascade risk was the bulk of G5: split into separately-loaded chunks, two equal-specificity rules resolve by (nondeterministic) load order instead of source order. **`@layer` (the planned primary defense) was attempted and abandoned** — wrapping chunk rules while `scope.css`'s `bodyText`/`bodyFrame` stayed unlayered let those baseline rules beat every layered component (risk §8.3 materialised broadly). Instead each conflict is resolved the §4.1 *case-by-case* way, by **co-locating the overriding rule into the chunk it must beat** (source order preserved within one chunk) — all via the family table or the emitter's subject-family logic, never per-family CSS.
 
+Bootstrap-era co-locations (early G5):
 - `dropdownToggleSplit` → `ui/buttons` (`.dropdown-toggle-split` padding vs `.btn`).
 - `cardHeaderTabs` → `ui/navs` (`.card-header-tabs` negative margin vs `.nav { margin-bottom: 0 }`).
 - `clsH1`–`clsH6` → `global` (`.hN` sizing loads first ⇒ `.modal-title`/`.offcanvas-title` margin resets win on the shared element). This empties `contents/heading`; the emitter now writes an **empty placeholder chunk** for any emptied family so its loader still resolves.
@@ -156,9 +157,15 @@ Census stays clean (**2069 symbols, 0 unmapped/invalid**, 115 overrides). Becaus
 
 These are structural (theme-independent) Bootstrap source-order facts, so they also fixed the equivalent **theme-mode** failures that G3 introduced by importing chunks alphabetically (`theme.ts`) rather than in source order.
 
-*Harness:* `verify-ve-family.mjs` is **disabled** (it re-ran whole families/all-families per call — the expensive full re-validation). Use [`capture-leaf-screenshots.mjs`](../scripts/capture-leaf-screenshots.mjs) with **`--skip-to-route=<route>`** (now required) to resume route-by-route from where you left off; pair with `--bail-on-mismatch`. From scratch, start at the first route `/contents/figures/figure-example`.
+The full-sweep of the remaining 26 themes surfaced **three emitter subject-family / specificity bugs** (fixed in [`emit.mjs`](../scripts/generate-ve-literal/emit.mjs) `partSubjectFamily`/`translateCompoundSegment`, then re-emitted `--all-themes --families`):
 
-*Remaining:* verify the other 26 themes in granular. The fixes are structural/theme-independent, so theme-specific churn should be minimal (darkly was clean through `ui/navs` before its sweep was cut short).
+- **`:not()` negations no longer own the subject** (commit `ead534b4`). `partSubjectFamily` picked the rightmost contract class *including ones inside `:not()`*, so `.btn-group > .btn:not(:last-child):not(.dropdown-toggle)` (right-corner squaring) was filed under `ui/dropdowns` and never loaded on a plain button-group route → litera's inner buttons kept rounded right corners. Fix: strip `:not(…)` before picking the subject.
+- **Trailing `a` kept at element specificity via `:where()`** (commit `cfeefb3e`). A post-`a84141ca` regression dropped the `:where()` wrapper on a trailing anchor element, so theme rules like quartz `.list-group a{color:#fff}` / `.card a{…}` jumped from (0,1,0) to (0,2,0) and out-ranked the component cascade (`.list-group-item-action:hover`/`.nav-link.active` → `--bs-emphasis-color`) → quartz card-tabs + all 8 contextual list-group **hover** texts rendered white. Only quartz exceeded threshold (its body/link color is `#fff`). Fix: re-`:where()`-wrap a trailing anchor (reboot-level, must stay overridable) even in class-bearing selectors; non-anchor trailing elements (`.table-dark th`) still keep specificity. Root-caused by rendering `a84141ca` in an isolated worktree (proving the regression was post-`a84141ca` and not in any quartz CSS) then bisecting source files into the worktree until `literal/styles.css.ts` flipped it.
+- **Bare `[type=checkbox]`/`[type=radio]` belong to `forms`** (commit `54e2f404`). sketchy hand-draws checkboxes with `[type=checkbox]{appearance:none}` + `::before`/`::after` rules (no class contract ⇒ table put them in `global`); at (0,2,0) they tie `.form-check-input` but the always-first `global` chunk lost to the later-loaded `forms` chunk → standard SVG checkbox rendered instead of sketchy's hand-drawn one. Fix: route a bare `[type=checkbox]`/`[type=radio]` subject (no class symbol) to `forms`. `.btn-check[type=checkbox]` carries the btnCheck class and is unaffected; btn-check clips the input so ui/buttons is unchanged. sketchy-only impact.
+
+*Harness:* `verify-ve-family.mjs` is **disabled** (it re-ran whole families/all-families per call — the expensive full re-validation). Use [`capture-leaf-screenshots.mjs`](../scripts/capture-leaf-screenshots.mjs) with **`--skip-to-route=<route>`** (now required; accepts an exact route or a micromatch glob) and **`--route=<glob>`** (brace-glob aware, e.g. `/ui/{alerts,navbar}/**`) to resume/scope route-by-route; pair with `--bail`. From scratch, start at `/contents/figures/figure-example`.
+
+*Verification record:* 12 themes (quartz, sandstone, simplex, sketchy, slate, solar, spacelab, superhero, united, vapor, yeti, zephyr) got a full post-fix granular sweep; the 15 verified before the `:where` re-emit (bootstrap, darkly, brite, cerulean, cosmo, cyborg, flatly, journal, litera, lumen, lux, materia, minty, morph, pulse) were re-confirmed on exactly the families that fix touched them (navbar, alerts, breadcrumb, dropdowns, pagination). All clean.
 
 ---
 
@@ -166,8 +173,9 @@ These are structural (theme-independent) Bootstrap source-order facts, so they a
 
 1. **Compound-rule ownership** (§4.2) — the one place ambiguity can creep in; define the tie-break in the table, explicitly, once.
 2. **The 342 declarations are stale.** They were authored against the *heuristic* split; some will be wrong against the new deterministic table. G4's closure check catches this — budget for declaration churn.
-3. **`@layer` interaction with scope/var injection.** Confirm the `${scope}${vars}` blocks and `fonts.generated.css` ordering still win correctly once everything is layered.
-4. **Theme reach.** Loader map + granular shell cover only 8 themes today; G3 must extend both to all 27 (same scope expansion T5 did for the literal loader).
+3. ~~**`@layer` interaction with scope/var injection.**~~ **Resolved by dropping `@layer`** (G5): unlayered `scope.css` baseline beat every layered component, so the approach was abandoned in favor of source-order co-location into the owning chunk.
+4. ~~**Theme reach.**~~ **Done in G3:** loader map + granular shell now cover all 27 themes.
+5. **Emitter subject-family edge cases (added in G5).** `partSubjectFamily`/`translateCompoundSegment` must treat `:not()`-negated classes as non-subjects, keep a trailing reboot anchor at element specificity (`:where()`), and route bare form-input attribute subjects to `forms`. All three surfaced as cross-family load-order divergences only visible in one theme each — assume more such edge cases exist if new themes/components are added; the granular pixel sweep is the catch.
 
 ---
 
