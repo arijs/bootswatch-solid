@@ -12,14 +12,13 @@
  * loads at runtime:
  *
  *   loaded(route) = {global}                              (always-on baseline)
- *                 ∪ getVe2RouteStyleLoadPlan(route)       (route-driven preload)
  *                 ∪ component ve2RequiredStyleFamilies    (demand signal, incl.
  *                                                          composed sibling examples)
  *
  * Then for each rendered VE DOM capture of that route it extracts every stamped
  * contract symbol, maps it to its family via the G1 table, and asserts the family
  * is in loaded(route). Any family stamped-but-not-loaded is a closure gap — a
- * missing `ve2RequiredStyleFamilies` / route-plan entry — reported per route.
+ * missing `ve2RequiredStyleFamilies` entry — reported per route.
  *
  *   node scripts/generate-ve-literal/family-closure-check.mjs [--family=<f>] [--verbose]
  *
@@ -28,7 +27,6 @@
 import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
-import { getVe2RouteStyleLoadPlan } from '../../ve-project2/src/theme-runtime/route-style-families.ts'
 import { buildFamilyTable } from './family-table.mjs'
 
 const ROOT = process.cwd()
@@ -53,7 +51,14 @@ function extractVeSymbol(veClass) {
 async function buildRouteComponentMap() {
 	const src = await readFile(INDEX, 'utf8')
 	const imports = new Map() // ComponentName → absolute .tsx path
+	// Static `import X from './path'` …
 	for (const m of src.matchAll(/^import\s+([A-Z][A-Za-z0-9]*)\s+from\s+'(\.[^']+)'/gm)) {
+		imports.set(m[1], `${path.resolve(VE2_SRC, m[2])}.tsx`)
+	}
+	// … and lazy `const X = lazy(() => import('./path'))` (routes are lazy-loaded).
+	for (const m of src.matchAll(
+		/const\s+([A-Z][A-Za-z0-9]*)\s*=\s*lazy\(\s*\(\)\s*=>\s*import\(\s*'(\.[^']+)'\s*\)\s*\)/g,
+	)) {
 		imports.set(m[1], `${path.resolve(VE2_SRC, m[2])}.tsx`)
 	}
 	const routes = new Map() // route → ComponentName
@@ -164,12 +169,6 @@ async function main() {
 		const file = imports.get(name)
 		const declared = new Set(['global'])
 		if (file) for (const f of await getFileDecls(file)) declared.add(f)
-		const plan = getVe2RouteStyleLoadPlan(route)
-		if (plan.fullThemeFallback) {
-			for (const f of table.validFamilies) declared.add(f)
-		} else {
-			for (const f of plan.families) declared.add(f)
-		}
 		loadedByRoute.set(route, declared)
 	}
 
