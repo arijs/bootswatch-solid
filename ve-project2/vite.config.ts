@@ -47,6 +47,40 @@ function literalThemeFilterPlugin(): Plugin | null {
 	}
 }
 
+/**
+ * vite-plugin-solid's `solid-lazy-module-url` transform appends the resolved
+ * module path as a 2nd arg to every `lazy(() => import('x'))`. It builds that
+ * path with `path.relative`, which on Windows yields backslashes — and
+ * `"src\components\..."` is an invalid escape sequence that breaks the parse.
+ * Wrap solid's own transform and forward-slash the injected path on the way
+ * out, so the fix is glued to solid's output regardless of pipeline ordering.
+ * ponytail: drop this once vite-plugin-solid normalizes the path itself.
+ */
+function withLazyUrlSlashFix(plugin: Plugin): Plugin {
+	const t = plugin.transform
+	const orig = typeof t === 'function' ? t : t?.handler
+	if (!orig) return plugin
+	const fix = (code: string) =>
+		code.includes('lazy(') && code.includes('\\')
+			? code.replace(
+					/(import\(\s*['"][^'"]+['"]\s*\)\s*,\s*)"([^"]*\\[^"]*)"/g,
+					(_full, head, p: string) => `${head}"${p.replace(/\\/g, '/')}"`,
+				)
+			: code
+	const wrapped = async function (this: unknown, ...args: unknown[]) {
+		const r = (await (orig as (...a: unknown[]) => unknown).apply(this, args)) as
+			| string
+			| { code?: string }
+			| null
+			| undefined
+		if (typeof r === 'string') return fix(r)
+		if (r && typeof r.code === 'string') r.code = fix(r.code)
+		return r
+	}
+	plugin.transform = typeof t === 'function' ? wrapped : { ...t, handler: wrapped }
+	return plugin
+}
+
 function inferThemeFamilyFromCss(source: string) {
 	if (/contract_list/i.test(source)) return 'lists'
 	if (/contract_table/i.test(source)) return 'tables'
@@ -118,7 +152,11 @@ function assetSourceToText(source: unknown) {
 
 export default defineConfig({
 	mode: 'development',
-	plugins: [solidPlugin(), vanillaExtractPlugin(), literalThemeFilterPlugin()],
+	plugins: [
+		withLazyUrlSlashFix(solidPlugin() as Plugin),
+		vanillaExtractPlugin(),
+		literalThemeFilterPlugin(),
+	],
 	build: {
 		target: 'esnext',
 		sourcemap: false,

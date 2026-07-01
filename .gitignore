@@ -1,5 +1,6 @@
 node_modules
 dist
+/_ignore/
 /debug*.log
 /docs/ve-theme-generator-validation
 /public/theme
