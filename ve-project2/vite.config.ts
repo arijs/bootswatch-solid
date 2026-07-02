@@ -81,6 +81,39 @@ function withLazyUrlSlashFix(plugin: Plugin): Plugin {
 	return plugin
 }
 
+/**
+ * Defuses a catastrophic-backtracking bomb in Vite's `vite:build-html` plugin.
+ *
+ * Vite's `entirelyImportRE` — an anchored `(import|comment)*`-shaped regex —
+ * is run against the whole minified index entry chunk in generateBundle to ask
+ * "is this chunk only CSS imports?". Rolldown replaces each pure-CSS JS module
+ * (the 27 themes' scope.css imported by theme-runtime.ts) with a
+ * `/* empty css *​/` marker, so our entry chunk starts with 27 consecutive
+ * comment blocks followed by 200KB of one-line code full of `//` and `/*`
+ * choice points. When the match fails, the regex backtracks exponentially
+ * (measured ×4 per +2 leading markers) — turning the full 27-theme build from
+ * ~2 minutes into 3.5 hours inside a single regex.test() call.
+ *
+ * The regex is anchored at `^`, so prepending a lone `;` (a no-op empty
+ * statement, valid before import declarations) makes the very first iteration
+ * mismatch and the whole test fail in O(1). The answer (false: the chunk is
+ * not entirely imports) is unchanged — our entry has real code either way.
+ * ponytail: drop this once Vite replaces entirelyImportRE with a linear scan.
+ */
+function defuseEmptyCssRegexBombPlugin(): Plugin {
+	return {
+		name: 'defuse-empty-css-regex-bomb',
+		apply: 'build',
+		generateBundle(_options, bundle) {
+			for (const chunk of Object.values(bundle)) {
+				if (chunk.type === 'chunk' && chunk.isEntry && !chunk.code.startsWith(';')) {
+					chunk.code = `;${chunk.code}`
+				}
+			}
+		},
+	}
+}
+
 function inferThemeFamilyFromCss(source: string) {
 	if (/contract_list/i.test(source)) return 'lists'
 	if (/contract_table/i.test(source)) return 'tables'
@@ -156,6 +189,7 @@ export default defineConfig({
 		withLazyUrlSlashFix(solidPlugin() as Plugin),
 		vanillaExtractPlugin(),
 		literalThemeFilterPlugin(),
+		defuseEmptyCssRegexBombPlugin(),
 	],
 	build: {
 		target: 'esnext',
