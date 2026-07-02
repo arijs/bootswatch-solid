@@ -127,6 +127,12 @@ Levers, in rough value order — none urgent now that the build is ~100s:
    function deriving names from `filePath` could keep both.
 3. **Extend the theme filter to stub all non-selected themes' `.css.ts`** (not just
    `literal/`): would drop ~850 of 925 files from filtered builds (~70s → ~15–20s).
+   **Done** — `literalThemeFilterPlugin` now stubs every module under a non-selected
+   theme dir (`scope.css` stubs keep the `<theme>Scope` named export used by
+   theme-runtime/Ve2Shell; everything else is side-effect-only and stubs to an empty
+   module). Measured: `--theme=bootstrap` went from **69s to 22.7s** (925 → 67 files
+   through the VE compiler; VE phase now ~5s). What remains is Rolldown native
+   bundling + the selected theme's own babel debug-ids pass.
 4. **Parallelism**: the global lock means one file at a time; sharding across worker threads
    is the "rewrite the plugin" option — no longer justified by the numbers.
 

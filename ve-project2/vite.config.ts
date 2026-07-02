@@ -3,9 +3,17 @@ import { defineConfig, type Plugin } from 'vite'
 import solidPlugin from 'vite-plugin-solid'
 
 /**
- * When VITE_LITERAL_THEMES=bootstrap,cerulean (comma-separated), every other
- * literal theme is replaced with an empty stub so Vite never compiles those
- * 500 KB files. Speeds up single-theme development/capture builds by ~26x.
+ * When VITE_LITERAL_THEMES=bootstrap,cerulean (comma-separated), every module
+ * of every other theme (literal, utilities, forms, ui/*, theme.ts, …) is
+ * replaced with an empty stub so neither Vite nor the vanilla-extract child
+ * compiler ever touches those files. Without this, a single-theme build still
+ * compiled all 925 `.css.ts` files across all 27 themes — the filter drops
+ * that to the selected theme + shared contract (~100 files).
+ *
+ * The only theme modules imported *by name* from always-loaded code are the
+ * `scope.css` files (`<theme>Scope` in theme-runtime.ts / Ve2Shell.tsx), so
+ * their stubs keep that export; everything else is imported for side effects
+ * only (dynamic family/theme loaders) and stubs to an empty module.
  */
 function literalThemeFilterPlugin(): Plugin | null {
 	const raw = process.env.VITE_LITERAL_THEMES
@@ -16,14 +24,22 @@ function literalThemeFilterPlugin(): Plugin | null {
 		name: 'literal-theme-filter',
 		enforce: 'pre',
 		resolveId(id) {
-			// Matches both relative (../../themes/foo/literal/) and absolute paths
-			const m = id.match(/(?:^|[/\\])themes[/\\]([^/\\]+)[/\\]literal[/\\]/)
+			// Matches both relative (../../themes/foo/...) and absolute paths
+			const m = id.match(/(?:^|[/\\])themes[/\\]([^/\\]+)[/\\](.+)$/)
 			if (!m) return null
-			const theme = m[1]
+			const [, theme, rest] = m
 			if (allowed.has(theme)) return null
+			// Stub id must not end in `.css`, or vite:css would parse the JS.
+			if (/^scope\.css(?:\.ts|\.js)?(?:\?.*)?$/.test(rest)) {
+				return `\0theme-scope-stub:${theme}`
+			}
 			return `\0literal-theme-stub:${id}`
 		},
 		load(id) {
+			if (id.startsWith('\0theme-scope-stub:')) {
+				const theme = id.slice('\0theme-scope-stub:'.length)
+				return `export const ${theme}Scope = 've2-stub-${theme}'\nexport default ${theme}Scope\n`
+			}
 			if (id.startsWith('\0literal-theme-stub:')) return 'export default {}'
 		},
 		// `order: 'pre'` so this runs on the RAW index.html before Vite resolves the
