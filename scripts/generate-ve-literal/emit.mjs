@@ -393,7 +393,7 @@ function emitGlobalStyle(veSelector, { propLines, varLines }, mediaStack) {
 	].join('\n')
 }
 
-function emitKeyframes(name, steps) {
+function emitKeyframes(name, steps, cssVarToSymbol, usedVarSymbols) {
 	const lines = [`globalKeyframes('${name}', {`]
 	for (const step of steps) {
 		let pct
@@ -404,8 +404,19 @@ function emitKeyframes(name, steps) {
 
 		lines.push(`\t'${pct}': {`)
 		for (const d of step.declarations ?? []) {
-			if (d.type === 'declaration')
-				lines.push(`\t\t${cssPropToVeKey(d.property)}: '${d.value}',`)
+			if (d.type === 'declaration') {
+				// Traduz refs `var(--bs-*)` no valor p/ os nomes hasheados do VE
+				// (mesmo caminho das declarações normais). Sem isso, valores como
+				// `var(--bs-progress-height)` vazariam literais no artefato.
+				const formatted = formatVeValue(
+					parseVeValue(d.value, (cssVar) => {
+						const sym = cssVarToSymbol(cssVar)
+						if (sym) usedVarSymbols.add(sym)
+						return sym
+					}),
+				)
+				lines.push(`\t\t${cssPropToVeKey(d.property)}: ${formatted},`)
+			}
 		}
 		lines.push('\t},')
 	}
@@ -808,7 +819,7 @@ export async function emitLiteralStyles(theme, opts = {}) {
 
 	for (const unit of units) {
 		if (unit.kind === 'keyframes') {
-			bodyLines.push(emitKeyframes(unit.name, unit.steps))
+			bodyLines.push(emitKeyframes(unit.name, unit.steps, cssVarToSymbol, usedVarSymbols))
 			report.keyframesEmitted++
 			continue
 		}

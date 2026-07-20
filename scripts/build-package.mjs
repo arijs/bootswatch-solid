@@ -144,8 +144,10 @@ async function main() {
 	for (const f of cssFiles) {
 		const css = await readFile(path.join(themeOut, f), 'utf8')
 		totalBytes += Buffer.byteLength(css)
+		// refs: pega tanto `var(--bs-x)` quanto `var(--bs-x, fallback)` (a vírgula
+		// do fallback escapava do regex antigo `\)` e deixava literais passarem).
 		const decls = (css.match(/[^)]--bs-[a-z0-9-]+:/g) || []).length
-		const refs = (css.match(/var\(--bs-[a-z0-9-]+\)/g) || []).length
+		const refs = (css.match(/var\(\s*--bs-[a-z0-9-]+/g) || []).length
 		litDecls += decls; litRefs += refs
 		if (decls + refs) litByFile.push(`${f}(${decls}d/${refs}r)`)
 	}

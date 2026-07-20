@@ -25,3 +25,6 @@ export const varBsNavbarTogglerBorderColor = createVar()        // --bs-navbar-t
 export const varBsNavbarTogglerBorderRadius = createVar()       // --bs-navbar-toggler-border-radius
 export const varBsNavbarTogglerFocusWidth = createVar()         // --bs-navbar-toggler-focus-width
 export const varBsNavbarTogglerTransition = createVar()         // --bs-navbar-toggler-transition
+// Definido em runtime pelo JS do Bootstrap (altura do collapse); só referenciado
+// aqui com fallback `75vh`. Hasheado p/ não vazar `--bs-scroll-height` literal.
+export const varBsScrollHeight = createVar()                    // --bs-scroll-height

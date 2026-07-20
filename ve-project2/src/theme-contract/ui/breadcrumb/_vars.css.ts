@@ -6,6 +6,11 @@ import { createVar } from '@vanilla-extract/css'
 //
 // Source: Bootstrap's .breadcrumb CSS block.
 
+// NB: o Bootstrap referencia `--bs-breadcrumb-font-size` em .breadcrumb mas o
+// deixa vazio por padrão (font-size herdado). Declaramos mesmo assim para que
+// a referência seja hasheada e nenhum literal `--bs-breadcrumb-font-size`
+// sobre no artefato.
+export const varBsBreadcrumbFontSize = createVar()         // --bs-breadcrumb-font-size
 export const varBsBreadcrumbPaddingX = createVar()         // --bs-breadcrumb-padding-x
 export const varBsBreadcrumbPaddingY = createVar()         // --bs-breadcrumb-padding-y
 export const varBsBreadcrumbMarginBottom = createVar()     // --bs-breadcrumb-margin-bottom

@@ -30,3 +30,6 @@ export const varBsDropdownHeaderColor = createVar()        // --bs-dropdown-head
 export const varBsDropdownHeaderPaddingX = createVar()     // --bs-dropdown-header-padding-x
 export const varBsDropdownHeaderPaddingY = createVar()     // --bs-dropdown-header-padding-y
 export const varBsDropdownPosition = createVar()           // --bs-dropdown-position (Popper.js placement)
+// Referenciado em .dropdown-item com fallback `0`; nunca setado no CSS do
+// Bootstrap. Hasheado p/ não vazar `--bs-dropdown-item-border-radius` literal.
+export const varBsDropdownItemBorderRadius = createVar()   // --bs-dropdown-item-border-radius

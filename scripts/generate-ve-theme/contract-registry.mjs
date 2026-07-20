@@ -97,6 +97,7 @@ function parseGeneratedSelectorComments(source) {
 function inferFamilyFromPath(filePath) {
 	const rel = path.relative(VE2_CONTRACT_ROOT, filePath).replace(/\\/g, '/')
 	if (rel === '_vars.css.ts') return 'global'
+	if (rel === '_public-vars.css.ts') return 'public-vars'
 	if (rel === 'theme-contract.css.ts') return 'root-contract'
 	if (rel.startsWith('global-elements/')) return 'global-elements'
 	if (rel.startsWith('layout/')) return 'layout'
@@ -148,7 +149,19 @@ export async function buildContractRegistry() {
 
 		for (const symbol of exports) {
 			if (symbol.startsWith('varBs')) {
-				if (allVarSymbols.has(symbol)) continue
+				if (allVarSymbols.has(symbol)) {
+					// Símbolo já registrado por um arquivo anterior. Dezenas de vars são
+					// declarados tanto em `_vars.css.ts` (global) quanto em
+					// `_public-vars.css.ts` (public-vars, p/ o preset de utilities).
+					// `global` é AUTORITATIVO p/ esses compartilhados: as famílias de
+					// componente importam o var de `_vars.css`. Para símbolos exclusivos
+					// de public-vars, mantemos a família public-vars. Assim a ordem do
+					// readdir não decide qual import é gerado (import não resolvido é
+					// descartado em buildImportBlock e o VE quebra com ReferenceError).
+					if (family === 'global') symbolToFamily.set(symbol, family)
+					else if (family && !symbolToFamily.has(symbol)) symbolToFamily.set(symbol, family)
+					continue
+				}
 				const resolvedCssVar =
 					findCssVarForSymbol(symbol, varCssComments) ?? symbolToCssVarName(symbol)
 				if (resolvedCssVar) {
@@ -233,6 +246,7 @@ export function getVarsImportPath(family) {
 	if (family === 'layout') return 'layout/container.css'
 	if (family === 'utilities/generated-vars') return 'utilities/generated/_vars.css'
 	if (family === 'global') return '_vars.css'
+	if (family === 'public-vars') return '_public-vars.css'
 	if (family === 'forms') return 'forms/_vars.css'
 	if (family.startsWith('ui/')) {
 		const sub = family.split('/')[1]
