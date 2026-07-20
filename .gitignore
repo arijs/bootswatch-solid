@@ -25,3 +25,8 @@ dist
 # pacote @arijs/bootswatch-ve (Fase 1)
 dist-pkg/
 ve-project2/src/__pkg/
+
+# demo (F4) — artefatos de build
+examples/demo/dist/
+examples/demo/demo.png
+examples/**/node_modules/
