@@ -10,7 +10,8 @@ Status: **proposta** (decisões de arquitetura fechadas com Rafael em 20/07/2026
 3. **Utilities = UnoCSS (JIT), classes-string.** Abandonado o Sprinkles. Queremos JIT de verdade (só o que é usado é gerado) e autoria por string (`class="mb-3 text-primary"`, copiar/colar). Entregamos um **preset UnoCSS próprio** para os utilities do Bootstrap.
    - **Sem estilos padrão** (sem reset/reboot no preset).
    - **Componível** com o preset Tailwind/Wind do UnoCSS, se o consumidor quiser os utilitários populares junto.
-   - **Prefixo configurável:** padrão `""` (→ `mb-3`, fiel ao Bootstrap); custom, ex. `bsu-` (→ `bsu-mb-3`).
+   - **Prefixo configurável — SÓ nas utilities.** Padrão `""` (→ `mb-3`, fiel ao Bootstrap); custom, ex. `bsu-` (→ `bsu-mb-3`). **Scope e classes de componente NÃO levam prefixo:** já são hashes do VE (sem colisão), e prefixá-los só incharia o CSS e não seria configurável (o consumidor importa o CSS compilado pronto). O prefixo é exclusivo do preset de utilities.
+   - **Caminho principal das utilities = o preset (JIT).** Por completude, a família `utilities` também é exportada como CSS pré-compilado por tema (`themes/{theme}/utilities.css`, como as outras famílias), para quem quiser importar direto ou processar por conta própria — mas é a versão baked/grande (§1 do problema), secundária ao preset.
    - Utilities de cor **referenciam `--bs-*`** (como o Bootstrap 5.3 já faz: `.text-primary { color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) }`), logo o preset é **theme-agnostic** — um só serve os 27 temas; a cor vem do scope ativo.
 4. **Prefixo chega aos componentes via context** (`createContext`/`useContext`): os componentes (de exemplo, e os do DDSOFT) leem o prefixo ativo e o scope de tema do contexto, em vez de hard-coded.
 5. **Componentes SolidJS só como exemplo/demonstração** dentro do pacote (fonte + JS compilado + HTML renderizado) — **não** são API reutilizável. Componentes genéricos de verdade (ex.: uma `<Table>` configurável) não são práticos de manter aqui.
@@ -159,10 +160,14 @@ O repo já tem verificação madura (Playwright pixel-diff em 433 cenários, mar
 
 ## 10. Roteiro de implementação (fases)
 
-- **F1 — Esqueleto do pacote:** `package.json` + exports + `scripts/build-package.mjs` compilando `dist/themes/**` + `dist/contract` de UM tema (bootstrap). Fixture + pixel-diff do componente publicado. (Prova a espinha.)
-- **F2 — Todos os temas:** estender o build aos 27; validar granular por família nos artefatos.
-- **F3 — Preset UnoCSS:** `presetBootswatch({ prefix })` derivado do Bootstrap; fixture de utilities + diff; documentar composição com Tailwind.
-- **F4 — `/solid`:** `BootswatchProvider` + `u()`; portar os componentes de exemplo para usá-los; incluir em `examples/`.
-- **F5 — CI + publish:** Actions com gate de teste; primeira publicação `@arijs/bootswatch-ve`.
+Ordem revista (20/07/2026, a pedido do Rafael): fazer **F3 + F4 antes** de F1/F2, para já compilar com o preset de utilities integrado nos componentes de exemplo. A espinha de CSS de componente + contract (o núcleo da F1) **já está provada** — ver `scripts/build-package.mjs` e o commit da Fase 1.
+
+Nota de ambiente: o build do **app** (`ve2:build`) não roda no sandbox do agente — `index.tsx` importa `@arijs/stream-xml-parser` → `css-selector-parser`, bloqueado pela política de pacotes do sandbox (403). Não afeta o build do **pacote** (compila só os `.css.ts`). No ambiente local do Rafael tudo instala normalmente.
+
+- **F1 (espinha) — FEITO:** `scripts/build-package.mjs` compila `dist-pkg/themes/bootstrap/{scope,global,buttons}.css` + `contract.js` só com o plugin VE, identifiers determinísticos (`bsve_`). Verificado: seletores `.scope.contract`, hashes do manifesto casam com o CSS, e md5 estável entre builds. **Falta:** `package.json`/exports, fix do naming `scope.css.ts.css`, e o pixel-diff do artefato.
+- **F3 (AGORA) — Preset UnoCSS:** `presetBootswatch({ prefix })` derivado do `$utilities` do Sass (`bootstrap-fork/scss`) e validado contra `bootstrap.css`; cores via `--bs-*` (theme-agnostic); breakpoints infix como variant; fixture de utilities + diff; documentar composição com Tailwind.
+- **F4 — `/solid` + exemplos:** `BootswatchProvider` + `u()`; portar os componentes de exemplo para usar o preset + os contracts; incluir em `examples/`. Compilar a demo integrada.
+- **F2 — Todos os temas:** estender o build de componentes aos 27; validar granular por família; completar `package.json`/exports do §1 (parte restante da F1).
+- **F5 — CI + publish:** Actions com gate de teste; primeira publicação `@arijs/bootswatch-ve` (`npm version` + token npm do `@arijs`).
 - **F6 — Integração DDSOFT:** o frontend consome o pacote publicado; feedback real fecha o ciclo.
 ```
