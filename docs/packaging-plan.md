@@ -104,6 +104,8 @@ Plano (decisão §9.6 — tudo hasheado pelo MESMO mecanismo do VE, sem literal 
 
 Como o contract é compartilhado pelos 27 temas e os identifiers são determinísticos, o preset segue único e theme-agnostic; e como sai tudo no mesmo pacote/versão, nunca dessincroniza. As vars que a utility **seta e lê na mesma regra** (opacidades) também passam pelo mapa, por consistência — um nome hasheado por var do Bootstrap, válido para componentes e utilities.
 
+**FEITO e validado (20/07).** 65 vars públicas; 59 atribuídas no scope de cada tema (do `:root`), 6 utility-local (opacidades). Pipeline (ordem importa): `gen-public-vars.mjs` (gera `_public-vars.css.ts` + `themes/*/public-vars.css.ts` + `public-vars.names.json`) → `gen-var-hashes.mjs` (compila `_public-vars` sozinho → `public-vars.hash.json`) → `generate-preset.mjs` (substitui `--bs-*` pelos hashes) → `build-package.mjs`. Verificado: o preset usa `var(--bsve_54j6y419)` para primary-rgb e o scope atribui `--bsve_54j6y419: 13, 110, 253` (o mesmo hash, valor do tema); `preset-probe` dá 46/46 de fidelidade (mapeando a referência) e **nenhum `--bs-*` literal** no CSS. Rough edge herdado: `scope.css.ts.css` (naming) segue para a F2.
+
 ## 4. Como o DDSOFT consome (receita)
 
 ```ts

@@ -91,6 +91,13 @@ async function main() {
 		}
 	}
 
+	// Substitui --bs-* pelos nomes hasheados do VE (camada de vars públicas,
+	// §3.3-bis). Mapa: names.json (--bs-x → varBsX) + contract.js (varBsX →
+	// "var(--bsve_hash)"). Requer build-package rodado antes.
+	const bsToHash = loadPublicVarMap()
+	let leftover = new Set()
+	for (const [name, decls] of base) base.set(name, hashDecls(decls, bsToHash, leftover))
+
 	const rules = [...base.entries()].sort((a, b) => a[0].localeCompare(b[0]))
 	const data = {
 		rules,
@@ -116,12 +123,44 @@ async function main() {
 	if (nonInfixOverrides.size) console.log('   ex.:', [...nonInfixOverrides].slice(0, 8).join('  '))
 	if (mismatches.length) console.log('   MISMATCHES REAIS:', mismatches.slice(0, 5))
 	else console.log('mismatches reais: 0 ✔')
+	console.log(`vars públicas mapeadas → hash: ${Object.keys(bsToHash).length}`)
+	console.log(`--bs-* NÃO mapeadas (deve ser 0): ${leftover.size}${leftover.size ? ' → ' + [...leftover].join(', ') : ' ✔'}`)
 	console.log(`→ ${path.relative(ROOT, OUT)}`)
 }
 
 function writeFileSyncMkdir(file, content) {
 	// pequeno helper síncrono-ish via promise
 	return writeFile(file, content)
+}
+
+/** { '--bs-primary-rgb': 'var(--bsve_xxxx)' } a partir de names.json + public-vars.hash.json. */
+function loadPublicVarMap() {
+	const names = JSON.parse(readFileSync(path.join(ROOT, 'preset', 'public-vars.names.json'), 'utf8'))
+	const hashes = JSON.parse(readFileSync(path.join(ROOT, 'preset', 'public-vars.hash.json'), 'utf8'))
+	const map = {}
+	for (const [bsName, expName] of Object.entries(names)) {
+		if (hashes[expName]) map[bsName] = hashes[expName]
+	}
+	return map
+}
+
+/** Troca chaves e refs var() de --bs-* pelos nomes hasheados. */
+function hashDecls(decls, bsToHash, leftover) {
+	const out = {}
+	for (let [prop, val] of Object.entries(decls)) {
+		if (prop.startsWith('--bs-')) {
+			const h = bsToHash[prop]
+			if (h) prop = h.slice(4, -1) // "var(--bsve_x)" → "--bsve_x"
+			else leftover.add(prop)
+		}
+		val = String(val).replace(/var\((--bs-[a-z0-9-]+)\)/g, (m, name) => {
+			if (bsToHash[name]) return bsToHash[name]
+			leftover.add(name)
+			return m
+		})
+		out[prop] = val
+	}
+	return out
 }
 
 main()

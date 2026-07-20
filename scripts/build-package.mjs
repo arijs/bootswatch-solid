@@ -22,6 +22,7 @@ const THEME = 'bootstrap'
 // Entradas do build. `name` vira o nome do arquivo (JS+CSS) na saída.
 const entries = {
 	scope: path.join(VE, 'themes', THEME, 'scope.css.ts'),
+	'public-vars': path.join(VE, 'themes', THEME, 'public-vars.css.ts'),
 	global: path.join(VE, 'themes', THEME, 'global', 'styles.css.ts'),
 	buttons: path.join(VE, 'themes', THEME, 'ui', 'buttons', 'styles.css.ts'),
 	contract: path.join(VE, '__pkg', 'contract.ts'),
@@ -35,6 +36,7 @@ async function main() {
 		[
 			"export * from '../theme-contract/ui/buttons/contract.css'",
 			"export * from '../theme-contract/_vars.css'",
+			"export * from '../theme-contract/_public-vars.css'",
 			"export { bootstrapScope } from '../themes/bootstrap/scope.css'",
 			'',
 		].join('\n'),

@@ -11,6 +11,16 @@ const REF = 'screenshots/bootstrap/bootstrap.css'
 let fails = 0
 const ok = (cond, label, extra) => { console.log(`${cond ? '✔' : '✗'} ${label}`); if (!cond) { fails++; if (extra) console.log('   ' + extra) } }
 
+// Mapa --bs-* → nome hasheado (mesmo do preset), para mapear o bootstrap.css
+// de referência (literal) antes de comparar com o preset (hasheado).
+const NAMES = JSON.parse(readFileSync('preset/public-vars.names.json', 'utf8'))
+const HASHES = JSON.parse(readFileSync('preset/public-vars.hash.json', 'utf8'))
+const BS_TO_VAR = {}
+for (const [bs, exp] of Object.entries(NAMES)) if (HASHES[exp]) BS_TO_VAR[bs] = HASHES[exp]
+const rawName = (v) => v.slice(4, -1) // "var(--x)" → "--x"
+const mapProp = (p) => (BS_TO_VAR[p] ? rawName(BS_TO_VAR[p]) : p)
+const mapVal = (v) => v.replace(/var\((--bs-[a-z0-9-]+)\)/g, (m, n) => BS_TO_VAR[n] ?? m)
+
 // --- decls do bootstrap.css (top-level, não-media) para uma classe ---
 const refAst = parse(readFileSync(REF, 'utf8'))
 function refDecls(cls) {
@@ -23,7 +33,7 @@ function refDecls(cls) {
 }
 const normDecls = (decls) =>
 	decls.filter((d) => d.type === 'declaration')
-		.map((d) => `${d.property}:${d.value.replace(/\s+/g, ' ').trim()}`)
+		.map((d) => `${mapProp(d.property)}:${mapVal(d.value).replace(/\s+/g, ' ').trim()}`)
 		.sort().join(';')
 
 // --- decls que o UnoCSS gera para uma classe ---
@@ -67,7 +77,9 @@ ok(fails === 0, `fidelidade: ${matched}/${SAMPLE.length - absentInRef} classes b
 	const { css } = await u.generate(new Set(['bsu-mb-3', 'mb-3', 'bsu-text-primary']), { preflights: false })
 	ok(/\.bsu-mb-3\s*\{[^}]*margin-bottom:1rem/.test(css), 'prefixo: bsu-mb-3 gera')
 	ok(!/\.mb-3\s*\{/.test(css), 'prefixo: mb-3 sem prefixo NÃO gera')
-	ok(/\.bsu-text-primary\s*\{[^}]*var\(--bs-primary-rgb\)/.test(css), 'prefixo: bsu-text-primary usa var(--bs-primary-rgb)')
+	const hashedPrimary = BS_TO_VAR['--bs-primary-rgb'].replace(/[()]/g, '\\$&')
+	ok(new RegExp(`\\.bsu-text-primary\\s*\\{[^}]*${hashedPrimary}`).test(css), `prefixo: bsu-text-primary usa o hash ${BS_TO_VAR['--bs-primary-rgb']} (sem --bs- literal)`)
+	ok(!/--bs-/.test(css), 'nenhum --bs-* literal no CSS emitido')
 }
 
 // (3) Responsivo (infix) e print.
