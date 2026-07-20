@@ -7,7 +7,7 @@
 // por `u(...)`; as classes de COMPONENTE vêm dos contracts (hasheadas, sem
 // prefixo) e são aplicadas direto.
 
-import { createContext, useContext, type JSX } from 'solid-js'
+import { createComponent, createContext, useContext, type JSX } from 'solid-js'
 import { prefixClasses } from './prefix.mjs'
 
 export { prefixClasses }
@@ -26,12 +26,17 @@ export function BootswatchProvider(props: { scope: string; utilityPrefix?: strin
 		scope: props.scope,
 		utilityPrefix: props.utilityPrefix ?? '',
 	}
-	// Solid 2.0: o próprio context é o provider (sem .Provider).
-	return (
-		<BootswatchContext value={value}>
-			{props.children}
-		</BootswatchContext>
-	)
+	// Sem JSX de propósito: assim o pacote compila para JS executável em
+	// qualquer consumidor (não depende do transform JSX do Solid no build do
+	// pacote). Solid 2.0: o próprio context é o provider (sem `.Provider`);
+	// mantemos o fallback p/ 1.x por robustez.
+	const Provider = (BootswatchContext as unknown as { Provider?: unknown }).Provider ?? BootswatchContext
+	return createComponent(Provider as Parameters<typeof createComponent>[0], {
+		value,
+		get children() {
+			return props.children
+		},
+	}) as JSX.Element
 }
 
 export function useBootswatch(): BootswatchConfig {

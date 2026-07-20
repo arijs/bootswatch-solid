@@ -48,8 +48,14 @@ async function listContractModules() {
 	async function walk(dir) {
 		for (const e of await readdir(dir, { withFileTypes: true })) {
 			const p = path.join(dir, e.name)
-			if (e.isDirectory()) await walk(p)
-			else if (e.name.endsWith('.css.ts')) {
+			// `literal/**` é o monólito: re-declara os MESMOS contracts das famílias.
+			// Incluí-lo no barrel torna cada nome duplicado ambíguo p/ `export *`
+			// (o ES omite silenciosamente nomes ambíguos → `btn`, `btnPrimary`, …
+			// sumiam do manifesto). O contract autoritativo é o por-família.
+			if (e.isDirectory()) {
+				if (path.relative(base, p).replace(/\\/g, '/') === 'literal') continue
+				await walk(p)
+			} else if (e.name.endsWith('.css.ts')) {
 				out.push('../theme-contract/' + path.relative(base, p).replace(/\\/g, '/').replace(/\.ts$/, ''))
 			}
 		}
@@ -80,14 +86,13 @@ async function main() {
 	}
 	for (const f of families) entries[f.leaf] = f.file
 
+	// O manifesto de contract é THEME-AGNOSTIC: só os nomes hasheados (vars +
+	// classes), compartilhados pelos 27 temas. O scope de cada tema é um export
+	// à parte (entry `scope` → scope.js), então NÃO entra no barrel.
 	await mkdir(path.join(VE, '__pkg'), { recursive: true })
 	await writeFile(
 		path.join(VE, '__pkg', 'contract.ts'),
-		[
-			...contractModules.map((m) => `export * from '${m}'`),
-			`export { ${THEME}Scope } from '../themes/${THEME}/scope.css'`,
-			'',
-		].join('\n'),
+		[...contractModules.map((m) => `export * from '${m}'`), ''].join('\n'),
 	)
 
 	await rm(OUT, { recursive: true, force: true })
