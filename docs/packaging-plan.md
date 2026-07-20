@@ -12,7 +12,8 @@ Status: **proposta** (decisões de arquitetura fechadas com Rafael em 20/07/2026
    - **Componível** com o preset Tailwind/Wind do UnoCSS, se o consumidor quiser os utilitários populares junto.
    - **Prefixo configurável — SÓ nas utilities.** Padrão `""` (→ `mb-3`, fiel ao Bootstrap); custom, ex. `bsu-` (→ `bsu-mb-3`). **Scope e classes de componente NÃO levam prefixo:** já são hashes do VE (sem colisão), e prefixá-los só incharia o CSS e não seria configurável (o consumidor importa o CSS compilado pronto). O prefixo é exclusivo do preset de utilities.
    - **Caminho principal das utilities = o preset (JIT).** Por completude, a família `utilities` também é exportada como CSS pré-compilado por tema (`themes/{theme}/utilities.css`, como as outras famílias), para quem quiser importar direto ou processar por conta própria — mas é a versão baked/grande (§1 do problema), secundária ao preset.
-   - Utilities de cor **referenciam `--bs-*`** (como o Bootstrap 5.3 já faz: `.text-primary { color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) }`), logo o preset é **theme-agnostic** — um só serve os 27 temas; a cor vem do scope ativo.
+   - **Vars 100% hasheadas (decisão §9.6).** Nada de `--bs-*` literal no CSS publicado (risco de colisão no projeto do consumidor). O preset **referencia os nomes hasheados compilados** — o que continua theme-agnostic porque o mapa de vars é compartilhado pelos 27 temas (cada tema só atribui valores aos mesmos nomes hasheados), e preset+temas+contract saem do mesmo build/versão do pacote, então os hashes sempre casam. Requer uma **camada de vars públicas** (ver §3.3-bis).
+   - Utilities de cor **referenciam** as vars públicas do tema (hasheadas) (como o Bootstrap 5.3 já faz: `.text-primary { color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) }`), logo o preset é **theme-agnostic** — um só serve os 27 temas; a cor vem do scope ativo.
 4. **Prefixo chega aos componentes via context** (`createContext`/`useContext`): os componentes (de exemplo, e os do DDSOFT) leem o prefixo ativo e o scope de tema do contexto, em vez de hard-coded.
 5. **Componentes SolidJS só como exemplo/demonstração** dentro do pacote (fonte + JS compilado + HTML renderizado) — **não** são API reutilizável. Componentes genéricos de verdade (ex.: uma `<Table>` configurável) não são práticos de manter aqui.
 6. **O frontend do DDSOFT cria os próprios componentes SolidJS**, usando os nomes de classe exportados nos contracts de `@arijs/bootswatch-ve` + as classes utilitárias do preset.
@@ -91,6 +92,17 @@ Não são componentes UI; é o mínimo para os componentes do consumidor ficarem
 - `useUtilityPrefix()` / `u(...classes)` — helper que prefixa strings de utility (`u('mb-3','text-primary')` → `'bsu-mb-3 bsu-text-primary'` conforme o prefixo do contexto).
 - Assim os componentes de exemplo (e os do DDSOFT) escrevem utilities sem hard-coard o prefixo.
 
+### 3.3-bis Camada de vars públicas (o elo preset ↔ tema)
+
+Achado (20/07): o contract VE hasheia **todas** as `--bs-*`, mas cobre só as vars **internas de componente** (`--bs-btn-*`…). Das **65 vars que as utilities usam**, só **10** estão no contract; as outras **55 são as globais de `:root`** do Bootstrap 5.3 (`--bs-primary-rgb`, `--bs-*-bg-subtle`, `--bs-*-text-emphasis`, `--bs-border-radius*`, `--bs-box-shadow*`, `--bs-focus-ring-*`, `--bs-gradient`, `--bs-body-*-rgb`…). Hoje elas não têm um nome hasheado compartilhado.
+
+Plano (decisão §9.6 — tudo hasheado, sem literal): criar um **mapa único de vars públicas** `--bs-<nome> → <hash determinístico>` (ex.: `--bsvev-<hash8>`), usado por DOIS lados que precisam concordar:
+
+1. **Scope de cada tema emite as vars públicas hasheadas com valores.** Extrai o bloco `:root` do `screenshots/{theme}/bootstrap.css` (os valores por tema já existem lá) e emite `${scope} { --bsvev-XXXX: <valor do tema> }`. Uma vez por tema, ~65 linhas.
+2. **generate-preset substitui** cada `var(--bs-…)`/`--bs-…:` das utilities pelo hash do mapa. Assim `.text-primary { color: rgba(var(--bsvev-XXXX), var(--bsvev-YYYY)) }`.
+
+Como o mapa é o mesmo para os 27 temas (contract compartilhado) e determinístico, o preset segue único e theme-agnostic; e como sai tudo no mesmo pacote/versão, nunca dessincroniza. As vars que a utility **seta e lê na mesma regra** (opacidades) também são hasheadas pelo mapa, por consistência.
+
 ## 4. Como o DDSOFT consome (receita)
 
 ```ts
@@ -157,6 +169,7 @@ O repo já tem verificação madura (Playwright pixel-diff em 433 cenários, mar
 3. **`bootstrap-fork`:** **publicar como pacote npm próprio** (ex.: `@arijs/bootstrap`) e depender dele normalmente — sai o `file:`. É pré-requisito da **Fase 3** (o preset precisa do Sass `$utilities`); a Fase 1 (CSS+contract) não depende dele. ✔
 4. **`examples/` no tarball:** **incluir** — medição mostrou que examples são desprezíveis (~KB) perto do CSS (dezenas de MB). O cuidado real de tamanho é **excluir `screenshots/` (241M de PNGs de baseline) via `files`/`.npmignore`**, e decidir se o **`literal.css` (monólito) vai ou fica opt-in** (dobra o CSS por tema). Confirmar o número do tarball ao fim da Fase 1. ✔ (com sub-item a confirmar)
 5. **Tooling de versão:** `npm version` simples + CHANGELOG manual. ✔
+6. **Vars 100% hasheadas, sem `--bs-*` literal** (colisão em projetos do consumidor). O preset referencia os nomes hasheados compilados; exige a **camada de vars públicas** da §3.3-bis (mapa único `--bs-* → hash`, emitido no scope de cada tema e substituído no preset). ✔
 
 ## 10. Roteiro de implementação (fases)
 
