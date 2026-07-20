@@ -1,6 +1,7 @@
 import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import { sketchyScope } from '../scope.css'
 
+import { varBsSecondaryBgRgb, varBsTertiaryBgRgb } from '../../../theme-contract/_public-vars.css'
 import {
 	varBsBlack,
 	varBsBlackRgb,
@@ -16,6 +17,7 @@ import {
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
+	varBsBorderRadius2xl,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusPill,
 	varBsBorderRadiusSm,
@@ -27,6 +29,12 @@ import {
 	varBsBoxShadowInset,
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
+	varBsBreakpointLg,
+	varBsBreakpointMd,
+	varBsBreakpointSm,
+	varBsBreakpointXl,
+	varBsBreakpointXs,
+	varBsBreakpointXxl,
 	varBsCodeColor,
 	varBsCyan,
 	varBsDanger,
@@ -48,8 +56,19 @@ import {
 	varBsFontSansSerif,
 	varBsGradient,
 	varBsGray,
+	varBsGray100,
+	varBsGray200,
+	varBsGray300,
+	varBsGray400,
+	varBsGray500,
+	varBsGray600,
+	varBsGray700,
+	varBsGray800,
+	varBsGray900,
 	varBsGrayDark,
 	varBsGreen,
+	varBsGutterX,
+	varBsGutterY,
 	varBsHeadingColor,
 	varBsHighlightBg,
 	varBsHighlightColor,
@@ -83,6 +102,7 @@ import {
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
 	varBsSecondaryColor,
+	varBsSecondaryColorRgb,
 	varBsSecondaryRgb,
 	varBsSecondaryTextEmphasis,
 	varBsSuccess,
@@ -93,6 +113,7 @@ import {
 	varBsTeal,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
+	varBsTertiaryColorRgb,
 	varBsWarning,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
@@ -129,7 +150,6 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
 	varBsAccordionActiveBg,
 	varBsAccordionActiveColor,
@@ -184,6 +204,7 @@ import {
 	varBsBreadcrumbBorderRadius,
 	varBsBreadcrumbDivider,
 	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbFontSize,
 	varBsBreadcrumbItemActiveColor,
 	varBsBreadcrumbItemPaddingX,
 	varBsBreadcrumbMarginBottom,
@@ -252,6 +273,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -332,6 +354,7 @@ import {
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
 	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -2648,15 +2671,15 @@ globalStyle(`${sketchyScope}${vars}`, {
 		[varBsWhite]: '#fff',
 		[varBsGray]: '#868e96',
 		[varBsGrayDark]: '#333',
-		'--bs-gray-100': '#f8f9fa',
-		'--bs-gray-200': '#f7f7f9',
-		'--bs-gray-300': '#dee2e6',
-		'--bs-gray-400': '#ccc',
-		'--bs-gray-500': '#aaa',
-		'--bs-gray-600': '#868e96',
-		'--bs-gray-700': '#555',
-		'--bs-gray-800': '#333',
-		'--bs-gray-900': '#212529',
+		[varBsGray100]: '#f8f9fa',
+		[varBsGray200]: '#f7f7f9',
+		[varBsGray300]: '#dee2e6',
+		[varBsGray400]: '#ccc',
+		[varBsGray500]: '#aaa',
+		[varBsGray600]: '#868e96',
+		[varBsGray700]: '#555',
+		[varBsGray800]: '#333',
+		[varBsGray900]: '#212529',
 		[varBsPrimary]: '#333',
 		[varBsSecondary]: '#555',
 		[varBsSuccess]: '#28a745',
@@ -2713,13 +2736,13 @@ globalStyle(`${sketchyScope}${vars}`, {
 		[varBsEmphasisColor]: '#000',
 		[varBsEmphasisColorRgb]: '0, 0, 0',
 		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
-		'--bs-secondary-color-rgb': '33, 37, 41',
+		[varBsSecondaryColorRgb]: '33, 37, 41',
 		[varBsSecondaryBg]: '#f7f7f9',
-		'--bs-secondary-bg-rgb': '247, 247, 249',
+		[varBsSecondaryBgRgb]: '247, 247, 249',
 		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',
-		'--bs-tertiary-color-rgb': '33, 37, 41',
+		[varBsTertiaryColorRgb]: '33, 37, 41',
 		[varBsTertiaryBg]: '#f8f9fa',
-		'--bs-tertiary-bg-rgb': '248, 249, 250',
+		[varBsTertiaryBgRgb]: '248, 249, 250',
 		[varBsHeadingColor]: 'inherit',
 		[varBsLinkColor]: '#333',
 		[varBsLinkColorRgb]: '51, 51, 51',
@@ -2738,7 +2761,7 @@ globalStyle(`${sketchyScope}${vars}`, {
 		[varBsBorderRadiusLg]: '35px',
 		[varBsBorderRadiusXl]: '1rem',
 		[varBsBorderRadiusXxl]: '2rem',
-		'--bs-border-radius-2xl': varBsBorderRadiusXxl,
+		[varBsBorderRadius2xl]: varBsBorderRadiusXxl,
 		[varBsBorderRadiusPill]: '50rem',
 		[varBsBoxShadow]: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
 		[varBsBoxShadowSm]: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
@@ -2763,13 +2786,13 @@ globalStyle(`${sketchyScope}${vars}[data-bs-theme=dark]`, {
 		[varBsEmphasisColor]: '#fff',
 		[varBsEmphasisColorRgb]: '255, 255, 255',
 		[varBsSecondaryColor]: 'rgba(222, 226, 230, 0.75)',
-		'--bs-secondary-color-rgb': '222, 226, 230',
+		[varBsSecondaryColorRgb]: '222, 226, 230',
 		[varBsSecondaryBg]: '#333',
-		'--bs-secondary-bg-rgb': '51, 51, 51',
+		[varBsSecondaryBgRgb]: '51, 51, 51',
 		[varBsTertiaryColor]: 'rgba(222, 226, 230, 0.5)',
-		'--bs-tertiary-color-rgb': '222, 226, 230',
+		[varBsTertiaryColorRgb]: '222, 226, 230',
 		[varBsTertiaryBg]: '#2a2c2e',
-		'--bs-tertiary-bg-rgb': '42, 44, 46',
+		[varBsTertiaryBgRgb]: '42, 44, 46',
 		[varBsPrimaryTextEmphasis]: '#858585',
 		[varBsSecondaryTextEmphasis]: '#999999',
 		[varBsSuccessTextEmphasis]: '#7eca8f',
@@ -3967,12 +3990,12 @@ globalStyle(`${sketchyScope}${container}`, {
 
 globalStyle(`${sketchyScope}${vars}`, {
 	vars: {
-		'--bs-breakpoint-xs': '0',
-		'--bs-breakpoint-sm': '576px',
-		'--bs-breakpoint-md': '768px',
-		'--bs-breakpoint-lg': '992px',
-		'--bs-breakpoint-xl': '1200px',
-		'--bs-breakpoint-xxl': '1400px',
+		[varBsBreakpointXs]: '0',
+		[varBsBreakpointSm]: '576px',
+		[varBsBreakpointMd]: '768px',
+		[varBsBreakpointLg]: '992px',
+		[varBsBreakpointXl]: '1200px',
+		[varBsBreakpointXxl]: '1400px',
 	},
 })
 
@@ -9615,7 +9638,7 @@ globalStyle(`${sketchyScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${sketchyScope}${dropdownItem}:hover`, {
@@ -10293,7 +10316,7 @@ globalStyle(`${sketchyScope}${navbarTogglerIcon}`, {
 })
 
 globalStyle(`${sketchyScope}${navbarNavScroll}`, {
-	maxHeight: 'var(--bs-scroll-height, 75vh)',
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
 	overflowY: 'auto',
 })
 
@@ -11326,7 +11349,7 @@ globalStyle(`${sketchyScope}${breadcrumb}`, {
 	flexWrap: 'wrap',
 	padding: `${varBsBreadcrumbPaddingY} ${varBsBreadcrumbPaddingX}`,
 	marginBottom: varBsBreadcrumbMarginBottom,
-	fontSize: 'var(--bs-breadcrumb-font-size)',
+	fontSize: varBsBreadcrumbFontSize,
 	listStyle: 'none',
 	backgroundColor: varBsBreadcrumbBg,
 	borderRadius: varBsBreadcrumbBorderRadius,
@@ -11616,7 +11639,7 @@ globalStyle(`${sketchyScope}${alertDark}`, {
 
 globalKeyframes('progress-bar-stripes', {
 	'0%': {
-		backgroundPositionX: 'var(--bs-progress-height)',
+		backgroundPositionX: varBsProgressHeight,
 	},
 })
 
@@ -17068,14 +17091,14 @@ globalStyle(`${sketchyScope}${bgBodySecondary}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
 	},
-	backgroundColor: `rgba(var(--bs-secondary-bg-rgb), ${varBsBgOpacity}) !important`,
+	backgroundColor: `rgba(${varBsSecondaryBgRgb}, ${varBsBgOpacity}) !important`,
 })
 
 globalStyle(`${sketchyScope}${bgBodyTertiary}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
 	},
-	backgroundColor: `rgba(var(--bs-tertiary-bg-rgb), ${varBsBgOpacity}) !important`,
+	backgroundColor: `rgba(${varBsTertiaryBgRgb}, ${varBsBgOpacity}) !important`,
 })
 
 globalStyle(`${sketchyScope}${bgOpacity10}`, {

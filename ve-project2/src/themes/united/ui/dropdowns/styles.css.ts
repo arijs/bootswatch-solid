@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { unitedScope } from '../../scope.css'
 
 import {
@@ -31,6 +31,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -83,6 +84,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -523,7 +525,7 @@ globalStyle(`${unitedScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${unitedScope}${dropdownItem}:hover`, {
@@ -594,6 +596,22 @@ globalStyle(`${unitedScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#aea79f',
 		[varBsDropdownHeaderColor]: '#aea79f',
 	},
+})
+
+globalStyle(`${unitedScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${unitedScope}${dropup} ${unitedScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${unitedScope}${dropend} ${unitedScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${unitedScope}${dropstart} ${unitedScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${unitedScope}${navTabs} ${unitedScope}${dropdownMenu}`, {

@@ -91,13 +91,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -753,22 +747,6 @@ globalStyle(`${cyborgScope}${btnGroup} > ${cyborgScope}${btnGroup}:not(:first-ch
 globalStyle(`${cyborgScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${cyborgScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cyborgScope}${dropup} ${cyborgScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cyborgScope}${dropend} ${cyborgScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${cyborgScope}${dropstart} ${cyborgScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
 })
 
 globalStyle(`${cyborgScope}${btnSm} + ${cyborgScope}${dropdownToggleSplit}`, {

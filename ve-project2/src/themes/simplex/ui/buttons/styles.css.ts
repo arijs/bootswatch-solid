@@ -91,13 +91,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -753,22 +747,6 @@ globalStyle(`${simplexScope}${btnGroup} > ${simplexScope}${btnGroup}:not(:first-
 globalStyle(`${simplexScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.5625rem',
 	paddingLeft: '0.5625rem',
-})
-
-globalStyle(`${simplexScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${simplexScope}${dropup} ${simplexScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${simplexScope}${dropend} ${simplexScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${simplexScope}${dropstart} ${simplexScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
 })
 
 globalStyle(`${simplexScope}${btnSm} + ${simplexScope}${dropdownToggleSplit}`, {

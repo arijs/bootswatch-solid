@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { sketchyScope } from '../../scope.css'
 
 import {
@@ -29,6 +29,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -81,6 +82,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -521,7 +523,7 @@ globalStyle(`${sketchyScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${sketchyScope}${dropdownItem}:hover`, {
@@ -592,6 +594,22 @@ globalStyle(`${sketchyScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#aaa',
 		[varBsDropdownHeaderColor]: '#aaa',
 	},
+})
+
+globalStyle(`${sketchyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sketchyScope}${dropup} ${sketchyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sketchyScope}${dropend} ${sketchyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sketchyScope}${dropstart} ${sketchyScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${dropdownMenu}`, {

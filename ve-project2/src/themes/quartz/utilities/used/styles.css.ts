@@ -9,6 +9,8 @@ import {
 	varBsBorderWidth,
 	varBsDangerRgb,
 	varBsDarkRgb,
+	varBsGutterX,
+	varBsGutterY,
 	varBsInfoRgb,
 	varBsLightRgb,
 	varBsPrimaryRgb,
@@ -18,7 +20,6 @@ import {
 	varBsWarningRgb,
 	varBsWhiteRgb,
 } from '../../../../theme-contract/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../../theme-contract/layout/container.css'
 import { varBsBgOpacity, varBsBorderOpacity, varBsTextOpacity } from '../../../../theme-contract/utilities/generated/_vars.css'
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'

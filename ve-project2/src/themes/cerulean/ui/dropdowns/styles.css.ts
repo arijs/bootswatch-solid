@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { ceruleanScope } from '../../scope.css'
 
 import {
@@ -30,6 +30,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -82,6 +83,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -522,7 +524,7 @@ globalStyle(`${ceruleanScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${ceruleanScope}${dropdownItem}:hover`, {
@@ -593,6 +595,22 @@ globalStyle(`${ceruleanScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
+})
+
+globalStyle(`${ceruleanScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${ceruleanScope}${dropup} ${ceruleanScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${ceruleanScope}${dropend} ${ceruleanScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${ceruleanScope}${dropstart} ${ceruleanScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${dropdownMenu}`, {

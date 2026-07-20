@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { yetiScope } from '../../scope.css'
 
 import {
@@ -31,6 +31,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -94,6 +95,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -535,7 +537,7 @@ globalStyle(`${yetiScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${yetiScope}${dropdownItem}:hover`, {
@@ -606,6 +608,22 @@ globalStyle(`${yetiScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
+})
+
+globalStyle(`${yetiScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${dropup} ${yetiScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${dropend} ${yetiScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${dropstart} ${yetiScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${yetiScope}${navTabs} ${yetiScope}${dropdownMenu}`, {

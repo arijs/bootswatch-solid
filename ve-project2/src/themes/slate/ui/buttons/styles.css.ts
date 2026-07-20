@@ -91,13 +91,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -753,22 +747,6 @@ globalStyle(`${slateScope}${btnGroup} > ${slateScope}${btnGroup}:not(:first-chil
 globalStyle(`${slateScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${slateScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${slateScope}${dropup} ${slateScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${slateScope}${dropend} ${slateScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${slateScope}${dropstart} ${slateScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
 })
 
 globalStyle(`${slateScope}${btnSm} + ${slateScope}${dropdownToggleSplit}`, {

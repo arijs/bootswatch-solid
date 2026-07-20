@@ -81,6 +81,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -580,6 +581,22 @@ globalStyle(`${pulseScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
+})
+
+globalStyle(`${pulseScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${pulseScope}${dropup} ${pulseScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${pulseScope}${dropend} ${pulseScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${pulseScope}${dropstart} ${pulseScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${pulseScope}${navTabs} ${pulseScope}${dropdownMenu}`, {

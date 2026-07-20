@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { flatlyScope } from '../../scope.css'
 
 import {
@@ -29,6 +29,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -81,6 +82,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -521,7 +523,7 @@ globalStyle(`${flatlyScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${flatlyScope}${dropdownItem}:hover`, {
@@ -592,6 +594,22 @@ globalStyle(`${flatlyScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#b4bcc2',
 		[varBsDropdownHeaderColor]: '#b4bcc2',
 	},
+})
+
+globalStyle(`${flatlyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${flatlyScope}${dropup} ${flatlyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${flatlyScope}${dropend} ${flatlyScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${flatlyScope}${dropstart} ${flatlyScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${flatlyScope}${navTabs} ${flatlyScope}${dropdownMenu}`, {

@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { superheroScope } from '../../scope.css'
 
 import {
@@ -29,6 +29,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -84,6 +85,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -524,7 +526,7 @@ globalStyle(`${superheroScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${superheroScope}${dropdownItem}:hover`, {
@@ -595,6 +597,22 @@ globalStyle(`${superheroScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#868e96',
 		[varBsDropdownHeaderColor]: '#868e96',
 	},
+})
+
+globalStyle(`${superheroScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${superheroScope}${dropup} ${superheroScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${superheroScope}${dropend} ${superheroScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${superheroScope}${dropstart} ${superheroScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${superheroScope}${navTabs} ${superheroScope}${dropdownMenu}`, {

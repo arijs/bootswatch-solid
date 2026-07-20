@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { pulseScope } from '../../scope.css'
 
 import { varBsBorderRadius, varBsBorderWidth, varBsEmphasisColorRgb } from '../../../../theme-contract/_vars.css'
@@ -23,6 +23,7 @@ import {
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
 	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -192,7 +193,7 @@ globalStyle(`${pulseScope}${navbarTogglerIcon}`, {
 })
 
 globalStyle(`${pulseScope}${navbarNavScroll}`, {
-	maxHeight: 'var(--bs-scroll-height, 75vh)',
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
 	overflowY: 'auto',
 })
 

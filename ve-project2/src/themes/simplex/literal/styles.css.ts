@@ -1,6 +1,7 @@
 import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import { simplexScope } from '../scope.css'
 
+import { varBsSecondaryBgRgb, varBsTertiaryBgRgb } from '../../../theme-contract/_public-vars.css'
 import {
 	varBsBlack,
 	varBsBlackRgb,
@@ -16,6 +17,7 @@ import {
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
+	varBsBorderRadius2xl,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusPill,
 	varBsBorderRadiusSm,
@@ -27,6 +29,12 @@ import {
 	varBsBoxShadowInset,
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
+	varBsBreakpointLg,
+	varBsBreakpointMd,
+	varBsBreakpointSm,
+	varBsBreakpointXl,
+	varBsBreakpointXs,
+	varBsBreakpointXxl,
 	varBsCodeColor,
 	varBsCyan,
 	varBsDanger,
@@ -48,8 +56,19 @@ import {
 	varBsFontSansSerif,
 	varBsGradient,
 	varBsGray,
+	varBsGray100,
+	varBsGray200,
+	varBsGray300,
+	varBsGray400,
+	varBsGray500,
+	varBsGray600,
+	varBsGray700,
+	varBsGray800,
+	varBsGray900,
 	varBsGrayDark,
 	varBsGreen,
+	varBsGutterX,
+	varBsGutterY,
 	varBsHeadingColor,
 	varBsHighlightBg,
 	varBsHighlightColor,
@@ -83,6 +102,7 @@ import {
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
 	varBsSecondaryColor,
+	varBsSecondaryColorRgb,
 	varBsSecondaryRgb,
 	varBsSecondaryTextEmphasis,
 	varBsSuccess,
@@ -93,6 +113,7 @@ import {
 	varBsTeal,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
+	varBsTertiaryColorRgb,
 	varBsWarning,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
@@ -129,7 +150,6 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
 	varBsAccordionActiveBg,
 	varBsAccordionActiveColor,
@@ -184,6 +204,7 @@ import {
 	varBsBreadcrumbBorderRadius,
 	varBsBreadcrumbDivider,
 	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbFontSize,
 	varBsBreadcrumbItemActiveColor,
 	varBsBreadcrumbItemPaddingX,
 	varBsBreadcrumbMarginBottom,
@@ -252,6 +273,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -332,6 +354,7 @@ import {
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
 	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -2639,15 +2662,15 @@ globalStyle(`${simplexScope}${vars}`, {
 		[varBsWhite]: '#fff',
 		[varBsGray]: '#777',
 		[varBsGrayDark]: '#373a3c',
-		'--bs-gray-100': '#f8f9fa',
-		'--bs-gray-200': '#ddd',
-		'--bs-gray-300': '#ccc',
-		'--bs-gray-400': '#bbb',
-		'--bs-gray-500': '#adb5bd',
-		'--bs-gray-600': '#777',
-		'--bs-gray-700': '#444',
-		'--bs-gray-800': '#373a3c',
-		'--bs-gray-900': '#212529',
+		[varBsGray100]: '#f8f9fa',
+		[varBsGray200]: '#ddd',
+		[varBsGray300]: '#ccc',
+		[varBsGray400]: '#bbb',
+		[varBsGray500]: '#adb5bd',
+		[varBsGray600]: '#777',
+		[varBsGray700]: '#444',
+		[varBsGray800]: '#373a3c',
+		[varBsGray900]: '#212529',
 		[varBsPrimary]: '#d9230f',
 		[varBsSecondary]: '#fff',
 		[varBsSuccess]: '#469408',
@@ -2704,13 +2727,13 @@ globalStyle(`${simplexScope}${vars}`, {
 		[varBsEmphasisColor]: '#000',
 		[varBsEmphasisColorRgb]: '0, 0, 0',
 		[varBsSecondaryColor]: 'rgba(33, 37, 41, 0.75)',
-		'--bs-secondary-color-rgb': '33, 37, 41',
+		[varBsSecondaryColorRgb]: '33, 37, 41',
 		[varBsSecondaryBg]: '#ddd',
-		'--bs-secondary-bg-rgb': '221, 221, 221',
+		[varBsSecondaryBgRgb]: '221, 221, 221',
 		[varBsTertiaryColor]: 'rgba(33, 37, 41, 0.5)',
-		'--bs-tertiary-color-rgb': '33, 37, 41',
+		[varBsTertiaryColorRgb]: '33, 37, 41',
 		[varBsTertiaryBg]: '#f8f9fa',
-		'--bs-tertiary-bg-rgb': '248, 249, 250',
+		[varBsTertiaryBgRgb]: '248, 249, 250',
 		[varBsHeadingColor]: 'inherit',
 		[varBsLinkColor]: '#d9230f',
 		[varBsLinkColorRgb]: '217, 35, 15',
@@ -2729,7 +2752,7 @@ globalStyle(`${simplexScope}${vars}`, {
 		[varBsBorderRadiusLg]: '0.5rem',
 		[varBsBorderRadiusXl]: '1rem',
 		[varBsBorderRadiusXxl]: '2rem',
-		'--bs-border-radius-2xl': varBsBorderRadiusXxl,
+		[varBsBorderRadius2xl]: varBsBorderRadiusXxl,
 		[varBsBorderRadiusPill]: '50rem',
 		[varBsBoxShadow]: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
 		[varBsBoxShadowSm]: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
@@ -2754,13 +2777,13 @@ globalStyle(`${simplexScope}${vars}[data-bs-theme=dark]`, {
 		[varBsEmphasisColor]: '#fff',
 		[varBsEmphasisColorRgb]: '255, 255, 255',
 		[varBsSecondaryColor]: 'rgba(204, 204, 204, 0.75)',
-		'--bs-secondary-color-rgb': '204, 204, 204',
+		[varBsSecondaryColorRgb]: '204, 204, 204',
 		[varBsSecondaryBg]: '#373a3c',
-		'--bs-secondary-bg-rgb': '55, 58, 60',
+		[varBsSecondaryBgRgb]: '55, 58, 60',
 		[varBsTertiaryColor]: 'rgba(204, 204, 204, 0.5)',
-		'--bs-tertiary-color-rgb': '204, 204, 204',
+		[varBsTertiaryColorRgb]: '204, 204, 204',
 		[varBsTertiaryBg]: '#2c3033',
-		'--bs-tertiary-bg-rgb': '44, 48, 51',
+		[varBsTertiaryBgRgb]: '44, 48, 51',
 		[varBsPrimaryTextEmphasis]: '#e87b6f',
 		[varBsSecondaryTextEmphasis]: 'white',
 		[varBsSuccessTextEmphasis]: '#90bf6b',
@@ -3946,12 +3969,12 @@ globalStyle(`${simplexScope}${container}`, {
 
 globalStyle(`${simplexScope}${vars}`, {
 	vars: {
-		'--bs-breakpoint-xs': '0',
-		'--bs-breakpoint-sm': '576px',
-		'--bs-breakpoint-md': '768px',
-		'--bs-breakpoint-lg': '992px',
-		'--bs-breakpoint-xl': '1200px',
-		'--bs-breakpoint-xxl': '1400px',
+		[varBsBreakpointXs]: '0',
+		[varBsBreakpointSm]: '576px',
+		[varBsBreakpointMd]: '768px',
+		[varBsBreakpointLg]: '992px',
+		[varBsBreakpointXl]: '1200px',
+		[varBsBreakpointXxl]: '1400px',
 	},
 })
 
@@ -9591,7 +9614,7 @@ globalStyle(`${simplexScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${simplexScope}${dropdownItem}:hover`, {
@@ -10269,7 +10292,7 @@ globalStyle(`${simplexScope}${navbarTogglerIcon}`, {
 })
 
 globalStyle(`${simplexScope}${navbarNavScroll}`, {
-	maxHeight: 'var(--bs-scroll-height, 75vh)',
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
 	overflowY: 'auto',
 })
 
@@ -11302,7 +11325,7 @@ globalStyle(`${simplexScope}${breadcrumb}`, {
 	flexWrap: 'wrap',
 	padding: `${varBsBreadcrumbPaddingY} ${varBsBreadcrumbPaddingX}`,
 	marginBottom: varBsBreadcrumbMarginBottom,
-	fontSize: 'var(--bs-breadcrumb-font-size)',
+	fontSize: varBsBreadcrumbFontSize,
 	listStyle: 'none',
 	backgroundColor: varBsBreadcrumbBg,
 	borderRadius: varBsBreadcrumbBorderRadius,
@@ -11592,7 +11615,7 @@ globalStyle(`${simplexScope}${alertDark}`, {
 
 globalKeyframes('progress-bar-stripes', {
 	'0%': {
-		backgroundPositionX: 'var(--bs-progress-height)',
+		backgroundPositionX: varBsProgressHeight,
 	},
 })
 
@@ -17044,14 +17067,14 @@ globalStyle(`${simplexScope}${bgBodySecondary}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
 	},
-	backgroundColor: `rgba(var(--bs-secondary-bg-rgb), ${varBsBgOpacity}) !important`,
+	backgroundColor: `rgba(${varBsSecondaryBgRgb}, ${varBsBgOpacity}) !important`,
 })
 
 globalStyle(`${simplexScope}${bgBodyTertiary}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
 	},
-	backgroundColor: `rgba(var(--bs-tertiary-bg-rgb), ${varBsBgOpacity}) !important`,
+	backgroundColor: `rgba(${varBsTertiaryBgRgb}, ${varBsBgOpacity}) !important`,
 })
 
 globalStyle(`${simplexScope}${bgOpacity10}`, {

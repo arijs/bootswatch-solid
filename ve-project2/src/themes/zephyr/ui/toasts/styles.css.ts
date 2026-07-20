@@ -7,6 +7,7 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
+	varBsPrimaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsToastBg,
@@ -49,7 +50,7 @@ globalStyle(`${zephyrScope}${toast}`, {
 		[varBsToastBorderColor]: varBsBorderColorTranslucent,
 		[varBsToastBorderRadius]: varBsBorderRadius,
 		[varBsToastBoxShadow]: varBsBoxShadow,
-		[varBsToastHeaderColor]: 'var(--bs-primary-color)',
+		[varBsToastHeaderColor]: varBsPrimaryColor,
 		[varBsToastHeaderBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
 		[varBsToastHeaderBorderColor]: varBsBorderColorTranslucent,
 	},

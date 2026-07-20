@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { sandstoneScope } from '../../scope.css'
 
 import {
@@ -30,6 +30,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -82,6 +83,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -522,7 +524,7 @@ globalStyle(`${sandstoneScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${sandstoneScope}${dropdownItem}:hover`, {
@@ -593,6 +595,22 @@ globalStyle(`${sandstoneScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#98978b',
 		[varBsDropdownHeaderColor]: '#98978b',
 	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sandstoneScope}${dropup} ${sandstoneScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sandstoneScope}${dropend} ${sandstoneScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${dropdownMenu}`, {

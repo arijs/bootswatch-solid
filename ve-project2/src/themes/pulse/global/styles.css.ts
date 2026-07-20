@@ -1,6 +1,7 @@
 import { fallbackVar, globalKeyframes, globalStyle } from '@vanilla-extract/css'
 import { pulseScope } from '../scope.css'
 
+import { varBsSecondaryBgRgb, varBsTertiaryBgRgb } from '../../../theme-contract/_public-vars.css'
 import {
 	varBsBlack,
 	varBsBlackRgb,
@@ -16,6 +17,7 @@ import {
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
+	varBsBorderRadius2xl,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusPill,
 	varBsBorderRadiusSm,
@@ -27,6 +29,12 @@ import {
 	varBsBoxShadowInset,
 	varBsBoxShadowLg,
 	varBsBoxShadowSm,
+	varBsBreakpointLg,
+	varBsBreakpointMd,
+	varBsBreakpointSm,
+	varBsBreakpointXl,
+	varBsBreakpointXs,
+	varBsBreakpointXxl,
 	varBsCodeColor,
 	varBsCyan,
 	varBsDanger,
@@ -48,8 +56,19 @@ import {
 	varBsFontSansSerif,
 	varBsGradient,
 	varBsGray,
+	varBsGray100,
+	varBsGray200,
+	varBsGray300,
+	varBsGray400,
+	varBsGray500,
+	varBsGray600,
+	varBsGray700,
+	varBsGray800,
+	varBsGray900,
 	varBsGrayDark,
 	varBsGreen,
+	varBsGutterX,
+	varBsGutterY,
 	varBsHeadingColor,
 	varBsHighlightBg,
 	varBsHighlightColor,
@@ -83,6 +102,7 @@ import {
 	varBsSecondaryBgSubtle,
 	varBsSecondaryBorderSubtle,
 	varBsSecondaryColor,
+	varBsSecondaryColorRgb,
 	varBsSecondaryRgb,
 	varBsSecondaryTextEmphasis,
 	varBsSuccess,
@@ -93,6 +113,7 @@ import {
 	varBsTeal,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
+	varBsTertiaryColorRgb,
 	varBsWarning,
 	varBsWarningBgSubtle,
 	varBsWarningBorderSubtle,
@@ -108,8 +129,8 @@ import {
 	varBsFormValidBorderColor,
 	varBsFormValidColor,
 } from '../../../theme-contract/forms/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import { varBsCarouselCaptionColor, varBsCarouselControlIconFilter, varBsCarouselIndicatorActiveBg } from '../../../theme-contract/ui/carousel/_vars.css'
+import { varBsProgressHeight } from '../../../theme-contract/ui/progress/_vars.css'
 import { varBsBtnCloseFilter, varBsLinkOpacity } from '../../../theme-contract/utilities/generated/_vars.css'
 
 import {
@@ -201,15 +222,15 @@ globalStyle(`${pulseScope}${vars}`, {
 		[varBsWhite]: '#fff',
 		[varBsGray]: '#868e96',
 		[varBsGrayDark]: '#343a40',
-		'--bs-gray-100': '#fafafa',
-		'--bs-gray-200': '#f9f8fc',
-		'--bs-gray-300': '#ededed',
-		'--bs-gray-400': '#cbc8d0',
-		'--bs-gray-500': '#adb5bd',
-		'--bs-gray-600': '#868e96',
-		'--bs-gray-700': '#444',
-		'--bs-gray-800': '#343a40',
-		'--bs-gray-900': '#17141f',
+		[varBsGray100]: '#fafafa',
+		[varBsGray200]: '#f9f8fc',
+		[varBsGray300]: '#ededed',
+		[varBsGray400]: '#cbc8d0',
+		[varBsGray500]: '#adb5bd',
+		[varBsGray600]: '#868e96',
+		[varBsGray700]: '#444',
+		[varBsGray800]: '#343a40',
+		[varBsGray900]: '#17141f',
 		[varBsPrimary]: '#593196',
 		[varBsSecondary]: '#a991d4',
 		[varBsSuccess]: '#13b955',
@@ -266,13 +287,13 @@ globalStyle(`${pulseScope}${vars}`, {
 		[varBsEmphasisColor]: '#000',
 		[varBsEmphasisColorRgb]: '0, 0, 0',
 		[varBsSecondaryColor]: 'rgba(68, 68, 68, 0.75)',
-		'--bs-secondary-color-rgb': '68, 68, 68',
+		[varBsSecondaryColorRgb]: '68, 68, 68',
 		[varBsSecondaryBg]: '#f9f8fc',
-		'--bs-secondary-bg-rgb': '249, 248, 252',
+		[varBsSecondaryBgRgb]: '249, 248, 252',
 		[varBsTertiaryColor]: 'rgba(68, 68, 68, 0.5)',
-		'--bs-tertiary-color-rgb': '68, 68, 68',
+		[varBsTertiaryColorRgb]: '68, 68, 68',
 		[varBsTertiaryBg]: '#fafafa',
-		'--bs-tertiary-bg-rgb': '250, 250, 250',
+		[varBsTertiaryBgRgb]: '250, 250, 250',
 		[varBsHeadingColor]: 'inherit',
 		[varBsLinkColor]: '#593196',
 		[varBsLinkColorRgb]: '89, 49, 150',
@@ -291,7 +312,7 @@ globalStyle(`${pulseScope}${vars}`, {
 		[varBsBorderRadiusLg]: '0.5rem',
 		[varBsBorderRadiusXl]: '1rem',
 		[varBsBorderRadiusXxl]: '2rem',
-		'--bs-border-radius-2xl': varBsBorderRadiusXxl,
+		[varBsBorderRadius2xl]: varBsBorderRadiusXxl,
 		[varBsBorderRadiusPill]: '50rem',
 		[varBsBoxShadow]: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
 		[varBsBoxShadowSm]: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
@@ -316,13 +337,13 @@ globalStyle(`${pulseScope}${vars}[data-bs-theme=dark]`, {
 		[varBsEmphasisColor]: '#fff',
 		[varBsEmphasisColorRgb]: '255, 255, 255',
 		[varBsSecondaryColor]: 'rgba(237, 237, 237, 0.75)',
-		'--bs-secondary-color-rgb': '237, 237, 237',
+		[varBsSecondaryColorRgb]: '237, 237, 237',
 		[varBsSecondaryBg]: '#343a40',
-		'--bs-secondary-bg-rgb': '52, 58, 64',
+		[varBsSecondaryBgRgb]: '52, 58, 64',
 		[varBsTertiaryColor]: 'rgba(237, 237, 237, 0.5)',
-		'--bs-tertiary-color-rgb': '237, 237, 237',
+		[varBsTertiaryColorRgb]: '237, 237, 237',
 		[varBsTertiaryBg]: '#262730',
-		'--bs-tertiary-bg-rgb': '38, 39, 48',
+		[varBsTertiaryBgRgb]: '38, 39, 48',
 		[varBsPrimaryTextEmphasis]: '#9b83c0',
 		[varBsSecondaryTextEmphasis]: '#cbbde5',
 		[varBsSuccessTextEmphasis]: '#71d599',
@@ -1088,12 +1109,12 @@ globalStyle(`${pulseScope}${containerFluid}`, {
 
 globalStyle(`${pulseScope}${vars}`, {
 	vars: {
-		'--bs-breakpoint-xs': '0',
-		'--bs-breakpoint-sm': '576px',
-		'--bs-breakpoint-md': '768px',
-		'--bs-breakpoint-lg': '992px',
-		'--bs-breakpoint-xl': '1200px',
-		'--bs-breakpoint-xxl': '1400px',
+		[varBsBreakpointXs]: '0',
+		[varBsBreakpointSm]: '576px',
+		[varBsBreakpointMd]: '768px',
+		[varBsBreakpointLg]: '992px',
+		[varBsBreakpointXl]: '1200px',
+		[varBsBreakpointXxl]: '1400px',
 	},
 })
 
@@ -1133,7 +1154,7 @@ globalStyle(`${pulseScope}${collapsing}`, {
 
 globalKeyframes('progress-bar-stripes', {
 	'0%': {
-		backgroundPositionX: 'var(--bs-progress-height)',
+		backgroundPositionX: varBsProgressHeight,
 	},
 })
 

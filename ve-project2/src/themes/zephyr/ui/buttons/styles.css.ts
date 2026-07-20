@@ -91,13 +91,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -762,22 +756,6 @@ globalStyle(`${zephyrScope}${btnGroup} > ${zephyrScope}${btnGroup}:not(:first-ch
 globalStyle(`${zephyrScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.75rem',
 	paddingLeft: '0.75rem',
-})
-
-globalStyle(`${zephyrScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${zephyrScope}${dropup} ${zephyrScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${zephyrScope}${dropend} ${zephyrScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${zephyrScope}${dropstart} ${zephyrScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
 })
 
 globalStyle(`${zephyrScope}${btnSm} + ${zephyrScope}${dropdownToggleSplit}`, {

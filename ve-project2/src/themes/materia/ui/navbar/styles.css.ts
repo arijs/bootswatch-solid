@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { materiaScope } from '../../scope.css'
 
 import {
@@ -28,6 +28,7 @@ import {
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
 	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -199,7 +200,7 @@ globalStyle(`${materiaScope}${navbarTogglerIcon}`, {
 })
 
 globalStyle(`${materiaScope}${navbarNavScroll}`, {
-	maxHeight: 'var(--bs-scroll-height, 75vh)',
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
 	overflowY: 'auto',
 })
 

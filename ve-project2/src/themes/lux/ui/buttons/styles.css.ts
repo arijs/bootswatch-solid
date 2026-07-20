@@ -91,12 +91,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -719,22 +714,6 @@ globalStyle(`${luxScope}${btnGroup} > ${luxScope}:not(${btnCheck}:first-child) +
 globalStyle(`${luxScope}${dropdownToggleSplit}`, {
 	paddingRight: '1.125rem',
 	paddingLeft: '1.125rem',
-})
-
-globalStyle(`${luxScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${luxScope}${dropup} ${luxScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${luxScope}${dropend} ${luxScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${luxScope}${dropstart} ${luxScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
 })
 
 globalStyle(`${luxScope}${btnSm} + ${luxScope}${dropdownToggleSplit}`, {

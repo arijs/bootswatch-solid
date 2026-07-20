@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { materiaScope } from '../../scope.css'
 
 import {
@@ -32,6 +32,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -85,6 +86,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -526,7 +528,7 @@ globalStyle(`${materiaScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${materiaScope}${dropdownItem}:hover`, {
@@ -603,6 +605,22 @@ globalStyle(`${materiaScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#bbb',
 		[varBsDropdownHeaderColor]: '#bbb',
 	},
+})
+
+globalStyle(`${materiaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${dropup} ${materiaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${materiaScope}${navTabs} ${materiaScope}${dropdownMenu}`, {

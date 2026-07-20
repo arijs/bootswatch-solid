@@ -1,6 +1,7 @@
 import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { unitedScope } from '../scope.css'
 
+import { varBsSecondaryBgRgb, varBsTertiaryBgRgb } from '../../../theme-contract/_public-vars.css'
 import {
 	varBsBlackRgb,
 	varBsBodyBgRgb,
@@ -33,6 +34,8 @@ import {
 	varBsFocusRingWidth,
 	varBsFontMonospace,
 	varBsGradient,
+	varBsGutterX,
+	varBsGutterY,
 	varBsHighlightBg,
 	varBsHighlightColor,
 	varBsInfoBgSubtle,
@@ -64,7 +67,6 @@ import {
 	varBsWarningTextEmphasis,
 	varBsWhiteRgb,
 } from '../../../theme-contract/_vars.css'
-import { varBsGutterX, varBsGutterY } from '../../../theme-contract/layout/container.css'
 import {
 	varBsAspectRatio,
 	varBsBgOpacity,
@@ -6950,14 +6952,14 @@ globalStyle(`${unitedScope}${bgBodySecondary}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
 	},
-	backgroundColor: `rgba(var(--bs-secondary-bg-rgb), ${varBsBgOpacity}) !important`,
+	backgroundColor: `rgba(${varBsSecondaryBgRgb}, ${varBsBgOpacity}) !important`,
 })
 
 globalStyle(`${unitedScope}${bgBodyTertiary}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
 	},
-	backgroundColor: `rgba(var(--bs-tertiary-bg-rgb), ${varBsBgOpacity}) !important`,
+	backgroundColor: `rgba(${varBsTertiaryBgRgb}, ${varBsBgOpacity}) !important`,
 })
 
 globalStyle(`${unitedScope}${bgOpacity10}`, {

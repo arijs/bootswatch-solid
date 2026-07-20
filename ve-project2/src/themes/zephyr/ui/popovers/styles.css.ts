@@ -9,6 +9,7 @@ import {
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsFontSansSerif,
+	varBsPrimaryColor,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -78,7 +79,7 @@ globalStyle(`${zephyrScope}${popover}`, {
 		[varBsPopoverHeaderPaddingX]: '1rem',
 		[varBsPopoverHeaderPaddingY]: '0.5rem',
 		[varBsPopoverHeaderFontSize]: '1rem',
-		[varBsPopoverHeaderColor]: 'var(--bs-primary-color)',
+		[varBsPopoverHeaderColor]: varBsPrimaryColor,
 		[varBsPopoverHeaderBg]: varBsSecondaryBg,
 		[varBsPopoverBodyPaddingX]: '1rem',
 		[varBsPopoverBodyPaddingY]: '1rem',

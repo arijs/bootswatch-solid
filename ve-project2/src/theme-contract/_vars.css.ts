@@ -48,6 +48,11 @@ export const varBsWarning = createVar()
 export const varBsDanger = createVar()
 export const varBsLight = createVar()
 export const varBsDark = createVar()
+// Referenciadas por alguns temas (ex.: zephyr/yeti em pagination/popovers/
+// toasts/global) mas não setadas no CSS do tema — ficam sem valor no original
+// também. Declaradas p/ hashear a referência e não vazar literal.
+export const varBsPrimaryColor = createVar()            // --bs-primary-color
+export const varBsPrimaryBg = createVar()               // --bs-primary-bg
 
 // RGB triples (used in rgba() expressions)
 export const varBsPrimaryRgb = createVar()

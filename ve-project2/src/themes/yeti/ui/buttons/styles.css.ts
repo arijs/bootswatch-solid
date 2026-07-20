@@ -10,6 +10,7 @@ import {
 	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
+	varBsPrimaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBtnCloseBg,
@@ -91,13 +92,7 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import {
-	dropdownToggle,
-	dropdownToggleSplit,
-	dropend,
-	dropstart,
-	dropup,
-} from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
 import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
@@ -755,22 +750,6 @@ globalStyle(`${yetiScope}${dropdownToggleSplit}`, {
 	paddingLeft: '0.375rem',
 })
 
-globalStyle(`${yetiScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${yetiScope}${dropup} ${yetiScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${yetiScope}${dropend} ${yetiScope}${dropdownToggleSplit}::after`, {
-	marginLeft: '0',
-})
-
-globalStyle(`${yetiScope}${dropstart} ${yetiScope}${dropdownToggleSplit}::before`, {
-	marginRight: '0',
-})
-
 globalStyle(`${yetiScope}${btnSm} + ${yetiScope}${dropdownToggleSplit}`, {
 	paddingRight: '0.375rem',
 	paddingLeft: '0.375rem',
@@ -949,5 +928,5 @@ globalStyle(`${yetiScope}${btnDark}`, {
 })
 
 globalStyle(`${yetiScope}${btnOutlineSecondary}`, {
-	color: 'var(--bs-primary-color)',
+	color: varBsPrimaryColor,
 })

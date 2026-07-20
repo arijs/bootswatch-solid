@@ -1,12 +1,10 @@
-// Build do pacote @arijs/bootswatch-ve (Fase 1 completa p/ o tema bootstrap).
-// Compila TODAS as famílias do tema + scope + public-vars + o manifesto de
-// contract (todos os nomes hasheados), só com o plugin VE — sem o app (que
-// puxa o parser bloqueado). Cada família = um entry → CSS por família.
-// Pós-processo: remove declarações --bs-* literais órfãs do global (não são
-// referenciadas por nada; Bootstrap as emite no :root por convenção) para o
-// artefato ficar 100% sem literal, e normaliza os nomes dos CSS.
-//
-// Escopo atual: tema `bootstrap`. A Fase 2 varre isto sobre os 27 temas.
+// Build do pacote @arijs/bootswatch-ve — TODOS os 27 temas (Fase 2).
+// Compila, por tema, TODAS as famílias + scope + public-vars, só com o plugin
+// VE (sem o app, que puxa o parser bloqueado). Cada família = um entry → CSS
+// por família. O manifesto de contract (nomes hasheados: vars + classes) é
+// THEME-AGNOSTIC → compilado UMA vez (junto do 1º tema) e compartilhado.
+// Pós-processo: normaliza nomes de CSS e CONTA o literal --bs-* residual (deve
+// ser 0 em todos os temas após o sweep de port).
 
 import { rm, mkdir, writeFile, readdir, readFile, rename, stat } from 'node:fs/promises'
 import path from 'node:path'
@@ -17,7 +15,6 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 const ROOT = process.cwd()
 const VE = path.join(ROOT, 've-project2', 'src')
 const OUT = path.join(ROOT, 'dist-pkg')
-const THEME = 'bootstrap'
 
 // Famílias excluídas do build granular: `literal` (monólito alternativo),
 // `utilities/used` (subset só-da-demo) e `utilities` (baked) — o caminho das
@@ -25,8 +22,15 @@ const THEME = 'bootstrap'
 // literais --bs-* e duplicaria o preset.
 const EXCLUDE_FAMILIES = new Set(['literal', 'utilities/used', 'utilities'])
 
-async function listFamilies() {
-	const base = path.join(VE, 'themes', THEME)
+async function listThemes() {
+	return (await readdir(path.join(VE, 'themes'), { withFileTypes: true }))
+		.filter((e) => e.isDirectory())
+		.map((e) => e.name)
+		.sort()
+}
+
+async function listFamilies(theme) {
+	const base = path.join(VE, 'themes', theme)
 	const out = []
 	async function walk(dir) {
 		for (const e of await readdir(dir, { withFileTypes: true })) {
@@ -74,30 +78,16 @@ function familyNameFromSource(src) {
 	return null
 }
 
-async function main() {
-	const families = await listFamilies()
-	const contractModules = await listContractModules()
-
-	// Entradas: scope + public-vars + todas as famílias + contract (barrel).
+async function buildTheme(theme, { includeContract }) {
+	const families = await listFamilies(theme)
 	const entries = {
-		scope: path.join(VE, 'themes', THEME, 'scope.css.ts'),
-		'public-vars': path.join(VE, 'themes', THEME, 'public-vars.css.ts'),
-		contract: path.join(VE, '__pkg', 'contract.ts'),
+		scope: path.join(VE, 'themes', theme, 'scope.css.ts'),
+		'public-vars': path.join(VE, 'themes', theme, 'public-vars.css.ts'),
 	}
 	for (const f of families) entries[f.leaf] = f.file
+	if (includeContract) entries.contract = path.join(VE, '__pkg', 'contract.ts')
 
-	// O manifesto de contract é THEME-AGNOSTIC: só os nomes hasheados (vars +
-	// classes), compartilhados pelos 27 temas. O scope de cada tema é um export
-	// à parte (entry `scope` → scope.js), então NÃO entra no barrel.
-	await mkdir(path.join(VE, '__pkg'), { recursive: true })
-	await writeFile(
-		path.join(VE, '__pkg', 'contract.ts'),
-		[...contractModules.map((m) => `export * from '${m}'`), ''].join('\n'),
-	)
-
-	await rm(OUT, { recursive: true, force: true })
-	const themeOut = path.join(OUT, 'themes', THEME)
-
+	const themeOut = path.join(OUT, 'themes', theme)
 	await build({
 		root: path.join(ROOT, 've-project2'),
 		configFile: false,
@@ -123,12 +113,7 @@ async function main() {
 		},
 	})
 
-	await rm(path.join(VE, '__pkg'), { recursive: true, force: true })
-
-	// Pós-processo: normaliza nomes (Vite às vezes emite `X.css.ts.css` para
-	// entries .css.ts) e remove .css vazios. NÃO removemos --bs-* aqui (quebra
-	// referências do port); o literal residual é do port e some quando o
-	// conversor hashear (sweep separado) — aqui só CONTAMOS para dimensionar.
+	// Normaliza nomes (Vite às vezes emite `X.css.ts.css`) e remove .css vazios.
 	for (const e of (await readdir(themeOut, { withFileTypes: true })).filter((e) => e.isFile())) {
 		const p = path.join(themeOut, e.name)
 		if (e.name.endsWith('.css') && (await stat(p)).size === 0) { await rm(p); continue }
@@ -142,29 +127,59 @@ async function main() {
 		}
 	}
 
-	// Conta o literal --bs-* residual (do port) por arquivo.
+	// Conta literal --bs-* residual + bytes.
 	const cssFiles = (await readdir(themeOut)).filter((f) => f.endsWith('.css')).sort()
 	let totalBytes = 0, litDecls = 0, litRefs = 0
-	const litByFile = []
 	for (const f of cssFiles) {
 		const css = await readFile(path.join(themeOut, f), 'utf8')
 		totalBytes += Buffer.byteLength(css)
-		// refs: pega tanto `var(--bs-x)` quanto `var(--bs-x, fallback)` (a vírgula
-		// do fallback escapava do regex antigo `\)` e deixava literais passarem).
-		const decls = (css.match(/[^)]--bs-[a-z0-9-]+:/g) || []).length
-		const refs = (css.match(/var\(\s*--bs-[a-z0-9-]+/g) || []).length
-		litDecls += decls; litRefs += refs
-		if (decls + refs) litByFile.push(`${f}(${decls}d/${refs}r)`)
+		litDecls += (css.match(/[^)]--bs-[a-z0-9-]+:/g) || []).length
+		litRefs += (css.match(/var\(\s*--bs-[a-z0-9-]+/g) || []).length
 	}
-	console.log(`\n=== dist-pkg/themes/${THEME} ===`)
-	console.log(`famílias + scope/public-vars: ${cssFiles.length} CSS, ${(totalBytes / 1024).toFixed(1)} KB`)
-	console.log(`literal --bs-* residual (do port): ${litDecls} decls + ${litRefs} refs`)
-	if (litByFile.length) console.log(`  em: ${litByFile.join(', ')}`)
+	return { theme, cssCount: cssFiles.length, kb: totalBytes / 1024, litDecls, litRefs }
+}
 
-	// Manifesto de contract: quantos nomes hasheados.
-	const contractJs = await readFile(path.join(themeOut, 'contract.js'), 'utf8').catch(() => '')
+async function main() {
+	const themes = await listThemes()
+	const contractModules = await listContractModules()
+
+	// Barrel do contract (theme-agnostic) — compilado junto do 1º tema.
+	await mkdir(path.join(VE, '__pkg'), { recursive: true })
+	await writeFile(
+		path.join(VE, '__pkg', 'contract.ts'),
+		[...contractModules.map((m) => `export * from '${m}'`), ''].join('\n'),
+	)
+
+	await rm(OUT, { recursive: true, force: true })
+
+	const results = []
+	for (let i = 0; i < themes.length; i++) {
+		const t = themes[i]
+		process.stdout.write(`[${i + 1}/${themes.length}] ${t.padEnd(12)} `)
+		const r = await buildTheme(t, { includeContract: i === 0 })
+		results.push(r)
+		console.log(`${r.cssCount} CSS, ${r.kb.toFixed(1)} KB, literal=${r.litDecls}d/${r.litRefs}r`)
+	}
+
+	await rm(path.join(VE, '__pkg'), { recursive: true, force: true })
+
+	// Manifesto de contract (do 1º tema, compartilhado).
+	const contractJs = await readFile(path.join(OUT, 'themes', themes[0], 'contract.js'), 'utf8').catch(() => '')
 	const names = new Set([...contractJs.matchAll(/\b([A-Za-z][A-Za-z0-9]*) =/g)].map((m) => m[1]))
-	console.log(`manifesto de contract: ~${names.size} nomes exportados`)
+
+	const totalKb = results.reduce((n, r) => n + r.kb, 0)
+	const totalLit = results.reduce((n, r) => n + r.litDecls + r.litRefs, 0)
+	const dirty = results.filter((r) => r.litDecls + r.litRefs > 0)
+	console.log(`\n=== dist-pkg: ${themes.length} temas ===`)
+	console.log(`CSS total: ${(totalKb / 1024).toFixed(2)} MB`)
+	console.log(`manifesto de contract (compartilhado): ~${names.size} nomes`)
+	console.log(`literal --bs-* residual TOTAL: ${totalLit}`)
+	if (dirty.length) {
+		console.log(`  ⚠ temas com literal: ${dirty.map((r) => `${r.theme}(${r.litDecls}d/${r.litRefs}r)`).join(', ')}`)
+		process.exitCode = 1
+	} else {
+		console.log(`  ✔ 0 literal em todos os ${themes.length} temas`)
+	}
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })

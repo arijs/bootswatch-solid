@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
 import { cyborgScope } from '../../scope.css'
 
 import {
@@ -29,6 +29,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -81,6 +82,7 @@ import {
 	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
+	dropdownToggleSplit,
 	dropend,
 	dropstart,
 	dropup,
@@ -521,7 +523,7 @@ globalStyle(`${cyborgScope}${dropdownItem}`, {
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
 	border: '0',
-	borderRadius: 'var(--bs-dropdown-item-border-radius, 0)',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
 globalStyle(`${cyborgScope}${dropdownItem}:hover`, {
@@ -592,6 +594,22 @@ globalStyle(`${cyborgScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkDisabledColor]: '#888',
 		[varBsDropdownHeaderColor]: '#888',
 	},
+})
+
+globalStyle(`${cyborgScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${cyborgScope}${dropup} ${cyborgScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${cyborgScope}${dropend} ${cyborgScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${cyborgScope}${dropstart} ${cyborgScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
 })
 
 globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${dropdownMenu}`, {
