@@ -22,6 +22,11 @@
 		"screenshots:diff-markup": "node scripts/diff-scenario-markup.mjs",
 		"generate:ve-theme": "node scripts/generate-ve-theme.mjs",
 		"generate:ve-literal": "node scripts/generate-ve-literal.mjs",
+		"pkg:generate": "node scripts/generate-ve-literal.mjs --all-themes --families",
+		"pkg:build": "node scripts/build-package.mjs",
+		"pkg:pack": "node scripts/pack-dist.mjs",
+		"pkg:probe": "node scripts/preset-probe.mjs",
+		"pkg:ci": "npm run pkg:build && npm run pkg:pack && npm run pkg:probe",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
 		"check": "biome check --write"

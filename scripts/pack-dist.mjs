@@ -29,7 +29,9 @@ const ROOT = process.cwd()
 const SRC = path.join(ROOT, 'dist-pkg', 'themes')
 const OUT = path.join(ROOT, 'package')
 const PKG_NAME = '@arijs/bootswatch-ve'
-const PKG_VERSION = '0.1.0'
+// Versão do pacote publicável. O workflow de publish passa a versão da tag via
+// BSVE_VERSION (sem o `v`); localmente cai no default.
+const PKG_VERSION = process.env.BSVE_VERSION || '0.1.0'
 
 // Ordem de concatenação do index.css: scope e vars primeiro (estabelecem os
 // custom properties), global depois, resto alfabético.
