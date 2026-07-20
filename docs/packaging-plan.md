@@ -96,12 +96,13 @@ Não são componentes UI; é o mínimo para os componentes do consumidor ficarem
 
 Achado (20/07): o contract VE hasheia **todas** as `--bs-*`, mas cobre só as vars **internas de componente** (`--bs-btn-*`…). Das **65 vars que as utilities usam**, só **10** estão no contract; as outras **55 são as globais de `:root`** do Bootstrap 5.3 (`--bs-primary-rgb`, `--bs-*-bg-subtle`, `--bs-*-text-emphasis`, `--bs-border-radius*`, `--bs-box-shadow*`, `--bs-focus-ring-*`, `--bs-gradient`, `--bs-body-*-rgb`…). Hoje elas não têm um nome hasheado compartilhado.
 
-Plano (decisão §9.6 — tudo hasheado, sem literal): criar um **mapa único de vars públicas** `--bs-<nome> → <hash determinístico>` (ex.: `--bsvev-<hash8>`), usado por DOIS lados que precisam concordar:
+Plano (decisão §9.6 — tudo hasheado pelo MESMO mecanismo do VE, sem literal e **sem namespace/prefixo próprio**; nomes de var caem no mesmo `--bsve_…` das classes):
 
-1. **Scope de cada tema emite as vars públicas hasheadas com valores.** Extrai o bloco `:root` do `screenshots/{theme}/bootstrap.css` (os valores por tema já existem lá) e emite `${scope} { --bsvev-XXXX: <valor do tema> }`. Uma vez por tema, ~65 linhas.
-2. **generate-preset substitui** cada `var(--bs-…)`/`--bs-…:` das utilities pelo hash do mapa. Assim `.text-primary { color: rgba(var(--bsvev-XXXX), var(--bsvev-YYYY)) }`.
+1. **Estender o contract VE com as vars públicas que faltam** (as 55) como `createVar()`, num **arquivo novo** `theme-contract/_public-vars.css.ts` (arquivo separado para NÃO deslocar os hashes de `_vars.css.ts` e manter os componentes verificados). Elas passam a ser hasheadas exatamente como o resto (`--bsve_<hash>`), e viram exports JS no manifesto.
+2. **Scope de cada tema atribui os valores** dessas vars (mesmo padrão das vars já existentes: `globalStyle(`${scope}${vars}`, { vars: { [varBsPrimaryRgb]: '13,110,253', … } })`), com os valores extraídos do `:root` do `screenshots/{theme}/bootstrap.css`.
+3. **generate-preset lê o mapa `--bs-<nome> → hash`** (dos exports do contract compilado + os comentários que documentam o nome Bootstrap) e **substitui** cada `var(--bs-…)`/`--bs-…:` das utilities pelo nome hasheado. Assim `.text-primary { color: rgba(var(--bsve_XXXX), var(--bsve_YYYY)) }`.
 
-Como o mapa é o mesmo para os 27 temas (contract compartilhado) e determinístico, o preset segue único e theme-agnostic; e como sai tudo no mesmo pacote/versão, nunca dessincroniza. As vars que a utility **seta e lê na mesma regra** (opacidades) também são hasheadas pelo mapa, por consistência.
+Como o contract é compartilhado pelos 27 temas e os identifiers são determinísticos, o preset segue único e theme-agnostic; e como sai tudo no mesmo pacote/versão, nunca dessincroniza. As vars que a utility **seta e lê na mesma regra** (opacidades) também passam pelo mapa, por consistência — um nome hasheado por var do Bootstrap, válido para componentes e utilities.
 
 ## 4. Como o DDSOFT consome (receita)
 
@@ -169,7 +170,7 @@ O repo já tem verificação madura (Playwright pixel-diff em 433 cenários, mar
 3. **`bootstrap-fork`:** **publicar como pacote npm próprio** (ex.: `@arijs/bootstrap`) e depender dele normalmente — sai o `file:`. É pré-requisito da **Fase 3** (o preset precisa do Sass `$utilities`); a Fase 1 (CSS+contract) não depende dele. ✔
 4. **`examples/` no tarball:** **incluir** — medição mostrou que examples são desprezíveis (~KB) perto do CSS (dezenas de MB). O cuidado real de tamanho é **excluir `screenshots/` (241M de PNGs de baseline) via `files`/`.npmignore`**, e decidir se o **`literal.css` (monólito) vai ou fica opt-in** (dobra o CSS por tema). Confirmar o número do tarball ao fim da Fase 1. ✔ (com sub-item a confirmar)
 5. **Tooling de versão:** `npm version` simples + CHANGELOG manual. ✔
-6. **Vars 100% hasheadas, sem `--bs-*` literal** (colisão em projetos do consumidor). O preset referencia os nomes hasheados compilados; exige a **camada de vars públicas** da §3.3-bis (mapa único `--bs-* → hash`, emitido no scope de cada tema e substituído no preset). ✔
+6. **Vars 100% hasheadas pelo MESMO mecanismo do VE, sem `--bs-*` literal e sem namespace/prefixo próprio** (colisão em projetos do consumidor). As vars caem no mesmo `--bsve_…` das classes; **prefixo só existe (opcional) nas classes de utility do preset**. Exige estender o contract VE com as vars públicas que faltam (§3.3-bis) e o preset referenciar os nomes hasheados compilados. ✔
 
 ## 10. Roteiro de implementação (fases)
 
