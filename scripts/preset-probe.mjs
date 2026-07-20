@@ -1,47 +1,85 @@
-// Prova o spine do presetBootswatch com o gerador do UnoCSS (JIT).
+// Valida o presetBootswatch: (1) fidelidade contra o bootstrap.css de
+// referência para uma amostra ampla; (2) prefixo só nas utilities;
+// (3) variantes responsiva (infix) e print.
+import { readFileSync } from 'node:fs'
 import { createGenerator } from '@unocss/core'
+import { parse } from '@adobe/css-tools'
 import { presetBootswatch } from '../preset/preset-bootswatch.mjs'
 
-async function gen(preset, tokens) {
-	const uno = await createGenerator({ presets: [preset] })
-	const { css } = await uno.generate(new Set(tokens), { preflights: false })
-	return css
-}
+const REF = 'screenshots/bootstrap/bootstrap.css'
 
 let fails = 0
-const check = (label, css, ...needles) => {
-	const ok = needles.every((n) => css.includes(n))
-	console.log(`${ok ? '✔' : '✗'} ${label}`)
-	if (!ok) {
-		fails++
-		console.log('   esperava:', needles.join(' | '))
-		console.log('   css:\n' + css.split('\n').map((l) => '     ' + l).join('\n'))
+const ok = (cond, label, extra) => { console.log(`${cond ? '✔' : '✗'} ${label}`); if (!cond) { fails++; if (extra) console.log('   ' + extra) } }
+
+// --- decls do bootstrap.css (top-level, não-media) para uma classe ---
+const refAst = parse(readFileSync(REF, 'utf8'))
+function refDecls(cls) {
+	for (const r of refAst.stylesheet.rules) {
+		if (r.type === 'rule' && r.selectors.length === 1 && r.selectors[0] === '.' + cls) {
+			return normDecls(r.declarations)
+		}
 	}
+	return null
+}
+const normDecls = (decls) =>
+	decls.filter((d) => d.type === 'declaration')
+		.map((d) => `${d.property}:${d.value.replace(/\s+/g, ' ').trim()}`)
+		.sort().join(';')
+
+// --- decls que o UnoCSS gera para uma classe ---
+const uno = await createGenerator({ presets: [presetBootswatch()] })
+async function unoDecls(cls) {
+	const { css } = await uno.generate(new Set([cls]), { preflights: false })
+	const m = css.match(/\{([^}]*)\}/)
+	if (!m) return null
+	return m[1].split(';').map((s) => s.trim()).filter(Boolean)
+		.map((s) => { const i = s.indexOf(':'); return `${s.slice(0, i).trim()}:${s.slice(i + 1).replace(/\s+/g, ' ').trim()}` })
+		.sort().join(';')
 }
 
-// 1. Sem prefixo: nomes idênticos ao Bootstrap.
-const base = await gen(presetBootswatch(), ['mb-3', 'p-0', 'me-2', 'd-flex', 'text-primary', 'bg-danger', 'text-center', 'mt-auto'])
-check('mb-3 → margin-bottom:1rem', base, '.mb-3', 'margin-bottom:1rem')
-check('p-0 → padding:0', base, '.p-0', 'padding:0')
-check('me-2 → margin-right:.5rem', base, '.me-2', 'margin-right:0.5rem')
-check('d-flex → display:flex', base, '.d-flex', 'display:flex')
-check('text-primary → var(--bs-primary-rgb)', base, '.text-primary', 'var(--bs-primary-rgb)')
-check('bg-danger → var(--bs-danger-rgb)', base, '.bg-danger', 'var(--bs-danger-rgb)')
-check('text-center → text-align:center', base, '.text-center', 'text-align:center')
-check('mt-auto → margin-top:auto', base, '.mt-auto', 'margin-top:auto')
+// (1) Fidelidade — amostra ampla e diversa.
+const SAMPLE = [
+	'mb-3', 'mt-0', 'p-2', 'px-4', 'me-auto', 'm-0',
+	'd-flex', 'd-none', 'd-inline-block',
+	'flex-row', 'flex-column', 'flex-fill', 'justify-content-center', 'align-items-center',
+	'gap-3', 'text-primary', 'bg-danger', 'border-success', 'text-bg-primary',
+	'text-center', 'text-uppercase', 'fw-bold', 'fst-italic', 'lh-1',
+	'rounded', 'rounded-circle', 'rounded-pill',
+	'w-50', 'h-100', 'mw-100', 'vh-100',
+	'position-absolute', 'top-0', 'start-50', 'translate-middle',
+	'opacity-50', 'shadow', 'shadow-sm', 'overflow-hidden', 'float-end', 'order-2',
+	'user-select-none', 'pe-none', 'align-middle', 'visible', 'invisible',
+]
+let matched = 0, absentInRef = 0
+for (const cls of SAMPLE) {
+	const ref = refDecls(cls)
+	if (ref === null) { absentInRef++; continue }
+	const got = await unoDecls(cls)
+	const same = got === ref
+	if (same) matched++
+	else { fails++; console.log(`✗ ${cls}\n   ref: ${ref}\n   uno: ${got}`) }
+}
+ok(fails === 0, `fidelidade: ${matched}/${SAMPLE.length - absentInRef} classes batem com bootstrap.css (${absentInRef} fora da amostra de ref)`)
 
-// 2. Com prefixo custom: só as utilities levam o prefixo.
-const pfx = await gen(presetBootswatch({ prefix: 'bsu-' }), ['bsu-mb-3', 'mb-3'])
-check('prefixo: bsu-mb-3 gera', pfx, '.bsu-mb-3', 'margin-bottom:1rem')
+// (2) Prefixo só nas utilities.
 {
-	const semPrefixo = !/\.mb-3\s*\{/.test(pfx)
-	console.log(`${semPrefixo ? '✔' : '✗'} prefixo: mb-3 (sem prefixo) NÃO gera`)
-	if (!semPrefixo) fails++
+	const u = await createGenerator({ presets: [presetBootswatch({ prefix: 'bsu-' })] })
+	const { css } = await u.generate(new Set(['bsu-mb-3', 'mb-3', 'bsu-text-primary']), { preflights: false })
+	ok(/\.bsu-mb-3\s*\{[^}]*margin-bottom:1rem/.test(css), 'prefixo: bsu-mb-3 gera')
+	ok(!/\.mb-3\s*\{/.test(css), 'prefixo: mb-3 sem prefixo NÃO gera')
+	ok(/\.bsu-text-primary\s*\{[^}]*var\(--bs-primary-rgb\)/.test(css), 'prefixo: bsu-text-primary usa var(--bs-primary-rgb)')
 }
 
-// 3. Breakpoint infix: mb-md-3 dentro de @media.
-const bp = await gen(presetBootswatch(), ['mb-md-3'])
-check('mb-md-3 → @media min-width:768px + margin-bottom:1rem', bp, '@media (min-width: 768px)', 'margin-bottom:1rem')
+// (3) Responsivo (infix) e print.
+{
+	const { css } = await uno.generate(new Set(['mb-md-3', 'd-lg-flex', 'd-print-none']), { preflights: false })
+	ok(/@media \(min-width: 768px\)[^]*margin-bottom:1rem/.test(css), 'responsivo: mb-md-3 → @media 768px')
+	ok(/@media \(min-width: 992px\)[^]*display:flex/.test(css), 'responsivo: d-lg-flex → @media 992px')
+	ok(/@media print[^]*display:none/.test(css), 'print: d-print-none → @media print')
+	// Fidelidade: utility NÃO-responsiva não deve gerar variante infix.
+	const { css: bad } = await uno.generate(new Set(['fw-md-bold']), { preflights: false })
+	ok(!/font-weight/.test(bad), 'fidelidade: fw-md-bold (fw não é responsivo) NÃO gera')
+}
 
-console.log(fails === 0 ? '\nTODOS OS CHECKS PASSARAM' : `\n${fails} CHECK(S) FALHARAM`)
+console.log(fails === 0 ? '\n✅ TODOS OS CHECKS PASSARAM' : `\n❌ ${fails} CHECK(S) FALHARAM`)
 process.exit(fails === 0 ? 0 : 1)
