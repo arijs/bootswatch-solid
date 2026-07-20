@@ -75,7 +75,7 @@ Status: **proposta** (decisões de arquitetura fechadas com Rafael em 20/07/2026
 ### 3.2 Utilities — preset UnoCSS `presetBootswatch`
 
 - **API:** `presetBootswatch({ prefix = '' }): Preset`. O consumidor põe no `uno.config.ts`; UnoCSS gera **só** as classes que aparecem no código (JIT).
-- **Regras:** derivadas do mapa de utilities do Bootstrap para não escrever à mão e manter fidelidade — duas fontes possíveis (decidir na implementação): (a) parsear o `$utilities` do Sass do `bootstrap-fork`, ou (b) parsear a seção Utilities do `screenshots/{theme}/bootstrap.css` (mesma fonte que o literal já confia). Preferência: derivar de (a) se estável; (b) como verificação cruzada.
+- **Regras (decidido, §9.2):** derivadas do mapa `$utilities` do Sass do `bootstrap-fork` (fonte primária) e **validadas** contra a seção Utilities do `screenshots/{theme}/bootstrap.css` (verificação cruzada, mesma fonte que o literal já confia).
 - **Breakpoints infix:** Bootstrap usa `mb-md-3` (infix), não `md:mb-3` (prefixo). Implementar como **variant** UnoCSS que reconhece `-{sm|md|lg|xl|xxl}-` e embrulha em `@media (min-width: …)`.
 - **Cores → vars:** átomos de cor emitem `var(--bs-*)`; não embutem valor de tema → o preset é único e theme-agnostic. O valor vem do `scope.css` do tema ativo.
 - **Sem reset:** o preset não injeta reboot/normalize. Reboot (se desejado) vem da família `global`/`reboot` dos componentes, que o consumidor importa explicitamente.
@@ -137,10 +137,10 @@ O repo já tem verificação madura (Playwright pixel-diff em 433 cenários, mar
 
 ## 7. Versionamento e publicação
 
-- **Um pacote → versionamento simples.** `changesets` é overkill para 1 pacote; usar `npm version` + CHANGELOG manual, ou changesets só pelo fluxo de changelog/PR se preferir. Semver: **minor** para novos temas/famílias/utilities; **patch** para correções de fidelidade; **major** se um hash de contract mudar de forma incompatível (por isso identifiers estáveis importam).
+- **Versionamento (decidido, §9.5):** `npm version` + CHANGELOG manual (changesets é overkill para 1 pacote). Semver: **minor** para novos temas/famílias/utilities; **patch** para correções de fidelidade; **major** se um hash de contract mudar de forma incompatível (por isso identifiers estáveis importam).
 - **Escopo `@arijs`:** publicar sob o org no npm (acesso ao registry a resolver na hora — separado do GitHub).
 - **CI:** GitHub Actions no `arijs/bootswatch-solid`: build + test (§6) em PR; publish em tag/release, gated no test.
-- `bootstrap-fork` (hoje `file:`) precisa virar dependência pinada/publicada ou ser vendorizada no build (decidir — ver Aberto #3).
+- **`bootstrap-fork` (decidido, §9.3):** vira pacote npm próprio (ex.: `@arijs/bootstrap`), publicado em separado; o `bootswatch-ve` depende dele normalmente (sai o `file:`). Necessário para a Fase 3 (preset via Sass), não para a Fase 1.
 
 ## 8. Riscos e trade-offs (explícitos)
 
@@ -149,13 +149,13 @@ O repo já tem verificação madura (Playwright pixel-diff em 433 cenários, mar
 - **UnoCSS obrigatório no consumidor** (para utilities). Aceitável: o DDSOFT é SolidJS+Vite, `@unocss/vite` é trivial.
 - **Tamanho do pacote:** inclui 27 temas × ~33 famílias de CSS + examples. Grande no disco do node_modules, mas o consumidor só **importa** o que usa; o resto não entra no bundle. Avaliar publicar `examples/` só no repo e não no tarball (via `files`) se o peso incomodar.
 
-## 9. Perguntas em aberto (decidir na implementação)
+## 9. Decisões (fechadas 20/07/2026)
 
-1. **Formato do token com prefixo:** `bsu-mb-3` (preservando o hífen do Bootstrap — recomendado) vs `bsu-mb3` (compacto, como no exemplo do Rafael). Definir e travar.
-2. **Fonte das regras do preset:** `$utilities` do Sass vs seção Utilities do `bootstrap.css`. (Recomendo derivar do Sass e validar contra o CSS.)
-3. **`bootstrap-fork`:** publicar/pinar vs vendorizar no build do pacote.
-4. **`examples/` no tarball publicado** ou só no repo (via `files`/`.npmignore`).
-5. **Tooling de versão:** `npm version` simples vs changesets.
+1. **Token com prefixo:** preservar os nomes EXATOS do Bootstrap — prefixo apenas prepende. `''` → `mb-3`; `'bsu-'` → `bsu-mb-3` (com hífen). ✔
+2. **Fonte das regras do preset:** derivar do mapa `$utilities` do Sass do `bootstrap-fork` e **validar** contra a seção Utilities do `bootstrap.css` de referência. ✔
+3. **`bootstrap-fork`:** **publicar como pacote npm próprio** (ex.: `@arijs/bootstrap`) e depender dele normalmente — sai o `file:`. É pré-requisito da **Fase 3** (o preset precisa do Sass `$utilities`); a Fase 1 (CSS+contract) não depende dele. ✔
+4. **`examples/` no tarball:** **incluir** — medição mostrou que examples são desprezíveis (~KB) perto do CSS (dezenas de MB). O cuidado real de tamanho é **excluir `screenshots/` (241M de PNGs de baseline) via `files`/`.npmignore`**, e decidir se o **`literal.css` (monólito) vai ou fica opt-in** (dobra o CSS por tema). Confirmar o número do tarball ao fim da Fase 1. ✔ (com sub-item a confirmar)
+5. **Tooling de versão:** `npm version` simples + CHANGELOG manual. ✔
 
 ## 10. Roteiro de implementação (fases)
 
