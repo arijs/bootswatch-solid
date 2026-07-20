@@ -631,6 +631,17 @@ function partSubjectFamily(part, scopeVarName, table) {
 	// is a button rule, not a dropdown rule). Strip negations before picking the subject.
 	const subject = part.replace(/:not\([^)]*\)/g, '')
 	const syms = [...subject.matchAll(/\$\{(\w+)\}/g)].map((m) => m[1])
+	// §4.2 co-location (mesmo padrão do `[type=checkbox]` abaixo): o override do
+	// caret do split `.dropdown-toggle-split::after {margin-left:0}` mora (pelo dir
+	// do contract) em `ui/buttons`, mas sua BASE `.dropdown-toggle::after
+	// {margin-left:0.255em}` está em `ui/dropdowns`. Na mesma especificidade (0,2,1)
+	// o empate resolve por ORDEM DE FONTE (base antes do override, como no
+	// bootstrap.css). No monólito resolve; no granular `ui/dropdowns` carrega DEPOIS
+	// de `ui/buttons`, a base vence e o caret do split desloca ~4px (0.255em).
+	// Co-loca o override do caret em `ui/dropdowns` p/ o empate resolver por fonte.
+	if (/::(after|before)/.test(subject) && /\bdropdownToggleSplit\b/.test(subject)) {
+		return 'ui/dropdowns'
+	}
 	// §4.2 tie-break: a generic state/shared class promoted to the always-loaded
 	// `global` baseline (`.show`, `.fade`, `.collapse`, the popover/tooltip demo
 	// frames) must NOT own a compound rule that also targets a component class.
