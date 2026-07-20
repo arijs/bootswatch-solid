@@ -1,0 +1,168 @@
+# Plano de empacotamento, compilação e publicação — `@arijs/bootswatch-ve`
+
+Status: **proposta** (decisões de arquitetura fechadas com Rafael em 20/07/2026). Este doc define COMO transformar o que já funciona no repo (conversão VE element-owned + carregamento granular por família/tema, verificado com zero-mismatch) em um pacote npm publicável, organizado e testável.
+
+## 1. Decisões fechadas
+
+1. **Um único pacote monolítico `@arijs/bootswatch-ve`.** Nada de 27 pacotes de tema + auxiliares — versionar e sincronizar 29 publicações seria dor de cabeça. Uma pasta por tema, CSS separado por família dentro, tudo numa versão só.
+   - *Benefício colateral:* o CSS pré-compilado (com hashes do VE) e o **contract** (nomes de classe hasheados) saem juntos, na mesma versão — nunca dessincronizam. O problema de "identidade de hash entre builds" desaparece por construção.
+2. **Componentes = CSS pré-compilado (VE) + manifesto de contratos.** O consumidor importa o `.css` já compilado (com os hashes) e aplica as classes de contrato exportadas em JS. Não precisa rodar VE para os componentes.
+3. **Utilities = UnoCSS (JIT), classes-string.** Abandonado o Sprinkles. Queremos JIT de verdade (só o que é usado é gerado) e autoria por string (`class="mb-3 text-primary"`, copiar/colar). Entregamos um **preset UnoCSS próprio** para os utilities do Bootstrap.
+   - **Sem estilos padrão** (sem reset/reboot no preset).
+   - **Componível** com o preset Tailwind/Wind do UnoCSS, se o consumidor quiser os utilitários populares junto.
+   - **Prefixo configurável:** padrão `""` (→ `mb-3`, fiel ao Bootstrap); custom, ex. `bsu-` (→ `bsu-mb-3`).
+   - Utilities de cor **referenciam `--bs-*`** (como o Bootstrap 5.3 já faz: `.text-primary { color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) }`), logo o preset é **theme-agnostic** — um só serve os 27 temas; a cor vem do scope ativo.
+4. **Prefixo chega aos componentes via context** (`createContext`/`useContext`): os componentes (de exemplo, e os do DDSOFT) leem o prefixo ativo e o scope de tema do contexto, em vez de hard-coded.
+5. **Componentes SolidJS só como exemplo/demonstração** dentro do pacote (fonte + JS compilado + HTML renderizado) — **não** são API reutilizável. Componentes genéricos de verdade (ex.: uma `<Table>` configurável) não são práticos de manter aqui.
+6. **O frontend do DDSOFT cria os próprios componentes SolidJS**, usando os nomes de classe exportados nos contracts de `@arijs/bootswatch-ve` + as classes utilitárias do preset.
+
+### Não-objetivos
+
+- Publicar componentes UI reutilizáveis.
+- Manter compatibilidade de "colar HTML do Bootstrap" para os **componentes** (as classes de componente são hashes do VE, não `.btn`); para **utilities** a compatibilidade de string é preservada (via preset UnoCSS).
+- Forçar o consumidor a usar VE (só usa UnoCSS, que ele já teria para os utilities).
+
+## 2. Anatomia do pacote
+
+```
+@arijs/bootswatch-ve/
+  package.json            # exports map; version única; sideEffects corretos
+  dist/
+    contract/             # JS+dts: nomes de classe/vars hasheados (compilado de theme-contract/**)
+      index.js  index.d.ts
+    themes/
+      {theme}/            # ×27
+        scope.css         # atribuição dos --bs-* + classe de scope do tema (side-effect)
+        scope.js/.d.ts    # export const {theme}Scope = "<hash>"
+        {family}.css      # ×~33 — regras .scope.contract da família (side-effect)
+        index.css         # conveniência: todas as famílias do tema
+        literal.css       # conveniência: monólito literal do tema
+    preset/               # UnoCSS: presetBootswatch({ prefix })  (JS+dts)
+      index.js  index.d.ts
+    solid/                # runtime mínimo: BootswatchProvider + useUtilityPrefix + helper u()
+      index.js  index.d.ts
+  examples/               # demo (src Solid + JS compilado + HTML renderizado) — FORA do exports
+```
+
+### `exports` (esboço)
+
+```jsonc
+{
+  "exports": {
+    "./contract": { "types": "./dist/contract/index.d.ts", "default": "./dist/contract/index.js" },
+    "./preset":   { "types": "./dist/preset/index.d.ts",   "default": "./dist/preset/index.js" },
+    "./solid":    { "types": "./dist/solid/index.d.ts",    "default": "./dist/solid/index.js" },
+    "./themes/*/scope":     "./dist/themes/*/scope.js",
+    "./themes/*/scope.css": "./dist/themes/*/scope.css",
+    "./themes/*/*.css":     "./dist/themes/*/*.css",
+    "./themes/*":           "./dist/themes/*/index.css"
+  },
+  "sideEffects": ["*.css"]
+}
+```
+
+`sideEffects: ["*.css"]` garante que os `.css` importados nunca sejam tree-shaken (são efeito colateral desejado), mas o JS de contract/preset/solid permanece tree-shakeable.
+
+## 3. As três camadas
+
+### 3.1 Componentes (famílias) — CSS pré-compilado + contract
+
+- Fonte: o pipeline atual (`generate-ve-literal --families`) já emite `themes/{theme}/{family}/styles.css.ts` no modelo element-owned (`.scope.contract`), verificado com zero-mismatch.
+- **Compilação:** uma única passada VE (Vite/rollup em modo lib) compila `theme-contract/**` + todos os `themes/**` → `dist/themes/{theme}/{family}.css` (+ `scope.css`, `index.css`, `literal.css`).
+- **Contract manifesto:** os `.css.ts` de `theme-contract/**` já **exportam** os nomes hasheados como JS (`export const varBsBadgePaddingX = createVar()`, `export const btn = style(...)`). Basta compilar esses módulos para JS e agrupá-los em `dist/contract/index.js` — o "manifesto" é literalmente esse JS. Zero trabalho de mapeamento manual.
+- **Determinismo:** fixar `identifiers` do `@vanilla-extract/vite-plugin` para uma função estável, de modo que rebuilds reproduzam os mesmos hashes (importante para diffs de versão limpos e para o consumidor confiar nos nomes).
+
+### 3.2 Utilities — preset UnoCSS `presetBootswatch`
+
+- **API:** `presetBootswatch({ prefix = '' }): Preset`. O consumidor põe no `uno.config.ts`; UnoCSS gera **só** as classes que aparecem no código (JIT).
+- **Regras:** derivadas do mapa de utilities do Bootstrap para não escrever à mão e manter fidelidade — duas fontes possíveis (decidir na implementação): (a) parsear o `$utilities` do Sass do `bootstrap-fork`, ou (b) parsear a seção Utilities do `screenshots/{theme}/bootstrap.css` (mesma fonte que o literal já confia). Preferência: derivar de (a) se estável; (b) como verificação cruzada.
+- **Breakpoints infix:** Bootstrap usa `mb-md-3` (infix), não `md:mb-3` (prefixo). Implementar como **variant** UnoCSS que reconhece `-{sm|md|lg|xl|xxl}-` e embrulha em `@media (min-width: …)`.
+- **Cores → vars:** átomos de cor emitem `var(--bs-*)`; não embutem valor de tema → o preset é único e theme-agnostic. O valor vem do `scope.css` do tema ativo.
+- **Sem reset:** o preset não injeta reboot/normalize. Reboot (se desejado) vem da família `global`/`reboot` dos componentes, que o consumidor importa explicitamente.
+- **Composição:** documentar `presets: [presetBootswatch({ prefix: 'bsu-' }), presetWind3()]` para quem quiser Tailwind junto; o prefixo evita colisão.
+- **Prefixo:** `''` → tokens idênticos ao Bootstrap; `'bsu-'` → `bsu-mb-3`. (Formato do token preservado: `mb-3`, não `mb3` — ver Aberto #1.)
+
+### 3.3 Runtime Solid mínimo (`/solid`) — contexto do prefixo/scope
+
+Não são componentes UI; é o mínimo para os componentes do consumidor ficarem agnósticos:
+
+- `BootswatchProvider` — provê `{ scope, utilityPrefix }`.
+- `useUtilityPrefix()` / `u(...classes)` — helper que prefixa strings de utility (`u('mb-3','text-primary')` → `'bsu-mb-3 bsu-text-primary'` conforme o prefixo do contexto).
+- Assim os componentes de exemplo (e os do DDSOFT) escrevem utilities sem hard-coard o prefixo.
+
+## 4. Como o DDSOFT consome (receita)
+
+```ts
+// uno.config.ts
+import { defineConfig } from 'unocss'
+import { presetBootswatch } from '@arijs/bootswatch-ve/preset'
+export default defineConfig({
+  presets: [ presetBootswatch({ prefix: 'bsu-' }) /*, presetWind3() se quiser */ ],
+})
+```
+
+```tsx
+// carrega scope do tema + SÓ as famílias usadas (side-effect CSS)
+import '@arijs/bootswatch-ve/themes/flatly/scope.css'
+import '@arijs/bootswatch-ve/themes/flatly/buttons.css'
+import { flatlyScope } from '@arijs/bootswatch-ve/themes/flatly/scope'
+import { btn, btnPrimary } from '@arijs/bootswatch-ve/contract'
+import { u } from '@arijs/bootswatch-ve/solid'
+
+// componente do DDSOFT, dono do próprio JSX:
+<button class={`${flatlyScope} ${btn} ${btnPrimary} ${u('mb-3')}`}>Salvar</button>
+```
+
+Regras: (1) só importa a CSS das famílias que renderiza → granularidade real; (2) UnoCSS gera só as utilities usadas → JIT; (3) contract e CSS vêm da **mesma versão** do pacote → hashes sempre casam.
+
+## 5. Pipeline de build (organizado)
+
+Passos, orquestrados por um `scripts/build-package.mjs` novo:
+
+1. `generate-ve-literal --families --all-themes` (já existe) → `.css.ts` por família/tema atualizados.
+2. **Compilar componentes:** Vite lib/rollup + `@vanilla-extract/vite-plugin` (identifiers estáveis) → `dist/themes/**` (.css) + `dist/contract/index.js|d.ts`.
+3. **Compilar preset e /solid:** `tsup`/rollup → `dist/preset`, `dist/solid` (ESM + d.ts).
+4. **Montar o pacote:** gerar `package.json` (version, exports, files, sideEffects), copiar `examples/`.
+5. **Publicar:** ver §7.
+
+Cada passo é idempotente e verificável isolado.
+
+## 6. Testabilidade (reusar o harness que já existe)
+
+O repo já tem verificação madura (Playwright pixel-diff em 433 cenários, markup parity, family-closure). O plano **aponta esse harness para os artefatos empacotados**, não para o `src`:
+
+- **Componentes:** um app-fixture importa `dist/themes/**` + `dist/contract` (como o DDSOFT faria) e roda o pixel/markup diff contra o baseline do Bootstrap. Prova que o `.css` publicado + os hashes do contract renderizam idênticos.
+- **Preset utilities:** página-fixture que usa um conjunto amplo de strings de utility (com e sem prefixo) compilada pelo UnoCSS, diff pixel contra o equivalente Bootstrap. Cobre a "reexpressão semântica" das utilities (que sai da garantia literal — ver §8).
+- **CI gate:** `npm test` = build do pacote → fixtures → diffs. `publish` só passa com o gate verde.
+
+## 7. Versionamento e publicação
+
+- **Um pacote → versionamento simples.** `changesets` é overkill para 1 pacote; usar `npm version` + CHANGELOG manual, ou changesets só pelo fluxo de changelog/PR se preferir. Semver: **minor** para novos temas/famílias/utilities; **patch** para correções de fidelidade; **major** se um hash de contract mudar de forma incompatível (por isso identifiers estáveis importam).
+- **Escopo `@arijs`:** publicar sob o org no npm (acesso ao registry a resolver na hora — separado do GitHub).
+- **CI:** GitHub Actions no `arijs/bootswatch-solid`: build + test (§6) em PR; publish em tag/release, gated no test.
+- `bootstrap-fork` (hoje `file:`) precisa virar dependência pinada/publicada ou ser vendorizada no build (decidir — ver Aberto #3).
+
+## 8. Riscos e trade-offs (explícitos)
+
+- **Fidelidade das utilities:** o preset UnoCSS é uma **reexpressão** do Bootstrap, não a cópia regra-a-regra verificada. Baixo risco (utilities são mecânicas; cores mapeiam para os mesmos vars), mas essa camada passa a ser garantida pelo harness de screenshot, não pela prova literal. Os **componentes** seguem literal-verificados.
+- **Autoria mista:** componentes = classes hasheadas do contract; utilities = strings legíveis. É intencional, mas o consumidor precisa entender as duas naturezas.
+- **UnoCSS obrigatório no consumidor** (para utilities). Aceitável: o DDSOFT é SolidJS+Vite, `@unocss/vite` é trivial.
+- **Tamanho do pacote:** inclui 27 temas × ~33 famílias de CSS + examples. Grande no disco do node_modules, mas o consumidor só **importa** o que usa; o resto não entra no bundle. Avaliar publicar `examples/` só no repo e não no tarball (via `files`) se o peso incomodar.
+
+## 9. Perguntas em aberto (decidir na implementação)
+
+1. **Formato do token com prefixo:** `bsu-mb-3` (preservando o hífen do Bootstrap — recomendado) vs `bsu-mb3` (compacto, como no exemplo do Rafael). Definir e travar.
+2. **Fonte das regras do preset:** `$utilities` do Sass vs seção Utilities do `bootstrap.css`. (Recomendo derivar do Sass e validar contra o CSS.)
+3. **`bootstrap-fork`:** publicar/pinar vs vendorizar no build do pacote.
+4. **`examples/` no tarball publicado** ou só no repo (via `files`/`.npmignore`).
+5. **Tooling de versão:** `npm version` simples vs changesets.
+
+## 10. Roteiro de implementação (fases)
+
+- **F1 — Esqueleto do pacote:** `package.json` + exports + `scripts/build-package.mjs` compilando `dist/themes/**` + `dist/contract` de UM tema (bootstrap). Fixture + pixel-diff do componente publicado. (Prova a espinha.)
+- **F2 — Todos os temas:** estender o build aos 27; validar granular por família nos artefatos.
+- **F3 — Preset UnoCSS:** `presetBootswatch({ prefix })` derivado do Bootstrap; fixture de utilities + diff; documentar composição com Tailwind.
+- **F4 — `/solid`:** `BootswatchProvider` + `u()`; portar os componentes de exemplo para usá-los; incluir em `examples/`.
+- **F5 — CI + publish:** Actions com gate de teste; primeira publicação `@arijs/bootswatch-ve`.
+- **F6 — Integração DDSOFT:** o frontend consome o pacote publicado; feedback real fecha o ciclo.
+```
