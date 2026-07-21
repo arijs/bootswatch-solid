@@ -172,6 +172,30 @@ Expected result after the fix:
 
 - `css OK 0.000000 - 0/74880` for `/forms/sizing/large-controls`.
 
+### Structured mismatch dump + graceful abort (`VERIFY_JSON_OUT`)
+
+When the `VERIFY_JSON_OUT` environment variable points to a file path, any
+verification run (`--verify-css-rendering` / `--verify-ve-rendering` /
+`--verify-ve1-rendering`) writes a JSON progress file there, **rewritten after
+every verified scenario** (incremental). Shape:
+
+```
+{ label, complete, lastRoute, lastState,
+  ran, matched, mismatched, skipped, maxDiffRatio,
+  mismatches: [ { theme, route, state, diffRatio, diffPixels, totalPixels, reason } ] }
+```
+
+`complete` is `true` only when the run finished the whole scenario list. On
+`SIGINT`/`SIGTERM` the run finishes the in-flight scenario, flushes the JSON
+(`complete:false`, `lastRoute` = last done route), and stops gracefully; a
+second signal forces exit. This lets an orchestrator consume structured results
+instead of scraping stdout and resume at route granularity.
+
+Used by the resumable multi-theme driver `scripts/verify-all-themes.mjs`
+(`pnpm verify:themes`): one theme per child process, state under `verify-run/`,
+interruptible and resumable **per route** — an interrupted theme resumes with
+`--skip-to-route=<lastRoute>`, re-verifying at most one route.
+
 ### Theme safety limit (`--max-themes`)
 
 A new `--max-themes=N` flag limits the number of themes processed in a single run:

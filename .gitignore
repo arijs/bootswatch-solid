@@ -12,6 +12,7 @@ dist
 /screenshots/**/markup.diff.json
 /screenshots/**/markup.diff.md
 /verify-*.txt
+/verify-run/
 /tmp-*.*
 /ve-project/verify-*.txt
 /debug-*.txt

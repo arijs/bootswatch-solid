@@ -16,6 +16,7 @@
 		"ve2:build": "node scripts/run-ve-vite.mjs build ve-project2",
 		"ve2:build:bootstrap": "node scripts/run-ve-vite.mjs build ve-project2 --theme=bootstrap",
 		"ve2:preview": "node scripts/run-ve-vite.mjs preview ve-project2",
+		"verify:themes": "node scripts/verify-all-themes.mjs",
 		"extract:contract-classes": "node scripts/extract-contract-classes.mjs",
 		"extract:static-classes": "node scripts/extract-static-classes.mjs",
 		"screenshots:capture": "node scripts/capture-leaf-screenshots.mjs",

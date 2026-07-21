@@ -1,4 +1,4 @@
-import { mkdir } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { setTimeout as delay } from 'node:timers/promises'
@@ -116,6 +116,67 @@ export async function executeCaptureWorkflow({
 	let processedThemeIndex = 0
 	let shotsSinceRestart = 0
 	const scenarioSummary = new Map()
+
+	// --- Incremental verification progress + graceful abort ------------------
+	// Component-level resume: after each verified scenario we flush the running
+	// results (counters, mismatches, lastRoute) to VERIFY_JSON_OUT, and on
+	// SIGINT/SIGTERM we finish the in-flight scenario, flush, and stop. An
+	// orchestrator resumes with --skip-to-route=<lastRoute>.
+	const isVerifying = verificationEnabled || ve1VerificationEnabled || veVerificationEnabled
+	const verifyJsonPath = (isVerifying && process.env.VERIFY_JSON_OUT) || null
+	const verificationLabel = verificationEnabled ? 'CSS' : ve1VerificationEnabled ? 'VE1' : 'VE'
+	let aborting = false
+	let lastVerifiedRoute = null
+	let lastVerifiedState = null
+	async function writeVerifyJson(complete) {
+		if (!verifyJsonPath) return
+		const mismatches = verificationMismatches.map((m) => {
+			const parts = path.relative(ROOT, m.outputPath).split(/[\\/]/)
+			return {
+				theme: parts[1],
+				route: `/${parts.slice(2, parts.length - 2).join('/')}`,
+				state: parts[parts.length - 2],
+				diffRatio: m.diffRatio,
+				diffPixels: m.diffPixels,
+				totalPixels: m.totalPixels,
+				reason: m.reason,
+			}
+		})
+		await mkdir(path.dirname(verifyJsonPath), { recursive: true })
+		await writeFile(
+			verifyJsonPath,
+			`${JSON.stringify(
+				{
+					label: verificationLabel,
+					complete,
+					lastRoute: lastVerifiedRoute,
+					lastState: lastVerifiedState,
+					ran: verificationRan,
+					matched: verificationMatched,
+					mismatched: verificationMismatched,
+					skipped: verificationSkipped,
+					maxDiffRatio: verificationMaxDiffRatio,
+					mismatches,
+				},
+				null,
+				2,
+			)}\n`,
+		)
+	}
+	const onSignal = (sig) => {
+		if (aborting) {
+			console.warn(`\n${sig} again — forcing exit.`)
+			process.exit(130)
+		}
+		aborting = true
+		console.warn(
+			`\n${sig} received — flushing progress and stopping after the current scenario.`,
+		)
+	}
+	if (isVerifying) {
+		process.on('SIGINT', () => onSignal('SIGINT'))
+		process.on('SIGTERM', () => onSignal('SIGTERM'))
+	}
 	const hasStateFilter = stateFilter instanceof Set && stateFilter.size > 0
 
 	try {
@@ -502,6 +563,13 @@ export async function executeCaptureWorkflow({
 
 				if (shouldBail) break
 
+				if (isVerifying) {
+					lastVerifiedRoute = route
+					lastVerifiedState = scenario.state
+					await writeVerifyJson(false)
+					if (aborting) break
+				}
+
 				if (shotsSinceRestart >= RESTART_BROWSER_EVERY) {
 					try {
 						await context.close()
@@ -525,6 +593,8 @@ export async function executeCaptureWorkflow({
 				await writeThemeCssArtifact({ themeSlug, accumulator: cssAccumulator })
 				cssThemeCount += 1
 			}
+
+			if (aborting) break
 		}
 	} finally {
 		try {
@@ -559,11 +629,6 @@ export async function executeCaptureWorkflow({
 	}
 
 	if (verificationEnabled || ve1VerificationEnabled || veVerificationEnabled) {
-		const verificationLabel = verificationEnabled
-			? 'CSS'
-			: ve1VerificationEnabled
-				? 'VE1'
-				: 'VE'
 		console.log(
 			`${verificationLabel} verification: ran=${verificationRan}, matched=${verificationMatched}, mismatched=${verificationMismatched}, skipped=${verificationSkipped}, maxDiffRatio=${verificationMaxDiffRatio}`,
 		)
@@ -584,6 +649,9 @@ export async function executeCaptureWorkflow({
 				}
 			}
 		}
+
+		// Final flush: complete unless we broke out early on SIGINT/SIGTERM.
+		await writeVerifyJson(!aborting)
 	}
 
 	let writebackResults = []
