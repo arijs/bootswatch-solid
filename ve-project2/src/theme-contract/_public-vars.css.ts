@@ -1,6 +1,6 @@
 // GERADO por scripts/gen-public-vars.mjs — NÃO editar à mão.
 // Vars públicas globais (:root) do Bootstrap que as utilities referenciam.
-// createVar() → hasheadas pelo VE (mesmo --bsve_ das classes). Os valores
+// createVar() → hasheadas pelo VE (mesmo --b das classes). Os valores
 // por tema são atribuídos em themes/<tema>/public-vars.css.ts.
 import { createVar } from '@vanilla-extract/css'
 

@@ -23,7 +23,7 @@ async function main() {
 		root: path.join(ROOT, 've-project2'),
 		configFile: false,
 		logLevel: 'error',
-		plugins: [vanillaExtractPlugin({ identifiers: ({ hash }) => `bsve_${hash}` })],
+		plugins: [vanillaExtractPlugin({ identifiers: ({ hash }) => `b${hash}` })],
 		build: {
 			outDir: OUTDIR, emptyOutDir: true, cssCodeSplit: true, target: 'esnext', minify: false,
 			lib: { entry: { pubvars: path.join(TMP, 'pubvars.ts') }, formats: ['es'] },
@@ -33,7 +33,7 @@ async function main() {
 
 	const js = await readFile(path.join(OUTDIR, 'pubvars.js'), 'utf8')
 	const map = {}
-	for (const m of js.matchAll(/(varBs[A-Za-z0-9]+)\s*=\s*"(var\(--bsve_[a-z0-9]+\))"/g)) map[m[1]] = m[2]
+	for (const m of js.matchAll(/(varBs[A-Za-z0-9]+)\s*=\s*"(var\(--b[a-z0-9]+\))"/g)) map[m[1]] = m[2]
 	await writeFile(OUT_JSON, JSON.stringify(map, null, '\t') + '\n')
 	await rm(TMP, { recursive: true, force: true })
 	await rm(OUTDIR, { recursive: true, force: true })

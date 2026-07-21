@@ -93,7 +93,7 @@ async function main() {
 
 	// Substitui --bs-* pelos nomes hasheados do VE (camada de vars públicas,
 	// §3.3-bis). Mapa: names.json (--bs-x → varBsX) + contract.js (varBsX →
-	// "var(--bsve_hash)"). Requer build-package rodado antes.
+	// "var(--bhash)"). Requer build-package rodado antes.
 	const bsToHash = loadPublicVarMap()
 	let leftover = new Set()
 	for (const [name, decls] of base) base.set(name, hashDecls(decls, bsToHash, leftover))
@@ -133,7 +133,7 @@ function writeFileSyncMkdir(file, content) {
 	return writeFile(file, content)
 }
 
-/** { '--bs-primary-rgb': 'var(--bsve_xxxx)' } a partir de names.json + public-vars.hash.json. */
+/** { '--bs-primary-rgb': 'var(--bxxxx)' } a partir de names.json + public-vars.hash.json. */
 function loadPublicVarMap() {
 	const names = JSON.parse(readFileSync(path.join(ROOT, 'preset', 'public-vars.names.json'), 'utf8'))
 	const hashes = JSON.parse(readFileSync(path.join(ROOT, 'preset', 'public-vars.hash.json'), 'utf8'))
@@ -150,7 +150,7 @@ function hashDecls(decls, bsToHash, leftover) {
 	for (let [prop, val] of Object.entries(decls)) {
 		if (prop.startsWith('--bs-')) {
 			const h = bsToHash[prop]
-			if (h) prop = h.slice(4, -1) // "var(--bsve_x)" → "--bsve_x"
+			if (h) prop = h.slice(4, -1) // "var(--bx)" → "--bx"
 			else leftover.add(prop)
 		}
 		val = String(val).replace(/var\((--bs-[a-z0-9-]+)\)/g, (m, name) => {

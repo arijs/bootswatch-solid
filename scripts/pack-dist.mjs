@@ -111,7 +111,7 @@ async function assembleContract() {
 	const names = parseExportNames(contractJs)
 	const dts = [
 		'// Manifesto de contract do @arijs/bootswatch-ve — nomes hasheados (VE),',
-		'// compartilhados pelos temas. Cada `var*` é uma string `var(--bsve_…)`;',
+		'// compartilhados pelos temas. Cada `var*` é uma string `var(--b…)`;',
 		'// cada contract de classe/elemento é a classe hasheada correspondente.',
 		...names.map((n) => `export declare const ${n}: string`),
 		'',
@@ -223,7 +223,10 @@ function packageJson(themes) {
 		files: ['contract', 'preset', 'solid', 'themes', 'README.md'],
 		peerDependencies: {
 			'@unocss/core': '>=0.58.0',
-			'solid-js': '>=1.8.0',
+			// `>=2.0.0-0` inclui os prereleases do Solid 2.0 (beta/next) — o alvo do
+			// runtime /solid. Sem isso, `>=1.8.0` exclui prereleases e o npm tenta
+			// puxar um solid-js 1.x stable em projetos no Solid 2.0-beta, conflitando.
+			'solid-js': '>=1.8.0 || >=2.0.0-0',
 		},
 		peerDependenciesMeta: {
 			'@unocss/core': { optional: true },
