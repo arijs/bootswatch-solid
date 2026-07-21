@@ -8,6 +8,7 @@ import { PNG } from 'pngjs'
 import { ROOT, VE_BASE_URL } from './constants.mjs'
 import { pathExists } from './folder-pruning.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
+import { gotoWithPreviewRecovery } from './preview-server-manager.mjs'
 import { resolveInitialNavigationWarmupDelayMs } from './timing.mjs'
 
 function toBufferPng(png) {
@@ -62,6 +63,7 @@ export async function verifyScenarioVeRendering({
 	measuredHeight,
 	baselinePath,
 	maxDiffRatio,
+	previewServerManager,
 }) {
 	if (!(await pathExists(baselinePath))) {
 		return {
@@ -90,7 +92,7 @@ export async function verifyScenarioVeRendering({
 
 	try {
 		const veUrl = `${VE_BASE_URL}${route}`
-		await page.goto(veUrl, { waitUntil: 'load', timeout: 60000 })
+		await gotoWithPreviewRecovery(page, veUrl, previewServerManager)
 		await delay(150)
 		const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
 			themeSlug,

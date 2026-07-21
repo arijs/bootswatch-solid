@@ -1,11 +1,10 @@
 import * as bootstrap from 'bootstrap'
+import { collapsed, collapsing } from '../../../theme-contract/literal/contract.css'
+import { show } from '../../../theme-contract/ui/navs/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeCollapseRuntimeClasses {
 	accordionCollapse: string
-	accordionButtonCollapsed: string
-	accordionCollapsing: string
-	accordionCollapseShow: string
 }
 
 export function configureVeCollapse(runtime: VeCollapseRuntimeClasses): typeof bootstrap.Collapse {
@@ -13,9 +12,9 @@ export function configureVeCollapse(runtime: VeCollapseRuntimeClasses): typeof b
 		bootstrap.Collapse as unknown as BootstrapWithDefaults<typeof bootstrap.Collapse>
 	).extendDefaultConfig({
 		CLASS_NAME_COLLAPSE: runtime.accordionCollapse,
-		CLASS_NAME_COLLAPSED: runtime.accordionButtonCollapsed,
-		CLASS_NAME_COLLAPSING: runtime.accordionCollapsing,
-		CLASS_NAME_SHOW: runtime.accordionCollapseShow,
+		CLASS_NAME_COLLAPSED: collapsed,
+		CLASS_NAME_COLLAPSING: collapsing,
+		CLASS_NAME_SHOW: show,
 		SELECTOR_DATA_TOGGLE: '[data-ve-toggle="collapse"]',
 	}) as typeof bootstrap.Collapse
 

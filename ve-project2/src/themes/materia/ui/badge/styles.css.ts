@@ -1,16 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	badge,
-	badgeDanger,
-	badgeDark,
-	badgeInfo,
-	badgeLight,
-	badgePrimary,
-	badgeRoundedPill,
-	badgeSecondary,
-	badgeSuccess,
-	badgeWarning,
-} from '../../../../theme-contract/ui/badge/contract.css'
+import { materiaScope } from '../../scope.css'
+
+import { varBsBorderRadius, varBsGradient } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBadgeBorderRadius,
 	varBsBadgeColor,
@@ -19,20 +10,9 @@ import {
 	varBsBadgePaddingX,
 	varBsBadgePaddingY,
 } from '../../../../theme-contract/ui/badge/_vars.css'
-import {
-	varBsBorderRadius,
-	varBsBorderRadiusPill,
-	varBsDanger,
-	varBsDark,
-	varBsGradient,
-	varBsInfo,
-	varBsLight,
-	varBsPrimary,
-	varBsSecondary,
-	varBsSuccess,
-	varBsWarning,
-} from '../../../../theme-contract/_vars.css'
-import { materiaScope } from '../../scope.css'
+
+import { badge } from '../../../../theme-contract/ui/badge/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
 globalStyle(`${materiaScope}${badge}`, {
 	vars: {
@@ -47,7 +27,7 @@ globalStyle(`${materiaScope}${badge}`, {
 	padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
 	fontSize: varBsBadgeFontSize,
 	fontWeight: varBsBadgeFontWeight,
-	lineHeight: 1,
+	lineHeight: '1',
 	color: varBsBadgeColor,
 	textAlign: 'center',
 	whiteSpace: 'nowrap',
@@ -60,43 +40,7 @@ globalStyle(`${materiaScope}${badge}:empty`, {
 	display: 'none',
 })
 
-globalStyle(`${materiaScope}${badgePrimary}`, {
-	backgroundColor: varBsPrimary,
+globalStyle(`${materiaScope}${btn} ${materiaScope}${badge}`, {
+	position: 'relative',
+	top: '-1px',
 })
-
-globalStyle(`${materiaScope}${badgeSecondary}`, {
-	backgroundColor: varBsSecondary,
-	vars: { [varBsBadgeColor]: '#222' },
-})
-
-globalStyle(`${materiaScope}${badgeSuccess}`, {
-	backgroundColor: varBsSuccess,
-})
-
-globalStyle(`${materiaScope}${badgeDanger}`, {
-	backgroundColor: varBsDanger,
-})
-
-globalStyle(`${materiaScope}${badgeWarning}`, {
-	backgroundColor: varBsWarning,
-	vars: { [varBsBadgeColor]: varBsDark },
-})
-
-globalStyle(`${materiaScope}${badgeInfo}`, {
-	backgroundColor: varBsInfo,
-	vars: { [varBsBadgeColor]: varBsDark },
-})
-
-globalStyle(`${materiaScope}${badgeLight}`, {
-	backgroundColor: varBsLight,
-	vars: { [varBsBadgeColor]: '#222' },
-})
-
-globalStyle(`${materiaScope}${badgeDark}`, {
-	backgroundColor: varBsDark,
-})
-
-globalStyle(`${materiaScope}${badgeRoundedPill}`, {
-	vars: { [varBsBadgeBorderRadius]: varBsBorderRadiusPill },
-})
-

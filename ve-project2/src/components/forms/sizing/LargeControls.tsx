@@ -1,20 +1,25 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	formControl,
 	formControlLg,
 	formSelect,
 	formSelectLg,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import { elInput, elSelect } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const LargeControls: Component = () => {
@@ -25,7 +30,7 @@ const LargeControls: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<div class={`${theme} ${mb3}`}>
 				<input
-					class={`${theme} ${formControl} ${formControlLg}`}
+					class={`${theme} ${elInput} ${formControl} ${formControlLg}`}
 					type="text"
 					placeholder=".form-control-lg"
 					aria-label=".form-control-lg example"
@@ -33,7 +38,7 @@ const LargeControls: Component = () => {
 			</div>
 			<div class={`${theme} ${mb3}`}>
 				<select
-					class={`${theme} ${formSelect} ${formSelectLg} ${mb3}`}
+					class={`${theme} ${elSelect} ${formSelect} ${formSelectLg} ${mb3}`}
 					aria-label=".form-select-lg example"
 				>
 					<option selected>Open this select menu</option>
@@ -45,7 +50,7 @@ const LargeControls: Component = () => {
 			<div class={`${theme} ${mb3}`}>
 				<input
 					type="file"
-					class={`${theme} ${formControl} ${formControlLg}`}
+					class={`${theme} ${elInput} ${formControl} ${formControlLg}`}
 					aria-label="Large file input example"
 				/>
 			</div>

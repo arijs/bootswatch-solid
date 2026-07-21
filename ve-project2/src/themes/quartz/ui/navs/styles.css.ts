@@ -1,15 +1,18 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
+	varBsBorderColor,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryBg,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -25,16 +28,35 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsBorderColor,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import { quartzScope } from '../../scope.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
+import {
+	active,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
 
 globalStyle(`${quartzScope}${nav}`, {
 	vars: {
@@ -43,48 +65,60 @@ globalStyle(`${quartzScope}${nav}`, {
 		[varBsNavLinkFontWeight]: '',
 		[varBsNavLinkColor]: varBsLinkColor,
 		[varBsNavLinkHoverColor]: varBsLinkHoverColor,
-		[varBsNavLinkDisabledColor]: varBsSecondaryColor,
+		[varBsNavLinkDisabledColor]: 'rgba(255, 255, 255, 0.7)',
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
-
-// ── .nav-link ─────────────────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
-	lineHeight: 'inherit',
 	color: varBsNavLinkColor,
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-globalStyle(`${quartzScope}${navLink}:hover, ${quartzScope}${navLink}:focus`, {
+globalStyle(`${quartzScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-globalStyle(
-	`${quartzScope}${navLink}${navLinkDisabled}, ${quartzScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-	},
-)
+globalStyle(`${quartzScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs (quartz overrides) ──────────────────────────────────────────────
+globalStyle(`${quartzScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(232, 50, 131, 0.25)',
+})
 
-// Quartz: no border-width, no border-radius on tabs
+globalStyle(`${quartzScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${quartzScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
 globalStyle(`${quartzScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: '0',
@@ -98,38 +132,34 @@ globalStyle(`${quartzScope}${navTabs}`, {
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-globalStyle(`${quartzScope}${navTabs} ${navLink}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
-	// Quartz: links get translucent dark bg, no transition
-	backgroundColor: 'rgba(0, 0, 0, 0.2)',
-	transition: 'none',
 })
 
-// Quartz: disabled tab also gets dark bg
-globalStyle(`${quartzScope}${navTabs} ${navLink}${navLinkDisabled}`, {
-	backgroundColor: 'rgba(0, 0, 0, 0.2)',
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-// Quartz: hover/focus → white text, no isolation
-globalStyle(
-	`${quartzScope}${navTabs} ${navLink}:hover, ${quartzScope}${navTabs} ${navLink}:focus`,
-	{
-		color: '#fff',
-		isolation: 'auto',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-globalStyle(`${quartzScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
 globalStyle(`${quartzScope}${navPills}`, {
 	vars: {
@@ -139,11 +169,249 @@ globalStyle(`${quartzScope}${navPills}`, {
 	},
 })
 
-globalStyle(`${quartzScope}${navPills} ${navLink}`, {
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${quartzScope}${navPills} ${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${show} > ${quartzScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${quartzScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: '#fff',
+	},
+	gap: varBsNavUnderlineGap,
+})
+
+globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${show} > ${quartzScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${quartzScope}${navFill} > ${quartzScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${quartzScope}${navFill} ${quartzScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${quartzScope}${navJustified} > ${quartzScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${quartzScope}${navJustified} ${quartzScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${quartzScope}${navFill} ${quartzScope}${navItem} ${quartzScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${quartzScope}${navJustified} ${quartzScope}${navItem} ${quartzScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${quartzScope}${tabContent} > ${quartzScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${quartzScope}${tabContent} > ${quartzScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${quartzScope}${navbarExpandSm} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandMd} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandLg} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXl} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarNav} ${quartzScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${quartzScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${quartzScope}${cardHeaderTabs} ${quartzScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}`, {
+	transition: 'none',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}:hover`, {
+	color: '#fff',
+	isolation: 'auto',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}:focus`, {
+	color: '#fff',
+	isolation: 'auto',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}${navLinkDisabled}`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}:first-child > ${quartzScope}${navLink}`, {
+	borderRadius: '0.5rem 0 0 0.5rem',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}:last-child > ${quartzScope}${navLink}`, {
+	borderRadius: '0 0.5rem 0.5rem 0',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, white, rgba(255, 255, 255, 0.9) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
+	borderRadius: '0.5rem',
+	transform: 'scale(1.1)',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, white, rgba(255, 255, 255, 0.9) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
+	borderRadius: '0.5rem',
+	transform: 'scale(1.1)',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} :where(${quartzScope}${link})`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink} :where(${quartzScope}${link})`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive}:hover`, {
+	color: '#343a40',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive}:focus`, {
+	color: '#343a40',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink}:hover`, {
+	color: '#343a40',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink}:focus`, {
+	color: '#343a40',
+})
+
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}`, {
+	transition: 'none',
+})
+
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}:hover`, {
+	color: '#fff',
+	isolation: 'auto',
+})
+
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}:focus`, {
+	color: '#fff',
+	isolation: 'auto',
 })

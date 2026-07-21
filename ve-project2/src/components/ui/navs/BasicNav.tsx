@@ -1,6 +1,11 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	nav,
@@ -12,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const BasicNav: Component = () => {
@@ -21,35 +26,43 @@ const BasicNav: Component = () => {
 	return (
 		<div class="bd-example-ve2">
 			<div class={`${theme} ${containerFluid}`}>
-			<nav class={`${theme} ${nav}`}>
-				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a
-					class={`${theme} ${navLink} ${navLinkActive}`}
-					aria-current="page"
-					href="#"
-					onClick={(e) => e.preventDefault()}
-				>
-					Active
-				</a>
-				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a class={`${theme} ${navLink}`} href="#" onClick={(e) => e.preventDefault()}>
-					Link
-				</a>
-				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a class={`${theme} ${navLink}`} href="#" onClick={(e) => e.preventDefault()}>
-					Link
-				</a>
-				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a
-					class={`${theme} ${navLink} ${navLinkDisabled}`}
-					href="#"
-					onClick={(e) => e.preventDefault()}
-					tabindex="-1"
-					aria-disabled="true"
-				>
-					Disabled
-				</a>
-			</nav>
+				<nav class={`${theme} ${nav}`}>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a
+						class={`${theme} ${link} ${navLink} ${navLinkActive}`}
+						aria-current="page"
+						href="#"
+						onClick={(e) => e.preventDefault()}
+					>
+						Active
+					</a>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a
+						class={`${theme} ${link} ${navLink}`}
+						href="#"
+						onClick={(e) => e.preventDefault()}
+					>
+						Link
+					</a>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a
+						class={`${theme} ${link} ${navLink}`}
+						href="#"
+						onClick={(e) => e.preventDefault()}
+					>
+						Link
+					</a>
+					{/* biome-ignore lint: <a> is used for demonstration purposes */}
+					<a
+						class={`${theme} ${link} ${navLink} ${navLinkDisabled}`}
+						href="#"
+						onClick={(e) => e.preventDefault()}
+						tabindex="-1"
+						aria-disabled="true"
+					>
+						Disabled
+					</a>
+				</nav>
 			</div>
 		</div>
 	)

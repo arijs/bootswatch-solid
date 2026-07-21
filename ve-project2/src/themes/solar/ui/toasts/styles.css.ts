@@ -1,23 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsBodyBgRgb,
-	varBsBorderColorTranslucent,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBoxShadow,
-	varBsDarkRgb,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import {
-	placeholderIcon,
-	toast,
-	toastBody,
-	toastBrand,
-	toastExample,
-	toastHeader,
-	toastShow,
-	toastTimestamp,
-} from '../../../../theme-contract/ui/toasts/contract.css'
+import { solarScope } from '../../scope.css'
+
+import { varBsBorderRadius, varBsBorderWidth, varBsBoxShadow } from '../../../../theme-contract/_vars.css'
 import {
 	varBsToastBg,
 	varBsToastBorderColor,
@@ -35,14 +19,15 @@ import {
 	varBsToastSpacing,
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
-import { alertBtnClose } from '../../../../theme-contract/ui/alerts/contract.css'
-import { solarScope } from '../../scope.css'
 
-globalStyle(`${solarScope}${toastExample}`, {
-	backgroundColor: `rgba(${varBsDarkRgb}, 1)`,
-	padding: '3rem',
-	alignItems: 'center',
-})
+import { toastContainer } from '../../../../theme-contract/literal/contract.css'
+import {
+	toast,
+	toastBody,
+	toastHeader,
+	toastShow,
+	toastShowing,
+} from '../../../../theme-contract/ui/toasts/contract.css'
 
 globalStyle(`${solarScope}${toast}`, {
 	vars: {
@@ -53,14 +38,14 @@ globalStyle(`${solarScope}${toast}`, {
 		[varBsToastMaxWidth]: '350px',
 		[varBsToastFontSize]: '0.875rem',
 		[varBsToastColor]: '',
-			[varBsToastBg]: '#003f50',
-			[varBsToastBorderWidth]: varBsBorderWidth,
-			[varBsToastBorderColor]: 'rgba(0, 0, 0, 0.2)',
-			[varBsToastBorderRadius]: varBsBorderRadius,
-			[varBsToastBoxShadow]: varBsBoxShadow,
-			[varBsToastHeaderColor]: varBsSecondaryColor,
-			[varBsToastHeaderBg]: '#003f50',
-			[varBsToastHeaderBorderColor]: 'rgba(0, 0, 0, 0.2)',
+		[varBsToastBg]: '#003f50',
+		[varBsToastBorderWidth]: varBsBorderWidth,
+		[varBsToastBorderColor]: 'rgba(0, 0, 0, 0.2)',
+		[varBsToastBorderRadius]: varBsBorderRadius,
+		[varBsToastBoxShadow]: varBsBoxShadow,
+		[varBsToastHeaderColor]: '#839496',
+		[varBsToastHeaderBg]: '#003f50',
+		[varBsToastHeaderBorderColor]: 'rgba(0, 0, 0, 0.2)',
 	},
 	width: varBsToastMaxWidth,
 	maxWidth: '100%',
@@ -74,8 +59,27 @@ globalStyle(`${solarScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
+globalStyle(`${solarScope}${toast}${toastShowing}`, {
+	opacity: '0',
+})
+
 globalStyle(`${solarScope}${toast}:not(${toastShow})`, {
 	display: 'none',
+})
+
+globalStyle(`${solarScope}${toastContainer}`, {
+	vars: {
+		[varBsToastZindex]: '1090',
+	},
+	position: 'absolute',
+	zIndex: varBsToastZindex,
+	width: 'max-content',
+	maxWidth: '100%',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${solarScope}${toastContainer} > :not(:last-child)`, {
+	marginBottom: varBsToastSpacing,
 })
 
 globalStyle(`${solarScope}${toastHeader}`, {
@@ -94,27 +98,3 @@ globalStyle(`${solarScope}${toastBody}`, {
 	padding: varBsToastPaddingX,
 	wordWrap: 'break-word',
 })
-
-globalStyle(`${solarScope}${placeholderIcon}`, {
-	verticalAlign: 'middle',
-	width: '20px',
-	height: '20px',
-	borderRadius: `${varBsBorderRadius} !important`,
-	marginRight: '0.5rem !important',
-})
-
-globalStyle(`${solarScope}${toastBrand}`, {
-	fontWeight: 'bolder',
-	marginRight: 'auto !important',
-})
-
-globalStyle(`${solarScope}${toastTimestamp}`, {
-	fontSize: '0.875em',
-	color: `${varBsSecondaryColor} !important`,
-})
-
-globalStyle(`${solarScope}${toastHeader} ${alertBtnClose}`, {
-	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
-	marginLeft: varBsToastPaddingX,
-})
-

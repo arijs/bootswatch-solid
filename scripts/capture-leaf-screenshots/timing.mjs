@@ -27,6 +27,21 @@ const INITIAL_NAVIGATION_WARMUP_OVERRIDES = [
 		state: 'static',
 		delayMs: 450,
 	},
+	{
+		// Give hydration time to bind the modal JS (configureVeModal + data-API destroy/init)
+		// before the opened-modal scenario clicks the trigger. Without this, a slow-to-hydrate
+		// theme (e.g. lumen, whose literal styles.css.ts exceeds Babel's 500KB threshold) has
+		// the trigger clicked before the handler is bound, so the modal never opens and the
+		// `.pwhook-modal:not([aria-hidden="true"])` wait times out.
+		state: 'opened-modal',
+		delayMs: 600,
+	},
+	{
+		// Same hydration race as opened-modal: give the offcanvas JS time to bind
+		// (configureVeOffcanvas + data-API destroy/init) before the trigger is clicked.
+		state: 'opened-offcanvas',
+		delayMs: 600,
+	},
 ]
 
 export function resolveScreenshotSettleDelayMs({ themeSlug, route, stateFolder, scenario }) {

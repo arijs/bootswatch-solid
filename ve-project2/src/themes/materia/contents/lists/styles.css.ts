@@ -1,36 +1,22 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	listBase,
-	listInline,
-	listInlineItem,
-	listIndented,
-	listNested,
-	listUnstyled,
-} from '../../../../theme-contract/contents/contract.css'
 import { materiaScope } from '../../scope.css'
 
-// ─── Lists ────────────────────────────────────────────────────────────────────
-
-globalStyle(`${materiaScope}${listBase}`, {
-	marginTop: 0,
-	marginBottom: '1rem',
-})
-
-globalStyle(`${materiaScope}${listNested}`, {
-	marginBottom: 0,
-})
-
-globalStyle(`${materiaScope}${listIndented}`, {
-	paddingLeft: '2rem',
-})
+import {
+	listBase,
+	listIndented,
+	listInline,
+	listInlineItem,
+	listNested,
+	listUnstyled,
+} from '../../../../theme-contract/contents/lists/contract.css'
 
 globalStyle(`${materiaScope}${listUnstyled}`, {
-	paddingLeft: 0,
+	paddingLeft: '0',
 	listStyle: 'none',
 })
 
 globalStyle(`${materiaScope}${listInline}`, {
-	paddingLeft: 0,
+	paddingLeft: '0',
 	listStyle: 'none',
 })
 
@@ -40,4 +26,17 @@ globalStyle(`${materiaScope}${listInlineItem}`, {
 
 globalStyle(`${materiaScope}${listInlineItem}:not(:last-child)`, {
 	marginRight: '0.5rem',
+})
+
+globalStyle(`${materiaScope}${listBase}`, {
+	marginTop: '0',
+	marginBottom: '1rem',
+})
+
+globalStyle(`${materiaScope}${listNested}`, {
+	marginBottom: '0',
+})
+
+globalStyle(`${materiaScope}${listIndented}`, {
+	paddingLeft: '2rem',
 })

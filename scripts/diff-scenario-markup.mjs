@@ -3,11 +3,13 @@ import path from 'node:path'
 import process from 'node:process'
 
 import { ROOT } from './capture-leaf-screenshots/constants.mjs'
-import {
-	getLeafRoutes,
-	parseRoutesAndComponents,
-} from './capture-leaf-screenshots/discovery.mjs'
+import { getLeafRoutes, parseRoutesAndComponents } from './capture-leaf-screenshots/discovery.mjs'
 import { pathExists } from './capture-leaf-screenshots/folder-pruning.mjs'
+import {
+	diffClassParity,
+	getLiteralClassRegistry,
+} from './capture-leaf-screenshots/markup-class-parity.mjs'
+import { formatClassParityAsMarkdown } from './capture-leaf-screenshots/markup-class-parity-report.mjs'
 import { diffMarkupArtifacts } from './capture-leaf-screenshots/markup-diff-core.mjs'
 import { formatMarkupDiffAsMarkdown } from './capture-leaf-screenshots/markup-diff-report.mjs'
 import {
@@ -27,14 +29,17 @@ function parseCli(argv = process.argv.slice(2)) {
 	const theme = parseArg(argv, '--theme')
 	const strict = argv.includes('--strict')
 	const includeText = argv.includes('--include-text')
+	const classParity = argv.includes('--class-parity')
 	const maxNodesRaw = parseArg(argv, '--max-nodes')
 	const maxNodes = maxNodesRaw ? Number.parseInt(maxNodesRaw, 10) : 25
+	const maxGapsRaw = parseArg(argv, '--max-gaps')
+	const maxGaps = maxGapsRaw ? Number.parseInt(maxGapsRaw, 10) : 50
 	const routeFilter = parseCsvArg(argv, '--route')
 	const stateFilter = parseCsvArg(argv, '--state')
 
 	if (!theme) {
 		throw new Error(
-			'Usage: node scripts/diff-scenario-markup.mjs --theme=<theme> [--route=<routeA,globB,...>] [--state=<stateA,stateB,...>] [--max-nodes=25] [--strict] [--include-text]',
+			'Usage: node scripts/diff-scenario-markup.mjs --theme=<theme> [--route=<routeA,globB,...>] [--state=<stateA,stateB,...>] [--max-nodes=25] [--strict] [--include-text] [--class-parity] [--max-gaps=50]',
 		)
 	}
 	if (!Number.isFinite(maxNodes) || maxNodes <= 0) {
@@ -47,7 +52,9 @@ function parseCli(argv = process.argv.slice(2)) {
 		stateFilter,
 		strict,
 		includeText,
+		classParity,
 		maxNodes,
+		maxGaps,
 	}
 }
 
@@ -86,10 +93,22 @@ function countChanges(diff) {
 }
 
 async function main() {
-	const { themeSlug, routeFilter, stateFilter, strict, includeText, maxNodes } = parseCli()
+	const {
+		themeSlug,
+		routeFilter,
+		stateFilter,
+		strict,
+		includeText,
+		classParity,
+		maxNodes,
+		maxGaps,
+	} = parseCli()
 	const selectedScenarios = await resolveSelectedScenarios(routeFilter, stateFilter)
 	let strictChangedCount = 0
+	let strictParityMissingCount = 0
 	const missingArtifacts = []
+
+	const classRegistry = classParity ? await getLiteralClassRegistry() : null
 
 	for (const scenario of selectedScenarios) {
 		const { route } = scenario
@@ -127,10 +146,27 @@ async function main() {
 		})
 		const markdown = formatMarkupDiffAsMarkdown(diff, { maxNodes })
 
-		await Promise.all([
+		const writes = [
 			writeFile(jsonOutPath, `${JSON.stringify(diff, null, 2)}\n`, 'utf8'),
 			writeFile(markdownOutPath, markdown, 'utf8'),
-		])
+		]
+
+		if (classParity && classRegistry) {
+			const parityReport = diffClassParity(baselineMarkup, veMarkup, classRegistry)
+			const parityMarkdown = formatClassParityAsMarkdown(parityReport, { maxGaps })
+			const parityJsonPath = path.join(scenarioDir, 'markup.class-parity.json')
+			const parityMdPath = path.join(scenarioDir, 'markup.class-parity.md')
+			writes.push(
+				writeFile(parityJsonPath, `${JSON.stringify(parityReport, null, 2)}\n`, 'utf8'),
+			)
+			writes.push(writeFile(parityMdPath, parityMarkdown, 'utf8'))
+			console.log(
+				`[${route} @ ${stateFolder}] Parity: ${parityReport.summary.totalMissing} missing contracts across ${parityReport.summary.elementsWithGaps} element(s)`,
+			)
+			if (strict) strictParityMissingCount += parityReport.summary.totalMissing
+		}
+
+		await Promise.all(writes)
 
 		console.log(`[${route} @ ${stateFolder}] Wrote ${path.relative(ROOT, jsonOutPath)}`)
 		console.log(`[${route} @ ${stateFolder}] Wrote ${path.relative(ROOT, markdownOutPath)}`)
@@ -164,6 +200,12 @@ async function main() {
 	if (strict && strictChangedCount > 0) {
 		throw new Error(
 			`Strict mode failed: markup diff has ${strictChangedCount} change(s) across selected routes.`,
+		)
+	}
+
+	if (strict && strictParityMissingCount > 0) {
+		throw new Error(
+			`Strict mode failed: class parity check has ${strictParityMissingCount} missing contract(s) across selected routes.`,
 		)
 	}
 }

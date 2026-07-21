@@ -1,0 +1,64 @@
+{
+  "summary": {
+    "totalElements": 17,
+    "elementsChecked": 17,
+    "elementsWithGaps": 3,
+    "totalExpected": 4,
+    "totalMissing": 4
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]",
+      "tag": "div",
+      "baselineClasses": [
+        "card"
+      ],
+      "expectedSymbols": [
+        "card"
+      ],
+      "stampedSymbols": [],
+      "missingSymbols": [
+        "card"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]",
+      "tag": "div",
+      "baselineClasses": [
+        "row",
+        "g-0"
+      ],
+      "expectedSymbols": [
+        "row",
+        "g0"
+      ],
+      "stampedSymbols": [
+        "card"
+      ],
+      "missingSymbols": [
+        "row",
+        "g0"
+      ],
+      "unmappedClasses": []
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
+      "tag": "div",
+      "baselineClasses": [
+        "col-md-4"
+      ],
+      "expectedSymbols": [
+        "colMd4"
+      ],
+      "stampedSymbols": [
+        "row",
+        "g0"
+      ],
+      "missingSymbols": [
+        "colMd4"
+      ],
+      "unmappedClasses": []
+    }
+  ]
+}

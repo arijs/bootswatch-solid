@@ -1,15 +1,21 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sketchyScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
+	varBsBodyBg,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsEmphasisColor,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryColor,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -25,18 +31,33 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsEmphasisColor,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import { sketchyScope } from '../../scope.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
+import {
+	active,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
 
 globalStyle(`${sketchyScope}${nav}`, {
 	vars: {
@@ -49,43 +70,55 @@ globalStyle(`${sketchyScope}${nav}`, {
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
-
-// ── .nav-link ─────────────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
 	color: varBsNavLinkColor,
-	// SOURCE CSS (bootswatch Sketchy override): .nav-link { text-decoration: none; }
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
-	lineHeight: 'inherit',
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-globalStyle(`${sketchyScope}${navLink}:hover, ${sketchyScope}${navLink}:focus`, {
+globalStyle(`${sketchyScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-globalStyle(
-	`${sketchyScope}${navLink}${navLinkDisabled}, ${sketchyScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-	},
-)
+globalStyle(`${sketchyScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs ─────────────────────────────────────────────────────────────────
+globalStyle(`${sketchyScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
+})
+
+globalStyle(`${sketchyScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${sketchyScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
 
 globalStyle(`${sketchyScope}${navTabs}`, {
 	vars: {
@@ -100,29 +133,34 @@ globalStyle(`${sketchyScope}${navTabs}`, {
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS (bootswatch Sketchy override):
-// .nav-tabs .nav-link { border-radius: 45px 15px 225px 5px/25px 225px 25px 255px; }
-globalStyle(`${sketchyScope}${navTabs} ${navLink}`, {
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
-	borderRadius: '45px 15px 225px 5px/25px 225px 25px 255px',
+	borderTopLeftRadius: varBsNavTabsBorderRadius,
+	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-globalStyle(
-	`${sketchyScope}${navTabs} ${navLink}:hover, ${sketchyScope}${navTabs} ${navLink}:focus`,
-	{
-		isolation: 'isolate',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-globalStyle(`${sketchyScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
+
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navItem}${show} ${sketchyScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
 globalStyle(`${sketchyScope}${navPills}`, {
 	vars: {
@@ -132,14 +170,171 @@ globalStyle(`${sketchyScope}${navPills}`, {
 	},
 })
 
-// SOURCE CSS (bootswatch Sketchy override):
-// .nav-pills .nav-link { border-radius: $border-radius-sketchy; }
-// $border-radius-sketchy = 255px 25px 225px 25px/25px 225px 25px 255px
-globalStyle(`${sketchyScope}${navPills} ${navLink}`, {
+globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}`, {
+	borderRadius: varBsNavPillsBorderRadius,
+})
+
+globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}${navLinkActive}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${show} > ${sketchyScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${sketchyScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: varBsEmphasisColor,
+	},
+	gap: varBsNavUnderlineGap,
+})
+
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${show} > ${sketchyScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sketchyScope}${navFill} > ${sketchyScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${sketchyScope}${navFill} ${sketchyScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${sketchyScope}${navJustified} > ${sketchyScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${sketchyScope}${navJustified} ${sketchyScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${sketchyScope}${navFill} ${sketchyScope}${navItem} ${sketchyScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${sketchyScope}${navJustified} ${sketchyScope}${navItem} ${sketchyScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${sketchyScope}${tabContent} > ${sketchyScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${sketchyScope}${tabContent} > ${sketchyScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${sketchyScope}${navbarExpandSm} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandMd} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandLg} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandXl} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpandXxl} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${navbarExpand} ${sketchyScope}${navbarNav} ${sketchyScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${sketchyScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${sketchyScope}${cardHeaderTabs} ${sketchyScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}`, {
 	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })
 
-globalStyle(`${sketchyScope}${navPills} ${navLink}${navLinkActive}`, {
-	color: varBsNavPillsLinkActiveColor,
-	backgroundColor: varBsNavPillsLinkActiveBg,
+globalStyle(`${sketchyScope}${navLink}`, {
+	textDecoration: 'none',
+})
+
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}`, {
+	borderRadius: '45px 15px 225px 5px/25px 225px 25px 255px',
 })

@@ -20,7 +20,9 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 		lines.push('## Added Nodes')
 		lines.push('')
 		for (const node of addedNodes) {
-			lines.push(`- ${node.path} (${node.tag})${node.veClass ? ` \`class="${node.veClass}"\`` : ''}`)
+			lines.push(
+				`- ${node.path} (${node.tag})${node.veClass ? ` \`class="${node.veClass}"\`` : ''}`,
+			)
 		}
 	}
 
@@ -30,7 +32,9 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 		lines.push('## Removed Nodes')
 		lines.push('')
 		for (const node of removedNodes) {
-			lines.push(`- ${node.path} (${node.tag})${node.baselineClass ? ` \`class="${node.baselineClass}"\`` : ''}`)
+			lines.push(
+				`- ${node.path} (${node.tag})${node.baselineClass ? ` \`class="${node.baselineClass}"\`` : ''}`,
+			)
 		}
 	}
 
@@ -47,7 +51,8 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 					if (node.baselineClass === node.veClass) {
 						lines.push(`- class: \`${node.baselineClass}\``)
 					} else {
-						if (node.baselineClass) lines.push(`- baseline class: \`${node.baselineClass}\``)
+						if (node.baselineClass)
+							lines.push(`- baseline class: \`${node.baselineClass}\``)
 						if (node.veClass) lines.push(`- ve class: \`${node.veClass}\``)
 					}
 				}
@@ -58,15 +63,20 @@ export function formatMarkupDiffAsMarkdown(diff, options = {}) {
 				if (node.baselineClass === node.veClass) {
 					lines.push(`- class: \`${node.baselineClass}\``)
 				} else {
-					if (node.baselineClass) lines.push(`- baseline class: \`${node.baselineClass}\``)
+					if (node.baselineClass)
+						lines.push(`- baseline class: \`${node.baselineClass}\``)
 					if (node.veClass) lines.push(`- ve class: \`${node.veClass}\``)
 				}
 			}
 			if (node.styleDiff.added.length > 0) {
-				lines.push(`- Added properties (${node.styleDiff.added.length}): ${node.styleDiff.added.map((item) => item.property).join(', ')}`)
+				lines.push(
+					`- Added properties (${node.styleDiff.added.length}): ${node.styleDiff.added.map((item) => item.property).join(', ')}`,
+				)
 			}
 			if (node.styleDiff.removed.length > 0) {
-				lines.push(`- Removed properties (${node.styleDiff.removed.length}): ${node.styleDiff.removed.map((item) => item.property).join(', ')}`)
+				lines.push(
+					`- Removed properties (${node.styleDiff.removed.length}): ${node.styleDiff.removed.map((item) => item.property).join(', ')}`,
+				)
 			}
 			if (node.styleDiff.changed.length > 0) {
 				const preview = node.styleDiff.changed

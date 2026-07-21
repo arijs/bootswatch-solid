@@ -1,24 +1,28 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
-	badge,
-	badgeDanger,
-	badgeDark,
-	badgeInfo,
-	badgeLight,
-	badgePrimary,
-	badgeRoundedPill,
-	badgeSecondary,
-	badgeSuccess,
-	badgeWarning,
-} from '../../../theme-contract/ui/badge/contract.css'
+	bgDanger,
+	bgInfo,
+	bgLight,
+	bgPrimary,
+	bgSecondary,
+	bgSuccess,
+	bgWarning,
+	roundedPill,
+} from '../../../theme-contract/literal/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
+import { bgDark, textDark } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/badge',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const PillBadges: Component = () => {
@@ -27,14 +31,14 @@ const PillBadges: Component = () => {
 
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgePrimary}`}>Primary</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeSecondary}`}>Secondary</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeSuccess}`}>Success</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeDanger}`}>Danger</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeWarning}`}>Warning</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeInfo}`}>Info</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeLight}`}>Light</span>
-			<span class={`${theme} ${badge} ${badgeRoundedPill} ${badgeDark}`}>Dark</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgPrimary}`}>Primary</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgSecondary}`}>Secondary</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgSuccess}`}>Success</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgDanger}`}>Danger</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgWarning} ${textDark}`}>Warning</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgInfo} ${textDark}`}>Info</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgLight} ${textDark}`}>Light</span>
+			<span class={`${theme} ${badge} ${roundedPill} ${bgDark}`}>Dark</span>
 		</div>
 	)
 }

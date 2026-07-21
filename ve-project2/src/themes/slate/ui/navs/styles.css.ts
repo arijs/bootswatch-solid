@@ -1,16 +1,20 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { slateScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
-import { navbar, navbarBgLight } from '../../../../theme-contract/ui/navbar/contract.css'
+	varBsBodyBg,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryColor,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -26,27 +30,43 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import { slateScope } from '../../scope.css'
+	active,
+	bgDanger,
+	bgInfo,
+	bgLight,
+	bgPrimary,
+	bgSecondary,
+	bgSuccess,
+	bgWarning,
+	disabled,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbar, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
+import { bgDark } from '../../../../theme-contract/utilities/contract.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav {
-//   --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-link-color);
-//   --bs-nav-link-hover-color: var(--bs-link-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-secondary-color);
-//   display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none;
-// }
 globalStyle(`${slateScope}${nav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '1rem',
@@ -58,66 +78,56 @@ globalStyle(`${slateScope}${nav}`, {
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// ── .nav-link ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav-link { display: block;
-//   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-//   font-weight: var(--bs-nav-link-font-weight);
-//   color: var(--bs-nav-link-color);
-//   text-decoration: none; background: none; border: 0;
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//               border-color 0.15s ease-in-out; }
 globalStyle(`${slateScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
-	lineHeight: 'inherit',
 	color: varBsNavLinkColor,
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS: .nav-link:hover, .nav-link:focus { color: var(--bs-nav-link-hover-color); }
-globalStyle(`${slateScope}${navLink}:hover, ${slateScope}${navLink}:focus`, {
+globalStyle(`${slateScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link.disabled, .nav-link:disabled {
-//   color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(
-	`${slateScope}${navLink}${navLinkDisabled}, ${slateScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-	},
-)
+globalStyle(`${slateScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs ─────────────────────────────────────────────────────────────────
+globalStyle(`${slateScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
+})
 
-// SOURCE CSS:
-// .nav-tabs {
-//   --bs-nav-tabs-border-width: var(--bs-border-width);
-//   --bs-nav-tabs-border-color: var(--bs-border-color);
-//   --bs-nav-tabs-border-radius: var(--bs-border-radius);
-//   --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
-//   --bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
-//   --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
-//   --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
-//   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
-// }
+globalStyle(`${slateScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${slateScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
 globalStyle(`${slateScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
@@ -131,48 +141,35 @@ globalStyle(`${slateScope}${navTabs}`, {
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
-//   border: var(--bs-nav-tabs-border-width) solid transparent;
-//   border-top-left-radius: var(--bs-nav-tabs-border-radius);
-//   border-top-right-radius: var(--bs-nav-tabs-border-radius); }
-globalStyle(`${slateScope}${navTabs} ${navLink}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-//   isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
-globalStyle(
-	`${slateScope}${navTabs} ${navLink}:hover, ${slateScope}${navTabs} ${navLink}:focus`,
-	{
-		isolation: 'isolate',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-//   color: var(--bs-nav-tabs-link-active-color);
-//   background-color: var(--bs-nav-tabs-link-active-bg);
-//   border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${slateScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navItem}${show} ${slateScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-pills {
-//   --bs-nav-pills-border-radius: var(--bs-border-radius);
-//   --bs-nav-pills-link-active-color: #fff;
-//   --bs-nav-pills-link-active-bg: #0d6efd;
-// }
 globalStyle(`${slateScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
@@ -181,47 +178,385 @@ globalStyle(`${slateScope}${navPills}`, {
 	},
 })
 
-// SOURCE CSS: .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
-globalStyle(`${slateScope}${navPills} ${navLink}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-//   color: var(--bs-nav-pills-link-active-color);
-//   background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${slateScope}${navPills} ${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-globalStyle(`${slateScope}${navTabs} ${navLink}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${show} > ${slateScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${slateScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: '#fff',
+	},
+	gap: varBsNavUnderlineGap,
+})
+
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${show} > ${slateScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${slateScope}${navFill} > ${slateScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${slateScope}${navFill} ${slateScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${slateScope}${navJustified} > ${slateScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${slateScope}${navJustified} ${slateScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${slateScope}${navFill} ${slateScope}${navItem} ${slateScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${slateScope}${navJustified} ${slateScope}${navItem} ${slateScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${slateScope}${tabContent} > ${slateScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${slateScope}${tabContent} > ${slateScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${slateScope}${navbarExpandSm} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandMd} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandLg} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandXl} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandXxl} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpand} ${slateScope}${navbarNav} ${slateScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${slateScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${slateScope}${navbar} ${slateScope}${navLink}`, {
+	padding: '1rem',
+	borderRight: '1px solid rgba(0, 0, 0, 0.2)',
+	borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+})
+
+globalStyle(`${slateScope}${navbar} ${slateScope}${navItem}${active} ${slateScope}${navLink}`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.3)',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navItem} + ${slateScope}${navItem}`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#666d72, #6e757a 40%, #737a80)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#52a552, #58b058 40%, #5cb85c)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#4ca1ba, #52adc8 40%, #56b4d1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#d07c05, #df8505 40%, #e98b06)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#c8504c, #d65652 40%, #e05956)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#c4c6c9, #d2d4d7 40%, #dbdee1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}:hover`, {
+	backgroundImage: 'linear-gradient(#212428, #23272b 40%, #25282d)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}:active`, {
+	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}${navLinkActive}`, {
+	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
+	filter: 'none',
+	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+})
+
+globalStyle(`${slateScope}${navbarExpandSm} ${slateScope}${navLink}`, {
+	'@media': {
+		'(max-width: 576px)': {
+			border: 'none !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandMd} ${slateScope}${navLink}`, {
+	'@media': {
+		'(max-width: 768px)': {
+			border: 'none !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navbarExpandLg} ${slateScope}${navLink}`, {
+	'@media': {
+		'(max-width: 992px)': {
+			border: 'none !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 	border: '1px solid rgba(0, 0, 0, 0.6)',
-	color: '#fff',
 })
 
-globalStyle(
-	`${slateScope}${navTabs} ${navLink}:not([disabled]):not(.disabled):hover, ` +
-		`${slateScope}${navTabs} ${navLink}:not([disabled]):not(.disabled):focus, ` +
-		`${slateScope}${navTabs} ${navLink}:not([disabled]):not(.disabled):active, ` +
-		`${slateScope}${navTabs} ${navLink}${navLinkActive}`,
-	{
-		backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
-		filter: 'none',
-	},
-)
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled}):hover`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
 
-globalStyle(`${slateScope}${navTabs} ${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled}):focus`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled}):active`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not(${disabled})${active}`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
+	filter: 'none',
+})
+
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkDisabled}`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navTabs} ${navLink}, ${slateScope}${navTabs} ${navLink}:hover`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}`, {
 	color: '#fff',
 })
 
-globalStyle(`${slateScope}${navPills} ${navLink}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:hover`, {
+	color: '#fff',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: '#fff',
@@ -229,34 +564,34 @@ globalStyle(`${slateScope}${navPills} ${navLink}`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${navLink}:hover`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${navLink}${navLinkActive}, ${slateScope}${navPills} ${navLink}:hover`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
 	backgroundColor: 'transparent',
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${navLinkDisabled}, ${slateScope}${navPills} ${navLinkDisabled}:hover`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
+	filter: 'none',
+	border: '1px solid rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: varBsSecondaryColor,
 })
 
-// In scrollspy/navbar compositions, ensure nav-pills visuals win over generic navbar link borders.
-globalStyle(`${slateScope}${navbar} ${slateScope}${navPills} ${navLink}`, {
-	border: '1px solid rgba(0, 0, 0, 0.6)',
-})
-
-// Match source scrollspy baseline for the active first pill in a light navbar.
-globalStyle(`${slateScope}${navbar}${navbarBgLight} ${slateScope}${navPills} ${navLink}${navLinkActive}`, {
-	backgroundColor: 'transparent',
-	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}:hover`, {
+	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
-	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
+	color: varBsSecondaryColor,
 })

@@ -1,9 +1,7 @@
-import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsEmphasisColorRgb,
-} from '../../../../theme-contract/_vars.css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { slateScope } from '../../scope.css'
+
+import { varBsBodyBg, varBsBorderWidth, varBsEmphasisColorRgb } from '../../../../theme-contract/_vars.css'
 import {
 	varBsTableAccentBg,
 	varBsTableActiveBg,
@@ -20,79 +18,34 @@ import {
 	varBsTableStripedBg,
 	varBsTableStripedColor,
 } from '../../../../theme-contract/contents/_vars.css'
+
+import { tableHead, tableRow, tableSection } from '../../../../theme-contract/contents/tables/contract.css'
+
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
+	table,
+	tableActive,
 	tableBordered,
 	tableBorderless,
-	tableCell,
 	tableDanger,
 	tableDark,
-	tableElement,
-	tableHeaderCell,
+	tableGroupDivider,
 	tableHover,
 	tableInfo,
 	tableLight,
 	tablePrimary,
-	tableRow,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
 	tableSecondary,
-	tableSection,
 	tableSm,
 	tableStriped,
+	tableStripedColumns,
 	tableSuccess,
 	tableWarning,
-	table,
-} from '../../../../theme-contract/contents/contract.css'
-import { slateScope } from '../../scope.css'
-
-const cssVarName = (token: string) => token.slice(4, -1)
-
-// ─── Tables ───────────────────────────────────────────────────────────────────
-
-globalStyle(`${slateScope}${tableElement}`, {
-	captionSide: 'bottom',
-	borderCollapse: 'collapse',
-})
-
-// Bootstrap reboot: thead, tbody, tfoot, tr { border-color: inherit; border-style: solid; border-width: 0 }
-globalStyle(`${slateScope}${tableSection}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-globalStyle(`${slateScope}${tableRow}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-// Bootstrap reboot: td, th { border-color: inherit; border-style: solid; border-width: 0 }
-globalStyle(`${slateScope}${tableCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-// Bootstrap reboot: th { border-color: inherit; border-style: solid; border-width: 0; text-align: inherit }
-globalStyle(`${slateScope}${tableHeaderCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-	textAlign: 'inherit',
-})
-
-globalStyle(`${slateScope}${tableElement} > thead`, {
-	verticalAlign: 'bottom',
-})
-
-globalStyle(`${slateScope}${tableElement} > tbody`, {
-	verticalAlign: 'inherit',
-})
+} from '../../../../theme-contract/contents/tables/contract.css'
 
 globalStyle(`${slateScope}${table}`, {
 	vars: {
@@ -119,10 +72,26 @@ globalStyle(`${slateScope}${table}`, {
 
 globalStyle(`${slateScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: `var(${cssVarName(varBsTableColorState)}, var(${cssVarName(varBsTableColorType)}, ${varBsTableColor}))`,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px var(${cssVarName(varBsTableBgState)}, var(${cssVarName(varBsTableBgType)}, ${varBsTableAccentBg}))`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
+})
+
+globalStyle(`${slateScope}${table} > ${slateScope}${tableSection}`, {
+	verticalAlign: 'inherit',
+})
+
+globalStyle(`${slateScope}${table} > ${slateScope}${tableHead}`, {
+	verticalAlign: 'bottom',
+})
+
+globalStyle(`${slateScope}${tableGroupDivider}`, {
+	borderTop: `calc(${varBsBorderWidth} * 2) solid currentcolor`,
+})
+
+globalStyle(`${slateScope}${tableSm} > :not(caption) > * > *`, {
+	padding: '0.25rem 0.25rem',
 })
 
 globalStyle(`${slateScope}${tableBordered} > :not(caption) > *`, {
@@ -134,45 +103,39 @@ globalStyle(`${slateScope}${tableBordered} > :not(caption) > * > *`, {
 })
 
 globalStyle(`${slateScope}${tableBorderless} > :not(caption) > * > *`, {
-	borderBottomWidth: 0,
+	borderBottomWidth: '0',
 })
 
 globalStyle(`${slateScope}${tableBorderless} > :not(:first-child)`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-globalStyle(`${slateScope}${tableSm} > :not(caption) > * > *`, {
-	padding: '0.25rem 0.25rem',
-})
-
-globalStyle(`${slateScope}${tableStriped} > tbody > tr:nth-of-type(odd) > *`, {
+globalStyle(`${slateScope}${tableStriped} > ${slateScope}${tableSection} > ${slateScope}${tableRow}:nth-of-type(odd) > *`, {
 	vars: {
 		[varBsTableColorType]: varBsTableStripedColor,
 		[varBsTableBgType]: varBsTableStripedBg,
 	},
 })
 
-globalStyle(`${slateScope}${tableHover} > tbody > tr:hover > *`, {
+globalStyle(`${slateScope}${tableStripedColumns} > :not(caption) > ${slateScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
+	},
+})
+
+globalStyle(`${slateScope}${tableActive}`, {
+	vars: {
+		[varBsTableColorState]: varBsTableActiveColor,
+		[varBsTableBgState]: varBsTableActiveBg,
+	},
+})
+
+globalStyle(`${slateScope}${tableHover} > ${slateScope}${tableSection} > ${slateScope}${tableRow}:hover > *`, {
 	vars: {
 		[varBsTableColorState]: varBsTableHoverColor,
 		[varBsTableBgState]: varBsTableHoverBg,
 	},
-})
-
-globalStyle(`${slateScope}${tableDark}`, {
-	vars: {
-		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#272b30',
-		[varBsTableBorderColor]: '#525559',
-		[varBsTableStripedBg]: '#32363a',
-		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#3d4045',
-		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#373b40',
-		[varBsTableHoverColor]: '#fff',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
 globalStyle(`${slateScope}${tablePrimary}`, {
@@ -207,22 +170,6 @@ globalStyle(`${slateScope}${tableSecondary}`, {
 	borderColor: varBsTableBorderColor,
 })
 
-globalStyle(`${slateScope}${tableDanger}`, {
-	vars: {
-		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#ee5f5b',
-		[varBsTableBorderColor]: '#f17f7c',
-		[varBsTableStripedBg]: '#ef6763',
-		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#f06f6b',
-		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#ef6b67',
-		[varBsTableHoverColor]: '#fff',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
 globalStyle(`${slateScope}${tableSuccess}`, {
 	vars: {
 		[varBsTableColor]: '#fff',
@@ -233,6 +180,22 @@ globalStyle(`${slateScope}${tableSuccess}`, {
 		[varBsTableActiveBg]: '#72ca72',
 		[varBsTableActiveColor]: '#fff',
 		[varBsTableHoverBg]: '#6ec86e',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${slateScope}${tableInfo}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#5bc0de',
+		[varBsTableBorderColor]: '#7ccde5',
+		[varBsTableStripedBg]: '#63c3e0',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#6bc6e1',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#67c5e0',
 		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
@@ -254,16 +217,17 @@ globalStyle(`${slateScope}${tableWarning}`, {
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
-globalStyle(`${slateScope}${tableInfo}`, {
+
+globalStyle(`${slateScope}${tableDanger}`, {
 	vars: {
 		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#5bc0de',
-		[varBsTableBorderColor]: '#7ccde5',
-		[varBsTableStripedBg]: '#63c3e0',
+		[varBsTableBg]: '#ee5f5b',
+		[varBsTableBorderColor]: '#f17f7c',
+		[varBsTableStripedBg]: '#ef6763',
 		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#6bc6e1',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#67c5e0',
+		[varBsTableActiveBg]: '#f06f6b',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#ef6b67',
 		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
@@ -286,7 +250,68 @@ globalStyle(`${slateScope}${tableLight}`, {
 	borderColor: varBsTableBorderColor,
 })
 
-// ── Slate: heading text-shadow ────────────────────────────────────────────────
-globalStyle([h1, h2, h3, h4, h5, h6].map((heading) => `${slateScope}${heading}`).join(', '), {
-	textShadow: '-1px -1px 0 rgba(0, 0, 0, 0.3)',
+globalStyle(`${slateScope}${tableDark}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#272b30',
+		[varBsTableBorderColor]: '#525559',
+		[varBsTableStripedBg]: '#32363a',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#3d4045',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#373b40',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${slateScope}${tableResponsive}`, {
+	overflowX: 'auto',
+	WebkitOverflowScrolling: 'touch',
+})
+
+globalStyle(`${slateScope}${tableResponsiveSm}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveMd}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveLg}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveXl}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${tableResponsiveXxl}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
 })

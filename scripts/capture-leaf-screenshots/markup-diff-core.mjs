@@ -118,7 +118,11 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 	for (const [pathKey, baselineNode] of baselineIndex.entries()) {
 		const veNode = veIndex.get(pathKey)
 		if (!veNode) {
-			removedNodes.push({ path: pathKey, tag: baselineNode.tag, baselineClass: baselineNode.attrs.get('class') ?? '' })
+			removedNodes.push({
+				path: pathKey,
+				tag: baselineNode.tag,
+				baselineClass: baselineNode.attrs.get('class') ?? '',
+			})
 			continue
 		}
 		if (baselineNode.tag !== veNode.tag) {
@@ -135,7 +139,11 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 		}
 
 		const styleDiff = compareStyleMaps(baselineNode.style, veNode.style)
-		if (styleDiff.added.length === 0 && styleDiff.removed.length === 0 && styleDiff.changed.length === 0) {
+		if (
+			styleDiff.added.length === 0 &&
+			styleDiff.removed.length === 0 &&
+			styleDiff.changed.length === 0
+		) {
 			continue
 		}
 
@@ -152,7 +160,11 @@ export function diffMarkupArtifacts(baselineMarkup, veMarkup, options = {}) {
 
 	for (const [pathKey, veNode] of veIndex.entries()) {
 		if (!baselineIndex.has(pathKey)) {
-			addedNodes.push({ path: pathKey, tag: veNode.tag, veClass: veNode.attrs.get('class') ?? '' })
+			addedNodes.push({
+				path: pathKey,
+				tag: veNode.tag,
+				veClass: veNode.attrs.get('class') ?? '',
+			})
 		}
 	}
 

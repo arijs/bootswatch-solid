@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "totalElements": 19,
+    "elementsChecked": 19,
+    "elementsWithGaps": 2,
+    "totalExpected": 22,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-primary",
+        "pwhook-modal-trigger"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnPrimary"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnPrimary"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-modal-trigger"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[2]",
+      "tag": "div",
+      "baselineClasses": [
+        "modal",
+        "fade",
+        "pwhook-modal",
+        "show"
+      ],
+      "expectedSymbols": [
+        "modal",
+        "fade",
+        "show"
+      ],
+      "stampedSymbols": [
+        "modal",
+        "modalFade",
+        "fade",
+        "show"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-modal"
+      ]
+    }
+  ]
+}

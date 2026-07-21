@@ -172,6 +172,30 @@ Expected result after the fix:
 
 - `css OK 0.000000 - 0/74880` for `/forms/sizing/large-controls`.
 
+### Structured mismatch dump + graceful abort (`VERIFY_JSON_OUT`)
+
+When the `VERIFY_JSON_OUT` environment variable points to a file path, any
+verification run (`--verify-css-rendering` / `--verify-ve-rendering` /
+`--verify-ve1-rendering`) writes a JSON progress file there, **rewritten after
+every verified scenario** (incremental). Shape:
+
+```
+{ label, complete, lastRoute, lastState,
+  ran, matched, mismatched, skipped, maxDiffRatio,
+  mismatches: [ { theme, route, state, diffRatio, diffPixels, totalPixels, reason } ] }
+```
+
+`complete` is `true` only when the run finished the whole scenario list. On
+`SIGINT`/`SIGTERM` the run finishes the in-flight scenario, flushes the JSON
+(`complete:false`, `lastRoute` = last done route), and stops gracefully; a
+second signal forces exit. This lets an orchestrator consume structured results
+instead of scraping stdout and resume at route granularity.
+
+Used by the resumable multi-theme driver `scripts/verify-all-themes.mjs`
+(`pnpm verify:themes`): one theme per child process, state under `verify-run/`,
+interruptible and resumable **per route** — an interrupted theme resumes with
+`--skip-to-route=<lastRoute>`, re-verifying at most one route.
+
 ### Theme safety limit (`--max-themes`)
 
 A new `--max-themes=N` flag limits the number of themes processed in a single run:
@@ -596,6 +620,31 @@ states do not bleed across captures.
 
 ### Common invocation patterns
 
+**Single theme: full baseline capture, then VE verification (ve-project2):**
+
+Use this two-step workflow when refreshing baselines and confirming VE2 parity for one theme (for example `bootstrap`).
+
+Step 1 — Capture or refresh baseline artifacts (screenshots, extracted CSS, markup) from the main app:
+
+```
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --build
+```
+
+- `--theme=bootstrap` selects one theme; the default `--max-themes=1` is sufficient here.
+- Omit `--skip-existing` when you want a full refresh of every scenario (433 per theme).
+- `--build` ensures `dist/` is current before capture. The Vite build can take several minutes and may appear idle after `modules transformed` while it renders chunks — wait for `built in …` before capture starts.
+- If `dist/` is already up to date, omit `--build` to start Playwright immediately.
+
+Step 2 — Verify `ve-project2` rendering against those baselines:
+
+```
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering
+```
+
+- Automatically rebuilds `ve-project2` and compares each scenario to the baseline PNG beside it.
+- Expect `433` scenarios for a full theme run; summary should report `failed=0`.
+- For historical `ve-project` (v1) verification instead, swap the flag to `--verify-ve1-rendering`.
+
 **Full run across all themes, all routes, all states:**
 
 ```
@@ -783,6 +832,17 @@ fields:
 | `type` | Clear the element and type `value` with a 10 ms key delay. |
 | `hover-visible` | Hover the element, then wait for `visibleSelector` to appear. |
 | `click-visible` | Click the element, then wait for `visibleSelector` to appear. |
+
+> **Floating-element re-anchor (Popper).** For `hover-visible`/`click-visible`
+> kinds the revealed element is usually Popper-anchored (tooltip/popover/dropdown/
+> modal) and is positioned **once** when it opens. After the action settles, the
+> script awaits `document.fonts.ready` and then dispatches a synthetic `resize` so
+> Popper re-anchors against the now-settled layout. The `fonts.ready` gate matters:
+> a lazily-loaded web font (e.g. sketchy's Cabin Sketch in an HTML tooltip) can
+> change the element's width *after* it opens, and without re-anchoring on settled
+> metrics the baseline and VE captures can land a few px apart depending on
+> font-load timing. See the
+> [debugging walkthrough](../docs/ve2-debugging-mismatch-walkthrough.md#walkthrough-sketchy-html-tooltip-3px-horizontal-shift-font-load-race--popper).
 
 After adding a scenario, run the script once to generate the screenshots and
 persist the measured heights as `@screenshot` directives in the component file.

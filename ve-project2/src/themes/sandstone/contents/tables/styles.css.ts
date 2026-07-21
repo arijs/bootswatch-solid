@@ -1,8 +1,10 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { sandstoneScope } from '../../scope.css'
+
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsEmphasisColorRgb,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -21,73 +23,40 @@ import {
 	varBsTableStripedBg,
 	varBsTableStripedColor,
 } from '../../../../theme-contract/contents/_vars.css'
+
 import {
+	tableHead,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+} from '../../../../theme-contract/contents/tables/contract.css'
+
+import {
+	table,
+	tableActive,
 	tableBordered,
 	tableBorderless,
-	tableCell,
 	tableDanger,
 	tableDark,
-	tableElement,
-	tableHeaderCell,
+	tableGroupDivider,
 	tableHover,
 	tableInfo,
 	tableLight,
 	tablePrimary,
-	tableRow,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
 	tableSecondary,
-	tableSection,
 	tableSm,
 	tableStriped,
+	tableStripedColumns,
 	tableSuccess,
 	tableWarning,
-	table,
-} from '../../../../theme-contract/contents/contract.css'
-import { sandstoneScope } from '../../scope.css'
-
-const cssVarName = (token: string) => token.slice(4, -1)
-
-// ─── Tables ───────────────────────────────────────────────────────────────────
-
-globalStyle(`${sandstoneScope}${tableElement}`, {
-	captionSide: 'bottom',
-	borderCollapse: 'collapse',
-})
-
-// Bootstrap reboot: thead, tbody, tfoot, tr { border-color: inherit; border-style: solid; border-width: 0 }
-globalStyle(`${sandstoneScope}${tableSection}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-globalStyle(`${sandstoneScope}${tableRow}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-// Bootstrap reboot: td, th { border-color: inherit; border-style: solid; border-width: 0 }
-globalStyle(`${sandstoneScope}${tableCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-// Bootstrap reboot: th { border-color: inherit; border-style: solid; border-width: 0; text-align: inherit }
-globalStyle(`${sandstoneScope}${tableHeaderCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-	textAlign: 'inherit',
-})
-
-globalStyle(`${sandstoneScope}${tableElement} > thead`, {
-	verticalAlign: 'bottom',
-})
-
-globalStyle(`${sandstoneScope}${tableElement} > tbody`, {
-	verticalAlign: 'inherit',
-})
+} from '../../../../theme-contract/contents/tables/contract.css'
+import { theadDark } from '../../../../theme-contract/literal/contract.css'
 
 globalStyle(`${sandstoneScope}${table}`, {
 	vars: {
@@ -114,10 +83,26 @@ globalStyle(`${sandstoneScope}${table}`, {
 
 globalStyle(`${sandstoneScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: `var(${cssVarName(varBsTableColorState)}, var(${cssVarName(varBsTableColorType)}, ${varBsTableColor}))`,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px var(${cssVarName(varBsTableBgState)}, var(${cssVarName(varBsTableBgType)}, ${varBsTableAccentBg}))`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
+})
+
+globalStyle(`${sandstoneScope}${table} > ${sandstoneScope}${tableSection}`, {
+	verticalAlign: 'inherit',
+})
+
+globalStyle(`${sandstoneScope}${table} > ${sandstoneScope}${tableHead}`, {
+	verticalAlign: 'bottom',
+})
+
+globalStyle(`${sandstoneScope}${tableGroupDivider}`, {
+	borderTop: `calc(${varBsBorderWidth} * 2) solid currentcolor`,
+})
+
+globalStyle(`${sandstoneScope}${tableSm} > :not(caption) > * > *`, {
+	padding: '0.25rem 0.25rem',
 })
 
 globalStyle(`${sandstoneScope}${tableBordered} > :not(caption) > *`, {
@@ -129,50 +114,44 @@ globalStyle(`${sandstoneScope}${tableBordered} > :not(caption) > * > *`, {
 })
 
 globalStyle(`${sandstoneScope}${tableBorderless} > :not(caption) > * > *`, {
-	borderBottomWidth: 0,
+	borderBottomWidth: '0',
 })
 
 globalStyle(`${sandstoneScope}${tableBorderless} > :not(:first-child)`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-globalStyle(`${sandstoneScope}${tableSm} > :not(caption) > * > *`, {
-	padding: '0.25rem 0.25rem',
-})
-
-globalStyle(`${sandstoneScope}${tableStriped} > tbody > tr:nth-of-type(odd) > *`, {
+globalStyle(`${sandstoneScope}${tableStriped} > ${sandstoneScope}${tableSection} > ${sandstoneScope}${tableRow}:nth-of-type(odd) > *`, {
 	vars: {
 		[varBsTableColorType]: varBsTableStripedColor,
 		[varBsTableBgType]: varBsTableStripedBg,
 	},
 })
 
-globalStyle(`${sandstoneScope}${tableHover} > tbody > tr:hover > *`, {
+globalStyle(`${sandstoneScope}${tableStripedColumns} > :not(caption) > ${sandstoneScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableActive}`, {
+	vars: {
+		[varBsTableColorState]: varBsTableActiveColor,
+		[varBsTableBgState]: varBsTableActiveBg,
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableHover} > ${sandstoneScope}${tableSection} > ${sandstoneScope}${tableRow}:hover > *`, {
 	vars: {
 		[varBsTableColorState]: varBsTableHoverColor,
 		[varBsTableBgState]: varBsTableHoverBg,
 	},
 })
 
-globalStyle(`${sandstoneScope}${tableDark}`, {
-	vars: {
-		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#3e3f3a',
-		[varBsTableBorderColor]: '#4d5154',
-		[varBsTableStripedBg]: '#2c3034',
-		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#373b3e',
-		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#323539',
-		[varBsTableHoverColor]: '#fff',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
 globalStyle(`${sandstoneScope}${tablePrimary}`, {
 	vars: {
-		[varBsTableColor]: '#3e3f3a',
+		[varBsTableColor]: '#000',
 		[varBsTableBg]: '#d6dfe7',
 		[varBsTableBorderColor]: '#abb2b9',
 		[varBsTableStripedBg]: '#cbd4db',
@@ -188,7 +167,7 @@ globalStyle(`${sandstoneScope}${tablePrimary}`, {
 
 globalStyle(`${sandstoneScope}${tableSecondary}`, {
 	vars: {
-		[varBsTableColor]: '#3e3f3a',
+		[varBsTableColor]: '#000',
 		[varBsTableBg]: '#e8e8e6',
 		[varBsTableBorderColor]: '#babab8',
 		[varBsTableStripedBg]: '#dcdcdb',
@@ -202,25 +181,9 @@ globalStyle(`${sandstoneScope}${tableSecondary}`, {
 	borderColor: varBsTableBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${tableDanger}`, {
-	vars: {
-		[varBsTableColor]: '#3e3f3a',
-		[varBsTableBg]: '#f7dddc',
-		[varBsTableBorderColor]: '#c6b1b0',
-		[varBsTableStripedBg]: '#ebd2d1',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#dec7c6',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#e4cccc',
-		[varBsTableHoverColor]: '#000',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
 globalStyle(`${sandstoneScope}${tableSuccess}`, {
 	vars: {
-		[varBsTableColor]: '#3e3f3a',
+		[varBsTableColor]: '#000',
 		[varBsTableBg]: '#e9f3db',
 		[varBsTableBorderColor]: '#bac2af',
 		[varBsTableStripedBg]: '#dde7d0',
@@ -234,24 +197,9 @@ globalStyle(`${sandstoneScope}${tableSuccess}`, {
 	borderColor: varBsTableBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${tableWarning}`, {
-	vars: {
-		[varBsTableColor]: '#3e3f3a',
-		[varBsTableBg]: '#fde5d8',
-		[varBsTableBorderColor]: '#cab7ad',
-		[varBsTableStripedBg]: '#f0dacd',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#e4cec2',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#ead4c8',
-		[varBsTableHoverColor]: '#000',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
 globalStyle(`${sandstoneScope}${tableInfo}`, {
 	vars: {
-		[varBsTableColor]: '#3e3f3a',
+		[varBsTableColor]: '#000',
 		[varBsTableBg]: '#d4eef9',
 		[varBsTableBorderColor]: '#aabec7',
 		[varBsTableStripedBg]: '#c9e2ed',
@@ -265,9 +213,41 @@ globalStyle(`${sandstoneScope}${tableInfo}`, {
 	borderColor: varBsTableBorderColor,
 })
 
+globalStyle(`${sandstoneScope}${tableWarning}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#fde5d8',
+		[varBsTableBorderColor]: '#cab7ad',
+		[varBsTableStripedBg]: '#f0dacd',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#e4cec2',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#ead4c8',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${tableDanger}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#f7dddc',
+		[varBsTableBorderColor]: '#c6b1b0',
+		[varBsTableStripedBg]: '#ebd2d1',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#dec7c6',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#e4cccc',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
 globalStyle(`${sandstoneScope}${tableLight}`, {
 	vars: {
-		[varBsTableColor]: '#3e3f3a',
+		[varBsTableColor]: '#000',
 		[varBsTableBg]: '#f8f5f0',
 		[varBsTableBorderColor]: '#c6c4c0',
 		[varBsTableStripedBg]: '#ece9e4',
@@ -279,4 +259,116 @@ globalStyle(`${sandstoneScope}${tableLight}`, {
 	},
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${tableDark}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#3e3f3a',
+		[varBsTableBorderColor]: '#656561',
+		[varBsTableStripedBg]: '#484944',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#51524e',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#4c4d49',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${tableResponsive}`, {
+	overflowX: 'auto',
+	WebkitOverflowScrolling: 'touch',
+})
+
+globalStyle(`${sandstoneScope}${tableResponsiveSm}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableResponsiveMd}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableResponsiveLg}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableResponsiveXl}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableResponsiveXxl}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${table} ${sandstoneScope}${theadDark} ${sandstoneScope}${tableHeaderCell}`, {
+	backgroundColor: '#3e3f3a',
+})
+
+globalStyle(`${sandstoneScope}${tablePrimary}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableSecondary}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableSuccess}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableWarning}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableDanger}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableInfo}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
+})
+
+globalStyle(`${sandstoneScope}${tableLight}`, {
+	vars: {
+		[varBsTableColor]: '#3e3f3a',
+	},
 })

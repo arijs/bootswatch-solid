@@ -1,23 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../../scope.css'
+
 import {
-	varBsBodyBgRgb,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
-	varBsDarkRgb,
-	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
-import {
-	placeholderIcon,
-	toast,
-	toastBody,
-	toastBrand,
-	toastExample,
-	toastHeader,
-	toastShow,
-	toastTimestamp,
-} from '../../../../theme-contract/ui/toasts/contract.css'
 import {
 	varBsToastBg,
 	varBsToastBorderColor,
@@ -35,14 +24,32 @@ import {
 	varBsToastSpacing,
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
-import { alertBtnClose } from '../../../../theme-contract/ui/alerts/contract.css'
-import { vaporScope } from '../../scope.css'
 
-globalStyle(`${vaporScope}${toastExample}`, {
-	backgroundColor: `rgba(${varBsDarkRgb}, 1)`,
-	padding: '3rem',
-	alignItems: 'center',
-})
+import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../../theme-contract/contents/heading/contract.css'
+
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	toastContainer,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	toast,
+	toastBody,
+	toastHeader,
+	toastShow,
+	toastShowing,
+} from '../../../../theme-contract/ui/toasts/contract.css'
 
 globalStyle(`${vaporScope}${toast}`, {
 	vars: {
@@ -52,14 +59,14 @@ globalStyle(`${vaporScope}${toast}`, {
 		[varBsToastSpacing]: '1.5rem',
 		[varBsToastMaxWidth]: '350px',
 		[varBsToastFontSize]: '0.875rem',
-		[varBsToastColor]: '',
-		[varBsToastBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
+		[varBsToastColor]: '#fff',
+		[varBsToastBg]: '#6f42c1',
 		[varBsToastBorderWidth]: varBsBorderWidth,
 		[varBsToastBorderColor]: varBsBorderColorTranslucent,
 		[varBsToastBorderRadius]: varBsBorderRadius,
 		[varBsToastBoxShadow]: varBsBoxShadow,
-		[varBsToastHeaderColor]: varBsSecondaryColor,
-		[varBsToastHeaderBg]: `rgba(${varBsBodyBgRgb}, 0.85)`,
+		[varBsToastHeaderColor]: '#fff',
+		[varBsToastHeaderBg]: '#6f42c1',
 		[varBsToastHeaderBorderColor]: varBsBorderColorTranslucent,
 	},
 	width: varBsToastMaxWidth,
@@ -74,8 +81,27 @@ globalStyle(`${vaporScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
+globalStyle(`${vaporScope}${toast}${toastShowing}`, {
+	opacity: '0',
+})
+
 globalStyle(`${vaporScope}${toast}:not(${toastShow})`, {
 	display: 'none',
+})
+
+globalStyle(`${vaporScope}${toastContainer}`, {
+	vars: {
+		[varBsToastZindex]: '1090',
+	},
+	position: 'absolute',
+	zIndex: varBsToastZindex,
+	width: 'max-content',
+	maxWidth: '100%',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${vaporScope}${toastContainer} > :not(:last-child)`, {
+	marginBottom: varBsToastSpacing,
 })
 
 globalStyle(`${vaporScope}${toastHeader}`, {
@@ -95,39 +121,58 @@ globalStyle(`${vaporScope}${toastBody}`, {
 	wordWrap: 'break-word',
 })
 
-globalStyle(`${vaporScope}${placeholderIcon}`, {
-	verticalAlign: 'middle',
-	width: '20px',
-	height: '20px',
-	borderRadius: `${varBsBorderRadius} !important`,
-	marginRight: '0.5rem !important',
+globalStyle(`${vaporScope}${toast}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toastBrand}`, {
-	fontWeight: 'bolder',
-	marginRight: 'auto !important',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toastTimestamp}`, {
-	fontSize: '0.875em',
-	color: `${varBsSecondaryColor} !important`,
-	// .text-muted glow overrides the inherited white glow from the toast container
-	textShadow: '0 0 1px rgba(21, 104, 94, 0.3), 0 0 2px rgba(21, 104, 94, 0.3), 0 0 5px rgba(21, 104, 94, 0.2)',
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
-globalStyle(`${vaporScope}${toastHeader} ${alertBtnClose}`, {
-	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
-	marginLeft: varBsToastPaddingX,
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${toast} ${vaporScope}${clsH6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
 })
 
 globalStyle(`${vaporScope}${toast}`, {
-	vars: {
-		[varBsToastColor]: '#fff',
-		[varBsToastBg]: '#6f42c1',
-		[varBsToastHeaderBg]: '#6f42c1',
-		[varBsToastHeaderColor]: '#fff',
-	},
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
-	boxShadow: '0 0 2rem rgba(111,66,193,0.4), 0 0 8rem rgba(111,66,193,0.3)',
+	boxShadow: '0 0 2rem rgba(125, 85, 199, 0.4), 0 0 8rem rgba(125, 85, 199, 0.3)',
 })

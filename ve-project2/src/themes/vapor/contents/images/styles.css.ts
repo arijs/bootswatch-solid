@@ -1,25 +1,21 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../../scope.css'
+
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
+
 import {
-	bdPlaceholderImg,
-	bdPlaceholderImgLg,
 	figure,
 	figureCaption,
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	mediaMiddle,
-	rounded,
-} from '../../../../theme-contract/contents/contract.css'
-import { vaporScope } from '../../scope.css'
-
-// ─── Images ───────────────────────────────────────────────────────────────────
+} from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${vaporScope}${imgFluid}`, {
 	maxWidth: '100%',
@@ -35,41 +31,16 @@ globalStyle(`${vaporScope}${imgThumbnail}`, {
 	height: 'auto',
 })
 
-// ─── Figures ──────────────────────────────────────────────────────────────────
-
 globalStyle(`${vaporScope}${figure}`, {
 	display: 'inline-block',
-	margin: '0 0 1rem',
 })
 
 globalStyle(`${vaporScope}${figureImg}`, {
 	marginBottom: '0.5rem',
-	lineHeight: 1,
+	lineHeight: '1',
 })
 
 globalStyle(`${vaporScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-// ─── Placeholder images ───────────────────────────────────────────────────────
-
-globalStyle(`${vaporScope}${bdPlaceholderImg}`, {
-	fontSize: '1.125rem',
-	textAnchor: 'middle',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-})
-
-globalStyle(`${vaporScope}${bdPlaceholderImgLg}`, {
-	'@media': { '(min-width: 768px)': { fontSize: '3.5rem' } },
-})
-
-globalStyle(`${vaporScope}${mediaMiddle}`, {
-	verticalAlign: 'middle',
-})
-
-globalStyle(`${vaporScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

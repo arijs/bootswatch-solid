@@ -1,15 +1,20 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sandstoneScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsEmphasisColor,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -25,28 +30,34 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsEmphasisColor,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-} from '../../../../theme-contract/_vars.css'
-import { sandstoneScope } from '../../scope.css'
+	active,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbar, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav {
-//   --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-link-color);
-//   --bs-nav-link-hover-color: var(--bs-link-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-secondary-color);
-//   display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none;
-// }
 globalStyle(`${sandstoneScope}${nav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '0.9rem',
@@ -58,66 +69,56 @@ globalStyle(`${sandstoneScope}${nav}`, {
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// ── .nav-link ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav-link { display: block;
-//   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-//   font-weight: var(--bs-nav-link-font-weight);
-//   color: var(--bs-nav-link-color);
-//   text-decoration: none; background: none; border: 0;
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//               border-color 0.15s ease-in-out; }
 globalStyle(`${sandstoneScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
-	lineHeight: 'inherit',
 	color: varBsNavLinkColor,
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS: .nav-link:hover, .nav-link:focus { color: var(--bs-nav-link-hover-color); }
-globalStyle(`${sandstoneScope}${navLink}:hover, ${sandstoneScope}${navLink}:focus`, {
+globalStyle(`${sandstoneScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link.disabled, .nav-link:disabled {
-//   color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(
-	`${sandstoneScope}${navLink}${navLinkDisabled}, ${sandstoneScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-	},
-)
+globalStyle(`${sandstoneScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs ─────────────────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(50, 93, 136, 0.25)',
+})
 
-// SOURCE CSS:
-// .nav-tabs {
-//   --bs-nav-tabs-border-width: var(--bs-border-width);
-//   --bs-nav-tabs-border-color: var(--bs-border-color);
-//   --bs-nav-tabs-border-radius: var(--bs-border-radius);
-//   --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
-//   --bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
-//   --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
-//   --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
-//   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
-// }
+globalStyle(`${sandstoneScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${sandstoneScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
 globalStyle(`${sandstoneScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
@@ -125,66 +126,41 @@ globalStyle(`${sandstoneScope}${navTabs}`, {
 		[varBsNavTabsBorderRadius]: varBsBorderRadius,
 		[varBsNavTabsLinkHoverBorderColor]: '#dfd7ca',
 		[varBsNavTabsLinkActiveColor]: varBsEmphasisColor,
-		[varBsNavTabsLinkActiveBg]: varBsBodyBg,
-		[varBsNavTabsLinkActiveBorderColor]: `${varBsBorderColor} ${varBsBorderColor} ${varBsBodyBg}`,
+		[varBsNavTabsLinkActiveBg]: '#fff',
+		[varBsNavTabsLinkActiveBorderColor]: `${varBsBorderColor} ${varBsBorderColor} #fff`,
 	},
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
-//   border: var(--bs-nav-tabs-border-width) solid transparent;
-//   border-top-left-radius: var(--bs-nav-tabs-border-radius);
-//   border-top-right-radius: var(--bs-nav-tabs-border-radius); }
-globalStyle(`${sandstoneScope}${navTabs} ${navLink}`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-//   isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
-globalStyle(
-	`${sandstoneScope}${navTabs} ${navLink}:hover, ${sandstoneScope}${navTabs} ${navLink}:focus`,
-	{
-		isolation: 'isolate',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-//   color: var(--bs-nav-tabs-link-active-color);
-//   background-color: var(--bs-nav-tabs-link-active-bg);
-//   border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${sandstoneScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.disabled, .nav-tabs .nav-link.disabled:hover, .nav-tabs .nav-link.disabled:focus {
-//   color: #dfd7ca; background-color: #f8f5f0; border-color: #dfd7ca; }
-globalStyle(
-	`${sandstoneScope}${navTabs} ${navLink}${navLinkDisabled}, ${sandstoneScope}${navTabs} ${navLink}${navLinkDisabled}:hover, ${sandstoneScope}${navTabs} ${navLink}${navLinkDisabled}:focus`,
-	{
-		color: '#dfd7ca',
-		backgroundColor: varBsBodyBg,
-		borderColor: '#dfd7ca',
-	},
-)
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navItem}${show} ${sandstoneScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav-pills {
-//   --bs-nav-pills-border-radius: var(--bs-border-radius);
-//   --bs-nav-pills-link-active-color: #8e8c84;  (Sandstone override)
-//   --bs-nav-pills-link-active-bg: #f8f5f0;     (Sandstone override)
-// }
 globalStyle(`${sandstoneScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
@@ -193,65 +169,247 @@ globalStyle(`${sandstoneScope}${navPills}`, {
 	},
 })
 
-// SOURCE CSS (Sandstone):
-// .nav-pills .nav-link { color: #8e8c84; border: 1px solid transparent;
-//   border-radius: var(--bs-nav-pills-border-radius); }
-globalStyle(`${sandstoneScope}${navPills} ${navLink}`, {
-	color: '#8e8c84',
-	border: '1px solid transparent',
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-//   color: var(--bs-nav-pills-link-active-color);
-//   background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${sandstoneScope}${navPills} ${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
-// SOURCE CSS (Sandstone):
-// .nav-pills .nav-link.active, .nav-pills .nav-link:hover, .nav-pills .nav-link:focus {
-//   background-color: #f8f5f0; border-color: #dfd7ca; }
-globalStyle(
-	[
-		`${sandstoneScope}${navPills} ${navLink}${navLinkActive}`,
-		`${sandstoneScope}${navPills} ${navLink}:hover`,
-		`${sandstoneScope}${navPills} ${navLink}:focus`,
-	].join(', '),
-	{
-		backgroundColor: '#f8f5f0',
-		borderColor: '#dfd7ca',
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${show} > ${sandstoneScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${sandstoneScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: varBsEmphasisColor,
 	},
-)
+	gap: varBsNavUnderlineGap,
+})
 
-// SOURCE CSS (Sandstone):
-// .nav-pills .nav-link.disabled, .nav-pills .nav-link.disabled:hover {
-//   color: #dfd7ca; background-color: transparent; border-color: transparent; }
-globalStyle(
-	[
-		`${sandstoneScope}${navPills} ${navLink}${navLinkDisabled}`,
-		`${sandstoneScope}${navPills} ${navLink}${navLinkDisabled}:hover`,
-	].join(', '),
-	{
-		color: '#dfd7ca',
-		backgroundColor: 'transparent',
-		borderColor: 'transparent',
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${show} > ${sandstoneScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${sandstoneScope}${navFill} > ${sandstoneScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${sandstoneScope}${navFill} ${sandstoneScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${sandstoneScope}${navJustified} > ${sandstoneScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${sandstoneScope}${navJustified} ${sandstoneScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${sandstoneScope}${navFill} ${sandstoneScope}${navItem} ${sandstoneScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${sandstoneScope}${navJustified} ${sandstoneScope}${navItem} ${sandstoneScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${sandstoneScope}${tabContent} > ${sandstoneScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${sandstoneScope}${tabContent} > ${sandstoneScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
 	},
-)
+})
 
-// ── Sandstone tab overrides ───────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${navbarExpandMd} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
 
-// Inactive tabs get a light background and sandstone border colour
-globalStyle(`${sandstoneScope}${navTabs} ${navLink}`, {
+globalStyle(`${sandstoneScope}${navbarExpandLg} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXl} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${sandstoneScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${sandstoneScope}${cardHeaderTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
+	fontSize: '13px',
+	fontWeight: '500',
+	lineHeight: '22px',
+	textTransform: 'uppercase',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}`, {
+	fontSize: '13px',
+	fontWeight: '500',
+	lineHeight: '22px',
+	textTransform: 'uppercase',
+})
+
+globalStyle(`${sandstoneScope}${navbar} ${sandstoneScope}${navLink}`, {
+	fontSize: '13px',
+	fontWeight: '500',
+	lineHeight: '22px',
+	textTransform: 'uppercase',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}`, {
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
 
-// Inactive tab links (and hover/focus) use secondary colour
-globalStyle(
-	`${sandstoneScope}${navTabs} ${navLink}, ${sandstoneScope}${navTabs} ${navLink}:hover, ${sandstoneScope}${navTabs} ${navLink}:focus`,
-	{ color: '#8e8c84' },
-)
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}`, {
+	color: '#8e8c84',
+})
 
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:hover`, {
+	color: '#8e8c84',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:focus`, {
+	color: '#8e8c84',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}`, {
+	color: '#dfd7ca',
+	backgroundColor: '#f8f5f0',
+	borderColor: '#dfd7ca',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}:hover`, {
+	color: '#dfd7ca',
+	backgroundColor: '#f8f5f0',
+	borderColor: '#dfd7ca',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}:focus`, {
+	color: '#dfd7ca',
+	backgroundColor: '#f8f5f0',
+	borderColor: '#dfd7ca',
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
+	color: '#8e8c84',
+	border: '1px solid transparent',
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkActive}`, {
+	backgroundColor: '#f8f5f0',
+	borderColor: '#dfd7ca',
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}:hover`, {
+	backgroundColor: '#f8f5f0',
+	borderColor: '#dfd7ca',
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}:focus`, {
+	backgroundColor: '#f8f5f0',
+	borderColor: '#dfd7ca',
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkDisabled}`, {
+	color: '#dfd7ca',
+	backgroundColor: 'transparent',
+	borderColor: 'transparent',
+})
+
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkDisabled}:hover`, {
+	color: '#dfd7ca',
+	backgroundColor: 'transparent',
+	borderColor: 'transparent',
+})

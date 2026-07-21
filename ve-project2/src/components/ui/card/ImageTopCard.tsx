@@ -1,7 +1,13 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { bdPlaceholderImg, h5, paragraph, mediaMiddle } from '../../../theme-contract/contents/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	card,
@@ -17,44 +23,47 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/heading',
 	'contents/images',
-	'utilities',
+	'utilities/used',
 ]
 
 const ImageTopCard: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-	return (
-		<div class={`bd-example-ve2 ${theme}`}>
-			<div class={`${theme} ${card}`}>
-				<svg
-					class={`bd-placeholder-img ${theme} ${cardImgTop} ${bdPlaceholderImg} ${mediaMiddle}`}
-					width="100%"
-					height="180"
-					xmlns="http://www.w3.org/2000/svg"
-					aria-label="Placeholder: Image cap"
-					preserveAspectRatio="xMidYMid slice"
-					tabindex="0"
-				>
-					<title>Placeholder</title>
-					<rect width="100%" height="100%" fill="#868e96" />
-					<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
-						Image cap
-					</text>
-				</svg>
-				<div class={`${theme} ${cardBody}`}>
-					<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
-					<p class={`${theme} ${cardText} ${paragraph}`}>
-						Some quick example text to build on the card title and make up the bulk of
-						the card's content.
-					</p>
+	const cardMarkup = (
+		<div class={`${theme} ${card}`}>
+			<svg
+				class={`bd-placeholder-img ${theme} ${elSvg} ${cardImgTop}`}
+				width="100%"
+				height="180"
+				xmlns="http://www.w3.org/2000/svg"
+				aria-label="Placeholder: Image cap"
+				preserveAspectRatio="xMidYMid slice"
+				tabindex="0"
+			>
+				<title>Placeholder</title>
+				<rect width="100%" height="100%" fill="#868e96" />
+				<text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+					Image cap
+				</text>
+			</svg>
+			<div class={`${theme} ${cardBody}`}>
+				<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
+				<p class={`${theme} ${cardText} ${paragraph}`}>
+					Some quick example text to build on the card title and make up the bulk of the
+					card's content.
+				</p>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
+				<a
+					href="#"
+					onClick={(e) => e.preventDefault()}
+					class={`${theme} ${link} ${btn} ${btnPrimary}`}
+				>
 					Go somewhere
 				</a>
-				</div>
 			</div>
 		</div>
 	)
+	return cardMarkup
 }
 
 export default ImageTopCard

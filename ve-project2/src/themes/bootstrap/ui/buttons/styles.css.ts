@@ -1,13 +1,25 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { bootstrapScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
+	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
@@ -35,9 +47,29 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
+import {
+	active,
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	disabled,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
@@ -59,31 +91,50 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { bootstrapScope } from '../../scope.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
+import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// ── Base .btn ─────────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn {
-//   --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem;
-//   --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400;
-//   --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color);
-//   --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width);
-//   --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius);
-//   --bs-btn-hover-border-color: transparent;
-//   --bs-btn-box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 1px rgba(0,0,0,0.075);
-//   --bs-btn-disabled-opacity: 0.65;
-//   --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
-//   display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
-//   font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size);
-//   font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height);
-//   color: var(--bs-btn-color); text-align: center; text-decoration: none;
-//   vertical-align: middle; cursor: pointer; user-select: none;
-//   border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
-//   border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg);
-//   transition: color 0.15s ease-in-out, ...; }
-// @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+globalStyle(`${bootstrapScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${bootstrapScope}${btnCheck}[disabled] + ${bootstrapScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${bootstrapScope}${btnCheck}:disabled + ${bootstrapScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${bootstrapScope}${inputGroup} ${bootstrapScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${bootstrapScope}${inputGroup} ${bootstrapScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${bootstrapScope}${inputGroupLg} > ${bootstrapScope}${btn}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
+	borderRadius: varBsBorderRadiusLg,
+})
+
+globalStyle(`${bootstrapScope}${inputGroupSm} > ${bootstrapScope}${btn}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+	borderRadius: varBsBorderRadiusSm,
+})
 
 globalStyle(`${bootstrapScope}${btn}`, {
 	vars: {
@@ -99,12 +150,10 @@ globalStyle(`${bootstrapScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	appearance: 'button',
 	display: 'inline-block',
 	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
@@ -119,11 +168,13 @@ globalStyle(`${bootstrapScope}${btn}`, {
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',
 	userSelect: 'none',
-	backgroundColor: varBsBtnBg,
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	backgroundColor: varBsBtnBg,
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${bootstrapScope}${btn}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -131,171 +182,110 @@ globalStyle(`${bootstrapScope}${btn}`, {
 	},
 })
 
-// SOURCE CSS: .btn:hover { color: var(--bs-btn-hover-color); background-color: ...; ... }
 globalStyle(`${bootstrapScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
 })
 
-// SOURCE CSS: .btn:focus-visible { color: ...; outline: 0; box-shadow: ...; }
+globalStyle(`${bootstrapScope}${btnCheck} + ${bootstrapScope}${btn}:hover`, {
+	color: varBsBtnColor,
+	backgroundColor: varBsBtnBg,
+	borderColor: varBsBtnBorderColor,
+})
+
 globalStyle(`${bootstrapScope}${btn}:focus-visible`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-check:checked + .btn, :not(.btn-check) + .btn:active,
-// .btn:first-child:active, .btn.active, .btn.show {
-//   color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg);
-//   border-color: var(--bs-btn-active-border-color); }
-globalStyle(
-	[
-		`${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}`,
-		`:not(${bootstrapScope}${btnCheck}) + ${bootstrapScope}${btn}:active`,
-		`${bootstrapScope}${btn}:first-child:active`,
-		`${bootstrapScope}${btn}${btnActiveHook}`,
-		`${bootstrapScope}${btn}${btnShowHook}`,
-	].join(', '),
-	{
-		color: varBsBtnActiveColor,
-		backgroundColor: varBsBtnActiveBg,
-		borderColor: varBsBtnActiveBorderColor,
-	},
-)
+globalStyle(`${bootstrapScope}${btnCheck}:focus-visible + ${bootstrapScope}${btn}`, {
+	borderColor: varBsBtnHoverBorderColor,
+	outline: '0',
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
-// SOURCE CSS:
-// .btn-check:checked + .btn:focus-visible, ...:active:focus-visible, ... { box-shadow: ...; }
-globalStyle(
-	[
-		`${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}:focus-visible`,
-		`:not(${bootstrapScope}${btnCheck}) + ${bootstrapScope}${btn}:active:focus-visible`,
-		`${bootstrapScope}${btn}:first-child:active:focus-visible`,
-		`${bootstrapScope}${btn}${btnActiveHook}:focus-visible`,
-		`${bootstrapScope}${btn}${btnShowHook}:focus-visible`,
-	].join(', '),
-	{
-		boxShadow: varBsBtnFocusBoxShadow,
-	},
-)
+globalStyle(`${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .btn:disabled, .btn.disabled, fieldset:disabled .btn {
-//   color: var(--bs-btn-disabled-color); pointer-events: none;
-//   background-color: var(--bs-btn-disabled-bg);
-//   border-color: var(--bs-btn-disabled-border-color);
-//   opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(
-	[
-		`${bootstrapScope}${btn}:disabled`,
-		`fieldset:disabled ${bootstrapScope}${btn}`,
-	].join(', '),
-	{
-		color: varBsBtnDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsBtnDisabledBg,
-		borderColor: varBsBtnDisabledBorderColor,
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
+globalStyle(`${bootstrapScope}:not(${btnCheck}) + ${bootstrapScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .btn-check {
-//   position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
-globalStyle(`${bootstrapScope}${btnCheck}`, {
-	position: 'absolute',
-	clip: 'rect(0, 0, 0, 0)',
+globalStyle(`${bootstrapScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${bootstrapScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${bootstrapScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${bootstrapScope}:not(${btnCheck}) + ${bootstrapScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${bootstrapScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${bootstrapScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${bootstrapScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${bootstrapScope}${btnCheck}:checked:focus-visible + ${bootstrapScope}${btn}`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${bootstrapScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-check[disabled] + .btn, .btn-check:disabled + .btn {
-//   pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(
-	[
-		`${bootstrapScope}${btnCheck}[disabled] + ${bootstrapScope}${btn}`,
-		`${bootstrapScope}${btnCheck}:disabled + ${bootstrapScope}${btn}`,
-	].join(', '),
-	{
-		pointerEvents: 'none',
-		filter: 'none',
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
-
-// ── Size modifiers ────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn-sm, .btn-group-sm > .btn {
-//   --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem;
-//   --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${bootstrapScope}${btnSm}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.25rem',
-		[varBsBtnPaddingX]: '0.5rem',
-		[varBsBtnFontSize]: '0.875rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
+globalStyle(`${bootstrapScope}${btn}${disabled}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-lg, .btn-group-lg > .btn {
-//   --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem;
-//   --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${bootstrapScope}${btnLg}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.5rem',
-		[varBsBtnPaddingX]: '1rem',
-		[varBsBtnFontSize]: '1.25rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
-	},
+globalStyle(`${bootstrapScope}${fieldset}:disabled ${bootstrapScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// ── .btn-link ─────────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn-link { --bs-btn-font-weight: 400; --bs-btn-color: var(--bs-link-color);
-//   --bs-btn-bg: transparent; --bs-btn-border-color: transparent;
-//   --bs-btn-hover-color: var(--bs-link-hover-color); --bs-btn-hover-border-color: transparent;
-//   --bs-btn-active-color: var(--bs-link-hover-color); --bs-btn-active-border-color: transparent;
-//   --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-border-color: transparent;
-//   --bs-btn-box-shadow: 0 0 0 #000; --bs-btn-focus-shadow-rgb: 49, 132, 253;
-//   text-decoration: underline; }
-globalStyle(`${bootstrapScope}${btnLink}`, {
-	vars: {
-		[varBsBtnFontWeight]: '400',
-		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: 'transparent',
-		[varBsBtnBorderColor]: 'transparent',
-		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: 'transparent',
-		[varBsBtnDisabledColor]: '#6c757d',
-		[varBsBtnDisabledBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]: '0 0 0 #000',
-		[varBsBtnFocusBoxShadowRgb]: '49, 132, 253',
-	},
-	textDecoration: 'underline',
-})
-
-// ── Solid colour variants ─────────────────────────────────────────────────────
-// Each variant only sets --bs-btn-* CSS vars; all layout/interaction is inherited
-// from the base .btn rules above.
-//
-// SOURCE CSS: screenshots/bootstrap/bootstrap.css — .btn-primary { --bs-btn-* }
-
-// SOURCE CSS:
-// .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca;
-//   --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd;
-//   --bs-btn-disabled-border-color: #0d6efd; }
 globalStyle(`${bootstrapScope}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -315,14 +305,6 @@ globalStyle(`${bootstrapScope}${btnPrimary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #6c757d; --bs-btn-border-color: #6c757d;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64;
-//   --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #6c757d;
-//   --bs-btn-disabled-border-color: #6c757d; }
 globalStyle(`${bootstrapScope}${btnSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -342,14 +324,6 @@ globalStyle(`${bootstrapScope}${btnSecondary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-success { --bs-btn-color: #fff; --bs-btn-bg: #198754; --bs-btn-border-color: #198754;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #157347; --bs-btn-hover-border-color: #146c43;
-//   --bs-btn-focus-shadow-rgb: 60, 153, 110; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #146c43; --bs-btn-active-border-color: #13653f;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #198754;
-//   --bs-btn-disabled-border-color: #198754; }
 globalStyle(`${bootstrapScope}${btnSuccess}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -369,14 +343,6 @@ globalStyle(`${bootstrapScope}${btnSuccess}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-info { --bs-btn-color: #000; --bs-btn-bg: #0dcaf0; --bs-btn-border-color: #0dcaf0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #31d2f2; --bs-btn-hover-border-color: #25cff2;
-//   --bs-btn-focus-shadow-rgb: 11, 172, 204; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #3dd5f3; --bs-btn-active-border-color: #25cff2;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #0dcaf0;
-//   --bs-btn-disabled-border-color: #0dcaf0; }
 globalStyle(`${bootstrapScope}${btnInfo}`, {
 	vars: {
 		[varBsBtnColor]: '#000',
@@ -396,14 +362,6 @@ globalStyle(`${bootstrapScope}${btnInfo}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-warning { --bs-btn-color: #000; --bs-btn-bg: #ffc107; --bs-btn-border-color: #ffc107;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffca2c; --bs-btn-hover-border-color: #ffc720;
-//   --bs-btn-focus-shadow-rgb: 217, 164, 6; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #ffcd39; --bs-btn-active-border-color: #ffc720;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #ffc107;
-//   --bs-btn-disabled-border-color: #ffc107; }
 globalStyle(`${bootstrapScope}${btnWarning}`, {
 	vars: {
 		[varBsBtnColor]: '#000',
@@ -423,14 +381,6 @@ globalStyle(`${bootstrapScope}${btnWarning}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #dc3545; --bs-btn-border-color: #dc3545;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37;
-//   --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #dc3545;
-//   --bs-btn-disabled-border-color: #dc3545; }
 globalStyle(`${bootstrapScope}${btnDanger}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -450,14 +400,6 @@ globalStyle(`${bootstrapScope}${btnDanger}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-light { --bs-btn-color: #000; --bs-btn-bg: #f8f9fa; --bs-btn-border-color: #f8f9fa;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #d3d4d5; --bs-btn-hover-border-color: #c6c7c8;
-//   --bs-btn-focus-shadow-rgb: 211, 212, 213; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #c6c7c8; --bs-btn-active-border-color: #babbbc;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #f8f9fa;
-//   --bs-btn-disabled-border-color: #f8f9fa; }
 globalStyle(`${bootstrapScope}${btnLight}`, {
 	vars: {
 		[varBsBtnColor]: '#000',
@@ -477,14 +419,6 @@ globalStyle(`${bootstrapScope}${btnLight}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-dark { --bs-btn-color: #fff; --bs-btn-bg: #212529; --bs-btn-border-color: #212529;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #424649; --bs-btn-hover-border-color: #373b3e;
-//   --bs-btn-focus-shadow-rgb: 66, 70, 73; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #4d5154; --bs-btn-active-border-color: #373b3e;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #212529;
-//   --bs-btn-disabled-border-color: #212529; }
 globalStyle(`${bootstrapScope}${btnDark}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -504,21 +438,6 @@ globalStyle(`${bootstrapScope}${btnDark}`, {
 	},
 })
 
-// ── Outline variants ──────────────────────────────────────────────────────────
-// Each outline variant sets only --bs-btn-* CSS vars.
-// Hover and active states are handled by the base .btn:hover / active rules
-// using var(--bs-btn-hover-bg) etc. set here per variant.
-//
-// SOURCE CSS: screenshots/bootstrap/bootstrap.css — .btn-outline-* { --bs-btn-* }
-
-// SOURCE CSS:
-// .btn-outline-primary { --bs-btn-color: #0d6efd; --bs-btn-border-color: #0d6efd;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0d6efd; --bs-btn-hover-border-color: #0d6efd;
-//   --bs-btn-focus-shadow-rgb: 13, 110, 253; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #0d6efd; --bs-btn-active-border-color: #0d6efd;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #0d6efd; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #0d6efd; }
 globalStyle(`${bootstrapScope}${btnOutlinePrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#0d6efd',
@@ -534,17 +453,10 @@ globalStyle(`${bootstrapScope}${btnOutlinePrimary}`, {
 		[varBsBtnDisabledColor]: '#0d6efd',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#0d6efd',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-secondary { --bs-btn-color: #6c757d; --bs-btn-border-color: #6c757d;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #6c757d; --bs-btn-hover-border-color: #6c757d;
-//   --bs-btn-focus-shadow-rgb: 108, 117, 125; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #6c757d; --bs-btn-active-border-color: #6c757d;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #6c757d; }
 globalStyle(`${bootstrapScope}${btnOutlineSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#6c757d',
@@ -560,17 +472,10 @@ globalStyle(`${bootstrapScope}${btnOutlineSecondary}`, {
 		[varBsBtnDisabledColor]: '#6c757d',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#6c757d',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-success { --bs-btn-color: #198754; --bs-btn-border-color: #198754;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #198754; --bs-btn-hover-border-color: #198754;
-//   --bs-btn-focus-shadow-rgb: 25, 135, 84; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #198754; --bs-btn-active-border-color: #198754;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #198754; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #198754; }
 globalStyle(`${bootstrapScope}${btnOutlineSuccess}`, {
 	vars: {
 		[varBsBtnColor]: '#198754',
@@ -586,17 +491,10 @@ globalStyle(`${bootstrapScope}${btnOutlineSuccess}`, {
 		[varBsBtnDisabledColor]: '#198754',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#198754',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-info { --bs-btn-color: #0dcaf0; --bs-btn-border-color: #0dcaf0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #0dcaf0; --bs-btn-hover-border-color: #0dcaf0;
-//   --bs-btn-focus-shadow-rgb: 13, 202, 240; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #0dcaf0; --bs-btn-active-border-color: #0dcaf0;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #0dcaf0; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #0dcaf0; }
 globalStyle(`${bootstrapScope}${btnOutlineInfo}`, {
 	vars: {
 		[varBsBtnColor]: '#0dcaf0',
@@ -612,17 +510,10 @@ globalStyle(`${bootstrapScope}${btnOutlineInfo}`, {
 		[varBsBtnDisabledColor]: '#0dcaf0',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#0dcaf0',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-warning { --bs-btn-color: #ffc107; --bs-btn-border-color: #ffc107;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffc107; --bs-btn-hover-border-color: #ffc107;
-//   --bs-btn-focus-shadow-rgb: 255, 193, 7; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #ffc107; --bs-btn-active-border-color: #ffc107;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #ffc107; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #ffc107; }
 globalStyle(`${bootstrapScope}${btnOutlineWarning}`, {
 	vars: {
 		[varBsBtnColor]: '#ffc107',
@@ -638,17 +529,10 @@ globalStyle(`${bootstrapScope}${btnOutlineWarning}`, {
 		[varBsBtnDisabledColor]: '#ffc107',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#ffc107',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-danger { --bs-btn-color: #dc3545; --bs-btn-border-color: #dc3545;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #dc3545; --bs-btn-hover-border-color: #dc3545;
-//   --bs-btn-focus-shadow-rgb: 220, 53, 69; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #dc3545; --bs-btn-active-border-color: #dc3545;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #dc3545; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #dc3545; }
 globalStyle(`${bootstrapScope}${btnOutlineDanger}`, {
 	vars: {
 		[varBsBtnColor]: '#dc3545',
@@ -664,17 +548,10 @@ globalStyle(`${bootstrapScope}${btnOutlineDanger}`, {
 		[varBsBtnDisabledColor]: '#dc3545',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#dc3545',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-light { --bs-btn-color: #f8f9fa; --bs-btn-border-color: #f8f9fa;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #f8f9fa; --bs-btn-hover-border-color: #f8f9fa;
-//   --bs-btn-focus-shadow-rgb: 248, 249, 250; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #f8f9fa; --bs-btn-active-border-color: #f8f9fa;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #f8f9fa; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #f8f9fa; }
 globalStyle(`${bootstrapScope}${btnOutlineLight}`, {
 	vars: {
 		[varBsBtnColor]: '#f8f9fa',
@@ -690,17 +567,10 @@ globalStyle(`${bootstrapScope}${btnOutlineLight}`, {
 		[varBsBtnDisabledColor]: '#f8f9fa',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#f8f9fa',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-dark { --bs-btn-color: #212529; --bs-btn-border-color: #212529;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #212529; --bs-btn-hover-border-color: #212529;
-//   --bs-btn-focus-shadow-rgb: 33, 37, 41; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #212529; --bs-btn-active-border-color: #212529;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #212529; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #212529; }
 globalStyle(`${bootstrapScope}${btnOutlineDark}`, {
 	vars: {
 		[varBsBtnColor]: '#212529',
@@ -716,5 +586,308 @@ globalStyle(`${bootstrapScope}${btnOutlineDark}`, {
 		[varBsBtnDisabledColor]: '#212529',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#212529',
+		[varBsGradient]: 'none',
 	},
+})
+
+globalStyle(`${bootstrapScope}${btnLink}`, {
+	vars: {
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnColor]: varBsLinkColor,
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
+		[varBsBtnHoverColor]: varBsLinkHoverColor,
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnActiveColor]: varBsLinkHoverColor,
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#6c757d',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '49, 132, 253',
+	},
+	textDecoration: 'underline',
+})
+
+globalStyle(`${bootstrapScope}${btnLink}:focus-visible`, {
+	color: varBsBtnColor,
+})
+
+globalStyle(`${bootstrapScope}${btnLink}:hover`, {
+	color: varBsBtnHoverColor,
+})
+
+globalStyle(`${bootstrapScope}${btnLg}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${bootstrapScope}${btnGroupLg} > ${bootstrapScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${bootstrapScope}${btnSm}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${bootstrapScope}${btnGroupSm} > ${bootstrapScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnCheck}:focus + ${bootstrapScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btnCheck}:checked + ${bootstrapScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btnCheck}:focus + ${bootstrapScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}:not(${btnCheck}:first-child) + ${bootstrapScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroup}:not(:last-child) > ${bootstrapScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}:not(${btnCheck}) + ${bootstrapScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroup} > ${bootstrapScope}${btnGroup}:not(:first-child) > ${bootstrapScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${bootstrapScope}${btnSm} + ${bootstrapScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupSm} > ${bootstrapScope}${btn} + ${bootstrapScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${bootstrapScope}${btnLg} + ${bootstrapScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupLg} > ${bootstrapScope}${btn} + ${bootstrapScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btnGroup}:not(:last-child) > ${bootstrapScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}:not(${btnCheck}) + ${bootstrapScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${btnGroupVertical} > ${bootstrapScope}${btnGroup}:not(:first-child) > ${bootstrapScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${bootstrapScope}${alertDismissible} ${bootstrapScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '1.25rem 1rem',
+})
+
+globalStyle(`${bootstrapScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#000',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.5',
+		[varBsBtnCloseHoverOpacity]: '0.75',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
+	color: varBsBtnCloseColor,
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
+	filter: varBsBtnCloseFilter,
+	border: '0',
+	borderRadius: '0.375rem',
+	opacity: varBsBtnCloseOpacity,
+})
+
+globalStyle(`${bootstrapScope}${btnClose}:hover`, {
+	color: varBsBtnCloseColor,
+	textDecoration: 'none',
+	opacity: varBsBtnCloseHoverOpacity,
+})
+
+globalStyle(`${bootstrapScope}${btnClose}:focus`, {
+	outline: '0',
+	boxShadow: varBsBtnCloseFocusShadow,
+	opacity: varBsBtnCloseFocusOpacity,
+})
+
+globalStyle(`${bootstrapScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${bootstrapScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${bootstrapScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
+globalStyle(`${bootstrapScope}${toastHeader} ${bootstrapScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${bootstrapScope}${modalHeader} ${bootstrapScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${bootstrapScope}${offcanvasHeader} ${bootstrapScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${bootstrapScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
 })

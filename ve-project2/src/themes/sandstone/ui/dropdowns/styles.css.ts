@@ -1,4 +1,6 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { sandstoneScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -6,9 +8,14 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
-	varBsTertiaryBg,
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../../theme-contract/ui/buttons/_vars.css'
 import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
@@ -23,6 +30,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -34,57 +42,104 @@ import {
 	varBsDropdownMinWidth,
 	varBsDropdownPaddingX,
 	varBsDropdownPaddingY,
-	varBsDropdownPosition,
 	varBsDropdownSpacer,
 	varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
+import { varBsNavTabsBorderWidth } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsPosition } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
+	disabled,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
-	dropend,
 	dropdownHeader,
 	dropdownItem,
-	dropdownItemActive,
-	dropdownItemDisabled,
 	dropdownItemText,
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
 	dropdownMenuShow,
 	dropdownMenuStart,
-	dropstart,
 	dropdownToggle,
 	dropdownToggleSplit,
+	dropend,
+	dropstart,
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { h6 } from '../../../../theme-contract/contents/contract.css'
-import { sandstoneScope } from '../../scope.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navTabs } from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── Wrapper positioning ───────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${inputGroup}:not(${hasValidation}) > ${sandstoneScope}${dropdownToggle}:nth-last-child(n+3)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-// SOURCE CSS:
-// .dropdown, .dropstart, .dropup-center, .dropdown-center { position: relative; }
-globalStyle(
-	[
-		`${sandstoneScope}${dropdown}`,
-		`${sandstoneScope}${dropstart}`,
-		`${sandstoneScope}${dropupCenter}`,
-		`${sandstoneScope}${dropdownCenter}`,
-	].join(', '),
-	{ position: 'relative' },
-)
+globalStyle(`${sandstoneScope}${inputGroup}${hasValidation} > ${sandstoneScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-// ── Dropdown toggle caret ─────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS: .dropdown-toggle { white-space: nowrap; }
-globalStyle(`${sandstoneScope}${dropdownToggle}`, { whiteSpace: 'nowrap' })
+globalStyle(`${sandstoneScope}${btn}${btnShowHook}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
-// SOURCE CSS: .dropdown-toggle::after { display: inline-block; margin-left: 0.255em;
-//   vertical-align: 0.255em; content: ""; border-top: 0.3em solid;
-//   border-right: 0.3em solid transparent; border-bottom: 0;
-//   border-left: 0.3em solid transparent; }
+globalStyle(`${sandstoneScope}${dropup}`, {
+	position: 'relative',
+})
+
+globalStyle(`${sandstoneScope}${dropend}`, {
+	position: 'relative',
+})
+
+globalStyle(`${sandstoneScope}${dropdown}`, {
+	position: 'relative',
+})
+
+globalStyle(`${sandstoneScope}${dropstart}`, {
+	position: 'relative',
+})
+
+globalStyle(`${sandstoneScope}${dropupCenter}`, {
+	position: 'relative',
+})
+
+globalStyle(`${sandstoneScope}${dropdownCenter}`, {
+	position: 'relative',
+})
+
+globalStyle(`${sandstoneScope}${dropdownToggle}`, {
+	whiteSpace: 'nowrap',
+})
+
 globalStyle(`${sandstoneScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
@@ -92,16 +147,14 @@ globalStyle(`${sandstoneScope}${dropdownToggle}::after`, {
 	content: '""',
 	borderTop: '0.3em solid',
 	borderRight: '0.3em solid transparent',
-	borderBottom: 0,
+	borderBottom: '0',
 	borderLeft: '0.3em solid transparent',
 })
 
-// SOURCE CSS: .dropdown-toggle:empty::after { margin-left: 0; }
-globalStyle(`${sandstoneScope}${dropdownToggle}:empty::after`, { marginLeft: 0 })
+globalStyle(`${sandstoneScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
+})
 
-// ── Dropdown menu ─────────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropdown-menu { --bs-dropdown-* vars + layout }
 globalStyle(`${sandstoneScope}${dropdownMenu}`, {
 	vars: {
 		[varBsDropdownZindex]: '1000',
@@ -136,7 +189,7 @@ globalStyle(`${sandstoneScope}${dropdownMenu}`, {
 	display: 'none',
 	minWidth: varBsDropdownMinWidth,
 	padding: `${varBsDropdownPaddingY} ${varBsDropdownPaddingX}`,
-	margin: 0,
+	margin: '0',
 	fontSize: varBsDropdownFontSize,
 	color: varBsDropdownColor,
 	textAlign: 'left',
@@ -147,268 +200,476 @@ globalStyle(`${sandstoneScope}${dropdownMenu}`, {
 	borderRadius: varBsDropdownBorderRadius,
 })
 
-// SOURCE CSS: .dropdown-menu[data-bs-popper] { top: 100%; left: 0; margin-top: ...; }
 globalStyle(`${sandstoneScope}${dropdownMenu}[data-bs-popper]`, {
 	top: '100%',
-	left: 0,
+	left: '0',
 	marginTop: varBsDropdownSpacer,
 })
 
-// ── Menu alignment modifiers ──────────────────────────────────────────────────
-
-// SOURCE CSS: .dropdown-menu-start { --bs-position: start; }
 globalStyle(`${sandstoneScope}${dropdownMenuStart}`, {
-	vars: { [varBsDropdownPosition]: 'start' },
+	vars: {
+		[varBsPosition]: 'start',
+	},
 })
+
 globalStyle(`${sandstoneScope}${dropdownMenuStart}[data-bs-popper]`, {
 	right: 'auto',
-	left: 0,
+	left: '0',
 })
 
-// SOURCE CSS: .dropdown-menu-end { --bs-position: end; }
 globalStyle(`${sandstoneScope}${dropdownMenuEnd}`, {
-	vars: { [varBsDropdownPosition]: 'end' },
+	vars: {
+		[varBsPosition]: 'end',
+	},
 })
+
 globalStyle(`${sandstoneScope}${dropdownMenuEnd}[data-bs-popper]`, {
-	right: 0,
+	right: '0',
 	left: 'auto',
 })
 
-// ── .dropup variant ───────────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${dropdownMenuSmStart}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
 
-// SOURCE CSS: .dropup .dropdown-menu[data-bs-popper] { top: auto; bottom: 100%; … }
-globalStyle(`${sandstoneScope}${dropup} ${dropdownMenu}[data-bs-popper]`, {
+globalStyle(`${sandstoneScope}${dropdownMenuSmStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 576px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuSmEnd}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuSmEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 576px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuMdStart}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuMdStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 768px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuMdEnd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuMdEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 768px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuLgStart}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuLgStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 992px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuLgEnd}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuLgEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 992px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXlStart}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXlStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXlEnd}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXlEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXxlStart}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXxlStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXxlEnd}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenuXxlEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${dropup} ${sandstoneScope}${dropdownMenu}[data-bs-popper]`, {
 	top: 'auto',
 	bottom: '100%',
-	marginTop: 0,
+	marginTop: '0',
 	marginBottom: varBsDropdownSpacer,
 })
 
-// SOURCE CSS: .dropup .dropdown-toggle::after { ... border-top: 0; border-bottom: 0.3em solid; }
-globalStyle(`${sandstoneScope}${dropup} ${dropdownToggle}::after`, {
+globalStyle(`${sandstoneScope}${dropup} ${sandstoneScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
 	verticalAlign: '0.255em',
 	content: '""',
-	borderTop: 0,
+	borderTop: '0',
 	borderRight: '0.3em solid transparent',
 	borderBottom: '0.3em solid',
 	borderLeft: '0.3em solid transparent',
 })
 
-globalStyle(`${sandstoneScope}${dropup} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${sandstoneScope}${dropup} ${sandstoneScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropend variant ──────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropend .dropdown-menu[data-bs-popper] { top: 0; right: auto; left: 100%; … }
-globalStyle(`${sandstoneScope}${dropend} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
+globalStyle(`${sandstoneScope}${dropend} ${sandstoneScope}${dropdownMenu}[data-bs-popper]`, {
+	top: '0',
 	right: 'auto',
 	left: '100%',
-	marginTop: 0,
+	marginTop: '0',
 	marginLeft: varBsDropdownSpacer,
 })
 
-// SOURCE CSS: .dropend .dropdown-toggle::after { border-right: 0; border-left: 0.3em solid; … }
-globalStyle(`${sandstoneScope}${dropend} ${dropdownToggle}::after`, {
+globalStyle(`${sandstoneScope}${dropend} ${sandstoneScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
-	verticalAlign: 0,
+	verticalAlign: '0.255em',
 	content: '""',
 	borderTop: '0.3em solid transparent',
-	borderRight: 0,
+	borderRight: '0',
 	borderBottom: '0.3em solid transparent',
 	borderLeft: '0.3em solid',
 })
 
-globalStyle(`${sandstoneScope}${dropend} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${sandstoneScope}${dropend} ${sandstoneScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropstart variant ────────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${dropend} ${sandstoneScope}${dropdownToggle}::after`, {
+	verticalAlign: '0',
+})
 
-// SOURCE CSS: .dropstart .dropdown-menu[data-bs-popper] { top: 0; right: 100%; left: auto; … }
-globalStyle(`${sandstoneScope}${dropstart} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownMenu}[data-bs-popper]`, {
+	top: '0',
 	right: '100%',
 	left: 'auto',
-	marginTop: 0,
+	marginTop: '0',
 	marginRight: varBsDropdownSpacer,
 })
 
-// SOURCE CSS: .dropstart .dropdown-toggle::after { display: none; }
-globalStyle(`${sandstoneScope}${dropstart} ${dropdownToggle}::after`, {
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggle}::after`, {
+	display: 'inline-block',
+	marginLeft: '0.255em',
+	verticalAlign: '0.255em',
+	content: '""',
+})
+
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggle}::after`, {
 	display: 'none',
 })
 
-// SOURCE CSS: .dropstart .dropdown-toggle::before { ... border-right: 0.3em solid; }
-globalStyle(`${sandstoneScope}${dropstart} ${dropdownToggle}::before`, {
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggle}::before`, {
 	display: 'inline-block',
 	marginRight: '0.255em',
-	verticalAlign: 0,
+	verticalAlign: '0.255em',
 	content: '""',
 	borderTop: '0.3em solid transparent',
 	borderRight: '0.3em solid',
 	borderBottom: '0.3em solid transparent',
 })
 
-globalStyle(`${sandstoneScope}${dropstart} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropdown-toggle-split ────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-toggle-split { padding-right: 0.5625rem; padding-left: 0.5625rem; }
-// .dropdown-toggle-split::after { margin-left: 0; }
-globalStyle(`${sandstoneScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-	borderTopRightRadius: varBsBorderRadius,
-	borderBottomRightRadius: varBsBorderRadius,
-})
-globalStyle(`${sandstoneScope}${dropdownToggleSplit}::after`, { marginLeft: 0 })
-globalStyle(
-	[
-		`${sandstoneScope}${dropup} ${dropdownToggleSplit}::after`,
-		`${sandstoneScope}${dropend} ${dropdownToggleSplit}::after`,
-	].join(', '),
-	{ marginLeft: 0 },
-)
-globalStyle(`${sandstoneScope}${dropstart} ${dropdownToggleSplit}::before`, {
-	marginRight: 0,
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggle}::before`, {
+	verticalAlign: '0',
 })
 
-// ── .dropdown-divider ─────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-divider { height: 0; margin: var(--bs-dropdown-divider-margin-y) 0;
-//   overflow: hidden; border-top: 1px solid var(--bs-dropdown-divider-bg);
-//   opacity: 1; }
 globalStyle(`${sandstoneScope}${dropdownDivider}`, {
-	height: 0,
+	height: '0',
 	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: 'hidden',
-	border: 0,
 	borderTop: `1px solid ${varBsDropdownDividerBg}`,
-	opacity: 1,
+	opacity: '1',
 })
 
-// ── .dropdown-item ────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-item { display: block; width: 100%;
-//   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-//   clear: both; font-weight: 400; color: var(--bs-dropdown-link-color);
-//   text-align: inherit; text-decoration: none; white-space: nowrap;
-//   background-color: transparent; border: 0;
-//   border-radius: var(--bs-dropdown-item-border-radius, 0); }
 globalStyle(`${sandstoneScope}${dropdownItem}`, {
 	display: 'block',
 	width: '100%',
 	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	clear: 'both',
-	fontWeight: 400,
+	fontWeight: '400',
 	color: varBsDropdownLinkColor,
 	textAlign: 'inherit',
 	textDecoration: 'none',
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
-	border: 0,
+	border: '0',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
-// SOURCE CSS: .dropdown-item:hover, .dropdown-item:focus { … }
-globalStyle(
-	`${sandstoneScope}${dropdownItem}:hover, ${sandstoneScope}${dropdownItem}:focus`,
-	{
-		color: varBsDropdownLinkHoverColor,
-		backgroundColor: varBsDropdownLinkHoverBg,
-	},
-)
+globalStyle(`${sandstoneScope}${dropdownItem}:hover`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+})
 
-// SOURCE CSS: .dropdown-item.active, .dropdown-item:active { … }
-globalStyle(
-	`${sandstoneScope}${dropdownItem}${dropdownItemActive}, ${sandstoneScope}${dropdownItem}:active`,
-	{
-		color: varBsDropdownLinkActiveColor,
-		textDecoration: 'none',
-		backgroundColor: varBsDropdownLinkActiveBg,
-	},
-)
+globalStyle(`${sandstoneScope}${dropdownItem}:focus`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+})
 
-// SOURCE CSS: .dropdown-item.disabled, .dropdown-item:disabled { … }
-globalStyle(
-	`${sandstoneScope}${dropdownItem}${dropdownItemDisabled}, ${sandstoneScope}${dropdownItem}:disabled`,
-	{
-		color: varBsDropdownLinkDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: 'transparent',
-	},
-)
+globalStyle(`${sandstoneScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
 
-// ── .dropdown-menu.show ───────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${dropdownItem}:active`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
 
-globalStyle(`${sandstoneScope}${dropdownMenu}${dropdownMenuShow}`, { display: 'block' })
+globalStyle(`${sandstoneScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
+})
 
-// ── .dropdown-header ──────────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${dropdownItem}:disabled`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
+})
 
-// SOURCE CSS:
-// .dropdown-header { display: block;
-//   padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
-//   margin-bottom: 0; font-size: 0.875rem;
-//   color: var(--bs-dropdown-header-color); white-space: nowrap; }
+globalStyle(`${sandstoneScope}${dropdownMenu}${dropdownMenuShow}`, {
+	display: 'block',
+})
+
 globalStyle(`${sandstoneScope}${dropdownHeader}`, {
 	display: 'block',
 	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	fontSize: '0.875rem',
 	color: varBsDropdownHeaderColor,
 	whiteSpace: 'nowrap',
 })
 
-// Dropdown header is rendered as <h6>; keep dropdown-header semantics over heading defaults.
-globalStyle(`${sandstoneScope}${dropdownHeader}${h6}`, {
-	marginBottom: 0,
-	fontSize: '0.875rem',
-	color: varBsDropdownHeaderColor,
-})
-
-// ── .dropdown-item-text ───────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-item-text { display: block;
-//   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-//   color: var(--bs-dropdown-link-color); }
 globalStyle(`${sandstoneScope}${dropdownItemText}`, {
 	display: 'block',
 	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	color: varBsDropdownLinkColor,
 })
 
-// ── .dropdown-menu-dark ───────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-menu-dark { --bs-dropdown-color: #dee2e6; --bs-dropdown-bg: #343a40; … }
 globalStyle(`${sandstoneScope}${dropdownMenuDark}`, {
 	vars: {
-		[varBsDropdownColor]: '#dee2e6',
-		[varBsDropdownBg]: '#343a40',
+		[varBsDropdownColor]: '#dfd7ca',
+		[varBsDropdownBg]: '#3e3f3a',
 		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
 		[varBsDropdownBoxShadow]: '',
-		[varBsDropdownLinkColor]: '#dee2e6',
+		[varBsDropdownLinkColor]: '#dfd7ca',
 		[varBsDropdownLinkHoverColor]: '#fff',
 		[varBsDropdownDividerBg]: varBsBorderColorTranslucent,
 		[varBsDropdownLinkHoverBg]: 'rgba(255, 255, 255, 0.15)',
-		[varBsDropdownLinkActiveColor]: '#fff',
-		[varBsDropdownLinkActiveBg]: '#325d88',
-		[varBsDropdownLinkDisabledColor]: '#adb5bd',
-		[varBsDropdownHeaderColor]: '#adb5bd',
+		[varBsDropdownLinkActiveColor]: '#8e8c84',
+		[varBsDropdownLinkActiveBg]: '#f8f5f0',
+		[varBsDropdownLinkDisabledColor]: '#98978b',
+		[varBsDropdownHeaderColor]: '#98978b',
 	},
 })
 
+globalStyle(`${sandstoneScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
 
+globalStyle(`${sandstoneScope}${dropup} ${sandstoneScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
 
+globalStyle(`${sandstoneScope}${dropend} ${sandstoneScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${sandstoneScope}${dropstart} ${sandstoneScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${dropdownMenu}`, {
+	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	position: 'static',
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandMd} ${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandLg} ${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXl} ${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarNav} ${sandstoneScope}${dropdownMenu}`, {
+	position: 'absolute',
+})
+
+globalStyle(`${sandstoneScope}${dropdownMenu} ${sandstoneScope}${dropdownItem}`, {
+	fontSize: '13px',
+	fontWeight: '500',
+	lineHeight: '22px',
+	textTransform: 'uppercase',
+})

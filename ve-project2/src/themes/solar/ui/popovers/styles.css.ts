@@ -1,33 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
 import {
-	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
-	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
-	varBsBorderStyle,
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsFontSansSerif,
-	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import {
-	bsPopoverAuto,
-	bsPopoverBottom,
-	bsPopoverEnd,
-	bsPopoverStart,
-	bsPopoverTop,
-	frame,
-	frameColumn,
-	frameRow,
-	justifyEnd,
-	justifyStart,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
-	popoverVe,
-} from '../../../../theme-contract/ui/popovers/contract.css'
-import { h3 } from '../../../../theme-contract/contents/contract.css'
 import {
 	varBsPopoverArrowBorder,
 	varBsPopoverArrowHeight,
@@ -50,9 +30,38 @@ import {
 	varBsPopoverMaxWidth,
 	varBsPopoverZindex,
 } from '../../../../theme-contract/ui/popovers/_vars.css'
-import { solarScope } from '../../scope.css'
 
-globalStyle(`${solarScope}${popoverVe}`, {
+import { popover } from '../../../../theme-contract/literal/contract.css'
+import {
+	bsPopoverAuto,
+	bsPopoverBottom,
+	bsPopoverEnd,
+	bsPopoverStart,
+	bsPopoverTop,
+	popoverArrow,
+	popoverBody,
+	popoverFade,
+	popoverHeader,
+	popoverShow,
+} from '../../../../theme-contract/ui/popovers/contract.css'
+
+globalStyle(`${solarScope}${popoverFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${solarScope}${popoverFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${popoverFade}:not(${popoverShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${solarScope}${popover}`, {
 	vars: {
 		[varBsPopoverZindex]: '1070',
 		[varBsPopoverMaxWidth]: '276px',
@@ -80,9 +89,9 @@ globalStyle(`${solarScope}${popoverVe}`, {
 	maxWidth: varBsPopoverMaxWidth,
 	fontFamily: varBsFontSansSerif,
 	fontStyle: 'normal',
-	fontWeight: 400,
-	lineHeight: 1.5,
-	textAlign: 'left',
+	fontWeight: '400',
+	lineHeight: '1.5',
+	textAlign: 'start',
 	textDecoration: 'none',
 	textShadow: 'none',
 	textTransform: 'none',
@@ -90,6 +99,7 @@ globalStyle(`${solarScope}${popoverVe}`, {
 	wordBreak: 'normal',
 	whiteSpace: 'normal',
 	wordSpacing: 'normal',
+	lineBreak: 'auto',
 	fontSize: varBsPopoverFontSize,
 	wordWrap: 'break-word',
 	backgroundColor: varBsPopoverBg,
@@ -98,104 +108,239 @@ globalStyle(`${solarScope}${popoverVe}`, {
 	borderRadius: varBsPopoverBorderRadius,
 })
 
-globalStyle(`${solarScope}${popoverArrow}`, {
+globalStyle(`${solarScope}${popover} ${solarScope}${popoverArrow}`, {
 	display: 'block',
 	width: varBsPopoverArrowWidth,
 	height: varBsPopoverArrowHeight,
 })
 
-globalStyle(`${solarScope}${popoverArrow}::before, ${solarScope}${popoverArrow}::after`, {
+globalStyle(`${solarScope}${popover} ${solarScope}${popoverArrow}::before`, {
 	position: 'absolute',
 	display: 'block',
-	content: '',
+	content: '""',
 	borderColor: 'transparent',
 	borderStyle: 'solid',
-	borderWidth: 0,
+	borderWidth: '0',
 })
 
-globalStyle(
-	`${solarScope}${bsPopoverTop} > ${popoverArrow}, ${solarScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}`,
-	{ bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})` },
-)
-globalStyle(
-	`${solarScope}${bsPopoverTop} > ${popoverArrow}::before, ${solarScope}${bsPopoverTop} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::after`,
-	{ borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0` },
-)
-globalStyle(
-	`${solarScope}${bsPopoverTop} > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::before`,
-	{ bottom: 0, borderTopColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${solarScope}${bsPopoverTop} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::after`,
-	{ bottom: varBsPopoverBorderWidth, borderTopColor: varBsPopoverBg },
-)
+globalStyle(`${solarScope}${popover} ${solarScope}${popoverArrow}::after`, {
+	position: 'absolute',
+	display: 'block',
+	content: '""',
+	borderColor: 'transparent',
+	borderStyle: 'solid',
+	borderWidth: '0',
+})
 
-globalStyle(
-	`${solarScope}${bsPopoverEnd} > ${popoverArrow}, ${solarScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}`,
-	{
-		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
-globalStyle(
-	`${solarScope}${bsPopoverEnd} > ${popoverArrow}::before, ${solarScope}${bsPopoverEnd} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
-globalStyle(
-	`${solarScope}${bsPopoverEnd} > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::before`,
-	{ left: 0, borderRightColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${solarScope}${bsPopoverEnd} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::after`,
-	{ left: varBsPopoverBorderWidth, borderRightColor: varBsPopoverBg },
-)
+globalStyle(`${solarScope}${bsPopoverTop} > ${solarScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
-globalStyle(
-	`${solarScope}${bsPopoverBottom} > ${popoverArrow}, ${solarScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}`,
-	{ top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})` },
-)
-globalStyle(
-	`${solarScope}${bsPopoverBottom} > ${popoverArrow}::before, ${solarScope}${bsPopoverBottom} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::after`,
-	{ borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}` },
-)
-globalStyle(
-	`${solarScope}${bsPopoverBottom} > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::before`,
-	{ top: 0, borderBottomColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${solarScope}${bsPopoverBottom} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::after`,
-	{ top: varBsPopoverBorderWidth, borderBottomColor: varBsPopoverBg },
-)
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=top] > ${solarScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
-globalStyle(
-	`${solarScope}${bsPopoverStart} > ${popoverArrow}, ${solarScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}`,
-	{
-		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
-globalStyle(
-	`${solarScope}${bsPopoverStart} > ${popoverArrow}::before, ${solarScope}${bsPopoverStart} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
-globalStyle(
-	`${solarScope}${bsPopoverStart} > ${popoverArrow}::before, ${solarScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::before`,
-	{ right: 0, borderLeftColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${solarScope}${bsPopoverStart} > ${popoverArrow}::after, ${solarScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::after`,
-	{ right: varBsPopoverBorderWidth, borderLeftColor: varBsPopoverBg },
-)
+globalStyle(`${solarScope}${bsPopoverTop} > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=top] > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverTop} > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=top] > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverTop} > ${solarScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=top] > ${solarScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverTop} > ${solarScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=top] > ${solarScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverEnd} > ${solarScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=right] > ${solarScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${solarScope}${bsPopoverEnd} > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=right] > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverEnd} > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=right] > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${solarScope}${bsPopoverEnd} > ${solarScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=right] > ${solarScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverEnd} > ${solarScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=right] > ${solarScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverBottom} > ${solarScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${solarScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
+
+globalStyle(`${solarScope}${bsPopoverBottom} > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverBottom} > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverBottom} > ${solarScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${solarScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverBottom} > ${solarScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${solarScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverBottom} ${solarScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${solarScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverStart} > ${solarScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=left] > ${solarScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${solarScope}${bsPopoverStart} > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=left] > ${solarScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverStart} > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=left] > ${solarScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${solarScope}${bsPopoverStart} > ${solarScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=left] > ${solarScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${solarScope}${bsPopoverStart} > ${solarScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
+
+globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-placement^=left] > ${solarScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
 
 globalStyle(`${solarScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	fontSize: varBsPopoverHeaderFontSize,
 	color: varBsPopoverHeaderColor,
 	backgroundColor: varBsPopoverHeaderBg,
@@ -208,45 +353,7 @@ globalStyle(`${solarScope}${popoverHeader}:empty`, {
 	display: 'none',
 })
 
-// When popoverHeader and h3 are both on the same element the h3 heading rule
-// (fontSize: 1.75rem, marginBottom: 0.5rem, fontWeight: 500, lineHeight: 1.2)
-// can win over popoverHeader at equal specificity depending on load order.
-// This combined selector has higher specificity and restores popover-header values.
-globalStyle(`${solarScope}${popoverHeader}${h3}`, {
-	fontSize: varBsPopoverHeaderFontSize,
-	marginBottom: 0,
-})
-
 globalStyle(`${solarScope}${popoverBody}`, {
 	padding: `${varBsPopoverBodyPaddingY} ${varBsPopoverBodyPaddingX}`,
 	color: varBsPopoverBodyColor,
 })
-
-globalStyle(`${solarScope}${frame}`, {
-	display: 'flex',
-	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
-	height: '16em',
-})
-
-globalStyle(`${solarScope}${frameColumn}`, {
-	flexDirection: 'column',
-	alignItems: 'center',
-})
-
-globalStyle(`${solarScope}${frameRow}`, {
-	flexDirection: 'row',
-	alignItems: 'center',
-})
-
-globalStyle(`${solarScope}${justifyEnd}`, {
-	justifyContent: 'flex-end',
-})
-
-globalStyle(`${solarScope}${justifyStart}`, {
-	justifyContent: 'flex-start',
-})
-
-globalStyle(`${solarScope}${bsPopoverAuto}[data-popper-reference-hidden='true']`, {
-	display: 'none',
-})
-

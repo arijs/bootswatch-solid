@@ -1,20 +1,25 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	form,
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import { elInput, elLabel } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const DisabledCheckbox: Component = () => {
@@ -27,12 +32,15 @@ const DisabledCheckbox: Component = () => {
 				<div class={`${theme} ${mb3}`}>
 					<div class={`${theme} ${formCheck}`}>
 						<input
-							class={`${theme} ${formCheckInput}`}
+							class={`${theme} ${elInput} ${formCheckInput}`}
 							type="checkbox"
 							id="disabledFieldsetCheck"
 							disabled
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="disabledFieldsetCheck">
+						<label
+							class={`${theme} ${elLabel} ${formCheckLabel}`}
+							for="disabledFieldsetCheck"
+						>
 							Can't check this
 						</label>
 					</div>

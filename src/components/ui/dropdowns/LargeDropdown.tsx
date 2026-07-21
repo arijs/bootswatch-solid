@@ -57,3 +57,11 @@ export default LargeDropdown
 // @screenshot sketchy/opened-dropdown: 360x251 251
 // @screenshot sandstone/opened-dropdown: 360x230 230
 // @screenshot materia/opened-dropdown: 360x242 242
+// @screenshot brite/opened-dropdown: 360x238 235
+// @screenshot lux/opened-dropdown: 360x272 272
+// @screenshot superhero/opened-dropdown: 360x234 234
+// @screenshot lumen/opened-dropdown: 360x251 251
+// @screenshot journal/opened-dropdown: 360x245 245
+// @screenshot litera/opened-dropdown: 360x245 245
+// @screenshot zephyr/opened-dropdown: 360x266 266
+// @screenshot yeti/opened-dropdown: 360x298 298

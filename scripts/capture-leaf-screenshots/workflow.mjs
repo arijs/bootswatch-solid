@@ -1,4 +1,4 @@
-import { mkdir } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { setTimeout as delay } from 'node:timers/promises'
@@ -15,10 +15,10 @@ import {
 	createThemeCssAccumulator,
 	extractScenarioCssArtifacts,
 	extractScenarioMarkupArtifact,
-	writeScenarioMarkupArtifact,
-	writeScenarioCssArtifact,
-	writeThemeCssArtifact,
 	optimizeMarkupWithCssArtifacts,
+	writeScenarioCssArtifact,
+	writeScenarioMarkupArtifact,
+	writeThemeCssArtifact,
 } from './css-extraction.mjs'
 import { resolveConfiguredHeight } from './directives.mjs'
 import {
@@ -34,6 +34,7 @@ import {
 	recordWritebackMeasure,
 } from './persistence.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
+import { gotoWithPreviewRecovery } from './preview-server-manager.mjs'
 import { getScenarioStateFolder } from './scenarios.mjs'
 import { resolveInitialNavigationWarmupDelayMs, resolveScreenshotSettleDelayMs } from './timing.mjs'
 import { slugifyTheme } from './utils.mjs'
@@ -62,6 +63,10 @@ export async function executeCaptureWorkflow({
 	ve1VerificationEnabled,
 	veVerificationEnabled,
 	verificationMaxDiffRatio,
+	ve2StyleLoader = 'theme',
+	bailOnMismatch = false,
+	skipToRoute = null,
+	previewServerManager,
 }) {
 	async function freshBrowser(initialHeight = DEFAULT_VIEWPORT.height) {
 		const browser = await chromium.launch({ headless: true })
@@ -92,6 +97,7 @@ export async function executeCaptureWorkflow({
 	let verificationSkipped = 0
 	let verificationRan = 0
 	const verificationMismatches = []
+	let shouldBail = false
 	const verificationStats = {
 		ran: () => {
 			verificationRan += 1
@@ -110,6 +116,67 @@ export async function executeCaptureWorkflow({
 	let processedThemeIndex = 0
 	let shotsSinceRestart = 0
 	const scenarioSummary = new Map()
+
+	// --- Incremental verification progress + graceful abort ------------------
+	// Component-level resume: after each verified scenario we flush the running
+	// results (counters, mismatches, lastRoute) to VERIFY_JSON_OUT, and on
+	// SIGINT/SIGTERM we finish the in-flight scenario, flush, and stop. An
+	// orchestrator resumes with --skip-to-route=<lastRoute>.
+	const isVerifying = verificationEnabled || ve1VerificationEnabled || veVerificationEnabled
+	const verifyJsonPath = (isVerifying && process.env.VERIFY_JSON_OUT) || null
+	const verificationLabel = verificationEnabled ? 'CSS' : ve1VerificationEnabled ? 'VE1' : 'VE'
+	let aborting = false
+	let lastVerifiedRoute = null
+	let lastVerifiedState = null
+	async function writeVerifyJson(complete) {
+		if (!verifyJsonPath) return
+		const mismatches = verificationMismatches.map((m) => {
+			const parts = path.relative(ROOT, m.outputPath).split(/[\\/]/)
+			return {
+				theme: parts[1],
+				route: `/${parts.slice(2, parts.length - 2).join('/')}`,
+				state: parts[parts.length - 2],
+				diffRatio: m.diffRatio,
+				diffPixels: m.diffPixels,
+				totalPixels: m.totalPixels,
+				reason: m.reason,
+			}
+		})
+		await mkdir(path.dirname(verifyJsonPath), { recursive: true })
+		await writeFile(
+			verifyJsonPath,
+			`${JSON.stringify(
+				{
+					label: verificationLabel,
+					complete,
+					lastRoute: lastVerifiedRoute,
+					lastState: lastVerifiedState,
+					ran: verificationRan,
+					matched: verificationMatched,
+					mismatched: verificationMismatched,
+					skipped: verificationSkipped,
+					maxDiffRatio: verificationMaxDiffRatio,
+					mismatches,
+				},
+				null,
+				2,
+			)}\n`,
+		)
+	}
+	const onSignal = (sig) => {
+		if (aborting) {
+			console.warn(`\n${sig} again — forcing exit.`)
+			process.exit(130)
+		}
+		aborting = true
+		console.warn(
+			`\n${sig} received — flushing progress and stopping after the current scenario.`,
+		)
+	}
+	if (isVerifying) {
+		process.on('SIGINT', () => onSignal('SIGINT'))
+		process.on('SIGTERM', () => onSignal('SIGTERM'))
+	}
 	const hasStateFilter = stateFilter instanceof Set && stateFilter.size > 0
 
 	try {
@@ -132,6 +199,8 @@ export async function executeCaptureWorkflow({
 				console.log(
 					`Skipping folder pruning for ${themeSlug} because --state filter is active; preserving all existing state folders.`,
 				)
+			} else if (skipToRoute) {
+				// --skip-to-route is active: do not prune — pre-skip routes have valid screenshots
 			} else if (routeFilter) {
 				let totalDeletedDirs = 0
 				let totalDeletedFiles = 0
@@ -245,6 +314,8 @@ export async function executeCaptureWorkflow({
 								outputPath,
 								verificationMaxDiffRatio,
 								veMarkupExtractionEnabled,
+								ve2StyleLoader,
+								previewServerManager,
 							})
 							if (verification?.veMarkupPath) {
 								veMarkupExtractionFileCount += 1
@@ -252,9 +323,23 @@ export async function executeCaptureWorkflow({
 							skippedCount += 1
 							scenarioSummary.get(summaryKey).skipped += 1
 							captured = true
+							// TECH DEBT: "Skipped" here means the *baseline* PNG was not
+							// (re)captured — it predates VE verification. In verification mode
+							// the label is misleading because VE verification DID run; only
+							// the baseline screenshot generation was skipped. Consider using
+							// a separate label like "SkippedCapture/Verified" when
+							// veVerificationEnabled is true so the log is unambiguous.
 							console.log(
 								`[${processedScenarioIndex}/${totalCapturesPlanned}] Skipped ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${getVerificationLogInfo(verification)}`,
 							)
+							if (
+								bailOnMismatch &&
+								verification &&
+								!verification.matched &&
+								!verification.skipped
+							) {
+								shouldBail = true
+							}
 							break
 						}
 
@@ -267,7 +352,7 @@ export async function executeCaptureWorkflow({
 						})
 
 						const url = `${BASE_URL}${route}?theme=${encodeURIComponent(themeName)}`
-						await page.goto(url, { waitUntil: 'load', timeout: 60000 })
+						await gotoWithPreviewRecovery(page, url, previewServerManager)
 						await delay(150)
 						if (shotsSinceRestart === 0) {
 							const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
@@ -312,16 +397,17 @@ export async function executeCaptureWorkflow({
 							themeHasScenarioCss = true
 							cssScenarioCount += 1
 							if (htmlExtractionEnabled) {
-								const { optimized: markup, stats: markupStats } = optimizeMarkupWithCssArtifacts(
-									await extractScenarioMarkupArtifact(page),
-									cssArtifacts,
-									{
-										themeSlug,
-										route,
-										stateFolder,
-										scenario,
-									},
-								)
+								const { optimized: markup, stats: markupStats } =
+									optimizeMarkupWithCssArtifacts(
+										await extractScenarioMarkupArtifact(page),
+										cssArtifacts,
+										{
+											themeSlug,
+											route,
+											stateFolder,
+											scenario,
+										},
+									)
 								await writeScenarioMarkupArtifact({
 									themeSlug,
 									routePath,
@@ -381,27 +467,39 @@ export async function executeCaptureWorkflow({
 								break
 							}
 
-							await page.screenshot({ path: outputPath, fullPage: false, timeout: 20000 })
+							await page.screenshot({
+								path: outputPath,
+								fullPage: false,
+								timeout: 20000,
+							})
 							savedCount += 1
 							scenarioSummary.get(summaryKey).saved += 1
 							shotsSinceRestart += 1
-						let markupLogInfo = ''
-						if (htmlExtractionEnabled && markupStatsAccumulator.has(themeSlug)) {
-							const themeStats = markupStatsAccumulator.get(themeSlug)
-							if (themeStats.length > 0) {
-								const lastStats = themeStats[themeStats.length - 1]
-								const numElements = lastStats.perElement.length
-								const lenRatio = lastStats.total.inputLength > 0 
-									? (lastStats.total.outputLength / lastStats.total.inputLength).toFixed(6)
-									: '0.000000'
-								const propsRatio = lastStats.total.inputProps > 0
-									? (lastStats.total.outputProps / lastStats.total.inputProps).toFixed(6)
-									: '0.000000'
-								markupLogInfo = ` (markup: ${numElements} els, len: ${lenRatio} ${lastStats.total.outputLength}/${lastStats.total.inputLength}, props ${propsRatio} ${lastStats.total.outputProps}/${lastStats.total.inputProps})`
+							let markupLogInfo = ''
+							if (htmlExtractionEnabled && markupStatsAccumulator.has(themeSlug)) {
+								const themeStats = markupStatsAccumulator.get(themeSlug)
+								if (themeStats.length > 0) {
+									const lastStats = themeStats[themeStats.length - 1]
+									const numElements = lastStats.perElement.length
+									const lenRatio =
+										lastStats.total.inputLength > 0
+											? (
+													lastStats.total.outputLength /
+													lastStats.total.inputLength
+												).toFixed(6)
+											: '0.000000'
+									const propsRatio =
+										lastStats.total.inputProps > 0
+											? (
+													lastStats.total.outputProps /
+													lastStats.total.inputProps
+												).toFixed(6)
+											: '0.000000'
+									markupLogInfo = ` (markup: ${numElements} els, len: ${lenRatio} ${lastStats.total.outputLength}/${lastStats.total.inputLength}, props ${propsRatio} ${lastStats.total.outputProps}/${lastStats.total.inputProps})`
+								}
 							}
-						}
-						console.log(
-							`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${markupLogInfo}`,
+							console.log(
+								`[${processedScenarioIndex}/${totalCapturesPlanned}] Saved ${path.relative(ROOT, outputPath)} (${configured.source} -> measured ${measuredHeight})${markupLogInfo}`,
 							)
 						} else {
 							let markupLogInfo = ''
@@ -410,12 +508,20 @@ export async function executeCaptureWorkflow({
 								if (themeStats.length > 0) {
 									const lastStats = themeStats[themeStats.length - 1]
 									const numElements = lastStats.perElement.length
-									const lenRatio = lastStats.total.inputLength > 0 
-										? (lastStats.total.outputLength / lastStats.total.inputLength).toFixed(6)
-										: '0.000000'
-									const propsRatio = lastStats.total.inputProps > 0
-										? (lastStats.total.outputProps / lastStats.total.inputProps).toFixed(6)
-										: '0.000000'
+									const lenRatio =
+										lastStats.total.inputLength > 0
+											? (
+													lastStats.total.outputLength /
+													lastStats.total.inputLength
+												).toFixed(6)
+											: '0.000000'
+									const propsRatio =
+										lastStats.total.inputProps > 0
+											? (
+													lastStats.total.outputProps /
+													lastStats.total.inputProps
+												).toFixed(6)
+											: '0.000000'
 									markupLogInfo = ` (markup: ${numElements} els, len: ${lenRatio} ${lastStats.total.outputLength}/${lastStats.total.inputLength}, props ${propsRatio} ${lastStats.total.outputProps}/${lastStats.total.inputProps})`
 								}
 							}
@@ -455,6 +561,15 @@ export async function executeCaptureWorkflow({
 					continue
 				}
 
+				if (shouldBail) break
+
+				if (isVerifying) {
+					lastVerifiedRoute = route
+					lastVerifiedState = scenario.state
+					await writeVerifyJson(false)
+					if (aborting) break
+				}
+
 				if (shotsSinceRestart >= RESTART_BROWSER_EVERY) {
 					try {
 						await context.close()
@@ -471,11 +586,15 @@ export async function executeCaptureWorkflow({
 				}
 			}
 
+			if (shouldBail) break
+
 			if (cssExtractionEnabled && themeHasScenarioCss) {
 				// Write once per theme after all selected scenarios have contributed global rules.
 				await writeThemeCssArtifact({ themeSlug, accumulator: cssAccumulator })
 				cssThemeCount += 1
 			}
+
+			if (aborting) break
 		}
 	} finally {
 		try {
@@ -490,6 +609,11 @@ export async function executeCaptureWorkflow({
 		}
 	}
 
+	if (shouldBail) {
+		console.warn('\nBAIL: stopped after first mismatch (--bail).')
+		process.exitCode = 1
+	}
+
 	if (cssExtractionEnabled) {
 		console.log(
 			`CSS extraction: scenario-files=${cssScenarioCount}, theme-files=${cssThemeCount}, writes=${cssAccumulator.writes}`,
@@ -497,9 +621,7 @@ export async function executeCaptureWorkflow({
 	}
 
 	if (htmlExtractionEnabled) {
-		console.log(
-			`HTML extraction: scenario-files=${htmlExtractionFileCount}`,
-		)
+		console.log(`HTML extraction: scenario-files=${htmlExtractionFileCount}`)
 	}
 
 	if (veVerificationEnabled && veMarkupExtractionEnabled) {
@@ -507,11 +629,6 @@ export async function executeCaptureWorkflow({
 	}
 
 	if (verificationEnabled || ve1VerificationEnabled || veVerificationEnabled) {
-		const verificationLabel = verificationEnabled
-			? 'CSS'
-			: ve1VerificationEnabled
-				? 'VE1'
-				: 'VE'
 		console.log(
 			`${verificationLabel} verification: ran=${verificationRan}, matched=${verificationMatched}, mismatched=${verificationMismatched}, skipped=${verificationSkipped}, maxDiffRatio=${verificationMaxDiffRatio}`,
 		)
@@ -532,6 +649,9 @@ export async function executeCaptureWorkflow({
 				}
 			}
 		}
+
+		// Final flush: complete unless we broke out early on SIGINT/SIGTERM.
+		await writeVerifyJson(!aborting)
 	}
 
 	let writebackResults = []
@@ -596,6 +716,8 @@ async function runVerificationIfEnabled({
 	outputPath,
 	verificationMaxDiffRatio,
 	veMarkupExtractionEnabled,
+	ve2StyleLoader = 'theme',
+	previewServerManager,
 }) {
 	if (!verificationEnabled && !ve1VerificationEnabled && !veVerificationEnabled) return null
 	const isCssVerification = verificationEnabled
@@ -637,6 +759,8 @@ async function runVerificationIfEnabled({
 				baselinePath: outputPath,
 				maxDiffRatio: verificationMaxDiffRatio,
 				markupExtractionEnabled: veMarkupExtractionEnabled,
+				ve2StyleLoader,
+				previewServerManager,
 			})
 		: isCssVerification
 			? await verifyScenarioCssRendering({
@@ -652,6 +776,7 @@ async function runVerificationIfEnabled({
 					measuredHeight,
 					baselinePath: outputPath,
 					maxDiffRatio: verificationMaxDiffRatio,
+					previewServerManager,
 				})
 			: await verifyScenarioVe1Rendering({
 					browser,
@@ -664,6 +789,7 @@ async function runVerificationIfEnabled({
 					measuredHeight,
 					baselinePath: outputPath,
 					maxDiffRatio: verificationMaxDiffRatio,
+					previewServerManager,
 				})
 
 	if (verification.skipped) {

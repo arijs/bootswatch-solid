@@ -1,19 +1,40 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sketchyScope } from '../../scope.css'
+
 import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemDisabled,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
-} from '../../../../theme-contract/ui/list-group/contract.css'
+	varBsBodyBg,
+	varBsBodyColor,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsDangerBgSubtle,
+	varBsDangerBorderSubtle,
+	varBsDangerTextEmphasis,
+	varBsDarkBgSubtle,
+	varBsDarkBorderSubtle,
+	varBsDarkTextEmphasis,
+	varBsEmphasisColor,
+	varBsInfoBgSubtle,
+	varBsInfoBorderSubtle,
+	varBsInfoTextEmphasis,
+	varBsLightBgSubtle,
+	varBsLightBorderSubtle,
+	varBsLightTextEmphasis,
+	varBsPrimaryBgSubtle,
+	varBsPrimaryBorderSubtle,
+	varBsPrimaryTextEmphasis,
+	varBsSecondaryBg,
+	varBsSecondaryBgSubtle,
+	varBsSecondaryBorderSubtle,
+	varBsSecondaryColor,
+	varBsSecondaryTextEmphasis,
+	varBsSuccessBgSubtle,
+	varBsSuccessBorderSubtle,
+	varBsSuccessTextEmphasis,
+	varBsWarningBgSubtle,
+	varBsWarningBorderSubtle,
+	varBsWarningTextEmphasis,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 	varBsListGroupActionActiveBg,
 	varBsListGroupActionActiveColor,
@@ -33,61 +54,65 @@ import {
 	varBsListGroupItemPaddingX,
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
+
 import {
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsBodyColor,
-	varBsDangerBgSubtle,
-	varBsDangerBorderSubtle,
-	varBsDangerTextEmphasis,
-	varBsDarkBgSubtle,
-	varBsDarkBorderSubtle,
-	varBsDarkTextEmphasis,
-	varBsEmphasisColor,
-	varBsInfoBgSubtle,
-	varBsInfoBorderSubtle,
-	varBsInfoTextEmphasis,
-	varBsLightBgSubtle,
-	varBsLightBorderSubtle,
-	varBsLightTextEmphasis,
-	varBsPrimary,
-	varBsPrimaryBgSubtle,
-	varBsPrimaryBorderSubtle,
-	varBsPrimaryTextEmphasis,
-	varBsSecondaryBg,
-	varBsSecondaryBgSubtle,
-	varBsSecondaryBorderSubtle,
-	varBsSecondaryColor,
-	varBsSecondaryTextEmphasis,
-	varBsSuccessBgSubtle,
-	varBsSuccessBorderSubtle,
-	varBsSuccessTextEmphasis,
-	varBsWarningBgSubtle,
-	varBsWarningBorderSubtle,
-	varBsWarningTextEmphasis,
-} from '../../../../theme-contract/_vars.css'
-import { sketchyScope } from '../../scope.css'
+	active,
+	disabled,
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../../theme-contract/ui/list-group/contract.css'
 
-// Sketchy-specific overrides vs Bootstrap defaults:
-//   --bs-list-group-border-color: varBsPrimary (#333 in Sketchy)
-//   --bs-list-group-action-color: varBsPrimary (#333 in Sketchy)
-//   --bs-list-group-action-hover-bg: #dee2e6 (hardcoded in Sketchy, no tertiary-bg)
-//   --bs-list-group-active-bg / border-color: varBsPrimary (#333 in Sketchy)
-// All other vars delegate to root semantic vars already containing Sketchy values.
+globalStyle(`${sketchyScope}${card} > ${sketchyScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
+})
 
-// ── Base list-group ───────────────────────────────────────────────────────────
+globalStyle(`${sketchyScope}${card} > ${sketchyScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${sketchyScope}${card} > ${sketchyScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${sketchyScope}${card} > ${sketchyScope}${cardHeader} + ${sketchyScope}${listGroup}`, {
+	borderTop: '0',
+})
 
 globalStyle(`${sketchyScope}${listGroup}`, {
 	vars: {
 		[varBsListGroupColor]: varBsBodyColor,
 		[varBsListGroupBg]: varBsBodyBg,
-		[varBsListGroupBorderColor]: varBsPrimary,
+		[varBsListGroupBorderColor]: '#333',
 		[varBsListGroupBorderWidth]: varBsBorderWidth,
 		[varBsListGroupBorderRadius]: varBsBorderRadius,
 		[varBsListGroupItemPaddingX]: '1rem',
 		[varBsListGroupItemPaddingY]: '0.5rem',
-		[varBsListGroupActionColor]: varBsPrimary,
+		[varBsListGroupActionColor]: '#333',
 		[varBsListGroupActionHoverColor]: varBsEmphasisColor,
 		[varBsListGroupActionHoverBg]: '#dee2e6',
 		[varBsListGroupActionActiveColor]: varBsBodyColor,
@@ -95,34 +120,25 @@ globalStyle(`${sketchyScope}${listGroup}`, {
 		[varBsListGroupDisabledColor]: varBsSecondaryColor,
 		[varBsListGroupDisabledBg]: varBsBodyBg,
 		[varBsListGroupActiveColor]: '#fff',
-		[varBsListGroupActiveBg]: varBsPrimary,
-		[varBsListGroupActiveBorderColor]: varBsPrimary,
+		[varBsListGroupActiveBg]: '#333',
+		[varBsListGroupActiveBorderColor]: '#333',
 	},
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
-	overflow: 'hidden',
-	backgroundColor: '#333',
-	border: '2px solid #333',
-	borderRadius: '45px 15px 35px 5px / 15px 5px 15px 65px',
+	paddingLeft: '0',
+	marginBottom: '0',
+	borderRadius: varBsListGroupBorderRadius,
 })
 
-// ── Flush variant ─────────────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${listGroupFlush}`, {
-	borderRadius: '45px 15px 35px 5px / 15px 5px 15px 65px',
+globalStyle(`${sketchyScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
 })
 
-globalStyle(`${sketchyScope}${listGroupFlush} > ${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+globalStyle(`${sketchyScope}${listGroupNumbered} > ${sketchyScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
 })
-
-globalStyle(`${sketchyScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
-})
-
-// ── Item ──────────────────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${listGroupItem}`, {
 	position: 'relative',
@@ -132,10 +148,6 @@ globalStyle(`${sketchyScope}${listGroupItem}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsListGroupBg,
 	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
-	borderTop: '2px solid #333',
-	borderRight: 'none',
-	borderLeft: 'none',
-	borderRadius: '255px 5px 225px 5px / 25px 225px 25px 255px',
 })
 
 globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
@@ -148,41 +160,33 @@ globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
-globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
-	borderTop: 'none',
+globalStyle(`${sketchyScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
 })
 
-globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
-	borderBottom: 'none',
+globalStyle(`${sketchyScope}${listGroupItem}:disabled`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
 })
 
-globalStyle(
-	`${sketchyScope}${listGroupItem}${listGroupItemDisabled},` +
-		`${sketchyScope}${listGroupItem}:disabled`,
-	{
-		color: varBsListGroupDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsListGroupDisabledBg,
-	},
-)
-
-globalStyle(`${sketchyScope}${listGroupItem}.active`, {
-	zIndex: 2,
+globalStyle(`${sketchyScope}${listGroupItem}${active}`, {
+	zIndex: '2',
 	color: varBsListGroupActiveColor,
 	backgroundColor: varBsListGroupActiveBg,
 	borderColor: varBsListGroupActiveBorderColor,
 })
 
-globalStyle(`${sketchyScope}${listGroupItem} + ${listGroupItem}`, {
-	borderTopWidth: 0,
+globalStyle(`${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	borderTopWidth: '0',
 })
 
-globalStyle(`${sketchyScope}${listGroupItem} + ${listGroupItem}.active`, {
+globalStyle(`${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
 	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
 	borderTopWidth: varBsListGroupBorderWidth,
 })
-
-// ── Action items ──────────────────────────────────────────────────────────────
 
 globalStyle(`${sketchyScope}${listGroupItemAction}`, {
 	width: '100%',
@@ -190,24 +194,324 @@ globalStyle(`${sketchyScope}${listGroupItemAction}`, {
 	textAlign: 'inherit',
 })
 
-globalStyle(
-	`${sketchyScope}${listGroupItemAction}:not(.active):hover,` +
-		`${sketchyScope}${listGroupItemAction}:not(.active):focus`,
-	{
-		zIndex: 1,
-		color: varBsListGroupActionHoverColor,
-		textDecoration: 'none',
-		backgroundColor: varBsListGroupActionHoverBg,
-	},
-)
+globalStyle(`${sketchyScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
 
-globalStyle(`${sketchyScope}${listGroupItemAction}:not(.active):active`, {
+globalStyle(`${sketchyScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${sketchyScope}${listGroupItemAction}:not(${active}):active`, {
 	color: varBsListGroupActionActiveColor,
 	backgroundColor: varBsListGroupActionActiveBg,
 })
 
-// ── Colour variants ───────────────────────────────────────────────────────────
-// Variant rules point to root semantic vars which carry Sketchy-specific values.
+globalStyle(`${sketchyScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontal} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalSm} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalMd} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalLg} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupHorizontalXxl} > ${sketchyScope}${listGroupItem} + ${sketchyScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${listGroupFlush} > ${sketchyScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${sketchyScope}${listGroupFlush} > ${sketchyScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
+})
 
 globalStyle(`${sketchyScope}${listGroupItemPrimary}`, {
 	vars: {
@@ -327,4 +631,30 @@ globalStyle(`${sketchyScope}${listGroupItemDark}`, {
 		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
 		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
 	},
+})
+
+globalStyle(`${sketchyScope}${listGroup}`, {
+	overflow: 'hidden',
+	backgroundColor: '#333',
+	border: '2px solid #333',
+	borderRadius: '45px 15px 35px 5px/15px 5px 15px 65px',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem}`, {
+	borderTop: '2px solid #333',
+	borderRight: 'none',
+	borderLeft: 'none',
+	borderRadius: '255px 5px 225px 5px/25px 225px 25px 255px',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem}:first-child`, {
+	borderTop: 'none',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem}:last-child`, {
+	borderBottom: 'none',
+})
+
+globalStyle(`${sketchyScope}${listGroupItem}`, {
+	textDecoration: 'none',
 })

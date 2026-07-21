@@ -1,0 +1,31 @@
+{
+  "summary": {
+    "totalElements": 50,
+    "elementsChecked": 50,
+    "elementsWithGaps": 1,
+    "totalExpected": 48,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/svg[1]",
+      "tag": "svg",
+      "baselineClasses": [
+        "bd-placeholder-img",
+        "card-img-top"
+      ],
+      "expectedSymbols": [
+        "cardImgTop"
+      ],
+      "stampedSymbols": [
+        "cardImgTop",
+        "bdPlaceholderImg",
+        "mediaMiddle"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "bd-placeholder-img"
+      ]
+    }
+  ]
+}

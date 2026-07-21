@@ -1,6 +1,6 @@
 import * as bootstrap from 'bootstrap'
 import { getVarName } from '../../../logic/veGetVarName'
-import { varBsDropdownPosition } from '../../../theme-contract/ui/dropdowns/_vars.css'
+import { varBsPosition } from '../../../theme-contract/utilities/generated/_vars.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeDropdownRuntimeClasses {
@@ -24,7 +24,7 @@ export function createVeDropdown(
 		CLASS_NAME_DROPUP: runtimeClasses.dropup,
 		CLASS_NAME_DROPEND: runtimeClasses.dropend,
 		CLASS_NAME_DROPSTART: runtimeClasses.dropstart,
-		CSS_VARIABLE_POSITION: getVarName(varBsDropdownPosition),
+		CSS_VARIABLE_POSITION: getVarName(varBsPosition),
 		SELECTOR_MENU: `.${runtimeClasses.dropdownMenu}`,
 		SELECTOR_VISIBLE_ITEMS: `.${runtimeClasses.dropdownMenu} .${runtimeClasses.dropdownItem}:not(:disabled)`,
 	}) as typeof bootstrap.Dropdown

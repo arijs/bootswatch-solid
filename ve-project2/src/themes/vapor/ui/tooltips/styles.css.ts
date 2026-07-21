@@ -1,25 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
 	varBsBorderRadius,
-	varBsBorderStyle,
-	varBsBorderWidth,
 	varBsEmphasisColor,
 	varBsFontSansSerif,
 } from '../../../../theme-contract/_vars.css'
-import {
-	frame,
-	frameColumn,
-	frameRow,
-	justifyCenter,
-	justifyEnd,
-	justifyStart,
-	tooltipArrow,
-	tooltipInner,
-	tooltipVe,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
 import {
 	varBsTooltipArrowHeight,
 	varBsTooltipArrowWidth,
@@ -34,9 +22,39 @@ import {
 	varBsTooltipPaddingY,
 	varBsTooltipZindex,
 } from '../../../../theme-contract/ui/tooltips/_vars.css'
-import { vaporScope } from '../../scope.css'
 
-globalStyle(`${vaporScope}${tooltipVe}`, {
+import {
+	bsTooltipAuto,
+	bsTooltipBottom,
+	bsTooltipEnd,
+	bsTooltipStart,
+	bsTooltipTop,
+	tooltip,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipShow,
+} from '../../../../theme-contract/ui/tooltips/contract.css'
+
+globalStyle(`${vaporScope}${tooltipFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${vaporScope}${tooltipFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${tooltipFade}:not(${tooltipShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${vaporScope}${tooltip}`, {
 	vars: {
 		[varBsTooltipZindex]: '1080',
 		[varBsTooltipMaxWidth]: '200px',
@@ -47,7 +65,7 @@ globalStyle(`${vaporScope}${tooltipVe}`, {
 		[varBsTooltipColor]: varBsBodyBg,
 		[varBsTooltipBg]: varBsEmphasisColor,
 		[varBsTooltipBorderRadius]: varBsBorderRadius,
-		[varBsTooltipOpacity]: '0.9',
+		[varBsTooltipOpacity]: '1',
 		[varBsTooltipArrowWidth]: '0.8rem',
 		[varBsTooltipArrowHeight]: '0.4rem',
 	},
@@ -56,8 +74,8 @@ globalStyle(`${vaporScope}${tooltipVe}`, {
 	margin: varBsTooltipMargin,
 	fontFamily: varBsFontSansSerif,
 	fontStyle: 'normal',
-	fontWeight: 400,
-	lineHeight: 1.5,
+	fontWeight: '400',
+	lineHeight: '1.5',
 	textAlign: 'start',
 	textDecoration: 'none',
 	textShadow: 'none',
@@ -66,63 +84,112 @@ globalStyle(`${vaporScope}${tooltipVe}`, {
 	wordBreak: 'normal',
 	whiteSpace: 'normal',
 	wordSpacing: 'normal',
+	lineBreak: 'auto',
 	fontSize: varBsTooltipFontSize,
 	wordWrap: 'break-word',
-	opacity: 0,
+	opacity: '0',
 })
 
-globalStyle(`${vaporScope}${tooltipVe}.show`, {
+globalStyle(`${vaporScope}${tooltip}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
-globalStyle(`${vaporScope}${tooltipArrow}`, {
+globalStyle(`${vaporScope}${tooltip} ${vaporScope}${tooltipArrow}`, {
 	display: 'block',
 	width: varBsTooltipArrowWidth,
 	height: varBsTooltipArrowHeight,
 })
 
-globalStyle(`${vaporScope}${tooltipArrow}::before`, {
+globalStyle(`${vaporScope}${tooltip} ${vaporScope}${tooltipArrow}::before`, {
 	position: 'absolute',
-	content: '',
+	content: '""',
 	borderColor: 'transparent',
 	borderStyle: 'solid',
 })
 
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="top"] ${tooltipArrow}`, {
+globalStyle(`${vaporScope}${bsTooltipTop} ${vaporScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="top"] ${tooltipArrow}::before`, {
+
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=top] ${vaporScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+
+globalStyle(`${vaporScope}${bsTooltipTop} ${vaporScope}${tooltipArrow}::before`, {
 	top: '-1px',
 	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="right"] ${tooltipArrow}`, {
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=top] ${vaporScope}${tooltipArrow}::before`, {
+	top: '-1px',
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
+
+globalStyle(`${vaporScope}${bsTooltipEnd} ${vaporScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
 	width: varBsTooltipArrowHeight,
 	height: varBsTooltipArrowWidth,
 })
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="right"] ${tooltipArrow}::before`, {
+
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=right] ${vaporScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+
+globalStyle(`${vaporScope}${bsTooltipEnd} ${vaporScope}${tooltipArrow}::before`, {
 	right: '-1px',
 	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="bottom"] ${tooltipArrow}`, {
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=right] ${vaporScope}${tooltipArrow}::before`, {
+	right: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
+
+globalStyle(`${vaporScope}${bsTooltipBottom} ${vaporScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="bottom"] ${tooltipArrow}::before`, {
+
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${vaporScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+
+globalStyle(`${vaporScope}${bsTooltipBottom} ${vaporScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
 	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="left"] ${tooltipArrow}`, {
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${vaporScope}${tooltipArrow}::before`, {
+	bottom: '-1px',
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
+})
+
+globalStyle(`${vaporScope}${bsTooltipStart} ${vaporScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
 	width: varBsTooltipArrowHeight,
 	height: varBsTooltipArrowWidth,
 })
-globalStyle(`${vaporScope}${tooltipVe}[data-popper-placement^="left"] ${tooltipArrow}::before`, {
+
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=left] ${vaporScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+
+globalStyle(`${vaporScope}${bsTooltipStart} ${vaporScope}${tooltipArrow}::before`, {
+	left: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderLeftColor: varBsTooltipBg,
+})
+
+globalStyle(`${vaporScope}${bsTooltipAuto}[data-popper-placement^=left] ${vaporScope}${tooltipArrow}::before`, {
 	left: '-1px',
 	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
 	borderLeftColor: varBsTooltipBg,
@@ -137,43 +204,13 @@ globalStyle(`${vaporScope}${tooltipInner}`, {
 	borderRadius: varBsTooltipBorderRadius,
 })
 
-globalStyle(`${vaporScope}${frame}`, {
-	display: 'flex',
-	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
-	height: '16em',
-})
-
-globalStyle(`${vaporScope}${frameColumn}`, {
-	flexDirection: 'column',
-	alignItems: 'center',
-})
-
-globalStyle(`${vaporScope}${frameRow}`, {
-	flexDirection: 'row',
-	alignItems: 'center',
-})
-
-globalStyle(`${vaporScope}${justifyCenter}`, {
-	justifyContent: 'center',
-})
-
-globalStyle(`${vaporScope}${justifyEnd}`, {
-	justifyContent: 'flex-end',
-})
-
-globalStyle(`${vaporScope}${justifyStart}`, {
-	justifyContent: 'flex-start',
-})
-
-globalStyle(`${vaporScope}${tooltipVe}`, {
+globalStyle(`${vaporScope}${tooltip}`, {
 	vars: {
 		[varBsTooltipBg]: varBsBodyBg,
 		[varBsTooltipColor]: varBsBodyColor,
-		[varBsTooltipOpacity]: '1',
 	},
-	opacity: 1,
 })
 
 globalStyle(`${vaporScope}${tooltipInner}`, {
-	boxShadow: '0 0 2rem rgba(125,85,199,0.4), 0 0 8rem rgba(125,85,199,0.3)',
+	boxShadow: '0 0 2rem rgba(125, 85, 199, 0.4), 0 0 8rem rgba(125, 85, 199, 0.3)',
 })

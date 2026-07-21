@@ -1,15 +1,7 @@
-import { globalStyle } from '@vanilla-extract/css'
-import {
-	navbar,
-	navbarBgLight,
-	navbarBrand,
-	navbarCollapse,
-	navbarDarkBgPrimary,
-	navbarExpandLg,
-	navbarNav,
-	navbarToggler,
-	navbarTogglerIcon,
-} from '../../../../theme-contract/ui/navbar/contract.css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { sandstoneScope } from '../../scope.css'
+
+import { varBsBorderRadius, varBsBorderWidth, varBsEmphasisColorRgb } from '../../../../theme-contract/_vars.css'
 import {
 	varBsNavbarActiveColor,
 	varBsNavbarBrandColor,
@@ -31,6 +23,7 @@ import {
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
 	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -40,39 +33,32 @@ import {
 	varBsNavLinkPaddingX,
 	varBsNavLinkPaddingY,
 } from '../../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsEmphasisColorRgb,
-} from '../../../../theme-contract/_vars.css'
+
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+import { elInput } from '../../../../theme-contract/global-elements/contract.css'
+
 import { containerFluid } from '../../../../theme-contract/layout/container.css'
-import { navLink, navLinkActive } from '../../../../theme-contract/ui/navs/contract.css'
-import { sandstoneScope } from '../../scope.css'
+import {
+	navbarDark,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+	navbarForm,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	navbar,
+	navbarBrand,
+	navbarCollapse,
+	navbarExpandLg,
+	navbarNav,
+	navbarNavScroll,
+	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../../theme-contract/ui/navbar/contract.css'
 
-// ── .navbar ───────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar {
-//   --bs-navbar-padding-x: 0; --bs-navbar-padding-y: 0.5rem;
-//   --bs-navbar-color: rgba(var(--bs-emphasis-color-rgb), 0.65);
-//   --bs-navbar-hover-color: rgba(var(--bs-emphasis-color-rgb), 0.8);
-//   --bs-navbar-disabled-color: rgba(var(--bs-emphasis-color-rgb), 0.3);
-//   --bs-navbar-active-color: rgba(var(--bs-emphasis-color-rgb), 1);
-//   --bs-navbar-brand-padding-y: 0.3125rem; --bs-navbar-brand-margin-end: 1rem;
-//   --bs-navbar-brand-font-size: 1.25rem;
-//   --bs-navbar-brand-color: rgba(var(--bs-emphasis-color-rgb), 1);
-//   --bs-navbar-brand-hover-color: rgba(var(--bs-emphasis-color-rgb), 1);
-//   --bs-navbar-nav-link-padding-x: 0.5rem;
-//   --bs-navbar-toggler-padding-y: 0.25rem; --bs-navbar-toggler-padding-x: 0.75rem;
-//   --bs-navbar-toggler-font-size: 1.25rem;
-//   --bs-navbar-toggler-icon-bg: url("...");
-//   --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
-//   --bs-navbar-toggler-border-radius: var(--bs-border-radius);
-//   --bs-navbar-toggler-focus-width: 0.25rem;
-//   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
-//   position: relative; display: flex; flex-wrap: wrap;
-//   align-items: center; justify-content: space-between;
-//   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x); }
 globalStyle(`${sandstoneScope}${navbar}`, {
 	vars: {
 		[varBsNavbarPaddingX]: '0',
@@ -90,7 +76,7 @@ globalStyle(`${sandstoneScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%2862, 63, 58, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -104,10 +90,6 @@ globalStyle(`${sandstoneScope}${navbar}`, {
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
 })
 
-// SOURCE CSS:
-// .navbar > .container, .navbar > .container-fluid, … { display: flex;
-//   flex-wrap: inherit; align-items: center; justify-content: space-between; }
-// VE2 migration: map source .container/.container-fluid to contract classes.
 globalStyle(`${sandstoneScope}${navbar} > ${sandstoneScope}${containerFluid}`, {
 	display: 'flex',
 	flexWrap: 'inherit',
@@ -115,15 +97,6 @@ globalStyle(`${sandstoneScope}${navbar} > ${sandstoneScope}${containerFluid}`, {
 	justifyContent: 'space-between',
 })
 
-// ── .navbar-brand ─────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar-brand { padding-top: var(--bs-navbar-brand-padding-y);
-//   padding-bottom: var(--bs-navbar-brand-padding-y);
-//   margin-right: var(--bs-navbar-brand-margin-end);
-//   font-size: var(--bs-navbar-brand-font-size);
-//   color: var(--bs-navbar-brand-color);
-//   text-decoration: none; white-space: nowrap; }
 globalStyle(`${sandstoneScope}${navbarBrand}`, {
 	paddingTop: varBsNavbarBrandPaddingY,
 	paddingBottom: varBsNavbarBrandPaddingY,
@@ -134,21 +107,14 @@ globalStyle(`${sandstoneScope}${navbarBrand}`, {
 	whiteSpace: 'nowrap',
 })
 
-globalStyle(`${sandstoneScope}${navbarBrand}:hover, ${sandstoneScope}${navbarBrand}:focus`, {
+globalStyle(`${sandstoneScope}${navbarBrand}:hover`, {
 	color: varBsNavbarBrandHoverColor,
 })
 
-// ── .navbar-nav ───────────────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${navbarBrand}:focus`, {
+	color: varBsNavbarBrandHoverColor,
+})
 
-// SOURCE CSS:
-// .navbar-nav {
-//   --bs-nav-link-padding-x: 0; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-navbar-color);
-//   --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
-//   display: flex; flex-direction: column; padding-left: 0;
-//   margin-bottom: 0; list-style: none; }
 globalStyle(`${sandstoneScope}${navbarNav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '0',
@@ -160,47 +126,52 @@ globalStyle(`${sandstoneScope}${navbarNav}`, {
 	},
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// SOURCE CSS:
-// .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-//   color: var(--bs-navbar-active-color); }
-globalStyle(`${sandstoneScope}${navbarNav} ${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navbarText}`, {
+	paddingTop: '0.5rem',
+	paddingBottom: '0.5rem',
+	color: varBsNavbarColor,
+})
+
+globalStyle(`${sandstoneScope}${navbarText} :where(${sandstoneScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
-// ── .navbar-collapse ──────────────────────────────────────────────────────────
+globalStyle(`${sandstoneScope}${navbarText} ${sandstoneScope}${link}:hover`, {
+	color: varBsNavbarActiveColor,
+})
 
-// SOURCE CSS:
-// .navbar-collapse { flex-grow: 1; flex-basis: 100%; align-items: center; }
+globalStyle(`${sandstoneScope}${navbarText} ${sandstoneScope}${link}:focus`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${sandstoneScope}${navbarCollapse}`, {
-	display: 'none',
-	flexGrow: 1,
+	flexGrow: '1',
 	flexBasis: '100%',
 	alignItems: 'center',
 })
 
-// ── .navbar-toggler ───────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar-toggler { padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
-//   font-size: var(--bs-navbar-toggler-font-size); line-height: 1;
-//   color: var(--bs-navbar-color); background-color: transparent;
-//   border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
-//   border-radius: var(--bs-navbar-toggler-border-radius);
-//   transition: var(--bs-navbar-toggler-transition); }
 globalStyle(`${sandstoneScope}${navbarToggler}`, {
 	padding: `${varBsNavbarTogglerPaddingY} ${varBsNavbarTogglerPaddingX}`,
 	fontSize: varBsNavbarTogglerFontSize,
-	lineHeight: 1,
+	lineHeight: '1',
 	color: varBsNavbarColor,
 	backgroundColor: 'transparent',
 	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
 	transition: varBsNavbarTogglerTransition,
+})
+
+globalStyle(`${sandstoneScope}${navbarToggler}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
 globalStyle(`${sandstoneScope}${navbarToggler}:hover`, {
@@ -209,16 +180,10 @@ globalStyle(`${sandstoneScope}${navbarToggler}:hover`, {
 
 globalStyle(`${sandstoneScope}${navbarToggler}:focus`, {
 	textDecoration: 'none',
-	outline: 0,
+	outline: '0',
 	boxShadow: `0 0 0 ${varBsNavbarTogglerFocusWidth}`,
 })
 
-// ── .navbar-toggler-icon ──────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar-toggler-icon { display: inline-block; width: 1.5em; height: 1.5em;
-//   vertical-align: middle; background-image: var(--bs-navbar-toggler-icon-bg);
-//   background-repeat: no-repeat; background-position: center; background-size: 100%; }
 globalStyle(`${sandstoneScope}${navbarTogglerIcon}`, {
 	display: 'inline-block',
 	width: '1.5em',
@@ -230,14 +195,95 @@ globalStyle(`${sandstoneScope}${navbarTogglerIcon}`, {
 	backgroundSize: '100%',
 })
 
-// ── .navbar-expand-lg (responsive) ───────────────────────────────────────────
+globalStyle(`${sandstoneScope}${navbarNavScroll}`, {
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
+	overflowY: 'auto',
+})
 
-// SOURCE CSS (inside @media (min-width: 992px)):
-// .navbar-expand-lg { flex-wrap: nowrap; justify-content: flex-start; }
-// .navbar-expand-lg .navbar-nav { flex-direction: row; }
-// .navbar-expand-lg .navbar-nav .nav-link { padding-right/left: var(--bs-navbar-nav-link-padding-x); }
-// .navbar-expand-lg .navbar-collapse { display: flex !important; flex-basis: auto; }
-// .navbar-expand-lg .navbar-toggler { display: none; }
+globalStyle(`${sandstoneScope}${navbarExpandSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandSm} ${sandstoneScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandMd} ${sandstoneScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandMd} ${sandstoneScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandMd} ${sandstoneScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandMd} ${sandstoneScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'none',
+		},
+	},
+})
+
 globalStyle(`${sandstoneScope}${navbarExpandLg}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -247,7 +293,7 @@ globalStyle(`${sandstoneScope}${navbarExpandLg}`, {
 	},
 })
 
-globalStyle(`${sandstoneScope}${navbarExpandLg} ${navbarNav}`, {
+globalStyle(`${sandstoneScope}${navbarExpandLg} ${sandstoneScope}${navbarNav}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			flexDirection: 'row',
@@ -255,25 +301,24 @@ globalStyle(`${sandstoneScope}${navbarExpandLg} ${navbarNav}`, {
 	},
 })
 
-globalStyle(`${sandstoneScope}${navbarExpandLg} ${navbarNav} ${navLink}`, {
+globalStyle(`${sandstoneScope}${navbarExpandLg} ${sandstoneScope}${navbarNavScroll}`, {
 	'@media': {
 		'(min-width: 992px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+			overflow: 'visible',
 		},
 	},
 })
 
-globalStyle(`${sandstoneScope}${navbarExpandLg} ${navbarCollapse}`, {
+globalStyle(`${sandstoneScope}${navbarExpandLg} ${sandstoneScope}${navbarCollapse}`, {
 	'@media': {
 		'(min-width: 992px)': {
-			display: 'flex',
+			display: 'flex !important',
 			flexBasis: 'auto',
 		},
 	},
 })
 
-globalStyle(`${sandstoneScope}${navbarExpandLg} ${navbarToggler}`, {
+globalStyle(`${sandstoneScope}${navbarExpandLg} ${sandstoneScope}${navbarToggler}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			display: 'none',
@@ -281,25 +326,113 @@ globalStyle(`${sandstoneScope}${navbarExpandLg} ${navbarToggler}`, {
 	},
 })
 
-// ── Color scheme variants ─────────────────────────────────────────────────────
-
-// navbarBgLight absorbs `navbar-light bg-light`:
-//   light-color scheme (default emphasis-based vars) + background-color: var(--bs-light)
-globalStyle(`${sandstoneScope}${navbar}${navbarBgLight}`, {
-	backgroundColor: '#f8f5f0',
+globalStyle(`${sandstoneScope}${navbarExpandXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
 })
 
-// navbarDarkBgPrimary absorbs `navbar-dark bg-primary`:
-//   dark color scheme (inverted vars) + background-color: var(--bs-primary)
-// SOURCE CSS:
-// .navbar-dark { --bs-navbar-color: rgba(255,255,255,.55);
-//   --bs-navbar-hover-color: rgba(255,255,255,.75);
-//   --bs-navbar-disabled-color: rgba(255,255,255,.25);
-//   --bs-navbar-active-color: #fff;
-//   --bs-navbar-brand-color: #fff; --bs-navbar-brand-hover-color: #fff;
-//   --bs-navbar-toggler-border-color: rgba(255,255,255,.1);
-//   --bs-navbar-toggler-icon-bg: url("...white stroke..."); }
-globalStyle(`${sandstoneScope}${navbar}${navbarDarkBgPrimary}`, {
+globalStyle(`${sandstoneScope}${navbarExpandXl} ${sandstoneScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXl} ${sandstoneScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXl} ${sandstoneScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXl} ${sandstoneScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpandXxl} ${sandstoneScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand}`, {
+	flexWrap: 'nowrap',
+	justifyContent: 'flex-start',
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarNav}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarNavScroll}`, {
+	overflow: 'visible',
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarCollapse}`, {
+	display: 'flex !important',
+	flexBasis: 'auto',
+})
+
+globalStyle(`${sandstoneScope}${navbarExpand} ${sandstoneScope}${navbarToggler}`, {
+	display: 'none',
+})
+
+globalStyle(`${sandstoneScope}${navbarDark}`, {
 	vars: {
 		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
 		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
@@ -308,10 +441,29 @@ globalStyle(`${sandstoneScope}${navbar}${navbarDarkBgPrimary}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
-	backgroundColor: '#325d88',
 })
 
+globalStyle(`${sandstoneScope}${navbar}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
+		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsNavbarDisabledColor]: 'rgba(255, 255, 255, 0.25)',
+		[varBsNavbarActiveColor]: '#fff',
+		[varBsNavbarBrandColor]: '#fff',
+		[varBsNavbarBrandHoverColor]: '#fff',
+		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+	},
+})
 
+globalStyle(`${sandstoneScope}[data-bs-theme=dark] ${sandstoneScope}${navbarTogglerIcon}`, {
+	vars: {
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+	},
+})
 
+globalStyle(`${sandstoneScope}${navbarForm} ${sandstoneScope}${elInput}`, {
+	border: 'none',
+})

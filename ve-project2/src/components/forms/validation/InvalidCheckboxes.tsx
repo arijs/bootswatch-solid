@@ -1,24 +1,26 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
-	colMd6,
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import {
 	formCheck,
 	formCheckInput,
 	formCheckLabel,
-	g3,
 	invalidFeedback,
 	isInvalid,
-	row,
-	rowCol,
 } from '../../../theme-contract/forms/contract.css'
+import { elInput, elLabel } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { colMd6, g3, row, rowCol } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const InvalidCheckboxes: Component = () => {
@@ -31,32 +33,36 @@ const InvalidCheckboxes: Component = () => {
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
 					<div class={`${theme} ${formCheck}`}>
 						<input
-							class={`${theme} ${formCheckInput} ${isInvalid}`}
+							class={`${theme} ${elInput} ${formCheckInput} ${isInvalid}`}
 							type="checkbox"
 							value=""
 							id="invalidCheck3"
 							required
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="invalidCheck3">
+						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="invalidCheck3">
 							Agree to terms and conditions
 						</label>
-						<div class={`${theme} ${invalidFeedback}`}>You must agree before submitting.</div>
+						<div class={`${theme} ${invalidFeedback}`}>
+							You must agree before submitting.
+						</div>
 					</div>
 				</div>
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
 					<div class={`${theme} ${formCheck}`}>
 						<input
-							class={`${theme} ${formCheckInput} ${isInvalid}`}
+							class={`${theme} ${elInput} ${formCheckInput} ${isInvalid}`}
 							type="checkbox"
 							value=""
 							id="invalidCheck4"
 							required
 							checked
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="invalidCheck4">
+						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="invalidCheck4">
 							Do NOT Agree to terms and conditions
 						</label>
-						<div class={`${theme} ${invalidFeedback}`}>You must agree before submitting.</div>
+						<div class={`${theme} ${invalidFeedback}`}>
+							You must agree before submitting.
+						</div>
 					</div>
 				</div>
 			</form>

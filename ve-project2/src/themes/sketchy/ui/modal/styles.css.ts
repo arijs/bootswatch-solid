@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sketchyScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -7,25 +9,6 @@ import {
 	varBsBoxShadow,
 	varBsBoxShadowSm,
 } from '../../../../theme-contract/_vars.css'
-import {
-	actionsRow,
-	fade,
-	flexWrap,
-	justifyContentBetween,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFade,
-	modalFooter,
-	modalFullscreen,
-	modalHeader,
-	modalShowHook,
-	modalTitle,
-} from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	varBsBackdropBg,
 	varBsBackdropOpacity,
@@ -52,23 +35,49 @@ import {
 	varBsModalWidth,
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
-import { alertBtnClose } from '../../../../theme-contract/ui/alerts/contract.css'
-import { sketchyScope } from '../../scope.css'
 
-globalStyle(`${sketchyScope}${actionsRow}`, {
-	display: 'flex',
-})
+import {
+	modalFullscreenLgDown,
+	modalFullscreenMdDown,
+	modalFullscreenSmDown,
+	modalFullscreenXlDown,
+	modalFullscreenXxlDown,
+	modalLg,
+	modalSm,
+	modalStatic,
+	modalXl,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	justifyContentBetween,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalShowHook,
+	modalTitle,
+} from '../../../../theme-contract/ui/modal/contract.css'
 
-globalStyle(`${sketchyScope}${justifyContentBetween}`, {
-	justifyContent: 'space-between',
-})
-
-globalStyle(`${sketchyScope}${flexWrap}`, {
-	flexWrap: 'wrap',
-})
-
-globalStyle(`${sketchyScope}${fade}`, {
+globalStyle(`${sketchyScope}${modalFade}`, {
 	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${sketchyScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFade}:not(${modalShowHook})`, {
+	opacity: '0',
 })
 
 globalStyle(`${sketchyScope}${modal}`, {
@@ -96,15 +105,15 @@ globalStyle(`${sketchyScope}${modal}`, {
 		[varBsModalFooterBorderWidth]: varBsBorderWidth,
 	},
 	position: 'fixed',
-	top: 0,
-	left: 0,
+	top: '0',
+	left: '0',
 	zIndex: varBsModalZindex,
 	display: 'none',
 	width: '100%',
 	height: '100%',
 	overflowX: 'hidden',
 	overflowY: 'auto',
-	outline: 0,
+	outline: '0',
 })
 
 globalStyle(`${sketchyScope}${modalDialog}`, {
@@ -114,21 +123,44 @@ globalStyle(`${sketchyScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
+globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`, {
+	transform: 'translate(0, -50px)',
+	transition: 'transform 0.3s ease-out',
+})
+
+globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modal}${modalShowHook} ${sketchyScope}${modalDialog}`, {
+	transform: 'none',
+})
+
+globalStyle(`${sketchyScope}${modal}${modalStatic} ${sketchyScope}${modalDialog}`, {
+	transform: 'scale(1.02)',
+})
+
 globalStyle(`${sketchyScope}${modalDialogScrollable}`, {
 	height: `calc(100% - ${varBsModalMargin} * 2)`,
+})
+
+globalStyle(`${sketchyScope}${modalDialogScrollable} ${sketchyScope}${modalContent}`, {
+	maxHeight: '100%',
+	overflow: 'hidden',
+})
+
+globalStyle(`${sketchyScope}${modalDialogScrollable} ${sketchyScope}${modalBody}`, {
+	overflowY: 'auto',
 })
 
 globalStyle(`${sketchyScope}${modalDialogCentered}`, {
 	display: 'flex',
 	alignItems: 'center',
 	minHeight: `calc(100% - ${varBsModalMargin} * 2)`,
-})
-
-globalStyle(`${sketchyScope}${modalFullscreen}`, {
-	width: '100vw',
-	maxWidth: 'none',
-	height: '100%',
-	margin: 0,
 })
 
 globalStyle(`${sketchyScope}${modalContent}`, {
@@ -142,19 +174,35 @@ globalStyle(`${sketchyScope}${modalContent}`, {
 	backgroundClip: 'padding-box',
 	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
-	outline: 0,
+	outline: '0',
 })
 
-// Sketchy overrides modal content border radius shape.
-globalStyle(`${sketchyScope}${modalContent}`, {
+globalStyle(`${sketchyScope}${modalBackdrop}`, {
 	vars: {
-		[varBsModalBorderRadius]: '15px 5px 5px 25px / 5px 25px 25px 5px',
+		[varBsBackdropZindex]: '1050',
+		[varBsBackdropBg]: '#000',
+		[varBsBackdropOpacity]: '0.5',
 	},
+	position: 'fixed',
+	top: '0',
+	left: '0',
+	zIndex: varBsBackdropZindex,
+	width: '100vw',
+	height: '100vh',
+	backgroundColor: varBsBackdropBg,
+})
+
+globalStyle(`${sketchyScope}${modalBackdrop}${modalFade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${sketchyScope}${modalBackdrop}${modalShowHook}`, {
+	opacity: varBsBackdropOpacity,
 })
 
 globalStyle(`${sketchyScope}${modalHeader}`, {
 	display: 'flex',
-	flexShrink: 0,
+	flexShrink: '0',
 	alignItems: 'center',
 	padding: varBsModalHeaderPadding,
 	borderBottom: `${varBsModalHeaderBorderWidth} solid ${varBsModalHeaderBorderColor}`,
@@ -162,8 +210,8 @@ globalStyle(`${sketchyScope}${modalHeader}`, {
 	borderTopRightRadius: varBsModalInnerBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${modalHeader} ${modalTitle}`, {
-	marginBottom: 0,
+globalStyle(`${sketchyScope}${modalTitle}`, {
+	marginBottom: '0',
 	lineHeight: varBsModalTitleLineHeight,
 })
 
@@ -173,14 +221,9 @@ globalStyle(`${sketchyScope}${modalBody}`, {
 	padding: varBsModalPadding,
 })
 
-globalStyle(`${sketchyScope}${modalBody} p`, {
-	marginTop: 0,
-	marginBottom: '1rem',
-})
-
 globalStyle(`${sketchyScope}${modalFooter}`, {
 	display: 'flex',
-	flexShrink: 0,
+	flexShrink: '0',
 	flexWrap: 'wrap',
 	alignItems: 'center',
 	justifyContent: 'flex-end',
@@ -191,95 +234,8 @@ globalStyle(`${sketchyScope}${modalFooter}`, {
 	borderBottomLeftRadius: varBsModalInnerBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${fade}:not(.${modalShowHook})`, {
-	opacity: 0,
-})
-
-globalStyle(`${sketchyScope}${modal}.${modalShowHook}`, {
-	display: 'block',
-})
-
-globalStyle(`${sketchyScope}${modalFade}.${fade} .${modalDialog}`, {
-	transform: 'translate(0, -50px)',
-	transition: 'transform 0.3s ease-out',
-})
-
-globalStyle(`${sketchyScope}${modal}.${modalShowHook} .${modalDialog}`, {
-	transform: 'none',
-})
-
-globalStyle(`${sketchyScope}${modalDialogScrollable} ${modalContent}`, {
-	maxHeight: '100%',
-	overflow: 'hidden',
-})
-
-globalStyle(`${sketchyScope}${modalDialogScrollable} ${modalBody}`, {
-	overflowY: 'auto',
-})
-
-globalStyle(`${sketchyScope}${modalFullscreen} ${modalContent}`, {
-	height: '100%',
-	border: 0,
-	borderRadius: 0,
-})
-
-globalStyle(`${sketchyScope}${modalFullscreen} ${modalHeader}, ${sketchyScope}${modalFullscreen} ${modalFooter}`, {
-	borderRadius: 0,
-})
-
-globalStyle(`${sketchyScope}${modalFullscreen} ${modalBody}`, {
-	overflowY: 'auto',
-})
-
-globalStyle(`${sketchyScope}${modalHeader} ${alertBtnClose}`, {
-	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
-	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
-	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginLeft: 'auto',
-})
-
 globalStyle(`${sketchyScope}${modalFooter} > *`, {
 	margin: `calc(${varBsModalFooterGap} * 0.5)`,
-})
-
-globalStyle(`${sketchyScope}${modalBackdrop}`, {
-	vars: {
-		[varBsBackdropZindex]: '1050',
-		[varBsBackdropBg]: '#000',
-		[varBsBackdropOpacity]: '0.5',
-	},
-	position: 'fixed',
-	top: 0,
-	left: 0,
-	zIndex: varBsBackdropZindex,
-	width: '100vw',
-	height: '100vh',
-	backgroundColor: varBsBackdropBg,
-})
-
-globalStyle(`${sketchyScope}${modalBackdrop}.${fade}`, {
-	opacity: 0,
-})
-
-globalStyle(`${sketchyScope}${modalBackdrop}.${modalShowHook}`, {
-	opacity: varBsBackdropOpacity,
-})
-
-globalStyle(`${sketchyScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${sketchyScope}${modalFade}.${fade} .${modalDialog}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
 })
 
 globalStyle(`${sketchyScope}${modal}`, {
@@ -303,10 +259,300 @@ globalStyle(`${sketchyScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${sketchyScope}${modalFullscreen}`, {
+globalStyle(`${sketchyScope}${modalSm}`, {
 	'@media': {
 		'(min-width: 576px)': {
-			maxWidth: 'unset',
+			vars: {
+				[varBsModalWidth]: '300px',
+			},
 		},
 	},
+})
+
+globalStyle(`${sketchyScope}${modalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsModalWidth]: '1140px',
+			},
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreen}`, {
+	width: '100vw',
+	maxWidth: 'none',
+	height: '100%',
+	margin: '0',
+})
+
+globalStyle(`${sketchyScope}${modalFullscreen} ${sketchyScope}${modalContent}`, {
+	height: '100%',
+	border: '0',
+	borderRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${modalFullscreen} ${sketchyScope}${modalHeader}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${modalFullscreen} ${sketchyScope}${modalFooter}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${sketchyScope}${modalFullscreen} ${sketchyScope}${modalBody}`, {
+	overflowY: 'auto',
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenSmDown}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenSmDown} ${sketchyScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenSmDown} ${sketchyScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenSmDown} ${sketchyScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenSmDown} ${sketchyScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenMdDown}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenMdDown} ${sketchyScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenMdDown} ${sketchyScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenMdDown} ${sketchyScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenMdDown} ${sketchyScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenLgDown}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenLgDown} ${sketchyScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenLgDown} ${sketchyScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenLgDown} ${sketchyScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenLgDown} ${sketchyScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXlDown}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXlDown} ${sketchyScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXlDown} ${sketchyScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXlDown} ${sketchyScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXlDown} ${sketchyScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXxlDown}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXxlDown} ${sketchyScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXxlDown} ${sketchyScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXxlDown} ${sketchyScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${modalFullscreenXxlDown} ${sketchyScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${justifyContentBetween}`, {
+	justifyContent: 'space-between !important',
+})
+
+globalStyle(`${sketchyScope}${modalContent}`, {
+	borderRadius: '15px 5px 5px 25px/5px 25px 25px 5px',
 })

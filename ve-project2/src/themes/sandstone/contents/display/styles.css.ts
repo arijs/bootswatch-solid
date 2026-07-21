@@ -1,4 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sandstoneScope } from '../../scope.css'
+
 import {
 	display1,
 	display2,
@@ -6,48 +8,88 @@ import {
 	display4,
 	display5,
 	display6,
-} from '../../../../theme-contract/contents/contract.css'
-import { sandstoneScope } from '../../scope.css'
-
-const displayBase = {
-	fontWeight: 300,
-	lineHeight: 1.2,
-} as const
-
-// ─── Display headings ─────────────────────────────────────────────────────────
+} from '../../../../theme-contract/contents/display/contract.css'
 
 globalStyle(`${sandstoneScope}${display1}`, {
-	...displayBase,
+	fontWeight: '300',
+	lineHeight: '1.2',
 	fontSize: 'calc(1.625rem + 4.5vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '5rem' } },
+})
+
+globalStyle(`${sandstoneScope}${display1}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '5rem',
+		},
+	},
 })
 
 globalStyle(`${sandstoneScope}${display2}`, {
-	...displayBase,
+	fontWeight: '300',
+	lineHeight: '1.2',
 	fontSize: 'calc(1.575rem + 3.9vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '4.5rem' } },
+})
+
+globalStyle(`${sandstoneScope}${display2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '4.5rem',
+		},
+	},
 })
 
 globalStyle(`${sandstoneScope}${display3}`, {
-	...displayBase,
+	fontWeight: '300',
+	lineHeight: '1.2',
 	fontSize: 'calc(1.525rem + 3.3vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '4rem' } },
+})
+
+globalStyle(`${sandstoneScope}${display3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '4rem',
+		},
+	},
 })
 
 globalStyle(`${sandstoneScope}${display4}`, {
-	...displayBase,
+	fontWeight: '300',
+	lineHeight: '1.2',
 	fontSize: 'calc(1.475rem + 2.7vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '3.5rem' } },
+})
+
+globalStyle(`${sandstoneScope}${display4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '3.5rem',
+		},
+	},
 })
 
 globalStyle(`${sandstoneScope}${display5}`, {
-	...displayBase,
+	fontWeight: '300',
+	lineHeight: '1.2',
 	fontSize: 'calc(1.425rem + 2.1vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '3rem' } },
+})
+
+globalStyle(`${sandstoneScope}${display5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '3rem',
+		},
+	},
 })
 
 globalStyle(`${sandstoneScope}${display6}`, {
-	...displayBase,
+	fontWeight: '300',
+	lineHeight: '1.2',
 	fontSize: 'calc(1.375rem + 1.5vw)',
-	'@media': { '(min-width: 1200px)': { fontSize: '2.5rem' } },
+})
+
+globalStyle(`${sandstoneScope}${display6}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '2.5rem',
+		},
+	},
 })

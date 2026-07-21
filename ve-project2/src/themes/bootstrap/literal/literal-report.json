@@ -1,0 +1,15 @@
+{
+  "theme": "bootstrap",
+  "filter": null,
+  "emitted": 2954,
+  "skipped": [],
+  "keyframes": [
+    "progress-bar-stripes",
+    "spinner-border",
+    "spinner-grow",
+    "placeholder-glow",
+    "placeholder-wave"
+  ],
+  "keyframesEmitted": 5,
+  "warnings": []
+}

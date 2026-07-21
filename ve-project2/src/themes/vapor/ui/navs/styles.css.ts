@@ -1,15 +1,21 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
+	varBsBodyBg,
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryBg,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -25,29 +31,34 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import { vaporScope } from '../../scope.css'
+	active,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav {
-//   --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-link-color);
-//   --bs-nav-link-hover-color: var(--bs-link-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-secondary-color);
-//   display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none;
-// }
 globalStyle(`${vaporScope}${nav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '1rem',
@@ -59,67 +70,56 @@ globalStyle(`${vaporScope}${nav}`, {
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// ── .nav-link ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav-link { display: block;
-//   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-//   font-weight: var(--bs-nav-link-font-weight);
-//   color: var(--bs-nav-link-color);
-//   text-decoration: none; background: none; border: 0;
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//               border-color 0.15s ease-in-out; }
 globalStyle(`${vaporScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
-	lineHeight: 'inherit',
 	color: varBsNavLinkColor,
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS: .nav-link:hover, .nav-link:focus { color: var(--bs-nav-link-hover-color); }
-globalStyle(`${vaporScope}${navLink}:hover, ${vaporScope}${navLink}:focus`, {
+globalStyle(`${vaporScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link.disabled, .nav-link:disabled {
-//   color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(
-	`${vaporScope}${navLink}${navLinkDisabled}, ${vaporScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-		textShadow: '0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
-	},
-)
+globalStyle(`${vaporScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs ─────────────────────────────────────────────────────────────────
+globalStyle(`${vaporScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
+})
 
-// SOURCE CSS:
-// .nav-tabs {
-//   --bs-nav-tabs-border-width: var(--bs-border-width);
-//   --bs-nav-tabs-border-color: var(--bs-border-color);
-//   --bs-nav-tabs-border-radius: var(--bs-border-radius);
-//   --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
-//   --bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
-//   --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
-//   --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
-//   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
-// }
+globalStyle(`${vaporScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${vaporScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
 globalStyle(`${vaporScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
@@ -133,48 +133,35 @@ globalStyle(`${vaporScope}${navTabs}`, {
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
-//   border: var(--bs-nav-tabs-border-width) solid transparent;
-//   border-top-left-radius: var(--bs-nav-tabs-border-radius);
-//   border-top-right-radius: var(--bs-nav-tabs-border-radius); }
-globalStyle(`${vaporScope}${navTabs} ${navLink}`, {
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-//   isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
-globalStyle(
-	`${vaporScope}${navTabs} ${navLink}:hover, ${vaporScope}${navTabs} ${navLink}:focus`,
-	{
-		isolation: 'isolate',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-//   color: var(--bs-nav-tabs-link-active-color);
-//   background-color: var(--bs-nav-tabs-link-active-bg);
-//   border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${vaporScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
+
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navItem}${show} ${vaporScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-pills {
-//   --bs-nav-pills-border-radius: var(--bs-border-radius);
-//   --bs-nav-pills-link-active-color: #fff;
-//   --bs-nav-pills-link-active-bg: #0d6efd;
-// }
 globalStyle(`${vaporScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
@@ -183,18 +170,183 @@ globalStyle(`${vaporScope}${navPills}`, {
 	},
 })
 
-// SOURCE CSS: .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
-globalStyle(`${vaporScope}${navPills} ${navLink}`, {
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-//   color: var(--bs-nav-pills-link-active-color);
-//   background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${vaporScope}${navPills} ${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
-	boxShadow:
-		'0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+})
+
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${show} > ${vaporScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${vaporScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: '#ea39b8',
+	},
+	gap: varBsNavUnderlineGap,
+})
+
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${show} > ${vaporScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${vaporScope}${navFill} > ${vaporScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${vaporScope}${navFill} ${vaporScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${vaporScope}${navJustified} > ${vaporScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${vaporScope}${navJustified} ${vaporScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${vaporScope}${navFill} ${vaporScope}${navItem} ${vaporScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${vaporScope}${navJustified} ${vaporScope}${navItem} ${vaporScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${vaporScope}${tabContent} > ${vaporScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${vaporScope}${tabContent} > ${vaporScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${vaporScope}${navbarNav} ${vaporScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${vaporScope}${navbarNav} ${vaporScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${vaporScope}${navbarExpandSm} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${navbarExpandMd} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${navbarExpandLg} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${navbarExpandXl} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${navbarExpandXxl} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${navbarExpand} ${vaporScope}${navbarNav} ${vaporScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${vaporScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${vaporScope}${cardHeaderTabs} ${vaporScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})
+
+globalStyle(`${vaporScope}${navLink}${navLinkDisabled}`, {
+	textShadow: '0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
+})
+
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${navLinkActive}`, {
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+})
+
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navItem}${show} ${vaporScope}${navLink}`, {
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
+})
+
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${navLinkActive}`, {
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+})
+
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${show} > ${vaporScope}${navLink}`, {
+	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
+})
+
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${navLinkActive}`, {
+	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })

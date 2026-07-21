@@ -1,9 +1,13 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-
-import { getMatcherFromCssSelector, getParser, printerTransform, TreeMatcher } from '@arijs/stream-xml-parser'
-import inspectObj from '@arijs/frontend/isomorphic/utils/inspect'
 import { parse as parseCss } from '@adobe/css-tools'
+import inspectObj from '@arijs/frontend/isomorphic/utils/inspect'
+import {
+	getMatcherFromCssSelector,
+	getParser,
+	printerTransform,
+	TreeMatcher,
+} from '@arijs/stream-xml-parser'
 
 import { ROOT } from './constants.mjs'
 
@@ -420,13 +424,16 @@ async function extractScenarioMarkupArtifact(page) {
 
 		// Add rule to remove elements
 		matcher.addRule({
-			matcher: StreamXMLParser.TreeMatcher.fromArray([
-				{ name: 'head', path: ['html'] },
-				{ name: 'link' },
-				{ name: 'noscript' },
-				{ name: 'script' },
-				{ name: 'style' },
-			], elAdapter),
+			matcher: StreamXMLParser.TreeMatcher.fromArray(
+				[
+					{ name: 'head', path: ['html'] },
+					{ name: 'link' },
+					{ name: 'noscript' },
+					{ name: 'script' },
+					{ name: 'style' },
+				],
+				elAdapter,
+			),
 			callback: cbRemove,
 		})
 
@@ -435,14 +442,21 @@ async function extractScenarioMarkupArtifact(page) {
 
 		const printer = new StreamXMLParser.Printer({
 			// Ensure tag names are lower case for aesthetic reasons
-			encodeTagName: name => name.toLowerCase(),
-		});
+			encodeTagName: (name) => name.toLowerCase(),
+		})
 		const originalPrintTagOpen = printer.printTagOpen
-		printer.printTagOpen = function(node, isSelfClose) {
-			const [, openTag, closeTag] = originalPrintTagOpen.call(this, node, isSelfClose).match(/^(.*?)\s*(\/?>)$/)
+		printer.printTagOpen = function (node, isSelfClose) {
+			const [, openTag, closeTag] = originalPrintTagOpen
+				.call(this, node, isSelfClose)
+				.match(/^(.*?)\s*(\/?>)$/)
 			const styleResolved = Object.entries(getComputedStyle(node))
 				.filter(([key]) => !/^\d+$/.test(key))
-				.filter(([key]) => !key.startsWith('webkit') && !key.startsWith('moz') && !key.startsWith('ms'))
+				.filter(
+					([key]) =>
+						!key.startsWith('webkit') &&
+						!key.startsWith('moz') &&
+						!key.startsWith('ms'),
+				)
 				.filter(([, value]) => '' !== value)
 				.map(([key, value]) => `${key}: ${value};`)
 				.join(' ')
@@ -476,7 +490,7 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {
 	const total = { inputLength: 0, outputLength: 0, inputProps: 0, outputProps: 0 }
 	const perElement = []
 
-	const sm = printerTransform.syncMatcher(elAdapter);
+	const sm = printerTransform.syncMatcher(elAdapter)
 
 	sm.addRule({
 		matcher: {
@@ -504,9 +518,11 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {
 			// are defined in the CSS rules.
 			const { node } = nodeEntry
 			let computedStyles = ''
-			let classAttr = ''
+			let _classAttr = ''
 			if (elAdapter.isText(node)) {
-				throw new Error(`Unexpected text node in optimizeMarkupWithCssArtifacts: ${JSON.stringify(elAdapter.textValueGet(node))}, nodeEntry: ${JSON.stringify(inspectObj(nodeEntry, 2, 64))}`)
+				throw new Error(
+					`Unexpected text node in optimizeMarkupWithCssArtifacts: ${JSON.stringify(elAdapter.textValueGet(node))}, nodeEntry: ${JSON.stringify(inspectObj(nodeEntry, 2, 64))}`,
+				)
 			}
 			elAdapter.attrsEach(node, function (name, value) {
 				if (name === 'style-resolved') {
@@ -515,7 +531,7 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {
 					return this._remove | this._break
 				}
 				if (name === 'class') {
-					classAttr = value
+					_classAttr = value
 				}
 			})
 
@@ -523,9 +539,14 @@ export function optimizeMarkupWithCssArtifacts(markup, cssArtifacts, options = {
 			const cssDefinedProperties = new Set()
 			cssDefinedProperties.add('box-sizing') // Always include box-sizing because the source applies it globally, this will reduce a lot of style properties diff in the markup
 			for (const entry of selectorEntries) {
-				const matcher = getSelectorMatcher(entry.selector, elAdapter, selectorMatcherCache, {
-					allowHoverPseudoClass,
-				})
+				const matcher = getSelectorMatcher(
+					entry.selector,
+					elAdapter,
+					selectorMatcherCache,
+					{
+						allowHoverPseudoClass,
+					},
+				)
 				if (!matcher) continue
 				let matched = false
 				try {
@@ -675,214 +696,211 @@ export async function writeScenarioMarkupArtifact({
 export { extractScenarioMarkupArtifact }
 
 export async function extractScenarioVe2CssArtifacts(page, { themeSlug }) {
-	const normalizedThemeSlug = String(themeSlug ?? '').trim().toLowerCase()
+	const normalizedThemeSlug = String(themeSlug ?? '')
+		.trim()
+		.toLowerCase()
 	if (!normalizedThemeSlug) {
 		throw new Error('extractScenarioVe2CssArtifacts requires a non-empty themeSlug')
 	}
 
-	return page.evaluate(({ normalizedThemeSlug }) => {
-		function splitSelectorList(selectorText) {
-			const selectors = []
-			let current = ''
-			let inSquare = 0
-			let inRound = 0
-			let quote = ''
+	return page.evaluate(
+		({ normalizedThemeSlug }) => {
+			function splitSelectorList(selectorText) {
+				const selectors = []
+				let current = ''
+				let inSquare = 0
+				let inRound = 0
+				let quote = ''
 
-			for (let index = 0; index < selectorText.length; index += 1) {
-				const char = selectorText[index]
-				if (quote) {
-					current += char
-					if (char === quote && selectorText[index - 1] !== '\\') {
-						quote = ''
+				for (let index = 0; index < selectorText.length; index += 1) {
+					const char = selectorText[index]
+					if (quote) {
+						current += char
+						if (char === quote && selectorText[index - 1] !== '\\') {
+							quote = ''
+						}
+						continue
 					}
-					continue
-				}
 
-				if (char === '"' || char === "'") {
-					quote = char
+					if (char === '"' || char === "'") {
+						quote = char
+						current += char
+						continue
+					}
+					if (char === '[') inSquare += 1
+					if (char === ']') inSquare = Math.max(0, inSquare - 1)
+					if (char === '(') inRound += 1
+					if (char === ')') inRound = Math.max(0, inRound - 1)
+
+					if (char === ',' && inSquare === 0 && inRound === 0) {
+						const trimmed = current.trim()
+						if (trimmed) selectors.push(trimmed)
+						current = ''
+						continue
+					}
 					current += char
-					continue
 				}
-				if (char === '[') inSquare += 1
-				if (char === ']') inSquare = Math.max(0, inSquare - 1)
-				if (char === '(') inRound += 1
-				if (char === ')') inRound = Math.max(0, inRound - 1)
 
-				if (char === ',' && inSquare === 0 && inRound === 0) {
-					const trimmed = current.trim()
-					if (trimmed) selectors.push(trimmed)
-					current = ''
-					continue
-				}
-				current += char
+				const trailing = current.trim()
+				if (trailing) selectors.push(trailing)
+				return selectors
 			}
 
-			const trailing = current.trim()
-			if (trailing) selectors.push(trailing)
-			return selectors
-		}
+			function addUniqueRule(targetList, targetSet, cssText) {
+				const normalized = cssText.trim().replace(/\{([^{}]*)\}/g, (_, body) => {
+					const cleanedDeclarations = body
+						.split(';')
+						.map((declaration) => declaration.trim())
+						.filter(Boolean)
+						.filter((declaration) => {
+							const separator = declaration.indexOf(':')
+							if (separator === -1) return true
+							const value = declaration.slice(separator + 1).trim()
+							return value.length > 0
+						})
+						.map((declaration) => `${declaration};`)
+						.join(' ')
 
-		function addUniqueRule(targetList, targetSet, cssText) {
-			const normalized = cssText.trim().replace(/\{([^{}]*)\}/g, (_, body) => {
-				const cleanedDeclarations = body
-					.split(';')
-					.map((declaration) => declaration.trim())
-					.filter(Boolean)
-					.filter((declaration) => {
-						const separator = declaration.indexOf(':')
-						if (separator === -1) return true
-						const value = declaration.slice(separator + 1).trim()
-						return value.length > 0
-					})
-					.map((declaration) => `${declaration};`)
-					.join(' ')
+					if (!cleanedDeclarations) return '{}'
+					return `{ ${cleanedDeclarations} }`
+				})
+				if (!normalized) return
+				if (/\{\s*\}/.test(normalized)) return
+				if (targetSet.has(normalized)) return
+				targetSet.add(normalized)
+				targetList.push(normalized)
+			}
 
-				if (!cleanedDeclarations) return '{}'
-				return `{ ${cleanedDeclarations} }`
+			function serializeStyleRule(rule) {
+				const styleText = rule.style.cssText?.trim()
+				if (styleText) {
+					return `${rule.selectorText} { ${styleText} }`
+				}
+
+				const declarations = []
+				for (const propertyName of rule.style) {
+					const value = rule.style.getPropertyValue(propertyName).trim()
+					if (!value) continue
+					const priority = rule.style.getPropertyPriority(propertyName)
+					declarations.push(
+						`${propertyName}: ${value}${priority ? ` !${priority}` : ''};`,
+					)
+				}
+
+				if (declarations.length === 0) return null
+				return `${rule.selectorText} { ${declarations.join(' ')} }`
+			}
+
+			const bodyRoot = document.querySelector('#root > div')
+			const shellClasses = bodyRoot ? [...bodyRoot.classList] : []
+			const scopeClasses = shellClasses.filter((className) => {
+				const normalized = className.toLowerCase()
+				return normalized.includes(normalizedThemeSlug) && normalized.includes('scope')
 			})
-			if (!normalized) return
-			if (/\{\s*\}/.test(normalized)) return
-			if (targetSet.has(normalized)) return
-			targetSet.add(normalized)
-			targetList.push(normalized)
-		}
 
-		function serializeStyleRule(rule) {
-			const styleText = rule.style.cssText?.trim()
-			if (styleText) {
-				return `${rule.selectorText} { ${styleText} }`
+			if (scopeClasses.length === 0) {
+				throw new Error(
+					`Unable to resolve VE2 scope class for theme=${normalizedThemeSlug}; shell classes=${shellClasses.join(',')}`,
+				)
 			}
 
-			const declarations = []
-			for (const propertyName of rule.style) {
-				const value = rule.style.getPropertyValue(propertyName).trim()
-				if (!value) continue
-				const priority = rule.style.getPropertyPriority(propertyName)
-				declarations.push(`${propertyName}: ${value}${priority ? ` !${priority}` : ''};`)
-			}
-
-			if (declarations.length === 0) return null
-			return `${rule.selectorText} { ${declarations.join(' ')} }`
-		}
-
-		const bodyRoot = document.querySelector('#root > div')
-		const shellClasses = bodyRoot ? [...bodyRoot.classList] : []
-		const scopeClasses = shellClasses.filter((className) => {
-			const normalized = className.toLowerCase()
-			return normalized.includes(normalizedThemeSlug) && normalized.includes('scope')
-		})
-
-		if (scopeClasses.length === 0) {
-			throw new Error(
-				`Unable to resolve VE2 scope class for theme=${normalizedThemeSlug}; shell classes=${shellClasses.join(',')}`,
-			)
-		}
-
-		function selectorOwnsVe2Rule(selectorText) {
-			for (const selector of splitSelectorList(selectorText)) {
-				for (const scopeClass of scopeClasses) {
-					if (selector.includes(`.${scopeClass}`)) {
-						return true
-					}
-				}
-			}
-			return false
-		}
-
-		function stripScopeClassesFromSelector(selectorText) {
-			// No longer strip scope classes; return selector as-is (with normalization only)
-			return selectorText.replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim();
-		}
-
-		const globalRuleSet = new Set()
-		const keyframes = new Map()
-
-		function wrapRule(rule, childRules) {
-			const body = childRules.join('\n')
-			if (rule.type === CSSRule.MEDIA_RULE) {
-				return `@media ${rule.conditionText} {\n${body}\n}`
-			}
-			if (rule.type === CSSRule.SUPPORTS_RULE) {
-				return `@supports ${rule.conditionText} {\n${body}\n}`
-			}
-			if (rule.type === CSSRule.LAYER_BLOCK_RULE) {
-				const name = rule.name ? ` ${rule.name}` : ''
-				return `@layer${name} {\n${body}\n}`
-			}
-			return null
-		}
-
-		function evaluateRuleList(ruleList, mode = 'owned') {
-			const accepted = []
-			const acceptedSet = new Set()
-
-			function addAccepted(cssText) {
-				addUniqueRule(accepted, acceptedSet, cssText)
-			}
-
-			for (const rule of ruleList) {
-				if (rule.type === CSSRule.STYLE_RULE) {
-					if (mode === 'owned' && !selectorOwnsVe2Rule(rule.selectorText)) continue
-					const strippedSelectorText = stripScopeClassesFromSelector(rule.selectorText)
-					if (!strippedSelectorText) continue
-					const serializedRule = serializeStyleRule({
-						selectorText: strippedSelectorText,
-						style: rule.style,
-					})
-					if (!serializedRule) continue
-					addAccepted(serializedRule)
-					continue
-				}
-
-				if (rule.type === CSSRule.KEYFRAMES_RULE) {
-					keyframes.set(rule.name, rule.cssText.trim())
-					continue
-				}
-
-				if ('cssRules' in rule && rule.cssRules) {
-					const nested = evaluateRuleList(rule.cssRules, mode)
-					if (nested.length > 0) {
-						const wrapped = wrapRule(rule, nested)
-						if (wrapped) {
-							addAccepted(wrapped)
-						} else {
-							addAccepted(rule.cssText)
+			function selectorOwnsVe2Rule(selectorText) {
+				for (const selector of splitSelectorList(selectorText)) {
+					for (const scopeClass of scopeClasses) {
+						if (selector.includes(`.${scopeClass}`)) {
+							return true
 						}
 					}
 				}
+				return false
 			}
-			return accepted
-		}
 
-		function collectReadableStylesheets() {
-			const list = []
-			const seen = new Set()
-			for (const sheet of [...document.styleSheets, ...(document.adoptedStyleSheets ?? [])]) {
-				if (!sheet || seen.has(sheet)) continue
-				seen.add(sheet)
-				list.push(sheet)
+			function stripScopeClassesFromSelector(selectorText) {
+				// No longer strip scope classes; return selector as-is (with normalization only)
+				return selectorText
+					.replace(/\s+/g, ' ')
+					.replace(/\s*,\s*/g, ', ')
+					.trim()
 			}
-			return list
-		}
 
-		const collectedGlobalRules = []
-		const readableStylesheets = collectReadableStylesheets()
-		for (const stylesheet of readableStylesheets) {
-			let rules
-			try {
-				rules = stylesheet.cssRules
-			} catch {
-				continue
-			}
-			const acceptedRules = evaluateRuleList(rules, 'owned')
-			for (const acceptedRule of acceptedRules) {
-				addUniqueRule(collectedGlobalRules, globalRuleSet, acceptedRule)
-			}
-		}
+			const globalRuleSet = new Set()
+			const keyframes = new Map()
 
-		let fallbackMode = false
-		if (collectedGlobalRules.length === 0) {
-			fallbackMode = true
+			function wrapRule(rule, childRules) {
+				const body = childRules.join('\n')
+				if (rule.type === CSSRule.MEDIA_RULE) {
+					return `@media ${rule.conditionText} {\n${body}\n}`
+				}
+				if (rule.type === CSSRule.SUPPORTS_RULE) {
+					return `@supports ${rule.conditionText} {\n${body}\n}`
+				}
+				if (rule.type === CSSRule.LAYER_BLOCK_RULE) {
+					const name = rule.name ? ` ${rule.name}` : ''
+					return `@layer${name} {\n${body}\n}`
+				}
+				return null
+			}
+
+			function evaluateRuleList(ruleList, mode = 'owned') {
+				const accepted = []
+				const acceptedSet = new Set()
+
+				function addAccepted(cssText) {
+					addUniqueRule(accepted, acceptedSet, cssText)
+				}
+
+				for (const rule of ruleList) {
+					if (rule.type === CSSRule.STYLE_RULE) {
+						if (mode === 'owned' && !selectorOwnsVe2Rule(rule.selectorText)) continue
+						const strippedSelectorText = stripScopeClassesFromSelector(
+							rule.selectorText,
+						)
+						if (!strippedSelectorText) continue
+						const serializedRule = serializeStyleRule({
+							selectorText: strippedSelectorText,
+							style: rule.style,
+						})
+						if (!serializedRule) continue
+						addAccepted(serializedRule)
+						continue
+					}
+
+					if (rule.type === CSSRule.KEYFRAMES_RULE) {
+						keyframes.set(rule.name, rule.cssText.trim())
+						continue
+					}
+
+					if ('cssRules' in rule && rule.cssRules) {
+						const nested = evaluateRuleList(rule.cssRules, mode)
+						if (nested.length > 0) {
+							const wrapped = wrapRule(rule, nested)
+							if (wrapped) {
+								addAccepted(wrapped)
+							} else {
+								addAccepted(rule.cssText)
+							}
+						}
+					}
+				}
+				return accepted
+			}
+
+			function collectReadableStylesheets() {
+				const list = []
+				const seen = new Set()
+				for (const sheet of [
+					...document.styleSheets,
+					...(document.adoptedStyleSheets ?? []),
+				]) {
+					if (!sheet || seen.has(sheet)) continue
+					seen.add(sheet)
+					list.push(sheet)
+				}
+				return list
+			}
+
+			const collectedGlobalRules = []
+			const readableStylesheets = collectReadableStylesheets()
 			for (const stylesheet of readableStylesheets) {
 				let rules
 				try {
@@ -890,25 +908,43 @@ export async function extractScenarioVe2CssArtifacts(page, { themeSlug }) {
 				} catch {
 					continue
 				}
-				const acceptedRules = evaluateRuleList(rules, 'all')
+				const acceptedRules = evaluateRuleList(rules, 'owned')
 				for (const acceptedRule of acceptedRules) {
 					addUniqueRule(collectedGlobalRules, globalRuleSet, acceptedRule)
 				}
 			}
-		}
 
-		for (const keyframe of keyframes.values()) {
-			addUniqueRule(collectedGlobalRules, globalRuleSet, keyframe)
-		}
+			let fallbackMode = false
+			if (collectedGlobalRules.length === 0) {
+				fallbackMode = true
+				for (const stylesheet of readableStylesheets) {
+					let rules
+					try {
+						rules = stylesheet.cssRules
+					} catch {
+						continue
+					}
+					const acceptedRules = evaluateRuleList(rules, 'all')
+					for (const acceptedRule of acceptedRules) {
+						addUniqueRule(collectedGlobalRules, globalRuleSet, acceptedRule)
+					}
+				}
+			}
 
-		return {
-			scenarioRules: [],
-			globalRules: collectedGlobalRules,
-			scopeClasses,
-			fallbackMode,
-			stylesheetCount: readableStylesheets.length,
-		}
-	}, { normalizedThemeSlug })
+			for (const keyframe of keyframes.values()) {
+				addUniqueRule(collectedGlobalRules, globalRuleSet, keyframe)
+			}
+
+			return {
+				scenarioRules: [],
+				globalRules: collectedGlobalRules,
+				scopeClasses,
+				fallbackMode,
+				stylesheetCount: readableStylesheets.length,
+			}
+		},
+		{ normalizedThemeSlug },
+	)
 }
 
 export async function extractScenarioCssArtifacts(page) {
@@ -1350,6 +1386,6 @@ export async function writeThemeCssArtifact({ themeSlug, accumulator }) {
 export {
 	canonicalizeCssPropertyName,
 	parseResolvedStyleDeclarations,
-	resolveThemeArtifactPaths,
 	resolveScenarioMarkupPath,
+	resolveThemeArtifactPaths,
 }

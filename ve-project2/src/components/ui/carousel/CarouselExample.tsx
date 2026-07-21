@@ -1,14 +1,15 @@
 import type { Component } from 'solid-js'
 import { onSettled, useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import {
-	bdPlaceholderImg,
-	bdPlaceholderImgLg,
-	h5,
-	paragraph,
-} from '../../../theme-contract/contents/contract.css'
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elButton, elSvg } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { active, dBlock, dMdBlock, dNone, w100 } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
-import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import {
 	carousel,
 	carouselActive,
@@ -27,15 +28,15 @@ import {
 	carouselItemStart,
 	carouselSlide,
 } from '../../../theme-contract/ui/carousel/contract.css'
+import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import { configureVeCarousel } from './ve-carousel'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/carousel',
 	'contents/basic',
 	'contents/heading',
 	'contents/images',
-	'utilities',
+	'utilities/used',
 ]
 
 const CarouselExample: Component = () => {
@@ -72,7 +73,7 @@ const CarouselExample: Component = () => {
 						type="button"
 						data-bs-target="#carouselExampleCaptions"
 						data-bs-slide-to="0"
-						class={`${theme} ${carouselActive} pwhook-carousel-indicator pwhook-carousel-active`}
+						class={`${theme} ${elButton} ${carouselActive} ${active} pwhook-carousel-indicator pwhook-carousel-active`}
 						aria-current="true"
 						aria-label="Slide 1"
 					/>
@@ -80,21 +81,23 @@ const CarouselExample: Component = () => {
 						type="button"
 						data-bs-target="#carouselExampleCaptions"
 						data-bs-slide-to="1"
-						class={`${theme} pwhook-carousel-indicator`}
+						class={`${theme} ${elButton} pwhook-carousel-indicator`}
 						aria-label="Slide 2"
 					/>
 					<button
 						type="button"
 						data-bs-target="#carouselExampleCaptions"
 						data-bs-slide-to="2"
-						class={`${theme} pwhook-carousel-indicator`}
+						class={`${theme} ${elButton} pwhook-carousel-indicator`}
 						aria-label="Slide 3"
 					/>
 				</div>
 				<div class={`${theme} ${carouselInner}`}>
-					<div class={`${theme} ${carouselItem} ${carouselActive} pwhook-carousel-item pwhook-carousel-active`}>
+					<div
+						class={`${theme} ${carouselItem} ${carouselActive} ${active} pwhook-carousel-item pwhook-carousel-active`}
+					>
 						<svg
-							class={`bd-placeholder-img bd-placeholder-img-lg d-block w-100 ${theme} ${bdPlaceholderImg} ${bdPlaceholderImgLg}`}
+							class={`bd-placeholder-img bd-placeholder-img-lg ${theme} ${elSvg} ${dBlock} ${w100}`}
 							style={{ display: 'block', width: '100%' }}
 							width="800"
 							height="400"
@@ -109,14 +112,18 @@ const CarouselExample: Component = () => {
 								First slide
 							</text>
 						</svg>
-							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
+						<div
+							class={`${theme} ${carouselCaption} ${carouselCaptionResponsive} ${dNone} ${dMdBlock}`}
+						>
 							<h5 class={`${theme} ${h5}`}>First slide label</h5>
-							<p class={`${theme} ${paragraph}`}>Some representative placeholder content for the first slide.</p>
+							<p class={`${theme} ${paragraph}`}>
+								Some representative placeholder content for the first slide.
+							</p>
 						</div>
 					</div>
 					<div class={`${theme} ${carouselItem} pwhook-carousel-item`}>
 						<svg
-							class={`bd-placeholder-img bd-placeholder-img-lg d-block w-100 ${theme} ${bdPlaceholderImg} ${bdPlaceholderImgLg}`}
+							class={`bd-placeholder-img bd-placeholder-img-lg ${theme} ${elSvg} ${dBlock} ${w100}`}
 							style={{ display: 'block', width: '100%' }}
 							width="800"
 							height="400"
@@ -131,14 +138,18 @@ const CarouselExample: Component = () => {
 								Second slide
 							</text>
 						</svg>
-							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
+						<div
+							class={`${theme} ${carouselCaption} ${carouselCaptionResponsive} ${dNone} ${dMdBlock}`}
+						>
 							<h5 class={`${theme} ${h5}`}>Second slide label</h5>
-							<p class={`${theme} ${paragraph}`}>Some representative placeholder content for the second slide.</p>
+							<p class={`${theme} ${paragraph}`}>
+								Some representative placeholder content for the second slide.
+							</p>
 						</div>
 					</div>
 					<div class={`${theme} ${carouselItem} pwhook-carousel-item`}>
 						<svg
-							class={`bd-placeholder-img bd-placeholder-img-lg d-block w-100 ${theme} ${bdPlaceholderImg} ${bdPlaceholderImgLg}`}
+							class={`bd-placeholder-img bd-placeholder-img-lg ${theme} ${elSvg} ${dBlock} ${w100}`}
 							style={{ display: 'block', width: '100%' }}
 							width="800"
 							height="400"
@@ -153,14 +164,18 @@ const CarouselExample: Component = () => {
 								Third slide
 							</text>
 						</svg>
-							<div class={`${theme} ${carouselCaption} ${carouselCaptionResponsive}`}>
+						<div
+							class={`${theme} ${carouselCaption} ${carouselCaptionResponsive} ${dNone} ${dMdBlock}`}
+						>
 							<h5 class={`${theme} ${h5}`}>Third slide label</h5>
-							<p class={`${theme} ${paragraph}`}>Some representative placeholder content for the third slide.</p>
+							<p class={`${theme} ${paragraph}`}>
+								Some representative placeholder content for the third slide.
+							</p>
 						</div>
 					</div>
 				</div>
 				<button
-					class={`${theme} ${carouselControlPrev} pwhook-carousel-control pwhook-carousel-control-prev`}
+					class={`${theme} ${elButton} ${carouselControlPrev} pwhook-carousel-control pwhook-carousel-control-prev`}
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide="prev"
@@ -169,7 +184,7 @@ const CarouselExample: Component = () => {
 					<span class={`${theme} ${visuallyHidden}`}>Previous</span>
 				</button>
 				<button
-					class={`${theme} ${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
+					class={`${theme} ${elButton} ${carouselControlNext} pwhook-carousel-control pwhook-carousel-control-next`}
 					type="button"
 					data-bs-target="#carouselExampleCaptions"
 					data-bs-slide="next"

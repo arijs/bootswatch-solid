@@ -1,25 +1,35 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
-	badge,
-	badgeDanger,
-	badgeDark,
-	badgeInfo,
-	badgeLight,
-	badgePrimary,
-	badgeSecondary,
-	badgeSuccess,
-	badgeWarning,
-} from '../../../theme-contract/ui/badge/contract.css'
+	bgDanger,
+	bgInfo,
+	bgLight,
+	bgPrimary,
+	bgSecondary,
+	bgSuccess,
+	bgWarning,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../theme-contract/literal/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
+import { bgDark, textDark } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/badge',
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const HeadingBadges: Component = () => {
@@ -28,30 +38,31 @@ const HeadingBadges: Component = () => {
 
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<h1 class={`${theme} ${h1}`}>
-				Example heading <span class={`${theme} ${badge} ${badgePrimary}`}>New</span>
-			</h1>
-			<h2 class={`${theme} ${h2}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeSecondary}`}>New</span>
-			</h2>
-			<h3 class={`${theme} ${h3}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeSuccess}`}>New</span>
-			</h3>
-			<h4 class={`${theme} ${h4}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeDanger}`}>New</span>
-			</h4>
-			<h5 class={`${theme} ${h5}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeWarning}`}>New</span>
-			</h5>
-			<h6 class={`${theme} ${h6}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeInfo}`}>New</span>
-			</h6>
-			<h6 class={`${theme} ${h6}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeLight}`}>New</span>
-			</h6>
-			<h6 class={`${theme} ${h6}`}>
-				Example heading <span class={`${theme} ${badge} ${badgeDark}`}>New</span>
-			</h6>
+			<p class={`${theme} ${paragraph} ${clsH1}`}>
+				Example heading <span class={`${theme} ${badge} ${bgPrimary}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH2}`}>
+				Example heading <span class={`${theme} ${badge} ${bgSecondary}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH3}`}>
+				Example heading <span class={`${theme} ${badge} ${bgSuccess}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH4}`}>
+				Example heading <span class={`${theme} ${badge} ${bgDanger}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH5}`}>
+				Example heading{' '}
+				<span class={`${theme} ${badge} ${bgWarning} ${textDark}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>
+				Example heading <span class={`${theme} ${badge} ${bgInfo} ${textDark}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>
+				Example heading <span class={`${theme} ${badge} ${bgLight} ${textDark}`}>New</span>
+			</p>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>
+				Example heading <span class={`${theme} ${badge} ${bgDark}`}>New</span>
+			</p>
 		</div>
 	)
 }

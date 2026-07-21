@@ -1,16 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	badge,
-	badgeDanger,
-	badgeDark,
-	badgeInfo,
-	badgeLight,
-	badgePrimary,
-	badgeRoundedPill,
-	badgeSecondary,
-	badgeSuccess,
-	badgeWarning,
-} from '../../../../theme-contract/ui/badge/contract.css'
+import { sketchyScope } from '../../scope.css'
+
+import { varBsBorderRadius } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBadgeBorderRadius,
 	varBsBadgeColor,
@@ -19,22 +10,11 @@ import {
 	varBsBadgePaddingX,
 	varBsBadgePaddingY,
 } from '../../../../theme-contract/ui/badge/_vars.css'
-import {
-	varBsBorderRadiusPill,
-	varBsDanger,
-	varBsDark,
-	varBsInfo,
-	varBsLight,
-	varBsPrimary,
-	varBsSecondary,
-	varBsSuccess,
-	varBsWarning,
-} from '../../../../theme-contract/_vars.css'
-import { sketchyScope } from '../../scope.css'
 
-// ── Base badge ────────────────────────────────────────────────────────────────
+import { badgePill } from '../../../../theme-contract/literal/contract.css'
+import { badge } from '../../../../theme-contract/ui/badge/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 
-// Sketchy overrides --bs-badge-padding-x/y and --bs-badge-border-radius.
 globalStyle(`${sketchyScope}${badge}`, {
 	vars: {
 		[varBsBadgePaddingX]: '1.2em',
@@ -42,13 +22,13 @@ globalStyle(`${sketchyScope}${badge}`, {
 		[varBsBadgeFontSize]: '0.75em',
 		[varBsBadgeFontWeight]: '700',
 		[varBsBadgeColor]: '#fff',
-		[varBsBadgeBorderRadius]: '255px 25px 225px 25px / 25px 225px 25px 255px',
+		[varBsBadgeBorderRadius]: varBsBorderRadius,
 	},
 	display: 'inline-block',
 	padding: `${varBsBadgePaddingY} ${varBsBadgePaddingX}`,
 	fontSize: varBsBadgeFontSize,
 	fontWeight: varBsBadgeFontWeight,
-	lineHeight: 1,
+	lineHeight: '1',
 	color: varBsBadgeColor,
 	textAlign: 'center',
 	whiteSpace: 'nowrap',
@@ -60,48 +40,15 @@ globalStyle(`${sketchyScope}${badge}:empty`, {
 	display: 'none',
 })
 
-// ── Colour variants ───────────────────────────────────────────────────────────
-// Background colours reference root semantic vars which already carry
-// Sketchy-specific values from the body scope (e.g. varBsPrimary = '#333').
-
-globalStyle(`${sketchyScope}${badgePrimary}`, {
-	backgroundColor: varBsPrimary,
+globalStyle(`${sketchyScope}${btn} ${sketchyScope}${badge}`, {
+	position: 'relative',
+	top: '-1px',
 })
 
-globalStyle(`${sketchyScope}${badgeSecondary}`, {
-	backgroundColor: varBsSecondary,
+globalStyle(`${sketchyScope}${badge}`, {
+	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })
 
-globalStyle(`${sketchyScope}${badgeSuccess}`, {
-	backgroundColor: varBsSuccess,
-})
-
-globalStyle(`${sketchyScope}${badgeDanger}`, {
-	backgroundColor: varBsDanger,
-})
-
-globalStyle(`${sketchyScope}${badgeWarning}`, {
-	backgroundColor: varBsWarning,
-	vars: { [varBsBadgeColor]: varBsDark },
-})
-
-globalStyle(`${sketchyScope}${badgeInfo}`, {
-	backgroundColor: varBsInfo,
-	vars: { [varBsBadgeColor]: varBsDark },
-})
-
-// Sketchy: text-dark maps to varBsDark (#555).
-globalStyle(`${sketchyScope}${badgeLight}`, {
-	backgroundColor: varBsLight,
-	vars: { [varBsBadgeColor]: varBsDark },
-})
-
-globalStyle(`${sketchyScope}${badgeDark}`, {
-	backgroundColor: varBsDark,
-})
-
-// ── Shape modifier ────────────────────────────────────────────────────────────
-
-globalStyle(`${sketchyScope}${badgeRoundedPill}`, {
-	vars: { [varBsBadgeBorderRadius]: varBsBorderRadiusPill },
+globalStyle(`${sketchyScope}${badgePill}`, {
+	borderRadius: '7rem 8rem 8rem 8rem/4rem 5rem 6rem 6rem',
 })

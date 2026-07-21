@@ -1,0 +1,302 @@
+import { globalStyle } from '@vanilla-extract/css'
+import { yetiScope } from '../../scope.css'
+
+import {
+	varBsBodyBg,
+	varBsBodyColor,
+	varBsBodyColorRgb,
+	varBsBorderColorTranslucent,
+	varBsBorderRadius,
+	varBsBorderWidth,
+} from '../../../../theme-contract/_vars.css'
+import {
+	varBsCardBg,
+	varBsCardBorderColor,
+	varBsCardBorderRadius,
+	varBsCardBorderWidth,
+	varBsCardBoxShadow,
+	varBsCardCapBg,
+	varBsCardCapColor,
+	varBsCardCapPaddingX,
+	varBsCardCapPaddingY,
+	varBsCardColor,
+	varBsCardGroupMargin,
+	varBsCardImgOverlayPadding,
+	varBsCardInnerBorderRadius,
+	varBsCardSpacerX,
+	varBsCardSpacerY,
+	varBsCardSubtitleColor,
+	varBsCardTitleColor,
+	varBsCardTitleSpacerY,
+} from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardHeight } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { horizontalRule } from '../../../../theme-contract/contents/basic/contract.css'
+
+import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
+import {
+	card,
+	cardBody,
+	cardFooter,
+	cardHeader,
+	cardImg,
+	cardImgBottom,
+	cardImgTop,
+	cardLink,
+	cardSubtitle,
+	cardText,
+	cardTitle,
+} from '../../../../theme-contract/ui/card/contract.css'
+import { listGroup } from '../../../../theme-contract/ui/list-group/contract.css'
+
+globalStyle(`${yetiScope}${card}`, {
+	vars: {
+		[varBsCardSpacerY]: '1rem',
+		[varBsCardSpacerX]: '1rem',
+		[varBsCardTitleSpacerY]: '0.5rem',
+		[varBsCardTitleColor]: '',
+		[varBsCardSubtitleColor]: '',
+		[varBsCardBorderWidth]: varBsBorderWidth,
+		[varBsCardBorderColor]: varBsBorderColorTranslucent,
+		[varBsCardBorderRadius]: varBsBorderRadius,
+		[varBsCardBoxShadow]: '',
+		[varBsCardInnerBorderRadius]: '0',
+		[varBsCardCapPaddingY]: '0.5rem',
+		[varBsCardCapPaddingX]: '1rem',
+		[varBsCardCapBg]: `rgba(${varBsBodyColorRgb}, 0.03)`,
+		[varBsCardCapColor]: '',
+		[varBsCardHeight]: '',
+		[varBsCardColor]: '',
+		[varBsCardBg]: varBsBodyBg,
+		[varBsCardImgOverlayPadding]: '1rem',
+		[varBsCardGroupMargin]: '0.75rem',
+	},
+	position: 'relative',
+	display: 'flex',
+	flexDirection: 'column',
+	minWidth: '0',
+	height: varBsCardHeight,
+	color: varBsBodyColor,
+	wordWrap: 'break-word',
+	backgroundColor: varBsCardBg,
+	backgroundClip: 'border-box',
+	border: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
+	borderRadius: varBsCardBorderRadius,
+})
+
+globalStyle(`${yetiScope}${card} > ${yetiScope}${horizontalRule}`, {
+	marginRight: '0',
+	marginLeft: '0',
+})
+
+globalStyle(`${yetiScope}${card} > ${yetiScope}${listGroup} + ${yetiScope}${cardFooter}`, {
+	borderTop: '0',
+})
+
+globalStyle(`${yetiScope}${cardBody}`, {
+	flex: '1 1 auto',
+	padding: `${varBsCardSpacerY} ${varBsCardSpacerX}`,
+	color: varBsCardColor,
+})
+
+globalStyle(`${yetiScope}${cardTitle}`, {
+	marginBottom: varBsCardTitleSpacerY,
+	color: varBsCardTitleColor,
+})
+
+globalStyle(`${yetiScope}${cardSubtitle}`, {
+	marginTop: `calc(-0.5 * ${varBsCardTitleSpacerY})`,
+	marginBottom: '0',
+	color: varBsCardSubtitleColor,
+})
+
+globalStyle(`${yetiScope}${cardText}:last-child`, {
+	marginBottom: '0',
+})
+
+globalStyle(`${yetiScope}${cardLink} + ${yetiScope}${cardLink}`, {
+	marginLeft: varBsCardSpacerX,
+})
+
+globalStyle(`${yetiScope}${cardHeader}`, {
+	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
+	marginBottom: '0',
+	color: varBsCardCapColor,
+	backgroundColor: varBsCardCapBg,
+	borderBottom: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
+})
+
+globalStyle(`${yetiScope}${cardHeader}:first-child`, {
+	borderRadius: `${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius} 0 0`,
+})
+
+globalStyle(`${yetiScope}${cardFooter}`, {
+	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
+	color: varBsCardCapColor,
+	backgroundColor: varBsCardCapBg,
+	borderTop: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
+})
+
+globalStyle(`${yetiScope}${cardFooter}:last-child`, {
+	borderRadius: `0 0 ${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius}`,
+})
+
+globalStyle(`${yetiScope}${cardHeaderPills}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+})
+
+globalStyle(`${yetiScope}${cardImgOverlay}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	bottom: '0',
+	left: '0',
+	padding: varBsCardImgOverlayPadding,
+	borderRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${yetiScope}${cardImg}`, {
+	width: '100%',
+})
+
+globalStyle(`${yetiScope}${cardImgTop}`, {
+	width: '100%',
+})
+
+globalStyle(`${yetiScope}${cardImgBottom}`, {
+	width: '100%',
+})
+
+globalStyle(`${yetiScope}${cardImg}`, {
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${yetiScope}${cardImgTop}`, {
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${yetiScope}${cardImg}`, {
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${yetiScope}${cardImgBottom}`, {
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}`, {
+	marginBottom: varBsCardGroupMargin,
+})
+
+globalStyle(`${yetiScope}${cardGroup}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex',
+			flexFlow: 'row wrap',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flex: '1 0 0',
+			marginBottom: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card} + ${yetiScope}${card}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: '0',
+			borderLeft: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+			borderBottomRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:last-child) > ${yetiScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:last-child) > ${yetiScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:last-child) > ${yetiScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:last-child) > ${yetiScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:first-child) > ${yetiScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:first-child) > ${yetiScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:first-child) > ${yetiScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${yetiScope}${cardGroup} > ${yetiScope}${card}:not(:first-child) > ${yetiScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
+		},
+	},
+})

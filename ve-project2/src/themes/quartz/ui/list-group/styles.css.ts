@@ -1,19 +1,37 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemDisabled,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
-} from '../../../../theme-contract/ui/list-group/contract.css'
+	varBsBodyColor,
+	varBsBorderRadius,
+	varBsDangerBgSubtle,
+	varBsDangerBorderSubtle,
+	varBsDangerTextEmphasis,
+	varBsDarkBgSubtle,
+	varBsDarkBorderSubtle,
+	varBsDarkTextEmphasis,
+	varBsEmphasisColor,
+	varBsInfoBgSubtle,
+	varBsInfoBorderSubtle,
+	varBsInfoTextEmphasis,
+	varBsLightBgSubtle,
+	varBsLightBorderSubtle,
+	varBsLightTextEmphasis,
+	varBsPrimaryBgSubtle,
+	varBsPrimaryBorderSubtle,
+	varBsPrimaryTextEmphasis,
+	varBsSecondaryBg,
+	varBsSecondaryBgSubtle,
+	varBsSecondaryBorderSubtle,
+	varBsSecondaryTextEmphasis,
+	varBsSuccessBgSubtle,
+	varBsSuccessBorderSubtle,
+	varBsSuccessTextEmphasis,
+	varBsWarningBgSubtle,
+	varBsWarningBorderSubtle,
+	varBsWarningTextEmphasis,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 	varBsListGroupActionActiveBg,
 	varBsListGroupActionActiveColor,
@@ -33,56 +51,56 @@ import {
 	varBsListGroupItemPaddingX,
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
+
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsBodyColor,
-	varBsDangerBgSubtle,
-	varBsDangerBorderSubtle,
-	varBsDangerTextEmphasis,
-	varBsDarkBgSubtle,
-	varBsDarkBorderSubtle,
-	varBsDarkTextEmphasis,
-	varBsEmphasisColor,
-	varBsInfoBgSubtle,
-	varBsInfoBorderSubtle,
-	varBsInfoTextEmphasis,
-	varBsLightBgSubtle,
-	varBsLightBorderSubtle,
-	varBsLightTextEmphasis,
-	varBsPrimary,
-	varBsPrimaryBgSubtle,
-	varBsPrimaryBorderSubtle,
-	varBsPrimaryTextEmphasis,
-	varBsSecondaryBg,
-	varBsSecondaryBgSubtle,
-	varBsSecondaryBorderSubtle,
-	varBsSecondaryColor,
-	varBsSecondaryTextEmphasis,
-	varBsSuccessBgSubtle,
-	varBsSuccessBorderSubtle,
-	varBsSuccessTextEmphasis,
-	varBsTertiaryBg,
-	varBsWarningBgSubtle,
-	varBsWarningBorderSubtle,
-	varBsWarningTextEmphasis,
-} from '../../../../theme-contract/_vars.css'
-import { quartzScope } from '../../scope.css'
+	active,
+	disabled,
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../../theme-contract/ui/list-group/contract.css'
 
-// Glass mixin
-const glassMixin = {
-	border: 'none',
-	boxShadow:
-		'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
-	backgroundColor: 'transparent',
-	backgroundImage:
-		'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
-	backdropFilter: 'blur(5px)',
-} as const
+globalStyle(`${quartzScope}${card} > ${quartzScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
+})
 
-// ── Base list-group ───────────────────────────────────────────────────────────
+globalStyle(`${quartzScope}${card} > ${quartzScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${quartzScope}${card} > ${quartzScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${quartzScope}${card} > ${quartzScope}${cardHeader} + ${quartzScope}${listGroup}`, {
+	borderTop: '0',
+})
 
 globalStyle(`${quartzScope}${listGroup}`, {
 	vars: {
@@ -93,7 +111,7 @@ globalStyle(`${quartzScope}${listGroup}`, {
 		[varBsListGroupBorderRadius]: varBsBorderRadius,
 		[varBsListGroupItemPaddingX]: '2rem',
 		[varBsListGroupItemPaddingY]: '1rem',
-		[varBsListGroupActionColor]: varBsSecondaryColor,
+		[varBsListGroupActionColor]: '#fff',
 		[varBsListGroupActionHoverColor]: '#fff',
 		[varBsListGroupActionHoverBg]: 'rgba(255, 255, 255, 0.4)',
 		[varBsListGroupActionActiveColor]: varBsBodyColor,
@@ -104,33 +122,22 @@ globalStyle(`${quartzScope}${listGroup}`, {
 		[varBsListGroupActiveBg]: '#e83283',
 		[varBsListGroupActiveBorderColor]: '#e83283',
 	},
-	...glassMixin,
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	borderRadius: varBsListGroupBorderRadius,
 })
 
-globalStyle(`${quartzScope}${listGroup} a`, {
-	color: '#fff',
+globalStyle(`${quartzScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
 })
 
-// ── Flush variant ─────────────────────────────────────────────────────────────
-
-globalStyle(`${quartzScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${quartzScope}${listGroupNumbered} > ${quartzScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
 })
-
-globalStyle(`${quartzScope}${listGroupFlush} > ${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
-})
-
-globalStyle(`${quartzScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
-})
-
-// ── Item ──────────────────────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${listGroupItem}`, {
 	position: 'relative',
@@ -152,36 +159,33 @@ globalStyle(`${quartzScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
-// Disabled state
-globalStyle(
-	`${quartzScope}${listGroupItem}${listGroupItemDisabled},` +
-		`${quartzScope}${listGroupItem}:disabled`,
-	{
-		color: varBsListGroupDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsListGroupDisabledBg,
-	},
-)
+globalStyle(`${quartzScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
 
-// Active state
-globalStyle(`${quartzScope}${listGroupItem}.active`, {
-	zIndex: 2,
+globalStyle(`${quartzScope}${listGroupItem}:disabled`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
+globalStyle(`${quartzScope}${listGroupItem}${active}`, {
+	zIndex: '2',
 	color: varBsListGroupActiveColor,
 	backgroundColor: varBsListGroupActiveBg,
 	borderColor: varBsListGroupActiveBorderColor,
 })
 
-// Sibling border collapse
-globalStyle(`${quartzScope}${listGroupItem} + ${listGroupItem}`, {
-	borderTopWidth: 0,
+globalStyle(`${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	borderTopWidth: '0',
 })
 
-globalStyle(`${quartzScope}${listGroupItem} + ${listGroupItem}.active`, {
+globalStyle(`${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
 	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
 	borderTopWidth: varBsListGroupBorderWidth,
 })
-
-// ── Action (anchor / button) items ────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${listGroupItemAction}`, {
 	width: '100%',
@@ -189,23 +193,324 @@ globalStyle(`${quartzScope}${listGroupItemAction}`, {
 	textAlign: 'inherit',
 })
 
-globalStyle(
-	`${quartzScope}${listGroupItemAction}:not(.active):hover,` +
-		`${quartzScope}${listGroupItemAction}:not(.active):focus`,
-	{
-		zIndex: 1,
-		color: varBsListGroupActionHoverColor,
-		textDecoration: 'none',
-		backgroundColor: varBsListGroupActionHoverBg,
-	},
-)
+globalStyle(`${quartzScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
 
-globalStyle(`${quartzScope}${listGroupItemAction}:not(.active):active`, {
+globalStyle(`${quartzScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${quartzScope}${listGroupItemAction}:not(${active}):active`, {
 	color: varBsListGroupActionActiveColor,
 	backgroundColor: varBsListGroupActionActiveBg,
 })
 
-// ── Colour variants ───────────────────────────────────────────────────────────
+globalStyle(`${quartzScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontal} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalSm} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalMd} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalLg} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXl} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupHorizontalXxl} > ${quartzScope}${listGroupItem} + ${quartzScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${quartzScope}${listGroupFlush} > ${quartzScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${quartzScope}${listGroupFlush} > ${quartzScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
+})
 
 globalStyle(`${quartzScope}${listGroupItemPrimary}`, {
 	vars: {
@@ -325,4 +630,17 @@ globalStyle(`${quartzScope}${listGroupItemDark}`, {
 		[varBsListGroupActiveBg]: varBsDarkTextEmphasis,
 		[varBsListGroupActiveBorderColor]: varBsDarkTextEmphasis,
 	},
+})
+
+globalStyle(`${quartzScope}${listGroup}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
+})
+
+globalStyle(`${quartzScope}${listGroup} :where(${quartzScope}${link})`, {
+	color: '#fff',
 })

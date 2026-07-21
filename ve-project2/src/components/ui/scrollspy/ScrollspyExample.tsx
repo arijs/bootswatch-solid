@@ -1,17 +1,29 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { h4, paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { active, bgLight, navbarLight } from '../../../theme-contract/literal/contract.css'
 import {
-dropdown,
-dropdownDivider,
-dropdownItem,
-dropdownMenu,
-dropdownToggle,
+	dropdown,
+	dropdownDivider,
+	dropdownItem,
+	dropdownMenu,
+	dropdownToggle,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { navbar, navbarBgLight, navbarBrand } from '../../../theme-contract/ui/navbar/contract.css'
-import { nav, navItem, navLink, navLinkActive, navPills } from '../../../theme-contract/ui/navs/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navPills,
+} from '../../../theme-contract/ui/navs/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { px3 } from '../../../theme-contract/utilities/contract.css'
 
@@ -22,124 +34,133 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/dropdowns',
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const ScrollspyExample: Component = () => {
-const theme = useContext(ThemeContext)
+	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 
-return (
-<div class={`bd-example ${theme} ${containerFluid}`}>
-<nav class={`${theme} ${navbar} ${navbarBgLight} ${px3}`}>
-{/* biome-ignore lint: <a> is used for demonstration purposes */}
-<a class={`${theme} ${navbarBrand}`} href="#" onClick={(event) => event.preventDefault()}>
-Navbar
-</a>
-<ul class={`${theme} ${nav} ${navPills}`}>
-<li class={`${theme} ${navItem}`}>
-<a class={`${theme} ${navLink} ${navLinkActive}`} href="#fat">
-@fat
-</a>
-</li>
-<li class={`${theme} ${navItem}`}>
-<a class={`${theme} ${navLink}`} href="#mdo">
-@mdo
-</a>
-</li>
-<li class={`${theme} ${navItem} ${dropdown}`}>
-{/* biome-ignore lint: <a> is used for demonstration purposes */}
-<a
-class={`${theme} ${navLink} ${dropdownToggle}`}
-href="#"
-onClick={(event) => event.preventDefault()}
-aria-expanded="false"
->
-Dropdown
-</a>
-<ul class={`${theme} ${dropdownMenu}`}>
-<li>
-<a class={`${theme} ${dropdownItem}`} href="#one">
-one
-</a>
-</li>
-<li>
-<a class={`${theme} ${dropdownItem}`} href="#two">
-two
-</a>
-</li>
-<li>
-<hr class={`${theme} ${dropdownDivider}`} />
-</li>
-<li>
-<a class={`${theme} ${dropdownItem}`} href="#three">
-three
-</a>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-<div class={`${theme} ${scrollspyExample}`} tabindex="0">
-<h4 class={`${theme} ${h4}`} id="fat">
-@fat
-</h4>
-<p class={`${theme} ${paragraph}`}>
-Placeholder content for the scrollspy example. You got the finest architecture.
-Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock.
-Never planned that one day I'd be losing you. She eats your heart out. Your kiss
-is cosmic, every move is magic. I mean the ones, I mean like she's the one.
-Greetings loved ones let's take a journey. Just own the night like the 4th of
-July! But you'd rather get wasted.
-</p>
-<h4 class={`${theme} ${h4}`} id="mdo">
-@mdo
-</h4>
-<p class={`${theme} ${paragraph}`}>
-Placeholder content for the scrollspy example. 'Cause she's the muse and the
-artist. (This is how we do) So you wanna play with magic. So just be sure before
-you give it all to me. I'm walking, I'm walking on air (tonight). Skip the talk,
-heard it all, time to walk the walk.
-</p>
-<h4 class={`${theme} ${h4}`} id="one">
-one
-</h4>
-<p class={`${theme} ${paragraph}`}>
-Placeholder content for the scrollspy example. Takes you miles high, so high,
-'cause she's got that one international smile. There's a stranger in my bed,
-there's a pounding in my head. Oh, no. In another life I would make you stay.
-'Cause I, I'm capable of anything. Suiting up for my crowning battle. Used to
-steal your parents' liquor and climb to the roof. Tone, tan fit and ready, turn
-it up cause its gettin' heavy. Her love is like a drug. I guess that I forgot I
-had a choice.
-</p>
-<h4 class={`${theme} ${h4}`} id="two">
-two
-</h4>
-<p class={`${theme} ${paragraph}`}>
-Placeholder content for the scrollspy example. It's time to bring out the big
-balloons. I'm walking, I'm walking on air (tonight). Yeah, we maxed our credit
-cards and got kicked out of the bar. Yo, shout out to all you kids, buying
-bottle service, with your rent money. I'm ma get your heart racing in my
-skin-tight jeans. If you get the chance you better keep her. Yo, shout out to
-all you kids, buying bottle service, with your rent money.
-</p>
-<h4 class={`${theme} ${h4}`} id="three">
-three
-</h4>
-<p class={`${theme} ${paragraph}`}>
-Placeholder content for the scrollspy example. If you wanna dance, if you want
-it all, you know that I'm the girl that you should call. Walk through the storm
-I would. So let me get you in your birthday suit. The one that got away. Last
-Friday night, yeah I think we broke the law, always say we're gonna stop. 'Cause
-she's a little bit of Yoko, And she's a little bit of 'Oh no'. I want the jaw
-droppin', eye poppin', head turnin', body shockin'. Yeah, we maxed our credit
-cards and got kicked out of the bar.
-</p>
-<p class={`${theme} ${paragraph}`}>And some more placeholder content, for good measure.</p>
-</div>
-</div>
-)
+	return (
+		<div class={`bd-example ${theme} ${containerFluid}`}>
+			<nav class={`${theme} ${navbar} ${navbarBgLight} ${navbarLight} ${bgLight} ${px3}`}>
+				{/* biome-ignore lint: <a> is used for demonstration purposes */}
+				<a
+					class={`${theme} ${link} ${navbarBrand}`}
+					href="#"
+					onClick={(event) => event.preventDefault()}
+				>
+					Navbar
+				</a>
+				<ul class={`${theme} ${nav} ${navPills}`}>
+					<li class={`${theme} ${navItem}`}>
+						<a
+							class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
+							href="#fat"
+						>
+							@fat
+						</a>
+					</li>
+					<li class={`${theme} ${navItem}`}>
+						<a class={`${theme} ${link} ${navLink}`} href="#mdo">
+							@mdo
+						</a>
+					</li>
+					<li class={`${theme} ${navItem} ${dropdown}`}>
+						{/* biome-ignore lint: <a> is used for demonstration purposes */}
+						<a
+							class={`${theme} ${link} ${navLink} ${dropdownToggle}`}
+							href="#"
+							onClick={(event) => event.preventDefault()}
+							aria-expanded="false"
+						>
+							Dropdown
+						</a>
+						<ul class={`${theme} ${dropdownMenu}`}>
+							<li>
+								<a class={`${theme} ${link} ${dropdownItem}`} href="#one">
+									one
+								</a>
+							</li>
+							<li>
+								<a class={`${theme} ${link} ${dropdownItem}`} href="#two">
+									two
+								</a>
+							</li>
+							<li>
+								<hr class={`${theme} ${dropdownDivider}`} />
+							</li>
+							<li>
+								<a class={`${theme} ${link} ${dropdownItem}`} href="#three">
+									three
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<div class={`${theme} ${scrollspyExample}`} tabindex="0">
+				<h4 class={`${theme} ${h4}`} id="fat">
+					@fat
+				</h4>
+				<p class={`${theme} ${paragraph}`}>
+					Placeholder content for the scrollspy example. You got the finest architecture.
+					Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock.
+					Never planned that one day I'd be losing you. She eats your heart out. Your kiss
+					is cosmic, every move is magic. I mean the ones, I mean like she's the one.
+					Greetings loved ones let's take a journey. Just own the night like the 4th of
+					July! But you'd rather get wasted.
+				</p>
+				<h4 class={`${theme} ${h4}`} id="mdo">
+					@mdo
+				</h4>
+				<p class={`${theme} ${paragraph}`}>
+					Placeholder content for the scrollspy example. 'Cause she's the muse and the
+					artist. (This is how we do) So you wanna play with magic. So just be sure before
+					you give it all to me. I'm walking, I'm walking on air (tonight). Skip the talk,
+					heard it all, time to walk the walk.
+				</p>
+				<h4 class={`${theme} ${h4}`} id="one">
+					one
+				</h4>
+				<p class={`${theme} ${paragraph}`}>
+					Placeholder content for the scrollspy example. Takes you miles high, so high,
+					'cause she's got that one international smile. There's a stranger in my bed,
+					there's a pounding in my head. Oh, no. In another life I would make you stay.
+					'Cause I, I'm capable of anything. Suiting up for my crowning battle. Used to
+					steal your parents' liquor and climb to the roof. Tone, tan fit and ready, turn
+					it up cause its gettin' heavy. Her love is like a drug. I guess that I forgot I
+					had a choice.
+				</p>
+				<h4 class={`${theme} ${h4}`} id="two">
+					two
+				</h4>
+				<p class={`${theme} ${paragraph}`}>
+					Placeholder content for the scrollspy example. It's time to bring out the big
+					balloons. I'm walking, I'm walking on air (tonight). Yeah, we maxed our credit
+					cards and got kicked out of the bar. Yo, shout out to all you kids, buying
+					bottle service, with your rent money. I'm ma get your heart racing in my
+					skin-tight jeans. If you get the chance you better keep her. Yo, shout out to
+					all you kids, buying bottle service, with your rent money.
+				</p>
+				<h4 class={`${theme} ${h4}`} id="three">
+					three
+				</h4>
+				<p class={`${theme} ${paragraph}`}>
+					Placeholder content for the scrollspy example. If you wanna dance, if you want
+					it all, you know that I'm the girl that you should call. Walk through the storm
+					I would. So let me get you in your birthday suit. The one that got away. Last
+					Friday night, yeah I think we broke the law, always say we're gonna stop. 'Cause
+					she's a little bit of Yoko, And she's a little bit of 'Oh no'. I want the jaw
+					droppin', eye poppin', head turnin', body shockin'. Yeah, we maxed our credit
+					cards and got kicked out of the bar.
+				</p>
+				<p class={`${theme} ${paragraph}`}>
+					And some more placeholder content, for good measure.
+				</p>
+			</div>
+		</div>
+	)
 }
 
 export default ScrollspyExample

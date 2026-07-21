@@ -1,15 +1,20 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../context/ThemeContext'
-import { btn, btnPrimary, inputFontFamily } from '../../../../theme-contract/ui/buttons/contract.css'
+import { elButton } from '../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../theme-contract/layout/container.css'
+import {
+	btn,
+	btnPrimary,
+	inputFontFamily,
+} from '../../../../theme-contract/ui/buttons/contract.css'
 import type { Ve2StyleFamily } from '../../../../theme-runtime/style-families'
 import { useVe2RequiredStyleFamilies } from '../../../../theme-runtime/style-loader-context'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SolidPrimaryButton: Component = () => {
@@ -18,7 +23,10 @@ const SolidPrimaryButton: Component = () => {
 
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
-			<button type="button" class={`${theme} ${btn} ${btnPrimary} ${inputFontFamily} pwhook-btn`}>
+			<button
+				type="button"
+				class={`${theme} ${elButton} ${btn} ${btnPrimary} ${inputFontFamily} pwhook-btn`}
+			>
 				Primary
 			</button>
 		</div>

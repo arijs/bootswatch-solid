@@ -1,0 +1,29 @@
+{
+  "summary": {
+    "totalElements": 9,
+    "elementsChecked": 9,
+    "elementsWithGaps": 1,
+    "totalExpected": 4,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/form[1]/div[1]/input[1]",
+      "tag": "input",
+      "baselineClasses": [
+        "form-check-input",
+        "pwhook-checkbox"
+      ],
+      "expectedSymbols": [
+        "formCheckInput"
+      ],
+      "stampedSymbols": [
+        "formCheckInput"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-checkbox"
+      ]
+    }
+  ]
+}

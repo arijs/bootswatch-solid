@@ -14,6 +14,7 @@ import {
 } from './css-extraction.mjs'
 import { pathExists } from './folder-pruning.mjs'
 import { performScenarioAction, stabilizeForScreenshot } from './playwright-actions.mjs'
+import { gotoWithPreviewRecovery } from './preview-server-manager.mjs'
 import { resolveInitialNavigationWarmupDelayMs } from './timing.mjs'
 
 function toBufferPng(png) {
@@ -69,6 +70,8 @@ export async function verifyScenarioVe2Rendering({
 	baselinePath,
 	maxDiffRatio,
 	markupExtractionEnabled = true,
+	ve2StyleLoader = 'theme',
+	previewServerManager,
 }) {
 	if (!(await pathExists(baselinePath))) {
 		return {
@@ -97,8 +100,21 @@ export async function verifyScenarioVe2Rendering({
 	const page = await context.newPage()
 
 	try {
-		const ve2Url = `${VE2_BASE_URL}${route}?theme=${themeSlug}`
-		await page.goto(ve2Url, { waitUntil: 'load', timeout: 60000 })
+		const loader =
+			ve2StyleLoader === 'literal'
+				? 'literal'
+				: ve2StyleLoader === 'granular'
+					? 'granular'
+					: 'theme'
+		const ve2Url = `${VE2_BASE_URL}${route}?theme=${encodeURIComponent(themeSlug)}&style-loader=${encodeURIComponent(loader)}`
+		await gotoWithPreviewRecovery(page, ve2Url, previewServerManager)
+		if (ve2StyleLoader === 'literal' || ve2StyleLoader === 'granular') {
+			// Literal & granular theme CSS is loaded via dynamic import() after page
+			// load (granular pulls per-family chunks on demand). Wait for network idle
+			// so the CSS chunks are fully applied before capture. Short timeout so
+			// Google Fonts @imports don't block indefinitely.
+			await page.waitForLoadState('networkidle', { timeout: 2000 }).catch(() => {})
+		}
 		await delay(150)
 		const warmupDelayMs = resolveInitialNavigationWarmupDelayMs({
 			themeSlug,
@@ -140,13 +156,17 @@ export async function verifyScenarioVe2Rendering({
 						`VE2 CSS collector returned zero rules (stylesheets=${cssArtifacts?.stylesheetCount ?? 0}, fallback=${Boolean(cssArtifacts?.fallbackMode)}, scope=${(cssArtifacts?.scopeClasses ?? []).join(',')})`,
 					)
 				}
-				const { optimized: markup } = optimizeMarkupWithCssArtifacts(markupRaw, cssArtifacts, {
-					themeSlug,
-					route,
-					stateFolder,
-					scenario,
-					kind: 've',
-				})
+				const { optimized: markup } = optimizeMarkupWithCssArtifacts(
+					markupRaw,
+					cssArtifacts,
+					{
+						themeSlug,
+						route,
+						stateFolder,
+						scenario,
+						kind: 've',
+					},
+				)
 				veMarkupPath = await writeScenarioMarkupArtifact({
 					themeSlug,
 					routePath,

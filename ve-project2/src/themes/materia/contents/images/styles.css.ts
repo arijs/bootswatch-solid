@@ -1,25 +1,21 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsSecondaryColor,
 } from '../../../../theme-contract/_vars.css'
+
 import {
-	bdPlaceholderImg,
-	bdPlaceholderImgLg,
 	figure,
 	figureCaption,
 	figureImg,
 	imgFluid,
 	imgThumbnail,
-	mediaMiddle,
-	rounded,
-} from '../../../../theme-contract/contents/contract.css'
-import { materiaScope } from '../../scope.css'
-
-// ─── Images ───────────────────────────────────────────────────────────────────
+} from '../../../../theme-contract/contents/images/contract.css'
 
 globalStyle(`${materiaScope}${imgFluid}`, {
 	maxWidth: '100%',
@@ -35,41 +31,16 @@ globalStyle(`${materiaScope}${imgThumbnail}`, {
 	height: 'auto',
 })
 
-// ─── Figures ──────────────────────────────────────────────────────────────────
-
 globalStyle(`${materiaScope}${figure}`, {
 	display: 'inline-block',
-	margin: '0 0 1rem',
 })
 
 globalStyle(`${materiaScope}${figureImg}`, {
 	marginBottom: '0.5rem',
-	lineHeight: 1,
+	lineHeight: '1',
 })
 
 globalStyle(`${materiaScope}${figureCaption}`, {
 	fontSize: '0.875em',
 	color: varBsSecondaryColor,
-})
-
-// ─── Placeholder images ───────────────────────────────────────────────────────
-
-globalStyle(`${materiaScope}${bdPlaceholderImg}`, {
-	fontSize: '1.125rem',
-	textAnchor: 'middle',
-	WebkitUserSelect: 'none',
-	MozUserSelect: 'none',
-	userSelect: 'none',
-})
-
-globalStyle(`${materiaScope}${bdPlaceholderImgLg}`, {
-	'@media': { '(min-width: 768px)': { fontSize: '3.5rem' } },
-})
-
-globalStyle(`${materiaScope}${mediaMiddle}`, {
-	verticalAlign: 'middle',
-})
-
-globalStyle(`${materiaScope}${rounded}`, {
-	borderRadius: `${varBsBorderRadius} !important`,
 })

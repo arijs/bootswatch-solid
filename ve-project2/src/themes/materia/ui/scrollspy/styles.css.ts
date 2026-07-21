@@ -1,4 +1,10 @@
-// ve-project2/src/themes/materia/ui/scrollspy/styles.css.ts
-// Intentionally empty scaffold — add globalStyle rules only from screenshots/materia approved sources.
-export {}
+import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
 
+import { scrollspyExample } from '../../../../theme-contract/ui/scrollspy/contract.css'
+
+globalStyle(`${materiaScope}${scrollspyExample}`, {
+	height: '200px',
+	overflowY: 'auto',
+	marginTop: '0.5rem',
+})

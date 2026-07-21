@@ -1,15 +1,23 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { bootstrapScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
+	varBsBodyBg,
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsEmphasisColor,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryBg,
+	varBsSecondaryColor,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -25,30 +33,34 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsEmphasisColor,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import { bootstrapScope } from '../../scope.css'
+	active,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav {
-//   --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-link-color);
-//   --bs-nav-link-hover-color: var(--bs-link-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-secondary-color);
-//   display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none;
-// }
 globalStyle(`${bootstrapScope}${nav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '1rem',
@@ -60,66 +72,56 @@ globalStyle(`${bootstrapScope}${nav}`, {
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// ── .nav-link ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav-link { display: block;
-//   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-//   font-weight: var(--bs-nav-link-font-weight);
-//   color: var(--bs-nav-link-color);
-//   text-decoration: none; background: none; border: 0;
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//               border-color 0.15s ease-in-out; }
 globalStyle(`${bootstrapScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
-	lineHeight: 'inherit',
 	color: varBsNavLinkColor,
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS: .nav-link:hover, .nav-link:focus { color: var(--bs-nav-link-hover-color); }
-globalStyle(`${bootstrapScope}${navLink}:hover, ${bootstrapScope}${navLink}:focus`, {
+globalStyle(`${bootstrapScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link.disabled, .nav-link:disabled {
-//   color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(
-	`${bootstrapScope}${navLink}${navLinkDisabled}, ${bootstrapScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-	},
-)
+globalStyle(`${bootstrapScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs ─────────────────────────────────────────────────────────────────
+globalStyle(`${bootstrapScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+})
 
-// SOURCE CSS:
-// .nav-tabs {
-//   --bs-nav-tabs-border-width: var(--bs-border-width);
-//   --bs-nav-tabs-border-color: var(--bs-border-color);
-//   --bs-nav-tabs-border-radius: var(--bs-border-radius);
-//   --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
-//   --bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
-//   --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
-//   --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
-//   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
-// }
+globalStyle(`${bootstrapScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${bootstrapScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
 globalStyle(`${bootstrapScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
@@ -133,48 +135,35 @@ globalStyle(`${bootstrapScope}${navTabs}`, {
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
-//   border: var(--bs-nav-tabs-border-width) solid transparent;
-//   border-top-left-radius: var(--bs-nav-tabs-border-radius);
-//   border-top-right-radius: var(--bs-nav-tabs-border-radius); }
-globalStyle(`${bootstrapScope}${navTabs} ${navLink}`, {
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-//   isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
-globalStyle(
-	`${bootstrapScope}${navTabs} ${navLink}:hover, ${bootstrapScope}${navTabs} ${navLink}:focus`,
-	{
-		isolation: 'isolate',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-//   color: var(--bs-nav-tabs-link-active-color);
-//   background-color: var(--bs-nav-tabs-link-active-bg);
-//   border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${bootstrapScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
+
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navItem}${show} ${bootstrapScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-pills {
-//   --bs-nav-pills-border-radius: var(--bs-border-radius);
-//   --bs-nav-pills-link-active-color: #fff;
-//   --bs-nav-pills-link-active-bg: #0d6efd;
-// }
 globalStyle(`${bootstrapScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
@@ -183,16 +172,159 @@ globalStyle(`${bootstrapScope}${navPills}`, {
 	},
 })
 
-// SOURCE CSS: .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
-globalStyle(`${bootstrapScope}${navPills} ${navLink}`, {
+globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-//   color: var(--bs-nav-pills-link-active-color);
-//   background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${bootstrapScope}${navPills} ${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${show} > ${bootstrapScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${bootstrapScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: varBsEmphasisColor,
+	},
+	gap: varBsNavUnderlineGap,
+})
+
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${show} > ${bootstrapScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${bootstrapScope}${navFill} > ${bootstrapScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${bootstrapScope}${navFill} ${bootstrapScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${bootstrapScope}${navJustified} > ${bootstrapScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${bootstrapScope}${navJustified} ${bootstrapScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${bootstrapScope}${navFill} ${bootstrapScope}${navItem} ${bootstrapScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${bootstrapScope}${navJustified} ${bootstrapScope}${navItem} ${bootstrapScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${bootstrapScope}${tabContent} > ${bootstrapScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${bootstrapScope}${tabContent} > ${bootstrapScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${bootstrapScope}${navbarExpandSm} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${navbarExpandMd} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${navbarExpandLg} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${navbarExpandXl} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${navbarExpandXxl} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${bootstrapScope}${navbarExpand} ${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${bootstrapScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
 })

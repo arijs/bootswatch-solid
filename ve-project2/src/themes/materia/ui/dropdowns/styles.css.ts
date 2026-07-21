@@ -1,5 +1,6 @@
-// ve-project2/src/themes/materia/ui/dropdowns/styles.css.ts
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
@@ -7,9 +8,16 @@ import {
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
+	varBsGradient,
 	varBsTertiaryBg,
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../../theme-contract/ui/buttons/_vars.css'
 import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
@@ -24,6 +32,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -35,19 +44,41 @@ import {
 	varBsDropdownMinWidth,
 	varBsDropdownPaddingX,
 	varBsDropdownPaddingY,
-	varBsDropdownPosition,
 	varBsDropdownSpacer,
 	varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
+import { varBsNavTabsBorderWidth } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsPosition } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
+	disabled,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
-	dropend,
 	dropdownHeader,
 	dropdownItem,
-	dropdownItemActive,
-	dropdownItemDisabled,
 	dropdownItemText,
 	dropdownMenu,
 	dropdownMenuDark,
@@ -56,29 +87,62 @@ import {
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
+	dropend,
 	dropstart,
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { h6 } from '../../../../theme-contract/contents/contract.css'
-import { materiaScope } from '../../scope.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navTabs } from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── Wrapper positioning ───────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${inputGroup}:not(${hasValidation}) > ${materiaScope}${dropdownToggle}:nth-last-child(n+3)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-globalStyle(
-	[
-		`${materiaScope}${dropdown}`,
-		`${materiaScope}${dropstart}`,
-		`${materiaScope}${dropupCenter}`,
-		`${materiaScope}${dropdownCenter}`,
-	].join(', '),
-	{ position: 'relative' },
-)
+globalStyle(`${materiaScope}${inputGroup}${hasValidation} > ${materiaScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-// ── Dropdown toggle caret ─────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-globalStyle(`${materiaScope}${dropdownToggle}`, { whiteSpace: 'nowrap' })
+globalStyle(`${materiaScope}${btn}${btnShowHook}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${dropup}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${dropend}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${dropdown}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${dropstart}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${dropupCenter}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${dropdownCenter}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${dropdownToggle}`, {
+	whiteSpace: 'nowrap',
+})
 
 globalStyle(`${materiaScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
@@ -87,13 +151,13 @@ globalStyle(`${materiaScope}${dropdownToggle}::after`, {
 	content: '""',
 	borderTop: '0.3em solid',
 	borderRight: '0.3em solid transparent',
-	borderBottom: 0,
+	borderBottom: '0',
 	borderLeft: '0.3em solid transparent',
 })
 
-globalStyle(`${materiaScope}${dropdownToggle}:empty::after`, { marginLeft: 0 })
-
-// ── Dropdown menu ─────────────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
+})
 
 globalStyle(`${materiaScope}${dropdownMenu}`, {
 	vars: {
@@ -129,229 +193,396 @@ globalStyle(`${materiaScope}${dropdownMenu}`, {
 	display: 'none',
 	minWidth: varBsDropdownMinWidth,
 	padding: `${varBsDropdownPaddingY} ${varBsDropdownPaddingX}`,
-	margin: 0,
+	margin: '0',
 	fontSize: varBsDropdownFontSize,
 	color: varBsDropdownColor,
 	textAlign: 'left',
 	listStyle: 'none',
 	backgroundColor: varBsDropdownBg,
 	backgroundClip: 'padding-box',
-	border: 'none',
+	border: `${varBsDropdownBorderWidth} solid ${varBsDropdownBorderColor}`,
 	borderRadius: varBsDropdownBorderRadius,
-	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.3)',
 })
 
 globalStyle(`${materiaScope}${dropdownMenu}[data-bs-popper]`, {
 	top: '100%',
-	left: 0,
-	marginTop: 0,
+	left: '0',
+	marginTop: varBsDropdownSpacer,
 })
-
-// Materia split dropdowns align 1px further left in baseline captures.
-globalStyle(`${materiaScope}${btnGroup} > ${dropdownMenu}[data-bs-popper]`, {
-	marginLeft: '-1px',
-})
-
-// ── Menu alignment modifiers ──────────────────────────────────────────────────
 
 globalStyle(`${materiaScope}${dropdownMenuStart}`, {
-	vars: { [varBsDropdownPosition]: 'start' },
+	vars: {
+		[varBsPosition]: 'start',
+	},
 })
+
 globalStyle(`${materiaScope}${dropdownMenuStart}[data-bs-popper]`, {
 	right: 'auto',
-	left: 0,
+	left: '0',
 })
 
 globalStyle(`${materiaScope}${dropdownMenuEnd}`, {
-	vars: { [varBsDropdownPosition]: 'end' },
+	vars: {
+		[varBsPosition]: 'end',
+	},
 })
+
 globalStyle(`${materiaScope}${dropdownMenuEnd}[data-bs-popper]`, {
-	right: 0,
+	right: '0',
 	left: 'auto',
 })
 
-// ── .dropup variant ───────────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${dropdownMenuSmStart}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
 
-globalStyle(`${materiaScope}${dropup} ${dropdownMenu}[data-bs-popper]`, {
+globalStyle(`${materiaScope}${dropdownMenuSmStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 576px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuSmEnd}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuSmEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 576px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuMdStart}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuMdStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 768px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuMdEnd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuMdEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 768px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuLgStart}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuLgStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 992px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuLgEnd}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuLgEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 992px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXlStart}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXlStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXlEnd}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXlEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXxlStart}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXxlStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXxlEnd}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropdownMenuXxlEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${dropup} ${materiaScope}${dropdownMenu}[data-bs-popper]`, {
 	top: 'auto',
 	bottom: '100%',
-	marginTop: 0,
+	marginTop: '0',
 	marginBottom: varBsDropdownSpacer,
 })
 
-globalStyle(`${materiaScope}${dropup} ${dropdownToggle}::after`, {
+globalStyle(`${materiaScope}${dropup} ${materiaScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
 	verticalAlign: '0.255em',
 	content: '""',
-	borderTop: 0,
+	borderTop: '0',
 	borderRight: '0.3em solid transparent',
 	borderBottom: '0.3em solid',
 	borderLeft: '0.3em solid transparent',
 })
 
-globalStyle(`${materiaScope}${dropup} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${materiaScope}${dropup} ${materiaScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropend variant ──────────────────────────────────────────────────────────
-
-globalStyle(`${materiaScope}${dropend} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownMenu}[data-bs-popper]`, {
+	top: '0',
 	right: 'auto',
 	left: '100%',
-	marginTop: 0,
+	marginTop: '0',
 	marginLeft: varBsDropdownSpacer,
 })
 
-globalStyle(`${materiaScope}${dropend} ${dropdownToggle}::after`, {
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
-	verticalAlign: 0,
+	verticalAlign: '0.255em',
 	content: '""',
 	borderTop: '0.3em solid transparent',
-	borderRight: 0,
+	borderRight: '0',
 	borderBottom: '0.3em solid transparent',
 	borderLeft: '0.3em solid',
 })
 
-globalStyle(`${materiaScope}${dropend} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropstart variant ────────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownToggle}::after`, {
+	verticalAlign: '0',
+})
 
-globalStyle(`${materiaScope}${dropstart} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownMenu}[data-bs-popper]`, {
+	top: '0',
 	right: '100%',
 	left: 'auto',
-	marginTop: 0,
+	marginTop: '0',
 	marginRight: varBsDropdownSpacer,
 })
 
-globalStyle(`${materiaScope}${dropstart} ${dropdownToggle}::after`, {
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggle}::after`, {
+	display: 'inline-block',
+	marginLeft: '0.255em',
+	verticalAlign: '0.255em',
+	content: '""',
+})
+
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggle}::after`, {
 	display: 'none',
 })
 
-globalStyle(`${materiaScope}${dropstart} ${dropdownToggle}::before`, {
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggle}::before`, {
 	display: 'inline-block',
 	marginRight: '0.255em',
-	verticalAlign: 0,
+	verticalAlign: '0.255em',
 	content: '""',
 	borderTop: '0.3em solid transparent',
 	borderRight: '0.3em solid',
 	borderBottom: '0.3em solid transparent',
 })
 
-globalStyle(`${materiaScope}${dropstart} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// Materia uses a larger caret than Bootstrap defaults.
-globalStyle(
-	[
-		`${materiaScope}${dropdownToggle}::after`,
-		`${materiaScope}${dropup} ${dropdownToggle}::after`,
-		`${materiaScope}${dropstart} ${dropdownToggle}::after`,
-		`${materiaScope}${dropend} ${dropdownToggle}::after`,
-	].join(', '),
-	{ borderWidth: '4px' },
-)
-
-// ── .dropdown-toggle-split ────────────────────────────────────────────────────
-
-globalStyle(`${materiaScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.75rem',
-	paddingLeft: '0.75rem',
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggle}::before`, {
+	verticalAlign: '0',
 })
-globalStyle(`${materiaScope}${dropdownToggleSplit}::after`, { marginLeft: 0 })
-globalStyle(
-	[
-		`${materiaScope}${dropup} ${dropdownToggleSplit}::after`,
-		`${materiaScope}${dropend} ${dropdownToggleSplit}::after`,
-	].join(', '),
-	{ marginLeft: 0 },
-)
-globalStyle(`${materiaScope}${dropstart} ${dropdownToggleSplit}::before`, {
-	marginRight: 0,
-})
-
-// ── .dropdown-divider ─────────────────────────────────────────────────────────
 
 globalStyle(`${materiaScope}${dropdownDivider}`, {
-	height: 0,
+	height: '0',
 	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: 'hidden',
-	border: 0,
 	borderTop: `1px solid ${varBsDropdownDividerBg}`,
-	opacity: 1,
+	opacity: '1',
 })
-
-// ── .dropdown-item ────────────────────────────────────────────────────────────
 
 globalStyle(`${materiaScope}${dropdownItem}`, {
 	display: 'block',
 	width: '100%',
 	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	clear: 'both',
-	fontWeight: 400,
+	fontWeight: '400',
 	color: varBsDropdownLinkColor,
 	textAlign: 'inherit',
 	textDecoration: 'none',
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
-	border: 0,
+	border: '0',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
-globalStyle(
-	`${materiaScope}${dropdownItem}:hover, ${materiaScope}${dropdownItem}:focus`,
-	{
-		color: varBsDropdownLinkHoverColor,
-		backgroundColor: varBsDropdownLinkHoverBg,
-	},
-)
+globalStyle(`${materiaScope}${dropdownItem}:hover`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+	backgroundImage: varBsGradient,
+})
 
-globalStyle(
-	`${materiaScope}${dropdownItem}${dropdownItemActive}, ${materiaScope}${dropdownItem}:active`,
-	{
-		color: varBsDropdownLinkActiveColor,
-		textDecoration: 'none',
-		backgroundColor: varBsDropdownLinkActiveBg,
-	},
-)
+globalStyle(`${materiaScope}${dropdownItem}:focus`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+	backgroundImage: varBsGradient,
+})
 
-globalStyle(
-	`${materiaScope}${dropdownItem}${dropdownItemDisabled}, ${materiaScope}${dropdownItem}:disabled`,
-	{
-		color: varBsDropdownLinkDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: 'transparent',
-	},
-)
+globalStyle(`${materiaScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+	backgroundImage: varBsGradient,
+})
 
-// ── .dropdown-menu.show ───────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${dropdownItem}:active`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+	backgroundImage: varBsGradient,
+})
 
-globalStyle(`${materiaScope}${dropdownMenu}${dropdownMenuShow}`, { display: 'block' })
+globalStyle(`${materiaScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
+	backgroundImage: 'none',
+})
 
-// ── .dropdown-header ──────────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${dropdownItem}:disabled`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
+	backgroundImage: 'none',
+})
+
+globalStyle(`${materiaScope}${dropdownMenu}${dropdownMenuShow}`, {
+	display: 'block',
+})
 
 globalStyle(`${materiaScope}${dropdownHeader}`, {
 	display: 'block',
 	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	fontSize: '0.875rem',
 	color: varBsDropdownHeaderColor,
 	whiteSpace: 'nowrap',
 })
-
-globalStyle(`${materiaScope}${dropdownHeader}${h6}`, {
-	marginBottom: 0,
-	fontSize: '0.875rem',
-	fontWeight: 500,
-	color: varBsDropdownHeaderColor,
-})
-
-// ── .dropdown-item-text ───────────────────────────────────────────────────────
 
 globalStyle(`${materiaScope}${dropdownItemText}`, {
 	display: 'block',
@@ -359,12 +590,10 @@ globalStyle(`${materiaScope}${dropdownItemText}`, {
 	color: varBsDropdownLinkColor,
 })
 
-// ── .dropdown-menu-dark ───────────────────────────────────────────────────────
-
 globalStyle(`${materiaScope}${dropdownMenuDark}`, {
 	vars: {
 		[varBsDropdownColor]: '#dee2e6',
-		[varBsDropdownBg]: '#343a40',
+		[varBsDropdownBg]: '#222',
 		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
 		[varBsDropdownBoxShadow]: '',
 		[varBsDropdownLinkColor]: '#dee2e6',
@@ -373,8 +602,107 @@ globalStyle(`${materiaScope}${dropdownMenuDark}`, {
 		[varBsDropdownLinkHoverBg]: 'rgba(255, 255, 255, 0.15)',
 		[varBsDropdownLinkActiveColor]: '#fff',
 		[varBsDropdownLinkActiveBg]: '#2196f3',
-		[varBsDropdownLinkDisabledColor]: '#adb5bd',
-		[varBsDropdownHeaderColor]: '#adb5bd',
+		[varBsDropdownLinkDisabledColor]: '#bbb',
+		[varBsDropdownHeaderColor]: '#bbb',
 	},
 })
 
+globalStyle(`${materiaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${dropup} ${materiaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${dropdownMenu}`, {
+	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	position: 'static',
+})
+
+globalStyle(`${materiaScope}${navbarExpandSm} ${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${navbarExpandMd} ${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${navbarExpandLg} ${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${navbarExpandXl} ${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${navbarExpandXxl} ${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${navbarExpand} ${materiaScope}${navbarNav} ${materiaScope}${dropdownMenu}`, {
+	position: 'absolute',
+})
+
+globalStyle(`${materiaScope}${dropdownToggle}::after`, {
+	borderWidth: '4px',
+})
+
+globalStyle(`${materiaScope}${dropup} ${materiaScope}${dropdownToggle}::after`, {
+	borderWidth: '4px',
+})
+
+globalStyle(`${materiaScope}${dropstart} ${materiaScope}${dropdownToggle}::after`, {
+	borderWidth: '4px',
+})
+
+globalStyle(`${materiaScope}${dropend} ${materiaScope}${dropdownToggle}::after`, {
+	borderWidth: '4px',
+})
+
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btn} + ${materiaScope}${btnGroup} > ${materiaScope}${dropdownToggle}`, {
+	boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${dropdownMenu}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${materiaScope}${dropdownMenu}`, {
+	marginTop: '0',
+	border: 'none',
+	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.3)',
+})

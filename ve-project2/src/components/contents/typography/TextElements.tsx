@@ -1,14 +1,19 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { markText, paragraph, smallText } from '../../../theme-contract/contents/contract.css'
+import { elEm, elS, elStrong } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
-import { markText, paragraph, smallText } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const TextElements: Component = () => {
@@ -18,13 +23,16 @@ const TextElements: Component = () => {
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<p class={`${theme} ${paragraph}`}>
-				You can use the mark tag to <mark class={`${theme} ${markText}`}>highlight</mark> text.
+				You can use the mark tag to <mark class={`${theme} ${markText}`}>highlight</mark>{' '}
+				text.
 			</p>
 			<p class={`${theme} ${paragraph}`}>
 				<del>This line of text is meant to be treated as deleted text.</del>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<s>This line of text is meant to be treated as no longer accurate.</s>
+				<s class={`${theme} ${elS}`}>
+					This line of text is meant to be treated as no longer accurate.
+				</s>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
 				<ins>This line of text is meant to be treated as an addition to the document.</ins>
@@ -33,13 +41,15 @@ const TextElements: Component = () => {
 				<u>This line of text will render as underlined.</u>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<small class={`${theme} ${smallText}`}>This line of text is meant to be treated as fine print.</small>
+				<small class={`${theme} ${smallText}`}>
+					This line of text is meant to be treated as fine print.
+				</small>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<strong>This line rendered as bold text.</strong>
+				<strong class={`${theme} ${elStrong}`}>This line rendered as bold text.</strong>
 			</p>
 			<p class={`${theme} ${paragraph}`}>
-				<em>This line rendered as italicized text.</em>
+				<em class={`${theme} ${elEm}`}>This line rendered as italicized text.</em>
 			</p>
 		</div>
 	)

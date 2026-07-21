@@ -1,57 +1,71 @@
-import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { elB, elButton, elEm } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	border,
+	bsTooltipAuto,
+	flexColumn,
+	justifyContentCenter,
+	tooltip,
+} from '../../../theme-contract/literal/contract.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
-frame,
-frameColumn,
-justifyCenter,
-tooltipArrow,
-tooltipInner,
-tooltipVe,
+	frame,
+	frameColumn,
+	justifyCenter,
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
+import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
+import { createVeTooltip } from './ve-tooltip'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/tooltips',
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const HtmlTooltip: Component = () => {
-const theme = useContext(ThemeContext)
+	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-const VeTooltip = (
-bootstrap.Tooltip as unknown as BootstrapWithDefaults<typeof bootstrap.Tooltip>
-).extendDefaultConfig({
-SELECTOR_ARROW: `.${tooltipArrow}`,
-SELECTOR_TOOLTIP_INNER: `.${tooltipInner}`,
-}) as typeof bootstrap.Tooltip
+	const VeTooltip = createVeTooltip({ tooltipArrow, tooltipInner })
 
-return (
-<div class={`bd-example ${theme} ${containerFluid} ${frame} ${frameColumn} ${justifyCenter}`}>
-<button
-type="button"
-class={`${theme} ${btn} ${btnSecondary} pwhook-tooltip-trigger`}
-data-bs-toggle="tooltip"
-data-bs-custom-class="pwhook-tooltip"
-ref={(tooltip) =>
-new VeTooltip(tooltip, {
-	animation: false,
-template: `<div class="${tooltipVe} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
-})
-}
-data-bs-html="true"
-title="<em>Tooltip</em> <u>with</u> <b>HTML</b>"
->
-Tooltip with HTML
-</button>
-</div>
-)
+	return (
+		<div
+			class={`bd-example ${theme} ${containerFluid} ${frame} ${frameColumn} ${justifyCenter} ${dFlex} ${flexColumn} ${alignItemsCenter} ${justifyContentCenter} ${border}`}
+		>
+			<button
+				type="button"
+				class={`${theme} ${elButton} ${btn} ${btnSecondary} pwhook-tooltip-trigger`}
+				data-bs-toggle="tooltip"
+				data-bs-custom-class="pwhook-tooltip"
+				ref={(el) =>
+					new VeTooltip(el, {
+						template: `<div class="${tooltipVe} ${tooltip} ${bsTooltipAuto} ${tooltipFade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+						html: true,
+						// Stamp scope + element contracts so the injected <b>/<em> pick up sketchy's
+						// `b,strong{font-family:Cabin Sketch; font-weight:bolder}` element rules.
+						// Title is passed in config (not the `title` attribute) because SolidJS sets a
+						// dynamic `title={…}` in an effect AFTER this ref, so the tooltip would be
+						// constructed with an empty title and never show.
+						title: `<em class="${theme} ${elEm}">Tooltip</em> <u>with</u> <b class="${theme} ${elB}">HTML</b>`,
+					})
+				}
+			>
+				Tooltip with HTML
+			</button>
+		</div>
+	)
 }
 
 export default HtmlTooltip

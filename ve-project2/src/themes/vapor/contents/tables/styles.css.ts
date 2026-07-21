@@ -1,8 +1,10 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../../scope.css'
+
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsEmphasisColorRgb,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -21,80 +23,34 @@ import {
 	varBsTableStripedBg,
 	varBsTableStripedColor,
 } from '../../../../theme-contract/contents/_vars.css'
+
+import { tableHead, tableRow, tableSection } from '../../../../theme-contract/contents/tables/contract.css'
+
 import {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	link,
+	table,
+	tableActive,
 	tableBordered,
 	tableBorderless,
-	tableCell,
 	tableDanger,
 	tableDark,
-	tableElement,
-	tableHeaderCell,
+	tableGroupDivider,
 	tableHover,
 	tableInfo,
 	tableLight,
 	tablePrimary,
-	tableRow,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
 	tableSecondary,
-	tableSection,
 	tableSm,
 	tableStriped,
+	tableStripedColumns,
 	tableSuccess,
 	tableWarning,
-	table,
-} from '../../../../theme-contract/contents/contract.css'
-import { vaporScope } from '../../scope.css'
-
-const cssVarName = (token: string) => token.slice(4, -1)
-
-// ─── Tables ───────────────────────────────────────────────────────────────────
-
-globalStyle(`${vaporScope}${tableElement}`, {
-	captionSide: 'bottom',
-	borderCollapse: 'collapse',
-})
-
-// Bootstrap reboot: thead, tbody, tfoot, tr { border-color: inherit; border-style: solid; border-width: 0 }
-globalStyle(`${vaporScope}${tableSection}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-globalStyle(`${vaporScope}${tableRow}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-// Bootstrap reboot: td, th { border-color: inherit; border-style: solid; border-width: 0 }
-globalStyle(`${vaporScope}${tableCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-// Bootstrap reboot: th { border-color: inherit; border-style: solid; border-width: 0; text-align: inherit }
-globalStyle(`${vaporScope}${tableHeaderCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-	textAlign: 'inherit',
-})
-
-globalStyle(`${vaporScope}${tableElement} > thead`, {
-	verticalAlign: 'bottom',
-})
-
-globalStyle(`${vaporScope}${tableElement} > tbody`, {
-	verticalAlign: 'inherit',
-})
+} from '../../../../theme-contract/contents/tables/contract.css'
 
 globalStyle(`${vaporScope}${table}`, {
 	vars: {
@@ -121,10 +77,26 @@ globalStyle(`${vaporScope}${table}`, {
 
 globalStyle(`${vaporScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: `var(${cssVarName(varBsTableColorState)}, var(${cssVarName(varBsTableColorType)}, ${varBsTableColor}))`,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px var(${cssVarName(varBsTableBgState)}, var(${cssVarName(varBsTableBgType)}, ${varBsTableAccentBg}))`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
+})
+
+globalStyle(`${vaporScope}${table} > ${vaporScope}${tableSection}`, {
+	verticalAlign: 'inherit',
+})
+
+globalStyle(`${vaporScope}${table} > ${vaporScope}${tableHead}`, {
+	verticalAlign: 'bottom',
+})
+
+globalStyle(`${vaporScope}${tableGroupDivider}`, {
+	borderTop: `calc(${varBsBorderWidth} * 2) solid currentcolor`,
+})
+
+globalStyle(`${vaporScope}${tableSm} > :not(caption) > * > *`, {
+	padding: '0.25rem 0.25rem',
 })
 
 globalStyle(`${vaporScope}${tableBordered} > :not(caption) > *`, {
@@ -136,50 +108,39 @@ globalStyle(`${vaporScope}${tableBordered} > :not(caption) > * > *`, {
 })
 
 globalStyle(`${vaporScope}${tableBorderless} > :not(caption) > * > *`, {
-	borderBottomWidth: 0,
+	borderBottomWidth: '0',
 })
 
 globalStyle(`${vaporScope}${tableBorderless} > :not(:first-child)`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-globalStyle(`${vaporScope}${tableSm} > :not(caption) > * > *`, {
-	padding: '0.25rem 0.25rem',
-})
-
-globalStyle(`${vaporScope}${tableStriped} > tbody > tr:nth-of-type(odd) > *`, {
+globalStyle(`${vaporScope}${tableStriped} > ${vaporScope}${tableSection} > ${vaporScope}${tableRow}:nth-of-type(odd) > *`, {
 	vars: {
 		[varBsTableColorType]: varBsTableStripedColor,
 		[varBsTableBgType]: varBsTableStripedBg,
 	},
 })
 
-globalStyle(`${vaporScope}${tableHover} > tbody > tr:hover > *`, {
+globalStyle(`${vaporScope}${tableStripedColumns} > :not(caption) > ${vaporScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
+	},
+})
+
+globalStyle(`${vaporScope}${tableActive}`, {
+	vars: {
+		[varBsTableColorState]: varBsTableActiveColor,
+		[varBsTableBgState]: varBsTableActiveBg,
+	},
+})
+
+globalStyle(`${vaporScope}${tableHover} > ${vaporScope}${tableSection} > ${vaporScope}${tableRow}:hover > *`, {
 	vars: {
 		[varBsTableColorState]: varBsTableHoverColor,
 		[varBsTableBgState]: varBsTableHoverBg,
 	},
-})
-
-globalStyle(`${vaporScope}${tableElement}, ${vaporScope}${table}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
-})
-
-globalStyle(`${vaporScope}${tableDark}`, {
-	vars: {
-		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#170229',
-		[varBsTableBorderColor]: '#453554',
-		[varBsTableStripedBg]: '#230f34',
-		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#2e1b3e',
-		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#281539',
-		[varBsTableHoverColor]: '#fff',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
 globalStyle(`${vaporScope}${tablePrimary}`, {
@@ -214,22 +175,6 @@ globalStyle(`${vaporScope}${tableSecondary}`, {
 	borderColor: varBsTableBorderColor,
 })
 
-globalStyle(`${vaporScope}${tableDanger}`, {
-	vars: {
-		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#e44c55',
-		[varBsTableBorderColor]: '#e97077',
-		[varBsTableStripedBg]: '#e5555e',
-		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#e75e66',
-		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#e65962',
-		[varBsTableHoverColor]: '#fff',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
 globalStyle(`${vaporScope}${tableSuccess}`, {
 	vars: {
 		[varBsTableColor]: '#fff',
@@ -240,6 +185,22 @@ globalStyle(`${vaporScope}${tableSuccess}`, {
 		[varBsTableActiveBg]: '#50f38e',
 		[varBsTableActiveColor]: '#fff',
 		[varBsTableHoverBg]: '#4bf38a',
+		[varBsTableHoverColor]: '#fff',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${vaporScope}${tableInfo}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#1ba2f6',
+		[varBsTableBorderColor]: '#49b5f8',
+		[varBsTableStripedBg]: '#26a7f6',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#32abf7',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#2ca9f7',
 		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
@@ -261,16 +222,17 @@ globalStyle(`${vaporScope}${tableWarning}`, {
 	color: varBsTableColor,
 	borderColor: varBsTableBorderColor,
 })
-globalStyle(`${vaporScope}${tableInfo}`, {
+
+globalStyle(`${vaporScope}${tableDanger}`, {
 	vars: {
 		[varBsTableColor]: '#fff',
-		[varBsTableBg]: '#1ba2f6',
-		[varBsTableBorderColor]: '#49b5f8',
-		[varBsTableStripedBg]: '#26a7f6',
+		[varBsTableBg]: '#e44c55',
+		[varBsTableBorderColor]: '#e97077',
+		[varBsTableStripedBg]: '#e5555e',
 		[varBsTableStripedColor]: '#fff',
-		[varBsTableActiveBg]: '#32abf7',
+		[varBsTableActiveBg]: '#e75e66',
 		[varBsTableActiveColor]: '#fff',
-		[varBsTableHoverBg]: '#2ca9f7',
+		[varBsTableHoverBg]: '#e65962',
 		[varBsTableHoverColor]: '#fff',
 	},
 	color: varBsTableColor,
@@ -293,17 +255,72 @@ globalStyle(`${vaporScope}${tableLight}`, {
 	borderColor: varBsTableBorderColor,
 })
 
-globalStyle(
-	`${vaporScope}${h1}, ${vaporScope}${h2}, ${vaporScope}${h3}, ${vaporScope}${h4}, ${vaporScope}${h5}, ${vaporScope}${h6}`,
-	{
-		textShadow:
-			'0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2)',
+globalStyle(`${vaporScope}${tableDark}`, {
+	vars: {
+		[varBsTableColor]: '#fff',
+		[varBsTableBg]: '#170229',
+		[varBsTableBorderColor]: '#453554',
+		[varBsTableStripedBg]: '#230f34',
+		[varBsTableStripedColor]: '#fff',
+		[varBsTableActiveBg]: '#2e1b3e',
+		[varBsTableActiveColor]: '#fff',
+		[varBsTableHoverBg]: '#281539',
+		[varBsTableHoverColor]: '#fff',
 	},
-)
-
-globalStyle(`${vaporScope}${link}`, {
-	textShadow:
-		'0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
 })
 
-// horizontalRule Vapor override consolidated into the rule at line 112.
+globalStyle(`${vaporScope}${tableResponsive}`, {
+	overflowX: 'auto',
+	WebkitOverflowScrolling: 'touch',
+})
+
+globalStyle(`${vaporScope}${tableResponsiveSm}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${tableResponsiveMd}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${tableResponsiveLg}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${tableResponsiveXl}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${tableResponsiveXxl}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${table}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+})

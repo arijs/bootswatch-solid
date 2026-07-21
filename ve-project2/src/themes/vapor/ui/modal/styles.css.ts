@@ -1,7 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { vaporScope } from '../../scope.css'
+
 import {
-	varBsBodyBg,
-	varBsBodyColor,
 	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
@@ -9,26 +9,6 @@ import {
 	varBsBoxShadow,
 	varBsBoxShadowSm,
 } from '../../../../theme-contract/_vars.css'
-import {
-	actionsRow,
-	fade,
-	flexWrap,
-	justifyContentBetween,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFade,
-	modalFooter,
-	modalFullscreen,
-	modalHeader,
-	modalOpenHook,
-	modalShowHook,
-	modalTitle,
-} from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	varBsBackdropBg,
 	varBsBackdropOpacity,
@@ -55,23 +35,64 @@ import {
 	varBsModalWidth,
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
-import { alertBtnClose } from '../../../../theme-contract/ui/alerts/contract.css'
-import { vaporScope } from '../../scope.css'
 
-globalStyle(`${vaporScope}${actionsRow}`, {
-	display: 'flex',
-})
+import {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../../theme-contract/contents/heading/contract.css'
 
-globalStyle(`${vaporScope}${justifyContentBetween}`, {
-	justifyContent: 'space-between',
-})
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	modalFullscreenLgDown,
+	modalFullscreenMdDown,
+	modalFullscreenSmDown,
+	modalFullscreenXlDown,
+	modalFullscreenXxlDown,
+	modalLg,
+	modalSm,
+	modalStatic,
+	modalXl,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	justifyContentBetween,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalShowHook,
+	modalTitle,
+} from '../../../../theme-contract/ui/modal/contract.css'
 
-globalStyle(`${vaporScope}${flexWrap}`, {
-	flexWrap: 'wrap',
-})
-
-globalStyle(`${vaporScope}${fade}`, {
+globalStyle(`${vaporScope}${modalFade}`, {
 	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${vaporScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFade}:not(${modalShowHook})`, {
+	opacity: '0',
 })
 
 globalStyle(`${vaporScope}${modal}`, {
@@ -80,8 +101,8 @@ globalStyle(`${vaporScope}${modal}`, {
 		[varBsModalWidth]: '500px',
 		[varBsModalPadding]: '1rem',
 		[varBsModalMargin]: '0.5rem',
-		[varBsModalColor]: varBsBodyColor,
-		[varBsModalBg]: varBsBodyBg,
+		[varBsModalColor]: '#fff',
+		[varBsModalBg]: '#6f42c1',
 		[varBsModalBorderColor]: varBsBorderColorTranslucent,
 		[varBsModalBorderWidth]: varBsBorderWidth,
 		[varBsModalBorderRadius]: varBsBorderRadiusLg,
@@ -94,20 +115,20 @@ globalStyle(`${vaporScope}${modal}`, {
 		[varBsModalHeaderBorderWidth]: varBsBorderWidth,
 		[varBsModalTitleLineHeight]: '1.5',
 		[varBsModalFooterGap]: '0.5rem',
-		[varBsModalFooterBg]: 'transparent',
+		[varBsModalFooterBg]: '',
 		[varBsModalFooterBorderColor]: varBsBorderColor,
 		[varBsModalFooterBorderWidth]: varBsBorderWidth,
 	},
 	position: 'fixed',
-	top: 0,
-	left: 0,
+	top: '0',
+	left: '0',
 	zIndex: varBsModalZindex,
 	display: 'none',
 	width: '100%',
 	height: '100%',
 	overflowX: 'hidden',
 	overflowY: 'auto',
-	outline: 0,
+	outline: '0',
 })
 
 globalStyle(`${vaporScope}${modalDialog}`, {
@@ -117,21 +138,44 @@ globalStyle(`${vaporScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
+globalStyle(`${vaporScope}${modal}${modalFade} ${vaporScope}${modalDialog}`, {
+	transform: 'translate(0, -50px)',
+	transition: 'transform 0.3s ease-out',
+})
+
+globalStyle(`${vaporScope}${modal}${modalFade} ${vaporScope}${modalDialog}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modal}${modalShowHook} ${vaporScope}${modalDialog}`, {
+	transform: 'none',
+})
+
+globalStyle(`${vaporScope}${modal}${modalStatic} ${vaporScope}${modalDialog}`, {
+	transform: 'scale(1.02)',
+})
+
 globalStyle(`${vaporScope}${modalDialogScrollable}`, {
 	height: `calc(100% - ${varBsModalMargin} * 2)`,
+})
+
+globalStyle(`${vaporScope}${modalDialogScrollable} ${vaporScope}${modalContent}`, {
+	maxHeight: '100%',
+	overflow: 'hidden',
+})
+
+globalStyle(`${vaporScope}${modalDialogScrollable} ${vaporScope}${modalBody}`, {
+	overflowY: 'auto',
 })
 
 globalStyle(`${vaporScope}${modalDialogCentered}`, {
 	display: 'flex',
 	alignItems: 'center',
 	minHeight: `calc(100% - ${varBsModalMargin} * 2)`,
-})
-
-globalStyle(`${vaporScope}${modalFullscreen}`, {
-	width: '100vw',
-	maxWidth: 'none',
-	height: '100%',
-	margin: 0,
 })
 
 globalStyle(`${vaporScope}${modalContent}`, {
@@ -145,12 +189,35 @@ globalStyle(`${vaporScope}${modalContent}`, {
 	backgroundClip: 'padding-box',
 	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
-	outline: 0,
+	outline: '0',
+})
+
+globalStyle(`${vaporScope}${modalBackdrop}`, {
+	vars: {
+		[varBsBackdropZindex]: '1050',
+		[varBsBackdropBg]: '#000',
+		[varBsBackdropOpacity]: '0.5',
+	},
+	position: 'fixed',
+	top: '0',
+	left: '0',
+	zIndex: varBsBackdropZindex,
+	width: '100vw',
+	height: '100vh',
+	backgroundColor: varBsBackdropBg,
+})
+
+globalStyle(`${vaporScope}${modalBackdrop}${modalFade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${vaporScope}${modalBackdrop}${modalShowHook}`, {
+	opacity: varBsBackdropOpacity,
 })
 
 globalStyle(`${vaporScope}${modalHeader}`, {
 	display: 'flex',
-	flexShrink: 0,
+	flexShrink: '0',
 	alignItems: 'center',
 	padding: varBsModalHeaderPadding,
 	borderBottom: `${varBsModalHeaderBorderWidth} solid ${varBsModalHeaderBorderColor}`,
@@ -158,8 +225,8 @@ globalStyle(`${vaporScope}${modalHeader}`, {
 	borderTopRightRadius: varBsModalInnerBorderRadius,
 })
 
-globalStyle(`${vaporScope}${modalHeader} ${modalTitle}`, {
-	marginBottom: 0,
+globalStyle(`${vaporScope}${modalTitle}`, {
+	marginBottom: '0',
 	lineHeight: varBsModalTitleLineHeight,
 })
 
@@ -169,14 +236,9 @@ globalStyle(`${vaporScope}${modalBody}`, {
 	padding: varBsModalPadding,
 })
 
-globalStyle(`${vaporScope}${modalBody} p`, {
-	marginTop: 0,
-	marginBottom: '1rem',
-})
-
 globalStyle(`${vaporScope}${modalFooter}`, {
 	display: 'flex',
-	flexShrink: 0,
+	flexShrink: '0',
 	flexWrap: 'wrap',
 	alignItems: 'center',
 	justifyContent: 'flex-end',
@@ -187,102 +249,8 @@ globalStyle(`${vaporScope}${modalFooter}`, {
 	borderBottomLeftRadius: varBsModalInnerBorderRadius,
 })
 
-globalStyle(`${vaporScope}${fade}:not(.${modalShowHook})`, {
-	opacity: 0,
-})
-
-globalStyle(`${vaporScope}${modal}.${modalShowHook}`, {
-	display: 'block',
-})
-
-globalStyle(`${vaporScope}${modalFade}.${fade} .${modalDialog}`, {
-	transform: 'translate(0, -50px)',
-	transition: 'transform 0.3s ease-out',
-})
-
-globalStyle(`${vaporScope}${modal}.${modalShowHook} .${modalDialog}`, {
-	transform: 'none',
-})
-
-globalStyle(`${vaporScope}${modalDialogScrollable} ${modalContent}`, {
-	maxHeight: '100%',
-	overflow: 'hidden',
-})
-
-globalStyle(`${vaporScope}${modalDialogScrollable} ${modalBody}`, {
-	overflowY: 'auto',
-})
-
-globalStyle(`${vaporScope}${modalFullscreen} ${modalContent}`, {
-	height: '100%',
-	border: 0,
-	borderRadius: 0,
-})
-
-globalStyle(`${vaporScope}${modalFullscreen} ${modalHeader}, ${vaporScope}${modalFullscreen} ${modalFooter}`, {
-	borderRadius: 0,
-})
-
-globalStyle(`${vaporScope}${modalFullscreen} ${modalBody}`, {
-	overflowY: 'auto',
-})
-
-globalStyle(`${vaporScope}${modalHeader} ${alertBtnClose}`, {
-	position: 'relative',
-	top: 'auto',
-	right: 'auto',
-	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
-	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
-	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginLeft: 'auto',
-})
-
 globalStyle(`${vaporScope}${modalFooter} > *`, {
 	margin: `calc(${varBsModalFooterGap} * 0.5)`,
-})
-
-globalStyle(`body.${modalOpenHook}`, {
-	overflow: 'hidden',
-})
-
-globalStyle(`${vaporScope}${modalBackdrop}`, {
-	vars: {
-		[varBsBackdropZindex]: '1050',
-		[varBsBackdropBg]: '#000',
-		[varBsBackdropOpacity]: '0.5',
-	},
-	position: 'fixed',
-	top: 0,
-	left: 0,
-	zIndex: varBsBackdropZindex,
-	width: '100vw',
-	height: '100vh',
-	backgroundColor: varBsBackdropBg,
-})
-
-globalStyle(`${vaporScope}${modalBackdrop}.${fade}`, {
-	opacity: 0,
-})
-
-globalStyle(`${vaporScope}${modalBackdrop}.${modalShowHook}`, {
-	opacity: varBsBackdropOpacity,
-})
-
-globalStyle(`${vaporScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${modalFade}.${fade} .${modalDialog}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
 })
 
 globalStyle(`${vaporScope}${modal}`, {
@@ -306,28 +274,352 @@ globalStyle(`${vaporScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${vaporScope}${modalFullscreen}`, {
+globalStyle(`${vaporScope}${modalSm}`, {
 	'@media': {
 		'(min-width: 576px)': {
-			maxWidth: 'unset',
+			vars: {
+				[varBsModalWidth]: '300px',
+			},
 		},
 	},
 })
 
-globalStyle(`${vaporScope}${modal}`, {
-	vars: {
-		[varBsModalColor]: '#fff',
-		[varBsModalBg]: '#6f42c1',
+globalStyle(`${vaporScope}${modalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
 	},
 })
 
-globalStyle(`${vaporScope}${modalContent}`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
-	boxShadow: '0 0 2rem rgba(125,85,199,0.4), 0 0 8rem rgba(125,85,199,0.3)',
+globalStyle(`${vaporScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
 })
 
-globalStyle(`${vaporScope}${modalContent} h1, ${vaporScope}${modalContent} h2, ${vaporScope}${modalContent} h3, ${vaporScope}${modalContent} h4, ${vaporScope}${modalContent} h5, ${vaporScope}${modalContent} h6`, {
-	textShadow:
-		'0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+globalStyle(`${vaporScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsModalWidth]: '1140px',
+			},
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreen}`, {
+	width: '100vw',
+	maxWidth: 'none',
+	height: '100%',
+	margin: '0',
+})
+
+globalStyle(`${vaporScope}${modalFullscreen} ${vaporScope}${modalContent}`, {
+	height: '100%',
+	border: '0',
+	borderRadius: '0',
+})
+
+globalStyle(`${vaporScope}${modalFullscreen} ${vaporScope}${modalHeader}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${vaporScope}${modalFullscreen} ${vaporScope}${modalFooter}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${vaporScope}${modalFullscreen} ${vaporScope}${modalBody}`, {
+	overflowY: 'auto',
+})
+
+globalStyle(`${vaporScope}${modalFullscreenSmDown}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenSmDown} ${vaporScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenSmDown} ${vaporScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenSmDown} ${vaporScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenSmDown} ${vaporScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenMdDown}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenMdDown} ${vaporScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenMdDown} ${vaporScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenMdDown} ${vaporScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenMdDown} ${vaporScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenLgDown}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenLgDown} ${vaporScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenLgDown} ${vaporScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenLgDown} ${vaporScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenLgDown} ${vaporScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXlDown}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXlDown} ${vaporScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXlDown} ${vaporScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXlDown} ${vaporScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXlDown} ${vaporScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXxlDown}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXxlDown} ${vaporScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXxlDown} ${vaporScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXxlDown} ${vaporScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${modalFullscreenXxlDown} ${vaporScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${vaporScope}${justifyContentBetween}`, {
+	justifyContent: 'space-between !important',
+})
+
+globalStyle(`${vaporScope}${modal}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${h6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH1}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH2}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH3}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH4}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH5}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modal} ${vaporScope}${clsH6}`, {
+	textShadow: '0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2)',
+})
+
+globalStyle(`${vaporScope}${modalContent}`, {
+	boxShadow: '0 0 2rem rgba(125, 85, 199, 0.4), 0 0 8rem rgba(125, 85, 199, 0.3)',
 })

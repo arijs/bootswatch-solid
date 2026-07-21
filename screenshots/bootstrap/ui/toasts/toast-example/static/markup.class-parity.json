@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "totalElements": 13,
+    "elementsChecked": 13,
+    "elementsWithGaps": 1,
+    "totalExpected": 13,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/svg[1]",
+      "tag": "svg",
+      "baselineClasses": [
+        "bd-placeholder-img",
+        "rounded",
+        "me-2"
+      ],
+      "expectedSymbols": [
+        "rounded",
+        "me2"
+      ],
+      "stampedSymbols": [
+        "elSvg",
+        "rounded",
+        "me2"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "bd-placeholder-img"
+      ]
+    }
+  ]
+}

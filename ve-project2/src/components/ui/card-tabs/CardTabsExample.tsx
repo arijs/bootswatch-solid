@@ -1,20 +1,16 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { col, g4, row } from '../../../theme-contract/utilities/contract.css'
-import {
-	cardHeaderTabs,
-} from '../../../theme-contract/ui/card-tabs/contract.css'
-import {
-	nav,
-	navItem,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navTabs,
-} from '../../../theme-contract/ui/navs/contract.css'
+import { active, disabled, textCenter } from '../../../theme-contract/literal/contract.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { btn, btnPrimary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	card,
@@ -23,6 +19,17 @@ import {
 	cardText,
 	cardTitle,
 } from '../../../theme-contract/ui/card/contract.css'
+import { cardHeaderTabs } from '../../../theme-contract/ui/card-tabs/contract.css'
+import {
+	nav,
+	navButtonReset,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navTabs,
+} from '../../../theme-contract/ui/navs/contract.css'
+import { col, g4, row } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card-tabs',
@@ -31,22 +38,22 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const CardTabsExample: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
-		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<div class={`${theme} ${row} ${g4}`}>
 				<div class={`${theme} ${col}`}>
-					<div class={`${theme} ${card}`} style={{ 'text-align': 'center' }}>
+					<div class={`${theme} ${card} ${textCenter}`}>
 						<div class={`${theme} ${cardHeader}`}>
 							<ul class={`${theme} ${nav} ${navTabs} ${cardHeaderTabs}`}>
 								<li class={`${theme} ${navItem}`}>
 									<button
-										class={`${theme} ${navLink} ${navLinkActive}`}
+										class={`${theme} ${elButton} ${navButtonReset} ${navLink} ${navLinkActive} ${active}`}
 										type="button"
 										aria-current="true"
 									>
@@ -55,14 +62,18 @@ const CardTabsExample: Component = () => {
 								</li>
 								<li class={`${theme} ${navItem}`}>
 									{/* biome-ignore lint: <a> is used for demonstration purposes */}
-									<a class={`${theme} ${navLink}`} href="#" onClick={(e) => e.preventDefault()}>
+									<a
+										class={`${theme} ${link} ${navLink}`}
+										href="#"
+										onClick={(e) => e.preventDefault()}
+									>
 										Link
 									</a>
 								</li>
 								<li class={`${theme} ${navItem}`}>
 									{/* biome-ignore lint: <a> is used for demonstration purposes */}
 									<a
-										class={`${theme} ${navLink} ${navLinkDisabled}`}
+										class={`${theme} ${link} ${navLink} ${navLinkDisabled} ${disabled}`}
 										aria-disabled="true"
 										href="#"
 										onClick={(e) => e.preventDefault()}
@@ -75,10 +86,15 @@ const CardTabsExample: Component = () => {
 						<div class={`${theme} ${cardBody}`}>
 							<h5 class={`${theme} ${cardTitle} ${h5}`}>Special title treatment</h5>
 							<p class={`${theme} ${cardText} ${paragraph}`}>
-								With supporting text below as a natural lead-in to additional content.
+								With supporting text below as a natural lead-in to additional
+								content.
 							</p>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
-							<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${btn} ${btnPrimary}`}>
+							<a
+								href="#"
+								onClick={(e) => e.preventDefault()}
+								class={`${theme} ${link} ${btn} ${btnPrimary}`}
+							>
 								Go somewhere
 							</a>
 						</div>

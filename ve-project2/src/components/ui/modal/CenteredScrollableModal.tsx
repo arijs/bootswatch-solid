@@ -1,14 +1,25 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { h5 } from '../../../theme-contract/contents/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { h5 } from '../../../theme-contract/contents/heading/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { btnClose } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
-import { btn, btnPrimary, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import {
+	btn,
+	btnPrimary,
+	btnSecondary,
+	inputFontFamily,
+} from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	actionsRow,
-	fade,
 	flexWrap,
 	justifyContentBetween,
 	modal,
@@ -25,6 +36,7 @@ import {
 	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
+import { dFlex } from '../../../theme-contract/utilities/contract.css'
 import { configureVeModal } from './ve-modal'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -33,21 +45,28 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const CenteredScrollableModal: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const modalName = modal
-	configureVeModal({ name: modalName, fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
+	configureVeModal({
+		name: modalName,
+		modalBackdrop: `${theme} ${modalBackdrop}`,
+		modalBody,
+		modalDialog,
+		modalOpenHook: `${theme} ${modalOpenHook}`,
+		modalShowHook,
+	})
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
-				<div class={`${theme} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
+				<div class={`${theme} ${dFlex} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
 					<button
 						type="button"
-						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
+						class={`${theme} ${elButton} ${btn} ${btnPrimary} pwhook-modal-trigger`}
 						data-bs-toggle={modalName}
 						data-bs-target="#exampleModalCenteredScrollable"
 					>
@@ -56,7 +75,7 @@ const CenteredScrollableModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} ${fade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
 				id="exampleModalCenteredScrollable"
 				tabindex="-1"
 				role="dialog"
@@ -64,7 +83,9 @@ const CenteredScrollableModal: Component = () => {
 				aria-labelledby="exampleModalCenteredScrollableTitle"
 				aria-hidden="true"
 			>
-				<div class={`${theme} ${modalDialog} ${modalDialogCentered} ${modalDialogScrollable}`}>
+				<div
+					class={`${theme} ${modalDialog} ${modalDialogCentered} ${modalDialogScrollable}`}
+				>
 					<div class={`${theme} ${modalContent}`}>
 						<div class={`${theme} ${modalHeader}`}>
 							<h5
@@ -75,21 +96,21 @@ const CenteredScrollableModal: Component = () => {
 							</h5>
 							<button
 								type="button"
-								class={`${theme} ${alertBtnClose}`}
+								class={`${theme} ${elButton} ${alertBtnClose} ${btnClose} ${inputFontFamily}`}
 								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
 						</div>
 						<div class={`${theme} ${modalBody}`}>
-							<p>
+							<p class={`${theme} ${paragraph}`}>
 								Placeholder text for this demonstration of a vertically centered
 								modal dialog.
 							</p>
-							<p>
+							<p class={`${theme} ${paragraph}`}>
 								In this case, the dialog has a bit more content, just to show how
 								vertical centering can be added to a scrollable modal.
 							</p>
-							<p>
+							<p class={`${theme} ${paragraph}`}>
 								What follows is just some placeholder text for this modal dialog.
 								Sipping on Rose, Silver Lake sun, coming up all lazy. It's in the
 								palm of your hand now baby. So we hit the boulevard. So make a wish,
@@ -98,7 +119,7 @@ const CenteredScrollableModal: Component = () => {
 								You could've been the greatest. Passport stamps, she's cosmopolitan.
 								Your kiss is cosmic, every move is magic.
 							</p>
-							<p>
+							<p class={`${theme} ${paragraph}`}>
 								We're living the life. We're doing it right. Open up your heart. I
 								was tryna hit it and quit it. Her love is like a drug. Always leaves
 								a trail of stardust. The girl's a freak, she drive a jeep in Laguna
@@ -109,12 +130,15 @@ const CenteredScrollableModal: Component = () => {
 						<div class={`${theme} ${modalFooter}`}>
 							<button
 								type="button"
-								class={`${theme} ${btn} ${btnSecondary}`}
+								class={`${theme} ${elButton} ${btn} ${btnSecondary}`}
 								data-bs-dismiss={`.${modalName}`}
 							>
 								Close
 							</button>
-							<button type="button" class={`${theme} ${btn} ${btnPrimary}`}>
+							<button
+								type="button"
+								class={`${theme} ${elButton} ${btn} ${btnPrimary}`}
+							>
 								Save changes
 							</button>
 						</div>

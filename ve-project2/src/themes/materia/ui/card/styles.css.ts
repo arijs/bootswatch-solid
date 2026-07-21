@@ -1,17 +1,18 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
 	varBsBodyColorRgb,
-	varBsBorderColor,
 	varBsBorderRadius,
-	varBsBorderWidth,
 } from '../../../../theme-contract/_vars.css'
 import {
 	varBsCardBg,
 	varBsCardBorderColor,
 	varBsCardBorderRadius,
 	varBsCardBorderWidth,
+	varBsCardBoxShadow,
 	varBsCardCapBg,
 	varBsCardCapColor,
 	varBsCardCapPaddingX,
@@ -25,22 +26,17 @@ import {
 	varBsCardSubtitleColor,
 	varBsCardTitleColor,
 	varBsCardTitleSpacerY,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardHeight } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { horizontalRule } from '../../../../theme-contract/contents/basic/contract.css'
+
+import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
 	cardBody,
 	cardFooter,
 	cardHeader,
-	cardHorizontalColBody,
-	cardHorizontalColImg,
-	cardHorizontalRow,
 	cardImg,
 	cardImgBottom,
 	cardImgTop,
@@ -49,35 +45,8 @@ import {
 	cardText,
 	cardTitle,
 } from '../../../../theme-contract/ui/card/contract.css'
-import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-} from '../../../../theme-contract/ui/list-group/contract.css'
-import { materiaScope } from '../../scope.css'
+import { listGroup } from '../../../../theme-contract/ui/list-group/contract.css'
 
-// ── Card base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card {
-//   --bs-card-spacer-y: 1rem; --bs-card-spacer-x: 1rem;
-//   --bs-card-title-spacer-y: 0.5rem; --bs-card-title-color: ;
-//   --bs-card-subtitle-color: ;
-//   --bs-card-border-width: var(--bs-border-width);
-//   --bs-card-border-color: var(--bs-border-color-translucent);
-//   --bs-card-border-radius: var(--bs-border-radius); --bs-card-box-shadow: ;
-//   --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
-//   --bs-card-cap-padding-y: 0.5rem; --bs-card-cap-padding-x: 1rem;
-//   --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03); --bs-card-cap-color: ;
-//   --bs-card-height: ; --bs-card-color: ; --bs-card-bg: var(--bs-body-bg);
-//   --bs-card-img-overlay-padding: 1rem; --bs-card-group-margin: 0.75rem;
-//   position: relative; display: flex; flex-direction: column; min-width: 0;
-//   height: var(--bs-card-height); color: var(--bs-body-color);
-//   word-wrap: break-word; background-color: var(--bs-card-bg);
-//   background-clip: border-box;
-//   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-//   border-radius: var(--bs-card-border-radius);
-// }
 globalStyle(`${materiaScope}${card}`, {
 	vars: {
 		[varBsCardSpacerY]: '1rem',
@@ -88,11 +57,13 @@ globalStyle(`${materiaScope}${card}`, {
 		[varBsCardBorderWidth]: '0',
 		[varBsCardBorderColor]: 'transparent',
 		[varBsCardBorderRadius]: varBsBorderRadius,
+		[varBsCardBoxShadow]: '',
 		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - 0)`,
 		[varBsCardCapPaddingY]: '0.5rem',
 		[varBsCardCapPaddingX]: '1rem',
 		[varBsCardCapBg]: `rgba(${varBsBodyColorRgb}, 0.03)`,
 		[varBsCardCapColor]: '',
+		[varBsCardHeight]: '',
 		[varBsCardColor]: '',
 		[varBsCardBg]: varBsBodyBg,
 		[varBsCardImgOverlayPadding]: '1rem',
@@ -101,122 +72,62 @@ globalStyle(`${materiaScope}${card}`, {
 	position: 'relative',
 	display: 'flex',
 	flexDirection: 'column',
-	minWidth: 0,
+	minWidth: '0',
+	height: varBsCardHeight,
 	color: varBsBodyColor,
 	wordWrap: 'break-word',
 	backgroundColor: varBsCardBg,
 	backgroundClip: 'border-box',
 	border: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 	borderRadius: varBsCardBorderRadius,
-	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)',
 })
 
-// SOURCE CSS: .card > .list-group { border-top: inherit; border-bottom: inherit; }
-globalStyle(`${materiaScope}${card} > ${listGroup}`, {
-	borderTop: 'inherit',
-	borderBottom: 'inherit',
+globalStyle(`${materiaScope}${card} > ${materiaScope}${horizontalRule}`, {
+	marginRight: '0',
+	marginLeft: '0',
 })
 
-// SOURCE CSS: .card > .list-group:first-child { border-top-width: 0;
-//   border-top-left-radius: var(--bs-card-inner-border-radius);
-//   border-top-right-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${materiaScope}${card} > ${listGroup}:first-child`, {
-	borderTopWidth: 0,
-	borderTopLeftRadius: varBsCardInnerBorderRadius,
-	borderTopRightRadius: varBsCardInnerBorderRadius,
+globalStyle(`${materiaScope}${card} > ${materiaScope}${listGroup} + ${materiaScope}${cardFooter}`, {
+	borderTop: '0',
 })
 
-// SOURCE CSS: .card > .list-group:last-child { border-bottom-width: 0;
-//   border-bottom-right-radius: var(--bs-card-inner-border-radius);
-//   border-bottom-left-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${materiaScope}${card} > ${listGroup}:last-child`, {
-	borderBottomWidth: 0,
-	borderBottomRightRadius: varBsCardInnerBorderRadius,
-	borderBottomLeftRadius: varBsCardInnerBorderRadius,
-})
-
-// SOURCE CSS: .card > .card-header + .list-group,
-//             .card > .list-group + .card-footer { border-top: 0; }
-globalStyle(
-	`${materiaScope}${card} > ${cardHeader} + ${listGroup}, ${materiaScope}${card} > ${listGroup} + ${cardFooter}`,
-	{ borderTop: 0 },
-)
-
-// ── Card body ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-body { flex: 1 1 auto;
-//   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-//   color: var(--bs-card-color); }
 globalStyle(`${materiaScope}${cardBody}`, {
 	flex: '1 1 auto',
 	padding: `${varBsCardSpacerY} ${varBsCardSpacerX}`,
 	color: varBsCardColor,
 })
 
-// ── Card title ────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-title { margin-bottom: var(--bs-card-title-spacer-y);
-//               color: var(--bs-card-title-color); }
 globalStyle(`${materiaScope}${cardTitle}`, {
 	marginBottom: varBsCardTitleSpacerY,
 	color: varBsCardTitleColor,
 })
 
-// SOURCE CSS:
-// .card-subtitle { margin-top: calc(-0.5 * var(--bs-card-title-spacer-y));
-//                  margin-bottom: 0; color: var(--bs-card-subtitle-color); }
 globalStyle(`${materiaScope}${cardSubtitle}`, {
 	marginTop: `calc(-0.5 * ${varBsCardTitleSpacerY})`,
-	marginBottom: 0,
+	marginBottom: '0',
 	color: varBsCardSubtitleColor,
 })
 
-// Materia sets paragraph rhythm at 1em, including card text blocks.
-globalStyle(`${materiaScope}${cardText}`, {
-	marginTop: 0,
-	marginBottom: '1em',
-})
-
-// SOURCE CSS: .card-text:last-child { margin-bottom: 0; }
 globalStyle(`${materiaScope}${cardText}:last-child`, {
-	marginBottom: 0,
+	marginBottom: '0',
 })
 
-// SOURCE CSS: .card-link + .card-link { margin-left: var(--bs-card-spacer-x); }
 globalStyle(`${materiaScope}${cardLink} + ${materiaScope}${cardLink}`, {
 	marginLeft: varBsCardSpacerX,
 })
 
-// ── Card header ───────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-header { padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-//   margin-bottom: 0; color: var(--bs-card-cap-color);
-//   background-color: var(--bs-card-cap-bg);
-//   border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color); }
 globalStyle(`${materiaScope}${cardHeader}`, {
 	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	color: varBsCardCapColor,
 	backgroundColor: varBsCardCapBg,
 	borderBottom: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
-// SOURCE CSS:
-// .card-header:first-child {
-//   border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0; }
 globalStyle(`${materiaScope}${cardHeader}:first-child`, {
 	borderRadius: `${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius} 0 0`,
 })
 
-// ── Card footer ───────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-footer { padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-//   color: var(--bs-card-cap-color); background-color: var(--bs-card-cap-bg);
-//   border-top: var(--bs-card-border-width) solid var(--bs-card-border-color); }
 globalStyle(`${materiaScope}${cardFooter}`, {
 	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
 	color: varBsCardCapColor,
@@ -224,147 +135,170 @@ globalStyle(`${materiaScope}${cardFooter}`, {
 	borderTop: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
-// SOURCE CSS:
-// .card-footer:last-child {
-//   border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius); }
 globalStyle(`${materiaScope}${cardFooter}:last-child`, {
 	borderRadius: `0 0 ${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius}`,
 })
 
-// ── Card images ───────────────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${cardHeaderPills}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+})
 
-// SOURCE CSS:
-// .card-img, .card-img-top, .card-img-bottom { width: 100%; }
-globalStyle(
-	`${materiaScope}${cardImg}, ${materiaScope}${cardImgTop}, ${materiaScope}${cardImgBottom}`,
-	{ width: '100%' },
-)
+globalStyle(`${materiaScope}${cardImgOverlay}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	bottom: '0',
+	left: '0',
+	padding: varBsCardImgOverlayPadding,
+	borderRadius: varBsCardInnerBorderRadius,
+})
 
-// SOURCE CSS:
-// .card-img, .card-img-top {
-//   border-top-left-radius: var(--bs-card-inner-border-radius);
-//   border-top-right-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${materiaScope}${cardImg}, ${materiaScope}${cardImgTop}`, {
+globalStyle(`${materiaScope}${cardImg}`, {
+	width: '100%',
+})
+
+globalStyle(`${materiaScope}${cardImgTop}`, {
+	width: '100%',
+})
+
+globalStyle(`${materiaScope}${cardImgBottom}`, {
+	width: '100%',
+})
+
+globalStyle(`${materiaScope}${cardImg}`, {
 	borderTopLeftRadius: varBsCardInnerBorderRadius,
 	borderTopRightRadius: varBsCardInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// .card-img, .card-img-bottom {
-//   border-bottom-right-radius: var(--bs-card-inner-border-radius);
-//   border-bottom-left-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${materiaScope}${cardImg}, ${materiaScope}${cardImgBottom}`, {
+globalStyle(`${materiaScope}${cardImgTop}`, {
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${materiaScope}${cardImg}`, {
 	borderBottomRightRadius: varBsCardInnerBorderRadius,
 	borderBottomLeftRadius: varBsCardInnerBorderRadius,
 })
 
-// ── Horizontal card layout ────────────────────────────────────────────────────
-// Replaces Bootstrap's row/col grid utilities with a direct flex layout.
-// col-md-* only activates at ≥768px (Bootstrap md breakpoint), so columns
-// stack on mobile and go side-by-side at ≥768px.
+globalStyle(`${materiaScope}${cardImgBottom}`, {
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
 
-globalStyle(`${materiaScope}${cardHorizontalRow}`, {
-	display: 'flex',
-	flexDirection: 'column',
-	flexWrap: 'nowrap',
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}`, {
+	marginBottom: varBsCardGroupMargin,
+})
+
+globalStyle(`${materiaScope}${cardGroup}`, {
 	'@media': {
-		'(min-width: 768px)': {
-			flexDirection: 'row',
+		'(min-width: 576px)': {
+			display: 'flex',
+			flexFlow: 'row wrap',
 		},
 	},
 })
 
-globalStyle(`${materiaScope}${cardHorizontalColImg}`, {
-	overflow: 'hidden',
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}`, {
 	'@media': {
-		'(min-width: 768px)': {
-			flex: '0 0 33.3333%',
-			maxWidth: '33.3333%',
+		'(min-width: 576px)': {
+			flex: '1 0 0',
+			marginBottom: '0',
 		},
 	},
 })
 
-globalStyle(`${materiaScope}${cardHorizontalColBody}`, {
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card} + ${materiaScope}${card}`, {
 	'@media': {
-		'(min-width: 768px)': {
-			flex: '1 1 0',
-			minWidth: 0,
+		'(min-width: 576px)': {
+			marginLeft: '0',
+			borderLeft: '0',
 		},
 	},
 })
 
-// ── List group ────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .list-group {
-//   --bs-list-group-color: var(--bs-body-color);
-//   --bs-list-group-bg: var(--bs-body-bg);
-//   --bs-list-group-border-color: var(--bs-border-color);
-//   --bs-list-group-border-width: var(--bs-border-width);
-//   --bs-list-group-border-radius: var(--bs-border-radius);
-//   --bs-list-group-item-padding-x: 1rem;
-//   --bs-list-group-item-padding-y: 0.5rem;
-//   display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0;
-//   border-radius: var(--bs-list-group-border-radius); }
-globalStyle(`${materiaScope}${listGroup}`, {
-	vars: {
-		[varBsListGroupColor]: varBsBodyColor,
-		[varBsListGroupBg]: varBsBodyBg,
-		[varBsListGroupBorderColor]: varBsBorderColor,
-		[varBsListGroupBorderWidth]: varBsBorderWidth,
-		[varBsListGroupBorderRadius]: varBsBorderRadius,
-		[varBsListGroupItemPaddingX]: '1rem',
-		[varBsListGroupItemPaddingY]: '0.5rem',
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+			borderBottomRightRadius: '0',
+		},
 	},
-	display: 'flex',
-	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
-	borderRadius: varBsListGroupBorderRadius,
 })
 
-// SOURCE CSS:
-// .list-group-flush { border-radius: 0; }
-// .list-group-flush > .list-group-item {
-//   border-width: 0 0 var(--bs-list-group-border-width); }
-// .list-group-flush > .list-group-item:last-child { border-bottom-width: 0; }
-globalStyle(`${materiaScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:last-child) > ${materiaScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${materiaScope}${listGroupFlush} > ${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:last-child) > ${materiaScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${materiaScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:last-child) > ${materiaScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .list-group-item { position: relative; display: block;
-//   padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
-//   color: var(--bs-list-group-color); text-decoration: none;
-//   background-color: var(--bs-list-group-bg);
-//   border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color); }
-// .list-group-item:first-child { border-top-left-radius: inherit; border-top-right-radius: inherit; }
-// .list-group-item:last-child { border-bottom-right-radius: inherit; border-bottom-left-radius: inherit; }
-globalStyle(`${materiaScope}${listGroupItem}`, {
-	position: 'relative',
-	display: 'block',
-	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
-	color: varBsListGroupColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupBg,
-	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:last-child) > ${materiaScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${materiaScope}${listGroupItem}:first-child`, {
-	borderTopLeftRadius: 'inherit',
-	borderTopRightRadius: 'inherit',
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+			borderBottomLeftRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${materiaScope}${listGroupItem}:last-child`, {
-	borderBottomRightRadius: 'inherit',
-	borderBottomLeftRadius: 'inherit',
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:first-child) > ${materiaScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+		},
+	},
 })
 
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:first-child) > ${materiaScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:first-child) > ${materiaScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${cardGroup} > ${materiaScope}${card}:not(:first-child) > ${materiaScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${card}`, {
+	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)',
+})

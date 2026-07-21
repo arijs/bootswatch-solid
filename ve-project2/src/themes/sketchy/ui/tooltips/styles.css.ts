@@ -1,23 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sketchyScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
-	varBsBorderColor,
 	varBsBorderRadius,
-	varBsBorderStyle,
-	varBsBorderWidth,
 	varBsEmphasisColor,
+	varBsFontSansSerif,
 } from '../../../../theme-contract/_vars.css'
-import {
-	frame,
-	frameColumn,
-	frameRow,
-	justifyCenter,
-	justifyEnd,
-	justifyStart,
-	tooltipArrow,
-	tooltipInner,
-	tooltipVe,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
 import {
 	varBsTooltipArrowHeight,
 	varBsTooltipArrowWidth,
@@ -32,12 +21,39 @@ import {
 	varBsTooltipPaddingY,
 	varBsTooltipZindex,
 } from '../../../../theme-contract/ui/tooltips/_vars.css'
-import { sketchyScope } from '../../scope.css'
 
-// Sketchy hand-drawn border-radius for tooltip inner
-const sketchyTooltipInnerBorderRadius = '255px 25px 225px 25px/25px 225px 25px 255px'
+import {
+	bsTooltipAuto,
+	bsTooltipBottom,
+	bsTooltipEnd,
+	bsTooltipStart,
+	bsTooltipTop,
+	tooltip,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipShow,
+} from '../../../../theme-contract/ui/tooltips/contract.css'
 
-globalStyle(`${sketchyScope}${tooltipVe}`, {
+globalStyle(`${sketchyScope}${tooltipFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${sketchyScope}${tooltipFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${sketchyScope}${tooltipFade}:not(${tooltipShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${sketchyScope}${tooltip}`, {
 	vars: {
 		[varBsTooltipZindex]: '1080',
 		[varBsTooltipMaxWidth]: '200px',
@@ -55,10 +71,10 @@ globalStyle(`${sketchyScope}${tooltipVe}`, {
 	zIndex: varBsTooltipZindex,
 	display: 'block',
 	margin: varBsTooltipMargin,
-	fontFamily: "'Neucha', cursive",
+	fontFamily: varBsFontSansSerif,
 	fontStyle: 'normal',
-	fontWeight: 400,
-	lineHeight: 1.5,
+	fontWeight: '400',
+	lineHeight: '1.5',
 	textAlign: 'start',
 	textDecoration: 'none',
 	textShadow: 'none',
@@ -67,63 +83,112 @@ globalStyle(`${sketchyScope}${tooltipVe}`, {
 	wordBreak: 'normal',
 	whiteSpace: 'normal',
 	wordSpacing: 'normal',
+	lineBreak: 'auto',
 	fontSize: varBsTooltipFontSize,
 	wordWrap: 'break-word',
-	opacity: 0,
+	opacity: '0',
 })
 
-globalStyle(`${sketchyScope}${tooltipVe}.show`, {
+globalStyle(`${sketchyScope}${tooltip}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
-globalStyle(`${sketchyScope}${tooltipArrow}`, {
+globalStyle(`${sketchyScope}${tooltip} ${sketchyScope}${tooltipArrow}`, {
 	display: 'block',
 	width: varBsTooltipArrowWidth,
 	height: varBsTooltipArrowHeight,
 })
 
-globalStyle(`${sketchyScope}${tooltipArrow}::before`, {
+globalStyle(`${sketchyScope}${tooltip} ${sketchyScope}${tooltipArrow}::before`, {
 	position: 'absolute',
-	content: '',
+	content: '""',
 	borderColor: 'transparent',
 	borderStyle: 'solid',
 })
 
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="top"] ${tooltipArrow}`, {
+globalStyle(`${sketchyScope}${bsTooltipTop} ${sketchyScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="top"] ${tooltipArrow}::before`, {
+
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=top] ${sketchyScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipTop} ${sketchyScope}${tooltipArrow}::before`, {
 	top: '-1px',
 	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="right"] ${tooltipArrow}`, {
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=top] ${sketchyScope}${tooltipArrow}::before`, {
+	top: '-1px',
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipEnd} ${sketchyScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
 	width: varBsTooltipArrowHeight,
 	height: varBsTooltipArrowWidth,
 })
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="right"] ${tooltipArrow}::before`, {
+
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=right] ${sketchyScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipEnd} ${sketchyScope}${tooltipArrow}::before`, {
 	right: '-1px',
 	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="bottom"] ${tooltipArrow}`, {
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=right] ${sketchyScope}${tooltipArrow}::before`, {
+	right: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipBottom} ${sketchyScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="bottom"] ${tooltipArrow}::before`, {
+
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${sketchyScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipBottom} ${sketchyScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
 	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="left"] ${tooltipArrow}`, {
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${sketchyScope}${tooltipArrow}::before`, {
+	bottom: '-1px',
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipStart} ${sketchyScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
 	width: varBsTooltipArrowHeight,
 	height: varBsTooltipArrowWidth,
 })
-globalStyle(`${sketchyScope}${tooltipVe}[data-popper-placement^="left"] ${tooltipArrow}::before`, {
+
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=left] ${sketchyScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipStart} ${sketchyScope}${tooltipArrow}::before`, {
+	left: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderLeftColor: varBsTooltipBg,
+})
+
+globalStyle(`${sketchyScope}${bsTooltipAuto}[data-popper-placement^=left] ${sketchyScope}${tooltipArrow}::before`, {
 	left: '-1px',
 	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
 	borderLeftColor: varBsTooltipBg,
@@ -135,33 +200,9 @@ globalStyle(`${sketchyScope}${tooltipInner}`, {
 	color: varBsTooltipColor,
 	textAlign: 'center',
 	backgroundColor: varBsTooltipBg,
-	borderRadius: sketchyTooltipInnerBorderRadius,
+	borderRadius: varBsTooltipBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${frame}`, {
-	display: 'flex',
-	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
-	height: '16em',
-})
-
-globalStyle(`${sketchyScope}${frameColumn}`, {
-	flexDirection: 'column',
-	alignItems: 'center',
-})
-
-globalStyle(`${sketchyScope}${frameRow}`, {
-	flexDirection: 'row',
-	alignItems: 'center',
-})
-
-globalStyle(`${sketchyScope}${justifyCenter}`, {
-	justifyContent: 'center',
-})
-
-globalStyle(`${sketchyScope}${justifyEnd}`, {
-	justifyContent: 'flex-end',
-})
-
-globalStyle(`${sketchyScope}${justifyStart}`, {
-	justifyContent: 'flex-start',
+globalStyle(`${sketchyScope}${tooltipInner}`, {
+	borderRadius: '255px 25px 225px 25px/25px 225px 25px 255px',
 })

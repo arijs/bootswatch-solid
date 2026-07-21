@@ -1,6 +1,11 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../../../../context/ThemeContext'
+import { elInput, elLabel } from '../../../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 import {
 	btn,
@@ -12,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const ToggleDisabledSmallButton: Component = () => {
@@ -24,12 +29,12 @@ const ToggleDisabledSmallButton: Component = () => {
 			<input
 				disabled
 				type="checkbox"
-				class={`${theme} ${btnCheck}`}
+				class={`${theme} ${elInput} ${btnCheck}`}
 				id="id-btn-sizes-toggle-disabled-small"
 				autocomplete="off"
 			/>
 			<label
-				class={`${theme} ${btn} ${btnPrimary} ${btnSm}`}
+				class={`${theme} ${elLabel} ${btn} ${btnPrimary} ${btnSm}`}
 				for="id-btn-sizes-toggle-disabled-small"
 			>
 				Toggle Small button

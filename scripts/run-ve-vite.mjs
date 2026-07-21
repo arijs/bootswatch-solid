@@ -3,13 +3,25 @@ import process from 'node:process'
 
 import { build, createServer, preview } from 'vite'
 
-const mode = process.argv[2]
-const projectDir = process.argv[3] ?? 've-project'
+const quiet = process.argv.includes('--quiet')
+const cliArgs = process.argv.slice(2).filter((arg) => arg !== '--quiet' && arg !== '--')
+const mode = cliArgs[0]
+const projectDir = cliArgs[1] ?? 've-project'
+
+const themeArg = cliArgs.find((arg) => arg.startsWith('--theme='))
+if (themeArg) {
+	process.env.VITE_LITERAL_THEMES = themeArg.slice('--theme='.length)
+}
 const root = path.resolve(process.cwd(), projectDir)
 const configFile = path.resolve(root, 'vite.config.ts')
-const defaultPort = mode === 'dev'
-	? projectDir === 've-project2' ? 5175 : 5174
-	: projectDir === 've-project2' ? 4175 : 4174
+const defaultPort =
+	mode === 'dev'
+		? projectDir === 've-project2'
+			? 5175
+			: 5174
+		: projectDir === 've-project2'
+			? 4175
+			: 4174
 
 if (mode !== 'build' && mode !== 'preview' && mode !== 'dev') {
 	throw new Error('Usage: node scripts/run-ve-vite.mjs <build|preview|dev> [project-dir]')
@@ -19,6 +31,8 @@ if (mode === 'build') {
 	await build({
 		root,
 		configFile,
+		logLevel: quiet ? 'error' : 'info',
+		build: quiet ? { reportCompressedSize: false } : undefined,
 	})
 	process.exit(0)
 }

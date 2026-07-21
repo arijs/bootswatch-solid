@@ -1,4 +1,5 @@
 import * as bootstrap from 'bootstrap'
+import { active } from '../../../theme-contract/literal/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeCarouselRuntimeClasses {
@@ -20,7 +21,7 @@ export function createVeCarousel(
 		bootstrap.Carousel as unknown as BootstrapWithDefaults<typeof bootstrap.Carousel>
 	).extendDefaultConfig({
 		CLASS_NAME_CAROUSEL: runtimeClasses.carousel,
-		CLASS_NAME_ACTIVE: `${runtimeClasses.carouselActive} pwhook-carousel-active`,
+		CLASS_NAME_ACTIVE: `${runtimeClasses.carouselActive} ${active} pwhook-carousel-active`,
 		CLASS_NAME_SLIDE: runtimeClasses.carouselSlide,
 		CLASS_NAME_END: runtimeClasses.carouselItemEnd,
 		CLASS_NAME_START: runtimeClasses.carouselItemStart,

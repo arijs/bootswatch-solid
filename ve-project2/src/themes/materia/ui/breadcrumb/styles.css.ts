@@ -1,21 +1,22 @@
-import { globalStyle } from '@vanilla-extract/css'
-import {
-	breadcrumb,
-	breadcrumbItem,
-	breadcrumbItemActive,
-} from '../../../../theme-contract/ui/breadcrumb/contract.css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
+import { varBsSecondaryColor } from '../../../../theme-contract/_vars.css'
 import {
 	varBsBreadcrumbBg,
 	varBsBreadcrumbBorderRadius,
+	varBsBreadcrumbDivider,
 	varBsBreadcrumbDividerColor,
+	varBsBreadcrumbFontSize,
 	varBsBreadcrumbItemActiveColor,
 	varBsBreadcrumbItemPaddingX,
 	varBsBreadcrumbMarginBottom,
 	varBsBreadcrumbPaddingX,
 	varBsBreadcrumbPaddingY,
 } from '../../../../theme-contract/ui/breadcrumb/_vars.css'
-import { varBsSecondaryColor } from '../../../../theme-contract/_vars.css'
-import { materiaScope } from '../../scope.css'
+
+import { active } from '../../../../theme-contract/literal/contract.css'
+import { breadcrumb, breadcrumbItem } from '../../../../theme-contract/ui/breadcrumb/contract.css'
 
 globalStyle(`${materiaScope}${breadcrumb}`, {
 	vars: {
@@ -32,24 +33,23 @@ globalStyle(`${materiaScope}${breadcrumb}`, {
 	flexWrap: 'wrap',
 	padding: `${varBsBreadcrumbPaddingY} ${varBsBreadcrumbPaddingX}`,
 	marginBottom: varBsBreadcrumbMarginBottom,
-	fontSize: 'var(--bs-breadcrumb-font-size)',
+	fontSize: varBsBreadcrumbFontSize,
 	listStyle: 'none',
 	backgroundColor: varBsBreadcrumbBg,
 	borderRadius: varBsBreadcrumbBorderRadius,
 })
 
-globalStyle(`${materiaScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}`, {
+globalStyle(`${materiaScope}${breadcrumbItem} + ${materiaScope}${breadcrumbItem}`, {
 	paddingLeft: varBsBreadcrumbItemPaddingX,
 })
 
-globalStyle(`${materiaScope}${breadcrumb} ${breadcrumbItem} + ${breadcrumbItem}::before`, {
+globalStyle(`${materiaScope}${breadcrumbItem} + ${materiaScope}${breadcrumbItem}::before`, {
 	float: 'left',
 	paddingRight: varBsBreadcrumbItemPaddingX,
 	color: varBsBreadcrumbDividerColor,
-	content: 'var(--bs-breadcrumb-divider, "/")',
+	content: `${fallbackVar(varBsBreadcrumbDivider, '"/"')} `,
 })
 
-globalStyle(`${materiaScope}${breadcrumb} ${breadcrumbItemActive}`, {
+globalStyle(`${materiaScope}${breadcrumbItem}${active}`, {
 	color: varBsBreadcrumbItemActiveColor,
 })
-

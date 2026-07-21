@@ -1,14 +1,26 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+} from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
-import { h1, h2, h3, h4, h5, h6 } from '../../../theme-contract/contents/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const Heading: Component = () => {
@@ -17,12 +29,12 @@ const Heading: Component = () => {
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
-			<p class={`${theme} ${h1}`}>Heading 1</p>
-			<p class={`${theme} ${h2}`}>Heading 2</p>
-			<p class={`${theme} ${h3}`}>Heading 3</p>
-			<p class={`${theme} ${h4}`}>Heading 4</p>
-			<p class={`${theme} ${h5}`}>Heading 5</p>
-			<p class={`${theme} ${h6}`}>Heading 6</p>
+			<p class={`${theme} ${paragraph} ${clsH1}`}>Heading 1</p>
+			<p class={`${theme} ${paragraph} ${clsH2}`}>Heading 2</p>
+			<p class={`${theme} ${paragraph} ${clsH3}`}>Heading 3</p>
+			<p class={`${theme} ${paragraph} ${clsH4}`}>Heading 4</p>
+			<p class={`${theme} ${paragraph} ${clsH5}`}>Heading 5</p>
+			<p class={`${theme} ${paragraph} ${clsH6}`}>Heading 6</p>
 		</div>
 	)
 }

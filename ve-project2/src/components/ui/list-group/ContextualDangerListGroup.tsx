@@ -1,6 +1,11 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	listGroup,
@@ -12,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/list-group',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const ContextualDangerListGroup: Component = () => {
@@ -25,7 +30,7 @@ const ContextualDangerListGroup: Component = () => {
 				<a
 					href="#"
 					onClick={(e) => e.preventDefault()}
-					class={`${theme} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemDanger}`}
+					class={`${theme} ${link} ${listGroupItem} ${listGroupItemAction} pwhook-list-group-item ${listGroupItemDanger}`}
 				>
 					A simple danger list group item
 				</a>

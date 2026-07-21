@@ -1,42 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { slateScope } from '../../scope.css'
+
 import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemDisabled,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
-} from '../../../../theme-contract/ui/list-group/contract.css'
-import {
-	varBsListGroupActionActiveBg,
-	varBsListGroupActionActiveColor,
-	varBsListGroupActionColor,
-	varBsListGroupActionHoverBg,
-	varBsListGroupActionHoverColor,
-	varBsListGroupActiveBg,
-	varBsListGroupActiveBorderColor,
-	varBsListGroupActiveColor,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupDisabledBg,
-	varBsListGroupDisabledColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
-} from '../../../../theme-contract/ui/list-group/_vars.css'
-import {
+	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderWidth,
-	varBsBodyColor,
 	varBsDangerBgSubtle,
 	varBsDangerBorderSubtle,
 	varBsDangerTextEmphasis,
@@ -64,31 +32,75 @@ import {
 	varBsWarningBorderSubtle,
 	varBsWarningTextEmphasis,
 } from '../../../../theme-contract/_vars.css'
-import { slateScope } from '../../scope.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
+import {
+	varBsListGroupActionActiveBg,
+	varBsListGroupActionActiveColor,
+	varBsListGroupActionColor,
+	varBsListGroupActionHoverBg,
+	varBsListGroupActionHoverColor,
+	varBsListGroupActiveBg,
+	varBsListGroupActiveBorderColor,
+	varBsListGroupActiveColor,
+	varBsListGroupBg,
+	varBsListGroupBorderColor,
+	varBsListGroupBorderRadius,
+	varBsListGroupBorderWidth,
+	varBsListGroupColor,
+	varBsListGroupDisabledBg,
+	varBsListGroupDisabledColor,
+	varBsListGroupItemPaddingX,
+	varBsListGroupItemPaddingY,
+} from '../../../../theme-contract/ui/list-group/_vars.css'
 
-// ── Base list-group ───────────────────────────────────────────────────────────
+import {
+	active,
+	disabled,
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../../theme-contract/ui/list-group/contract.css'
 
-// SOURCE CSS:
-// .list-group {
-//   --bs-list-group-color: var(--bs-body-color);
-//   --bs-list-group-bg: var(--bs-body-bg);
-//   --bs-list-group-border-color: var(--bs-border-color);
-//   --bs-list-group-border-width: var(--bs-border-width);
-//   --bs-list-group-border-radius: var(--bs-border-radius);
-//   --bs-list-group-item-padding-x: 1rem; --bs-list-group-item-padding-y: 0.5rem;
-//   --bs-list-group-action-color: var(--bs-secondary-color);
-//   --bs-list-group-action-hover-color: var(--bs-emphasis-color);
-//   --bs-list-group-action-hover-bg: var(--bs-tertiary-bg);
-//   --bs-list-group-action-active-color: var(--bs-body-color);
-//   --bs-list-group-action-active-bg: var(--bs-secondary-bg);
-//   --bs-list-group-disabled-color: var(--bs-secondary-color);
-//   --bs-list-group-disabled-bg: var(--bs-body-bg);
-//   --bs-list-group-active-color: #fff;
-//   --bs-list-group-active-bg: #0d6efd; (= varBsPrimary)
-//   --bs-list-group-active-border-color: #0d6efd; (= varBsPrimary)
-//   display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0;
-//   border-radius: var(--bs-list-group-border-radius);
-// }
+globalStyle(`${slateScope}${card} > ${slateScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
+})
+
+globalStyle(`${slateScope}${card} > ${slateScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${slateScope}${card} > ${slateScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${slateScope}${card} > ${slateScope}${cardHeader} + ${slateScope}${listGroup}`, {
+	borderTop: '0',
+})
+
 globalStyle(`${slateScope}${listGroup}`, {
 	vars: {
 		[varBsListGroupColor]: '#fff',
@@ -111,35 +123,21 @@ globalStyle(`${slateScope}${listGroup}`, {
 	},
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	borderRadius: varBsListGroupBorderRadius,
 })
 
-// ── Flush variant ─────────────────────────────────────────────────────────────
-
-globalStyle(`${slateScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${slateScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
 })
 
-globalStyle(`${slateScope}${listGroupFlush} > ${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+globalStyle(`${slateScope}${listGroupNumbered} > ${slateScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
 })
 
-globalStyle(`${slateScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
-})
-
-// ── Item ──────────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .list-group-item {
-//   position: relative; display: block;
-//   padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
-//   color: var(--bs-list-group-color); text-decoration: none;
-//   background-color: var(--bs-list-group-bg);
-//   border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
-// }
 globalStyle(`${slateScope}${listGroupItem}`, {
 	position: 'relative',
 	display: 'block',
@@ -160,36 +158,33 @@ globalStyle(`${slateScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
-// Disabled state
-globalStyle(
-	`${slateScope}${listGroupItem}${listGroupItemDisabled},` +
-		`${slateScope}${listGroupItem}:disabled`,
-	{
-		color: varBsListGroupDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsListGroupDisabledBg,
-	},
-)
+globalStyle(`${slateScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
 
-// Active state
-globalStyle(`${slateScope}${listGroupItem}.active`, {
-	zIndex: 2,
+globalStyle(`${slateScope}${listGroupItem}:disabled`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
+globalStyle(`${slateScope}${listGroupItem}${active}`, {
+	zIndex: '2',
 	color: varBsListGroupActiveColor,
 	backgroundColor: varBsListGroupActiveBg,
 	borderColor: varBsListGroupActiveBorderColor,
 })
 
-// Sibling border collapse
-globalStyle(`${slateScope}${listGroupItem} + ${listGroupItem}`, {
-	borderTopWidth: 0,
+globalStyle(`${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	borderTopWidth: '0',
 })
 
-globalStyle(`${slateScope}${listGroupItem} + ${listGroupItem}.active`, {
+globalStyle(`${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
 	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
 	borderTopWidth: varBsListGroupBorderWidth,
 })
-
-// ── Action (anchor / button) items ────────────────────────────────────────────
 
 globalStyle(`${slateScope}${listGroupItemAction}`, {
 	width: '100%',
@@ -197,38 +192,324 @@ globalStyle(`${slateScope}${listGroupItemAction}`, {
 	textAlign: 'inherit',
 })
 
-globalStyle(
-	`${slateScope}${listGroupItemAction}:not(.active):hover,` +
-		`${slateScope}${listGroupItemAction}:not(.active):focus`,
-	{
-		zIndex: 1,
-		color: varBsListGroupActionHoverColor,
-		textDecoration: 'none',
-		backgroundColor: varBsListGroupActionHoverBg,
-	},
-)
+globalStyle(`${slateScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
 
-globalStyle(`${slateScope}${listGroupItemAction}:not(.active):active`, {
+globalStyle(`${slateScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${slateScope}${listGroupItemAction}:not(${active}):active`, {
 	color: varBsListGroupActionActiveColor,
 	backgroundColor: varBsListGroupActionActiveBg,
 })
 
-// ── Colour variants ───────────────────────────────────────────────────────────
-// Each variant sets the list-group vars; the item rules above consume them.
+globalStyle(`${slateScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
 
-// SOURCE CSS (same pattern for all variants):
-// .list-group-item-primary {
-//   --bs-list-group-color: var(--bs-primary-text-emphasis);
-//   --bs-list-group-bg: var(--bs-primary-bg-subtle);
-//   --bs-list-group-border-color: var(--bs-primary-border-subtle);
-//   --bs-list-group-action-hover-color: var(--bs-emphasis-color);
-//   --bs-list-group-action-hover-bg: var(--bs-primary-border-subtle);
-//   --bs-list-group-action-active-color: var(--bs-emphasis-color);
-//   --bs-list-group-action-active-bg: var(--bs-primary-border-subtle);
-//   --bs-list-group-active-color: var(--bs-primary-bg-subtle);
-//   --bs-list-group-active-bg: var(--bs-primary-text-emphasis);
-//   --bs-list-group-active-border-color: var(--bs-primary-text-emphasis);
-// }
+globalStyle(`${slateScope}${listGroupHorizontal} > ${slateScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${slateScope}${listGroupHorizontal} > ${slateScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${slateScope}${listGroupHorizontal} > ${slateScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${slateScope}${listGroupHorizontal} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${slateScope}${listGroupHorizontal} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalSm} > ${slateScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalSm} > ${slateScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalSm} > ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalSm} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalSm} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalMd} > ${slateScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalMd} > ${slateScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalMd} > ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalMd} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalMd} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalLg} > ${slateScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalLg} > ${slateScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalLg} > ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalLg} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalLg} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXl} > ${slateScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXl} > ${slateScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXl} > ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXl} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXl} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXxl} > ${slateScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXxl} > ${slateScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXxl} > ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXxl} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupHorizontalXxl} > ${slateScope}${listGroupItem} + ${slateScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${slateScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${slateScope}${listGroupFlush} > ${slateScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${slateScope}${listGroupFlush} > ${slateScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
+})
 
 globalStyle(`${slateScope}${listGroupItemPrimary}`, {
 	vars: {
@@ -356,10 +637,6 @@ globalStyle(`${slateScope}${listGroupItem}`, {
 
 globalStyle(`${slateScope}${listGroupItemLight}`, {
 	color: '#272b30',
-	vars: {
-		[varBsListGroupBg]: '#e9ecef',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
 })
 
 globalStyle(`${slateScope}${listGroupItemAction}:hover`, {
@@ -367,50 +644,41 @@ globalStyle(`${slateScope}${listGroupItemAction}:hover`, {
 })
 
 globalStyle(`${slateScope}${listGroupItemPrimary}`, {
-	vars: {
-		[varBsListGroupBg]: '#3a3f44',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#3a3f44',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${listGroupItemSecondary}`, {
-	vars: {
-		[varBsListGroupBg]: '#7a8288',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#7a8288',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${listGroupItemSuccess}`, {
-	vars: {
-		[varBsListGroupBg]: '#62c462',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#62c462',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${listGroupItemInfo}`, {
-	vars: {
-		[varBsListGroupBg]: '#5bc0de',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#5bc0de',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${listGroupItemWarning}`, {
-	vars: {
-		[varBsListGroupBg]: '#f89406',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#f89406',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${listGroupItemDanger}`, {
-	vars: {
-		[varBsListGroupBg]: '#ee5f5b',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#ee5f5b',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
+})
+
+globalStyle(`${slateScope}${listGroupItemLight}`, {
+	backgroundColor: '#e9ecef',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })
 
 globalStyle(`${slateScope}${listGroupItemDark}`, {
-	vars: {
-		[varBsListGroupBg]: '#272b30',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-	},
+	backgroundColor: '#272b30',
+	borderColor: 'rgba(0, 0, 0, 0.6)',
 })

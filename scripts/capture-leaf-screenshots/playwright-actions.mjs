@@ -6,6 +6,50 @@ function ensureSelector(locator, selector) {
 	}
 }
 
+/**
+ * Wait until an element's visual signature (bounding box + opacity + transform) stops
+ * changing for a few consecutive samples, so a CSS transition has finished before capture.
+ *
+ * Needed because themes like brite animate components (`.btn { transition: all 0.3s }`):
+ * after a click + mouse-out the button reverts its `transform: translate(-3px,-3px)` hover
+ * state over 300ms, which moves the Popper-anchored dropdown menu. A fixed sub-300ms settle
+ * delay captures mid-animation → non-deterministic screenshots (heights of 197/200/201 for
+ * the same scenario). Polling the signature converges as soon as the animation lands and
+ * never hangs on infinite animations (it caps at `timeout`).
+ *
+ * @param {import('playwright').Page} page
+ * @param {string|import('playwright').Locator} selectorOrLocator
+ */
+async function waitForVisualStable(
+	page,
+	selectorOrLocator,
+	{ timeout = 2000, interval = 50, stableFrames = 3 } = {},
+) {
+	const locator =
+		typeof selectorOrLocator === 'string'
+			? page.locator(selectorOrLocator).first()
+			: selectorOrLocator
+	const start = Date.now()
+	let last = null
+	let stable = 0
+	while (Date.now() - start < timeout) {
+		const sig = await locator
+			.evaluate((el) => {
+				const r = el.getBoundingClientRect()
+				const cs = getComputedStyle(el)
+				return `${r.x},${r.y},${r.width},${r.height}|${cs.opacity}|${cs.transform}`
+			})
+			.catch(() => null)
+		if (sig !== null && sig === last) {
+			if (++stable >= stableFrames) return
+		} else {
+			stable = 0
+		}
+		last = sig
+		await delay(interval)
+	}
+}
+
 function resolveCarouselTimeoutMs(rawTimeoutMs) {
 	if (rawTimeoutMs === undefined) {
 		return 2000
@@ -28,38 +72,6 @@ function assertCarouselDirection(rawDirection) {
 	if (rawDirection !== 'next' && rawDirection !== 'prev') {
 		throw new Error(`Invalid carousel direction: ${rawDirection}`)
 	}
-}
-
-async function forceOpenDropdownMenu(locator) {
-	return locator.evaluate((toggle) => {
-		const toggleElement = toggle
-		const labelledBy = toggleElement.getAttribute('id')
-		const scope =
-			toggleElement.closest('.dropdown, .dropup, .dropstart, .dropend, .btn-group') ??
-			toggleElement.parentElement
-
-		let menu = null
-		if (labelledBy) {
-			menu = document.querySelector(`.pwhook-dropdown-menu[aria-labelledby="${labelledBy}"]`)
-		}
-		if (!menu && scope) {
-			menu = scope.querySelector('.pwhook-dropdown-menu')
-		}
-		if (!menu) {
-			return false
-		}
-
-		menu.classList.add('show')
-		toggleElement.classList.add('show')
-		toggleElement.setAttribute('aria-expanded', 'true')
-
-		const container = menu.closest('.dropdown, .dropup, .dropstart, .dropend, .btn-group')
-		if (container) {
-			container.classList.add('show')
-		}
-
-		return true
-	})
 }
 
 async function slideCarouselToIndex(
@@ -145,6 +157,9 @@ async function slideCarouselToIndex(
 					`Carousel settled at index ${settledIndex}, expected ${config.targetIndex}`,
 				)
 			}
+			// Mark as interactively controlled so stabilizeForScreenshot preserves this slide
+			// instead of forcing slide 0 (the static-capture default).
+			carouselElement.setAttribute('data-pw-carousel-controlled', 'true')
 		},
 		{
 			targetIndex,
@@ -286,6 +301,9 @@ async function clickCarouselControl(
 					`Carousel settled at index ${settledIndex}, expected ${targetIndex}`,
 				)
 			}
+			// Mark as interactively controlled so stabilizeForScreenshot preserves this slide
+			// instead of forcing slide 0 (the static-capture default).
+			carouselElement.setAttribute('data-pw-carousel-controlled', 'true')
 		},
 		{
 			startIndex,
@@ -327,6 +345,24 @@ export async function stabilizeForScreenshot(page) {
 			),
 		)
 
+		// Stop auto-cycling carousels FIRST — before the (potentially multi-second) font
+		// wait below. A `data-bs-ride="carousel"` autoplays on a 5s timer from init; if the
+		// font wait runs first, a slow-font theme's carousel advances a slide mid-wait and
+		// pause() then freezes it on the wrong slide (baseline, with faster fonts, stays on
+		// slide 0 → mismatch). Pausing before the wait freezes it on the current (initial)
+		// slide for every theme. Interactive scenarios set their slide before prepareForCapture,
+		// so pausing here preserves their selection too.
+		try {
+			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
+			if (CarouselClass) {
+				for (const element of document.querySelectorAll('.pwhook-carousel')) {
+					CarouselClass.getOrCreateInstance(element).pause()
+				}
+			}
+		} catch {
+			// Ignore if Bootstrap JS is unavailable for this route.
+		}
+
 		try {
 			if (document.fonts?.ready) {
 				await document.fonts.ready
@@ -340,16 +376,27 @@ export async function stabilizeForScreenshot(page) {
 			// Continue even if the browser cannot resolve font loading state.
 		}
 
-		// Stop auto-cycling carousels so static captures keep the same active slide.
+		// Wait for images (esp. `loading="lazy"` navbar brand logos) to finish loading and
+		// decoding before capture. Lazy images can paint blank/broken on the first frame, so a
+		// theme whose capture lands before the logo decodes shows the broken-image placeholder
+		// while the other side shows the logo → mismatch (and it races on either side). Force
+		// eager loading and await decode so every capture has the fully-rendered image.
 		try {
-			const CarouselClass = window.VeCarousel ?? window.bootstrap?.Carousel
-			if (CarouselClass) {
-				for (const element of document.querySelectorAll('.pwhook-carousel')) {
-					CarouselClass.getOrCreateInstance(element).pause()
-				}
+			const images = [...document.querySelectorAll('img')]
+			for (const img of images) {
+				if (img.loading === 'lazy') img.loading = 'eager'
 			}
+			await Promise.allSettled(
+				images.map((img) => {
+					if (img.complete && img.naturalWidth > 0) return img.decode().catch(() => {})
+					return new Promise((resolve) => {
+						img.addEventListener('load', resolve, { once: true })
+						img.addEventListener('error', resolve, { once: true })
+					}).then(() => img.decode().catch(() => {}))
+				}),
+			)
 		} catch {
-			// Ignore if Bootstrap JS is unavailable for this route.
+			// Continue even if image loading state cannot be resolved.
 		}
 
 		// Carousels can transiently mark multiple indicators as active during hydration/ride init.
@@ -386,8 +433,16 @@ export async function stabilizeForScreenshot(page) {
 						indicator.getAttribute('aria-current') === 'true' ||
 						hasAnyToken(indicator, effectiveActiveClassTokens),
 				)
-				const activeIndex =
-					activeItemIndex >= 0
+				// Static captures: a `data-bs-ride` carousel may have auto-advanced before we
+				// could pause it (especially on slow-to-hydrate VE pages, where the 5s autoplay
+				// timer elapses during hydration — before stabilizeForScreenshot even runs). Force
+				// slide 0 UNLESS an interactive scenario explicitly selected a slide (those mark the
+				// carousel `data-pw-carousel-controlled`). This makes the static slide deterministic
+				// for every theme regardless of capture timing.
+				const controlled = carousel.hasAttribute('data-pw-carousel-controlled')
+				const activeIndex = !controlled
+					? 0
+					: activeItemIndex >= 0
 						? activeItemIndex
 						: activeIndicatorIndex >= 0
 							? activeIndicatorIndex
@@ -459,6 +514,28 @@ export async function stabilizeForScreenshot(page) {
 			}
 			animation.pause()
 		}
+
+		// Border spinners are fully visible at animation t=0; subpixel differences between
+		// WAAPI-seek and static CSS exceed the default 0.001 verify threshold. Pin both
+		// baseline and VE captures to the same static frame (works with .spinner-border
+		// and VE contract classes that keep animation-name: spinner-border).
+		const spinnerBorderNames = new Set(['spinner-border'])
+		const spinnerGrowNames = new Set(['spinner-grow'])
+		for (const element of document.querySelectorAll('*')) {
+			const animationName = getComputedStyle(element).animationName
+			if (!animationName || animationName === 'none') continue
+			const names = animationName.split(',').map((part) => part.trim())
+			if (names.some((name) => spinnerBorderNames.has(name))) {
+				element.style.setProperty('animation', 'none', 'important')
+				element.style.setProperty('transform', 'rotate(0deg)', 'important')
+				continue
+			}
+			if (names.some((name) => spinnerGrowNames.has(name))) {
+				element.style.setProperty('animation', 'none', 'important')
+				element.style.setProperty('opacity', '0', 'important')
+				element.style.setProperty('transform', 'scale(0)', 'important')
+			}
+		}
 	})
 	await delay(80)
 }
@@ -479,7 +556,10 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		typeof scenarioLocator === 'string'
 			? page.locator(scenarioLocator).first()
 			: scenarioLocator.first()
-	await locator.waitFor({ state: scenario.locatorState?.(selectorContext) ?? 'visible', timeout: 5000 })
+	await locator.waitFor({
+		state: scenario.locatorState?.(selectorContext) ?? 'visible',
+		timeout: 5000,
+	})
 	ensureSelector(locator, scenario.selector)
 
 	switch (scenario.kind) {
@@ -515,29 +595,10 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 		}
 		case 'click-visible': {
 			await locator.click({ force: true })
-			try {
-				await page.waitForSelector(scenario.visibleSelector, {
-					state: 'visible',
-					timeout: 5000,
-				})
-			} catch (error) {
-				const isDropdownVisibleSelector =
-					typeof scenario.visibleSelector === 'string' &&
-					scenario.visibleSelector.includes('.pwhook-dropdown-menu.show')
-				if (!isDropdownVisibleSelector) {
-					throw error
-				}
-
-				const forcedOpen = await forceOpenDropdownMenu(locator)
-				if (!forcedOpen) {
-					throw error
-				}
-
-				await page.waitForSelector(scenario.visibleSelector, {
-					state: 'visible',
-					timeout: 1500,
-				})
-			}
+			await page.waitForSelector(scenario.visibleSelector, {
+				state: 'visible',
+				timeout: 5000,
+			})
 			break
 		}
 		case 'carousel-to-index': {
@@ -597,6 +658,39 @@ export async function performScenarioAction(page, scenario, themeSlug) {
 
 	if (scenario.resetMouseToCornerAfterAction) {
 		await page.mouse.move(0, 0)
+	}
+
+	// Settle CSS transitions before the fixed delay so animated components (e.g. brite's
+	// hover-out button transform that drags Popper-anchored menus) capture deterministically.
+	// Carousel kinds run their own transition synchronization, so skip them here.
+	const settleTarget = scenario.visibleSelector ?? (scenario.kind === 'hover' ? locator : null)
+	if (settleTarget) {
+		await waitForVisualStable(page, settleTarget)
+		// Floating components (dropdown/tooltip/popover/modal) are Popper-positioned and
+		// anchored ONCE — during the anchor's open animation. With brite's
+		// `.btn { transition: all 0.3s; transform: translate(-3px,-3px) }` the toggle is still
+		// mid-animation when Popper resolves, so the menu keeps a transient ~3px offset and
+		// Popper never recomputes on its own. This makes the original app itself flaky (the
+		// menu lands at either the offset or the settled position). Nudge a resize so Popper
+		// re-resolves against the now-settled anchor — deterministic across baseline and VE.
+		if (scenario.kind === 'click-visible' || scenario.kind === 'hover-visible') {
+			// Await web fonts BEFORE the nudge: the floating element's width is a snapshot taken
+			// when it opens, and a lazily-loaded web font can change that width afterward (e.g.
+			// sketchy's HTML tooltip swaps 'Cabin Sketch' into <b>, shrinking the box ~6px). Popper
+			// does not re-anchor on the swap, so its left stays width-stale. Whichever of
+			// {baseline, VE} happens to re-anchor before vs after the swap lands a few px off from
+			// the other. Gating the nudge on fonts.ready makes the final re-anchor use settled
+			// metrics in both apps → deterministic, matching positions.
+			await page.evaluate(async () => {
+				if (document.fonts?.ready) {
+					await document.fonts.ready
+					const stillLoading = [...document.fonts].filter((f) => f.status === 'loading')
+					await Promise.allSettled(stillLoading.map((f) => f.loaded))
+				}
+				window.dispatchEvent(new Event('resize'))
+			})
+			await waitForVisualStable(page, settleTarget)
+		}
 	}
 
 	await delay(scenario.settleDelayMs ?? 180)

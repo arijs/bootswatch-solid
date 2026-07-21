@@ -1,13 +1,25 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { sandstoneScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
+	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
@@ -35,9 +47,29 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
+import {
+	active,
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	disabled,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
@@ -59,31 +91,50 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { sandstoneScope } from '../../scope.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { modal, modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
+import { offcanvas, offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toast, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// ── Base .btn ─────────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn {
-//   --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem;
-//   --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400;
-//   --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color);
-//   --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width);
-//   --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius);
-//   --bs-btn-hover-border-color: transparent;
-//   --bs-btn-box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 1px rgba(0,0,0,0.075);
-//   --bs-btn-disabled-opacity: 0.65;
-//   --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
-//   display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
-//   font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size);
-//   font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height);
-//   color: var(--bs-btn-color); text-align: center; text-decoration: none;
-//   vertical-align: middle; cursor: pointer; user-select: none;
-//   border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
-//   border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg);
-//   transition: color 0.15s ease-in-out, ...; }
-// @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+globalStyle(`${sandstoneScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${sandstoneScope}${btnCheck}[disabled] + ${sandstoneScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${sandstoneScope}${btnCheck}:disabled + ${sandstoneScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${sandstoneScope}${inputGroup} ${sandstoneScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${sandstoneScope}${inputGroup} ${sandstoneScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${sandstoneScope}${inputGroupLg} > ${sandstoneScope}${btn}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
+	borderRadius: varBsBorderRadiusLg,
+})
+
+globalStyle(`${sandstoneScope}${inputGroupSm} > ${sandstoneScope}${btn}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+	borderRadius: varBsBorderRadiusSm,
+})
 
 globalStyle(`${sandstoneScope}${btn}`, {
 	vars: {
@@ -99,12 +150,10 @@ globalStyle(`${sandstoneScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	appearance: 'button',
 	display: 'inline-block',
 	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
@@ -119,11 +168,13 @@ globalStyle(`${sandstoneScope}${btn}`, {
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',
 	userSelect: 'none',
-	backgroundColor: varBsBtnBg,
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	backgroundColor: varBsBtnBg,
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${sandstoneScope}${btn}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -131,171 +182,110 @@ globalStyle(`${sandstoneScope}${btn}`, {
 	},
 })
 
-// SOURCE CSS: .btn:hover { color: var(--bs-btn-hover-color); background-color: ...; ... }
 globalStyle(`${sandstoneScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
 })
 
-// SOURCE CSS: .btn:focus-visible { color: ...; outline: 0; box-shadow: ...; }
+globalStyle(`${sandstoneScope}${btnCheck} + ${sandstoneScope}${btn}:hover`, {
+	color: varBsBtnColor,
+	backgroundColor: varBsBtnBg,
+	borderColor: varBsBtnBorderColor,
+})
+
 globalStyle(`${sandstoneScope}${btn}:focus-visible`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-check:checked + .btn, :not(.btn-check) + .btn:active,
-// .btn:first-child:active, .btn.active, .btn.show {
-//   color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg);
-//   border-color: var(--bs-btn-active-border-color); }
-globalStyle(
-	[
-		`${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}`,
-		`:not(${sandstoneScope}${btnCheck}) + ${sandstoneScope}${btn}:active`,
-		`${sandstoneScope}${btn}:first-child:active`,
-		`${sandstoneScope}${btn}${btnActiveHook}`,
-		`${sandstoneScope}${btn}${btnShowHook}`,
-	].join(', '),
-	{
-		color: varBsBtnActiveColor,
-		backgroundColor: varBsBtnActiveBg,
-		borderColor: varBsBtnActiveBorderColor,
-	},
-)
+globalStyle(`${sandstoneScope}${btnCheck}:focus-visible + ${sandstoneScope}${btn}`, {
+	borderColor: varBsBtnHoverBorderColor,
+	outline: '0',
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
-// SOURCE CSS:
-// .btn-check:checked + .btn:focus-visible, ...:active:focus-visible, ... { box-shadow: ...; }
-globalStyle(
-	[
-		`${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}:focus-visible`,
-		`:not(${sandstoneScope}${btnCheck}) + ${sandstoneScope}${btn}:active:focus-visible`,
-		`${sandstoneScope}${btn}:first-child:active:focus-visible`,
-		`${sandstoneScope}${btn}${btnActiveHook}:focus-visible`,
-		`${sandstoneScope}${btn}${btnShowHook}:focus-visible`,
-	].join(', '),
-	{
-		boxShadow: varBsBtnFocusBoxShadow,
-	},
-)
+globalStyle(`${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .btn:disabled, .btn.disabled, fieldset:disabled .btn {
-//   color: var(--bs-btn-disabled-color); pointer-events: none;
-//   background-color: var(--bs-btn-disabled-bg);
-//   border-color: var(--bs-btn-disabled-border-color);
-//   opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(
-	[
-		`${sandstoneScope}${btn}:disabled`,
-		`fieldset:disabled ${sandstoneScope}${btn}`,
-	].join(', '),
-	{
-		color: varBsBtnDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsBtnDisabledBg,
-		borderColor: varBsBtnDisabledBorderColor,
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
+globalStyle(`${sandstoneScope}:not(${btnCheck}) + ${sandstoneScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .btn-check {
-//   position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
-globalStyle(`${sandstoneScope}${btnCheck}`, {
-	position: 'absolute',
-	clip: 'rect(0, 0, 0, 0)',
+globalStyle(`${sandstoneScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sandstoneScope}:not(${btnCheck}) + ${sandstoneScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sandstoneScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sandstoneScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sandstoneScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sandstoneScope}${btnCheck}:checked:focus-visible + ${sandstoneScope}${btn}`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${sandstoneScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-check[disabled] + .btn, .btn-check:disabled + .btn {
-//   pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(
-	[
-		`${sandstoneScope}${btnCheck}[disabled] + ${sandstoneScope}${btn}`,
-		`${sandstoneScope}${btnCheck}:disabled + ${sandstoneScope}${btn}`,
-	].join(', '),
-	{
-		pointerEvents: 'none',
-		filter: 'none',
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
-
-// ── Size modifiers ────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn-sm, .btn-group-sm > .btn {
-//   --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem;
-//   --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${sandstoneScope}${btnSm}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.25rem',
-		[varBsBtnPaddingX]: '0.5rem',
-		[varBsBtnFontSize]: '0.875rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
+globalStyle(`${sandstoneScope}${btn}${disabled}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-lg, .btn-group-lg > .btn {
-//   --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem;
-//   --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${sandstoneScope}${btnLg}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.5rem',
-		[varBsBtnPaddingX]: '1rem',
-		[varBsBtnFontSize]: '1.25rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
-	},
+globalStyle(`${sandstoneScope}${fieldset}:disabled ${sandstoneScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// ── .btn-link ─────────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn-link { --bs-btn-font-weight: 400; --bs-btn-color: var(--bs-link-color);
-//   --bs-btn-bg: transparent; --bs-btn-border-color: transparent;
-//   --bs-btn-hover-color: var(--bs-link-hover-color); --bs-btn-hover-border-color: transparent;
-//   --bs-btn-active-color: var(--bs-link-hover-color); --bs-btn-active-border-color: transparent;
-//   --bs-btn-disabled-color: #8e8c84; --bs-btn-disabled-border-color: transparent;
-//   --bs-btn-box-shadow: 0 0 0 #000; --bs-btn-focus-shadow-rgb: 49, 132, 253;
-//   text-decoration: underline; }
-globalStyle(`${sandstoneScope}${btnLink}`, {
-	vars: {
-		[varBsBtnFontWeight]: '400',
-		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: 'transparent',
-		[varBsBtnBorderColor]: 'transparent',
-		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: 'transparent',
-		[varBsBtnDisabledColor]: '#8e8c84',
-		[varBsBtnDisabledBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]: '0 0 0 #000',
-		[varBsBtnFocusBoxShadowRgb]: '49, 132, 253',
-	},
-	textDecoration: 'underline',
-})
-
-// ── Solid colour variants ─────────────────────────────────────────────────────
-// Each variant only sets --bs-btn-* CSS vars; all layout/interaction is inherited
-// from the base .btn rules above.
-//
-// SOURCE CSS: screenshots/bootstrap/bootstrap.css — .btn-primary { --bs-btn-* }
-
-// SOURCE CSS:
-// .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #325d88; --bs-btn-border-color: #325d88;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca;
-//   --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #325d88;
-//   --bs-btn-disabled-border-color: #325d88; }
 globalStyle(`${sandstoneScope}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -315,14 +305,6 @@ globalStyle(`${sandstoneScope}${btnPrimary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #8e8c84; --bs-btn-border-color: #8e8c84;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64;
-//   --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #8e8c84;
-//   --bs-btn-disabled-border-color: #8e8c84; }
 globalStyle(`${sandstoneScope}${btnSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -342,14 +324,6 @@ globalStyle(`${sandstoneScope}${btnSecondary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-success { --bs-btn-color: #fff; --bs-btn-bg: #93c54b; --bs-btn-border-color: #93c54b;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #157347; --bs-btn-hover-border-color: #146c43;
-//   --bs-btn-focus-shadow-rgb: 60, 153, 110; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #146c43; --bs-btn-active-border-color: #13653f;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #93c54b;
-//   --bs-btn-disabled-border-color: #93c54b; }
 globalStyle(`${sandstoneScope}${btnSuccess}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -369,14 +343,6 @@ globalStyle(`${sandstoneScope}${btnSuccess}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-info { --bs-btn-color: #000; --bs-btn-bg: #29abe0; --bs-btn-border-color: #29abe0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #31d2f2; --bs-btn-hover-border-color: #25cff2;
-//   --bs-btn-focus-shadow-rgb: 11, 172, 204; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #3dd5f3; --bs-btn-active-border-color: #25cff2;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #29abe0;
-//   --bs-btn-disabled-border-color: #29abe0; }
 globalStyle(`${sandstoneScope}${btnInfo}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -396,14 +362,6 @@ globalStyle(`${sandstoneScope}${btnInfo}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-warning { --bs-btn-color: #000; --bs-btn-bg: #f47c3c; --bs-btn-border-color: #f47c3c;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffca2c; --bs-btn-hover-border-color: #ffc720;
-//   --bs-btn-focus-shadow-rgb: 217, 164, 6; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #ffcd39; --bs-btn-active-border-color: #ffc720;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #f47c3c;
-//   --bs-btn-disabled-border-color: #f47c3c; }
 globalStyle(`${sandstoneScope}${btnWarning}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -423,14 +381,6 @@ globalStyle(`${sandstoneScope}${btnWarning}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #d9534f; --bs-btn-border-color: #d9534f;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37;
-//   --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #d9534f;
-//   --bs-btn-disabled-border-color: #d9534f; }
 globalStyle(`${sandstoneScope}${btnDanger}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -450,14 +400,6 @@ globalStyle(`${sandstoneScope}${btnDanger}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-light { --bs-btn-color: #000; --bs-btn-bg: #f8f5f0; --bs-btn-border-color: #f8f5f0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #d3d4d5; --bs-btn-hover-border-color: #c6c7c8;
-//   --bs-btn-focus-shadow-rgb: 211, 212, 213; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #c6c7c8; --bs-btn-active-border-color: #babbbc;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #f8f5f0;
-//   --bs-btn-disabled-border-color: #f8f5f0; }
 globalStyle(`${sandstoneScope}${btnLight}`, {
 	vars: {
 		[varBsBtnColor]: '#000',
@@ -477,14 +419,6 @@ globalStyle(`${sandstoneScope}${btnLight}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-dark { --bs-btn-color: #fff; --bs-btn-bg: #3e3f3a; --bs-btn-border-color: #3e3f3a;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #424649; --bs-btn-hover-border-color: #373b3e;
-//   --bs-btn-focus-shadow-rgb: 66, 70, 73; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #4d5154; --bs-btn-active-border-color: #373b3e;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #3e3f3a;
-//   --bs-btn-disabled-border-color: #3e3f3a; }
 globalStyle(`${sandstoneScope}${btnDark}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -504,21 +438,6 @@ globalStyle(`${sandstoneScope}${btnDark}`, {
 	},
 })
 
-// ── Outline variants ──────────────────────────────────────────────────────────
-// Each outline variant sets only --bs-btn-* CSS vars.
-// Hover and active states are handled by the base .btn:hover / active rules
-// using var(--bs-btn-hover-bg) etc. set here per variant.
-//
-// SOURCE CSS: screenshots/bootstrap/bootstrap.css — .btn-outline-* { --bs-btn-* }
-
-// SOURCE CSS:
-// .btn-outline-primary { --bs-btn-color: #325d88; --bs-btn-border-color: #325d88;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #325d88; --bs-btn-hover-border-color: #325d88;
-//   --bs-btn-focus-shadow-rgb: 50, 93, 136; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #325d88; --bs-btn-active-border-color: #325d88;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #325d88; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #325d88; }
 globalStyle(`${sandstoneScope}${btnOutlinePrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#325d88',
@@ -534,17 +453,10 @@ globalStyle(`${sandstoneScope}${btnOutlinePrimary}`, {
 		[varBsBtnDisabledColor]: '#325d88',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#325d88',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-secondary { --bs-btn-color: #8e8c84; --bs-btn-border-color: #8e8c84;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #8e8c84; --bs-btn-hover-border-color: #8e8c84;
-//   --bs-btn-focus-shadow-rgb: 142, 140, 132; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #8e8c84; --bs-btn-active-border-color: #8e8c84;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #8e8c84; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #8e8c84; }
 globalStyle(`${sandstoneScope}${btnOutlineSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#8e8c84',
@@ -560,17 +472,10 @@ globalStyle(`${sandstoneScope}${btnOutlineSecondary}`, {
 		[varBsBtnDisabledColor]: '#8e8c84',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#8e8c84',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-success { --bs-btn-color: #93c54b; --bs-btn-border-color: #93c54b;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #93c54b; --bs-btn-hover-border-color: #93c54b;
-//   --bs-btn-focus-shadow-rgb: 147, 197, 75; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #93c54b; --bs-btn-active-border-color: #93c54b;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #93c54b; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #93c54b; }
 globalStyle(`${sandstoneScope}${btnOutlineSuccess}`, {
 	vars: {
 		[varBsBtnColor]: '#93c54b',
@@ -586,17 +491,10 @@ globalStyle(`${sandstoneScope}${btnOutlineSuccess}`, {
 		[varBsBtnDisabledColor]: '#93c54b',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#93c54b',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-info { --bs-btn-color: #29abe0; --bs-btn-border-color: #29abe0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #29abe0; --bs-btn-hover-border-color: #29abe0;
-//   --bs-btn-focus-shadow-rgb: 41, 171, 224; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #29abe0; --bs-btn-active-border-color: #29abe0;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #29abe0; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #29abe0; }
 globalStyle(`${sandstoneScope}${btnOutlineInfo}`, {
 	vars: {
 		[varBsBtnColor]: '#29abe0',
@@ -612,17 +510,10 @@ globalStyle(`${sandstoneScope}${btnOutlineInfo}`, {
 		[varBsBtnDisabledColor]: '#29abe0',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#29abe0',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-warning { --bs-btn-color: #f47c3c; --bs-btn-border-color: #f47c3c;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #f47c3c; --bs-btn-hover-border-color: #f47c3c;
-//   --bs-btn-focus-shadow-rgb: 244, 124, 60; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #f47c3c; --bs-btn-active-border-color: #f47c3c;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #f47c3c; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #f47c3c; }
 globalStyle(`${sandstoneScope}${btnOutlineWarning}`, {
 	vars: {
 		[varBsBtnColor]: '#f47c3c',
@@ -638,17 +529,10 @@ globalStyle(`${sandstoneScope}${btnOutlineWarning}`, {
 		[varBsBtnDisabledColor]: '#f47c3c',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#f47c3c',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-danger { --bs-btn-color: #d9534f; --bs-btn-border-color: #d9534f;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #d9534f; --bs-btn-hover-border-color: #d9534f;
-//   --bs-btn-focus-shadow-rgb: 217, 83, 79; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #d9534f; --bs-btn-active-border-color: #d9534f;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #d9534f; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #d9534f; }
 globalStyle(`${sandstoneScope}${btnOutlineDanger}`, {
 	vars: {
 		[varBsBtnColor]: '#d9534f',
@@ -664,17 +548,10 @@ globalStyle(`${sandstoneScope}${btnOutlineDanger}`, {
 		[varBsBtnDisabledColor]: '#d9534f',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#d9534f',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-light { --bs-btn-color: #f8f5f0; --bs-btn-border-color: #f8f5f0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #f8f5f0; --bs-btn-hover-border-color: #f8f5f0;
-//   --bs-btn-focus-shadow-rgb: 248, 249, 250; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #f8f5f0; --bs-btn-active-border-color: #f8f5f0;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #f8f5f0; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #f8f5f0; }
 globalStyle(`${sandstoneScope}${btnOutlineLight}`, {
 	vars: {
 		[varBsBtnColor]: '#f8f5f0',
@@ -682,7 +559,7 @@ globalStyle(`${sandstoneScope}${btnOutlineLight}`, {
 		[varBsBtnHoverColor]: '#000',
 		[varBsBtnHoverBg]: '#f8f5f0',
 		[varBsBtnHoverBorderColor]: '#f8f5f0',
-		[varBsBtnFocusBoxShadowRgb]: '248, 249, 250',
+		[varBsBtnFocusBoxShadowRgb]: '248, 245, 240',
 		[varBsBtnActiveColor]: '#000',
 		[varBsBtnActiveBg]: '#f8f5f0',
 		[varBsBtnActiveBorderColor]: '#f8f5f0',
@@ -690,17 +567,10 @@ globalStyle(`${sandstoneScope}${btnOutlineLight}`, {
 		[varBsBtnDisabledColor]: '#f8f5f0',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#f8f5f0',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-dark { --bs-btn-color: #3e3f3a; --bs-btn-border-color: #3e3f3a;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #3e3f3a; --bs-btn-hover-border-color: #3e3f3a;
-//   --bs-btn-focus-shadow-rgb: 33, 37, 41; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #3e3f3a; --bs-btn-active-border-color: #3e3f3a;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #3e3f3a; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #3e3f3a; }
 globalStyle(`${sandstoneScope}${btnOutlineDark}`, {
 	vars: {
 		[varBsBtnColor]: '#3e3f3a',
@@ -708,7 +578,7 @@ globalStyle(`${sandstoneScope}${btnOutlineDark}`, {
 		[varBsBtnHoverColor]: '#fff',
 		[varBsBtnHoverBg]: '#3e3f3a',
 		[varBsBtnHoverBorderColor]: '#3e3f3a',
-		[varBsBtnFocusBoxShadowRgb]: '33, 37, 41',
+		[varBsBtnFocusBoxShadowRgb]: '62, 63, 58',
 		[varBsBtnActiveColor]: '#fff',
 		[varBsBtnActiveBg]: '#3e3f3a',
 		[varBsBtnActiveBorderColor]: '#3e3f3a',
@@ -716,8 +586,339 @@ globalStyle(`${sandstoneScope}${btnOutlineDark}`, {
 		[varBsBtnDisabledColor]: '#3e3f3a',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#3e3f3a',
+		[varBsGradient]: 'none',
 	},
 })
 
+globalStyle(`${sandstoneScope}${btnLink}`, {
+	vars: {
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnColor]: varBsLinkColor,
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
+		[varBsBtnHoverColor]: varBsLinkHoverColor,
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnActiveColor]: varBsLinkHoverColor,
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#8e8c84',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '163, 206, 102',
+	},
+	textDecoration: 'underline',
+})
 
+globalStyle(`${sandstoneScope}${btnLink}:focus-visible`, {
+	color: varBsBtnColor,
+})
 
+globalStyle(`${sandstoneScope}${btnLink}:hover`, {
+	color: varBsBtnHoverColor,
+})
+
+globalStyle(`${sandstoneScope}${btnLg}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${sandstoneScope}${btnGroupLg} > ${sandstoneScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${sandstoneScope}${btnSm}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${sandstoneScope}${btnGroupSm} > ${sandstoneScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btnCheck}:focus + ${sandstoneScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btnCheck}:focus + ${sandstoneScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}:not(${btnCheck}:first-child) + ${sandstoneScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btnGroup}:not(:last-child) > ${sandstoneScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}:not(${btnCheck}) + ${sandstoneScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroup} > ${sandstoneScope}${btnGroup}:not(:first-child) > ${sandstoneScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${sandstoneScope}${btnSm} + ${sandstoneScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupSm} > ${sandstoneScope}${btn} + ${sandstoneScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${sandstoneScope}${btnLg} + ${sandstoneScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupLg} > ${sandstoneScope}${btn} + ${sandstoneScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btnGroup}:not(:last-child) > ${sandstoneScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}:not(${btnCheck}) + ${sandstoneScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${btnGroupVertical} > ${sandstoneScope}${btnGroup}:not(:first-child) > ${sandstoneScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${sandstoneScope}${alertDismissible} ${sandstoneScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '1.25rem 1rem',
+})
+
+globalStyle(`${sandstoneScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#fff',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.8',
+		[varBsBtnCloseHoverOpacity]: '1',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(50, 93, 136, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
+	color: varBsBtnCloseColor,
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
+	filter: varBsBtnCloseFilter,
+	border: '0',
+	borderRadius: '0.375rem',
+	opacity: varBsBtnCloseOpacity,
+})
+
+globalStyle(`${sandstoneScope}${btnClose}:hover`, {
+	color: varBsBtnCloseColor,
+	textDecoration: 'none',
+	opacity: varBsBtnCloseHoverOpacity,
+})
+
+globalStyle(`${sandstoneScope}${btnClose}:focus`, {
+	outline: '0',
+	boxShadow: varBsBtnCloseFocusShadow,
+	opacity: varBsBtnCloseFocusOpacity,
+})
+
+globalStyle(`${sandstoneScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${sandstoneScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${sandstoneScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
+globalStyle(`${sandstoneScope}${toastHeader} ${sandstoneScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${sandstoneScope}${modalHeader} ${sandstoneScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${sandstoneScope}${offcanvasHeader} ${sandstoneScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${sandstoneScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
+})
+
+globalStyle(`${sandstoneScope}${btn}`, {
+	fontSize: '13px',
+	fontWeight: '500',
+	lineHeight: '22px',
+	textTransform: 'uppercase',
+})
+
+globalStyle(`${sandstoneScope}${btn}:hover`, {
+	borderColor: 'transparent',
+})
+
+globalStyle(`${sandstoneScope}${btnSuccess}`, {
+	color: '#fff',
+})
+
+globalStyle(`${sandstoneScope}${btnWarning}`, {
+	color: '#fff',
+})
+
+globalStyle(`${sandstoneScope}${modal} ${sandstoneScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23dfd7ca\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
+})
+
+globalStyle(`${sandstoneScope}${toast} ${sandstoneScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23dfd7ca\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
+})
+
+globalStyle(`${sandstoneScope}${offcanvas} ${sandstoneScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23dfd7ca\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
+})

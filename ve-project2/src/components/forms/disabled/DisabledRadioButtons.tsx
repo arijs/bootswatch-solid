@@ -1,8 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	fieldset,
 	form,
@@ -11,13 +13,16 @@ import {
 	formCheckLabel,
 	legend,
 	legendClear,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import { elInput, elLabel } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const DisabledRadioButtons: Component = () => {
@@ -33,11 +38,11 @@ const DisabledRadioButtons: Component = () => {
 						<input
 							type="radio"
 							name="radios"
-							class={`${theme} ${formCheckInput}`}
+							class={`${theme} ${elInput} ${formCheckInput}`}
 							id="disabledRadio1"
 							disabled
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="disabledRadio1">
+						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="disabledRadio1">
 							Disabled radio
 						</label>
 					</div>
@@ -45,11 +50,11 @@ const DisabledRadioButtons: Component = () => {
 						<input
 							type="radio"
 							name="radios"
-							class={`${theme} ${formCheckInput}`}
+							class={`${theme} ${elInput} ${formCheckInput}`}
 							id="disabledRadio2"
 							disabled
 						/>
-						<label class={`${theme} ${formCheckLabel}`} for="disabledRadio2">
+						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="disabledRadio2">
 							Another radio
 						</label>
 					</div>

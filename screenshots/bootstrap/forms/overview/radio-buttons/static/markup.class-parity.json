@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "totalElements": 14,
+    "elementsChecked": 14,
+    "elementsWithGaps": 2,
+    "totalExpected": 8,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/form[1]/fieldset[1]/div[1]/input[1]",
+      "tag": "input",
+      "baselineClasses": [
+        "form-check-input",
+        "pwhook-radio"
+      ],
+      "expectedSymbols": [
+        "formCheckInput"
+      ],
+      "stampedSymbols": [
+        "formCheckInput"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-radio"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/form[1]/fieldset[1]/div[2]/input[1]",
+      "tag": "input",
+      "baselineClasses": [
+        "form-check-input",
+        "pwhook-radio"
+      ],
+      "expectedSymbols": [
+        "formCheckInput"
+      ],
+      "stampedSymbols": [
+        "formCheckInput"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-radio"
+      ]
+    }
+  ]
+}

@@ -1,14 +1,25 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { h5 } from '../../../theme-contract/contents/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { h5 } from '../../../theme-contract/contents/heading/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { btnClose } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
-import { btn, btnPrimary, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import {
+	btn,
+	btnPrimary,
+	btnSecondary,
+	inputFontFamily,
+} from '../../../theme-contract/ui/buttons/contract.css'
 import {
 	actionsRow,
-	fade,
 	flexWrap,
 	justifyContentBetween,
 	modal,
@@ -23,6 +34,7 @@ import {
 	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
+import { dFlex } from '../../../theme-contract/utilities/contract.css'
 import { configureVeModal } from './ve-modal'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -31,21 +43,28 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const StaticBackdropModal: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const modalName = modal
-	configureVeModal({ name: modalName, fade, modalBackdrop: `${theme} ${modalBackdrop}`, modalBody, modalDialog, modalOpenHook, modalShowHook })
+	configureVeModal({
+		name: modalName,
+		modalBackdrop: `${theme} ${modalBackdrop}`,
+		modalBody,
+		modalDialog,
+		modalOpenHook: `${theme} ${modalOpenHook}`,
+		modalShowHook,
+	})
 	return (
 		<>
 			<div class={`bd-example ${theme} ${containerFluid}`}>
-				<div class={`${theme} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
+				<div class={`${theme} ${dFlex} ${actionsRow} ${justifyContentBetween} ${flexWrap}`}>
 					<button
 						type="button"
-						class={`${theme} ${btn} ${btnPrimary} pwhook-modal-trigger`}
+						class={`${theme} ${elButton} ${btn} ${btnPrimary} pwhook-modal-trigger`}
 						data-bs-toggle={modalName}
 						data-bs-target={`#staticBackdropLive`}
 					>
@@ -54,7 +73,7 @@ const StaticBackdropModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} ${fade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
 				id="staticBackdropLive"
 				data-bs-backdrop="static"
 				data-bs-keyboard="false"
@@ -72,13 +91,13 @@ const StaticBackdropModal: Component = () => {
 							</h5>
 							<button
 								type="button"
-								class={`${theme} ${alertBtnClose}`}
+								class={`${theme} ${elButton} ${alertBtnClose} ${btnClose} ${inputFontFamily}`}
 								data-bs-dismiss={`.${modalName}`}
 								aria-label="Close"
 							></button>
 						</div>
 						<div class={`${theme} ${modalBody}`}>
-							<p>
+							<p class={`${theme} ${paragraph}`}>
 								I will not close if you click outside me. Don't even try to press
 								escape key.
 							</p>
@@ -86,12 +105,15 @@ const StaticBackdropModal: Component = () => {
 						<div class={`${theme} ${modalFooter}`}>
 							<button
 								type="button"
-								class={`${theme} ${btn} ${btnSecondary}`}
+								class={`${theme} ${elButton} ${btn} ${btnSecondary}`}
 								data-bs-dismiss={`.${modalName}`}
 							>
 								Close
 							</button>
-							<button type="button" class={`${theme} ${btn} ${btnPrimary}`}>
+							<button
+								type="button"
+								class={`${theme} ${elButton} ${btn} ${btnPrimary}`}
+							>
 								Understood
 							</button>
 						</div>

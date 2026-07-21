@@ -1,22 +1,27 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	table,
 	tableCell,
 	tableElement,
+	tableHead,
 	tableHeaderCell,
 	tableHover,
 	tableRow,
 	tableSection,
 } from '../../../theme-contract/contents/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/tables',
-	'utilities',
+	'utilities/used',
 ]
 
 const HoverDefaultVariant: Component = () => {
@@ -26,7 +31,7 @@ const HoverDefaultVariant: Component = () => {
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<table class={`${theme} ${table} ${tableElement} ${tableHover} pwhook-table-hover`}>
-				<thead class={`${theme} ${tableSection}`}>
+				<thead class={`${theme} ${tableHead}`}>
 					<tr class={`${theme} ${tableRow}`}>
 						<th class={`${theme} ${tableHeaderCell}`}>Default</th>
 						<th class={`${theme} ${tableHeaderCell}`}>Heading</th>

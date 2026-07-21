@@ -1,20 +1,25 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	formControl,
 	formControlSm,
 	formSelect,
 	formSelectSm,
-	mb3,
 } from '../../../theme-contract/forms/contract.css'
+import { elInput, elSelect } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const SmallControls: Component = () => {
@@ -25,7 +30,7 @@ const SmallControls: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<div class={`${theme} ${mb3}`}>
 				<input
-					class={`${theme} ${formControl} ${formControlSm}`}
+					class={`${theme} ${elInput} ${formControl} ${formControlSm}`}
 					type="text"
 					placeholder=".form-control-sm"
 					aria-label=".form-control-sm example"
@@ -33,7 +38,7 @@ const SmallControls: Component = () => {
 			</div>
 			<div class={`${theme} ${mb3}`}>
 				<select
-					class={`${theme} ${formSelect} ${formSelectSm}`}
+					class={`${theme} ${elSelect} ${formSelect} ${formSelectSm}`}
 					aria-label=".form-select-sm example"
 				>
 					<option selected>Open this select menu</option>
@@ -45,7 +50,7 @@ const SmallControls: Component = () => {
 			<div class={`${theme} ${mb3}`}>
 				<input
 					type="file"
-					class={`${theme} ${formControl} ${formControlSm}`}
+					class={`${theme} ${elInput} ${formControl} ${formControlSm}`}
 					aria-label="Small file input example"
 				/>
 			</div>

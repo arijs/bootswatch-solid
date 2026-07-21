@@ -1,8 +1,10 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
+	varBsBodyBg,
 	varBsBorderColor,
 	varBsBorderWidth,
-	varBsBodyBg,
 	varBsEmphasisColorRgb,
 } from '../../../../theme-contract/_vars.css'
 import {
@@ -21,70 +23,41 @@ import {
 	varBsTableStripedBg,
 	varBsTableStripedColor,
 } from '../../../../theme-contract/contents/_vars.css'
+
 import {
+	tableCell,
+	tableHead,
+	tableHeaderCell,
+	tableRow,
+	tableSection,
+} from '../../../../theme-contract/contents/tables/contract.css'
+
+import {
+	table,
+	tableActive,
 	tableBordered,
 	tableBorderless,
-	tableCell,
 	tableDanger,
 	tableDark,
-	tableElement,
-	tableHeaderCell,
+	tableGroupDivider,
 	tableHover,
 	tableInfo,
 	tableLight,
 	tablePrimary,
-	tableRow,
+	tableResponsive,
+	tableResponsiveLg,
+	tableResponsiveMd,
+	tableResponsiveSm,
+	tableResponsiveXl,
+	tableResponsiveXxl,
 	tableSecondary,
-	tableSection,
 	tableSm,
 	tableStriped,
+	tableStripedColumns,
 	tableSuccess,
 	tableWarning,
-	table,
-} from '../../../../theme-contract/contents/contract.css'
-import { materiaScope } from '../../scope.css'
-
-const cssVarName = (token: string) => token.slice(4, -1)
-
-// ─── Tables ───────────────────────────────────────────────────────────────────
-
-globalStyle(`${materiaScope}${tableElement}`, {
-	captionSide: 'bottom',
-	borderCollapse: 'collapse',
-})
-
-globalStyle(`${materiaScope}${tableSection}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-globalStyle(`${materiaScope}${tableRow}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-globalStyle(`${materiaScope}${tableCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-})
-
-globalStyle(`${materiaScope}${tableHeaderCell}`, {
-	borderColor: 'inherit',
-	borderStyle: 'solid',
-	borderWidth: 0,
-	textAlign: 'inherit',
-})
-
-globalStyle(`${materiaScope}${tableElement} > thead`, {
-	verticalAlign: 'bottom',
-})
-
-globalStyle(`${materiaScope}${tableElement} > tbody`, {
-	verticalAlign: 'inherit',
-})
+} from '../../../../theme-contract/contents/tables/contract.css'
+import { theadInverse } from '../../../../theme-contract/literal/contract.css'
 
 globalStyle(`${materiaScope}${table}`, {
 	vars: {
@@ -111,10 +84,26 @@ globalStyle(`${materiaScope}${table}`, {
 
 globalStyle(`${materiaScope}${table} > :not(caption) > * > *`, {
 	padding: '0.5rem 0.5rem',
-	color: `var(${cssVarName(varBsTableColorState)}, var(${cssVarName(varBsTableColorType)}, ${varBsTableColor}))`,
+	color: fallbackVar(varBsTableColorState, fallbackVar(varBsTableColorType, varBsTableColor)),
 	backgroundColor: varBsTableBg,
 	borderBottomWidth: varBsBorderWidth,
-	boxShadow: `inset 0 0 0 9999px var(${cssVarName(varBsTableBgState)}, var(${cssVarName(varBsTableBgType)}, ${varBsTableAccentBg}))`,
+	boxShadow: `inset 0 0 0 9999px ${fallbackVar(varBsTableBgState, fallbackVar(varBsTableBgType, varBsTableAccentBg))}`,
+})
+
+globalStyle(`${materiaScope}${table} > ${materiaScope}${tableSection}`, {
+	verticalAlign: 'inherit',
+})
+
+globalStyle(`${materiaScope}${table} > ${materiaScope}${tableHead}`, {
+	verticalAlign: 'bottom',
+})
+
+globalStyle(`${materiaScope}${tableGroupDivider}`, {
+	borderTop: `calc(${varBsBorderWidth} * 2) solid currentcolor`,
+})
+
+globalStyle(`${materiaScope}${tableSm} > :not(caption) > * > *`, {
+	padding: '0.25rem 0.25rem',
 })
 
 globalStyle(`${materiaScope}${tableBordered} > :not(caption) > *`, {
@@ -126,32 +115,152 @@ globalStyle(`${materiaScope}${tableBordered} > :not(caption) > * > *`, {
 })
 
 globalStyle(`${materiaScope}${tableBorderless} > :not(caption) > * > *`, {
-	borderBottomWidth: 0,
+	borderBottomWidth: '0',
 })
 
 globalStyle(`${materiaScope}${tableBorderless} > :not(:first-child)`, {
-	borderTopWidth: 0,
+	borderTopWidth: '0',
 })
 
-globalStyle(`${materiaScope}${tableSm} > :not(caption) > * > *`, {
-	padding: '0.25rem 0.25rem',
-})
-
-globalStyle(`${materiaScope}${tableStriped} > tbody > tr:nth-of-type(odd) > *`, {
+globalStyle(`${materiaScope}${tableStriped} > ${materiaScope}${tableSection} > ${materiaScope}${tableRow}:nth-of-type(odd) > *`, {
 	vars: {
 		[varBsTableColorType]: varBsTableStripedColor,
 		[varBsTableBgType]: varBsTableStripedBg,
 	},
 })
 
-globalStyle(`${materiaScope}${tableHover} > tbody > tr:hover > *`, {
+globalStyle(`${materiaScope}${tableStripedColumns} > :not(caption) > ${materiaScope}${tableRow} > :nth-child(even)`, {
+	vars: {
+		[varBsTableColorType]: varBsTableStripedColor,
+		[varBsTableBgType]: varBsTableStripedBg,
+	},
+})
+
+globalStyle(`${materiaScope}${tableActive}`, {
+	vars: {
+		[varBsTableColorState]: varBsTableActiveColor,
+		[varBsTableBgState]: varBsTableActiveBg,
+	},
+})
+
+globalStyle(`${materiaScope}${tableHover} > ${materiaScope}${tableSection} > ${materiaScope}${tableRow}:hover > *`, {
 	vars: {
 		[varBsTableColorState]: varBsTableHoverColor,
 		[varBsTableBgState]: varBsTableHoverBg,
 	},
 })
 
-// ─── Table colour variants (values from screenshots/materia/bootstrap.css) ────
+globalStyle(`${materiaScope}${tablePrimary}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#d3eafd',
+		[varBsTableBorderColor]: '#a9bbca',
+		[varBsTableStripedBg]: '#c8def0',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#bed3e4',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#c3d8ea',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableSecondary}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: 'white',
+		[varBsTableBorderColor]: '#cccccc',
+		[varBsTableStripedBg]: '#f2f2f2',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#e6e6e6',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#ececec',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableSuccess}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#dbefdc',
+		[varBsTableBorderColor]: '#afbfb0',
+		[varBsTableStripedBg]: '#d0e3d1',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#c5d7c6',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#cbddcc',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableInfo}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#ebd4ef',
+		[varBsTableBorderColor]: '#bcaabf',
+		[varBsTableStripedBg]: '#dfc9e3',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#d4bfd7',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#d9c4dd',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableWarning}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#ffeacc',
+		[varBsTableBorderColor]: '#ccbba3',
+		[varBsTableStripedBg]: '#f2dec2',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#e6d3b8',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#ecd8bd',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableDanger}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#fad2d3',
+		[varBsTableBorderColor]: '#c8a8a9',
+		[varBsTableStripedBg]: '#eec8c8',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#e1bdbe',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#e7c2c3',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableLight}`, {
+	vars: {
+		[varBsTableColor]: '#000',
+		[varBsTableBg]: '#f8f9fa',
+		[varBsTableBorderColor]: '#c6c7c8',
+		[varBsTableStripedBg]: '#ecedee',
+		[varBsTableStripedColor]: '#000',
+		[varBsTableActiveBg]: '#dfe0e1',
+		[varBsTableActiveColor]: '#000',
+		[varBsTableHoverBg]: '#e5e6e7',
+		[varBsTableHoverColor]: '#000',
+	},
+	color: varBsTableColor,
+	borderColor: varBsTableBorderColor,
+})
 
 globalStyle(`${materiaScope}${tableDark}`, {
 	vars: {
@@ -169,116 +278,111 @@ globalStyle(`${materiaScope}${tableDark}`, {
 	borderColor: varBsTableBorderColor,
 })
 
+globalStyle(`${materiaScope}${tableResponsive}`, {
+	overflowX: 'auto',
+	WebkitOverflowScrolling: 'touch',
+})
+
+globalStyle(`${materiaScope}${tableResponsiveSm}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${tableResponsiveMd}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${tableResponsiveLg}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${tableResponsiveXl}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${tableResponsiveXxl}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowX: 'auto',
+			WebkitOverflowScrolling: 'touch',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${tableHover} > ${materiaScope}${tableSection} > ${materiaScope}${tableRow}`, {
+	transition: 'background-color 0.2s, color 0.2s',
+})
+
+globalStyle(`${materiaScope}${tableHover} > ${materiaScope}${tableSection} > ${materiaScope}${tableRow} > ${materiaScope}${tableHeaderCell}`, {
+	transition: 'background-color 0.2s, color 0.2s',
+})
+
+globalStyle(`${materiaScope}${tableHover} > ${materiaScope}${tableSection} > ${materiaScope}${tableRow} > ${materiaScope}${tableCell}`, {
+	transition: 'background-color 0.2s, color 0.2s',
+})
+
+globalStyle(`${materiaScope}${theadInverse} ${materiaScope}${tableHeaderCell}`, {
+	color: '#fff',
+	backgroundColor: '#2196f3',
+})
+
 globalStyle(`${materiaScope}${tablePrimary}`, {
 	vars: {
 		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#d3eafd',
-		[varBsTableBorderColor]: '#a9bbca',
-		[varBsTableStripedBg]: '#c8def0',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#bed3e4',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#c3d8ea',
-		[varBsTableHoverColor]: '#000',
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
 globalStyle(`${materiaScope}${tableSecondary}`, {
 	vars: {
 		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#ffffff',
-		[varBsTableBorderColor]: '#cccccc',
-		[varBsTableStripedBg]: '#f2f2f2',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#e6e6e6',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#ececec',
-		[varBsTableHoverColor]: '#000',
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
-})
-
-globalStyle(`${materiaScope}${tableDanger}`, {
-	vars: {
-		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#fad2d3',
-		[varBsTableBorderColor]: '#c8a8a9',
-		[varBsTableStripedBg]: '#eec8c8',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#e1bdbe',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#e7c2c3',
-		[varBsTableHoverColor]: '#000',
-	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
 globalStyle(`${materiaScope}${tableSuccess}`, {
 	vars: {
 		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#dbefdc',
-		[varBsTableBorderColor]: '#afbfb0',
-		[varBsTableStripedBg]: '#d0e3d1',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#c5d7c6',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#cbddcc',
-		[varBsTableHoverColor]: '#000',
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
 globalStyle(`${materiaScope}${tableWarning}`, {
 	vars: {
 		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#ffeacc',
-		[varBsTableBorderColor]: '#ccbba3',
-		[varBsTableStripedBg]: '#f2dec2',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#e6d3b8',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#ecd8bd',
-		[varBsTableHoverColor]: '#000',
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
+})
+
+globalStyle(`${materiaScope}${tableDanger}`, {
+	vars: {
+		[varBsTableColor]: '#444',
+	},
 })
 
 globalStyle(`${materiaScope}${tableInfo}`, {
 	vars: {
 		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#ebd4ef',
-		[varBsTableBorderColor]: '#bcaabf',
-		[varBsTableStripedBg]: '#dfc9e3',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#d4bfd7',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#d9c4dd',
-		[varBsTableHoverColor]: '#000',
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
 
 globalStyle(`${materiaScope}${tableLight}`, {
 	vars: {
 		[varBsTableColor]: '#444',
-		[varBsTableBg]: '#f8f9fa',
-		[varBsTableBorderColor]: '#c6c7c8',
-		[varBsTableStripedBg]: '#ecedee',
-		[varBsTableStripedColor]: '#000',
-		[varBsTableActiveBg]: '#dfe0e1',
-		[varBsTableActiveColor]: '#000',
-		[varBsTableHoverBg]: '#e5e6e7',
-		[varBsTableHoverColor]: '#000',
 	},
-	color: varBsTableColor,
-	borderColor: varBsTableBorderColor,
 })
-
-// ─── Inline code ──────────────────────────────────────────────────────────────

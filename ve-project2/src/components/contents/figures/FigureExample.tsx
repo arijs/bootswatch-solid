@@ -1,22 +1,25 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
-	bdPlaceholderImg,
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import {
 	figure,
 	figureCaption,
 	figureImg,
 	imgFluid,
-	mediaMiddle,
 	rounded,
 } from '../../../theme-contract/contents/contract.css'
+import { elFigure, elSvg } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/images',
-	'utilities',
+	'utilities/used',
 ]
 
 const FigureExample: Component = () => {
@@ -25,9 +28,9 @@ const FigureExample: Component = () => {
 
 	return (
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
-			<figure class={`${theme} ${figure}`}>
+			<figure class={`${theme} ${elFigure} ${figure}`}>
 				<svg
-					class={`${theme} ${bdPlaceholderImg} ${figureImg} ${imgFluid} ${mediaMiddle} ${rounded}`}
+					class={`bd-placeholder-img ${theme} ${elSvg} ${figureImg} ${imgFluid} ${rounded}`}
 					width="400"
 					height="300"
 					xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +45,9 @@ const FigureExample: Component = () => {
 					</text>
 				</svg>
 
-				<figcaption class={`${theme} ${figureCaption}`}>A caption for the above image.</figcaption>
+				<figcaption class={`${theme} ${figureCaption}`}>
+					A caption for the above image.
+				</figcaption>
 			</figure>
 		</div>
 	)

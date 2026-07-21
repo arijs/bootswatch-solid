@@ -1,28 +1,28 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 import {
-	spinnerGrow,
-	spinnerDanger,
-} from '../../../theme-contract/ui/spinners/contract.css'
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { textDanger } from '../../../theme-contract/literal/contract.css'
+import { spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
+import { visuallyHidden } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/spinners',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const GrowDangerSpinner: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
-		<div class="bd-example-ve2">
-			<div class={`${theme} ${containerFluid}`}>
-				<div class={`${theme} ${spinnerGrow} ${spinnerDanger}`}>
-					<span class={`${theme} ${visuallyHidden}`}>Loading...</span>
-				</div>
+		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
+			<div class={`${theme} ${spinnerGrow} ${textDanger}`}>
+				<span class={`${theme} ${visuallyHidden}`}>Loading...</span>
 			</div>
 		</div>
 	)

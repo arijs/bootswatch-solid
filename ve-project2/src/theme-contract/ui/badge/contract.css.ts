@@ -15,5 +15,8 @@ export const badgeInfo = style({})
 export const badgeLight = style({})
 export const badgeDark = style({})
 
+/** Dark label text on light badge fills (`.text-dark` with `.bg-warning` / `.bg-info` / `.bg-light`). */
+export const badgeTextDark = style({})
+
 // Shape modifier
 export const badgeRoundedPill = style({})

@@ -1,19 +1,42 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-	listGroupItemAction,
-	listGroupItemDanger,
-	listGroupItemDark,
-	listGroupItemDisabled,
-	listGroupItemInfo,
-	listGroupItemLight,
-	listGroupItemPrimary,
-	listGroupItemSecondary,
-	listGroupItemSuccess,
-	listGroupItemWarning,
-} from '../../../../theme-contract/ui/list-group/contract.css'
+	varBsBodyBg,
+	varBsBodyColor,
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsDangerBgSubtle,
+	varBsDangerBorderSubtle,
+	varBsDangerTextEmphasis,
+	varBsDarkBgSubtle,
+	varBsDarkBorderSubtle,
+	varBsDarkTextEmphasis,
+	varBsEmphasisColor,
+	varBsInfoBgSubtle,
+	varBsInfoBorderSubtle,
+	varBsInfoTextEmphasis,
+	varBsLightBgSubtle,
+	varBsLightBorderSubtle,
+	varBsLightTextEmphasis,
+	varBsPrimaryBgSubtle,
+	varBsPrimaryBorderSubtle,
+	varBsPrimaryTextEmphasis,
+	varBsSecondaryBg,
+	varBsSecondaryBgSubtle,
+	varBsSecondaryBorderSubtle,
+	varBsSecondaryColor,
+	varBsSecondaryTextEmphasis,
+	varBsSuccessBgSubtle,
+	varBsSuccessBorderSubtle,
+	varBsSuccessTextEmphasis,
+	varBsTertiaryBg,
+	varBsWarningBgSubtle,
+	varBsWarningBorderSubtle,
+	varBsWarningTextEmphasis,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardInnerBorderRadius } from '../../../../theme-contract/ui/card/_vars.css'
 import {
 	varBsListGroupActionActiveBg,
 	varBsListGroupActionActiveColor,
@@ -33,43 +56,69 @@ import {
 	varBsListGroupItemPaddingX,
 	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/list-group/_vars.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsBodyColor,
-	varBsDangerBgSubtle,
-	varBsDangerBorderSubtle,
-	varBsDangerTextEmphasis,
-	varBsDarkBgSubtle,
-	varBsDarkBorderSubtle,
-	varBsDarkTextEmphasis,
-	varBsEmphasisColor,
-	varBsInfoBgSubtle,
-	varBsInfoBorderSubtle,
-	varBsInfoTextEmphasis,
-	varBsLightBgSubtle,
-	varBsLightBorderSubtle,
-	varBsLightTextEmphasis,
-	varBsPrimary,
-	varBsPrimaryBgSubtle,
-	varBsPrimaryBorderSubtle,
-	varBsPrimaryTextEmphasis,
-	varBsSecondaryBg,
-	varBsSecondaryBgSubtle,
-	varBsSecondaryBorderSubtle,
-	varBsSecondaryColor,
-	varBsSecondaryTextEmphasis,
-	varBsSuccessBgSubtle,
-	varBsSuccessBorderSubtle,
-	varBsSuccessTextEmphasis,
-	varBsTertiaryBg,
-	varBsWarningBgSubtle,
-	varBsWarningBorderSubtle,
-	varBsWarningTextEmphasis,
-} from '../../../../theme-contract/_vars.css'
-import { materiaScope } from '../../scope.css'
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+} from '../../../../theme-contract/contents/heading/contract.css'
+
+import {
+	active,
+	clsH1,
+	clsH2,
+	clsH3,
+	clsH4,
+	clsH5,
+	clsH6,
+	disabled,
+	listGroupHorizontal,
+	listGroupHorizontalLg,
+	listGroupHorizontalMd,
+	listGroupHorizontalSm,
+	listGroupHorizontalXl,
+	listGroupHorizontalXxl,
+	listGroupNumbered,
+} from '../../../../theme-contract/literal/contract.css'
+import { card, cardHeader } from '../../../../theme-contract/ui/card/contract.css'
+import {
+	listGroup,
+	listGroupFlush,
+	listGroupItem,
+	listGroupItemAction,
+	listGroupItemDanger,
+	listGroupItemDark,
+	listGroupItemInfo,
+	listGroupItemLight,
+	listGroupItemPrimary,
+	listGroupItemSecondary,
+	listGroupItemSuccess,
+	listGroupItemWarning,
+} from '../../../../theme-contract/ui/list-group/contract.css'
+
+globalStyle(`${materiaScope}${card} > ${materiaScope}${listGroup}`, {
+	borderTop: 'inherit',
+	borderBottom: 'inherit',
+})
+
+globalStyle(`${materiaScope}${card} > ${materiaScope}${listGroup}:first-child`, {
+	borderTopWidth: '0',
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${materiaScope}${card} > ${materiaScope}${listGroup}:last-child`, {
+	borderBottomWidth: '0',
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${materiaScope}${card} > ${materiaScope}${cardHeader} + ${materiaScope}${listGroup}`, {
+	borderTop: '0',
+})
 
 globalStyle(`${materiaScope}${listGroup}`, {
 	vars: {
@@ -88,26 +137,24 @@ globalStyle(`${materiaScope}${listGroup}`, {
 		[varBsListGroupDisabledColor]: varBsSecondaryColor,
 		[varBsListGroupDisabledBg]: varBsBodyBg,
 		[varBsListGroupActiveColor]: '#fff',
-		[varBsListGroupActiveBg]: varBsPrimary,
-		[varBsListGroupActiveBorderColor]: varBsPrimary,
+		[varBsListGroupActiveBg]: '#2196f3',
+		[varBsListGroupActiveBorderColor]: '#2196f3',
 	},
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	borderRadius: varBsListGroupBorderRadius,
 })
 
-globalStyle(`${materiaScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${materiaScope}${listGroupNumbered}`, {
+	listStyleType: 'none',
+	counterReset: 'section',
 })
 
-globalStyle(`${materiaScope}${listGroupFlush} > ${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
-})
-
-globalStyle(`${materiaScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
+globalStyle(`${materiaScope}${listGroupNumbered} > ${materiaScope}${listGroupItem}::before`, {
+	content: 'counters(section, ".") ". "',
+	counterIncrement: 'section',
 })
 
 globalStyle(`${materiaScope}${listGroupItem}`, {
@@ -130,27 +177,30 @@ globalStyle(`${materiaScope}${listGroupItem}:last-child`, {
 	borderBottomLeftRadius: 'inherit',
 })
 
-globalStyle(
-	`${materiaScope}${listGroupItem}${listGroupItemDisabled}, ${materiaScope}${listGroupItem}:disabled`,
-	{
-		color: varBsListGroupDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsListGroupDisabledBg,
-	},
-)
+globalStyle(`${materiaScope}${listGroupItem}${disabled}`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
 
-globalStyle(`${materiaScope}${listGroupItem}.active`, {
-	zIndex: 2,
+globalStyle(`${materiaScope}${listGroupItem}:disabled`, {
+	color: varBsListGroupDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsListGroupDisabledBg,
+})
+
+globalStyle(`${materiaScope}${listGroupItem}${active}`, {
+	zIndex: '2',
 	color: varBsListGroupActiveColor,
 	backgroundColor: varBsListGroupActiveBg,
 	borderColor: varBsListGroupActiveBorderColor,
 })
 
-globalStyle(`${materiaScope}${listGroupItem} + ${listGroupItem}`, {
-	borderTopWidth: 0,
+globalStyle(`${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	borderTopWidth: '0',
 })
 
-globalStyle(`${materiaScope}${listGroupItem} + ${listGroupItem}.active`, {
+globalStyle(`${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
 	marginTop: `calc(-1 * ${varBsListGroupBorderWidth})`,
 	borderTopWidth: varBsListGroupBorderWidth,
 })
@@ -161,19 +211,323 @@ globalStyle(`${materiaScope}${listGroupItemAction}`, {
 	textAlign: 'inherit',
 })
 
-globalStyle(
-	`${materiaScope}${listGroupItemAction}:not(.active):hover, ${materiaScope}${listGroupItemAction}:not(.active):focus`,
-	{
-		zIndex: 1,
-		color: varBsListGroupActionHoverColor,
-		textDecoration: 'none',
-		backgroundColor: varBsListGroupActionHoverBg,
-	},
-)
+globalStyle(`${materiaScope}${listGroupItemAction}:not(${active}):hover`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
 
-globalStyle(`${materiaScope}${listGroupItemAction}:not(.active):active`, {
+globalStyle(`${materiaScope}${listGroupItemAction}:not(${active}):focus`, {
+	zIndex: '1',
+	color: varBsListGroupActionHoverColor,
+	textDecoration: 'none',
+	backgroundColor: varBsListGroupActionHoverBg,
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}:not(${active}):active`, {
 	color: varBsListGroupActionActiveColor,
 	backgroundColor: varBsListGroupActionActiveBg,
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontal}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	borderBottomLeftRadius: varBsListGroupBorderRadius,
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	borderTopRightRadius: varBsListGroupBorderRadius,
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem}${active}`, {
+	marginTop: '0',
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	borderTopWidth: varBsListGroupBorderWidth,
+	borderLeftWidth: '0',
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontal} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
+	marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+	borderLeftWidth: varBsListGroupBorderWidth,
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalSm} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalMd} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalLg} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXl} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem}:first-child:not(:last-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderBottomLeftRadius: varBsListGroupBorderRadius,
+			borderTopRightRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem}:last-child:not(:first-child)`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopRightRadius: varBsListGroupBorderRadius,
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginTop: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			borderTopWidth: varBsListGroupBorderWidth,
+			borderLeftWidth: '0',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupHorizontalXxl} > ${materiaScope}${listGroupItem} + ${materiaScope}${listGroupItem}${active}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			marginLeft: `calc(-1 * ${varBsListGroupBorderWidth})`,
+			borderLeftWidth: varBsListGroupBorderWidth,
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${listGroupFlush}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${materiaScope}${listGroupFlush} > ${materiaScope}${listGroupItem}`, {
+	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+})
+
+globalStyle(`${materiaScope}${listGroupFlush} > ${materiaScope}${listGroupItem}:last-child`, {
+	borderBottomWidth: '0',
 })
 
 globalStyle(`${materiaScope}${listGroupItemPrimary}`, {
@@ -296,3 +650,50 @@ globalStyle(`${materiaScope}${listGroupItemDark}`, {
 	},
 })
 
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h1}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH1}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH2}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h3}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH3}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH4}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h5}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH5}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${h6}`, {
+	color: '#fff',
+})
+
+globalStyle(`${materiaScope}${listGroupItemAction}${active} ${materiaScope}${clsH6}`, {
+	color: '#fff',
+})

@@ -1,22 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
 	varBsBodyBgRgb,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
-	varBsDarkRgb,
 } from '../../../../theme-contract/_vars.css'
-import {
-	placeholderIcon,
-	toast,
-	toastBody,
-	toastBrand,
-	toastExample,
-	toastHeader,
-	toastShow,
-	toastTimestamp,
-} from '../../../../theme-contract/ui/toasts/contract.css'
 import {
 	varBsToastBg,
 	varBsToastBorderColor,
@@ -34,16 +25,18 @@ import {
 	varBsToastSpacing,
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
-import { alertBtnClose } from '../../../../theme-contract/ui/alerts/contract.css'
-import { quartzScope } from '../../scope.css'
 
-globalStyle(`${quartzScope}${toastExample}`, {
-	backgroundColor: `rgba(${varBsDarkRgb}, 1)`,
-	padding: '6rem',
-	alignItems: 'center',
-})
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
-// Quartz: glass on toast
+import { toastContainer } from '../../../../theme-contract/literal/contract.css'
+import {
+	toast,
+	toastBody,
+	toastHeader,
+	toastShow,
+	toastShowing,
+} from '../../../../theme-contract/ui/toasts/contract.css'
+
 globalStyle(`${quartzScope}${toast}`, {
 	vars: {
 		[varBsToastZindex]: '1090',
@@ -67,17 +60,34 @@ globalStyle(`${quartzScope}${toast}`, {
 	fontSize: varBsToastFontSize,
 	color: varBsToastColor,
 	pointerEvents: 'auto',
-	border: 'none',
-	backgroundColor: 'transparent',
-	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
-	backdropFilter: 'blur(5px)',
-	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: varBsToastBg,
 	backgroundClip: 'padding-box',
+	border: `${varBsToastBorderWidth} solid ${varBsToastBorderColor}`,
+	boxShadow: varBsToastBoxShadow,
 	borderRadius: varBsToastBorderRadius,
+})
+
+globalStyle(`${quartzScope}${toast}${toastShowing}`, {
+	opacity: '0',
 })
 
 globalStyle(`${quartzScope}${toast}:not(${toastShow})`, {
 	display: 'none',
+})
+
+globalStyle(`${quartzScope}${toastContainer}`, {
+	vars: {
+		[varBsToastZindex]: '1090',
+	},
+	position: 'absolute',
+	zIndex: varBsToastZindex,
+	width: 'max-content',
+	maxWidth: '100%',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${quartzScope}${toastContainer} > :not(:last-child)`, {
+	marginBottom: varBsToastSpacing,
 })
 
 globalStyle(`${quartzScope}${toastHeader}`, {
@@ -97,25 +107,15 @@ globalStyle(`${quartzScope}${toastBody}`, {
 	wordWrap: 'break-word',
 })
 
-globalStyle(`${quartzScope}${placeholderIcon}`, {
-	verticalAlign: 'middle',
-	width: '20px',
-	height: '20px',
-	borderRadius: `${varBsBorderRadius} !important`,
-	marginRight: '1rem !important',
+globalStyle(`${quartzScope}${toast}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${toastBrand}`, {
-	fontWeight: 'bolder',
-	marginRight: 'auto !important',
-})
-
-globalStyle(`${quartzScope}${toastTimestamp}`, {
-	fontSize: '0.875em',
-	color: 'rgba(255, 255, 255, 0.7) !important',
-})
-
-globalStyle(`${quartzScope}${toastHeader} ${alertBtnClose}`, {
-	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
-	marginLeft: varBsToastPaddingX,
+globalStyle(`${quartzScope}${toast} :where(${quartzScope}${link})`, {
+	color: '#fff',
 })

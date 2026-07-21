@@ -1,34 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
 import {
-	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
-	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsBoxShadowSm,
 } from '../../../../theme-contract/_vars.css'
-import {
-	actionsRow,
-	fade,
-	flexWrap,
-	justifyContentBetween,
-	modal,
-	modalBackdrop,
-	modalBody,
-	modalContent,
-	modalDialog,
-	modalDialogCentered,
-	modalDialogScrollable,
-	modalFade,
-	modalFooter,
-	modalFullscreen,
-	modalHeader,
-	modalOpenHook,
-	modalShowHook,
-	modalTitle,
-} from '../../../../theme-contract/ui/modal/contract.css'
 import {
 	varBsBackdropBg,
 	varBsBackdropOpacity,
@@ -55,23 +34,49 @@ import {
 	varBsModalWidth,
 	varBsModalZindex,
 } from '../../../../theme-contract/ui/modal/_vars.css'
-import { alertBtnClose } from '../../../../theme-contract/ui/alerts/contract.css'
-import { solarScope } from '../../scope.css'
 
-globalStyle(`${solarScope}${actionsRow}`, {
-	display: 'flex',
-})
+import {
+	modalFullscreenLgDown,
+	modalFullscreenMdDown,
+	modalFullscreenSmDown,
+	modalFullscreenXlDown,
+	modalFullscreenXxlDown,
+	modalLg,
+	modalSm,
+	modalStatic,
+	modalXl,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	justifyContentBetween,
+	modal,
+	modalBackdrop,
+	modalBody,
+	modalContent,
+	modalDialog,
+	modalDialogCentered,
+	modalDialogScrollable,
+	modalFade,
+	modalFooter,
+	modalFullscreen,
+	modalHeader,
+	modalShowHook,
+	modalTitle,
+} from '../../../../theme-contract/ui/modal/contract.css'
 
-globalStyle(`${solarScope}${justifyContentBetween}`, {
-	justifyContent: 'space-between',
-})
-
-globalStyle(`${solarScope}${flexWrap}`, {
-	flexWrap: 'wrap',
-})
-
-globalStyle(`${solarScope}${fade}`, {
+globalStyle(`${solarScope}${modalFade}`, {
 	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${solarScope}${modalFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFade}:not(${modalShowHook})`, {
+	opacity: '0',
 })
 
 globalStyle(`${solarScope}${modal}`, {
@@ -94,20 +99,20 @@ globalStyle(`${solarScope}${modal}`, {
 		[varBsModalHeaderBorderWidth]: varBsBorderWidth,
 		[varBsModalTitleLineHeight]: '1.5',
 		[varBsModalFooterGap]: '0.5rem',
-		[varBsModalFooterBg]: 'transparent',
+		[varBsModalFooterBg]: '',
 		[varBsModalFooterBorderColor]: '#002b36',
 		[varBsModalFooterBorderWidth]: varBsBorderWidth,
 	},
 	position: 'fixed',
-	top: 0,
-	left: 0,
+	top: '0',
+	left: '0',
 	zIndex: varBsModalZindex,
 	display: 'none',
 	width: '100%',
 	height: '100%',
 	overflowX: 'hidden',
 	overflowY: 'auto',
-	outline: 0,
+	outline: '0',
 })
 
 globalStyle(`${solarScope}${modalDialog}`, {
@@ -117,21 +122,44 @@ globalStyle(`${solarScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
+globalStyle(`${solarScope}${modal}${modalFade} ${solarScope}${modalDialog}`, {
+	transform: 'translate(0, -50px)',
+	transition: 'transform 0.3s ease-out',
+})
+
+globalStyle(`${solarScope}${modal}${modalFade} ${solarScope}${modalDialog}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modal}${modalShowHook} ${solarScope}${modalDialog}`, {
+	transform: 'none',
+})
+
+globalStyle(`${solarScope}${modal}${modalStatic} ${solarScope}${modalDialog}`, {
+	transform: 'scale(1.02)',
+})
+
 globalStyle(`${solarScope}${modalDialogScrollable}`, {
 	height: `calc(100% - ${varBsModalMargin} * 2)`,
+})
+
+globalStyle(`${solarScope}${modalDialogScrollable} ${solarScope}${modalContent}`, {
+	maxHeight: '100%',
+	overflow: 'hidden',
+})
+
+globalStyle(`${solarScope}${modalDialogScrollable} ${solarScope}${modalBody}`, {
+	overflowY: 'auto',
 })
 
 globalStyle(`${solarScope}${modalDialogCentered}`, {
 	display: 'flex',
 	alignItems: 'center',
 	minHeight: `calc(100% - ${varBsModalMargin} * 2)`,
-})
-
-globalStyle(`${solarScope}${modalFullscreen}`, {
-	width: '100vw',
-	maxWidth: 'none',
-	height: '100%',
-	margin: 0,
 })
 
 globalStyle(`${solarScope}${modalContent}`, {
@@ -145,12 +173,35 @@ globalStyle(`${solarScope}${modalContent}`, {
 	backgroundClip: 'padding-box',
 	border: `${varBsModalBorderWidth} solid ${varBsModalBorderColor}`,
 	borderRadius: varBsModalBorderRadius,
-	outline: 0,
+	outline: '0',
+})
+
+globalStyle(`${solarScope}${modalBackdrop}`, {
+	vars: {
+		[varBsBackdropZindex]: '1050',
+		[varBsBackdropBg]: '#000',
+		[varBsBackdropOpacity]: '0.5',
+	},
+	position: 'fixed',
+	top: '0',
+	left: '0',
+	zIndex: varBsBackdropZindex,
+	width: '100vw',
+	height: '100vh',
+	backgroundColor: varBsBackdropBg,
+})
+
+globalStyle(`${solarScope}${modalBackdrop}${modalFade}`, {
+	opacity: '0',
+})
+
+globalStyle(`${solarScope}${modalBackdrop}${modalShowHook}`, {
+	opacity: varBsBackdropOpacity,
 })
 
 globalStyle(`${solarScope}${modalHeader}`, {
 	display: 'flex',
-	flexShrink: 0,
+	flexShrink: '0',
 	alignItems: 'center',
 	padding: varBsModalHeaderPadding,
 	borderBottom: `${varBsModalHeaderBorderWidth} solid ${varBsModalHeaderBorderColor}`,
@@ -158,8 +209,8 @@ globalStyle(`${solarScope}${modalHeader}`, {
 	borderTopRightRadius: varBsModalInnerBorderRadius,
 })
 
-globalStyle(`${solarScope}${modalHeader} ${modalTitle}`, {
-	marginBottom: 0,
+globalStyle(`${solarScope}${modalTitle}`, {
+	marginBottom: '0',
 	lineHeight: varBsModalTitleLineHeight,
 })
 
@@ -169,14 +220,9 @@ globalStyle(`${solarScope}${modalBody}`, {
 	padding: varBsModalPadding,
 })
 
-globalStyle(`${solarScope}${modalBody} p`, {
-	marginTop: 0,
-	marginBottom: '1rem',
-})
-
 globalStyle(`${solarScope}${modalFooter}`, {
 	display: 'flex',
-	flexShrink: 0,
+	flexShrink: '0',
 	flexWrap: 'wrap',
 	alignItems: 'center',
 	justifyContent: 'flex-end',
@@ -187,102 +233,8 @@ globalStyle(`${solarScope}${modalFooter}`, {
 	borderBottomLeftRadius: varBsModalInnerBorderRadius,
 })
 
-globalStyle(`${solarScope}${fade}:not(.${modalShowHook})`, {
-	opacity: 0,
-})
-
-globalStyle(`${solarScope}${modal}.${modalShowHook}`, {
-	display: 'block',
-})
-
-globalStyle(`${solarScope}${modalFade}.${fade} .${modalDialog}`, {
-	transform: 'translate(0, -50px)',
-	transition: 'transform 0.3s ease-out',
-})
-
-globalStyle(`${solarScope}${modal}.${modalShowHook} .${modalDialog}`, {
-	transform: 'none',
-})
-
-globalStyle(`${solarScope}${modalDialogScrollable} ${modalContent}`, {
-	maxHeight: '100%',
-	overflow: 'hidden',
-})
-
-globalStyle(`${solarScope}${modalDialogScrollable} ${modalBody}`, {
-	overflowY: 'auto',
-})
-
-globalStyle(`${solarScope}${modalFullscreen} ${modalContent}`, {
-	height: '100%',
-	border: 0,
-	borderRadius: 0,
-})
-
-globalStyle(`${solarScope}${modalFullscreen} ${modalHeader}, ${solarScope}${modalFullscreen} ${modalFooter}`, {
-	borderRadius: 0,
-})
-
-globalStyle(`${solarScope}${modalFullscreen} ${modalBody}`, {
-	overflowY: 'auto',
-})
-
-globalStyle(`${solarScope}${modalHeader} ${alertBtnClose}`, {
-	position: 'relative',
-	top: 'auto',
-	right: 'auto',
-	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
-	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
-	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
-	marginLeft: 'auto',
-})
-
 globalStyle(`${solarScope}${modalFooter} > *`, {
 	margin: `calc(${varBsModalFooterGap} * 0.5)`,
-})
-
-globalStyle(`body.${modalOpenHook}`, {
-	overflow: 'hidden',
-})
-
-globalStyle(`${solarScope}${modalBackdrop}`, {
-	vars: {
-		[varBsBackdropZindex]: '1050',
-		[varBsBackdropBg]: '#000',
-		[varBsBackdropOpacity]: '0.5',
-	},
-	position: 'fixed',
-	top: 0,
-	left: 0,
-	zIndex: varBsBackdropZindex,
-	width: '100vw',
-	height: '100vh',
-	backgroundColor: varBsBackdropBg,
-})
-
-globalStyle(`${solarScope}${modalBackdrop}.${fade}`, {
-	opacity: 0,
-})
-
-globalStyle(`${solarScope}${modalBackdrop}.${modalShowHook}`, {
-	opacity: varBsBackdropOpacity,
-})
-
-globalStyle(`${solarScope}${fade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${solarScope}${modalFade}.${fade} .${modalDialog}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
 })
 
 globalStyle(`${solarScope}${modal}`, {
@@ -306,11 +258,296 @@ globalStyle(`${solarScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${solarScope}${modalFullscreen}`, {
+globalStyle(`${solarScope}${modalSm}`, {
 	'@media': {
 		'(min-width: 576px)': {
-			maxWidth: 'unset',
+			vars: {
+				[varBsModalWidth]: '300px',
+			},
 		},
 	},
 })
 
+globalStyle(`${solarScope}${modalLg}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsModalWidth]: '800px',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsModalWidth]: '1140px',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreen}`, {
+	width: '100vw',
+	maxWidth: 'none',
+	height: '100%',
+	margin: '0',
+})
+
+globalStyle(`${solarScope}${modalFullscreen} ${solarScope}${modalContent}`, {
+	height: '100%',
+	border: '0',
+	borderRadius: '0',
+})
+
+globalStyle(`${solarScope}${modalFullscreen} ${solarScope}${modalHeader}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${solarScope}${modalFullscreen} ${solarScope}${modalFooter}`, {
+	borderRadius: '0',
+})
+
+globalStyle(`${solarScope}${modalFullscreen} ${solarScope}${modalBody}`, {
+	overflowY: 'auto',
+})
+
+globalStyle(`${solarScope}${modalFullscreenSmDown}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenSmDown} ${solarScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenSmDown} ${solarScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenSmDown} ${solarScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenSmDown} ${solarScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 575.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenMdDown}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenMdDown} ${solarScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenMdDown} ${solarScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenMdDown} ${solarScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenMdDown} ${solarScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 767.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenLgDown}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenLgDown} ${solarScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenLgDown} ${solarScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenLgDown} ${solarScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenLgDown} ${solarScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 991.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXlDown}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXlDown} ${solarScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXlDown} ${solarScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXlDown} ${solarScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXlDown} ${solarScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1199.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXxlDown}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			width: '100vw',
+			maxWidth: 'none',
+			height: '100%',
+			margin: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXxlDown} ${solarScope}${modalContent}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			height: '100%',
+			border: '0',
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXxlDown} ${solarScope}${modalHeader}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXxlDown} ${solarScope}${modalFooter}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			borderRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${modalFullscreenXxlDown} ${solarScope}${modalBody}`, {
+	'@media': {
+		'(max-width: 1399.98px)': {
+			overflowY: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${justifyContentBetween}`, {
+	justifyContent: 'space-between !important',
+})

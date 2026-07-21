@@ -1,14 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
-import {
-	varBsBodyColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-} from '../../../../theme-contract/_vars.css'
+import { slateScope } from '../../scope.css'
+
+import { varBsBodyColor, varBsBorderRadius, varBsBorderWidth } from '../../../../theme-contract/_vars.css'
 import {
 	varBsCardBg,
 	varBsCardBorderColor,
 	varBsCardBorderRadius,
 	varBsCardBorderWidth,
+	varBsCardBoxShadow,
 	varBsCardCapBg,
 	varBsCardCapColor,
 	varBsCardCapPaddingX,
@@ -22,22 +21,17 @@ import {
 	varBsCardSubtitleColor,
 	varBsCardTitleColor,
 	varBsCardTitleSpacerY,
-	varBsListGroupBg,
-	varBsListGroupBorderColor,
-	varBsListGroupBorderRadius,
-	varBsListGroupBorderWidth,
-	varBsListGroupColor,
-	varBsListGroupItemPaddingX,
-	varBsListGroupItemPaddingY,
 } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsCardHeight } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { horizontalRule } from '../../../../theme-contract/contents/basic/contract.css'
+
+import { cardGroup, cardHeaderPills, cardImgOverlay } from '../../../../theme-contract/literal/contract.css'
 import {
 	card,
 	cardBody,
 	cardFooter,
 	cardHeader,
-	cardHorizontalColBody,
-	cardHorizontalColImg,
-	cardHorizontalRow,
 	cardImg,
 	cardImgBottom,
 	cardImgTop,
@@ -46,35 +40,8 @@ import {
 	cardText,
 	cardTitle,
 } from '../../../../theme-contract/ui/card/contract.css'
-import {
-	listGroup,
-	listGroupFlush,
-	listGroupItem,
-} from '../../../../theme-contract/ui/list-group/contract.css'
-import { slateScope } from '../../scope.css'
+import { listGroup } from '../../../../theme-contract/ui/list-group/contract.css'
 
-// ── Card base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card {
-//   --bs-card-spacer-y: 1rem; --bs-card-spacer-x: 1rem;
-//   --bs-card-title-spacer-y: 0.5rem; --bs-card-title-color: ;
-//   --bs-card-subtitle-color: ;
-//   --bs-card-border-width: var(--bs-border-width);
-//   --bs-card-border-color: var(--bs-border-color-translucent);
-//   --bs-card-border-radius: var(--bs-border-radius); --bs-card-box-shadow: ;
-//   --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
-//   --bs-card-cap-padding-y: 0.5rem; --bs-card-cap-padding-x: 1rem;
-//   --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03); --bs-card-cap-color: ;
-//   --bs-card-height: ; --bs-card-color: ; --bs-card-bg: var(--bs-body-bg);
-//   --bs-card-img-overlay-padding: 1rem; --bs-card-group-margin: 0.75rem;
-//   position: relative; display: flex; flex-direction: column; min-width: 0;
-//   height: var(--bs-card-height); color: var(--bs-body-color);
-//   word-wrap: break-word; background-color: var(--bs-card-bg);
-//   background-clip: border-box;
-//   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-//   border-radius: var(--bs-card-border-radius);
-// }
 globalStyle(`${slateScope}${card}`, {
 	vars: {
 		[varBsCardSpacerY]: '1rem',
@@ -85,11 +52,13 @@ globalStyle(`${slateScope}${card}`, {
 		[varBsCardBorderWidth]: varBsBorderWidth,
 		[varBsCardBorderColor]: 'rgba(0, 0, 0, 0.6)',
 		[varBsCardBorderRadius]: varBsBorderRadius,
-		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - ${varBsBorderWidth})`,
+		[varBsCardBoxShadow]: '',
+		[varBsCardInnerBorderRadius]: `calc(${varBsBorderRadius} - (${varBsBorderWidth}))`,
 		[varBsCardCapPaddingY]: '0.5rem',
 		[varBsCardCapPaddingX]: '1rem',
 		[varBsCardCapBg]: '#515960',
 		[varBsCardCapColor]: '',
+		[varBsCardHeight]: '',
 		[varBsCardColor]: '',
 		[varBsCardBg]: '#32383e',
 		[varBsCardImgOverlayPadding]: '1rem',
@@ -98,7 +67,8 @@ globalStyle(`${slateScope}${card}`, {
 	position: 'relative',
 	display: 'flex',
 	flexDirection: 'column',
-	minWidth: 0,
+	minWidth: '0',
+	height: varBsCardHeight,
 	color: varBsBodyColor,
 	wordWrap: 'break-word',
 	backgroundColor: varBsCardBg,
@@ -107,106 +77,52 @@ globalStyle(`${slateScope}${card}`, {
 	borderRadius: varBsCardBorderRadius,
 })
 
-// SOURCE CSS: .card > .list-group { border-top: inherit; border-bottom: inherit; }
-globalStyle(`${slateScope}${card} > ${listGroup}`, {
-	borderTop: 'inherit',
-	borderBottom: 'inherit',
+globalStyle(`${slateScope}${card} > ${slateScope}${horizontalRule}`, {
+	marginRight: '0',
+	marginLeft: '0',
 })
 
-// SOURCE CSS: .card > .list-group:first-child { border-top-width: 0;
-//   border-top-left-radius: var(--bs-card-inner-border-radius);
-//   border-top-right-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${slateScope}${card} > ${listGroup}:first-child`, {
-	borderTopWidth: 0,
-	borderTopLeftRadius: varBsCardInnerBorderRadius,
-	borderTopRightRadius: varBsCardInnerBorderRadius,
+globalStyle(`${slateScope}${card} > ${slateScope}${listGroup} + ${slateScope}${cardFooter}`, {
+	borderTop: '0',
 })
 
-// SOURCE CSS: .card > .list-group:last-child { border-bottom-width: 0;
-//   border-bottom-right-radius: var(--bs-card-inner-border-radius);
-//   border-bottom-left-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${slateScope}${card} > ${listGroup}:last-child`, {
-	borderBottomWidth: 0,
-	borderBottomRightRadius: varBsCardInnerBorderRadius,
-	borderBottomLeftRadius: varBsCardInnerBorderRadius,
-})
-
-// SOURCE CSS: .card > .card-header + .list-group,
-//             .card > .list-group + .card-footer { border-top: 0; }
-globalStyle(
-	`${slateScope}${card} > ${cardHeader} + ${listGroup}, ${slateScope}${card} > ${listGroup} + ${cardFooter}`,
-	{ borderTop: 0 },
-)
-
-// ── Card body ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-body { flex: 1 1 auto;
-//   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-//   color: var(--bs-card-color); }
 globalStyle(`${slateScope}${cardBody}`, {
 	flex: '1 1 auto',
 	padding: `${varBsCardSpacerY} ${varBsCardSpacerX}`,
 	color: varBsCardColor,
 })
 
-// ── Card title ────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-title { margin-bottom: var(--bs-card-title-spacer-y);
-//               color: var(--bs-card-title-color); }
 globalStyle(`${slateScope}${cardTitle}`, {
 	marginBottom: varBsCardTitleSpacerY,
 	color: varBsCardTitleColor,
 })
 
-// SOURCE CSS:
-// .card-subtitle { margin-top: calc(-0.5 * var(--bs-card-title-spacer-y));
-//                  margin-bottom: 0; color: var(--bs-card-subtitle-color); }
 globalStyle(`${slateScope}${cardSubtitle}`, {
 	marginTop: `calc(-0.5 * ${varBsCardTitleSpacerY})`,
-	marginBottom: 0,
+	marginBottom: '0',
 	color: varBsCardSubtitleColor,
 })
 
-// SOURCE CSS: .card-text:last-child { margin-bottom: 0; }
 globalStyle(`${slateScope}${cardText}:last-child`, {
-	marginBottom: 0,
+	marginBottom: '0',
 })
 
-// SOURCE CSS: .card-link + .card-link { margin-left: var(--bs-card-spacer-x); }
 globalStyle(`${slateScope}${cardLink} + ${slateScope}${cardLink}`, {
 	marginLeft: varBsCardSpacerX,
 })
 
-// ── Card header ───────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-header { padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-//   margin-bottom: 0; color: var(--bs-card-cap-color);
-//   background-color: var(--bs-card-cap-bg);
-//   border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color); }
 globalStyle(`${slateScope}${cardHeader}`, {
 	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	color: varBsCardCapColor,
 	backgroundColor: varBsCardCapBg,
 	borderBottom: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
-// SOURCE CSS:
-// .card-header:first-child {
-//   border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0; }
 globalStyle(`${slateScope}${cardHeader}:first-child`, {
 	borderRadius: `${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius} 0 0`,
 })
 
-// ── Card footer ───────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .card-footer { padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-//   color: var(--bs-card-cap-color); background-color: var(--bs-card-cap-bg);
-//   border-top: var(--bs-card-border-width) solid var(--bs-card-border-color); }
 globalStyle(`${slateScope}${cardFooter}`, {
 	padding: `${varBsCardCapPaddingY} ${varBsCardCapPaddingX}`,
 	color: varBsCardCapColor,
@@ -214,146 +130,166 @@ globalStyle(`${slateScope}${cardFooter}`, {
 	borderTop: `${varBsCardBorderWidth} solid ${varBsCardBorderColor}`,
 })
 
-// SOURCE CSS:
-// .card-footer:last-child {
-//   border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius); }
 globalStyle(`${slateScope}${cardFooter}:last-child`, {
 	borderRadius: `0 0 ${varBsCardInnerBorderRadius} ${varBsCardInnerBorderRadius}`,
 })
 
-// ── Card images ───────────────────────────────────────────────────────────────
+globalStyle(`${slateScope}${cardHeaderPills}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+})
 
-// SOURCE CSS:
-// .card-img, .card-img-top, .card-img-bottom { width: 100%; }
-globalStyle(
-	`${slateScope}${cardImg}, ${slateScope}${cardImgTop}, ${slateScope}${cardImgBottom}`,
-	{ width: '100%' },
-)
+globalStyle(`${slateScope}${cardImgOverlay}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	bottom: '0',
+	left: '0',
+	padding: varBsCardImgOverlayPadding,
+	borderRadius: varBsCardInnerBorderRadius,
+})
 
-// SOURCE CSS:
-// .card-img, .card-img-top {
-//   border-top-left-radius: var(--bs-card-inner-border-radius);
-//   border-top-right-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${slateScope}${cardImg}, ${slateScope}${cardImgTop}`, {
+globalStyle(`${slateScope}${cardImg}`, {
+	width: '100%',
+})
+
+globalStyle(`${slateScope}${cardImgTop}`, {
+	width: '100%',
+})
+
+globalStyle(`${slateScope}${cardImgBottom}`, {
+	width: '100%',
+})
+
+globalStyle(`${slateScope}${cardImg}`, {
 	borderTopLeftRadius: varBsCardInnerBorderRadius,
 	borderTopRightRadius: varBsCardInnerBorderRadius,
 })
 
-// SOURCE CSS:
-// .card-img, .card-img-bottom {
-//   border-bottom-right-radius: var(--bs-card-inner-border-radius);
-//   border-bottom-left-radius: var(--bs-card-inner-border-radius); }
-globalStyle(`${slateScope}${cardImg}, ${slateScope}${cardImgBottom}`, {
+globalStyle(`${slateScope}${cardImgTop}`, {
+	borderTopLeftRadius: varBsCardInnerBorderRadius,
+	borderTopRightRadius: varBsCardInnerBorderRadius,
+})
+
+globalStyle(`${slateScope}${cardImg}`, {
 	borderBottomRightRadius: varBsCardInnerBorderRadius,
 	borderBottomLeftRadius: varBsCardInnerBorderRadius,
 })
 
-// ── Horizontal card layout ────────────────────────────────────────────────────
-// Replaces Bootstrap's row/col grid utilities with a direct flex layout.
-// col-md-* only activates at ≥768px (Bootstrap md breakpoint), so columns
-// stack on mobile and go side-by-side at ≥768px.
+globalStyle(`${slateScope}${cardImgBottom}`, {
+	borderBottomRightRadius: varBsCardInnerBorderRadius,
+	borderBottomLeftRadius: varBsCardInnerBorderRadius,
+})
 
-globalStyle(`${slateScope}${cardHorizontalRow}`, {
-	display: 'flex',
-	flexDirection: 'column',
-	flexWrap: 'nowrap',
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}`, {
+	marginBottom: varBsCardGroupMargin,
+})
+
+globalStyle(`${slateScope}${cardGroup}`, {
 	'@media': {
-		'(min-width: 768px)': {
-			flexDirection: 'row',
+		'(min-width: 576px)': {
+			display: 'flex',
+			flexFlow: 'row wrap',
 		},
 	},
 })
 
-globalStyle(`${slateScope}${cardHorizontalColImg}`, {
-	overflow: 'hidden',
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}`, {
 	'@media': {
-		'(min-width: 768px)': {
-			flex: '0 0 33.3333%',
-			maxWidth: '33.3333%',
+		'(min-width: 576px)': {
+			flex: '1 0 0',
+			marginBottom: '0',
 		},
 	},
 })
 
-globalStyle(`${slateScope}${cardHorizontalColBody}`, {
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card} + ${slateScope}${card}`, {
 	'@media': {
-		'(min-width: 768px)': {
-			flex: '1 1 0',
-			minWidth: 0,
+		'(min-width: 576px)': {
+			marginLeft: '0',
+			borderLeft: '0',
 		},
 	},
 })
 
-// ── List group ────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .list-group {
-//   --bs-list-group-color: var(--bs-body-color);
-//   --bs-list-group-bg: var(--bs-body-bg);
-//   --bs-list-group-border-color: var(--bs-border-color);
-//   --bs-list-group-border-width: var(--bs-border-width);
-//   --bs-list-group-border-radius: var(--bs-border-radius);
-//   --bs-list-group-item-padding-x: 1rem;
-//   --bs-list-group-item-padding-y: 0.5rem;
-//   display: flex; flex-direction: column; padding-left: 0; margin-bottom: 0;
-//   border-radius: var(--bs-list-group-border-radius); }
-globalStyle(`${slateScope}${listGroup}`, {
-	vars: {
-		[varBsListGroupColor]: varBsBodyColor,
-		[varBsListGroupBg]: '#32383e',
-		[varBsListGroupBorderColor]: 'rgba(0, 0, 0, 0.6)',
-		[varBsListGroupBorderWidth]: varBsBorderWidth,
-		[varBsListGroupBorderRadius]: varBsBorderRadius,
-		[varBsListGroupItemPaddingX]: '1rem',
-		[varBsListGroupItemPaddingY]: '0.5rem',
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:last-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+			borderBottomRightRadius: '0',
+		},
 	},
-	display: 'flex',
-	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
-	borderRadius: varBsListGroupBorderRadius,
 })
 
-// SOURCE CSS:
-// .list-group-flush { border-radius: 0; }
-// .list-group-flush > .list-group-item {
-//   border-width: 0 0 var(--bs-list-group-border-width); }
-// .list-group-flush > .list-group-item:last-child { border-bottom-width: 0; }
-globalStyle(`${slateScope}${listGroupFlush}`, {
-	borderRadius: 0,
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:last-child) > ${slateScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${slateScope}${listGroupFlush} > ${listGroupItem}`, {
-	borderWidth: `0 0 ${varBsListGroupBorderWidth}`,
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:last-child) > ${slateScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopRightRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${slateScope}${listGroupFlush} > ${listGroupItem}:last-child`, {
-	borderBottomWidth: 0,
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:last-child) > ${slateScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
+		},
+	},
 })
 
-// SOURCE CSS:
-// .list-group-item { position: relative; display: block;
-//   padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
-//   color: var(--bs-list-group-color); text-decoration: none;
-//   background-color: var(--bs-list-group-bg);
-//   border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color); }
-// .list-group-item:first-child { border-top-left-radius: inherit; border-top-right-radius: inherit; }
-// .list-group-item:last-child { border-bottom-right-radius: inherit; border-bottom-left-radius: inherit; }
-globalStyle(`${slateScope}${listGroupItem}`, {
-	position: 'relative',
-	display: 'block',
-	padding: `${varBsListGroupItemPaddingY} ${varBsListGroupItemPaddingX}`,
-	color: varBsListGroupColor,
-	textDecoration: 'none',
-	backgroundColor: varBsListGroupBg,
-	border: `${varBsListGroupBorderWidth} solid ${varBsListGroupBorderColor}`,
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:last-child) > ${slateScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomRightRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${slateScope}${listGroupItem}:first-child`, {
-	borderTopLeftRadius: 'inherit',
-	borderTopRightRadius: 'inherit',
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:first-child)`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+			borderBottomLeftRadius: '0',
+		},
+	},
 })
 
-globalStyle(`${slateScope}${listGroupItem}:last-child`, {
-	borderBottomRightRadius: 'inherit',
-	borderBottomLeftRadius: 'inherit',
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:first-child) > ${slateScope}${cardImgTop}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:first-child) > ${slateScope}${cardHeader}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderTopLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:first-child) > ${slateScope}${cardImgBottom}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${cardGroup} > ${slateScope}${card}:not(:first-child) > ${slateScope}${cardFooter}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			borderBottomLeftRadius: '0',
+		},
+	},
 })

@@ -1,0 +1,242 @@
+{
+  "summary": {
+    "totalElements": 41,
+    "elementsChecked": 41,
+    "elementsWithGaps": 11,
+    "totalExpected": 29,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]",
+      "tag": "div",
+      "baselineClasses": [
+        "carousel",
+        "slide",
+        "pwhook-carousel"
+      ],
+      "expectedSymbols": [
+        "carousel"
+      ],
+      "stampedSymbols": [
+        "carousel",
+        "carouselSlide"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "slide",
+        "pwhook-carousel"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
+      "tag": "div",
+      "baselineClasses": [
+        "carousel-indicators",
+        "pwhook-carousel-indicators"
+      ],
+      "expectedSymbols": [
+        "carouselIndicators"
+      ],
+      "stampedSymbols": [
+        "carouselIndicators"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-indicators"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[2]",
+      "tag": "button",
+      "baselineClasses": [
+        "pwhook-carousel-indicator",
+        "active"
+      ],
+      "expectedSymbols": [
+        "active"
+      ],
+      "stampedSymbols": [
+        "carouselActive",
+        "active"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-indicator"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]",
+      "tag": "div",
+      "baselineClasses": [
+        "carousel-item",
+        "pwhook-carousel-item"
+      ],
+      "expectedSymbols": [
+        "carouselItem"
+      ],
+      "stampedSymbols": [
+        "carouselItem"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-item"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/svg[1]",
+      "tag": "svg",
+      "baselineClasses": [
+        "bd-placeholder-img",
+        "bd-placeholder-img-lg",
+        "d-block",
+        "w-100"
+      ],
+      "expectedSymbols": [
+        "dBlock",
+        "w100"
+      ],
+      "stampedSymbols": [
+        "bdPlaceholderImg",
+        "bdPlaceholderImgLg",
+        "dBlock",
+        "w100"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "bd-placeholder-img",
+        "bd-placeholder-img-lg"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]",
+      "tag": "div",
+      "baselineClasses": [
+        "carousel-item",
+        "pwhook-carousel-item",
+        "active"
+      ],
+      "expectedSymbols": [
+        "carouselItem",
+        "active"
+      ],
+      "stampedSymbols": [
+        "carouselItem",
+        "carouselActive",
+        "active"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-item"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/svg[1]",
+      "tag": "svg",
+      "baselineClasses": [
+        "bd-placeholder-img",
+        "bd-placeholder-img-lg",
+        "d-block",
+        "w-100"
+      ],
+      "expectedSymbols": [
+        "dBlock",
+        "w100"
+      ],
+      "stampedSymbols": [
+        "bdPlaceholderImg",
+        "bdPlaceholderImgLg",
+        "dBlock",
+        "w100"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "bd-placeholder-img",
+        "bd-placeholder-img-lg"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]",
+      "tag": "div",
+      "baselineClasses": [
+        "carousel-item",
+        "pwhook-carousel-item"
+      ],
+      "expectedSymbols": [
+        "carouselItem"
+      ],
+      "stampedSymbols": [
+        "carouselItem"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-item"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/svg[1]",
+      "tag": "svg",
+      "baselineClasses": [
+        "bd-placeholder-img",
+        "bd-placeholder-img-lg",
+        "d-block",
+        "w-100"
+      ],
+      "expectedSymbols": [
+        "dBlock",
+        "w100"
+      ],
+      "stampedSymbols": [
+        "bdPlaceholderImg",
+        "bdPlaceholderImgLg",
+        "dBlock",
+        "w100"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "bd-placeholder-img",
+        "bd-placeholder-img-lg"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "carousel-control-prev",
+        "pwhook-carousel-control",
+        "pwhook-carousel-control-prev"
+      ],
+      "expectedSymbols": [
+        "carouselControlPrev"
+      ],
+      "stampedSymbols": [
+        "carouselControlPrev"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-control",
+        "pwhook-carousel-control-prev"
+      ]
+    },
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/button[2]",
+      "tag": "button",
+      "baselineClasses": [
+        "carousel-control-next",
+        "pwhook-carousel-control",
+        "pwhook-carousel-control-next"
+      ],
+      "expectedSymbols": [
+        "carouselControlNext"
+      ],
+      "stampedSymbols": [
+        "carouselControlNext"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-carousel-control",
+        "pwhook-carousel-control-next"
+      ]
+    }
+  ]
+}

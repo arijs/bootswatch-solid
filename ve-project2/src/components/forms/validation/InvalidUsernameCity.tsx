@@ -1,26 +1,28 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
-	colMd6,
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import {
 	formControl,
 	formLabel,
-	g3,
 	hasValidation,
 	inputGroup,
 	inputGroupText,
 	invalidFeedback,
 	isInvalid,
-	row,
-	rowCol,
 } from '../../../theme-contract/forms/contract.css'
+import { elInput, elLabel } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { colMd6, g3, row, rowCol } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const InvalidUsernameCity: Component = () => {
@@ -31,7 +33,10 @@ const InvalidUsernameCity: Component = () => {
 		<div class={`bd-example ${theme} ${bodyText} ${containerFluid}`}>
 			<form class={`${theme} ${row} ${g3}`}>
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
-					<label for="validationServerUsername" class={`${theme} ${formLabel}`}>
+					<label
+						for="validationServerUsername"
+						class={`${theme} ${elLabel} ${formLabel}`}
+					>
 						Username
 					</label>
 					<div class={`${theme} ${inputGroup} ${hasValidation} ${isInvalid}`}>
@@ -40,7 +45,7 @@ const InvalidUsernameCity: Component = () => {
 						</span>
 						<input
 							type="text"
-							class={`${theme} ${formControl} ${isInvalid}`}
+							class={`${theme} ${elInput} ${formControl} ${isInvalid}`}
 							id="validationServerUsername"
 							aria-describedby="inputGroupPrepend3"
 							required
@@ -49,12 +54,12 @@ const InvalidUsernameCity: Component = () => {
 					<div class={`${theme} ${invalidFeedback}`}>Please choose a username.</div>
 				</div>
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
-					<label for="validationServer03" class={`${theme} ${formLabel}`}>
+					<label for="validationServer03" class={`${theme} ${elLabel} ${formLabel}`}>
 						City
 					</label>
 					<input
 						type="text"
-						class={`${theme} ${formControl} ${isInvalid}`}
+						class={`${theme} ${elInput} ${formControl} ${isInvalid}`}
 						id="validationServer03"
 						required
 					/>

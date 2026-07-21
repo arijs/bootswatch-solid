@@ -1,14 +1,25 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
+	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
-	varBsGradient,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
@@ -36,14 +47,33 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
+import {
+	active,
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	disabled,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
 	btnInfo,
-	inputFontFamily,
 	btnLg,
 	btnLight,
 	btnLink,
@@ -61,17 +91,51 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { materiaScope } from '../../scope.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { modal, modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
+import { offcanvas, offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toast, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// SOURCE CSS:
-// body, input, button { letter-spacing: 0.1px; }
-// Process mapping: body -> bodyText in scope.css.ts, input/button -> inputFontFamily contract.
-globalStyle(`${materiaScope}${inputFontFamily}`, {
-	letterSpacing: '0.1px',
+globalStyle(`${materiaScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
 })
 
-// Base button system
+globalStyle(`${materiaScope}${btnCheck}[disabled] + ${materiaScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${materiaScope}${btnCheck}:disabled + ${materiaScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${materiaScope}${inputGroup} ${materiaScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${materiaScope}${inputGroup} ${materiaScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${materiaScope}${inputGroupLg} > ${materiaScope}${btn}`, {
+	padding: '1.25rem 0',
+	fontSize: '1.25rem',
+	borderRadius: '0',
+})
+
+globalStyle(`${materiaScope}${inputGroupSm} > ${materiaScope}${btn}`, {
+	padding: '0 0',
+	fontSize: '0.875rem',
+	borderRadius: '0',
+})
+
 globalStyle(`${materiaScope}${btn}`, {
 	vars: {
 		[varBsBtnPaddingX]: '1rem',
@@ -86,13 +150,10 @@ globalStyle(`${materiaScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	appearance: 'button',
-	letterSpacing: '0.1px',
 	display: 'inline-block',
 	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
@@ -111,8 +172,10 @@ globalStyle(`${materiaScope}${btn}`, {
 	borderRadius: varBsBtnBorderRadius,
 	backgroundColor: varBsBtnBg,
 	backgroundImage: varBsGradient,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${materiaScope}${btn}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -137,117 +200,102 @@ globalStyle(`${materiaScope}${btn}:focus-visible`, {
 	backgroundColor: varBsBtnHoverBg,
 	backgroundImage: varBsGradient,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
 globalStyle(`${materiaScope}${btnCheck}:focus-visible + ${materiaScope}${btn}`, {
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-globalStyle(
-	[
-		`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`,
-		`:not(${materiaScope}${btnCheck}) + ${materiaScope}${btn}:active`,
-		`${materiaScope}${btn}:first-child:active`,
-		`${materiaScope}${btn}${btnActiveHook}`,
-		`${materiaScope}${btn}${btnShowHook}`,
-	].join(', '),
-	{
-		color: varBsBtnActiveColor,
-		backgroundColor: varBsBtnActiveBg,
-		backgroundImage: 'none',
-		borderColor: varBsBtnActiveBorderColor,
-	},
-)
+globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-globalStyle(
-	[
-		`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}:focus-visible`,
-		`:not(${materiaScope}${btnCheck}) + ${materiaScope}${btn}:active:focus-visible`,
-		`${materiaScope}${btn}:first-child:active:focus-visible`,
-		`${materiaScope}${btn}${btnActiveHook}:focus-visible`,
-		`${materiaScope}${btn}${btnShowHook}:focus-visible`,
-	].join(', '),
-	{
-		boxShadow: varBsBtnFocusBoxShadow,
-	},
-)
+globalStyle(`${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${materiaScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
 globalStyle(`${materiaScope}${btnCheck}:checked:focus-visible + ${materiaScope}${btn}`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-globalStyle(
-	[
-		`${materiaScope}${btn}:disabled`,
-		`fieldset:disabled ${materiaScope}${btn}`,
-	].join(', '),
-	{
-		color: varBsBtnDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsBtnDisabledBg,
-		borderColor: varBsBtnDisabledBorderColor,
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
-
-globalStyle(`${materiaScope}${btnCheck}`, {
-	position: 'absolute',
-	clip: 'rect(0, 0, 0, 0)',
+globalStyle(`${materiaScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-globalStyle(
-	[
-		`${materiaScope}${btnCheck}[disabled] + ${materiaScope}${btn}`,
-		`${materiaScope}${btnCheck}:disabled + ${materiaScope}${btn}`,
-	].join(', '),
-	{
-		pointerEvents: 'none',
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
-
-globalStyle(`${materiaScope}${btnLg}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.5rem',
-		[varBsBtnPaddingX]: '1rem',
-		[varBsBtnFontSize]: '1.25rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
-	},
+globalStyle(`${materiaScope}${btn}${disabled}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-globalStyle(`${materiaScope}${btnSm}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.25rem',
-		[varBsBtnPaddingX]: '0.5rem',
-		[varBsBtnFontSize]: '0.875rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
+globalStyle(`${materiaScope}${fieldset}:disabled ${materiaScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	backgroundImage: 'none',
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-globalStyle(`${materiaScope}${btnLink}`, {
-	vars: {
-		[varBsBtnFontWeight]: '400',
-		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: 'transparent',
-		[varBsBtnBorderColor]: 'transparent',
-		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: 'transparent',
-		[varBsBtnDisabledColor]: '#666',
-		[varBsBtnDisabledBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]: '0 0 0 #000',
-		[varBsBtnFocusBoxShadowRgb]: '66, 166, 245',
-	},
-	textDecoration: 'underline',
-})
-
-// Solid variants
 globalStyle(`${materiaScope}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -348,7 +396,6 @@ globalStyle(`${materiaScope}${btnDanger}`, {
 		[varBsBtnColor]: '#fff',
 		[varBsBtnBg]: '#e51c23',
 		[varBsBtnBorderColor]: '#e51c23',
-		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 4px rgba(0, 0, 0, 0.4)',
 		[varBsBtnHoverColor]: '#fff',
 		[varBsBtnHoverBg]: '#c3181e',
 		[varBsBtnHoverBorderColor]: '#b7161c',
@@ -387,7 +434,6 @@ globalStyle(`${materiaScope}${btnDark}`, {
 		[varBsBtnColor]: '#fff',
 		[varBsBtnBg]: '#222',
 		[varBsBtnBorderColor]: '#222',
-		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 4px rgba(0, 0, 0, 0.4)',
 		[varBsBtnHoverColor]: '#fff',
 		[varBsBtnHoverBg]: '#434343',
 		[varBsBtnHoverBorderColor]: '#383838',
@@ -402,7 +448,6 @@ globalStyle(`${materiaScope}${btnDark}`, {
 	},
 })
 
-// Outline variants
 globalStyle(`${materiaScope}${btnOutlinePrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#2196f3',
@@ -555,13 +600,1026 @@ globalStyle(`${materiaScope}${btnOutlineDark}`, {
 	},
 })
 
-// Materia-specific visual treatment
+globalStyle(`${materiaScope}${btnLink}`, {
+	vars: {
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnColor]: varBsLinkColor,
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
+		[varBsBtnHoverColor]: varBsLinkHoverColor,
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnActiveColor]: varBsLinkHoverColor,
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#666',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '66, 166, 245',
+	},
+	textDecoration: 'underline',
+	backgroundImage: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}:focus-visible`, {
+	color: varBsBtnColor,
+})
+
+globalStyle(`${materiaScope}${btnLink}:hover`, {
+	color: varBsBtnHoverColor,
+})
+
+globalStyle(`${materiaScope}${btnLg}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${materiaScope}${btnGroupLg} > ${materiaScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${materiaScope}${btnSm}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${materiaScope}${btnGroupSm} > ${materiaScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnCheck}:focus + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnCheck}:checked + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnCheck}:focus + ${materiaScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}:not(${btnCheck}:first-child) + ${materiaScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:last-child) > ${materiaScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroup} > ${materiaScope}${btnGroup}:not(:first-child) > ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${materiaScope}${btnSm} + ${materiaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${materiaScope}${btnGroupSm} > ${materiaScope}${btn} + ${materiaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${materiaScope}${btnLg} + ${materiaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${materiaScope}${btnGroupLg} > ${materiaScope}${btn} + ${materiaScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup}:not(:last-child) > ${materiaScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}:not(${btnCheck}) + ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup}:not(:first-child) > ${materiaScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${materiaScope}${alertDismissible} ${materiaScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '1.25rem 1rem',
+})
+
+globalStyle(`${materiaScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#fff',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.6',
+		[varBsBtnCloseHoverOpacity]: '1',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
+	color: varBsBtnCloseColor,
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
+	filter: varBsBtnCloseFilter,
+	border: '0',
+	borderRadius: '0.375rem',
+	opacity: varBsBtnCloseOpacity,
+})
+
+globalStyle(`${materiaScope}${btnClose}:hover`, {
+	color: varBsBtnCloseColor,
+	textDecoration: 'none',
+	opacity: varBsBtnCloseHoverOpacity,
+})
+
+globalStyle(`${materiaScope}${btnClose}:focus`, {
+	outline: '0',
+	boxShadow: varBsBtnCloseFocusShadow,
+	opacity: varBsBtnCloseFocusOpacity,
+})
+
+globalStyle(`${materiaScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${materiaScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${materiaScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
+globalStyle(`${materiaScope}${toastHeader} ${materiaScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${materiaScope}${modalHeader} ${materiaScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${materiaScope}${offcanvasHeader} ${materiaScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${materiaScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:focus`, {
+	backgroundColor: '#2196f3',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:hover`, {
+	backgroundColor: '#1d84d6',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:active:hover`, {
+	backgroundColor: '#1d84d6',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnPrimary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlinePrimary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:focus`, {
+	backgroundColor: '#fff',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:hover`, {
+	backgroundColor: '#e0e0e0',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:active:hover`, {
+	backgroundColor: '#e0e0e0',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #bbb 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #bbb 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSecondary}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:focus`, {
+	backgroundColor: '#4caf50',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:hover`, {
+	backgroundColor: '#439a46',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:active:hover`, {
+	backgroundColor: '#439a46',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSuccess}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineSuccess}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnInfo}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:focus`, {
+	backgroundColor: '#9c27b0',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:hover`, {
+	backgroundColor: '#89229b',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:active:hover`, {
+	backgroundColor: '#89229b',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnInfo}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnInfo}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnInfo}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnInfo}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineInfo}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnWarning}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:focus`, {
+	backgroundColor: '#ff9800',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:hover`, {
+	backgroundColor: '#e08600',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:active:hover`, {
+	backgroundColor: '#e08600',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnWarning}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnWarning}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnWarning}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnWarning}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineWarning}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDanger}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:focus`, {
+	backgroundColor: '#e51c23',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:hover`, {
+	backgroundColor: '#ca191f',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:active:hover`, {
+	backgroundColor: '#ca191f',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnDanger}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnDanger}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDanger}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDanger}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDanger}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDark}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnDark}:focus`, {
+	backgroundColor: '#222',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnDark}:hover`, {
+	backgroundColor: '#1e1e1e',
+})
+
+globalStyle(`${materiaScope}${btnDark}:active:hover`, {
+	backgroundColor: '#1e1e1e',
+})
+
+globalStyle(`${materiaScope}${btnDark}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnDark}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnDark}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDark}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnDark}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineDark}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLight}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnLight}:focus`, {
+	backgroundColor: '#f8f9fa',
+	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+})
+
+globalStyle(`${materiaScope}${btnLight}:hover`, {
+	backgroundColor: '#dadbdc',
+})
+
+globalStyle(`${materiaScope}${btnLight}:active:hover`, {
+	backgroundColor: '#dadbdc',
+})
+
+globalStyle(`${materiaScope}${btnLight}:active`, {
+	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+})
+
+globalStyle(`${materiaScope}${btnLight}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnLight}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLight}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLight}[disabled]::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}`, {
+	position: 'relative',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '0',
+	display: 'block',
+	width: '100%',
+	height: '100%',
+	marginLeft: '0',
+	pointerEvents: 'none',
+	content: '""',
+	backgroundPosition: '50%',
+	backgroundSize: '1000% 1000%',
+	border: 'none',
+	opacity: '0',
+	transition: 'background 0.5s, opacity 1s',
+	backgroundImage: 'radial-gradient(circle, #fff 10%, transparent 10.01%)',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}:active::before`, {
+	backgroundSize: '0 0',
+	opacity: '0.2',
+	transition: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}${disabled}::before`, {
+	display: 'none',
+})
+
+globalStyle(`${materiaScope}${btnOutlineLight}[disabled]::before`, {
+	display: 'none',
+})
+
 globalStyle(`${materiaScope}${btn}`, {
 	textTransform: 'uppercase',
 	border: 'none',
 	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)',
-	transition:
-		'color 0.4s, background-color 0.4s, border-color 0.4s, box-shadow 0.4s',
+	transition: 'color 0.4s, background-color 0.4s, border-color 0.4s, box-shadow 0.4s',
 })
 
 globalStyle(`${materiaScope}${btnLink}`, {
@@ -569,52 +1627,87 @@ globalStyle(`${materiaScope}${btnLink}`, {
 	boxShadow: 'none',
 })
 
-globalStyle(`${materiaScope}${btnLink}:hover, ${materiaScope}${btnLink}:focus`, {
+globalStyle(`${materiaScope}${btnLink}:hover`, {
 	color: '#1a78c2',
 	boxShadow: 'none',
 })
 
-globalStyle(
-	[
-		`${materiaScope}${btnLink}:disabled:hover`,
-		`${materiaScope}${btnLink}:disabled:active:hover`,
-		`${materiaScope}${btnLink}[disabled]:hover`,
-		`${materiaScope}${btnLink}[disabled]:active:hover`,
-		`fieldset[disabled] ${materiaScope}${btnLink}:hover`,
-		`fieldset[disabled] ${materiaScope}${btnLink}:active:hover`,
-	].join(', '),
-	{
-		color: '#666',
-		textDecoration: 'none',
-	},
-)
+globalStyle(`${materiaScope}${btnLink}:focus`, {
+	color: '#1a78c2',
+	boxShadow: 'none',
+})
 
-globalStyle(
-	[
-		`${materiaScope}${btnSecondary}:disabled`,
-		`${materiaScope}${btnSecondary}[disabled]`,
-		`fieldset[disabled] ${materiaScope}${btnSecondary}`,
-	].join(', '),
-	{
-		color: 'rgba(0, 0, 0, 0.4)',
-		backgroundColor: 'rgba(0, 0, 0, 0.1)',
-		opacity: 1,
-	},
-)
+globalStyle(`${materiaScope}${btnLink}${disabled}:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
 
-globalStyle(
-	[
-		`${materiaScope}${btnSecondary}:disabled:hover`,
-		`${materiaScope}${btnSecondary}:disabled:focus`,
-		`${materiaScope}${btnSecondary}[disabled]:hover`,
-		`${materiaScope}${btnSecondary}[disabled]:focus`,
-		`fieldset[disabled] ${materiaScope}${btnSecondary}:hover`,
-		`fieldset[disabled] ${materiaScope}${btnSecondary}:focus`,
-	].join(', '),
-	{
-		backgroundColor: 'rgba(0, 0, 0, 0.1)',
-	},
-)
+globalStyle(`${materiaScope}${btnLink}${disabled}:active:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}[disabled]:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${btnLink}[disabled]:active:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnLink}:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnLink}:active:hover`, {
+	color: '#666',
+	textDecoration: 'none',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}${disabled}`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+	opacity: '1',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+	opacity: '1',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnSecondary}`, {
+	color: 'rgba(0, 0, 0, 0.4)',
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+	opacity: '1',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}${disabled}:hover`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}${disabled}:focus`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]:hover`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${btnSecondary}[disabled]:focus`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnSecondary}:hover`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
+
+globalStyle(`${materiaScope}${fieldset}[disabled] ${materiaScope}${btnSecondary}:focus`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.1)',
+})
 
 globalStyle(`${materiaScope}${btnOutlineSecondary}`, {
 	color: '#dee2e6',
@@ -625,168 +1718,34 @@ globalStyle(`${materiaScope}${btnWarning}`, {
 	color: '#fff',
 })
 
-const rippleWhiteTargets = [
-	btnPrimary,
-	btnOutlinePrimary,
-	btnSuccess,
-	btnOutlineSuccess,
-	btnInfo,
-	btnOutlineInfo,
-	btnWarning,
-	btnOutlineWarning,
-	btnDanger,
-	btnOutlineDanger,
-	btnDark,
-	btnOutlineDark,
-	btnLight,
-	btnOutlineLight,
-]
-
-const rippleGrayTargets = [btnSecondary, btnOutlineSecondary]
-
-for (const target of [...rippleWhiteTargets, ...rippleGrayTargets]) {
-	globalStyle(`${materiaScope}${target}`, {
-		position: 'relative',
-	})
-
-	globalStyle(`${materiaScope}${target}::before`, {
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		display: 'block',
-		width: '100%',
-		height: '100%',
-		marginLeft: 0,
-		pointerEvents: 'none',
-		content: '',
-		backgroundPosition: '50%',
-		backgroundSize: '1000% 1000%',
-		border: 'none',
-		opacity: 0,
-		transition: 'background 0.5s, opacity 1s',
-		backgroundImage: `radial-gradient(circle, ${
-			rippleGrayTargets.includes(target) ? '#bbb' : '#fff'
-		} 10%, transparent 10.01%)`,
-	})
-
-	globalStyle(`${materiaScope}${target}:active::before`, {
-		backgroundSize: '0 0',
-		opacity: 0.2,
-		transition: 'none',
-	})
-
-	globalStyle(
-		`${materiaScope}${target}:disabled::before, ${materiaScope}${target}[disabled]::before`,
-		{
-			display: 'none',
-		},
-	)
-}
-
-globalStyle(`${materiaScope}${btnPrimary}:focus`, {
-	backgroundColor: '#2196f3',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btn} + ${materiaScope}${btn}`, {
+	marginLeft: '0',
 })
 
-globalStyle(`${materiaScope}${btnPrimary}:hover, ${materiaScope}${btnPrimary}:active:hover`, {
-	backgroundColor: '#1d84d6',
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btnGroup} + ${materiaScope}${btn}`, {
+	marginLeft: '0',
 })
 
-globalStyle(`${materiaScope}${btnPrimary}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btn} + ${materiaScope}${btn}`, {
+	marginTop: '0',
 })
 
-globalStyle(`${materiaScope}${btnSecondary}:focus`, {
-	backgroundColor: '#fff',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+globalStyle(`${materiaScope}${btnGroupVertical} > ${materiaScope}${btnGroup} + ${materiaScope}${btn}`, {
+	marginTop: '0',
 })
 
-globalStyle(
-	`${materiaScope}${btnSecondary}:hover, ${materiaScope}${btnSecondary}:active:hover`,
-	{
-		backgroundColor: '#e0e0e0',
-	},
-)
-
-globalStyle(`${materiaScope}${btnSecondary}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+globalStyle(`${materiaScope}${btnGroup} ${materiaScope}${btn} + ${materiaScope}${btn}`, {
+	boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.4)',
 })
 
-globalStyle(`${materiaScope}${btnSuccess}:focus`, {
-	backgroundColor: '#4caf50',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
+globalStyle(`${materiaScope}${modal} ${materiaScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
 })
 
-globalStyle(`${materiaScope}${btnSuccess}:hover, ${materiaScope}${btnSuccess}:active:hover`, {
-	backgroundColor: '#439a46',
+globalStyle(`${materiaScope}${toast} ${materiaScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
 })
 
-globalStyle(`${materiaScope}${btnSuccess}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+globalStyle(`${materiaScope}${offcanvas} ${materiaScope}${btnClose}`, {
+	backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23000\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z\'/%3e%3c/svg%3e")',
 })
-
-globalStyle(`${materiaScope}${btnInfo}:focus`, {
-	backgroundColor: '#9c27b0',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
-})
-
-globalStyle(`${materiaScope}${btnInfo}:hover, ${materiaScope}${btnInfo}:active:hover`, {
-	backgroundColor: '#89229b',
-})
-
-globalStyle(`${materiaScope}${btnInfo}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-})
-
-globalStyle(`${materiaScope}${btnWarning}:focus`, {
-	backgroundColor: '#ff9800',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
-})
-
-globalStyle(`${materiaScope}${btnWarning}:hover, ${materiaScope}${btnWarning}:active:hover`, {
-	backgroundColor: '#e08600',
-})
-
-globalStyle(`${materiaScope}${btnWarning}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-})
-
-globalStyle(`${materiaScope}${btnDanger}:focus`, {
-	backgroundColor: '#e51c23',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
-})
-
-globalStyle(`${materiaScope}${btnDanger}:hover, ${materiaScope}${btnDanger}:active:hover`, {
-	backgroundColor: '#ca191f',
-})
-
-globalStyle(`${materiaScope}${btnDanger}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-})
-
-globalStyle(`${materiaScope}${btnDark}:focus`, {
-	backgroundColor: '#222',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
-})
-
-globalStyle(`${materiaScope}${btnDark}:hover, ${materiaScope}${btnDark}:active:hover`, {
-	backgroundColor: '#1e1e1e',
-})
-
-globalStyle(`${materiaScope}${btnDark}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-})
-
-globalStyle(`${materiaScope}${btnLight}:focus`, {
-	backgroundColor: '#f8f9fa',
-	boxShadow: '0 0 0 2px rgba(204, 204, 204, 0.5)',
-})
-
-globalStyle(`${materiaScope}${btnLight}:hover, ${materiaScope}${btnLight}:active:hover`, {
-	backgroundColor: '#dadbdc',
-})
-
-globalStyle(`${materiaScope}${btnLight}:active`, {
-	boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-})
-

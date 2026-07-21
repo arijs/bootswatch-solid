@@ -1,0 +1,33 @@
+table { caption-side: bottom; border-collapse: collapse; }
+
+th { text-align: inherit; text-align: -webkit-match-parent; }
+
+thead, tbody, tfoot, tr, td, th { border-color: inherit; border-style: solid; border-width: 0; }
+
+.table { --bs-table-color-type: initial; --bs-table-bg-type: initial; --bs-table-color-state: initial; --bs-table-bg-state: initial; --bs-table-color: initial; --bs-table-bg: var(--bs-body-bg); --bs-table-border-color: var(--bs-border-color); --bs-table-accent-bg: transparent; --bs-table-striped-color: initial; --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05); --bs-table-active-color: initial; --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1); --bs-table-hover-color: initial; --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075); width: 100%; margin-bottom: 1rem; vertical-align: top; border-color: var(--bs-table-border-color); }
+
+.table > :not(caption) > * > * { padding: 0.5rem 0.5rem; color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color))); background-color: var(--bs-table-bg); border-bottom-width: var(--bs-border-width); box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg))); }
+
+.table > tbody { vertical-align: inherit; }
+
+.table > thead { vertical-align: bottom; }
+
+.table-hover > tbody > tr:hover > * { --bs-table-color-state: var(--bs-table-hover-color); --bs-table-bg-state: var(--bs-table-hover-bg); }
+
+.table-primary { --bs-table-color: #000; --bs-table-bg: #dae2eb; --bs-table-border-color: #aeb5bc; --bs-table-striped-bg: #cfd7df; --bs-table-striped-color: #000; --bs-table-active-bg: #c4cbd4; --bs-table-active-color: #000; --bs-table-hover-bg: #cad1d9; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-secondary { --bs-table-color: #000; --bs-table-bg: #ebebeb; --bs-table-border-color: #bcbcbc; --bs-table-striped-bg: #dfdfdf; --bs-table-striped-color: #000; --bs-table-active-bg: #d4d4d4; --bs-table-active-color: #000; --bs-table-hover-bg: #d9d9d9; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-success { --bs-table-color: #000; --bs-table-bg: #d8f0d3; --bs-table-border-color: #adc0a9; --bs-table-striped-bg: #cde4c8; --bs-table-striped-color: #000; --bs-table-active-bg: #c2d8be; --bs-table-active-color: #000; --bs-table-hover-bg: #c8dec3; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-info { --bs-table-color: #000; --bs-table-bg: #d6ebfd; --bs-table-border-color: #abbcca; --bs-table-striped-bg: #cbdff0; --bs-table-striped-color: #000; --bs-table-active-bg: #c1d4e4; --bs-table-active-color: #000; --bs-table-hover-bg: #c6d9ea; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-warning { --bs-table-color: #000; --bs-table-bg: #f6e3cc; --bs-table-border-color: #c5b6a3; --bs-table-striped-bg: #ead8c2; --bs-table-striped-color: #000; --bs-table-active-bg: #ddccb8; --bs-table-active-color: #000; --bs-table-hover-bg: #e4d2bd; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-danger { --bs-table-color: #000; --bs-table-bg: #f5cccc; --bs-table-border-color: #c4a3a3; --bs-table-striped-bg: #e9c2c2; --bs-table-striped-color: #000; --bs-table-active-bg: #ddb8b8; --bs-table-active-color: #000; --bs-table-hover-bg: #e3bdbd; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-light { --bs-table-color: #000; --bs-table-bg: #eee; --bs-table-border-color: #bebebe; --bs-table-striped-bg: #e2e2e2; --bs-table-striped-color: #000; --bs-table-active-bg: #d6d6d6; --bs-table-active-color: #000; --bs-table-hover-bg: gainsboro; --bs-table-hover-color: #000; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-dark { --bs-table-color: #fff; --bs-table-bg: #333; --bs-table-border-color: #5c5c5c; --bs-table-striped-bg: #3d3d3d; --bs-table-striped-color: #fff; --bs-table-active-bg: #474747; --bs-table-active-color: #fff; --bs-table-hover-bg: #424242; --bs-table-hover-color: #fff; color: var(--bs-table-color); border-color: var(--bs-table-border-color); }
+
+.table-primary, .table-secondary, .table-success, .table-warning, .table-danger, .table-info, .table-light { --bs-table-color: #777; }

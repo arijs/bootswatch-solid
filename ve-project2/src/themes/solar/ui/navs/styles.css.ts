@@ -1,15 +1,19 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
 import {
-	nav,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-	navTabs,
-} from '../../../../theme-contract/ui/navs/contract.css'
+	varBsBorderRadius,
+	varBsBorderWidth,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryColor,
+} from '../../../../theme-contract/_vars.css'
+import { varBsCardBg, varBsCardCapPaddingX, varBsCardCapPaddingY } from '../../../../theme-contract/ui/card/_vars.css'
+import { varBsNavbarActiveColor, varBsNavbarNavLinkPaddingX } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
 	varBsNavLinkDisabledColor,
+	varBsNavLinkFontSize,
 	varBsNavLinkFontWeight,
 	varBsNavLinkHoverColor,
 	varBsNavLinkPaddingX,
@@ -25,30 +29,34 @@ import {
 	varBsNavTabsLinkActiveColor,
 	varBsNavTabsLinkHoverBorderColor,
 } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLinkActiveColor } from '../../../../theme-contract/utilities/generated/_vars.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsEmphasisColor,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-} from '../../../../theme-contract/_vars.css'
-import { solarScope } from '../../scope.css'
+	active,
+	navFill,
+	navJustified,
+	navUnderline,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import {
+	nav,
+	navItem,
+	navLink,
+	navLinkActive,
+	navLinkDisabled,
+	navPills,
+	navTabs,
+	show,
+	tabContent,
+	tabPane,
+} from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── .nav base ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav {
-//   --bs-nav-link-padding-x: 1rem; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-link-color);
-//   --bs-nav-link-hover-color: var(--bs-link-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-secondary-color);
-//   display: flex; flex-wrap: wrap; padding-left: 0; margin-bottom: 0; list-style: none;
-// }
 globalStyle(`${solarScope}${nav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '1rem',
@@ -60,140 +68,259 @@ globalStyle(`${solarScope}${nav}`, {
 	},
 	display: 'flex',
 	flexWrap: 'wrap',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// ── .nav-link ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .nav-link { display: block;
-//   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-//   font-weight: var(--bs-nav-link-font-weight);
-//   color: var(--bs-nav-link-color);
-//   text-decoration: none; background: none; border: 0;
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//               border-color 0.15s ease-in-out; }
 globalStyle(`${solarScope}${navLink}`, {
 	display: 'block',
 	padding: `${varBsNavLinkPaddingY} ${varBsNavLinkPaddingX}`,
-	fontFamily: 'inherit',
-	fontSize: 'inherit',
+	fontSize: varBsNavLinkFontSize,
 	fontWeight: varBsNavLinkFontWeight,
-	lineHeight: 'inherit',
 	color: varBsNavLinkColor,
 	textDecoration: 'none',
 	background: 'none',
-	appearance: 'none',
-	border: 0,
+	border: '0',
 	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out',
 })
 
-// SOURCE CSS: .nav-link:hover, .nav-link:focus { color: var(--bs-nav-link-hover-color); }
-globalStyle(`${solarScope}${navLink}:hover, ${solarScope}${navLink}:focus`, {
+globalStyle(`${solarScope}${navLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navLink}:hover`, {
 	color: varBsNavLinkHoverColor,
 })
 
-// SOURCE CSS:
-// .nav-link.disabled, .nav-link:disabled {
-//   color: var(--bs-nav-link-disabled-color); pointer-events: none; cursor: default; }
-globalStyle(
-	`${solarScope}${navLink}${navLinkDisabled}, ${solarScope}${navLink}:disabled`,
-	{
-		color: varBsNavLinkDisabledColor,
-		pointerEvents: 'none',
-		cursor: 'default',
-	},
-)
+globalStyle(`${solarScope}${navLink}:focus`, {
+	color: varBsNavLinkHoverColor,
+})
 
-// ── .nav-tabs ─────────────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${navLink}:focus-visible`, {
+	outline: '0',
+	boxShadow: '0 0 0 0.25rem rgba(181, 137, 0, 0.25)',
+})
 
-// SOURCE CSS:
-// .nav-tabs {
-//   --bs-nav-tabs-border-width: var(--bs-border-width);
-//   --bs-nav-tabs-border-color: var(--bs-border-color);
-//   --bs-nav-tabs-border-radius: var(--bs-border-radius);
-//   --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
-//   --bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
-//   --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
-//   --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
-//   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
-// }
+globalStyle(`${solarScope}${navLink}${navLinkDisabled}`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
+globalStyle(`${solarScope}${navLink}:disabled`, {
+	color: varBsNavLinkDisabledColor,
+	pointerEvents: 'none',
+	cursor: 'default',
+})
+
 globalStyle(`${solarScope}${navTabs}`, {
 	vars: {
 		[varBsNavTabsBorderWidth]: varBsBorderWidth,
 		[varBsNavTabsBorderColor]: '#073642',
-			[varBsNavTabsBorderRadius]: varBsBorderRadius,
-			[varBsNavTabsLinkHoverBorderColor]: '#073642',
-			[varBsNavTabsLinkActiveColor]: 'rgba(255, 255, 255, 0.75)',
-			[varBsNavTabsLinkActiveBg]: '#002b36',
-			[varBsNavTabsLinkActiveBorderColor]: '#073642',
+		[varBsNavTabsBorderRadius]: varBsBorderRadius,
+		[varBsNavTabsLinkHoverBorderColor]: '#073642',
+		[varBsNavTabsLinkActiveColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsNavTabsLinkActiveBg]: '#002b36',
+		[varBsNavTabsLinkActiveBorderColor]: '#073642',
 	},
 	borderBottom: `${varBsNavTabsBorderWidth} solid ${varBsNavTabsBorderColor}`,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link { margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
-//   border: var(--bs-nav-tabs-border-width) solid transparent;
-//   border-top-left-radius: var(--bs-nav-tabs-border-radius);
-//   border-top-right-radius: var(--bs-nav-tabs-border-radius); }
-globalStyle(`${solarScope}${navTabs} ${navLink}`, {
+globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}`, {
 	marginBottom: `calc(-1 * ${varBsNavTabsBorderWidth})`,
 	border: `${varBsNavTabsBorderWidth} solid transparent`,
 	borderTopLeftRadius: varBsNavTabsBorderRadius,
 	borderTopRightRadius: varBsNavTabsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-//   isolation: isolate; border-color: var(--bs-nav-tabs-link-hover-border-color); }
-globalStyle(
-	`${solarScope}${navTabs} ${navLink}:hover, ${solarScope}${navTabs} ${navLink}:focus`,
-	{
-		isolation: 'isolate',
-		borderColor: varBsNavTabsLinkHoverBorderColor,
-	},
-)
+globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}:hover`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-//   color: var(--bs-nav-tabs-link-active-color);
-//   background-color: var(--bs-nav-tabs-link-active-bg);
-//   border-color: var(--bs-nav-tabs-link-active-border-color); }
-globalStyle(`${solarScope}${navTabs} ${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}:focus`, {
+	isolation: 'isolate',
+	borderColor: varBsNavTabsLinkHoverBorderColor,
+})
+
+globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}${navLinkActive}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
 })
 
-// ── .nav-pills ────────────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${navTabs} ${solarScope}${navItem}${show} ${solarScope}${navLink}`, {
+	color: varBsNavTabsLinkActiveColor,
+	backgroundColor: varBsNavTabsLinkActiveBg,
+	borderColor: varBsNavTabsLinkActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .nav-pills {
-//   --bs-nav-pills-border-radius: var(--bs-border-radius);
-//   --bs-nav-pills-link-active-color: #fff;
-//   --bs-nav-pills-link-active-bg: #0d6efd;
-// }
 globalStyle(`${solarScope}${navPills}`, {
 	vars: {
 		[varBsNavPillsBorderRadius]: varBsBorderRadius,
-			[varBsNavPillsLinkActiveColor]: 'rgba(255, 255, 255, 0.75)',
-			[varBsNavPillsLinkActiveBg]: '#073642',
+		[varBsNavPillsLinkActiveColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsNavPillsLinkActiveBg]: '#073642',
 	},
 })
 
-// SOURCE CSS: .nav-pills .nav-link { border-radius: var(--bs-nav-pills-border-radius); }
-globalStyle(`${solarScope}${navPills} ${navLink}`, {
+globalStyle(`${solarScope}${navPills} ${solarScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-// SOURCE CSS:
-// .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-//   color: var(--bs-nav-pills-link-active-color);
-//   background-color: var(--bs-nav-pills-link-active-bg); }
-globalStyle(`${solarScope}${navPills} ${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navPills} ${solarScope}${navLink}${navLinkActive}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
 
+globalStyle(`${solarScope}${navPills} ${solarScope}${show} > ${solarScope}${navLink}`, {
+	color: varBsNavPillsLinkActiveColor,
+	backgroundColor: varBsNavPillsLinkActiveBg,
+})
+
+globalStyle(`${solarScope}${navUnderline}`, {
+	vars: {
+		[varBsNavUnderlineGap]: '1rem',
+		[varBsNavUnderlineBorderWidth]: '0.125rem',
+		[varBsNavUnderlineLinkActiveColor]: 'rgba(255, 255, 255, 0.75)',
+	},
+	gap: varBsNavUnderlineGap,
+})
+
+globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}`, {
+	paddingRight: '0',
+	paddingLeft: '0',
+	borderBottom: `${varBsNavUnderlineBorderWidth} solid transparent`,
+})
+
+globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}:hover`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}:focus`, {
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}${navLinkActive}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${solarScope}${navUnderline} ${solarScope}${show} > ${solarScope}${navLink}`, {
+	fontWeight: '700',
+	color: varBsNavUnderlineLinkActiveColor,
+	borderBottomColor: 'currentcolor',
+})
+
+globalStyle(`${solarScope}${navFill} > ${solarScope}${navLink}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${solarScope}${navFill} ${solarScope}${navItem}`, {
+	flex: '1 1 auto',
+	textAlign: 'center',
+})
+
+globalStyle(`${solarScope}${navJustified} > ${solarScope}${navLink}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${solarScope}${navJustified} ${solarScope}${navItem}`, {
+	flexGrow: '1',
+	flexBasis: '0',
+	textAlign: 'center',
+})
+
+globalStyle(`${solarScope}${navFill} ${solarScope}${navItem} ${solarScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${solarScope}${navJustified} ${solarScope}${navItem} ${solarScope}${navLink}`, {
+	width: '100%',
+})
+
+globalStyle(`${solarScope}${tabContent} > ${solarScope}${tabPane}`, {
+	display: 'none',
+})
+
+globalStyle(`${solarScope}${tabContent} > ${solarScope}${active}`, {
+	display: 'block',
+})
+
+globalStyle(`${solarScope}${navbarNav} ${solarScope}${navLink}${navLinkActive}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${solarScope}${navbarNav} ${solarScope}${navLink}${show}`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandLg} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXl} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			paddingRight: varBsNavbarNavLinkPaddingX,
+			paddingLeft: varBsNavbarNavLinkPaddingX,
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpand} ${solarScope}${navbarNav} ${solarScope}${navLink}`, {
+	paddingRight: varBsNavbarNavLinkPaddingX,
+	paddingLeft: varBsNavbarNavLinkPaddingX,
+})
+
+globalStyle(`${solarScope}${cardHeaderTabs}`, {
+	marginRight: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	marginBottom: `calc(-1 * ${varBsCardCapPaddingY})`,
+	marginLeft: `calc(-0.5 * ${varBsCardCapPaddingX})`,
+	borderBottom: '0',
+})
+
+globalStyle(`${solarScope}${cardHeaderTabs} ${solarScope}${navLink}${navLinkActive}`, {
+	backgroundColor: varBsCardBg,
+	borderBottomColor: varBsCardBg,
+})

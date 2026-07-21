@@ -4,6 +4,8 @@ Quick-reference for converting a Bootstrap component family from the original So
 
 For the full architecture rationale see [`docs/ve-architecture.md`](./ve-architecture.md).
 
+To auto-generate `ve-project2/src/themes/{theme}/**` from screenshot CSS, see [`docs/ve2-theme-generator.md`](./ve2-theme-generator.md).
+
 ---
 
 ## Approach: literal CSS → VE conversion
@@ -400,11 +402,23 @@ import '../../themes/sketchy/{component family}/styles.css'
 
 ## Verification
 
+### Route migration status (fast, no Playwright)
+
 ```bash
 node scripts/capture-leaf-screenshots.mjs --ve-missing-only
 ```
 
 The `converted=` number should increase by exactly the count of routes you added. None of the new family's routes should appear in the missing list.
+
+### Full screenshot parity for one theme
+
+After baseline screenshots exist under `screenshots/{theme}/`, run VE2 pixel verification for the whole theme:
+
+```bash
+node scripts/capture-leaf-screenshots.mjs --theme=bootstrap --verify-ve-rendering
+```
+
+Replace `bootstrap` with the theme under test. Expect `433` scenarios and `failed=0` when parity is complete. To refresh baselines first, see **Single theme: full baseline capture, then VE verification** in [`scripts/capture-leaf-screenshots.md`](../scripts/capture-leaf-screenshots.md).
 
 For screenshot mismatches that are hard to diagnose from the diff image alone, use the Playwright computed-style comparison technique documented in [`docs/ve2-debugging-mismatch-walkthrough.md`](./ve2-debugging-mismatch-walkthrough.md).
 
@@ -436,11 +450,14 @@ For screenshot mismatches that are hard to diagnose from the diff image alone, u
 | Sketchy input font-family fallback for non-`.btn` buttons | Sketchy sets `button, input, optgroup, select, textarea` font-family globally (`Neucha, ...`). In VE2, expose this as a reusable contract class (for example `inputFontFamily`) for elements that need that baseline font but do not carry `.btn`. Define the class rule before the base `btn` rule so `btn` still wins when both classes are applied on the same element. |
 | Bootstrap gradient overlay on solid buttons | Bootstrap's base `.btn` rule includes `background-image: var(--bs-gradient)` (resolves to `linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0))`), and every `.btn-outline-*` block resets `--bs-gradient: none`. VE2 must mirror this structure literally: (1) declare `export const varBsGradient = createVar()` in `theme-contract/_vars.css.ts`; (2) assign its value in `themes/{theme}/scope.css.ts`; (3) set `backgroundImage: varBsGradient` on the base `btn` rule (and `btn:focus-visible`); (4) add `[varBsGradient]: 'none'` to the `vars:` block of every `btnOutline*` variant. Do **not** add explicit per-variant `backgroundImage` overrides — that diverges from the source structure and misses the gradient on all non-dark/danger solid variants. |
 | Missing font weights can change fallback rendering | A theme may declare a font weight in CSS that is not actually loaded by that theme's `@import` (for example Sandstone `.lead { font-weight: 300 }` while Sandstone only imports Roboto 400/500/700). Baselines then render with fallback/synthetic weight behavior, while VE2 can render differently if another loaded theme imports that missing weight globally. Treat this as a source-parity gotcha: document it, keep selectors/weights source-faithful, and validate with screenshot parity instead of "fixing" by borrowing weights from another theme. |
-| Global element selectors must map to contracts | Do not ship raw global selectors like `body, input, button` in theme files. Map `body` styles to root contracts (`body` for non-typography and `bodyText` for typography such as `letter-spacing`), and map element-group rules (for example `input`/`button`) to an existing reusable contract class such as `inputFontFamily`. If no adequate contract exists, create one, then stamp that contract class in TSX on every affected element so the rule actually applies.[^global-selector-case] |
+| Global element selectors must map to contracts | Do not ship raw global selectors like `body, input, button` in theme files. Map `body` styles to root contracts (`bodyFrame` for page canvas/background, `bodyText` for typography such as `letter-spacing`), and map element-group rules (for example `input`/`button`) to an existing reusable contract class such as `inputFontFamily`. If no adequate contract exists, create one, then stamp that contract class in TSX on every affected element so the rule actually applies.[^global-selector-case] |
+| `bodyFrame` vs `body` vs `bodyText` on Ve2Shell | Ve2Shell stamps `${scope} ${vars} ${bodyFrame} ${bodyText}` — **not** `body`. Split matches the modal/popover lesson: `bodyText` carries typography only; `bodyFrame` carries the page canvas (`background-color`, `margin`) without padding. Do **not** stamp full `body` on the shell or modal roots — that applies background bleed behind backdrops. Scope `globalStyle` rules from source `body { … }` go to `bodyText` (typography props) and `bodyFrame` (background/margin). Reserve the `body` contract for rare explicit overlay subtrees. |
 | First/last child `page-link` corner radii (pagination) | `.page-item:first-child .page-link` and `:last-child` rules have specificity 0,3,0 and override the `.pagination .page-link` Sketchy hand-drawn `border-radius` shorthand (0,2,0) on their respective corners. Mirror these rules explicitly in VE2 using `varBsPaginationBorderRadius` — exactly as the source CSS does — so the first/last child corners match the baseline. Without them the outer corners of the first and last page items render with the wrong radius. |
 | Cross-family contract ownership and migration order | Some components intentionally reuse contract classes from another family (for example, `ListCard` uses `listGroup`, `listGroupFlush`, and `listGroupItem` from `theme-contract/ui/list-group/contract.css.ts`). Do not duplicate those classes in `theme-contract/ui/card/contract.css.ts` or re-implement their base rules in card theme files. Migrate the owner family first (`/ui/list-group` before `/ui/card`), import the owner contract in the dependent component/theme, and keep card theme rules limited to card-specific composition selectors such as `.card > .list-group`. |
 | Cross-family overrides must include both families' contracts | If a rule belongs to family A but must resolve a conflict with family B, keep it in family A only when the selector explicitly combines A+B contract classes (for example `btn + dropdownToggleSplit`). If a selector references only family B contracts, it belongs in family B styles instead; do not duplicate it under family A just to make screenshots pass. |
 | Keep CSS overrides surgical and minimal | When one contract class must override styles from another within a specific context, override only the properties that actually change — never reset entire blocks or add styles that already inherit correctly. Example: card-tabs context only overrides `marginBottom` on nav and `borderBottom` on nav-tabs, not all nav styles. Surgical overrides prevent unintended cascading effects and keep theme implementations maintainable. |
+| Floating elements + late-loading fonts shift position | A Popper-anchored element (tooltip/popover/dropdown/modal) whose content uses a lazily-loaded web font can be mispositioned: Popper measures its width once at open time and never re-anchors when the font swaps in, so baseline vs VE can land a few px apart depending on font-load timing. The capture harness neutralises this by awaiting `document.fonts.ready` before its Popper re-anchor nudge (`scripts/capture-leaf-screenshots/playwright-actions.mjs`). If a mismatch is a rigid positional offset (outline bands around byte-identical content), it is **not** a CSS-property bug — see the [debugging walkthrough](./ve2-debugging-mismatch-walkthrough.md#walkthrough-sketchy-html-tooltip-3px-horizontal-shift-font-load-race--popper). |
+| Verify literal mode with `--style-loader=literal` | The capture CLI defaults to `--style-loader=theme`, an incomplete code path that can render a theme nearly unstyled and produce a large, misleading diff. Always pass `--style-loader=literal` for literal verification and confirm the VE preview URL contains `style-loader=literal`. |
 
 ### Concrete case: Materia letter-spacing
 

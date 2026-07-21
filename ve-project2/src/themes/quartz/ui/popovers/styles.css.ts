@@ -1,31 +1,14 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
-	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
-	varBsBorderStyle,
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsFontSansSerif,
 } from '../../../../theme-contract/_vars.css'
-import {
-	bsPopoverAuto,
-	bsPopoverBottom,
-	bsPopoverEnd,
-	bsPopoverStart,
-	bsPopoverTop,
-	frame,
-	frameColumn,
-	frameRow,
-	justifyEnd,
-	justifyStart,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
-	popoverVe,
-} from '../../../../theme-contract/ui/popovers/contract.css'
-import { h3 } from '../../../../theme-contract/contents/contract.css'
 import {
 	varBsPopoverArrowBorder,
 	varBsPopoverArrowHeight,
@@ -48,10 +31,40 @@ import {
 	varBsPopoverMaxWidth,
 	varBsPopoverZindex,
 } from '../../../../theme-contract/ui/popovers/_vars.css'
-import { quartzScope } from '../../scope.css'
 
-// Quartz: glass on popover
-globalStyle(`${quartzScope}${popoverVe}`, {
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
+import { popover } from '../../../../theme-contract/literal/contract.css'
+import {
+	bsPopoverAuto,
+	bsPopoverBottom,
+	bsPopoverEnd,
+	bsPopoverStart,
+	bsPopoverTop,
+	popoverArrow,
+	popoverBody,
+	popoverFade,
+	popoverHeader,
+	popoverShow,
+} from '../../../../theme-contract/ui/popovers/contract.css'
+
+globalStyle(`${quartzScope}${popoverFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${quartzScope}${popoverFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${popoverFade}:not(${popoverShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${quartzScope}${popover}`, {
 	vars: {
 		[varBsPopoverZindex]: '1070',
 		[varBsPopoverMaxWidth]: '276px',
@@ -79,9 +92,9 @@ globalStyle(`${quartzScope}${popoverVe}`, {
 	maxWidth: varBsPopoverMaxWidth,
 	fontFamily: varBsFontSansSerif,
 	fontStyle: 'normal',
-	fontWeight: 400,
-	lineHeight: 1.5,
-	textAlign: 'left',
+	fontWeight: '400',
+	lineHeight: '1.5',
+	textAlign: 'start',
 	textDecoration: 'none',
 	textShadow: 'none',
 	textTransform: 'none',
@@ -89,119 +102,252 @@ globalStyle(`${quartzScope}${popoverVe}`, {
 	wordBreak: 'normal',
 	whiteSpace: 'normal',
 	wordSpacing: 'normal',
+	lineBreak: 'auto',
 	fontSize: varBsPopoverFontSize,
 	wordWrap: 'break-word',
-	border: 'none',
-	backgroundColor: 'transparent',
-	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
-	backdropFilter: 'blur(5px)',
-	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: varBsPopoverBg,
 	backgroundClip: 'padding-box',
+	border: `${varBsPopoverBorderWidth} solid ${varBsPopoverBorderColor}`,
 	borderRadius: varBsPopoverBorderRadius,
 })
 
-globalStyle(`${quartzScope}${popoverArrow}`, {
+globalStyle(`${quartzScope}${popover} ${quartzScope}${popoverArrow}`, {
 	display: 'block',
 	width: varBsPopoverArrowWidth,
 	height: varBsPopoverArrowHeight,
 })
 
-globalStyle(`${quartzScope}${popoverArrow}::before, ${quartzScope}${popoverArrow}::after`, {
+globalStyle(`${quartzScope}${popover} ${quartzScope}${popoverArrow}::before`, {
 	position: 'absolute',
 	display: 'block',
-	content: '',
+	content: '""',
 	borderColor: 'transparent',
 	borderStyle: 'solid',
-	borderWidth: 0,
+	borderWidth: '0',
 })
 
-globalStyle(
-	`${quartzScope}${bsPopoverTop} > ${popoverArrow}, ${quartzScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}`,
-	{ bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})` },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverTop} > ${popoverArrow}::before, ${quartzScope}${bsPopoverTop} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::after`,
-	{ borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0` },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverTop} > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::before`,
-	{ bottom: 0, borderTopColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverTop} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::after`,
-	{ bottom: varBsPopoverBorderWidth, borderTopColor: varBsPopoverBg },
-)
+globalStyle(`${quartzScope}${popover} ${quartzScope}${popoverArrow}::after`, {
+	position: 'absolute',
+	display: 'block',
+	content: '""',
+	borderColor: 'transparent',
+	borderStyle: 'solid',
+	borderWidth: '0',
+})
 
-globalStyle(
-	`${quartzScope}${bsPopoverEnd} > ${popoverArrow}, ${quartzScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}`,
-	{
-		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
-globalStyle(
-	`${quartzScope}${bsPopoverEnd} > ${popoverArrow}::before, ${quartzScope}${bsPopoverEnd} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
-globalStyle(
-	`${quartzScope}${bsPopoverEnd} > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::before`,
-	{ left: 0, borderRightColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverEnd} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::after`,
-	{ left: varBsPopoverBorderWidth, borderRightColor: varBsPopoverBg },
-)
+globalStyle(`${quartzScope}${bsPopoverTop} > ${quartzScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
-globalStyle(
-	`${quartzScope}${bsPopoverBottom} > ${popoverArrow}, ${quartzScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}`,
-	{ top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})` },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverBottom} > ${popoverArrow}::before, ${quartzScope}${bsPopoverBottom} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::after`,
-	{ borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}` },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverBottom} > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::before`,
-	{ top: 0, borderBottomColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverBottom} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::after`,
-	{ top: varBsPopoverBorderWidth, borderBottomColor: varBsPopoverBg },
-)
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=top] > ${quartzScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
-globalStyle(
-	`${quartzScope}${bsPopoverStart} > ${popoverArrow}, ${quartzScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}`,
-	{
-		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
-globalStyle(
-	`${quartzScope}${bsPopoverStart} > ${popoverArrow}::before, ${quartzScope}${bsPopoverStart} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
-globalStyle(
-	`${quartzScope}${bsPopoverStart} > ${popoverArrow}::before, ${quartzScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::before`,
-	{ right: 0, borderLeftColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${quartzScope}${bsPopoverStart} > ${popoverArrow}::after, ${quartzScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::after`,
-	{ right: varBsPopoverBorderWidth, borderLeftColor: varBsPopoverBg },
-)
+globalStyle(`${quartzScope}${bsPopoverTop} > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=top] > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverTop} > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=top] > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverTop} > ${quartzScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=top] > ${quartzScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverTop} > ${quartzScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=top] > ${quartzScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverEnd} > ${quartzScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=right] > ${quartzScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${quartzScope}${bsPopoverEnd} > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=right] > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverEnd} > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=right] > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverEnd} > ${quartzScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=right] > ${quartzScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverEnd} > ${quartzScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=right] > ${quartzScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverBottom} > ${quartzScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${quartzScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverBottom} > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverBottom} > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverBottom} > ${quartzScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${quartzScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverBottom} > ${quartzScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${quartzScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverBottom} ${quartzScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${quartzScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverStart} > ${quartzScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=left] > ${quartzScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${quartzScope}${bsPopoverStart} > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=left] > ${quartzScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverStart} > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=left] > ${quartzScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${quartzScope}${bsPopoverStart} > ${quartzScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=left] > ${quartzScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${quartzScope}${bsPopoverStart} > ${quartzScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
+
+globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-placement^=left] > ${quartzScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
 
 globalStyle(`${quartzScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	fontSize: varBsPopoverHeaderFontSize,
 	color: varBsPopoverHeaderColor,
 	backgroundColor: varBsPopoverHeaderBg,
-	borderBottom: `${varBsPopoverBorderWidth} solid rgba(255, 255, 255, 0.2)`,
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverBorderColor}`,
 	borderTopLeftRadius: varBsPopoverInnerBorderRadius,
 	borderTopRightRadius: varBsPopoverInnerBorderRadius,
 })
@@ -210,41 +356,24 @@ globalStyle(`${quartzScope}${popoverHeader}:empty`, {
 	display: 'none',
 })
 
-globalStyle(`${quartzScope}${popoverHeader}${h3}`, {
-	fontSize: varBsPopoverHeaderFontSize,
-	fontWeight: 700,
-	marginBottom: 0,
-})
-
 globalStyle(`${quartzScope}${popoverBody}`, {
 	padding: `${varBsPopoverBodyPaddingY} ${varBsPopoverBodyPaddingX}`,
 	color: varBsPopoverBodyColor,
 })
 
-globalStyle(`${quartzScope}${frame}`, {
-	display: 'flex',
-	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
-	height: '16em',
+globalStyle(`${quartzScope}${popover}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
 })
 
-globalStyle(`${quartzScope}${frameColumn}`, {
-	flexDirection: 'column',
-	alignItems: 'center',
+globalStyle(`${quartzScope}${popover} :where(${quartzScope}${link})`, {
+	color: '#fff',
 })
 
-globalStyle(`${quartzScope}${frameRow}`, {
-	flexDirection: 'row',
-	alignItems: 'center',
-})
-
-globalStyle(`${quartzScope}${justifyEnd}`, {
-	justifyContent: 'flex-end',
-})
-
-globalStyle(`${quartzScope}${justifyStart}`, {
-	justifyContent: 'flex-start',
-})
-
-globalStyle(`${quartzScope}${bsPopoverAuto}[data-popper-reference-hidden='true']`, {
-	display: 'none',
+globalStyle(`${quartzScope}${popoverHeader}`, {
+	borderBottomColor: 'rgba(255, 255, 255, 0.2)',
 })

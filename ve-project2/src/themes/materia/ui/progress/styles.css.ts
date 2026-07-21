@@ -1,59 +1,33 @@
-import { globalStyle, keyframes } from '@vanilla-extract/css'
-import {
-	progress,
-	progressBar,
-	progressBarAnimated,
-	progressBarDanger,
-	progressBarInfo,
-	progressBarStriped,
-	progressBarSuccess,
-	progressBarWarning,
-} from '../../../../theme-contract/ui/progress/contract.css'
+import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
+import { varBsBoxShadowInset, varBsSecondaryBg } from '../../../../theme-contract/_vars.css'
 import {
 	varBsProgressBarBg,
 	varBsProgressBarColor,
 	varBsProgressBarTransition,
 	varBsProgressBg,
 	varBsProgressBorderRadius,
+	varBsProgressBoxShadow,
 	varBsProgressFontSize,
 	varBsProgressHeight,
 } from '../../../../theme-contract/ui/progress/_vars.css'
+
+import { progressStacked } from '../../../../theme-contract/literal/contract.css'
 import {
-	varBsDanger,
-	varBsDark,
-	varBsInfo,
-	varBsSecondaryBg,
-	varBsSuccess,
-	varBsWarning,
-} from '../../../../theme-contract/_vars.css'
-import { materiaScope } from '../../scope.css'
+	progress,
+	progressBar,
+	progressBarAnimated,
+	progressBarStriped,
+} from '../../../../theme-contract/ui/progress/contract.css'
 
-// ── @keyframes progress-bar-stripes ──────────────────────────────────────────
-const progressBarStripes = keyframes({
-	'0%': { backgroundPositionX: varBsProgressHeight },
-})
-
-// ── .progress ─────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .progress, .progress-stacked {
-//   --bs-progress-height: 1rem; --bs-progress-font-size: 0.75rem;
-//   --bs-progress-bg: var(--bs-secondary-bg);
-//   --bs-progress-border-radius: var(--bs-border-radius);
-//   --bs-progress-box-shadow: var(--bs-box-shadow-inset);
-//   --bs-progress-bar-color: #fff; --bs-progress-bar-bg: #0d6efd;
-//   --bs-progress-bar-transition: width 0.6s ease;
-//   display: flex; height: var(--bs-progress-height); overflow: hidden;
-//   font-size: var(--bs-progress-font-size);
-//   background-color: var(--bs-progress-bg);
-//   border-radius: var(--bs-progress-border-radius);
-// }
 globalStyle(`${materiaScope}${progress}`, {
 	vars: {
 		[varBsProgressHeight]: '0.375rem',
 		[varBsProgressFontSize]: '0.75rem',
 		[varBsProgressBg]: varBsSecondaryBg,
 		[varBsProgressBorderRadius]: '0',
+		[varBsProgressBoxShadow]: varBsBoxShadowInset,
 		[varBsProgressBarColor]: '#fff',
 		[varBsProgressBarBg]: '#2196f3',
 		[varBsProgressBarTransition]: 'width 0.6s ease',
@@ -66,17 +40,25 @@ globalStyle(`${materiaScope}${progress}`, {
 	borderRadius: varBsProgressBorderRadius,
 })
 
-// ── .progress-bar ─────────────────────────────────────────────────────────────
+globalStyle(`${materiaScope}${progressStacked}`, {
+	vars: {
+		[varBsProgressHeight]: '0.375rem',
+		[varBsProgressFontSize]: '0.75rem',
+		[varBsProgressBg]: varBsSecondaryBg,
+		[varBsProgressBorderRadius]: '0',
+		[varBsProgressBoxShadow]: varBsBoxShadowInset,
+		[varBsProgressBarColor]: '#fff',
+		[varBsProgressBarBg]: '#2196f3',
+		[varBsProgressBarTransition]: 'width 0.6s ease',
+	},
+	display: 'flex',
+	height: varBsProgressHeight,
+	overflow: 'hidden',
+	fontSize: varBsProgressFontSize,
+	backgroundColor: varBsProgressBg,
+	borderRadius: varBsProgressBorderRadius,
+})
 
-// SOURCE CSS:
-// .progress-bar {
-//   display: flex; flex-direction: column;
-//   justify-content: center; overflow: hidden;
-//   color: var(--bs-progress-bar-color);
-//   text-align: center; white-space: nowrap;
-//   background-color: var(--bs-progress-bar-bg);
-//   transition: var(--bs-progress-bar-transition);
-// }
 globalStyle(`${materiaScope}${progressBar}`, {
 	display: 'flex',
 	flexDirection: 'column',
@@ -89,48 +71,35 @@ globalStyle(`${materiaScope}${progressBar}`, {
 	transition: varBsProgressBarTransition,
 })
 
-// ── Progress bar color variants (absorbing Bootstrap bg-* utility classes) ───
-
-// bg-success: background-color: var(--bs-success)
-globalStyle(`${materiaScope}${progressBarSuccess}`, {
-	backgroundColor: varBsSuccess,
+globalStyle(`${materiaScope}${progressBar}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
-// bg-info text-dark: background-color: var(--bs-info); color: var(--bs-dark)
-globalStyle(`${materiaScope}${progressBarInfo}`, {
-	backgroundColor: varBsInfo,
-	color: varBsDark,
-})
-
-// bg-warning text-dark: background-color: var(--bs-warning); color: var(--bs-dark)
-globalStyle(`${materiaScope}${progressBarWarning}`, {
-	backgroundColor: varBsWarning,
-	color: varBsDark,
-})
-
-// bg-danger: background-color: var(--bs-danger)
-globalStyle(`${materiaScope}${progressBarDanger}`, {
-	backgroundColor: varBsDanger,
-})
-
-// ── .progress-bar-striped ─────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .progress-bar-striped {
-//   background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%,
-//     transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-//   background-size: var(--bs-progress-height) var(--bs-progress-height);
-// }
 globalStyle(`${materiaScope}${progressBarStriped}`, {
-	backgroundImage:
-		'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
+	backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',
 	backgroundSize: `${varBsProgressHeight} ${varBsProgressHeight}`,
 })
 
-// ── .progress-bar-animated ────────────────────────────────────────────────────
-
-// SOURCE CSS: .progress-bar-animated { animation: 1s linear infinite progress-bar-stripes; }
-globalStyle(`${materiaScope}${progressBarAnimated}`, {
-	animation: `1s linear infinite ${progressBarStripes}`,
+globalStyle(`${materiaScope}${progressStacked} > ${materiaScope}${progress}`, {
+	overflow: 'visible',
 })
 
+globalStyle(`${materiaScope}${progressStacked} > ${materiaScope}${progress} > ${materiaScope}${progressBar}`, {
+	width: '100%',
+})
+
+globalStyle(`${materiaScope}${progressBarAnimated}`, {
+	animation: '1s linear infinite progress-bar-stripes',
+})
+
+globalStyle(`${materiaScope}${progressBarAnimated}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			animation: 'none',
+		},
+	},
+})

@@ -1,14 +1,24 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../../../context/ThemeContext'
-import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import {
-	btn, btnActiveHook, btnOutlineSuccess, inputFontFamily } from '../../../../../theme-contract/ui/buttons/contract.css'
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../../../context/ThemeContext'
+import { elButton } from '../../../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../../../theme-contract/layout/container.css'
+import { active } from '../../../../../theme-contract/literal/contract.css'
+import {
+	btn,
+	btnActiveHook,
+	btnOutlineSuccess,
+	inputFontFamily,
+} from '../../../../../theme-contract/ui/buttons/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const OutlineCheckActiveSuccessButton: Component = () => {
@@ -19,7 +29,7 @@ const OutlineCheckActiveSuccessButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${btn} ${btnOutlineSuccess} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnOutlineSuccess} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

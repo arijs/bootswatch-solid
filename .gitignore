@@ -1,5 +1,8 @@
 node_modules
 dist
+/_ignore/
+/debug*.log
+/docs/ve-theme-generator-validation
 /public/theme
 /screenshots/**/*.verify.png
 /screenshots/**/*.verify.diff.png
@@ -9,6 +12,7 @@ dist
 /screenshots/**/markup.diff.json
 /screenshots/**/markup.diff.md
 /verify-*.txt
+/verify-run/
 /tmp-*.*
 /ve-project/verify-*.txt
 /debug-*.txt
@@ -17,3 +21,14 @@ dist
 /scripts/debug-*.mjs
 /scripts/tmp-*.mjs
 *.elements.xml
+/debug*.*
+
+# pacote @arijs/bootswatch-ve (Fase 1)
+dist-pkg/
+package/
+ve-project2/src/__pkg/
+
+# demo (F4) — artefatos de build
+examples/demo/dist/
+examples/demo/demo.png
+examples/**/node_modules/

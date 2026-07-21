@@ -1,25 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
-	varBsBorderColor,
 	varBsBorderRadius,
-	varBsBorderStyle,
-	varBsBorderWidth,
 	varBsEmphasisColor,
 	varBsFontSansSerif,
 	varBsTertiaryBg,
 } from '../../../../theme-contract/_vars.css'
-import {
-	frame,
-	frameColumn,
-	frameRow,
-	justifyCenter,
-	justifyEnd,
-	justifyStart,
-	tooltipArrow,
-	tooltipInner,
-	tooltipVe,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
 import {
 	varBsTooltipArrowHeight,
 	varBsTooltipArrowWidth,
@@ -34,9 +22,39 @@ import {
 	varBsTooltipPaddingY,
 	varBsTooltipZindex,
 } from '../../../../theme-contract/ui/tooltips/_vars.css'
-import { solarScope } from '../../scope.css'
 
-globalStyle(`${solarScope}${tooltipVe}`, {
+import {
+	bsTooltipAuto,
+	bsTooltipBottom,
+	bsTooltipEnd,
+	bsTooltipStart,
+	bsTooltipTop,
+	tooltip,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipShow,
+} from '../../../../theme-contract/ui/tooltips/contract.css'
+
+globalStyle(`${solarScope}${tooltipFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${solarScope}${tooltipFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${tooltipFade}:not(${tooltipShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${solarScope}${tooltip}`, {
 	vars: {
 		[varBsTooltipZindex]: '1080',
 		[varBsTooltipMaxWidth]: '200px',
@@ -56,8 +74,8 @@ globalStyle(`${solarScope}${tooltipVe}`, {
 	margin: varBsTooltipMargin,
 	fontFamily: varBsFontSansSerif,
 	fontStyle: 'normal',
-	fontWeight: 400,
-	lineHeight: 1.5,
+	fontWeight: '400',
+	lineHeight: '1.5',
 	textAlign: 'start',
 	textDecoration: 'none',
 	textShadow: 'none',
@@ -69,61 +87,109 @@ globalStyle(`${solarScope}${tooltipVe}`, {
 	lineBreak: 'auto',
 	fontSize: varBsTooltipFontSize,
 	wordWrap: 'break-word',
-	opacity: 0,
+	opacity: '0',
 })
 
-globalStyle(`${solarScope}${tooltipVe}.show`, {
+globalStyle(`${solarScope}${tooltip}${tooltipShow}`, {
 	opacity: varBsTooltipOpacity,
 })
 
-globalStyle(`${solarScope}${tooltipArrow}`, {
+globalStyle(`${solarScope}${tooltip} ${solarScope}${tooltipArrow}`, {
 	display: 'block',
 	width: varBsTooltipArrowWidth,
 	height: varBsTooltipArrowHeight,
 })
 
-globalStyle(`${solarScope}${tooltipArrow}::before`, {
+globalStyle(`${solarScope}${tooltip} ${solarScope}${tooltipArrow}::before`, {
 	position: 'absolute',
-	content: '',
+	content: '""',
 	borderColor: 'transparent',
 	borderStyle: 'solid',
 })
 
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="top"] ${tooltipArrow}`, {
+globalStyle(`${solarScope}${bsTooltipTop} ${solarScope}${tooltipArrow}`, {
 	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="top"] ${tooltipArrow}::before`, {
+
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=top] ${solarScope}${tooltipArrow}`, {
+	bottom: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+
+globalStyle(`${solarScope}${bsTooltipTop} ${solarScope}${tooltipArrow}::before`, {
 	top: '-1px',
 	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
 	borderTopColor: varBsTooltipBg,
 })
 
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="right"] ${tooltipArrow}`, {
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=top] ${solarScope}${tooltipArrow}::before`, {
+	top: '-1px',
+	borderWidth: `${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderTopColor: varBsTooltipBg,
+})
+
+globalStyle(`${solarScope}${bsTooltipEnd} ${solarScope}${tooltipArrow}`, {
 	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
 	width: varBsTooltipArrowHeight,
 	height: varBsTooltipArrowWidth,
 })
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="right"] ${tooltipArrow}::before`, {
+
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=right] ${solarScope}${tooltipArrow}`, {
+	left: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+
+globalStyle(`${solarScope}${bsTooltipEnd} ${solarScope}${tooltipArrow}::before`, {
 	right: '-1px',
 	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
 	borderRightColor: varBsTooltipBg,
 })
 
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="bottom"] ${tooltipArrow}`, {
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=right] ${solarScope}${tooltipArrow}::before`, {
+	right: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight} calc(${varBsTooltipArrowWidth} * 0.5) 0`,
+	borderRightColor: varBsTooltipBg,
+})
+
+globalStyle(`${solarScope}${bsTooltipBottom} ${solarScope}${tooltipArrow}`, {
 	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
 })
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="bottom"] ${tooltipArrow}::before`, {
+
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${solarScope}${tooltipArrow}`, {
+	top: `calc(-1 * ${varBsTooltipArrowHeight})`,
+})
+
+globalStyle(`${solarScope}${bsTooltipBottom} ${solarScope}${tooltipArrow}::before`, {
 	bottom: '-1px',
 	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
 	borderBottomColor: varBsTooltipBg,
 })
 
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="left"] ${tooltipArrow}`, {
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=bottom] ${solarScope}${tooltipArrow}::before`, {
+	bottom: '-1px',
+	borderWidth: `0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderBottomColor: varBsTooltipBg,
+})
+
+globalStyle(`${solarScope}${bsTooltipStart} ${solarScope}${tooltipArrow}`, {
 	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
 	width: varBsTooltipArrowHeight,
 	height: varBsTooltipArrowWidth,
 })
-globalStyle(`${solarScope}${tooltipVe}[data-popper-placement^="left"] ${tooltipArrow}::before`, {
+
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=left] ${solarScope}${tooltipArrow}`, {
+	right: `calc(-1 * ${varBsTooltipArrowHeight})`,
+	width: varBsTooltipArrowHeight,
+	height: varBsTooltipArrowWidth,
+})
+
+globalStyle(`${solarScope}${bsTooltipStart} ${solarScope}${tooltipArrow}::before`, {
+	left: '-1px',
+	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
+	borderLeftColor: varBsTooltipBg,
+})
+
+globalStyle(`${solarScope}${bsTooltipAuto}[data-popper-placement^=left] ${solarScope}${tooltipArrow}::before`, {
 	left: '-1px',
 	borderWidth: `calc(${varBsTooltipArrowWidth} * 0.5) 0 calc(${varBsTooltipArrowWidth} * 0.5) ${varBsTooltipArrowHeight}`,
 	borderLeftColor: varBsTooltipBg,
@@ -138,50 +204,9 @@ globalStyle(`${solarScope}${tooltipInner}`, {
 	borderRadius: varBsTooltipBorderRadius,
 })
 
-globalStyle(`${solarScope}${tooltipInner} b, ${solarScope}${tooltipInner} strong`, {
-	fontWeight: 'bolder',
-})
-
-globalStyle(`${solarScope}${tooltipInner} em`, {
-	fontStyle: 'italic',
-})
-
-globalStyle(`${solarScope}${tooltipInner} u`, {
-	textDecoration: 'underline',
-})
-
-globalStyle(`${solarScope}${frame}`, {
-	display: 'flex',
-	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
-	height: '16em',
-})
-
-globalStyle(`${solarScope}${frameColumn}`, {
-	flexDirection: 'column',
-	alignItems: 'center',
-})
-
-globalStyle(`${solarScope}${frameRow}`, {
-	flexDirection: 'row',
-	alignItems: 'center',
-})
-
-globalStyle(`${solarScope}${justifyCenter}`, {
-	justifyContent: 'center',
-})
-
-globalStyle(`${solarScope}${justifyEnd}`, {
-	justifyContent: 'flex-end',
-})
-
-globalStyle(`${solarScope}${justifyStart}`, {
-	justifyContent: 'flex-start',
-})
-
-globalStyle(`${solarScope}${tooltipVe}`, {
+globalStyle(`${solarScope}${tooltip}`, {
 	vars: {
 		[varBsTooltipBg]: varBsTertiaryBg,
 		[varBsTooltipColor]: varBsEmphasisColor,
 	},
 })
-

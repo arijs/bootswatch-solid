@@ -8,5 +8,5 @@ import { createVar } from '@vanilla-extract/css'
 //
 // Source: Bootstrap's .btn-group CSS block.
 
-export const varBsBtnGroupBorderRadius = createVar()   // mirrors --bs-border-radius at group level
-export const varBsBtnGroupBorderWidth = createVar()    // mirrors --bs-border-width at group level
+export const varBsBtnGroupBorderRadius = createVar() // mirrors --bs-border-radius at group level
+export const varBsBtnGroupBorderWidth = createVar() // mirrors --bs-border-width at group level

@@ -24,6 +24,15 @@ export const fieldsetReset = style({
 })
 
 export const visuallyHidden = style({
+	width: '1px',
+	height: '1px',
+	padding: 0,
+	margin: '-1px',
+	overflow: 'hidden',
+	clip: 'rect(0, 0, 0, 0)',
+	whiteSpace: 'nowrap',
+	border: 0,
+	position: 'absolute',
 })
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
@@ -129,6 +138,21 @@ export const me2 = style({})
 export const meAuto = style({})
 
 /**
+ * Bootstrap utility class: .p-5 { padding: 3rem !important; }
+ */
+export const p5 = style({})
+
+/**
+ * Bootstrap utility class: .bg-dark { background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; }
+ */
+export const bgDark = style({})
+
+/**
+ * Bootstrap utility class: .align-items-center { align-items: center !important; }
+ */
+export const alignItemsCenter = style({})
+
+/**
  * Bootstrap utility class: .mb-2 { margin-bottom: ... !important; }
  * Value is theme-specific and wired in each theme's utilities/styles.css.ts.
  */
@@ -176,14 +200,49 @@ export const g0 = style({})
 export const g4 = style({})
 
 /**
+ * Bootstrap breakpoint utility: .col-md-2
+ */
+export const colMd2 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-md-3
+ */
+export const colMd3 = style({})
+
+/**
  * Bootstrap breakpoint utility: .col-md-4
  */
 export const colMd4 = style({})
 
 /**
+ * Bootstrap breakpoint utility: .col-md-5
+ */
+export const colMd5 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-md-6
+ */
+export const colMd6 = style({})
+
+/**
  * Bootstrap breakpoint utility: .col-md-8
  */
 export const colMd8 = style({})
+
+/**
+ * Bootstrap breakpoint utility: .col-sm-6
+ */
+export const colSm6 = style({})
+
+/**
+ * Bootstrap gutter utility: .g-3
+ */
+export const g3 = style({})
+
+/**
+ * Bootstrap layout utility: .row-cols-auto (or row column wrapper)
+ */
+export const rowCol = style({})
 
 /**
  * Bootstrap utility: .position-relative

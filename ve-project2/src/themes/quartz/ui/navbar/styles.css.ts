@@ -1,15 +1,7 @@
-import { globalStyle } from '@vanilla-extract/css'
-import {
-	navbar,
-	navbarBgLight,
-	navbarBrand,
-	navbarCollapse,
-	navbarDarkBgPrimary,
-	navbarExpandLg,
-	navbarNav,
-	navbarToggler,
-	navbarTogglerIcon,
-} from '../../../../theme-contract/ui/navbar/contract.css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
+import { varBsBorderRadius, varBsBorderWidth, varBsEmphasisColorRgb } from '../../../../theme-contract/_vars.css'
 import {
 	varBsNavbarActiveColor,
 	varBsNavbarBrandColor,
@@ -30,6 +22,8 @@ import {
 	varBsNavbarTogglerIconBg,
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
+	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -39,16 +33,29 @@ import {
 	varBsNavLinkPaddingX,
 	varBsNavLinkPaddingY,
 } from '../../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsEmphasisColorRgb,
-} from '../../../../theme-contract/_vars.css'
-import { containerFluid } from '../../../../theme-contract/layout/container.css'
-import { navLink, navLinkActive } from '../../../../theme-contract/ui/navs/contract.css'
-import { quartzScope } from '../../scope.css'
 
-// ── .navbar ───────────────────────────────────────────────────────────────────
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
+import { containerFluid } from '../../../../theme-contract/layout/container.css'
+import {
+	navbarDark,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	navbar,
+	navbarBrand,
+	navbarCollapse,
+	navbarExpandLg,
+	navbarNav,
+	navbarNavScroll,
+	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../../theme-contract/ui/navbar/contract.css'
 
 globalStyle(`${quartzScope}${navbar}`, {
 	vars: {
@@ -67,10 +74,11 @@ globalStyle(`${quartzScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
+		[varBsNavbarTogglerTransition]: 'box-shadow 0.15s ease-in-out',
 	},
 	position: 'relative',
 	display: 'flex',
@@ -87,8 +95,6 @@ globalStyle(`${quartzScope}${navbar} > ${quartzScope}${containerFluid}`, {
 	justifyContent: 'space-between',
 })
 
-// ── .navbar-brand ─────────────────────────────────────────────────────────────
-
 globalStyle(`${quartzScope}${navbarBrand}`, {
 	paddingTop: varBsNavbarBrandPaddingY,
 	paddingBottom: varBsNavbarBrandPaddingY,
@@ -99,11 +105,13 @@ globalStyle(`${quartzScope}${navbarBrand}`, {
 	whiteSpace: 'nowrap',
 })
 
-globalStyle(`${quartzScope}${navbarBrand}:hover, ${quartzScope}${navbarBrand}:focus`, {
+globalStyle(`${quartzScope}${navbarBrand}:hover`, {
 	color: varBsNavbarBrandHoverColor,
 })
 
-// ── .navbar-nav ───────────────────────────────────────────────────────────────
+globalStyle(`${quartzScope}${navbarBrand}:focus`, {
+	color: varBsNavbarBrandHoverColor,
+})
 
 globalStyle(`${quartzScope}${navbarNav}`, {
 	vars: {
@@ -116,35 +124,52 @@ globalStyle(`${quartzScope}${navbarNav}`, {
 	},
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-globalStyle(`${quartzScope}${navbarNav} ${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navbarText}`, {
+	paddingTop: '0.5rem',
+	paddingBottom: '0.5rem',
+	color: varBsNavbarColor,
+})
+
+globalStyle(`${quartzScope}${navbarText} :where(${quartzScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
-// ── .navbar-collapse ──────────────────────────────────────────────────────────
+globalStyle(`${quartzScope}${navbarText} ${quartzScope}${link}:hover`, {
+	color: varBsNavbarActiveColor,
+})
+
+globalStyle(`${quartzScope}${navbarText} ${quartzScope}${link}:focus`, {
+	color: varBsNavbarActiveColor,
+})
 
 globalStyle(`${quartzScope}${navbarCollapse}`, {
-	display: 'none',
-	flexGrow: 1,
+	flexGrow: '1',
 	flexBasis: '100%',
 	alignItems: 'center',
 })
 
-// ── .navbar-toggler ───────────────────────────────────────────────────────────
-
 globalStyle(`${quartzScope}${navbarToggler}`, {
 	padding: `${varBsNavbarTogglerPaddingY} ${varBsNavbarTogglerPaddingX}`,
 	fontSize: varBsNavbarTogglerFontSize,
-	lineHeight: 1,
+	lineHeight: '1',
 	color: varBsNavbarColor,
 	backgroundColor: 'transparent',
 	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
-	transition: 'none',
+	transition: varBsNavbarTogglerTransition,
+})
+
+globalStyle(`${quartzScope}${navbarToggler}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
 globalStyle(`${quartzScope}${navbarToggler}:hover`, {
@@ -153,11 +178,9 @@ globalStyle(`${quartzScope}${navbarToggler}:hover`, {
 
 globalStyle(`${quartzScope}${navbarToggler}:focus`, {
 	textDecoration: 'none',
-	outline: 0,
+	outline: '0',
 	boxShadow: `0 0 0 ${varBsNavbarTogglerFocusWidth}`,
 })
-
-// ── .navbar-toggler-icon ──────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${navbarTogglerIcon}`, {
 	display: 'inline-block',
@@ -170,7 +193,94 @@ globalStyle(`${quartzScope}${navbarTogglerIcon}`, {
 	backgroundSize: '100%',
 })
 
-// ── .navbar-expand-lg (responsive) ───────────────────────────────────────────
+globalStyle(`${quartzScope}${navbarNavScroll}`, {
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
+	overflowY: 'auto',
+})
+
+globalStyle(`${quartzScope}${navbarExpandSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandSm} ${quartzScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandSm} ${quartzScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandSm} ${quartzScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandSm} ${quartzScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandMd} ${quartzScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandMd} ${quartzScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandMd} ${quartzScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandMd} ${quartzScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'none',
+		},
+	},
+})
 
 globalStyle(`${quartzScope}${navbarExpandLg}`, {
 	'@media': {
@@ -181,7 +291,7 @@ globalStyle(`${quartzScope}${navbarExpandLg}`, {
 	},
 })
 
-globalStyle(`${quartzScope}${navbarExpandLg} ${navbarNav}`, {
+globalStyle(`${quartzScope}${navbarExpandLg} ${quartzScope}${navbarNav}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			flexDirection: 'row',
@@ -189,25 +299,24 @@ globalStyle(`${quartzScope}${navbarExpandLg} ${navbarNav}`, {
 	},
 })
 
-globalStyle(`${quartzScope}${navbarExpandLg} ${navbarNav} ${navLink}`, {
+globalStyle(`${quartzScope}${navbarExpandLg} ${quartzScope}${navbarNavScroll}`, {
 	'@media': {
 		'(min-width: 992px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+			overflow: 'visible',
 		},
 	},
 })
 
-globalStyle(`${quartzScope}${navbarExpandLg} ${navbarCollapse}`, {
+globalStyle(`${quartzScope}${navbarExpandLg} ${quartzScope}${navbarCollapse}`, {
 	'@media': {
 		'(min-width: 992px)': {
-			display: 'flex',
+			display: 'flex !important',
 			flexBasis: 'auto',
 		},
 	},
 })
 
-globalStyle(`${quartzScope}${navbarExpandLg} ${navbarToggler}`, {
+globalStyle(`${quartzScope}${navbarExpandLg} ${quartzScope}${navbarToggler}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			display: 'none',
@@ -215,13 +324,113 @@ globalStyle(`${quartzScope}${navbarExpandLg} ${navbarToggler}`, {
 	},
 })
 
-// ── Color scheme variants ─────────────────────────────────────────────────────
-
-globalStyle(`${quartzScope}${navbar}${navbarBgLight}`, {
-	backgroundColor: '#f8f9fa',
+globalStyle(`${quartzScope}${navbarExpandXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
 })
 
-globalStyle(`${quartzScope}${navbar}${navbarDarkBgPrimary}`, {
+globalStyle(`${quartzScope}${navbarExpandXl} ${quartzScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXl} ${quartzScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXl} ${quartzScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXl} ${quartzScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpandXxl} ${quartzScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${navbarExpand}`, {
+	flexWrap: 'nowrap',
+	justifyContent: 'flex-start',
+})
+
+globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarNav}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarNavScroll}`, {
+	overflow: 'visible',
+})
+
+globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarCollapse}`, {
+	display: 'flex !important',
+	flexBasis: 'auto',
+})
+
+globalStyle(`${quartzScope}${navbarExpand} ${quartzScope}${navbarToggler}`, {
+	display: 'none',
+})
+
+globalStyle(`${quartzScope}${navbarDark}`, {
 	vars: {
 		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
 		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
@@ -230,7 +439,25 @@ globalStyle(`${quartzScope}${navbar}${navbarDarkBgPrimary}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
-	backgroundColor: '#e83283',
+})
+
+globalStyle(`${quartzScope}${navbar}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
+		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsNavbarDisabledColor]: 'rgba(255, 255, 255, 0.25)',
+		[varBsNavbarActiveColor]: '#fff',
+		[varBsNavbarBrandColor]: '#fff',
+		[varBsNavbarBrandHoverColor]: '#fff',
+		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${quartzScope}[data-bs-theme=dark] ${quartzScope}${navbarTogglerIcon}`, {
+	vars: {
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+	},
 })

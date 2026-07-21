@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import micromatch from 'micromatch'
 import { parseCaptureCli } from './capture-leaf-screenshots/cli.mjs'
 import {
 	BASE_URL,
@@ -25,9 +26,8 @@ import {
 	startPreviewServer,
 	startVe2PreviewServer,
 	startVePreviewServer,
-	stopServer,
-	waitForServer,
 } from './capture-leaf-screenshots/preview-server.mjs'
+import { createPreviewServerManager } from './capture-leaf-screenshots/preview-server-manager.mjs'
 import {
 	assertCuratedScenarioRoutes,
 	createScenarioCatalog,
@@ -62,6 +62,9 @@ const {
 	maxThemes,
 	maxThemesSpecified,
 	requestedWidth,
+	ve2StyleLoader,
+	bailOnMismatch,
+	skipToRoute,
 } = parseCaptureCli()
 
 async function main() {
@@ -201,9 +204,42 @@ async function main() {
 		return
 	}
 
+	// Guard against accidental expensive full re-validations: every capture/verify
+	// run must declare where it resumes from. Process routes in order from
+	// --skip-to-route forward; start a from-scratch run with the first route.
+	if (!skipToRoute) {
+		throw new Error(
+			'--skip-to-route=<route> is required (refusing a full capture/verification run).\n' +
+				'Resume where you left off, e.g. --skip-to-route=/ui/modal/default-modal\n' +
+				'Start from scratch (process every route) with the first route:\n' +
+				'  --skip-to-route=/contents/figures/figure-example',
+		)
+	}
+
 	const themeNames = parseThemeNames(themeSource)
 	let themes = filterThemes(themeNames, themeFilter)
-	const scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
+	let scenarios = filterScenarios(createScenarioCatalog(leafRoutes), routeFilter, stateFilter)
+	if (skipToRoute) {
+		const normalizedSkip = skipToRoute.startsWith('/') ? skipToRoute : `/${skipToRoute}`
+		// Accept an exact leaf route, OR a micromatch glob that matches ≥1 route.
+		// Resume forward from the (first, sorted) matching route.
+		let anchor = leafRoutes.includes(normalizedSkip) ? normalizedSkip : null
+		if (!anchor) {
+			const matches = leafRoutes.filter((r) => micromatch.isMatch(r, normalizedSkip)).sort()
+			anchor = matches[0] ?? null
+		}
+		if (!anchor) {
+			throw new Error(
+				`--skip-to-route=${skipToRoute} matches no route (resolved to "${normalizedSkip}").\n` +
+					'It must be an exact leaf route or a glob matching at least one route. Note:\n' +
+					'Git Bash mangles a leading "/ui/..." into a Windows path (e.g.\n' +
+					'"/C:/Program Files/Git/ui/...") — run via PowerShell or prefix MSYS_NO_PATHCONV=1.\n' +
+					`The first route (start from scratch) is ${leafRoutes[0]}.`,
+			)
+		}
+		scenarios = scenarios.filter((s) => s.route >= anchor)
+		console.log(`Mode: skipping routes before ${anchor} (--skip-to-route=${skipToRoute}).`)
+	}
 
 	// Apply max-themes limit for safety
 	const themesBeforeLimit = themes.length
@@ -271,6 +307,12 @@ async function main() {
 		assertVeBuildOutputExists()
 	} else if (veVerificationEnabled) {
 		console.log('Mode: Forcing VE rebuild to ensure Vanilla Extract artifacts are current.')
+		if (themeFilter != null && themeFilter.size > 0 && !process.env.VITE_LITERAL_THEMES) {
+			process.env.VITE_LITERAL_THEMES = [...themeFilter].join(',')
+			console.log(
+				`Mode: restricting literal build to themes: ${process.env.VITE_LITERAL_THEMES}`,
+			)
+		}
 		buildVe2Project()
 		assertVe2BuildOutputExists()
 	} else if (buildBeforeCapture) {
@@ -282,31 +324,33 @@ async function main() {
 		assertBuildOutputExists()
 	}
 
-	let previewServer = null
-	let ve1PreviewServer = null
-	let ve2PreviewServer = null
+	let previewServerManager = null
 
 	if (ve1VerificationEnabled) {
 		console.log('Mode: using VE1 Vite preview server for screenshot verification.')
-		ve1PreviewServer = startVePreviewServer()
+		previewServerManager = createPreviewServerManager({
+			label: 'VE1',
+			baseUrl: VE_BASE_URL,
+			startFn: startVePreviewServer,
+		})
 	} else if (veVerificationEnabled) {
 		console.log('Mode: using VE Vite preview server for screenshot verification.')
-		ve2PreviewServer = startVe2PreviewServer()
+		previewServerManager = createPreviewServerManager({
+			label: 'VE2',
+			baseUrl: VE2_BASE_URL,
+			startFn: startVe2PreviewServer,
+		})
 	} else {
 		console.log('Mode: using Vite preview server for screenshot capture.')
-		previewServer = startPreviewServer()
+		previewServerManager = createPreviewServerManager({
+			label: 'Vite',
+			baseUrl: BASE_URL,
+			startFn: startPreviewServer,
+		})
 	}
 
-	// Derive VE2 route set for use in workflow (already computed above)
-
 	try {
-		if (ve1VerificationEnabled) {
-			await waitForServer(VE_BASE_URL)
-		} else if (veVerificationEnabled) {
-			await waitForServer(VE2_BASE_URL)
-		} else {
-			await waitForServer(BASE_URL)
-		}
+		await previewServerManager.start()
 		await executeCaptureWorkflow({
 			themes,
 			scenarios,
@@ -327,13 +371,13 @@ async function main() {
 			ve1VerificationEnabled,
 			veVerificationEnabled,
 			verificationMaxDiffRatio,
+			ve2StyleLoader,
+			bailOnMismatch,
+			skipToRoute,
+			previewServerManager,
 		})
 	} finally {
-		await Promise.all([
-			stopServer(previewServer),
-			stopServer(ve1PreviewServer),
-			stopServer(ve2PreviewServer),
-		])
+		await previewServerManager?.stop()
 	}
 }
 

@@ -1,15 +1,7 @@
-import { globalStyle } from '@vanilla-extract/css'
-import {
-	navbar,
-	navbarBgLight,
-	navbarBrand,
-	navbarCollapse,
-	navbarDarkBgPrimary,
-	navbarExpandLg,
-	navbarNav,
-	navbarToggler,
-	navbarTogglerIcon,
-} from '../../../../theme-contract/ui/navbar/contract.css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
+import { varBsBorderRadius, varBsBorderWidth, varBsEmphasisColorRgb } from '../../../../theme-contract/_vars.css'
 import {
 	varBsNavbarActiveColor,
 	varBsNavbarBrandColor,
@@ -31,6 +23,7 @@ import {
 	varBsNavbarTogglerPaddingX,
 	varBsNavbarTogglerPaddingY,
 	varBsNavbarTogglerTransition,
+	varBsScrollHeight,
 } from '../../../../theme-contract/ui/navbar/_vars.css'
 import {
 	varBsNavLinkColor,
@@ -40,39 +33,30 @@ import {
 	varBsNavLinkPaddingX,
 	varBsNavLinkPaddingY,
 } from '../../../../theme-contract/ui/navs/_vars.css'
-import {
-	varBsBorderRadius,
-	varBsBorderWidth,
-	varBsEmphasisColorRgb,
-} from '../../../../theme-contract/_vars.css'
+
+import { link } from '../../../../theme-contract/contents/basic/contract.css'
+
 import { containerFluid } from '../../../../theme-contract/layout/container.css'
-import { navLink, navLinkActive } from '../../../../theme-contract/ui/navs/contract.css'
-import { solarScope } from '../../scope.css'
+import {
+	navbarDark,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import {
+	navbar,
+	navbarBrand,
+	navbarCollapse,
+	navbarExpandLg,
+	navbarNav,
+	navbarNavScroll,
+	navbarText,
+	navbarToggler,
+	navbarTogglerIcon,
+} from '../../../../theme-contract/ui/navbar/contract.css'
 
-// ── .navbar ───────────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar {
-//   --bs-navbar-padding-x: 0; --bs-navbar-padding-y: 0.5rem;
-//   --bs-navbar-color: rgba(var(--bs-emphasis-color-rgb), 0.65);
-//   --bs-navbar-hover-color: rgba(var(--bs-emphasis-color-rgb), 0.8);
-//   --bs-navbar-disabled-color: rgba(var(--bs-emphasis-color-rgb), 0.3);
-//   --bs-navbar-active-color: rgba(var(--bs-emphasis-color-rgb), 1);
-//   --bs-navbar-brand-padding-y: 0.3125rem; --bs-navbar-brand-margin-end: 1rem;
-//   --bs-navbar-brand-font-size: 1.25rem;
-//   --bs-navbar-brand-color: rgba(var(--bs-emphasis-color-rgb), 1);
-//   --bs-navbar-brand-hover-color: rgba(var(--bs-emphasis-color-rgb), 1);
-//   --bs-navbar-nav-link-padding-x: 0.5rem;
-//   --bs-navbar-toggler-padding-y: 0.25rem; --bs-navbar-toggler-padding-x: 0.75rem;
-//   --bs-navbar-toggler-font-size: 1.25rem;
-//   --bs-navbar-toggler-icon-bg: url("...");
-//   --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
-//   --bs-navbar-toggler-border-radius: var(--bs-border-radius);
-//   --bs-navbar-toggler-focus-width: 0.25rem;
-//   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
-//   position: relative; display: flex; flex-wrap: wrap;
-//   align-items: center; justify-content: space-between;
-//   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x); }
 globalStyle(`${solarScope}${navbar}`, {
 	vars: {
 		[varBsNavbarPaddingX]: '0',
@@ -90,7 +74,7 @@ globalStyle(`${solarScope}${navbar}`, {
 		[varBsNavbarTogglerPaddingY]: '0.25rem',
 		[varBsNavbarTogglerPaddingX]: '0.75rem',
 		[varBsNavbarTogglerFontSize]: '1.25rem',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28131, 148, 150, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28131, 148, 150, 0.75%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 		[varBsNavbarTogglerBorderColor]: `rgba(${varBsEmphasisColorRgb}, 0.15)`,
 		[varBsNavbarTogglerBorderRadius]: varBsBorderRadius,
 		[varBsNavbarTogglerFocusWidth]: '0.25rem',
@@ -104,10 +88,6 @@ globalStyle(`${solarScope}${navbar}`, {
 	padding: `${varBsNavbarPaddingY} ${varBsNavbarPaddingX}`,
 })
 
-// SOURCE CSS:
-// .navbar > .container, .navbar > .container-fluid, … { display: flex;
-//   flex-wrap: inherit; align-items: center; justify-content: space-between; }
-// VE2 migration: map source .container/.container-fluid to contract classes.
 globalStyle(`${solarScope}${navbar} > ${solarScope}${containerFluid}`, {
 	display: 'flex',
 	flexWrap: 'inherit',
@@ -115,15 +95,6 @@ globalStyle(`${solarScope}${navbar} > ${solarScope}${containerFluid}`, {
 	justifyContent: 'space-between',
 })
 
-// ── .navbar-brand ─────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar-brand { padding-top: var(--bs-navbar-brand-padding-y);
-//   padding-bottom: var(--bs-navbar-brand-padding-y);
-//   margin-right: var(--bs-navbar-brand-margin-end);
-//   font-size: var(--bs-navbar-brand-font-size);
-//   color: var(--bs-navbar-brand-color);
-//   text-decoration: none; white-space: nowrap; }
 globalStyle(`${solarScope}${navbarBrand}`, {
 	paddingTop: varBsNavbarBrandPaddingY,
 	paddingBottom: varBsNavbarBrandPaddingY,
@@ -134,21 +105,14 @@ globalStyle(`${solarScope}${navbarBrand}`, {
 	whiteSpace: 'nowrap',
 })
 
-globalStyle(`${solarScope}${navbarBrand}:hover, ${solarScope}${navbarBrand}:focus`, {
+globalStyle(`${solarScope}${navbarBrand}:hover`, {
 	color: varBsNavbarBrandHoverColor,
 })
 
-// ── .navbar-nav ───────────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${navbarBrand}:focus`, {
+	color: varBsNavbarBrandHoverColor,
+})
 
-// SOURCE CSS:
-// .navbar-nav {
-//   --bs-nav-link-padding-x: 0; --bs-nav-link-padding-y: 0.5rem;
-//   --bs-nav-link-font-weight: ;
-//   --bs-nav-link-color: var(--bs-navbar-color);
-//   --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
-//   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
-//   display: flex; flex-direction: column; padding-left: 0;
-//   margin-bottom: 0; list-style: none; }
 globalStyle(`${solarScope}${navbarNav}`, {
 	vars: {
 		[varBsNavLinkPaddingX]: '0',
@@ -160,47 +124,52 @@ globalStyle(`${solarScope}${navbarNav}`, {
 	},
 	display: 'flex',
 	flexDirection: 'column',
-	paddingLeft: 0,
-	marginBottom: 0,
+	paddingLeft: '0',
+	marginBottom: '0',
 	listStyle: 'none',
 })
 
-// SOURCE CSS:
-// .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-//   color: var(--bs-navbar-active-color); }
-globalStyle(`${solarScope}${navbarNav} ${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navbarText}`, {
+	paddingTop: '0.5rem',
+	paddingBottom: '0.5rem',
+	color: varBsNavbarColor,
+})
+
+globalStyle(`${solarScope}${navbarText} :where(${solarScope}${link})`, {
 	color: varBsNavbarActiveColor,
 })
 
-// ── .navbar-collapse ──────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${navbarText} ${solarScope}${link}:hover`, {
+	color: varBsNavbarActiveColor,
+})
 
-// SOURCE CSS:
-// .navbar-collapse { flex-grow: 1; flex-basis: 100%; align-items: center; }
+globalStyle(`${solarScope}${navbarText} ${solarScope}${link}:focus`, {
+	color: varBsNavbarActiveColor,
+})
+
 globalStyle(`${solarScope}${navbarCollapse}`, {
-	display: 'none',
-	flexGrow: 1,
+	flexGrow: '1',
 	flexBasis: '100%',
 	alignItems: 'center',
 })
 
-// ── .navbar-toggler ───────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar-toggler { padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
-//   font-size: var(--bs-navbar-toggler-font-size); line-height: 1;
-//   color: var(--bs-navbar-color); background-color: transparent;
-//   border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
-//   border-radius: var(--bs-navbar-toggler-border-radius);
-//   transition: var(--bs-navbar-toggler-transition); }
 globalStyle(`${solarScope}${navbarToggler}`, {
 	padding: `${varBsNavbarTogglerPaddingY} ${varBsNavbarTogglerPaddingX}`,
 	fontSize: varBsNavbarTogglerFontSize,
-	lineHeight: 1,
+	lineHeight: '1',
 	color: varBsNavbarColor,
 	backgroundColor: 'transparent',
 	border: `${varBsBorderWidth} solid ${varBsNavbarTogglerBorderColor}`,
 	borderRadius: varBsNavbarTogglerBorderRadius,
 	transition: varBsNavbarTogglerTransition,
+})
+
+globalStyle(`${solarScope}${navbarToggler}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
 globalStyle(`${solarScope}${navbarToggler}:hover`, {
@@ -209,16 +178,10 @@ globalStyle(`${solarScope}${navbarToggler}:hover`, {
 
 globalStyle(`${solarScope}${navbarToggler}:focus`, {
 	textDecoration: 'none',
-	outline: 0,
+	outline: '0',
 	boxShadow: `0 0 0 ${varBsNavbarTogglerFocusWidth}`,
 })
 
-// ── .navbar-toggler-icon ──────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .navbar-toggler-icon { display: inline-block; width: 1.5em; height: 1.5em;
-//   vertical-align: middle; background-image: var(--bs-navbar-toggler-icon-bg);
-//   background-repeat: no-repeat; background-position: center; background-size: 100%; }
 globalStyle(`${solarScope}${navbarTogglerIcon}`, {
 	display: 'inline-block',
 	width: '1.5em',
@@ -230,14 +193,95 @@ globalStyle(`${solarScope}${navbarTogglerIcon}`, {
 	backgroundSize: '100%',
 })
 
-// ── .navbar-expand-lg (responsive) ───────────────────────────────────────────
+globalStyle(`${solarScope}${navbarNavScroll}`, {
+	maxHeight: fallbackVar(varBsScrollHeight, '75vh'),
+	overflowY: 'auto',
+})
 
-// SOURCE CSS (inside @media (min-width: 992px)):
-// .navbar-expand-lg { flex-wrap: nowrap; justify-content: flex-start; }
-// .navbar-expand-lg .navbar-nav { flex-direction: row; }
-// .navbar-expand-lg .navbar-nav .nav-link { padding-right/left: var(--bs-navbar-nav-link-padding-x); }
-// .navbar-expand-lg .navbar-collapse { display: flex !important; flex-basis: auto; }
-// .navbar-expand-lg .navbar-toggler { display: none; }
+globalStyle(`${solarScope}${navbarExpandSm}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd} ${solarScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd} ${solarScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd} ${solarScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd} ${solarScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'none',
+		},
+	},
+})
+
 globalStyle(`${solarScope}${navbarExpandLg}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -247,7 +291,7 @@ globalStyle(`${solarScope}${navbarExpandLg}`, {
 	},
 })
 
-globalStyle(`${solarScope}${navbarExpandLg} ${navbarNav}`, {
+globalStyle(`${solarScope}${navbarExpandLg} ${solarScope}${navbarNav}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			flexDirection: 'row',
@@ -255,25 +299,24 @@ globalStyle(`${solarScope}${navbarExpandLg} ${navbarNav}`, {
 	},
 })
 
-globalStyle(`${solarScope}${navbarExpandLg} ${navbarNav} ${navLink}`, {
+globalStyle(`${solarScope}${navbarExpandLg} ${solarScope}${navbarNavScroll}`, {
 	'@media': {
 		'(min-width: 992px)': {
-			paddingRight: varBsNavbarNavLinkPaddingX,
-			paddingLeft: varBsNavbarNavLinkPaddingX,
+			overflow: 'visible',
 		},
 	},
 })
 
-globalStyle(`${solarScope}${navbarExpandLg} ${navbarCollapse}`, {
+globalStyle(`${solarScope}${navbarExpandLg} ${solarScope}${navbarCollapse}`, {
 	'@media': {
 		'(min-width: 992px)': {
-			display: 'flex',
+			display: 'flex !important',
 			flexBasis: 'auto',
 		},
 	},
 })
 
-globalStyle(`${solarScope}${navbarExpandLg} ${navbarToggler}`, {
+globalStyle(`${solarScope}${navbarExpandLg} ${solarScope}${navbarToggler}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			display: 'none',
@@ -281,25 +324,113 @@ globalStyle(`${solarScope}${navbarExpandLg} ${navbarToggler}`, {
 	},
 })
 
-// ── Color scheme variants ─────────────────────────────────────────────────────
-
-// navbarBgLight absorbs `navbar-light bg-light`:
-//   light-color scheme (default emphasis-based vars) + background-color: var(--bs-light)
-globalStyle(`${solarScope}${navbar}${navbarBgLight}`, {
-	backgroundColor: '#fdf6e3',
+globalStyle(`${solarScope}${navbarExpandXl}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
 })
 
-// navbarDarkBgPrimary absorbs `navbar-dark bg-primary`:
-//   dark color scheme (inverted vars) + background-color: var(--bs-primary)
-// SOURCE CSS:
-// .navbar-dark { --bs-navbar-color: rgba(255,255,255,.55);
-//   --bs-navbar-hover-color: rgba(255,255,255,.75);
-//   --bs-navbar-disabled-color: rgba(255,255,255,.25);
-//   --bs-navbar-active-color: #fff;
-//   --bs-navbar-brand-color: #fff; --bs-navbar-brand-hover-color: #fff;
-//   --bs-navbar-toggler-border-color: rgba(255,255,255,.1);
-//   --bs-navbar-toggler-icon-bg: url("...white stroke..."); }
-globalStyle(`${solarScope}${navbar}${navbarDarkBgPrimary}`, {
+globalStyle(`${solarScope}${navbarExpandXl} ${solarScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXl} ${solarScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXl} ${solarScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXl} ${solarScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexWrap: 'nowrap',
+			justifyContent: 'flex-start',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl} ${solarScope}${navbarNav}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			flexDirection: 'row',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl} ${solarScope}${navbarNavScroll}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			overflow: 'visible',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl} ${solarScope}${navbarCollapse}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'flex !important',
+			flexBasis: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl} ${solarScope}${navbarToggler}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			display: 'none',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpand}`, {
+	flexWrap: 'nowrap',
+	justifyContent: 'flex-start',
+})
+
+globalStyle(`${solarScope}${navbarExpand} ${solarScope}${navbarNav}`, {
+	flexDirection: 'row',
+})
+
+globalStyle(`${solarScope}${navbarExpand} ${solarScope}${navbarNavScroll}`, {
+	overflow: 'visible',
+})
+
+globalStyle(`${solarScope}${navbarExpand} ${solarScope}${navbarCollapse}`, {
+	display: 'flex !important',
+	flexBasis: 'auto',
+})
+
+globalStyle(`${solarScope}${navbarExpand} ${solarScope}${navbarToggler}`, {
+	display: 'none',
+})
+
+globalStyle(`${solarScope}${navbarDark}`, {
 	vars: {
 		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
 		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
@@ -308,8 +439,25 @@ globalStyle(`${solarScope}${navbar}${navbarDarkBgPrimary}`, {
 		[varBsNavbarBrandColor]: '#fff',
 		[varBsNavbarBrandHoverColor]: '#fff',
 		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
-		[varBsNavbarTogglerIconBg]: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
 	},
-	backgroundColor: '#b58900',
 })
 
+globalStyle(`${solarScope}${navbar}[data-bs-theme=dark]`, {
+	vars: {
+		[varBsNavbarColor]: 'rgba(255, 255, 255, 0.55)',
+		[varBsNavbarHoverColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsNavbarDisabledColor]: 'rgba(255, 255, 255, 0.25)',
+		[varBsNavbarActiveColor]: '#fff',
+		[varBsNavbarBrandColor]: '#fff',
+		[varBsNavbarBrandHoverColor]: '#fff',
+		[varBsNavbarTogglerBorderColor]: 'rgba(255, 255, 255, 0.1)',
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+	},
+})
+
+globalStyle(`${solarScope}[data-bs-theme=dark] ${solarScope}${navbarTogglerIcon}`, {
+	vars: {
+		[varBsNavbarTogglerIconBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%28255, 255, 255, 0.55%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")',
+	},
+})

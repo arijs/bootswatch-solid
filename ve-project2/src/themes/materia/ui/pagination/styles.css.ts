@@ -1,13 +1,20 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
-	pageItem,
-	pageItemActive,
-	pageItemDisabled,
-	pageLink,
-	pagination,
-	paginationLg,
-	paginationSm,
-} from '../../../../theme-contract/ui/pagination/contract.css'
+	varBsBodyBg,
+	varBsBorderColor,
+	varBsBorderRadius,
+	varBsBorderRadiusLg,
+	varBsBorderRadiusSm,
+	varBsBorderWidth,
+	varBsGradient,
+	varBsLinkColor,
+	varBsLinkHoverColor,
+	varBsSecondaryBg,
+	varBsSecondaryColor,
+	varBsTertiaryBg,
+} from '../../../../theme-contract/_vars.css'
 import {
 	varBsPaginationActiveBg,
 	varBsPaginationActiveBorderColor,
@@ -30,22 +37,16 @@ import {
 	varBsPaginationPaddingX,
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
+
 import {
-	varBsBorderColor,
-	varBsBorderRadius,
-	varBsBorderRadiusLg,
-	varBsBorderRadiusSm,
-	varBsBorderWidth,
-	varBsBodyBg,
-	varBsLinkColor,
-	varBsLinkHoverColor,
-	varBsPrimary,
-	varBsPrimaryRgb,
-	varBsSecondaryBg,
-	varBsSecondaryColor,
-	varBsTertiaryBg,
-} from '../../../../theme-contract/_vars.css'
-import { materiaScope } from '../../scope.css'
+	pageItem,
+	pageItemActive,
+	pageItemDisabled,
+	pageLink,
+	pagination,
+	paginationLg,
+	paginationSm,
+} from '../../../../theme-contract/ui/pagination/contract.css'
 
 globalStyle(`${materiaScope}${pagination}`, {
 	vars: {
@@ -62,16 +63,16 @@ globalStyle(`${materiaScope}${pagination}`, {
 		[varBsPaginationHoverBorderColor]: varBsBorderColor,
 		[varBsPaginationFocusColor]: varBsLinkHoverColor,
 		[varBsPaginationFocusBg]: varBsSecondaryBg,
-		[varBsPaginationFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsPrimaryRgb}, 0.25)`,
+		[varBsPaginationFocusBoxShadow]: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
 		[varBsPaginationActiveColor]: '#fff',
-		[varBsPaginationActiveBg]: varBsPrimary,
-		[varBsPaginationActiveBorderColor]: varBsPrimary,
+		[varBsPaginationActiveBg]: '#2196f3',
+		[varBsPaginationActiveBorderColor]: '#2196f3',
 		[varBsPaginationDisabledColor]: varBsSecondaryColor,
 		[varBsPaginationDisabledBg]: varBsSecondaryBg,
 		[varBsPaginationDisabledBorderColor]: varBsBorderColor,
 	},
 	display: 'flex',
-	paddingLeft: 0,
+	paddingLeft: '0',
 	listStyle: 'none',
 })
 
@@ -84,55 +85,72 @@ globalStyle(`${materiaScope}${pageLink}`, {
 	textDecoration: 'none',
 	backgroundColor: varBsPaginationBg,
 	border: `${varBsPaginationBorderWidth} solid ${varBsPaginationBorderColor}`,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${materiaScope}${pageLink}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
 })
 
 globalStyle(`${materiaScope}${pageLink}:hover`, {
-	zIndex: 2,
+	zIndex: '2',
 	color: varBsPaginationHoverColor,
 	backgroundColor: varBsPaginationHoverBg,
 	borderColor: varBsPaginationHoverBorderColor,
 })
 
 globalStyle(`${materiaScope}${pageLink}:focus`, {
-	zIndex: 3,
+	zIndex: '3',
 	color: varBsPaginationFocusColor,
 	backgroundColor: varBsPaginationFocusBg,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(
-	`${materiaScope}${pageLink}${pageItemActive}, ${materiaScope}${pageItemActive} > ${pageLink}`,
-	{
-		zIndex: 3,
-		color: varBsPaginationActiveColor,
-		backgroundColor: varBsPaginationActiveBg,
-		borderColor: varBsPaginationActiveBorderColor,
-	},
-)
-
-globalStyle(
-	`${materiaScope}${pageLink}${pageItemDisabled}, ${materiaScope}${pageItemDisabled} > ${pageLink}`,
-	{
-		color: varBsPaginationDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsPaginationDisabledBg,
-		borderColor: varBsPaginationDisabledBorderColor,
-	},
-)
-
-globalStyle(`${materiaScope}${pageItem}:not(:first-child) ${pageLink}`, {
-	marginLeft: `calc(-1 * ${varBsPaginationBorderWidth})`,
+globalStyle(`${materiaScope}${pageLink}${pageItemActive}`, {
+	zIndex: '3',
+	color: varBsPaginationActiveColor,
+	backgroundColor: varBsPaginationActiveBg,
+	backgroundImage: varBsGradient,
+	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${materiaScope}${pageItem}:first-child ${pageLink}`, {
+globalStyle(`${materiaScope}${pageItemActive} > ${materiaScope}${pageLink}`, {
+	zIndex: '3',
+	color: varBsPaginationActiveColor,
+	backgroundColor: varBsPaginationActiveBg,
+	backgroundImage: varBsGradient,
+	borderColor: varBsPaginationActiveBorderColor,
+})
+
+globalStyle(`${materiaScope}${pageLink}${pageItemDisabled}`, {
+	color: varBsPaginationDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsPaginationDisabledBg,
+	borderColor: varBsPaginationDisabledBorderColor,
+})
+
+globalStyle(`${materiaScope}${pageItemDisabled} > ${materiaScope}${pageLink}`, {
+	color: varBsPaginationDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsPaginationDisabledBg,
+	borderColor: varBsPaginationDisabledBorderColor,
+})
+
+globalStyle(`${materiaScope}${pageItem}:not(:first-child) ${materiaScope}${pageLink}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${pageItem}:first-child ${materiaScope}${pageLink}`, {
 	borderTopLeftRadius: varBsPaginationBorderRadius,
 	borderBottomLeftRadius: varBsPaginationBorderRadius,
 })
 
-globalStyle(`${materiaScope}${pageItem}:last-child ${pageLink}`, {
+globalStyle(`${materiaScope}${pageItem}:last-child ${materiaScope}${pageLink}`, {
 	borderTopRightRadius: varBsPaginationBorderRadius,
 	borderBottomRightRadius: varBsPaginationBorderRadius,
 })
@@ -154,4 +172,3 @@ globalStyle(`${materiaScope}${paginationSm}`, {
 		[varBsPaginationBorderRadius]: varBsBorderRadiusSm,
 	},
 })
-

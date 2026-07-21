@@ -1,15 +1,21 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { alert, alertHeading, alertSuccess } from '../../../theme-contract/ui/alerts/contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { h4, horizontalRule, paragraph } from '../../../theme-contract/contents/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { mb0 } from '../../../theme-contract/literal/contract.css'
+import { alert, alertHeading, alertSuccess } from '../../../theme-contract/ui/alerts/contract.css'
+
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',
 	'ui/buttons',
 	'contents/basic',
 	'contents/heading',
-	'utilities',
+	'utilities/used',
 ]
 
 const HeadingAlert: Component = () => {
@@ -26,7 +32,7 @@ const HeadingAlert: Component = () => {
 					works with this kind of content.
 				</p>
 				<hr class={`${theme} ${horizontalRule}`} />
-				<p class={`${theme} ${paragraph}`} style={{ 'margin-bottom': '0' }}>
+				<p class={`${theme} ${paragraph} ${mb0}`}>
 					Whenever you need to, be sure to use margin utilities to keep things nice and
 					tidy.
 				</p>

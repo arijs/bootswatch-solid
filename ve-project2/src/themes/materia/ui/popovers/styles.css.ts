@@ -1,33 +1,16 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { materiaScope } from '../../scope.css'
+
 import {
 	varBsBodyBg,
 	varBsBodyColor,
-	varBsBorderColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadiusLg,
-	varBsBorderStyle,
 	varBsBorderWidth,
 	varBsBoxShadow,
 	varBsFontSansSerif,
 	varBsSecondaryBg,
 } from '../../../../theme-contract/_vars.css'
-import {
-	bsPopoverAuto,
-	bsPopoverBottom,
-	bsPopoverEnd,
-	bsPopoverStart,
-	bsPopoverTop,
-	frame,
-	frameColumn,
-	frameRow,
-	justifyEnd,
-	justifyStart,
-	popoverArrow,
-	popoverBody,
-	popoverHeader,
-	popoverVe,
-} from '../../../../theme-contract/ui/popovers/contract.css'
-import { h3 } from '../../../../theme-contract/contents/contract.css'
 import {
 	varBsPopoverArrowBorder,
 	varBsPopoverArrowHeight,
@@ -50,9 +33,38 @@ import {
 	varBsPopoverMaxWidth,
 	varBsPopoverZindex,
 } from '../../../../theme-contract/ui/popovers/_vars.css'
-import { materiaScope } from '../../scope.css'
 
-globalStyle(`${materiaScope}${popoverVe}`, {
+import { popover } from '../../../../theme-contract/literal/contract.css'
+import {
+	bsPopoverAuto,
+	bsPopoverBottom,
+	bsPopoverEnd,
+	bsPopoverStart,
+	bsPopoverTop,
+	popoverArrow,
+	popoverBody,
+	popoverFade,
+	popoverHeader,
+	popoverShow,
+} from '../../../../theme-contract/ui/popovers/contract.css'
+
+globalStyle(`${materiaScope}${popoverFade}`, {
+	transition: 'opacity 0.15s linear',
+})
+
+globalStyle(`${materiaScope}${popoverFade}`, {
+	'@media': {
+		'(prefers-reduced-motion: reduce)': {
+			transition: 'none',
+		},
+	},
+})
+
+globalStyle(`${materiaScope}${popoverFade}:not(${popoverShow})`, {
+	opacity: '0',
+})
+
+globalStyle(`${materiaScope}${popover}`, {
 	vars: {
 		[varBsPopoverZindex]: '1070',
 		[varBsPopoverMaxWidth]: '276px',
@@ -80,9 +92,9 @@ globalStyle(`${materiaScope}${popoverVe}`, {
 	maxWidth: varBsPopoverMaxWidth,
 	fontFamily: varBsFontSansSerif,
 	fontStyle: 'normal',
-	fontWeight: 400,
-	lineHeight: 1.5,
-	textAlign: 'left',
+	fontWeight: '400',
+	lineHeight: '1.5',
+	textAlign: 'start',
 	textDecoration: 'none',
 	textShadow: 'none',
 	textTransform: 'none',
@@ -90,6 +102,7 @@ globalStyle(`${materiaScope}${popoverVe}`, {
 	wordBreak: 'normal',
 	whiteSpace: 'normal',
 	wordSpacing: 'normal',
+	lineBreak: 'auto',
 	fontSize: varBsPopoverFontSize,
 	wordWrap: 'break-word',
 	backgroundColor: varBsPopoverBg,
@@ -98,113 +111,249 @@ globalStyle(`${materiaScope}${popoverVe}`, {
 	borderRadius: varBsPopoverBorderRadius,
 })
 
-globalStyle(`${materiaScope}${popoverArrow}`, {
+globalStyle(`${materiaScope}${popover} ${materiaScope}${popoverArrow}`, {
 	display: 'block',
 	width: varBsPopoverArrowWidth,
 	height: varBsPopoverArrowHeight,
 })
 
-globalStyle(`${materiaScope}${popoverArrow}::before, ${materiaScope}${popoverArrow}::after`, {
+globalStyle(`${materiaScope}${popover} ${materiaScope}${popoverArrow}::before`, {
 	position: 'absolute',
 	display: 'block',
-	content: '',
+	content: '""',
 	borderColor: 'transparent',
 	borderStyle: 'solid',
-	borderWidth: 0,
+	borderWidth: '0',
 })
 
-globalStyle(
-	`${materiaScope}${bsPopoverTop} > ${popoverArrow}, ${materiaScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}`,
-	{ bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})` },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverTop} > ${popoverArrow}::before, ${materiaScope}${bsPopoverTop} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::after`,
-	{ borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0` },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverTop} > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::before`,
-	{ bottom: 0, borderTopColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverTop} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="top"] > ${popoverArrow}::after`,
-	{ bottom: varBsPopoverBorderWidth, borderTopColor: varBsPopoverBg },
-)
+globalStyle(`${materiaScope}${popover} ${materiaScope}${popoverArrow}::after`, {
+	position: 'absolute',
+	display: 'block',
+	content: '""',
+	borderColor: 'transparent',
+	borderStyle: 'solid',
+	borderWidth: '0',
+})
 
-globalStyle(
-	`${materiaScope}${bsPopoverEnd} > ${popoverArrow}, ${materiaScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}`,
-	{
-		left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
-globalStyle(
-	`${materiaScope}${bsPopoverEnd} > ${popoverArrow}::before, ${materiaScope}${bsPopoverEnd} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
-	},
-)
-globalStyle(
-	`${materiaScope}${bsPopoverEnd} > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::before`,
-	{ left: 0, borderRightColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverEnd} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="right"] > ${popoverArrow}::after`,
-	{ left: varBsPopoverBorderWidth, borderRightColor: varBsPopoverBg },
-)
+globalStyle(`${materiaScope}${bsPopoverTop} > ${materiaScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
-globalStyle(
-	`${materiaScope}${bsPopoverBottom} > ${popoverArrow}, ${materiaScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}`,
-	{ top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})` },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverBottom} > ${popoverArrow}::before, ${materiaScope}${bsPopoverBottom} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::after`,
-	{ borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}` },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverBottom} > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::before`,
-	{ top: 0, borderBottomColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverBottom} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="bottom"] > ${popoverArrow}::after`,
-	{ top: varBsPopoverBorderWidth, borderBottomColor: varBsPopoverBg },
-)
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${materiaScope}${popoverArrow}`, {
+	bottom: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
 
-globalStyle(
-	`${materiaScope}${bsPopoverStart} > ${popoverArrow}, ${materiaScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}`,
-	{
-		right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
-		width: varBsPopoverArrowHeight,
-		height: varBsPopoverArrowWidth,
-	},
-)
-globalStyle(
-	`${materiaScope}${bsPopoverStart} > ${popoverArrow}::before, ${materiaScope}${bsPopoverStart} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::after`,
-	{
-		borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
-	},
-)
-globalStyle(
-	`${materiaScope}${bsPopoverStart} > ${popoverArrow}::before, ${materiaScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::before`,
-	{ right: 0, borderLeftColor: varBsPopoverArrowBorder },
-)
-globalStyle(
-	`${materiaScope}${bsPopoverStart} > ${popoverArrow}::after, ${materiaScope}${popoverVe}[data-popper-placement^="left"] > ${popoverArrow}::after`,
-	{ right: varBsPopoverBorderWidth, borderLeftColor: varBsPopoverBg },
-)
+globalStyle(`${materiaScope}${bsPopoverTop} > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverTop} > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverTop} > ${materiaScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${materiaScope}${popoverArrow}::before`, {
+	bottom: '0',
+	borderTopColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverTop} > ${materiaScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=top] > ${materiaScope}${popoverArrow}::after`, {
+	bottom: varBsPopoverBorderWidth,
+	borderTopColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverEnd} > ${materiaScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${materiaScope}${popoverArrow}`, {
+	left: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${materiaScope}${bsPopoverEnd} > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverEnd} > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight} calc(${varBsPopoverArrowWidth} * 0.5) 0`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverEnd} > ${materiaScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${materiaScope}${popoverArrow}::before`, {
+	left: '0',
+	borderRightColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverEnd} > ${materiaScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=right] > ${materiaScope}${popoverArrow}::after`, {
+	left: varBsPopoverBorderWidth,
+	borderRightColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverBottom} > ${materiaScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${materiaScope}${popoverArrow}`, {
+	top: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverBottom} > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverBottom} > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverBottom} > ${materiaScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${materiaScope}${popoverArrow}::before`, {
+	top: '0',
+	borderBottomColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverBottom} > ${materiaScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=bottom] > ${materiaScope}${popoverArrow}::after`, {
+	top: varBsPopoverBorderWidth,
+	borderBottomColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverBottom} ${materiaScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=bottom] ${materiaScope}${popoverHeader}::before`, {
+	position: 'absolute',
+	top: '0',
+	left: '50%',
+	display: 'block',
+	width: varBsPopoverArrowWidth,
+	marginLeft: `calc(-0.5 * ${varBsPopoverArrowWidth})`,
+	content: '""',
+	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverHeaderBg}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverStart} > ${materiaScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${materiaScope}${popoverArrow}`, {
+	right: `calc(-1 * (${varBsPopoverArrowHeight}) - ${varBsPopoverBorderWidth})`,
+	width: varBsPopoverArrowHeight,
+	height: varBsPopoverArrowWidth,
+})
+
+globalStyle(`${materiaScope}${bsPopoverStart} > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${materiaScope}${popoverArrow}::before`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverStart} > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${materiaScope}${popoverArrow}::after`, {
+	borderWidth: `calc(${varBsPopoverArrowWidth} * 0.5) 0 calc(${varBsPopoverArrowWidth} * 0.5) ${varBsPopoverArrowHeight}`,
+})
+
+globalStyle(`${materiaScope}${bsPopoverStart} > ${materiaScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${materiaScope}${popoverArrow}::before`, {
+	right: '0',
+	borderLeftColor: varBsPopoverArrowBorder,
+})
+
+globalStyle(`${materiaScope}${bsPopoverStart} > ${materiaScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
+
+globalStyle(`${materiaScope}${bsPopoverAuto}[data-popper-placement^=left] > ${materiaScope}${popoverArrow}::after`, {
+	right: varBsPopoverBorderWidth,
+	borderLeftColor: varBsPopoverBg,
+})
 
 globalStyle(`${materiaScope}${popoverHeader}`, {
 	padding: `${varBsPopoverHeaderPaddingY} ${varBsPopoverHeaderPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	fontSize: varBsPopoverHeaderFontSize,
 	color: varBsPopoverHeaderColor,
 	backgroundColor: varBsPopoverHeaderBg,
 	borderBottom: `${varBsPopoverBorderWidth} solid ${varBsPopoverBorderColor}`,
-	borderRadius: `${varBsPopoverInnerBorderRadius} ${varBsPopoverInnerBorderRadius} 0 0`,
+	borderTopLeftRadius: varBsPopoverInnerBorderRadius,
+	borderTopRightRadius: varBsPopoverInnerBorderRadius,
 })
 
-globalStyle(`${materiaScope}${popoverHeader} + ${popoverBody}`, {
-	paddingTop: 0,
+globalStyle(`${materiaScope}${popoverHeader}:empty`, {
+	display: 'none',
 })
 
 globalStyle(`${materiaScope}${popoverBody}`, {
@@ -212,31 +361,7 @@ globalStyle(`${materiaScope}${popoverBody}`, {
 	color: varBsPopoverBodyColor,
 })
 
-globalStyle(`${materiaScope}${h3}`, {
-	fontSize: 'inherit',
+globalStyle(`${materiaScope}${popover}`, {
+	border: 'none',
+	boxShadow: '0 1px 4px rgba(0, 0, 0, 0.3)',
 })
-
-globalStyle(`${materiaScope}${frame}`, {
-	display: 'flex',
-	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor}`,
-	height: '16em',
-})
-
-globalStyle(`${materiaScope}${frameColumn}`, {
-	flexDirection: 'column',
-	alignItems: 'center',
-})
-
-globalStyle(`${materiaScope}${frameRow}`, {
-	flexDirection: 'row',
-	alignItems: 'center',
-})
-
-globalStyle(`${materiaScope}${justifyEnd}`, {
-	justifyContent: 'flex-end',
-})
-
-globalStyle(`${materiaScope}${justifyStart}`, {
-	justifyContent: 'flex-start',
-})
-

@@ -1,14 +1,20 @@
-import { globalStyle } from '@vanilla-extract/css'
+import { fallbackVar, globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
 import {
-	varBsBodyBg,
 	varBsBodyColor,
 	varBsBorderColorTranslucent,
 	varBsBorderRadius,
 	varBsBorderWidth,
 	varBsBoxShadow,
-	varBsTertiaryBg,
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnActiveBg,
+	varBsBtnActiveBorderColor,
+	varBsBtnActiveColor,
+	varBsBtnFocusBoxShadow,
+} from '../../../../theme-contract/ui/buttons/_vars.css'
 import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
@@ -23,6 +29,7 @@ import {
 	varBsDropdownHeaderPaddingX,
 	varBsDropdownHeaderPaddingY,
 	varBsDropdownInnerBorderRadius,
+	varBsDropdownItemBorderRadius,
 	varBsDropdownItemPaddingX,
 	varBsDropdownItemPaddingY,
 	varBsDropdownLinkActiveBg,
@@ -34,57 +41,104 @@ import {
 	varBsDropdownMinWidth,
 	varBsDropdownPaddingX,
 	varBsDropdownPaddingY,
-	varBsDropdownPosition,
 	varBsDropdownSpacer,
 	varBsDropdownZindex,
 } from '../../../../theme-contract/ui/dropdowns/_vars.css'
+import { varBsNavTabsBorderWidth } from '../../../../theme-contract/ui/navs/_vars.css'
+import { varBsPosition } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { hasValidation, inputGroup } from '../../../../theme-contract/forms/contract.css'
 import {
+	active,
+	disabled,
+	dropdownMenuLgEnd,
+	dropdownMenuLgStart,
+	dropdownMenuMdEnd,
+	dropdownMenuMdStart,
+	dropdownMenuSmEnd,
+	dropdownMenuSmStart,
+	dropdownMenuXlEnd,
+	dropdownMenuXlStart,
+	dropdownMenuXxlEnd,
+	dropdownMenuXxlStart,
+	navbarExpand,
+	navbarExpandMd,
+	navbarExpandSm,
+	navbarExpandXl,
+	navbarExpandXxl,
+} from '../../../../theme-contract/literal/contract.css'
+import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
+import {
+	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
-	dropend,
 	dropdownHeader,
 	dropdownItem,
-	dropdownItemActive,
-	dropdownItemDisabled,
 	dropdownItemText,
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
 	dropdownMenuShow,
 	dropdownMenuStart,
-	dropstart,
 	dropdownToggle,
 	dropdownToggleSplit,
+	dropend,
+	dropstart,
 	dropup,
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { h6 } from '../../../../theme-contract/contents/contract.css'
-import { solarScope } from '../../scope.css'
+import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
+import { navTabs } from '../../../../theme-contract/ui/navs/contract.css'
 
-// ── Wrapper positioning ───────────────────────────────────────────────────────
+globalStyle(`${solarScope}${inputGroup}:not(${hasValidation}) > ${solarScope}${dropdownToggle}:nth-last-child(n+3)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-// SOURCE CSS:
-// .dropdown, .dropstart, .dropup-center, .dropdown-center { position: relative; }
-globalStyle(
-	[
-		`${solarScope}${dropdown}`,
-		`${solarScope}${dropstart}`,
-		`${solarScope}${dropupCenter}`,
-		`${solarScope}${dropdownCenter}`,
-	].join(', '),
-	{ position: 'relative' },
-)
+globalStyle(`${solarScope}${inputGroup}${hasValidation} > ${solarScope}${dropdownToggle}:nth-last-child(n+4)`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
 
-// ── Dropdown toggle caret ─────────────────────────────────────────────────────
+globalStyle(`${solarScope}${btn}${btnShowHook}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS: .dropdown-toggle { white-space: nowrap; }
-globalStyle(`${solarScope}${dropdownToggle}`, { whiteSpace: 'nowrap' })
+globalStyle(`${solarScope}${btn}${btnShowHook}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
-// SOURCE CSS: .dropdown-toggle::after { display: inline-block; margin-left: 0.255em;
-//   vertical-align: 0.255em; content: ""; border-top: 0.3em solid;
-//   border-right: 0.3em solid transparent; border-bottom: 0;
-//   border-left: 0.3em solid transparent; }
+globalStyle(`${solarScope}${dropup}`, {
+	position: 'relative',
+})
+
+globalStyle(`${solarScope}${dropend}`, {
+	position: 'relative',
+})
+
+globalStyle(`${solarScope}${dropdown}`, {
+	position: 'relative',
+})
+
+globalStyle(`${solarScope}${dropstart}`, {
+	position: 'relative',
+})
+
+globalStyle(`${solarScope}${dropupCenter}`, {
+	position: 'relative',
+})
+
+globalStyle(`${solarScope}${dropdownCenter}`, {
+	position: 'relative',
+})
+
+globalStyle(`${solarScope}${dropdownToggle}`, {
+	whiteSpace: 'nowrap',
+})
+
 globalStyle(`${solarScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
@@ -92,16 +146,14 @@ globalStyle(`${solarScope}${dropdownToggle}::after`, {
 	content: '""',
 	borderTop: '0.3em solid',
 	borderRight: '0.3em solid transparent',
-	borderBottom: 0,
+	borderBottom: '0',
 	borderLeft: '0.3em solid transparent',
 })
 
-// SOURCE CSS: .dropdown-toggle:empty::after { margin-left: 0; }
-globalStyle(`${solarScope}${dropdownToggle}:empty::after`, { marginLeft: 0 })
+globalStyle(`${solarScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
+})
 
-// ── Dropdown menu ─────────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropdown-menu { --bs-dropdown-* vars + layout }
 globalStyle(`${solarScope}${dropdownMenu}`, {
 	vars: {
 		[varBsDropdownZindex]: '1000',
@@ -136,7 +188,7 @@ globalStyle(`${solarScope}${dropdownMenu}`, {
 	display: 'none',
 	minWidth: varBsDropdownMinWidth,
 	padding: `${varBsDropdownPaddingY} ${varBsDropdownPaddingX}`,
-	margin: 0,
+	margin: '0',
 	fontSize: varBsDropdownFontSize,
 	color: varBsDropdownColor,
 	textAlign: 'left',
@@ -147,266 +199,469 @@ globalStyle(`${solarScope}${dropdownMenu}`, {
 	borderRadius: varBsDropdownBorderRadius,
 })
 
-// SOURCE CSS: .dropdown-menu[data-bs-popper] { top: 100%; left: 0; margin-top: ...; }
 globalStyle(`${solarScope}${dropdownMenu}[data-bs-popper]`, {
 	top: '100%',
-	left: 0,
+	left: '0',
 	marginTop: varBsDropdownSpacer,
 })
 
-// ── Menu alignment modifiers ──────────────────────────────────────────────────
-
-// SOURCE CSS: .dropdown-menu-start { --bs-position: start; }
 globalStyle(`${solarScope}${dropdownMenuStart}`, {
-	vars: { [varBsDropdownPosition]: 'start' },
+	vars: {
+		[varBsPosition]: 'start',
+	},
 })
+
 globalStyle(`${solarScope}${dropdownMenuStart}[data-bs-popper]`, {
 	right: 'auto',
-	left: 0,
+	left: '0',
 })
 
-// SOURCE CSS: .dropdown-menu-end { --bs-position: end; }
 globalStyle(`${solarScope}${dropdownMenuEnd}`, {
-	vars: { [varBsDropdownPosition]: 'end' },
+	vars: {
+		[varBsPosition]: 'end',
+	},
 })
+
 globalStyle(`${solarScope}${dropdownMenuEnd}[data-bs-popper]`, {
-	right: 0,
+	right: '0',
 	left: 'auto',
 })
 
-// ── .dropup variant ───────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${dropdownMenuSmStart}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
 
-// SOURCE CSS: .dropup .dropdown-menu[data-bs-popper] { top: auto; bottom: 100%; … }
-globalStyle(`${solarScope}${dropup} ${dropdownMenu}[data-bs-popper]`, {
+globalStyle(`${solarScope}${dropdownMenuSmStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 576px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuSmEnd}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuSmEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 576px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuMdStart}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuMdStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 768px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuMdEnd}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuMdEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 768px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuLgStart}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuLgStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 992px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuLgEnd}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuLgEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 992px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXlStart}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXlStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXlEnd}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXlEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXxlStart}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			vars: {
+				[varBsPosition]: 'start',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXxlStart}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			right: 'auto',
+			left: '0',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXxlEnd}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			vars: {
+				[varBsPosition]: 'end',
+			},
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropdownMenuXxlEnd}[data-bs-popper]`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			right: '0',
+			left: 'auto',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${dropup} ${solarScope}${dropdownMenu}[data-bs-popper]`, {
 	top: 'auto',
 	bottom: '100%',
-	marginTop: 0,
+	marginTop: '0',
 	marginBottom: varBsDropdownSpacer,
 })
 
-// SOURCE CSS: .dropup .dropdown-toggle::after { ... border-top: 0; border-bottom: 0.3em solid; }
-globalStyle(`${solarScope}${dropup} ${dropdownToggle}::after`, {
+globalStyle(`${solarScope}${dropup} ${solarScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
 	verticalAlign: '0.255em',
 	content: '""',
-	borderTop: 0,
+	borderTop: '0',
 	borderRight: '0.3em solid transparent',
 	borderBottom: '0.3em solid',
 	borderLeft: '0.3em solid transparent',
 })
 
-globalStyle(`${solarScope}${dropup} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${solarScope}${dropup} ${solarScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropend variant ──────────────────────────────────────────────────────────
-
-// SOURCE CSS: .dropend .dropdown-menu[data-bs-popper] { top: 0; right: auto; left: 100%; … }
-globalStyle(`${solarScope}${dropend} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
+globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownMenu}[data-bs-popper]`, {
+	top: '0',
 	right: 'auto',
 	left: '100%',
-	marginTop: 0,
+	marginTop: '0',
 	marginLeft: varBsDropdownSpacer,
 })
 
-// SOURCE CSS: .dropend .dropdown-toggle::after { border-right: 0; border-left: 0.3em solid; … }
-globalStyle(`${solarScope}${dropend} ${dropdownToggle}::after`, {
+globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownToggle}::after`, {
 	display: 'inline-block',
 	marginLeft: '0.255em',
-	verticalAlign: 0,
+	verticalAlign: '0.255em',
 	content: '""',
 	borderTop: '0.3em solid transparent',
-	borderRight: 0,
+	borderRight: '0',
 	borderBottom: '0.3em solid transparent',
 	borderLeft: '0.3em solid',
 })
 
-globalStyle(`${solarScope}${dropend} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropstart variant ────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownToggle}::after`, {
+	verticalAlign: '0',
+})
 
-// SOURCE CSS: .dropstart .dropdown-menu[data-bs-popper] { top: 0; right: 100%; left: auto; … }
-globalStyle(`${solarScope}${dropstart} ${dropdownMenu}[data-bs-popper]`, {
-	top: 0,
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownMenu}[data-bs-popper]`, {
+	top: '0',
 	right: '100%',
 	left: 'auto',
-	marginTop: 0,
+	marginTop: '0',
 	marginRight: varBsDropdownSpacer,
 })
 
-// SOURCE CSS: .dropstart .dropdown-toggle::after { display: none; }
-globalStyle(`${solarScope}${dropstart} ${dropdownToggle}::after`, {
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggle}::after`, {
+	display: 'inline-block',
+	marginLeft: '0.255em',
+	verticalAlign: '0.255em',
+	content: '""',
+})
+
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggle}::after`, {
 	display: 'none',
 })
 
-// SOURCE CSS: .dropstart .dropdown-toggle::before { ... border-right: 0.3em solid; }
-globalStyle(`${solarScope}${dropstart} ${dropdownToggle}::before`, {
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggle}::before`, {
 	display: 'inline-block',
 	marginRight: '0.255em',
-	verticalAlign: 0,
+	verticalAlign: '0.255em',
 	content: '""',
 	borderTop: '0.3em solid transparent',
 	borderRight: '0.3em solid',
 	borderBottom: '0.3em solid transparent',
 })
 
-globalStyle(`${solarScope}${dropstart} ${dropdownToggle}:empty::after`, {
-	marginLeft: 0,
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggle}:empty::after`, {
+	marginLeft: '0',
 })
 
-// ── .dropdown-toggle-split ────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-toggle-split { padding-right: 0.5625rem; padding-left: 0.5625rem; }
-// .dropdown-toggle-split::after { margin-left: 0; }
-globalStyle(`${solarScope}${dropdownToggleSplit}`, {
-	paddingRight: '0.5625rem',
-	paddingLeft: '0.5625rem',
-	borderTopLeftRadius: 0,
-	borderBottomLeftRadius: 0,
-	borderTopRightRadius: varBsBorderRadius,
-	borderBottomRightRadius: varBsBorderRadius,
-})
-globalStyle(`${solarScope}${dropdownToggleSplit}::after`, { marginLeft: 0 })
-globalStyle(
-	[
-		`${solarScope}${dropup} ${dropdownToggleSplit}::after`,
-		`${solarScope}${dropend} ${dropdownToggleSplit}::after`,
-	].join(', '),
-	{ marginLeft: 0 },
-)
-globalStyle(`${solarScope}${dropstart} ${dropdownToggleSplit}::before`, {
-	marginRight: 0,
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggle}::before`, {
+	verticalAlign: '0',
 })
 
-// ── .dropdown-divider ─────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-divider { height: 0; margin: var(--bs-dropdown-divider-margin-y) 0;
-//   overflow: hidden; border-top: 1px solid var(--bs-dropdown-divider-bg);
-//   opacity: 1; }
 globalStyle(`${solarScope}${dropdownDivider}`, {
-	height: 0,
+	height: '0',
 	margin: `${varBsDropdownDividerMarginY} 0`,
 	overflow: 'hidden',
-	border: 0,
 	borderTop: `1px solid ${varBsDropdownDividerBg}`,
-	opacity: 1,
+	opacity: '1',
 })
 
-// ── .dropdown-item ────────────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-item { display: block; width: 100%;
-//   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-//   clear: both; font-weight: 400; color: var(--bs-dropdown-link-color);
-//   text-align: inherit; text-decoration: none; white-space: nowrap;
-//   background-color: transparent; border: 0;
-//   border-radius: var(--bs-dropdown-item-border-radius, 0); }
 globalStyle(`${solarScope}${dropdownItem}`, {
 	display: 'block',
 	width: '100%',
 	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	clear: 'both',
-	fontWeight: 400,
+	fontWeight: '400',
 	color: varBsDropdownLinkColor,
 	textAlign: 'inherit',
 	textDecoration: 'none',
 	whiteSpace: 'nowrap',
 	backgroundColor: 'transparent',
-	border: 0,
+	border: '0',
+	borderRadius: fallbackVar(varBsDropdownItemBorderRadius, '0'),
 })
 
-// SOURCE CSS: .dropdown-item:hover, .dropdown-item:focus { … }
-globalStyle(
-	`${solarScope}${dropdownItem}:hover, ${solarScope}${dropdownItem}:focus`,
-	{
-		color: varBsDropdownLinkHoverColor,
-		backgroundColor: varBsDropdownLinkHoverBg,
-	},
-)
+globalStyle(`${solarScope}${dropdownItem}:hover`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+})
 
-// SOURCE CSS: .dropdown-item.active, .dropdown-item:active { … }
-globalStyle(
-	`${solarScope}${dropdownItem}${dropdownItemActive}, ${solarScope}${dropdownItem}:active`,
-	{
-		color: varBsDropdownLinkActiveColor,
-		textDecoration: 'none',
-		backgroundColor: varBsDropdownLinkActiveBg,
-	},
-)
+globalStyle(`${solarScope}${dropdownItem}:focus`, {
+	color: varBsDropdownLinkHoverColor,
+	backgroundColor: varBsDropdownLinkHoverBg,
+})
 
-// SOURCE CSS: .dropdown-item.disabled, .dropdown-item:disabled { … }
-globalStyle(
-	`${solarScope}${dropdownItem}${dropdownItemDisabled}, ${solarScope}${dropdownItem}:disabled`,
-	{
-		color: varBsDropdownLinkDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: 'transparent',
-	},
-)
+globalStyle(`${solarScope}${dropdownItem}${active}`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
 
-// ── .dropdown-menu.show ───────────────────────────────────────────────────────
+globalStyle(`${solarScope}${dropdownItem}:active`, {
+	color: varBsDropdownLinkActiveColor,
+	textDecoration: 'none',
+	backgroundColor: varBsDropdownLinkActiveBg,
+})
 
-globalStyle(`${solarScope}${dropdownMenu}${dropdownMenuShow}`, { display: 'block' })
+globalStyle(`${solarScope}${dropdownItem}${disabled}`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
+})
 
-// ── .dropdown-header ──────────────────────────────────────────────────────────
+globalStyle(`${solarScope}${dropdownItem}:disabled`, {
+	color: varBsDropdownLinkDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: 'transparent',
+})
 
-// SOURCE CSS:
-// .dropdown-header { display: block;
-//   padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
-//   margin-bottom: 0; font-size: 0.875rem;
-//   color: var(--bs-dropdown-header-color); white-space: nowrap; }
+globalStyle(`${solarScope}${dropdownMenu}${dropdownMenuShow}`, {
+	display: 'block',
+})
+
 globalStyle(`${solarScope}${dropdownHeader}`, {
 	display: 'block',
 	padding: `${varBsDropdownHeaderPaddingY} ${varBsDropdownHeaderPaddingX}`,
-	marginBottom: 0,
+	marginBottom: '0',
 	fontSize: '0.875rem',
 	color: varBsDropdownHeaderColor,
 	whiteSpace: 'nowrap',
 })
 
-// Dropdown header is rendered as <h6>; keep dropdown-header semantics over heading defaults.
-globalStyle(`${solarScope}${dropdownHeader}${h6}`, {
-	marginBottom: 0,
-	fontSize: '0.875rem',
-	color: varBsDropdownHeaderColor,
-})
-
-// ── .dropdown-item-text ───────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-item-text { display: block;
-//   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-//   color: var(--bs-dropdown-link-color); }
 globalStyle(`${solarScope}${dropdownItemText}`, {
 	display: 'block',
 	padding: `${varBsDropdownItemPaddingY} ${varBsDropdownItemPaddingX}`,
 	color: varBsDropdownLinkColor,
 })
 
-// ── .dropdown-menu-dark ───────────────────────────────────────────────────────
-
-// SOURCE CSS:
-// .dropdown-menu-dark { --bs-dropdown-color: #dee2e6; --bs-dropdown-bg: #343a40; … }
 globalStyle(`${solarScope}${dropdownMenuDark}`, {
 	vars: {
 		[varBsDropdownColor]: '#dee2e6',
-		[varBsDropdownBg]: '#343a40',
+		[varBsDropdownBg]: '#073642',
 		[varBsDropdownBorderColor]: varBsBorderColorTranslucent,
 		[varBsDropdownBoxShadow]: '',
 		[varBsDropdownLinkColor]: '#dee2e6',
 		[varBsDropdownLinkHoverColor]: '#fff',
-		[varBsDropdownDividerBg]: varBsBorderColorTranslucent,
+		[varBsDropdownDividerBg]: '#002b36',
 		[varBsDropdownLinkHoverBg]: 'rgba(255, 255, 255, 0.15)',
-		[varBsDropdownLinkActiveColor]: '#fff',
-		[varBsDropdownLinkActiveBg]: '#0d6efd',
+		[varBsDropdownLinkActiveColor]: 'rgba(255, 255, 255, 0.75)',
+		[varBsDropdownLinkActiveBg]: '#073642',
 		[varBsDropdownLinkDisabledColor]: '#adb5bd',
 		[varBsDropdownHeaderColor]: '#adb5bd',
 	},
 })
 
+globalStyle(`${solarScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${solarScope}${dropup} ${solarScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${solarScope}${dropend} ${solarScope}${dropdownToggleSplit}::after`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${solarScope}${dropstart} ${solarScope}${dropdownToggleSplit}::before`, {
+	marginRight: '0',
+})
+
+globalStyle(`${solarScope}${navTabs} ${solarScope}${dropdownMenu}`, {
+	marginTop: `calc(-1 * ${varBsNavTabsBorderWidth})`,
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	position: 'static',
+})
+
+globalStyle(`${solarScope}${navbarExpandSm} ${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandMd} ${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandLg} ${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXl} ${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpandXxl} ${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	'@media': {
+		'(min-width: 1400px)': {
+			position: 'absolute',
+		},
+	},
+})
+
+globalStyle(`${solarScope}${navbarExpand} ${solarScope}${navbarNav} ${solarScope}${dropdownMenu}`, {
+	position: 'absolute',
+})

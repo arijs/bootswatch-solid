@@ -8,6 +8,8 @@ Implementation: [`ve-project2/`](../ve-project2)
 Companion documents:
 
 - [`docs/ve2-migration-playbook.md`](./ve2-migration-playbook.md) — **quick-reference playbook for converting a Bootstrap component family to ve-project2** (start here for a new conversion task).
+- [`docs/ve2-theme-generator.md`](./ve2-theme-generator.md) — **automated generation of `ve-project2/src/themes/{theme}/**` from screenshot CSS artifacts**.
+- [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md) — **implementation plan (v2) for the deterministic 1:1 literal converter** (zero-mismatch, all 27 themes; includes the Bootstrap-JS integration spec for modals/dropdowns/carousels/etc.).
 - [`docs/ve2-debugging-mismatch-walkthrough.md`](./ve2-debugging-mismatch-walkthrough.md) — **step-by-step walkthrough for diagnosing screenshot mismatches** using Playwright computed-style comparison (use this when a diff image is not enough to identify the root cause).
 - [`docs/ve-architecture-v1-history.md`](./ve-architecture-v1-history.md) — archived architecture of the first VE sub-project (`ve-project`), preserved as historical context.
 - [`docs/ve-project1-docs-index.md`](./ve-project1-docs-index.md) — index of all historical docs for ve-project (v1).
@@ -19,7 +21,7 @@ Companion documents:
 The element-owned scope model removes two problems that plagued `ve-project` (v1):
 
 1. **No global element styling.** Nothing styles bare elements (`body`, `h1`, `button`, etc.) globally. Every visual rule is opt-in, applied through explicit class composition.
-2. **No ancestor/descendant CSS matching.** Theme styles do not rely on a parent carrying a scope class and descendants inheriting from it. Every styled element carries **both** the scope class and the contract class directly, producing a compound selector with no space in between (`.scope.contract`).
+2. **No *implicit* ancestor/descendant matching.** Theme styles never rely on a parent carrying a scope class and bare descendants inheriting from it. Every styled element carries **both** the scope class and the contract class directly, producing a compound selector with no space in between (`.scope.contract`). Source combinators (`>`, `+`, `~`, descendant space) are still preserved when present, but **each named segment re-asserts `${scope}${contract}`** — e.g. `.card > .card-header` → `` `${scope}${card} > ${scope}${cardHeader}` `` (see *Literal converter selector model* below).
 
 This means unlimited nesting depth, zero specificity conflicts, and full theme overridability without `@layer` or extra selectors.
 
@@ -405,6 +407,22 @@ globalStyle(`${bootstrapScope}${btnCheck}:disabled + ${bootstrapScope}${btn}`, {
 ```
 
 Do **not** use raw class name strings (e.g. `'.btn'`) in selectors. Always reference the generated VE identifiers.
+
+---
+
+## Literal converter selector model (v2)
+
+The shipping converter ([`scripts/generate-ve-literal.mjs`](../scripts/generate-ve-literal.mjs); design in [`docs/ve2-literal-conversion-plan.md`](./ve2-literal-conversion-plan.md)) mirrors `screenshots/{theme}/bootstrap.css` rule‑for‑rule under the element‑owned model with **one uniform, deterministic translation** — no per‑family heuristics (those were removed in T10):
+
+1. **Strict 1:1 token→contract registry.** Every Bootstrap class maps to exactly one contract (`.btn`→`btn`, `.btn-primary`→`btnPrimary`), and every element tag to one element contract (`p`→`paragraph`, `button`→`elButton`, `h1`→`h1`). Compounds are **never synthesized** — `.btn-primary` → `${scope}${btnPrimary}`, *not* `${scope}${btn}${btnPrimary}` — preserving source specificity. Collisions (utility `.h1` vs element `h1`) get a `cls`‑prefixed class contract (`clsH1`).
+2. **Combinators preserved, scope+contract on each named segment.** `.card > .card-header` → `` `${scope}${card} > ${scope}${cardHeader}` ``; `ol ol` → `` `${scope}${elOl} ${scope}${elOl}` ``. Reboot/element rules therefore only fire when the component **stamps the element contract** on that tag (enforced by the markup‑parity check).
+3. **`*`, pseudo‑classes/elements, and attribute selectors pass through verbatim** (never mapped to contracts). `.table > :not(caption) > * > *` → `` `${scope}${table} > :not(caption) > * > *` ``. A segment with no class/tag (pure `*`/pseudo) carries no scope prefix.
+4. **Shared state classes are single global contracts** (`show`, `fade`, `active`, `collapsing`, …). Compound selectors keep components isolated (`${scope}${modal}${show}` vs `${scope}${dropdownMenu}${show}`), so one shared `show` hash is safe. Bootstrap‑JS‑driven components stamp **component‑specific hook contracts** where the CSS expects them (`modalShowHook`, `dropdownMenuShow`, `btnShowHook`) — every `${show}` rule must target the contract the JS actually stamps.
+5. **`var(--bs-*)` stays a contract var reference** (`varBsBorderRadius`), parsed with a real `var()` parser (nesting + fallbacks), never resolved to a static value (Core Rule 15).
+6. **Intentional deviations live in the divergence manifest**, not in code branches (seed: `body` → `bodyFrame`/`bodyText` split). Selector‑shape quirks are handled mechanically and are **not** divergences.
+7. **Strict, no‑fallback.** After the Phase‑1 census every token resolves; the emitter runs `--strict` and cannot emit a rule‑violating fallback.
+
+> **Two loaders share one foundation.** `scope.css.ts` + `fonts.generated.css` (per‑theme `--bs-*` values + `@import` fonts) are generated by the scope‑only `scripts/generate-ve-theme.mjs` and imported by **both** the literal loader and the still‑live `theme`/`granular` runtime. The granular loader (`Ve2GranularShell`, `useVe2RequiredStyleFamilies`) is preserved for the upcoming **literal‑based per‑family split** milestone.
 
 ---
 

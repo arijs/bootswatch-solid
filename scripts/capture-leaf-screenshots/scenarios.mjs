@@ -50,12 +50,21 @@ export function filterScenarios(scenarios, routeFilter, stateFilter) {
 }
 
 export function createScenarioCatalog(leafRoutes) {
-	const staticScenarios = buildStaticScenarios(leafRoutes)
 	const routeSet = new Set(leafRoutes)
-	const curatedScenarios = INTERACTIVE_SCENARIOS.filter((scenario) =>
-		routeSet.has(scenario.route),
-	)
-	return [...staticScenarios, ...curatedScenarios]
+	const curatedByRoute = new Map()
+	for (const scenario of INTERACTIVE_SCENARIOS) {
+		if (!routeSet.has(scenario.route)) continue
+		const list = curatedByRoute.get(scenario.route) ?? []
+		list.push(scenario)
+		curatedByRoute.set(scenario.route, list)
+	}
+	const result = []
+	for (const route of leafRoutes) {
+		result.push({ route, state: null, kind: 'static' })
+		const interactive = curatedByRoute.get(route)
+		if (interactive) result.push(...interactive)
+	}
+	return result
 }
 
 export function assertCuratedScenarioRoutes(leafRoutes, strictScenarioAssert) {

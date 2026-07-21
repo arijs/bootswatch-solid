@@ -1,13 +1,25 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { solarScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
+	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
@@ -35,9 +47,29 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
+import {
+	active,
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	disabled,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
@@ -59,31 +91,50 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { solarScope } from '../../scope.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
+import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// ── Base .btn ─────────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn {
-//   --bs-btn-padding-x: 0.75rem; --bs-btn-padding-y: 0.375rem;
-//   --bs-btn-font-family: ; --bs-btn-font-size: 1rem; --bs-btn-font-weight: 400;
-//   --bs-btn-line-height: 1.5; --bs-btn-color: var(--bs-body-color);
-//   --bs-btn-bg: transparent; --bs-btn-border-width: var(--bs-border-width);
-//   --bs-btn-border-color: transparent; --bs-btn-border-radius: var(--bs-border-radius);
-//   --bs-btn-hover-border-color: transparent;
-//   --bs-btn-box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 1px rgba(0,0,0,0.075);
-//   --bs-btn-disabled-opacity: 0.65;
-//   --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
-//   display: inline-block; padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
-//   font-family: var(--bs-btn-font-family); font-size: var(--bs-btn-font-size);
-//   font-weight: var(--bs-btn-font-weight); line-height: var(--bs-btn-line-height);
-//   color: var(--bs-btn-color); text-align: center; text-decoration: none;
-//   vertical-align: middle; cursor: pointer; user-select: none;
-//   border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
-//   border-radius: var(--bs-btn-border-radius); background-color: var(--bs-btn-bg);
-//   transition: color 0.15s ease-in-out, ...; }
-// @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+globalStyle(`${solarScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${solarScope}${btnCheck}[disabled] + ${solarScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${solarScope}${btnCheck}:disabled + ${solarScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${solarScope}${inputGroup} ${solarScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${solarScope}${inputGroup} ${solarScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${solarScope}${inputGroupLg} > ${solarScope}${btn}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
+	borderRadius: varBsBorderRadiusLg,
+})
+
+globalStyle(`${solarScope}${inputGroupSm} > ${solarScope}${btn}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+	borderRadius: varBsBorderRadiusSm,
+})
 
 globalStyle(`${solarScope}${btn}`, {
 	vars: {
@@ -99,12 +150,10 @@ globalStyle(`${solarScope}${btn}`, {
 		[varBsBtnBorderColor]: 'transparent',
 		[varBsBtnBorderRadius]: varBsBorderRadius,
 		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]:
-			'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
+		[varBsBtnBoxShadow]: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)',
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	appearance: 'button',
 	display: 'inline-block',
 	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
@@ -119,11 +168,13 @@ globalStyle(`${solarScope}${btn}`, {
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',
 	userSelect: 'none',
-	backgroundColor: varBsBtnBg,
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	backgroundColor: varBsBtnBg,
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${solarScope}${btn}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -131,171 +182,110 @@ globalStyle(`${solarScope}${btn}`, {
 	},
 })
 
-// SOURCE CSS: .btn:hover { color: var(--bs-btn-hover-color); background-color: ...; ... }
 globalStyle(`${solarScope}${btn}:hover`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
 })
 
-// SOURCE CSS: .btn:focus-visible { color: ...; outline: 0; box-shadow: ...; }
+globalStyle(`${solarScope}${btnCheck} + ${solarScope}${btn}:hover`, {
+	color: varBsBtnColor,
+	backgroundColor: varBsBtnBg,
+	borderColor: varBsBtnBorderColor,
+})
+
 globalStyle(`${solarScope}${btn}:focus-visible`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-// SOURCE CSS:
-// .btn-check:checked + .btn, :not(.btn-check) + .btn:active,
-// .btn:first-child:active, .btn.active, .btn.show {
-//   color: var(--bs-btn-active-color); background-color: var(--bs-btn-active-bg);
-//   border-color: var(--bs-btn-active-border-color); }
-globalStyle(
-	[
-		`${solarScope}${btnCheck}:checked + ${solarScope}${btn}`,
-		`:not(${solarScope}${btnCheck}) + ${solarScope}${btn}:active`,
-		`${solarScope}${btn}:first-child:active`,
-		`${solarScope}${btn}${btnActiveHook}`,
-		`${solarScope}${btn}${btnShowHook}`,
-	].join(', '),
-	{
-		color: varBsBtnActiveColor,
-		backgroundColor: varBsBtnActiveBg,
-		borderColor: varBsBtnActiveBorderColor,
-	},
-)
+globalStyle(`${solarScope}${btnCheck}:focus-visible + ${solarScope}${btn}`, {
+	borderColor: varBsBtnHoverBorderColor,
+	outline: '0',
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
-// SOURCE CSS:
-// .btn-check:checked + .btn:focus-visible, ...:active:focus-visible, ... { box-shadow: ...; }
-globalStyle(
-	[
-		`${solarScope}${btnCheck}:checked + ${solarScope}${btn}:focus-visible`,
-		`:not(${solarScope}${btnCheck}) + ${solarScope}${btn}:active:focus-visible`,
-		`${solarScope}${btn}:first-child:active:focus-visible`,
-		`${solarScope}${btn}${btnActiveHook}:focus-visible`,
-		`${solarScope}${btn}${btnShowHook}:focus-visible`,
-	].join(', '),
-	{
-		boxShadow: varBsBtnFocusBoxShadow,
-	},
-)
+globalStyle(`${solarScope}${btnCheck}:checked + ${solarScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .btn:disabled, .btn.disabled, fieldset:disabled .btn {
-//   color: var(--bs-btn-disabled-color); pointer-events: none;
-//   background-color: var(--bs-btn-disabled-bg);
-//   border-color: var(--bs-btn-disabled-border-color);
-//   opacity: var(--bs-btn-disabled-opacity); }
-globalStyle(
-	[
-		`${solarScope}${btn}:disabled`,
-		`fieldset:disabled ${solarScope}${btn}`,
-	].join(', '),
-	{
-		color: varBsBtnDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsBtnDisabledBg,
-		borderColor: varBsBtnDisabledBorderColor,
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
+globalStyle(`${solarScope}:not(${btnCheck}) + ${solarScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-// SOURCE CSS:
-// .btn-check {
-//   position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
-globalStyle(`${solarScope}${btnCheck}`, {
-	position: 'absolute',
-	clip: 'rect(0, 0, 0, 0)',
+globalStyle(`${solarScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${solarScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${solarScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${solarScope}${btnCheck}:checked + ${solarScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${solarScope}:not(${btnCheck}) + ${solarScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${solarScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${solarScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${solarScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${solarScope}${btnCheck}:checked:focus-visible + ${solarScope}${btn}`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${solarScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-check[disabled] + .btn, .btn-check:disabled + .btn {
-//   pointer-events: none; filter: none; opacity: 0.65; }
-globalStyle(
-	[
-		`${solarScope}${btnCheck}[disabled] + ${solarScope}${btn}`,
-		`${solarScope}${btnCheck}:disabled + ${solarScope}${btn}`,
-	].join(', '),
-	{
-		pointerEvents: 'none',
-		filter: 'none',
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
-
-// ── Size modifiers ────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn-sm, .btn-group-sm > .btn {
-//   --bs-btn-padding-y: 0.25rem; --bs-btn-padding-x: 0.5rem;
-//   --bs-btn-font-size: 0.875rem; --bs-btn-border-radius: var(--bs-border-radius-sm); }
-globalStyle(`${solarScope}${btnSm}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.25rem',
-		[varBsBtnPaddingX]: '0.5rem',
-		[varBsBtnFontSize]: '0.875rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
+globalStyle(`${solarScope}${btn}${disabled}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// SOURCE CSS:
-// .btn-lg, .btn-group-lg > .btn {
-//   --bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 1rem;
-//   --bs-btn-font-size: 1.25rem; --bs-btn-border-radius: var(--bs-border-radius-lg); }
-globalStyle(`${solarScope}${btnLg}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.5rem',
-		[varBsBtnPaddingX]: '1rem',
-		[varBsBtnFontSize]: '1.25rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
-	},
+globalStyle(`${solarScope}${fieldset}:disabled ${solarScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-// ── .btn-link ─────────────────────────────────────────────────────────────────
-//
-// SOURCE CSS:
-// .btn-link { --bs-btn-font-weight: 400; --bs-btn-color: var(--bs-link-color);
-//   --bs-btn-bg: transparent; --bs-btn-border-color: transparent;
-//   --bs-btn-hover-color: var(--bs-link-hover-color); --bs-btn-hover-border-color: transparent;
-//   --bs-btn-active-color: var(--bs-link-hover-color); --bs-btn-active-border-color: transparent;
-//   --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-border-color: transparent;
-//   --bs-btn-box-shadow: 0 0 0 #000; --bs-btn-focus-shadow-rgb: 49, 132, 253;
-//   text-decoration: underline; }
-globalStyle(`${solarScope}${btnLink}`, {
-	vars: {
-		[varBsBtnFontWeight]: '400',
-		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: 'transparent',
-		[varBsBtnBorderColor]: 'transparent',
-		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: 'transparent',
-		[varBsBtnDisabledColor]: '#839496',
-		[varBsBtnDisabledBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]: '0 0 0 #000',
-		[varBsBtnFocusBoxShadowRgb]: '74, 175, 167',
-	},
-	textDecoration: 'underline',
-})
-
-// ── Solid colour variants ─────────────────────────────────────────────────────
-// Each variant only sets --bs-btn-* CSS vars; all layout/interaction is inherited
-// from the base .btn rules above.
-//
-// SOURCE CSS: screenshots/bootstrap/bootstrap.css — .btn-primary { --bs-btn-* }
-
-// SOURCE CSS:
-// .btn-primary { --bs-btn-color: #fff; --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0b5ed7; --bs-btn-hover-border-color: #0a58ca;
-//   --bs-btn-focus-shadow-rgb: 49, 132, 253; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #0a58ca; --bs-btn-active-border-color: #0a53be;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #0d6efd;
-//   --bs-btn-disabled-border-color: #0d6efd; }
 globalStyle(`${solarScope}${btnPrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -315,14 +305,6 @@ globalStyle(`${solarScope}${btnPrimary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-secondary { --bs-btn-color: #fff; --bs-btn-bg: #6c757d; --bs-btn-border-color: #6c757d;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #5c636a; --bs-btn-hover-border-color: #565e64;
-//   --bs-btn-focus-shadow-rgb: 130, 138, 145; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #565e64; --bs-btn-active-border-color: #51585e;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #6c757d;
-//   --bs-btn-disabled-border-color: #6c757d; }
 globalStyle(`${solarScope}${btnSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -342,14 +324,6 @@ globalStyle(`${solarScope}${btnSecondary}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-success { --bs-btn-color: #fff; --bs-btn-bg: #198754; --bs-btn-border-color: #198754;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #157347; --bs-btn-hover-border-color: #146c43;
-//   --bs-btn-focus-shadow-rgb: 60, 153, 110; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #146c43; --bs-btn-active-border-color: #13653f;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #198754;
-//   --bs-btn-disabled-border-color: #198754; }
 globalStyle(`${solarScope}${btnSuccess}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -369,14 +343,6 @@ globalStyle(`${solarScope}${btnSuccess}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-info { --bs-btn-color: #000; --bs-btn-bg: #0dcaf0; --bs-btn-border-color: #0dcaf0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #31d2f2; --bs-btn-hover-border-color: #25cff2;
-//   --bs-btn-focus-shadow-rgb: 11, 172, 204; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #3dd5f3; --bs-btn-active-border-color: #25cff2;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #0dcaf0;
-//   --bs-btn-disabled-border-color: #0dcaf0; }
 globalStyle(`${solarScope}${btnInfo}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -396,14 +362,6 @@ globalStyle(`${solarScope}${btnInfo}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-warning { --bs-btn-color: #000; --bs-btn-bg: #ffc107; --bs-btn-border-color: #ffc107;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffca2c; --bs-btn-hover-border-color: #ffc720;
-//   --bs-btn-focus-shadow-rgb: 217, 164, 6; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #ffcd39; --bs-btn-active-border-color: #ffc720;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #ffc107;
-//   --bs-btn-disabled-border-color: #ffc107; }
 globalStyle(`${solarScope}${btnWarning}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -423,14 +381,6 @@ globalStyle(`${solarScope}${btnWarning}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-danger { --bs-btn-color: #fff; --bs-btn-bg: #dc3545; --bs-btn-border-color: #dc3545;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #bb2d3b; --bs-btn-hover-border-color: #b02a37;
-//   --bs-btn-focus-shadow-rgb: 225, 83, 97; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #b02a37; --bs-btn-active-border-color: #a52834;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #dc3545;
-//   --bs-btn-disabled-border-color: #dc3545; }
 globalStyle(`${solarScope}${btnDanger}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -450,14 +400,6 @@ globalStyle(`${solarScope}${btnDanger}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-light { --bs-btn-color: #000; --bs-btn-bg: #f8f9fa; --bs-btn-border-color: #f8f9fa;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #d3d4d5; --bs-btn-hover-border-color: #c6c7c8;
-//   --bs-btn-focus-shadow-rgb: 211, 212, 213; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #c6c7c8; --bs-btn-active-border-color: #babbbc;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #000; --bs-btn-disabled-bg: #f8f9fa;
-//   --bs-btn-disabled-border-color: #f8f9fa; }
 globalStyle(`${solarScope}${btnLight}`, {
 	vars: {
 		[varBsBtnColor]: '#000',
@@ -477,14 +419,6 @@ globalStyle(`${solarScope}${btnLight}`, {
 	},
 })
 
-// SOURCE CSS:
-// .btn-dark { --bs-btn-color: #fff; --bs-btn-bg: #212529; --bs-btn-border-color: #212529;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #424649; --bs-btn-hover-border-color: #373b3e;
-//   --bs-btn-focus-shadow-rgb: 66, 70, 73; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #4d5154; --bs-btn-active-border-color: #373b3e;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #fff; --bs-btn-disabled-bg: #212529;
-//   --bs-btn-disabled-border-color: #212529; }
 globalStyle(`${solarScope}${btnDark}`, {
 	vars: {
 		[varBsBtnColor]: '#fff',
@@ -504,21 +438,6 @@ globalStyle(`${solarScope}${btnDark}`, {
 	},
 })
 
-// ── Outline variants ──────────────────────────────────────────────────────────
-// Each outline variant sets only --bs-btn-* CSS vars.
-// Hover and active states are handled by the base .btn:hover / active rules
-// using var(--bs-btn-hover-bg) etc. set here per variant.
-//
-// SOURCE CSS: screenshots/bootstrap/bootstrap.css — .btn-outline-* { --bs-btn-* }
-
-// SOURCE CSS:
-// .btn-outline-primary { --bs-btn-color: #0d6efd; --bs-btn-border-color: #0d6efd;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #0d6efd; --bs-btn-hover-border-color: #0d6efd;
-//   --bs-btn-focus-shadow-rgb: 13, 110, 253; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #0d6efd; --bs-btn-active-border-color: #0d6efd;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #0d6efd; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #0d6efd; }
 globalStyle(`${solarScope}${btnOutlinePrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#b58900',
@@ -534,17 +453,10 @@ globalStyle(`${solarScope}${btnOutlinePrimary}`, {
 		[varBsBtnDisabledColor]: '#b58900',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#b58900',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-secondary { --bs-btn-color: #6c757d; --bs-btn-border-color: #6c757d;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #6c757d; --bs-btn-hover-border-color: #6c757d;
-//   --bs-btn-focus-shadow-rgb: 108, 117, 125; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #6c757d; --bs-btn-active-border-color: #6c757d;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #6c757d; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #6c757d; }
 globalStyle(`${solarScope}${btnOutlineSecondary}`, {
 	vars: {
 		[varBsBtnColor]: '#839496',
@@ -560,17 +472,10 @@ globalStyle(`${solarScope}${btnOutlineSecondary}`, {
 		[varBsBtnDisabledColor]: '#839496',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#839496',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-success { --bs-btn-color: #198754; --bs-btn-border-color: #198754;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #198754; --bs-btn-hover-border-color: #198754;
-//   --bs-btn-focus-shadow-rgb: 25, 135, 84; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #198754; --bs-btn-active-border-color: #198754;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #198754; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #198754; }
 globalStyle(`${solarScope}${btnOutlineSuccess}`, {
 	vars: {
 		[varBsBtnColor]: '#2aa198',
@@ -586,17 +491,10 @@ globalStyle(`${solarScope}${btnOutlineSuccess}`, {
 		[varBsBtnDisabledColor]: '#2aa198',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#2aa198',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-info { --bs-btn-color: #0dcaf0; --bs-btn-border-color: #0dcaf0;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #0dcaf0; --bs-btn-hover-border-color: #0dcaf0;
-//   --bs-btn-focus-shadow-rgb: 13, 202, 240; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #0dcaf0; --bs-btn-active-border-color: #0dcaf0;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #0dcaf0; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #0dcaf0; }
 globalStyle(`${solarScope}${btnOutlineInfo}`, {
 	vars: {
 		[varBsBtnColor]: '#268bd2',
@@ -612,17 +510,10 @@ globalStyle(`${solarScope}${btnOutlineInfo}`, {
 		[varBsBtnDisabledColor]: '#268bd2',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#268bd2',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-warning { --bs-btn-color: #ffc107; --bs-btn-border-color: #ffc107;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #ffc107; --bs-btn-hover-border-color: #ffc107;
-//   --bs-btn-focus-shadow-rgb: 255, 193, 7; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #ffc107; --bs-btn-active-border-color: #ffc107;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #ffc107; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #ffc107; }
 globalStyle(`${solarScope}${btnOutlineWarning}`, {
 	vars: {
 		[varBsBtnColor]: '#cb4b16',
@@ -638,17 +529,10 @@ globalStyle(`${solarScope}${btnOutlineWarning}`, {
 		[varBsBtnDisabledColor]: '#cb4b16',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#cb4b16',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-danger { --bs-btn-color: #dc3545; --bs-btn-border-color: #dc3545;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #dc3545; --bs-btn-hover-border-color: #dc3545;
-//   --bs-btn-focus-shadow-rgb: 220, 53, 69; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #dc3545; --bs-btn-active-border-color: #dc3545;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #dc3545; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #dc3545; }
 globalStyle(`${solarScope}${btnOutlineDanger}`, {
 	vars: {
 		[varBsBtnColor]: '#d33682',
@@ -664,17 +548,10 @@ globalStyle(`${solarScope}${btnOutlineDanger}`, {
 		[varBsBtnDisabledColor]: '#d33682',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#d33682',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-light { --bs-btn-color: #f8f9fa; --bs-btn-border-color: #f8f9fa;
-//   --bs-btn-hover-color: #000; --bs-btn-hover-bg: #f8f9fa; --bs-btn-hover-border-color: #f8f9fa;
-//   --bs-btn-focus-shadow-rgb: 248, 249, 250; --bs-btn-active-color: #000;
-//   --bs-btn-active-bg: #f8f9fa; --bs-btn-active-border-color: #f8f9fa;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #f8f9fa; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #f8f9fa; }
 globalStyle(`${solarScope}${btnOutlineLight}`, {
 	vars: {
 		[varBsBtnColor]: '#fdf6e3',
@@ -690,17 +567,10 @@ globalStyle(`${solarScope}${btnOutlineLight}`, {
 		[varBsBtnDisabledColor]: '#fdf6e3',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#fdf6e3',
+		[varBsGradient]: 'none',
 	},
 })
 
-// SOURCE CSS:
-// .btn-outline-dark { --bs-btn-color: #212529; --bs-btn-border-color: #212529;
-//   --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #212529; --bs-btn-hover-border-color: #212529;
-//   --bs-btn-focus-shadow-rgb: 33, 37, 41; --bs-btn-active-color: #fff;
-//   --bs-btn-active-bg: #212529; --bs-btn-active-border-color: #212529;
-//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-//   --bs-btn-disabled-color: #212529; --bs-btn-disabled-bg: transparent;
-//   --bs-btn-disabled-border-color: #212529; }
 globalStyle(`${solarScope}${btnOutlineDark}`, {
 	vars: {
 		[varBsBtnColor]: '#073642',
@@ -716,15 +586,340 @@ globalStyle(`${solarScope}${btnOutlineDark}`, {
 		[varBsBtnDisabledColor]: '#073642',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#073642',
+		[varBsGradient]: 'none',
 	},
 })
 
-globalStyle(`${solarScope}${btnPrimary}`, { backgroundColor: '#b58900' })
-globalStyle(`${solarScope}${btnSecondary}`, { backgroundColor: '#839496' })
-globalStyle(`${solarScope}${btnSuccess}`, { backgroundColor: '#2aa198' })
-globalStyle(`${solarScope}${btnInfo}`, { backgroundColor: '#268bd2' })
-globalStyle(`${solarScope}${btnWarning}`, { backgroundColor: '#cb4b16' })
-globalStyle(`${solarScope}${btnDanger}`, { backgroundColor: '#d33682' })
-globalStyle(`${solarScope}${btnLight}`, { backgroundColor: '#fdf6e3' })
-globalStyle(`${solarScope}${btnDark}`, { backgroundColor: '#073642' })
+globalStyle(`${solarScope}${btnLink}`, {
+	vars: {
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnColor]: varBsLinkColor,
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
+		[varBsBtnHoverColor]: varBsLinkHoverColor,
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnActiveColor]: varBsLinkHoverColor,
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#839496',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '74, 175, 167',
+	},
+	textDecoration: 'underline',
+})
 
+globalStyle(`${solarScope}${btnLink}:focus-visible`, {
+	color: varBsBtnColor,
+})
+
+globalStyle(`${solarScope}${btnLink}:hover`, {
+	color: varBsBtnHoverColor,
+})
+
+globalStyle(`${solarScope}${btnLg}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${solarScope}${btnGroupLg} > ${solarScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${solarScope}${btnSm}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${solarScope}${btnGroupSm} > ${solarScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btnCheck}:checked + ${solarScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btnCheck}:focus + ${solarScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btnCheck}:checked + ${solarScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btnCheck}:focus + ${solarScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}:not(${btnCheck}:first-child) + ${solarScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btnGroup}:not(:last-child) > ${solarScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}:not(${btnCheck}) + ${solarScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroup} > ${solarScope}${btnGroup}:not(:first-child) > ${solarScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.5625rem',
+	paddingLeft: '0.5625rem',
+})
+
+globalStyle(`${solarScope}${btnSm} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${solarScope}${btnGroupSm} > ${solarScope}${btn} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${solarScope}${btnLg} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${solarScope}${btnGroupLg} > ${solarScope}${btn} + ${solarScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btnGroup}:not(:last-child) > ${solarScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}:not(${btnCheck}) + ${solarScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${btnGroupVertical} > ${solarScope}${btnGroup}:not(:first-child) > ${solarScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${solarScope}${alertDismissible} ${solarScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '1.25rem 1rem',
+})
+
+globalStyle(`${solarScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#fff',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.5',
+		[varBsBtnCloseHoverOpacity]: '0.75',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(181, 137, 0, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
+	color: varBsBtnCloseColor,
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
+	filter: varBsBtnCloseFilter,
+	border: '0',
+	borderRadius: '0.375rem',
+	opacity: varBsBtnCloseOpacity,
+})
+
+globalStyle(`${solarScope}${btnClose}:hover`, {
+	color: varBsBtnCloseColor,
+	textDecoration: 'none',
+	opacity: varBsBtnCloseHoverOpacity,
+})
+
+globalStyle(`${solarScope}${btnClose}:focus`, {
+	outline: '0',
+	boxShadow: varBsBtnCloseFocusShadow,
+	opacity: varBsBtnCloseFocusOpacity,
+})
+
+globalStyle(`${solarScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${solarScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${solarScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
+globalStyle(`${solarScope}${toastHeader} ${solarScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${solarScope}${modalHeader} ${solarScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${solarScope}${offcanvasHeader} ${solarScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${solarScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
+})
+
+globalStyle(`${solarScope}${btnPrimary}`, {
+	backgroundColor: '#b58900',
+})
+
+globalStyle(`${solarScope}${btnSecondary}`, {
+	backgroundColor: '#839496',
+})
+
+globalStyle(`${solarScope}${btnSuccess}`, {
+	backgroundColor: '#2aa198',
+})
+
+globalStyle(`${solarScope}${btnInfo}`, {
+	backgroundColor: '#268bd2',
+})
+
+globalStyle(`${solarScope}${btnWarning}`, {
+	backgroundColor: '#cb4b16',
+})
+
+globalStyle(`${solarScope}${btnDanger}`, {
+	backgroundColor: '#d33682',
+})
+
+globalStyle(`${solarScope}${btnLight}`, {
+	backgroundColor: '#fdf6e3',
+})
+
+globalStyle(`${solarScope}${btnDark}`, {
+	backgroundColor: '#073642',
+})

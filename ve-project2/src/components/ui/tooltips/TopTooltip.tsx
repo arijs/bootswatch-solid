@@ -1,56 +1,66 @@
-import * as bootstrap from 'bootstrap'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import {
+	border,
+	bsTooltipAuto,
+	flexColumn,
+	justifyContentEnd,
+	tooltip,
+} from '../../../theme-contract/literal/contract.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
-frame,
-frameColumn,
-justifyEnd,
-tooltipArrow,
-tooltipInner,
-tooltipVe,
+	frame,
+	frameColumn,
+	justifyEnd,
+	tooltipArrow,
+	tooltipFade,
+	tooltipInner,
+	tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
-import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
+import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
+import { createVeTooltip } from './ve-tooltip'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/tooltips',
 	'ui/buttons',
 	'contents/basic',
-	'utilities',
+	'utilities/used',
 ]
 
 const TopTooltip: Component = () => {
-const theme = useContext(ThemeContext)
+	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
-const VeTooltip = (
-bootstrap.Tooltip as unknown as BootstrapWithDefaults<typeof bootstrap.Tooltip>
-).extendDefaultConfig({
-SELECTOR_ARROW: `.${tooltipArrow}`,
-SELECTOR_TOOLTIP_INNER: `.${tooltipInner}`,
-}) as typeof bootstrap.Tooltip
+	const VeTooltip = createVeTooltip({ tooltipArrow, tooltipInner })
 
-return (
-<div class={`bd-example ${theme} ${containerFluid} ${frame} ${frameColumn} ${justifyEnd}`}>
-<button
-type="button"
-class={`${theme} ${btn} ${btnSecondary} pwhook-tooltip-trigger`}
+	return (
+		<div
+			class={`bd-example ${theme} ${containerFluid} ${frame} ${frameColumn} ${justifyEnd} ${dFlex} ${flexColumn} ${alignItemsCenter} ${justifyContentEnd} ${border}`}
+		>
+			<button
+				type="button"
+				class={`${theme} ${elButton} ${btn} ${btnSecondary} pwhook-tooltip-trigger`}
 				data-bs-toggle="tooltip"
-data-bs-custom-class="pwhook-tooltip"
-ref={(tooltip) =>
-new VeTooltip(tooltip, {
-template: `<div class="${tooltipVe} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
-})
-}
-data-bs-placement="top"
-title="Tooltip on top"
->
-Tooltip on top
-</button>
-</div>
-)
+				data-bs-custom-class="pwhook-tooltip"
+				ref={(el) =>
+					new VeTooltip(el, {
+						template: `<div class="${tooltipVe} ${tooltip} ${bsTooltipAuto} ${tooltipFade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+					})
+				}
+				data-bs-placement="top"
+				title="Tooltip on top"
+			>
+				Tooltip on top
+			</button>
+		</div>
+	)
 }
 
 export default TopTooltip

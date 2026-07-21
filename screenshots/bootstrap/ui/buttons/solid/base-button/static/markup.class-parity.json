@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "totalElements": 6,
+    "elementsChecked": 6,
+    "elementsWithGaps": 1,
+    "totalExpected": 1,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "pwhook-btn"
+      ],
+      "expectedSymbols": [
+        "btn"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "inputFontFamily"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-btn"
+      ]
+    }
+  ]
+}

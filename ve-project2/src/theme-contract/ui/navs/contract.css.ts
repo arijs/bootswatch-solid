@@ -19,3 +19,17 @@ export const navTabs = style({})
 // ── Nav pills variant ─────────────────────────────────────────────────────────
 
 export const navPills = style({})
+
+// ── Tab panels (Bootstrap tab JS / static demos) ─────────────────────────────
+
+export const fade = style({})
+export const show = style({})
+export const tabContent = style({})
+export const tabPane = style({})
+export const tabPaneActive = style({})
+
+/** Button reset for tab triggers styled as `.nav-link`. */
+export const navButtonReset = style({})
+
+/** `.nav-item.show` hook for pill/tab dropdown bridges. */
+export const navItemShow = style({})

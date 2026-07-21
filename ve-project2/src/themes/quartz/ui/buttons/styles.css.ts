@@ -1,13 +1,25 @@
 import { globalStyle } from '@vanilla-extract/css'
+import { quartzScope } from '../../scope.css'
+
 import {
 	varBsBodyColor,
 	varBsBorderRadius,
 	varBsBorderRadiusLg,
 	varBsBorderRadiusSm,
 	varBsBorderWidth,
+	varBsGradient,
 	varBsLinkColor,
 	varBsLinkHoverColor,
 } from '../../../../theme-contract/_vars.css'
+import {
+	varBsBtnCloseBg,
+	varBsBtnCloseColor,
+	varBsBtnCloseDisabledOpacity,
+	varBsBtnCloseFocusOpacity,
+	varBsBtnCloseFocusShadow,
+	varBsBtnCloseHoverOpacity,
+	varBsBtnCloseOpacity,
+} from '../../../../theme-contract/ui/alerts/_vars.css'
 import {
 	varBsBtnActiveBg,
 	varBsBtnActiveBorderColor,
@@ -35,9 +47,30 @@ import {
 	varBsBtnPaddingX,
 	varBsBtnPaddingY,
 } from '../../../../theme-contract/ui/buttons/_vars.css'
+import { varBsModalHeaderPaddingX, varBsModalHeaderPaddingY } from '../../../../theme-contract/ui/modal/_vars.css'
+import { varBsToastPaddingX } from '../../../../theme-contract/ui/toasts/_vars.css'
+import { varBsBtnCloseFilter, varBsOffcanvasPaddingX, varBsOffcanvasPaddingY } from '../../../../theme-contract/utilities/generated/_vars.css'
+
+import { fieldset } from '../../../../theme-contract/forms/contract.css'
+
+import { inputGroup } from '../../../../theme-contract/forms/contract.css'
+import {
+	active,
+	bgLight,
+	btnClose,
+	btnCloseWhite,
+	btnGroupLg,
+	btnGroupSm,
+	btnGroupVertical,
+	disabled,
+	inputGroupLg,
+	inputGroupSm,
+	placeholder,
+} from '../../../../theme-contract/literal/contract.css'
+import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
+import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnCheck,
 	btnDanger,
 	btnDark,
@@ -59,10 +92,50 @@ import {
 	btnSuccess,
 	btnWarning,
 } from '../../../../theme-contract/ui/buttons/contract.css'
-import { btnShowHook } from '../../../../theme-contract/ui/dropdowns/contract.css'
-import { quartzScope } from '../../scope.css'
+import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
+import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
+import { show } from '../../../../theme-contract/ui/navs/contract.css'
+import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
+import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
-// ── Base .btn ─────────────────────────────────────────────────────────────────
+globalStyle(`${quartzScope}${btnCheck}`, {
+	position: 'absolute',
+	clip: 'rect(0, 0, 0, 0)',
+	pointerEvents: 'none',
+})
+
+globalStyle(`${quartzScope}${btnCheck}[disabled] + ${quartzScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${quartzScope}${btnCheck}:disabled + ${quartzScope}${btn}`, {
+	pointerEvents: 'none',
+	filter: 'none',
+	opacity: '0.65',
+})
+
+globalStyle(`${quartzScope}${inputGroup} ${quartzScope}${btn}`, {
+	position: 'relative',
+	zIndex: '2',
+})
+
+globalStyle(`${quartzScope}${inputGroup} ${quartzScope}${btn}:focus`, {
+	zIndex: '5',
+})
+
+globalStyle(`${quartzScope}${inputGroupLg} > ${quartzScope}${btn}`, {
+	padding: '0.5rem 1rem',
+	fontSize: '1.25rem',
+	borderRadius: varBsBorderRadiusLg,
+})
+
+globalStyle(`${quartzScope}${inputGroupSm} > ${quartzScope}${btn}`, {
+	padding: '0.25rem 0.5rem',
+	fontSize: '0.875rem',
+	borderRadius: varBsBorderRadiusSm,
+})
 
 globalStyle(`${quartzScope}${btn}`, {
 	vars: {
@@ -82,7 +155,6 @@ globalStyle(`${quartzScope}${btn}`, {
 		[varBsBtnDisabledOpacity]: '0.65',
 		[varBsBtnFocusBoxShadow]: `0 0 0 0.25rem rgba(${varBsBtnFocusBoxShadowRgb}, .5)`,
 	},
-	appearance: 'button',
 	display: 'inline-block',
 	padding: `${varBsBtnPaddingY} ${varBsBtnPaddingX}`,
 	fontFamily: varBsBtnFontFamily,
@@ -97,11 +169,13 @@ globalStyle(`${quartzScope}${btn}`, {
 	WebkitUserSelect: 'none',
 	MozUserSelect: 'none',
 	userSelect: 'none',
-	backgroundColor: varBsBtnBg,
 	border: `${varBsBtnBorderWidth} solid ${varBsBtnBorderColor}`,
 	borderRadius: varBsBtnBorderRadius,
-	transition:
-		'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+	backgroundColor: varBsBtnBg,
+	transition: 'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+})
+
+globalStyle(`${quartzScope}${btn}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -115,115 +189,103 @@ globalStyle(`${quartzScope}${btn}:hover`, {
 	borderColor: varBsBtnHoverBorderColor,
 })
 
+globalStyle(`${quartzScope}${btnCheck} + ${quartzScope}${btn}:hover`, {
+	color: varBsBtnColor,
+	backgroundColor: varBsBtnBg,
+	borderColor: varBsBtnBorderColor,
+})
+
 globalStyle(`${quartzScope}${btn}:focus-visible`, {
 	color: varBsBtnHoverColor,
 	backgroundColor: varBsBtnHoverBg,
 	borderColor: varBsBtnHoverBorderColor,
-	outline: 0,
+	outline: '0',
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
-globalStyle(
-	[
-		`${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}`,
-		`:not(${quartzScope}${btnCheck}) + ${quartzScope}${btn}:active`,
-		`${quartzScope}${btn}:first-child:active`,
-		`${quartzScope}${btn}${btnActiveHook}`,
-		`${quartzScope}${btn}${btnShowHook}`,
-	].join(', '),
-	{
-		color: varBsBtnActiveColor,
-		backgroundColor: varBsBtnActiveBg,
-		borderColor: varBsBtnActiveBorderColor,
-	},
-)
+globalStyle(`${quartzScope}${btnCheck}:focus-visible + ${quartzScope}${btn}`, {
+	borderColor: varBsBtnHoverBorderColor,
+	outline: '0',
+	boxShadow: varBsBtnFocusBoxShadow,
+})
 
-globalStyle(
-	[
-		`${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}:focus-visible`,
-		`:not(${quartzScope}${btnCheck}) + ${quartzScope}${btn}:active:focus-visible`,
-		`${quartzScope}${btn}:first-child:active:focus-visible`,
-		`${quartzScope}${btn}${btnActiveHook}:focus-visible`,
-		`${quartzScope}${btn}${btnShowHook}:focus-visible`,
-	].join(', '),
-	{
-		boxShadow: varBsBtnFocusBoxShadow,
-	},
-)
+globalStyle(`${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-globalStyle(
-	[
-		`${quartzScope}${btn}:disabled`,
-		`fieldset:disabled ${quartzScope}${btn}`,
-	].join(', '),
-	{
-		color: varBsBtnDisabledColor,
-		pointerEvents: 'none',
-		backgroundColor: varBsBtnDisabledBg,
-		borderColor: varBsBtnDisabledBorderColor,
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
+globalStyle(`${quartzScope}:not(${btnCheck}) + ${quartzScope}${btn}:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
 
-globalStyle(`${quartzScope}${btnCheck}`, {
-	position: 'absolute',
-	clip: 'rect(0, 0, 0, 0)',
+globalStyle(`${quartzScope}${btn}:first-child:active`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${quartzScope}${btn}${active}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${quartzScope}${btn}${show}`, {
+	color: varBsBtnActiveColor,
+	backgroundColor: varBsBtnActiveBg,
+	borderColor: varBsBtnActiveBorderColor,
+})
+
+globalStyle(`${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${quartzScope}:not(${btnCheck}) + ${quartzScope}${btn}:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${quartzScope}${btn}:first-child:active:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${quartzScope}${btn}${active}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${quartzScope}${btn}${show}:focus-visible`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${quartzScope}${btnCheck}:checked:focus-visible + ${quartzScope}${btn}`, {
+	boxShadow: varBsBtnFocusBoxShadow,
+})
+
+globalStyle(`${quartzScope}${btn}:disabled`, {
+	color: varBsBtnDisabledColor,
 	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-globalStyle(
-	[
-		`${quartzScope}${btnCheck}[disabled] + ${quartzScope}${btn}`,
-		`${quartzScope}${btnCheck}:disabled + ${quartzScope}${btn}`,
-	].join(', '),
-	{
-		pointerEvents: 'none',
-		filter: 'none',
-		opacity: varBsBtnDisabledOpacity,
-	},
-)
-
-// ── Size modifiers ────────────────────────────────────────────────────────────
-
-globalStyle(`${quartzScope}${btnSm}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.25rem',
-		[varBsBtnPaddingX]: '0.5rem',
-		[varBsBtnFontSize]: '0.875rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
-	},
+globalStyle(`${quartzScope}${btn}${disabled}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
 
-globalStyle(`${quartzScope}${btnLg}`, {
-	vars: {
-		[varBsBtnPaddingY]: '0.5rem',
-		[varBsBtnPaddingX]: '1rem',
-		[varBsBtnFontSize]: '1.25rem',
-		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
-	},
+globalStyle(`${quartzScope}${fieldset}:disabled ${quartzScope}${btn}`, {
+	color: varBsBtnDisabledColor,
+	pointerEvents: 'none',
+	backgroundColor: varBsBtnDisabledBg,
+	borderColor: varBsBtnDisabledBorderColor,
+	opacity: varBsBtnDisabledOpacity,
 })
-
-// ── .btn-link ─────────────────────────────────────────────────────────────────
-
-globalStyle(`${quartzScope}${btnLink}`, {
-	vars: {
-		[varBsBtnFontWeight]: '400',
-		[varBsBtnColor]: varBsLinkColor,
-		[varBsBtnBg]: 'transparent',
-		[varBsBtnBorderColor]: 'transparent',
-		[varBsBtnHoverColor]: varBsLinkHoverColor,
-		[varBsBtnHoverBorderColor]: 'transparent',
-		[varBsBtnActiveColor]: varBsLinkHoverColor,
-		[varBsBtnActiveBorderColor]: 'transparent',
-		[varBsBtnDisabledColor]: '#6c757d',
-		[varBsBtnDisabledBorderColor]: 'transparent',
-		[varBsBtnBoxShadow]: '0 0 0 #000',
-		[varBsBtnFocusBoxShadowRgb]: '217, 217, 217',
-	},
-	textDecoration: 'underline',
-})
-
-// ── Solid colour variants ─────────────────────────────────────────────────────
 
 globalStyle(`${quartzScope}${btnPrimary}`, {
 	vars: {
@@ -261,17 +323,6 @@ globalStyle(`${quartzScope}${btnSecondary}`, {
 		[varBsBtnDisabledBg]: 'rgba(255, 255, 255, 0.4)',
 		[varBsBtnDisabledBorderColor]: 'rgba(255, 255, 255, 0.4)',
 	},
-	color: '#fff',
-	border: 'none',
-})
-
-// Quartz: btn-secondary forces white text on hover/focus/disabled
-globalStyle(`${quartzScope}${btnSecondary}:hover, ${quartzScope}${btnSecondary}:focus`, {
-	color: '#fff',
-})
-
-globalStyle(`${quartzScope}${btnSecondary}.disabled`, {
-	color: '#fff',
 })
 
 globalStyle(`${quartzScope}${btnSuccess}`, {
@@ -388,8 +439,6 @@ globalStyle(`${quartzScope}${btnDark}`, {
 	},
 })
 
-// ── Outline variants ──────────────────────────────────────────────────────────
-
 globalStyle(`${quartzScope}${btnOutlinePrimary}`, {
 	vars: {
 		[varBsBtnColor]: '#e83283',
@@ -405,6 +454,7 @@ globalStyle(`${quartzScope}${btnOutlinePrimary}`, {
 		[varBsBtnDisabledColor]: '#e83283',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#e83283',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -423,6 +473,7 @@ globalStyle(`${quartzScope}${btnOutlineSecondary}`, {
 		[varBsBtnDisabledColor]: 'rgba(255, 255, 255, 0.4)',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: 'rgba(255, 255, 255, 0.4)',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -441,6 +492,7 @@ globalStyle(`${quartzScope}${btnOutlineSuccess}`, {
 		[varBsBtnDisabledColor]: '#41d7a7',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#41d7a7',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -459,6 +511,7 @@ globalStyle(`${quartzScope}${btnOutlineInfo}`, {
 		[varBsBtnDisabledColor]: '#39cbfb',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#39cbfb',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -477,6 +530,7 @@ globalStyle(`${quartzScope}${btnOutlineWarning}`, {
 		[varBsBtnDisabledColor]: '#ffc107',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#ffc107',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -495,6 +549,7 @@ globalStyle(`${quartzScope}${btnOutlineDanger}`, {
 		[varBsBtnDisabledColor]: '#fd7e14',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#fd7e14',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -513,6 +568,7 @@ globalStyle(`${quartzScope}${btnOutlineLight}`, {
 		[varBsBtnDisabledColor]: '#e9e9e8',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#e9e9e8',
+		[varBsGradient]: 'none',
 	},
 })
 
@@ -531,5 +587,337 @@ globalStyle(`${quartzScope}${btnOutlineDark}`, {
 		[varBsBtnDisabledColor]: '#212529',
 		[varBsBtnDisabledBg]: 'transparent',
 		[varBsBtnDisabledBorderColor]: '#212529',
+		[varBsGradient]: 'none',
 	},
+})
+
+globalStyle(`${quartzScope}${btnLink}`, {
+	vars: {
+		[varBsBtnFontWeight]: '400',
+		[varBsBtnColor]: varBsLinkColor,
+		[varBsBtnBg]: 'transparent',
+		[varBsBtnBorderColor]: 'transparent',
+		[varBsBtnHoverColor]: varBsLinkHoverColor,
+		[varBsBtnHoverBorderColor]: 'transparent',
+		[varBsBtnActiveColor]: varBsLinkHoverColor,
+		[varBsBtnActiveBorderColor]: 'transparent',
+		[varBsBtnDisabledColor]: '#6c757d',
+		[varBsBtnDisabledBorderColor]: 'transparent',
+		[varBsBtnBoxShadow]: '0 0 0 #000',
+		[varBsBtnFocusBoxShadowRgb]: '217, 217, 217',
+	},
+	textDecoration: 'underline',
+})
+
+globalStyle(`${quartzScope}${btnLink}:focus-visible`, {
+	color: varBsBtnColor,
+})
+
+globalStyle(`${quartzScope}${btnLink}:hover`, {
+	color: varBsBtnHoverColor,
+})
+
+globalStyle(`${quartzScope}${btnLg}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${quartzScope}${btnGroupLg} > ${quartzScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.5rem',
+		[varBsBtnPaddingX]: '1rem',
+		[varBsBtnFontSize]: '1.25rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusLg,
+	},
+})
+
+globalStyle(`${quartzScope}${btnSm}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${quartzScope}${btnGroupSm} > ${quartzScope}${btn}`, {
+	vars: {
+		[varBsBtnPaddingY]: '0.25rem',
+		[varBsBtnPaddingX]: '0.5rem',
+		[varBsBtnFontSize]: '0.875rem',
+		[varBsBtnBorderRadius]: varBsBorderRadiusSm,
+	},
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}`, {
+	position: 'relative',
+	flex: '1 1 auto',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnCheck}:focus + ${quartzScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btnCheck}:checked + ${quartzScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btnCheck}:focus + ${quartzScope}${btn}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:hover`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:focus`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:active`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}${active}`, {
+	zIndex: '1',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}:not(${btnCheck}:first-child) + ${quartzScope}${btn}`, {
+	marginLeft: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}${dropdownToggleSplit}:first-child`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnGroup}:not(:last-child) > ${quartzScope}${btn}`, {
+	borderTopRightRadius: '0',
+	borderBottomRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}:not(${btnCheck}) + ${quartzScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btnGroup}:not(:first-child) > ${quartzScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '1.125rem',
+	paddingLeft: '1.125rem',
+})
+
+globalStyle(`${quartzScope}${btnSm} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${quartzScope}${btnGroupSm} > ${quartzScope}${btn} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.375rem',
+	paddingLeft: '0.375rem',
+})
+
+globalStyle(`${quartzScope}${btnLg} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${quartzScope}${btnGroupLg} > ${quartzScope}${btn} + ${quartzScope}${dropdownToggleSplit}`, {
+	paddingRight: '0.75rem',
+	paddingLeft: '0.75rem',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}`, {
+	width: '100%',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:not(:first-child)`, {
+	marginTop: `calc(-1 * ${varBsBorderWidth})`,
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:not(:last-child):not(${dropdownToggle})`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btnGroup}:not(:last-child) > ${quartzScope}${btn}`, {
+	borderBottomRightRadius: '0',
+	borderBottomLeftRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:nth-child(n+3)`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}:not(${btnCheck}) + ${quartzScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btnGroup}:not(:first-child) > ${quartzScope}${btn}`, {
+	borderTopLeftRadius: '0',
+	borderTopRightRadius: '0',
+})
+
+globalStyle(`${quartzScope}${alertDismissible} ${quartzScope}${btnClose}`, {
+	position: 'absolute',
+	top: '0',
+	right: '0',
+	zIndex: '2',
+	padding: '2.5rem 2rem',
+})
+
+globalStyle(`${quartzScope}${btnClose}`, {
+	vars: {
+		[varBsBtnCloseColor]: '#fff',
+		[varBsBtnCloseBg]: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' fill=\'%23fff\'%3e%3cpath d=\'M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414\'/%3e%3c/svg%3e")',
+		[varBsBtnCloseOpacity]: '0.5',
+		[varBsBtnCloseHoverOpacity]: '0.75',
+		[varBsBtnCloseFocusShadow]: '0 0 0 0.25rem rgba(232, 50, 131, 0.25)',
+		[varBsBtnCloseFocusOpacity]: '1',
+		[varBsBtnCloseDisabledOpacity]: '0.25',
+	},
+	boxSizing: 'content-box',
+	width: '1em',
+	height: '1em',
+	padding: '0.25em 0.25em',
+	color: varBsBtnCloseColor,
+	background: `transparent ${varBsBtnCloseBg} center/1em auto no-repeat`,
+	filter: varBsBtnCloseFilter,
+	border: '0',
+	borderRadius: '0.5rem',
+	opacity: varBsBtnCloseOpacity,
+})
+
+globalStyle(`${quartzScope}${btnClose}:hover`, {
+	color: varBsBtnCloseColor,
+	textDecoration: 'none',
+	opacity: varBsBtnCloseHoverOpacity,
+})
+
+globalStyle(`${quartzScope}${btnClose}:focus`, {
+	outline: '0',
+	boxShadow: varBsBtnCloseFocusShadow,
+	opacity: varBsBtnCloseFocusOpacity,
+})
+
+globalStyle(`${quartzScope}${btnClose}:disabled`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${quartzScope}${btnClose}${disabled}`, {
+	pointerEvents: 'none',
+	WebkitUserSelect: 'none',
+	MozUserSelect: 'none',
+	userSelect: 'none',
+	opacity: varBsBtnCloseDisabledOpacity,
+})
+
+globalStyle(`${quartzScope}${btnCloseWhite}`, {
+	vars: {
+		[varBsBtnCloseFilter]: 'invert(1) grayscale(100%) brightness(200%)',
+	},
+})
+
+globalStyle(`${quartzScope}${toastHeader} ${quartzScope}${btnClose}`, {
+	marginRight: `calc(-0.5 * ${varBsToastPaddingX})`,
+	marginLeft: varBsToastPaddingX,
+})
+
+globalStyle(`${quartzScope}${modalHeader} ${quartzScope}${btnClose}`, {
+	padding: `calc(${varBsModalHeaderPaddingY} * 0.5) calc(${varBsModalHeaderPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsModalHeaderPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsModalHeaderPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${quartzScope}${offcanvasHeader} ${quartzScope}${btnClose}`, {
+	padding: `calc(${varBsOffcanvasPaddingY} * 0.5) calc(${varBsOffcanvasPaddingX} * 0.5)`,
+	marginTop: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginRight: `calc(-0.5 * ${varBsOffcanvasPaddingX})`,
+	marginBottom: `calc(-0.5 * ${varBsOffcanvasPaddingY})`,
+	marginLeft: 'auto',
+})
+
+globalStyle(`${quartzScope}${placeholder}${btn}::before`, {
+	display: 'inline-block',
+	content: '""',
+})
+
+globalStyle(`${quartzScope}${btnSecondary}`, {
+	color: '#fff',
+	border: 'none',
+})
+
+globalStyle(`${quartzScope}${btnSecondary}:hover`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${btnSecondary}:focus`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${btnSecondary}${disabled}`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${btnGroup} > ${quartzScope}${btn}:not(:first-child)`, {
+	marginLeft: '0',
+})
+
+globalStyle(`${quartzScope}${btnGroupVertical} > ${quartzScope}${btn}:not(:first-child)`, {
+	marginTop: '0',
+})
+
+globalStyle(`${quartzScope}${bgLight} ${quartzScope}${btn}`, {
+	backgroundColor: 'rgba(0, 0, 0, 0.2)',
 })

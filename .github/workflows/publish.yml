@@ -1,0 +1,94 @@
+# Publish do @arijs/bootswatch-ve no npm — via TRUSTED PUBLISHING (OIDC).
+#
+# Não usa token de longa duração (NPM_TOKEN). O GitHub Actions se autentica no
+# npm por OpenID Connect: o npm aceita o publish deste workflow com um token
+# efêmero assinado, e gera provenance automaticamente. Funciona mesmo com 2FA
+# ligado na conta. (Os tokens "bypass 2FA" estão sendo depreciados — ago/2026
+# param de pular 2FA em ops sensíveis; ~jan/2027 perdem o publish direto.)
+#
+# PRÉ-REQUISITOS (uma vez, no npmjs.com):
+#   Settings do pacote → Trusted Publishers → Add → GitHub Actions:
+#     - Organization/user: arijs
+#     - Repository:        bootswatch-solid
+#     - Workflow filename: publish.yml
+#   Obs.: o pacote precisa existir p/ configurar o trusted publisher. Na 1ª vez,
+#   faça UM publish manual (`npm publish` local, com OTP) p/ criar
+#   @arijs/bootswatch-ve; depois configure o trusted publisher e os próximos
+#   releases publicam sozinhos por aqui.
+#
+# Dispara ao publicar um Release (tag vX.Y.Z) ou manualmente.
+
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versão a publicar (sem o "v", ex.: 0.1.0)'
+        required: true
+        type: string
+      dry_run:
+        description: 'npm publish --dry-run (não publica de verdade)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  publish:
+    name: Build + npm publish (OIDC)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # necessário p/ o OIDC do trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      # Trusted publishing exige npm >= 11.5.1 (o npm que vem com o Node 22 é
+      # mais antigo). Atualiza o CLI.
+      - name: Atualiza o npm (>= 11.5.1 p/ OIDC)
+        run: npm install -g npm@latest
+
+      - run: npm ci
+
+      # Deriva a versão: da tag do release (tira o "v") ou da entrada manual.
+      - name: Resolve a versão
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            V="${{ github.event.release.tag_name }}"
+            V="${V#v}"
+          else
+            V="${{ github.event.inputs.version }}"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Versão resolvida: $V"
+
+      # Gate antes de publicar: 0 literal em todos os temas.
+      - name: Build do pacote (0 literal)
+        run: npm run pkg:build
+
+      - name: Assembla a raiz publicável
+        env:
+          BSVE_VERSION: ${{ steps.ver.outputs.version }}
+        run: npm run pkg:pack
+
+      - name: Confere a versão montada
+        run: node -e "const v=require('./package/package.json').version; if(v!=='${{ steps.ver.outputs.version }}'){console.error('versão divergente:',v);process.exit(1)} console.log('package/package.json →',v)"
+
+      # Sem NODE_AUTH_TOKEN: o OIDC (id-token: write) + trusted publisher
+      # configurado no npmjs.com autenticam o publish. Provenance é automática.
+      - name: npm publish (trusted publishing)
+        working-directory: package
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            npm publish --dry-run
+          else
+            npm publish
+          fi

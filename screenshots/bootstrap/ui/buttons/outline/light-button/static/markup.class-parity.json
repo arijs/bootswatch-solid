@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "totalElements": 6,
+    "elementsChecked": 6,
+    "elementsWithGaps": 1,
+    "totalExpected": 2,
+    "totalMissing": 0
+  },
+  "gaps": [
+    {
+      "path": "/html[1]/body[1]/div[1]/div[1]/div[1]/button[1]",
+      "tag": "button",
+      "baselineClasses": [
+        "btn",
+        "btn-outline-light",
+        "pwhook-btn"
+      ],
+      "expectedSymbols": [
+        "btn",
+        "btnOutlineLight"
+      ],
+      "stampedSymbols": [
+        "btn",
+        "btnOutlineLight",
+        "inputFontFamily"
+      ],
+      "missingSymbols": [],
+      "unmappedClasses": [
+        "pwhook-btn"
+      ]
+    }
+  ]
+}
