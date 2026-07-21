@@ -166,11 +166,19 @@ async function main() {
 		'bgLight',
 		'roundedPill',
 	]
+	// Public vars (--bs-*) de `_public-vars.css.ts`: colidem em NOME com as vars
+	// internas de `_vars.css.ts`, então o `export *` as descarta por ambiguidade
+	// (só as 2 exclusivas do public-vars sobreviviam). Re-export explícito expõe
+	// TODAS — resolve p/ o hash da public var (o handle tipado do valor `--bs-*`).
+	// Lê os nomes do próprio arquivo p/ pegar automaticamente novas vars.
+	const publicVarsSrc = await readFile(path.join(VE, 'theme-contract', '_public-vars.css.ts'), 'utf8')
+	const PUBLIC_VARS = [...publicVarsSrc.matchAll(/export const (var\w+)\s*=\s*createVar/g)].map((m) => m[1])
 	await writeFile(
 		path.join(VE, '__pkg', 'contract.ts'),
 		[
 			...contractModules.map((m) => `export * from '${m}'`),
 			`export { ${LITERAL_GENERICS.join(', ')} } from '../theme-contract/literal/contract.css'`,
+			`export { ${PUBLIC_VARS.join(', ')} } from '../theme-contract/_public-vars.css'`,
 			'',
 		].join('\n'),
 	)
