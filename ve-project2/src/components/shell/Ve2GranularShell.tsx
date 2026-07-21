@@ -1,5 +1,12 @@
 import { useLocation } from '@solidjs/router'
-import { createMemo, createRenderEffect, type JSX } from 'solid-js'
+import {
+	createEffect,
+	createMemo,
+	createRenderEffect,
+	createSignal,
+	type JSX,
+	Show,
+} from 'solid-js'
 import { ThemeContext } from '../../context/ThemeContext'
 import { bodyFrame, bodyText, vars } from '../../theme-contract/theme-contract.css'
 import { normalizeVe2StyleFamilies, type Ve2StyleFamily } from '../../theme-runtime/style-families'
@@ -8,7 +15,7 @@ import {
 	Ve2StyleLoaderContext,
 } from '../../theme-runtime/style-loader-context'
 import {
-	resolveVe2ThemeClass,
+	loadVe2ThemeScope,
 	resolveVe2ThemeKey,
 	type Ve2ThemeKey,
 	ve2ThemeFamilyLoaders,
@@ -83,9 +90,15 @@ export function Ve2GranularShell(props: { children: JSX.Element }) {
 		return resolveVe2ThemeKey(params.get('theme'))
 	})
 
-	const themeClass = createMemo(() => {
-		const resolved = resolveVe2ThemeClass(themeKey())
-		return resolved || resolveVe2ThemeClass('bootstrap')
+	// Scope class + its side-effect styles load dynamically per active theme, so
+	// only one scope.css is fetched instead of all 27. Gate rendering until ready.
+	const [themeClass, setThemeClass] = createSignal<string>()
+	createEffect(themeKey, (theme) => {
+		setThemeClass(undefined)
+		void loadVe2ThemeScope(theme).then((scope) => {
+			// Ignore a stale resolution if the theme changed while loading.
+			if (themeKey() === theme) setThemeClass(scope)
+		})
 	})
 
 	const styleLoaderApi: Ve2StyleLoaderApi = {
@@ -106,12 +119,16 @@ export function Ve2GranularShell(props: { children: JSX.Element }) {
 	)
 
 	return (
-		<ThemeContext value={themeClass()}>
-			<Ve2StyleLoaderContext value={styleLoaderApi}>
-				<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>
-					{props.children}
-				</div>
-			</Ve2StyleLoaderContext>
-		</ThemeContext>
+		<Show when={themeClass()}>
+			{(scope) => (
+				<ThemeContext value={scope()}>
+					<Ve2StyleLoaderContext value={styleLoaderApi}>
+						<div class={`${scope()} ${vars} ${bodyFrame} ${bodyText}`}>
+							{props.children}
+						</div>
+					</Ve2StyleLoaderContext>
+				</ThemeContext>
+			)}
+		</Show>
 	)
 }

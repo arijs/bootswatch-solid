@@ -1,7 +1,9 @@
 import { useLocation } from '@solidjs/router'
-import { createMemo, type JSX, Show } from 'solid-js'
+import { createMemo, type JSX, lazy, Show } from 'solid-js'
 import { Ve2GranularShell } from './Ve2GranularShell'
-import { Ve2Shell } from './Ve2Shell'
+
+// Lazy so Ve2Shell's 27 static scope.css imports don't load in granular mode.
+const Ve2Shell = lazy(() => import('./Ve2Shell').then((m) => ({ default: m.Ve2Shell })))
 
 function useStyleLoaderMode(): () => 'theme' | 'granular' | 'literal' {
 	const location = useLocation()
