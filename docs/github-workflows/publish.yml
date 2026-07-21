@@ -1,0 +1,78 @@
+# Publish do @arijs/bootswatch-ve no npm.
+#
+# Dispara ao publicar um GitHub Release (tag `vX.Y.Z`) ou manualmente
+# (workflow_dispatch com a versão). Monta a raiz publicável `package/` e roda
+# `npm publish` de dentro dela. A versão vem da tag/entrada via BSVE_VERSION.
+#
+# Pré-requisito: secret `NPM_TOKEN` (token de automação do npm com acesso de
+# publish ao escopo @arijs). O acesso público já está em package.json
+# (publishConfig.access = public).
+
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versão a publicar (sem o "v", ex.: 0.1.0)'
+        required: true
+        type: string
+      dry_run:
+        description: 'npm publish --dry-run (não publica de verdade)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  publish:
+    name: Build + npm publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+
+      # Deriva a versão: da tag do release (tira o "v") ou da entrada manual.
+      - name: Resolve a versão
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            V="${{ github.event.release.tag_name }}"
+            V="${V#v}"
+          else
+            V="${{ github.event.inputs.version }}"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Versão resolvida: $V"
+
+      # Gate antes de publicar: 0 literal em todos os temas.
+      - name: Build do pacote (0 literal)
+        run: npm run pkg:build
+
+      - name: Assembla a raiz publicável
+        env:
+          BSVE_VERSION: ${{ steps.ver.outputs.version }}
+        run: npm run pkg:pack
+
+      - name: Confere a versão montada
+        run: node -e "const v=require('./package/package.json').version; if(v!=='${{ steps.ver.outputs.version }}'){console.error('versão divergente:',v);process.exit(1)} console.log('package/package.json →',v)"
+
+      - name: npm publish
+        working-directory: package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            npm publish --dry-run
+          else
+            npm publish
+          fi

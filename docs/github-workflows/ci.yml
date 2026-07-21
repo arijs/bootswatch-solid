@@ -1,0 +1,79 @@
+# CI do pacote @arijs/bootswatch-ve — gates DETERMINÍSTICOS (independentes de
+# ambiente). NÃO roda a verificação por screenshots: o pixel-diff absoluto
+# depende das fontes do ambiente (font-AA), então a verificação de fidelidade
+# roda na máquina do mantenedor / num runner com as fontes dos baselines.
+# Ver docs/packaging-plan.md (nota metodológica do fix split-caret).
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: Build & gates do pacote
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Gate 1: compila os 27 temas só com o plugin VE; FALHA se sobrar qualquer
+      # literal --bs-* (build-package.mjs sai com código 1).
+      - name: Build do pacote (0 literal em 27 temas)
+        run: npm run pkg:build
+      # Gate 2: monta a raiz publicável (contract + themes + preset + solid).
+      - name: Assembla o pacote publicável
+        run: npm run pkg:pack
+      # Gate 3: fidelidade do preset UnoCSS vs bootstrap.css (46/46, determinístico).
+      - name: Probe do preset
+        run: npm run pkg:probe
+      - name: npm pack --dry-run (dimensiona o tarball)
+        run: cd package && npm pack --dry-run
+
+  generated-up-to-date:
+    name: Fontes geradas estão atualizadas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Regenera as famílias dos 27 temas e falha se o resultado divergir do que
+      # está commitado (pega edição de fonte sem regenerar).
+      - name: Regenera famílias (todos os temas)
+        run: npm run pkg:generate
+      - name: Confirma que nada mudou
+        run: |
+          if ! git diff --quiet -- ve-project2/src/themes; then
+            echo "::error::Fontes geradas desatualizadas. Rode 'npm run pkg:generate' e commite."
+            git diff --stat -- ve-project2/src/themes
+            exit 1
+          fi
+          echo "OK — famílias geradas conferem com o commit."
+
+  lint:
+    name: Lint (informativo)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Biome check
+        run: npx biome ci .
