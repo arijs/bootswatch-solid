@@ -11,7 +11,9 @@ escopo `workflow` p/ escrever naquele diretório.
     git commit -m "ci: ativa workflows do pacote"
 
 - `ci.yml` — gates determinísticos em push/PR na `main`.
-- `publish.yml` — `npm publish` ao publicar um Release `vX.Y.Z` (requer o
-  secret `NPM_TOKEN`).
+- `publish.yml` — `npm publish` ao publicar um Release `vX.Y.Z`, via
+  **trusted publishing (OIDC)** — sem `NPM_TOKEN`. Requer configurar o trusted
+  publisher no npmjs.com (repo `arijs/bootswatch-solid`, workflow `publish.yml`)
+  e um 1º publish manual p/ criar o pacote (ver cabeçalho do `publish.yml`).
 
 Detalhes no `docs/packaging-plan.md` (F5).
