@@ -145,9 +145,34 @@ async function main() {
 
 	// Barrel do contract (theme-agnostic) — compilado junto do 1º tema.
 	await mkdir(path.join(VE, '__pkg'), { recursive: true })
+	// Classes GENÉRICAS que carregam estilo real e vivem só em `literal/` (o modelo
+	// do Bootstrap 5.3: `.componente` + `.active`/`.disabled`/`.fade`; cor de badge
+	// via `.bg-*`/`.rounded-pill`). O `export *` das famílias exclui `literal/`, e as
+	// cópias em `ui/*`/`utilities/generated` são VAZIAS (vestigiais). Sem estas, o
+	// consumidor não alcança as classes que realmente estilizam estados/cores.
+	// Re-export explícito VENCE a ambiguidade do `export *` → resolve p/ o hash
+	// estilizado de literal. (Um genérico conserta o estado de TODOS os componentes.)
+	const LITERAL_GENERICS = [
+		'active',
+		'disabled',
+		'fade',
+		'collapsing',
+		'bgPrimary',
+		'bgSecondary',
+		'bgSuccess',
+		'bgDanger',
+		'bgWarning',
+		'bgInfo',
+		'bgLight',
+		'roundedPill',
+	]
 	await writeFile(
 		path.join(VE, '__pkg', 'contract.ts'),
-		[...contractModules.map((m) => `export * from '${m}'`), ''].join('\n'),
+		[
+			...contractModules.map((m) => `export * from '${m}'`),
+			`export { ${LITERAL_GENERICS.join(', ')} } from '../theme-contract/literal/contract.css'`,
+			'',
+		].join('\n'),
 	)
 
 	await rm(OUT, { recursive: true, force: true })
