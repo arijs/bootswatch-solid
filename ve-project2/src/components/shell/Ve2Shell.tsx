@@ -111,7 +111,8 @@ async function ensureThemeLoaded(key: string, literalStyles = false): Promise<vo
 	}
 
 	const loaders = literalStyles ? literalThemeLoaders : themeLoaders
-	const loader = loaders[key] ?? (literalStyles ? literalThemeLoaders.bootstrap : themeLoaders.bootstrap)
+	const loader =
+		loaders[key] ?? (literalStyles ? literalThemeLoaders.bootstrap : themeLoaders.bootstrap)
 	const loadPromise = loader()
 		.then(() => {
 			loadedThemes.add(cacheKey)
@@ -267,7 +268,9 @@ export function Ve2Shell(props: { children: JSX.Element; literalStyles?: boolean
 	return (
 		<Show when={themeReady()}>
 			<ThemeContext value={themeClass()}>
-				<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>{props.children}</div>
+				<div class={`${themeClass()} ${vars} ${bodyFrame} ${bodyText}`}>
+					{props.children}
+				</div>
 			</ThemeContext>
 		</Show>
 	)

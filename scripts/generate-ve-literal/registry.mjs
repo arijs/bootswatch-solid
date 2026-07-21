@@ -26,10 +26,33 @@ import {
 import { classToSymbol, extractSelectorTokens } from './selector-parser.mjs'
 
 export const ALL_THEMES = [
-	'bootstrap', 'brite', 'cerulean', 'cosmo', 'cyborg', 'darkly', 'flatly',
-	'journal', 'litera', 'lumen', 'lux', 'materia', 'minty', 'morph', 'pulse',
-	'quartz', 'sandstone', 'simplex', 'sketchy', 'slate', 'solar', 'spacelab',
-	'superhero', 'united', 'vapor', 'yeti', 'zephyr',
+	'bootstrap',
+	'brite',
+	'cerulean',
+	'cosmo',
+	'cyborg',
+	'darkly',
+	'flatly',
+	'journal',
+	'litera',
+	'lumen',
+	'lux',
+	'materia',
+	'minty',
+	'morph',
+	'pulse',
+	'quartz',
+	'sandstone',
+	'simplex',
+	'sketchy',
+	'slate',
+	'solar',
+	'spacelab',
+	'superhero',
+	'united',
+	'vapor',
+	'yeti',
+	'zephyr',
 ]
 
 // Element contract names from the §5.3 table (used for collision detection).
@@ -57,7 +80,7 @@ export async function buildCensus(themes = ALL_THEMES) {
 	const allClasses = new Set()
 	const allTags = new Set()
 	const classThemes = new Map() // cssClass → Set<theme>
-	const tagThemes = new Map()   // tag → Set<theme>
+	const tagThemes = new Map() // tag → Set<theme>
 
 	for (const theme of themes) {
 		let cssText
@@ -129,7 +152,8 @@ export async function buildCensus(themes = ALL_THEMES) {
 // ---------------------------------------------------------------------------
 
 function printCensus(census, themes) {
-	const { classMap, tagMap, collisions, missingTags, divergenceTags, classThemes, tagThemes } = census
+	const { classMap, tagMap, collisions, missingTags, divergenceTags, classThemes, tagThemes } =
+		census
 
 	console.log(`\n=== VE Literal Registry Census (${themes.length} themes) ===\n`)
 	console.log(`Class tokens:      ${classMap.size}`)
@@ -142,7 +166,9 @@ function printCensus(census, themes) {
 		console.log('\n--- Collisions (class symbol = element contract name) ---')
 		for (const [symbol, cssClass] of [...collisions].sort()) {
 			const renamed = `cls${symbol.charAt(0).toUpperCase()}${symbol.slice(1)}`
-			console.log(`  .${cssClass} → symbol "${symbol}" conflicts with element contract → renamed "${renamed}"`)
+			console.log(
+				`  .${cssClass} → symbol "${symbol}" conflicts with element contract → renamed "${renamed}"`,
+			)
 		}
 	}
 
@@ -180,17 +206,25 @@ function printCensus(census, themes) {
 		if (isBootswatch) bsWatch++
 		const origin = isBootswatch
 			? `[bootswatch: ${[...themeSet].sort().join(',')}]`
-			: onlyBootstrap ? '[bootstrap-only]' : '[shared]'
+			: onlyBootstrap
+				? '[bootstrap-only]'
+				: '[shared]'
 		console.log(`  .${cls.padEnd(45)} → ${symbol.padEnd(45)} ${origin}`)
 	}
 
-	console.log(`\nSummary: ${classMap.size} classes total, ${bsOnly} bootstrap-only, ${bsWatch} bootswatch-only`)
-	console.log(`         ${tagMap.size} tags mapped, ${missingTags.size} missing, ${divergenceTags.size} divergence-handled`)
+	console.log(
+		`\nSummary: ${classMap.size} classes total, ${bsOnly} bootstrap-only, ${bsWatch} bootswatch-only`,
+	)
+	console.log(
+		`         ${tagMap.size} tags mapped, ${missingTags.size} missing, ${divergenceTags.size} divergence-handled`,
+	)
 
 	if (missingTags.size > 0) {
 		console.log('\n[ATTENTION] Fix missing tags before T2 (contract generation).')
 	} else if (collisions.size > 0) {
-		console.log(`\n[OK] ${collisions.size} collisions auto-resolved with cls prefix — ready for T2.`)
+		console.log(
+			`\n[OK] ${collisions.size} collisions auto-resolved with cls prefix — ready for T2.`,
+		)
 	} else {
 		console.log('\n[OK] Census clean — ready for T2 contract generation.')
 	}
@@ -258,7 +292,9 @@ async function main() {
 	const themeArg = args.find((a) => a.startsWith('--theme='))
 
 	if (!doCensus) {
-		console.error('Usage: node scripts/generate-ve-literal/registry.mjs --census [--all-themes | --theme=<slug>]')
+		console.error(
+			'Usage: node scripts/generate-ve-literal/registry.mjs --census [--all-themes | --theme=<slug>]',
+		)
 		process.exit(1)
 	}
 

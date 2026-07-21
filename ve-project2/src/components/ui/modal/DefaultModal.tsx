@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,6 +6,7 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { h5 } from '../../../theme-contract/contents/heading/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btnClose } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
@@ -104,7 +102,10 @@ const DefaultModal: Component = () => {
 							>
 								Close
 							</button>
-							<button type="button" class={`${theme} ${elButton} ${btn} ${btnPrimary}`}>
+							<button
+								type="button"
+								class={`${theme} ${elButton} ${btn} ${btnPrimary}`}
+							>
 								Save changes
 							</button>
 						</div>

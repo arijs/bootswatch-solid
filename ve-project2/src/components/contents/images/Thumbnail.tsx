@@ -1,6 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { imgThumbnail } from '../../../theme-contract/contents/contract.css'
 import { elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
@@ -28,8 +32,8 @@ const Thumbnail: Component = () => {
 				tabindex="0"
 			>
 				<title>
-					A generic square placeholder image with a white border around it, making it resemble
-					a photograph taken with an old instant camera
+					A generic square placeholder image with a white border around it, making it
+					resemble a photograph taken with an old instant camera
 				</title>
 				<rect width="100%" height="100%" fill="#868e96" />
 				<text x="50%" y="50%" fill="#dee2e6" dy=".3em">

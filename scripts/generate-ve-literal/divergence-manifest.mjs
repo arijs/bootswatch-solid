@@ -41,9 +41,16 @@ export const divergences = [
 			{
 				// Typography props → bodyText (stamped on text containers and floating elements)
 				props: [
-					'font-family', 'font-size', 'font-weight', 'font-style',
-					'line-height', 'color', 'letter-spacing', 'text-align',
-					'-webkit-text-size-adjust', 'text-size-adjust',
+					'font-family',
+					'font-size',
+					'font-weight',
+					'font-style',
+					'line-height',
+					'color',
+					'letter-spacing',
+					'text-align',
+					'-webkit-text-size-adjust',
+					'text-size-adjust',
 				],
 				contract: 'bodyText',
 			},

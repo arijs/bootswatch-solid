@@ -1,9 +1,11 @@
 {
 	"files": {
 		"includes": [
-			"{src,ve-project,ve-project2}/**/*.{ts,tsx}",
+			"{src,ve-project2}/**/*.{ts,tsx}",
 			"scripts/**/*.{js,mjs}",
-			"biome.json"
+			"biome.json",
+			"!ve-project2/src/themes",
+			"!ve-project2/src/theme-contract/_public-vars.css.ts"
 		]
 	},
 	"formatter": {
@@ -38,5 +40,17 @@
 		"formatter": {
 			"trailingCommas": "none"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["scripts/**"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noTemplateCurlyInString": "off"
+					}
+				}
+			}
+		}
+	]
 }

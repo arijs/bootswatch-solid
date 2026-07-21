@@ -1,18 +1,13 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
 import {
-	h5,
-	paragraph,
-	small,
-} from '../../../theme-contract/contents/contract.css'
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
+import { h5, paragraph, small } from '../../../theme-contract/contents/contract.css'
 import { elSvg } from '../../../theme-contract/global-elements/contract.css'
-import {
-	card,
-	cardBody,
-	cardText,
-	cardTitle,
-} from '../../../theme-contract/ui/card/contract.css'
+import { card, cardBody, cardText, cardTitle } from '../../../theme-contract/ui/card/contract.css'
 import { colMd4, colMd8, g0, row, textMuted } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -50,11 +45,13 @@ const HorizontalCard: Component = () => {
 					<div class={`${theme} ${cardBody}`}>
 						<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
 						<p class={`${theme} ${cardText} ${paragraph}`}>
-							This is a wider card with supporting text below as a natural lead-in
-							to additional content. This content is a little bit longer.
+							This is a wider card with supporting text below as a natural lead-in to
+							additional content. This content is a little bit longer.
 						</p>
 						<p class={`${theme} ${cardText} ${paragraph}`}>
-							<small class={`${theme} ${small} ${textMuted}`}>Last updated 3 mins ago</small>
+							<small class={`${theme} ${small} ${textMuted}`}>
+								Last updated 3 mins ago
+							</small>
 						</p>
 					</div>
 				</div>

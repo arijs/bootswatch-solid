@@ -156,13 +156,17 @@ export async function verifyScenarioVe2Rendering({
 						`VE2 CSS collector returned zero rules (stylesheets=${cssArtifacts?.stylesheetCount ?? 0}, fallback=${Boolean(cssArtifacts?.fallbackMode)}, scope=${(cssArtifacts?.scopeClasses ?? []).join(',')})`,
 					)
 				}
-				const { optimized: markup } = optimizeMarkupWithCssArtifacts(markupRaw, cssArtifacts, {
-					themeSlug,
-					route,
-					stateFolder,
-					scenario,
-					kind: 've',
-				})
+				const { optimized: markup } = optimizeMarkupWithCssArtifacts(
+					markupRaw,
+					cssArtifacts,
+					{
+						themeSlug,
+						route,
+						stateFolder,
+						scenario,
+						kind: 've',
+					},
+				)
 				veMarkupPath = await writeScenarioMarkupArtifact({
 					themeSlug,
 					routePath,

@@ -118,7 +118,13 @@ export function guessFamilyForElementSelector(selector) {
 		return 'contents/basic'
 	}
 	if (base === 'button' || base === 'input') return 'ui/buttons'
-	if (base === 'select' || base === 'textarea' || base === 'optgroup' || base === 'fieldset' || base === 'legend') {
+	if (
+		base === 'select' ||
+		base === 'textarea' ||
+		base === 'optgroup' ||
+		base === 'fieldset' ||
+		base === 'legend'
+	) {
 		return 'forms'
 	}
 	if (base === 'img' || base === 'svg') return 'contents/images'

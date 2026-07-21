@@ -5,14 +5,8 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import {
-	h5,
-	paragraph,
-} from '../../../theme-contract/contents/contract.css'
-import {
-	elButton,
-	elSvg,
-} from '../../../theme-contract/global-elements/contract.css'
+import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { elButton, elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { active, dBlock, dMdBlock, dNone, w100 } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'

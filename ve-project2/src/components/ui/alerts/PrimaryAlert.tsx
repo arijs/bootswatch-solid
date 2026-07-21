@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,9 +6,9 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { link } from '../../../theme-contract/contents/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btnClose } from '../../../theme-contract/literal/contract.css'
-import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 import {
 	alert,
 	alertBtnClose,
@@ -20,6 +17,7 @@ import {
 	alertPrimary,
 } from '../../../theme-contract/ui/alerts/contract.css'
 import { inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
+import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',

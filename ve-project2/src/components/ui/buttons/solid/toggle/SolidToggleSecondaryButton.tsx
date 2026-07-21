@@ -1,7 +1,3 @@
-import {
-	elInput,
-	elLabel,
-} from '../../../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../../../context/ThemeContext'
+import { elInput, elLabel } from '../../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import { btn, btnCheck, btnSecondary } from '../../../../../theme-contract/ui/buttons/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -29,7 +26,10 @@ const SolidToggleSecondaryButton: Component = () => {
 				id="id-btn-solid-toggle-secondary"
 				autocomplete="off"
 			/>
-			<label class={`${theme} ${elLabel} ${btn} ${btnSecondary}`} for="id-btn-solid-toggle-secondary">
+			<label
+				class={`${theme} ${elLabel} ${btn} ${btnSecondary}`}
+				for="id-btn-solid-toggle-secondary"
+			>
 				Toggle Secondary
 			</label>
 		</div>

@@ -18,7 +18,12 @@ import solidPlugin from 'vite-plugin-solid'
 function literalThemeFilterPlugin(): Plugin | null {
 	const raw = process.env.VITE_LITERAL_THEMES
 	if (!raw) return null
-	const allowed = new Set(raw.split(',').map((s) => s.trim()).filter(Boolean))
+	const allowed = new Set(
+		raw
+			.split(',')
+			.map((s) => s.trim())
+			.filter(Boolean),
+	)
 	console.log(`[literal-theme-filter] active — building only: ${[...allowed].join(', ')}`)
 	return {
 		name: 'literal-theme-filter',
@@ -139,10 +144,18 @@ function inferThemeFamilyFromCss(source: string) {
 	if (/contract_(lead|paragraph|blockquote|inlineList|unstyledList|textElements)/i.test(source)) {
 		return 'basic'
 	}
-	if (/contract_(formLabel|formText|formControl|formSelect|formRange|formCheck|formSwitch|inputGroup|formFloating|floatingLabel|fieldset|legend|validFeedback|invalidFeedback|isValid|isInvalid|hasValidation)/i.test(source)) {
+	if (
+		/contract_(formLabel|formText|formControl|formSelect|formRange|formCheck|formSwitch|inputGroup|formFloating|floatingLabel|fieldset|legend|validFeedback|invalidFeedback|isValid|isInvalid|hasValidation)/i.test(
+			source,
+		)
+	) {
 		return 'forms'
 	}
-	if (/contract_(textMuted|alignSelfStart|dFlex|positionRelative|overflowXHidden|rowCols|rowCol|row|col|g0|g3|g4|px[23]|mb[23]|me2|meAuto|mt5|pt3|pb2|fwBold|visuallyHidden|stickyXlTop|mtXl0|mbXl2|mbXl5|ptXl5|pbXl3|mbLg0)/i.test(source)) {
+	if (
+		/contract_(textMuted|alignSelfStart|dFlex|positionRelative|overflowXHidden|rowCols|rowCol|row|col|g0|g3|g4|px[23]|mb[23]|me2|meAuto|mt5|pt3|pb2|fwBold|visuallyHidden|stickyXlTop|mtXl0|mbXl2|mbXl5|ptXl5|pbXl3|mbLg0)/i.test(
+			source,
+		)
+	) {
 		return 'utilities'
 	}
 	if (/contract_cardHeaderTabs/i.test(source)) return 'ui-card-tabs'
@@ -158,7 +171,8 @@ function inferThemeFamilyFromCss(source: string) {
 	if (/contract_listGroup/i.test(source)) return 'ui-list-group'
 	if (/contract_modal/i.test(source)) return 'ui-modal'
 	if (/contract_navbar/i.test(source)) return 'ui-navbar'
-	if (/contract_navTabs|contract_navPills|contract_navLink|contract_navItem/i.test(source)) return 'ui-navs'
+	if (/contract_navTabs|contract_navPills|contract_navLink|contract_navItem/i.test(source))
+		return 'ui-navs'
 	if (/contract_pagination/i.test(source)) return 'ui-pagination'
 	if (/contract_popover/i.test(source)) return 'ui-popovers'
 	if (/contract_progress/i.test(source)) return 'ui-progress'
@@ -222,7 +236,9 @@ export default defineConfig({
 					if (baseName) {
 						return `assets/${baseName}-[hash][extname]`
 					}
-					const assetSource = assetSourceToText((assetInfo as { source?: unknown }).source)
+					const assetSource = assetSourceToText(
+						(assetInfo as { source?: unknown }).source,
+					)
 					if (assetSource) {
 						const themeMatch = assetSource.match(/scope_([a-z]+)Scope__/)
 						const family = inferThemeFamilyFromCss(assetSource)
@@ -236,7 +252,10 @@ export default defineConfig({
 					return 'assets/[name]-[hash][extname]'
 				},
 				chunkFileNames: (chunk) => {
-					const sourceFile = chunk.facadeModuleId ? getThemeSourceFile([chunk.facadeModuleId]) ?? getThemeSourceFile(chunk.moduleIds) : getThemeSourceFile(chunk.moduleIds)
+					const sourceFile = chunk.facadeModuleId
+						? (getThemeSourceFile([chunk.facadeModuleId]) ??
+							getThemeSourceFile(chunk.moduleIds))
+						: getThemeSourceFile(chunk.moduleIds)
 					const baseName = sourceFile ? getThemeAssetBaseName(sourceFile) : null
 					if (baseName) return `assets/${baseName}-[hash].js`
 					if (chunk.facadeModuleId) {

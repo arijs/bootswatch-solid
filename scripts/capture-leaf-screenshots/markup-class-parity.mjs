@@ -15,7 +15,7 @@ const LITERAL_CONTRACT_PATH = path.join(
 )
 
 // Classes that the outer wrapper/shell stamps — not from Bootstrap component classes.
-const SHELL_CLASS_PREFIXES = new Set(['bd-example', 'bd-example-ve2', 'scope-wrapper'])
+const _SHELL_CLASS_PREFIXES = new Set(['bd-example', 'bd-example-ve2', 'scope-wrapper'])
 
 // VE symbols the shell always stamps (scope, vars, body contracts) — ignore in extra list.
 const ALWAYS_SHELL_SYMBOLS = new Set(['vars', 'bodyFrame', 'bodyText'])
@@ -114,7 +114,8 @@ function buildNodeIndex(markup) {
 	const parser = getParser()
 	parser.end(markup)
 	const result = parser.getResult()
-	if (result.error) throw new Error(`Unable to parse markup: ${result.error.message || result.error}`)
+	if (result.error)
+		throw new Error(`Unable to parse markup: ${result.error.message || result.error}`)
 	const tree = result.tree ?? []
 
 	const index = new Map()

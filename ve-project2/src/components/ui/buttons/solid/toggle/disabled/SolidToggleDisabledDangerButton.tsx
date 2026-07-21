@@ -1,7 +1,3 @@
-import {
-	elInput,
-	elLabel,
-} from '../../../../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../../../../context/ThemeContext'
+import { elInput, elLabel } from '../../../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../../../theme-contract/layout/container.css'
 import { btn, btnCheck, btnDanger } from '../../../../../../theme-contract/ui/buttons/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -30,7 +27,10 @@ const SolidToggleDisabledDangerButton: Component = () => {
 				id="id-btn-solid-toggle-disabled-danger"
 				autocomplete="off"
 			/>
-			<label class={`${theme} ${elLabel} ${btn} ${btnDanger}`} for="id-btn-solid-toggle-disabled-danger">
+			<label
+				class={`${theme} ${elLabel} ${btn} ${btnDanger}`}
+				for="id-btn-solid-toggle-disabled-danger"
+			>
 				Toggle Danger
 			</label>
 		</div>

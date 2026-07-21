@@ -27,7 +27,9 @@ export function formatClassParityAsMarkdown(report, options = {}) {
 			lines.push(`- Baseline classes: \`${gap.baselineClasses.join(' ')}\``)
 		}
 		if (gap.missingSymbols.length > 0) {
-			lines.push(`- **Missing symbols (${gap.missingSymbols.length}):** \`${gap.missingSymbols.join('`, `')}\``)
+			lines.push(
+				`- **Missing symbols (${gap.missingSymbols.length}):** \`${gap.missingSymbols.join('`, `')}\``,
+			)
 		}
 		if (gap.unmappedClasses.length > 0) {
 			lines.push(`- Unmapped baseline classes: \`${gap.unmappedClasses.join('`, `')}\``)
@@ -39,7 +41,9 @@ export function formatClassParityAsMarkdown(report, options = {}) {
 	}
 
 	if (report.gaps.length > maxGaps) {
-		lines.push(`*(${report.gaps.length - maxGaps} more gaps not shown — use --max-gaps to increase limit)*`)
+		lines.push(
+			`*(${report.gaps.length - maxGaps} more gaps not shown — use --max-gaps to increase limit)*`,
+		)
 		lines.push('')
 	}
 

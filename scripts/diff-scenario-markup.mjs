@@ -3,10 +3,7 @@ import path from 'node:path'
 import process from 'node:process'
 
 import { ROOT } from './capture-leaf-screenshots/constants.mjs'
-import {
-	getLeafRoutes,
-	parseRoutesAndComponents,
-} from './capture-leaf-screenshots/discovery.mjs'
+import { getLeafRoutes, parseRoutesAndComponents } from './capture-leaf-screenshots/discovery.mjs'
 import { pathExists } from './capture-leaf-screenshots/folder-pruning.mjs'
 import {
 	diffClassParity,
@@ -96,7 +93,16 @@ function countChanges(diff) {
 }
 
 async function main() {
-	const { themeSlug, routeFilter, stateFilter, strict, includeText, classParity, maxNodes, maxGaps } = parseCli()
+	const {
+		themeSlug,
+		routeFilter,
+		stateFilter,
+		strict,
+		includeText,
+		classParity,
+		maxNodes,
+		maxGaps,
+	} = parseCli()
 	const selectedScenarios = await resolveSelectedScenarios(routeFilter, stateFilter)
 	let strictChangedCount = 0
 	let strictParityMissingCount = 0
@@ -150,9 +156,13 @@ async function main() {
 			const parityMarkdown = formatClassParityAsMarkdown(parityReport, { maxGaps })
 			const parityJsonPath = path.join(scenarioDir, 'markup.class-parity.json')
 			const parityMdPath = path.join(scenarioDir, 'markup.class-parity.md')
-			writes.push(writeFile(parityJsonPath, `${JSON.stringify(parityReport, null, 2)}\n`, 'utf8'))
+			writes.push(
+				writeFile(parityJsonPath, `${JSON.stringify(parityReport, null, 2)}\n`, 'utf8'),
+			)
 			writes.push(writeFile(parityMdPath, parityMarkdown, 'utf8'))
-			console.log(`[${route} @ ${stateFolder}] Parity: ${parityReport.summary.totalMissing} missing contracts across ${parityReport.summary.elementsWithGaps} element(s)`)
+			console.log(
+				`[${route} @ ${stateFolder}] Parity: ${parityReport.summary.totalMissing} missing contracts across ${parityReport.summary.elementsWithGaps} element(s)`,
+			)
 			if (strict) strictParityMissingCount += parityReport.summary.totalMissing
 		}
 

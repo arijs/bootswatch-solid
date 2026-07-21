@@ -1,7 +1,3 @@
-import { fieldset } from '../../../theme-contract/forms/contract.css'
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,8 +5,9 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { fieldset } from '../../../theme-contract/forms/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { me2 } from '../../../theme-contract/utilities/contract.css'
 import {
 	btnGroup,
 	btnGroupButton,
@@ -18,6 +15,7 @@ import {
 	btnToolbar,
 } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
+import { me2 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/button-group',
@@ -37,7 +35,10 @@ const ButtonGroupExample: Component = () => {
 				role="toolbar"
 				aria-label="Toolbar with button groups"
 			>
-				<fieldset class={`${theme} ${fieldset} ${btnGroup} ${me2}`} aria-label="First group">
+				<fieldset
+					class={`${theme} ${fieldset} ${btnGroup} ${me2}`}
+					aria-label="First group"
+				>
 					<button
 						type="button"
 						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}
@@ -63,7 +64,10 @@ const ButtonGroupExample: Component = () => {
 						4
 					</button>
 				</fieldset>
-				<fieldset class={`${theme} ${fieldset} ${btnGroup} ${me2}`} aria-label="Second group">
+				<fieldset
+					class={`${theme} ${fieldset} ${btnGroup} ${me2}`}
+					aria-label="Second group"
+				>
 					<button
 						type="button"
 						class={`${theme} ${elButton} ${btn} ${btnSecondary} ${btnGroupButton} ${btnGroupInteractive}`}

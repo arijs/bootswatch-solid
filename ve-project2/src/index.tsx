@@ -1,6 +1,6 @@
-import { lazy } from 'solid-js'
 import { Route, Router } from '@solidjs/router'
 import { render } from '@solidjs/web'
+import { lazy } from 'solid-js'
 import './styles/cheatsheet.css'
 
 import type * as StreamXMLParser from '@arijs/stream-xml-parser'
@@ -17,7 +17,9 @@ const HoverDefaultVariant = lazy(() => import('./components/contents/tables/Hove
 const HoverInfoVariant = lazy(() => import('./components/contents/tables/HoverInfoVariant'))
 const HoverLightVariant = lazy(() => import('./components/contents/tables/HoverLightVariant'))
 const HoverPrimaryVariant = lazy(() => import('./components/contents/tables/HoverPrimaryVariant'))
-const HoverSecondaryVariant = lazy(() => import('./components/contents/tables/HoverSecondaryVariant'))
+const HoverSecondaryVariant = lazy(
+	() => import('./components/contents/tables/HoverSecondaryVariant'),
+)
 const HoverSuccessVariant = lazy(() => import('./components/contents/tables/HoverSuccessVariant'))
 const HoverVariants = lazy(() => import('./components/contents/tables/HoverVariants'))
 const HoverWarningVariant = lazy(() => import('./components/contents/tables/HoverWarningVariant'))
@@ -34,8 +36,12 @@ const DisabledCheckbox = lazy(() => import('./components/forms/disabled/Disabled
 const DisabledFieldset = lazy(() => import('./components/forms/disabled/DisabledFieldset'))
 const DisabledFileRange = lazy(() => import('./components/forms/disabled/DisabledFileRange'))
 const DisabledRadioButtons = lazy(() => import('./components/forms/disabled/DisabledRadioButtons'))
-const DisabledSwitchCheckbox = lazy(() => import('./components/forms/disabled/DisabledSwitchCheckbox'))
-const FloatingLabelsExample = lazy(() => import('./components/forms/floating-labels/FloatingLabelsExample'))
+const DisabledSwitchCheckbox = lazy(
+	() => import('./components/forms/disabled/DisabledSwitchCheckbox'),
+)
+const FloatingLabelsExample = lazy(
+	() => import('./components/forms/floating-labels/FloatingLabelsExample'),
+)
 const CurrencyAddon = lazy(() => import('./components/forms/input-group/CurrencyAddon'))
 const PrefixAddon = lazy(() => import('./components/forms/input-group/PrefixAddon'))
 const SuffixAddon = lazy(() => import('./components/forms/input-group/SuffixAddon'))
@@ -70,156 +76,553 @@ const HeadingBadges = lazy(() => import('./components/ui/badge/HeadingBadges'))
 const PillBadges = lazy(() => import('./components/ui/badge/PillBadges'))
 const BreadcrumbExample = lazy(() => import('./components/ui/breadcrumb/BreadcrumbExample'))
 const ButtonGroupExample = lazy(() => import('./components/ui/button-group/ButtonGroupExample'))
-const OutlineCheckDisabledDangerButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDangerButton'))
-const OutlineCheckDisabledDarkButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDarkButton'))
-const OutlineCheckDisabledInfoButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledInfoButton'))
-const OutlineCheckDisabledLightButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledLightButton'))
-const OutlineCheckDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledPrimaryButton'))
-const OutlineCheckDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSecondaryButton'))
-const OutlineCheckDisabledSuccessButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSuccessButton'))
-const OutlineCheckDisabledWarningButton = lazy(() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledWarningButton'))
-const OutlineCheckDangerButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckDangerButton'))
-const OutlineCheckDarkButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckDarkButton'))
-const OutlineCheckInfoButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckInfoButton'))
-const OutlineCheckLightButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckLightButton'))
-const OutlineCheckPrimaryButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckPrimaryButton'))
-const OutlineCheckSecondaryButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckSecondaryButton'))
-const OutlineCheckSuccessButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckSuccessButton'))
-const OutlineCheckWarningButton = lazy(() => import('./components/ui/buttons/outline/check/OutlineCheckWarningButton'))
-const OutlineCheckActiveDisabledDangerButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDangerButton'))
-const OutlineCheckActiveDisabledDarkButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDarkButton'))
-const OutlineCheckActiveDisabledInfoButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledInfoButton'))
-const OutlineCheckActiveDisabledLightButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledLightButton'))
-const OutlineCheckActiveDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledPrimaryButton'))
-const OutlineCheckActiveDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSecondaryButton'))
-const OutlineCheckActiveDisabledSuccessButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSuccessButton'))
-const OutlineCheckActiveDisabledWarningButton = lazy(() => import('./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledWarningButton'))
-const OutlineCheckActiveDangerButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'))
-const OutlineCheckActiveDarkButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveDarkButton'))
-const OutlineCheckActiveInfoButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveInfoButton'))
-const OutlineCheckActiveLightButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveLightButton'))
-const OutlineCheckActivePrimaryButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActivePrimaryButton'))
-const OutlineCheckActiveSecondaryButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveSecondaryButton'))
-const OutlineCheckActiveSuccessButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveSuccessButton'))
-const OutlineCheckActiveWarningButton = lazy(() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveWarningButton'))
-const OutlineDisabledDangerButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledDangerButton'))
-const OutlineDisabledDarkButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledDarkButton'))
-const OutlineDisabledInfoButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledInfoButton'))
-const OutlineDisabledLightButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledLightButton'))
-const OutlineDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledPrimaryButton'))
-const OutlineDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledSecondaryButton'))
-const OutlineDisabledSuccessButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledSuccessButton'))
-const OutlineDisabledWarningButton = lazy(() => import('./components/ui/buttons/outline/disabled/OutlineDisabledWarningButton'))
-const OutlineDangerButton = lazy(() => import('./components/ui/buttons/outline/OutlineDangerButton'))
+const OutlineCheckDisabledDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDangerButton'),
+)
+const OutlineCheckDisabledDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledDarkButton'),
+)
+const OutlineCheckDisabledInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledInfoButton'),
+)
+const OutlineCheckDisabledLightButton = lazy(
+	() => import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledLightButton'),
+)
+const OutlineCheckDisabledPrimaryButton = lazy(
+	() =>
+		import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledPrimaryButton'),
+)
+const OutlineCheckDisabledSecondaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSecondaryButton'
+		),
+)
+const OutlineCheckDisabledSuccessButton = lazy(
+	() =>
+		import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledSuccessButton'),
+)
+const OutlineCheckDisabledWarningButton = lazy(
+	() =>
+		import('./components/ui/buttons/outline/check/disabled/OutlineCheckDisabledWarningButton'),
+)
+const OutlineCheckDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckDangerButton'),
+)
+const OutlineCheckDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckDarkButton'),
+)
+const OutlineCheckInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckInfoButton'),
+)
+const OutlineCheckLightButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckLightButton'),
+)
+const OutlineCheckPrimaryButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckPrimaryButton'),
+)
+const OutlineCheckSecondaryButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckSecondaryButton'),
+)
+const OutlineCheckSuccessButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckSuccessButton'),
+)
+const OutlineCheckWarningButton = lazy(
+	() => import('./components/ui/buttons/outline/check/OutlineCheckWarningButton'),
+)
+const OutlineCheckActiveDisabledDangerButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDangerButton'
+		),
+)
+const OutlineCheckActiveDisabledDarkButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledDarkButton'
+		),
+)
+const OutlineCheckActiveDisabledInfoButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledInfoButton'
+		),
+)
+const OutlineCheckActiveDisabledLightButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledLightButton'
+		),
+)
+const OutlineCheckActiveDisabledPrimaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledPrimaryButton'
+		),
+)
+const OutlineCheckActiveDisabledSecondaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSecondaryButton'
+		),
+)
+const OutlineCheckActiveDisabledSuccessButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledSuccessButton'
+		),
+)
+const OutlineCheckActiveDisabledWarningButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/check-active/disabled/OutlineCheckActiveDisabledWarningButton'
+		),
+)
+const OutlineCheckActiveDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveDangerButton'),
+)
+const OutlineCheckActiveDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveDarkButton'),
+)
+const OutlineCheckActiveInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveInfoButton'),
+)
+const OutlineCheckActiveLightButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveLightButton'),
+)
+const OutlineCheckActivePrimaryButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActivePrimaryButton'),
+)
+const OutlineCheckActiveSecondaryButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveSecondaryButton'),
+)
+const OutlineCheckActiveSuccessButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveSuccessButton'),
+)
+const OutlineCheckActiveWarningButton = lazy(
+	() => import('./components/ui/buttons/outline/check-active/OutlineCheckActiveWarningButton'),
+)
+const OutlineDisabledDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledDangerButton'),
+)
+const OutlineDisabledDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledDarkButton'),
+)
+const OutlineDisabledInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledInfoButton'),
+)
+const OutlineDisabledLightButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledLightButton'),
+)
+const OutlineDisabledPrimaryButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledPrimaryButton'),
+)
+const OutlineDisabledSecondaryButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledSecondaryButton'),
+)
+const OutlineDisabledSuccessButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledSuccessButton'),
+)
+const OutlineDisabledWarningButton = lazy(
+	() => import('./components/ui/buttons/outline/disabled/OutlineDisabledWarningButton'),
+)
+const OutlineDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/OutlineDangerButton'),
+)
 const OutlineDarkButton = lazy(() => import('./components/ui/buttons/outline/OutlineDarkButton'))
 const OutlineInfoButton = lazy(() => import('./components/ui/buttons/outline/OutlineInfoButton'))
 const OutlineLightButton = lazy(() => import('./components/ui/buttons/outline/OutlineLightButton'))
-const OutlinePrimaryButton = lazy(() => import('./components/ui/buttons/outline/OutlinePrimaryButton'))
-const OutlineSecondaryButton = lazy(() => import('./components/ui/buttons/outline/OutlineSecondaryButton'))
-const OutlineSuccessButton = lazy(() => import('./components/ui/buttons/outline/OutlineSuccessButton'))
-const OutlineWarningButton = lazy(() => import('./components/ui/buttons/outline/OutlineWarningButton'))
-const OutlineToggleDisabledDangerButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDangerButton'))
-const OutlineToggleDisabledDarkButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDarkButton'))
-const OutlineToggleDisabledInfoButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledInfoButton'))
-const OutlineToggleDisabledLightButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledLightButton'))
-const OutlineToggleDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledPrimaryButton'))
-const OutlineToggleDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSecondaryButton'))
-const OutlineToggleDisabledSuccessButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSuccessButton'))
-const OutlineToggleDisabledWarningButton = lazy(() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledWarningButton'))
-const OutlineToggleDangerButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleDangerButton'))
-const OutlineToggleDarkButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleDarkButton'))
-const OutlineToggleInfoButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleInfoButton'))
-const OutlineToggleLightButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleLightButton'))
-const OutlineTogglePrimaryButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineTogglePrimaryButton'))
-const OutlineToggleSecondaryButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleSecondaryButton'))
-const OutlineToggleSuccessButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleSuccessButton'))
-const OutlineToggleWarningButton = lazy(() => import('./components/ui/buttons/outline/toggle/OutlineToggleWarningButton'))
-const OutlineToggleActiveDisabledDangerButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDangerButton'))
-const OutlineToggleActiveDisabledDarkButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDarkButton'))
-const OutlineToggleActiveDisabledInfoButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledInfoButton'))
-const OutlineToggleActiveDisabledLightButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledLightButton'))
-const OutlineToggleActiveDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledPrimaryButton'))
-const OutlineToggleActiveDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSecondaryButton'))
-const OutlineToggleActiveDisabledSuccessButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSuccessButton'))
-const OutlineToggleActiveDisabledWarningButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledWarningButton'))
-const OutlineToggleActiveDangerButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveDangerButton'))
-const OutlineToggleActiveDarkButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveDarkButton'))
-const OutlineToggleActiveInfoButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveInfoButton'))
-const OutlineToggleActiveLightButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveLightButton'))
-const OutlineToggleActivePrimaryButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActivePrimaryButton'))
-const OutlineToggleActiveSecondaryButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveSecondaryButton'))
-const OutlineToggleActiveSuccessButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveSuccessButton'))
-const OutlineToggleActiveWarningButton = lazy(() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveWarningButton'))
+const OutlinePrimaryButton = lazy(
+	() => import('./components/ui/buttons/outline/OutlinePrimaryButton'),
+)
+const OutlineSecondaryButton = lazy(
+	() => import('./components/ui/buttons/outline/OutlineSecondaryButton'),
+)
+const OutlineSuccessButton = lazy(
+	() => import('./components/ui/buttons/outline/OutlineSuccessButton'),
+)
+const OutlineWarningButton = lazy(
+	() => import('./components/ui/buttons/outline/OutlineWarningButton'),
+)
+const OutlineToggleDisabledDangerButton = lazy(
+	() =>
+		import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDangerButton'),
+)
+const OutlineToggleDisabledDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledDarkButton'),
+)
+const OutlineToggleDisabledInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledInfoButton'),
+)
+const OutlineToggleDisabledLightButton = lazy(
+	() =>
+		import('./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledLightButton'),
+)
+const OutlineToggleDisabledPrimaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledPrimaryButton'
+		),
+)
+const OutlineToggleDisabledSecondaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSecondaryButton'
+		),
+)
+const OutlineToggleDisabledSuccessButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledSuccessButton'
+		),
+)
+const OutlineToggleDisabledWarningButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle/disabled/OutlineToggleDisabledWarningButton'
+		),
+)
+const OutlineToggleDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleDangerButton'),
+)
+const OutlineToggleDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleDarkButton'),
+)
+const OutlineToggleInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleInfoButton'),
+)
+const OutlineToggleLightButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleLightButton'),
+)
+const OutlineTogglePrimaryButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineTogglePrimaryButton'),
+)
+const OutlineToggleSecondaryButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleSecondaryButton'),
+)
+const OutlineToggleSuccessButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleSuccessButton'),
+)
+const OutlineToggleWarningButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle/OutlineToggleWarningButton'),
+)
+const OutlineToggleActiveDisabledDangerButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDangerButton'
+		),
+)
+const OutlineToggleActiveDisabledDarkButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledDarkButton'
+		),
+)
+const OutlineToggleActiveDisabledInfoButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledInfoButton'
+		),
+)
+const OutlineToggleActiveDisabledLightButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledLightButton'
+		),
+)
+const OutlineToggleActiveDisabledPrimaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledPrimaryButton'
+		),
+)
+const OutlineToggleActiveDisabledSecondaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSecondaryButton'
+		),
+)
+const OutlineToggleActiveDisabledSuccessButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledSuccessButton'
+		),
+)
+const OutlineToggleActiveDisabledWarningButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/outline/toggle-active/disabled/OutlineToggleActiveDisabledWarningButton'
+		),
+)
+const OutlineToggleActiveDangerButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveDangerButton'),
+)
+const OutlineToggleActiveDarkButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveDarkButton'),
+)
+const OutlineToggleActiveInfoButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveInfoButton'),
+)
+const OutlineToggleActiveLightButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveLightButton'),
+)
+const OutlineToggleActivePrimaryButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActivePrimaryButton'),
+)
+const OutlineToggleActiveSecondaryButton = lazy(
+	() =>
+		import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveSecondaryButton'),
+)
+const OutlineToggleActiveSuccessButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveSuccessButton'),
+)
+const OutlineToggleActiveWarningButton = lazy(
+	() => import('./components/ui/buttons/outline/toggle-active/OutlineToggleActiveWarningButton'),
+)
 const CheckLargeButton = lazy(() => import('./components/ui/buttons/sizes/check/CheckLargeButton'))
 const CheckSmallButton = lazy(() => import('./components/ui/buttons/sizes/check/CheckSmallButton'))
-const CheckDisabledLargeButton = lazy(() => import('./components/ui/buttons/sizes/check/disabled/CheckDisabledLargeButton'))
-const CheckDisabledSmallButton = lazy(() => import('./components/ui/buttons/sizes/check/disabled/CheckDisabledSmallButton'))
-const CheckActiveLargeButton = lazy(() => import('./components/ui/buttons/sizes/check-active/CheckActiveLargeButton'))
-const CheckActiveSmallButton = lazy(() => import('./components/ui/buttons/sizes/check-active/CheckActiveSmallButton'))
-const CheckActiveDisabledLargeButton = lazy(() => import('./components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledLargeButton'))
-const CheckActiveDisabledSmallButton = lazy(() => import('./components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledSmallButton'))
-const DisabledLargeButton = lazy(() => import('./components/ui/buttons/sizes/disabled/DisabledLargeButton'))
-const DisabledSmallButton = lazy(() => import('./components/ui/buttons/sizes/disabled/DisabledSmallButton'))
+const CheckDisabledLargeButton = lazy(
+	() => import('./components/ui/buttons/sizes/check/disabled/CheckDisabledLargeButton'),
+)
+const CheckDisabledSmallButton = lazy(
+	() => import('./components/ui/buttons/sizes/check/disabled/CheckDisabledSmallButton'),
+)
+const CheckActiveLargeButton = lazy(
+	() => import('./components/ui/buttons/sizes/check-active/CheckActiveLargeButton'),
+)
+const CheckActiveSmallButton = lazy(
+	() => import('./components/ui/buttons/sizes/check-active/CheckActiveSmallButton'),
+)
+const CheckActiveDisabledLargeButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledLargeButton'
+		),
+)
+const CheckActiveDisabledSmallButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/sizes/check-active/disabled/CheckActiveDisabledSmallButton'
+		),
+)
+const DisabledLargeButton = lazy(
+	() => import('./components/ui/buttons/sizes/disabled/DisabledLargeButton'),
+)
+const DisabledSmallButton = lazy(
+	() => import('./components/ui/buttons/sizes/disabled/DisabledSmallButton'),
+)
 const LargeButton = lazy(() => import('./components/ui/buttons/sizes/LargeButton'))
 const SmallButton = lazy(() => import('./components/ui/buttons/sizes/SmallButton'))
-const ToggleDisabledLargeButton = lazy(() => import('./components/ui/buttons/sizes/toggle/disabled/ToggleDisabledLargeButton'))
-const ToggleDisabledSmallButton = lazy(() => import('./components/ui/buttons/sizes/toggle/disabled/ToggleDisabledSmallButton'))
-const ToggleLargeButton = lazy(() => import('./components/ui/buttons/sizes/toggle/ToggleLargeButton'))
-const ToggleSmallButton = lazy(() => import('./components/ui/buttons/sizes/toggle/ToggleSmallButton'))
-const ToggleActiveDisabledLargeButton = lazy(() => import('./components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledLargeButton'))
-const ToggleActiveDisabledSmallButton = lazy(() => import('./components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledSmallButton'))
-const ToggleActiveLargeButton = lazy(() => import('./components/ui/buttons/sizes/toggle-active/ToggleActiveLargeButton'))
-const ToggleActiveSmallButton = lazy(() => import('./components/ui/buttons/sizes/toggle-active/ToggleActiveSmallButton'))
-const SolidCheckDisabledBaseButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledBaseButton'))
-const SolidCheckDisabledDangerButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledDangerButton'))
-const SolidCheckDisabledDarkButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledDarkButton'))
-const SolidCheckDisabledInfoButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledInfoButton'))
-const SolidCheckDisabledLightButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledLightButton'))
-const SolidCheckDisabledLinkButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledLinkButton'))
-const SolidCheckDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledPrimaryButton'))
-const SolidCheckDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledSecondaryButton'))
-const SolidCheckDisabledSuccessButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledSuccessButton'))
-const SolidCheckDisabledWarningButton = lazy(() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledWarningButton'))
-const SolidCheckBaseButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckBaseButton'))
-const SolidCheckDangerButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckDangerButton'))
-const SolidCheckDarkButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckDarkButton'))
-const SolidCheckInfoButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckInfoButton'))
-const SolidCheckLightButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckLightButton'))
-const SolidCheckLinkButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckLinkButton'))
-const SolidCheckPrimaryButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckPrimaryButton'))
-const SolidCheckSecondaryButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckSecondaryButton'))
-const SolidCheckSuccessButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckSuccessButton'))
-const SolidCheckWarningButton = lazy(() => import('./components/ui/buttons/solid/check/SolidCheckWarningButton'))
-const SolidCheckActiveDisabledBaseButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledBaseButton'))
-const SolidCheckActiveDisabledDangerButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDangerButton'))
-const SolidCheckActiveDisabledDarkButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDarkButton'))
-const SolidCheckActiveDisabledInfoButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledInfoButton'))
-const SolidCheckActiveDisabledLightButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLightButton'))
-const SolidCheckActiveDisabledLinkButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLinkButton'))
-const SolidCheckActiveDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledPrimaryButton'))
-const SolidCheckActiveDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSecondaryButton'))
-const SolidCheckActiveDisabledSuccessButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSuccessButton'))
-const SolidCheckActiveDisabledWarningButton = lazy(() => import('./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledWarningButton'))
-const SolidCheckActiveBaseButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveBaseButton'))
-const SolidCheckActiveDangerButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveDangerButton'))
-const SolidCheckActiveDarkButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveDarkButton'))
-const SolidCheckActiveInfoButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveInfoButton'))
-const SolidCheckActiveLightButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveLightButton'))
-const SolidCheckActiveLinkButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveLinkButton'))
-const SolidCheckActivePrimaryButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActivePrimaryButton'))
-const SolidCheckActiveSecondaryButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveSecondaryButton'))
-const SolidCheckActiveSuccessButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveSuccessButton'))
-const SolidCheckActiveWarningButton = lazy(() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveWarningButton'))
-const SolidDisabledBaseButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledBaseButton'))
-const SolidDisabledDangerButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledDangerButton'))
-const SolidDisabledDarkButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledDarkButton'))
-const SolidDisabledInfoButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledInfoButton'))
-const SolidDisabledLightButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledLightButton'))
-const SolidDisabledLinkButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledLinkButton'))
-const SolidDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledPrimaryButton'))
-const SolidDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledSecondaryButton'))
-const SolidDisabledSuccessButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledSuccessButton'))
-const SolidDisabledWarningButton = lazy(() => import('./components/ui/buttons/solid/disabled/SolidDisabledWarningButton'))
+const ToggleDisabledLargeButton = lazy(
+	() => import('./components/ui/buttons/sizes/toggle/disabled/ToggleDisabledLargeButton'),
+)
+const ToggleDisabledSmallButton = lazy(
+	() => import('./components/ui/buttons/sizes/toggle/disabled/ToggleDisabledSmallButton'),
+)
+const ToggleLargeButton = lazy(
+	() => import('./components/ui/buttons/sizes/toggle/ToggleLargeButton'),
+)
+const ToggleSmallButton = lazy(
+	() => import('./components/ui/buttons/sizes/toggle/ToggleSmallButton'),
+)
+const ToggleActiveDisabledLargeButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledLargeButton'
+		),
+)
+const ToggleActiveDisabledSmallButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/sizes/toggle-active/disabled/ToggleActiveDisabledSmallButton'
+		),
+)
+const ToggleActiveLargeButton = lazy(
+	() => import('./components/ui/buttons/sizes/toggle-active/ToggleActiveLargeButton'),
+)
+const ToggleActiveSmallButton = lazy(
+	() => import('./components/ui/buttons/sizes/toggle-active/ToggleActiveSmallButton'),
+)
+const SolidCheckDisabledBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledBaseButton'),
+)
+const SolidCheckDisabledDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledDangerButton'),
+)
+const SolidCheckDisabledDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledDarkButton'),
+)
+const SolidCheckDisabledInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledInfoButton'),
+)
+const SolidCheckDisabledLightButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledLightButton'),
+)
+const SolidCheckDisabledLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledLinkButton'),
+)
+const SolidCheckDisabledPrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledPrimaryButton'),
+)
+const SolidCheckDisabledSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledSecondaryButton'),
+)
+const SolidCheckDisabledSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledSuccessButton'),
+)
+const SolidCheckDisabledWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/check/disabled/SolidCheckDisabledWarningButton'),
+)
+const SolidCheckBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckBaseButton'),
+)
+const SolidCheckDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckDangerButton'),
+)
+const SolidCheckDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckDarkButton'),
+)
+const SolidCheckInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckInfoButton'),
+)
+const SolidCheckLightButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckLightButton'),
+)
+const SolidCheckLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckLinkButton'),
+)
+const SolidCheckPrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckPrimaryButton'),
+)
+const SolidCheckSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckSecondaryButton'),
+)
+const SolidCheckSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckSuccessButton'),
+)
+const SolidCheckWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/check/SolidCheckWarningButton'),
+)
+const SolidCheckActiveDisabledBaseButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledBaseButton'
+		),
+)
+const SolidCheckActiveDisabledDangerButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDangerButton'
+		),
+)
+const SolidCheckActiveDisabledDarkButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledDarkButton'
+		),
+)
+const SolidCheckActiveDisabledInfoButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledInfoButton'
+		),
+)
+const SolidCheckActiveDisabledLightButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLightButton'
+		),
+)
+const SolidCheckActiveDisabledLinkButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledLinkButton'
+		),
+)
+const SolidCheckActiveDisabledPrimaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledPrimaryButton'
+		),
+)
+const SolidCheckActiveDisabledSecondaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSecondaryButton'
+		),
+)
+const SolidCheckActiveDisabledSuccessButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledSuccessButton'
+		),
+)
+const SolidCheckActiveDisabledWarningButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/check-active/disabled/SolidCheckActiveDisabledWarningButton'
+		),
+)
+const SolidCheckActiveBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveBaseButton'),
+)
+const SolidCheckActiveDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveDangerButton'),
+)
+const SolidCheckActiveDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveDarkButton'),
+)
+const SolidCheckActiveInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveInfoButton'),
+)
+const SolidCheckActiveLightButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveLightButton'),
+)
+const SolidCheckActiveLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveLinkButton'),
+)
+const SolidCheckActivePrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActivePrimaryButton'),
+)
+const SolidCheckActiveSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveSecondaryButton'),
+)
+const SolidCheckActiveSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveSuccessButton'),
+)
+const SolidCheckActiveWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/check-active/SolidCheckActiveWarningButton'),
+)
+const SolidDisabledBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledBaseButton'),
+)
+const SolidDisabledDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledDangerButton'),
+)
+const SolidDisabledDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledDarkButton'),
+)
+const SolidDisabledInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledInfoButton'),
+)
+const SolidDisabledLightButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledLightButton'),
+)
+const SolidDisabledLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledLinkButton'),
+)
+const SolidDisabledPrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledPrimaryButton'),
+)
+const SolidDisabledSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledSecondaryButton'),
+)
+const SolidDisabledSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledSuccessButton'),
+)
+const SolidDisabledWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/disabled/SolidDisabledWarningButton'),
+)
 const SolidBaseButton = lazy(() => import('./components/ui/buttons/solid/SolidBaseButton'))
 const SolidDangerButton = lazy(() => import('./components/ui/buttons/solid/SolidDangerButton'))
 const SolidDarkButton = lazy(() => import('./components/ui/buttons/solid/SolidDarkButton'))
@@ -227,49 +630,162 @@ const SolidInfoButton = lazy(() => import('./components/ui/buttons/solid/SolidIn
 const SolidLightButton = lazy(() => import('./components/ui/buttons/solid/SolidLightButton'))
 const SolidLinkButton = lazy(() => import('./components/ui/buttons/solid/SolidLinkButton'))
 const SolidPrimaryButton = lazy(() => import('./components/ui/buttons/solid/SolidPrimaryButton'))
-const SolidSecondaryButton = lazy(() => import('./components/ui/buttons/solid/SolidSecondaryButton'))
+const SolidSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/SolidSecondaryButton'),
+)
 const SolidSuccessButton = lazy(() => import('./components/ui/buttons/solid/SolidSuccessButton'))
 const SolidWarningButton = lazy(() => import('./components/ui/buttons/solid/SolidWarningButton'))
-const SolidToggleDisabledBaseButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledBaseButton'))
-const SolidToggleDisabledDangerButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDangerButton'))
-const SolidToggleDisabledDarkButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDarkButton'))
-const SolidToggleDisabledInfoButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledInfoButton'))
-const SolidToggleDisabledLightButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLightButton'))
-const SolidToggleDisabledLinkButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLinkButton'))
-const SolidToggleDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledPrimaryButton'))
-const SolidToggleDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSecondaryButton'))
-const SolidToggleDisabledSuccessButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSuccessButton'))
-const SolidToggleDisabledWarningButton = lazy(() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledWarningButton'))
-const SolidToggleBaseButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleBaseButton'))
-const SolidToggleDangerButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleDangerButton'))
-const SolidToggleDarkButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleDarkButton'))
-const SolidToggleInfoButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleInfoButton'))
-const SolidToggleLightButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleLightButton'))
-const SolidToggleLinkButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleLinkButton'))
-const SolidTogglePrimaryButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidTogglePrimaryButton'))
-const SolidToggleSecondaryButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleSecondaryButton'))
-const SolidToggleSuccessButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleSuccessButton'))
-const SolidToggleWarningButton = lazy(() => import('./components/ui/buttons/solid/toggle/SolidToggleWarningButton'))
-const SolidToggleActiveDisabledBaseButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledBaseButton'))
-const SolidToggleActiveDisabledDangerButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDangerButton'))
-const SolidToggleActiveDisabledDarkButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDarkButton'))
-const SolidToggleActiveDisabledInfoButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledInfoButton'))
-const SolidToggleActiveDisabledLightButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLightButton'))
-const SolidToggleActiveDisabledLinkButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLinkButton'))
-const SolidToggleActiveDisabledPrimaryButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledPrimaryButton'))
-const SolidToggleActiveDisabledSecondaryButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSecondaryButton'))
-const SolidToggleActiveDisabledSuccessButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSuccessButton'))
-const SolidToggleActiveDisabledWarningButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledWarningButton'))
-const SolidToggleActiveBaseButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveBaseButton'))
-const SolidToggleActiveDangerButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveDangerButton'))
-const SolidToggleActiveDarkButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveDarkButton'))
-const SolidToggleActiveInfoButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveInfoButton'))
-const SolidToggleActiveLightButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveLightButton'))
-const SolidToggleActiveLinkButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveLinkButton'))
-const SolidToggleActivePrimaryButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActivePrimaryButton'))
-const SolidToggleActiveSecondaryButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveSecondaryButton'))
-const SolidToggleActiveSuccessButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveSuccessButton'))
-const SolidToggleActiveWarningButton = lazy(() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveWarningButton'))
+const SolidToggleDisabledBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledBaseButton'),
+)
+const SolidToggleDisabledDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDangerButton'),
+)
+const SolidToggleDisabledDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledDarkButton'),
+)
+const SolidToggleDisabledInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledInfoButton'),
+)
+const SolidToggleDisabledLightButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLightButton'),
+)
+const SolidToggleDisabledLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledLinkButton'),
+)
+const SolidToggleDisabledPrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledPrimaryButton'),
+)
+const SolidToggleDisabledSecondaryButton = lazy(
+	() =>
+		import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSecondaryButton'),
+)
+const SolidToggleDisabledSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledSuccessButton'),
+)
+const SolidToggleDisabledWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/disabled/SolidToggleDisabledWarningButton'),
+)
+const SolidToggleBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleBaseButton'),
+)
+const SolidToggleDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleDangerButton'),
+)
+const SolidToggleDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleDarkButton'),
+)
+const SolidToggleInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleInfoButton'),
+)
+const SolidToggleLightButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleLightButton'),
+)
+const SolidToggleLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleLinkButton'),
+)
+const SolidTogglePrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidTogglePrimaryButton'),
+)
+const SolidToggleSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleSecondaryButton'),
+)
+const SolidToggleSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleSuccessButton'),
+)
+const SolidToggleWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle/SolidToggleWarningButton'),
+)
+const SolidToggleActiveDisabledBaseButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledBaseButton'
+		),
+)
+const SolidToggleActiveDisabledDangerButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDangerButton'
+		),
+)
+const SolidToggleActiveDisabledDarkButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledDarkButton'
+		),
+)
+const SolidToggleActiveDisabledInfoButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledInfoButton'
+		),
+)
+const SolidToggleActiveDisabledLightButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLightButton'
+		),
+)
+const SolidToggleActiveDisabledLinkButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledLinkButton'
+		),
+)
+const SolidToggleActiveDisabledPrimaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledPrimaryButton'
+		),
+)
+const SolidToggleActiveDisabledSecondaryButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSecondaryButton'
+		),
+)
+const SolidToggleActiveDisabledSuccessButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledSuccessButton'
+		),
+)
+const SolidToggleActiveDisabledWarningButton = lazy(
+	() =>
+		import(
+			'./components/ui/buttons/solid/toggle-active/disabled/SolidToggleActiveDisabledWarningButton'
+		),
+)
+const SolidToggleActiveBaseButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveBaseButton'),
+)
+const SolidToggleActiveDangerButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveDangerButton'),
+)
+const SolidToggleActiveDarkButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveDarkButton'),
+)
+const SolidToggleActiveInfoButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveInfoButton'),
+)
+const SolidToggleActiveLightButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveLightButton'),
+)
+const SolidToggleActiveLinkButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveLinkButton'),
+)
+const SolidToggleActivePrimaryButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActivePrimaryButton'),
+)
+const SolidToggleActiveSecondaryButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveSecondaryButton'),
+)
+const SolidToggleActiveSuccessButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveSuccessButton'),
+)
+const SolidToggleActiveWarningButton = lazy(
+	() => import('./components/ui/buttons/solid/toggle-active/SolidToggleActiveWarningButton'),
+)
 const CardsGrid = lazy(() => import('./components/ui/card/CardsGrid'))
 const FeaturedCard = lazy(() => import('./components/ui/card/FeaturedCard'))
 const HorizontalCard = lazy(() => import('./components/ui/card/HorizontalCard'))
@@ -287,21 +803,41 @@ const SplitDarkDropdown = lazy(() => import('./components/ui/dropdowns/SplitDark
 const SplitInfoDropdown = lazy(() => import('./components/ui/dropdowns/SplitInfoDropdown'))
 const SplitLightDropdown = lazy(() => import('./components/ui/dropdowns/SplitLightDropdown'))
 const SplitPrimaryDropdown = lazy(() => import('./components/ui/dropdowns/SplitPrimaryDropdown'))
-const SplitSecondaryDropdown = lazy(() => import('./components/ui/dropdowns/SplitSecondaryDropdown'))
+const SplitSecondaryDropdown = lazy(
+	() => import('./components/ui/dropdowns/SplitSecondaryDropdown'),
+)
 const SplitSuccessDropdown = lazy(() => import('./components/ui/dropdowns/SplitSuccessDropdown'))
 const SplitWarningDropdown = lazy(() => import('./components/ui/dropdowns/SplitWarningDropdown'))
 const StartDropdown = lazy(() => import('./components/ui/dropdowns/StartDropdown'))
 const UpDropdown = lazy(() => import('./components/ui/dropdowns/UpDropdown'))
-const ContextualDangerListGroup = lazy(() => import('./components/ui/list-group/ContextualDangerListGroup'))
-const ContextualDarkListGroup = lazy(() => import('./components/ui/list-group/ContextualDarkListGroup'))
-const ContextualDefaultListGroup = lazy(() => import('./components/ui/list-group/ContextualDefaultListGroup'))
-const ContextualInfoListGroup = lazy(() => import('./components/ui/list-group/ContextualInfoListGroup'))
-const ContextualLightListGroup = lazy(() => import('./components/ui/list-group/ContextualLightListGroup'))
+const ContextualDangerListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualDangerListGroup'),
+)
+const ContextualDarkListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualDarkListGroup'),
+)
+const ContextualDefaultListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualDefaultListGroup'),
+)
+const ContextualInfoListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualInfoListGroup'),
+)
+const ContextualLightListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualLightListGroup'),
+)
 const ContextualListGroup = lazy(() => import('./components/ui/list-group/ContextualListGroup'))
-const ContextualPrimaryListGroup = lazy(() => import('./components/ui/list-group/ContextualPrimaryListGroup'))
-const ContextualSecondaryListGroup = lazy(() => import('./components/ui/list-group/ContextualSecondaryListGroup'))
-const ContextualSuccessListGroup = lazy(() => import('./components/ui/list-group/ContextualSuccessListGroup'))
-const ContextualWarningListGroup = lazy(() => import('./components/ui/list-group/ContextualWarningListGroup'))
+const ContextualPrimaryListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualPrimaryListGroup'),
+)
+const ContextualSecondaryListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualSecondaryListGroup'),
+)
+const ContextualSuccessListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualSuccessListGroup'),
+)
+const ContextualWarningListGroup = lazy(
+	() => import('./components/ui/list-group/ContextualWarningListGroup'),
+)
 const DefaultListGroup = lazy(() => import('./components/ui/list-group/DefaultListGroup'))
 const FlushListGroup = lazy(() => import('./components/ui/list-group/FlushListGroup'))
 const CenteredScrollableModal = lazy(() => import('./components/ui/modal/CenteredScrollableModal'))
@@ -312,13 +848,19 @@ const NavbarExample = lazy(() => import('./components/ui/navbar/NavbarExample'))
 const BasicNav = lazy(() => import('./components/ui/navs/BasicNav'))
 const PillNav = lazy(() => import('./components/ui/navs/PillNav'))
 const TabbedNav = lazy(() => import('./components/ui/navs/TabbedNav'))
-const BodyScrollingOffcanvas = lazy(() => import('./components/ui/offcanvas/BodyScrollingOffcanvas'))
+const BodyScrollingOffcanvas = lazy(
+	() => import('./components/ui/offcanvas/BodyScrollingOffcanvas'),
+)
 const BottomOffcanvas = lazy(() => import('./components/ui/offcanvas/BottomOffcanvas'))
 const DefaultOffcanvas = lazy(() => import('./components/ui/offcanvas/DefaultOffcanvas'))
 const EndOffcanvas = lazy(() => import('./components/ui/offcanvas/EndOffcanvas'))
 const ResponsiveOffcanvas = lazy(() => import('./components/ui/offcanvas/ResponsiveOffcanvas'))
-const ScrollingBackdropOffcanvas = lazy(() => import('./components/ui/offcanvas/ScrollingBackdropOffcanvas'))
-const StaticBackdropOffcanvas = lazy(() => import('./components/ui/offcanvas/StaticBackdropOffcanvas'))
+const ScrollingBackdropOffcanvas = lazy(
+	() => import('./components/ui/offcanvas/ScrollingBackdropOffcanvas'),
+)
+const StaticBackdropOffcanvas = lazy(
+	() => import('./components/ui/offcanvas/StaticBackdropOffcanvas'),
+)
 const TopOffcanvas = lazy(() => import('./components/ui/offcanvas/TopOffcanvas'))
 const LargePagination = lazy(() => import('./components/ui/pagination/LargePagination'))
 const SmallPagination = lazy(() => import('./components/ui/pagination/SmallPagination'))

@@ -8,7 +8,7 @@
 // generate-preset depois lê o contract compilado + este mapa e substitui os
 // --bs-* das utilities pelos nomes hasheados.
 
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { parse } from '@adobe/css-tools'
@@ -32,7 +32,12 @@ function utilityVars() {
 }
 
 const exportName = (v) =>
-	'varBs' + v.replace(/^--bs-/, '').split('-').map((s) => s[0].toUpperCase() + s.slice(1)).join('')
+	'varBs' +
+	v
+		.replace(/^--bs-/, '')
+		.split('-')
+		.map((s) => s[0].toUpperCase() + s.slice(1))
+		.join('')
 
 // 2. :root de um tema → { '--bs-x': 'valor' } (default/light; ignora dark).
 function rootVars(theme) {
@@ -44,7 +49,8 @@ function rootVars(theme) {
 		// pega o bloco que inclui :root (ex.: ":root, [data-bs-theme=light]").
 		if (!r.selectors.includes(':root')) continue
 		for (const d of r.declarations) {
-			if (d.type === 'declaration' && d.property.startsWith('--bs-')) out[d.property] = d.value.trim()
+			if (d.type === 'declaration' && d.property.startsWith('--bs-'))
+				out[d.property] = d.value.trim()
 		}
 		break // primeiro bloco :root = tema default
 	}
@@ -53,7 +59,8 @@ function rootVars(theme) {
 
 function themes() {
 	return readdirSync(path.join(VE, 'themes')).filter((t) =>
-		existsSync(path.join(VE, 'themes', t, 'scope.css.ts')))
+		existsSync(path.join(VE, 'themes', t, 'scope.css.ts')),
+	)
 }
 
 function scopeExport(theme) {
@@ -77,10 +84,11 @@ function main() {
 		'',
 	].join('\n')
 	writeFileSync(CONTRACT_FILE, contract)
-	writeFileSync(NAMES_JSON, JSON.stringify(nameMap, null, '\t') + '\n')
+	writeFileSync(NAMES_JSON, `${JSON.stringify(nameMap, null, '\t')}\n`)
 
 	// (2) por tema: atribuição dos valores presentes no :root.
-	let themeCount = 0, assignedSample = 0
+	let themeCount = 0,
+		assignedSample = 0
 	for (const theme of themes()) {
 		const root = rootVars(theme)
 		const assigns = vars.filter((v) => v in root)
@@ -107,9 +115,13 @@ function main() {
 	console.log('=== gen-public-vars ===')
 	console.log(`vars públicas (createVar):     ${vars.length}`)
 	console.log(`temas com public-vars.css.ts:  ${themeCount}`)
-	console.log(`atribuídas no scope (bootstrap): ${assignedSample} (as demais são setadas pela própria utility, ex. opacidades)`)
+	console.log(
+		`atribuídas no scope (bootstrap): ${assignedSample} (as demais são setadas pela própria utility, ex. opacidades)`,
+	)
 	console.log(`não no :root (utility-local):  ${vars.length - assignedSample}`)
-	console.log(`→ ${path.relative(ROOT, CONTRACT_FILE)}, ${path.relative(ROOT, NAMES_JSON)}, themes/*/public-vars.css.ts`)
+	console.log(
+		`→ ${path.relative(ROOT, CONTRACT_FILE)}, ${path.relative(ROOT, NAMES_JSON)}, themes/*/public-vars.css.ts`,
+	)
 }
 
 main()

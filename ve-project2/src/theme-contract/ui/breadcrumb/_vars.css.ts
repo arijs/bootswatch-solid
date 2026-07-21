@@ -10,13 +10,13 @@ import { createVar } from '@vanilla-extract/css'
 // deixa vazio por padrão (font-size herdado). Declaramos mesmo assim para que
 // a referência seja hasheada e nenhum literal `--bs-breadcrumb-font-size`
 // sobre no artefato.
-export const varBsBreadcrumbFontSize = createVar()         // --bs-breadcrumb-font-size
-export const varBsBreadcrumbPaddingX = createVar()         // --bs-breadcrumb-padding-x
-export const varBsBreadcrumbPaddingY = createVar()         // --bs-breadcrumb-padding-y
-export const varBsBreadcrumbMarginBottom = createVar()     // --bs-breadcrumb-margin-bottom
-export const varBsBreadcrumbBg = createVar()               // --bs-breadcrumb-bg
-export const varBsBreadcrumbBorderRadius = createVar()     // --bs-breadcrumb-border-radius
-export const varBsBreadcrumbDividerColor = createVar()     // --bs-breadcrumb-divider-color
-export const varBsBreadcrumbItemPaddingX = createVar()     // --bs-breadcrumb-item-padding-x
-export const varBsBreadcrumbItemActiveColor = createVar()  // --bs-breadcrumb-item-active-color
-export const varBsBreadcrumbDivider = createVar()          // --bs-breadcrumb-divider
+export const varBsBreadcrumbFontSize = createVar() // --bs-breadcrumb-font-size
+export const varBsBreadcrumbPaddingX = createVar() // --bs-breadcrumb-padding-x
+export const varBsBreadcrumbPaddingY = createVar() // --bs-breadcrumb-padding-y
+export const varBsBreadcrumbMarginBottom = createVar() // --bs-breadcrumb-margin-bottom
+export const varBsBreadcrumbBg = createVar() // --bs-breadcrumb-bg
+export const varBsBreadcrumbBorderRadius = createVar() // --bs-breadcrumb-border-radius
+export const varBsBreadcrumbDividerColor = createVar() // --bs-breadcrumb-divider-color
+export const varBsBreadcrumbItemPaddingX = createVar() // --bs-breadcrumb-item-padding-x
+export const varBsBreadcrumbItemActiveColor = createVar() // --bs-breadcrumb-item-active-color
+export const varBsBreadcrumbDivider = createVar() // --bs-breadcrumb-divider

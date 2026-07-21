@@ -1,8 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	form,
 	formCheck,
@@ -10,13 +12,10 @@ import {
 	formCheckLabel,
 	formSwitch,
 } from '../../../theme-contract/forms/contract.css'
-import {
-	elInput,
-	elLabel,
-} from '../../../theme-contract/global-elements/contract.css'
-import {
-	mb3,
-} from '../../../theme-contract/utilities/contract.css'
+import { elInput, elLabel } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -38,7 +37,10 @@ const SwitchCheckbox: Component = () => {
 						id="flexSwitchCheckChecked"
 						checked
 					/>
-					<label class={`${theme} ${elLabel} ${formCheckLabel} pwhook-checkbox-label`} for="flexSwitchCheckChecked">
+					<label
+						class={`${theme} ${elLabel} ${formCheckLabel} pwhook-checkbox-label`}
+						for="flexSwitchCheckChecked"
+					>
 						Checked switch checkbox input
 					</label>
 				</div>

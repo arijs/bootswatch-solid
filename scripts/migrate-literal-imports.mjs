@@ -9,7 +9,7 @@
  *
  * Usage: node scripts/migrate-literal-imports.mjs [--dry-run]
  */
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -38,9 +38,13 @@ function parseImports(content) {
 	// Match multi-line and single-line imports from theme-contract
 	const importRe = /import\s*\{([^}]+)\}\s*from\s*'([^']*theme-contract[^']*)'/g
 	let m
+	// biome-ignore lint/suspicious/noAssignInExpressions: idioma de iteração com regex.exec()
 	while ((m = importRe.exec(content)) !== null) {
 		const path = m[2]
-		const classes = m[1].split(',').map(s => s.trim()).filter(s => s.length > 0)
+		const classes = m[1]
+			.split(',')
+			.map((s) => s.trim())
+			.filter((s) => s.length > 0)
 		if (!imports.has(path)) imports.set(path, new Set())
 		for (const cls of classes) imports.get(path).add(cls)
 	}
@@ -76,7 +80,8 @@ for (const [path, classes] of [...canonicalUsage].sort(([a], [b]) => a.localeCom
 // Now update styles.css.ts
 let content = readFileSync(stylesFile, 'utf8')
 
-const literalImportRe = /import \{([^}]+)\} from '\.\.\/\.\.\/\.\.\/theme-contract\/literal\/contract\.css'/s
+const literalImportRe =
+	/import \{([^}]+)\} from '\.\.\/\.\.\/\.\.\/theme-contract\/literal\/contract\.css'/s
 const literalMatch = content.match(literalImportRe)
 if (!literalMatch) {
 	console.error('Could not find literal/contract.css import block')
@@ -84,7 +89,10 @@ if (!literalMatch) {
 }
 
 const literalClasses = new Set(
-	literalMatch[1].split(',').map(s => s.trim()).filter(s => s.length > 0)
+	literalMatch[1]
+		.split(',')
+		.map((s) => s.trim())
+		.filter((s) => s.length > 0),
 )
 console.log(`\nLiteral import has ${literalClasses.size} classes`)
 
@@ -92,9 +100,11 @@ console.log(`\nLiteral import has ${literalClasses.size} classes`)
 const toMigrate = [] // { importPath, classes }
 const movedClasses = new Set()
 
-for (const [suffix, componentClasses] of [...canonicalUsage].sort(([a], [b]) => a.localeCompare(b))) {
+for (const [suffix, componentClasses] of [...canonicalUsage].sort(([a], [b]) =>
+	a.localeCompare(b),
+)) {
 	// Only move classes that are currently in the literal import
-	const toMove = [...componentClasses].filter(c => literalClasses.has(c)).sort()
+	const toMove = [...componentClasses].filter((c) => literalClasses.has(c)).sort()
 	if (toMove.length === 0) continue
 
 	const importPath = `../../../theme-contract/${suffix}`
@@ -104,17 +114,22 @@ for (const [suffix, componentClasses] of [...canonicalUsage].sort(([a], [b]) => 
 	console.log(`  Moving to ${suffix}: ${toMove.join(', ')}`)
 }
 
-const remainingLiteral = [...literalClasses].filter(c => !movedClasses.has(c)).sort()
-console.log(`\nLiteral import: ${literalClasses.size} → ${remainingLiteral.length} classes after migration`)
+const remainingLiteral = [...literalClasses].filter((c) => !movedClasses.has(c)).sort()
+console.log(
+	`\nLiteral import: ${literalClasses.size} → ${remainingLiteral.length} classes after migration`,
+)
 console.log(`Migrating ${movedClasses.size} classes to canonical contracts`)
 
 // Build new literal import block
 const newLiteralImport = `import {\n\t${remainingLiteral.join(',\n\t')},\n} from '../../../theme-contract/literal/contract.css'`
 
 // Build new canonical import blocks
-const newCanonicalBlocks = toMigrate.map(({ importPath, classes }) =>
-	`import {\n\t${classes.join(',\n\t')},\n} from '${importPath}'`
-).join('\n')
+const newCanonicalBlocks = toMigrate
+	.map(
+		({ importPath, classes }) =>
+			`import {\n\t${classes.join(',\n\t')},\n} from '${importPath}'`,
+	)
+	.join('\n')
 
 // Replace: insert canonical blocks before the literal import
 const insertionPoint = literalMatch.index
@@ -122,7 +137,8 @@ const literalEnd = insertionPoint + literalMatch[0].length
 
 content =
 	content.slice(0, insertionPoint) +
-	newCanonicalBlocks + '\n' +
+	newCanonicalBlocks +
+	'\n' +
 	newLiteralImport +
 	content.slice(literalEnd)
 

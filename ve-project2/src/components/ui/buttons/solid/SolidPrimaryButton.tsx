@@ -1,9 +1,7 @@
-import {
-	elButton,
-} from '../../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../../context/ThemeContext'
+import { elButton } from '../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../theme-contract/layout/container.css'
 import {
 	btn,

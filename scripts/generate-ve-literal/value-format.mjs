@@ -187,13 +187,9 @@ export function formatVeValue(parsed) {
 	}
 	// template
 	const content = parsed.parts
-		.map((p) =>
-			p.type === 'var'
-				? `\${${formatVarNode(p)}}`
-				: escapeLiteralPart(p.value),
-		)
+		.map((p) => (p.type === 'var' ? `\${${formatVarNode(p)}}` : escapeLiteralPart(p.value)))
 		.join('')
-	return '`' + content + '`'
+	return `\`${content}\``
 }
 
 /** Escape backticks and `${` inside template literal content. */

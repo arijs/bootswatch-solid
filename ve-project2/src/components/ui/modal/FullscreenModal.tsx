@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,6 +6,7 @@ import {
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
 import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btnClose, clsH4 } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'

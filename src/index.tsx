@@ -8,7 +8,7 @@ import './cheatsheet.scss'
 
 interface WindowExtended {
 	bootstrap?: typeof bootstrap
-	cssSelectorParser?: {}
+	cssSelectorParser?: object
 	streamXMLParser?: typeof StreamXMLParser
 	loadStreamXMLParser?: () => Promise<typeof StreamXMLParser>
 }

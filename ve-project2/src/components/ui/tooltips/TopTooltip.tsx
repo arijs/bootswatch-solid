@@ -1,6 +1,3 @@
-import {
-	elButton,
-} from '../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -8,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
+import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	border,
@@ -16,7 +14,6 @@ import {
 	justifyContentEnd,
 	tooltip,
 } from '../../../theme-contract/literal/contract.css'
-import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { bodyText, vars } from '../../../theme-contract/theme-contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
@@ -28,6 +25,7 @@ import {
 	tooltipInner,
 	tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
+import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { createVeTooltip } from './ve-tooltip'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [

@@ -1,8 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { bodyText } from '../../../theme-contract/theme-contract.css'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	formCheck,
 	formCheckInput,
@@ -10,16 +12,10 @@ import {
 	invalidFeedback,
 	isInvalid,
 } from '../../../theme-contract/forms/contract.css'
-import {
-	elInput,
-	elLabel,
-} from '../../../theme-contract/global-elements/contract.css'
-import {
-	colMd6,
-	g3,
-	row,
-	rowCol,
-} from '../../../theme-contract/utilities/contract.css'
+import { elInput, elLabel } from '../../../theme-contract/global-elements/contract.css'
+import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { bodyText } from '../../../theme-contract/theme-contract.css'
+import { colMd6, g3, row, rowCol } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
@@ -47,7 +43,9 @@ const InvalidRadios: Component = () => {
 						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="invalidRadio3">
 							Agree to terms and conditions
 						</label>
-						<div class={`${theme} ${invalidFeedback}`}>You must agree before submitting.</div>
+						<div class={`${theme} ${invalidFeedback}`}>
+							You must agree before submitting.
+						</div>
 					</div>
 				</div>
 				<div class={`${theme} ${rowCol} ${colMd6}`}>
@@ -64,7 +62,9 @@ const InvalidRadios: Component = () => {
 						<label class={`${theme} ${elLabel} ${formCheckLabel}`} for="invalidRadio4">
 							Do NOT Agree to terms and conditions
 						</label>
-						<div class={`${theme} ${invalidFeedback}`}>You must agree before submitting.</div>
+						<div class={`${theme} ${invalidFeedback}`}>
+							You must agree before submitting.
+						</div>
 					</div>
 				</div>
 			</form>

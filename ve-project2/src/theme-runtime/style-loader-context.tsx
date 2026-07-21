@@ -19,6 +19,6 @@ export function useVe2RequiredStyleFamilies(families: readonly Ve2StyleFamily[])
 		(fams) => {
 			if (!styleLoaderApi || fams.length === 0) return
 			void styleLoaderApi.requestFamilies(fams)
-		}
+		},
 	)
 }

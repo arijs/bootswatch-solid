@@ -20,7 +20,7 @@
 // Pré-requisito: `node scripts/build-package.mjs` já rodou (popula
 // dist-pkg/themes/<tema>/). Este script NÃO recompila o VE.
 
-import { rm, mkdir, readdir, readFile, writeFile, copyFile, stat } from 'node:fs/promises'
+import { copyFile, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { build as esbuild } from 'esbuild'
@@ -50,7 +50,13 @@ function parseExportNames(js) {
 	if (!m) return []
 	return m[1]
 		.split(',')
-		.map((s) => s.trim().split(/\s+as\s+/).pop().trim())
+		.map((s) =>
+			s
+				.trim()
+				.split(/\s+as\s+/)
+				.pop()
+				.trim(),
+		)
 		.filter(Boolean)
 		.sort()
 }
@@ -75,7 +81,8 @@ async function assembleTheme(theme) {
 	// scope.js (export const <tema>Scope = "<hash>") + .d.ts.
 	const scopeJs = await readFile(path.join(from, 'scope.js'), 'utf8')
 	await writeFile(path.join(to, 'scope.js'), scopeJs)
-	const scopeConst = (scopeJs.match(/export\s*\{\s*([A-Za-z0-9_]+)\s*\}/) || [])[1] ?? `${theme}Scope`
+	const scopeConst =
+		(scopeJs.match(/export\s*\{\s*([A-Za-z0-9_]+)\s*\}/) || [])[1] ?? `${theme}Scope`
 	await writeFile(
 		path.join(to, 'scope.d.ts'),
 		`// Classe de scope hasheada do tema "${theme}".\nexport declare const ${scopeConst}: string\n`,
@@ -83,7 +90,9 @@ async function assembleTheme(theme) {
 
 	// index.css — concat na ordem definida.
 	const order = [
-		...CSS_ORDER_HEAD.filter((n) => families.includes(n) || n === 'scope' || n === 'public-vars'),
+		...CSS_ORDER_HEAD.filter(
+			(n) => families.includes(n) || n === 'scope' || n === 'public-vars',
+		),
 		...families.filter((n) => !CSS_ORDER_HEAD.includes(n)),
 	]
 	const seen = new Set()
@@ -92,7 +101,11 @@ async function assembleTheme(theme) {
 		if (seen.has(name)) continue
 		seen.add(name)
 		const p = path.join(to, `${name}.css`)
-		if (await stat(p).then(() => true).catch(() => false)) {
+		if (
+			await stat(p)
+				.then(() => true)
+				.catch(() => false)
+		) {
 			chunks.push(`/* ${name} */\n${await readFile(p, 'utf8')}`)
 		}
 	}
@@ -124,7 +137,10 @@ async function assemblePreset() {
 	const dir = path.join(OUT, 'preset')
 	await mkdir(dir, { recursive: true })
 	// Runtime precisa só do preset + dados gerados (os JSON são build-time).
-	await copyFile(path.join(ROOT, 'preset', 'preset-bootswatch.mjs'), path.join(dir, 'preset-bootswatch.mjs'))
+	await copyFile(
+		path.join(ROOT, 'preset', 'preset-bootswatch.mjs'),
+		path.join(dir, 'preset-bootswatch.mjs'),
+	)
 	await copyFile(
 		path.join(ROOT, 'preset', 'bootstrap-utilities.generated.mjs'),
 		path.join(dir, 'bootstrap-utilities.generated.mjs'),
@@ -232,7 +248,15 @@ function packageJson(themes) {
 			'@unocss/core': { optional: true },
 			'solid-js': { optional: true },
 		},
-		keywords: ['bootstrap', 'bootswatch', 'vanilla-extract', 'unocss', 'solid', 'design-system', 'css'],
+		keywords: [
+			'bootstrap',
+			'bootswatch',
+			'vanilla-extract',
+			'unocss',
+			'solid',
+			'design-system',
+			'css',
+		],
 		publishConfig: { access: 'public' },
 		bootswatchThemes: themes,
 	}
@@ -305,7 +329,10 @@ async function main() {
 	await assemblePreset()
 	await assembleSolid()
 
-	await writeFile(path.join(OUT, 'package.json'), JSON.stringify(packageJson(themes), null, 2) + '\n')
+	await writeFile(
+		path.join(OUT, 'package.json'),
+		`${JSON.stringify(packageJson(themes), null, 2)}\n`,
+	)
 	await writeFile(path.join(OUT, 'README.md'), readme(themes, contractCount))
 
 	// Relatório
@@ -321,7 +348,9 @@ async function main() {
 	const size = await dirSize(OUT)
 	console.log(`\n=== ${PKG_NAME}@${PKG_VERSION} → package/ ===`)
 	for (const ti of themeInfos) {
-		console.log(`tema ${ti.theme}: ${ti.families.length} famílias + scope + public-vars + index.css`)
+		console.log(
+			`tema ${ti.theme}: ${ti.families.length} famílias + scope + public-vars + index.css`,
+		)
 	}
 	console.log(`contract: ${contractCount} nomes (JS + d.ts)`)
 	console.log(`preset + solid: compilados`)

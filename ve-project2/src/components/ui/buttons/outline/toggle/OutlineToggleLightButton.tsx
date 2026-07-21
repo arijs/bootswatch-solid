@@ -1,7 +1,3 @@
-import {
-	elInput,
-	elLabel,
-} from '../../../../../theme-contract/global-elements/contract.css'
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import {
@@ -9,6 +5,7 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../../../context/ThemeContext'
+import { elInput, elLabel } from '../../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import {
 	btn,
@@ -34,7 +31,10 @@ const OutlineToggleLightButton: Component = () => {
 				id="id-btn-outline-toggle-light"
 				autocomplete="off"
 			/>
-			<label class={`${theme} ${elLabel} ${btn} ${btnOutlineLight}`} for="id-btn-outline-toggle-light">
+			<label
+				class={`${theme} ${elLabel} ${btn} ${btnOutlineLight}`}
+				for="id-btn-outline-toggle-light"
+			>
 				Toggle Light
 			</label>
 		</div>

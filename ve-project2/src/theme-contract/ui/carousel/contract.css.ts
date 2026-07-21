@@ -7,14 +7,14 @@ import { style } from '@vanilla-extract/css'
 // ── Carousel wrapper ──────────────────────────────────────────────────────────
 
 export const carousel = style({})
-export const carouselSlide = style({})     // modifier: slide animation
-export const carouselFade = style({})      // modifier: crossfade animation
+export const carouselSlide = style({}) // modifier: slide animation
+export const carouselFade = style({}) // modifier: crossfade animation
 
 // ── Carousel inner track ──────────────────────────────────────────────────────
 
 export const carouselInner = style({})
 export const carouselItem = style({})
-export const carouselActive = style({})    // .active — managed by Bootstrap JS
+export const carouselActive = style({}) // .active — managed by Bootstrap JS
 export const carouselItemActive = style({})
 export const carouselItemNext = style({})
 export const carouselItemPrev = style({})

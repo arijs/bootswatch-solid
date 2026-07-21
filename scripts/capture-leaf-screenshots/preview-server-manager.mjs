@@ -22,7 +22,12 @@ function shortError(error) {
 /**
  * Manages a Vite preview server process with kill/restart recovery.
  */
-export function createPreviewServerManager({ label, baseUrl, startFn, initialReadyTimeoutMs = 45_000 }) {
+export function createPreviewServerManager({
+	label,
+	baseUrl,
+	startFn,
+	initialReadyTimeoutMs = 45_000,
+}) {
 	let process = null
 	let consecutiveRestartFailures = 0
 

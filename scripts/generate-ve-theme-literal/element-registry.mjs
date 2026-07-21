@@ -84,7 +84,9 @@ export const ATTRIBUTE_TO_HOST_CONTRACT = {
 
 /** Merged into ELEMENT_SELECTOR_BY_FAMILY.literal for the rule transpiler. */
 export const LITERAL_ELEMENT_SELECTOR_MAP = {
-	...Object.fromEntries(Object.entries(TAG_TO_CONTRACT).map(([tag, contract]) => [tag, contract])),
+	...Object.fromEntries(
+		Object.entries(TAG_TO_CONTRACT).map(([tag, contract]) => [tag, contract]),
+	),
 	_attrHost: 'elButton',
 	_pseudoHost: 'elButton',
 }

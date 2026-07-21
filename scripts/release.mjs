@@ -36,7 +36,8 @@ function die(msg) {
 
 // Semver básico (X.Y.Z com pré-release opcional, ex.: 0.1.1, 1.0.0-beta.2).
 if (!version) die('Informe a versão: node scripts/release.mjs <X.Y.Z> [--publish] [--dry-run]')
-if (!/^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/.test(version)) die(`Versão inválida: "${version}" (esperado X.Y.Z, sem o "v").`)
+if (!/^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/.test(version))
+	die(`Versão inválida: "${version}" (esperado X.Y.Z, sem o "v").`)
 
 function run(label, cmd, cmdArgs, opts = {}) {
 	console.log(`\n▶ ${label}\n  $ ${cmd} ${cmdArgs.join(' ')}`)
@@ -47,7 +48,13 @@ function run(label, cmd, cmdArgs, opts = {}) {
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 
 console.log(`\n=== Release @arijs/bootswatch-ve @ ${version} ===`)
-console.log(DO_PUBLISH ? (DRY_RUN ? 'modo: publish --dry-run' : 'modo: PUBLISH real') : 'modo: só validação (não publica)')
+console.log(
+	DO_PUBLISH
+		? DRY_RUN
+			? 'modo: publish --dry-run'
+			: 'modo: PUBLISH real'
+		: 'modo: só validação (não publica)',
+)
 
 // 1. Build dos 27 temas (gate: 0 literal --bs-*). Sai !=0 se sobrar literal.
 if (!SKIP_BUILD) run('Build do pacote (0 literal em 27 temas)', npm, ['run', 'pkg:build'])
@@ -60,7 +67,8 @@ run('Monta a raiz publicável (package/)', npm, ['run', 'pkg:pack'], {
 
 // 3. Confere que package/package.json casa com a versão pedida.
 const built = JSON.parse(readFileSync(path.join(ROOT, 'package', 'package.json'), 'utf8'))
-if (built.version !== version) die(`Versão divergente: package/package.json tem ${built.version}, esperado ${version}.`)
+if (built.version !== version)
+	die(`Versão divergente: package/package.json tem ${built.version}, esperado ${version}.`)
 console.log(`\n✔ package/package.json → ${built.name}@${built.version}`)
 
 // 4. Probe de fidelidade do preset (46/46, determinístico).
@@ -73,16 +81,23 @@ run('npm pack --dry-run (dimensiona o tarball)', npm, ['pack', '--dry-run'], {
 
 // 6. Publica (opcional) ou imprime o próximo passo.
 if (DO_PUBLISH) {
-	run(DRY_RUN ? 'npm publish --dry-run' : 'npm publish (público)', npm, DRY_RUN ? ['publish', '--dry-run'] : ['publish'], {
-		cwd: path.join(ROOT, 'package'),
-	})
-	console.log(`\n✔ ${DRY_RUN ? 'Simulação de publish OK.' : `Publicado @arijs/bootswatch-ve@${version}.`}\n`)
+	run(
+		DRY_RUN ? 'npm publish --dry-run' : 'npm publish (público)',
+		npm,
+		DRY_RUN ? ['publish', '--dry-run'] : ['publish'],
+		{
+			cwd: path.join(ROOT, 'package'),
+		},
+	)
+	console.log(
+		`\n✔ ${DRY_RUN ? 'Simulação de publish OK.' : `Publicado @arijs/bootswatch-ve@${version}.`}\n`,
+	)
 } else {
-	console.log('\n' + '─'.repeat(64))
+	console.log(`\n${'─'.repeat(64)}`)
 	console.log('✔ Tudo validado. NADA foi publicado.')
 	console.log('Para publicar de fato (precisa de `npm login` e OTP se tiver 2FA):')
 	console.log('    cd package && npm publish')
 	console.log('Ou re-rode com --publish:')
 	console.log(`    node scripts/release.mjs ${version} --publish`)
-	console.log('─'.repeat(64) + '\n')
+	console.log(`${'─'.repeat(64)}\n`)
 }

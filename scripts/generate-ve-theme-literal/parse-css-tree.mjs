@@ -27,7 +27,7 @@ function isScopeOwnedSelector(selector) {
 	return false
 }
 
-function shouldSkipAtRule(name) {
+function _shouldSkipAtRule(name) {
 	return ['import', 'charset', 'font-face', 'namespace'].includes(name)
 }
 
@@ -113,9 +113,11 @@ export function walkCssEmitUnits(ast, { includeRootVars = false } = {}) {
 
 			if (node.type === 'supports' || node.type === 'container') {
 				// Flatten as pseudo-media for now — rare in bootstrap.css
-				const label = node.type === 'supports' ? `supports ${node.supports}` : `container ${node.container}`
+				const label =
+					node.type === 'supports'
+						? `supports ${node.supports}`
+						: `container ${node.container}`
 				walk(node.rules, [...mediaStack, label])
-				continue
 			}
 		}
 	}

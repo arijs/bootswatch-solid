@@ -1,7 +1,5 @@
-import {
-	elButton,
-} from '../../theme-contract/global-elements/contract.css'
-import { createRenderEffect, type Component, type JSX, useContext } from 'solid-js'
+import { type Component, createRenderEffect, type JSX, useContext } from 'solid-js'
+import { elButton } from '../../theme-contract/global-elements/contract.css'
 // Root-level contract classes: body wrapper + text-bearing root.
 import { body, bodyText } from '../../theme-contract/theme-contract.css'
 // Contract classes — stable identifiers shared by all themes, applied to elements.
@@ -23,10 +21,13 @@ import { sketchyScope } from '../../themes/sketchy/scope.css'
 
 // Loads both button families only when this POC route is rendered.
 function usePocThemeButtonStyles(): void {
-	createRenderEffect(() => {}, () => {
-		void import('../../themes/bootstrap/ui/buttons/styles.css')
-		void import('../../themes/sketchy/ui/buttons/styles.css')
-	})
+	createRenderEffect(
+		() => {},
+		() => {
+			void import('../../themes/bootstrap/ui/buttons/styles.css')
+			void import('../../themes/sketchy/ui/buttons/styles.css')
+		},
+	)
 }
 
 // ThemeContext — propagates the active scope class down to every component so
@@ -82,194 +83,204 @@ const PocThemeScopeDemo: Component = () => {
 	usePocThemeButtonStyles()
 
 	return (
-		<div style={{ 'font-family': 'system-ui, sans-serif', padding: '2rem', 'max-width': '900px' }}>
-		<h1>Element-Owned Scope — PoC</h1>
-		<p>
-			Every <code>&lt;button&gt;</code> below carries the <em>same</em> contract class names (
-			<code>btn</code>, <code>btnPrimary</code>, …) <strong>plus</strong> the active theme's
-			scope class. CSS rules use compound selectors (<code>.theme.btn</code>) so each element
-			is styled by exactly the theme class it carries — no ancestor matching, no nesting
-			conflicts, unlimited nesting depth.
-		</p>
-
-		<h2>1. Bootstrap theme</h2>
-		<div style={sectionStyle}>
-			<ThemeContext value={bootstrapScope}>
-				<ThemedBody>
-					<Buttons />
-				</ThemedBody>
-			</ThemeContext>
-		</div>
-
-		<h2>2. Sketchy theme</h2>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			Note: Neucha font loads from Google Fonts if available; otherwise a generic cursive is
-			used. The hand-drawn border-radius is always present.
-		</p>
-		<div style={sectionStyle}>
-			<ThemeContext value={sketchyScope}>
-				<ThemedBody>
-					<Buttons />
-				</ThemedBody>
-			</ThemeContext>
-		</div>
-
-		<h2>3. Nested — Bootstrap (outer) / Sketchy (inner) ✓</h2>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			The inner <code>ThemeContext</code> overrides the outer one. Each button carries the
-			class of the nearest provider — no CSS workaround needed.
-		</p>
-		<div style={sectionStyle}>
-			<ThemeContext value={bootstrapScope}>
-				<ThemedBody>
-					<p style={labelStyle}>bootstrap (outer)</p>
-					<Buttons />
-					<div style={{ 'margin-top': '0.75rem' }}>
-						<ThemeContext value={sketchyScope}>
-							<ThemedBody>
-								<p style={labelStyle}>sketchy (inner) — Sketchy wins ✓</p>
-								<Buttons />
-							</ThemedBody>
-						</ThemeContext>
-					</div>
-				</ThemedBody>
-			</ThemeContext>
-		</div>
-
-		<h2>4. Nested — Sketchy (outer) / Bootstrap (inner) ✓</h2>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			Reverse nesting works identically — no specificity tricks, no <code>@layer</code>, no
-			extra selectors. Element-owned scope eliminates the problem entirely.
-		</p>
-		<div style={sectionStyle}>
-			<ThemeContext value={sketchyScope}>
-				<ThemedBody>
-					<p style={labelStyle}>sketchy (outer)</p>
-					<Buttons />
-					<div style={{ 'margin-top': '0.75rem' }}>
-						<ThemeContext value={bootstrapScope}>
-							<ThemedBody>
-								<p style={labelStyle}>bootstrap (inner) — Bootstrap wins ✓</p>
-								<Buttons />
-							</ThemedBody>
-						</ThemeContext>
-					</div>
-				</ThemedBody>
-			</ThemeContext>
-		</div>
-
-		<h2>5. Three levels deep — Bootstrap / Sketchy / Bootstrap ✓</h2>
-		<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
-			Unlimited nesting depth: each provider overrides its parent independently. The CSS
-			stylesheet is unchanged — no new selectors are required for each additional depth.
-		</p>
-		<div style={sectionStyle}>
-			<ThemeContext value={bootstrapScope}>
-				<ThemedBody>
-					<p style={labelStyle}>bootstrap (depth 1)</p>
-					<Buttons />
-					<div style={{ 'margin-top': '0.75rem' }}>
-						<ThemeContext value={sketchyScope}>
-							<ThemedBody>
-								<p style={labelStyle}>sketchy (depth 2)</p>
-								<Buttons />
-								<div style={{ 'margin-top': '0.75rem' }}>
-									<ThemeContext value={bootstrapScope}>
-										<ThemedBody>
-											<p style={labelStyle}>
-												bootstrap (depth 3) — Bootstrap wins ✓
-											</p>
-											<Buttons />
-										</ThemedBody>
-									</ThemeContext>
-								</div>
-							</ThemedBody>
-						</ThemeContext>
-					</div>
-				</ThemedBody>
-			</ThemeContext>
-		</div>
-
-		<h2>Architecture summary</h2>
-		<table
+		<div
 			style={{
-				'border-collapse': 'collapse',
-				width: '100%',
-				'font-size': '0.875rem',
+				'font-family': 'system-ui, sans-serif',
+				padding: '2rem',
+				'max-width': '900px',
 			}}
 		>
-			<thead>
-				<tr style={{ background: '#f8f9fa' }}>
-					<th style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Layer</th>
-					<th style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>File</th>
-					<th style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						Responsibility
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Contract</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>theme-contract/…/contract.css.ts</code>
-					</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						Empty <code>style(&#123;&#125;)</code> — stable hashed identifiers, no CSS
-						rules
-					</td>
-				</tr>
-				<tr>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Scope</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>themes/*/scope.css.ts</code>
-					</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						One empty class per theme; wires root styles via{' '}
-						<code>globalStyle(scope + body/bodyText, …)</code>
-					</td>
-				</tr>
-				<tr>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Styles</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>themes/*/ui/…/styles.css.ts</code>
-					</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>globalStyle(scope + contract, cssProps)</code> — compound selector (no
-						space), one rule set per theme
-					</td>
-				</tr>
-				<tr>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Context</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>ThemeContext</code>
-					</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						Propagates the active scope class to every descendant component; nesting
-						overrides automatically
-					</td>
-				</tr>
-				<tr>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>ThemedBody</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>components/poc/PocThemeScopeDemo.tsx</code>
-					</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						Stamps <code>scope + body + bodyText</code> on a wrapper div so root-level
-						font/color/bg styles take effect in that subtree
-					</td>
-				</tr>
-				<tr>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Component</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						<code>components/…/*.tsx</code>
-					</td>
-					<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
-						Reads theme from context; applies scope class to every rendered element
-						alongside contract classes
-					</td>
-				</tr>
-			</tbody>
-		</table>
+			<h1>Element-Owned Scope — PoC</h1>
+			<p>
+				Every <code>&lt;button&gt;</code> below carries the <em>same</em> contract class
+				names (<code>btn</code>, <code>btnPrimary</code>, …) <strong>plus</strong> the
+				active theme's scope class. CSS rules use compound selectors (
+				<code>.theme.btn</code>) so each element is styled by exactly the theme class it
+				carries — no ancestor matching, no nesting conflicts, unlimited nesting depth.
+			</p>
+
+			<h2>1. Bootstrap theme</h2>
+			<div style={sectionStyle}>
+				<ThemeContext value={bootstrapScope}>
+					<ThemedBody>
+						<Buttons />
+					</ThemedBody>
+				</ThemeContext>
+			</div>
+
+			<h2>2. Sketchy theme</h2>
+			<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
+				Note: Neucha font loads from Google Fonts if available; otherwise a generic cursive
+				is used. The hand-drawn border-radius is always present.
+			</p>
+			<div style={sectionStyle}>
+				<ThemeContext value={sketchyScope}>
+					<ThemedBody>
+						<Buttons />
+					</ThemedBody>
+				</ThemeContext>
+			</div>
+
+			<h2>3. Nested — Bootstrap (outer) / Sketchy (inner) ✓</h2>
+			<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
+				The inner <code>ThemeContext</code> overrides the outer one. Each button carries the
+				class of the nearest provider — no CSS workaround needed.
+			</p>
+			<div style={sectionStyle}>
+				<ThemeContext value={bootstrapScope}>
+					<ThemedBody>
+						<p style={labelStyle}>bootstrap (outer)</p>
+						<Buttons />
+						<div style={{ 'margin-top': '0.75rem' }}>
+							<ThemeContext value={sketchyScope}>
+								<ThemedBody>
+									<p style={labelStyle}>sketchy (inner) — Sketchy wins ✓</p>
+									<Buttons />
+								</ThemedBody>
+							</ThemeContext>
+						</div>
+					</ThemedBody>
+				</ThemeContext>
+			</div>
+
+			<h2>4. Nested — Sketchy (outer) / Bootstrap (inner) ✓</h2>
+			<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
+				Reverse nesting works identically — no specificity tricks, no <code>@layer</code>,
+				no extra selectors. Element-owned scope eliminates the problem entirely.
+			</p>
+			<div style={sectionStyle}>
+				<ThemeContext value={sketchyScope}>
+					<ThemedBody>
+						<p style={labelStyle}>sketchy (outer)</p>
+						<Buttons />
+						<div style={{ 'margin-top': '0.75rem' }}>
+							<ThemeContext value={bootstrapScope}>
+								<ThemedBody>
+									<p style={labelStyle}>bootstrap (inner) — Bootstrap wins ✓</p>
+									<Buttons />
+								</ThemedBody>
+							</ThemeContext>
+						</div>
+					</ThemedBody>
+				</ThemeContext>
+			</div>
+
+			<h2>5. Three levels deep — Bootstrap / Sketchy / Bootstrap ✓</h2>
+			<p style={{ 'font-size': '0.875rem', color: '#6c757d' }}>
+				Unlimited nesting depth: each provider overrides its parent independently. The CSS
+				stylesheet is unchanged — no new selectors are required for each additional depth.
+			</p>
+			<div style={sectionStyle}>
+				<ThemeContext value={bootstrapScope}>
+					<ThemedBody>
+						<p style={labelStyle}>bootstrap (depth 1)</p>
+						<Buttons />
+						<div style={{ 'margin-top': '0.75rem' }}>
+							<ThemeContext value={sketchyScope}>
+								<ThemedBody>
+									<p style={labelStyle}>sketchy (depth 2)</p>
+									<Buttons />
+									<div style={{ 'margin-top': '0.75rem' }}>
+										<ThemeContext value={bootstrapScope}>
+											<ThemedBody>
+												<p style={labelStyle}>
+													bootstrap (depth 3) — Bootstrap wins ✓
+												</p>
+												<Buttons />
+											</ThemedBody>
+										</ThemeContext>
+									</div>
+								</ThemedBody>
+							</ThemeContext>
+						</div>
+					</ThemedBody>
+				</ThemeContext>
+			</div>
+
+			<h2>Architecture summary</h2>
+			<table
+				style={{
+					'border-collapse': 'collapse',
+					width: '100%',
+					'font-size': '0.875rem',
+				}}
+			>
+				<thead>
+					<tr style={{ background: '#f8f9fa' }}>
+						<th style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Layer</th>
+						<th style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>File</th>
+						<th style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							Responsibility
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Contract</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>theme-contract/…/contract.css.ts</code>
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							Empty <code>style(&#123;&#125;)</code> — stable hashed identifiers, no
+							CSS rules
+						</td>
+					</tr>
+					<tr>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Scope</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>themes/*/scope.css.ts</code>
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							One empty class per theme; wires root styles via{' '}
+							<code>globalStyle(scope + body/bodyText, …)</code>
+						</td>
+					</tr>
+					<tr>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Styles</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>themes/*/ui/…/styles.css.ts</code>
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>globalStyle(scope + contract, cssProps)</code> — compound selector
+							(no space), one rule set per theme
+						</td>
+					</tr>
+					<tr>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>Context</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>ThemeContext</code>
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							Propagates the active scope class to every descendant component; nesting
+							overrides automatically
+						</td>
+					</tr>
+					<tr>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							ThemedBody
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>components/poc/PocThemeScopeDemo.tsx</code>
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							Stamps <code>scope + body + bodyText</code> on a wrapper div so
+							root-level font/color/bg styles take effect in that subtree
+						</td>
+					</tr>
+					<tr>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							Component
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							<code>components/…/*.tsx</code>
+						</td>
+						<td style={{ border: '1px solid #dee2e6', padding: '0.5rem' }}>
+							Reads theme from context; applies scope class to every rendered element
+							alongside contract classes
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	)
 }

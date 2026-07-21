@@ -33,7 +33,9 @@ function familyBucket(scenarioPath) {
 function summarize(theme, fileName) {
 	const file = path.join(RUN_DIR, fileName)
 	const items = parseLog(file)
-	const summaryLine = readFileSync(file, 'utf8').match(/VE verification: ran=\d+, matched=(\d+), mismatched=(\d+), skipped=(\d+)/)
+	const summaryLine = readFileSync(file, 'utf8').match(
+		/VE verification: ran=\d+, matched=(\d+), mismatched=(\d+), skipped=(\d+)/,
+	)
 	const buckets = new Map()
 	for (const item of items) {
 		const fam = familyBucket(item.path)
@@ -64,6 +66,8 @@ for (const [theme, log] of [
 	console.log('Worst families (by avg ratio):')
 	const ranked = [...buckets.entries()].sort((a, b) => b[1].sum / b[1].n - a[1].sum / a[1].n)
 	for (const [fam, b] of ranked.slice(0, 10)) {
-		console.log(`  ${fam.padEnd(22)} n=${String(b.n).padStart(3)} avg=${(b.sum / b.n).toFixed(3)} max=${b.max.toFixed(3)}`)
+		console.log(
+			`  ${fam.padEnd(22)} n=${String(b.n).padStart(3)} avg=${(b.sum / b.n).toFixed(3)} max=${b.max.toFixed(3)}`,
+		)
 	}
 }

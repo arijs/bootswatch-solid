@@ -3,8 +3,8 @@ import path from 'node:path'
 
 import { VE2_CONTRACT_ROOT } from './constants.mjs'
 import {
-	CONTRACT_SELECTOR_OVERRIDES,
 	CLASS_TO_CONTRACT_OVERRIDES,
+	CONTRACT_SELECTOR_OVERRIDES,
 	contractToSelector,
 	symbolToCssVarName,
 } from './css-utils.mjs'
@@ -49,6 +49,7 @@ function parseExports(source) {
 	const exports = []
 	let match
 	EXPORT_CONST_PATTERN.lastIndex = 0
+	// biome-ignore lint/suspicious/noAssignInExpressions: idioma de iteração com regex.exec()
 	while ((match = EXPORT_CONST_PATTERN.exec(source)) !== null) {
 		exports.push(match[1])
 	}
@@ -102,8 +103,8 @@ function inferFamilyFromPath(filePath) {
 	if (rel.startsWith('global-elements/')) return 'global-elements'
 	if (rel.startsWith('layout/')) return 'layout'
 	if (rel.startsWith('forms/')) return 'forms'
-		if (rel === 'utilities/generated/_vars.css.ts') return 'utilities/generated-vars'
-		if (rel.startsWith('utilities/generated/')) return 'utilities/generated'
+	if (rel === 'utilities/generated/_vars.css.ts') return 'utilities/generated-vars'
+	if (rel.startsWith('utilities/generated/')) return 'utilities/generated'
 	if (rel.startsWith('utilities/')) return 'utilities'
 	if (rel.startsWith('literal/')) return 'literal'
 	if (rel.startsWith('contents/')) {
@@ -159,7 +160,8 @@ export async function buildContractRegistry() {
 					// readdir não decide qual import é gerado (import não resolvido é
 					// descartado em buildImportBlock e o VE quebra com ReferenceError).
 					if (family === 'global') symbolToFamily.set(symbol, family)
-					else if (family && !symbolToFamily.has(symbol)) symbolToFamily.set(symbol, family)
+					else if (family && !symbolToFamily.has(symbol))
+						symbolToFamily.set(symbol, family)
 					continue
 				}
 				const resolvedCssVar =

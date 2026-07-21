@@ -6,9 +6,9 @@ import { createVar } from '@vanilla-extract/css'
 //
 // Source: Bootstrap's .badge CSS block.
 
-export const varBsBadgePaddingX = createVar()        // --bs-badge-padding-x
-export const varBsBadgePaddingY = createVar()        // --bs-badge-padding-y
-export const varBsBadgeFontSize = createVar()        // --bs-badge-font-size
-export const varBsBadgeFontWeight = createVar()      // --bs-badge-font-weight
-export const varBsBadgeColor = createVar()           // --bs-badge-color
-export const varBsBadgeBorderRadius = createVar()    // --bs-badge-border-radius
+export const varBsBadgePaddingX = createVar() // --bs-badge-padding-x
+export const varBsBadgePaddingY = createVar() // --bs-badge-padding-y
+export const varBsBadgeFontSize = createVar() // --bs-badge-font-size
+export const varBsBadgeFontWeight = createVar() // --bs-badge-font-weight
+export const varBsBadgeColor = createVar() // --bs-badge-color
+export const varBsBadgeBorderRadius = createVar() // --bs-badge-border-radius

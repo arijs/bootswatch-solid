@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
-import FeaturedCard from './FeaturedCard'
-import HorizontalCard from './HorizontalCard'
-import ImageTopCard from './ImageTopCard'
-import ListCard from './ListCard'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	col,
@@ -15,6 +15,10 @@ import {
 	rowCols1,
 	rowColsMd2,
 } from '../../../theme-contract/utilities/contract.css'
+import FeaturedCard from './FeaturedCard'
+import HorizontalCard from './HorizontalCard'
+import ImageTopCard from './ImageTopCard'
+import ListCard from './ListCard'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/card',
 	'ui/buttons',
@@ -29,19 +33,21 @@ const CardsGrid: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	return (
-		<div class={`bd-example-ve2 ${theme} ${containerFluid} ${positionRelative} ${overflowXHidden}`}>
+		<div
+			class={`bd-example-ve2 ${theme} ${containerFluid} ${positionRelative} ${overflowXHidden}`}
+		>
 			<div class={`${theme} ${row} ${rowCols1} ${rowColsMd2} ${g4}`}>
 				<div class={`${theme} ${col}`}>
-					<ImageTopCard  />
+					<ImageTopCard />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<FeaturedCard  />
+					<FeaturedCard />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<ListCard  />
+					<ListCard />
 				</div>
 				<div class={`${theme} ${col}`}>
-					<HorizontalCard  />
+					<HorizontalCard />
 				</div>
 			</div>
 		</div>

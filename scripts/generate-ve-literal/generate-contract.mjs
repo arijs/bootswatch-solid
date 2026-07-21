@@ -13,12 +13,12 @@
  *   node scripts/generate-ve-literal/generate-contract.mjs [--dry-run]
  */
 
-import { writeFile, mkdir } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 
 import { VE2_CONTRACT_ROOT } from '../generate-ve-theme/constants.mjs'
-import { buildCensus, ALL_THEMES } from './registry.mjs'
+import { ALL_THEMES, buildCensus } from './registry.mjs'
 
 const OUT_FILE = path.join(VE2_CONTRACT_ROOT, 'literal', 'contract.css.ts')
 
@@ -94,7 +94,7 @@ export async function generateContractFile(opts = {}) {
 	const sortedSections = [...sections.entries()].sort(([a], [b]) => a.localeCompare(b))
 
 	const lines = [
-		'import { style } from \'@vanilla-extract/css\'',
+		"import { style } from '@vanilla-extract/css'",
 		'',
 		'/**',
 		' * Shared contract file for the v2 literal CSS→VE converter.',
@@ -109,7 +109,9 @@ export async function generateContractFile(opts = {}) {
 
 	// Note collisions at top
 	if (collisions.size > 0) {
-		lines.push('// Collision renames: class symbol matched an element contract name → cls prefix applied.')
+		lines.push(
+			'// Collision renames: class symbol matched an element contract name → cls prefix applied.',
+		)
 		for (const [origSymbol, cssClass] of [...collisions].sort()) {
 			const renamedSymbol = `cls${origSymbol.charAt(0).toUpperCase()}${origSymbol.slice(1)}`
 			lines.push(`//   .${cssClass} → "${origSymbol}" → renamed "${renamedSymbol}"`)

@@ -6,11 +6,11 @@
 // Pós-processo: normaliza nomes de CSS e CONTA o literal --bs-* residual (deve
 // ser 0 em todos os temas após o sweep de port).
 
-import { rm, mkdir, writeFile, readdir, readFile, rename, stat } from 'node:fs/promises'
+import { mkdir, readdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
-import { build } from 'vite'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
+import { build } from 'vite'
 
 const ROOT = process.cwd()
 const VE = path.join(ROOT, 've-project2', 'src')
@@ -38,7 +38,8 @@ async function listFamilies(theme) {
 			if (e.isDirectory()) await walk(p)
 			else if (e.name === 'styles.css.ts') {
 				const rel = path.relative(base, path.dirname(p)).replace(/\\/g, '/')
-				if (!EXCLUDE_FAMILIES.has(rel)) out.push({ rel, file: p, leaf: rel.split('/').pop() })
+				if (!EXCLUDE_FAMILIES.has(rel))
+					out.push({ rel, file: p, leaf: rel.split('/').pop() })
 			}
 		}
 	}
@@ -60,7 +61,10 @@ async function listContractModules() {
 				if (path.relative(base, p).replace(/\\/g, '/') === 'literal') continue
 				await walk(p)
 			} else if (e.name.endsWith('.css.ts')) {
-				out.push('../theme-contract/' + path.relative(base, p).replace(/\\/g, '/').replace(/\.ts$/, ''))
+				out.push(
+					'../theme-contract/' +
+						path.relative(base, p).replace(/\\/g, '/').replace(/\.ts$/, ''),
+				)
 			}
 		}
 	}
@@ -104,7 +108,9 @@ async function buildTheme(theme, { includeContract }) {
 				output: {
 					entryFileNames: '[name].js',
 					assetFileNames: (info) => {
-						const src = (info.originalFileNames ?? []).find((f) => f.includes('/themes/'))
+						const src = (info.originalFileNames ?? []).find((f) =>
+							f.includes('/themes/'),
+						)
 						const fam = familyNameFromSource(src)
 						return fam ? `${fam}.css` : '[name][extname]'
 					},
@@ -116,11 +122,18 @@ async function buildTheme(theme, { includeContract }) {
 	// Normaliza nomes (Vite às vezes emite `X.css.ts.css`) e remove .css vazios.
 	for (const e of (await readdir(themeOut, { withFileTypes: true })).filter((e) => e.isFile())) {
 		const p = path.join(themeOut, e.name)
-		if (e.name.endsWith('.css') && (await stat(p)).size === 0) { await rm(p); continue }
+		if (e.name.endsWith('.css') && (await stat(p)).size === 0) {
+			await rm(p)
+			continue
+		}
 		if (e.name.endsWith('.css.ts.css')) {
 			let dest = e.name.replace(/\.css\.ts\.css$/, '.css')
 			let i = 2
-			while (await stat(path.join(themeOut, dest)).then(() => true).catch(() => false)) {
+			while (
+				await stat(path.join(themeOut, dest))
+					.then(() => true)
+					.catch(() => false)
+			) {
 				dest = e.name.replace(/\.css\.ts\.css$/, `-${i++}.css`)
 			}
 			await rename(p, path.join(themeOut, dest))
@@ -129,7 +142,9 @@ async function buildTheme(theme, { includeContract }) {
 
 	// Conta literal --bs-* residual + bytes.
 	const cssFiles = (await readdir(themeOut)).filter((f) => f.endsWith('.css')).sort()
-	let totalBytes = 0, litDecls = 0, litRefs = 0
+	let totalBytes = 0,
+		litDecls = 0,
+		litRefs = 0
 	for (const f of cssFiles) {
 		const css = await readFile(path.join(themeOut, f), 'utf8')
 		totalBytes += Buffer.byteLength(css)
@@ -171,8 +186,13 @@ async function main() {
 	// (só as 2 exclusivas do public-vars sobreviviam). Re-export explícito expõe
 	// TODAS — resolve p/ o hash da public var (o handle tipado do valor `--bs-*`).
 	// Lê os nomes do próprio arquivo p/ pegar automaticamente novas vars.
-	const publicVarsSrc = await readFile(path.join(VE, 'theme-contract', '_public-vars.css.ts'), 'utf8')
-	const PUBLIC_VARS = [...publicVarsSrc.matchAll(/export const (var\w+)\s*=\s*createVar/g)].map((m) => m[1])
+	const publicVarsSrc = await readFile(
+		path.join(VE, 'theme-contract', '_public-vars.css.ts'),
+		'utf8',
+	)
+	const PUBLIC_VARS = [...publicVarsSrc.matchAll(/export const (var\w+)\s*=\s*createVar/g)].map(
+		(m) => m[1],
+	)
 	await writeFile(
 		path.join(VE, '__pkg', 'contract.ts'),
 		[
@@ -191,13 +211,18 @@ async function main() {
 		process.stdout.write(`[${i + 1}/${themes.length}] ${t.padEnd(12)} `)
 		const r = await buildTheme(t, { includeContract: i === 0 })
 		results.push(r)
-		console.log(`${r.cssCount} CSS, ${r.kb.toFixed(1)} KB, literal=${r.litDecls}d/${r.litRefs}r`)
+		console.log(
+			`${r.cssCount} CSS, ${r.kb.toFixed(1)} KB, literal=${r.litDecls}d/${r.litRefs}r`,
+		)
 	}
 
 	await rm(path.join(VE, '__pkg'), { recursive: true, force: true })
 
 	// Manifesto de contract (do 1º tema, compartilhado).
-	const contractJs = await readFile(path.join(OUT, 'themes', themes[0], 'contract.js'), 'utf8').catch(() => '')
+	const contractJs = await readFile(
+		path.join(OUT, 'themes', themes[0], 'contract.js'),
+		'utf8',
+	).catch(() => '')
 	const names = new Set([...contractJs.matchAll(/\b([A-Za-z][A-Za-z0-9]*) =/g)].map((m) => m[1]))
 
 	const totalKb = results.reduce((n, r) => n + r.kb, 0)
@@ -208,11 +233,16 @@ async function main() {
 	console.log(`manifesto de contract (compartilhado): ~${names.size} nomes`)
 	console.log(`literal --bs-* residual TOTAL: ${totalLit}`)
 	if (dirty.length) {
-		console.log(`  ⚠ temas com literal: ${dirty.map((r) => `${r.theme}(${r.litDecls}d/${r.litRefs}r)`).join(', ')}`)
+		console.log(
+			`  ⚠ temas com literal: ${dirty.map((r) => `${r.theme}(${r.litDecls}d/${r.litRefs}r)`).join(', ')}`,
+		)
 		process.exitCode = 1
 	} else {
 		console.log(`  ✔ 0 literal em todos os ${themes.length} temas`)
 	}
 }
 
-main().catch((e) => { console.error(e); process.exit(1) })
+main().catch((e) => {
+	console.error(e)
+	process.exit(1)
+})

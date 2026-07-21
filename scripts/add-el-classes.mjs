@@ -12,7 +12,10 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const repoRoot = resolve(__dirname, '..')
-const globalElementsContractAbs = resolve(repoRoot, 've-project2/src/theme-contract/global-elements/contract.css')
+const globalElementsContractAbs = resolve(
+	repoRoot,
+	've-project2/src/theme-contract/global-elements/contract.css',
+)
 
 const ELEMENTS = [
 	{ tag: 'button', elClass: 'elButton' },
@@ -50,10 +53,16 @@ function findTagEnd(content, startPos) {
 		const ch = content[i]
 
 		if (inQuote) {
-			if (ch === '\\') { i += 2; continue }
+			if (ch === '\\') {
+				i += 2
+				continue
+			}
 			if (ch === inQuote) inQuote = null
 		} else if (inBacktick) {
-			if (ch === '\\') { i += 2; continue }
+			if (ch === '\\') {
+				i += 2
+				continue
+			}
 			if (ch === '`') {
 				inBacktick = false
 			} else if (ch === '$' && content[i + 1] === '{') {
@@ -100,7 +109,7 @@ function processFile(filePath) {
 
 	for (const { tag, elClass } of ELEMENTS) {
 		const tagRe = new RegExp(`<${tag}\\b`, 'g')
-		const elPlaceholder = '${' + elClass + '}'
+		const elPlaceholder = `\${${elClass}}`
 		let m = tagRe.exec(content)
 		while (m !== null) {
 			const tagStart = m.index
@@ -141,10 +150,10 @@ function processFile(filePath) {
 		const existingPath = existingMatch[2]
 		const existingClasses = existingMatch[1]
 			.split(',')
-			.map(s => s.trim())
-			.filter(s => s.length > 0)
+			.map((s) => s.trim())
+			.filter((s) => s.length > 0)
 
-		const toAdd = [...neededEls].filter(el => !existingClasses.includes(el))
+		const toAdd = [...neededEls].filter((el) => !existingClasses.includes(el))
 		if (toAdd.length > 0) {
 			const allClasses = [...existingClasses, ...toAdd].sort()
 			const newImport = `import {\n\t${allClasses.join(',\n\t')},\n} from '${existingPath}'`
@@ -160,7 +169,10 @@ function processFile(filePath) {
 			insertPos = lastMatch.index + lastMatch[0].length
 		}
 
-		const elsList = [...neededEls].sort().map(el => `\t${el},`).join('\n')
+		const elsList = [...neededEls]
+			.sort()
+			.map((el) => `\t${el},`)
+			.join('\n')
 		const newImport = `import {\n${elsList}\n} from '${importRelPath}'\n`
 		result = result.slice(0, insertPos) + newImport + result.slice(insertPos)
 	}
@@ -189,7 +201,9 @@ for (const filePath of files) {
 	}
 }
 
-console.log(`\n${DRY_RUN ? '[DRY RUN] ' : ''}Done. Modified ${modifiedCount}/${files.length} files.`)
+console.log(
+	`\n${DRY_RUN ? '[DRY RUN] ' : ''}Done. Modified ${modifiedCount}/${files.length} files.`,
+)
 if (errors.length > 0) {
 	console.error('Errors:')
 	for (const e of errors) console.error(`  ${e}`)

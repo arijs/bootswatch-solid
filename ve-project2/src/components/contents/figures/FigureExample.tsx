@@ -1,6 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import {
 	figure,
 	figureCaption,
@@ -41,7 +45,9 @@ const FigureExample: Component = () => {
 					</text>
 				</svg>
 
-				<figcaption class={`${theme} ${figureCaption}`}>A caption for the above image.</figcaption>
+				<figcaption class={`${theme} ${figureCaption}`}>
+					A caption for the above image.
+				</figcaption>
 			</figure>
 		</div>
 	)

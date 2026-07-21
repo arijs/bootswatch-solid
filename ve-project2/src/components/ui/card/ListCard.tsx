@@ -1,6 +1,10 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import { ThemeContext, type Ve2StyleFamily, useVe2RequiredStyleFamilies } from '../../../context/ThemeContext'
+import {
+	ThemeContext,
+	useVe2RequiredStyleFamilies,
+	type Ve2StyleFamily,
+} from '../../../context/ThemeContext'
 import { h5, link, paragraph } from '../../../theme-contract/contents/contract.css'
 import { elLi, elUl } from '../../../theme-contract/global-elements/contract.css'
 import {
@@ -32,8 +36,8 @@ const ListCard: Component = () => {
 			<div class={`${theme} ${cardBody}`}>
 				<h5 class={`${theme} ${cardTitle} ${h5}`}>Card title</h5>
 				<p class={`${theme} ${cardText} ${paragraph}`}>
-					Some quick example text to build on the card title and make up the bulk of
-					the card's content.
+					Some quick example text to build on the card title and make up the bulk of the
+					card's content.
 				</p>
 			</div>
 			<ul class={`${theme} ${listGroup} ${listGroupFlush} ${elUl}`}>
@@ -43,11 +47,19 @@ const ListCard: Component = () => {
 			</ul>
 			<div class={`${theme} ${cardBody}`}>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${cardLink} ${link}`}>
+				<a
+					href="#"
+					onClick={(e) => e.preventDefault()}
+					class={`${theme} ${cardLink} ${link}`}
+				>
 					Card link
 				</a>
 				{/* biome-ignore lint: <a> is used for demonstration purposes */}
-				<a href="#" onClick={(e) => e.preventDefault()} class={`${theme} ${cardLink} ${link}`}>
+				<a
+					href="#"
+					onClick={(e) => e.preventDefault()}
+					class={`${theme} ${cardLink} ${link}`}
+				>
 					Another link
 				</a>
 			</div>

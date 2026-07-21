@@ -6,11 +6,7 @@ import {
 } from '../../../context/ThemeContext'
 import { small } from '../../../theme-contract/contents/basic/contract.css'
 import { rounded } from '../../../theme-contract/contents/images/contract.css'
-import {
-	elButton,
-	elStrong,
-	elSvg,
-} from '../../../theme-contract/global-elements/contract.css'
+import { elButton, elStrong, elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { btnClose } from '../../../theme-contract/literal/contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
