@@ -185,28 +185,41 @@ async function assembleSolid() {
 	await writeFile(
 		path.join(dir, 'index.d.ts'),
 		[
-			"import type { JSX } from 'solid-js'",
+			"import type { Accessor, JSX } from 'solid-js'",
 			'',
-			'export interface BootswatchConfig {',
-			'\t/** Classe de scope do tema ativo (ex.: o export `bootstrapScope`). */',
-			'\tscope: string',
-			'\t/** Prefixo das utilities do preset (ex.: "" ou "bsu-"). SÓ utilities. */',
-			'\tutilityPrefix: string',
+			'type ClassArg = string | false | null | undefined',
+			'',
+			'export interface Bootswatch {',
+			'\t/** Scope hasheado do tema ativo — REATIVO. Vazio até o tema resolver. */',
+			'\tscope: Accessor<string>',
+			'\t/** Prefixo das utilities do preset (ex.: "" ou "bsu-") — REATIVO. */',
+			'\tutilityPrefix: Accessor<string>',
+			'\t/** Classes de COMPONENTE: scope + contracts (reativo ao tema). */',
+			'\tcx: (...classes: ClassArg[]) => string',
+			'\t/** Classes de UTILITY com o prefixo do contexto. */',
+			'\tu: (...classes: ClassArg[]) => string',
 			'}',
 			'',
 			'export declare function BootswatchProvider(props: {',
-			'\tscope: string',
-			'\tutilityPrefix?: string',
+			'\tscope: string | Accessor<string>',
+			'\tutilityPrefix?: string | Accessor<string>',
 			'\tchildren: JSX.Element',
 			'}): JSX.Element',
 			'',
-			'export declare function useBootswatch(): BootswatchConfig',
+			'/** Contexto reativo completo: `{ scope, utilityPrefix, cx, u }`. */',
+			'export declare function useBootswatch(): Bootswatch',
 			'',
-			'/** Devolve `u(...)`, que prefixa utilities com o prefixo do contexto. */',
-			'export declare function useUtility(): (...classes: Array<string | false | null | undefined>) => string',
+			'/** Só o scope reativo do tema ativo. */',
+			'export declare function useScope(): Accessor<string>',
+			'',
+			'/** `cx(...)` — classes de componente: scope + contracts (reativo). */',
+			'export declare function useCx(): (...classes: ClassArg[]) => string',
+			'',
+			'/** `u(...)` — prefixa utilities com o prefixo do contexto. */',
+			'export declare function useUtility(): (...classes: ClassArg[]) => string',
 			'',
 			'/** Núcleo puro: prefixa cada token de utility. */',
-			'export declare function prefixClasses(prefix: string, classes: Array<string | false | null | undefined>): string',
+			'export declare function prefixClasses(prefix: string, classes: ClassArg[]): string',
 			'',
 		].join('\n'),
 	)
@@ -284,8 +297,11 @@ prefixo.
 - \`@arijs/bootswatch-ve/preset\` — \`presetBootswatch({ prefix })\` para o
   UnoCSS. Prefixo opcional SÓ nas utilities (\`bsu-mb-3\`); componentes/vars
   nunca têm prefixo (são hashes).
-- \`@arijs/bootswatch-ve/solid\` — \`BootswatchProvider\`, \`useBootswatch\`,
-  \`useUtility\`/\`u()\`.
+- \`@arijs/bootswatch-ve/solid\` — \`BootswatchProvider\` (aceita \`scope\` fixo
+  OU accessor reativo p/ troca de tema em runtime), \`useBootswatch\` →
+  \`{ scope, utilityPrefix, cx, u }\`, e os atalhos \`useScope\`/\`useCx\`/
+  \`useUtility\`. \`cx(...)\` monta classes de componente (scope + contracts);
+  \`u(...)\` monta utilities com o prefixo.
 
 ## Uso (Solid + UnoCSS)
 
@@ -300,18 +316,25 @@ export default defineConfig({ presets: [presetBootswatch({ prefix: 'bsu-' })] })
 import '@arijs/bootswatch-ve/themes/bootstrap/index.css'
 import { bootstrapScope } from '@arijs/bootswatch-ve/themes/bootstrap/scope'
 import { btnPrimary } from '@arijs/bootswatch-ve/contract'
-import { BootswatchProvider, useUtility } from '@arijs/bootswatch-ve/solid'
+import { BootswatchProvider, useBootswatch } from '@arijs/bootswatch-ve/solid'
 
 function Button() {
-  const u = useUtility()
-  return <button class={\`\${btnPrimary} \${u('mb-3')}\`}>OK</button>
+  const { cx, u } = useBootswatch()
+  // cx aplica o scope do tema ativo automaticamente (reativo).
+  return <button class={\`\${cx(btnPrimary)} \${u('mb-3')}\`}>OK</button>
 }
 
-export default () => (
+// scope FIXO:
+export const AppFixed = () => (
   <BootswatchProvider scope={bootstrapScope} utilityPrefix="bsu-">
-    <div class={bootstrapScope}><Button /></div>
+    <Button />
   </BootswatchProvider>
 )
+
+// scope REATIVO (troca de tema em runtime): passe um accessor. O app carrega o
+// CSS do tema e resolve o scope; o provider só o distribui.
+// const [scope, setScope] = createSignal(bootstrapScope)
+// <BootswatchProvider scope={scope} utilityPrefix="bsu-"> … </BootswatchProvider>
 \`\`\`
 
 Temas disponíveis: ${themes.join(', ')}.
