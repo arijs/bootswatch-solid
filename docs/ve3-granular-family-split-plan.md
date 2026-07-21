@@ -169,6 +169,48 @@ The full-sweep of the remaining 26 themes surfaced **three emitter subject-famil
 
 ---
 
+## 7a. Post-G5 — Lazy per-theme scope loading (2026-07-20)
+
+**Symptom.** `?style-loader=granular` loaded all **27** `themes/*/scope.css`
+modules on every page, not just the active theme's. Two static-import sources —
+both pull the whole set regardless of the `<Show>` branch that renders (`<Show>`
+gates rendering, not imports):
+
+- **`theme-runtime.ts`** (generated) statically imported the 27 `scope.css` to
+  build the `themeScopes` map behind `resolveVe2ThemeClass()` — a one-key lookup
+  dragging 27 side-effect modules.
+- **`Ve2ShellRuntime.tsx`** statically imported `Ve2Shell`, whose own 27 static
+  `scope.css` imports then loaded even in granular mode (Ve2Shell is only the
+  theme/literal fallback).
+
+**Fix (runtime-only; emitter/contract untouched).**
+
+- Generator [`generate-granular-loaders.mjs`](../scripts/generate-ve-theme/generate-granular-loaders.mjs)
+  now emits `ve2ThemeScopeLoaders` (`() => import('../themes/<t>/scope.css').then(m => m.<t>Scope)`)
+  + `loadVe2ThemeScope()` **in place of** the static `themeScopes` map and
+  `resolveVe2ThemeClass()`. So the G3 export list in §7 is now: `VE2_THEME_KEYS`,
+  `ve2ThemeScopeLoaders`, `ve2ThemeLoaders`, `ve2ThemeFamilyLoaders`,
+  `resolveVe2ThemeKey`, `loadVe2ThemeScope` (no more `themeScopes` /
+  `resolveVe2ThemeClass`).
+- [`Ve2GranularShell`](../ve-project2/src/components/shell/Ve2GranularShell.tsx)
+  resolves the scope class **async** via `createEffect(themeKey, …)` into a signal
+  (stale-resolution guarded) and gates its subtree behind `<Show>` until the one
+  active `scope.css` loads — mirroring `Ve2Shell`'s existing `themeReady` pattern.
+- [`Ve2ShellRuntime`](../ve-project2/src/components/shell/Ve2ShellRuntime.tsx) makes
+  `Ve2Shell` `lazy()`, so its 27 scope imports load only in theme/literal mode.
+
+Solid note: the project is on **solid-js 2.0.0-beta.7** — `on`/`createResource`
+are gone and a synchronous signal write inside `createRenderEffect` trips
+`SIGNAL_WRITE_IN_OWNED_SCOPE`; the two-arg `createEffect(source, effectFn)` runs
+its effect outside the owned scope (which is why `Ve2Shell` writes signals there).
+
+**Result (Playwright, `/ui/offcanvas/default-offcanvas`).** granular →
+**1** scope request (was 27); `&theme=darkly` → **1** (darkly); theme mode
+unchanged at 27 (separate `Ve2Shell` monolith path). All render, 0 console errors.
+Full write-up: [`docs/changelog/2026-07-20-granular-scope-lazy-load.md`](./changelog/2026-07-20-granular-scope-lazy-load.md).
+
+---
+
 ## 8. Open risks
 
 1. **Compound-rule ownership** (§4.2) — the one place ambiguity can creep in; define the tie-break in the table, explicitly, once.
