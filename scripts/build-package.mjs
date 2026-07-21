@@ -92,7 +92,7 @@ async function buildTheme(theme, { includeContract }) {
 		root: path.join(ROOT, 've-project2'),
 		configFile: false,
 		logLevel: 'warn',
-		plugins: [vanillaExtractPlugin({ identifiers: ({ hash }) => `bsve_${hash}` })],
+		plugins: [vanillaExtractPlugin({ identifiers: ({ hash }) => `b${hash}` })],
 		build: {
 			outDir: themeOut,
 			emptyOutDir: true,

@@ -111,7 +111,7 @@ async function assembleContract() {
 	const names = parseExportNames(contractJs)
 	const dts = [
 		'// Manifesto de contract do @arijs/bootswatch-ve — nomes hasheados (VE),',
-		'// compartilhados pelos temas. Cada `var*` é uma string `var(--bsve_…)`;',
+		'// compartilhados pelos temas. Cada `var*` é uma string `var(--b…)`;',
 		'// cada contract de classe/elemento é a classe hasheada correspondente.',
 		...names.map((n) => `export declare const ${n}: string`),
 		'',

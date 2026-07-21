@@ -1,7 +1,7 @@
 // Gera a CAMADA DE VARS PÚBLICAS (docs/packaging-plan.md §3.3-bis).
 // As utilities referenciam ~65 vars globais --bs-* que NÃO estão no contract.
 // Aqui: (1) um _public-vars.css.ts no contract com createVar() de cada uma
-// (hasheadas pelo próprio VE, mesmo namespace --bsve_ das classes; SEM prefixo
+// (hasheadas pelo próprio VE, mesmo namespace --b das classes; SEM prefixo
 // próprio); (2) o mapa nome-bootstrap → export; (3) por tema, a atribuição dos
 // valores no scope, extraída do :root do screenshots/{theme}/bootstrap.css.
 //
@@ -69,7 +69,7 @@ function main() {
 	const contract = [
 		'// GERADO por scripts/gen-public-vars.mjs — NÃO editar à mão.',
 		'// Vars públicas globais (:root) do Bootstrap que as utilities referenciam.',
-		'// createVar() → hasheadas pelo VE (mesmo --bsve_ das classes). Os valores',
+		'// createVar() → hasheadas pelo VE (mesmo --b das classes). Os valores',
 		'// por tema são atribuídos em themes/<tema>/public-vars.css.ts.',
 		"import { createVar } from '@vanilla-extract/css'",
 		'',
