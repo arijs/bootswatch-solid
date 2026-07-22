@@ -51,10 +51,7 @@ async function contractModules() {
 		for (const e of await readdir(dir, { withFileTypes: true })) {
 			const p = path.join(dir, e.name)
 			if (e.isDirectory()) await walk(p)
-			else if (
-				/\.css\.ts$/.test(e.name) &&
-				/^(contract|_vars|_public-vars)\.css\.ts$/.test(e.name)
-			)
+			else if (/^(contract|_vars|_public-vars|theme-contract)\.css\.ts$/.test(e.name))
 				out.push(p)
 		}
 	}
@@ -159,12 +156,11 @@ async function main() {
 			if (!varsByEntry[entry]) varsByEntry[entry] = new Map()
 			varsByEntry[entry].set(name, chosen.value)
 		} else {
+			// família via family-table; sem mapeamento (ex.: body/bodyFrame/vars de
+			// theme-contract.css.ts) → global (sempre carregado, base do tema).
 			const fam = table.familyForSymbol(name)
-			if (!fam) {
-				unresolvedFamily++
-				continue
-			}
-			const entry = entryName(fam)
+			if (!fam) unresolvedFamily++
+			const entry = fam ? entryName(fam) : 'global'
 			if (!classesByEntry[entry]) classesByEntry[entry] = new Map()
 			classesByEntry[entry].set(name, chosen.value)
 		}

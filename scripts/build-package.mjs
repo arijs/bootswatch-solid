@@ -20,7 +20,7 @@ const OUT = path.join(ROOT, 'dist-pkg')
 // `utilities/used` (subset só-da-demo) e `utilities` (baked) — o caminho das
 // utilities é o preset UnoCSS (hasheado, JIT); a família baked reintroduziria
 // literais --bs-* e duplicaria o preset.
-const EXCLUDE_FAMILIES = new Set(['literal', 'utilities/used'])
+const EXCLUDE_FAMILIES = new Set(['literal'])
 
 async function listThemes() {
 	return (await readdir(path.join(VE, 'themes'), { withFileTypes: true }))
@@ -137,6 +137,26 @@ async function buildTheme(theme, { includeContract }) {
 				dest = e.name.replace(/\.css\.ts\.css$/, `-${i++}.css`)
 			}
 			await rename(p, path.join(themeOut, dest))
+		}
+	}
+
+	// Funde a família `utilities/used` (→ `used.css`) na `utilities.css`. O split
+	// used/dead é otimização do DEMO (granular loading); o PACOTE tem UMA família
+	// `utilities` e o purge (plugin Vite) faz o trim por-consumidor.
+	{
+		const usedCss = path.join(themeOut, 'used.css')
+		const utilCss = path.join(themeOut, 'utilities.css')
+		if (
+			await stat(usedCss)
+				.then(() => true)
+				.catch(() => false)
+		) {
+			const used = await readFile(usedCss, 'utf8')
+			const base = await stat(utilCss)
+				.then(() => readFile(utilCss, 'utf8'))
+				.catch(() => '')
+			await writeFile(utilCss, `${base}\n${used}`)
+			await rm(usedCss)
 		}
 	}
 
