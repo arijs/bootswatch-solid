@@ -164,3 +164,26 @@ per-família); o CSS por-tema/família segue como hoje.
 - Cruza com a F7: os estados que o runtime `ve-*` alterna são importados de
   `/state` pelo consumidor (que já os passa ao `configureVe*`), então entram no
   purge naturalmente.
+
+## Nota de implementação (P1, em andamento) — estrutura do contract
+
+Ao dividir o contract por família (`build-contract.mjs`) descobrimos que a fonte
+tem **definições paralelas** e o tema wireia de fontes diferentes:
+
+- **Componentes** (btn, badge, …): a per-família (`theme-contract/ui/<fam>/`) é
+  autoritativa; o hash bate com o CSS emitido.
+- **Utilities e estados**: o tema wireia do **`literal`** (monólito), não do
+  `utilities/generated` — este último é vestigial (0 regras no CSS). Ex.:
+  `textBgSecondary` real = o de `literal` (tem regra), não o de `generated`.
+- **Estados genéricos** (`show`/`active`/`fade`): o `.show` hasheado **não
+  aparece** em nenhum CSS emitido — a família `literal` é excluída do build e os
+  estados parecem co-locados dentro dos componentes que os usam. **A resolver**
+  antes de expor `/state` (não repetir o bug de exportar classe sem CSS).
+
+**Abordagem robusta adotada:** o (nome→hash) autoritativo de cada família é o que
+**tem regra no CSS emitido** daquela família (`.scope.<hash>`). O `build-contract`
+deve cruzar os hashes de todos os módulos do contract com os hashes presentes no
+CSS por-tema/família, exportando só os que têm regra. Isso resolve a duplicata
+literal-vs-generated automaticamente. O `build-contract.mjs` atual compila os
+módulos isolados (scaffolding) mas ainda NÃO faz esse cruzamento — é o próximo
+passo, junto de decidir a origem/emissão da CSS dos estados.
