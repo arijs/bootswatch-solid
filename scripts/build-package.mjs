@@ -20,7 +20,7 @@ const OUT = path.join(ROOT, 'dist-pkg')
 // `utilities/used` (subset só-da-demo) e `utilities` (baked) — o caminho das
 // utilities é o preset UnoCSS (hasheado, JIT); a família baked reintroduziria
 // literais --bs-* e duplicaria o preset.
-const EXCLUDE_FAMILIES = new Set(['literal', 'utilities/used', 'utilities'])
+const EXCLUDE_FAMILIES = new Set(['literal', 'utilities/used'])
 
 async function listThemes() {
 	return (await readdir(path.join(VE, 'themes'), { withFileTypes: true }))
@@ -138,6 +138,28 @@ async function buildTheme(theme, { includeContract }) {
 			}
 			await rename(p, path.join(themeOut, dest))
 		}
+	}
+
+	// Vars utility-LOCAIS (declaradas e lidas na mesma regra: .focus-ring/.icon-link)
+	// que o Bootstrap emite como --bs-*. Renomeio no CSS emitido p/ nomes próprios
+	// (mantém 0 literal --bs-* sem mexer no gerador; local → rename global é seguro).
+	const LOCAL_VAR_RENAMES = {
+		'--bs-focus-ring-x': '--bufrx',
+		'--bs-focus-ring-y': '--bufry',
+		'--bs-focus-ring-blur': '--bufrb',
+		'--bs-icon-link-transform': '--built',
+	}
+	for (const f of (await readdir(themeOut)).filter((f) => f.endsWith('.css'))) {
+		const fp = path.join(themeOut, f)
+		let css = await readFile(fp, 'utf8')
+		let changed = false
+		for (const [from, to] of Object.entries(LOCAL_VAR_RENAMES)) {
+			if (css.includes(from)) {
+				css = css.split(from).join(to)
+				changed = true
+			}
+		}
+		if (changed) await writeFile(fp, css)
 	}
 
 	// Conta literal --bs-* residual + bytes.
