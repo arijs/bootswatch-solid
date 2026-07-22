@@ -193,6 +193,13 @@ async function assembleSolid() {
 	)
 }
 
+async function assembleVite() {
+	const dir = path.join(OUT, 'vite')
+	await mkdir(dir, { recursive: true })
+	await copyFile(path.join(ROOT, 'vite', 'index.mjs'), path.join(dir, 'index.js'))
+	await copyFile(path.join(ROOT, 'vite', 'index.d.ts'), path.join(dir, 'index.d.ts'))
+}
+
 function packageJson(themes, contract) {
 	const exportsMap = {
 		// Um entry por família (importe as classes de dentro da família:
@@ -212,6 +219,7 @@ function packageJson(themes, contract) {
 			]),
 		),
 		'./solid': { types: './solid/index.d.ts', default: './solid/index.js' },
+		'./vite': { types: './vite/index.d.ts', default: './vite/index.js' },
 		'./contract-manifest.json': './contract-manifest.json',
 		// `exports` só admite UM `*` por padrão. `./themes/*.css` (o `*` cruza
 		// barras) cobre scope.css/index.css/<familia>.css; e por ter sufixo `.css`
@@ -236,15 +244,22 @@ function packageJson(themes, contract) {
 		bugs: { url: 'https://github.com/arijs/bootswatch-solid/issues' },
 		sideEffects: ['**/*.css'],
 		exports: exportsMap,
-		files: [...contract.entries, 'solid', 'themes', 'contract-manifest.json', 'README.md'],
+		files: [...contract.entries, 'solid', 'vite', 'themes', 'contract-manifest.json', 'README.md'],
+		// O plugin /vite parseia o CSS dos temas com @adobe/css-tools.
+		dependencies: {
+			'@adobe/css-tools': '^4.4.0',
+		},
 		peerDependencies: {
 			// `>=2.0.0-0` inclui os prereleases do Solid 2.0 (beta/next) — o alvo do
 			// runtime /solid. Sem isso, `>=1.8.0` exclui prereleases e o npm tenta
 			// puxar um solid-js 1.x stable em projetos no Solid 2.0-beta, conflitando.
 			'solid-js': '>=1.8.0 || >=2.0.0-0',
+			// Só p/ quem usa o plugin de purge (@arijs/bootswatch-ve/vite).
+			vite: '>=5',
 		},
 		peerDependenciesMeta: {
 			'solid-js': { optional: true },
+			vite: { optional: true },
 		},
 		keywords: ['bootstrap', 'bootswatch', 'vanilla-extract', 'solid', 'design-system', 'css'],
 		publishConfig: { access: 'public' },
@@ -308,6 +323,7 @@ async function main() {
 	for (const t of themes) themeInfos.push(await assembleTheme(t))
 	const contract = await assembleContract()
 	await assembleSolid()
+	await assembleVite()
 
 	await writeFile(
 		path.join(OUT, 'package.json'),
