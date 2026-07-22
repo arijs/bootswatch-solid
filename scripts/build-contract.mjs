@@ -3,7 +3,9 @@
 //    0-unmapped nos 27 temas). É o mesmo mapa que particiona o CSS.
 //  - o hash AUTORITATIVO de cada símbolo é o que TEM regra no CSS emitido
 //    (resolve a duplicata literal-vs-utilities/generated automaticamente).
-// Saída: dist-pkg/contract/<entry>/index.js + .d.ts + manifest.json (entry→nomes),
+// Classes → <entry>/index.js (família via family-table). Vars públicas (varBs*) →
+// <entry>/vars.js (família via o módulo _vars.css.ts que a declara).
+// Saída: dist-pkg/contract/<entry>/{index,vars}.{js,d.ts} + manifest.json,
 // consumidos pelo pack-dist e pelo plugin de purge.
 //
 // Requer: pkg:build já rodou (dist-pkg/themes/* com os chunks por-família).
@@ -31,22 +33,37 @@ function entryName(family) {
 	return family.split('/').pop()
 }
 
-// Lista todos os módulos de contract (contract.css.ts + _vars.css.ts).
+// módulo (.../theme-contract/<dir>/_vars.css.ts) → entry das vars daquela família.
+// Vars na raiz (_public-vars/_vars) são theme-globais → global.
+function moduleToEntry(modulePath) {
+	const rel = path.relative(TC, path.dirname(modulePath)).replace(/\\/g, '/')
+	if (rel === '') return 'global'
+	if (rel === 'utilities' || rel === 'utilities/generated') return 'utilities'
+	if (rel === 'literal') return 'state'
+	if (rel === 'contents') return 'contents'
+	return rel.split('/').pop()
+}
+
+// Lista todos os módulos de contract (contract.css.ts + _vars.css.ts + _public-vars).
 async function contractModules() {
 	const out = []
 	async function walk(dir) {
 		for (const e of await readdir(dir, { withFileTypes: true })) {
 			const p = path.join(dir, e.name)
 			if (e.isDirectory()) await walk(p)
-			else if (e.name === 'contract.css.ts' || e.name === '_vars.css.ts') out.push(p)
+			else if (
+				/\.css\.ts$/.test(e.name) &&
+				/^(contract|_vars|_public-vars)\.css\.ts$/.test(e.name)
+			)
+				out.push(p)
 		}
 	}
 	await walk(TC)
 	return out.sort()
 }
 
-// hashes de classe presentes no CSS emitido de UM tema (basta um: hashes são
-// theme-agnostic). Pega qualquer `.b<hash>` — o subject das regras `.scope.hash`.
+// tokens `b<hash>` presentes no CSS emitido (classes `.b…` e vars `--b…`). Basta
+// um tema — os hashes são theme-agnostic.
 async function liveHashes() {
 	const themeDir = existsSync(path.join(THEMES, 'bootstrap'))
 		? path.join(THEMES, 'bootstrap')
@@ -55,23 +72,29 @@ async function liveHashes() {
 	const live = new Set()
 	for (const f of (await readdir(themeDir)).filter((f) => f.endsWith('.css'))) {
 		const css = await readFile(path.join(themeDir, f), 'utf8')
-		for (const m of css.matchAll(/\.(b[a-z0-9]+)\b/g)) live.add(m[1])
+		for (const m of css.matchAll(/(?:\.|--)(b[a-z0-9]+)\b/g)) live.add(m[1])
 	}
 	return live
 }
+
+// b<hash> "interno" de um valor JS: "b1j3ahob0" (classe) ou "var(--b54j…)" (var).
+function innerHash(value) {
+	const m = value.match(/b[a-z0-9]+/)
+	return m ? m[0] : null
+}
+const isVar = (value) => value.startsWith('"var(') || value.startsWith("'var(")
 
 async function main() {
 	const table = await buildFamilyTable()
 	const modules = await contractModules()
 
-	// 1) Compila cada módulo isolado (entry próprio) → name→hash por módulo. Mantém
-	//    duplicatas entre módulos (o mesmo nome pode ter hashes diferentes).
+	// 1) Compila cada módulo isolado → name→[{value, module}] (mantém duplicatas
+	//    entre módulos: o mesmo nome pode ter hashes diferentes).
 	await rm(TMP, { recursive: true, force: true })
 	await mkdir(TMP, { recursive: true })
 	const entries = {}
 	modules.forEach((m, i) => {
-		const rel = `m${i}`
-		entries[rel] = m // Vite aceita .css.ts direto como entry via o plugin VE
+		entries[`m${i}`] = m
 	})
 
 	await build({
@@ -92,9 +115,8 @@ async function main() {
 		},
 	})
 
-	// name → Set(hash) juntando todos os módulos.
-	const nameHashes = new Map()
-	for (const rel of Object.keys(entries)) {
+	const nameEntries = new Map() // name → [{ value, module }]
+	for (const [rel, modulePath] of Object.entries(entries)) {
 		const js = await readFile(path.join(OUTDIR, `${rel}.js`), 'utf8').catch(() => '')
 		const exported = new Set(
 			[...js.matchAll(/export\s*\{([^}]*)\}/g)]
@@ -109,72 +131,84 @@ async function main() {
 		)
 		for (const m of js.matchAll(/\bvar (\w+) = ("[^"]*"|'[^']*')/g)) {
 			if (!exported.has(m[1])) continue
-			if (!nameHashes.has(m[1])) nameHashes.set(m[1], new Set())
-			nameHashes.get(m[1]).add(m[2])
+			if (!nameEntries.has(m[1])) nameEntries.set(m[1], [])
+			nameEntries.get(m[1]).push({ value: m[2], module: modulePath })
 		}
 	}
 
-	// 2) hash autoritativo = o que tem regra no CSS (para duplicatas). O valor no
-	//    JS é `"b<hash>"` (classe) ou `"var(--b…)"` (var pública). Só classes
-	//    passam pelo filtro de liveness; vars ficam pelo único valor.
+	// 2) resolve o valor autoritativo (hash com regra viva no CSS, p/ duplicatas).
 	const live = await liveHashes()
-	const resolveHash = (name) => {
-		const vals = [...nameHashes.get(name)]
-		if (vals.length === 1) return vals[0]
-		// múltiplos: prefere o que a classe (b<hash>) está viva no CSS
-		const liveVal = vals.find((v) => {
-			const cls = v.replace(/^["']|["']$/g, '')
-			return live.has(cls)
-		})
-		return liveVal ?? null // sem hash vivo → duplicata morta; descarta
+	const resolve = (cands) => {
+		if (cands.length === 1) return cands[0]
+		return cands.find((c) => live.has(innerHash(c.value) ?? '')) ?? null
 	}
 
-	// 3) agrupa por família (entry).
-	const byEntry = {}
+	// 3) agrupa: classes por family-table; vars pelo módulo _vars que as declara.
+	const classesByEntry = {} // entry → Map(name→value)
+	const varsByEntry = {}
 	let unresolvedFamily = 0
 	let deadDup = 0
-	for (const name of nameHashes.keys()) {
-		const fam = table.familyForSymbol(name)
-		if (!fam) {
-			unresolvedFamily++
-			continue
-		}
-		const hash = resolveHash(name)
-		if (hash == null) {
+	for (const [name, cands] of nameEntries) {
+		const chosen = resolve(cands)
+		if (!chosen) {
 			deadDup++
 			continue
 		}
-		const entry = entryName(fam)
-		if (!byEntry[entry]) byEntry[entry] = new Map()
-		byEntry[entry].set(name, hash)
+		if (isVar(chosen.value)) {
+			const entry = moduleToEntry(chosen.module)
+			if (!varsByEntry[entry]) varsByEntry[entry] = new Map()
+			varsByEntry[entry].set(name, chosen.value)
+		} else {
+			const fam = table.familyForSymbol(name)
+			if (!fam) {
+				unresolvedFamily++
+				continue
+			}
+			const entry = entryName(fam)
+			if (!classesByEntry[entry]) classesByEntry[entry] = new Map()
+			classesByEntry[entry].set(name, chosen.value)
+		}
 	}
 
-	// 4) emite contract/<entry>/index.js + d.ts + manifest.
+	// 4) emite contract/<entry>/{index,vars}.{js,d.ts} + manifest.
 	await rm(DEST, { recursive: true, force: true })
 	await mkdir(DEST, { recursive: true })
-	const manifest = {}
-	let total = 0
-	for (const [entry, map] of Object.entries(byEntry)) {
+	const emit = async (entry, file, map) => {
 		const names = [...map.keys()].sort()
 		const dir = path.join(DEST, entry)
 		await mkdir(dir, { recursive: true })
 		await writeFile(
-			path.join(dir, 'index.js'),
+			path.join(dir, `${file}.js`),
 			`${names.map((n) => `export const ${n} = ${map.get(n)}`).join('\n')}\n`,
 		)
 		await writeFile(
-			path.join(dir, 'index.d.ts'),
+			path.join(dir, `${file}.d.ts`),
 			`${names.map((n) => `export declare const ${n}: string`).join('\n')}\n`,
 		)
-		manifest[entry] = names
-		total += names.length
+		return names
+	}
+
+	const manifest = {}
+	let totalClasses = 0
+	let totalVars = 0
+	const allEntries = new Set([...Object.keys(classesByEntry), ...Object.keys(varsByEntry)])
+	for (const entry of allEntries) {
+		const classes = classesByEntry[entry]
+			? await emit(entry, 'index', classesByEntry[entry])
+			: []
+		const vars = varsByEntry[entry] ? await emit(entry, 'vars', varsByEntry[entry]) : []
+		manifest[entry] = { classes, vars }
+		totalClasses += classes.length
+		totalVars += vars.length
 	}
 	await writeFile(path.join(DEST, 'manifest.json'), `${JSON.stringify(manifest, null, '\t')}\n`)
 
 	await rm(TMP, { recursive: true, force: true })
 	await rm(OUTDIR, { recursive: true, force: true })
-	console.log(`build-contract: ${Object.keys(byEntry).length} entries, ${total} nomes`)
-	console.log(`  entries: ${Object.keys(manifest).sort().join(', ')}`)
+	console.log(
+		`build-contract: ${allEntries.size} entries, ${totalClasses} classes, ${totalVars} vars`,
+	)
+	console.log(`  entries: ${[...allEntries].sort().join(', ')}`)
 	console.log(
 		`  sem família (skipped): ${unresolvedFamily}; duplicatas mortas (skipped): ${deadDup}`,
 	)

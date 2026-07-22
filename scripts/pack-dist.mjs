@@ -1,24 +1,23 @@
 // Monta o pacote publicável @arijs/bootswatch-ve a partir dos artefatos do
-// build VE (scripts/build-package.mjs) + preset (Fase 3) + runtime /solid
-// (Fase 4). Saída: `package/` (raiz publicável) no layout do plano §2:
+// build VE (scripts/build-package.mjs) + contract por-família
+// (scripts/build-contract.mjs) + runtime /solid. Saída: `package/`:
 //
 //   package/
-//     package.json  README.md
-//     contract/  index.js  index.d.ts        # manifesto theme-agnostic (nomes)
+//     package.json  README.md  contract-manifest.json
+//     <familia>/   index.js index.d.ts   # classes hasheadas da família
+//                  vars.js  vars.d.ts     # vars públicas (varBs*) da família
 //     themes/<tema>/
-//       scope.css  scope.js  scope.d.ts       # scope do tema (hash + vars)
-//       public-vars.css                       # vars públicas (utilities)
-//       <familia>.css ×N                       # regras .scope.contract
-//       index.css                             # conveniência: tudo do tema
-//     preset/   index.js  index.d.ts + dados  # UnoCSS presetBootswatch
-//     solid/    index.js  index.d.ts          # runtime mínimo Solid
+//       scope.css  scope.js  scope.d.ts   # scope do tema (hash + vars)
+//       public-vars.css                    # vars públicas (valores por tema)
+//       <familia>.css ×N                   # regras .scope.contract
+//       index.css                          # conveniência: tudo do tema
+//     solid/    index.js  index.d.ts       # runtime mínimo Solid (scope + cx)
 //
-// Descarta o CSS solto do entry `contract` (frames de DEMO de popovers/tooltips
-// e utilities duplicadas) — o manifesto é só JS (nomes). As regras reais de
-// componente já vivem nos <familia>.css.
+// Consumo: importe as classes de dentro da família
+// (`import { btn } from '@arijs/bootswatch-ve/buttons'`) e aplique via `cx`.
 //
-// Pré-requisito: `node scripts/build-package.mjs` já rodou (popula
-// dist-pkg/themes/<tema>/). Este script NÃO recompila o VE.
+// Pré-requisito: `pkg:build` (build-package) e `pkg:contract` (build-contract)
+// já rodaram (populam dist-pkg/themes/ e dist-pkg/contract/). NÃO recompila o VE.
 
 import { copyFile, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -117,19 +116,33 @@ async function assembleTheme(theme) {
 async function assembleContract() {
 	// Contract POR FAMÍLIA (build-contract.mjs → dist-pkg/contract/<entry>/). Copia
 	// cada entry p/ package/<entry>/ e o manifest (usado pelo plugin de purge).
+	// manifest: { <entry>: { classes: string[], vars: string[] } }. Classes →
+	// <entry>/index.{js,d.ts}; vars → <entry>/vars.{js,d.ts} (import de
+	// <familia>/vars). classEntries têm ./<entry>; varsEntries têm ./<entry>/vars.
 	const SRC_C = path.join(ROOT, 'dist-pkg', 'contract')
 	const manifest = JSON.parse(await readFile(path.join(SRC_C, 'manifest.json'), 'utf8'))
-	const entries = Object.keys(manifest).sort()
+	const classEntries = []
+	const varsEntries = []
 	let total = 0
-	for (const entry of entries) {
+	for (const entry of Object.keys(manifest).sort()) {
+		const { classes = [], vars = [] } = manifest[entry]
 		const dir = path.join(OUT, entry)
 		await mkdir(dir, { recursive: true })
-		await copyFile(path.join(SRC_C, entry, 'index.js'), path.join(dir, 'index.js'))
-		await copyFile(path.join(SRC_C, entry, 'index.d.ts'), path.join(dir, 'index.d.ts'))
-		total += manifest[entry].length
+		if (classes.length) {
+			await copyFile(path.join(SRC_C, entry, 'index.js'), path.join(dir, 'index.js'))
+			await copyFile(path.join(SRC_C, entry, 'index.d.ts'), path.join(dir, 'index.d.ts'))
+			classEntries.push(entry)
+		}
+		if (vars.length) {
+			await copyFile(path.join(SRC_C, entry, 'vars.js'), path.join(dir, 'vars.js'))
+			await copyFile(path.join(SRC_C, entry, 'vars.d.ts'), path.join(dir, 'vars.d.ts'))
+			varsEntries.push(entry)
+		}
+		total += classes.length + vars.length
 	}
 	await copyFile(path.join(SRC_C, 'manifest.json'), path.join(OUT, 'contract-manifest.json'))
-	return { entries, total }
+	const entries = [...new Set([...classEntries, ...varsEntries])].sort()
+	return { entries, classEntries, varsEntries, total }
 }
 
 async function assembleSolid() {
@@ -180,15 +193,22 @@ async function assembleSolid() {
 	)
 }
 
-function packageJson(themes, contractEntries) {
+function packageJson(themes, contract) {
 	const exportsMap = {
-		// Um entry por família de contract (importe as classes de dentro da família:
-		// import { btn } from '@arijs/bootswatch-ve/buttons'). Sem barrel global — é
-		// o que torna o purge por imports trivial.
+		// Um entry por família (importe as classes de dentro da família:
+		// import { btn } from '@arijs/bootswatch-ve/buttons'). As vars públicas da
+		// família saem em <familia>/vars. Sem barrel global — é o que torna o purge
+		// por imports trivial.
 		...Object.fromEntries(
-			contractEntries.map((e) => [
+			contract.classEntries.map((e) => [
 				`./${e}`,
 				{ types: `./${e}/index.d.ts`, default: `./${e}/index.js` },
+			]),
+		),
+		...Object.fromEntries(
+			contract.varsEntries.map((e) => [
+				`./${e}/vars`,
+				{ types: `./${e}/vars.d.ts`, default: `./${e}/vars.js` },
 			]),
 		),
 		'./solid': { types: './solid/index.d.ts', default: './solid/index.js' },
@@ -216,7 +236,7 @@ function packageJson(themes, contractEntries) {
 		bugs: { url: 'https://github.com/arijs/bootswatch-solid/issues' },
 		sideEffects: ['**/*.css'],
 		exports: exportsMap,
-		files: [...contractEntries, 'solid', 'themes', 'contract-manifest.json', 'README.md'],
+		files: [...contract.entries, 'solid', 'themes', 'contract-manifest.json', 'README.md'],
 		peerDependencies: {
 			// `>=2.0.0-0` inclui os prereleases do Solid 2.0 (beta/next) — o alvo do
 			// runtime /solid. Sem isso, `>=1.8.0` exclui prereleases e o npm tenta
@@ -291,7 +311,7 @@ async function main() {
 
 	await writeFile(
 		path.join(OUT, 'package.json'),
-		`${JSON.stringify(packageJson(themes, contract.entries), null, 2)}\n`,
+		`${JSON.stringify(packageJson(themes, contract), null, 2)}\n`,
 	)
 	await writeFile(path.join(OUT, 'README.md'), readme(themes, contract.total))
 
