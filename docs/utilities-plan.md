@@ -187,3 +187,33 @@ CSS por-tema/família, exportando só os que têm regra. Isso resolve a duplicat
 literal-vs-generated automaticamente. O `build-contract.mjs` atual compila os
 módulos isolados (scaffolding) mas ainda NÃO faz esse cruzamento — é o próximo
 passo, junto de decidir a origem/emissão da CSS dos estados.
+
+## Correção de rumo (após ler ve3-granular-family-split-plan)
+
+O split por-família **já existe** (conversão granular G1–G5) e é auditado:
+
+- `scripts/generate-ve-literal/family-table.mjs` — mapa determinístico
+  `contract → família` (0-unmapped, 27 temas, 105 overrides). É o input a reusar
+  para gerar as entradas por-família do contract, **em vez** do `build-contract`
+  ad-hoc (que recompila módulos isolados e não bate a duplicata literal-vs-generated).
+- As chunks por-família (`themes/<t>/<família>/styles.css.ts`) já são emitidas e
+  verificadas a zero. O pacote só precisa deixar de excluí-las (feito p/ utilities
+  no P1/foundation) e expor o contract por-família a partir do family-table.
+- **Estados genéricos** (`show`/`active`/`fade`/`collapsing`/`showing`/`hiding`/
+  `disabled`) **já** estão fixados em `global` (não em navbar/dropdown) — os
+  compostos (`.btn.active`) ficam na família do componente por design. O incômodo
+  histórico de "estado em família arbitrária" já foi resolvido.
+
+**Revisão do plano:**
+- Gerar o contract por-família a partir de `buildFamilyTable()` (symbol→família) +
+  o registry do conversor literal (symbol→hash autoritativo, o que o CSS usa),
+  aposentando o `build-contract.mjs` isolado.
+- **Subtileza a resolver:** símbolos duplicados (ex.: `textBgSecondary` em literal
+  E utilities/generated) — o hash no CSS emitido vem do import do emitter
+  (buildImportBlock), que pode diferir da resolução do family-table. Alinhar as
+  duas (usar a MESMA resolução do emitter) p/ o contract exportar o hash que tem
+  regra.
+- **Oportunidade (a decidir com o Rafael):** promover os 7 estados genéricos de
+  `global` p/ uma família `state` própria — alinha com o modelo de import por
+  família do F8 (importar de `/state`) e com o purge (só envia se importado, em
+  vez de sempre em `global`).
