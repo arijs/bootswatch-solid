@@ -9,11 +9,11 @@
 // Requer: pkg:build já rodou (dist-pkg/themes/* com os chunks por-família).
 
 import { existsSync } from 'node:fs'
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
-import { build } from 'vite'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
+import { build } from 'vite'
 import { buildFamilyTable } from './generate-ve-literal/family-table.mjs'
 
 const ROOT = process.cwd()
@@ -48,7 +48,9 @@ async function contractModules() {
 // hashes de classe presentes no CSS emitido de UM tema (basta um: hashes são
 // theme-agnostic). Pega qualquer `.b<hash>` — o subject das regras `.scope.hash`.
 async function liveHashes() {
-	const themeDir = existsSync(path.join(THEMES, 'bootstrap')) ? path.join(THEMES, 'bootstrap') : null
+	const themeDir = existsSync(path.join(THEMES, 'bootstrap'))
+		? path.join(THEMES, 'bootstrap')
+		: null
 	if (!themeDir) throw new Error('dist-pkg/themes/bootstrap ausente — rode pkg:build antes')
 	const live = new Set()
 	for (const f of (await readdir(themeDir)).filter((f) => f.endsWith('.css'))) {
@@ -84,7 +86,9 @@ async function main() {
 			target: 'esnext',
 			minify: false,
 			lib: { entry: entries, formats: ['es'] },
-			rollupOptions: { output: { entryFileNames: '[name].js', assetFileNames: '[name][extname]' } },
+			rollupOptions: {
+				output: { entryFileNames: '[name].js', assetFileNames: '[name][extname]' },
+			},
 		},
 	})
 
@@ -95,7 +99,12 @@ async function main() {
 		const exported = new Set(
 			[...js.matchAll(/export\s*\{([^}]*)\}/g)]
 				.flatMap((m) => m[1].split(','))
-				.map((s) => s.trim().split(/\s+as\s+/).pop())
+				.map((s) =>
+					s
+						.trim()
+						.split(/\s+as\s+/)
+						.pop(),
+				)
 				.filter(Boolean),
 		)
 		for (const m of js.matchAll(/\bvar (\w+) = ("[^"]*"|'[^']*')/g)) {
@@ -136,7 +145,8 @@ async function main() {
 			continue
 		}
 		const entry = entryName(fam)
-		;(byEntry[entry] ??= new Map()).set(name, hash)
+		if (!byEntry[entry]) byEntry[entry] = new Map()
+		byEntry[entry].set(name, hash)
 	}
 
 	// 4) emite contract/<entry>/index.js + d.ts + manifest.
@@ -165,7 +175,9 @@ async function main() {
 	await rm(OUTDIR, { recursive: true, force: true })
 	console.log(`build-contract: ${Object.keys(byEntry).length} entries, ${total} nomes`)
 	console.log(`  entries: ${Object.keys(manifest).sort().join(', ')}`)
-	console.log(`  sem família (skipped): ${unresolvedFamily}; duplicatas mortas (skipped): ${deadDup}`)
+	console.log(
+		`  sem família (skipped): ${unresolvedFamily}; duplicatas mortas (skipped): ${deadDup}`,
+	)
 }
 
 main().catch((e) => {
