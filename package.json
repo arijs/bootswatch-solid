@@ -4,8 +4,8 @@
 	"description": "",
 	"scripts": {
 		"prepare:theme-link": "node scripts/link-screenshots-public.mjs",
-		"predev": "pnpm prepare:theme-link",
-		"prebuild": "pnpm prepare:theme-link",
+		"predev": "npm run prepare:theme-link",
+		"prebuild": "npm run prepare:theme-link",
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -34,6 +34,7 @@
 		"check": "biome check --write"
 	},
 	"license": "MIT",
+	"packageManager": "npm@11.6.2",
 	"remDependencies": {
 		"@popperjs/core": "^2.11.8"
 	},
