@@ -247,6 +247,11 @@ function packageJson(themes) {
 			'Bootswatch como design system Vanilla-Extract: CSS de componente pré-compilado (classes/vars hasheadas), preset UnoCSS de utilities e runtime Solid mínimo.',
 		type: 'module',
 		license: 'MIT',
+		// Obrigatório p/ o publish com provenance (OIDC): o registry valida que
+		// este URL bate com o repo do GitHub Actions que assinou o bundle sigstore.
+		repository: { type: 'git', url: 'git+https://github.com/arijs/bootswatch-solid.git' },
+		homepage: 'https://github.com/arijs/bootswatch-solid#readme',
+		bugs: { url: 'https://github.com/arijs/bootswatch-solid/issues' },
 		sideEffects: ['**/*.css'],
 		exports: exportsMap,
 		files: ['contract', 'preset', 'solid', 'themes', 'README.md'],
