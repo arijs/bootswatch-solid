@@ -1,11 +1,11 @@
-# F8 — Utilities por-tema + purge JIT de TODAS as famílias (substituir o preset UnoCSS)
+# F8 — Utilities por-tema + entradas por-família + purge por imports
 
 Plano (não implementado) para **abandonar o preset UnoCSS theme-agnostic** e
 tratar as utilities como as demais famílias: CSS por-tema, hasheado, fiel à regra
-de cada tema Bootswatch. Consumo **só via contract** (`cx(C.mb3)`) — sem a API de
-string `u()`. A otimização de tamanho vira um **plugin Vite próprio** que faz
-purge JIT de **todas as famílias** (componentes + utilities), não só das
-utilities.
+de cada tema Bootswatch. Consumo **só via contract**, importado **de dentro de
+cada família** (`@arijs/bootswatch-ve/buttons`, `/utilities`, `/state`, …). Sem
+`u()`, sem prefixo. O purge vira um plugin Vite que **analisa os imports
+estáticos por família** — lógica simples — e enxuga o CSS de TODAS as famílias.
 
 ## Motivação
 
@@ -14,147 +14,153 @@ bootstrap **padrão**) é **theme-agnostic**: uma regra só para os 27 temas. Is
 funciona para utilities cujo valor é uma `var(--bs-*)` (resolve por tema), mas
 **diverge** de todo utility que assa um valor literal customizado pelo tema:
 
-- `text-bg-*` — cor de contraste assada (o bug reportado: Lux fica branco no
-  branco; o original tem texto preto).
+- `text-bg-*` — cor de contraste assada (Lux fica branco no branco; o original
+  tem texto preto).
 - `fw-*` — peso da fonte (Lux: `fw-bold` = 600, não 700).
 - `fs-*` — RFS (`calc(...)` diferente em quase todo tema).
 - spacers `m-*`/`p-*`/`gap-*` — ex.: quartz usa `.m-3` = 2rem.
 
-**Premissa de projeto (decisão do Rafael):** não otimizar com base nas
-diferenças medidas hoje — uma versão futura dos temas pode divergir mais.
-**Assumir que 100% das utilities são theme-dependentes** e tratá-las por-tema,
-como componentes. Fidelidade e robustez futura acima de reaproveitamento.
+**Premissa (decisão do Rafael):** não otimizar com base nas diferenças medidas
+hoje — uma versão futura dos temas pode divergir mais. **Assumir 100%
+theme-dependente** e tratar utilities por-tema, como componentes.
 
 ## Modelo novo
 
-Utilities viram cidadãs de primeira classe do VE por-tema, **iguais às famílias
-de componente**:
+Utilities viram cidadãs de primeira classe do VE por-tema, **iguais aos
+componentes**:
 
 - **Uma classe hasheada por utility** (theme-agnostic no NOME), ex.: `mb3`,
-  `dFlex`, `fwBold`, `textBgSecondary`. Já é assim que os componentes funcionam
-  (`btn` = mesmo hash nos 27 temas).
-- **Regra por-tema** `.<themeScope>.<hash> { … }`, com os valores assados de cada
-  tema (fiel ao Bootswatch original). A regra referencia as vars hasheadas
-  (`var(--b…rgb)`) já setadas no scope — a camada de public-vars **continua**.
-- As regras por-tema **já existem** em `ve-project2/src/themes/<t>/utilities/…`
-  (hoje EXCLUÍDAS do build porque o caminho era o preset). Passam a ser enviadas.
+  `dFlex`, `fwBold`, `textBgSecondary`. Como já é com `btn` (mesmo hash nos 27).
+- **Regra por-tema** `.<themeScope>.<hash> { … }`, valores assados de cada tema
+  (fiel ao original). Referencia as vars hasheadas (`var(--b…rgb)`) do scope — a
+  camada public-vars **continua**.
+- As regras por-tema **já existem** em `themes/<t>/utilities/…` (hoje excluídas do
+  build). Passam a ser enviadas.
 
-Resultado: o `text-bg-*` e os demais utilities passam a ser a regra EXATA do
-Bootswatch de cada tema, sem inventar var nem assar cor fixa.
+## Entradas por-família (o design central)
 
-### API de consumo — só `cx`, sem `u()`
-
-**Elimina-se a API de string `u()`** (e o `prefixClasses`, o conceito de prefixo
-e a dependência `@unocss/core`). Não carregamos esse peso de compat cedo demais.
-Tudo — componente E utility — é consumido pelo mesmo caminho:
+Em vez de um barrel único `/contract`, **cada família é um entry-point** que
+exporta suas classes hasheadas. A fonte já é organizada assim
+(`theme-contract/ui/buttons/`, `.../ui/alerts/`, `.../utilities/`,
+`.../literal/`), então mapeia direto:
 
 ```tsx
-import { btn, btnPrimary, mb3, dFlex, textBgSecondary } from '@arijs/bootswatch-ve/contract'
-// cx = scope do tema ativo + classes de contract (reativo)
+import { btn, btnPrimary } from '@arijs/bootswatch-ve/buttons'
+import { alert, alertDanger } from '@arijs/bootswatch-ve/alerts'
+import { mb3, dFlex, textBgSecondary } from '@arijs/bootswatch-ve/utilities'
+import { show, active, fade, collapsing } from '@arijs/bootswatch-ve/state'
+
 <button class={cx(btn, btnPrimary, mb3)} />
-<span class={cx(badge, textBgSecondary)}>global</span>
 ```
 
-Ganho colateral crucial: sem `u('mb-3')` (string opaca), **todo uso de classe é
-um identificador estático** importado do contract. Isso é o que torna o purge
-abaixo preciso e barato — o bundler já sabe quais exports do contract estão vivos.
+- **Estados** (`show`/`active`/`fade`/`collapsing`/`showing`/`hiding`/`disabled`)
+  saem de uma família própria (`/state`, hoje `theme-contract/literal`), e são
+  **importados como qualquer outra classe** — mesmo quando aplicados só em
+  runtime (o import é a declaração de uso; ver purge).
+- **Sem `u()`/prefixo/@unocss.** `cx` é o único caminho (scope + classes). `/solid`
+  (0.2.0): `useBootswatch()` → `{ scope, cx }` (saem `u`, `utilityPrefix`,
+  `prefixClasses`).
+- Sem barrel global: importar por família é o que torna o purge trivial (a
+  família e a classe vêm explícitas no import).
 
-`/solid` (0.2.0): `useBootswatch()` passa a devolver `{ scope, cx }` (saem `u`,
-`utilityPrefix`, `prefixClasses`, `useUtility`).
+## Purge por imports estáticos (plugin Vite)
 
-## Purge JIT de TODAS as famílias (plugin Vite)
+Como cada classe é **importada por nome de um subpath de família conhecido**, o
+plugin não precisa de análise de liveness nem varredura de strings. A lógica é
+simples:
 
-Como agora **componentes e utilities** são o mesmo tipo de coisa (classes de
-contract hasheadas, consumidas por identificador), o plugin de purge não se
-limita a utilities — ele enxuga **o CSS inteiro do tema**, mantendo só as regras
-cujas classes o projeto realmente usa. Um consumidor que só usa `btn`/`badge`/
-`mb3` não envia `.accordion`, `.carousel`, `.table`, nem 90% das utilities.
+1. **Coleta:** varre os `import { … } from '@arijs/bootswatch-ve/<família>'` do
+   projeto → conjunto `(família, classe)` usado.
+2. **Ação:** para cada família, mantém no CSS de cada tema só os seletores
+   `.<scope>.<hash>` das classes importadas; dropa o resto (todas as famílias +
+   variantes responsivas não usadas). Roda no `generateBundle` (Vite) + PostCSS.
+3. **Scopes/vars:** o CSS de scope e as public-vars dos temas são **sempre
+   mantidos** (troca de tema em runtime) — o plugin os reconhece e nunca os toca.
+4. **Fallback:** sem o plugin, o CSS completo é enviado (correto, só maior). O
+   plugin é otimização.
 
-- **Coleta (estática):** o conjunto de classes usadas = os exports do `/contract`
-  referenciados no código. Como o uso é por identificador estático, dá pra
-  derivar do grafo de módulos / dos exports vivos após tree-shaking — sem varrer
-  strings frágeis (o motivo de matar o `u()`).
-- **Ação:** pós-processa o CSS de cada tema emitido (Vite `generateBundle` +
-  PostCSS), mantendo só os seletores `.<scope>.<hash>` cujos hashes estão no
-  conjunto usado; dropa o resto (todas as famílias + variantes responsivas não
-  usadas).
-- **Fallback:** sem o plugin, o CSS completo do tema é enviado (correto, só
-  maior). O plugin é **otimização**, não requisito de correção.
+Enxuga **todas as famílias** (não só utilities): quem usa só `btn`/`badge` não
+envia `.accordion`/`.table`/etc. — bundles menores que hoje.
 
-## Classes dinâmicas (o ponto delicado do purge)
+## Classes dinâmicas — resolvidas pelo import
 
-Nem todo uso é estático. Se o purge dropar uma classe usada só em runtime, quebra
-silenciosamente. Casos a tratar:
+O calcanhar do purge (classes usadas só em runtime) some com este modelo: **o
+import é o sinal de uso**, independente de como a classe é aplicada.
 
-- **Acesso dinâmico ao contract:** `cx(C[`textBg${cor}`])` — o identificador não
-  aparece estático. O bundler tende a manter o namespace `C` inteiro (sem
-  tree-shake), mas o purge de CSS não sabe quais foram usadas.
-- **Classes de ESTADO alternadas em runtime:** `.show`, `.active`, `.fade`,
-  `.collapsing`, `.showing`/`.hiding` — adicionadas por JS (o runtime `ve-*` da
-  F7, ou os componentes Solid do consumidor), nunca escritas no JSX. O purge
-  ingênuo as removeria.
-- **Scope de tema e public-vars:** as classes de scope dos 27 temas e as vars são
-  aplicadas em runtime (troca de tema) — **nunca** podem ser purgadas.
+- Estado alternado por JS (`el.classList.add(show)`, o runtime `ve-*` da F7, ou
+  um componente Solid do consumidor): você **importou** `show` de `/state` p/ ter
+  o hash → o plugin mantém. Não precisa de safelist.
+- Acesso dinâmico por dado: em vez de `C['textBg'+cor]` (não rastreável), o
+  consumidor importa as classes que pode usar e monta um **mapa estático**
+  (`const BY_COLOR = { primary: textBgPrimary, secondary: textBgSecondary }`).
+  Cada uma foi importada → mantida. (Documentar como a convenção.)
+- Único caso especial que não passa por import: os **scopes de tema** e as
+  **vars** — tratados como sempre-manter por construção (item 3 acima).
 
-Mecanismos previstos:
+Assim o safelist deixa de ser necessário para classes; no máximo uma escotilha
+opcional para casos exóticos.
 
-1. **Safelist** no plugin: `safelist: ['show','active','fade','collapsing', 'textBg*', /^table/]`
-   (nomes de contract e/ou padrões) — sempre mantidas. Um **safelist padrão**
-   já cobre os estados conhecidos do Bootstrap e os scopes/vars (o consumidor não
-   precisa lembrar deles).
-2. **Keep-namespace on dynamic access:** o plugin detecta acesso computado ao
-   import do contract (`C[expr]`) e, conservador, mantém a família/namespace
-   inteiro (ou avisa) em vez de purgar às cegas.
-3. **Convenção recomendada:** preferir um mapa estático no consumidor
-   (`const BY_COLOR = { primary: textBgPrimary, secondary: textBgSecondary }`)
-   a `C['textBg'+x]` — assim tudo volta a ser referência estática e o purge
-   funciona sem safelist. Documentar isso.
+## Anatomia / exports (esboço)
 
-Scopes de tema e public-vars entram no safelist padrão por construção (o plugin
-os reconhece e nunca os toca).
+```jsonc
+{
+  "exports": {
+    "./buttons":  { "types": "./buttons/index.d.ts",  "default": "./buttons/index.js" },
+    "./alerts":   { "types": "./alerts/index.d.ts",   "default": "./alerts/index.js" },
+    "./utilities":{ "types": "./utilities/index.d.ts","default": "./utilities/index.js" },
+    "./state":    { "types": "./state/index.d.ts",    "default": "./state/index.js" },
+    // … um por família (deriva de theme-contract/**)
+    "./themes/*/scope": { "types": "./themes/*/scope.d.ts", "default": "./themes/*/scope.js" },
+    "./themes/*.css": "./themes/*.css",
+    "./themes/*": "./themes/*/index.css",
+    "./solid": { "types": "./solid/index.d.ts", "default": "./solid/index.js" },
+    "./vite":  { "types": "./vite/index.d.ts",  "default": "./vite/index.js" }
+  }
+}
+```
+
+Os JS de contract por-família saem da compilação de `theme-contract/**` (já
+per-família); o CSS por-tema/família segue como hoje.
 
 ## Migração
 
-1. **Build:** remover `utilities`/`utilities/used` do `EXCLUDE_FAMILIES` (enviar
-   as utilities por-tema). Garantir **0 literal `--bs-*`** nelas (usam `var(--b…)`
-   hasheado; validar).
-2. **Contract:** exportar as classes de utility no barrel (`mb3`, `dFlex`,
-   `textBgSecondary`, …). Resolver colisões de nome com componentes.
-3. **Remover o preset e o `u()`:** apagar `generate-preset.mjs`,
+1. **Build:** remover `utilities`/`utilities/used` do `EXCLUDE_FAMILIES`; garantir
+   **0 literal `--bs-*`** nelas.
+2. **Contract por-família:** emitir um módulo JS por família (nomes hasheados) +
+   entry no `exports`. Renomear `literal` → `state` (ou expor como `/state`).
+3. **Remover preset + `u()`:** apagar `generate-preset.mjs`,
    `bootstrap-utilities.generated.mjs`, `preset/`, `presetBootswatch`,
-   `prefixClasses`, o conceito de prefixo; tirar `@unocss/core` das peer deps. A
-   camada public-vars **fica** (as regras por-tema referenciam as vars hasheadas).
-4. **Plugin Vite** de purge de todas as famílias, com safelist padrão + opção.
-5. **DDSOFT:** converter os ~49 usos de `ui.u('...')` para `cx(C....)`; remover a
-   config UnoCSS/prefixo. Mais trabalho de consumo, mas era o que decidimos
-   (sem compat retroativa).
+   `prefixClasses`, prefixo; tirar `@unocss/core`. Public-vars **fica**.
+4. **Plugin Vite** `@arijs/bootswatch-ve/vite`: coleta imports por família →
+   purga CSS de todas as famílias; mantém scopes/vars.
+5. **DDSOFT:** trocar `ui.u('mb-3 text-bg-secondary')` por
+   `cx(mb3, textBgSecondary)` com imports por-família; remover UnoCSS.
 
 ## Tradeoffs
 
-- **A favor:** fidelidade total (regra real de cada tema, à prova de divergências
-  futuras); modelo uniforme (utilities = componentes, um só caminho `cx`); sem
-  UnoCSS/prefixo; o bug do `text-bg-*` some por construção; o purge cobre TODAS
-  as famílias (bundles menores que hoje, onde o CSS de componente vai inteiro).
-- **Contra:** CSS enviado maior por padrão (todas as famílias × responsivo × 27
-  no tarball); o purge vira **requisito prático** p/ bundles enxutos e precisa
-  tratar classes dinâmicas (safelist) — reimplementa a parte JIT do UnoCSS; as
-  variantes responsivas multiplicam as regras; reescrita considerável. Breaking →
-  **0.2.0** (sai preset, prefixo e `u()`).
+- **A favor:** fidelidade total por tema (à prova de divergência futura); modelo
+  uniforme (utilities = componentes, um só `cx`); purge trivial (só lê imports) e
+  cobre TODAS as famílias; classes dinâmicas resolvidas sem safelist; sem
+  UnoCSS/prefixo; o bug do `text-bg-*` some por construção.
+- **Contra:** CSS enviado maior por padrão (todas as famílias × responsivo × 27);
+  o purge vira requisito prático p/ bundles enxutos; variantes responsivas
+  multiplicam regras; mais imports por-família no consumidor; reescrita
+  considerável. Breaking → **0.2.0**.
 
 ## Fases sugeridas
 
-- **P1 — utilities por-tema shipadas + contract; remover preset + `u()`.** O
-  pacote fica correto e fiel (CSS completo, sem purge). `cx` é o único caminho.
-- **P2 — plugin Vite de purge de todas as famílias**, com safelist padrão
-  (estados + scopes + vars) e tratamento de acesso dinâmico.
-- **P3 — migração do DDSOFT** (u()→cx(), remove UnoCSS; valida visual + E2E,
-  inclusive o `text-bg-secondary` do Lux agora legível).
+- **P1 — utilities por-tema + entradas por-família (contract dividido); remover
+  preset + `u()`.** Pacote fiel, CSS completo, `cx` único caminho.
+- **P2 — plugin Vite de purge por imports** (todas as famílias; mantém
+  scopes/vars).
+- **P3 — migração do DDSOFT** (imports por-família + `cx`; valida visual + E2E,
+  inclusive o `text-bg-secondary` do Lux legível).
 
 ## Fora de escopo / notas
 
-- Supersede o caminho de utilities das F3/F4 (preset UnoCSS) e o `u()`/prefixo do
-  `/solid` (F4). O `preset-probe` (fidelidade 46/46 vs bootstrap padrão) deixa de
-  fazer sentido — a fidelidade passa a ser por-tema (a regra VE é a fonte).
-- O `@arijs/bootstrap-runtime` (F7) é ortogonal, mas se cruza com o purge: os
-  estados que o runtime alterna (`show`/`active`/…) precisam estar no safelist
-  padrão.
+- Supersede o caminho de utilities das F3/F4 (preset) e o `u()`/prefixo do
+  `/solid`. O `preset-probe` deixa de fazer sentido (fidelidade passa a ser
+  por-tema).
+- Cruza com a F7: os estados que o runtime `ve-*` alterna são importados de
+  `/state` pelo consumidor (que já os passa ao `configureVe*`), então entram no
+  purge naturalmente.
