@@ -78,8 +78,10 @@ import {
 
 import { elLabel } from '../../../theme-contract/global-elements/contract.css'
 
+import { rounded } from '../../../theme-contract/contents/images/contract.css'
 import { formFloating, formSwitch, wasValidated } from '../../../theme-contract/forms/contract.css'
 import {
+	accordionFlush,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -136,6 +138,7 @@ import {
 	alignItemsSmStart,
 	alignItemsSmStretch,
 	alignItemsStart,
+	alignItemsStretch,
 	alignItemsXlBaseline,
 	alignItemsXlCenter,
 	alignItemsXlEnd,
@@ -184,27 +187,36 @@ import {
 	alignSelfXxlStretch,
 	alignTextBottom,
 	alignTextTop,
+	alignTop,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
+	bgDanger,
 	bgDangerSubtle,
 	bgDarkSubtle,
 	bgGradient,
+	bgInfo,
 	bgInfoSubtle,
+	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
 	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
+	bgPrimary,
 	bgPrimarySubtle,
+	bgSecondary,
 	bgSecondarySubtle,
+	bgSuccess,
 	bgSuccessSubtle,
 	bgTransparent,
+	bgWarning,
 	bgWarningSubtle,
 	bgWhite,
 	bi,
+	border,
 	border0,
 	border1,
 	border2,
@@ -212,9 +224,11 @@ import {
 	border4,
 	border5,
 	borderBlack,
+	borderBottom,
 	borderBottom0,
 	borderDanger,
 	borderDangerSubtle,
+	borderDark,
 	borderDarkSubtle,
 	borderEnd,
 	borderEnd0,
@@ -325,6 +339,7 @@ import {
 	colXxl9,
 	colXxlAuto,
 	collapseHorizontal,
+	collapsed,
 	collapsing,
 	columnGap0,
 	columnGap1,
@@ -368,8 +383,11 @@ import {
 	containerSm,
 	containerXl,
 	containerXxl,
+	dBlock,
 	dGrid,
 	dInline,
+	dInlineBlock,
+	dInlineFlex,
 	dInlineGrid,
 	dLgBlock,
 	dLgFlex,
@@ -378,9 +396,11 @@ import {
 	dLgInlineBlock,
 	dLgInlineFlex,
 	dLgInlineGrid,
+	dLgNone,
 	dLgTable,
 	dLgTableCell,
 	dLgTableRow,
+	dMdBlock,
 	dMdFlex,
 	dMdGrid,
 	dMdInline,
@@ -391,6 +411,7 @@ import {
 	dMdTable,
 	dMdTableCell,
 	dMdTableRow,
+	dNone,
 	dPrintBlock,
 	dPrintFlex,
 	dPrintGrid,
@@ -438,10 +459,12 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	end0,
 	end100,
 	end50,
 	fixedBottom,
 	fixedTop,
+	flexColumn,
 	flexColumnReverse,
 	flexFill,
 	flexGrow0,
@@ -471,6 +494,7 @@ import {
 	flexMdWrap,
 	flexMdWrapReverse,
 	flexNowrap,
+	flexRow,
 	flexRowReverse,
 	flexShrink0,
 	flexShrink1,
@@ -546,6 +570,7 @@ import {
 	fs1,
 	fs2,
 	fs3,
+	fs4,
 	fs5,
 	fs6,
 	fstItalic,
@@ -708,6 +733,8 @@ import {
 	initialism,
 	invisible,
 	justifyContentAround,
+	justifyContentCenter,
+	justifyContentEnd,
 	justifyContentEvenly,
 	justifyContentLgAround,
 	justifyContentLgBetween,
@@ -727,6 +754,7 @@ import {
 	justifyContentSmEnd,
 	justifyContentSmEvenly,
 	justifyContentSmStart,
+	justifyContentStart,
 	justifyContentXlAround,
 	justifyContentXlBetween,
 	justifyContentXlCenter,
@@ -832,7 +860,10 @@ import {
 	mXxl5,
 	mXxlAuto,
 	mark,
+	mb0,
 	mb1,
+	mb4,
+	mb5,
 	mbAuto,
 	mbLg1,
 	mbLg2,
@@ -912,6 +943,7 @@ import {
 	ms0,
 	ms1,
 	ms2,
+	ms3,
 	ms4,
 	ms5,
 	msAuto,
@@ -953,6 +985,7 @@ import {
 	mt0,
 	mt1,
 	mt2,
+	mt3,
 	mt4,
 	mtAuto,
 	mtLg0,
@@ -1034,6 +1067,8 @@ import {
 	mxXxlAuto,
 	my0,
 	my1,
+	my2,
+	my3,
 	my4,
 	my5,
 	myAuto,
@@ -1274,7 +1309,9 @@ import {
 	pXxl5,
 	pb0,
 	pb1,
+	pb3,
 	pb4,
+	pb5,
 	pbLg0,
 	pbLg1,
 	pbLg2,
@@ -1349,12 +1386,14 @@ import {
 	placeholderWave,
 	placeholderXs,
 	pointerEvent,
+	positionAbsolute,
 	positionFixed,
 	positionStatic,
 	positionSticky,
 	ps0,
 	ps1,
 	ps2,
+	ps3,
 	ps4,
 	ps5,
 	psLg0,
@@ -1390,6 +1429,7 @@ import {
 	pt0,
 	pt1,
 	pt2,
+	pt4,
 	pt5,
 	ptLg0,
 	ptLg1,
@@ -1457,6 +1497,7 @@ import {
 	py0,
 	py1,
 	py2,
+	py3,
 	py4,
 	py5,
 	pyLg0,
@@ -1519,6 +1560,7 @@ import {
 	roundedEnd5,
 	roundedEndCircle,
 	roundedEndPill,
+	roundedPill,
 	roundedStart,
 	roundedStart0,
 	roundedStart1,
@@ -1648,16 +1690,20 @@ import {
 	textBodyTertiary,
 	textBreak,
 	textCapitalize,
+	textCenter,
+	textDanger,
 	textDangerEmphasis,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
 	textDecorationUnderline,
 	textEnd,
+	textInfo,
 	textInfoEmphasis,
 	textLgCenter,
 	textLgEnd,
 	textLgStart,
+	textLight,
 	textLightEmphasis,
 	textLowercase,
 	textMdCenter,
@@ -1668,17 +1714,22 @@ import {
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
+	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
+	textSecondary,
 	textSecondaryEmphasis,
 	textSmCenter,
 	textSmEnd,
 	textSmStart,
 	textStart,
+	textSuccess,
 	textSuccessEmphasis,
 	textTruncate,
 	textUppercase,
+	textWarning,
 	textWarningEmphasis,
+	textWhite,
 	textWhite50,
 	textWrap,
 	textXlCenter,
@@ -1687,6 +1738,7 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
+	top0,
 	top100,
 	top50,
 	translateMiddle,
@@ -1701,6 +1753,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
+	w25,
+	w50,
+	w75,
 	wAuto,
 	z0,
 	z1,
@@ -1708,9 +1764,54 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import { accordionButton, accordionHeader, accordionItem } from '../../../theme-contract/ui/accordion/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
+import { flexWrap } from '../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${literaScope}${mark}`, {
 	padding: '0.1875em',
@@ -1955,9 +2056,39 @@ globalStyle(`${literaScope}${container}`, {
 	},
 })
 
+globalStyle(`${literaScope}${row}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
+})
+
+globalStyle(`${literaScope}${row} > *`, {
+	flexShrink: '0',
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
+})
+
+globalStyle(`${literaScope}${col}`, {
+	flex: '1 0 0',
+})
+
 globalStyle(`${literaScope}${rowColsAuto} > *`, {
 	flex: '0 0 auto',
 	width: 'auto',
+})
+
+globalStyle(`${literaScope}${rowCols1} > *`, {
+	flex: '0 0 auto',
+	width: '100%',
 })
 
 globalStyle(`${literaScope}${rowCols2} > *`, {
@@ -2094,9 +2225,21 @@ globalStyle(`${literaScope}${offset11}`, {
 	marginLeft: '91.66666667%',
 })
 
+globalStyle(`${literaScope}${g0}`, {
+	vars: {
+		[varBsGutterX]: '0',
+	},
+})
+
 globalStyle(`${literaScope}${gx0}`, {
 	vars: {
 		[varBsGutterX]: '0',
+	},
+})
+
+globalStyle(`${literaScope}${g0}`, {
+	vars: {
+		[varBsGutterY]: '0',
 	},
 })
 
@@ -2154,9 +2297,21 @@ globalStyle(`${literaScope}${gy2}`, {
 	},
 })
 
+globalStyle(`${literaScope}${g3}`, {
+	vars: {
+		[varBsGutterX]: '1rem',
+	},
+})
+
 globalStyle(`${literaScope}${gx3}`, {
 	vars: {
 		[varBsGutterX]: '1rem',
+	},
+})
+
+globalStyle(`${literaScope}${g3}`, {
+	vars: {
+		[varBsGutterY]: '1rem',
 	},
 })
 
@@ -2166,9 +2321,21 @@ globalStyle(`${literaScope}${gy3}`, {
 	},
 })
 
+globalStyle(`${literaScope}${g4}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+	},
+})
+
 globalStyle(`${literaScope}${gx4}`, {
 	vars: {
 		[varBsGutterX]: '1.5rem',
+	},
+})
+
+globalStyle(`${literaScope}${g4}`, {
+	vars: {
+		[varBsGutterY]: '1.5rem',
 	},
 })
 
@@ -2323,6 +2490,15 @@ globalStyle(`${literaScope}${colSm5}`, {
 		'(min-width: 576px)': {
 			flex: '0 0 auto',
 			width: '41.66666667%',
+		},
+	},
+})
+
+globalStyle(`${literaScope}${colSm6}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flex: '0 0 auto',
+			width: '50%',
 		},
 	},
 })
@@ -2743,6 +2919,15 @@ globalStyle(`${literaScope}${rowColsMd1} > *`, {
 	},
 })
 
+globalStyle(`${literaScope}${rowColsMd2} > *`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${rowColsMd3} > *`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2806,6 +2991,24 @@ globalStyle(`${literaScope}${colMd2}`, {
 	},
 })
 
+globalStyle(`${literaScope}${colMd3}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '25%',
+		},
+	},
+})
+
+globalStyle(`${literaScope}${colMd4}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '33.33333333%',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${colMd5}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2815,11 +3018,29 @@ globalStyle(`${literaScope}${colMd5}`, {
 	},
 })
 
+globalStyle(`${literaScope}${colMd6}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${colMd7}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
 			width: '58.33333333%',
+		},
+	},
+})
+
+globalStyle(`${literaScope}${colMd8}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '66.66666667%',
 		},
 	},
 })
@@ -4962,6 +5183,10 @@ globalStyle(`${literaScope}${navbar} > ${literaScope}${containerXxl}`, {
 	justifyContent: 'space-between',
 })
 
+globalStyle(`${literaScope}${accordionFlush} > ${literaScope}${accordionItem} > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
+
 globalStyle(`${literaScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
 })
@@ -5378,6 +5603,16 @@ globalStyle(`${literaScope}${stickyLgBottom}`, {
 	},
 })
 
+globalStyle(`${literaScope}${stickyXlTop}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'sticky',
+			top: '0',
+			zIndex: '1020',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${stickyXlBottom}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -5422,6 +5657,17 @@ globalStyle(`${literaScope}${vstack}`, {
 	alignSelf: 'stretch',
 })
 
+globalStyle(`${literaScope}${visuallyHidden}`, {
+	width: '1px !important',
+	height: '1px !important',
+	padding: '0 !important',
+	margin: '-1px !important',
+	overflow: 'hidden !important',
+	clip: 'rect(0, 0, 0, 0) !important',
+	whiteSpace: 'nowrap !important',
+	border: '0 !important',
+})
+
 globalStyle(`${literaScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within)`, {
 	width: '1px !important',
 	height: '1px !important',
@@ -5433,8 +5679,16 @@ globalStyle(`${literaScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-wit
 	border: '0 !important',
 })
 
+globalStyle(`${literaScope}${visuallyHidden}:not(caption)`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${literaScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
 	position: 'absolute !important',
+})
+
+globalStyle(`${literaScope}${visuallyHidden} *`, {
+	overflow: 'hidden !important',
 })
 
 globalStyle(`${literaScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within) *`, {
@@ -5468,6 +5722,10 @@ globalStyle(`${literaScope}${vr}`, {
 
 globalStyle(`${literaScope}${alignBaseline}`, {
 	verticalAlign: 'baseline !important',
+})
+
+globalStyle(`${literaScope}${alignTop}`, {
+	verticalAlign: 'top !important',
 })
 
 globalStyle(`${literaScope}${alignMiddle}`, {
@@ -5563,6 +5821,10 @@ globalStyle(`${literaScope}${overflowXAuto}`, {
 	overflowX: 'auto !important',
 })
 
+globalStyle(`${literaScope}${overflowXHidden}`, {
+	overflowX: 'hidden !important',
+})
+
 globalStyle(`${literaScope}${overflowXVisible}`, {
 	overflowX: 'visible !important',
 })
@@ -5591,6 +5853,14 @@ globalStyle(`${literaScope}${dInline}`, {
 	display: 'inline !important',
 })
 
+globalStyle(`${literaScope}${dInlineBlock}`, {
+	display: 'inline-block !important',
+})
+
+globalStyle(`${literaScope}${dBlock}`, {
+	display: 'block !important',
+})
+
 globalStyle(`${literaScope}${dGrid}`, {
 	display: 'grid !important',
 })
@@ -5609,6 +5879,18 @@ globalStyle(`${literaScope}${dTableRow}`, {
 
 globalStyle(`${literaScope}${dTableCell}`, {
 	display: 'table-cell !important',
+})
+
+globalStyle(`${literaScope}${dFlex}`, {
+	display: 'flex !important',
+})
+
+globalStyle(`${literaScope}${dInlineFlex}`, {
+	display: 'inline-flex !important',
+})
+
+globalStyle(`${literaScope}${dNone}`, {
+	display: 'none !important',
 })
 
 globalStyle(`${literaScope}${shadow}`, {
@@ -5679,12 +5961,24 @@ globalStyle(`${literaScope}${positionStatic}`, {
 	position: 'static !important',
 })
 
+globalStyle(`${literaScope}${positionRelative}`, {
+	position: 'relative !important',
+})
+
+globalStyle(`${literaScope}${positionAbsolute}`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${literaScope}${positionFixed}`, {
 	position: 'fixed !important',
 })
 
 globalStyle(`${literaScope}${positionSticky}`, {
 	position: 'sticky !important',
+})
+
+globalStyle(`${literaScope}${top0}`, {
+	top: '0 !important',
 })
 
 globalStyle(`${literaScope}${top50}`, {
@@ -5719,6 +6013,10 @@ globalStyle(`${literaScope}${start100}`, {
 	left: '100% !important',
 })
 
+globalStyle(`${literaScope}${end0}`, {
+	right: '0 !important',
+})
+
 globalStyle(`${literaScope}${end50}`, {
 	right: '50% !important',
 })
@@ -5739,6 +6037,10 @@ globalStyle(`${literaScope}${translateMiddleY}`, {
 	transform: 'translateY(-50%) !important',
 })
 
+globalStyle(`${literaScope}${border}`, {
+	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
+})
+
 globalStyle(`${literaScope}${border0}`, {
 	border: '0 !important',
 })
@@ -5757,6 +6059,10 @@ globalStyle(`${literaScope}${borderEnd}`, {
 
 globalStyle(`${literaScope}${borderEnd0}`, {
 	borderRight: '0 !important',
+})
+
+globalStyle(`${literaScope}${borderBottom}`, {
+	borderBottom: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 globalStyle(`${literaScope}${borderBottom0}`, {
@@ -5818,6 +6124,13 @@ globalStyle(`${literaScope}${borderLight}`, {
 		[varBsBorderOpacity]: '1',
 	},
 	borderColor: `rgba(${varBsLightRgb}, ${varBsBorderOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${borderDark}`, {
+	vars: {
+		[varBsBorderOpacity]: '1',
+	},
+	borderColor: `rgba(${varBsDarkRgb}, ${varBsBorderOpacity}) !important`,
 })
 
 globalStyle(`${literaScope}${borderBlack}`, {
@@ -5916,6 +6229,22 @@ globalStyle(`${literaScope}${borderOpacity100}`, {
 	},
 })
 
+globalStyle(`${literaScope}${w25}`, {
+	width: '25% !important',
+})
+
+globalStyle(`${literaScope}${w50}`, {
+	width: '50% !important',
+})
+
+globalStyle(`${literaScope}${w75}`, {
+	width: '75% !important',
+})
+
+globalStyle(`${literaScope}${w100}`, {
+	width: '100% !important',
+})
+
 globalStyle(`${literaScope}${wAuto}`, {
 	width: 'auto !important',
 })
@@ -5968,6 +6297,14 @@ globalStyle(`${literaScope}${flexFill}`, {
 	flex: '1 1 auto !important',
 })
 
+globalStyle(`${literaScope}${flexRow}`, {
+	flexDirection: 'row !important',
+})
+
+globalStyle(`${literaScope}${flexColumn}`, {
+	flexDirection: 'column !important',
+})
+
 globalStyle(`${literaScope}${flexRowReverse}`, {
 	flexDirection: 'row-reverse !important',
 })
@@ -5992,12 +6329,28 @@ globalStyle(`${literaScope}${flexShrink1}`, {
 	flexShrink: '1 !important',
 })
 
+globalStyle(`${literaScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${literaScope}${flexNowrap}`, {
 	flexWrap: 'nowrap !important',
 })
 
 globalStyle(`${literaScope}${flexWrapReverse}`, {
 	flexWrap: 'wrap-reverse !important',
+})
+
+globalStyle(`${literaScope}${justifyContentStart}`, {
+	justifyContent: 'flex-start !important',
+})
+
+globalStyle(`${literaScope}${justifyContentEnd}`, {
+	justifyContent: 'flex-end !important',
+})
+
+globalStyle(`${literaScope}${justifyContentCenter}`, {
+	justifyContent: 'center !important',
 })
 
 globalStyle(`${literaScope}${justifyContentAround}`, {
@@ -6016,8 +6369,16 @@ globalStyle(`${literaScope}${alignItemsEnd}`, {
 	alignItems: 'flex-end !important',
 })
 
+globalStyle(`${literaScope}${alignItemsCenter}`, {
+	alignItems: 'center !important',
+})
+
 globalStyle(`${literaScope}${alignItemsBaseline}`, {
 	alignItems: 'baseline !important',
+})
+
+globalStyle(`${literaScope}${alignItemsStretch}`, {
+	alignItems: 'stretch !important',
 })
 
 globalStyle(`${literaScope}${alignContentStart}`, {
@@ -6046,6 +6407,10 @@ globalStyle(`${literaScope}${alignContentStretch}`, {
 
 globalStyle(`${literaScope}${alignSelfAuto}`, {
 	alignSelf: 'auto !important',
+})
+
+globalStyle(`${literaScope}${alignSelfStart}`, {
+	alignSelf: 'flex-start !important',
 })
 
 globalStyle(`${literaScope}${alignSelfEnd}`, {
@@ -6169,6 +6534,16 @@ globalStyle(`${literaScope}${my1}`, {
 	marginBottom: '0.25rem !important',
 })
 
+globalStyle(`${literaScope}${my2}`, {
+	marginTop: '0.5rem !important',
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${my3}`, {
+	marginTop: '1rem !important',
+	marginBottom: '1rem !important',
+})
+
 globalStyle(`${literaScope}${my4}`, {
 	marginTop: '1.5rem !important',
 	marginBottom: '1.5rem !important',
@@ -6196,8 +6571,16 @@ globalStyle(`${literaScope}${mt2}`, {
 	marginTop: '0.5rem !important',
 })
 
+globalStyle(`${literaScope}${mt3}`, {
+	marginTop: '1rem !important',
+})
+
 globalStyle(`${literaScope}${mt4}`, {
 	marginTop: '1.5rem !important',
+})
+
+globalStyle(`${literaScope}${mt5}`, {
+	marginTop: '3rem !important',
 })
 
 globalStyle(`${literaScope}${mtAuto}`, {
@@ -6212,6 +6595,10 @@ globalStyle(`${literaScope}${me1}`, {
 	marginRight: '0.25rem !important',
 })
 
+globalStyle(`${literaScope}${me2}`, {
+	marginRight: '0.5rem !important',
+})
+
 globalStyle(`${literaScope}${me3}`, {
 	marginRight: '1rem !important',
 })
@@ -6224,8 +6611,32 @@ globalStyle(`${literaScope}${me5}`, {
 	marginRight: '3rem !important',
 })
 
+globalStyle(`${literaScope}${meAuto}`, {
+	marginRight: 'auto !important',
+})
+
+globalStyle(`${literaScope}${mb0}`, {
+	marginBottom: '0 !important',
+})
+
 globalStyle(`${literaScope}${mb1}`, {
 	marginBottom: '0.25rem !important',
+})
+
+globalStyle(`${literaScope}${mb2}`, {
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${mb3}`, {
+	marginBottom: '1rem !important',
+})
+
+globalStyle(`${literaScope}${mb4}`, {
+	marginBottom: '1.5rem !important',
+})
+
+globalStyle(`${literaScope}${mb5}`, {
+	marginBottom: '3rem !important',
 })
 
 globalStyle(`${literaScope}${mbAuto}`, {
@@ -6242,6 +6653,10 @@ globalStyle(`${literaScope}${ms1}`, {
 
 globalStyle(`${literaScope}${ms2}`, {
 	marginLeft: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${ms3}`, {
+	marginLeft: '1rem !important',
 })
 
 globalStyle(`${literaScope}${ms4}`, {
@@ -6276,6 +6691,10 @@ globalStyle(`${literaScope}${p4}`, {
 	padding: '1.5rem !important',
 })
 
+globalStyle(`${literaScope}${p5}`, {
+	padding: '3rem !important',
+})
+
 globalStyle(`${literaScope}${px0}`, {
 	paddingRight: '0 !important',
 	paddingLeft: '0 !important',
@@ -6284,6 +6703,16 @@ globalStyle(`${literaScope}${px0}`, {
 globalStyle(`${literaScope}${px1}`, {
 	paddingRight: '0.25rem !important',
 	paddingLeft: '0.25rem !important',
+})
+
+globalStyle(`${literaScope}${px2}`, {
+	paddingRight: '0.5rem !important',
+	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${px3}`, {
+	paddingRight: '1rem !important',
+	paddingLeft: '1rem !important',
 })
 
 globalStyle(`${literaScope}${px4}`, {
@@ -6311,6 +6740,11 @@ globalStyle(`${literaScope}${py2}`, {
 	paddingBottom: '0.5rem !important',
 })
 
+globalStyle(`${literaScope}${py3}`, {
+	paddingTop: '1rem !important',
+	paddingBottom: '1rem !important',
+})
+
 globalStyle(`${literaScope}${py4}`, {
 	paddingTop: '1.5rem !important',
 	paddingBottom: '1.5rem !important',
@@ -6331,6 +6765,14 @@ globalStyle(`${literaScope}${pt1}`, {
 
 globalStyle(`${literaScope}${pt2}`, {
 	paddingTop: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${pt3}`, {
+	paddingTop: '1rem !important',
+})
+
+globalStyle(`${literaScope}${pt4}`, {
+	paddingTop: '1.5rem !important',
 })
 
 globalStyle(`${literaScope}${pt5}`, {
@@ -6369,8 +6811,20 @@ globalStyle(`${literaScope}${pb1}`, {
 	paddingBottom: '0.25rem !important',
 })
 
+globalStyle(`${literaScope}${pb2}`, {
+	paddingBottom: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${pb3}`, {
+	paddingBottom: '1rem !important',
+})
+
 globalStyle(`${literaScope}${pb4}`, {
 	paddingBottom: '1.5rem !important',
+})
+
+globalStyle(`${literaScope}${pb5}`, {
+	paddingBottom: '3rem !important',
 })
 
 globalStyle(`${literaScope}${ps0}`, {
@@ -6383,6 +6837,10 @@ globalStyle(`${literaScope}${ps1}`, {
 
 globalStyle(`${literaScope}${ps2}`, {
 	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${literaScope}${ps3}`, {
+	paddingLeft: '1rem !important',
 })
 
 globalStyle(`${literaScope}${ps4}`, {
@@ -6487,6 +6945,10 @@ globalStyle(`${literaScope}${fs3}`, {
 	fontSize: 'calc(1.3175rem + 0.81vw) !important',
 })
 
+globalStyle(`${literaScope}${fs4}`, {
+	fontSize: 'calc(1.29rem + 0.48vw) !important',
+})
+
 globalStyle(`${literaScope}${fs5}`, {
 	fontSize: 'calc(1.2625rem + 0.15vw) !important',
 })
@@ -6523,6 +6985,10 @@ globalStyle(`${literaScope}${fwSemibold}`, {
 	fontWeight: '600 !important',
 })
 
+globalStyle(`${literaScope}${fwBold}`, {
+	fontWeight: '700 !important',
+})
+
 globalStyle(`${literaScope}${fwBolder}`, {
 	fontWeight: 'bolder !important',
 })
@@ -6549,6 +7015,10 @@ globalStyle(`${literaScope}${textStart}`, {
 
 globalStyle(`${literaScope}${textEnd}`, {
 	textAlign: 'right !important',
+})
+
+globalStyle(`${literaScope}${textCenter}`, {
+	textAlign: 'center !important',
 })
 
 globalStyle(`${literaScope}${textDecorationNone}`, {
@@ -6588,6 +7058,62 @@ globalStyle(`${literaScope}${textBreak}`, {
 	wordBreak: 'break-word !important',
 })
 
+globalStyle(`${literaScope}${textPrimary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsPrimaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textSecondary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSecondaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textSuccess}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSuccessRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textInfo}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsInfoRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textWarning}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWarningRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textDanger}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDangerRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textLight}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsLightRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textDark}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${literaScope}${textBlack}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
@@ -6595,11 +7121,25 @@ globalStyle(`${literaScope}${textBlack}`, {
 	color: `rgba(${varBsBlackRgb}, ${varBsTextOpacity}) !important`,
 })
 
+globalStyle(`${literaScope}${textWhite}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWhiteRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${literaScope}${textBody}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
 	},
 	color: `rgba(${varBsBodyColorRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${textMuted}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `${varBsSecondaryColor} !important`,
 })
 
 globalStyle(`${literaScope}${textBlack50}`, {
@@ -6928,6 +7468,62 @@ globalStyle(`${literaScope}${linkUnderlineOpacity100Hover}:hover`, {
 	},
 })
 
+globalStyle(`${literaScope}${bgPrimary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgSecondary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgSuccess}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgInfo}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgWarning}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgDanger}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgLight}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${literaScope}${bgDark}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
 globalStyle(`${literaScope}${bgBlack}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
@@ -7062,6 +7658,10 @@ globalStyle(`${literaScope}${peAuto}`, {
 	pointerEvents: 'auto !important',
 })
 
+globalStyle(`${literaScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
+})
+
 globalStyle(`${literaScope}${rounded0}`, {
 	borderRadius: '0 !important',
 })
@@ -7088,6 +7688,10 @@ globalStyle(`${literaScope}${rounded5}`, {
 
 globalStyle(`${literaScope}${roundedCircle}`, {
 	borderRadius: '50% !important',
+})
+
+globalStyle(`${literaScope}${roundedPill}`, {
+	borderRadius: `${varBsBorderRadiusPill} !important`,
 })
 
 globalStyle(`${literaScope}${roundedTop}`, {
@@ -8812,6 +9416,14 @@ globalStyle(`${literaScope}${dMdInlineBlock}`, {
 	},
 })
 
+globalStyle(`${literaScope}${dMdBlock}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'block !important',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${dMdGrid}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -10297,6 +10909,14 @@ globalStyle(`${literaScope}${dLgInlineFlex}`, {
 	},
 })
 
+globalStyle(`${literaScope}${dLgNone}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none !important',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${flexLgFill}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -10931,6 +11551,14 @@ globalStyle(`${literaScope}${meLgAuto}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			marginRight: 'auto !important',
+		},
+	},
+})
+
+globalStyle(`${literaScope}${mbLg0}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginBottom: '0 !important',
 		},
 	},
 })
@@ -12244,6 +12872,14 @@ globalStyle(`${literaScope}${myXlAuto}`, {
 	},
 })
 
+globalStyle(`${literaScope}${mtXl0}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0 !important',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${mtXl1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12364,6 +13000,14 @@ globalStyle(`${literaScope}${mbXl1}`, {
 	},
 })
 
+globalStyle(`${literaScope}${mbXl2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '0.5rem !important',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${mbXl3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12376,6 +13020,14 @@ globalStyle(`${literaScope}${mbXl4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginBottom: '1.5rem !important',
+		},
+	},
+})
+
+globalStyle(`${literaScope}${mbXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '3rem !important',
 		},
 	},
 })
@@ -12640,6 +13292,14 @@ globalStyle(`${literaScope}${ptXl4}`, {
 	},
 })
 
+globalStyle(`${literaScope}${ptXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingTop: '3rem !important',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${peXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12708,6 +13368,14 @@ globalStyle(`${literaScope}${pbXl2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			paddingBottom: '0.5rem !important',
+		},
+	},
+})
+
+globalStyle(`${literaScope}${pbXl3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingBottom: '1rem !important',
 		},
 	},
 })
@@ -14403,6 +15071,14 @@ globalStyle(`${literaScope}${fs3}`, {
 	},
 })
 
+globalStyle(`${literaScope}${fs4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.65rem !important',
+		},
+	},
+})
+
 globalStyle(`${literaScope}${fs5}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -14497,4 +15173,8 @@ globalStyle(`${literaScope}${dPrintNone}`, {
 			display: 'none !important',
 		},
 	},
+})
+
+globalStyle(`${literaScope}${badge}${bgLight}`, {
+	color: '#343a40',
 })

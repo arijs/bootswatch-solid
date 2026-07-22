@@ -86,6 +86,8 @@ export const FAMILY_OVERRIDES = {
 	// Badge / border-radius utility.
 	badgePill: 'ui/badge', // BS4 .badge-pill
 	roundedPill: 'utilities', // .rounded-pill is a border-radius utility
+	rounded: 'utilities', // .rounded is a border-radius utility (closes into images w/o this)
+	flexWrap: 'utilities', // .flex-wrap is a flex utility (closes into modal w/o this)
 
 	// Shared close button — modal/alert/toast components all declare ui/buttons.
 	btnClose: 'ui/buttons',
@@ -440,12 +442,13 @@ export async function buildFamilyTable() {
 		symbolToFamily.set(sym, family)
 	}
 
-	// Manual tree-shake: lift the demo-used utility slice into `utilities/used`.
-	// Runs last so it wins over both the dir-structure passes and the overrides
-	// (e.g. roundedPill, which FAMILY_OVERRIDES pins to `utilities`).
-	for (const sym of USED_UTILITY_SYMBOLS) {
-		symbolToFamily.set(sym, 'utilities/used')
-	}
+	// NOTE: the `utilities/used` family (manual demo tree-shake) was RETIRED. The
+	// package ships ONE `utilities` family (full Bootstrap utility API) and trims
+	// per-consumer via the purge Vite plugin — so the demo-used slice no longer
+	// needs its own chunk. Every utility symbol stays in `utilities`; there is no
+	// second, disjoint copy to reconcile. `USED_UTILITY_SYMBOLS` is kept only as
+	// the seed for `utilities-usage-audit.mjs`. (Previously this loop reassigned
+	// each USED_UTILITY_SYMBOLS entry to `utilities/used`.)
 
 	return {
 		symbolToFamily,

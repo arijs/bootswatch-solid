@@ -18,7 +18,6 @@ export const EMIT_FAMILIES = [
 	'contents/images',
 	'forms',
 	'utilities',
-	'utilities/used',
 	'ui/accordion',
 	'ui/alerts',
 	'ui/badge',
