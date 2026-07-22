@@ -217,3 +217,56 @@ O split por-família **já existe** (conversão granular G1–G5) e é auditado:
   `global` p/ uma família `state` própria — alinha com o modelo de import por
   família do F8 (importar de `/state`) e com o purge (só envia se importado, em
   vez de sempre em `global`).
+
+## P2 — Arquitetura de carregamento + purge (revisada com dados)
+
+**Descoberta:** o carregamento sob demanda por tema **já funciona** e não é
+trabalho da P2. O registry do consumidor faz `import()` dinâmico por tema
+(`import('@arijs/bootswatch-ve/themes/lux/index.css')`), então o Vite já
+code-splita **1 chunk CSS por tema**; no runtime só o chunk do tema ativo é
+buscado (os demais ao trocar). No início carrega só o tema default. Medido no
+ddsoft: `lux-*.css`, `darkly-*.css`, … chunks separados (~124KB cada na 0.1.1
+sem utilities; ~500KB/tema com a F8).
+
+**Logo a P2 é SÓ o purge:** enxugar cada chunk de tema para conter apenas as
+classes que o app realmente usa. O lazy-por-tema é ortogonal e já resolvido.
+
+### O plugin `@arijs/bootswatch-ve/vite`
+
+1. **Coleta do conjunto usado (via grafo de módulos, não text-scan):** durante o
+   build do consumidor, o plugin observa os imports de
+   `@arijs/bootswatch-ve/<família>` (e `<família>/vars`) — os nomes importados
+   são as classes/vars usadas. Mapeia nome→hash via `contract-manifest.json` (já
+   shipado). Ao fim do build o conjunto de hashes usados está completo.
+2. **Purge no `generateBundle`:** para cada chunk CSS de tema emitido, mantém só
+   as regras cujo seletor casa `.<scope>.<hashUsado>`; dropa o resto. Preserva as
+   dependências das regras mantidas: `@media` (variantes responsivas), `@layer`
+   (ordem de cascata cross-família), `@keyframes` referenciados.
+3. **Sempre mantidos:** `scope.css` (a classe de scope + as vars do tema) e as
+   public-vars — são a base de qualquer tema e mudam em runtime. O plugin os
+   reconhece e nunca os purga.
+4. **Transparente ao app:** o consumidor mantém seus `import()` dinâmicos por
+   tema; o plugin só pós-processa o CSS emitido. Nada muda nos imports de tema
+   (só a migração P3 troca os imports de CLASSE para por-família).
+5. **Dev vs build:** o purge roda no build (`generateBundle`). Em dev serve o CSS
+   completo do tema (é dev; sem custo de bundle).
+
+### Decisões a confirmar
+
+- **(A) Purgar o `themes/<t>/index.css` inteiro** (o que o app importa hoje),
+  mantendo o modelo transparente — vs. o app importar por-família por tema. Reco:
+  purgar o index.css (transparente, um chunk por tema).
+- **(B) Conjunto usado do grafo de módulos** (preciso; o import É o sinal) — vs.
+  varredura de texto. Reco: grafo de módulos.
+- **(C) Purga por HASH** (theme-agnostic: o conjunto de hashes usados é o mesmo
+  p/ os 27 temas; aplica-se a cada chunk de tema).
+- **(D) Fallback:** sem o plugin, o CSS completo do tema é servido (correto, só
+  maior) — o plugin é otimização, não correção.
+
+### Ponto de atenção
+
+O purge por hash precisa casar `.<scope>.<hash>` e também os compostos
+(`.<scope>.<compA>.<compB>`) e descendentes (`.<scope>.<x> .<scope>.<y>`) — uma
+regra é mantida se TODOS os hashes de classe que ela exige estão no conjunto
+usado (senão a regra nunca casaria no DOM). Regras de elemento/reboot e
+keyframes/@layer são estruturais e mantidas.
