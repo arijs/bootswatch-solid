@@ -79,8 +79,10 @@ import {
 import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { elLabel } from '../../../theme-contract/global-elements/contract.css'
 
+import { rounded } from '../../../theme-contract/contents/images/contract.css'
 import { formFloating, formSwitch, wasValidated } from '../../../theme-contract/forms/contract.css'
 import {
+	accordionFlush,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -137,6 +139,7 @@ import {
 	alignItemsSmStart,
 	alignItemsSmStretch,
 	alignItemsStart,
+	alignItemsStretch,
 	alignItemsXlBaseline,
 	alignItemsXlCenter,
 	alignItemsXlEnd,
@@ -185,27 +188,36 @@ import {
 	alignSelfXxlStretch,
 	alignTextBottom,
 	alignTextTop,
+	alignTop,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
+	bgDanger,
 	bgDangerSubtle,
 	bgDarkSubtle,
 	bgGradient,
+	bgInfo,
 	bgInfoSubtle,
+	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
 	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
+	bgPrimary,
 	bgPrimarySubtle,
+	bgSecondary,
 	bgSecondarySubtle,
+	bgSuccess,
 	bgSuccessSubtle,
 	bgTransparent,
+	bgWarning,
 	bgWarningSubtle,
 	bgWhite,
 	bi,
+	border,
 	border0,
 	border1,
 	border2,
@@ -213,9 +225,11 @@ import {
 	border4,
 	border5,
 	borderBlack,
+	borderBottom,
 	borderBottom0,
 	borderDanger,
 	borderDangerSubtle,
+	borderDark,
 	borderDarkSubtle,
 	borderEnd,
 	borderEnd0,
@@ -326,6 +340,7 @@ import {
 	colXxl9,
 	colXxlAuto,
 	collapseHorizontal,
+	collapsed,
 	collapsing,
 	columnGap0,
 	columnGap1,
@@ -369,8 +384,11 @@ import {
 	containerSm,
 	containerXl,
 	containerXxl,
+	dBlock,
 	dGrid,
 	dInline,
+	dInlineBlock,
+	dInlineFlex,
 	dInlineGrid,
 	dLgBlock,
 	dLgFlex,
@@ -379,9 +397,11 @@ import {
 	dLgInlineBlock,
 	dLgInlineFlex,
 	dLgInlineGrid,
+	dLgNone,
 	dLgTable,
 	dLgTableCell,
 	dLgTableRow,
+	dMdBlock,
 	dMdFlex,
 	dMdGrid,
 	dMdInline,
@@ -392,6 +412,7 @@ import {
 	dMdTable,
 	dMdTableCell,
 	dMdTableRow,
+	dNone,
 	dPrintBlock,
 	dPrintFlex,
 	dPrintGrid,
@@ -439,10 +460,12 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	end0,
 	end100,
 	end50,
 	fixedBottom,
 	fixedTop,
+	flexColumn,
 	flexColumnReverse,
 	flexFill,
 	flexGrow0,
@@ -472,6 +495,7 @@ import {
 	flexMdWrap,
 	flexMdWrapReverse,
 	flexNowrap,
+	flexRow,
 	flexRowReverse,
 	flexShrink0,
 	flexShrink1,
@@ -547,6 +571,7 @@ import {
 	fs1,
 	fs2,
 	fs3,
+	fs4,
 	fs5,
 	fs6,
 	fstItalic,
@@ -709,6 +734,8 @@ import {
 	initialism,
 	invisible,
 	justifyContentAround,
+	justifyContentCenter,
+	justifyContentEnd,
 	justifyContentEvenly,
 	justifyContentLgAround,
 	justifyContentLgBetween,
@@ -728,6 +755,7 @@ import {
 	justifyContentSmEnd,
 	justifyContentSmEvenly,
 	justifyContentSmStart,
+	justifyContentStart,
 	justifyContentXlAround,
 	justifyContentXlBetween,
 	justifyContentXlCenter,
@@ -833,7 +861,10 @@ import {
 	mXxl5,
 	mXxlAuto,
 	mark,
+	mb0,
 	mb1,
+	mb4,
+	mb5,
 	mbAuto,
 	mbLg1,
 	mbLg2,
@@ -913,6 +944,7 @@ import {
 	ms0,
 	ms1,
 	ms2,
+	ms3,
 	ms4,
 	ms5,
 	msAuto,
@@ -954,6 +986,7 @@ import {
 	mt0,
 	mt1,
 	mt2,
+	mt3,
 	mt4,
 	mtAuto,
 	mtLg0,
@@ -1035,6 +1068,8 @@ import {
 	mxXxlAuto,
 	my0,
 	my1,
+	my2,
+	my3,
 	my4,
 	my5,
 	myAuto,
@@ -1275,7 +1310,9 @@ import {
 	pXxl5,
 	pb0,
 	pb1,
+	pb3,
 	pb4,
+	pb5,
 	pbLg0,
 	pbLg1,
 	pbLg2,
@@ -1350,12 +1387,15 @@ import {
 	placeholderWave,
 	placeholderXs,
 	pointerEvent,
+	popover,
+	positionAbsolute,
 	positionFixed,
 	positionStatic,
 	positionSticky,
 	ps0,
 	ps1,
 	ps2,
+	ps3,
 	ps4,
 	ps5,
 	psLg0,
@@ -1391,6 +1431,7 @@ import {
 	pt0,
 	pt1,
 	pt2,
+	pt4,
 	pt5,
 	ptLg0,
 	ptLg1,
@@ -1458,6 +1499,7 @@ import {
 	py0,
 	py1,
 	py2,
+	py3,
 	py4,
 	py5,
 	pyLg0,
@@ -1520,6 +1562,7 @@ import {
 	roundedEnd5,
 	roundedEndCircle,
 	roundedEndPill,
+	roundedPill,
 	roundedStart,
 	roundedStart0,
 	roundedStart1,
@@ -1649,16 +1692,20 @@ import {
 	textBodyTertiary,
 	textBreak,
 	textCapitalize,
+	textCenter,
+	textDanger,
 	textDangerEmphasis,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
 	textDecorationUnderline,
 	textEnd,
+	textInfo,
 	textInfoEmphasis,
 	textLgCenter,
 	textLgEnd,
 	textLgStart,
+	textLight,
 	textLightEmphasis,
 	textLowercase,
 	textMdCenter,
@@ -1669,17 +1716,22 @@ import {
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
+	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
+	textSecondary,
 	textSecondaryEmphasis,
 	textSmCenter,
 	textSmEnd,
 	textSmStart,
 	textStart,
+	textSuccess,
 	textSuccessEmphasis,
 	textTruncate,
 	textUppercase,
+	textWarning,
 	textWarningEmphasis,
+	textWhite,
 	textWhite50,
 	textWrap,
 	textXlCenter,
@@ -1688,6 +1740,7 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
+	top0,
 	top100,
 	top50,
 	translateMiddle,
@@ -1702,6 +1755,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
+	w25,
+	w50,
+	w75,
 	wAuto,
 	z0,
 	z1,
@@ -1709,10 +1766,67 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import { accordionButton, accordionHeader, accordionItem } from '../../../theme-contract/ui/accordion/contract.css'
+import { alert } from '../../../theme-contract/ui/alerts/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
 import { card } from '../../../theme-contract/ui/card/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
+import { dropdownMenu } from '../../../theme-contract/ui/dropdowns/contract.css'
+import { listGroup } from '../../../theme-contract/ui/list-group/contract.css'
+import { flexWrap, modalContent } from '../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
+import {
+	navItem,
+	navLink,
+	navLinkActive,
+	navTabs,
+	show,
+} from '../../../theme-contract/ui/navs/contract.css'
+import { offcanvas } from '../../../theme-contract/ui/offcanvas/contract.css'
+import { toast } from '../../../theme-contract/ui/toasts/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${quartzScope}${mark}`, {
 	padding: '0.1875em',
@@ -1957,9 +2071,39 @@ globalStyle(`${quartzScope}${container}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${row}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
+})
+
+globalStyle(`${quartzScope}${row} > *`, {
+	flexShrink: '0',
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
+})
+
+globalStyle(`${quartzScope}${col}`, {
+	flex: '1 0 0',
+})
+
 globalStyle(`${quartzScope}${rowColsAuto} > *`, {
 	flex: '0 0 auto',
 	width: 'auto',
+})
+
+globalStyle(`${quartzScope}${rowCols1} > *`, {
+	flex: '0 0 auto',
+	width: '100%',
 })
 
 globalStyle(`${quartzScope}${rowCols2} > *`, {
@@ -2096,9 +2240,21 @@ globalStyle(`${quartzScope}${offset11}`, {
 	marginLeft: '91.66666667%',
 })
 
+globalStyle(`${quartzScope}${g0}`, {
+	vars: {
+		[varBsGutterX]: '0',
+	},
+})
+
 globalStyle(`${quartzScope}${gx0}`, {
 	vars: {
 		[varBsGutterX]: '0',
+	},
+})
+
+globalStyle(`${quartzScope}${g0}`, {
+	vars: {
+		[varBsGutterY]: '0',
 	},
 })
 
@@ -2156,9 +2312,21 @@ globalStyle(`${quartzScope}${gy2}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${g3}`, {
+	vars: {
+		[varBsGutterX]: '2rem',
+	},
+})
+
 globalStyle(`${quartzScope}${gx3}`, {
 	vars: {
 		[varBsGutterX]: '2rem',
+	},
+})
+
+globalStyle(`${quartzScope}${g3}`, {
+	vars: {
+		[varBsGutterY]: '2rem',
 	},
 })
 
@@ -2168,9 +2336,21 @@ globalStyle(`${quartzScope}${gy3}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${g4}`, {
+	vars: {
+		[varBsGutterX]: '3rem',
+	},
+})
+
 globalStyle(`${quartzScope}${gx4}`, {
 	vars: {
 		[varBsGutterX]: '3rem',
+	},
+})
+
+globalStyle(`${quartzScope}${g4}`, {
+	vars: {
+		[varBsGutterY]: '3rem',
 	},
 })
 
@@ -2325,6 +2505,15 @@ globalStyle(`${quartzScope}${colSm5}`, {
 		'(min-width: 576px)': {
 			flex: '0 0 auto',
 			width: '41.66666667%',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${colSm6}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flex: '0 0 auto',
+			width: '50%',
 		},
 	},
 })
@@ -2745,6 +2934,15 @@ globalStyle(`${quartzScope}${rowColsMd1} > *`, {
 	},
 })
 
+globalStyle(`${quartzScope}${rowColsMd2} > *`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${rowColsMd3} > *`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2808,6 +3006,24 @@ globalStyle(`${quartzScope}${colMd2}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${colMd3}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '25%',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${colMd4}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '33.33333333%',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${colMd5}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2817,11 +3033,29 @@ globalStyle(`${quartzScope}${colMd5}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${colMd6}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${colMd7}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
 			width: '58.33333333%',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${colMd8}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '66.66666667%',
 		},
 	},
 })
@@ -4956,6 +5190,10 @@ globalStyle(`${quartzScope}${navbar} > ${quartzScope}${containerXxl}`, {
 	justifyContent: 'space-between',
 })
 
+globalStyle(`${quartzScope}${accordionFlush} > ${quartzScope}${accordionItem} > ${quartzScope}${accordionHeader} ${quartzScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
+
 globalStyle(`${quartzScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
 })
@@ -5372,6 +5610,16 @@ globalStyle(`${quartzScope}${stickyLgBottom}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${stickyXlTop}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'sticky',
+			top: '0',
+			zIndex: '1020',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${stickyXlBottom}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -5416,6 +5664,17 @@ globalStyle(`${quartzScope}${vstack}`, {
 	alignSelf: 'stretch',
 })
 
+globalStyle(`${quartzScope}${visuallyHidden}`, {
+	width: '1px !important',
+	height: '1px !important',
+	padding: '0 !important',
+	margin: '-1px !important',
+	overflow: 'hidden !important',
+	clip: 'rect(0, 0, 0, 0) !important',
+	whiteSpace: 'nowrap !important',
+	border: '0 !important',
+})
+
 globalStyle(`${quartzScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within)`, {
 	width: '1px !important',
 	height: '1px !important',
@@ -5427,8 +5686,16 @@ globalStyle(`${quartzScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-wit
 	border: '0 !important',
 })
 
+globalStyle(`${quartzScope}${visuallyHidden}:not(caption)`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${quartzScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
 	position: 'absolute !important',
+})
+
+globalStyle(`${quartzScope}${visuallyHidden} *`, {
+	overflow: 'hidden !important',
 })
 
 globalStyle(`${quartzScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within) *`, {
@@ -5462,6 +5729,10 @@ globalStyle(`${quartzScope}${vr}`, {
 
 globalStyle(`${quartzScope}${alignBaseline}`, {
 	verticalAlign: 'baseline !important',
+})
+
+globalStyle(`${quartzScope}${alignTop}`, {
+	verticalAlign: 'top !important',
 })
 
 globalStyle(`${quartzScope}${alignMiddle}`, {
@@ -5557,6 +5828,10 @@ globalStyle(`${quartzScope}${overflowXAuto}`, {
 	overflowX: 'auto !important',
 })
 
+globalStyle(`${quartzScope}${overflowXHidden}`, {
+	overflowX: 'hidden !important',
+})
+
 globalStyle(`${quartzScope}${overflowXVisible}`, {
 	overflowX: 'visible !important',
 })
@@ -5585,6 +5860,14 @@ globalStyle(`${quartzScope}${dInline}`, {
 	display: 'inline !important',
 })
 
+globalStyle(`${quartzScope}${dInlineBlock}`, {
+	display: 'inline-block !important',
+})
+
+globalStyle(`${quartzScope}${dBlock}`, {
+	display: 'block !important',
+})
+
 globalStyle(`${quartzScope}${dGrid}`, {
 	display: 'grid !important',
 })
@@ -5603,6 +5886,18 @@ globalStyle(`${quartzScope}${dTableRow}`, {
 
 globalStyle(`${quartzScope}${dTableCell}`, {
 	display: 'table-cell !important',
+})
+
+globalStyle(`${quartzScope}${dFlex}`, {
+	display: 'flex !important',
+})
+
+globalStyle(`${quartzScope}${dInlineFlex}`, {
+	display: 'inline-flex !important',
+})
+
+globalStyle(`${quartzScope}${dNone}`, {
+	display: 'none !important',
 })
 
 globalStyle(`${quartzScope}${shadow}`, {
@@ -5673,12 +5968,24 @@ globalStyle(`${quartzScope}${positionStatic}`, {
 	position: 'static !important',
 })
 
+globalStyle(`${quartzScope}${positionRelative}`, {
+	position: 'relative !important',
+})
+
+globalStyle(`${quartzScope}${positionAbsolute}`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${quartzScope}${positionFixed}`, {
 	position: 'fixed !important',
 })
 
 globalStyle(`${quartzScope}${positionSticky}`, {
 	position: 'sticky !important',
+})
+
+globalStyle(`${quartzScope}${top0}`, {
+	top: '0 !important',
 })
 
 globalStyle(`${quartzScope}${top50}`, {
@@ -5713,6 +6020,10 @@ globalStyle(`${quartzScope}${start100}`, {
 	left: '100% !important',
 })
 
+globalStyle(`${quartzScope}${end0}`, {
+	right: '0 !important',
+})
+
 globalStyle(`${quartzScope}${end50}`, {
 	right: '50% !important',
 })
@@ -5733,6 +6044,10 @@ globalStyle(`${quartzScope}${translateMiddleY}`, {
 	transform: 'translateY(-50%) !important',
 })
 
+globalStyle(`${quartzScope}${border}`, {
+	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
+})
+
 globalStyle(`${quartzScope}${border0}`, {
 	border: '0 !important',
 })
@@ -5751,6 +6066,10 @@ globalStyle(`${quartzScope}${borderEnd}`, {
 
 globalStyle(`${quartzScope}${borderEnd0}`, {
 	borderRight: '0 !important',
+})
+
+globalStyle(`${quartzScope}${borderBottom}`, {
+	borderBottom: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 globalStyle(`${quartzScope}${borderBottom0}`, {
@@ -5812,6 +6131,13 @@ globalStyle(`${quartzScope}${borderLight}`, {
 		[varBsBorderOpacity]: '1',
 	},
 	borderColor: `rgba(${varBsLightRgb}, ${varBsBorderOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${borderDark}`, {
+	vars: {
+		[varBsBorderOpacity]: '1',
+	},
+	borderColor: `rgba(${varBsDarkRgb}, ${varBsBorderOpacity}) !important`,
 })
 
 globalStyle(`${quartzScope}${borderBlack}`, {
@@ -5910,6 +6236,22 @@ globalStyle(`${quartzScope}${borderOpacity100}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${w25}`, {
+	width: '25% !important',
+})
+
+globalStyle(`${quartzScope}${w50}`, {
+	width: '50% !important',
+})
+
+globalStyle(`${quartzScope}${w75}`, {
+	width: '75% !important',
+})
+
+globalStyle(`${quartzScope}${w100}`, {
+	width: '100% !important',
+})
+
 globalStyle(`${quartzScope}${wAuto}`, {
 	width: 'auto !important',
 })
@@ -5962,6 +6304,14 @@ globalStyle(`${quartzScope}${flexFill}`, {
 	flex: '1 1 auto !important',
 })
 
+globalStyle(`${quartzScope}${flexRow}`, {
+	flexDirection: 'row !important',
+})
+
+globalStyle(`${quartzScope}${flexColumn}`, {
+	flexDirection: 'column !important',
+})
+
 globalStyle(`${quartzScope}${flexRowReverse}`, {
 	flexDirection: 'row-reverse !important',
 })
@@ -5986,12 +6336,28 @@ globalStyle(`${quartzScope}${flexShrink1}`, {
 	flexShrink: '1 !important',
 })
 
+globalStyle(`${quartzScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${quartzScope}${flexNowrap}`, {
 	flexWrap: 'nowrap !important',
 })
 
 globalStyle(`${quartzScope}${flexWrapReverse}`, {
 	flexWrap: 'wrap-reverse !important',
+})
+
+globalStyle(`${quartzScope}${justifyContentStart}`, {
+	justifyContent: 'flex-start !important',
+})
+
+globalStyle(`${quartzScope}${justifyContentEnd}`, {
+	justifyContent: 'flex-end !important',
+})
+
+globalStyle(`${quartzScope}${justifyContentCenter}`, {
+	justifyContent: 'center !important',
 })
 
 globalStyle(`${quartzScope}${justifyContentAround}`, {
@@ -6010,8 +6376,16 @@ globalStyle(`${quartzScope}${alignItemsEnd}`, {
 	alignItems: 'flex-end !important',
 })
 
+globalStyle(`${quartzScope}${alignItemsCenter}`, {
+	alignItems: 'center !important',
+})
+
 globalStyle(`${quartzScope}${alignItemsBaseline}`, {
 	alignItems: 'baseline !important',
+})
+
+globalStyle(`${quartzScope}${alignItemsStretch}`, {
+	alignItems: 'stretch !important',
 })
 
 globalStyle(`${quartzScope}${alignContentStart}`, {
@@ -6040,6 +6414,10 @@ globalStyle(`${quartzScope}${alignContentStretch}`, {
 
 globalStyle(`${quartzScope}${alignSelfAuto}`, {
 	alignSelf: 'auto !important',
+})
+
+globalStyle(`${quartzScope}${alignSelfStart}`, {
+	alignSelf: 'flex-start !important',
 })
 
 globalStyle(`${quartzScope}${alignSelfEnd}`, {
@@ -6163,6 +6541,16 @@ globalStyle(`${quartzScope}${my1}`, {
 	marginBottom: '0.5rem !important',
 })
 
+globalStyle(`${quartzScope}${my2}`, {
+	marginTop: '1rem !important',
+	marginBottom: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${my3}`, {
+	marginTop: '2rem !important',
+	marginBottom: '2rem !important',
+})
+
 globalStyle(`${quartzScope}${my4}`, {
 	marginTop: '3rem !important',
 	marginBottom: '3rem !important',
@@ -6190,8 +6578,16 @@ globalStyle(`${quartzScope}${mt2}`, {
 	marginTop: '1rem !important',
 })
 
+globalStyle(`${quartzScope}${mt3}`, {
+	marginTop: '2rem !important',
+})
+
 globalStyle(`${quartzScope}${mt4}`, {
 	marginTop: '3rem !important',
+})
+
+globalStyle(`${quartzScope}${mt5}`, {
+	marginTop: '6rem !important',
 })
 
 globalStyle(`${quartzScope}${mtAuto}`, {
@@ -6206,6 +6602,10 @@ globalStyle(`${quartzScope}${me1}`, {
 	marginRight: '0.5rem !important',
 })
 
+globalStyle(`${quartzScope}${me2}`, {
+	marginRight: '1rem !important',
+})
+
 globalStyle(`${quartzScope}${me3}`, {
 	marginRight: '2rem !important',
 })
@@ -6218,8 +6618,32 @@ globalStyle(`${quartzScope}${me5}`, {
 	marginRight: '6rem !important',
 })
 
+globalStyle(`${quartzScope}${meAuto}`, {
+	marginRight: 'auto !important',
+})
+
+globalStyle(`${quartzScope}${mb0}`, {
+	marginBottom: '0 !important',
+})
+
 globalStyle(`${quartzScope}${mb1}`, {
 	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${quartzScope}${mb2}`, {
+	marginBottom: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${mb3}`, {
+	marginBottom: '2rem !important',
+})
+
+globalStyle(`${quartzScope}${mb4}`, {
+	marginBottom: '3rem !important',
+})
+
+globalStyle(`${quartzScope}${mb5}`, {
+	marginBottom: '6rem !important',
 })
 
 globalStyle(`${quartzScope}${mbAuto}`, {
@@ -6236,6 +6660,10 @@ globalStyle(`${quartzScope}${ms1}`, {
 
 globalStyle(`${quartzScope}${ms2}`, {
 	marginLeft: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${ms3}`, {
+	marginLeft: '2rem !important',
 })
 
 globalStyle(`${quartzScope}${ms4}`, {
@@ -6270,6 +6698,10 @@ globalStyle(`${quartzScope}${p4}`, {
 	padding: '3rem !important',
 })
 
+globalStyle(`${quartzScope}${p5}`, {
+	padding: '6rem !important',
+})
+
 globalStyle(`${quartzScope}${px0}`, {
 	paddingRight: '0 !important',
 	paddingLeft: '0 !important',
@@ -6278,6 +6710,16 @@ globalStyle(`${quartzScope}${px0}`, {
 globalStyle(`${quartzScope}${px1}`, {
 	paddingRight: '0.5rem !important',
 	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${quartzScope}${px2}`, {
+	paddingRight: '1rem !important',
+	paddingLeft: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${px3}`, {
+	paddingRight: '2rem !important',
+	paddingLeft: '2rem !important',
 })
 
 globalStyle(`${quartzScope}${px4}`, {
@@ -6305,6 +6747,11 @@ globalStyle(`${quartzScope}${py2}`, {
 	paddingBottom: '1rem !important',
 })
 
+globalStyle(`${quartzScope}${py3}`, {
+	paddingTop: '2rem !important',
+	paddingBottom: '2rem !important',
+})
+
 globalStyle(`${quartzScope}${py4}`, {
 	paddingTop: '3rem !important',
 	paddingBottom: '3rem !important',
@@ -6325,6 +6772,14 @@ globalStyle(`${quartzScope}${pt1}`, {
 
 globalStyle(`${quartzScope}${pt2}`, {
 	paddingTop: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${pt3}`, {
+	paddingTop: '2rem !important',
+})
+
+globalStyle(`${quartzScope}${pt4}`, {
+	paddingTop: '3rem !important',
 })
 
 globalStyle(`${quartzScope}${pt5}`, {
@@ -6363,8 +6818,20 @@ globalStyle(`${quartzScope}${pb1}`, {
 	paddingBottom: '0.5rem !important',
 })
 
+globalStyle(`${quartzScope}${pb2}`, {
+	paddingBottom: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${pb3}`, {
+	paddingBottom: '2rem !important',
+})
+
 globalStyle(`${quartzScope}${pb4}`, {
 	paddingBottom: '3rem !important',
+})
+
+globalStyle(`${quartzScope}${pb5}`, {
+	paddingBottom: '6rem !important',
 })
 
 globalStyle(`${quartzScope}${ps0}`, {
@@ -6377,6 +6844,10 @@ globalStyle(`${quartzScope}${ps1}`, {
 
 globalStyle(`${quartzScope}${ps2}`, {
 	paddingLeft: '1rem !important',
+})
+
+globalStyle(`${quartzScope}${ps3}`, {
+	paddingLeft: '2rem !important',
 })
 
 globalStyle(`${quartzScope}${ps4}`, {
@@ -6481,6 +6952,10 @@ globalStyle(`${quartzScope}${fs3}`, {
 	fontSize: 'calc(1.3rem + 0.6vw) !important',
 })
 
+globalStyle(`${quartzScope}${fs4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw) !important',
+})
+
 globalStyle(`${quartzScope}${fs5}`, {
 	fontSize: '1.25rem !important',
 })
@@ -6517,6 +6992,10 @@ globalStyle(`${quartzScope}${fwSemibold}`, {
 	fontWeight: '600 !important',
 })
 
+globalStyle(`${quartzScope}${fwBold}`, {
+	fontWeight: '700 !important',
+})
+
 globalStyle(`${quartzScope}${fwBolder}`, {
 	fontWeight: 'bolder !important',
 })
@@ -6543,6 +7022,10 @@ globalStyle(`${quartzScope}${textStart}`, {
 
 globalStyle(`${quartzScope}${textEnd}`, {
 	textAlign: 'right !important',
+})
+
+globalStyle(`${quartzScope}${textCenter}`, {
+	textAlign: 'center !important',
 })
 
 globalStyle(`${quartzScope}${textDecorationNone}`, {
@@ -6582,6 +7065,62 @@ globalStyle(`${quartzScope}${textBreak}`, {
 	wordBreak: 'break-word !important',
 })
 
+globalStyle(`${quartzScope}${textPrimary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsPrimaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textSecondary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSecondaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textSuccess}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSuccessRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textInfo}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsInfoRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textWarning}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWarningRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textDanger}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDangerRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textLight}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsLightRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textDark}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${quartzScope}${textBlack}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
@@ -6589,11 +7128,25 @@ globalStyle(`${quartzScope}${textBlack}`, {
 	color: `rgba(${varBsBlackRgb}, ${varBsTextOpacity}) !important`,
 })
 
+globalStyle(`${quartzScope}${textWhite}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWhiteRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${quartzScope}${textBody}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
 	},
 	color: `rgba(${varBsBodyColorRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${textMuted}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `${varBsSecondaryColor} !important`,
 })
 
 globalStyle(`${quartzScope}${textBlack50}`, {
@@ -6922,6 +7475,62 @@ globalStyle(`${quartzScope}${linkUnderlineOpacity100Hover}:hover`, {
 	},
 })
 
+globalStyle(`${quartzScope}${bgPrimary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgSecondary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgSuccess}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgInfo}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgWarning}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgDanger}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgLight}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${quartzScope}${bgDark}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
 globalStyle(`${quartzScope}${bgBlack}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
@@ -7056,6 +7665,10 @@ globalStyle(`${quartzScope}${peAuto}`, {
 	pointerEvents: 'auto !important',
 })
 
+globalStyle(`${quartzScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
+})
+
 globalStyle(`${quartzScope}${rounded0}`, {
 	borderRadius: '0 !important',
 })
@@ -7082,6 +7695,10 @@ globalStyle(`${quartzScope}${rounded5}`, {
 
 globalStyle(`${quartzScope}${roundedCircle}`, {
 	borderRadius: '50% !important',
+})
+
+globalStyle(`${quartzScope}${roundedPill}`, {
+	borderRadius: `${varBsBorderRadiusPill} !important`,
 })
 
 globalStyle(`${quartzScope}${roundedTop}`, {
@@ -8806,6 +9423,14 @@ globalStyle(`${quartzScope}${dMdInlineBlock}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${dMdBlock}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'block !important',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${dMdGrid}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -10291,6 +10916,14 @@ globalStyle(`${quartzScope}${dLgInlineFlex}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${dLgNone}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none !important',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${flexLgFill}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -10925,6 +11558,14 @@ globalStyle(`${quartzScope}${meLgAuto}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			marginRight: 'auto !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${mbLg0}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginBottom: '0 !important',
 		},
 	},
 })
@@ -12238,6 +12879,14 @@ globalStyle(`${quartzScope}${myXlAuto}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${mtXl0}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0 !important',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${mtXl1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12358,6 +13007,14 @@ globalStyle(`${quartzScope}${mbXl1}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${mbXl2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '1rem !important',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${mbXl3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12370,6 +13027,14 @@ globalStyle(`${quartzScope}${mbXl4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginBottom: '3rem !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${mbXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '6rem !important',
 		},
 	},
 })
@@ -12634,6 +13299,14 @@ globalStyle(`${quartzScope}${ptXl4}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${ptXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingTop: '6rem !important',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${peXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12702,6 +13375,14 @@ globalStyle(`${quartzScope}${pbXl2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			paddingBottom: '1rem !important',
+		},
+	},
+})
+
+globalStyle(`${quartzScope}${pbXl3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingBottom: '2rem !important',
 		},
 	},
 })
@@ -14397,6 +15078,14 @@ globalStyle(`${quartzScope}${fs3}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${fs4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem !important',
+		},
+	},
+})
+
 globalStyle(`${quartzScope}${dPrintInline}`, {
 	'@media': {
 		'print': {
@@ -14485,6 +15174,68 @@ globalStyle(`${quartzScope}${dPrintNone}`, {
 	},
 })
 
+globalStyle(`${quartzScope}${dropdownMenu} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzScope}${navLink} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${alert} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${badge}${bgSecondary}`, {
+	vars: {
+		[varBsBgOpacity]: '.4',
+	},
+})
+
+globalStyle(`${quartzScope}${badge}${bgLight}`, {
+	color: '#343a40',
+})
+
+globalStyle(`${quartzScope}${listGroup} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${card} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${card}${bgPrimary}`, {
+	backgroundImage: 'none',
+})
+
+globalStyle(`${quartzScope}${card}${bgSuccess}`, {
+	backgroundImage: 'none',
+})
+
+globalStyle(`${quartzScope}${card}${bgInfo}`, {
+	backgroundImage: 'none',
+})
+
+globalStyle(`${quartzScope}${card}${bgWarning}`, {
+	backgroundImage: 'none',
+})
+
+globalStyle(`${quartzScope}${card}${bgDanger}`, {
+	backgroundImage: 'none',
+})
+
+globalStyle(`${quartzScope}${card}${bgLight}`, {
+	backgroundImage: 'none',
+})
+
+globalStyle(`${quartzScope}${card}${bgDark}`, {
+	backgroundImage: 'none',
+})
+
 globalStyle(`${quartzScope}${card}${borderPrimary}`, {
 	border: 'none',
 	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
@@ -14496,6 +15247,10 @@ globalStyle(`${quartzScope}${card}${borderPrimary}`, {
 
 globalStyle(`${quartzScope}${card}${borderPrimary} :where(${quartzScope}${link})`, {
 	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${card}${borderPrimary} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
 })
 
 globalStyle(`${quartzScope}${card}${borderSecondary}`, {
@@ -14511,6 +15266,10 @@ globalStyle(`${quartzScope}${card}${borderSecondary} :where(${quartzScope}${link
 	color: '#fff',
 })
 
+globalStyle(`${quartzScope}${card}${borderSecondary} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
 globalStyle(`${quartzScope}${card}${borderSuccess}`, {
 	border: 'none',
 	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
@@ -14522,6 +15281,10 @@ globalStyle(`${quartzScope}${card}${borderSuccess}`, {
 
 globalStyle(`${quartzScope}${card}${borderSuccess} :where(${quartzScope}${link})`, {
 	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${card}${borderSuccess} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
 })
 
 globalStyle(`${quartzScope}${card}${borderInfo}`, {
@@ -14537,6 +15300,10 @@ globalStyle(`${quartzScope}${card}${borderInfo} :where(${quartzScope}${link})`, 
 	color: '#fff',
 })
 
+globalStyle(`${quartzScope}${card}${borderInfo} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
 globalStyle(`${quartzScope}${card}${borderWarning}`, {
 	border: 'none',
 	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
@@ -14548,6 +15315,10 @@ globalStyle(`${quartzScope}${card}${borderWarning}`, {
 
 globalStyle(`${quartzScope}${card}${borderWarning} :where(${quartzScope}${link})`, {
 	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${card}${borderWarning} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
 })
 
 globalStyle(`${quartzScope}${card}${borderDanger}`, {
@@ -14563,6 +15334,10 @@ globalStyle(`${quartzScope}${card}${borderDanger} :where(${quartzScope}${link})`
 	color: '#fff',
 })
 
+globalStyle(`${quartzScope}${card}${borderDanger} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
 globalStyle(`${quartzScope}${card}${borderLight}`, {
 	border: 'none',
 	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
@@ -14574,4 +15349,45 @@ globalStyle(`${quartzScope}${card}${borderLight}`, {
 
 globalStyle(`${quartzScope}${card}${borderLight} :where(${quartzScope}${link})`, {
 	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${card}${borderLight} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${card}${borderDark}`, {
+	border: 'none',
+	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
+	backgroundColor: 'transparent',
+	backgroundImage: 'linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%)',
+	WebkitBackdropFilter: 'blur(5px)',
+	backdropFilter: 'blur(5px)',
+})
+
+globalStyle(`${quartzScope}${card}${borderDark} :where(${quartzScope}${link})`, {
+	color: '#fff',
+})
+
+globalStyle(`${quartzScope}${card}${borderDark} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${accordionItem} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${toast} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${popover} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${modalContent} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
+})
+
+globalStyle(`${quartzScope}${offcanvas} ${quartzScope}${textMuted}`, {
+	color: 'rgba(255, 255, 255, 0.7) !important',
 })

@@ -78,8 +78,10 @@ import {
 
 import { elLabel } from '../../../theme-contract/global-elements/contract.css'
 
+import { rounded } from '../../../theme-contract/contents/images/contract.css'
 import { formFloating, formSwitch, wasValidated } from '../../../theme-contract/forms/contract.css'
 import {
+	accordionFlush,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -136,6 +138,7 @@ import {
 	alignItemsSmStart,
 	alignItemsSmStretch,
 	alignItemsStart,
+	alignItemsStretch,
 	alignItemsXlBaseline,
 	alignItemsXlCenter,
 	alignItemsXlEnd,
@@ -184,27 +187,36 @@ import {
 	alignSelfXxlStretch,
 	alignTextBottom,
 	alignTextTop,
+	alignTop,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
+	bgDanger,
 	bgDangerSubtle,
 	bgDarkSubtle,
 	bgGradient,
+	bgInfo,
 	bgInfoSubtle,
+	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
 	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
+	bgPrimary,
 	bgPrimarySubtle,
+	bgSecondary,
 	bgSecondarySubtle,
+	bgSuccess,
 	bgSuccessSubtle,
 	bgTransparent,
+	bgWarning,
 	bgWarningSubtle,
 	bgWhite,
 	bi,
+	border,
 	border0,
 	border1,
 	border2,
@@ -212,9 +224,11 @@ import {
 	border4,
 	border5,
 	borderBlack,
+	borderBottom,
 	borderBottom0,
 	borderDanger,
 	borderDangerSubtle,
+	borderDark,
 	borderDarkSubtle,
 	borderEnd,
 	borderEnd0,
@@ -325,6 +339,7 @@ import {
 	colXxl9,
 	colXxlAuto,
 	collapseHorizontal,
+	collapsed,
 	collapsing,
 	columnGap0,
 	columnGap1,
@@ -368,8 +383,11 @@ import {
 	containerSm,
 	containerXl,
 	containerXxl,
+	dBlock,
 	dGrid,
 	dInline,
+	dInlineBlock,
+	dInlineFlex,
 	dInlineGrid,
 	dLgBlock,
 	dLgFlex,
@@ -378,9 +396,11 @@ import {
 	dLgInlineBlock,
 	dLgInlineFlex,
 	dLgInlineGrid,
+	dLgNone,
 	dLgTable,
 	dLgTableCell,
 	dLgTableRow,
+	dMdBlock,
 	dMdFlex,
 	dMdGrid,
 	dMdInline,
@@ -391,6 +411,7 @@ import {
 	dMdTable,
 	dMdTableCell,
 	dMdTableRow,
+	dNone,
 	dPrintBlock,
 	dPrintFlex,
 	dPrintGrid,
@@ -438,10 +459,12 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	end0,
 	end100,
 	end50,
 	fixedBottom,
 	fixedTop,
+	flexColumn,
 	flexColumnReverse,
 	flexFill,
 	flexGrow0,
@@ -471,6 +494,7 @@ import {
 	flexMdWrap,
 	flexMdWrapReverse,
 	flexNowrap,
+	flexRow,
 	flexRowReverse,
 	flexShrink0,
 	flexShrink1,
@@ -546,6 +570,7 @@ import {
 	fs1,
 	fs2,
 	fs3,
+	fs4,
 	fs5,
 	fs6,
 	fstItalic,
@@ -708,6 +733,8 @@ import {
 	initialism,
 	invisible,
 	justifyContentAround,
+	justifyContentCenter,
+	justifyContentEnd,
 	justifyContentEvenly,
 	justifyContentLgAround,
 	justifyContentLgBetween,
@@ -727,6 +754,7 @@ import {
 	justifyContentSmEnd,
 	justifyContentSmEvenly,
 	justifyContentSmStart,
+	justifyContentStart,
 	justifyContentXlAround,
 	justifyContentXlBetween,
 	justifyContentXlCenter,
@@ -832,7 +860,10 @@ import {
 	mXxl5,
 	mXxlAuto,
 	mark,
+	mb0,
 	mb1,
+	mb4,
+	mb5,
 	mbAuto,
 	mbLg1,
 	mbLg2,
@@ -912,6 +943,7 @@ import {
 	ms0,
 	ms1,
 	ms2,
+	ms3,
 	ms4,
 	ms5,
 	msAuto,
@@ -953,6 +985,7 @@ import {
 	mt0,
 	mt1,
 	mt2,
+	mt3,
 	mt4,
 	mtAuto,
 	mtLg0,
@@ -1034,6 +1067,8 @@ import {
 	mxXxlAuto,
 	my0,
 	my1,
+	my2,
+	my3,
 	my4,
 	my5,
 	myAuto,
@@ -1274,7 +1309,9 @@ import {
 	pXxl5,
 	pb0,
 	pb1,
+	pb3,
 	pb4,
+	pb5,
 	pbLg0,
 	pbLg1,
 	pbLg2,
@@ -1349,12 +1386,14 @@ import {
 	placeholderWave,
 	placeholderXs,
 	pointerEvent,
+	positionAbsolute,
 	positionFixed,
 	positionStatic,
 	positionSticky,
 	ps0,
 	ps1,
 	ps2,
+	ps3,
 	ps4,
 	ps5,
 	psLg0,
@@ -1390,6 +1429,7 @@ import {
 	pt0,
 	pt1,
 	pt2,
+	pt4,
 	pt5,
 	ptLg0,
 	ptLg1,
@@ -1457,6 +1497,7 @@ import {
 	py0,
 	py1,
 	py2,
+	py3,
 	py4,
 	py5,
 	pyLg0,
@@ -1519,6 +1560,7 @@ import {
 	roundedEnd5,
 	roundedEndCircle,
 	roundedEndPill,
+	roundedPill,
 	roundedStart,
 	roundedStart0,
 	roundedStart1,
@@ -1648,16 +1690,20 @@ import {
 	textBodyTertiary,
 	textBreak,
 	textCapitalize,
+	textCenter,
+	textDanger,
 	textDangerEmphasis,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
 	textDecorationUnderline,
 	textEnd,
+	textInfo,
 	textInfoEmphasis,
 	textLgCenter,
 	textLgEnd,
 	textLgStart,
+	textLight,
 	textLightEmphasis,
 	textLowercase,
 	textMdCenter,
@@ -1668,17 +1714,22 @@ import {
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
+	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
+	textSecondary,
 	textSecondaryEmphasis,
 	textSmCenter,
 	textSmEnd,
 	textSmStart,
 	textStart,
+	textSuccess,
 	textSuccessEmphasis,
 	textTruncate,
 	textUppercase,
+	textWarning,
 	textWarningEmphasis,
+	textWhite,
 	textWhite50,
 	textWrap,
 	textXlCenter,
@@ -1687,6 +1738,7 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
+	top0,
 	top100,
 	top50,
 	translateMiddle,
@@ -1701,6 +1753,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
+	w25,
+	w50,
+	w75,
 	wAuto,
 	z0,
 	z1,
@@ -1708,9 +1764,54 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import { accordionButton, accordionHeader, accordionItem } from '../../../theme-contract/ui/accordion/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
+import { flexWrap } from '../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${slateScope}${mark}`, {
 	padding: '0.1875em',
@@ -1955,9 +2056,39 @@ globalStyle(`${slateScope}${container}`, {
 	},
 })
 
+globalStyle(`${slateScope}${row}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
+})
+
+globalStyle(`${slateScope}${row} > *`, {
+	flexShrink: '0',
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
+})
+
+globalStyle(`${slateScope}${col}`, {
+	flex: '1 0 0',
+})
+
 globalStyle(`${slateScope}${rowColsAuto} > *`, {
 	flex: '0 0 auto',
 	width: 'auto',
+})
+
+globalStyle(`${slateScope}${rowCols1} > *`, {
+	flex: '0 0 auto',
+	width: '100%',
 })
 
 globalStyle(`${slateScope}${rowCols2} > *`, {
@@ -2094,9 +2225,21 @@ globalStyle(`${slateScope}${offset11}`, {
 	marginLeft: '91.66666667%',
 })
 
+globalStyle(`${slateScope}${g0}`, {
+	vars: {
+		[varBsGutterX]: '0',
+	},
+})
+
 globalStyle(`${slateScope}${gx0}`, {
 	vars: {
 		[varBsGutterX]: '0',
+	},
+})
+
+globalStyle(`${slateScope}${g0}`, {
+	vars: {
+		[varBsGutterY]: '0',
 	},
 })
 
@@ -2154,9 +2297,21 @@ globalStyle(`${slateScope}${gy2}`, {
 	},
 })
 
+globalStyle(`${slateScope}${g3}`, {
+	vars: {
+		[varBsGutterX]: '1rem',
+	},
+})
+
 globalStyle(`${slateScope}${gx3}`, {
 	vars: {
 		[varBsGutterX]: '1rem',
+	},
+})
+
+globalStyle(`${slateScope}${g3}`, {
+	vars: {
+		[varBsGutterY]: '1rem',
 	},
 })
 
@@ -2166,9 +2321,21 @@ globalStyle(`${slateScope}${gy3}`, {
 	},
 })
 
+globalStyle(`${slateScope}${g4}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+	},
+})
+
 globalStyle(`${slateScope}${gx4}`, {
 	vars: {
 		[varBsGutterX]: '1.5rem',
+	},
+})
+
+globalStyle(`${slateScope}${g4}`, {
+	vars: {
+		[varBsGutterY]: '1.5rem',
 	},
 })
 
@@ -2323,6 +2490,15 @@ globalStyle(`${slateScope}${colSm5}`, {
 		'(min-width: 576px)': {
 			flex: '0 0 auto',
 			width: '41.66666667%',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${colSm6}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flex: '0 0 auto',
+			width: '50%',
 		},
 	},
 })
@@ -2743,6 +2919,15 @@ globalStyle(`${slateScope}${rowColsMd1} > *`, {
 	},
 })
 
+globalStyle(`${slateScope}${rowColsMd2} > *`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${rowColsMd3} > *`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2806,6 +2991,24 @@ globalStyle(`${slateScope}${colMd2}`, {
 	},
 })
 
+globalStyle(`${slateScope}${colMd3}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '25%',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${colMd4}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '33.33333333%',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${colMd5}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2815,11 +3018,29 @@ globalStyle(`${slateScope}${colMd5}`, {
 	},
 })
 
+globalStyle(`${slateScope}${colMd6}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${colMd7}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
 			width: '58.33333333%',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${colMd8}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '66.66666667%',
 		},
 	},
 })
@@ -4954,6 +5175,10 @@ globalStyle(`${slateScope}${navbar} > ${slateScope}${containerXxl}`, {
 	justifyContent: 'space-between',
 })
 
+globalStyle(`${slateScope}${accordionFlush} > ${slateScope}${accordionItem} > ${slateScope}${accordionHeader} ${slateScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
+
 globalStyle(`${slateScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
 })
@@ -5370,6 +5595,16 @@ globalStyle(`${slateScope}${stickyLgBottom}`, {
 	},
 })
 
+globalStyle(`${slateScope}${stickyXlTop}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'sticky',
+			top: '0',
+			zIndex: '1020',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${stickyXlBottom}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -5414,6 +5649,17 @@ globalStyle(`${slateScope}${vstack}`, {
 	alignSelf: 'stretch',
 })
 
+globalStyle(`${slateScope}${visuallyHidden}`, {
+	width: '1px !important',
+	height: '1px !important',
+	padding: '0 !important',
+	margin: '-1px !important',
+	overflow: 'hidden !important',
+	clip: 'rect(0, 0, 0, 0) !important',
+	whiteSpace: 'nowrap !important',
+	border: '0 !important',
+})
+
 globalStyle(`${slateScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within)`, {
 	width: '1px !important',
 	height: '1px !important',
@@ -5425,8 +5671,16 @@ globalStyle(`${slateScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-with
 	border: '0 !important',
 })
 
+globalStyle(`${slateScope}${visuallyHidden}:not(caption)`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${slateScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
 	position: 'absolute !important',
+})
+
+globalStyle(`${slateScope}${visuallyHidden} *`, {
+	overflow: 'hidden !important',
 })
 
 globalStyle(`${slateScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within) *`, {
@@ -5460,6 +5714,10 @@ globalStyle(`${slateScope}${vr}`, {
 
 globalStyle(`${slateScope}${alignBaseline}`, {
 	verticalAlign: 'baseline !important',
+})
+
+globalStyle(`${slateScope}${alignTop}`, {
+	verticalAlign: 'top !important',
 })
 
 globalStyle(`${slateScope}${alignMiddle}`, {
@@ -5555,6 +5813,10 @@ globalStyle(`${slateScope}${overflowXAuto}`, {
 	overflowX: 'auto !important',
 })
 
+globalStyle(`${slateScope}${overflowXHidden}`, {
+	overflowX: 'hidden !important',
+})
+
 globalStyle(`${slateScope}${overflowXVisible}`, {
 	overflowX: 'visible !important',
 })
@@ -5583,6 +5845,14 @@ globalStyle(`${slateScope}${dInline}`, {
 	display: 'inline !important',
 })
 
+globalStyle(`${slateScope}${dInlineBlock}`, {
+	display: 'inline-block !important',
+})
+
+globalStyle(`${slateScope}${dBlock}`, {
+	display: 'block !important',
+})
+
 globalStyle(`${slateScope}${dGrid}`, {
 	display: 'grid !important',
 })
@@ -5601,6 +5871,18 @@ globalStyle(`${slateScope}${dTableRow}`, {
 
 globalStyle(`${slateScope}${dTableCell}`, {
 	display: 'table-cell !important',
+})
+
+globalStyle(`${slateScope}${dFlex}`, {
+	display: 'flex !important',
+})
+
+globalStyle(`${slateScope}${dInlineFlex}`, {
+	display: 'inline-flex !important',
+})
+
+globalStyle(`${slateScope}${dNone}`, {
+	display: 'none !important',
 })
 
 globalStyle(`${slateScope}${shadow}`, {
@@ -5671,12 +5953,24 @@ globalStyle(`${slateScope}${positionStatic}`, {
 	position: 'static !important',
 })
 
+globalStyle(`${slateScope}${positionRelative}`, {
+	position: 'relative !important',
+})
+
+globalStyle(`${slateScope}${positionAbsolute}`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${slateScope}${positionFixed}`, {
 	position: 'fixed !important',
 })
 
 globalStyle(`${slateScope}${positionSticky}`, {
 	position: 'sticky !important',
+})
+
+globalStyle(`${slateScope}${top0}`, {
+	top: '0 !important',
 })
 
 globalStyle(`${slateScope}${top50}`, {
@@ -5711,6 +6005,10 @@ globalStyle(`${slateScope}${start100}`, {
 	left: '100% !important',
 })
 
+globalStyle(`${slateScope}${end0}`, {
+	right: '0 !important',
+})
+
 globalStyle(`${slateScope}${end50}`, {
 	right: '50% !important',
 })
@@ -5731,6 +6029,10 @@ globalStyle(`${slateScope}${translateMiddleY}`, {
 	transform: 'translateY(-50%) !important',
 })
 
+globalStyle(`${slateScope}${border}`, {
+	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
+})
+
 globalStyle(`${slateScope}${border0}`, {
 	border: '0 !important',
 })
@@ -5749,6 +6051,10 @@ globalStyle(`${slateScope}${borderEnd}`, {
 
 globalStyle(`${slateScope}${borderEnd0}`, {
 	borderRight: '0 !important',
+})
+
+globalStyle(`${slateScope}${borderBottom}`, {
+	borderBottom: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 globalStyle(`${slateScope}${borderBottom0}`, {
@@ -5810,6 +6116,13 @@ globalStyle(`${slateScope}${borderLight}`, {
 		[varBsBorderOpacity]: '1',
 	},
 	borderColor: `rgba(${varBsLightRgb}, ${varBsBorderOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${borderDark}`, {
+	vars: {
+		[varBsBorderOpacity]: '1',
+	},
+	borderColor: `rgba(${varBsDarkRgb}, ${varBsBorderOpacity}) !important`,
 })
 
 globalStyle(`${slateScope}${borderBlack}`, {
@@ -5908,6 +6221,22 @@ globalStyle(`${slateScope}${borderOpacity100}`, {
 	},
 })
 
+globalStyle(`${slateScope}${w25}`, {
+	width: '25% !important',
+})
+
+globalStyle(`${slateScope}${w50}`, {
+	width: '50% !important',
+})
+
+globalStyle(`${slateScope}${w75}`, {
+	width: '75% !important',
+})
+
+globalStyle(`${slateScope}${w100}`, {
+	width: '100% !important',
+})
+
 globalStyle(`${slateScope}${wAuto}`, {
 	width: 'auto !important',
 })
@@ -5960,6 +6289,14 @@ globalStyle(`${slateScope}${flexFill}`, {
 	flex: '1 1 auto !important',
 })
 
+globalStyle(`${slateScope}${flexRow}`, {
+	flexDirection: 'row !important',
+})
+
+globalStyle(`${slateScope}${flexColumn}`, {
+	flexDirection: 'column !important',
+})
+
 globalStyle(`${slateScope}${flexRowReverse}`, {
 	flexDirection: 'row-reverse !important',
 })
@@ -5984,12 +6321,28 @@ globalStyle(`${slateScope}${flexShrink1}`, {
 	flexShrink: '1 !important',
 })
 
+globalStyle(`${slateScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${slateScope}${flexNowrap}`, {
 	flexWrap: 'nowrap !important',
 })
 
 globalStyle(`${slateScope}${flexWrapReverse}`, {
 	flexWrap: 'wrap-reverse !important',
+})
+
+globalStyle(`${slateScope}${justifyContentStart}`, {
+	justifyContent: 'flex-start !important',
+})
+
+globalStyle(`${slateScope}${justifyContentEnd}`, {
+	justifyContent: 'flex-end !important',
+})
+
+globalStyle(`${slateScope}${justifyContentCenter}`, {
+	justifyContent: 'center !important',
 })
 
 globalStyle(`${slateScope}${justifyContentAround}`, {
@@ -6008,8 +6361,16 @@ globalStyle(`${slateScope}${alignItemsEnd}`, {
 	alignItems: 'flex-end !important',
 })
 
+globalStyle(`${slateScope}${alignItemsCenter}`, {
+	alignItems: 'center !important',
+})
+
 globalStyle(`${slateScope}${alignItemsBaseline}`, {
 	alignItems: 'baseline !important',
+})
+
+globalStyle(`${slateScope}${alignItemsStretch}`, {
+	alignItems: 'stretch !important',
 })
 
 globalStyle(`${slateScope}${alignContentStart}`, {
@@ -6038,6 +6399,10 @@ globalStyle(`${slateScope}${alignContentStretch}`, {
 
 globalStyle(`${slateScope}${alignSelfAuto}`, {
 	alignSelf: 'auto !important',
+})
+
+globalStyle(`${slateScope}${alignSelfStart}`, {
+	alignSelf: 'flex-start !important',
 })
 
 globalStyle(`${slateScope}${alignSelfEnd}`, {
@@ -6161,6 +6526,16 @@ globalStyle(`${slateScope}${my1}`, {
 	marginBottom: '0.25rem !important',
 })
 
+globalStyle(`${slateScope}${my2}`, {
+	marginTop: '0.5rem !important',
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${my3}`, {
+	marginTop: '1rem !important',
+	marginBottom: '1rem !important',
+})
+
 globalStyle(`${slateScope}${my4}`, {
 	marginTop: '1.5rem !important',
 	marginBottom: '1.5rem !important',
@@ -6188,8 +6563,16 @@ globalStyle(`${slateScope}${mt2}`, {
 	marginTop: '0.5rem !important',
 })
 
+globalStyle(`${slateScope}${mt3}`, {
+	marginTop: '1rem !important',
+})
+
 globalStyle(`${slateScope}${mt4}`, {
 	marginTop: '1.5rem !important',
+})
+
+globalStyle(`${slateScope}${mt5}`, {
+	marginTop: '3rem !important',
 })
 
 globalStyle(`${slateScope}${mtAuto}`, {
@@ -6204,6 +6587,10 @@ globalStyle(`${slateScope}${me1}`, {
 	marginRight: '0.25rem !important',
 })
 
+globalStyle(`${slateScope}${me2}`, {
+	marginRight: '0.5rem !important',
+})
+
 globalStyle(`${slateScope}${me3}`, {
 	marginRight: '1rem !important',
 })
@@ -6216,8 +6603,32 @@ globalStyle(`${slateScope}${me5}`, {
 	marginRight: '3rem !important',
 })
 
+globalStyle(`${slateScope}${meAuto}`, {
+	marginRight: 'auto !important',
+})
+
+globalStyle(`${slateScope}${mb0}`, {
+	marginBottom: '0 !important',
+})
+
 globalStyle(`${slateScope}${mb1}`, {
 	marginBottom: '0.25rem !important',
+})
+
+globalStyle(`${slateScope}${mb2}`, {
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${mb3}`, {
+	marginBottom: '1rem !important',
+})
+
+globalStyle(`${slateScope}${mb4}`, {
+	marginBottom: '1.5rem !important',
+})
+
+globalStyle(`${slateScope}${mb5}`, {
+	marginBottom: '3rem !important',
 })
 
 globalStyle(`${slateScope}${mbAuto}`, {
@@ -6234,6 +6645,10 @@ globalStyle(`${slateScope}${ms1}`, {
 
 globalStyle(`${slateScope}${ms2}`, {
 	marginLeft: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${ms3}`, {
+	marginLeft: '1rem !important',
 })
 
 globalStyle(`${slateScope}${ms4}`, {
@@ -6268,6 +6683,10 @@ globalStyle(`${slateScope}${p4}`, {
 	padding: '1.5rem !important',
 })
 
+globalStyle(`${slateScope}${p5}`, {
+	padding: '3rem !important',
+})
+
 globalStyle(`${slateScope}${px0}`, {
 	paddingRight: '0 !important',
 	paddingLeft: '0 !important',
@@ -6276,6 +6695,16 @@ globalStyle(`${slateScope}${px0}`, {
 globalStyle(`${slateScope}${px1}`, {
 	paddingRight: '0.25rem !important',
 	paddingLeft: '0.25rem !important',
+})
+
+globalStyle(`${slateScope}${px2}`, {
+	paddingRight: '0.5rem !important',
+	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${px3}`, {
+	paddingRight: '1rem !important',
+	paddingLeft: '1rem !important',
 })
 
 globalStyle(`${slateScope}${px4}`, {
@@ -6303,6 +6732,11 @@ globalStyle(`${slateScope}${py2}`, {
 	paddingBottom: '0.5rem !important',
 })
 
+globalStyle(`${slateScope}${py3}`, {
+	paddingTop: '1rem !important',
+	paddingBottom: '1rem !important',
+})
+
 globalStyle(`${slateScope}${py4}`, {
 	paddingTop: '1.5rem !important',
 	paddingBottom: '1.5rem !important',
@@ -6323,6 +6757,14 @@ globalStyle(`${slateScope}${pt1}`, {
 
 globalStyle(`${slateScope}${pt2}`, {
 	paddingTop: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${pt3}`, {
+	paddingTop: '1rem !important',
+})
+
+globalStyle(`${slateScope}${pt4}`, {
+	paddingTop: '1.5rem !important',
 })
 
 globalStyle(`${slateScope}${pt5}`, {
@@ -6361,8 +6803,20 @@ globalStyle(`${slateScope}${pb1}`, {
 	paddingBottom: '0.25rem !important',
 })
 
+globalStyle(`${slateScope}${pb2}`, {
+	paddingBottom: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${pb3}`, {
+	paddingBottom: '1rem !important',
+})
+
 globalStyle(`${slateScope}${pb4}`, {
 	paddingBottom: '1.5rem !important',
+})
+
+globalStyle(`${slateScope}${pb5}`, {
+	paddingBottom: '3rem !important',
 })
 
 globalStyle(`${slateScope}${ps0}`, {
@@ -6375,6 +6829,10 @@ globalStyle(`${slateScope}${ps1}`, {
 
 globalStyle(`${slateScope}${ps2}`, {
 	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${slateScope}${ps3}`, {
+	paddingLeft: '1rem !important',
 })
 
 globalStyle(`${slateScope}${ps4}`, {
@@ -6479,6 +6937,10 @@ globalStyle(`${slateScope}${fs3}`, {
 	fontSize: 'calc(1.3rem + 0.6vw) !important',
 })
 
+globalStyle(`${slateScope}${fs4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw) !important',
+})
+
 globalStyle(`${slateScope}${fs5}`, {
 	fontSize: '1.25rem !important',
 })
@@ -6515,6 +6977,10 @@ globalStyle(`${slateScope}${fwSemibold}`, {
 	fontWeight: '600 !important',
 })
 
+globalStyle(`${slateScope}${fwBold}`, {
+	fontWeight: '700 !important',
+})
+
 globalStyle(`${slateScope}${fwBolder}`, {
 	fontWeight: 'bolder !important',
 })
@@ -6541,6 +7007,10 @@ globalStyle(`${slateScope}${textStart}`, {
 
 globalStyle(`${slateScope}${textEnd}`, {
 	textAlign: 'right !important',
+})
+
+globalStyle(`${slateScope}${textCenter}`, {
+	textAlign: 'center !important',
 })
 
 globalStyle(`${slateScope}${textDecorationNone}`, {
@@ -6580,6 +7050,62 @@ globalStyle(`${slateScope}${textBreak}`, {
 	wordBreak: 'break-word !important',
 })
 
+globalStyle(`${slateScope}${textPrimary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsPrimaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textSecondary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSecondaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textSuccess}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSuccessRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textInfo}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsInfoRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textWarning}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWarningRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textDanger}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDangerRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textLight}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsLightRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textDark}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${slateScope}${textBlack}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
@@ -6587,11 +7113,25 @@ globalStyle(`${slateScope}${textBlack}`, {
 	color: `rgba(${varBsBlackRgb}, ${varBsTextOpacity}) !important`,
 })
 
+globalStyle(`${slateScope}${textWhite}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWhiteRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${slateScope}${textBody}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
 	},
 	color: `rgba(${varBsBodyColorRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${textMuted}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `${varBsSecondaryColor} !important`,
 })
 
 globalStyle(`${slateScope}${textBlack50}`, {
@@ -6920,6 +7460,62 @@ globalStyle(`${slateScope}${linkUnderlineOpacity100Hover}:hover`, {
 	},
 })
 
+globalStyle(`${slateScope}${bgPrimary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgSecondary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgSuccess}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgInfo}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgWarning}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgDanger}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgLight}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${slateScope}${bgDark}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
 globalStyle(`${slateScope}${bgBlack}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
@@ -7054,6 +7650,10 @@ globalStyle(`${slateScope}${peAuto}`, {
 	pointerEvents: 'auto !important',
 })
 
+globalStyle(`${slateScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
+})
+
 globalStyle(`${slateScope}${rounded0}`, {
 	borderRadius: '0 !important',
 })
@@ -7080,6 +7680,10 @@ globalStyle(`${slateScope}${rounded5}`, {
 
 globalStyle(`${slateScope}${roundedCircle}`, {
 	borderRadius: '50% !important',
+})
+
+globalStyle(`${slateScope}${roundedPill}`, {
+	borderRadius: `${varBsBorderRadiusPill} !important`,
 })
 
 globalStyle(`${slateScope}${roundedTop}`, {
@@ -8804,6 +9408,14 @@ globalStyle(`${slateScope}${dMdInlineBlock}`, {
 	},
 })
 
+globalStyle(`${slateScope}${dMdBlock}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'block !important',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${dMdGrid}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -10289,6 +10901,14 @@ globalStyle(`${slateScope}${dLgInlineFlex}`, {
 	},
 })
 
+globalStyle(`${slateScope}${dLgNone}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none !important',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${flexLgFill}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -10923,6 +11543,14 @@ globalStyle(`${slateScope}${meLgAuto}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			marginRight: 'auto !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${mbLg0}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginBottom: '0 !important',
 		},
 	},
 })
@@ -12236,6 +12864,14 @@ globalStyle(`${slateScope}${myXlAuto}`, {
 	},
 })
 
+globalStyle(`${slateScope}${mtXl0}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0 !important',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${mtXl1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12356,6 +12992,14 @@ globalStyle(`${slateScope}${mbXl1}`, {
 	},
 })
 
+globalStyle(`${slateScope}${mbXl2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '0.5rem !important',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${mbXl3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12368,6 +13012,14 @@ globalStyle(`${slateScope}${mbXl4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginBottom: '1.5rem !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${mbXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '3rem !important',
 		},
 	},
 })
@@ -12632,6 +13284,14 @@ globalStyle(`${slateScope}${ptXl4}`, {
 	},
 })
 
+globalStyle(`${slateScope}${ptXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingTop: '3rem !important',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${peXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12700,6 +13360,14 @@ globalStyle(`${slateScope}${pbXl2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			paddingBottom: '0.5rem !important',
+		},
+	},
+})
+
+globalStyle(`${slateScope}${pbXl3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingBottom: '1rem !important',
 		},
 	},
 })
@@ -14395,6 +15063,14 @@ globalStyle(`${slateScope}${fs3}`, {
 	},
 })
 
+globalStyle(`${slateScope}${fs4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem !important',
+		},
+	},
+})
+
 globalStyle(`${slateScope}${dPrintInline}`, {
 	'@media': {
 		'print': {
@@ -14485,4 +15161,8 @@ globalStyle(`${slateScope}${dPrintNone}`, {
 
 globalStyle(`${slateScope}${navbar} ${slateScope}${container}`, {
 	padding: '0',
+})
+
+globalStyle(`${slateScope}${badge}${bgLight}`, {
+	color: '#272b30',
 })

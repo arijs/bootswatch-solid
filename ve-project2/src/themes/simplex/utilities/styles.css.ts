@@ -78,8 +78,10 @@ import {
 
 import { elLabel } from '../../../theme-contract/global-elements/contract.css'
 
+import { rounded } from '../../../theme-contract/contents/images/contract.css'
 import { formFloating, formSwitch, wasValidated } from '../../../theme-contract/forms/contract.css'
 import {
+	accordionFlush,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -136,6 +138,7 @@ import {
 	alignItemsSmStart,
 	alignItemsSmStretch,
 	alignItemsStart,
+	alignItemsStretch,
 	alignItemsXlBaseline,
 	alignItemsXlCenter,
 	alignItemsXlEnd,
@@ -184,27 +187,36 @@ import {
 	alignSelfXxlStretch,
 	alignTextBottom,
 	alignTextTop,
+	alignTop,
 	bgBlack,
 	bgBody,
 	bgBodySecondary,
 	bgBodyTertiary,
+	bgDanger,
 	bgDangerSubtle,
 	bgDarkSubtle,
 	bgGradient,
+	bgInfo,
 	bgInfoSubtle,
+	bgLight,
 	bgLightSubtle,
 	bgOpacity10,
 	bgOpacity100,
 	bgOpacity25,
 	bgOpacity50,
 	bgOpacity75,
+	bgPrimary,
 	bgPrimarySubtle,
+	bgSecondary,
 	bgSecondarySubtle,
+	bgSuccess,
 	bgSuccessSubtle,
 	bgTransparent,
+	bgWarning,
 	bgWarningSubtle,
 	bgWhite,
 	bi,
+	border,
 	border0,
 	border1,
 	border2,
@@ -212,9 +224,11 @@ import {
 	border4,
 	border5,
 	borderBlack,
+	borderBottom,
 	borderBottom0,
 	borderDanger,
 	borderDangerSubtle,
+	borderDark,
 	borderDarkSubtle,
 	borderEnd,
 	borderEnd0,
@@ -325,6 +339,7 @@ import {
 	colXxl9,
 	colXxlAuto,
 	collapseHorizontal,
+	collapsed,
 	collapsing,
 	columnGap0,
 	columnGap1,
@@ -368,8 +383,11 @@ import {
 	containerSm,
 	containerXl,
 	containerXxl,
+	dBlock,
 	dGrid,
 	dInline,
+	dInlineBlock,
+	dInlineFlex,
 	dInlineGrid,
 	dLgBlock,
 	dLgFlex,
@@ -378,9 +396,11 @@ import {
 	dLgInlineBlock,
 	dLgInlineFlex,
 	dLgInlineGrid,
+	dLgNone,
 	dLgTable,
 	dLgTableCell,
 	dLgTableRow,
+	dMdBlock,
 	dMdFlex,
 	dMdGrid,
 	dMdInline,
@@ -391,6 +411,7 @@ import {
 	dMdTable,
 	dMdTableCell,
 	dMdTableRow,
+	dNone,
 	dPrintBlock,
 	dPrintFlex,
 	dPrintGrid,
@@ -438,10 +459,12 @@ import {
 	dXxlTable,
 	dXxlTableCell,
 	dXxlTableRow,
+	end0,
 	end100,
 	end50,
 	fixedBottom,
 	fixedTop,
+	flexColumn,
 	flexColumnReverse,
 	flexFill,
 	flexGrow0,
@@ -471,6 +494,7 @@ import {
 	flexMdWrap,
 	flexMdWrapReverse,
 	flexNowrap,
+	flexRow,
 	flexRowReverse,
 	flexShrink0,
 	flexShrink1,
@@ -546,6 +570,7 @@ import {
 	fs1,
 	fs2,
 	fs3,
+	fs4,
 	fs5,
 	fs6,
 	fstItalic,
@@ -708,6 +733,8 @@ import {
 	initialism,
 	invisible,
 	justifyContentAround,
+	justifyContentCenter,
+	justifyContentEnd,
 	justifyContentEvenly,
 	justifyContentLgAround,
 	justifyContentLgBetween,
@@ -727,6 +754,7 @@ import {
 	justifyContentSmEnd,
 	justifyContentSmEvenly,
 	justifyContentSmStart,
+	justifyContentStart,
 	justifyContentXlAround,
 	justifyContentXlBetween,
 	justifyContentXlCenter,
@@ -832,7 +860,10 @@ import {
 	mXxl5,
 	mXxlAuto,
 	mark,
+	mb0,
 	mb1,
+	mb4,
+	mb5,
 	mbAuto,
 	mbLg1,
 	mbLg2,
@@ -912,6 +943,7 @@ import {
 	ms0,
 	ms1,
 	ms2,
+	ms3,
 	ms4,
 	ms5,
 	msAuto,
@@ -953,6 +985,7 @@ import {
 	mt0,
 	mt1,
 	mt2,
+	mt3,
 	mt4,
 	mtAuto,
 	mtLg0,
@@ -1034,6 +1067,8 @@ import {
 	mxXxlAuto,
 	my0,
 	my1,
+	my2,
+	my3,
 	my4,
 	my5,
 	myAuto,
@@ -1274,7 +1309,9 @@ import {
 	pXxl5,
 	pb0,
 	pb1,
+	pb3,
 	pb4,
+	pb5,
 	pbLg0,
 	pbLg1,
 	pbLg2,
@@ -1349,12 +1386,14 @@ import {
 	placeholderWave,
 	placeholderXs,
 	pointerEvent,
+	positionAbsolute,
 	positionFixed,
 	positionStatic,
 	positionSticky,
 	ps0,
 	ps1,
 	ps2,
+	ps3,
 	ps4,
 	ps5,
 	psLg0,
@@ -1390,6 +1429,7 @@ import {
 	pt0,
 	pt1,
 	pt2,
+	pt4,
 	pt5,
 	ptLg0,
 	ptLg1,
@@ -1457,6 +1497,7 @@ import {
 	py0,
 	py1,
 	py2,
+	py3,
 	py4,
 	py5,
 	pyLg0,
@@ -1519,6 +1560,7 @@ import {
 	roundedEnd5,
 	roundedEndCircle,
 	roundedEndPill,
+	roundedPill,
 	roundedStart,
 	roundedStart0,
 	roundedStart1,
@@ -1648,16 +1690,20 @@ import {
 	textBodyTertiary,
 	textBreak,
 	textCapitalize,
+	textCenter,
+	textDanger,
 	textDangerEmphasis,
 	textDarkEmphasis,
 	textDecorationLineThrough,
 	textDecorationNone,
 	textDecorationUnderline,
 	textEnd,
+	textInfo,
 	textInfoEmphasis,
 	textLgCenter,
 	textLgEnd,
 	textLgStart,
+	textLight,
 	textLightEmphasis,
 	textLowercase,
 	textMdCenter,
@@ -1668,17 +1714,22 @@ import {
 	textOpacity25,
 	textOpacity50,
 	textOpacity75,
+	textPrimary,
 	textPrimaryEmphasis,
 	textReset,
+	textSecondary,
 	textSecondaryEmphasis,
 	textSmCenter,
 	textSmEnd,
 	textSmStart,
 	textStart,
+	textSuccess,
 	textSuccessEmphasis,
 	textTruncate,
 	textUppercase,
+	textWarning,
 	textWarningEmphasis,
+	textWhite,
 	textWhite50,
 	textWrap,
 	textXlCenter,
@@ -1687,6 +1738,7 @@ import {
 	textXxlCenter,
 	textXxlEnd,
 	textXxlStart,
+	top0,
 	top100,
 	top50,
 	translateMiddle,
@@ -1701,6 +1753,10 @@ import {
 	vr,
 	vstack,
 	vw100,
+	w100,
+	w25,
+	w50,
+	w75,
 	wAuto,
 	z0,
 	z1,
@@ -1708,9 +1764,54 @@ import {
 	z3,
 	zN1,
 } from '../../../theme-contract/literal/contract.css'
+import { accordionButton, accordionHeader, accordionItem } from '../../../theme-contract/ui/accordion/contract.css'
+import { badge } from '../../../theme-contract/ui/badge/contract.css'
 import { carousel } from '../../../theme-contract/ui/carousel/contract.css'
+import { flexWrap } from '../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import { colMd2, colMd5 } from '../../../theme-contract/utilities/contract.css'
+import {
+	alignItemsCenter,
+	alignSelfStart,
+	bgDark,
+	col,
+	colMd2,
+	colMd3,
+	colMd4,
+	colMd5,
+	colMd6,
+	colMd8,
+	colSm6,
+	dFlex,
+	fwBold,
+	g0,
+	g3,
+	g4,
+	mb2,
+	mb3,
+	mbLg0,
+	mbXl2,
+	mbXl5,
+	me2,
+	meAuto,
+	mt5,
+	mtXl0,
+	overflowXHidden,
+	p5,
+	pb2,
+	pbXl3,
+	positionRelative,
+	pt3,
+	ptXl5,
+	px2,
+	px3,
+	row,
+	rowCols1,
+	rowColsMd2,
+	stickyXlTop,
+	textDark,
+	textMuted,
+	visuallyHidden,
+} from '../../../theme-contract/utilities/contract.css'
 
 globalStyle(`${simplexScope}${mark}`, {
 	padding: '0.1875em',
@@ -1955,9 +2056,39 @@ globalStyle(`${simplexScope}${container}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${row}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+		[varBsGutterY]: '0',
+	},
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: `calc(-1 * ${varBsGutterY})`,
+	marginRight: `calc(-0.5 * ${varBsGutterX})`,
+	marginLeft: `calc(-0.5 * ${varBsGutterX})`,
+})
+
+globalStyle(`${simplexScope}${row} > *`, {
+	flexShrink: '0',
+	width: '100%',
+	maxWidth: '100%',
+	paddingRight: `calc(${varBsGutterX} * 0.5)`,
+	paddingLeft: `calc(${varBsGutterX} * 0.5)`,
+	marginTop: varBsGutterY,
+})
+
+globalStyle(`${simplexScope}${col}`, {
+	flex: '1 0 0',
+})
+
 globalStyle(`${simplexScope}${rowColsAuto} > *`, {
 	flex: '0 0 auto',
 	width: 'auto',
+})
+
+globalStyle(`${simplexScope}${rowCols1} > *`, {
+	flex: '0 0 auto',
+	width: '100%',
 })
 
 globalStyle(`${simplexScope}${rowCols2} > *`, {
@@ -2094,9 +2225,21 @@ globalStyle(`${simplexScope}${offset11}`, {
 	marginLeft: '91.66666667%',
 })
 
+globalStyle(`${simplexScope}${g0}`, {
+	vars: {
+		[varBsGutterX]: '0',
+	},
+})
+
 globalStyle(`${simplexScope}${gx0}`, {
 	vars: {
 		[varBsGutterX]: '0',
+	},
+})
+
+globalStyle(`${simplexScope}${g0}`, {
+	vars: {
+		[varBsGutterY]: '0',
 	},
 })
 
@@ -2154,9 +2297,21 @@ globalStyle(`${simplexScope}${gy2}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${g3}`, {
+	vars: {
+		[varBsGutterX]: '1rem',
+	},
+})
+
 globalStyle(`${simplexScope}${gx3}`, {
 	vars: {
 		[varBsGutterX]: '1rem',
+	},
+})
+
+globalStyle(`${simplexScope}${g3}`, {
+	vars: {
+		[varBsGutterY]: '1rem',
 	},
 })
 
@@ -2166,9 +2321,21 @@ globalStyle(`${simplexScope}${gy3}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${g4}`, {
+	vars: {
+		[varBsGutterX]: '1.5rem',
+	},
+})
+
 globalStyle(`${simplexScope}${gx4}`, {
 	vars: {
 		[varBsGutterX]: '1.5rem',
+	},
+})
+
+globalStyle(`${simplexScope}${g4}`, {
+	vars: {
+		[varBsGutterY]: '1.5rem',
 	},
 })
 
@@ -2323,6 +2490,15 @@ globalStyle(`${simplexScope}${colSm5}`, {
 		'(min-width: 576px)': {
 			flex: '0 0 auto',
 			width: '41.66666667%',
+		},
+	},
+})
+
+globalStyle(`${simplexScope}${colSm6}`, {
+	'@media': {
+		'(min-width: 576px)': {
+			flex: '0 0 auto',
+			width: '50%',
 		},
 	},
 })
@@ -2743,6 +2919,15 @@ globalStyle(`${simplexScope}${rowColsMd1} > *`, {
 	},
 })
 
+globalStyle(`${simplexScope}${rowColsMd2} > *`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${rowColsMd3} > *`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2806,6 +2991,24 @@ globalStyle(`${simplexScope}${colMd2}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${colMd3}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '25%',
+		},
+	},
+})
+
+globalStyle(`${simplexScope}${colMd4}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '33.33333333%',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${colMd5}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -2815,11 +3018,29 @@ globalStyle(`${simplexScope}${colMd5}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${colMd6}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '50%',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${colMd7}`, {
 	'@media': {
 		'(min-width: 768px)': {
 			flex: '0 0 auto',
 			width: '58.33333333%',
+		},
+	},
+})
+
+globalStyle(`${simplexScope}${colMd8}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			flex: '0 0 auto',
+			width: '66.66666667%',
 		},
 	},
 })
@@ -4954,6 +5175,10 @@ globalStyle(`${simplexScope}${navbar} > ${simplexScope}${containerXxl}`, {
 	justifyContent: 'space-between',
 })
 
+globalStyle(`${simplexScope}${accordionFlush} > ${simplexScope}${accordionItem} > ${simplexScope}${accordionHeader} ${simplexScope}${accordionButton}${collapsed}`, {
+	borderRadius: '0',
+})
+
 globalStyle(`${simplexScope}${carousel}${pointerEvent}`, {
 	touchAction: 'pan-y',
 })
@@ -5370,6 +5595,16 @@ globalStyle(`${simplexScope}${stickyLgBottom}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${stickyXlTop}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			position: 'sticky',
+			top: '0',
+			zIndex: '1020',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${stickyXlBottom}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -5414,6 +5649,17 @@ globalStyle(`${simplexScope}${vstack}`, {
 	alignSelf: 'stretch',
 })
 
+globalStyle(`${simplexScope}${visuallyHidden}`, {
+	width: '1px !important',
+	height: '1px !important',
+	padding: '0 !important',
+	margin: '-1px !important',
+	overflow: 'hidden !important',
+	clip: 'rect(0, 0, 0, 0) !important',
+	whiteSpace: 'nowrap !important',
+	border: '0 !important',
+})
+
 globalStyle(`${simplexScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within)`, {
 	width: '1px !important',
 	height: '1px !important',
@@ -5425,8 +5671,16 @@ globalStyle(`${simplexScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-wi
 	border: '0 !important',
 })
 
+globalStyle(`${simplexScope}${visuallyHidden}:not(caption)`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${simplexScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within):not(caption)`, {
 	position: 'absolute !important',
+})
+
+globalStyle(`${simplexScope}${visuallyHidden} *`, {
+	overflow: 'hidden !important',
 })
 
 globalStyle(`${simplexScope}${visuallyHiddenFocusable}:not(:focus):not(:focus-within) *`, {
@@ -5460,6 +5714,10 @@ globalStyle(`${simplexScope}${vr}`, {
 
 globalStyle(`${simplexScope}${alignBaseline}`, {
 	verticalAlign: 'baseline !important',
+})
+
+globalStyle(`${simplexScope}${alignTop}`, {
+	verticalAlign: 'top !important',
 })
 
 globalStyle(`${simplexScope}${alignMiddle}`, {
@@ -5555,6 +5813,10 @@ globalStyle(`${simplexScope}${overflowXAuto}`, {
 	overflowX: 'auto !important',
 })
 
+globalStyle(`${simplexScope}${overflowXHidden}`, {
+	overflowX: 'hidden !important',
+})
+
 globalStyle(`${simplexScope}${overflowXVisible}`, {
 	overflowX: 'visible !important',
 })
@@ -5583,6 +5845,14 @@ globalStyle(`${simplexScope}${dInline}`, {
 	display: 'inline !important',
 })
 
+globalStyle(`${simplexScope}${dInlineBlock}`, {
+	display: 'inline-block !important',
+})
+
+globalStyle(`${simplexScope}${dBlock}`, {
+	display: 'block !important',
+})
+
 globalStyle(`${simplexScope}${dGrid}`, {
 	display: 'grid !important',
 })
@@ -5601,6 +5871,18 @@ globalStyle(`${simplexScope}${dTableRow}`, {
 
 globalStyle(`${simplexScope}${dTableCell}`, {
 	display: 'table-cell !important',
+})
+
+globalStyle(`${simplexScope}${dFlex}`, {
+	display: 'flex !important',
+})
+
+globalStyle(`${simplexScope}${dInlineFlex}`, {
+	display: 'inline-flex !important',
+})
+
+globalStyle(`${simplexScope}${dNone}`, {
+	display: 'none !important',
 })
 
 globalStyle(`${simplexScope}${shadow}`, {
@@ -5671,12 +5953,24 @@ globalStyle(`${simplexScope}${positionStatic}`, {
 	position: 'static !important',
 })
 
+globalStyle(`${simplexScope}${positionRelative}`, {
+	position: 'relative !important',
+})
+
+globalStyle(`${simplexScope}${positionAbsolute}`, {
+	position: 'absolute !important',
+})
+
 globalStyle(`${simplexScope}${positionFixed}`, {
 	position: 'fixed !important',
 })
 
 globalStyle(`${simplexScope}${positionSticky}`, {
 	position: 'sticky !important',
+})
+
+globalStyle(`${simplexScope}${top0}`, {
+	top: '0 !important',
 })
 
 globalStyle(`${simplexScope}${top50}`, {
@@ -5711,6 +6005,10 @@ globalStyle(`${simplexScope}${start100}`, {
 	left: '100% !important',
 })
 
+globalStyle(`${simplexScope}${end0}`, {
+	right: '0 !important',
+})
+
 globalStyle(`${simplexScope}${end50}`, {
 	right: '50% !important',
 })
@@ -5731,6 +6029,10 @@ globalStyle(`${simplexScope}${translateMiddleY}`, {
 	transform: 'translateY(-50%) !important',
 })
 
+globalStyle(`${simplexScope}${border}`, {
+	border: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
+})
+
 globalStyle(`${simplexScope}${border0}`, {
 	border: '0 !important',
 })
@@ -5749,6 +6051,10 @@ globalStyle(`${simplexScope}${borderEnd}`, {
 
 globalStyle(`${simplexScope}${borderEnd0}`, {
 	borderRight: '0 !important',
+})
+
+globalStyle(`${simplexScope}${borderBottom}`, {
+	borderBottom: `${varBsBorderWidth} ${varBsBorderStyle} ${varBsBorderColor} !important`,
 })
 
 globalStyle(`${simplexScope}${borderBottom0}`, {
@@ -5810,6 +6116,13 @@ globalStyle(`${simplexScope}${borderLight}`, {
 		[varBsBorderOpacity]: '1',
 	},
 	borderColor: `rgba(${varBsLightRgb}, ${varBsBorderOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${borderDark}`, {
+	vars: {
+		[varBsBorderOpacity]: '1',
+	},
+	borderColor: `rgba(${varBsDarkRgb}, ${varBsBorderOpacity}) !important`,
 })
 
 globalStyle(`${simplexScope}${borderBlack}`, {
@@ -5908,6 +6221,22 @@ globalStyle(`${simplexScope}${borderOpacity100}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${w25}`, {
+	width: '25% !important',
+})
+
+globalStyle(`${simplexScope}${w50}`, {
+	width: '50% !important',
+})
+
+globalStyle(`${simplexScope}${w75}`, {
+	width: '75% !important',
+})
+
+globalStyle(`${simplexScope}${w100}`, {
+	width: '100% !important',
+})
+
 globalStyle(`${simplexScope}${wAuto}`, {
 	width: 'auto !important',
 })
@@ -5960,6 +6289,14 @@ globalStyle(`${simplexScope}${flexFill}`, {
 	flex: '1 1 auto !important',
 })
 
+globalStyle(`${simplexScope}${flexRow}`, {
+	flexDirection: 'row !important',
+})
+
+globalStyle(`${simplexScope}${flexColumn}`, {
+	flexDirection: 'column !important',
+})
+
 globalStyle(`${simplexScope}${flexRowReverse}`, {
 	flexDirection: 'row-reverse !important',
 })
@@ -5984,12 +6321,28 @@ globalStyle(`${simplexScope}${flexShrink1}`, {
 	flexShrink: '1 !important',
 })
 
+globalStyle(`${simplexScope}${flexWrap}`, {
+	flexWrap: 'wrap !important',
+})
+
 globalStyle(`${simplexScope}${flexNowrap}`, {
 	flexWrap: 'nowrap !important',
 })
 
 globalStyle(`${simplexScope}${flexWrapReverse}`, {
 	flexWrap: 'wrap-reverse !important',
+})
+
+globalStyle(`${simplexScope}${justifyContentStart}`, {
+	justifyContent: 'flex-start !important',
+})
+
+globalStyle(`${simplexScope}${justifyContentEnd}`, {
+	justifyContent: 'flex-end !important',
+})
+
+globalStyle(`${simplexScope}${justifyContentCenter}`, {
+	justifyContent: 'center !important',
 })
 
 globalStyle(`${simplexScope}${justifyContentAround}`, {
@@ -6008,8 +6361,16 @@ globalStyle(`${simplexScope}${alignItemsEnd}`, {
 	alignItems: 'flex-end !important',
 })
 
+globalStyle(`${simplexScope}${alignItemsCenter}`, {
+	alignItems: 'center !important',
+})
+
 globalStyle(`${simplexScope}${alignItemsBaseline}`, {
 	alignItems: 'baseline !important',
+})
+
+globalStyle(`${simplexScope}${alignItemsStretch}`, {
+	alignItems: 'stretch !important',
 })
 
 globalStyle(`${simplexScope}${alignContentStart}`, {
@@ -6038,6 +6399,10 @@ globalStyle(`${simplexScope}${alignContentStretch}`, {
 
 globalStyle(`${simplexScope}${alignSelfAuto}`, {
 	alignSelf: 'auto !important',
+})
+
+globalStyle(`${simplexScope}${alignSelfStart}`, {
+	alignSelf: 'flex-start !important',
 })
 
 globalStyle(`${simplexScope}${alignSelfEnd}`, {
@@ -6161,6 +6526,16 @@ globalStyle(`${simplexScope}${my1}`, {
 	marginBottom: '0.25rem !important',
 })
 
+globalStyle(`${simplexScope}${my2}`, {
+	marginTop: '0.5rem !important',
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${my3}`, {
+	marginTop: '1rem !important',
+	marginBottom: '1rem !important',
+})
+
 globalStyle(`${simplexScope}${my4}`, {
 	marginTop: '1.5rem !important',
 	marginBottom: '1.5rem !important',
@@ -6188,8 +6563,16 @@ globalStyle(`${simplexScope}${mt2}`, {
 	marginTop: '0.5rem !important',
 })
 
+globalStyle(`${simplexScope}${mt3}`, {
+	marginTop: '1rem !important',
+})
+
 globalStyle(`${simplexScope}${mt4}`, {
 	marginTop: '1.5rem !important',
+})
+
+globalStyle(`${simplexScope}${mt5}`, {
+	marginTop: '3rem !important',
 })
 
 globalStyle(`${simplexScope}${mtAuto}`, {
@@ -6204,6 +6587,10 @@ globalStyle(`${simplexScope}${me1}`, {
 	marginRight: '0.25rem !important',
 })
 
+globalStyle(`${simplexScope}${me2}`, {
+	marginRight: '0.5rem !important',
+})
+
 globalStyle(`${simplexScope}${me3}`, {
 	marginRight: '1rem !important',
 })
@@ -6216,8 +6603,32 @@ globalStyle(`${simplexScope}${me5}`, {
 	marginRight: '3rem !important',
 })
 
+globalStyle(`${simplexScope}${meAuto}`, {
+	marginRight: 'auto !important',
+})
+
+globalStyle(`${simplexScope}${mb0}`, {
+	marginBottom: '0 !important',
+})
+
 globalStyle(`${simplexScope}${mb1}`, {
 	marginBottom: '0.25rem !important',
+})
+
+globalStyle(`${simplexScope}${mb2}`, {
+	marginBottom: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${mb3}`, {
+	marginBottom: '1rem !important',
+})
+
+globalStyle(`${simplexScope}${mb4}`, {
+	marginBottom: '1.5rem !important',
+})
+
+globalStyle(`${simplexScope}${mb5}`, {
+	marginBottom: '3rem !important',
 })
 
 globalStyle(`${simplexScope}${mbAuto}`, {
@@ -6234,6 +6645,10 @@ globalStyle(`${simplexScope}${ms1}`, {
 
 globalStyle(`${simplexScope}${ms2}`, {
 	marginLeft: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${ms3}`, {
+	marginLeft: '1rem !important',
 })
 
 globalStyle(`${simplexScope}${ms4}`, {
@@ -6268,6 +6683,10 @@ globalStyle(`${simplexScope}${p4}`, {
 	padding: '1.5rem !important',
 })
 
+globalStyle(`${simplexScope}${p5}`, {
+	padding: '3rem !important',
+})
+
 globalStyle(`${simplexScope}${px0}`, {
 	paddingRight: '0 !important',
 	paddingLeft: '0 !important',
@@ -6276,6 +6695,16 @@ globalStyle(`${simplexScope}${px0}`, {
 globalStyle(`${simplexScope}${px1}`, {
 	paddingRight: '0.25rem !important',
 	paddingLeft: '0.25rem !important',
+})
+
+globalStyle(`${simplexScope}${px2}`, {
+	paddingRight: '0.5rem !important',
+	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${px3}`, {
+	paddingRight: '1rem !important',
+	paddingLeft: '1rem !important',
 })
 
 globalStyle(`${simplexScope}${px4}`, {
@@ -6303,6 +6732,11 @@ globalStyle(`${simplexScope}${py2}`, {
 	paddingBottom: '0.5rem !important',
 })
 
+globalStyle(`${simplexScope}${py3}`, {
+	paddingTop: '1rem !important',
+	paddingBottom: '1rem !important',
+})
+
 globalStyle(`${simplexScope}${py4}`, {
 	paddingTop: '1.5rem !important',
 	paddingBottom: '1.5rem !important',
@@ -6323,6 +6757,14 @@ globalStyle(`${simplexScope}${pt1}`, {
 
 globalStyle(`${simplexScope}${pt2}`, {
 	paddingTop: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${pt3}`, {
+	paddingTop: '1rem !important',
+})
+
+globalStyle(`${simplexScope}${pt4}`, {
+	paddingTop: '1.5rem !important',
 })
 
 globalStyle(`${simplexScope}${pt5}`, {
@@ -6361,8 +6803,20 @@ globalStyle(`${simplexScope}${pb1}`, {
 	paddingBottom: '0.25rem !important',
 })
 
+globalStyle(`${simplexScope}${pb2}`, {
+	paddingBottom: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${pb3}`, {
+	paddingBottom: '1rem !important',
+})
+
 globalStyle(`${simplexScope}${pb4}`, {
 	paddingBottom: '1.5rem !important',
+})
+
+globalStyle(`${simplexScope}${pb5}`, {
+	paddingBottom: '3rem !important',
 })
 
 globalStyle(`${simplexScope}${ps0}`, {
@@ -6375,6 +6829,10 @@ globalStyle(`${simplexScope}${ps1}`, {
 
 globalStyle(`${simplexScope}${ps2}`, {
 	paddingLeft: '0.5rem !important',
+})
+
+globalStyle(`${simplexScope}${ps3}`, {
+	paddingLeft: '1rem !important',
 })
 
 globalStyle(`${simplexScope}${ps4}`, {
@@ -6479,6 +6937,10 @@ globalStyle(`${simplexScope}${fs3}`, {
 	fontSize: 'calc(1.3rem + 0.6vw) !important',
 })
 
+globalStyle(`${simplexScope}${fs4}`, {
+	fontSize: 'calc(1.275rem + 0.3vw) !important',
+})
+
 globalStyle(`${simplexScope}${fs5}`, {
 	fontSize: '1.25rem !important',
 })
@@ -6515,6 +6977,10 @@ globalStyle(`${simplexScope}${fwSemibold}`, {
 	fontWeight: '600 !important',
 })
 
+globalStyle(`${simplexScope}${fwBold}`, {
+	fontWeight: '700 !important',
+})
+
 globalStyle(`${simplexScope}${fwBolder}`, {
 	fontWeight: 'bolder !important',
 })
@@ -6541,6 +7007,10 @@ globalStyle(`${simplexScope}${textStart}`, {
 
 globalStyle(`${simplexScope}${textEnd}`, {
 	textAlign: 'right !important',
+})
+
+globalStyle(`${simplexScope}${textCenter}`, {
+	textAlign: 'center !important',
 })
 
 globalStyle(`${simplexScope}${textDecorationNone}`, {
@@ -6580,6 +7050,62 @@ globalStyle(`${simplexScope}${textBreak}`, {
 	wordBreak: 'break-word !important',
 })
 
+globalStyle(`${simplexScope}${textPrimary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsPrimaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textSecondary}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSecondaryRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textSuccess}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsSuccessRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textInfo}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsInfoRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textWarning}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWarningRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textDanger}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDangerRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textLight}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsLightRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textDark}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsDarkRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${simplexScope}${textBlack}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
@@ -6587,11 +7113,25 @@ globalStyle(`${simplexScope}${textBlack}`, {
 	color: `rgba(${varBsBlackRgb}, ${varBsTextOpacity}) !important`,
 })
 
+globalStyle(`${simplexScope}${textWhite}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `rgba(${varBsWhiteRgb}, ${varBsTextOpacity}) !important`,
+})
+
 globalStyle(`${simplexScope}${textBody}`, {
 	vars: {
 		[varBsTextOpacity]: '1',
 	},
 	color: `rgba(${varBsBodyColorRgb}, ${varBsTextOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${textMuted}`, {
+	vars: {
+		[varBsTextOpacity]: '1',
+	},
+	color: `${varBsSecondaryColor} !important`,
 })
 
 globalStyle(`${simplexScope}${textBlack50}`, {
@@ -6920,6 +7460,62 @@ globalStyle(`${simplexScope}${linkUnderlineOpacity100Hover}:hover`, {
 	},
 })
 
+globalStyle(`${simplexScope}${bgPrimary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsPrimaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgSecondary}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSecondaryRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgSuccess}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsSuccessRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgInfo}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsInfoRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgWarning}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsWarningRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgDanger}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDangerRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgLight}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsLightRgb}, ${varBsBgOpacity}) !important`,
+})
+
+globalStyle(`${simplexScope}${bgDark}`, {
+	vars: {
+		[varBsBgOpacity]: '1',
+	},
+	backgroundColor: `rgba(${varBsDarkRgb}, ${varBsBgOpacity}) !important`,
+})
+
 globalStyle(`${simplexScope}${bgBlack}`, {
 	vars: {
 		[varBsBgOpacity]: '1',
@@ -7054,6 +7650,10 @@ globalStyle(`${simplexScope}${peAuto}`, {
 	pointerEvents: 'auto !important',
 })
 
+globalStyle(`${simplexScope}${rounded}`, {
+	borderRadius: `${varBsBorderRadius} !important`,
+})
+
 globalStyle(`${simplexScope}${rounded0}`, {
 	borderRadius: '0 !important',
 })
@@ -7080,6 +7680,10 @@ globalStyle(`${simplexScope}${rounded5}`, {
 
 globalStyle(`${simplexScope}${roundedCircle}`, {
 	borderRadius: '50% !important',
+})
+
+globalStyle(`${simplexScope}${roundedPill}`, {
+	borderRadius: `${varBsBorderRadiusPill} !important`,
 })
 
 globalStyle(`${simplexScope}${roundedTop}`, {
@@ -8804,6 +9408,14 @@ globalStyle(`${simplexScope}${dMdInlineBlock}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${dMdBlock}`, {
+	'@media': {
+		'(min-width: 768px)': {
+			display: 'block !important',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${dMdGrid}`, {
 	'@media': {
 		'(min-width: 768px)': {
@@ -10289,6 +10901,14 @@ globalStyle(`${simplexScope}${dLgInlineFlex}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${dLgNone}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			display: 'none !important',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${flexLgFill}`, {
 	'@media': {
 		'(min-width: 992px)': {
@@ -10923,6 +11543,14 @@ globalStyle(`${simplexScope}${meLgAuto}`, {
 	'@media': {
 		'(min-width: 992px)': {
 			marginRight: 'auto !important',
+		},
+	},
+})
+
+globalStyle(`${simplexScope}${mbLg0}`, {
+	'@media': {
+		'(min-width: 992px)': {
+			marginBottom: '0 !important',
 		},
 	},
 })
@@ -12236,6 +12864,14 @@ globalStyle(`${simplexScope}${myXlAuto}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${mtXl0}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginTop: '0 !important',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${mtXl1}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12356,6 +12992,14 @@ globalStyle(`${simplexScope}${mbXl1}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${mbXl2}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '0.5rem !important',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${mbXl3}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12368,6 +13012,14 @@ globalStyle(`${simplexScope}${mbXl4}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			marginBottom: '1.5rem !important',
+		},
+	},
+})
+
+globalStyle(`${simplexScope}${mbXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			marginBottom: '3rem !important',
 		},
 	},
 })
@@ -12632,6 +13284,14 @@ globalStyle(`${simplexScope}${ptXl4}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${ptXl5}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingTop: '3rem !important',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${peXl0}`, {
 	'@media': {
 		'(min-width: 1200px)': {
@@ -12700,6 +13360,14 @@ globalStyle(`${simplexScope}${pbXl2}`, {
 	'@media': {
 		'(min-width: 1200px)': {
 			paddingBottom: '0.5rem !important',
+		},
+	},
+})
+
+globalStyle(`${simplexScope}${pbXl3}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			paddingBottom: '1rem !important',
 		},
 	},
 })
@@ -14395,6 +15063,14 @@ globalStyle(`${simplexScope}${fs3}`, {
 	},
 })
 
+globalStyle(`${simplexScope}${fs4}`, {
+	'@media': {
+		'(min-width: 1200px)': {
+			fontSize: '1.5rem !important',
+		},
+	},
+})
+
 globalStyle(`${simplexScope}${dPrintInline}`, {
 	'@media': {
 		'print': {
@@ -14481,4 +15157,28 @@ globalStyle(`${simplexScope}${dPrintNone}`, {
 			display: 'none !important',
 		},
 	},
+})
+
+globalStyle(`${simplexScope}${navbar}${bgPrimary}`, {
+	borderColor: '#bd1e0d !important',
+})
+
+globalStyle(`${simplexScope}${navbar}${bgDark}`, {
+	borderColor: '#303234 !important',
+})
+
+globalStyle(`${simplexScope}${navbar}${bgLight}`, {
+	borderColor: '#dedede',
+})
+
+globalStyle(`${simplexScope}${textSecondary}`, {
+	color: '#777 !important',
+})
+
+globalStyle(`${simplexScope}${badge}${bgSecondary}`, {
+	color: '#373a3c',
+})
+
+globalStyle(`${simplexScope}${badge}${bgLight}`, {
+	color: '#373a3c',
 })

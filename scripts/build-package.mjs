@@ -16,10 +16,10 @@ const ROOT = process.cwd()
 const VE = path.join(ROOT, 've-project2', 'src')
 const OUT = path.join(ROOT, 'dist-pkg')
 
-// Famílias excluídas do build granular: `literal` (monólito alternativo),
-// `utilities/used` (subset só-da-demo) e `utilities` (baked) — o caminho das
-// utilities é o preset UnoCSS (hasheado, JIT); a família baked reintroduziria
-// literais --bs-* e duplicaria o preset.
+// Famílias excluídas do build granular: só `literal` (monólito alternativo que
+// re-declara os mesmos contracts das famílias — ambíguo p/ o barrel). As
+// utilities agora são UMA família per-tema (baked, faithful); o trim é feito
+// pelo plugin de purge no build do consumidor.
 const EXCLUDE_FAMILIES = new Set(['literal'])
 
 async function listThemes() {
@@ -137,26 +137,6 @@ async function buildTheme(theme, { includeContract }) {
 				dest = e.name.replace(/\.css\.ts\.css$/, `-${i++}.css`)
 			}
 			await rename(p, path.join(themeOut, dest))
-		}
-	}
-
-	// Funde a família `utilities/used` (→ `used.css`) na `utilities.css`. O split
-	// used/dead é otimização do DEMO (granular loading); o PACOTE tem UMA família
-	// `utilities` e o purge (plugin Vite) faz o trim por-consumidor.
-	{
-		const usedCss = path.join(themeOut, 'used.css')
-		const utilCss = path.join(themeOut, 'utilities.css')
-		if (
-			await stat(usedCss)
-				.then(() => true)
-				.catch(() => false)
-		) {
-			const used = await readFile(usedCss, 'utf8')
-			const base = await stat(utilCss)
-				.then(() => readFile(utilCss, 'utf8'))
-				.catch(() => '')
-			await writeFile(utilCss, `${base}\n${used}`)
-			await rm(usedCss)
 		}
 	}
 
