@@ -27,11 +27,12 @@
 		"pkg:build": "node scripts/build-package.mjs",
 		"pkg:pack": "node scripts/pack-dist.mjs",
 		"pkg:probe": "node scripts/preset-probe.mjs",
-		"pkg:ci": "npm run pkg:build && npm run pkg:pack && npm run pkg:probe",
+		"pkg:ci": "npm run pkg:build && npm run pkg:contract && npm run pkg:pack",
 		"pkg:release": "node scripts/release.mjs",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
-		"check": "biome check --write"
+		"check": "biome check --write",
+		"pkg:contract": "node scripts/build-contract.mjs"
 	},
 	"license": "MIT",
 	"remDependencies": {

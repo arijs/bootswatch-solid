@@ -115,55 +115,21 @@ async function assembleTheme(theme) {
 }
 
 async function assembleContract() {
-	// O manifesto é theme-agnostic — pega de qualquer tema (usamos o primeiro).
-	const themes = await listThemes()
-	const contractJs = await readFile(path.join(SRC, themes[0], 'contract.js'), 'utf8')
-	const dir = path.join(OUT, 'contract')
-	await mkdir(dir, { recursive: true })
-	await writeFile(path.join(dir, 'index.js'), contractJs)
-	const names = parseExportNames(contractJs)
-	const dts = [
-		'// Manifesto de contract do @arijs/bootswatch-ve — nomes hasheados (VE),',
-		'// compartilhados pelos temas. Cada `var*` é uma string `var(--b…)`;',
-		'// cada contract de classe/elemento é a classe hasheada correspondente.',
-		...names.map((n) => `export declare const ${n}: string`),
-		'',
-	].join('\n')
-	await writeFile(path.join(dir, 'index.d.ts'), dts)
-	return names.length
-}
-
-async function assemblePreset() {
-	const dir = path.join(OUT, 'preset')
-	await mkdir(dir, { recursive: true })
-	// Runtime precisa só do preset + dados gerados (os JSON são build-time).
-	await copyFile(
-		path.join(ROOT, 'preset', 'preset-bootswatch.mjs'),
-		path.join(dir, 'preset-bootswatch.mjs'),
-	)
-	await copyFile(
-		path.join(ROOT, 'preset', 'bootstrap-utilities.generated.mjs'),
-		path.join(dir, 'bootstrap-utilities.generated.mjs'),
-	)
-	await writeFile(
-		path.join(dir, 'index.js'),
-		"export { default, presetBootswatch } from './preset-bootswatch.mjs'\n",
-	)
-	await writeFile(
-		path.join(dir, 'index.d.ts'),
-		[
-			"import type { Preset } from '@unocss/core'",
-			'',
-			'export interface PresetBootswatchOptions {',
-			'\t/** Prefixo aplicado SÓ às classes de utility (ex.: "" → mb-3; "bsu-" → bsu-mb-3). */',
-			'\tprefix?: string',
-			'}',
-			'',
-			'export declare function presetBootswatch(options?: PresetBootswatchOptions): Preset',
-			'export default presetBootswatch',
-			'',
-		].join('\n'),
-	)
+	// Contract POR FAMÍLIA (build-contract.mjs → dist-pkg/contract/<entry>/). Copia
+	// cada entry p/ package/<entry>/ e o manifest (usado pelo plugin de purge).
+	const SRC_C = path.join(ROOT, 'dist-pkg', 'contract')
+	const manifest = JSON.parse(await readFile(path.join(SRC_C, 'manifest.json'), 'utf8'))
+	const entries = Object.keys(manifest).sort()
+	let total = 0
+	for (const entry of entries) {
+		const dir = path.join(OUT, entry)
+		await mkdir(dir, { recursive: true })
+		await copyFile(path.join(SRC_C, entry, 'index.js'), path.join(dir, 'index.js'))
+		await copyFile(path.join(SRC_C, entry, 'index.d.ts'), path.join(dir, 'index.d.ts'))
+		total += manifest[entry].length
+	}
+	await copyFile(path.join(SRC_C, 'manifest.json'), path.join(OUT, 'contract-manifest.json'))
+	return { entries, total }
 }
 
 async function assembleSolid() {
@@ -192,45 +158,41 @@ async function assembleSolid() {
 			'export interface Bootswatch {',
 			'\t/** Scope hasheado do tema ativo — REATIVO. Vazio até o tema resolver. */',
 			'\tscope: Accessor<string>',
-			'\t/** Prefixo das utilities do preset (ex.: "" ou "bsu-") — REATIVO. */',
-			'\tutilityPrefix: Accessor<string>',
-			'\t/** Classes de COMPONENTE: scope + contracts (reativo ao tema). */',
+			'\t/** scope do tema ativo + classes de contract (reativo). */',
 			'\tcx: (...classes: ClassArg[]) => string',
-			'\t/** Classes de UTILITY com o prefixo do contexto. */',
-			'\tu: (...classes: ClassArg[]) => string',
 			'}',
 			'',
 			'export declare function BootswatchProvider(props: {',
 			'\tscope: string | Accessor<string>',
-			'\tutilityPrefix?: string | Accessor<string>',
 			'\tchildren: JSX.Element',
 			'}): JSX.Element',
 			'',
-			'/** Contexto reativo completo: `{ scope, utilityPrefix, cx, u }`. */',
+			'/** Contexto reativo: `{ scope, cx }`. */',
 			'export declare function useBootswatch(): Bootswatch',
 			'',
 			'/** Só o scope reativo do tema ativo. */',
 			'export declare function useScope(): Accessor<string>',
 			'',
-			'/** `cx(...)` — classes de componente: scope + contracts (reativo). */',
+			'/** `cx(...)` — scope do tema ativo + classes de contract (reativo). */',
 			'export declare function useCx(): (...classes: ClassArg[]) => string',
-			'',
-			'/** `u(...)` — prefixa utilities com o prefixo do contexto. */',
-			'export declare function useUtility(): (...classes: ClassArg[]) => string',
-			'',
-			'/** Núcleo puro: prefixa cada token de utility. */',
-			'export declare function prefixClasses(prefix: string, classes: ClassArg[]): string',
 			'',
 		].join('\n'),
 	)
 }
 
-function packageJson(themes) {
+function packageJson(themes, contractEntries) {
 	const exportsMap = {
-		'.': { types: './contract/index.d.ts', default: './contract/index.js' },
-		'./contract': { types: './contract/index.d.ts', default: './contract/index.js' },
-		'./preset': { types: './preset/index.d.ts', default: './preset/index.js' },
+		// Um entry por família de contract (importe as classes de dentro da família:
+		// import { btn } from '@arijs/bootswatch-ve/buttons'). Sem barrel global — é
+		// o que torna o purge por imports trivial.
+		...Object.fromEntries(
+			contractEntries.map((e) => [
+				`./${e}`,
+				{ types: `./${e}/index.d.ts`, default: `./${e}/index.js` },
+			]),
+		),
 		'./solid': { types: './solid/index.d.ts', default: './solid/index.js' },
+		'./contract-manifest.json': './contract-manifest.json',
 		// `exports` só admite UM `*` por padrão. `./themes/*.css` (o `*` cruza
 		// barras) cobre scope.css/index.css/<familia>.css; e por ter sufixo `.css`
 		// tem prioridade sobre `./themes/*` (que só pega o import "pelado" do tema
@@ -244,7 +206,7 @@ function packageJson(themes) {
 		name: PKG_NAME,
 		version: PKG_VERSION,
 		description:
-			'Bootswatch como design system Vanilla-Extract: CSS de componente pré-compilado (classes/vars hasheadas), preset UnoCSS de utilities e runtime Solid mínimo.',
+			'Bootswatch como design system Vanilla-Extract: CSS por-tema pré-compilado (componentes E utilities, classes/vars hasheadas), importado por família e aplicado via cx (runtime Solid).',
 		type: 'module',
 		license: 'MIT',
 		// Obrigatório p/ o publish com provenance (OIDC): o registry valida que
@@ -254,27 +216,17 @@ function packageJson(themes) {
 		bugs: { url: 'https://github.com/arijs/bootswatch-solid/issues' },
 		sideEffects: ['**/*.css'],
 		exports: exportsMap,
-		files: ['contract', 'preset', 'solid', 'themes', 'README.md'],
+		files: [...contractEntries, 'solid', 'themes', 'contract-manifest.json', 'README.md'],
 		peerDependencies: {
-			'@unocss/core': '>=0.58.0',
 			// `>=2.0.0-0` inclui os prereleases do Solid 2.0 (beta/next) — o alvo do
 			// runtime /solid. Sem isso, `>=1.8.0` exclui prereleases e o npm tenta
 			// puxar um solid-js 1.x stable em projetos no Solid 2.0-beta, conflitando.
 			'solid-js': '>=1.8.0 || >=2.0.0-0',
 		},
 		peerDependenciesMeta: {
-			'@unocss/core': { optional: true },
 			'solid-js': { optional: true },
 		},
-		keywords: [
-			'bootstrap',
-			'bootswatch',
-			'vanilla-extract',
-			'unocss',
-			'solid',
-			'design-system',
-			'css',
-		],
+		keywords: ['bootstrap', 'bootswatch', 'vanilla-extract', 'solid', 'design-system', 'css'],
 		publishConfig: { access: 'public' },
 		bootswatchThemes: themes,
 	}
@@ -283,64 +235,45 @@ function packageJson(themes) {
 function readme(themes, contractCount) {
 	return `# @arijs/bootswatch-ve
 
-Bootswatch reempacotado como **design system Vanilla-Extract**: o CSS de
-componente é pré-compilado com **classes e variáveis 100% hasheadas** (nada de
-\`--bs-*\` literal — zero colisão no seu projeto), as **utilities** vêm de um
-preset UnoCSS (JIT), e há um **runtime Solid mínimo** para amarrar scope +
-prefixo.
+Bootswatch reempacotado como **design system Vanilla-Extract**: o CSS (componentes
+E utilities) é pré-compilado por-tema com **classes e variáveis 100% hasheadas**
+(nada de \`--bs-*\` literal — zero colisão no seu projeto). As classes são
+importadas **por família** e aplicadas via \`cx\` do runtime Solid.
 
-## Camadas
-
-- \`@arijs/bootswatch-ve/contract\` — manifesto (${contractCount} nomes): as
-  classes e variáveis hasheadas que o CSS usa. Importe daqui para aplicar
-  contracts nos seus componentes.
-- \`@arijs/bootswatch-ve/themes/<tema>/index.css\` — todo o CSS de um tema
-  (side-effect). Ou importe por família: \`.../themes/<tema>/buttons.css\`.
-- \`@arijs/bootswatch-ve/themes/<tema>/scope\` — \`export const <tema>Scope\`
-  (a classe de scope hasheada) + \`scope.css\` (efeito colateral que define as
-  vars do tema).
-- \`@arijs/bootswatch-ve/preset\` — \`presetBootswatch({ prefix })\` para o
-  UnoCSS. Prefixo opcional SÓ nas utilities (\`bsu-mb-3\`); componentes/vars
-  nunca têm prefixo (são hashes).
-- \`@arijs/bootswatch-ve/solid\` — \`BootswatchProvider\` (aceita \`scope\` fixo
-  OU accessor reativo p/ troca de tema em runtime), \`useBootswatch\` →
-  \`{ scope, utilityPrefix, cx, u }\`, e os atalhos \`useScope\`/\`useCx\`/
-  \`useUtility\`. \`cx(...)\` monta classes de componente (scope + contracts);
-  \`u(...)\` monta utilities com o prefixo.
-
-## Uso (Solid + UnoCSS)
-
-\`\`\`ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
-import { presetBootswatch } from '@arijs/bootswatch-ve/preset'
-export default defineConfig({ presets: [presetBootswatch({ prefix: 'bsu-' })] })
-\`\`\`
+## Uso (Solid)
 
 \`\`\`tsx
 import '@arijs/bootswatch-ve/themes/bootstrap/index.css'
 import { bootstrapScope } from '@arijs/bootswatch-ve/themes/bootstrap/scope'
-import { btnPrimary } from '@arijs/bootswatch-ve/contract'
+import { btn, btnPrimary } from '@arijs/bootswatch-ve/buttons'
+import { mb3, textBgSecondary } from '@arijs/bootswatch-ve/utilities'
 import { BootswatchProvider, useBootswatch } from '@arijs/bootswatch-ve/solid'
 
 function Button() {
-  const { cx, u } = useBootswatch()
+  const { cx } = useBootswatch()
   // cx aplica o scope do tema ativo automaticamente (reativo).
-  return <button class={\`\${cx(btnPrimary)} \${u('mb-3')}\`}>OK</button>
+  return <button class={cx(btn, btnPrimary, mb3)}>OK</button>
 }
 
-// scope FIXO:
-export const AppFixed = () => (
-  <BootswatchProvider scope={bootstrapScope} utilityPrefix="bsu-">
+export default () => (
+  <BootswatchProvider scope={bootstrapScope}>
     <Button />
   </BootswatchProvider>
 )
-
-// scope REATIVO (troca de tema em runtime): passe um accessor. O app carrega o
-// CSS do tema e resolve o scope; o provider só o distribui.
-// const [scope, setScope] = createSignal(bootstrapScope)
-// <BootswatchProvider scope={scope} utilityPrefix="bsu-"> … </BootswatchProvider>
 \`\`\`
+
+## Camadas
+
+- **Por família** — \`@arijs/bootswatch-ve/buttons\`, \`/alerts\`, \`/utilities\`,
+  \`/global\`, … (${contractCount} classes no total). Componentes e utilities são o
+  mesmo tipo de coisa: classes de contract hasheadas, aplicadas por \`cx\`.
+- \`@arijs/bootswatch-ve/themes/<tema>/index.css\` — todo o CSS de um tema
+  (side-effect). Ou por família: \`.../themes/<tema>/buttons.css\`.
+- \`@arijs/bootswatch-ve/themes/<tema>/scope\` — \`export const <tema>Scope\`
+  (a classe de scope hasheada) + \`scope.css\` (define as vars do tema).
+- \`@arijs/bootswatch-ve/solid\` — \`BootswatchProvider\` (aceita \`scope\` fixo
+  OU accessor reativo p/ troca de tema em runtime), \`useBootswatch\` →
+  \`{ scope, cx }\`, e os atalhos \`useScope\`/\`useCx\`.
 
 Temas disponíveis: ${themes.join(', ')}.
 `
@@ -353,15 +286,14 @@ async function main() {
 	const themes = await listThemes()
 	const themeInfos = []
 	for (const t of themes) themeInfos.push(await assembleTheme(t))
-	const contractCount = await assembleContract()
-	await assemblePreset()
+	const contract = await assembleContract()
 	await assembleSolid()
 
 	await writeFile(
 		path.join(OUT, 'package.json'),
-		`${JSON.stringify(packageJson(themes), null, 2)}\n`,
+		`${JSON.stringify(packageJson(themes, contract.entries), null, 2)}\n`,
 	)
-	await writeFile(path.join(OUT, 'README.md'), readme(themes, contractCount))
+	await writeFile(path.join(OUT, 'README.md'), readme(themes, contract.total))
 
 	// Relatório
 	async function dirSize(dir) {
@@ -380,8 +312,8 @@ async function main() {
 			`tema ${ti.theme}: ${ti.families.length} famílias + scope + public-vars + index.css`,
 		)
 	}
-	console.log(`contract: ${contractCount} nomes (JS + d.ts)`)
-	console.log(`preset + solid: compilados`)
+	console.log(`contract: ${contract.entries.length} famílias, ${contract.total} nomes`)
+	console.log(`solid: compilado`)
 	console.log(`tamanho total do pacote: ${(size / 1024).toFixed(1)} KB`)
 }
 
