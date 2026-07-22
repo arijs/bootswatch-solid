@@ -21,7 +21,9 @@ import { fileURLToPath } from 'node:url'
 import { parse, stringify } from '@adobe/css-tools'
 
 const HASH = /\.(b[a-z0-9]+)/g // `.b<hash>` num seletor
-const STR_HASH = /["'](b[a-z0-9]+)["']/g // `"b<hash>"` num JS bundlado
+// `"b<hash>"` / `'b<hash>'` / `` `b<hash>` `` num JS bundlado (o minificador do
+// Vite pode usar template literals p/ as strings de classe).
+const STR_HASH = /["'`](b[a-z0-9]+)["'`]/g
 
 const selectorContractHashes = (sel, allHashes) =>
 	[...sel.matchAll(HASH)].map((m) => m[1]).filter((h) => allHashes.has(h))
