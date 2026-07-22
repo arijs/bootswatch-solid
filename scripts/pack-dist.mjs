@@ -19,9 +19,12 @@
 // Pré-requisito: `pkg:build` (build-package) e `pkg:contract` (build-contract)
 // já rodaram (populam dist-pkg/themes/ e dist-pkg/contract/). NÃO recompila o VE.
 
+import { spawnSync } from 'node:child_process'
+import { existsSync } from 'node:fs'
 import { copyFile, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import { build as esbuild } from 'esbuild'
 
 const ROOT = process.cwd()
@@ -120,6 +123,16 @@ async function assembleContract() {
 	// <entry>/index.{js,d.ts}; vars → <entry>/vars.{js,d.ts} (import de
 	// <familia>/vars). classEntries têm ./<entry>; varsEntries têm ./<entry>/vars.
 	const SRC_C = path.join(ROOT, 'dist-pkg', 'contract')
+	// Auto-cura: o pack depende do contract por-família (build-contract.mjs). Se o
+	// manifest não existe (ex.: pipeline que roda só build→pack, como o publish.yml
+	// via OIDC), gera o contract aqui — assim o pack é auto-suficiente e não exige
+	// um passo extra no workflow (que este token não tem escopo p/ editar).
+	if (!existsSync(path.join(SRC_C, 'manifest.json'))) {
+		const script = path.join(path.dirname(fileURLToPath(import.meta.url)), 'build-contract.mjs')
+		console.log('▶ contract ausente — gerando (node scripts/build-contract.mjs)…')
+		const r = spawnSync(process.execPath, [script], { stdio: 'inherit', cwd: ROOT })
+		if (r.status !== 0) throw new Error(`build-contract falhou (código ${r.status})`)
+	}
 	const manifest = JSON.parse(await readFile(path.join(SRC_C, 'manifest.json'), 'utf8'))
 	const classEntries = []
 	const varsEntries = []

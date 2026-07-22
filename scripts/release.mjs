@@ -60,6 +60,10 @@ console.log(
 if (!SKIP_BUILD) run('Build do pacote (0 literal em 27 temas)', npm, ['run', 'pkg:build'])
 else console.log('\n▶ Build pulado (--skip-build) — usando dist-pkg atual.')
 
+// 1b. Gera o contract por família (dist-pkg/contract/**). O pack-dist lê o
+// manifest.json daí — sem este passo o pack quebra com ENOENT.
+if (!SKIP_BUILD) run('Gera o contract por família', npm, ['run', 'pkg:contract'])
+
 // 2. Monta a raiz publicável em package/ com a versão informada.
 run('Monta a raiz publicável (package/)', npm, ['run', 'pkg:pack'], {
 	env: { ...process.env, BSVE_VERSION: version },
