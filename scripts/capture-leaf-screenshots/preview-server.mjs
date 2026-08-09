@@ -40,12 +40,14 @@ function killPortWindows(port) {
 	}
 }
 
-function getPnpmCommand() {
-	return process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'
+// package.json declares `packageManager: npm`, and pnpm refuses to run a project
+// that names another manager — so the baseline app's build/preview must use npm.
+function getPackageManagerCommand() {
+	return process.platform === 'win32' ? 'npm.cmd' : 'npm'
 }
 
 export function buildProject() {
-	execSync(`${getPnpmCommand()} build -- --logLevel error`, {
+	execSync(`${getPackageManagerCommand()} run build -- --logLevel error`, {
 		cwd: ROOT,
 		env: process.env,
 		stdio: 'inherit',
@@ -64,13 +66,13 @@ export function assertBuildOutputExists() {
 	const distIndex = path.join(ROOT, 'dist', 'index.html')
 	if (existsSync(distIndex)) return
 	throw new Error(
-		'Missing build output at dist/index.html. Run with --build (or run "pnpm build") before screenshot capture.',
+		'Missing build output at dist/index.html. Run with --build (or run "npm run build") before screenshot capture.',
 	)
 }
 
 export function startPreviewServer() {
 	killPortWindows(4173)
-	const command = `${getPnpmCommand()} preview --host 127.0.0.1 --port 4173 --strictPort`
+	const command = `${getPackageManagerCommand()} run preview -- --host 127.0.0.1 --port 4173 --strictPort`
 	return spawn(command, {
 		cwd: ROOT,
 		env: process.env,
@@ -131,7 +133,7 @@ export function assertVeBuildOutputExists() {
 export function startDevServer() {
 	ensureScreenshotsJunction()
 	killPortWindows(4173)
-	const command = `${getPnpmCommand()} dev --host 127.0.0.1 --port 4173 --strictPort`
+	const command = `${getPackageManagerCommand()} run dev -- --host 127.0.0.1 --port 4173 --strictPort`
 	return spawn(command, {
 		cwd: ROOT,
 		env: process.env,
