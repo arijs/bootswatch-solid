@@ -36,10 +36,9 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -109,28 +108,28 @@ globalStyle(`${luxScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${luxScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${luxScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${luxScope}${pageItemActive} > ${luxScope}${pageLink}`, {
+globalStyle(`${luxScope}${active} > ${luxScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${luxScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${luxScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${luxScope}${pageItemDisabled} > ${luxScope}${pageLink}`, {
+globalStyle(`${luxScope}${disabled} > ${luxScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

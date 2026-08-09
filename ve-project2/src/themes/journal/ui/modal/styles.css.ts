@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${journalScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${journalScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${journalScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${journalScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${journalScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${journalScope}${modal}${modalFade} ${journalScope}${modalDialog}`, {
+globalStyle(`${journalScope}${modal}${fade} ${journalScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${journalScope}${modal}${modalFade} ${journalScope}${modalDialog}`, {
+globalStyle(`${journalScope}${modal}${fade} ${journalScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${journalScope}${modal}${modalFade} ${journalScope}${modalDialog}`,
 	},
 })
 
-globalStyle(`${journalScope}${modal}${modalShowHook} ${journalScope}${modalDialog}`, {
+globalStyle(`${journalScope}${modal}${show} ${journalScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${journalScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${journalScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${journalScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${journalScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${journalScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

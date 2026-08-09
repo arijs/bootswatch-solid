@@ -34,12 +34,11 @@ import {
 	varBsAccordionTransition,
 } from '../../../../theme-contract/ui/accordion/_vars.css'
 
-import { accordionFlush } from '../../../../theme-contract/literal/contract.css'
+import { accordionFlush, collapsed } from '../../../../theme-contract/literal/contract.css'
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -95,13 +94,13 @@ globalStyle(`${sandstoneScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${sandstoneScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${sandstoneScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${sandstoneScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${sandstoneScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -163,11 +162,6 @@ globalStyle(`${sandstoneScope}${accordionItem}:not(:first-of-type)`, {
 globalStyle(`${sandstoneScope}${accordionItem}:last-of-type`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
-})
-
-globalStyle(`${sandstoneScope}${accordionItem}:last-of-type > ${sandstoneScope}${accordionHeader} ${sandstoneScope}${accordionButton}${accordionButtonCollapsed}`, {
-	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
 
 globalStyle(`${sandstoneScope}${accordionItem}:last-of-type > ${sandstoneScope}${accordionCollapse}`, {

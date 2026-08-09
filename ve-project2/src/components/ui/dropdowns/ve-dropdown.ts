@@ -1,13 +1,12 @@
 import * as bootstrap from 'bootstrap'
 import { getVarName } from '../../../logic/veGetVarName'
+import { show } from '../../../theme-contract/literal/contract.css'
 import { varBsPosition } from '../../../theme-contract/utilities/generated/_vars.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeDropdownRuntimeClasses {
-	btnShowHook: string
 	dropdownItem: string
 	dropdownMenu: string
-	dropdownMenuShow: string
 	dropend: string
 	dropstart: string
 	dropup: string
@@ -19,8 +18,11 @@ export function createVeDropdown(
 	return (
 		bootstrap.Dropdown as unknown as BootstrapWithDefaults<typeof bootstrap.Dropdown>
 	).extendDefaultConfig({
-		CLASS_NAME_SHOW_TRIGGER: runtimeClasses.btnShowHook,
-		CLASS_NAME_SHOW_MENU: runtimeClasses.dropdownMenuShow,
+		// Both the trigger button and the open menu carry Bootstrap's `.show`; the
+		// source rules are `.btn.show` and `.dropdown-menu.show`, so one contract serves
+		// both and the compound selectors keep them apart.
+		CLASS_NAME_SHOW_TRIGGER: show,
+		CLASS_NAME_SHOW_MENU: show,
 		CLASS_NAME_DROPUP: runtimeClasses.dropup,
 		CLASS_NAME_DROPEND: runtimeClasses.dropend,
 		CLASS_NAME_DROPSTART: runtimeClasses.dropstart,

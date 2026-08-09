@@ -34,12 +34,11 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
-import { accordionFlush } from '../../../../theme-contract/literal/contract.css'
+import { accordionFlush, collapsed } from '../../../../theme-contract/literal/contract.css'
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -95,13 +94,13 @@ globalStyle(`${quartzScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${quartzScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${quartzScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${quartzScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${quartzScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -163,11 +162,6 @@ globalStyle(`${quartzScope}${accordionItem}:not(:first-of-type)`, {
 globalStyle(`${quartzScope}${accordionItem}:last-of-type`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
-})
-
-globalStyle(`${quartzScope}${accordionItem}:last-of-type > ${quartzScope}${accordionHeader} ${quartzScope}${accordionButton}${accordionButtonCollapsed}`, {
-	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
 
 globalStyle(`${quartzScope}${accordionItem}:last-of-type > ${quartzScope}${accordionCollapse}`, {

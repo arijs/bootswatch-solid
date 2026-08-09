@@ -52,6 +52,7 @@ import {
 	clsH4,
 	clsH5,
 	clsH6,
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -61,6 +62,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -71,29 +73,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${vaporScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${vaporScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${vaporScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${vaporScope}${modal}`, {
 	vars: {
@@ -138,12 +122,12 @@ globalStyle(`${vaporScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${vaporScope}${modal}${modalFade} ${vaporScope}${modalDialog}`, {
+globalStyle(`${vaporScope}${modal}${fade} ${vaporScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${vaporScope}${modal}${modalFade} ${vaporScope}${modalDialog}`, {
+globalStyle(`${vaporScope}${modal}${fade} ${vaporScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -151,7 +135,7 @@ globalStyle(`${vaporScope}${modal}${modalFade} ${vaporScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${vaporScope}${modal}${modalShowHook} ${vaporScope}${modalDialog}`, {
+globalStyle(`${vaporScope}${modal}${show} ${vaporScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -207,11 +191,11 @@ globalStyle(`${vaporScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${vaporScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${vaporScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${vaporScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${vaporScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

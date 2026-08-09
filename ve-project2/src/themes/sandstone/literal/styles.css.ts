@@ -912,6 +912,7 @@ import {
 	colXxl8,
 	colXxl9,
 	colXxlAuto,
+	collapse,
 	collapseHorizontal,
 	collapsed,
 	collapsing,
@@ -1047,6 +1048,7 @@ import {
 	end0,
 	end100,
 	end50,
+	fade,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -2277,6 +2279,7 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
+	show,
 	showing,
 	spinnerBorderSm,
 	spinnerGrowSm,
@@ -2393,7 +2396,6 @@ import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -2470,7 +2472,6 @@ import {
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -2480,7 +2481,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -2513,15 +2513,12 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	collapse,
 	navbar,
 	navbarBrand,
 	navbarCollapse,
@@ -2533,15 +2530,11 @@ import {
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
@@ -2563,8 +2556,6 @@ import {
 } from '../../../theme-contract/ui/offcanvas/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -2578,9 +2569,7 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
 	progress,
@@ -2590,19 +2579,8 @@ import {
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../theme-contract/ui/tooltips/contract.css'
+import { toast, toastBody, toastHeader } from '../../../theme-contract/ui/toasts/contract.css'
+import { tooltipArrow, tooltipInner } from '../../../theme-contract/ui/tooltips/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -8683,12 +8661,6 @@ globalStyle(`${sandstoneScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
 globalStyle(`${sandstoneScope}${btnCheck}:checked + ${sandstoneScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8706,10 +8678,6 @@ globalStyle(`${sandstoneScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${sandstoneScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${sandstoneScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9111,18 +9079,6 @@ globalStyle(`${sandstoneScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
-globalStyle(`${sandstoneScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${sandstoneScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${sandstoneScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
 globalStyle(`${sandstoneScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -9131,43 +9087,7 @@ globalStyle(`${sandstoneScope}${fade}`, {
 	},
 })
 
-globalStyle(`${sandstoneScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${sandstoneScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${sandstoneScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${sandstoneScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${sandstoneScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${sandstoneScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${sandstoneScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9652,7 +9572,7 @@ globalStyle(`${sandstoneScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${sandstoneScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${sandstoneScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 
@@ -9947,7 +9867,7 @@ globalStyle(`${sandstoneScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(50, 93, 136, 0.25)',
 })
 
-globalStyle(`${sandstoneScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sandstoneScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -9989,7 +9909,7 @@ globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -10019,7 +9939,7 @@ globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -10052,7 +9972,7 @@ globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}:focus`
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -10216,7 +10136,7 @@ globalStyle(`${sandstoneScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10979,7 +10899,7 @@ globalStyle(`${sandstoneScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${sandstoneScope}${cardHeaderTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${cardHeaderTabs} ${sandstoneScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -11194,13 +11114,13 @@ globalStyle(`${sandstoneScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${sandstoneScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${sandstoneScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${sandstoneScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${sandstoneScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -11264,7 +11184,7 @@ globalStyle(`${sandstoneScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${sandstoneScope}${accordionItem}:last-of-type > ${sandstoneScope}${accordionHeader} ${sandstoneScope}${accordionButton}${accordionButtonCollapsed}`, {
+globalStyle(`${sandstoneScope}${accordionItem}:last-of-type > ${sandstoneScope}${accordionHeader} ${sandstoneScope}${accordionButton}${collapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -11410,28 +11330,28 @@ globalStyle(`${sandstoneScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${sandstoneScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${sandstoneScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${pageItemActive} > ${sandstoneScope}${pageLink}`, {
+globalStyle(`${sandstoneScope}${active} > ${sandstoneScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${sandstoneScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${pageItemDisabled} > ${sandstoneScope}${pageLink}`, {
+globalStyle(`${sandstoneScope}${disabled} > ${sandstoneScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -12331,11 +12251,11 @@ globalStyle(`${sandstoneScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${sandstoneScope}${toast}${toastShowing}`, {
+globalStyle(`${sandstoneScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sandstoneScope}${toast}:not(${toastShow})`, {
+globalStyle(`${sandstoneScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 
@@ -12419,12 +12339,12 @@ globalStyle(`${sandstoneScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${sandstoneScope}${modal}${modalFade} ${sandstoneScope}${modalDialog}`, {
+globalStyle(`${sandstoneScope}${modal}${fade} ${sandstoneScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${sandstoneScope}${modal}${modalFade} ${sandstoneScope}${modalDialog}`, {
+globalStyle(`${sandstoneScope}${modal}${fade} ${sandstoneScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12432,7 +12352,7 @@ globalStyle(`${sandstoneScope}${modal}${modalFade} ${sandstoneScope}${modalDialo
 	},
 })
 
-globalStyle(`${sandstoneScope}${modal}${modalShowHook} ${sandstoneScope}${modalDialog}`, {
+globalStyle(`${sandstoneScope}${modal}${show} ${sandstoneScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12488,11 +12408,11 @@ globalStyle(`${sandstoneScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${sandstoneScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${sandstoneScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sandstoneScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${sandstoneScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -12889,7 +12809,7 @@ globalStyle(`${sandstoneScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sandstoneScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${sandstoneScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -24825,19 +24745,19 @@ globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:focus`, {
 	color: '#8e8c84',
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${disabled}`, {
 	color: '#dfd7ca',
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${disabled}:hover`, {
 	color: '#dfd7ca',
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}:focus`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${disabled}:focus`, {
 	color: '#dfd7ca',
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
@@ -24848,7 +24768,7 @@ globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
 	border: '1px solid transparent',
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${active}`, {
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
@@ -24863,13 +24783,13 @@ globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}:focus`, {
 	borderColor: '#dfd7ca',
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${disabled}`, {
 	color: '#dfd7ca',
 	backgroundColor: 'transparent',
 	borderColor: 'transparent',
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${disabled}:hover`, {
 	color: '#dfd7ca',
 	backgroundColor: 'transparent',
 	borderColor: 'transparent',

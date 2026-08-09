@@ -35,6 +35,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -43,6 +44,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -50,11 +52,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -108,7 +107,7 @@ globalStyle(`${vaporScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(111, 66, 193, 0.25)',
 })
 
-globalStyle(`${vaporScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${vaporScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -150,7 +149,7 @@ globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -174,7 +173,7 @@ globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -207,7 +206,7 @@ globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -257,7 +256,7 @@ globalStyle(`${vaporScope}${tabContent} > ${vaporScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${vaporScope}${navbarNav} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navbarNav} ${vaporScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -322,16 +321,16 @@ globalStyle(`${vaporScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${vaporScope}${cardHeaderTabs} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${cardHeaderTabs} ${vaporScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
 
-globalStyle(`${vaporScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${vaporScope}${navLink}${disabled}`, {
 	textShadow: '0 0 1px rgba(50, 251, 226, 0.3), 0 0 2px rgba(50, 251, 226, 0.3), 0 0 5px rgba(50, 251, 226, 0.2)',
 })
 
-globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navLink}${active}`, {
 	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
@@ -339,7 +338,7 @@ globalStyle(`${vaporScope}${navTabs} ${vaporScope}${navItem}${show} ${vaporScope
 	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })
 
-globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navPills} ${vaporScope}${navLink}${active}`, {
 	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
@@ -347,6 +346,6 @@ globalStyle(`${vaporScope}${navPills} ${vaporScope}${show} > ${vaporScope}${navL
 	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })
 
-globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${navLinkActive}`, {
+globalStyle(`${vaporScope}${navUnderline} ${vaporScope}${navLink}${active}`, {
 	textShadow: '0 0 1px rgba(234, 57, 184, 0.3), 0 0 2px rgba(234, 57, 184, 0.3), 0 0 5px rgba(234, 57, 184, 0.2)',
 })

@@ -41,15 +41,11 @@ import {
 	clsH4,
 	clsH5,
 	clsH6,
+	show,
+	showing,
 	toastContainer,
 } from '../../../../theme-contract/literal/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../../theme-contract/ui/toasts/contract.css'
+import { toast, toastBody, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
 globalStyle(`${vaporScope}${toast}`, {
 	vars: {
@@ -81,11 +77,11 @@ globalStyle(`${vaporScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${vaporScope}${toast}${toastShowing}`, {
+globalStyle(`${vaporScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${vaporScope}${toast}:not(${toastShow})`, {
+globalStyle(`${vaporScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 

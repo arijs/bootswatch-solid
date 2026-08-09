@@ -23,7 +23,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
 	'contents/heading',
-	'utilities/used',
+	'utilities',
 ]
 
 const FeaturedCard: Component = () => {

@@ -7,15 +7,13 @@ import {
 import { small } from '../../../theme-contract/contents/basic/contract.css'
 import { rounded } from '../../../theme-contract/contents/images/contract.css'
 import { elButton, elStrong, elSvg } from '../../../theme-contract/global-elements/contract.css'
-import { btnClose } from '../../../theme-contract/literal/contract.css'
+import { btnClose, fade, show } from '../../../theme-contract/literal/contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
 	toast,
 	toastBody,
-	toastFade,
 	toastHeader,
 	toastRuntime,
-	toastShow,
 } from '../../../theme-contract/ui/toasts/contract.css'
 import {
 	alignItemsCenter,
@@ -32,7 +30,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/alerts',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const ToastExample: Component = () => {
@@ -42,7 +40,7 @@ const ToastExample: Component = () => {
 	return (
 		<div class={`bd-example ${theme} ${bgDark} ${p5} ${alignItemsCenter}`}>
 			<div
-				class={`${theme} ${toast} ${toastRuntime} ${toastFade} ${toastShow} pwhook-toast`}
+				class={`${theme} ${toast} ${toastRuntime} ${fade} ${show} pwhook-toast`}
 				ref={(toastNode) => {
 					new VeToast(toastNode, { autohide: false }).show()
 				}}

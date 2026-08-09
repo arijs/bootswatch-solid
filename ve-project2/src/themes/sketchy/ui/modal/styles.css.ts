@@ -37,6 +37,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -46,6 +47,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -56,29 +58,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${sketchyScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${sketchyScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${sketchyScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${sketchyScope}${modal}`, {
 	vars: {
@@ -123,12 +107,12 @@ globalStyle(`${sketchyScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`, {
+globalStyle(`${sketchyScope}${modal}${fade} ${sketchyScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`, {
+globalStyle(`${sketchyScope}${modal}${fade} ${sketchyScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -136,7 +120,7 @@ globalStyle(`${sketchyScope}${modal}${modalFade} ${sketchyScope}${modalDialog}`,
 	},
 })
 
-globalStyle(`${sketchyScope}${modal}${modalShowHook} ${sketchyScope}${modalDialog}`, {
+globalStyle(`${sketchyScope}${modal}${show} ${sketchyScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -192,11 +176,11 @@ globalStyle(`${sketchyScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${sketchyScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${sketchyScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sketchyScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${sketchyScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

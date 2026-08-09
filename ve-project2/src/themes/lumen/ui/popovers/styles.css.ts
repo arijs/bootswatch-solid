@@ -43,26 +43,8 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../../theme-contract/ui/popovers/contract.css'
-
-globalStyle(`${lumenScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${lumenScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${lumenScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
 
 globalStyle(`${lumenScope}${popover}`, {
 	vars: {

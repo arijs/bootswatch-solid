@@ -37,6 +37,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -46,6 +47,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -56,29 +58,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${simplexScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${simplexScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${simplexScope}${modal}`, {
 	vars: {
@@ -123,12 +107,12 @@ globalStyle(`${simplexScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${simplexScope}${modal}${modalFade} ${simplexScope}${modalDialog}`, {
+globalStyle(`${simplexScope}${modal}${fade} ${simplexScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${simplexScope}${modal}${modalFade} ${simplexScope}${modalDialog}`, {
+globalStyle(`${simplexScope}${modal}${fade} ${simplexScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -136,7 +120,7 @@ globalStyle(`${simplexScope}${modal}${modalFade} ${simplexScope}${modalDialog}`,
 	},
 })
 
-globalStyle(`${simplexScope}${modal}${modalShowHook} ${simplexScope}${modalDialog}`, {
+globalStyle(`${simplexScope}${modal}${show} ${simplexScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -192,11 +176,11 @@ globalStyle(`${simplexScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${simplexScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${simplexScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${simplexScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${simplexScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

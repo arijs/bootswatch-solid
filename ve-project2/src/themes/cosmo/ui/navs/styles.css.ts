@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${cosmoScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(39, 128, 227, 0.25)',
 })
 
-globalStyle(`${cosmoScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${cosmoScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -150,7 +149,7 @@ globalStyle(`${cosmoScope}${navTabs} ${cosmoScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${cosmoScope}${navTabs} ${cosmoScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cosmoScope}${navTabs} ${cosmoScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -170,7 +169,7 @@ globalStyle(`${cosmoScope}${navPills}`, {
 	},
 })
 
-globalStyle(`${cosmoScope}${navPills} ${cosmoScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cosmoScope}${navPills} ${cosmoScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -203,7 +202,7 @@ globalStyle(`${cosmoScope}${navUnderline} ${cosmoScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${cosmoScope}${navUnderline} ${cosmoScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cosmoScope}${navUnderline} ${cosmoScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -253,7 +252,7 @@ globalStyle(`${cosmoScope}${tabContent} > ${cosmoScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${cosmoScope}${navbarNav} ${cosmoScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cosmoScope}${navbarNav} ${cosmoScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -318,7 +317,7 @@ globalStyle(`${cosmoScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${cosmoScope}${cardHeaderTabs} ${cosmoScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cosmoScope}${cardHeaderTabs} ${cosmoScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

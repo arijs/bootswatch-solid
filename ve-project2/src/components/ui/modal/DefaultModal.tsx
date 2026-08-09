@@ -8,7 +8,7 @@ import {
 import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btnClose } from '../../../theme-contract/literal/contract.css'
+import { btnClose, fade, show } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
@@ -26,11 +26,9 @@ import {
 	modalBody,
 	modalContent,
 	modalDialog,
-	modalFade,
 	modalFooter,
 	modalHeader,
 	modalOpenHook,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import { dFlex } from '../../../theme-contract/utilities/contract.css'
@@ -42,7 +40,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/alerts',
 	'contents/basic',
 	'contents/heading',
-	'utilities/used',
+	'utilities',
 ]
 
 const DefaultModal: Component = () => {
@@ -55,7 +53,7 @@ const DefaultModal: Component = () => {
 		modalBody,
 		modalDialog,
 		modalOpenHook: `${theme} ${modalOpenHook}`,
-		modalShowHook,
+		show,
 	})
 	return (
 		<>
@@ -72,7 +70,7 @@ const DefaultModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${fade} pwhook-modal`}
 				id="exampleModalDefault"
 				tabindex="-1"
 				role="dialog"

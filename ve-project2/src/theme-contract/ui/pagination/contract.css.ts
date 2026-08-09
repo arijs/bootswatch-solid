@@ -11,6 +11,4 @@ export const paginationSm = style({})
 // ── Pagination items / links ──────────────────────────────────────────────────
 
 export const pageItem = style({})
-export const pageItemActive = style({})
-export const pageItemDisabled = style({})
 export const pageLink = style({})

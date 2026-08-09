@@ -43,26 +43,8 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../../theme-contract/ui/popovers/contract.css'
-
-globalStyle(`${literaScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${literaScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${literaScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
 
 globalStyle(`${literaScope}${popover}`, {
 	vars: {

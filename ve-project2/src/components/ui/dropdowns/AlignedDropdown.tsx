@@ -1,21 +1,19 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { link } from '../../../theme-contract/contents/basic/contract.css'
-import { h6, horizontalRule } from '../../../theme-contract/contents/contract.css'
+import { horizontalRule, link } from '../../../theme-contract/contents/basic/contract.css'
+import { h6 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btnGroup } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnSecondary, inputFontFamily } from '../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownDivider,
 	dropdownHeader,
 	dropdownItem,
 	dropdownMenu,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownToggle,
 	dropend,
 	dropstart,
@@ -30,17 +28,15 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/dropdowns',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const AlignedDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	configureVeDropdown({
-		btnShowHook,
 		dropdownItem,
 		dropdownMenu,
-		dropdownMenuShow,
 		dropend,
 		dropstart,
 		dropup,

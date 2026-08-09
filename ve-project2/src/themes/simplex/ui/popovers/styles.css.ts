@@ -42,26 +42,8 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../../theme-contract/ui/popovers/contract.css'
-
-globalStyle(`${simplexScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${simplexScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${simplexScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
 
 globalStyle(`${simplexScope}${popover}`, {
 	vars: {

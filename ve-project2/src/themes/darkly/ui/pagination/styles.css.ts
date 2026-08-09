@@ -33,10 +33,9 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -106,28 +105,28 @@ globalStyle(`${darklyScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${darklyScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${darklyScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${darklyScope}${pageItemActive} > ${darklyScope}${pageLink}`, {
+globalStyle(`${darklyScope}${active} > ${darklyScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${darklyScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${darklyScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${darklyScope}${pageItemDisabled} > ${darklyScope}${pageLink}`, {
+globalStyle(`${darklyScope}${disabled} > ${darklyScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

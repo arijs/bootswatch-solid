@@ -5,14 +5,14 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton, elSvg } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { active, dBlock, dMdBlock, dNone, w100 } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
 	carousel,
-	carouselActive,
 	carouselCaption,
 	carouselCaptionResponsive,
 	carouselControlNext,
@@ -36,7 +36,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/heading',
 	'contents/images',
-	'utilities/used',
+	'utilities',
 ]
 
 const CarouselExample: Component = () => {
@@ -44,7 +44,7 @@ const CarouselExample: Component = () => {
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	const VeCarousel = configureVeCarousel({
 		carousel,
-		carouselActive,
+		active,
 		carouselIndicators,
 		carouselItem,
 		carouselItemEnd,
@@ -73,7 +73,7 @@ const CarouselExample: Component = () => {
 						type="button"
 						data-bs-target="#carouselExampleCaptions"
 						data-bs-slide-to="0"
-						class={`${theme} ${elButton} ${carouselActive} ${active} pwhook-carousel-indicator pwhook-carousel-active`}
+						class={`${theme} ${elButton} ${active} pwhook-carousel-indicator pwhook-carousel-active`}
 						aria-current="true"
 						aria-label="Slide 1"
 					/>
@@ -94,7 +94,7 @@ const CarouselExample: Component = () => {
 				</div>
 				<div class={`${theme} ${carouselInner}`}>
 					<div
-						class={`${theme} ${carouselItem} ${carouselActive} ${active} pwhook-carousel-item pwhook-carousel-active`}
+						class={`${theme} ${carouselItem} ${active} pwhook-carousel-item pwhook-carousel-active`}
 					>
 						<svg
 							class={`bd-placeholder-img bd-placeholder-img-lg ${theme} ${elSvg} ${dBlock} ${w100}`}

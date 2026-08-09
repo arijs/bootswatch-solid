@@ -33,6 +33,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -41,6 +42,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -48,11 +50,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -106,7 +105,7 @@ globalStyle(`${superheroScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(223, 105, 25, 0.25)',
 })
 
-globalStyle(`${superheroScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${superheroScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -148,7 +147,7 @@ globalStyle(`${superheroScope}${navTabs} ${superheroScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${superheroScope}${navTabs} ${superheroScope}${navLink}${navLinkActive}`, {
+globalStyle(`${superheroScope}${navTabs} ${superheroScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -172,7 +171,7 @@ globalStyle(`${superheroScope}${navPills} ${superheroScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${superheroScope}${navPills} ${superheroScope}${navLink}${navLinkActive}`, {
+globalStyle(`${superheroScope}${navPills} ${superheroScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -205,7 +204,7 @@ globalStyle(`${superheroScope}${navUnderline} ${superheroScope}${navLink}:focus`
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${superheroScope}${navUnderline} ${superheroScope}${navLink}${navLinkActive}`, {
+globalStyle(`${superheroScope}${navUnderline} ${superheroScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -255,7 +254,7 @@ globalStyle(`${superheroScope}${tabContent} > ${superheroScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${superheroScope}${navbarNav} ${superheroScope}${navLink}${navLinkActive}`, {
+globalStyle(`${superheroScope}${navbarNav} ${superheroScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -320,7 +319,7 @@ globalStyle(`${superheroScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${superheroScope}${cardHeaderTabs} ${superheroScope}${navLink}${navLinkActive}`, {
+globalStyle(`${superheroScope}${cardHeaderTabs} ${superheroScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -341,10 +340,10 @@ globalStyle(`${superheroScope}${navPills} ${superheroScope}${navLink}:hover`, {
 	color: '#ebebeb',
 })
 
-globalStyle(`${superheroScope}${navTabs} ${superheroScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${superheroScope}${navTabs} ${superheroScope}${navLink}${disabled}`, {
 	color: 'rgba(255, 255, 255, 0.4)',
 })
 
-globalStyle(`${superheroScope}${navPills} ${superheroScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${superheroScope}${navPills} ${superheroScope}${navLink}${disabled}`, {
 	color: 'rgba(255, 255, 255, 0.4)',
 })

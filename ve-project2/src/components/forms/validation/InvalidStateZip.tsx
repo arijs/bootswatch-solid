@@ -20,7 +20,7 @@ import { colMd3, colSm6, g3, row, rowCol } from '../../../theme-contract/utiliti
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const InvalidStateZip: Component = () => {

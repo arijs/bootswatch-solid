@@ -10,14 +10,13 @@ import { containerFluid } from '../../../../../theme-contract/layout/container.c
 import { active } from '../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnLink,
 	inputFontFamily,
 } from '../../../../../theme-contract/ui/buttons/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidCheckActiveLinkButton: Component = () => {
@@ -28,7 +27,7 @@ const SolidCheckActiveLinkButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnLink} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnLink} ${active} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

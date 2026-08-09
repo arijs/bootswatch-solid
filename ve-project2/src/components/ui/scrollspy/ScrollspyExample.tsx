@@ -5,8 +5,8 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { link } from '../../../theme-contract/contents/basic/contract.css'
-import { h4, paragraph } from '../../../theme-contract/contents/contract.css'
+import { link, paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { h4 } from '../../../theme-contract/contents/heading/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { active, bgLight, navbarLight } from '../../../theme-contract/literal/contract.css'
 import {
@@ -17,13 +17,7 @@ import {
 	dropdownToggle,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { navbar, navbarBgLight, navbarBrand } from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	nav,
-	navItem,
-	navLink,
-	navLinkActive,
-	navPills,
-} from '../../../theme-contract/ui/navs/contract.css'
+import { nav, navItem, navLink, navPills } from '../../../theme-contract/ui/navs/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { px3 } from '../../../theme-contract/utilities/contract.css'
 
@@ -34,7 +28,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/dropdowns',
 	'contents/basic',
 	'contents/heading',
-	'utilities/used',
+	'utilities',
 ]
 
 const ScrollspyExample: Component = () => {
@@ -54,10 +48,7 @@ const ScrollspyExample: Component = () => {
 				</a>
 				<ul class={`${theme} ${nav} ${navPills}`}>
 					<li class={`${theme} ${navItem}`}>
-						<a
-							class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
-							href="#fat"
-						>
+						<a class={`${theme} ${link} ${navLink} ${active}`} href="#fat">
 							@fat
 						</a>
 					</li>

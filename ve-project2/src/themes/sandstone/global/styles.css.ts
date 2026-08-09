@@ -201,11 +201,12 @@ import {
 	clsH4,
 	clsH5,
 	clsH6,
+	collapse,
 	collapsing,
+	fade,
 	sandstone,
+	show,
 } from '../../../theme-contract/literal/contract.css'
-import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
-import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 
 globalStyle(`${sandstoneScope}${vars}`, {
 	vars: {

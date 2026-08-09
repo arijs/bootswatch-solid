@@ -35,6 +35,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -43,6 +44,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -50,11 +52,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -108,7 +107,7 @@ globalStyle(`${sketchyScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(51, 51, 51, 0.25)',
 })
 
-globalStyle(`${sketchyScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sketchyScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -150,7 +149,7 @@ globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sketchyScope}${navTabs} ${sketchyScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -174,7 +173,7 @@ globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sketchyScope}${navPills} ${sketchyScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -207,7 +206,7 @@ globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sketchyScope}${navUnderline} ${sketchyScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -257,7 +256,7 @@ globalStyle(`${sketchyScope}${tabContent} > ${sketchyScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sketchyScope}${navbarNav} ${sketchyScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -322,7 +321,7 @@ globalStyle(`${sketchyScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${sketchyScope}${cardHeaderTabs} ${sketchyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sketchyScope}${cardHeaderTabs} ${sketchyScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

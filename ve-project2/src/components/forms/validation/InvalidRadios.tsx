@@ -20,7 +20,7 @@ import { colMd6, g3, row, rowCol } from '../../../theme-contract/utilities/contr
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const InvalidRadios: Component = () => {

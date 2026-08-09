@@ -15,7 +15,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidCheckDisabledPrimaryButton: Component = () => {

@@ -28,14 +28,8 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
-import { toastContainer } from '../../../../theme-contract/literal/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../../theme-contract/ui/toasts/contract.css'
+import { show, showing, toastContainer } from '../../../../theme-contract/literal/contract.css'
+import { toast, toastBody, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
 globalStyle(`${quartzScope}${toast}`, {
 	vars: {
@@ -67,11 +61,11 @@ globalStyle(`${quartzScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${quartzScope}${toast}${toastShowing}`, {
+globalStyle(`${quartzScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${quartzScope}${toast}:not(${toastShow})`, {
+globalStyle(`${quartzScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 

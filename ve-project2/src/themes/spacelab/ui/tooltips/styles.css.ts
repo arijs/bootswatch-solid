@@ -28,30 +28,10 @@ import {
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
+	show,
 	tooltip,
 } from '../../../../theme-contract/literal/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
-
-globalStyle(`${spacelabScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${spacelabScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
+import { tooltipArrow, tooltipInner } from '../../../../theme-contract/ui/tooltips/contract.css'
 
 globalStyle(`${spacelabScope}${tooltip}`, {
 	vars: {
@@ -89,7 +69,7 @@ globalStyle(`${spacelabScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${spacelabScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${spacelabScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 

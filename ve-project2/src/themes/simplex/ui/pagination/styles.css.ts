@@ -34,10 +34,9 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -107,28 +106,28 @@ globalStyle(`${simplexScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${simplexScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${simplexScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${simplexScope}${pageItemActive} > ${simplexScope}${pageLink}`, {
+globalStyle(`${simplexScope}${active} > ${simplexScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${simplexScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${simplexScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${simplexScope}${pageItemDisabled} > ${simplexScope}${pageLink}`, {
+globalStyle(`${simplexScope}${disabled} > ${simplexScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

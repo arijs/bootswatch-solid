@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${unitedScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${unitedScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${unitedScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${unitedScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${unitedScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${unitedScope}${modal}${modalFade} ${unitedScope}${modalDialog}`, {
+globalStyle(`${unitedScope}${modal}${fade} ${unitedScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${unitedScope}${modal}${modalFade} ${unitedScope}${modalDialog}`, {
+globalStyle(`${unitedScope}${modal}${fade} ${unitedScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${unitedScope}${modal}${modalFade} ${unitedScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${unitedScope}${modal}${modalShowHook} ${unitedScope}${modalDialog}`, {
+globalStyle(`${unitedScope}${modal}${show} ${unitedScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${unitedScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${unitedScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${unitedScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${unitedScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${unitedScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

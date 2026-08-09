@@ -56,14 +56,15 @@ export function camelToKebab(value) {
 	return value.replace(/([A-Z])/g, '-$1').toLowerCase()
 }
 
-/** Contract exports that do not map to a simple CSS class selector. */
+/**
+ * Contract exports that do not map to a simple CSS class selector.
+ *
+ * Compound Bootstrap state selectors do NOT belong here. `.btn.show` is two class
+ * tokens and translates to two contracts, `${btn}${show}` — collapsing it into one
+ * `btnShowHook` identifier is what left four state contracts exported and unwired.
+ * See docs/ve2-literal-conversion-plan.md §8.6.
+ */
 export const CONTRACT_SELECTOR_OVERRIDES = {
-	btnActiveHook: '.btn.active',
-	btnShowHook: '.btn.show',
-	btnDisabledHook: '.btn.disabled',
-	tooltipShow: '.tooltip.show',
-	popoverShow: '.popover.show',
-	alertBtnCloseDisabledHook: '.btn-close.disabled',
 	alertBtnClose: '.btn-close',
 	inputFontFamily: 'input, button, select, optgroup, textarea',
 	body: 'body',

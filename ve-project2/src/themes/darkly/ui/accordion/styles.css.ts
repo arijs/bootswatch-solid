@@ -34,12 +34,11 @@ import {
 	varBsAccordionTransition,
 } from '../../../../theme-contract/ui/accordion/_vars.css'
 
-import { accordionFlush } from '../../../../theme-contract/literal/contract.css'
+import { accordionFlush, collapsed } from '../../../../theme-contract/literal/contract.css'
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -95,13 +94,13 @@ globalStyle(`${darklyScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${darklyScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${darklyScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${darklyScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${darklyScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -163,11 +162,6 @@ globalStyle(`${darklyScope}${accordionItem}:not(:first-of-type)`, {
 globalStyle(`${darklyScope}${accordionItem}:last-of-type`, {
 	borderBottomRightRadius: varBsAccordionBorderRadius,
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
-})
-
-globalStyle(`${darklyScope}${accordionItem}:last-of-type > ${darklyScope}${accordionHeader} ${darklyScope}${accordionButton}${accordionButtonCollapsed}`, {
-	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
-	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
 
 globalStyle(`${darklyScope}${accordionItem}:last-of-type > ${darklyScope}${accordionCollapse}`, {

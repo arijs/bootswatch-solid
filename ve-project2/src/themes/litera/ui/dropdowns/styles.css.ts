@@ -12,12 +12,6 @@ import {
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
 	varBsDropdownBorderRadius,
@@ -68,10 +62,9 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -81,7 +74,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -101,16 +93,6 @@ globalStyle(`${literaScope}${inputGroup}:not(${hasValidation}) > ${literaScope}$
 globalStyle(`${literaScope}${inputGroup}${hasValidation} > ${literaScope}${dropdownToggle}:nth-last-child(n+4)`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${literaScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${literaScope}${btn}${btnShowHook}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
 })
 
 globalStyle(`${literaScope}${dropup}`, {
@@ -562,7 +544,7 @@ globalStyle(`${literaScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${literaScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${literaScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 

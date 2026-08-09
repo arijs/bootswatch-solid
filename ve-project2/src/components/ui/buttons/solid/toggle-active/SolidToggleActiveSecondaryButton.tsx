@@ -11,7 +11,7 @@ import { btn, btnCheck, btnSecondary } from '../../../../../theme-contract/ui/bu
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidToggleActiveSecondaryButton: Component = () => {

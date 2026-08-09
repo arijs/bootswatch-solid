@@ -36,10 +36,9 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -109,28 +108,28 @@ globalStyle(`${sandstoneScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${sandstoneScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${sandstoneScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${pageItemActive} > ${sandstoneScope}${pageLink}`, {
+globalStyle(`${sandstoneScope}${active} > ${sandstoneScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${sandstoneScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${pageItemDisabled} > ${sandstoneScope}${pageLink}`, {
+globalStyle(`${sandstoneScope}${disabled} > ${sandstoneScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

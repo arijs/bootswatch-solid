@@ -5,28 +5,24 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { paragraph } from '../../../theme-contract/contents/contract.css'
+import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { active } from '../../../theme-contract/literal/contract.css'
+import { active, fade, show } from '../../../theme-contract/literal/contract.css'
 import {
-	fade,
 	nav,
 	navButtonReset,
 	navLink,
-	navLinkActive,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
-	tabPaneActive,
 } from '../../../theme-contract/ui/navs/contract.css'
 import { mb3 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const TabbedNav: Component = () => {
@@ -37,7 +33,7 @@ const TabbedNav: Component = () => {
 			<nav>
 				<div class={`${theme} ${nav} ${navTabs} ${mb3}`} id="nav-tab" role="tablist">
 					<button
-						class={`${theme} ${elButton} ${navButtonReset} ${navLink} ${navLinkActive} ${active}`}
+						class={`${theme} ${elButton} ${navButtonReset} ${navLink} ${active}`}
 						id="nav-home-tab"
 						type="button"
 						role="tab"
@@ -70,7 +66,7 @@ const TabbedNav: Component = () => {
 			</nav>
 			<div class={`${theme} ${tabContent}`} id="nav-tabContent">
 				<div
-					class={`${theme} ${tabPane} ${fade} ${show} ${tabPaneActive} ${active}`}
+					class={`${theme} ${tabPane} ${fade} ${show} ${active}`}
 					id="nav-home"
 					role="tabpanel"
 					aria-labelledby="nav-home-tab"

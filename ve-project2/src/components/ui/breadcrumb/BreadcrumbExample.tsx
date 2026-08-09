@@ -5,20 +5,16 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { link } from '../../../theme-contract/contents/contract.css'
+import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { elLi, elOl } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { active } from '../../../theme-contract/literal/contract.css'
-import {
-	breadcrumb,
-	breadcrumbItem,
-	breadcrumbItemActive,
-} from '../../../theme-contract/ui/breadcrumb/contract.css'
+import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrumb/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/breadcrumb',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const BreadcrumbExample: Component = () => {
@@ -41,10 +37,7 @@ const BreadcrumbExample: Component = () => {
 							Library
 						</a>
 					</li>
-					<li
-						class={`${theme} ${breadcrumbItem} ${breadcrumbItemActive} ${active} ${elLi}`}
-						aria-current="page"
-					>
+					<li class={`${theme} ${breadcrumbItem} ${active} ${elLi}`} aria-current="page">
 						Data
 					</li>
 				</ol>

@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${materiaScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(33, 150, 243, 0.25)',
 })
 
-globalStyle(`${materiaScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${materiaScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${materiaScope}${navPills} ${materiaScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${materiaScope}${navPills} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${navPills} ${materiaScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 	backgroundImage: varBsGradient,
@@ -211,7 +210,7 @@ globalStyle(`${materiaScope}${navUnderline} ${materiaScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${materiaScope}${navUnderline} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${navUnderline} ${materiaScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -261,7 +260,7 @@ globalStyle(`${materiaScope}${tabContent} > ${materiaScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${navbarNav} ${materiaScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -326,7 +325,7 @@ globalStyle(`${materiaScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${materiaScope}${cardHeaderTabs} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${cardHeaderTabs} ${materiaScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -370,29 +369,29 @@ globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}:focus:hover`, {
 	boxShadow: 'inset 0 -2px 0 #2196f3',
 })
 
-globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${active}`, {
 	color: '#2196f3',
 	border: 'none',
 	boxShadow: 'inset 0 -2px 0 #2196f3',
 })
 
-globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${navLinkActive}:focus`, {
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${active}:focus`, {
 	color: '#2196f3',
 	border: 'none',
 	boxShadow: 'inset 0 -2px 0 #2196f3',
 })
 
-globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${navLinkActive}:hover`, {
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${active}:hover`, {
 	color: '#2196f3',
 	border: 'none',
 })
 
-globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${navLinkActive}:focus:hover`, {
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${active}:focus:hover`, {
 	color: '#2196f3',
 	border: 'none',
 })
 
-globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${materiaScope}${navTabs} ${materiaScope}${navLink}${disabled}`, {
 	boxShadow: 'inset 0 -1px 0 #ddd',
 })
 
@@ -408,14 +407,14 @@ globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}:
 	border: 'none',
 })
 
-globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}${active}`, {
 	border: 'none',
 })
 
-globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}${navLinkActive}:hover`, {
+globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}${active}:hover`, {
 	border: 'none',
 })
 
-globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}${navLinkActive}:focus`, {
+globalStyle(`${materiaScope}${navTabs}${navJustified} ${materiaScope}${navLink}${active}:focus`, {
 	border: 'none',
 })

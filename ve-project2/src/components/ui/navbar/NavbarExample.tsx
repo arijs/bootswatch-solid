@@ -14,6 +14,7 @@ import {
 	alignTop,
 	bgLight,
 	bgPrimary,
+	collapse,
 	dInlineBlock,
 	disabled,
 	navbarDark,
@@ -33,7 +34,6 @@ import {
 	dropdownToggle,
 } from '../../../theme-contract/ui/dropdowns/contract.css'
 import {
-	collapse,
 	navbar,
 	navbarBgLight,
 	navbarBrand,
@@ -44,12 +44,7 @@ import {
 	navbarToggler,
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	navItem,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-} from '../../../theme-contract/ui/navs/contract.css'
+import { navItem, navLink } from '../../../theme-contract/ui/navs/contract.css'
 import { dFlex, mb2, mbLg0, me2, meAuto, mt5 } from '../../../theme-contract/utilities/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
@@ -59,7 +54,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'forms',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const NavbarExample: Component = () => {
@@ -104,7 +99,7 @@ const NavbarExample: Component = () => {
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
+									class={`${theme} ${link} ${navLink} ${active}`}
 									aria-current="page"
 									href="#"
 									onClick={(e) => e.preventDefault()}
@@ -175,7 +170,7 @@ const NavbarExample: Component = () => {
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${link} ${navLink} ${navLinkDisabled} ${disabled}`}
+									class={`${theme} ${link} ${navLink} ${disabled}`}
 									href="#"
 									onClick={(e) => e.preventDefault()}
 									tabindex="-1"
@@ -239,7 +234,7 @@ const NavbarExample: Component = () => {
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
+									class={`${theme} ${link} ${navLink} ${active}`}
 									aria-current="page"
 									href="#"
 									onClick={(e) => e.preventDefault()}
@@ -310,7 +305,7 @@ const NavbarExample: Component = () => {
 							<li class={`${theme} ${navItem}`}>
 								{/* biome-ignore lint: <a> is used for demonstration purposes */}
 								<a
-									class={`${theme} ${link} ${navLink} ${navLinkDisabled} ${disabled}`}
+									class={`${theme} ${link} ${navLink} ${disabled}`}
 									href="#"
 									onClick={(e) => e.preventDefault()}
 									tabindex="-1"

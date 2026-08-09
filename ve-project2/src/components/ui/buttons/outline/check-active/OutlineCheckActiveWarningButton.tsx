@@ -10,7 +10,6 @@ import { containerFluid } from '../../../../../theme-contract/layout/container.c
 import { active } from '../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnOutlineWarning,
 	inputFontFamily,
 } from '../../../../../theme-contract/ui/buttons/contract.css'
@@ -18,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const OutlineCheckActiveWarningButton: Component = () => {
@@ -29,7 +28,7 @@ const OutlineCheckActiveWarningButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnOutlineWarning} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnOutlineWarning} ${active} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

@@ -37,6 +37,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -46,6 +47,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -56,29 +58,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${superheroScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${superheroScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${superheroScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${superheroScope}${modal}`, {
 	vars: {
@@ -123,12 +107,12 @@ globalStyle(`${superheroScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${superheroScope}${modal}${modalFade} ${superheroScope}${modalDialog}`, {
+globalStyle(`${superheroScope}${modal}${fade} ${superheroScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${superheroScope}${modal}${modalFade} ${superheroScope}${modalDialog}`, {
+globalStyle(`${superheroScope}${modal}${fade} ${superheroScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -136,7 +120,7 @@ globalStyle(`${superheroScope}${modal}${modalFade} ${superheroScope}${modalDialo
 	},
 })
 
-globalStyle(`${superheroScope}${modal}${modalShowHook} ${superheroScope}${modalDialog}`, {
+globalStyle(`${superheroScope}${modal}${show} ${superheroScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -192,11 +176,11 @@ globalStyle(`${superheroScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${superheroScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${superheroScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${superheroScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${superheroScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

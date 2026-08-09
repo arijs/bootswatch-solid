@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${morphScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${morphScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${morphScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${morphScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${morphScope}${modal}${modalFade} ${morphScope}${modalDialog}`, {
+globalStyle(`${morphScope}${modal}${fade} ${morphScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${morphScope}${modal}${modalFade} ${morphScope}${modalDialog}`, {
+globalStyle(`${morphScope}${modal}${fade} ${morphScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${morphScope}${modal}${modalFade} ${morphScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${morphScope}${modal}${modalShowHook} ${morphScope}${modalDialog}`, {
+globalStyle(`${morphScope}${modal}${show} ${morphScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -195,11 +179,11 @@ globalStyle(`${morphScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${morphScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${morphScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${morphScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${morphScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

@@ -13,12 +13,6 @@ import {
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
 	varBsDropdownBorderRadius,
@@ -69,11 +63,11 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
 import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -83,7 +77,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -103,17 +96,6 @@ globalStyle(`${materiaScope}${inputGroup}:not(${hasValidation}) > ${materiaScope
 globalStyle(`${materiaScope}${inputGroup}${hasValidation} > ${materiaScope}${dropdownToggle}:nth-last-child(n+4)`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${materiaScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	backgroundImage: 'none',
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${materiaScope}${btn}${btnShowHook}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
 })
 
 globalStyle(`${materiaScope}${dropup}`, {
@@ -571,7 +553,7 @@ globalStyle(`${materiaScope}${dropdownItem}:disabled`, {
 	backgroundImage: 'none',
 })
 
-globalStyle(`${materiaScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${materiaScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 

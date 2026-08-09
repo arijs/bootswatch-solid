@@ -50,6 +50,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbar, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -57,11 +58,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -116,7 +114,7 @@ globalStyle(`${slateScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
 })
 
-globalStyle(`${slateScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -158,7 +156,7 @@ globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -182,7 +180,7 @@ globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -215,7 +213,7 @@ globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -265,7 +263,7 @@ globalStyle(`${slateScope}${tabContent} > ${slateScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -330,7 +328,7 @@ globalStyle(`${slateScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -362,7 +360,7 @@ globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}:active`,
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -380,7 +378,7 @@ globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}:active
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -398,7 +396,7 @@ globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}:active`,
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -416,7 +414,7 @@ globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}:active`, {
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -434,7 +432,7 @@ globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}:active`,
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -452,7 +450,7 @@ globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}:active`, 
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -470,7 +468,7 @@ globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}:active`, {
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -488,7 +486,7 @@ globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}:active`, {
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -544,7 +542,7 @@ globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not
 	filter: 'none',
 })
 
-globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${disabled}`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
@@ -570,7 +568,7 @@ globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${active}`, {
 	backgroundColor: 'transparent',
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
@@ -584,13 +582,13 @@ globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${disabled}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: varBsSecondaryColor,
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${disabled}:hover`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: varBsSecondaryColor,

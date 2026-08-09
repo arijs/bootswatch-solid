@@ -35,10 +35,9 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -108,28 +107,28 @@ globalStyle(`${cyborgScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${cyborgScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${cyborgScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${cyborgScope}${pageItemActive} > ${cyborgScope}${pageLink}`, {
+globalStyle(`${cyborgScope}${active} > ${cyborgScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${cyborgScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${cyborgScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${cyborgScope}${pageItemDisabled} > ${cyborgScope}${pageLink}`, {
+globalStyle(`${cyborgScope}${disabled} > ${cyborgScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

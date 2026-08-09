@@ -921,6 +921,7 @@ import {
 	colXxl8,
 	colXxl9,
 	colXxlAuto,
+	collapse,
 	collapseHorizontal,
 	collapsed,
 	collapsing,
@@ -1056,6 +1057,7 @@ import {
 	end0,
 	end100,
 	end50,
+	fade,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -2284,6 +2286,7 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
+	show,
 	showing,
 	spinnerBorderSm,
 	spinnerGrowSm,
@@ -2399,7 +2402,6 @@ import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -2476,7 +2478,6 @@ import {
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -2486,7 +2487,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -2519,15 +2519,12 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	collapse,
 	navbar,
 	navbarBrand,
 	navbarCollapse,
@@ -2539,15 +2536,11 @@ import {
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
@@ -2569,8 +2562,6 @@ import {
 } from '../../../theme-contract/ui/offcanvas/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -2584,9 +2575,7 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
 	progress,
@@ -2596,19 +2585,8 @@ import {
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../theme-contract/ui/tooltips/contract.css'
+import { toast, toastBody, toastHeader } from '../../../theme-contract/ui/toasts/contract.css'
+import { tooltipArrow, tooltipInner } from '../../../theme-contract/ui/tooltips/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -8704,13 +8682,6 @@ globalStyle(`${morphScope}${btn}${show}`, {
 	boxShadow: varBsBtnActiveBoxShadow,
 })
 
-globalStyle(`${morphScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-	boxShadow: varBsBtnActiveBoxShadow,
-})
-
 globalStyle(`${morphScope}${btnCheck}:checked + ${morphScope}${btn}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
@@ -8728,10 +8699,6 @@ globalStyle(`${morphScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${morphScope}${btn}${show}:focus-visible`, {
-	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
-})
-
-globalStyle(`${morphScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
@@ -9136,18 +9103,6 @@ globalStyle(`${morphScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
-globalStyle(`${morphScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${morphScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${morphScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
 globalStyle(`${morphScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -9156,43 +9111,7 @@ globalStyle(`${morphScope}${fade}`, {
 	},
 })
 
-globalStyle(`${morphScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${morphScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${morphScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${morphScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${morphScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9678,7 +9597,7 @@ globalStyle(`${morphScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${morphScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${morphScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 
@@ -9981,7 +9900,7 @@ globalStyle(`${morphScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(55, 141, 252, 0.25)',
 })
 
-globalStyle(`${morphScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${morphScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -10023,7 +9942,7 @@ globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -10053,7 +9972,7 @@ globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -10086,7 +10005,7 @@ globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -10250,7 +10169,7 @@ globalStyle(`${morphScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -11020,7 +10939,7 @@ globalStyle(`${morphScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -11235,13 +11154,13 @@ globalStyle(`${morphScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${morphScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${morphScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${morphScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${morphScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -11305,7 +11224,7 @@ globalStyle(`${morphScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${morphScope}${accordionItem}:last-of-type > ${morphScope}${accordionHeader} ${morphScope}${accordionButton}${accordionButtonCollapsed}`, {
+globalStyle(`${morphScope}${accordionItem}:last-of-type > ${morphScope}${accordionHeader} ${morphScope}${accordionButton}${collapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -11451,28 +11370,28 @@ globalStyle(`${morphScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${morphScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${morphScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${morphScope}${pageItemActive} > ${morphScope}${pageLink}`, {
+globalStyle(`${morphScope}${active} > ${morphScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${morphScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${morphScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${morphScope}${pageItemDisabled} > ${morphScope}${pageLink}`, {
+globalStyle(`${morphScope}${disabled} > ${morphScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -12374,11 +12293,11 @@ globalStyle(`${morphScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${morphScope}${toast}${toastShowing}`, {
+globalStyle(`${morphScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${morphScope}${toast}:not(${toastShow})`, {
+globalStyle(`${morphScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 
@@ -12462,12 +12381,12 @@ globalStyle(`${morphScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${morphScope}${modal}${modalFade} ${morphScope}${modalDialog}`, {
+globalStyle(`${morphScope}${modal}${fade} ${morphScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${morphScope}${modal}${modalFade} ${morphScope}${modalDialog}`, {
+globalStyle(`${morphScope}${modal}${fade} ${morphScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12475,7 +12394,7 @@ globalStyle(`${morphScope}${modal}${modalFade} ${morphScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${morphScope}${modal}${modalShowHook} ${morphScope}${modalDialog}`, {
+globalStyle(`${morphScope}${modal}${show} ${morphScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12532,11 +12451,11 @@ globalStyle(`${morphScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${morphScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${morphScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${morphScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${morphScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -12933,7 +12852,7 @@ globalStyle(`${morphScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${morphScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${morphScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -25751,7 +25670,7 @@ globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}:last-child ${morphS
 	borderBottomRightRadius: '0.375rem',
 })
 
-globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${active}`, {
 	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
 })
 
@@ -25768,7 +25687,7 @@ globalStyle(`${morphScope}${navPills}`, {
 	borderRadius: '0.375rem',
 })
 
-globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${active}`, {
 	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
 })
 
@@ -26006,7 +25925,7 @@ globalStyle(`${morphScope}${badge}${bgLight}`, {
 	color: '#7b8ab8',
 })
 
-globalStyle(`${morphScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${morphScope}${tooltip}${show}`, {
 	opacity: '1',
 })
 

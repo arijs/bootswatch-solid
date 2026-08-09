@@ -28,30 +28,10 @@ import {
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
+	show,
 	tooltip,
 } from '../../../../theme-contract/literal/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
-
-globalStyle(`${zephyrScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${zephyrScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${zephyrScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
+import { tooltipArrow, tooltipInner } from '../../../../theme-contract/ui/tooltips/contract.css'
 
 globalStyle(`${zephyrScope}${tooltip}`, {
 	vars: {
@@ -89,7 +69,7 @@ globalStyle(`${zephyrScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${zephyrScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${zephyrScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 

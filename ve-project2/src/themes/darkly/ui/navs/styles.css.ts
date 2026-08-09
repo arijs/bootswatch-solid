@@ -27,6 +27,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -35,6 +36,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -42,11 +44,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -100,7 +99,7 @@ globalStyle(`${darklyScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(55, 90, 127, 0.25)',
 })
 
-globalStyle(`${darklyScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${darklyScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -142,7 +141,7 @@ globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${darklyScope}${navTabs} ${darklyScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -166,7 +165,7 @@ globalStyle(`${darklyScope}${navPills} ${darklyScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${darklyScope}${navPills} ${darklyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${darklyScope}${navPills} ${darklyScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -199,7 +198,7 @@ globalStyle(`${darklyScope}${navUnderline} ${darklyScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${darklyScope}${navUnderline} ${darklyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${darklyScope}${navUnderline} ${darklyScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -249,7 +248,7 @@ globalStyle(`${darklyScope}${tabContent} > ${darklyScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${darklyScope}${navbarNav} ${darklyScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -314,7 +313,7 @@ globalStyle(`${darklyScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${darklyScope}${cardHeaderTabs} ${darklyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${darklyScope}${cardHeaderTabs} ${darklyScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

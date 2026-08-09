@@ -1,5 +1,5 @@
 import * as bootstrap from 'bootstrap'
-import { modalFade } from '../../../theme-contract/ui/modal/contract.css'
+import { fade, show } from '../../../theme-contract/literal/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeModalRuntimeClasses {
@@ -8,7 +8,7 @@ interface VeModalRuntimeClasses {
 	modalBody: string
 	modalDialog: string
 	modalOpenHook: string
-	modalShowHook: string
+	show: string
 }
 
 export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.Modal {
@@ -17,10 +17,10 @@ export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.
 	).extendDefaultConfig({
 		NAME: runtime.name,
 		CLASS_NAME_BACKDROP: runtime.modalBackdrop,
-		CLASS_NAME_FADE: modalFade,
+		CLASS_NAME_FADE: fade,
 		CLASS_NAME_OPEN: runtime.modalOpenHook,
-		CLASS_NAME_SHOW: runtime.modalShowHook,
-		OPEN_SELECTOR: `.pwhook-modal.${runtime.modalShowHook}`,
+		CLASS_NAME_SHOW: show,
+		OPEN_SELECTOR: `.pwhook-modal.${show}`,
 		SELECTOR_DATA_TOGGLE: `[data-bs-toggle="${runtime.name}"]`,
 		SELECTOR_DIALOG: `.${runtime.modalDialog}`,
 		SELECTOR_MODAL_BODY: `.${runtime.modalBody}`,
@@ -29,8 +29,8 @@ export function createVeModal(runtime: VeModalRuntimeClasses): typeof bootstrap.
 			(
 				bootstrap.Backdrop as unknown as BootstrapWithDefaults<typeof bootstrap.Backdrop>
 			).extendDefaultConfig({
-				CLASS_NAME_FADE: modalFade,
-				CLASS_NAME_SHOW: runtime.modalShowHook,
+				CLASS_NAME_FADE: fade,
+				CLASS_NAME_SHOW: show,
 				className: runtime.modalBackdrop,
 				// @ts-expect-error bootstrap runtime exposes this but types do not
 			}) as typeof bootstrap.Backdrop,

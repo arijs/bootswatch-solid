@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${spacelabScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${spacelabScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${spacelabScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${spacelabScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${spacelabScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${spacelabScope}${modal}${modalFade} ${spacelabScope}${modalDialog}`, {
+globalStyle(`${spacelabScope}${modal}${fade} ${spacelabScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${spacelabScope}${modal}${modalFade} ${spacelabScope}${modalDialog}`, {
+globalStyle(`${spacelabScope}${modal}${fade} ${spacelabScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${spacelabScope}${modal}${modalFade} ${spacelabScope}${modalDialog}
 	},
 })
 
-globalStyle(`${spacelabScope}${modal}${modalShowHook} ${spacelabScope}${modalDialog}`, {
+globalStyle(`${spacelabScope}${modal}${show} ${spacelabScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${spacelabScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${spacelabScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${spacelabScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${spacelabScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${spacelabScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

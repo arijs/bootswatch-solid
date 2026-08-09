@@ -24,10 +24,6 @@ export const btnLink = style({})
 export const btnLg = style({})
 export const btnSm = style({})
 
-// State hooks
-export const btnActiveHook = style({})
-export const btnDisabledHook = style({})
-
 // Hidden checkbox for toggle-button pattern
 export const btnCheck = style({})
 

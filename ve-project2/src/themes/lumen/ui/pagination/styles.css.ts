@@ -37,11 +37,9 @@ import {
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 import { elLi, elSpan } from '../../../../theme-contract/global-elements/contract.css'
 
-import { disabled, pager } from '../../../../theme-contract/literal/contract.css'
+import { active, disabled, pager } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -111,28 +109,28 @@ globalStyle(`${lumenScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${lumenScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${lumenScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${lumenScope}${pageItemActive} > ${lumenScope}${pageLink}`, {
+globalStyle(`${lumenScope}${active} > ${lumenScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${lumenScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${lumenScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${lumenScope}${pageItemDisabled} > ${lumenScope}${pageLink}`, {
+globalStyle(`${lumenScope}${disabled} > ${lumenScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

@@ -38,10 +38,9 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -111,7 +110,7 @@ globalStyle(`${materiaScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${materiaScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${materiaScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
@@ -119,7 +118,7 @@ globalStyle(`${materiaScope}${pageLink}${pageItemActive}`, {
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${materiaScope}${pageItemActive} > ${materiaScope}${pageLink}`, {
+globalStyle(`${materiaScope}${active} > ${materiaScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
@@ -127,14 +126,14 @@ globalStyle(`${materiaScope}${pageItemActive} > ${materiaScope}${pageLink}`, {
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${materiaScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${materiaScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${materiaScope}${pageItemDisabled} > ${materiaScope}${pageLink}`, {
+globalStyle(`${materiaScope}${disabled} > ${materiaScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

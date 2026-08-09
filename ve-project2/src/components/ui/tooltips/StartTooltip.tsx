@@ -10,6 +10,7 @@ import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	border,
 	bsTooltipAuto,
+	fade,
 	flexRow,
 	justifyContentEnd,
 	tooltip,
@@ -21,9 +22,7 @@ import {
 	frameRow,
 	justifyEnd,
 	tooltipArrow,
-	tooltipFade,
 	tooltipInner,
-	tooltipVe,
 } from '../../../theme-contract/ui/tooltips/contract.css'
 import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { createVeTooltip } from './ve-tooltip'
@@ -32,7 +31,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/tooltips',
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const StartTooltip: Component = () => {
@@ -51,7 +50,7 @@ const StartTooltip: Component = () => {
 				data-bs-custom-class="pwhook-tooltip"
 				ref={(el) =>
 					new VeTooltip(el, {
-						template: `<div class="${tooltipVe} ${tooltip} ${bsTooltipAuto} ${tooltipFade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
+						template: `<div class="${tooltip} ${bsTooltipAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-tooltip" role="tooltip"><div class="${tooltipArrow} ${theme}"></div><div class="${tooltipInner} ${theme}"></div></div>`,
 					})
 				}
 				data-bs-placement="left"

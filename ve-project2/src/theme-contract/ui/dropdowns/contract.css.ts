@@ -15,7 +15,6 @@ export const dropupCenter = style({}) // .dropup-center
 
 // ── Toggle button ─────────────────────────────────────────────────────────────
 
-export const btnShowHook = style({}) // .show (on toggle button when open)
 export const dropdownToggle = style({}) // .dropdown-toggle
 export const dropdownToggleSplit = style({}) // .dropdown-toggle-split
 
@@ -24,7 +23,6 @@ export const dropdownToggleSplit = style({}) // .dropdown-toggle-split
 export const dropdownMenu = style({}) // .dropdown-menu
 export const dropdownMenuStart = style({}) // .dropdown-menu-start
 export const dropdownMenuEnd = style({}) // .dropdown-menu-end
-export const dropdownMenuShow = style({}) // .dropdown-menu.show
 
 // ── Dark variant ──────────────────────────────────────────────────────────────
 
@@ -33,8 +31,6 @@ export const dropdownMenuDark = style({}) // .dropdown-menu-dark
 // ── Items ─────────────────────────────────────────────────────────────────────
 
 export const dropdownItem = style({}) // .dropdown-item
-export const dropdownItemActive = style({}) // .dropdown-item.active
-export const dropdownItemDisabled = style({}) // .dropdown-item.disabled
 
 // ── Divider, header, plain text ───────────────────────────────────────────────
 

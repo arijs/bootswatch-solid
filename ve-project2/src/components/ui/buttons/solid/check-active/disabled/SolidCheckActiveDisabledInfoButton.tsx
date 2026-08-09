@@ -10,7 +10,6 @@ import { containerFluid } from '../../../../../../theme-contract/layout/containe
 import { active } from '../../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnInfo,
 	inputFontFamily,
 } from '../../../../../../theme-contract/ui/buttons/contract.css'
@@ -18,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidCheckActiveDisabledInfoButton: Component = () => {
@@ -30,7 +29,7 @@ const SolidCheckActiveDisabledInfoButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnInfo} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnInfo} ${active} ${inputFontFamily} pwhook-btn`}
 			>
 				Info
 			</button>

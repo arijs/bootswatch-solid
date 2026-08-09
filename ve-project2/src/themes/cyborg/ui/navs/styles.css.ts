@@ -33,6 +33,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -41,6 +42,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -48,11 +50,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -106,7 +105,7 @@ globalStyle(`${cyborgScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(42, 159, 214, 0.25)',
 })
 
-globalStyle(`${cyborgScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${cyborgScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -148,7 +147,7 @@ globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -172,7 +171,7 @@ globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -205,7 +204,7 @@ globalStyle(`${cyborgScope}${navUnderline} ${cyborgScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${cyborgScope}${navUnderline} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${navUnderline} ${cyborgScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -255,7 +254,7 @@ globalStyle(`${cyborgScope}${tabContent} > ${cyborgScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${navbarNav} ${cyborgScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -320,7 +319,7 @@ globalStyle(`${cyborgScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${cyborgScope}${cardHeaderTabs} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${cardHeaderTabs} ${cyborgScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -341,30 +340,30 @@ globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}:hover`, {
 	backgroundColor: '#282828',
 })
 
-globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${disabled}`, {
 	color: varBsSecondaryColor,
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${disabled}:hover`, {
 	color: varBsSecondaryColor,
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${disabled}`, {
 	color: varBsSecondaryColor,
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${disabled}:hover`, {
 	color: varBsSecondaryColor,
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${navTabs} ${cyborgScope}${navLink}${active}`, {
 	backgroundColor: '#2a9fd6',
 })
 
-globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${navLinkActive}`, {
+globalStyle(`${cyborgScope}${navPills} ${cyborgScope}${navLink}${active}`, {
 	backgroundColor: '#2a9fd6',
 })

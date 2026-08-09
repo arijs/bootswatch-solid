@@ -36,6 +36,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -44,6 +45,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -51,11 +53,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -109,7 +108,7 @@ globalStyle(`${simplexScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(217, 35, 15, 0.25)',
 })
 
-globalStyle(`${simplexScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${simplexScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -151,7 +150,7 @@ globalStyle(`${simplexScope}${navTabs} ${simplexScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${simplexScope}${navTabs} ${simplexScope}${navLink}${navLinkActive}`, {
+globalStyle(`${simplexScope}${navTabs} ${simplexScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -175,7 +174,7 @@ globalStyle(`${simplexScope}${navPills} ${simplexScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${simplexScope}${navPills} ${simplexScope}${navLink}${navLinkActive}`, {
+globalStyle(`${simplexScope}${navPills} ${simplexScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -208,7 +207,7 @@ globalStyle(`${simplexScope}${navUnderline} ${simplexScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${simplexScope}${navUnderline} ${simplexScope}${navLink}${navLinkActive}`, {
+globalStyle(`${simplexScope}${navUnderline} ${simplexScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -258,7 +257,7 @@ globalStyle(`${simplexScope}${tabContent} > ${simplexScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${simplexScope}${navbarNav} ${simplexScope}${navLink}${navLinkActive}`, {
+globalStyle(`${simplexScope}${navbarNav} ${simplexScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -323,7 +322,7 @@ globalStyle(`${simplexScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${simplexScope}${cardHeaderTabs} ${simplexScope}${navLink}${navLinkActive}`, {
+globalStyle(`${simplexScope}${cardHeaderTabs} ${simplexScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

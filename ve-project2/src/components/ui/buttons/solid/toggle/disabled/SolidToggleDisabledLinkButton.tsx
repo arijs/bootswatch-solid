@@ -11,7 +11,7 @@ import { btn, btnCheck, btnLink } from '../../../../../../theme-contract/ui/butt
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidToggleDisabledLinkButton: Component = () => {

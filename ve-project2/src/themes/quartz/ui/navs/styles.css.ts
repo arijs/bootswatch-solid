@@ -34,6 +34,7 @@ import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -42,6 +43,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -49,11 +51,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -107,7 +106,7 @@ globalStyle(`${quartzScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(232, 50, 131, 0.25)',
 })
 
-globalStyle(`${quartzScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${quartzScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -149,7 +148,7 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -173,7 +172,7 @@ globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navPills} ${quartzScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -206,7 +205,7 @@ globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navUnderline} ${quartzScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -256,7 +255,7 @@ globalStyle(`${quartzScope}${tabContent} > ${quartzScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navbarNav} ${quartzScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -321,7 +320,7 @@ globalStyle(`${quartzScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${quartzScope}${cardHeaderTabs} ${quartzScope}${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${cardHeaderTabs} ${quartzScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -344,7 +343,7 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}`, {
 	backgroundColor: 'rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navLink}${disabled}`, {
 	backgroundColor: 'rgba(0, 0, 0, 0.2)',
 })
 
@@ -356,7 +355,7 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}:last-child > ${qu
 	borderRadius: '0 0.5rem 0.5rem 0',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${active}`, {
 	border: 'none',
 	boxShadow: 'inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)',
 	backgroundColor: 'transparent',
@@ -378,7 +377,7 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzSc
 	transform: 'scale(1.1)',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} :where(${quartzScope}${link})`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${active} :where(${quartzScope}${link})`, {
 	color: '#fff',
 })
 
@@ -386,11 +385,11 @@ globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem}${show} ${quartzSc
 	color: '#fff',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive}:hover`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${active}:hover`, {
 	color: '#343a40',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive}:focus`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${active}:focus`, {
 	color: '#343a40',
 })
 

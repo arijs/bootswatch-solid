@@ -8,11 +8,10 @@ import {
 import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { elLi } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { active, disabled } from '../../../theme-contract/literal/contract.css'
 import { flexWrap } from '../../../theme-contract/ui/modal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -21,7 +20,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/pagination',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const LargePagination: Component = () => {
@@ -32,7 +31,7 @@ const LargePagination: Component = () => {
 			<div class={`${theme} ${containerFluid}`}>
 				<nav aria-label="Another pagination example">
 					<ul class={`${theme} ${pagination} ${paginationLg} ${flexWrap}`}>
-						<li class={`${theme} ${pageItem} ${elLi} ${pageItemDisabled}`}>
+						<li class={`${theme} ${pageItem} ${elLi} ${disabled}`}>
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}
@@ -54,10 +53,7 @@ const LargePagination: Component = () => {
 								1
 							</a>
 						</li>
-						<li
-							class={`${theme} ${pageItem} ${elLi} ${pageItemActive}`}
-							aria-current="page"
-						>
+						<li class={`${theme} ${pageItem} ${elLi} ${active}`} aria-current="page">
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}

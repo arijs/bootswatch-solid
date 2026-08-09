@@ -14,7 +14,7 @@ import { useVe2RequiredStyleFamilies } from '../../../../theme-runtime/style-loa
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidPrimaryButton: Component = () => {

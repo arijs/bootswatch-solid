@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${mintyScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${mintyScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${mintyScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${mintyScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${mintyScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${mintyScope}${modal}${modalFade} ${mintyScope}${modalDialog}`, {
+globalStyle(`${mintyScope}${modal}${fade} ${mintyScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${mintyScope}${modal}${modalFade} ${mintyScope}${modalDialog}`, {
+globalStyle(`${mintyScope}${modal}${fade} ${mintyScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${mintyScope}${modal}${modalFade} ${mintyScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${mintyScope}${modal}${modalShowHook} ${mintyScope}${modalDialog}`, {
+globalStyle(`${mintyScope}${modal}${show} ${mintyScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${mintyScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${mintyScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${mintyScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${mintyScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${mintyScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

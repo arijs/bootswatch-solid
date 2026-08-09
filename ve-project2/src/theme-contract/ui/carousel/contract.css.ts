@@ -14,8 +14,6 @@ export const carouselFade = style({}) // modifier: crossfade animation
 
 export const carouselInner = style({})
 export const carouselItem = style({})
-export const carouselActive = style({}) // .active — managed by Bootstrap JS
-export const carouselItemActive = style({})
 export const carouselItemNext = style({})
 export const carouselItemPrev = style({})
 export const carouselItemStart = style({})
@@ -31,7 +29,6 @@ export const carouselControlNextIcon = style({})
 // ── Indicator dots ────────────────────────────────────────────────────────────
 
 export const carouselIndicators = style({})
-export const carouselIndicatorActive = style({})
 
 // ── Caption overlay ───────────────────────────────────────────────────────────
 

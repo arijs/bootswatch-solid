@@ -912,6 +912,7 @@ import {
 	colXxl8,
 	colXxl9,
 	colXxlAuto,
+	collapse,
 	collapseHorizontal,
 	collapsed,
 	collapsing,
@@ -1047,6 +1048,7 @@ import {
 	end0,
 	end100,
 	end50,
+	fade,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -2278,6 +2280,7 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
+	show,
 	showing,
 	spinnerBorderSm,
 	spinnerGrowSm,
@@ -2393,7 +2396,6 @@ import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -2470,7 +2472,6 @@ import {
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -2480,7 +2481,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -2513,15 +2513,12 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	collapse,
 	navbar,
 	navbarBrand,
 	navbarCollapse,
@@ -2533,15 +2530,11 @@ import {
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
@@ -2563,8 +2556,6 @@ import {
 } from '../../../theme-contract/ui/offcanvas/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -2578,9 +2569,7 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
 	progress,
@@ -2590,19 +2579,8 @@ import {
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../theme-contract/ui/tooltips/contract.css'
+import { toast, toastBody, toastHeader } from '../../../theme-contract/ui/toasts/contract.css'
+import { tooltipArrow, tooltipInner } from '../../../theme-contract/ui/tooltips/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -8686,12 +8664,6 @@ globalStyle(`${slateScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
-globalStyle(`${slateScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
 globalStyle(`${slateScope}${btnCheck}:checked + ${slateScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8709,10 +8681,6 @@ globalStyle(`${slateScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${slateScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${slateScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9114,18 +9082,6 @@ globalStyle(`${slateScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
-globalStyle(`${slateScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${slateScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${slateScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
 globalStyle(`${slateScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -9134,43 +9090,7 @@ globalStyle(`${slateScope}${fade}`, {
 	},
 })
 
-globalStyle(`${slateScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${slateScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${slateScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${slateScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${slateScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${slateScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${slateScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9655,7 +9575,7 @@ globalStyle(`${slateScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${slateScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${slateScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 
@@ -9950,7 +9870,7 @@ globalStyle(`${slateScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(58, 63, 68, 0.25)',
 })
 
-globalStyle(`${slateScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -9992,7 +9912,7 @@ globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -10022,7 +9942,7 @@ globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -10055,7 +9975,7 @@ globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navUnderline} ${slateScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -10219,7 +10139,7 @@ globalStyle(`${slateScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbarNav} ${slateScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -10982,7 +10902,7 @@ globalStyle(`${slateScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${cardHeaderTabs} ${slateScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -11197,13 +11117,13 @@ globalStyle(`${slateScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${slateScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${slateScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${slateScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${slateScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -11267,7 +11187,7 @@ globalStyle(`${slateScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${slateScope}${accordionItem}:last-of-type > ${slateScope}${accordionHeader} ${slateScope}${accordionButton}${accordionButtonCollapsed}`, {
+globalStyle(`${slateScope}${accordionItem}:last-of-type > ${slateScope}${accordionHeader} ${slateScope}${accordionButton}${collapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -11413,28 +11333,28 @@ globalStyle(`${slateScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${slateScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${slateScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${slateScope}${pageItemActive} > ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${active} > ${slateScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${slateScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${slateScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${slateScope}${pageItemDisabled} > ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${disabled} > ${slateScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -12334,11 +12254,11 @@ globalStyle(`${slateScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${slateScope}${toast}${toastShowing}`, {
+globalStyle(`${slateScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${slateScope}${toast}:not(${toastShow})`, {
+globalStyle(`${slateScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 
@@ -12422,12 +12342,12 @@ globalStyle(`${slateScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${slateScope}${modal}${modalFade} ${slateScope}${modalDialog}`, {
+globalStyle(`${slateScope}${modal}${fade} ${slateScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${slateScope}${modal}${modalFade} ${slateScope}${modalDialog}`, {
+globalStyle(`${slateScope}${modal}${fade} ${slateScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12435,7 +12355,7 @@ globalStyle(`${slateScope}${modal}${modalFade} ${slateScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${slateScope}${modal}${modalShowHook} ${slateScope}${modalDialog}`, {
+globalStyle(`${slateScope}${modal}${show} ${slateScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12491,11 +12411,11 @@ globalStyle(`${slateScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${slateScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${slateScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${slateScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${slateScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -12892,7 +12812,7 @@ globalStyle(`${slateScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${slateScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${slateScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -24736,7 +24656,7 @@ globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}:active`,
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgPrimary} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#25282c, #292c30 40%, #2b2f32)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24754,7 +24674,7 @@ globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}:active
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgSecondary} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#4e5357, #555b5f 40%, #5a6065)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24772,7 +24692,7 @@ globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}:active`,
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgSuccess} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#3f7d3f, #458945 40%, #499149)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24790,7 +24710,7 @@ globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}:active`, {
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgInfo} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#3a7b8e, #40869b 40%, #438ea4)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24808,7 +24728,7 @@ globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}:active`,
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgWarning} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#9f5f04, #ae6804 40%, #b86e04)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24826,7 +24746,7 @@ globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}:active`, 
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgDanger} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#983d3a, #a74340 40%, #b04643)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24844,7 +24764,7 @@ globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}:active`, {
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgLight} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#959799, #a3a5a7 40%, #acafb1)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -24862,7 +24782,7 @@ globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}:active`, {
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
 })
 
-globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navbar}${bgDark} ${slateScope}${navLink}${active}`, {
 	backgroundImage: 'linear-gradient(#191c1f, #1b1e22 40%, #1d2024)',
 	filter: 'none',
 	borderLeft: '1px solid rgba(0, 0, 0, 0.2)',
@@ -25230,7 +25150,7 @@ globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}:not([disabled]):not
 	filter: 'none',
 })
 
-globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navTabs} ${slateScope}${navLink}${disabled}`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
@@ -25256,7 +25176,7 @@ globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkActive}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${active}`, {
 	backgroundColor: 'transparent',
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
@@ -25270,13 +25190,13 @@ globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}:hover`, {
 	border: '1px solid rgba(0, 0, 0, 0.6)',
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${disabled}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: varBsSecondaryColor,
 })
 
-globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${slateScope}${navPills} ${slateScope}${navLink}${disabled}:hover`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 	color: varBsSecondaryColor,
@@ -25294,12 +25214,12 @@ globalStyle(`${slateScope}${pagination} ${slateScope}${pageLink}:hover`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${pageItemActive} ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${active} ${slateScope}${pageLink}`, {
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 })
 
-globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${pageItemDisabled} ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${disabled} ${slateScope}${pageLink}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 })

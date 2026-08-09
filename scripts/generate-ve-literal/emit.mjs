@@ -915,7 +915,9 @@ export async function emitLiteralStyles(theme, opts = {}) {
 		}
 
 		// Apply remapSymbols divergences: substitute component-specific contracts for
-		// shared state contracts (e.g. active→navLinkActive) in matching selectors.
+		// shared ones in matching selectors. No entry uses this today — shared Bootstrap
+		// state classes map 1:1 to the literal contracts (plan §8.6). The hook stays for
+		// a genuine, documented interference case.
 		let veSelector = rawVeSelector
 		for (const remap of findRemaps(selector)) {
 			for (const [from, to] of Object.entries(remap.symbolMap)) {

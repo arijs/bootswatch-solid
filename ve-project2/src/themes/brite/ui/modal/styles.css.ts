@@ -38,6 +38,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -47,6 +48,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -57,29 +59,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${briteScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${briteScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${briteScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${briteScope}${modal}`, {
 	vars: {
@@ -124,12 +108,12 @@ globalStyle(`${briteScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${briteScope}${modal}${modalFade} ${briteScope}${modalDialog}`, {
+globalStyle(`${briteScope}${modal}${fade} ${briteScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${briteScope}${modal}${modalFade} ${briteScope}${modalDialog}`, {
+globalStyle(`${briteScope}${modal}${fade} ${briteScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -137,7 +121,7 @@ globalStyle(`${briteScope}${modal}${modalFade} ${briteScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${briteScope}${modal}${modalShowHook} ${briteScope}${modalDialog}`, {
+globalStyle(`${briteScope}${modal}${show} ${briteScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -193,11 +177,11 @@ globalStyle(`${briteScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${briteScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${briteScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${briteScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${briteScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

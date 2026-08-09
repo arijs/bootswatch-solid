@@ -5,8 +5,8 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { link } from '../../../theme-contract/contents/basic/contract.css'
-import { h5, paragraph } from '../../../theme-contract/contents/contract.css'
+import { link, paragraph } from '../../../theme-contract/contents/basic/contract.css'
+import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { active, disabled, textCenter } from '../../../theme-contract/literal/contract.css'
@@ -25,8 +25,6 @@ import {
 	navButtonReset,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navTabs,
 } from '../../../theme-contract/ui/navs/contract.css'
 import { col, g4, row } from '../../../theme-contract/utilities/contract.css'
@@ -38,7 +36,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
 	'contents/heading',
-	'utilities/used',
+	'utilities',
 ]
 
 const CardTabsExample: Component = () => {
@@ -53,7 +51,7 @@ const CardTabsExample: Component = () => {
 							<ul class={`${theme} ${nav} ${navTabs} ${cardHeaderTabs}`}>
 								<li class={`${theme} ${navItem}`}>
 									<button
-										class={`${theme} ${elButton} ${navButtonReset} ${navLink} ${navLinkActive} ${active}`}
+										class={`${theme} ${elButton} ${navButtonReset} ${navLink} ${active}`}
 										type="button"
 										aria-current="true"
 									>
@@ -73,7 +71,7 @@ const CardTabsExample: Component = () => {
 								<li class={`${theme} ${navItem}`}>
 									{/* biome-ignore lint: <a> is used for demonstration purposes */}
 									<a
-										class={`${theme} ${link} ${navLink} ${navLinkDisabled} ${disabled}`}
+										class={`${theme} ${link} ${navLink} ${disabled}`}
 										aria-disabled="true"
 										href="#"
 										onClick={(e) => e.preventDefault()}

@@ -5,18 +5,16 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { link } from '../../../theme-contract/contents/basic/contract.css'
-import { h6, horizontalRule } from '../../../theme-contract/contents/contract.css'
+import { horizontalRule, link } from '../../../theme-contract/contents/basic/contract.css'
+import { h6 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdownDivider,
 	dropdownHeader,
 	dropdownItem,
 	dropdownMenu,
-	dropdownMenuShow,
 	dropdownToggle,
 	dropend,
 	dropstart,
@@ -27,17 +25,15 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/dropdowns',
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const StartDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	configureVeDropdown({
-		btnShowHook,
 		dropdownItem,
 		dropdownMenu,
-		dropdownMenuShow,
 		dropend,
 		dropstart,
 		dropup,
