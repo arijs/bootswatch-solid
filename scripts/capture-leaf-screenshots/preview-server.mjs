@@ -24,6 +24,9 @@ export async function waitForServer(url, timeoutMs = 45000) {
 }
 
 function killPortWindows(port) {
+	// `2>nul` is a Windows redirect; on POSIX the shell reads it as a filename and
+	// litters a file called `nul` in the repo root on every capture run.
+	if (process.platform !== 'win32') return
 	try {
 		const out = execSync(`netstat -ano -p TCP 2>nul`, { encoding: 'utf8' })
 		const line = out

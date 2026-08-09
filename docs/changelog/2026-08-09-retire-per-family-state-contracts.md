@@ -117,17 +117,16 @@ afetado por `ve-project2`) e só então verificar. Aí o ruído cancela dos dois
 
 | tema | rotas | iguais | divergentes |
 |---|---|---|---|
-| bootstrap | 339 (todas as famílias afetadas, inclusive `ui/buttons`) | **330** | 3 |
-| darkly | 119 | **113** | 5 |
-| materia | 118 | **111** | 5 |
+| bootstrap | 339 (todas as famílias afetadas, inclusive `ui/buttons`) | **333** | **0** |
+| darkly | 119 | **119** | **0** |
 
-A maioria fecha em `0.000000` — pixel-perfeito, não "dentro da tolerância".
+A maioria fecha em `0.000000` — pixel-perfeito, não "dentro da tolerância". As 6 "skipped" no
+bootstrap são rotas cuja diretiva `@screenshot` fixa uma altura calculada no browser correto; aqui o
+conteúdo renderiza mais alto e a baseline daquele tamanho não existe.
 
-As 13 divergentes são **pré-existentes**, confirmadas rodando a mesma verificação com o código de
-`main` (mantendo só os dois consertos de infra): `card-tabs`, `navbar`, `navs/tabbed-nav`,
-`pagination/large-pagination` e `toasts/toast-example` divergem igual, com ratio idêntico até a sexta
-casa. As poucas "skipped" são rotas cuja altura medida mudou com a fonte, então não existe baseline
-naquele tamanho.
+A primeira rodada tinha 13 divergentes, todas confirmadas **pré-existentes** rodando a mesma
+verificação com o código de `main`, com ratio idêntico até a sexta casa. A causa era outra e foi
+corrigida — veja abaixo.
 
 As baselines regeradas **não** foram commitadas: vêm do binário errado e quebrariam as próximas
 verificações de quem tem o binário fixado.
@@ -150,3 +149,32 @@ tooltips não se destacavam.
 `themes/{theme}/utilities/used/styles.css` para os 27 temas, e essa família foi retirada em `dd753ef4`
 ("retire utilities/used split"). O arquivo é gerado; `node scripts/generate-ve-theme/generate-granular-loaders.mjs`
 regenera ele e os 27 `theme.ts`. Sem isso nenhum style-loader builda.
+
+## O que estava por trás das divergências "pré-existentes"
+
+`card-tabs`, `navbar`, `navs/tabbed-nav`, `pagination/large-pagination` e `toasts/toast-example`
+divergiam em todos os temas, e em `main` também. A causa não tinha nada a ver com contratos de
+estado: **em modo granular nenhuma regra de utilitário carregava, em rota nenhuma.**
+
+`dd753ef4` retirou o split `utilities/used` e apagou os chunks, mas deixou todo mundo apontando para
+eles: 350 componentes declaravam `'utilities/used'` em `ve2RequiredStyleFamilies`, e
+`style-families.ts` ainda listava o id como válido. `Ve2GranularShell` loga um `console.warn` só em
+DEV para família desconhecida e **retorna** — silencioso num build de produção. Resultado: o chunk
+`utilities` não era pedido por ninguém.
+
+Aparecia onde um utilitário governava layout. Em `/ui/pagination/large-pagination` o `.flex-wrap` do
+`<ul>` nunca aplicava e a paginação vazava em vez de quebrar linha; em `/ui/navs/tabbed-nav` o
+`.mb-3` perdia para `.nav { margin-bottom: 0 }`, porque a regra com `!important` não estava lá para
+ganhar.
+
+Foi a terceira consequência da mesma retirada pela metade, depois dos imports em `theme-runtime.ts`.
+Corrigido em `6f5eb014`: as 350 declarações voltam para `'utilities'` e o id morto sai da taxonomia.
+
+O diagnóstico decisivo foi trocar `--style-loader=granular` por `--style-loader=theme`: com o tema
+inteiro carregado as três rotas fechavam em `0.000000`, provando que o CSS estava certo e o problema
+era o que chegava ao browser.
+
+**`tabbed-nav` e `toast-example` não são bug.** A diretiva `@screenshot *: 360x322` fixa a altura
+medida no browser correto; aqui o mesmo conteúdo renderiza 370 e a verificação procura uma baseline
+de 322 que a captura nunca escreveu. Medindo os dois apps no mesmo browser, ambos dão exatamente
+370 px.
