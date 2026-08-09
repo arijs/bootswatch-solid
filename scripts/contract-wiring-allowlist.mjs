@@ -77,8 +77,7 @@ export const UNWIRED_ALLOWLIST = {
 	spinnerWarning: BOOTSTRAP_LEGACY,
 
 	// ── Runtime-only markers ─────────────────────────────────────────────────────
-	carouselSlide:
-		`${RUNTIME_MARKER} Bootstrap's CLASS_NAME_SLIDE; \`.slide\` has no rule in any theme's bootstrap.css.`,
+	carouselSlide: `${RUNTIME_MARKER} Bootstrap's CLASS_NAME_SLIDE; \`.slide\` has no rule in any theme's bootstrap.css.`,
 
 	// ── Split by the divergence manifest ─────────────────────────────────────────
 	body:

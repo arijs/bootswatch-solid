@@ -257,7 +257,14 @@ function packageJson(themes, contract) {
 		bugs: { url: 'https://github.com/arijs/bootswatch-solid/issues' },
 		sideEffects: ['**/*.css'],
 		exports: exportsMap,
-		files: [...contract.entries, 'solid', 'vite', 'themes', 'contract-manifest.json', 'README.md'],
+		files: [
+			...contract.entries,
+			'solid',
+			'vite',
+			'themes',
+			'contract-manifest.json',
+			'README.md',
+		],
 		// O plugin /vite parseia o CSS dos temas com @adobe/css-tools.
 		dependencies: {
 			'@adobe/css-tools': '^4.4.0',
