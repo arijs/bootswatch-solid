@@ -13,7 +13,7 @@ import { textDark } from '../../../theme-contract/utilities/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const Progress75: Component = () => {

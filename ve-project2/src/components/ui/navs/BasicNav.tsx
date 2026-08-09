@@ -13,7 +13,7 @@ import { nav, navLink } from '../../../theme-contract/ui/navs/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const BasicNav: Component = () => {

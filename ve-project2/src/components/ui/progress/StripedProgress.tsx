@@ -17,7 +17,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/progress',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const StripedProgress: Component = () => {

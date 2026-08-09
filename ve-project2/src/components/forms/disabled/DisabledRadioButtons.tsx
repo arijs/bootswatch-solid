@@ -22,7 +22,7 @@ import { mb3 } from '../../../theme-contract/utilities/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'forms',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const DisabledRadioButtons: Component = () => {

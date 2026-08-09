@@ -15,7 +15,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/list-group',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const FlushListGroup: Component = () => {

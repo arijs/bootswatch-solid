@@ -14,7 +14,7 @@ import { breadcrumb, breadcrumbItem } from '../../../theme-contract/ui/breadcrum
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/breadcrumb',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const BreadcrumbExample: Component = () => {

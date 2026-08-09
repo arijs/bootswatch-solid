@@ -21,7 +21,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'contents/basic',
 	'contents/heading',
 	'contents/display',
-	'utilities/used',
+	'utilities',
 ]
 
 const Display: Component = () => {

@@ -20,7 +20,7 @@ import {
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/pagination',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const LargePagination: Component = () => {

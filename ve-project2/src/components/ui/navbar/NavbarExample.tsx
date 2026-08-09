@@ -54,7 +54,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'forms',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const NavbarExample: Component = () => {

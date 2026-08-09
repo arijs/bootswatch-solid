@@ -28,7 +28,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/dropdowns',
 	'contents/basic',
 	'contents/heading',
-	'utilities/used',
+	'utilities',
 ]
 
 const ScrollspyExample: Component = () => {

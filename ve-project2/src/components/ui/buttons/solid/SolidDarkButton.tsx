@@ -11,7 +11,7 @@ import { btn, btnDark, inputFontFamily } from '../../../../theme-contract/ui/but
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidDarkButton: Component = () => {

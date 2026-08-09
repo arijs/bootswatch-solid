@@ -13,7 +13,7 @@ import { nav, navItem, navLink, navPills } from '../../../theme-contract/ui/navs
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const PillNav: Component = () => {

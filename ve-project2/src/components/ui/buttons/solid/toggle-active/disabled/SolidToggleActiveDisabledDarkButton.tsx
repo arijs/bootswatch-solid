@@ -11,7 +11,7 @@ import { btn, btnCheck, btnDark } from '../../../../../../theme-contract/ui/butt
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const SolidToggleActiveDisabledDarkButton: Component = () => {

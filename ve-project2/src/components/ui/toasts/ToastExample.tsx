@@ -30,7 +30,7 @@ export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'ui/alerts',
 	'contents/basic',
-	'utilities/used',
+	'utilities',
 ]
 
 const ToastExample: Component = () => {
