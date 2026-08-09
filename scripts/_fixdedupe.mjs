@@ -5,8 +5,44 @@ import path from 'node:path'
 
 const BASE = process.argv[2] ?? 'main'
 const SRC = 've-project2/src/components'
-const RENAMED = new Set(['navLinkActive','navLinkDisabled','pageItemActive','pageItemDisabled','accordionButtonCollapsed','toastShow','toastShowing','toastFade','toastHide','modalShowHook','modalFade','tooltipShow','tooltipFade','tooltipVe','popoverShow','popoverFade','popoverVe','btnShowHook','btnActiveHook','btnDisabledHook','dropdownMenuShow','dropdownItemActive','dropdownItemDisabled','listGroupItemActive','listGroupItemDisabled','breadcrumbItemActive','carouselActive','carouselItemActive','carouselIndicatorActive','accordionCollapseShow','accordionCollapsing','alertBtnCloseDisabledHook','collapseShow','navItemShow','tabPaneActive'])
-const STATE = new Set(['active','disabled','show','showing','fade','collapsed','collapsing'])
+const RENAMED = new Set([
+	'navLinkActive',
+	'navLinkDisabled',
+	'pageItemActive',
+	'pageItemDisabled',
+	'accordionButtonCollapsed',
+	'toastShow',
+	'toastShowing',
+	'toastFade',
+	'toastHide',
+	'modalShowHook',
+	'modalFade',
+	'tooltipShow',
+	'tooltipFade',
+	'tooltipVe',
+	'popoverShow',
+	'popoverFade',
+	'popoverVe',
+	'btnShowHook',
+	'btnActiveHook',
+	'btnDisabledHook',
+	'dropdownMenuShow',
+	'dropdownItemActive',
+	'dropdownItemDisabled',
+	'listGroupItemActive',
+	'listGroupItemDisabled',
+	'breadcrumbItemActive',
+	'carouselActive',
+	'carouselItemActive',
+	'carouselIndicatorActive',
+	'accordionCollapseShow',
+	'accordionCollapsing',
+	'alertBtnCloseDisabledHook',
+	'collapseShow',
+	'navItemShow',
+	'tabPaneActive',
+])
+const STATE = new Set(['active', 'disabled', 'show', 'showing', 'fade', 'collapsed', 'collapsing'])
 
 async function collect(dir) {
 	const out = []
@@ -26,7 +62,11 @@ const counts = (s) => {
 let n = 0
 for (const file of (await collect(SRC)).sort()) {
 	let base = ''
-	try { base = execFileSync('git', ['show', `${BASE}:${file}`], { encoding: 'utf8' }) } catch { continue }
+	try {
+		base = execFileSync('git', ['show', `${BASE}:${file}`], { encoding: 'utf8' })
+	} catch {
+		continue
+	}
 	const before = counts(base)
 	const after = counts(await readFile(file, 'utf8'))
 	const lost = []

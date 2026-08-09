@@ -46,23 +46,6 @@ async function listThemes() {
 		.sort()
 }
 
-/** Nomes exportados por um bundle JS de `export { a, b, c }`. */
-function parseExportNames(js) {
-	const m = js.match(/export\s*\{([^}]*)\}/s)
-	if (!m) return []
-	return m[1]
-		.split(',')
-		.map((s) =>
-			s
-				.trim()
-				.split(/\s+as\s+/)
-				.pop()
-				.trim(),
-		)
-		.filter(Boolean)
-		.sort()
-}
-
 async function assembleTheme(theme) {
 	const from = path.join(SRC, theme)
 	const to = path.join(OUT, 'themes', theme)
@@ -257,7 +240,14 @@ function packageJson(themes, contract) {
 		bugs: { url: 'https://github.com/arijs/bootswatch-solid/issues' },
 		sideEffects: ['**/*.css'],
 		exports: exportsMap,
-		files: [...contract.entries, 'solid', 'vite', 'themes', 'contract-manifest.json', 'README.md'],
+		files: [
+			...contract.entries,
+			'solid',
+			'vite',
+			'themes',
+			'contract-manifest.json',
+			'README.md',
+		],
 		// O plugin /vite parseia o CSS dos temas com @adobe/css-tools.
 		dependencies: {
 			'@adobe/css-tools': '^4.4.0',
