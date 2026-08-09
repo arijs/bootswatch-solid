@@ -46,23 +46,6 @@ async function listThemes() {
 		.sort()
 }
 
-/** Nomes exportados por um bundle JS de `export { a, b, c }`. */
-function parseExportNames(js) {
-	const m = js.match(/export\s*\{([^}]*)\}/s)
-	if (!m) return []
-	return m[1]
-		.split(',')
-		.map((s) =>
-			s
-				.trim()
-				.split(/\s+as\s+/)
-				.pop()
-				.trim(),
-		)
-		.filter(Boolean)
-		.sort()
-}
-
 async function assembleTheme(theme) {
 	const from = path.join(SRC, theme)
 	const to = path.join(OUT, 'themes', theme)
