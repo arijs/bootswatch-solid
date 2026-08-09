@@ -10,7 +10,6 @@ import { containerFluid } from '../../../../../theme-contract/layout/container.c
 import { active } from '../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnDark,
 	inputFontFamily,
 } from '../../../../../theme-contract/ui/buttons/contract.css'
@@ -28,7 +27,7 @@ const SolidCheckActiveDarkButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnDark} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnDark} ${active} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

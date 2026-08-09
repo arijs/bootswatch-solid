@@ -38,6 +38,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 import {
 	active,
 	bgLight,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -46,6 +47,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbar, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -53,11 +55,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -111,7 +110,7 @@ globalStyle(`${spacelabScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(68, 110, 155, 0.25)',
 })
 
-globalStyle(`${spacelabScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${spacelabScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -153,7 +152,7 @@ globalStyle(`${spacelabScope}${navTabs} ${spacelabScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${spacelabScope}${navTabs} ${spacelabScope}${navLink}${navLinkActive}`, {
+globalStyle(`${spacelabScope}${navTabs} ${spacelabScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -177,7 +176,7 @@ globalStyle(`${spacelabScope}${navPills} ${spacelabScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${spacelabScope}${navPills} ${spacelabScope}${navLink}${navLinkActive}`, {
+globalStyle(`${spacelabScope}${navPills} ${spacelabScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -210,7 +209,7 @@ globalStyle(`${spacelabScope}${navUnderline} ${spacelabScope}${navLink}:focus`, 
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${spacelabScope}${navUnderline} ${spacelabScope}${navLink}${navLinkActive}`, {
+globalStyle(`${spacelabScope}${navUnderline} ${spacelabScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -260,7 +259,7 @@ globalStyle(`${spacelabScope}${tabContent} > ${spacelabScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${spacelabScope}${navbarNav} ${spacelabScope}${navLink}${navLinkActive}`, {
+globalStyle(`${spacelabScope}${navbarNav} ${spacelabScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -325,7 +324,7 @@ globalStyle(`${spacelabScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${spacelabScope}${cardHeaderTabs} ${spacelabScope}${navLink}${navLinkActive}`, {
+globalStyle(`${spacelabScope}${cardHeaderTabs} ${spacelabScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

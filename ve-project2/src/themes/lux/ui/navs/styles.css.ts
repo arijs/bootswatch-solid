@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${luxScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(26, 26, 26, 0.25)',
 })
 
-globalStyle(`${luxScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${luxScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -150,7 +149,7 @@ globalStyle(`${luxScope}${navTabs} ${luxScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${luxScope}${navTabs} ${luxScope}${navLink}${navLinkActive}`, {
+globalStyle(`${luxScope}${navTabs} ${luxScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -170,7 +169,7 @@ globalStyle(`${luxScope}${navPills}`, {
 	},
 })
 
-globalStyle(`${luxScope}${navPills} ${luxScope}${navLink}${navLinkActive}`, {
+globalStyle(`${luxScope}${navPills} ${luxScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -203,7 +202,7 @@ globalStyle(`${luxScope}${navUnderline} ${luxScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${luxScope}${navUnderline} ${luxScope}${navLink}${navLinkActive}`, {
+globalStyle(`${luxScope}${navUnderline} ${luxScope}${navLink}${active}`, {
 	fontWeight: '600',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -253,7 +252,7 @@ globalStyle(`${luxScope}${tabContent} > ${luxScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${luxScope}${navbarNav} ${luxScope}${navLink}${navLinkActive}`, {
+globalStyle(`${luxScope}${navbarNav} ${luxScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -318,7 +317,7 @@ globalStyle(`${luxScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${luxScope}${cardHeaderTabs} ${luxScope}${navLink}${navLinkActive}`, {
+globalStyle(`${luxScope}${cardHeaderTabs} ${luxScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

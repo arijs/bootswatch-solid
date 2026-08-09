@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${journalScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(235, 104, 100, 0.25)',
 })
 
-globalStyle(`${journalScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${journalScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}${navLinkActive}`, {
+globalStyle(`${journalScope}${navTabs} ${journalScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${journalScope}${navPills} ${journalScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${journalScope}${navPills} ${journalScope}${navLink}${navLinkActive}`, {
+globalStyle(`${journalScope}${navPills} ${journalScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -209,7 +208,7 @@ globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}${navLinkActive}`, {
+globalStyle(`${journalScope}${navUnderline} ${journalScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -259,7 +258,7 @@ globalStyle(`${journalScope}${tabContent} > ${journalScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${navLinkActive}`, {
+globalStyle(`${journalScope}${navbarNav} ${journalScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -324,7 +323,7 @@ globalStyle(`${journalScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${journalScope}${cardHeaderTabs} ${journalScope}${navLink}${navLinkActive}`, {
+globalStyle(`${journalScope}${cardHeaderTabs} ${journalScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${bootstrapScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
 })
 
-globalStyle(`${bootstrapScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${bootstrapScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navTabs} ${bootstrapScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navPills} ${bootstrapScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -209,7 +208,7 @@ globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}:focus`
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navUnderline} ${bootstrapScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -259,7 +258,7 @@ globalStyle(`${bootstrapScope}${tabContent} > ${bootstrapScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${navbarNav} ${bootstrapScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -324,7 +323,7 @@ globalStyle(`${bootstrapScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${navLinkActive}`, {
+globalStyle(`${bootstrapScope}${cardHeaderTabs} ${bootstrapScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

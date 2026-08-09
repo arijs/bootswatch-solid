@@ -8,7 +8,7 @@ import {
 import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btnClose, clsH4 } from '../../../theme-contract/literal/contract.css'
+import { btnClose, clsH4, fade, show } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
@@ -26,12 +26,10 @@ import {
 	modalBody,
 	modalContent,
 	modalDialog,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
 	modalOpenHook,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import { dFlex } from '../../../theme-contract/utilities/contract.css'
@@ -55,7 +53,7 @@ const FullscreenModal: Component = () => {
 		modalBody,
 		modalDialog,
 		modalOpenHook: `${theme} ${modalOpenHook}`,
-		modalShowHook,
+		show,
 	})
 	return (
 		<>
@@ -72,7 +70,7 @@ const FullscreenModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${fade} pwhook-modal`}
 				id="exampleModalFullscreen"
 				tabindex="-1"
 				role="dialog"

@@ -33,10 +33,9 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -106,28 +105,28 @@ globalStyle(`${flatlyScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${flatlyScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${flatlyScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${flatlyScope}${pageItemActive} > ${flatlyScope}${pageLink}`, {
+globalStyle(`${flatlyScope}${active} > ${flatlyScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${flatlyScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${flatlyScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${flatlyScope}${pageItemDisabled} > ${flatlyScope}${pageLink}`, {
+globalStyle(`${flatlyScope}${disabled} > ${flatlyScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

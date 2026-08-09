@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${yetiScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${yetiScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${yetiScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${yetiScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${yetiScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${yetiScope}${modal}${modalFade} ${yetiScope}${modalDialog}`, {
+globalStyle(`${yetiScope}${modal}${fade} ${yetiScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${yetiScope}${modal}${modalFade} ${yetiScope}${modalDialog}`, {
+globalStyle(`${yetiScope}${modal}${fade} ${yetiScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${yetiScope}${modal}${modalFade} ${yetiScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${yetiScope}${modal}${modalShowHook} ${yetiScope}${modalDialog}`, {
+globalStyle(`${yetiScope}${modal}${show} ${yetiScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${yetiScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${yetiScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${yetiScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${yetiScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${yetiScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

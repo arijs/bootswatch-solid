@@ -28,30 +28,10 @@ import {
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
+	show,
 	tooltip,
 } from '../../../../theme-contract/literal/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
-
-globalStyle(`${sandstoneScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${sandstoneScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${sandstoneScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
+import { tooltipArrow, tooltipInner } from '../../../../theme-contract/ui/tooltips/contract.css'
 
 globalStyle(`${sandstoneScope}${tooltip}`, {
 	vars: {
@@ -89,7 +69,7 @@ globalStyle(`${sandstoneScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sandstoneScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${sandstoneScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 

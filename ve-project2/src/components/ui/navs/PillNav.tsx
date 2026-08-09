@@ -7,15 +7,8 @@ import {
 } from '../../../context/ThemeContext'
 import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { active } from '../../../theme-contract/literal/contract.css'
-import {
-	nav,
-	navItem,
-	navLink,
-	navLinkActive,
-	navLinkDisabled,
-	navPills,
-} from '../../../theme-contract/ui/navs/contract.css'
+import { active, disabled } from '../../../theme-contract/literal/contract.css'
+import { nav, navItem, navLink, navPills } from '../../../theme-contract/ui/navs/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/navs',
@@ -33,7 +26,7 @@ const PillNav: Component = () => {
 					<li class={`${theme} ${navItem}`}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a
-							class={`${theme} ${link} ${navLink} ${navLinkActive} ${active}`}
+							class={`${theme} ${link} ${navLink} ${active}`}
 							aria-current="page"
 							href="#"
 							onClick={(e) => e.preventDefault()}
@@ -64,7 +57,7 @@ const PillNav: Component = () => {
 					<li class={`${theme} ${navItem}`}>
 						{/* biome-ignore lint: <a> is used for demonstration purposes */}
 						<a
-							class={`${theme} ${link} ${navLink} ${navLinkDisabled}`}
+							class={`${theme} ${link} ${navLink} ${disabled}`}
 							href="#"
 							onClick={(e) => e.preventDefault()}
 							tabindex="-1"

@@ -7,6 +7,3 @@ export const breadcrumb = style({})
 
 // Item modifier
 export const breadcrumbItem = style({})
-
-// Active-state modifier applied alongside breadcrumbItem
-export const breadcrumbItemActive = style({})

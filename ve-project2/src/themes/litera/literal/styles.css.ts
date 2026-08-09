@@ -913,6 +913,7 @@ import {
 	colXxl8,
 	colXxl9,
 	colXxlAuto,
+	collapse,
 	collapseHorizontal,
 	collapsed,
 	collapsing,
@@ -1048,6 +1049,7 @@ import {
 	end0,
 	end100,
 	end50,
+	fade,
 	fixedBottom,
 	fixedTop,
 	flexColumn,
@@ -2276,6 +2278,7 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
+	show,
 	showing,
 	spinnerBorderSm,
 	spinnerGrowSm,
@@ -2391,7 +2394,6 @@ import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
@@ -2468,7 +2470,6 @@ import {
 	carouselItemStart,
 } from '../../../theme-contract/ui/carousel/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -2478,7 +2479,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -2511,15 +2511,12 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import {
-	collapse,
 	navbar,
 	navbarBrand,
 	navbarCollapse,
@@ -2531,15 +2528,11 @@ import {
 	navbarTogglerIcon,
 } from '../../../theme-contract/ui/navbar/contract.css'
 import {
-	fade,
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../theme-contract/ui/navs/contract.css'
@@ -2561,8 +2554,6 @@ import {
 } from '../../../theme-contract/ui/offcanvas/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -2576,9 +2567,7 @@ import {
 	bsPopoverTop,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverShow,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import {
 	progress,
@@ -2588,19 +2577,8 @@ import {
 } from '../../../theme-contract/ui/progress/contract.css'
 import { scrollspyExample } from '../../../theme-contract/ui/scrollspy/contract.css'
 import { spinnerBorder, spinnerGrow } from '../../../theme-contract/ui/spinners/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../theme-contract/ui/toasts/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../theme-contract/ui/tooltips/contract.css'
+import { toast, toastBody, toastHeader } from '../../../theme-contract/ui/toasts/contract.css'
+import { tooltipArrow, tooltipInner } from '../../../theme-contract/ui/tooltips/contract.css'
 import {
 	alignItemsCenter,
 	alignSelfStart,
@@ -8769,12 +8747,6 @@ globalStyle(`${literaScope}${btn}${show}`, {
 	borderColor: varBsBtnActiveBorderColor,
 })
 
-globalStyle(`${literaScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
 globalStyle(`${literaScope}${btnCheck}:checked + ${literaScope}${btn}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
@@ -8792,10 +8764,6 @@ globalStyle(`${literaScope}${btn}${active}:focus-visible`, {
 })
 
 globalStyle(`${literaScope}${btn}${show}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
-})
-
-globalStyle(`${literaScope}${btn}${btnShowHook}:focus-visible`, {
 	boxShadow: varBsBtnFocusBoxShadow,
 })
 
@@ -9217,18 +9185,6 @@ globalStyle(`${literaScope}${fade}`, {
 	transition: 'opacity 0.15s linear',
 })
 
-globalStyle(`${literaScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${literaScope}${popoverFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${literaScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
 globalStyle(`${literaScope}${fade}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
@@ -9237,43 +9193,7 @@ globalStyle(`${literaScope}${fade}`, {
 	},
 })
 
-globalStyle(`${literaScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${literaScope}${popoverFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${literaScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
 globalStyle(`${literaScope}${fade}:not(${show})`, {
-	opacity: '0',
-})
-
-globalStyle(`${literaScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${literaScope}${popoverFade}:not(${popoverShow})`, {
-	opacity: '0',
-})
-
-globalStyle(`${literaScope}${modalFade}:not(${modalShowHook})`, {
 	opacity: '0',
 })
 
@@ -9758,7 +9678,7 @@ globalStyle(`${literaScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${literaScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${literaScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 
@@ -10053,7 +9973,7 @@ globalStyle(`${literaScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(69, 130, 236, 0.25)',
 })
 
-globalStyle(`${literaScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${literaScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -10095,7 +10015,7 @@ globalStyle(`${literaScope}${navTabs} ${literaScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${literaScope}${navTabs} ${literaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${literaScope}${navTabs} ${literaScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -10125,7 +10045,7 @@ globalStyle(`${literaScope}${navPills} ${literaScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${literaScope}${navPills} ${literaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${literaScope}${navPills} ${literaScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -10158,7 +10078,7 @@ globalStyle(`${literaScope}${navUnderline} ${literaScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${literaScope}${navUnderline} ${literaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${literaScope}${navUnderline} ${literaScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -10322,7 +10242,7 @@ globalStyle(`${literaScope}${navbarNav}`, {
 	listStyle: 'none',
 })
 
-globalStyle(`${literaScope}${navbarNav} ${literaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${literaScope}${navbarNav} ${literaScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -11085,7 +11005,7 @@ globalStyle(`${literaScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${literaScope}${cardHeaderTabs} ${literaScope}${navLink}${navLinkActive}`, {
+globalStyle(`${literaScope}${cardHeaderTabs} ${literaScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -11300,13 +11220,13 @@ globalStyle(`${literaScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${literaScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${literaScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${literaScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${literaScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })
@@ -11370,7 +11290,7 @@ globalStyle(`${literaScope}${accordionItem}:last-of-type`, {
 	borderBottomLeftRadius: varBsAccordionBorderRadius,
 })
 
-globalStyle(`${literaScope}${accordionItem}:last-of-type > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${accordionButtonCollapsed}`, {
+globalStyle(`${literaScope}${accordionItem}:last-of-type > ${literaScope}${accordionHeader} ${literaScope}${accordionButton}${collapsed}`, {
 	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
 	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
@@ -11516,28 +11436,28 @@ globalStyle(`${literaScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${literaScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${literaScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${literaScope}${pageItemActive} > ${literaScope}${pageLink}`, {
+globalStyle(`${literaScope}${active} > ${literaScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${literaScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${literaScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${literaScope}${pageItemDisabled} > ${literaScope}${pageLink}`, {
+globalStyle(`${literaScope}${disabled} > ${literaScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -12447,11 +12367,11 @@ globalStyle(`${literaScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${literaScope}${toast}${toastShowing}`, {
+globalStyle(`${literaScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${literaScope}${toast}:not(${toastShow})`, {
+globalStyle(`${literaScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 
@@ -12535,12 +12455,12 @@ globalStyle(`${literaScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${literaScope}${modal}${modalFade} ${literaScope}${modalDialog}`, {
+globalStyle(`${literaScope}${modal}${fade} ${literaScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${literaScope}${modal}${modalFade} ${literaScope}${modalDialog}`, {
+globalStyle(`${literaScope}${modal}${fade} ${literaScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -12548,7 +12468,7 @@ globalStyle(`${literaScope}${modal}${modalFade} ${literaScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${literaScope}${modal}${modalShowHook} ${literaScope}${modalDialog}`, {
+globalStyle(`${literaScope}${modal}${show} ${literaScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -12604,11 +12524,11 @@ globalStyle(`${literaScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${literaScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${literaScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${literaScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${literaScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 
@@ -13005,7 +12925,7 @@ globalStyle(`${literaScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${literaScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${literaScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 

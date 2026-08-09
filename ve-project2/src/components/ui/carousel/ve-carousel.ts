@@ -4,7 +4,7 @@ import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeCarouselRuntimeClasses {
 	carousel: string
-	carouselActive: string
+	active: string
 	carouselIndicators: string
 	carouselItem: string
 	carouselItemEnd: string
@@ -21,7 +21,7 @@ export function createVeCarousel(
 		bootstrap.Carousel as unknown as BootstrapWithDefaults<typeof bootstrap.Carousel>
 	).extendDefaultConfig({
 		CLASS_NAME_CAROUSEL: runtimeClasses.carousel,
-		CLASS_NAME_ACTIVE: `${runtimeClasses.carouselActive} ${active} pwhook-carousel-active`,
+		CLASS_NAME_ACTIVE: `${active} pwhook-carousel-active`,
 		CLASS_NAME_SLIDE: runtimeClasses.carouselSlide,
 		CLASS_NAME_END: runtimeClasses.carouselItemEnd,
 		CLASS_NAME_START: runtimeClasses.carouselItemStart,

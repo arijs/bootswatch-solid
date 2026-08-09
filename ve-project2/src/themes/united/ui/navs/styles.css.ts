@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${unitedScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(233, 84, 32, 0.25)',
 })
 
-globalStyle(`${unitedScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${unitedScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${unitedScope}${navTabs} ${unitedScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${unitedScope}${navTabs} ${unitedScope}${navLink}${navLinkActive}`, {
+globalStyle(`${unitedScope}${navTabs} ${unitedScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${unitedScope}${navPills} ${unitedScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${unitedScope}${navPills} ${unitedScope}${navLink}${navLinkActive}`, {
+globalStyle(`${unitedScope}${navPills} ${unitedScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -209,7 +208,7 @@ globalStyle(`${unitedScope}${navUnderline} ${unitedScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${unitedScope}${navUnderline} ${unitedScope}${navLink}${navLinkActive}`, {
+globalStyle(`${unitedScope}${navUnderline} ${unitedScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -259,7 +258,7 @@ globalStyle(`${unitedScope}${tabContent} > ${unitedScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${unitedScope}${navbarNav} ${unitedScope}${navLink}${navLinkActive}`, {
+globalStyle(`${unitedScope}${navbarNav} ${unitedScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -324,7 +323,7 @@ globalStyle(`${unitedScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${unitedScope}${cardHeaderTabs} ${unitedScope}${navLink}${navLinkActive}`, {
+globalStyle(`${unitedScope}${cardHeaderTabs} ${unitedScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

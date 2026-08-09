@@ -38,6 +38,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -47,6 +48,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -57,29 +59,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${lumenScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${lumenScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${lumenScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${lumenScope}${modal}`, {
 	vars: {
@@ -124,12 +108,12 @@ globalStyle(`${lumenScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${lumenScope}${modal}${modalFade} ${lumenScope}${modalDialog}`, {
+globalStyle(`${lumenScope}${modal}${fade} ${lumenScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${lumenScope}${modal}${modalFade} ${lumenScope}${modalDialog}`, {
+globalStyle(`${lumenScope}${modal}${fade} ${lumenScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -137,7 +121,7 @@ globalStyle(`${lumenScope}${modal}${modalFade} ${lumenScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${lumenScope}${modal}${modalShowHook} ${lumenScope}${modalDialog}`, {
+globalStyle(`${lumenScope}${modal}${show} ${lumenScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -193,11 +177,11 @@ globalStyle(`${lumenScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${lumenScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${lumenScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${lumenScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${lumenScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

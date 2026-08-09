@@ -33,10 +33,9 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -106,28 +105,28 @@ globalStyle(`${vaporScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${vaporScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${vaporScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${vaporScope}${pageItemActive} > ${vaporScope}${pageLink}`, {
+globalStyle(`${vaporScope}${active} > ${vaporScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${vaporScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${vaporScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${vaporScope}${pageItemDisabled} > ${vaporScope}${pageLink}`, {
+globalStyle(`${vaporScope}${disabled} > ${vaporScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -170,6 +169,6 @@ globalStyle(`${vaporScope}${pageLink}`, {
 	borderRadius: '0.15rem',
 })
 
-globalStyle(`${vaporScope}${pageItem}${pageItemActive} ${vaporScope}${pageLink}`, {
+globalStyle(`${vaporScope}${pageItem}${active} ${vaporScope}${pageLink}`, {
 	boxShadow: '0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1)',
 })

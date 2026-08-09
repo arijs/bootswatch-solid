@@ -7,11 +7,7 @@ import {
 } from '../../../context/ThemeContext'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { disabled } from '../../../theme-contract/literal/contract.css'
-import {
-	listGroup,
-	listGroupItem,
-	listGroupItemDisabled,
-} from '../../../theme-contract/ui/list-group/contract.css'
+import { listGroup, listGroupItem } from '../../../theme-contract/ui/list-group/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/list-group',
@@ -25,10 +21,7 @@ const DefaultListGroup: Component = () => {
 	return (
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<ul class={`${theme} ${listGroup}`}>
-				<li
-					class={`${theme} ${listGroupItem} ${listGroupItemDisabled} ${disabled}`}
-					aria-disabled="true"
-				>
+				<li class={`${theme} ${listGroupItem} ${disabled}`} aria-disabled="true">
 					A disabled item
 				</li>
 				<li class={`${theme} ${listGroupItem}`}>A second item</li>

@@ -40,6 +40,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -49,6 +50,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -59,29 +61,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${zephyrScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${zephyrScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${zephyrScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${zephyrScope}${modal}`, {
 	vars: {
@@ -126,12 +110,12 @@ globalStyle(`${zephyrScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${zephyrScope}${modal}${modalFade} ${zephyrScope}${modalDialog}`, {
+globalStyle(`${zephyrScope}${modal}${fade} ${zephyrScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${zephyrScope}${modal}${modalFade} ${zephyrScope}${modalDialog}`, {
+globalStyle(`${zephyrScope}${modal}${fade} ${zephyrScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -139,7 +123,7 @@ globalStyle(`${zephyrScope}${modal}${modalFade} ${zephyrScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${zephyrScope}${modal}${modalShowHook} ${zephyrScope}${modalDialog}`, {
+globalStyle(`${zephyrScope}${modal}${show} ${zephyrScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -196,11 +180,11 @@ globalStyle(`${zephyrScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${zephyrScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${zephyrScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${zephyrScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${zephyrScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

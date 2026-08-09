@@ -67,6 +67,7 @@ import {
 	varBsWarningTextEmphasis,
 	varBsWhiteRgb,
 } from '../../../theme-contract/_vars.css'
+import { varBsAccordionInnerBorderRadius } from '../../../theme-contract/ui/accordion/_vars.css'
 import {
 	varBsAspectRatio,
 	varBsBgOpacity,
@@ -5172,6 +5173,11 @@ globalStyle(`${journalScope}${navbar} > ${journalScope}${containerXxl}`, {
 	flexWrap: 'inherit',
 	alignItems: 'center',
 	justifyContent: 'space-between',
+})
+
+globalStyle(`${journalScope}${accordionItem}:last-of-type > ${journalScope}${accordionHeader} ${journalScope}${accordionButton}${collapsed}`, {
+	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
 
 globalStyle(`${journalScope}${accordionFlush} > ${journalScope}${accordionItem} > ${journalScope}${accordionHeader} ${journalScope}${accordionButton}${collapsed}`, {

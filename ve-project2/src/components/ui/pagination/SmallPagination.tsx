@@ -8,9 +8,9 @@ import {
 import { link } from '../../../theme-contract/contents/basic/contract.css'
 import { elLi } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { active } from '../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
 	pageLink,
 	pagination,
 	paginationSm,
@@ -40,10 +40,7 @@ const SmallPagination: Component = () => {
 								1
 							</a>
 						</li>
-						<li
-							class={`${theme} ${pageItem} ${elLi} ${pageItemActive}`}
-							aria-current="page"
-						>
+						<li class={`${theme} ${pageItem} ${elLi} ${active}`} aria-current="page">
 							{/* biome-ignore lint: <a> is used for demonstration purposes */}
 							<a
 								class={`${theme} ${link} ${pageLink}`}

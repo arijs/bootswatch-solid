@@ -10,7 +10,6 @@ import { containerFluid } from '../../../../../../theme-contract/layout/containe
 import { active } from '../../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnPrimary,
 	btnSm,
 	inputFontFamily,
@@ -31,7 +30,7 @@ const CheckActiveDisabledSmallButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnPrimary} ${btnSm} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnPrimary} ${btnSm} ${active} ${inputFontFamily} pwhook-btn`}
 			>
 				Small button
 			</button>

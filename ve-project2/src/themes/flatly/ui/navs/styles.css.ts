@@ -34,6 +34,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -42,6 +43,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -49,11 +51,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -107,7 +106,7 @@ globalStyle(`${flatlyScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(44, 62, 80, 0.25)',
 })
 
-globalStyle(`${flatlyScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${flatlyScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -149,7 +148,7 @@ globalStyle(`${flatlyScope}${navTabs} ${flatlyScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${flatlyScope}${navTabs} ${flatlyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${flatlyScope}${navTabs} ${flatlyScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -173,7 +172,7 @@ globalStyle(`${flatlyScope}${navPills} ${flatlyScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${flatlyScope}${navPills} ${flatlyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${flatlyScope}${navPills} ${flatlyScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -206,7 +205,7 @@ globalStyle(`${flatlyScope}${navUnderline} ${flatlyScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${flatlyScope}${navUnderline} ${flatlyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${flatlyScope}${navUnderline} ${flatlyScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -256,7 +255,7 @@ globalStyle(`${flatlyScope}${tabContent} > ${flatlyScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${flatlyScope}${navbarNav} ${flatlyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${flatlyScope}${navbarNav} ${flatlyScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -321,7 +320,7 @@ globalStyle(`${flatlyScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${flatlyScope}${cardHeaderTabs} ${flatlyScope}${navLink}${navLinkActive}`, {
+globalStyle(`${flatlyScope}${cardHeaderTabs} ${flatlyScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

@@ -16,6 +16,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { build } from 'vite'
+import { UNWIRED_ALLOWLIST } from './contract-wiring-allowlist.mjs'
 import { buildFamilyTable } from './generate-ve-literal/family-table.mjs'
 
 const ROOT = process.cwd()
@@ -44,32 +45,35 @@ function moduleToEntry(modulePath) {
 	return rel.split('/').pop()
 }
 
-// Lista todos os módulos de contract (contract.css.ts + _vars.css.ts + _public-vars).
+// Lista TODOS os módulos de contract. Um filtro por nome de arquivo deixava
+// `layout/container.css.ts` de fora: `containerFluid` caía p/ a cópia de `literal/`
+// (candidata única, hash morto) enquanto os temas estilizam a de `layout/`.
 async function contractModules() {
 	const out = []
 	async function walk(dir) {
 		for (const e of await readdir(dir, { withFileTypes: true })) {
 			const p = path.join(dir, e.name)
 			if (e.isDirectory()) await walk(p)
-			else if (/^(contract|_vars|_public-vars|theme-contract)\.css\.ts$/.test(e.name))
-				out.push(p)
+			else if (e.name.endsWith('.css.ts')) out.push(p)
 		}
 	}
 	await walk(TC)
 	return out.sort()
 }
 
-// tokens `b<hash>` presentes no CSS emitido (classes `.b…` e vars `--b…`). Basta
-// um tema — os hashes são theme-agnostic.
+// tokens `b<hash>` presentes no CSS emitido (classes `.b…` e vars `--b…`).
+// União dos 27 temas: o hash é theme-agnostic, mas a EXISTÊNCIA de uma regra não é —
+// dezenas de classes legadas do BS3/4 (`.help-block`, `.card-primary`, `.pager`) só
+// aparecem no CSS de alguns Bootswatch. Ler só `bootstrap` as marcaria como mortas.
 async function liveHashes() {
-	const themeDir = existsSync(path.join(THEMES, 'bootstrap'))
-		? path.join(THEMES, 'bootstrap')
-		: null
-	if (!themeDir) throw new Error('dist-pkg/themes/bootstrap ausente — rode pkg:build antes')
+	if (!existsSync(THEMES)) throw new Error('dist-pkg/themes ausente — rode pkg:build antes')
 	const live = new Set()
-	for (const f of (await readdir(themeDir)).filter((f) => f.endsWith('.css'))) {
-		const css = await readFile(path.join(themeDir, f), 'utf8')
-		for (const m of css.matchAll(/(?:\.|--)(b[a-z0-9]+)\b/g)) live.add(m[1])
+	for (const theme of await readdir(THEMES)) {
+		const themeDir = path.join(THEMES, theme)
+		for (const f of (await readdir(themeDir)).filter((f) => f.endsWith('.css'))) {
+			const css = await readFile(path.join(themeDir, f), 'utf8')
+			for (const m of css.matchAll(/(?:\.|--)(b[a-z0-9]+)\b/g)) live.add(m[1])
+		}
 	}
 	return live
 }
@@ -145,11 +149,22 @@ async function main() {
 	const varsByEntry = {}
 	let unresolvedFamily = 0
 	let deadDup = 0
+	// Candidata ÚNICA nunca passava por `live` — era esse buraco que publicava
+	// `dropdownItemActive` & cia.: um hash real, exportado, sem uma única regra no
+	// CSS de nenhum dos 27 temas. Aplicar a classe era um no-op silencioso.
+	const deadSingles = []
 	for (const [name, cands] of nameEntries) {
 		const chosen = resolve(cands)
 		if (!chosen) {
 			deadDup++
 			continue
+		}
+		if (
+			!isVar(chosen.value) &&
+			!live.has(innerHash(chosen.value) ?? '') &&
+			!UNWIRED_ALLOWLIST[name]
+		) {
+			deadSingles.push(name)
 		}
 		if (isVar(chosen.value)) {
 			const entry = moduleToEntry(chosen.module)
@@ -208,6 +223,17 @@ async function main() {
 	console.log(
 		`  sem família (skipped): ${unresolvedFamily}; duplicatas mortas (skipped): ${deadDup}`,
 	)
+
+	if (deadSingles.length > 0) {
+		console.error(
+			`\nERRO: ${deadSingles.length} contract(s) exportado(s) sem UMA regra no CSS de nenhum tema.\n` +
+				'Aplicá-los é um no-op silencioso: classe válida no DOM, zero CSS por trás.\n' +
+				'Ou remova o contract, ou ligue-o num tema, ou — se for inerte de propósito —\n' +
+				'declare-o em scripts/contract-wiring-allowlist.mjs com o motivo.\n',
+		)
+		for (const name of deadSingles.sort()) console.error(`  ${name}`)
+		process.exit(1)
+	}
 }
 
 main().catch((e) => {

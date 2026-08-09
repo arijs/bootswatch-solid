@@ -271,6 +271,8 @@ ve-project2/src/
 17. **Theme-local selectors and resolved component values must come from `screenshots/{theme}/**/style.css`.** If a component needs a special-case rule beyond the global `theme.css` vars, derive it from the matching route-level `style.css` files for the same theme rather than from another theme or from package sources.
 18. **Source CSS element rules (`h1`/`h4`/`p`/`hr`, etc.) must be migrated via `contents` contracts, never by targeting raw elements in selectors.** Create a contract class in `theme-contract/contents/contract.css.ts`, implement theme rules in `themes/{theme}/contents/styles.css.ts`, and stamp those classes directly on component elements (for example `<h4 class={`${theme} ${h4}`}>`). Do not use selectors like ``${scope} hr`` or ``${scope}${component} p``.
 19. **Static string class selectors from source CSS (for example `.container`, `.container-fluid`) must not be authored inside `themes/{theme}/{family}/styles.css.ts`.** Migrate these rules through `theme-contract/contents/contract.css.ts` and implement them in `themes/{theme}/contents/styles.css.ts`, then apply the corresponding contents contract classes in markup. Do not write raw selector strings like `.container` or `.container-fluid` in component-family theme files.
+20. **One contract per source class token — never a per-family alias for a shared state class.** `.dropdown-item.active` is two tokens and emits `${dropdownItem}${active}`; the composition happens at the call site. Do not add `dropdownItemActive`, `btnShowHook`, `navLinkDisabled` or anything shaped like them. `active`, `disabled`, `show`, `showing`, `fade`, `collapsed`, `collapsing` are owned by `theme-contract/literal/contract.css.ts` and by nothing else — a second copy in a family module shadows the live one depending on directory read order. Compound selectors already isolate components (`${modal}${show}` cannot match a dropdown), so a shared hash is safe. A genuine interference case gets a named entry in the divergence manifest, never a family-specific contract.
+21. **Every zero-style contract must be styled by some theme.** An unwired contract compiles, exports a real hashed class and renders nothing — the failure is invisible until someone reports that an element "looks unstyled". `npm run check:contract-wiring` enforces this before a build and `build-contract.mjs` re-checks it against real hashes; deliberate inertness goes in `scripts/contract-wiring-allowlist.mjs` with a reason.
 
 ---
 
@@ -292,6 +294,11 @@ export const myComponentVariant = style({})
 ```
 
 All exports must be `style({})` — no properties.
+
+One export per Bootstrap class token. A rule like `.my-component.active` does **not** get a
+`myComponentActive` contract: `.active` is already owned by `theme-contract/literal/contract.css.ts`,
+and the theme rule composes the two (`${myComponent}${active}`). See Core Rule 20 — this is the
+mistake that left four state contracts exported and unwired for two releases.
 
 Create `ve-project2/src/theme-contract/ui/{family}/_vars.css.ts` with a `createVar()` for each Bootstrap CSS custom property used by this family:
 

@@ -34,6 +34,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -42,6 +43,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbar, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -49,11 +51,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -107,7 +106,7 @@ globalStyle(`${sandstoneScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(50, 93, 136, 0.25)',
 })
 
-globalStyle(`${sandstoneScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sandstoneScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -149,7 +148,7 @@ globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -173,7 +172,7 @@ globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -206,7 +205,7 @@ globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}:focus`
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navUnderline} ${sandstoneScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -256,7 +255,7 @@ globalStyle(`${sandstoneScope}${tabContent} > ${sandstoneScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navbarNav} ${sandstoneScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -321,7 +320,7 @@ globalStyle(`${sandstoneScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${sandstoneScope}${cardHeaderTabs} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${cardHeaderTabs} ${sandstoneScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -364,19 +363,19 @@ globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}:focus`, {
 	color: '#8e8c84',
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${disabled}`, {
 	color: '#dfd7ca',
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${disabled}:hover`, {
 	color: '#dfd7ca',
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
 
-globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${navLinkDisabled}:focus`, {
+globalStyle(`${sandstoneScope}${navTabs} ${sandstoneScope}${navLink}${disabled}:focus`, {
 	color: '#dfd7ca',
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
@@ -387,7 +386,7 @@ globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}`, {
 	border: '1px solid transparent',
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkActive}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${active}`, {
 	backgroundColor: '#f8f5f0',
 	borderColor: '#dfd7ca',
 })
@@ -402,13 +401,13 @@ globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}:focus`, {
 	borderColor: '#dfd7ca',
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${disabled}`, {
 	color: '#dfd7ca',
 	backgroundColor: 'transparent',
 	borderColor: 'transparent',
 })
 
-globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${navLinkDisabled}:hover`, {
+globalStyle(`${sandstoneScope}${navPills} ${sandstoneScope}${navLink}${disabled}:hover`, {
 	color: '#dfd7ca',
 	backgroundColor: 'transparent',
 	borderColor: 'transparent',

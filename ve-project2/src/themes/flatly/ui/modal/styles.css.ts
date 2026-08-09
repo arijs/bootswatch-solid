@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${flatlyScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${flatlyScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${flatlyScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${flatlyScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${flatlyScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${flatlyScope}${modal}${modalFade} ${flatlyScope}${modalDialog}`, {
+globalStyle(`${flatlyScope}${modal}${fade} ${flatlyScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${flatlyScope}${modal}${modalFade} ${flatlyScope}${modalDialog}`, {
+globalStyle(`${flatlyScope}${modal}${fade} ${flatlyScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${flatlyScope}${modal}${modalFade} ${flatlyScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${flatlyScope}${modal}${modalShowHook} ${flatlyScope}${modalDialog}`, {
+globalStyle(`${flatlyScope}${modal}${show} ${flatlyScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${flatlyScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${flatlyScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${flatlyScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${flatlyScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${flatlyScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

@@ -8,13 +8,6 @@ import {
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
 	varBsDropdownBorderRadius,
@@ -65,11 +58,10 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -79,7 +71,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -89,7 +80,7 @@ import {
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
-import { navTabs, show } from '../../../../theme-contract/ui/navs/contract.css'
+import { navTabs } from '../../../../theme-contract/ui/navs/contract.css'
 
 globalStyle(`${morphScope}${inputGroup}:not(${hasValidation}) > ${morphScope}${dropdownToggle}:nth-last-child(n+3)`, {
 	borderTopRightRadius: '0',
@@ -99,17 +90,6 @@ globalStyle(`${morphScope}${inputGroup}:not(${hasValidation}) > ${morphScope}${d
 globalStyle(`${morphScope}${inputGroup}${hasValidation} > ${morphScope}${dropdownToggle}:nth-last-child(n+4)`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${morphScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-	boxShadow: varBsBtnActiveBoxShadow,
-})
-
-globalStyle(`${morphScope}${btn}${btnShowHook}:focus-visible`, {
-	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
 globalStyle(`${morphScope}${dropup}`, {
@@ -562,7 +542,7 @@ globalStyle(`${morphScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${morphScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${morphScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 

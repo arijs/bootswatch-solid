@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${yetiScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(0, 140, 186, 0.25)',
 })
 
-globalStyle(`${yetiScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${yetiScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${yetiScope}${navTabs} ${yetiScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${yetiScope}${navTabs} ${yetiScope}${navLink}${navLinkActive}`, {
+globalStyle(`${yetiScope}${navTabs} ${yetiScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${yetiScope}${navPills} ${yetiScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${yetiScope}${navPills} ${yetiScope}${navLink}${navLinkActive}`, {
+globalStyle(`${yetiScope}${navPills} ${yetiScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -209,7 +208,7 @@ globalStyle(`${yetiScope}${navUnderline} ${yetiScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${yetiScope}${navUnderline} ${yetiScope}${navLink}${navLinkActive}`, {
+globalStyle(`${yetiScope}${navUnderline} ${yetiScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -259,7 +258,7 @@ globalStyle(`${yetiScope}${tabContent} > ${yetiScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${yetiScope}${navbarNav} ${yetiScope}${navLink}${navLinkActive}`, {
+globalStyle(`${yetiScope}${navbarNav} ${yetiScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -324,7 +323,7 @@ globalStyle(`${yetiScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${yetiScope}${cardHeaderTabs} ${yetiScope}${navLink}${navLinkActive}`, {
+globalStyle(`${yetiScope}${cardHeaderTabs} ${yetiScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

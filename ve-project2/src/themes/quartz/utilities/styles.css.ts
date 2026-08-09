@@ -67,6 +67,7 @@ import {
 	varBsWarningTextEmphasis,
 	varBsWhiteRgb,
 } from '../../../theme-contract/_vars.css'
+import { varBsAccordionInnerBorderRadius } from '../../../theme-contract/ui/accordion/_vars.css'
 import {
 	varBsAspectRatio,
 	varBsBgOpacity,
@@ -83,6 +84,7 @@ import { rounded } from '../../../theme-contract/contents/images/contract.css'
 import { formFloating, formSwitch, wasValidated } from '../../../theme-contract/forms/contract.css'
 import {
 	accordionFlush,
+	active,
 	alignBaseline,
 	alignBottom,
 	alignContentAround,
@@ -1661,6 +1663,7 @@ import {
 	shadowLg,
 	shadowNone,
 	shadowSm,
+	show,
 	start0,
 	start100,
 	start50,
@@ -1775,13 +1778,7 @@ import { dropdownMenu } from '../../../theme-contract/ui/dropdowns/contract.css'
 import { listGroup } from '../../../theme-contract/ui/list-group/contract.css'
 import { flexWrap, modalContent } from '../../../theme-contract/ui/modal/contract.css'
 import { navbar } from '../../../theme-contract/ui/navbar/contract.css'
-import {
-	navItem,
-	navLink,
-	navLinkActive,
-	navTabs,
-	show,
-} from '../../../theme-contract/ui/navs/contract.css'
+import { navItem, navLink, navTabs } from '../../../theme-contract/ui/navs/contract.css'
 import { offcanvas } from '../../../theme-contract/ui/offcanvas/contract.css'
 import { toast } from '../../../theme-contract/ui/toasts/contract.css'
 import {
@@ -5188,6 +5185,11 @@ globalStyle(`${quartzScope}${navbar} > ${quartzScope}${containerXxl}`, {
 	flexWrap: 'inherit',
 	alignItems: 'center',
 	justifyContent: 'space-between',
+})
+
+globalStyle(`${quartzScope}${accordionItem}:last-of-type > ${quartzScope}${accordionHeader} ${quartzScope}${accordionButton}${collapsed}`, {
+	borderBottomRightRadius: varBsAccordionInnerBorderRadius,
+	borderBottomLeftRadius: varBsAccordionInnerBorderRadius,
 })
 
 globalStyle(`${quartzScope}${accordionFlush} > ${quartzScope}${accordionItem} > ${quartzScope}${accordionHeader} ${quartzScope}${accordionButton}${collapsed}`, {
@@ -15178,7 +15180,7 @@ globalStyle(`${quartzScope}${dropdownMenu} ${quartzScope}${textMuted}`, {
 	color: 'rgba(255, 255, 255, 0.7) !important',
 })
 
-globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${navLinkActive} ${quartzScope}${textMuted}`, {
+globalStyle(`${quartzScope}${navTabs} ${quartzScope}${navItem} ${quartzScope}${navLink}${active} ${quartzScope}${textMuted}`, {
 	color: 'rgba(255, 255, 255, 0.7) !important',
 })
 

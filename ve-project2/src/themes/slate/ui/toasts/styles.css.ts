@@ -20,14 +20,8 @@ import {
 	varBsToastZindex,
 } from '../../../../theme-contract/ui/toasts/_vars.css'
 
-import { toastContainer } from '../../../../theme-contract/literal/contract.css'
-import {
-	toast,
-	toastBody,
-	toastHeader,
-	toastShow,
-	toastShowing,
-} from '../../../../theme-contract/ui/toasts/contract.css'
+import { show, showing, toastContainer } from '../../../../theme-contract/literal/contract.css'
+import { toast, toastBody, toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 
 globalStyle(`${slateScope}${toast}`, {
 	vars: {
@@ -59,11 +53,11 @@ globalStyle(`${slateScope}${toast}`, {
 	borderRadius: varBsToastBorderRadius,
 })
 
-globalStyle(`${slateScope}${toast}${toastShowing}`, {
+globalStyle(`${slateScope}${toast}${showing}`, {
 	opacity: '0',
 })
 
-globalStyle(`${slateScope}${toast}:not(${toastShow})`, {
+globalStyle(`${slateScope}${toast}:not(${show})`, {
 	display: 'none',
 })
 

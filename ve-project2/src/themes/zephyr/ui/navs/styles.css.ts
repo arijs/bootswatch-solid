@@ -35,6 +35,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandXl,
 	navbarExpandXxl,
 	navbarLight,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbar, navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${zephyrScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(52, 89, 230, 0.25)',
 })
 
-globalStyle(`${zephyrScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${zephyrScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${zephyrScope}${navPills} ${zephyrScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${zephyrScope}${navPills} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navPills} ${zephyrScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -209,7 +208,7 @@ globalStyle(`${zephyrScope}${navUnderline} ${zephyrScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${zephyrScope}${navUnderline} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navUnderline} ${zephyrScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -259,7 +258,7 @@ globalStyle(`${zephyrScope}${tabContent} > ${zephyrScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -324,7 +323,7 @@ globalStyle(`${zephyrScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${zephyrScope}${cardHeaderTabs} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${cardHeaderTabs} ${zephyrScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -342,7 +341,7 @@ globalStyle(`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScop
 	backgroundColor: 'rgba(255, 255, 255, 0.1)',
 })
 
-globalStyle(`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navbarDark} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${active}`, {
 	backgroundColor: 'rgba(0, 0, 0, 0.5)',
 })
 
@@ -350,7 +349,7 @@ globalStyle(`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrSco
 	backgroundColor: 'rgba(0, 0, 0, 0.03)',
 })
 
-globalStyle(`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navbarLight} ${zephyrScope}${navbarNav} ${zephyrScope}${navLink}${active}`, {
 	backgroundColor: 'rgba(0, 0, 0, 0.05)',
 })
 
@@ -364,7 +363,7 @@ globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}`, {
 	borderWidth: '0 0 1px',
 })
 
-globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${navLinkActive}`, {
+globalStyle(`${zephyrScope}${navTabs} ${zephyrScope}${navLink}${active}`, {
 	boxShadow: 'inset 0 -2px 0 #3459e6',
 })
 

@@ -23,30 +23,10 @@ import {
 	bsTooltipEnd,
 	bsTooltipStart,
 	bsTooltipTop,
+	show,
 	tooltip,
 } from '../../../../theme-contract/literal/contract.css'
-import {
-	tooltipArrow,
-	tooltipFade,
-	tooltipInner,
-	tooltipShow,
-} from '../../../../theme-contract/ui/tooltips/contract.css'
-
-globalStyle(`${morphScope}${tooltipFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${morphScope}${tooltipFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${morphScope}${tooltipFade}:not(${tooltipShow})`, {
-	opacity: '0',
-})
+import { tooltipArrow, tooltipInner } from '../../../../theme-contract/ui/tooltips/contract.css'
 
 globalStyle(`${morphScope}${tooltip}`, {
 	vars: {
@@ -84,7 +64,7 @@ globalStyle(`${morphScope}${tooltip}`, {
 	opacity: '0',
 })
 
-globalStyle(`${morphScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${morphScope}${tooltip}${show}`, {
 	opacity: varBsTooltipOpacity,
 })
 
@@ -198,7 +178,7 @@ globalStyle(`${morphScope}${tooltipInner}`, {
 	borderRadius: varBsTooltipBorderRadius,
 })
 
-globalStyle(`${morphScope}${tooltip}${tooltipShow}`, {
+globalStyle(`${morphScope}${tooltip}${show}`, {
 	opacity: '1',
 })
 

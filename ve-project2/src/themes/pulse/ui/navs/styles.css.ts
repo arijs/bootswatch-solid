@@ -36,6 +36,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -44,6 +45,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -51,11 +53,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -109,7 +108,7 @@ globalStyle(`${pulseScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(89, 49, 150, 0.25)',
 })
 
-globalStyle(`${pulseScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${pulseScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -149,7 +148,7 @@ globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -169,7 +168,7 @@ globalStyle(`${pulseScope}${navPills}`, {
 	},
 })
 
-globalStyle(`${pulseScope}${navPills} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${navPills} ${pulseScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -202,7 +201,7 @@ globalStyle(`${pulseScope}${navUnderline} ${pulseScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${pulseScope}${navUnderline} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${navUnderline} ${pulseScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -252,7 +251,7 @@ globalStyle(`${pulseScope}${tabContent} > ${pulseScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${pulseScope}${navbarNav} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${navbarNav} ${pulseScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -317,7 +316,7 @@ globalStyle(`${pulseScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${pulseScope}${cardHeaderTabs} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${cardHeaderTabs} ${pulseScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -326,7 +325,7 @@ globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}`, {
 	borderWidth: '0 0 1px',
 })
 
-globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${active}`, {
 	borderWidth: '0 0 1px',
 })
 
@@ -334,15 +333,15 @@ globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}:hover`, {
 	borderBottom: '1px solid #593196',
 })
 
-globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${navLinkActive}`, {
+globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${active}`, {
 	borderBottom: '1px solid #593196',
 })
 
-globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${navLinkActive}:hover`, {
+globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${active}:hover`, {
 	borderBottom: '1px solid #593196',
 })
 
-globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${navLinkActive}:focus`, {
+globalStyle(`${pulseScope}${navTabs} ${pulseScope}${navLink}${active}:focus`, {
 	borderBottom: '1px solid #593196',
 })
 

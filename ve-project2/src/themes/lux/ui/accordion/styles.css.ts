@@ -34,12 +34,11 @@ import {
 	varBsAccordionTransition,
 } from '../../../../theme-contract/ui/accordion/_vars.css'
 
-import { accordionFlush } from '../../../../theme-contract/literal/contract.css'
+import { accordionFlush, collapsed } from '../../../../theme-contract/literal/contract.css'
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionHeader,
 	accordionItem,
 } from '../../../../theme-contract/ui/accordion/contract.css'
@@ -93,13 +92,13 @@ globalStyle(`${luxScope}${accordionButton}`, {
 	},
 })
 
-globalStyle(`${luxScope}${accordionButton}:not(${accordionButtonCollapsed})`, {
+globalStyle(`${luxScope}${accordionButton}:not(${collapsed})`, {
 	color: varBsAccordionActiveColor,
 	backgroundColor: varBsAccordionActiveBg,
 	boxShadow: `inset 0 calc(-1 * ${varBsAccordionBorderWidth}) 0 ${varBsAccordionBorderColor}`,
 })
 
-globalStyle(`${luxScope}${accordionButton}:not(${accordionButtonCollapsed})::after`, {
+globalStyle(`${luxScope}${accordionButton}:not(${collapsed})::after`, {
 	backgroundImage: varBsAccordionBtnActiveIcon,
 	transform: varBsAccordionBtnIconTransform,
 })

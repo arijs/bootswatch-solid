@@ -10,7 +10,6 @@ import { containerFluid } from '../../../../../../theme-contract/layout/containe
 import { active } from '../../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnWarning,
 	inputFontFamily,
 } from '../../../../../../theme-contract/ui/buttons/contract.css'
@@ -30,7 +29,7 @@ const SolidCheckActiveDisabledWarningButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnWarning} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnWarning} ${active} ${inputFontFamily} pwhook-btn`}
 			>
 				Warning
 			</button>

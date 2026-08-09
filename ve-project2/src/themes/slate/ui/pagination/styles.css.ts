@@ -33,10 +33,9 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -106,28 +105,28 @@ globalStyle(`${slateScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${slateScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${slateScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${slateScope}${pageItemActive} > ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${active} > ${slateScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${slateScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${slateScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${slateScope}${pageItemDisabled} > ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${disabled} > ${slateScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -178,12 +177,12 @@ globalStyle(`${slateScope}${pagination} ${slateScope}${pageLink}:hover`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${pageItemActive} ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${active} ${slateScope}${pageLink}`, {
 	backgroundImage: 'linear-gradient(#313539, #34393d 40%, #373b40)',
 	filter: 'none',
 })
 
-globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${pageItemDisabled} ${slateScope}${pageLink}`, {
+globalStyle(`${slateScope}${pagination} ${slateScope}${pageItem}${disabled} ${slateScope}${pageLink}`, {
 	backgroundImage: 'linear-gradient(#44494d, #3a3f44 20%, #2e3236)',
 	filter: 'none',
 })

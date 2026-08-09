@@ -38,6 +38,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -47,6 +48,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -57,29 +59,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${materiaScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${materiaScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${materiaScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${materiaScope}${modal}`, {
 	vars: {
@@ -124,12 +108,12 @@ globalStyle(`${materiaScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${materiaScope}${modal}${modalFade} ${materiaScope}${modalDialog}`, {
+globalStyle(`${materiaScope}${modal}${fade} ${materiaScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${materiaScope}${modal}${modalFade} ${materiaScope}${modalDialog}`, {
+globalStyle(`${materiaScope}${modal}${fade} ${materiaScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -137,7 +121,7 @@ globalStyle(`${materiaScope}${modal}${modalFade} ${materiaScope}${modalDialog}`,
 	},
 })
 
-globalStyle(`${materiaScope}${modal}${modalShowHook} ${materiaScope}${modalDialog}`, {
+globalStyle(`${materiaScope}${modal}${show} ${materiaScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -193,11 +177,11 @@ globalStyle(`${materiaScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${materiaScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${materiaScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${materiaScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${materiaScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

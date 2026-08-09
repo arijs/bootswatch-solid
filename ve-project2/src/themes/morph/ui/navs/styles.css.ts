@@ -33,6 +33,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -41,6 +42,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -48,11 +50,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -106,7 +105,7 @@ globalStyle(`${morphScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(55, 141, 252, 0.25)',
 })
 
-globalStyle(`${morphScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${morphScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -148,7 +147,7 @@ globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -172,7 +171,7 @@ globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -205,7 +204,7 @@ globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navUnderline} ${morphScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -255,7 +254,7 @@ globalStyle(`${morphScope}${tabContent} > ${morphScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navbarNav} ${morphScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -320,7 +319,7 @@ globalStyle(`${morphScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${cardHeaderTabs} ${morphScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })
@@ -347,7 +346,7 @@ globalStyle(`${morphScope}${navTabs} ${morphScope}${navItem}:last-child ${morphS
 	borderBottomRightRadius: '0.375rem',
 })
 
-globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navTabs} ${morphScope}${navLink}${active}`, {
 	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
 })
 
@@ -364,7 +363,7 @@ globalStyle(`${morphScope}${navPills}`, {
 	borderRadius: '0.375rem',
 })
 
-globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${navLinkActive}`, {
+globalStyle(`${morphScope}${navPills} ${morphScope}${navLink}${active}`, {
 	boxShadow: 'inset 0 3px 6px rgba(0, 0, 0, 0.2)',
 })
 

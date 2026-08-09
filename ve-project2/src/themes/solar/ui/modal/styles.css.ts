@@ -36,6 +36,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -45,6 +46,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -55,29 +57,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${solarScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${solarScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${solarScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${solarScope}${modal}`, {
 	vars: {
@@ -122,12 +106,12 @@ globalStyle(`${solarScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${solarScope}${modal}${modalFade} ${solarScope}${modalDialog}`, {
+globalStyle(`${solarScope}${modal}${fade} ${solarScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${solarScope}${modal}${modalFade} ${solarScope}${modalDialog}`, {
+globalStyle(`${solarScope}${modal}${fade} ${solarScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -135,7 +119,7 @@ globalStyle(`${solarScope}${modal}${modalFade} ${solarScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${solarScope}${modal}${modalShowHook} ${solarScope}${modalDialog}`, {
+globalStyle(`${solarScope}${modal}${show} ${solarScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -191,11 +175,11 @@ globalStyle(`${solarScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${solarScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${solarScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${solarScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${solarScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

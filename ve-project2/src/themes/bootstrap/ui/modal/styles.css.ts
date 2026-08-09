@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${bootstrapScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${bootstrapScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${bootstrapScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${bootstrapScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${bootstrapScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${bootstrapScope}${modal}${modalFade} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${fade} ${bootstrapScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${bootstrapScope}${modal}${modalFade} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${fade} ${bootstrapScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${bootstrapScope}${modal}${modalFade} ${bootstrapScope}${modalDialo
 	},
 })
 
-globalStyle(`${bootstrapScope}${modal}${modalShowHook} ${bootstrapScope}${modalDialog}`, {
+globalStyle(`${bootstrapScope}${modal}${show} ${bootstrapScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${bootstrapScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${bootstrapScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${bootstrapScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${bootstrapScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${bootstrapScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

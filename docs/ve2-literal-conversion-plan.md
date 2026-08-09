@@ -455,6 +455,8 @@ TypeScript check exits 0.
 
 > **T6 gap (discovered in T8):** The CSS styles for modal, accordion, and toast use *component-specific* contract symbols for their "show" state (`modalShowHook`, `accordionButtonCollapsed`, `toastFade`/`toastShow`) — NOT the shared literal `show`/`fade` — so the adapter/component changes in T6 caused those CSS rules to never fire. T8 reverted the three affected adapters to match their respective `styles.css.ts`.
 
+> **T6 completed (T11).** The T8 revert fixed the symptom on the wrong side: it kept the per-family hooks and taught the emitter to produce them, via 20 `remapSymbols`/mirror entries in the divergence manifest. The CSS was never regenerated, so the contract layer kept both universes and the manifest became a hand-maintained sync list between two hand-maintained files. Nothing checked it, and 18 of the 33 per-family state aliases ended up exported with no rule in any theme — including the four in the `dropdownItemActive` report. T11 finishes §8.6 in the original direction: the aliases are deleted, the manifest drops to 2 entries (`body-split`, `legend-element-mirror`), the themes are regenerated onto `${component}${state}`, and the adapters pass the literal hashes. See T11 below.
+
 ---
 
 **✅ T7 — Markup‑parity check (Phase 3).** Extend `diff-scenario-markup.mjs`/`markup-diff-core.mjs` to assert class+tag contract stamping and `@screenshot` annotations; emit gap reports.
@@ -588,6 +590,31 @@ Biome `--write` applied across all modified dirs (11 files fixed, import sorting
 > **Next milestone — granular re‑enablement.** Goal: divide each theme into per‑family style chunks so the app loads only the families a route uses (the granular runtime already exists and is wired through `useVe2RequiredStyleFamilies`). Build it as a **literal‑based family split** (reuse `scripts/generate-ve-literal/` translation, partition emitted rules by family) rather than reviving the deleted heuristic emitter — the heuristic mapping was the root cause of the mismatches this whole rewrite eliminated.
 >
 > **→ Full design:** [`docs/ve3-granular-family-split-plan.md`](./ve3-granular-family-split-plan.md) — partition the literal monoliths via one deterministic `contract → family` table (not heuristics), `@layer`‑ordered chunks for cross‑family cascade, and a closure check over the 342 `useVe2RequiredStyleFamilies` declarations. Tasks G1–G5.
+
+---
+
+**✅ T11 — Finish §8.6: retire the per‑family state aliases.** Delete every contract that is an alias for a shared Bootstrap state class, regenerate the 27 themes onto `${component}${state}`, point the adapters and components at the literal hashes, and gate the invariant so it cannot rot again.
+
+*Trigger:* the `dropdownItemActive` report — four contracts exported by the package, referenced by no theme, silently no‑op at the call site. The four were not an oversight; they were the unwired remainder of a whole category.
+
+*What the category was.* A per‑family alias collapses a compound source selector into one identifier: `.dropdown-item.active` → `dropdownItemActive`, `.btn.show` → `btnShowHook`, `.nav-link.active` → `navLinkActive`. 33 identifiers stood for 9 Bootstrap state classes. Because the literal emitter translates 1:1, each alias needed a manifest entry to exist in the CSS at all — 12 `remapSymbols` plus 8 mirror rules, hand‑written, one per family that happened to have a component demanding it. Families without a demo (dropdown item, list‑group item, breadcrumb, carousel, tab pane, …) never got an entry, so 18 of the 33 shipped with zero CSS. Nothing compared the two hand‑maintained lists.
+
+*Why deleting beats wiring.* Per‑family aliases are a pure rename: `${navLink}${navLinkActive}` and `${navLink}${active}` have identical specificity and identical match sets. They buy no isolation — the compound selector already provides it (`${modal}${show}` cannot match a dropdown) — while costing 20 manifest entries, 33 identifiers, and the drift that produced the bug. §8.6 said this in the original plan; T8 reverted it on the wrong side.
+
+*Changes.*
+- Divergence manifest 22 → 2 entries. Only `body-split` (overlay bleed) and `legend-element-mirror` (component stamps the `legend` class) remain — both justified under §7.2, neither a naming accommodation. `remapSymbols` stays as a mechanism for a real, documented interference case.
+- 36 contracts deleted: the 33 aliases, plus `tooltipVe`/`popoverVe` (templates already stamped the live `tooltip`/`popover` alongside them) and the duplicate `fade`/`show`/`collapse` copies in `ui/navs`, `ui/modal`, `ui/navbar` that shadowed the literal ones. `literal/` is now the single owner of every shared state token.
+- Kept: `modalOpenHook` and `carouselSlide` — `.modal-open` and `.slide` have no rule in any theme's `bootstrap.css`, so they are runtime markers, not aliases of a literal contract.
+- 27 themes regenerated: −4 290 lines of generated CSS, the per‑family `.fade` / `.fade:not(.show)` mirrors gone, one generic rule each.
+- 8 adapters + ~80 components stamp the literal hashes. `ve-dropdown` passes one `show` for both `CLASS_NAME_SHOW_TRIGGER` and `CLASS_NAME_SHOW_MENU`; `ve-carousel` drops the double‑stamp workaround; `ve-toast` drops `CLASS_NAME_HIDE` (`.hide` has no rule to map).
+
+*Gate.* `scripts/check-contract-wiring.mjs` (static, pre‑build) plus a liveness assertion in `build-contract.mjs` (authoritative, real hashes vs emitted CSS). Deliberate inertness is declared in `scripts/contract-wiring-allowlist.mjs` with a reason; a state hook is never a valid entry.
+
+*Two further bugs the gate surfaced.* `build-contract.mjs` only checked liveness for duplicate candidates — a name declared by exactly one module was published unchecked, which is the precise mechanism that shipped the four. And `contractModules()` filtered by filename, excluding `layout/container.css.ts`, so `containerFluid` resolved to literal's dead copy while the themes styled layout's.
+
+*Result:* package dead exports 90 → 68, all 68 allowlisted (element markers, Bootstrap 3/4 names BS5 dropped, demo scaffolding, and inherited debt tagged TRIAGE). `active` keeps hash `b17c3vgbe3`, so consumers already composing with it are unaffected.
+
+*Breaking:* `cx(dropdownItem, isActive && dropdownItemActive)` becomes `cx(dropdownItem, isActive && active)`, with `active` from the package's `global` entry. The removed names now fail to compile instead of failing to paint.
 
 ---
 

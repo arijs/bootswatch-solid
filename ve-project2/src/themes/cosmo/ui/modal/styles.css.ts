@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${cosmoScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${cosmoScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${cosmoScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${cosmoScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${cosmoScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${cosmoScope}${modal}${modalFade} ${cosmoScope}${modalDialog}`, {
+globalStyle(`${cosmoScope}${modal}${fade} ${cosmoScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${cosmoScope}${modal}${modalFade} ${cosmoScope}${modalDialog}`, {
+globalStyle(`${cosmoScope}${modal}${fade} ${cosmoScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${cosmoScope}${modal}${modalFade} ${cosmoScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${cosmoScope}${modal}${modalShowHook} ${cosmoScope}${modalDialog}`, {
+globalStyle(`${cosmoScope}${modal}${show} ${cosmoScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -193,11 +177,11 @@ globalStyle(`${cosmoScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${cosmoScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${cosmoScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${cosmoScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${cosmoScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

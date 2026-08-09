@@ -11,10 +11,8 @@ import { containerFluid } from '../../../theme-contract/layout/container.css'
 import { btnGroup } from '../../../theme-contract/ui/button-group/contract.css'
 import { btn, btnSecondary } from '../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdownItem,
 	dropdownMenu,
-	dropdownMenuShow,
 	dropdownToggle,
 	dropdownToggleSplit,
 	dropend,
@@ -35,10 +33,8 @@ const SplitSecondaryDropdown: Component = () => {
 	const theme = useContext(ThemeContext)
 	useVe2RequiredStyleFamilies(ve2RequiredStyleFamilies)
 	configureVeDropdown({
-		btnShowHook,
 		dropdownItem,
 		dropdownMenu,
-		dropdownMenuShow,
 		dropend,
 		dropstart,
 		dropup,

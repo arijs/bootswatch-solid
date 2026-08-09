@@ -64,6 +64,7 @@ import {
 	inputGroupLg,
 	inputGroupSm,
 	placeholder,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { alertDismissible } from '../../../../theme-contract/ui/alerts/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
@@ -92,7 +93,6 @@ import {
 } from '../../../../theme-contract/ui/buttons/contract.css'
 import { dropdownToggle, dropdownToggleSplit } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { modalHeader } from '../../../../theme-contract/ui/modal/contract.css'
-import { show } from '../../../../theme-contract/ui/navs/contract.css'
 import { offcanvasHeader } from '../../../../theme-contract/ui/offcanvas/contract.css'
 import { toastHeader } from '../../../../theme-contract/ui/toasts/contract.css'
 

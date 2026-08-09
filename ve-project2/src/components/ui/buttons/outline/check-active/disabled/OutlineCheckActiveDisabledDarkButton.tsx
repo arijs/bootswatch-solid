@@ -10,7 +10,6 @@ import { containerFluid } from '../../../../../../theme-contract/layout/containe
 import { active } from '../../../../../../theme-contract/literal/contract.css'
 import {
 	btn,
-	btnActiveHook,
 	btnOutlineDark,
 	inputFontFamily,
 } from '../../../../../../theme-contract/ui/buttons/contract.css'
@@ -30,7 +29,7 @@ const OutlineCheckActiveDisabledDarkButton: Component = () => {
 			<button
 				disabled
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${btnOutlineDark} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${btnOutlineDark} ${active} ${inputFontFamily} pwhook-btn`}
 			>
 				Dark
 			</button>

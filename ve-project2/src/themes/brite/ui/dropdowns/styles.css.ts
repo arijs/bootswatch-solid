@@ -10,12 +10,6 @@ import {
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
 	varBsDropdownBorderRadius,
@@ -66,10 +60,9 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -79,7 +72,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -99,16 +91,6 @@ globalStyle(`${briteScope}${inputGroup}:not(${hasValidation}) > ${briteScope}${d
 globalStyle(`${briteScope}${inputGroup}${hasValidation} > ${briteScope}${dropdownToggle}:nth-last-child(n+4)`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${briteScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-})
-
-globalStyle(`${briteScope}${btn}${btnShowHook}:focus-visible`, {
-	boxShadow: varBsBtnFocusBoxShadow,
 })
 
 globalStyle(`${briteScope}${dropup}`, {
@@ -560,7 +542,7 @@ globalStyle(`${briteScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${briteScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${briteScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 
@@ -669,12 +651,6 @@ globalStyle(`${briteScope}${navbarExpand} ${briteScope}${navbarNav} ${briteScope
 globalStyle(`${briteScope}${navbar} ${briteScope}${dropdownToggle}::after`, {
 	marginLeft: '0.15em',
 	verticalAlign: '0.15em',
-})
-
-globalStyle(`${briteScope}${btn}${btnShowHook}`, {
-	borderColor: '#000',
-	boxShadow: 'none',
-	transform: 'translate(0, 0)',
 })
 
 globalStyle(`${briteScope}${dropdownMenu}`, {

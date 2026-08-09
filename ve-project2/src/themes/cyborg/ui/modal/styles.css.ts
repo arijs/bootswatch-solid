@@ -37,6 +37,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -46,6 +47,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -56,29 +58,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${cyborgScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${cyborgScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${cyborgScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${cyborgScope}${modal}`, {
 	vars: {
@@ -123,12 +107,12 @@ globalStyle(`${cyborgScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${cyborgScope}${modal}${modalFade} ${cyborgScope}${modalDialog}`, {
+globalStyle(`${cyborgScope}${modal}${fade} ${cyborgScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${cyborgScope}${modal}${modalFade} ${cyborgScope}${modalDialog}`, {
+globalStyle(`${cyborgScope}${modal}${fade} ${cyborgScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -136,7 +120,7 @@ globalStyle(`${cyborgScope}${modal}${modalFade} ${cyborgScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${cyborgScope}${modal}${modalShowHook} ${cyborgScope}${modalDialog}`, {
+globalStyle(`${cyborgScope}${modal}${show} ${cyborgScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -192,11 +176,11 @@ globalStyle(`${cyborgScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${cyborgScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${cyborgScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${cyborgScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${cyborgScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

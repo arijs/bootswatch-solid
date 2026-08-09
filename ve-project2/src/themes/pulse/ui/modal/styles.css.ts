@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${pulseScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${pulseScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${pulseScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${pulseScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${pulseScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${pulseScope}${modal}${modalFade} ${pulseScope}${modalDialog}`, {
+globalStyle(`${pulseScope}${modal}${fade} ${pulseScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${pulseScope}${modal}${modalFade} ${pulseScope}${modalDialog}`, {
+globalStyle(`${pulseScope}${modal}${fade} ${pulseScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${pulseScope}${modal}${modalFade} ${pulseScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${pulseScope}${modal}${modalShowHook} ${pulseScope}${modalDialog}`, {
+globalStyle(`${pulseScope}${modal}${show} ${pulseScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -193,11 +177,11 @@ globalStyle(`${pulseScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${pulseScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${pulseScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${pulseScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${pulseScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

@@ -4,21 +4,20 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { h4, inlineCode } from '../../../theme-contract/contents/contract.css'
+import { inlineCode } from '../../../theme-contract/contents/basic/contract.css'
+import { h4 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton, elStrong } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
+import { collapse, collapsed, show } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import {
 	accordion,
 	accordionBody,
 	accordionButton,
-	accordionButtonCollapsed,
 	accordionCollapse,
 	accordionHeader,
 	accordionItem,
 } from '../../../theme-contract/ui/accordion/contract.css'
-import { collapse } from '../../../theme-contract/ui/navbar/contract.css'
-import { show } from '../../../theme-contract/ui/navs/contract.css'
 
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/accordion',
@@ -70,7 +69,7 @@ const AccordionExample: Component = () => {
 				<div class={`${theme} ${accordionItem}`}>
 					<h4 class={`${theme} ${h4} ${accordionHeader}`} id="headingTwo">
 						<button
-							class={`${theme} ${elButton} ${accordionButton} ${accordionButtonCollapsed}`}
+							class={`${theme} ${elButton} ${accordionButton} ${collapsed}`}
 							type="button"
 							data-bs-toggle="collapse"
 							data-bs-target="#collapseTwo"
@@ -104,7 +103,7 @@ const AccordionExample: Component = () => {
 				<div class={`${theme} ${accordionItem}`}>
 					<h4 class={`${theme} ${h4} ${accordionHeader}`} id="headingThree">
 						<button
-							class={`${theme} ${elButton} ${accordionButton} ${accordionButtonCollapsed}`}
+							class={`${theme} ${elButton} ${accordionButton} ${collapsed}`}
 							type="button"
 							data-bs-toggle="collapse"
 							data-bs-target="#collapseThree"

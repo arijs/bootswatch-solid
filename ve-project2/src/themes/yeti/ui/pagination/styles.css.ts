@@ -35,10 +35,9 @@ import {
 	varBsPaginationPaddingY,
 } from '../../../../theme-contract/ui/pagination/_vars.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -108,28 +107,28 @@ globalStyle(`${yetiScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${yetiScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${yetiScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${yetiScope}${pageItemActive} > ${yetiScope}${pageLink}`, {
+globalStyle(`${yetiScope}${active} > ${yetiScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${yetiScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${yetiScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${yetiScope}${pageItemDisabled} > ${yetiScope}${pageLink}`, {
+globalStyle(`${yetiScope}${disabled} > ${yetiScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
@@ -187,7 +186,7 @@ globalStyle(`${yetiScope}${pagination} ${yetiScope}${pageLink}:focus`, {
 	textDecoration: 'none',
 })
 
-globalStyle(`${yetiScope}${pagination} ${yetiScope}${pageItem}${pageItemDisabled} ${yetiScope}${pageLink}`, {
+globalStyle(`${yetiScope}${pagination} ${yetiScope}${pageItem}${disabled} ${yetiScope}${pageLink}`, {
 	borderColor: 'transparent',
 })
 

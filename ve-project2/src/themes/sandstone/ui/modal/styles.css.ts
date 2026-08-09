@@ -37,6 +37,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -46,6 +47,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -56,29 +58,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${sandstoneScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${sandstoneScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${sandstoneScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${sandstoneScope}${modal}`, {
 	vars: {
@@ -123,12 +107,12 @@ globalStyle(`${sandstoneScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${sandstoneScope}${modal}${modalFade} ${sandstoneScope}${modalDialog}`, {
+globalStyle(`${sandstoneScope}${modal}${fade} ${sandstoneScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${sandstoneScope}${modal}${modalFade} ${sandstoneScope}${modalDialog}`, {
+globalStyle(`${sandstoneScope}${modal}${fade} ${sandstoneScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -136,7 +120,7 @@ globalStyle(`${sandstoneScope}${modal}${modalFade} ${sandstoneScope}${modalDialo
 	},
 })
 
-globalStyle(`${sandstoneScope}${modal}${modalShowHook} ${sandstoneScope}${modalDialog}`, {
+globalStyle(`${sandstoneScope}${modal}${show} ${sandstoneScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -192,11 +176,11 @@ globalStyle(`${sandstoneScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${sandstoneScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${sandstoneScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${sandstoneScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${sandstoneScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

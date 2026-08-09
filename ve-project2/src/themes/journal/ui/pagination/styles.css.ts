@@ -38,10 +38,9 @@ import {
 
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
+import { active, disabled } from '../../../../theme-contract/literal/contract.css'
 import {
 	pageItem,
-	pageItemActive,
-	pageItemDisabled,
 	pageLink,
 	pagination,
 	paginationLg,
@@ -111,28 +110,28 @@ globalStyle(`${journalScope}${pageLink}:focus`, {
 	boxShadow: varBsPaginationFocusBoxShadow,
 })
 
-globalStyle(`${journalScope}${pageLink}${pageItemActive}`, {
+globalStyle(`${journalScope}${pageLink}${active}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${journalScope}${pageItemActive} > ${journalScope}${pageLink}`, {
+globalStyle(`${journalScope}${active} > ${journalScope}${pageLink}`, {
 	zIndex: '3',
 	color: varBsPaginationActiveColor,
 	backgroundColor: varBsPaginationActiveBg,
 	borderColor: varBsPaginationActiveBorderColor,
 })
 
-globalStyle(`${journalScope}${pageLink}${pageItemDisabled}`, {
+globalStyle(`${journalScope}${pageLink}${disabled}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,
 	borderColor: varBsPaginationDisabledBorderColor,
 })
 
-globalStyle(`${journalScope}${pageItemDisabled} > ${journalScope}${pageLink}`, {
+globalStyle(`${journalScope}${disabled} > ${journalScope}${pageLink}`, {
 	color: varBsPaginationDisabledColor,
 	pointerEvents: 'none',
 	backgroundColor: varBsPaginationDisabledBg,

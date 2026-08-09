@@ -33,6 +33,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -41,6 +42,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -48,11 +50,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -106,7 +105,7 @@ globalStyle(`${solarScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(181, 137, 0, 0.25)',
 })
 
-globalStyle(`${solarScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${solarScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -148,7 +147,7 @@ globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navTabs} ${solarScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -172,7 +171,7 @@ globalStyle(`${solarScope}${navPills} ${solarScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${solarScope}${navPills} ${solarScope}${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navPills} ${solarScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -205,7 +204,7 @@ globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}:focus`, {
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navUnderline} ${solarScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -255,7 +254,7 @@ globalStyle(`${solarScope}${tabContent} > ${solarScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${solarScope}${navbarNav} ${solarScope}${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${navbarNav} ${solarScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -320,7 +319,7 @@ globalStyle(`${solarScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${solarScope}${cardHeaderTabs} ${solarScope}${navLink}${navLinkActive}`, {
+globalStyle(`${solarScope}${cardHeaderTabs} ${solarScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

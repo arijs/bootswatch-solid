@@ -8,11 +8,7 @@ import {
 import { elButton } from '../../../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../../../theme-contract/layout/container.css'
 import { active } from '../../../../../theme-contract/literal/contract.css'
-import {
-	btn,
-	btnActiveHook,
-	inputFontFamily,
-} from '../../../../../theme-contract/ui/buttons/contract.css'
+import { btn, inputFontFamily } from '../../../../../theme-contract/ui/buttons/contract.css'
 export const ve2RequiredStyleFamilies: readonly Ve2StyleFamily[] = [
 	'ui/buttons',
 	'contents/basic',
@@ -27,7 +23,7 @@ const SolidCheckActiveBaseButton: Component = () => {
 		<div class={`bd-example-ve2 ${theme} ${containerFluid}`}>
 			<button
 				type="button"
-				class={`${theme} ${elButton} ${btn} ${active} ${btnActiveHook} ${inputFontFamily} pwhook-btn`}
+				class={`${theme} ${elButton} ${btn} ${active} ${inputFontFamily} pwhook-btn`}
 				data-bs-toggle="button"
 				aria-pressed="true"
 			>

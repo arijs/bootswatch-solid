@@ -5,11 +5,12 @@ import {
 	useVe2RequiredStyleFamilies,
 	type Ve2StyleFamily,
 } from '../../../context/ThemeContext'
-import { h3 } from '../../../theme-contract/contents/contract.css'
+import { h3 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
 import {
 	border,
+	fade,
 	flexColumn,
 	justifyContentEnd,
 	popover,
@@ -23,9 +24,7 @@ import {
 	justifyEnd,
 	popoverArrow,
 	popoverBody,
-	popoverFade,
 	popoverHeader,
-	popoverVe,
 } from '../../../theme-contract/ui/popovers/contract.css'
 import { alignItemsCenter, dFlex } from '../../../theme-contract/utilities/contract.css'
 import { createVePopover } from './ve-popover'
@@ -54,7 +53,7 @@ const TopPopover: Component = () => {
 				data-bs-toggle="popover"
 				ref={(el) =>
 					new VePopover(el, {
-						template: `<div class="${popoverVe} ${popover} ${bsPopoverAuto} ${popoverFade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
+						template: `<div class="${popover} ${bsPopoverAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} "></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody} "></div></div>`,
 					})
 				}
 				data-bs-placement="top"

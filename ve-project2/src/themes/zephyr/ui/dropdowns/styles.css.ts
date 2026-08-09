@@ -10,13 +10,6 @@ import {
 	varBsTertiaryColor,
 } from '../../../../theme-contract/_vars.css'
 import {
-	varBsBtnActiveBg,
-	varBsBtnActiveBorderColor,
-	varBsBtnActiveBoxShadow,
-	varBsBtnActiveColor,
-	varBsBtnFocusBoxShadow,
-} from '../../../../theme-contract/ui/buttons/_vars.css'
-import {
 	varBsDropdownBg,
 	varBsDropdownBorderColor,
 	varBsDropdownBorderRadius,
@@ -67,11 +60,10 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { btnGroup } from '../../../../theme-contract/ui/button-group/contract.css'
-import { btn } from '../../../../theme-contract/ui/buttons/contract.css'
 import {
-	btnShowHook,
 	dropdown,
 	dropdownCenter,
 	dropdownDivider,
@@ -81,7 +73,6 @@ import {
 	dropdownMenu,
 	dropdownMenuDark,
 	dropdownMenuEnd,
-	dropdownMenuShow,
 	dropdownMenuStart,
 	dropdownToggle,
 	dropdownToggleSplit,
@@ -91,7 +82,7 @@ import {
 	dropupCenter,
 } from '../../../../theme-contract/ui/dropdowns/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
-import { navTabs, show } from '../../../../theme-contract/ui/navs/contract.css'
+import { navTabs } from '../../../../theme-contract/ui/navs/contract.css'
 
 globalStyle(`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}${dropdownToggle}:nth-last-child(n+3)`, {
 	borderTopRightRadius: '0',
@@ -101,17 +92,6 @@ globalStyle(`${zephyrScope}${inputGroup}:not(${hasValidation}) > ${zephyrScope}$
 globalStyle(`${zephyrScope}${inputGroup}${hasValidation} > ${zephyrScope}${dropdownToggle}:nth-last-child(n+4)`, {
 	borderTopRightRadius: '0',
 	borderBottomRightRadius: '0',
-})
-
-globalStyle(`${zephyrScope}${btn}${btnShowHook}`, {
-	color: varBsBtnActiveColor,
-	backgroundColor: varBsBtnActiveBg,
-	borderColor: varBsBtnActiveBorderColor,
-	boxShadow: varBsBtnActiveBoxShadow,
-})
-
-globalStyle(`${zephyrScope}${btn}${btnShowHook}:focus-visible`, {
-	boxShadow: `${varBsBtnActiveBoxShadow}, ${varBsBtnFocusBoxShadow}`,
 })
 
 globalStyle(`${zephyrScope}${dropup}`, {
@@ -564,7 +544,7 @@ globalStyle(`${zephyrScope}${dropdownItem}:disabled`, {
 	backgroundColor: 'transparent',
 })
 
-globalStyle(`${zephyrScope}${dropdownMenu}${dropdownMenuShow}`, {
+globalStyle(`${zephyrScope}${dropdownMenu}${show}`, {
 	display: 'block',
 })
 

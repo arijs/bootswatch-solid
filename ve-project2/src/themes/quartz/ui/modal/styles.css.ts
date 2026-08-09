@@ -41,6 +41,7 @@ import {
 import { link } from '../../../../theme-contract/contents/basic/contract.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -50,6 +51,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -60,29 +62,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${quartzScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${quartzScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${quartzScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${quartzScope}${modal}`, {
 	vars: {
@@ -127,12 +111,12 @@ globalStyle(`${quartzScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${quartzScope}${modal}${modalFade} ${quartzScope}${modalDialog}`, {
+globalStyle(`${quartzScope}${modal}${fade} ${quartzScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${quartzScope}${modal}${modalFade} ${quartzScope}${modalDialog}`, {
+globalStyle(`${quartzScope}${modal}${fade} ${quartzScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -140,7 +124,7 @@ globalStyle(`${quartzScope}${modal}${modalFade} ${quartzScope}${modalDialog}`, {
 	},
 })
 
-globalStyle(`${quartzScope}${modal}${modalShowHook} ${quartzScope}${modalDialog}`, {
+globalStyle(`${quartzScope}${modal}${show} ${quartzScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -196,11 +180,11 @@ globalStyle(`${quartzScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${quartzScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${quartzScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${quartzScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${quartzScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

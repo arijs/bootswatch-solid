@@ -39,6 +39,7 @@ import {
 } from '../../../../theme-contract/ui/modal/_vars.css'
 
 import {
+	fade,
 	modalFullscreenLgDown,
 	modalFullscreenMdDown,
 	modalFullscreenSmDown,
@@ -48,6 +49,7 @@ import {
 	modalSm,
 	modalStatic,
 	modalXl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import {
 	justifyContentBetween,
@@ -58,29 +60,11 @@ import {
 	modalDialog,
 	modalDialogCentered,
 	modalDialogScrollable,
-	modalFade,
 	modalFooter,
 	modalFullscreen,
 	modalHeader,
-	modalShowHook,
 	modalTitle,
 } from '../../../../theme-contract/ui/modal/contract.css'
-
-globalStyle(`${ceruleanScope}${modalFade}`, {
-	transition: 'opacity 0.15s linear',
-})
-
-globalStyle(`${ceruleanScope}${modalFade}`, {
-	'@media': {
-		'(prefers-reduced-motion: reduce)': {
-			transition: 'none',
-		},
-	},
-})
-
-globalStyle(`${ceruleanScope}${modalFade}:not(${modalShowHook})`, {
-	opacity: '0',
-})
 
 globalStyle(`${ceruleanScope}${modal}`, {
 	vars: {
@@ -125,12 +109,12 @@ globalStyle(`${ceruleanScope}${modalDialog}`, {
 	pointerEvents: 'none',
 })
 
-globalStyle(`${ceruleanScope}${modal}${modalFade} ${ceruleanScope}${modalDialog}`, {
+globalStyle(`${ceruleanScope}${modal}${fade} ${ceruleanScope}${modalDialog}`, {
 	transform: 'translate(0, -50px)',
 	transition: 'transform 0.3s ease-out',
 })
 
-globalStyle(`${ceruleanScope}${modal}${modalFade} ${ceruleanScope}${modalDialog}`, {
+globalStyle(`${ceruleanScope}${modal}${fade} ${ceruleanScope}${modalDialog}`, {
 	'@media': {
 		'(prefers-reduced-motion: reduce)': {
 			transition: 'none',
@@ -138,7 +122,7 @@ globalStyle(`${ceruleanScope}${modal}${modalFade} ${ceruleanScope}${modalDialog}
 	},
 })
 
-globalStyle(`${ceruleanScope}${modal}${modalShowHook} ${ceruleanScope}${modalDialog}`, {
+globalStyle(`${ceruleanScope}${modal}${show} ${ceruleanScope}${modalDialog}`, {
 	transform: 'none',
 })
 
@@ -194,11 +178,11 @@ globalStyle(`${ceruleanScope}${modalBackdrop}`, {
 	backgroundColor: varBsBackdropBg,
 })
 
-globalStyle(`${ceruleanScope}${modalBackdrop}${modalFade}`, {
+globalStyle(`${ceruleanScope}${modalBackdrop}${fade}`, {
 	opacity: '0',
 })
 
-globalStyle(`${ceruleanScope}${modalBackdrop}${modalShowHook}`, {
+globalStyle(`${ceruleanScope}${modalBackdrop}${show}`, {
 	opacity: varBsBackdropOpacity,
 })
 

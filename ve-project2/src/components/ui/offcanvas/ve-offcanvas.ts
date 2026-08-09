@@ -1,10 +1,9 @@
 import * as bootstrap from 'bootstrap'
-import { hiding, showing } from '../../../theme-contract/literal/contract.css'
+import { fade, hiding, show, showing } from '../../../theme-contract/literal/contract.css'
 // Shared state classes `show`/`fade` resolve to ui/navs/contract.css in the
 // generated monoliths (specific-family priority over literal), so the adapter
 // must stamp the SAME hashes — matching every other JS-driven family. `showing`
 // and `hiding` are offcanvas-only and live in literal/contract.css.
-import { fade, show } from '../../../theme-contract/ui/navs/contract.css'
 import type { BootstrapWithDefaults } from '../bootstrapWithDefaults'
 
 interface VeOffcanvasRuntimeClasses {

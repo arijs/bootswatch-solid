@@ -37,6 +37,7 @@ import { varBsNavUnderlineBorderWidth, varBsNavUnderlineGap, varBsNavUnderlineLi
 
 import {
 	active,
+	disabled,
 	navFill,
 	navJustified,
 	navUnderline,
@@ -45,6 +46,7 @@ import {
 	navbarExpandSm,
 	navbarExpandXl,
 	navbarExpandXxl,
+	show,
 } from '../../../../theme-contract/literal/contract.css'
 import { cardHeaderTabs } from '../../../../theme-contract/ui/card-tabs/contract.css'
 import { navbarExpandLg, navbarNav } from '../../../../theme-contract/ui/navbar/contract.css'
@@ -52,11 +54,8 @@ import {
 	nav,
 	navItem,
 	navLink,
-	navLinkActive,
-	navLinkDisabled,
 	navPills,
 	navTabs,
-	show,
 	tabContent,
 	tabPane,
 } from '../../../../theme-contract/ui/navs/contract.css'
@@ -110,7 +109,7 @@ globalStyle(`${ceruleanScope}${navLink}:focus-visible`, {
 	boxShadow: '0 0 0 0.25rem rgba(47, 164, 231, 0.25)',
 })
 
-globalStyle(`${ceruleanScope}${navLink}${navLinkDisabled}`, {
+globalStyle(`${ceruleanScope}${navLink}${disabled}`, {
 	color: varBsNavLinkDisabledColor,
 	pointerEvents: 'none',
 	cursor: 'default',
@@ -152,7 +151,7 @@ globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${navLink}:focus`, {
 	borderColor: varBsNavTabsLinkHoverBorderColor,
 })
 
-globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${navLink}${navLinkActive}`, {
+globalStyle(`${ceruleanScope}${navTabs} ${ceruleanScope}${navLink}${active}`, {
 	color: varBsNavTabsLinkActiveColor,
 	backgroundColor: varBsNavTabsLinkActiveBg,
 	borderColor: varBsNavTabsLinkActiveBorderColor,
@@ -176,7 +175,7 @@ globalStyle(`${ceruleanScope}${navPills} ${ceruleanScope}${navLink}`, {
 	borderRadius: varBsNavPillsBorderRadius,
 })
 
-globalStyle(`${ceruleanScope}${navPills} ${ceruleanScope}${navLink}${navLinkActive}`, {
+globalStyle(`${ceruleanScope}${navPills} ${ceruleanScope}${navLink}${active}`, {
 	color: varBsNavPillsLinkActiveColor,
 	backgroundColor: varBsNavPillsLinkActiveBg,
 })
@@ -209,7 +208,7 @@ globalStyle(`${ceruleanScope}${navUnderline} ${ceruleanScope}${navLink}:focus`, 
 	borderBottomColor: 'currentcolor',
 })
 
-globalStyle(`${ceruleanScope}${navUnderline} ${ceruleanScope}${navLink}${navLinkActive}`, {
+globalStyle(`${ceruleanScope}${navUnderline} ${ceruleanScope}${navLink}${active}`, {
 	fontWeight: '700',
 	color: varBsNavUnderlineLinkActiveColor,
 	borderBottomColor: 'currentcolor',
@@ -259,7 +258,7 @@ globalStyle(`${ceruleanScope}${tabContent} > ${ceruleanScope}${active}`, {
 	display: 'block',
 })
 
-globalStyle(`${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}${navLinkActive}`, {
+globalStyle(`${ceruleanScope}${navbarNav} ${ceruleanScope}${navLink}${active}`, {
 	color: varBsNavbarActiveColor,
 })
 
@@ -324,7 +323,7 @@ globalStyle(`${ceruleanScope}${cardHeaderTabs}`, {
 	borderBottom: '0',
 })
 
-globalStyle(`${ceruleanScope}${cardHeaderTabs} ${ceruleanScope}${navLink}${navLinkActive}`, {
+globalStyle(`${ceruleanScope}${cardHeaderTabs} ${ceruleanScope}${navLink}${active}`, {
 	backgroundColor: varBsCardBg,
 	borderBottomColor: varBsCardBg,
 })

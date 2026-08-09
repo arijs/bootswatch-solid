@@ -9,7 +9,7 @@ import { paragraph } from '../../../theme-contract/contents/basic/contract.css'
 import { h5 } from '../../../theme-contract/contents/heading/contract.css'
 import { elButton } from '../../../theme-contract/global-elements/contract.css'
 import { containerFluid } from '../../../theme-contract/layout/container.css'
-import { btnClose } from '../../../theme-contract/literal/contract.css'
+import { btnClose, fade, show } from '../../../theme-contract/literal/contract.css'
 import { bodyText } from '../../../theme-contract/theme-contract.css'
 import { alertBtnClose } from '../../../theme-contract/ui/alerts/contract.css'
 import {
@@ -27,11 +27,9 @@ import {
 	modalBody,
 	modalContent,
 	modalDialog,
-	modalFade,
 	modalFooter,
 	modalHeader,
 	modalOpenHook,
-	modalShowHook,
 	modalTitle,
 } from '../../../theme-contract/ui/modal/contract.css'
 import { dFlex } from '../../../theme-contract/utilities/contract.css'
@@ -56,7 +54,7 @@ const StaticBackdropModal: Component = () => {
 		modalBody,
 		modalDialog,
 		modalOpenHook: `${theme} ${modalOpenHook}`,
-		modalShowHook,
+		show,
 	})
 	return (
 		<>
@@ -73,7 +71,7 @@ const StaticBackdropModal: Component = () => {
 				</div>
 			</div>
 			<div
-				class={`${theme} ${bodyText} ${modal} ${modalFade} pwhook-modal`}
+				class={`${theme} ${bodyText} ${modal} ${fade} pwhook-modal`}
 				id="staticBackdropLive"
 				data-bs-backdrop="static"
 				data-bs-keyboard="false"
