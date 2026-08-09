@@ -53,7 +53,7 @@ const StartPopover: Component = () => {
 				data-bs-toggle="popover"
 				ref={(el) =>
 					new VePopover(el, {
-						template: `<div class="${popover} ${bsPopoverAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} "></div><h3 class="${popoverHeader} ${h3}"></h3><div class="${popoverBody} "></div></div>`,
+						template: `<div class="${popover} ${bsPopoverAuto} ${fade} ${theme} ${vars} ${bodyText} pwhook-popover" role="tooltip"><div class="${popoverArrow} ${theme}"></div><h3 class="${popoverHeader} ${theme} ${h3}"></h3><div class="${popoverBody} ${theme}"></div></div>`,
 					})
 				}
 				data-bs-placement="left"
