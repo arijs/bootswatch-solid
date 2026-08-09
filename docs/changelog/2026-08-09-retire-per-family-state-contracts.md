@@ -109,13 +109,40 @@ zephyr   |3069→3058 raw|3057→3057 distinct|dropped=0 added=0
 incompatibilidade `module`/`moduleResolution` pré-existente com tsc 6, então a comparação roda com
 `--ignoreConfig` e flags equivalentes, dos dois lados).
 
-**Screenshots.** Qualitativamente corretos — a paginação pinta a caixa azul do item ativo, o
-"Previous" desabilitado fica cinza, a aba ativa mantém a caixa branca com borda. Numericamente o
-harness não fecha **neste ambiente**: o Playwright do repo fixa `chromium_headless_shell-1217` e o
-container só tem o 1194. Com o binário aliasado, um spinner (círculo, sem texto, sem classe de
-estado, intocado pela mudança) já diverge 0,43% por anti-aliasing, e rotas com texto divergem 2–16%
-porque as métricas de fonte mudam e o parágrafo requebra. Rodar o harness de verdade exige o binário
-fixado.
+**Screenshots.** As baselines commitadas vêm de um Chromium diferente do disponível aqui (o
+Playwright do repo fixa `chromium_headless_shell-1217`, o container só tem o 1194), então comparar
+contra elas mede a fonte, não o CSS — um spinner intocado já diverge 0,43%. A saída é **regerar as
+baselines com o mesmo binário** (o app raiz, que renderiza com o CSS real do Bootswatch e não é
+afetado por `ve-project2`) e só então verificar. Aí o ruído cancela dos dois lados:
+
+| tema | rotas | iguais | divergentes |
+|---|---|---|---|
+| bootstrap | 339 (todas as famílias afetadas, inclusive `ui/buttons`) | **330** | 3 |
+| darkly | 119 | **113** | 5 |
+| materia | 118 | **111** | 5 |
+
+A maioria fecha em `0.000000` — pixel-perfeito, não "dentro da tolerância".
+
+As 13 divergentes são **pré-existentes**, confirmadas rodando a mesma verificação com o código de
+`main` (mantendo só os dois consertos de infra): `card-tabs`, `navbar`, `navs/tabbed-nav`,
+`pagination/large-pagination` e `toasts/toast-example` divergem igual, com ratio idêntico até a sexta
+casa. As poucas "skipped" são rotas cuja altura medida mudou com a fonte, então não existe baseline
+naquele tamanho.
+
+As baselines regeradas **não** foram commitadas: vêm do binário errado e quebrariam as próximas
+verificações de quem tem o binário fixado.
+
+### A regressão que só isto pegou
+
+Com as baselines certas, 9 rotas de tooltip/popover falharam nesta branch e passavam em `main`. O
+dedupe do codemod removia `${token}` repetido por template literal — mas os templates de
+tooltip/popover têm vários elementos num literal só, e `${theme}` repete ali de propósito, um por
+elemento. Sem a classe de escopo nos nós internos, `${scope}${tooltipInner}` parou de casar e o balão
+virava texto solto. Corrigido em `aad221dd`; `scripts/_fixdedupe.mjs` reporta qualquer token perdido
+em relação a uma revisão base e hoje reporta zero.
+
+O ruído de fonte estava **escondendo** essa regressão: no primeiro run tudo divergia 2–16%, e os
+tooltips não se destacavam.
 
 ## Conserto pré-existente necessário para verificar
 
